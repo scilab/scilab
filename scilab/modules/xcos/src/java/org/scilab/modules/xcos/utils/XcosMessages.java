@@ -43,6 +43,7 @@ public final class XcosMessages {
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
     public static final String EXPORT = Messages.gettext("Export") + DOTS;
+    public static final String EXPORT_ALL = Messages.gettext("Export all diagrams");
     public static final String SAVE_AS_INTERFACE_FUNCTION = Messages.gettext("Save as interface function") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
@@ -72,7 +73,7 @@ public final class XcosMessages {
 
     /* View Menu */
     public static final String VIEW = Messages.gettext("View");
-    public static final String FIT_DIAGRAM_TO_VIEW = Messages.gettext("Fit diagram to view");
+    public static final String FIT_DIAGRAM_TO_VIEW = Messages.gettext("Fit diagram or blocks to view");
     public static final String NORMAL_100 = Messages.gettext("Normal 100%");
     public static final String PALETTE_BROWSER = Messages.gettext("Palette browser");
     public static final String DIAGRAM_BROWSER = Messages.gettext("Diagram browser");

@@ -25,13 +25,6 @@
  * @param[in] dest where to save the file
  * @return the file pointer
 */
-FILEIO_IMPEXP char *downloadFile(char *url, char *dest, char *username, char *password);
-
-/**
- * Download the content of an URL
- * @param[in] Url the location
- * @return the content
- */
-FILEIO_IMPEXP char *downloadContent(char *url, char *username, char *password);
+FILEIO_IMPEXP char *downloadFile(char *url, char *dest, char *username, char *password, char **content);
 
 #endif /* __DLMANAGER_H__ */

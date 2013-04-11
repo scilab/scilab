@@ -30,9 +30,9 @@
     <gateway name="sci_gamma"           function="gamma"        type="0" />
     <gateway name="sci_gammaln"         function="gammaln"      type="0" />
     <gateway name="sci_dlgamma"         function="dlgamma"      type="0" />
-    <gateway name="sci_Faddeeva_erf"    function="dawson"       type="0" />
-    <gateway name="sci_Faddeeva_erfc"   function="dawson"       type="0" />
-    <gateway name="sci_Faddeeva_erfcx"  function="dawson"       type="0" />
-    <gateway name="sci_Faddeeva_erfi"   function="dawson"       type="0" />
+    <gateway name="sci_Faddeeva_erf"    function="erf"          type="0" />
+    <gateway name="sci_Faddeeva_erfc"   function="erfc"         type="0" />
+    <gateway name="sci_Faddeeva_erfcx"  function="erfcx"        type="0" />
+    <gateway name="sci_Faddeeva_erfi"   function="erfi"         type="0" />
     <gateway name="sci_Faddeeva_dawson" function="dawson"       type="0" />
 </module>

@@ -142,14 +142,15 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 
     //prepare fractionnal part to precision asked
     double dblScale = pow(10., iPrecNeeded - iTotalLen);
-
     while (iTotalLen <= iPrecNeeded)
     {
         dblDec = dblDec * dblScale;
         dblDec = floor(dblDec + 0.5);
         dblDec = dblDec / dblScale;
 
-        if (dblDec == 0.)
+        // when dblAbs = 1.9999999..., modf function
+        // return a decimal part equal to 1.0
+        if (dblDec == 0. || dblDec == 1.)
         {
             break;
         }

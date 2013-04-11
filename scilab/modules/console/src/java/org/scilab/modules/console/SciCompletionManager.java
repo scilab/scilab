@@ -36,7 +36,7 @@ public class SciCompletionManager implements CompletionManager {
         private InputParsingManager inputParsingManager;
 
         /**
-         * Create a fake database of completion informations
+         * Create a fake database of completion information
          */
         public SciCompletionManager() {
         }

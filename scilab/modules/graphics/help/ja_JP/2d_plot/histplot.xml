@@ -101,7 +101,10 @@ x(1)
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>histplot();</scilab:image>
+        <scilab:image>
+            d=rand(1,10000,'normal');
+            clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

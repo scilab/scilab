@@ -19,7 +19,9 @@
 /* desc : function to modify in Scilab the user_data field of             */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
+
 #include "setHandleProperty.h"
+#include "getHandleProperty.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -31,11 +33,23 @@
 /*------------------------------------------------------------------------*/
 int set_user_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
+    void* pPrevious = NULL;
     //temporary, try to write address of user_data in int array
     int iSize = sizeof(void*) / sizeof(int);
 
+    //increase before decrease to not delete new val in case fo in and out are the same
+    increaseValRef(_pvCtx, (int*)_pvData);
+
+    pPrevious = get_user_data_property(_pvCtx, pobjUID);
+    if(pPrevious)
+    {
+        decreaseValRef(_pvCtx, (int*)pPrevious);
+    }
+
     if (setGraphicObjectProperty(pobjUID, __GO_USER_DATA__, &_pvData, jni_int_vector, iSize) == FALSE)
     {
+        //don't need to keep _pvData, operation failed.
+        decreaseValRef(_pvCtx, (int*)_pvData);
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "user_data");
         return SET_PROPERTY_ERROR;
     }

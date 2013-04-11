@@ -105,7 +105,15 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>fchamp();</scilab:image>
+        <scilab:image>
+            deff("[xdot] = derpol(t,x)",..
+            ["xd1 = x(2)";..
+            "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+            "xdot = [ xd1 ; xd2 ]"])
+            xf= -1:0.1:1;
+            yf= -1:0.1:1;
+            fchamp(derpol,0,xf,yf)
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

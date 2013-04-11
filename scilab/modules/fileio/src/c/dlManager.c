@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - S/E - Sylvestre LEDRU
+ * Copyright (C) 2012-2013 - S/E - Sylvestre LEDRU
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -289,7 +289,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     return useproxy;
 }
 /* ==================================================================== */
-char *downloadFile(char *url, char *dest, char *username, char *password)
+char *downloadFile(char *url, char *dest, char *username, char *password, char **content)
 {
     CURL *curl;
     CURLcode res;
@@ -300,6 +300,10 @@ char *downloadFile(char *url, char *dest, char *username, char *password)
     if (curl)
     {
         FILE *file;
+
+        struct inputString buffer;
+
+        init_string(&buffer);
 
         if (dest == NULL)
         {
@@ -372,7 +376,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password)
                 Scierror(999, _("Failed to set user:pwd [%s]\n"), errorBuffer);
                 return NULL;
             }
-        }
+        } /* end authentication section */
 
         {
             //Set proxy variables
@@ -408,142 +412,17 @@ char *downloadFile(char *url, char *dest, char *username, char *password)
                 }
 
             }
-        }
+        } /* end of the set of the proxy */
 
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, fwrite);
+        res = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
+
         if (res != CURLE_OK)
         {
             Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
             return NULL;
         }
 
-        //Get data to be written to file
-        res = curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
-        if (res != CURLE_OK)
-        {
-            Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
-            return NULL;
-        }
-
-        // Follow redirects
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
-
-        res = curl_easy_perform(curl);
-
-        if (res != 0)
-        {
-            Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
-            return NULL;
-        }
-
-        /* always cleanup */
-        curl_easy_cleanup(curl);
-
-        fclose(file);
-
-        return filename;
-    }
-    else
-    {
-        Scierror(999, "Failed opening the curl handle.\n");
-        return NULL;
-    }
-    return NULL;
-}
-/* ==================================================================== */
-char *downloadContent(char *url, char *username, char *password)
-{
-    CURL *curl = NULL;
-    CURLcode res;
-
-    char *proxyHost = NULL;
-    char *proxyUserPwd = NULL;
-    long proxyPort = 1080;
-    int proxySet = 0;
-
-    curl = curl_easy_init();
-
-    if (curl)
-    {
-
-        struct inputString buffer;
-
-        init_string(&buffer);
-        res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
-        if (res != CURLE_OK)
-        {
-            Scierror(999, "Failed to set error buffer [%d]\n", res);
-            return NULL;
-        }
-
-        res = curl_easy_setopt(curl, CURLOPT_URL, url);
-        if (res != CURLE_OK)
-        {
-            Scierror(999, "Failed to set URL [%s]\n", errorBuffer);
-            return NULL;
-        }
-
-        //Set authentication variables
-        if (username != NULL)
-        {
-            char * userpass;
-            int uplen = (int)strlen(username);
-            if (password != NULL)
-            {
-                uplen = uplen + (int)strlen(password);
-            }
-
-            userpass = (char *)MALLOC((uplen + 2) * sizeof(char));
-            strcpy(userpass, username);
-            strcat(userpass, ":");
-            if (password != NULL)
-            {
-                strcat(userpass, password);
-            }
-
-            res = curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-            if (res != CURLE_OK)
-            {
-                Scierror(999, "Failed to set httpauth type to ANY [%s]\n", errorBuffer);
-                return NULL;
-            }
-            res = curl_easy_setopt(curl, CURLOPT_USERPWD, userpass);
-            if (res != CURLE_OK)
-            {
-                Scierror(999, _("Failed to set user:pwd [%s]\n"), errorBuffer);
-                return NULL;
-            }
-        }
-
-        //Set proxy variables
-
-        proxySet = getProxyValues(&proxyHost, &proxyPort, &proxyUserPwd);
-        if (proxySet == 1)
-        {
-            res = curl_easy_setopt(curl, CURLOPT_PROXY, proxyHost);
-            if (res != CURLE_OK)
-            {
-                Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
-                return NULL;
-            }
-            curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
-            if (res != CURLE_OK)
-            {
-                Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
-                return NULL;
-            }
-            if (proxyUserPwd != NULL)
-            {
-                res = curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, proxyUserPwd);
-                if (res != CURLE_OK)
-                {
-                    Scierror(999, _("Failed to set proxy user:password [%s]\n"), errorBuffer);
-                    return NULL;
-                }
-            }
-
-        }
-
+        //Get data to be written to the variable
         res = curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
         if (res != CURLE_OK)
         {
@@ -551,27 +430,29 @@ char *downloadContent(char *url, char *username, char *password)
             return NULL;
         }
 
-        res = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
-        if (res != CURLE_OK)
-        {
-            Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
-            return NULL;
-        }
-
         // Follow redirects
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
 
         res = curl_easy_perform(curl);
+
         if (res != 0)
         {
             Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
             return NULL;
         }
 
+        /* Write the file */
+        fwrite(buffer.ptr, sizeof(char), buffer.len, file);
+
+        /* Create the variable which contains the output argument */
+        *content = buffer.ptr;
+
         /* always cleanup */
         curl_easy_cleanup(curl);
 
-        return buffer.ptr;
+        fclose(file);
+
+        return filename;
     }
     else
     {

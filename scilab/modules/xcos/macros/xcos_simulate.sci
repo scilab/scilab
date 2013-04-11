@@ -202,9 +202,9 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         needstart = %t ;
         tf        = scs_m.props.tf;
 
-        //Alan: ONPEUTPASAPPELLERDOTERMINATEICI?
-        //reponse : non, car do_terminate() ne rend
-        //          pas forc�ment la main � l'utilisateur
+        //Alan: Cannot call do_terminate() here ?
+        //Answer: No, because do_terminate() doesn't
+        //          return control to the user
 
         //** run scicosim via 'finish' flag
         ierr = execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
@@ -243,9 +243,9 @@ function %cpr = xcos_simulate(scs_m, needcompile)
 
   //gh_win = gcf();
 
-  //** scicos initialisation
+  //** scicos initialization
   if needstart then
-    //** if the simulation have already ran
+    //** if the simulation has already run
     //** and is not finished then call do_terminate
     if alreadyran then
       [alreadyran,%cpr] = do_terminate()
@@ -312,8 +312,8 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     //** finish the simulation via do_terminate()
     if tf-t<tolerances(3) then
       //disp('fin');
-      //Alan : j'enl�ve do_terminate ici car do_terminate
-      //       ne rend pas la main
+      //Alan : removing do_terminate() here because it
+      //       doesn't return control
       //[alreadyran,%cpr]=do_terminate()
       needstart  = %t;
       alreadyran = %f;
@@ -354,7 +354,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
       path = corinv(kfun);
       //** get error cmd for the block
       get_errorcmd(path,gettext("Simulation problem"),str_err);
-    else //** simulateur error
+    else //** simulator error
       message(['Simulation problem:';str_err])
       //scf(curwin);
     end

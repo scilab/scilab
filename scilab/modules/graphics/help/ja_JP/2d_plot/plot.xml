@@ -19,7 +19,7 @@
         <title>呼び出しの手順</title>
         <synopsis>plot(y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
             plot(x,y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
-            plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;)
+            plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;
             plot(&lt;axes_handle&gt;,...)
         </synopsis>
     </refsynopsisdiv>
@@ -283,28 +283,50 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>plot();</scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // x 初期化
 x=[0:0.1:2*%pi]';
 //simple plot
 plot(sin(x))
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot(sin(x))
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf()
+x=[0:0.1:2*%pi]';
 plot(x,sin(x))
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot(x,sin(x))
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 //複数プロット
-clf()
+x=[0:0.1:2*%pi]';
 plot(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf()
-
+x=[0:0.1:2*%pi]';
 // 右に軸
 plot(x,sin(x)) 
 a=gca(); // カレントの軸エンティティのハンドル
 a.y_location ="right"; 
-clf()
-
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot(x,sin(x)) 
+            a=gca();
+            a.y_location ="right"; 
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+x=[0:0.1:2*%pi]';
 // (0,0)を中心とする軸
 plot(x-4,sin(x),x+2,cos(x))
 a=gca(); // 軸エンティティのハンドル
@@ -320,6 +342,25 @@ poly1.foreground = 4; // スタイルを変更する別の方法...
 poly1.thickness = 3;  // ...曲線の太さ.
 poly1.clip_state='off' // 制御をクリップ
 a.isoview='off'; 
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot(x-4,sin(x),x+2,cos(x))
+            a=gca();
+            a.x_location = "origin";
+            a.y_location = "origin";
+            
+            a=gca();
+            a.isoview='on';
+            a.children
+            poly1= a.children.children(2);
+            poly1.foreground = 4;
+            poly1.thickness = 3;
+            poly1.clip_state='off'
+            a.isoview='off';
+            
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 
 //LineSpec と GlobalProperty の例:
 clf();
@@ -332,15 +373,39 @@ axfig3 = gca();
 scf(4) // 空白のままにする
 plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
 xdel(winsid())
-
+ ]]></programlisting>
+        <scilab:image>
+            t=0:%pi/20:2*%pi;
+            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+            scf(2)
+            plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
+            scf(3)
+            axfig3 = gca();
+            scf(4) // should remain blank
+            plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 //データ指定
 t=-%pi:0.1:%pi;
 size(t)
 plot(t) // ベクトルtの大きさに対してyをプロット
-clf(); // 図を消去
-
+ ]]></programlisting>
+        <scilab:image>
+            t=-%pi:0.1:%pi;
+            size(t)
+            plot(t)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+t=-%pi:0.1:%pi;
 plot(t,sin(t)); // tに対してsin(t)をプロット
-clf();
+
+ ]]></programlisting>
+        <scilab:image>
+            t=-%pi:0.1:%pi;
+            plot(t,sin(t));
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+
 
 t=[1     1     1     1
    2     3     4     5
@@ -348,7 +413,20 @@ t=[1     1     1     1
    4     5     6     7];
 
 plot(t) // 行の大きさに対してtの各列をプロット
-clf();
+ ]]></programlisting>
+        <scilab:image>
+            t=[1     1     1     1
+            2     3     4     5
+            3     4     5     6
+            4     5     6     7];
+            
+            plot(t) // plots each t column versus row size
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+t=[1     1     1     1
+   2     3     4     5
+   3     4     5     6
+   4     5     6     7];
 
 subplot(221)
 plot(t,sin(t)); // 列毎にtに対してsin(t)をプロット
@@ -365,14 +443,58 @@ subplot(224)
 plot(t',sin(t)')
 xtitle("sin(t)'' versus t''")
 
-clf();
+ ]]></programlisting>
+        <scilab:image>
+            t=[1     1     1     1
+            2     3     4     5
+            3     4     5     6
+            4     5     6     7];
+            
+            subplot(221)
+            plot(t,sin(t)); // plots sin(t) versus t column by column this time
+            xtitle("sin(t) versus t")
+            subplot(222)
+            plot(t,sin(t)')
+            xtitle("sin(t)'' versus t")
+            subplot(223)
+            plot(t',sin(t))
+            a=gca();
+            a.data_bounds=[0 -1;7 1]; // to see the vertical line hiddden by the y axis
+            xtitle("sin(t) versus t''")
+            subplot(224)
+            plot(t',sin(t)')
+            xtitle("sin(t)'' versus t''")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 
+t=[1     1     1     1
+   2     3     4     5
+   3     4     5     6
+   4     5     6     7];
 //特別な場合1
 //x : vector ([5 6 7 8]) and y : matrix (t)
 x=[5 6 7 8]
 plot(x,t);
 plot(x',t); // idem, x はtに一致するように自動的に転置される (ここでは列)
+ ]]></programlisting>
+        <scilab:image>
+            t=[1     1     1     1
+            2     3     4     5
+            3     4     5     6
+            4     5     6     7];
+            
+            x=[5 6 7 8]
+            plot(x,t);
+            plot(x',t);
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf()
+x=[5 6 7 8]
+
+t=[1     1     1     1
+   2     3     4     5
+   3     4     5     6
+   4     5     6     7];
 
 // Only one matching possibility case : how to make 4 identical plots in 4 manners...
 // x is 1x4 (vector) and y is 4x5 (non square matrix)
@@ -385,6 +507,32 @@ plot(x,[t [8;9;10;12]]');
 subplot(224);
 plot(x',[t [8;9;10;12]]');
 clf()
+ ]]></programlisting>
+        <scilab:image>
+            x=[5 6 7 8]
+            
+            t=[1     1     1     1
+            2     3     4     5
+            3     4     5     6
+            4     5     6     7];
+            
+            // Only one matching possibility case : how to make 4 identical plots in 4 manners...
+            // x is 1x4 (vector) and y is 4x5 (non square matrix)
+            subplot(221);
+            plot(x,[t [8;9;10;12]]');
+            subplot(222);
+            plot(x',[t [8;9;10;12]]');
+            subplot(223);
+            plot(x,[t [8;9;10;12]]');
+            subplot(224);
+            plot(x',[t [8;9;10;12]]');
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+
+t=[1     1     1     1
+   2     3     4     5
+   3     4     5     6
+   4     5     6     7];
 
 //特別な場合2
 // xまたはyのみが疎行列の場合
@@ -392,20 +540,61 @@ clf()
 plot(t,[1 2 3 4]) // plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])と同じ
 plot(t,[1;2;3;4]) // 同じプロット
 clf();
+ ]]></programlisting>
+        <scilab:image>
+            t=[1     1     1     1
+            2     3     4     5
+            3     4     5     6
+            4     5     6     7];
+            
+            //Special case 2
+            // Case where only x or y is a square matrix
+            //x : matrix (t) and y  : vector ([1 2 3 4])
+            plot(t,[1 2 3 4]) // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
+            plot(t,[1;2;3;4]) // the same plot
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+t=[1     1     1     1
+   2     3     4     5
+   3     4     5     6
+   4     5     6     7];
+clf();
 
 // tは転置される : 列の処理で指定された優先順位に注意
 plot(t',[1 2 3 4]) // plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4]) と同じ
 plot(t',[1 2 3 4]') // 同じプロット
 clf();
+ ]]></programlisting>
+        <scilab:image>
+            t=[1     1     1     1
+            2     3     4     5
+            3     4     5     6
+            4     5     6     7];
+            clf();
+            
+            // t is transposed : notice the priority given to the columns treatment
+            plot(t',[1 2 3 4]) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4]) 
+            plot(t',[1 2 3 4]') // the same plot 
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 
 // y はプリミティブで定義された関数
 plot(1:0.1:10,sin) // plot(1:0.1:10,sin(1:0.1:10))と同じ
-clf();
+
+ ]]></programlisting>
+        <scilab:image>
+            plot(1:0.1:10,sin)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 
 // ..マクロ:
 deff('[y]=toto(x)','y=x.*x')
 plot(1:10,toto)
  ]]></programlisting>
+        <scilab:image>
+            deff('[y]=toto(x)','y=x.*x')
+            plot(1:10,toto)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

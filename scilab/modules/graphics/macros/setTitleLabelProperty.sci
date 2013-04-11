@@ -1,12 +1,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Farid Belahcene
+// Copyright (C) 2013 - Samuel GOUGEON
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [fail]=setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,current_figure,cur_draw_mode)
+function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,current_figure,cur_draw_mode)
 // SETTITLELABELPROPERTY function
 // is used by the functions title, xlabel, ylabel, zlabel
 // This function sets the title (or x_, y_, z_label) properties 
@@ -18,7 +19,7 @@ str = convstr(PropertyName);
 
 //Property = ['foreground' 'clipping'];
 
-[PName] = getTitleLabelPropertyNam(str,current_figure,cur_draw_mode)
+[PName] = getTitleLabelPropertyNam(str, current_figure, cur_draw_mode)
 
 if (PName==[])
   ResetFigureDDM(current_figure, cur_draw_mode);
@@ -32,7 +33,7 @@ case 'font_size'       // <=> fontsize
   /////////////////////////
 
 if (type(PropertyValue)<>1 | size(PropertyValue,"*")<>1)
-  warning("Color data  must be a scalar.");
+  warning(_("Color data must be a scalar."));
   ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 end
@@ -45,14 +46,14 @@ return
 case 'font_angle'  // <=> rotation
   /////////////////////////
 if (type(PropertyValue)<>1 | size(PropertyValue,"*")<>1)
-  warning("Color data  must be a scalar.");
+  warning(_("Color data must be a scalar."));
   ResetFigureDDM(current_figure, cur_draw_mode);
   return;
 end
 
 titlelabel.auto_rotation = 'off'
-newPropertyValue=modulo(PropertyValue,360)
-titlelabel.font_angle = 360-newPropertyValue
+newPropertyValue = modulo(PropertyValue,360)
+titlelabel.font_angle = 360 - newPropertyValue
 return
 
 
@@ -70,7 +71,7 @@ case 'font_foreground'         // <=> color or edgecolor
     elseif index == 10  // 'none' selected
       titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
     else
-      warning("Color value must be a 3 element vector or an index in the colormap.");
+      warning(_("Color value must be a 3 element vector or an index in the colormap."));
       ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
@@ -79,13 +80,13 @@ case 'font_foreground'         // <=> color or edgecolor
     if (size(PropertyValue,'*')==3)
       titlelabel.font_foreground = addcolor(PropertyValue);
     else
-      warning("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      warning(_("Incorrect input: Color vector should be a 3x1 or 1x3 vector"));
       ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
 
   else
-    warning("Color value must be a 3 element vector or an index in the colormap.");
+    warning(_("Color value must be a 3 element vector or an index in the colormap."));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
@@ -106,7 +107,7 @@ if (type(PropertyValue) == 10)
     elseif index == 10  // 'none' selected
       titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
     else
-      warning("Color value must be a 3 elements vector or an index in the colormap.");
+      warning(_("Color value must be a 3 elements vector or an index in the colormap."));
       ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
@@ -121,7 +122,7 @@ elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
       return;
     end
 else
-    warning("Color value must be a 3 elements vector or an index in the colormap.");
+    warning(_("Color value must be a 3 elements vector or an index in the colormap."));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
 end
@@ -143,7 +144,7 @@ if (type(PropertyValue) == 10)
     elseif index == 10  // 'none' selected
       titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
     else
-      warning("Color value must be a 3 elements vector or an index in the colormap.");
+      warning(_("Color value must be a 3 elements vector or an index in the colormap."));
       ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
@@ -153,12 +154,12 @@ elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
       titlelabel.fill_mode = 'on'
       titlelabel.background = addcolor(PropertyValue);
     else
-      warning("Incorrect input : Color vector should be a 3x1 or 1x3 vector");
+      warning(_("Incorrect input: Color vector should be a 3x1 or 1x3 vector"));
       ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
 else
-    warning("Color value must be a 3 elements vector or an index in the colormap.");
+    warning(_("Color value must be a 3 elements vector or an index in the colormap."));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
 end
@@ -171,14 +172,14 @@ case 'text'        // <=> string
      titlelabel.text = PropertyValue;
      return
   else
-    warning("Incorrect input : ...");
+    warning(_("Incorrect input: ..."));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
   
 
   /////////////////////////
-case 'position'        // <=> position, à completer: la position par rapport à z n'est pas pris en compte, de plus le vecteur position doit contenir des coordonnées utilisateur (coordonnées selon l'axe)
+case 'position'        // <=> position, Ã  completer: la position par rapport Ã  z n'est pas pris en compte, de plus le vecteur position doit contenir des coordonnÃ©es utilisateur (coordonnÃ©es selon l'axe)
   /////////////////////////
 
   if type(PropertyValue) == 1 & size(PropertyValue,"*")<=3    
@@ -186,7 +187,7 @@ case 'position'        // <=> position, à completer: la position par rapport à z
     titlelabel.position = PropertyValue ;
     return
   else
-    warning("Incorrect input : ...");
+    warning(_("Incorrect input: ..."));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;
   end
@@ -197,7 +198,6 @@ case 'visible'           // <=> visible
   /////////////////////////
 
   if type(PropertyValue) == 10
-    newPropertyName = convstr(PropertyName);
     if or(PropertyValue == ['off' 'of'])
       titlelabel.visible = 'off';
       return
@@ -205,12 +205,12 @@ case 'visible'           // <=> visible
       titlelabel.visible = 'on'; 
         return
     else
-      warning("Incorrect input : ...");
+      warning(_("Incorrect input: ..."));
       ResetFigureDDM(current_figure, cur_draw_mode);
       return;
     end
   else
-    warning("Incorrect input : ...");
+    warning(_("Incorrect input: ..."));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;    
   end
@@ -219,20 +219,35 @@ case 'visible'           // <=> visible
   /////////////////////////  
 case 'font_style'     // <=> fontangle
   /////////////////////////
- 
-    warning("unknown property value : ...");
+  fonts = ["courrier" "symbol" "times" "times italic" "times bold" ..
+          "times bold italic" "helvetica" "helvetica italic" "helvetica bold"..
+          "helvetica bold italic" ] 
+  if typeof(PropertyValue) == "string"
+      PropertyValue = convstr(PropertyValue,"l")
+    if or(PropertyValue == fonts)
+      titlelabel.font_style = find(fonts==PropertyValue)-1;
+    else 
+      warning(_("Incorrect input: ..."));
+      ResetFigureDDM(current_figure, cur_draw_mode);
+      return;
+    end
+  elseif typeof(PropertyValue) == "constant" & or(PropertyValue==(0:9))
+      titlelabel.font_style = PropertyValue;
+  else
+    warning(_("Incorrect input: ..."));
     ResetFigureDDM(current_figure, cur_draw_mode);
     return;    
-  
+  end
+    
 end
 
 endfunction
 
 
-function k=getIndexInStringTable(pattern,table)
+function k = getIndexInStringTable(pattern, table)
 
 str =  convstr(pattern);
-k=find(part(table,1:length(str))==str);
+k = find(part(table,1:length(str))==str);
 
 endfunction
 

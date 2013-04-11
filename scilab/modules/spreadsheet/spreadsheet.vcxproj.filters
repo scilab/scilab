@@ -79,9 +79,6 @@
     <ClInclude Include="src\c\getRange.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\latintoutf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\c\splitLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -175,9 +172,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getRange.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\latintoutf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\splitLine.c">

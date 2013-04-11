@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +15,7 @@ package org.scilab.modules.graphic_objects.axes;
 
 import java.util.ArrayList;
 
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 import org.scilab.modules.graphic_objects.textObject.Font;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 
@@ -64,6 +66,24 @@ public class TicksProperty {
             this.number = number;
         }
 
+        @Override
+        public boolean equals(Object o) {
+            if (o instanceof TicksArrays) {
+                TicksArrays ta = (TicksArrays) o;
+                if (ta.number == number) {
+                    for (int i = 0; i < number; i++) {
+                        if (ta.locations[i] != locations[i] || !ta.labels.get(i).equals(labels.get(i))) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         /**
          * @return the number of ticks
          */
@@ -81,14 +101,19 @@ public class TicksProperty {
         /**
          * @param labels the labels to set
          */
-        public void setLabels(ArrayList<FormattedText> labels) {
-            if (!this.labels.isEmpty()) {
-                this.labels.clear();
+        public UpdateStatus setLabels(ArrayList<FormattedText> labels) {
+            UpdateStatus status = this.labels.equals(labels) ? UpdateStatus.NoChange : UpdateStatus.Success;
+            if (status == UpdateStatus.Success) {
+                if (!this.labels.isEmpty()) {
+                    this.labels.clear();
+                }
+
+                for (int i = 0; i < labels.size(); i++) {
+                    this.labels.add(i, new FormattedText(labels.get(i)));
+                }
             }
 
-            for (int i = 0; i < labels.size(); i++) {
-                this.labels.add(i, new FormattedText(labels.get(i)));
-            }
+            return status;
         }
 
         /**
@@ -111,25 +136,33 @@ public class TicksProperty {
          * Requires the corresponding ticks locations to have previously been set.
          * @param labels the labels to set
          */
-        public void setLabelsStrings(String[] labels) {
+        public UpdateStatus setLabelsStrings(String[] labels) {
             if (labels.length != number) {
-                return;
+                return UpdateStatus.NoChange;
             }
 
             if (this.labels == null || this.labels.size() != labels.length) {
                 this.labels = new ArrayList<FormattedText>(0);
 
+                Font font = new Font(defaultFont);
                 for (int i = 0; i < labels.length; i++) {
-                    FormattedText newText = new FormattedText();
+                    FormattedText newText = new FormattedText(labels[i], font);
+                    this.labels.add(newText);
+                }
 
-                    newText.setFont(new Font(defaultFont));
-                    this.labels.add(i, newText);
+                return UpdateStatus.Success;
+            }
+
+            UpdateStatus status = UpdateStatus.NoChange;
+            for (int i = 0; i < number; i++) {
+                FormattedText ft = this.labels.get(i);
+                if (!ft.getText().equals(labels[i])) {
+                    this.labels.get(i).setText(labels[i]);
+                    status = UpdateStatus.Success;
                 }
             }
 
-            for (int i = 0; i < number; i++) {
-                this.labels.get(i).setText(labels[i]);
-            }
+            return status;
         }
 
         /**
@@ -153,15 +186,27 @@ public class TicksProperty {
          * if the latter is resized.
          * @param locations the locations to set
          */
-        public void setLocations(Double[] locations) {
+        public UpdateStatus setLocations(Double[] locations) {
+            UpdateStatus status = UpdateStatus.Success;
             if (this.locations == null || number != locations.length) {
                 this.locations = new double[locations.length];
                 number = locations.length;
+            } else {
+                status = UpdateStatus.NoChange;
             }
 
             for (int i = 0; i < locations.length; i++) {
-                this.locations[i] = locations[i];
+                if (status == UpdateStatus.NoChange) {
+                    if (this.locations[i] != locations[i]) {
+                        status = UpdateStatus.Success;
+                        this.locations[i] = locations[i];
+                    }
+                } else {
+                    this.locations[i] = locations[i];
+                }
             }
+
+            return status;
         }
 
         /**
@@ -181,10 +226,17 @@ public class TicksProperty {
          * To be corrected.
          * @param fontStyle the ticks labels font style to set
          */
-        public void setFontStyle(Integer fontStyle) {
+        public UpdateStatus setFontStyle(Integer fontStyle) {
+            UpdateStatus status = UpdateStatus.NoChange;
             for (int i = 0; i < labels.size(); i++) {
-                labels.get(i).getFont().setStyle(fontStyle);
+                Font f = labels.get(i).getFont();
+                if (f.getStyle() != fontStyle) {
+                    f.setStyle(fontStyle);
+                    status = UpdateStatus.Success;
+                }
             }
+
+            return status;
         }
 
         /**
@@ -204,10 +256,17 @@ public class TicksProperty {
          * To be corrected.
          * @param fontSize the ticks labels font size to set
          */
-        public void setFontSize(Double fontSize) {
+        public UpdateStatus setFontSize(Double fontSize) {
+            UpdateStatus status = UpdateStatus.NoChange;
             for (int i = 0; i < labels.size(); i++) {
-                labels.get(i).getFont().setSize(fontSize);
+                Font f = labels.get(i).getFont();
+                if (f.getSize() != fontSize) {
+                    f.setSize(fontSize);
+                    status = UpdateStatus.Success;
+                }
             }
+
+            return status;
         }
 
         /**
@@ -227,10 +286,17 @@ public class TicksProperty {
          * To be corrected.
          * @param fontColor the ticks labels font color to set
          */
-        public void setFontColor(Integer fontColor) {
+        public UpdateStatus setFontColor(Integer fontColor) {
+            UpdateStatus status = UpdateStatus.NoChange;
             for (int i = 0; i < labels.size(); i++) {
-                labels.get(i).getFont().setColor(fontColor);
+                Font f = labels.get(i).getFont();
+                if (!f.getColor().equals(fontColor)) {
+                    f.setColor(fontColor);
+                    status = UpdateStatus.Success;
+                }
             }
+
+            return status;
         }
 
         /**
@@ -250,13 +316,18 @@ public class TicksProperty {
          * To be corrected.
          * @param fontFractional the ticks labels font fractional to set
          */
-        public void setFontFractional(Boolean fontFractional) {
+        public UpdateStatus setFontFractional(Boolean fontFractional) {
+            UpdateStatus status = UpdateStatus.NoChange;
             for (int i = 0; i < labels.size(); i++) {
-                labels.get(i).getFont().setFractional(fontFractional);
+                Font f = labels.get(i).getFont();
+                if (f.getFractional() != fontFractional) {
+                    f.setFractional(fontFractional);
+                    status = UpdateStatus.Success;
+                }
             }
+
+            return status;
         }
-
-
     }
 
     /** Automatic ticks */
@@ -298,6 +369,22 @@ public class TicksProperty {
         userTicks.setLabels(ticksProperty.userTicks.getLabels());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof TicksProperty) {
+            TicksProperty tp = (TicksProperty) o;
+            if (tp.auto == auto && tp.subticks == subticks && tp.defaultFont.equals(defaultFont)) {
+                if (auto) {
+                    return automaticTicks.equals(tp.automaticTicks);
+                } else {
+                    return userTicks.equals(tp.userTicks);
+                }
+            }
+        }
+
+        return false;
+    }
+
     /**
      * @return the auto
      */
@@ -308,8 +395,13 @@ public class TicksProperty {
     /**
      * @param auto the auto to set
      */
-    public void setAuto(Boolean auto) {
-        this.auto = auto;
+    public UpdateStatus setAuto(Boolean auto) {
+        if (this.auto != auto) {
+            this.auto = auto;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -326,11 +418,11 @@ public class TicksProperty {
     /**
      * @param labels the labels to set
      */
-    public void setLabels(ArrayList<FormattedText> labels) {
+    public UpdateStatus setLabels(ArrayList<FormattedText> labels) {
         if (auto) {
-            automaticTicks.setLabels(labels);
+            return automaticTicks.setLabels(labels);
         } else {
-            userTicks.setLabels(labels);
+            return userTicks.setLabels(labels);
         }
     }
 
@@ -350,11 +442,11 @@ public class TicksProperty {
      * Requires the corresponding ticks locations to have previously been set.
      * @param labels the labels to set
      */
-    public void setLabelsStrings(String[] labels) {
+    public UpdateStatus setLabelsStrings(String[] labels) {
         if (auto) {
-            automaticTicks.setLabelsStrings(labels);
+            return automaticTicks.setLabelsStrings(labels);
         } else {
-            userTicks.setLabelsStrings(labels);
+            return userTicks.setLabelsStrings(labels);
         }
     }
 
@@ -386,11 +478,11 @@ public class TicksProperty {
      * if the latter is resized.
      * @param locations the locations to set
      */
-    public void setLocations(Double[] locations) {
+    public UpdateStatus setLocations(Double[] locations) {
         if (auto) {
-            automaticTicks.setLocations(locations);
+            return automaticTicks.setLocations(locations);
         } else {
-            userTicks.setLocations(locations);
+            return userTicks.setLocations(locations);
         }
     }
 
@@ -404,8 +496,13 @@ public class TicksProperty {
     /**
      * @param subticks the subticks to set
      */
-    public void setSubticks(Integer subticks) {
-        this.subticks = subticks;
+    public UpdateStatus setSubticks(Integer subticks) {
+        if (this.subticks != subticks) {
+            this.subticks = subticks;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -417,11 +514,11 @@ public class TicksProperty {
         return automaticTicks.getFontStyle();
 
         /*
-        if (auto) {
-        	return automaticTicks.getFontStyle();
-        } else {
-        	return userTicks.getFontStyle();
-        }
+          if (auto) {
+          return automaticTicks.getFontStyle();
+          } else {
+          return userTicks.getFontStyle();
+          }
         */
     }
 
@@ -430,18 +527,28 @@ public class TicksProperty {
      * To be corrected (commented out block) when the associated C set function is completed.
      * @param fontStyle the ticks labels font style to set
      */
-    public void setFontStyle(Integer fontStyle) {
-        defaultFont.setStyle(fontStyle);
+    public UpdateStatus setFontStyle(Integer fontStyle) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (fontStyle != defaultFont.getStyle()) {
+            defaultFont.setStyle(fontStyle);
+            status = UpdateStatus.Success;
+        }
 
-        automaticTicks.setFontStyle(fontStyle);
-        userTicks.setFontStyle(fontStyle);
+        UpdateStatus s1 = automaticTicks.setFontStyle(fontStyle);
+        UpdateStatus s2 = userTicks.setFontStyle(fontStyle);
+
+        if (status == UpdateStatus.Success || s1 == UpdateStatus.Success || s2 == UpdateStatus.Success) {
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
 
         /*
-        if (auto) {
-        	automaticTicks.setFontStyle(fontStyle);
-        } else {
-        	userTicks.setFontStyle(fontStyle);
-        }
+          if (auto) {
+          automaticTicks.setFontStyle(fontStyle);
+          } else {
+          userTicks.setFontStyle(fontStyle);
+          }
         */
     }
 
@@ -454,11 +561,11 @@ public class TicksProperty {
         return automaticTicks.getFontSize();
 
         /*
-        if (auto) {
-        	return automaticTicks.getFontSize();
-        } else {
-        	return userTicks.getFontSize();
-        }
+          if (auto) {
+          return automaticTicks.getFontSize();
+          } else {
+          return userTicks.getFontSize();
+          }
         */
     }
 
@@ -467,18 +574,28 @@ public class TicksProperty {
      * To be corrected (commented out block) when the associated C set function is completed.
      * @param fontSize the ticks labels font size to set
      */
-    public void setFontSize(Double fontSize) {
-        defaultFont.setSize(fontSize);
+    public UpdateStatus setFontSize(Double fontSize) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (fontSize != defaultFont.getSize()) {
+            defaultFont.setSize(fontSize);
+            status = UpdateStatus.Success;
+        }
 
-        automaticTicks.setFontSize(fontSize);
-        userTicks.setFontSize(fontSize);
+        UpdateStatus s1 = automaticTicks.setFontSize(fontSize);
+        UpdateStatus s2 = userTicks.setFontSize(fontSize);
+
+        if (status == UpdateStatus.Success || s1 == UpdateStatus.Success || s2 == UpdateStatus.Success) {
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
 
         /*
-        if (auto) {
-        	automaticTicks.setFontSize(fontSize);
-        } else {
-        	userTicks.setFontSize(fontSize);
-        }
+          if (auto) {
+          automaticTicks.setFontSize(fontSize);
+          } else {
+          userTicks.setFontSize(fontSize);
+          }
         */
     }
 
@@ -491,11 +608,11 @@ public class TicksProperty {
         return automaticTicks.getFontColor();
 
         /*
-        if (auto) {
-        	return automaticTicks.getFontColor();
-        } else {
-        	return userTicks.getFontColor();
-        }
+          if (auto) {
+          return automaticTicks.getFontColor();
+          } else {
+          return userTicks.getFontColor();
+          }
         */
     }
 
@@ -504,18 +621,28 @@ public class TicksProperty {
      * To be corrected (commented out block) when the associated C set function is completed.
      * @param fontColor the ticks labels font color to set
      */
-    public void setFontColor(Integer fontColor) {
-        defaultFont.setColor(fontColor);
+    public UpdateStatus setFontColor(Integer fontColor) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (fontColor != defaultFont.getColor()) {
+            defaultFont.setColor(fontColor);
+            status = UpdateStatus.Success;
+        }
 
-        automaticTicks.setFontColor(fontColor);
-        userTicks.setFontColor(fontColor);
+        UpdateStatus s1 = automaticTicks.setFontColor(fontColor);
+        UpdateStatus s2 = userTicks.setFontColor(fontColor);
+
+        if (status == UpdateStatus.Success || s1 == UpdateStatus.Success || s2 == UpdateStatus.Success) {
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
 
         /*
-        if (auto) {
-        	automaticTicks.setFontColor(fontColor);
-        } else {
-        	userTicks.setFontColor(fontColor);
-        }
+          if (auto) {
+          automaticTicks.setFontColor(fontColor);
+          } else {
+          userTicks.setFontColor(fontColor);
+          }
         */
     }
 
@@ -528,11 +655,11 @@ public class TicksProperty {
         return automaticTicks.getFontFractional();
 
         /*
-        if (auto) {
-        	return automaticTicks.getFontFractional();
-        } else {
-        	return userTicks.getFontFractional();
-        }
+          if (auto) {
+          return automaticTicks.getFontFractional();
+          } else {
+          return userTicks.getFontFractional();
+          }
         */
     }
 
@@ -541,18 +668,28 @@ public class TicksProperty {
      * To be corrected (commented out block) when the associated C set function is completed.
      * @param fontFractional the ticks labels font fractional to set
      */
-    public void setFontFractional(Boolean fontFractional) {
-        defaultFont.setFractional(fontFractional);
+    public UpdateStatus setFontFractional(Boolean fontFractional) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (fontFractional != defaultFont.getFractional()) {
+            defaultFont.setFractional(fontFractional);
+            status = UpdateStatus.Success;
+        }
 
-        automaticTicks.setFontFractional(fontFractional);
-        userTicks.setFontFractional(fontFractional);
+        UpdateStatus s1 = automaticTicks.setFontFractional(fontFractional);
+        UpdateStatus s2 = userTicks.setFontFractional(fontFractional);
+
+        if (status == UpdateStatus.Success || s1 == UpdateStatus.Success || s2 == UpdateStatus.Success) {
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
 
         /*
-        if (auto) {
-        	automaticTicks.setFontFractional(fontFractional);
-        } else {
-        	userTicks.setFontFractional(fontFractional);
-        }
+          if (auto) {
+          automaticTicks.setFontFractional(fontFractional);
+          } else {
+          userTicks.setFontFractional(fontFractional);
+          }
         */
     }
 

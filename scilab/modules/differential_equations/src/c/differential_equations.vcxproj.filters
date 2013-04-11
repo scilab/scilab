@@ -47,6 +47,12 @@
     <ClCompile Include="..\cpp\differentialequationfunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\Ex-daskr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ex-odedc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arnol.h">
@@ -73,6 +79,9 @@
     <ClInclude Include="..\..\includes\common_structure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Ex-odedc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="differential_equations_f_Import.def">
@@ -92,5 +101,9 @@
     <ResourceCompile Include="differential_equations.rc">
       <Filter>Resource File</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

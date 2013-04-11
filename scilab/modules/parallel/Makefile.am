@@ -17,21 +17,12 @@
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c
 #					sci_gateway/c/sci_parallel_concurrency.c
 
-libsciparallel_la_CFLAGS= $(OPENMP_CFLAGS) \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes \
--I$(srcdir)/src/cpp/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/localization/includes
-
 libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/cpp/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/parameters/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \

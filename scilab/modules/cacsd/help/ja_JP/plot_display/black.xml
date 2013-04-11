@@ -125,7 +125,7 @@
     clf();black(sl,0.01,10);
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s');
                 sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
                 clf();black(sl,0.01,10);
@@ -147,7 +147,7 @@
 
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s');
                 Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
                 tau=0.2;xsi=1.2;

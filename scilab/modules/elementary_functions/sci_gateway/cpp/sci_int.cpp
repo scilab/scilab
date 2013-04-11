@@ -168,20 +168,22 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
         }
         else
         {
+            types::SinglePoly* pSP = NULL;
             for (int i = 0; i < pPolyIn->getSize(); i++)
             {
                 int rank = pPolyIn->get(i)->getRank();
-                types::SinglePoly* pSP = new types::SinglePoly(&dataReal, rank);
+                pSP = new types::SinglePoly(&dataReal, rank);
 
                 for (int j = 0; j < rank; j++)
                 {
-                    if (finite(pPolyIn->get(i)->getCoefReal()[j]))
+                    double dblVal = pPolyIn->get(i)->getCoefReal()[j];
+                    if (finite(dblVal))
                     {
-                        dataReal[i] = (double)(long long int)pPolyIn->get(i)->getCoefReal()[j];
+                        dataReal[j] = (double)((long long)dblVal);
                     }
                     else
                     {
-                        dataReal[j] = pPolyIn->get(i)->getCoefReal()[j];
+                        dataReal[j] = dblVal;
                     }
                 }
 
@@ -190,7 +192,6 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                 pSP = NULL;
             }
         }
-
         out.push_back(pPolyOut);
     }
     else

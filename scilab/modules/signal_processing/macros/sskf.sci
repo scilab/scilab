@@ -7,7 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [xe]=sskf(y,f,h,q,r,x0)
+function [xe, x]=sskf(y,f,h,q,r,x0)
 //<xe>=sskf(y,f,h,q,r,x0)
 //steady-state kalman filter
 // y   :data in form [y0,y1,...,yn], yk a column vector
@@ -21,7 +21,7 @@ function [xe]=sskf(y,f,h,q,r,x0)
 
 //get steady-state Kalman gain
  
-x=ricc(f',h'/r*h,q,'disc') // steady state err cov
+ x=ricc(f',h'/r*h,q,'disc') // steady state err cov
  k=x*h'/(h*x*h'+r)
 
  // estimate state

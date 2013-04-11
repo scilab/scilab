@@ -43,7 +43,7 @@
  * Actual solving function, from 'ODEPACK' in 'differential_equations' module
  */
 
-extern void C2F(lsodar) (LSRhsFn f, int *neq, realtype *y, realtype *t, realtype *tout, int *itol, realtype *reltol, realtype *abstol, int *itask, int *istate, int *iopt, struct rWork_t *rwork, int *lrw, int *iwork, int *liw,  int *jacobian, int *jacType, LSRootFn grblk, int *ng, int *jroot);
+extern void C2F(lsodar) (LSRhsFn f, int *neq, realtype *y, realtype *t, realtype *tout, int *itol, realtype *reltol, realtype *abstol, int *itask, int *istate, int *iopt, struct rWork_t *rwork, int *lrw, int *iwork, int *liw, int *jacobian, int *jacType, LSRootFn grblk, int *ng, int *jroot);
 
 /* =============================
  *
@@ -209,14 +209,6 @@ int LSodarReInit (void * lsodar_mem, realtype tOld, N_Vector y)
     tStart = tOld;
     iState = 1;
 
-    /* Reinitialize rwork and iwork, leave rwork->tcrit and rwork->hmax unchanged, containing tcrit and hmax */
-    rwork0 = rwork->tcrit;
-    rwork5 = rwork->hmax;
-    memset(rwork, 0, lrw);
-    memset(iwork, 0, liw);
-    rwork->tcrit = rwork0;
-    rwork->hmax  = rwork5;
-
     return (CV_SUCCESS);
 }
 
@@ -290,7 +282,7 @@ int LSodarRootInit (void * lsodar_mem, int ng, LSRootFn g)
     if (g == NULL)
     {
         LSProcessError(ls_mem, CV_ILL_INPUT, "LSODAR", "LSodarRootInit", MSGCV_NULL_G);
-        return (CV_MEM_NULL);
+        return (CV_ILL_INPUT);
     }
 
     g_fun  = g;
@@ -428,8 +420,7 @@ int LSodar (void * lsodar_mem, realtype tOut, N_Vector yOut, realtype * tOld, in
     C2F(lsodar) (func, nEq, yVec, &tStart, &tEnd, &iTol, &relTol, &absTol, &itask, &iState, &iOpt, rwork, &lrw, iwork, &liw, &jac, &jacType, g_fun, &ng_fun, jroot);
 
     /* Increment the start times */
-    *tOld  = tOut;
-    tStart = tEnd;
+    *tOld  = tStart;
 
     /* lsodar() stocked the completion status in iState; return accordingly  */
     switch (iState)

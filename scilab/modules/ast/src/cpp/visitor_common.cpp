@@ -603,7 +603,7 @@ const std::wstring* getStructNameFromExp(const Exp* _pExp)
     else
     {
         std::wostringstream os;
-        os << L"Unknow expression";
+        os << _W("Unknow expression");
         //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
         throw ScilabError(os.str(), 999, _pExp->location_get());
     }
@@ -780,15 +780,15 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                             in.push_back(pList);
                         }
 
-                        in.push_back(pMain);
+                        in.push_back(pCurrent);
                         in.front()->IncreaseRef();
-                        pMain->IncreaseRef();
+                        pCurrent->IncreaseRef();
 
                         Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"%h_e"));
                         Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
 
                         in.front()->DecreaseRef();
-                        pMain->DecreaseRef();
+                        pCurrent->DecreaseRef();
 
                         if (in.front()->isList())
                         {
@@ -799,7 +799,7 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                         if (ret != Callable::OK)
                         {
                             std::wostringstream os;
-                            os << L"unable to update handle";
+                            os << _W("unable to update handle");
                             throw ScilabError(os.str(), 999, pField->location_get());
                         }
 
@@ -849,16 +849,16 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     std::wstring str = L"%" + _pIT->getShortTypeStr() + L"_i_h";
 
                     in.push_back(_pIT);
-                    in.push_back(pMain);
+                    in.push_back(pCurrent);
                     in.front()->IncreaseRef();
                     _pIT->IncreaseRef();
-                    pMain->IncreaseRef();
+                    pCurrent->IncreaseRef();
 
                     Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(str));
                     Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
                     in.front()->DecreaseRef();
                     //_pIT->DecreaseRef();
-                    pMain->DecreaseRef();
+                    pCurrent->DecreaseRef();
 
                     if (in.front()->isList())
                     {
@@ -869,14 +869,14 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     if (ret != Callable::OK)
                     {
                         std::wostringstream os;
-                        os << L"unable to update handle";
+                        os << _W("unable to update handle");
                         throw ScilabError(os.str(), 999, pField->location_get());
                     }
                 }
                 else
                 {
                     std::wostringstream os;
-                    os << L"impossible !";
+                    os << _W("impossible !");
                     throw ScilabError(os.str(), 999, pField->location_get());
                 }
 
@@ -977,7 +977,6 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     //manage error
                     std::wostringstream os;
                     os << _W("Invalid Index.\n");
-                    //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
                     throw ScilabError(os.str(), 999, (*(pCall->args_get().begin()))->location_get());
                 }
 
@@ -1071,6 +1070,20 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                 {
                     //handle
                     GraphicHandle* pCurH = pCurrent->getAs<GraphicHandle>();
+                    InternalType* pIT = pCurH->extract(pCurrentArgs);
+                    if (pIT == NULL)
+                    {
+                        //manage error
+                        std::wostringstream os;
+                        os << _W("Invalid Index.\n");
+                        throw ScilabError(os.str(), 999, (*(pCall->args_get().begin()))->location_get());
+                    }
+                    else
+                    {
+                        delete pIT;
+                    }
+
+                    *_pArgs = pCurrentArgs;
                 }
             }
         }
@@ -1088,7 +1101,7 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
     else
     {
         std::wostringstream os;
-        os << L"Unknown expression";
+        os << _W("Unknown expression");
         //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
         throw ScilabError(os.str(), 999, _pExp->location_get());
     }

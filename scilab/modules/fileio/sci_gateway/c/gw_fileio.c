@@ -64,7 +64,9 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //cd
     {NULL, ""}, //mgetl
     {NULL, ""}, //mputl
-    {NULL, ""} //tempname
+    {NULL, ""}, //tempname
+    {NULL, ""}, //getURL
+    {NULL, ""}  //splitURL
 };
 /*--------------------------------------------------------------------------*/
 int gw_fileio(void)

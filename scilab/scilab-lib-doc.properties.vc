@@ -12,10 +12,12 @@ saxon.jar=${thirdparty.dir}/saxon.jar
 fop.jar=${thirdparty.dir}/fop.jar
 
 ; LaTeX plugin
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.1.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.2.jar
 
 ; A complete MathML rendering solution
 jeuclid-core.jar=${thirdparty.dir}/jeuclid-core.jar
+
+xmlgraphics-commons.jar=${thirdparty.dir}/xmlgraphics-commons-1.4.jar
 
 library.helptools.dir=${modules.dir}/helptools/${build.jar.dir}/
 library.helptools.name=org.scilab.modules.helptools.jar

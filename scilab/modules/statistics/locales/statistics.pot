@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -351,7 +351,7 @@ msgstr ""
 # File: macros/strange.sci, line: 24
 # File: macros/tabul.sci, line: 58
 # File: macros/trimmean.sci, line: 74
-# File: macros/variance.sci, line: 35
+# File: macros/variance.sci, line: 34
 # File: macros/variancef.sci, line: 37
 # File: macros/wcenter.sci, line: 40
 #, c-format
@@ -403,6 +403,54 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: Same number of column as first input "
 "argument expected.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 58
+msgid "histplot() : (normalized) histogram plot"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 60
+msgid "Gaussian random sample histogram"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 61
+msgid "Exact gaussian density"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 72
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 76
+# File: macros/histplot.sci, line: 78
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 103
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 105
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 117
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
 msgstr ""
 
 #
@@ -654,17 +702,15 @@ msgid "Unexpected value of orien : %s\n"
 msgstr ""
 
 #
-# File: macros/variance.sci, line: 47
-# File: macros/variance.sci, line: 59
-# File: macros/variance.sci, line: 72
+# File: macros/variance.sci, line: 55
 #, c-format
-msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
+msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/variance.sci, line: 76
+# File: macros/variance.sci, line: 62
 #, c-format
-msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
 msgstr ""
 
 #

@@ -146,7 +146,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
             else if (iResult == 2)
             {
                 std::wostringstream os;
-                os << L"variables don't have the same formal variable";
+                os << _W("variables don't have the same formal variable");
                 //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
                 throw ast::ScilabError(os.str());
             }

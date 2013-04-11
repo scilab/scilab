@@ -191,5 +191,9 @@ else
     assert_checkequal(files, ['tmp/']);
 end
 
+assert_checkerror("completion(2)",[], 999);
 
-
+assert_checkerror("completion([''aze'',''bze''])",[], 999);
+assert_checkerror("completion(''a'',''foo'')",[], 999);
+assert_checkerror("completion(''a'',2)",[], 999);
+assert_checkerror("[aazeaz,azeza,e,aze,azea,zazeaze,azeaze,azeze,aze,azeaz]=completion(""aaze"")",[],78);

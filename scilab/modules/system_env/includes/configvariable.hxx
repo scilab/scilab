@@ -201,6 +201,9 @@ private :
     static int m_iPromptMode;
     static int m_iSilentError;
 
+    //set before function call to know status of e.is_verbose in functions
+    static bool m_bVerbose;
+
 public :
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
@@ -208,6 +211,8 @@ public :
 
     static void setSilentError(int _iSilentError);
     static int getSilentError(void);
+    static void setVerbose(bool _bVerbose);
+    static bool getVerbose(void);
 
     //Thread List
 

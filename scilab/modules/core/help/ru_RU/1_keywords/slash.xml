@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="slash">
+    <refnamediv>
+        <refname>слэш (косая черта)</refname>
+        <refpurpose>(/) правое деление и обратная связь</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Правое деление. <code>X=A/B</code> является решением <code>X*B=A</code>.
+        </para>
+        <para>
+            Операторы слэш (правое деление) и обратный слэш (левое 
+            деление) связаны следующим выражением: <code>B/A=(A'\B')'</code>.
+        </para>
+        <para>
+            В случае, когда <literal>A</literal> - квадратная матрица, 
+            решение <literal>X</literal> может быть вычислено
+            либо через LU-разложение, либо через программу линейного 
+            решения по методу наименьших квадратов.
+            Если число обусловленности матрицы <literal>A</literal> 
+            меньше, чем <code>1/(10*%eps)</code> (то есть, если 
+            <literal>A</literal> хорошо обусловлена),
+            то используется LU-разложение с перестановками строк 
+            матрицы. Если нет (то есть, если <literal>A</literal> плохо 
+            обусловлена), то <literal>X</literal> является решением с 
+            минимальной нормой, которое минимизирует
+            <literal>||A*X-B||</literal> используя полное ортогональное 
+            разложение <literal>A</literal> (то есть 
+            <literal>X</literal> - это решение линейной задачи по методу 
+            наименьших квадратов).
+        </para>
+        <para>
+            <code>A ./ B</code> является матрицей с элементами 
+            <literal>A(i,j)/ B(i,j)</literal>.
+            Если <literal>B</literal> - скаляр (матрица размером 
+            1 на 1), то эта операция то же самое, что и 
+            <code>A ./ B * ones(A)</code>. Аналогично, если скаляром 
+            является <literal>A</literal>.
+        </para>
+        <para>
+            <note>
+                Заметьте, что <code>123./B</code> интерпретируется как 
+                <code>(123.)/B</code>. В таких случаях точка является 
+                частью числа, а не оператора.
+            </note>
+        </para>
+        <para>
+            Обратный слэш ставят для левого деления.
+        </para>
+        <para>
+            Обратная связь системы.  <code>S = G /. K</code> вычисляет
+            <code>S = G*(eye() + K*G)^(-1)</code> и этот оператор избегает проблему упрощения.
+        </para>
+        <para>
+            <note>
+                Заметьте, что <code>G/.5</code> интерпретируется как <code>G/(.5)</code>.
+                В таких случаях точка интерпретируется как часть числа, а не оператора.
+            </note>
+        </para>
+        <para>
+            Комментарий <code>//</code> комментирует строку, т. е. строки, которые начинаются с
+            <code>//</code>, игнорируются интерпретатором.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a=[3.,-24.,30.];
+B=[
+   9.   -36.    30.
+  -36.   192.  -180.
+   30.  -180.   180.
+];
+x=a/B
+x*B-a // близко к нулю
+
+a=4 / 2; // Должно быть 2
+a=2 ./ [2,4]; //     1.    0.5
+// Комментарии - это хорошо. Они помогают понять код
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="backslash">обратный слэш</link>
+            </member>
+            <member>
+                <link linkend="comments">комментарии</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Пороговый уровень для обусловливания в слэше увеличен.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -473,7 +473,7 @@ public class XcosDiagram extends ScilabGraph {
                 final int edgeCount = diagram.getModel().getEdgeCount(port);
                 for (int j = 0; j < edgeCount; j++) {
                     final Object edge = diagram.getModel().getEdgeAt(port, j);
-                    diagram.getView().clear(edge,  true,  true);
+                    diagram.getView().clear(edge, true, true);
                 }
             }
 
@@ -534,7 +534,8 @@ public class XcosDiagram extends ScilabGraph {
                             current.updateFieldsFromStyle();
                         }
 
-                        // update the superblock container ports if the block is inside a superblock diagram
+                        // update the superblock container ports if the block is
+                        // inside a superblock diagram
                         if (current.getParentDiagram() instanceof SuperBlockDiagram) {
                             SuperBlockDiagram superdiagram = (SuperBlockDiagram) current.getParentDiagram();
                             SuperBlock superblock = superdiagram.getContainer();
@@ -544,15 +545,16 @@ public class XcosDiagram extends ScilabGraph {
                         // Update the block position
                         BlockPositioning.updateBlockView(current);
 
-                        // force a refresh of the block ports and links connected to these ports
+                        // force a refresh of the block ports and links
+                        // connected to these ports
                         final int childCount = current.getParentDiagram().getModel().getChildCount(current);
                         for (int i = 0; i < childCount; i++) {
                             final Object port = current.getParentDiagram().getModel().getChildAt(current, i);
-                            current.getParentDiagram().getView().clear(port,  true,  true);
+                            current.getParentDiagram().getView().clear(port, true, true);
                             final int edgeCount = current.getParentDiagram().getModel().getEdgeCount(port);
                             for (int j = 0; j < edgeCount; j++) {
                                 final Object edge = current.getParentDiagram().getModel().getEdgeAt(port, j);
-                                current.getParentDiagram().getView().clear(edge,  true,  true);
+                                current.getParentDiagram().getView().clear(edge, true, true);
                             }
                         }
                         // force a refresh of the block
@@ -1793,9 +1795,14 @@ public class XcosDiagram extends ScilabGraph {
         if (fileName == null) {
             final SwingScilabFileChooser fc = SaveAsAction.createFileChooser();
             SaveAsAction.configureFileFilters(fc);
+            ConfigurationManager.configureCurrentDirectory(fc);
 
             if (getSavedFile() != null) {
-                fc.setSelectedFile(getSavedFile());
+                // using save-as, the file chooser should have a filename
+                // without extension as default
+                String filename = getSavedFile().getName();
+                filename = filename.substring(0, filename.lastIndexOf('.'));
+                fc.setSelectedFile(new File(filename));
             } else {
                 final String title = getTitle();
                 if (title != null) {
@@ -1811,9 +1818,8 @@ public class XcosDiagram extends ScilabGraph {
                         escaped = escaped.replace(c, '-');
                     }
 
-                    fc.setSelectedFile(new File(escaped + XcosOptions.getPreferences().getFileFormat().getDottedExtension()));
+                    fc.setSelectedFile(new File(escaped));
                 }
-                ConfigurationManager.configureCurrentDirectory(fc);
             }
 
             int status = fc.showSaveDialog(this.getAsComponent());
@@ -2220,7 +2226,7 @@ public class XcosDiagram extends ScilabGraph {
      * Display the message in info bar.
      *
      * @param message
-     *            Informations
+     *            Information
      */
     public void info(final String message) {
         final XcosTab tab = XcosTab.get(this);

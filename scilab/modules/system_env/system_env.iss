@@ -20,4 +20,5 @@
 Source: bin\{#SYSTEM_ENV}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#SYSTEM_ENV}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#SYSTEM_ENV}\includes\sci_warning.h; DestDir: {app}\modules\{#SYSTEM_ENV}\includes; Components: {#COMPN_SCILAB}
 ;--------------------------------------------------------------------------------------------------------------

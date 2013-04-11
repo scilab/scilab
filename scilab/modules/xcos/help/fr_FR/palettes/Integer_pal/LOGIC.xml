@@ -117,7 +117,7 @@
                 </para>
                 <para/>
                 <para>
-                    <latex><![CDATA[Nombre\,de\,lignes = {(Nombre\,d'entrées)}^2]]></latex>
+                    <latex scilab:localized="true"><![CDATA[Nombre\,de\,lignes = {(Nombre\,d'entrées)}^2]]></latex>
                 </para>
                 <para/>
             </listitem>
@@ -430,7 +430,7 @@
                         </imageobject>
                     </inlinemediaobject>
                 </link>
-                <scilab:image><![CDATA[
+                <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>

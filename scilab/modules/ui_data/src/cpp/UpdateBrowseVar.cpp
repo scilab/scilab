@@ -69,7 +69,7 @@ void UpdateBrowseVar(BOOL update)
 
     std::set < string > scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
 
-    // for each local variable get informations
+    // for each local variable get information
     for (; i < iLocalVariablesUsed; ++i)
     {
         // name
@@ -111,7 +111,7 @@ void UpdateBrowseVar(BOOL update)
         }
     }
 
-    // for each global variable get informations
+    // for each global variable get information
     for (int j = 0; j < iGlobalVariablesUsed; ++j, ++i)
     {
         // name

@@ -47,10 +47,10 @@
             <varname>phi</varname> is in the interval <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>. For complex
             <varname>x</varname>, <function>atan</function> has two singular, branching
             points <code>+%i</code>, <code>-%i</code> and the chosen branch
-            cuts are the two imaginary half-straight lines <latex>[i, i*\infty)</latex> and <latex>(-i*\infty,
-            -i]</latex>.
+            cuts are the two imaginary half-straight lines <latex>[i, i*\infty)</latex> and <latex>(-i*\infty, -i]</latex>.
         </para>
-        <para>The second form computes the 4-quadrant arctangent (<function>atan2</function> in
+        <para>
+            The second form computes the 4-quadrant arctangent (<function>atan2</function> in
             Fortran), this is, it returns the argument (angle) of the complex number
             <literal>x+i*y</literal>. The range of <code>atan(y, x)</code> is
             <latex>(-\pi, \pi]</latex>.

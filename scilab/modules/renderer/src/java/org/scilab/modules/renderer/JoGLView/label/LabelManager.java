@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -89,14 +90,14 @@ public class LabelManager {
 
         /* Get the positioner associated to the label */
         if (parentAxes.getXAxisLabel().equals(label.getIdentifier())) {
-            labelPositioner = axesDrawer.getXAxisLabelPositioner();
+            labelPositioner = axesDrawer.getXAxisLabelPositioner(parentAxes);
         } else if (parentAxes.getYAxisLabel().equals(label.getIdentifier())) {
-            labelPositioner = axesDrawer.getYAxisLabelPositioner();
+            labelPositioner = axesDrawer.getYAxisLabelPositioner(parentAxes);
         } else if (parentAxes.getZAxisLabel().equals(label.getIdentifier())) {
-            labelPositioner = axesDrawer.getZAxisLabelPositioner();
+            labelPositioner = axesDrawer.getZAxisLabelPositioner(parentAxes);
             drawnFlag = (parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D);
         } else if (parentAxes.getTitle().equals(label.getIdentifier())) {
-            labelPositioner = axesDrawer.getTitlePositioner();
+            labelPositioner = axesDrawer.getTitlePositioner(parentAxes);
         } else {
             /* Do not do anything */
             return;

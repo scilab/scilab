@@ -28,6 +28,9 @@
 #include "gw_csv_helpers.h"
 #include "getRange.h"
 #include "os_strdup.h"
+
+
+static void releaseObjects(csvResult *result, char *filename, char *conversion);
 /* ==================================================================== */
 #define CONVTOSTR "string"
 #define CONVTODOUBLE "double"
@@ -54,6 +57,8 @@ int sci_csvRead(char *fname, void* pvApiCtx)
     csvResult *result = NULL;
 
     double *dRealValues = NULL;
+
+    sciErr.iErr = 0;
 
     CheckRhs(1, 7);
     CheckLhs(1, 2);
@@ -382,7 +387,16 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                         }
                         else
                         {
-                            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            if ((newM == 0) || (newN == 0))
+                            {
+                                Scierror(999, _("%s: Range row or/and column left indice(s) out of bounds.\n"), fname);
+                            }
+                            else
+                            {
+                                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            }
+                            releaseObjects(result, filename, conversion);
+                            return 0;
                         }
                     }
                     else
@@ -398,17 +412,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
 
                     if (ptrCsvComplexArray == NULL)
                     {
-                        freeCsvResult(result);
-                        if (filename)
-                        {
-                            FREE(filename);
-                            filename = NULL;
-                        }
-                        if (conversion)
-                        {
-                            FREE(conversion);
-                            conversion = NULL;
-                        }
+                        releaseObjects(result, filename, conversion);
                         if (ierr == STRINGTOCOMPLEX_ERROR)
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
@@ -445,7 +449,16 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                                 }
                                 else
                                 {
-                                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                                    if ((newM == 0) || (newN == 0))
+                                    {
+                                        Scierror(999, _("%s: Range row or/and column left indice(s) out of bounds.\n"), fname);
+                                    }
+                                    else
+                                    {
+                                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                                    }
+                                    releaseObjects(result, filename, conversion);
+                                    return 0;
                                 }
                             }
                             else
@@ -467,30 +480,23 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                         case STRINGTOCOMPLEX_MEMORY_ALLOCATION:
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            releaseObjects(result, filename, conversion);
+                            return 0;
                         }
                         default:
                         case STRINGTOCOMPLEX_ERROR:
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
+                            releaseObjects(result, filename, conversion);
+                            return 0;
                         }
                     }
                 }
 
                 if (sciErr.iErr)
                 {
-                    freeCsvResult(result);
-                    if (filename)
-                    {
-                        FREE(filename);
-                        filename = NULL;
-                    }
-                    if (conversion)
-                    {
-                        FREE(conversion);
-                        conversion = NULL;
-                    }
-                    printError(&sciErr, 0);
-                    Scierror(17, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    releaseObjects(result, filename, conversion);
                     return 0;
                 }
                 else
@@ -502,19 +508,8 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                         sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
                         if (sciErr.iErr)
                         {
-                            freeCsvResult(result);
-                            if (filename)
-                            {
-                                FREE(filename);
-                                filename = NULL;
-                            }
-                            if (conversion)
-                            {
-                                FREE(conversion);
-                                conversion = NULL;
-                            }
-                            printError(&sciErr, 0);
-                            Scierror(17, _("%s: Memory allocation error.\n"), fname);
+                            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            releaseObjects(result, filename, conversion);
                             return 0;
                         }
                         LhsVar(2) = Rhs + 2;
@@ -560,18 +555,18 @@ int sci_csvRead(char *fname, void* pvApiCtx)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
-    freeCsvResult(result);
-    if (filename)
-    {
-        FREE(filename);
-        filename = NULL;
-    }
-    if (conversion)
-    {
-        FREE(conversion);
-        conversion = NULL;
-    }
+    releaseObjects(result, filename, conversion);
 
     return 0;
 }
 /* ==================================================================== */
+static void releaseObjects(csvResult *result, char* filename, char* conversion)
+{
+    freeCsvResult(result);
+
+    FREE(filename);
+    filename = NULL;
+
+    FREE(conversion);
+    conversion = NULL;
+}

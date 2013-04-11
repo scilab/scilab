@@ -1404,7 +1404,6 @@ int getInputArgumentType(void* _pvCtx, int _iVar)
     int* piAddr = NULL;
     int iType = 0;
 
-    //sciprint("getInputArgumentType ->");
     sciErr = getinternalVarAddress(_pvCtx, _iVar, &piAddr);
     if (sciErr.iErr)
     {
@@ -1591,5 +1590,49 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     //No Idea :x
     //Fin = 1;
     return 1;
+}
+/*--------------------------------------------------------------------------*/
+int increaseValRef(void* _pvCtx, int* _piAddress)
+{
+    if (_piAddress)
+    {
+        types::InternalType* pIT = (types::InternalType*)_piAddress;
+        types::InternalType* pIT2 = dynamic_cast<types::InternalType*>(pIT);
+        if (pIT2)
+        {
+            pIT->IncreaseRef();
+            return 1;
+        }
+        else
+        {
+            Scierror(999, _("Invalid type pointer in '%s'\n"), "increaseValRef");
+            return -1;
+        }
+    }
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int decreaseValRef(void* _pvCtx, int* _piAddress)
+{
+    if (_piAddress)
+    {
+        types::InternalType* pIT = (types::InternalType*)_piAddress;
+        types::InternalType* pIT2 = dynamic_cast<types::InternalType*>(pIT);
+        if (pIT2)
+        {
+            pIT->DecreaseRef();
+            if (pIT->isDeletable())
+            {
+                delete pIT;
+            }
+            return 1;
+        }
+        else
+        {
+            Scierror(999, _("Invalid type pointer in '%s'\n"), "decreaseValRef");
+            return -1;
+        }
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

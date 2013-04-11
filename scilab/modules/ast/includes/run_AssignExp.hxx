@@ -36,7 +36,7 @@ void visitprivate(const AssignExp  &e)
                 if (result_getSize() != 1)
                 {
                     std::wostringstream os;
-                    os << L"Can not assign multiple value in a single variable" << std::endl;;
+                    os << _W("Can not assign multiple value in a single variable") << std::endl;
                     //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
                     throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
                 }
@@ -812,8 +812,8 @@ void visitprivate(const AssignExp  &e)
             if (exec.result_getSize() != iLhsCount)
             {
                 std::wostringstream os;
-                os << L"Incompatible assignation: trying to assign " << exec.result_getSize();
-                os << " values in " << iLhsCount << " variables." << std::endl;
+                os << _W("Incompatible assignation: trying to assign ") << exec.result_getSize();
+                os << _W(" values in ") << iLhsCount << _W(" variables.") << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
@@ -905,14 +905,14 @@ void visitprivate(const AssignExp  &e)
                         else
                         {
                             std::wostringstream os;
-                            os << L"Field must be exist";
+                            os << _W("Field must be exist");
                             throw ScilabError(os.str(), 999, pVar->location_get());
                         }
                     }
                     else
                     {
                         std::wostringstream os;
-                        os << L"invalid operation";
+                        os << _W("invalid operation");
                         throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
                     }
                 }
@@ -1038,7 +1038,7 @@ void visitprivate(const AssignExp  &e)
         }
 
         std::wostringstream os;
-        os << L"unknow script form";
+        os << _W("unknow script form");
         //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
         throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
     }

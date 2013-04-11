@@ -55,7 +55,7 @@ exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciCompareResults.sci", -1);
 for kRes = 1: size(allResNames, "*")
   resName = allResNames(kRes);
 
-  // For each result, compare the informations
+  // For each result, compare the information
   [matSize, matType, matProp] = m2sciParseInfos(evstr("mat" + resName + "_Infos"));
   
   sciRes = evstr(resName);

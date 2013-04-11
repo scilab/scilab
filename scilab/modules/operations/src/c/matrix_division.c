@@ -571,6 +571,10 @@ int	iLeftDivisionOfRealMatrix(
     double *pXb		= NULL;
     double *pDwork	= NULL;
 
+    double* dblTemp = NULL;
+    int iOne        = 1;
+    int iSize       = 0;
+
     int *pRank	= NULL;
     int *pIpiv	= NULL;
     int *pJpvt	= NULL;
@@ -586,9 +590,6 @@ int	iLeftDivisionOfRealMatrix(
     pIpiv		= (int*)malloc(sizeof(int) * _iCols1);
     pJpvt		= (int*)malloc(sizeof(int) * _iCols1);
     pIwork		= (int*)malloc(sizeof(int) * _iCols1);
-
-
-    //C'est du grand nawak ca, on reserve toute la stack ! Oo
 
     cNorm		= '1';
     pDwork		= (double*)malloc(sizeof(double) * iWorkMin);
@@ -606,11 +607,18 @@ int	iLeftDivisionOfRealMatrix(
             C2F(dgecon)(&cNorm, &_iCols1, pAf, &_iCols1, &dblAnorm, &dblRcond, pDwork, pIwork, &iInfo);
             if (dblRcond > dsqrts(dblEps))
             {
+                // _pdblReal2 will be overwrite by dgetrs
+                iSize = _iRows2 * _iCols2;
+                dblTemp = (double*)malloc(iSize * sizeof(double));
+                C2F(dcopy)(&iSize, _pdblReal2, &iOne, dblTemp, &iOne);
+
                 cNorm	= 'N';
-                C2F(dgetrs)(&cNorm, &_iCols1, &_iCols2, pAf, &_iCols1, pIpiv, _pdblReal2, &_iCols1, &iInfo);
+                C2F(dgetrs)(&cNorm, &_iCols1, &_iCols2, pAf, &_iCols1, pIpiv, dblTemp, &_iCols1, &iInfo);
                 cNorm	= 'F';
-                C2F(dlacpy)(&cNorm, &_iCols1, &_iCols2, _pdblReal2, &_iCols1, _pdblRealOut, &_iCols1);
+                C2F(dlacpy)(&cNorm, &_iCols1, &_iCols2, dblTemp, &_iCols1, _pdblRealOut, &_iCols1);
                 iExit = 1;
+
+                free(dblTemp);
             }
         }
         if (iExit == 0)
@@ -629,9 +637,13 @@ int	iLeftDivisionOfRealMatrix(
         iMax = Max(_iRows1, _iCols1);
         C2F(dlacpy)(&cNorm, &_iRows1, &_iCols2, _pdblReal2, &_iRows1, pXb, &iMax);
         memset(pJpvt, 0x00, sizeof(int) * _iCols1);
-        C2F(dgelsy1)(	&_iRows1, &_iCols1, &_iCols2, _pdblReal1, &_iRows1, pXb, &iMax,
+        // _pdblReal1 will be overwrite by dgelsy1
+        iSize = _iRows1 * _iCols1;
+        dblTemp = (double*)malloc(iSize * sizeof(double));
+        C2F(dcopy)(&iSize, _pdblReal1, &iOne, dblTemp, &iOne);
+        C2F(dgelsy1)(	&_iRows1, &_iCols1, &_iCols2, dblTemp, &_iRows1, pXb, &iMax,
                         pJpvt, &dblRcond, &pRank[0], pDwork, &iWorkMin, &iInfo);
-
+        free(dblTemp);
         if (iInfo == 0)
         {
             if ( _iRows1 != _iCols1 && pRank[0] < Min(_iRows1, _iCols1))

@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.xml.sax.Attributes;
+import org.xml.sax.Locator;
 
 import org.scilab.modules.helptools.HTMLDocbookTagConverter;
 import org.scilab.modules.helptools.image.ImageConverter;
@@ -40,6 +41,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
     private String baseDir;
     private String outputDir;
     private boolean isLocalized;
+    private int line;
 
     /**
      * Constructor
@@ -80,10 +82,11 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
     /**
      * {@inheritDoc}
      */
-    public StringBuilder startExternalXML(String localName, Attributes attributes) {
+    public StringBuilder startExternalXML(String localName, Attributes attributes, Locator locator) {
         if (localName.equals("image")) {
             String v = attributes.getValue("localized");
             isLocalized = "true".equalsIgnoreCase(v);
+            line = locator.getLineNumber();
         }
 
         if (IMAGE.equals(localName)) {
@@ -106,9 +109,10 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
             if (dotpos != -1) {
                 baseName = baseName.substring(0, dotpos);
             }
+            String language = ((HTMLDocbookTagConverter) getConverter()).getLanguage();
             String fileName;
             if (isLocalized) {
-                fileName = baseName + BASENAME + ((HTMLDocbookTagConverter) getConverter()).getLanguage() + BASENAME + (compt++) + ".png";
+                fileName = baseName + BASENAME + language + BASENAME + (compt++) + ".png";
             } else {
                 fileName = baseName + BASENAME + (compt++) + ".png";
             }
@@ -123,7 +127,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
                 baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
             }
             if (isLocalized || (existing = getExistingFile(outputDir, fileName)) == null) {
-                ret = ImageConverter.getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName(), baseImagePath);
+                ret = ImageConverter.getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
             } else {
                 ret = ImageConverter.getImageByFile(attributes, null, existing.getAbsolutePath(), outputDir, ".", baseImagePath);
                 ret = ScilabImageConverter.getInstance().getHTMLCodeToReturn(buffer.toString(), ret);
@@ -143,10 +147,10 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
         try {
             final File outDir = new File(outputDir).getCanonicalFile();
             FileFilter filter = new FileFilter() {
-                    public boolean accept(File f) {
-                        return f.isDirectory() && !f.equals(outDir);
-                    }
-                };
+                public boolean accept(File f) {
+                    return f.isDirectory() && !f.equals(outDir);
+                }
+            };
             File[] dirs = outDir.getParentFile().listFiles(filter);
             File im = new File(filename);
             for (File dir : dirs) {

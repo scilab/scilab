@@ -17,56 +17,72 @@ package org.scilab.modules.graphic_objects.textObject;
  * @author Manuel JULIACHS
  */
 public class FormattedText {
-	/** FormattedText properties names */
-	public enum FormattedTextProperty { TEXT, FONT };
+    /** FormattedText properties names */
+    public enum FormattedTextProperty { TEXT, FONT };
 
-	/** Text */
-	private String text;
+    /** Text */
+    private String text;
 
-	/** Font */
-	private Font font;
+    /** Font */
+    private Font font;
 
-	/** Constructor */
-	public FormattedText() {
-		text = "";
-		font = new Font();
-	}
+    /** Constructor */
+    public FormattedText() {
+        text = "";
+        font = new Font();
+    }
 
-	/**
-	 * Copy constructor
-	 * @param formText the formatted text to copy
-	 */
-	public FormattedText(FormattedText formText) {
-		this.text = new String(formText.getText());
-		this.font = new Font(formText.getFont());
-	}
+    /** Constructor */
+    public FormattedText(String text, Font font) {
+        this.text = text == null ? "" : text;
+        this.font = font;
+    }
 
-	/**
-	 * @return the font
-	 */
-	public Font getFont() {
-		return font;
-	}
+    /**
+     * Copy constructor
+     * @param formText the formatted text to copy
+     */
+    public FormattedText(FormattedText formText) {
+        this.text = new String(formText.getText());
+        this.font = new Font(formText.getFont());
+    }
 
-	/**
-	 * @param font the font to set
-	 */
-	public void setFont(Font font) {
-		this.font = font;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof FormattedText) {
+            FormattedText ft = (FormattedText) o;
+            return ft.text.equals(text) && ft.font.equals(font);
+        }
 
-	/**
-	 * @return the text
-	 */
-	public String getText() {
-		return text;
-	}
+        return false;
+    }
 
-	/**
-	 * @param text the text to set
-	 */
-	public void setText(String text) {
-		this.text = text;
-	}
+    /**
+     * @return the font
+     */
+    public Font getFont() {
+        return font;
+    }
+
+    /**
+     * @param font the font to set
+     */
+    public void setFont(Font font) {
+        this.font = font;
+    }
+
+    /**
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * @param text the text to set
+     */
+    public void setText(String text) {
+        this.text = text == null ? "" : text;
+    }
 
 }

@@ -14,7 +14,6 @@ src/c/csvRead.c \
 src/c/csv_strsubst.c \
 src/c/csvWrite.c \
 src/c/getRange.c \
-src/c/latintoutf.c \
 src/c/splitLine.c \
 src/c/stringToComplex.c \
 src/c/utftolatin.c

@@ -44,7 +44,7 @@ void visitprivate(const CallExp &e)
                 if (pVar == NULL)
                 {
                     std::wostringstream os;
-                    os << L"left side of optional parameter must be a variable" << std::endl;
+                    os << _W("left side of optional parameter must be a variable") << std::endl;
                     throw ScilabError(os.str(), 999, e.location_get());
                 }
 
@@ -104,10 +104,13 @@ void visitprivate(const CallExp &e)
 
             //reset previous error before call function
             ConfigVariable::resetError();
-
+            //update verbose";" flag
+            ConfigVariable::setVerbose(e.is_verbose());
+            //call function
             types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, this);
             expected_size_set(iSaveExpectedSize);
             result_clear();
+
             if (Ret == types::Callable::OK)
             {
                 if (expected_getSize() == 1 && out.size() == 0) //some function have no returns
@@ -125,7 +128,7 @@ void visitprivate(const CallExp &e)
                         }
 
                         std::wostringstream os;
-                        os << L"bad lhs, expected : " << iRetCount << L" returned : " << out.size() << std::endl;
+                        os << _W("bad lhs, expected : ") << iRetCount << _W(" returned : ") << out.size() << std::endl;
                         throw ScilabError(os.str(), 999, e.location_get());
                     }
                 }
@@ -375,7 +378,7 @@ void visitprivate(const CallExp &e)
                         case 0 :
                         {
                             std::wostringstream os;
-                            os << L"Invalid index.\n";
+                            os << _W("Invalid index.\n");
                             throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                         }
                         break;
@@ -463,7 +466,7 @@ void visitprivate(const CallExp &e)
                         case 0 :
                         {
                             std::wostringstream os;
-                            os << L"Invalid index.\n";
+                            os << _W("Invalid index.\n");
                             throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                         }
                         break;
@@ -586,7 +589,7 @@ void visitprivate(const CallExp &e)
                 else
                 {
                     std::wostringstream os;
-                    os << L"Invalid index.\n";
+                    os << _W("Invalid index.\n");
                     //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
                     throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                 }
@@ -604,7 +607,7 @@ void visitprivate(const CallExp &e)
                 else
                 {
                     std::wostringstream os;
-                    os << L"inconsistent row/column dimensions\n";
+                    os << _W("inconsistent row/column dimensions\n");
                     //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
                     throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                 }
@@ -648,7 +651,7 @@ void visitprivate(const CellCallExp &e)
             if (pList == NULL)
             {
                 std::wostringstream os;
-                os << L"inconsistent row/column dimensions\n";
+                os << _W("inconsistent row/column dimensions\n");
                 //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
                 throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
             }

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
 # File: sci_gateway/c/sci_exec.c, line: 52
 # File: sci_gateway/c/sci_exec.c, line: 60
@@ -268,6 +268,12 @@ msgstr ""
 # File: macros/genlib.sci, line: 273
 #, c-format
 msgid "%s: File %s does not contain any function.\n"
+msgstr ""
+
+#
+# File: macros/get_function_path.sci, line: 18
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #

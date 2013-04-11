@@ -40,7 +40,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>ceil(x)</literal> возвращает матрицу целых чисел, состоящую из элементов, округлённых вверх (в сторону <latex>$+\infty$</latex>).
+            <literal>ceil(x)</literal> возвращает матрицу целых чисел, состоящую из элементов, округлённых вверх (в сторону <latex scilab:localized="true">$+\infty$</latex>).
         </para>
     </refsection>
     <refsection>

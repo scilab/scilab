@@ -62,18 +62,17 @@ SciErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, in
     sciErr.iMsgCount = 0;
     int iSize = 0;
     double *pdblReal = NULL;
-    double *pdblImg	 = NULL;
 
-    sciErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, 'z', isVarComplex(_pvCtx, _piAddress), _piRows, _piCols, &pdblReal, &pdblImg);
+    sciErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, 'z', 0, _piRows, _piCols, &pdblReal, NULL);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ZDOUBLE, _("%s: Unable to get argument #%d"), "getComplexZMatrixOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
         return sciErr;
     }
 
-    iSize = *_piRows * *_piCols;
-    SciToF77(pdblReal, iSize, iSize);
-    *_pdblZ	= (doublecomplex*)pdblReal;
+    Double* pDbl = (Double*)_piAddress;
+    pDbl->convertToZComplex();
+    *_pdblZ	= (doublecomplex*)(pDbl->get());
     return sciErr;
 }
 
@@ -257,10 +256,17 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iCom
     Double* pDbl = NULL;
     try
     {
-        pDbl = new Double(_iRows, _iCols, _iComplex == 1);
-        if(_cType == 'i')
+        if (_cType == 'z')
         {
-            pDbl->setViewAsInteger();
+            pDbl = new Double(_iRows, _iCols, _iComplex == 1, true);
+        }
+        else
+        {
+            pDbl = new Double(_iRows, _iCols, _iComplex == 1);
+            if (_cType == 'i')
+            {
+                pDbl->setViewAsInteger();
+            }
         }
     }
     catch (ast::ScilabError se)
@@ -302,18 +308,17 @@ SciErr allocComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCo
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
-    double* pdblReal = NULL;
-    double* pdblImg = NULL;
+    double *pdblReal	= NULL;
+    double *pdblImg		= NULL;
 
-    sciErr = allocComplexMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+    sciErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 'z', 1, _iRows, _iCols, &pdblReal, NULL);
     if (sciErr.iErr)
     {
+        addErrorMessage(&sciErr, API_ERROR_ALLOC_COMPLEX_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
         return sciErr;
     }
 
-    //warning convert double* to doublecomplex*
     *_pdblData = (doublecomplex*)pdblReal;
-
     return sciErr;
 }
 
@@ -410,18 +415,16 @@ SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iC
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
-    double *pdblReal		= NULL;
-    double *pdblImg			= NULL;
+    const doublecomplex *pdblZ = NULL;
 
-
-    sciErr = allocComplexMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+    sciErr = allocComplexZMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblZ);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_ZDOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
         return sciErr;
     }
 
-    vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
+    memcpy((void*)pdblZ, _pdblData, _iRows * _iCols * sizeof(doublecomplex));
     return sciErr;
 }
 
@@ -437,7 +440,9 @@ SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int 
 
 SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
-    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
 
     wchar_t* pwstName           = to_wide_string(_pstName);
     int iOne					= 1;
@@ -447,7 +452,7 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
     Double* pDbl = new Double(_iRows, _iCols, true);
 
     double* pdblReal = pDbl->get();
-        double* pdblImg = pDbl->getImg();
+    double* pdblImg = pDbl->getImg();
     C2F(dcopy)(&iSize, const_cast<double*>(&_pdblData->r), &iTwo, pdblReal, &iOne);
     C2F(dcopy)(&iSize, const_cast<double*>(&_pdblData->i), &iOne, pdblImg, &iOne);
 
@@ -458,7 +463,9 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
 
 SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
-    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
 
     wchar_t* pwstName           = to_wide_string(_pstName);
     int iOne					= 1;
@@ -469,7 +476,7 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _
     double* pdblReal = pDbl->get();
     C2F(dcopy)(&iSize, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
 
-    if(_iComplex)
+    if (_iComplex)
     {
         double* pdblImg = pDbl->getImg();
         C2F(dcopy)(&iSize, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);

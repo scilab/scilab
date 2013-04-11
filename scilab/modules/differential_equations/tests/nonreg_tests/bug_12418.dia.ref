@@ -1,0 +1,94 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
+// Copyright (C) 2013 - Michel Talon
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 12418 -->
+//
+// <-- Bugzilla URL -->
+//http://bugzilla.scilab.org/show_bug.cgi?id=12418
+//
+// <-- Short Description -->
+// Continuation is incorrectly supported in bvode
+y= 1.9d0;
+eigens=zeros(3,40); // To store the results
+// General setup for bvode
+// Number of differential equations
+ncomp = 3;
+// Orders of equations
+m = [2, 1, 1];
+// Non-linear prob
+ipar(1) = 1;
+// Number of collocation points
+ipar(2) = 3;
+// Initial uniform mesh of 4 subintervals
+ipar(3) = 4;
+ipar(8) = 0;
+// Size of fspace, ispace, see colnew.f to choose size
+ipar(5) =  30000;
+ipar(6) =  2000;
+// Medium output
+ipar(7) = 1;
+// Initial approx is provided
+ipar(9) = 1;
+ipar(11) = 1;
+fixpnt = [1.0d0];
+// Tolerances on all components z_1, z_2, z_3, z_4
+ipar(4) = 4;
+// Tolerance check on f and diff(f,x) and on c_2 and c_3
+ltol = [1, 2, 3, 4];
+tol = [1d-5, 1d-5, 1d-5, 1d-5];
+function [f]=fsub(x,z)
+	f = [ -.5*(1/x+1/(x-1)+1/(x-y))*z(2) +...
+     z(1) * ((v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y)),...
+	0,0];
+endfunction
+function [df] = dfsub(x,z)
+	df = [(v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y),...
+	-.5*(1/x+1/(x-1)+1/(x-y)),z(1)/(x*(x-1)),z(1)*y/(x*(x-y));...
+	0,0,0,0;0,0,0,0];
+endfunction
+// Boundary conditions
+function [g]=gsub(i,z)
+	select i
+	case 1, g = z(2) - 2*z(1)*(v-z(3)-z(4))
+	case 2, g = z(2) - 2*z(1)*z(3)
+	case 3, g = z(1)-1.
+	case 4, g = z(2) - 2*z(1)*z(4)
+	end
+endfunction
+function [dg]=dgsub(i,z)
+    	select i
+    	case 1, dg = [-2*(v-z(3)-z(4)),1.,2*z(1),2*z(1)]
+    	case 2, dg = [-2*z(3),1.,-2*z(1),0]
+    	case 3, dg = [1,0,0,0]
+    	case 4, dg = [-2*z(4),1.,0,-2*z(1)]
+    	end
+endfunction
+// Start computation
+// Locations of side conditions, sorted
+zeta = [0.0d0, 1.0d0, 1.0d0, y];
+// Interval ends
+aleft = 0.0d0;
+aright = y;
+valv = [linspace(0,.9,10) logspace(0,2,30)];
+res = [linspace(0,.99,100) linspace(1,y,101)];
+function [z,dmval]=guess(x)
+	 z=[2*x-1, 2., 1., 1/(2*y-1)]
+	 dmval=[0,0,0]
+endfunction
+// First execution has ipar(9)=1 and uses the guess
+// Subsequent executions have ipar(9)=3 and use continuation. This is
+// run in tight closed loop to not disturb the stack
+for i=1:40
+v=valv(i);
+sol=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,...
+ fsub,dfsub,gsub,dgsub,guess);
+eigens(:,i)=[v;sol(3,101);sol(4,101)];  // c_2 and c_3 are constant!
+ipar(9)=3;
+end
+assert_checkalmostequal(eigens, [0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1,1.1721023,1.3738238,1.610262,1.8873918,2.2122163,2.5929438,3.0391954,3.5622479,4.1753189,4.8939009,5.7361525,6.7233575,7.8804628,9.2367086,10.826367,12.68961,14.873521,17.433288,20.433597,23.950266,28.072162,32.903446,38.566204,45.203537,52.983169,62.101694,72.789538,85.316785,100;0.8590043,0.8923732,0.9270092,0.9629650,1.0002848,1.039002,1.0791385,1.1207035,1.1636934,1.2080921,1.2538713,1.3357726,1.4364687,1.5602838,1.712184,1.8976546,2.1225064,2.392618,2.713585,3.0901836,3.5255313,4.0199156,4.569725,5.1676944,5.8058304,6.4799746,7.1921595,7.9490495,8.7589833,9.6301157,10.56993,11.585457,12.683653,13.871706,15.157239,16.548439,18.054127,19.683839,21.447881,23.357401;0.3373662,0.3544495,0.3714346,0.3883257,0.4051247,0.4218310,0.4384421,0.4549534,0.4713585,0.4876500,0.5038194,0.5313357,0.5630336,0.5993442,0.6406497,0.6872575,0.7393884,0.7971803,0.8606997,0.9299459,1.0048381,1.0851888,1.1707035,1.2610735,1.3561975,1.4564017,1.5624488,1.6753378,1.7961064,1.9257493,2.0652244, 2.2154891,2.3775328,2.5524022,2.7412151,2.9451754,3.1655779,3.4038197,3.6614094,3.9399763], 10^-6 );

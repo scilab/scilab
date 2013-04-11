@@ -33,7 +33,6 @@ int sci_xmlAppend(char *fname, void* pvApiCtx)
     XMLElement *elem = 0;
     SciErr err;
     int *addr = 0;
-    char *name = 0;
 
     CheckLhs(1, 1);
     CheckRhs(2, 2);

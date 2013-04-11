@@ -373,7 +373,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+            <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.xcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>

@@ -52,7 +52,7 @@ std::string getExpression(char* _pstFile, Exp* _pExp);
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int promptMode      = 0;//default value at startup, overthise 3
+    int promptMode      = 0;//default value at startup, overthise 3 or verbose ";"
     bool bPromptMode    = false;
     int iErr            = 0;
     bool bErrCatch	    = false;
@@ -60,23 +60,32 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     int iID             = 0;
     Parser parser;
 
-    if(ConfigVariable::getStartFinished())
+    if (ConfigVariable::getStartFinished())
     {
-        promptMode = 3;
+        if (ConfigVariable::getVerbose())
+        {
+            promptMode = 3;
+        }
+        else
+        {
+            promptMode = -1;
+        }
     }
 
-    if(in.size() < 1 || in.size() > 3)
+    if (in.size() < 1 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "exec" , 1, 3);
         return Function::Error;
     }
 
-    if(in.size() > 1)
-    {//errcatch or mode
-        if(in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
-        {//errcatch
+    if (in.size() > 1)
+    {
+        //errcatch or mode
+        if (in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
+        {
+            //errcatch
             String* pS = in[1]->getAs<types::String>();
-            if(os_wcsicmp(pS->get(0), L"errcatch") == 0)
+            if (os_wcsicmp(pS->get(0), L"errcatch") == 0)
             {
                 bErrCatch = true;
             }
@@ -86,10 +95,11 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 return Function::Error;
             }
 
-            if(in.size() > 2)
+            if (in.size() > 2)
             {
-                if(in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
-                {//mode
+                if (in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
+                {
+                    //mode
                     Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "exec", 3);
                     return Function::Error;
                 }
@@ -98,20 +108,23 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 bPromptMode = true;
             }
         }
-        else if(in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
-        {//mode
+        else if (in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
+        {
+            //mode
             promptMode = (int)in[1]->getAs<Double>()->getReal()[0];
             bPromptMode = true;
         }
         else
-        {//not managed
+        {
+            //not managed
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer or string expected.\n"), "exec", 2);
             return Function::Error;
         }
     }
 
-    if(in[0]->isString() && in[0]->getAs<types::String>()->isScalar())
-    {//1st argument is a path, parse file and execute it
+    if (in[0]->isString() && in[0]->getAs<types::String>()->isScalar())
+    {
+        //1st argument is a path, parse file and execute it
         int iParsePathLen		= 0;
         String* pS = in[0]->getAs<types::String>();
 
@@ -121,7 +134,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         get_full_pathW(pwstTemp, (const wchar_t*)expandedPath, PATH_MAX * 2);
 
         /*fake call to mopen to show file within file()*/
-        if(mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
+        if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
         {
             FREE(pwstTemp);
             char* pstPath = wide_string_to_UTF8(expandedPath);
@@ -133,7 +146,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
         parser.parseFile(pwstTemp, L"exec");
         FREE(expandedPath);
         FREE(pwstTemp);
-        if(parser.getExitStatus() !=  Parser::Succeded)
+        if (parser.getExitStatus() !=  Parser::Succeded)
         {
             scilabWriteW(parser.getErrorMessage());
             delete parser.getTree();
@@ -143,13 +156,15 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
         pExp = parser.getTree();
     }
-    else if(in[0]->isMacro())
-    {//1st argument is a macro name, execute it in the current environnement
+    else if (in[0]->isMacro())
+    {
+        //1st argument is a macro name, execute it in the current environnement
         pExp = in[0]->getAs<Macro>()->getBody();
     }
-    else if(in[0]->isMacroFile())
-    {//1st argument is a macro name, parse and execute it in the current environnement
-        if(in[0]->getAs<MacroFile>()->parse() == false)
+    else if (in[0]->isMacroFile())
+    {
+        //1st argument is a macro name, parse and execute it in the current environnement
+        if (in[0]->getAs<MacroFile>()->parse() == false)
         {
             char* pstMacro = wide_string_to_UTF8(in[0]->getAs<MacroFile>()->getName().c_str());
             Scierror(999, _("%s: Unable to parse macro '%s'"), "exec", pstMacro);
@@ -187,13 +202,13 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
     ConfigVariable::setPromptMode(promptMode);
 
-    for(j = LExp.begin() ; j != LExp.end() ; j++)
+    for (j = LExp.begin() ; j != LExp.end() ; j++)
     {
         try
         {
             std::list<Exp *>::iterator k = j;
             //mode == 0, print new variable but not command
-            if(ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
+            if (ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
             {
                 int iLastLine = (*j)->location_get().last_line;
                 do
@@ -201,7 +216,8 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                     printExp(&file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
                     iLastLine = (*k)->location_get().last_line;
                     k++;
-                }while(k != LExp.end() && (*k)->location_get().first_line == iLastLine);
+                }
+                while (k != LExp.end() && (*k)->location_get().first_line == iLastLine);
             }
             else
             {
@@ -210,7 +226,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 
             std::list<Exp *>::iterator p = j;
-            for(; p != k; p++)
+            for (; p != k; p++)
             {
                 j = p;
                 //excecute script
@@ -222,7 +238,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
 
                 //to manage call without ()
-                if(execMe.result_get() != NULL && execMe.result_get()->isCallable())
+                if (execMe.result_get() != NULL && execMe.result_get()->isCallable())
                 {
                     Callable *pCall = execMe.result_get()->getAs<Callable>();
                     types::typed_list out;
@@ -234,34 +250,34 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                         ExecVisitor execCall;
                         Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
 
-                        if(Ret == Callable::OK)
+                        if (Ret == Callable::OK)
                         {
-                            if(out.size() == 0)
+                            if (out.size() == 0)
                             {
                                 execMe.result_set(NULL);
                             }
-                            else if(out.size() == 1)
+                            else if (out.size() == 1)
                             {
                                 out[0]->DecreaseRef();
                                 execMe.result_set(out[0]);
                             }
                             else
                             {
-                                for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                                for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
                                 {
                                     out[i]->DecreaseRef();
                                     execMe.result_set(i, out[i]);
                                 }
                             }
                         }
-                        else if(Ret == Callable::Error)
+                        else if (Ret == Callable::Error)
                         {
-                            if(ConfigVariable::getLastErrorFunction() == L"")
+                            if (ConfigVariable::getLastErrorFunction() == L"")
                             {
                                 ConfigVariable::setLastErrorFunction(pCall->getName());
                             }
 
-                            if(pCall->isMacro() || pCall->isMacroFile())
+                            if (pCall->isMacro() || pCall->isMacroFile())
                             {
                                 wchar_t szError[bsiz];
                                 os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
@@ -273,18 +289,18 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                             }
                         }
                     }
-                    catch(ScilabMessage sm)
+                    catch (ScilabMessage sm)
                     {
                         wostringstream os;
                         PrintVisitor printMe(os);
                         (*j)->accept(printMe);
                         os << std::endl << std::endl;
-                        if(ConfigVariable::getLastErrorFunction() == L"")
+                        if (ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                         }
 
-                        if(pCall->isMacro() || pCall->isMacroFile())
+                        if (pCall->isMacro() || pCall->isMacroFile())
                         {
                             wstring szAllError;
                             wchar_t szError[bsiz];
@@ -302,11 +318,11 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                     }
                 }
                 //update ans variable.
-                if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
+                if (execMe.result_get() != NULL && execMe.result_get()->isDeletable())
                 {
                     InternalType* pITAns = execMe.result_get();
                     symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
-                    if( (*j)->is_verbose() && bErrCatch == false)
+                    if ( (*j)->is_verbose() && bErrCatch == false)
                     {
                         std::wostringstream ostr;
                         ostr << L" ans  =" << std::endl;
@@ -318,18 +334,19 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 }
             }
         }
-        catch(ScilabMessage sm)
+        catch (ScilabMessage sm)
         {
             scilabErrorW(sm.GetErrorMessage().c_str());
 
             CallExp* pCall = dynamic_cast<CallExp*>(*j);
-            if(pCall != NULL)
-            {//to print call expression only of it is a macro
+            if (pCall != NULL)
+            {
+                //to print call expression only of it is a macro
                 ExecVisitor execFunc;
                 pCall->name_get().accept(execFunc);
 
-                if(execFunc.result_get() != NULL &&
-                    (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                if (execFunc.result_get() != NULL &&
+                        (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
                 {
                     wostringstream os;
 
@@ -343,7 +360,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                     os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
                     os << szError;
 
-                    if(ConfigVariable::getLastErrorFunction() == L"")
+                    if (ConfigVariable::getLastErrorFunction() == L"")
                     {
                         ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAs<Callable>()->getName());
                     }
@@ -359,9 +376,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             mclose(iID);
             throw ScilabMessage((*j)->location_get());
         }
-        catch(ScilabError se)
+        catch (ScilabError se)
         {
-            if(ConfigVariable::getLastErrorMessage() == L"")
+            if (ConfigVariable::getLastErrorMessage() == L"")
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
                 ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
@@ -371,7 +388,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
             //store message
             iErr = ConfigVariable::getLastErrorNumber();
-            if(bErrCatch == false)
+            if (bErrCatch == false)
             {
                 file.close();
                 //print failed command
@@ -399,7 +416,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     //restore previous prompt mode
     ConfigVariable::setPromptMode(oldVal);
 
-    if(bErrCatch)
+    if (bErrCatch)
     {
         out.push_back(new Double(iErr));
         //to lock last error information
@@ -424,12 +441,12 @@ std::string getExpression(char* _pstFile, Exp* _pExp)
     std::ifstream file(_pstFile);
 
     //bypass previous lines
-    for(int i = 0 ; i < loc.first_line; i++)
+    for (int i = 0 ; i < loc.first_line; i++)
     {
         file.getline(pstBuffer, 1024);
     }
 
-    if(loc.first_line == loc.last_line)
+    if (loc.first_line == loc.last_line)
     {
         int iStart = loc.first_column - 1;
         int iEnd = loc.last_column - 1;
@@ -439,7 +456,8 @@ std::string getExpression(char* _pstFile, Exp* _pExp)
         out += strLastLine;
     }
     else
-    {//
+    {
+        //
 
         //first line, entire or not
         strcpy(strLastLine, pstBuffer + loc.first_column - 1);
@@ -447,7 +465,7 @@ std::string getExpression(char* _pstFile, Exp* _pExp)
         out += "\n";
 
         //print other full lines
-        for(int i = loc.first_line; i < (loc.last_line - 1) ; i++)
+        for (int i = loc.first_line; i < (loc.last_line - 1) ; i++)
         {
             file.getline(pstBuffer, 1024);
             out += pstBuffer;
@@ -491,7 +509,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
     //positionning file curser at loc.first_line
     {
         //strange case, current position is after the wanted position
-        if(*_piLine > loc.first_line)
+        if (*_piLine > loc.first_line)
         {
             //reset line counter and restart reading at the start of the file.
             *_piLine = -1;
@@ -499,20 +517,22 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         }
 
         //bypass previous lines
-        for(int i = *_piLine ; i < loc.first_line - 1; i++)
+        for (int i = *_piLine ; i < loc.first_line - 1; i++)
         {
 
             (*_piLine)++;
-            if((*_piLine) != (loc.first_line - 1))
-            {//empty line but not sequential lines
+            if ((*_piLine) != (loc.first_line - 1))
+            {
+                //empty line but not sequential lines
                 printLine("", "", true);
             }
             _pFile->getline(_pstPreviousBuffer, 1024);
         }
     }
 
-    if(loc.first_line == loc.last_line)
-    {//1 line
+    if (loc.first_line == loc.last_line)
+    {
+        //1 line
         int iStart = loc.first_column - 1;
         int iEnd = loc.last_column - 1;
         int iLen = iEnd - iStart;
@@ -523,10 +543,12 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         //printLine(_pstPrompt, strLastLine, true, false);
 
 
-        if(iStart == 0 && iExpLen == iLineLen)
-        {//entire line
-            if(*_piCol)
-            {//blank char at the end of previous line
+        if (iStart == 0 && iExpLen == iLineLen)
+        {
+            //entire line
+            if (*_piCol)
+            {
+                //blank char at the end of previous line
                 printLine("", "", true);
             }
             printLine(_pstPrompt, strLastLine, true);
@@ -534,10 +556,12 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         }
         else
         {
-            if(iStart == 0)
-            {//begin of line
-                if(*_piCol)
-                {//blank char at the end of previous line
+            if (iStart == 0)
+            {
+                //begin of line
+                if (*_piCol)
+                {
+                    //blank char at the end of previous line
                     printLine("", "", true);
                 }
                 printLine(_pstPrompt, strLastLine, false);
@@ -545,21 +569,22 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
             }
             else
             {
-                if(*_piCol == 0)
+                if (*_piCol == 0)
                 {
                     printLine(_pstPrompt, "", false);
                     (*_piCol)++;
                 }
 
-                if(*_piCol < loc.first_column)
-                {//pickup separator between expressionsfrom file and add to output
+                if (*_piCol < loc.first_column)
+                {
+                    //pickup separator between expressionsfrom file and add to output
                     char pstTemp[1024] = {0};
                     strncpy(pstTemp, _pstPreviousBuffer +  (*_piCol - 1), loc.first_column - *_piCol);
                     printLine("", pstTemp, false);
                     *_piCol = loc.first_column;
                 }
 
-                if(iEnd == iLineLen)
+                if (iEnd == iLineLen)
                 {
                     printLine("", strLastLine, true);
                     *_piCol = 0;
@@ -573,36 +598,39 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         }
     }
     else
-    {//multiline
+    {
+        //multiline
 
-        if(loc.first_column == 1)
+        if (loc.first_column == 1)
         {
-            if(*_piCol)
-            {//blank char at the end of previous line
+            if (*_piCol)
+            {
+                //blank char at the end of previous line
                 printLine("", "", true);
             }
-            printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), true);
+            printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), false);
         }
         else
         {
-            if(*_piCol < loc.first_column)
-            {//pickup separator between expressionsfrom file and add to output
+            if (*_piCol < loc.first_column)
+            {
+                //pickup separator between expressionsfrom file and add to output
                 char pstTemp[1024] = {0};
                 strncpy(pstTemp, _pstPreviousBuffer +  (*_piCol - 1), loc.first_column - *_piCol);
                 printLine("", pstTemp, false);
                 *_piCol = loc.first_column;
             }
 
-            printLine("", _pstPreviousBuffer + (loc.first_column - 1), true);
+            printLine("", _pstPreviousBuffer + (loc.first_column - 1), false);
         }
 
 
         //print other full lines
-        for(int i = loc.first_line; i < (loc.last_line - 1) ; i++)
+        for (int i = loc.first_line; i < (loc.last_line - 1) ; i++)
         {
             (*_piLine)++;
             _pFile->getline(_pstPreviousBuffer, 1024);
-            printLine(_pstPrompt, _pstPreviousBuffer, true);
+            printLine(_pstPrompt, _pstPreviousBuffer, false);
         }
 
         //last line
@@ -612,7 +640,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         strncpy(strLastLine, _pstPreviousBuffer, loc.last_column - 1);
         strLastLine[loc.last_column - 1] = 0;
         int iLineLen = (int)strlen(_pstPreviousBuffer);
-        if(iLineLen == (loc.last_column-1))
+        if (iLineLen == (loc.last_column - 1))
         {
             printLine(_pstPrompt, strLastLine, true);
             *_piCol = 0;
@@ -627,16 +655,17 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 
 void printLine(char* _stPrompt, char* _stLine, bool _bLF)
 {
-    char* sz = (char*)MALLOC(sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 2));
-    memset(sz, 0x00, sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 2));
+    char* sz = (char*)MALLOC(sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 3));
+    memset(sz, 0x00, sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 3));
 
-    if(strlen(_stPrompt) != 0)
+    if (strlen(_stPrompt) != 0)
     {
+        strcat(sz, "\n");
         strcat(sz, _stPrompt);
     }
 
     strcat(sz, _stLine);
-    if(_bLF)
+    if (_bLF)
     {
         strcat(sz, "\n");
     }

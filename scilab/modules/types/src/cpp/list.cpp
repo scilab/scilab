@@ -181,7 +181,7 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
 
     for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
     {
-        if (pArg[iArg]->isDeletable())
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
             delete pArg[iArg];
         }

@@ -29,7 +29,6 @@ src/c/csignal.c \
 src/c/callinterf.c \
 src/c/scimem.c \
 src/c/isanan.c \
-src/c/timer.c \
 src/c/stack2.c \
 src/c/xscion.c \
 src/c/returnanan.c \
@@ -73,7 +72,6 @@ src/c/dynamic_parallel.c \
 src/c/backtrace.c \
 src/c/signal_mgmt.c \
 src/c/suspendProcess.c \
-src/c/windowsChangeManagement.c \
 src/c/setlines.c \
 src/c/setformat.c \
 src/c/InitializePreferences.c \

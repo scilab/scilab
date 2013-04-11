@@ -153,8 +153,8 @@ function h=getvalidchildren(A)
       ax=a.children
       h=[h;getvalidchildren(ax)]
     case "Compound"
-      for k=1:1:size(a.children,'*')
-        h=[h;getvalidchildren(a.children(k))]
+      for i=1:1:size(a.children,'*')
+        h=[h;getvalidchildren(a.children(i))]
       end
     end
   end

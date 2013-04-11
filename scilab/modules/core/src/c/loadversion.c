@@ -36,47 +36,48 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                       wchar_t* _pwstSciVersionString,
                       int *sci_version_revision)
 {
-    BOOL bOK=FALSE;
+    BOOL bOK = FALSE;
 
-    if(with_module(_pwstModule))
+    if (with_module(_pwstModule))
     {
         char* filename_VERSION_module = NULL;
         char* pstModule = wide_string_to_UTF8(_pwstModule);
-        char* SciPath=NULL;
-        int len=0;
+        char* SciPath = NULL;
+        int len = 0;
 
         SciPath = getSCI();
-        len =(int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(pstModule) + 1;
+        len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(pstModule) + 1;
         filename_VERSION_module = (char*)MALLOC(sizeof(char) * len);
         sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, pstModule);
-        if(SciPath)
+        if (SciPath)
         {
             FREE(SciPath);
-            SciPath=NULL;
+            SciPath = NULL;
         }
 
         if (FileExist(filename_VERSION_module))
         {
-            char *encoding=GetXmlFileEncoding(filename_VERSION_module);
+            char *encoding = GetXmlFileEncoding(filename_VERSION_module);
 
             /* Don't care about line return / empty line */
             xmlKeepBlanksDefault(0);
 
             /* check if the XML file has been encoded with utf8 (unicode) or not */
-            if ( stricmp("utf-8", encoding)==0) {
+            if ( stricmp("utf-8", encoding) == 0)
+            {
                 xmlDocPtr doc = NULL;
                 xmlXPathContextPtr xpathCtxt = NULL;
                 xmlXPathObjectPtr xpathObj = NULL;
 
-                int version_major=0;
-                int version_minor=0;
-                int version_maintenance=0;
-                int version_revision=0;
-                wchar_t *pwstSciVersionString=0;
+                int version_major = 0;
+                int version_minor = 0;
+                int version_maintenance = 0;
+                int version_revision = 0;
+                wchar_t *pwstSciVersionString = 0;
 
                 {
                     BOOL bConvert = FALSE;
-                    char *shortfilename_VERSION_module = getshortpathname(filename_VERSION_module,&bConvert);
+                    char *shortfilename_VERSION_module = getshortpathname(filename_VERSION_module, &bConvert);
                     if (shortfilename_VERSION_module)
                     {
                         doc = xmlParseFile (shortfilename_VERSION_module);
@@ -87,81 +88,89 @@ BOOL getversionmodule(wchar_t* _pwstModule,
 
                 if (doc == NULL)
                 {
-                    fprintf(stderr,_("Error: Could not parse file %s\n"), filename_VERSION_module);
+                    fprintf(stderr, _("Error: Could not parse file %s\n"), filename_VERSION_module);
                     return FALSE;
                 }
 
                 xpathCtxt = xmlXPathNewContext(doc);
                 xpathObj = xmlXPathEval((const xmlChar*)"//MODULE_VERSION/VERSION", xpathCtxt);
 
-                if(xpathObj && xpathObj->nodesetval->nodeMax)
+                if (xpathObj && xpathObj->nodesetval->nodeMax)
                 {
 
-                    xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[0]->properties;
+                    xmlAttrPtr attrib = xpathObj->nodesetval->nodeTab[0]->properties;
                     while (attrib != NULL)
                     {
                         if (xmlStrEqual (attrib->name, (const xmlChar*) "major"))
                         {
                             /* we found <major> */
-                            const char *str=(const char*)attrib->children->content;
-                            version_major=atoi(str);
+                            const char *str = (const char*)attrib->children->content;
+                            version_major = atoi(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*)"minor"))
                         {
                             /* we found <minor> */
-                            const char *str=(const char*)attrib->children->content;
-                            version_minor=atoi(str);
+                            const char *str = (const char*)attrib->children->content;
+                            version_minor = atoi(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*)"maintenance"))
                         {
                             /* we found <maintenance> */
-                            const char *str=(const char*)attrib->children->content;
-                            version_maintenance=atoi(str);
+                            const char *str = (const char*)attrib->children->content;
+                            version_maintenance = atoi(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*)"revision"))
                         {
                             /* we found <revision> */
-                            const char *str=(const char*)attrib->children->content;
-                            version_revision=atoi(str);
+                            const char *str = (const char*)attrib->children->content;
+                            version_revision = atoi(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*)"string"))
                         {
                             /* we found <string> */
                             const char *str = (const char*)attrib->children->content;
-                            wchar_t* pwstSciVersionString = to_wide_string(str);
-                            wcscpy(_pwstSciVersionString, pwstSciVersionString);
-                            FREE(pwstSciVersionString);
+                            pwstSciVersionString = to_wide_string(str);
                         }
 
                         attrib = attrib->next;
                     }
 
-                    *sci_version_major=version_major;
-                    *sci_version_minor=version_minor;
-                    *sci_version_maintenance=version_maintenance;
-                    *sci_version_revision=version_revision;
+                    *sci_version_major = version_major;
+                    *sci_version_minor = version_minor;
+                    *sci_version_maintenance = version_maintenance;
+                    *sci_version_revision = version_revision;
                     wcscpy(_pwstSciVersionString, pwstSciVersionString);
                     if (pwstSciVersionString)
                     {
                         FREE(pwstSciVersionString);
-                        pwstSciVersionString=NULL;
+                        pwstSciVersionString = NULL;
                     }
                 }
                 else
                 {
-                    fprintf(stderr,_("Error: Not a valid version file %s (should start with <MODULE_VERSION> and contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
+                    fprintf(stderr, _("Error: Not a valid version file %s (should start with <MODULE_VERSION> and contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"), filename_VERSION_module);
                     return FALSE;
                 }
-                if(xpathObj) xmlXPathFreeObject(xpathObj);
-                if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+                if (xpathObj)
+                {
+                    xmlXPathFreeObject(xpathObj);
+                }
+                if (xpathCtxt)
+                {
+                    xmlXPathFreeContext(xpathCtxt);
+                }
                 xmlFreeDoc (doc);
             }
             else
             {
-                fprintf(stderr,_("Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' found\n"), filename_VERSION_module, encoding);
+                fprintf(stderr, _("Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' found\n"), filename_VERSION_module, encoding);
             }
 
-            if (encoding) {FREE(encoding);encoding=NULL;}
+            if (encoding)
+            {
+                FREE(encoding);
+                encoding = NULL;
+            }
             bOK = TRUE;
         }
         else
@@ -175,7 +184,11 @@ BOOL getversionmodule(wchar_t* _pwstModule,
             bOK = TRUE;
         }
 
-        if (filename_VERSION_module) {FREE(filename_VERSION_module);filename_VERSION_module=NULL;}
+        if (filename_VERSION_module)
+        {
+            FREE(filename_VERSION_module);
+            filename_VERSION_module = NULL;
+        }
     }
     return bOK;
 }

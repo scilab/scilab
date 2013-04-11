@@ -156,9 +156,6 @@
     <ClCompile Include="..\c\sci_getURL.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_getURLcontent.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\sci_splitURL.c">
       <Filter>Source Files</Filter>
     </ClCompile>

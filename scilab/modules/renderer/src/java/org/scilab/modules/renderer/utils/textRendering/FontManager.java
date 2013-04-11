@@ -68,7 +68,7 @@ public class FontManager {
     /**
      * A list of fonts.
      */
-    private static class FontList extends ArrayList < Font > {
+    private static class FontList extends ArrayList<Font> {
 
         private static final long serialVersionUID = 1L;
 
@@ -78,7 +78,6 @@ public class FontManager {
         public FontList() {
             super();
         }
-
     }
 
     private static FontList sciFonts;
@@ -359,7 +358,7 @@ public class FontManager {
     public final boolean isAvailableFontName(String fontname) {
         int i = getSizeAvailableFontsName();
         String[] availableFontsName = getAvailableFontsName();
-        for (i = 0; i < getSizeAvailableFontsName(); i++) {
+        for (i = 0; i < availableFontsName.length; i++) {
             if (fontname.compareTo(availableFontsName[i]) == 0) {
                 return true;
             }
@@ -378,6 +377,12 @@ public class FontManager {
         for (int i = 0; i < nbFonts; i++) {
             Font res = getFontFromIndex(i);
             fontnames[i] = res.getFamily();
+            if (res.isBold()) {
+                fontnames[i] += " Bold";
+            }
+            if (res.isItalic()) {
+                fontnames[i] += " Italic";
+            }
         }
 
         return fontnames;
@@ -430,5 +435,4 @@ public class FontManager {
         sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 9 */
         sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 10 */
     }
-
 }

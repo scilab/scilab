@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
 # File: sci_gateway/c/sci_qld.c, line: 62
 #, c-format
@@ -796,6 +796,12 @@ msgid "Simulated Annealing"
 msgstr ""
 
 #
+# File: macros/bvodeS.sci, line: 25
+#, c-format
+msgid "%s: More than 20 equations are not allowed"
+msgstr ""
+
+#
 # File: macros/bvodeS.sci, line: 30
 # File: macros/fit_dat.sci, line: 80
 #, c-format
@@ -990,7 +996,13 @@ msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 
 #
-# File: macros/karmarkar.sci, line: 379
+# File: macros/karmarkar.sci, line: 238
+#, c-format
+msgid "%s: The algorithm did not converge (exitflag= %d).\n"
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 384
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
@@ -998,7 +1010,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/karmarkar.sci, line: 513
+# File: macros/karmarkar.sci, line: 518
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the equality "

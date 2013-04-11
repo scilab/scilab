@@ -74,7 +74,7 @@ public final class ConfigManager {
 
     private static final String SCILAB_CONFIG_FILE = System.getenv("SCI") + "/modules/console/etc/configuration.xml";
 
-    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/configuration.xml";
+    private static String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/configuration.xml";
 
     private static final int DEFAULT_WIDTH = 650;
     private static final int DEFAULT_HEIGHT = 550;
@@ -85,6 +85,16 @@ public final class ConfigManager {
     private static Document document;
 
     private static boolean updated;
+    private static boolean mustSave = true;
+
+    static {
+        if (ScilabConstants.SCIHOME != null && ScilabConstants.SCIHOME.canRead() && ScilabConstants.SCIHOME.canWrite()) {
+            USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/configuration.xml";
+        } else {
+            USER_CONFIG_FILE = SCILAB_CONFIG_FILE;
+            mustSave = false;
+        }
+    }
 
     /**
      * Constructor
@@ -97,10 +107,12 @@ public final class ConfigManager {
      * Create a copy of Scilab configuration file in the user directory
      */
     public static void createUserCopy() {
-        File fileConfig = new File(USER_CONFIG_FILE);
-        if (!fileConfig.exists() || (fileConfig.length() == 0) || checkVersion()) {
-            /* Create a local copy of the configuration file */
-            updated = ScilabCommonsUtils.copyFile(new File(SCILAB_CONFIG_FILE), new File(USER_CONFIG_FILE));
+        if (mustSave) {
+            File fileConfig = new File(USER_CONFIG_FILE);
+            if (!fileConfig.exists() || (fileConfig.length() == 0) || checkVersion()) {
+                /* Create a local copy of the configuration file */
+                updated = ScilabCommonsUtils.copyFile(new File(SCILAB_CONFIG_FILE), new File(USER_CONFIG_FILE));
+            }
         }
     }
 
@@ -332,6 +344,8 @@ public final class ConfigManager {
      * Save the modifications
      */
     private static void writeDocument() {
-        ScilabXMLUtilities.writeDocument(document, USER_CONFIG_FILE);
+        if (mustSave) {
+            ScilabXMLUtilities.writeDocument(document, USER_CONFIG_FILE);
+        }
     }
 }

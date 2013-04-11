@@ -328,7 +328,11 @@ plot2d(x(im)',y(jm)',-9,"000")
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>contour();</scilab:image>
+        <scilab:image>
+            t=linspace(-%pi,%pi,30);
+            function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
+            contour(t,t,my_surface,10)
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

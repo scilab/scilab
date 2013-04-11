@@ -224,6 +224,12 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
                     pD->convertFromInteger();
                 }
 
+                if (inCopy[iPos]->isDouble() && ((types::Double*)inCopy[iPos])->isViewAsZComplex())
+                {
+                    types::Double* pD = inCopy[iPos]->getAs<types::Double>();
+                    pD->convertFromZComplex();
+                }
+
                 out.push_back(inCopy[iPos]);
             }
             else
@@ -233,6 +239,12 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
                 {
                     types::Double* pD = tmpOut[iPos]->getAs<types::Double>();
                     pD->convertFromInteger();
+                }
+
+                if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsZComplex())
+                {
+                    types::Double* pD = tmpOut[iPos]->getAs<types::Double>();
+                    pD->convertFromZComplex();
                 }
 
                 out.push_back(tmpOut[iPos]);

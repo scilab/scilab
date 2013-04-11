@@ -143,7 +143,6 @@ am__objects_1 = libscispreadsheet_algo_la-xls.lo \
 	libscispreadsheet_algo_la-csv_strsubst.lo \
 	libscispreadsheet_algo_la-csvWrite.lo \
 	libscispreadsheet_algo_la-getRange.lo \
-	libscispreadsheet_algo_la-latintoutf.lo \
 	libscispreadsheet_algo_la-splitLine.lo \
 	libscispreadsheet_algo_la-stringToComplex.lo \
 	libscispreadsheet_algo_la-utftolatin.lo
@@ -482,7 +481,6 @@ src/c/csvRead.c \
 src/c/csv_strsubst.c \
 src/c/csvWrite.c \
 src/c/getRange.c \
-src/c/latintoutf.c \
 src/c/splitLine.c \
 src/c/stringToComplex.c \
 src/c/utftolatin.c
@@ -727,7 +725,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-csv_complex.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-csv_strsubst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-getRange.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-latintoutf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-logger.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-ole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-olestream-unwrap.Plo@am__quote@
@@ -831,13 +828,6 @@ libscispreadsheet_algo_la-getRange.lo: src/c/getRange.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getRange.c' object='libscispreadsheet_algo_la-getRange.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-getRange.lo `test -f 'src/c/getRange.c' || echo '$(srcdir)/'`src/c/getRange.c
-
-libscispreadsheet_algo_la-latintoutf.lo: src/c/latintoutf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-latintoutf.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-latintoutf.Tpo -c -o libscispreadsheet_algo_la-latintoutf.lo `test -f 'src/c/latintoutf.c' || echo '$(srcdir)/'`src/c/latintoutf.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-latintoutf.Tpo $(DEPDIR)/libscispreadsheet_algo_la-latintoutf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/latintoutf.c' object='libscispreadsheet_algo_la-latintoutf.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-latintoutf.lo `test -f 'src/c/latintoutf.c' || echo '$(srcdir)/'`src/c/latintoutf.c
 
 libscispreadsheet_algo_la-splitLine.lo: src/c/splitLine.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-splitLine.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-splitLine.Tpo -c -o libscispreadsheet_algo_la-splitLine.lo `test -f 'src/c/splitLine.c' || echo '$(srcdir)/'`src/c/splitLine.c

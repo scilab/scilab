@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * Copyright (C) 2013 - Samuel GOUGEON
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,13 +14,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="variance">
     <refnamediv>
         <refname>variance</refname>
-        <refpurpose>variance of  the values of a  vector or matrix</refpurpose>
+        <refpurpose>variance of the values of a vector or matrix (or hypermatrix) real or complex</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>s=variance(x[,orien[,w]])
-            s=variance(x,'r') or m=variance(x,1)
-            s=variance(x,'c') or m=variance(x,2)
+        <synopsis>s = variance(x [,orien [,w]])
+            s = variance(x,'r') or s = variance(x,1)
+            s = variance(x,'c') or s = variance(x,2)
+            s = variance(x,'*',1)
+            s = variance(x,'r',1)
+            s = variance(x,'c',1)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,27 +32,38 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>real or complex vector or matrix</para>
+                    <para>
+                        real or complex vector or matrix. An hypermatrix is accepted only for undirectional computations <literal>variance(x)</literal> or <literal>variance(x,"*",1)</literal>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orien</term>
                 <listitem>
-                    <para>the orientation of the computation. Valid values or the orien parameter
-                        are 1, "r", 2 and "c".
+                    <para>the orientation of the computation. Valid values are
+                        <itemizedlist>
+                            <listitem>1 or "r" : result is a row, after a column-wise computation.</listitem>
+                            <listitem>2 or "c" : result is a column, after a row-wise computation.</listitem>
+                            <listitem>
+                                "*" : full undirectional computation (default); useful explicitly when <literal>w</literal> is used.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>w</term>
                 <listitem>
-                    <para>w : type of normalization to use. Valid values are 0 and 1. 
-                        This depends on the number of columns of x (if orien = 1 is chosen),
-                        the number of rows (if orien = 2 is chosen).
-                        If w = 0, normalizes with m-1, provides the best unbiased estimator of the variance (this is the default).
-                        If w = 1, normalizes with m, this provides the second moment around the mean.
-                        If no orien option is given, the normalization is done with n * m - 1, where n * m is the total 
-                        number of elements in the matrix.
+                    <para>w : type of normalization to use. Valid values are 
+                        <itemizedlist>
+                            <listitem>0 : provides the best unbiased estimator of the variance when the mean is not known a priori. This is the default.
+                                The sum is normalized by 1/(nE-1), where nE is the number of summed elements 
+                                (the number of rows nR if "r" is used; of columns nC if "c" is used; or by default nC*nR)
+                            </listitem>
+                            <listitem>1 : provides the second moment around the mean. The sum is normalized by 1/nE.
+                                This estimation is unbiased only if the mean is known a priori.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -57,35 +72,43 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function  computes the variance of  the values of a
-            vector or matrix <literal>x</literal>.
+            This function computes the variance of the real or complex numbers stored into a vector or matrix <literal>x</literal>. If <literal>x</literal> is complex, <literal>variance(x,..) = variance(real(x),..) + variance(imag(x),..)</literal> is returned.
         </para>
         <para>
-            For a vector or a matrix <literal>x</literal>, <literal>s=variance(x)</literal> returns
-            in the scalar <literal>s</literal> the variance of all the entries of
-            <literal>x</literal>.
+            For a vector, a matrix, or an hypermatrix <literal>x</literal>, <literal>s = variance(x)</literal> or <literal>s = variance(x, "*", 1)</literal>
+            returns in the scalar <literal>s</literal> the variance of all the entries of <literal>x</literal>.
         </para>
         <para>
-            <literal>s=variance(x,'r')</literal> (or,  equivalently, <literal>s=variance(x,1)</literal>)
-            is the rowwise variance. It returns in each entry of the
-            row vector s the variance of each column of <literal>x</literal>.
-            The generalized formulae is used, which manages complex values.
+            <literal>s = variance(x,'c')</literal> (or,  equivalently, <literal>s = variance(x,2)</literal>)
+            is the columnwise variance: s is a column vector, with <literal>s(j) = variance(x(j,:))</literal>.
         </para>
         <para>
-            <literal>s=variance(x,'c')</literal> (or, equivalently,  <literal>s=variance(x,2)</literal>)
-            is the columnwise  standard  deviation.  It returns   in
-            each entry of the column vector  <literal>s</literal> the variance of
-            each row of <literal>x</literal>.
-            The generalized formulae is used, which manages complex values.
+            <literal>s = variance(x,'r')</literal> (or,  equivalently, <literal>s = variance(x,1)</literal>)
+            is the rowwise variance: s is a row vector, with s(i) the variance of <literal>s(i) = variance(x(:,i))</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-x=[0.2113249 0.0002211 0.6653811;0.7560439 0.4453586 0.6283918]
-s=variance(x)
-s=variance(x,'r')
-s=variance(x,'c')
+x = [ 0.2113249 0.0002211 0.6653811;0.7560439 0.4453586 0.6283918 ]
+s = variance(x)
+s = variance(x, "r")
+s = variance(x, "c")
+
+// with complex numbers
+x = rand(4,3) + rand(4,3)*%i
+s = variance(x)
+s = variance(x, "*", 1)	// should be smaller than the previous one
+s = variance(x, "r")
+s = variance(x, "r", 1)
+s = variance(x, "c")
+
+// with an hypermatrix
+x = rand(3,2,2)
+s = variance(x)
+s = variance(x, "*", 1)	// should be smaller than the previous one
+// s = variance(x, "r")  // is not supported for an hypermatrix
+// s = variance(x, "c")  // is not supported for an hypermatrix
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -101,5 +124,15 @@ s=variance(x,'c')
         <para>
             Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>variance(complexes) fixed. variance(x,"*",1) introduced. Vectorization of the code for directional usages variance(x,"r"|"c"). Full revision of the help page
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -30,3 +30,7 @@ Deprecated behavior
 ====================
 
 * Syntax %i:10 is now deprecated.
+
+* Declaration of a number on two lines is no longer allowed:
+ 1..
+ 2

@@ -287,10 +287,8 @@ public class SciNotes extends SwingScilabTab {
     public void setParentWindow() {
         this.parentWindow = new SwingScilabWindow();
         setWindowIcon("accessories-text-editor");
-        Position pos = ConfigSciNotesManager.getMainWindowPosition();
-        parentWindow.setLocation(pos.getX(), pos.getY());
-        Size size = ConfigSciNotesManager.getMainWindowSize();
-        parentWindow.setSize(size.getWidth(), size.getHeight());
+        parentWindow.setLocation(150, 50);
+        parentWindow.setSize(650, 550);
     }
 
     /**
@@ -1445,9 +1443,8 @@ public class SciNotes extends SwingScilabTab {
         pane.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         pane.setFont(kit.getStylePreferences().tokenFonts[0]);
 
-        // TODO rajouter ca ds les prefs
-        pane.setBackground(ConfigSciNotesManager.getSciNotesBackgroundColor());
-        pane.setCaretColor(ConfigSciNotesManager.getSciNotesForegroundColor());
+        pane.setBackground(SciNotesOptions.getSciNotesDisplay().backgroundColor);
+        pane.setCaretColor(SciNotesOptions.getSciNotesDisplay().caretColor);
 
         pane.setFocusable(true);
         pane.setRequestFocusEnabled(true);

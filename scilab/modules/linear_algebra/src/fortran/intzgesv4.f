@@ -1,5 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
+c Copyright (C) 2013 - Michael Baudin
 c$
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,7 @@ c     a/b
       logical checklhs,checkrhs
       character fname*(*)
       double precision ANORM, EPS, RCOND
+      double precision RCONDthresh
       double precision dlamch, zlange
       integer vfinite
       external dlamch, zlange, vfinite
@@ -76,6 +78,7 @@ c     Check if A and B matrices contains Inf or NaN's
       endif
       if(.not.createvar(11,'z',1,LWORK,lDWORK)) return
       EPS = dlamch('eps')
+      RCOND_thresh=EPS*10
       ANORM = zlange( '1', M, N, zstk(lA), M, zstk(lDWORK) )
 c     
 c     Transpose A and B
@@ -109,7 +112,7 @@ c     SUBROUTINE ZGETRF( N, N, A, LDA, IPIV, INFO )
      $           zstk(lDWORK), stk(lRWORK), INFO )
 c     SUBROUTINE ZGECON( NORM, N, A, LDA, ANORM, RCOND, WORK,
 c     $                        RWORK, INFO )
-            if(RCOND.gt.sqrt(EPS)) then
+            if(RCOND.gt.RCOND_thresh) then
                call ZGETRS( 'N', N, K, zstk(lAF), N, istk(lIPIV),
      $              zstk(lBT), N, INFO ) 
 c     SUBROUTINE ZGETRS( TRANS, N, NRHS, A, LDA, IPIV,
@@ -135,7 +138,7 @@ c     .  ill conditionned problem
 c     
 c     M.ne.N or A singular
 c     
-      RCOND = sqrt(eps)
+      RCOND = RCOND_thresh
       do 70 i = 1, M
          istk(lJPVT+i-1) = 0
  70   continue

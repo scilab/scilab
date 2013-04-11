@@ -51,7 +51,18 @@ void DataModel::getGraphicObjectProperty(char const* _pstID, int _iName, void **
 
     dataObject = (*m_dataMap)[std::string(_pstID)];
 
+    if (dataObject == NULL)
+    {
+        *_pvData = NULL;
+        return;
+    }
+
     property = dataObject->getPropertyFromName(_iName);
+    if (property == UNKNOWN_DATA_PROPERTY)
+    {
+        *_pvData = NULL;
+        return;
+    }
 
     dataObject->getDataProperty(property, _pvData);
 }
@@ -96,19 +107,19 @@ char const* DataModel::createDataObject(char const* _pstID, int _iType)
 
 void DataModel::deleteDataObject(char const* _pstID)
 {
-    std::map<std::string, Data3D*>::iterator it = m_dataMap->find(std::string(_pstID)); 
+    std::map<std::string, Data3D*>::iterator it = m_dataMap->find(std::string(_pstID));
     if (it != m_dataMap->end() && it->second != NULL)
     {
         delete it->second;
-	m_dataMap->erase(it);
-    }
-  
-    /*Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
-    if (newObject != NULL)
-    {
-        delete newObject;
+        m_dataMap->erase(it);
     }
 
-    m_dataMap->erase(std::string(_pstID));*/
+    /*Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
+      if (newObject != NULL)
+      {
+      delete newObject;
+      }
+
+      m_dataMap->erase(std::string(_pstID));*/
 }
 

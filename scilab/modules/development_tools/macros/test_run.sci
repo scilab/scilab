@@ -579,6 +579,12 @@ function status = test_single(_module, _testPath, _testName)
     return;
   end
 
+  if ~isempty(grep(sciFile, "<-- UNIX ONLY -->")) & getos() == "Windows" then
+    status.id = 10;
+    status.message = "skipped: Unix only";
+    return;
+  end
+
   if ~isempty(grep(sciFile, "<-- MACOSX ONLY -->")) & getos() <> "Darwin" then
     status.id = 10;
     status.message = "skipped: MacOSX only";
@@ -1030,6 +1036,9 @@ function msg = checkthefile( filename )
 // Workaround for bug #4827
   msg(1) = "   Check the following file :"
   msg(2) = "   - "+filename
+  if params.show_error == %t then
+    msg=[msg; mgetl(filename)]
+  end
 endfunction
 
 // launchthecommand

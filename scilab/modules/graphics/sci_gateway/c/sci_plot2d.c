@@ -60,7 +60,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
     BOOL flagNax = FALSE;
     char strfl[4];
 
-    static rhs_opts opts[] =
+    rhs_opts opts[] =
     {
         { -1, "axesflag", -1, 0, 0, NULL},
         { -1, "frameflag", -1, 0, 0, NULL},

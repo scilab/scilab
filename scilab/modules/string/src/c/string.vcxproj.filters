@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -80,7 +80,7 @@
     <ClCompile Include="..\cpp\stripblanks.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="strsplitfunction.c">
+    <ClCompile Include="strsplit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="strsubst.c">
@@ -221,16 +221,13 @@
     <ClInclude Include="setScilabCharactersCodes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="strcatfunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stringsCompare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stringsstrrev.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="strsplitfunction.h">
+    <ClInclude Include="strsplit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tokens.h">

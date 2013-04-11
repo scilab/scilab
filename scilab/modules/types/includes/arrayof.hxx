@@ -517,6 +517,12 @@ public :
                 }
             }
 
+            // reset imaginary part
+            if (isComplex() && bComplex == false)
+            {
+                setImg(iPos, 0);
+            }
+
             //update index
             piIndex[0]++;
         }
@@ -634,8 +640,6 @@ public :
 
         //fill with null item
         ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
-        T* pRealData = pArrayOut->get();
-        T* pImgData = pArrayOut->getImg();
 
         for (int i = 0 ; i < pArrayOut->getSize() ; i++)
         {
@@ -1022,8 +1026,6 @@ public :
             pOut = createEmpty(iDims, piCountDim, isComplex());
         }
 
-        T* pReal        = pOut->get();
-        T* pImg         = pOut->getImg();
         int* piIndex    = new int[_pArgs->size()];
         int* piCoord    = new int[_pArgs->size()];
         int* piViewDims = new int[iDims];
@@ -1454,10 +1456,7 @@ public :
         return true;
     }
 
-    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
-    {
-        return true;
-    }
+    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) = 0;
 
     virtual std::wstring toStringInLine()
     {

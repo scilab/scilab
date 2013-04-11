@@ -40,7 +40,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>floor(x)</literal> возвращает матрицу целых чисел, округлённых до ближайшего целого числа в сторону <latex>$-\infty$</latex>.
+            <literal>floor(x)</literal> возвращает матрицу целых чисел, округлённых до ближайшего целого числа в сторону <latex scilab:localized="true">$-\infty$</latex>.
         </para>
     </refsection>
     <refsection>

@@ -647,7 +647,7 @@ int C2F(creatework) (int *number, int *m, int *lr)
 * This can be used with creatework to
 * set the size of object which was intialy sized to the whole
 * remaining space with creatework
-* Moreover informations the objet is recorded
+* Moreover information the objet is recorded
 *---------------------------------------------------------------------*/
 
 int C2F(setworksize) (int *number, int *size)

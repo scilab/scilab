@@ -77,11 +77,48 @@ BOOL setlanguage(wchar_t *lang)
                 /* Load the locale from the system */
 #if !defined(_MSC_VER) && !defined(__APPLE__)
                 //for mbstowcs
+
+                char *newlang = NULL;
                 char *pstLang = wide_string_to_UTF8(lang);
                 char *pstRet = setlocale(LC_CTYPE, pstLang);
-                wchar_t *ret = (pstRet == NULL ? NULL : to_wide_string(pstRet));
+                wchar_t *ret = NULL;
 
-                if (ret == NULL)
+                if (pstRet == NULL)
+                {
+                    if (pstLang == NULL || *pstLang == 0)
+                    {
+                        if(pstLang)
+                        {
+                            FREE(pstLang);
+                        }
+
+                        pstLang = getenv("LANG");
+                    }
+
+                    pstRet = setlocale(LC_CTYPE, pstLang);
+                    if (pstRet == NULL)
+                    {
+                        // On some OSes we need to precise the charset (e.g. on Debian, fr_FR is not accepted but fr_FR.UTF-8 is)
+                        int i = 0;
+                        for (; i < NumberOfCharsets; i++)
+                        {
+                            newlang = (char*)MALLOC(strlen(pstLang) + strlen(CHARSETS[i]) + 1 + 1);
+                            sprintf(newlang, "%s.%s", pstLang, CHARSETS[i]);
+                            pstRet = setlocale(LC_CTYPE, newlang);
+                            if (pstRet == NULL)
+                            {
+                                FREE(newlang);
+                                newlang = NULL;
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (pstRet == NULL)
                 {
                     fprintf(stderr,
                             "Warning: Localization issue. Failed to change the LC_CTYPE locale category. Does not support the locale '%ls' %ls %s.\nDid you install the system locales?\n",
@@ -89,14 +126,22 @@ BOOL setlanguage(wchar_t *lang)
                 }
 
                 //for gettext
-                pstRet =  setlocale(LC_MESSAGES, pstLang);
-                ret = (pstRet == NULL ? NULL : to_wide_string(pstRet));
+                if (newlang)
+                {
+                    pstRet = setlocale(LC_MESSAGES, newlang);
+                }
+                else
+                {
+                    pstRet = setlocale(LC_MESSAGES, pstLang);
+                }
+
+                ret = to_wide_string(pstRet);
 #else
                 /* Load the user locale from the system */
                 wchar_t *ret = getLocaleUserInfo();
 #endif
 
-                //                This stuff causes pb when locales have been compiled
+                // This stuff causes pb when locales have been compiled
                 if (ret == NULL)
                 {
 #ifndef _MSC_VER
@@ -112,6 +157,7 @@ BOOL setlanguage(wchar_t *lang)
                 {
                     /* The lang is the default one... ie en_US */
                     wcscpy(CURRENTLANGUAGESTRING, SCILABDEFAULTLANGUAGE);
+                    exportLocaleToSystem(CURRENTLANGUAGESTRING);
                 }
                 else
                 {
@@ -122,16 +168,37 @@ BOOL setlanguage(wchar_t *lang)
                          * but if setlocale worked, we get it from the return
                          */
                         wcsncpy(CURRENTLANGUAGESTRING, ret, 5); /* 5 is the number of char in fr_FR for example */
+                        exportLocaleToSystem(ret);
                     }
                     else
                     {
-                        wcscpy(CURRENTLANGUAGESTRING, lang);
+#if !defined(_MSC_VER) && !defined(__APPLE__)
+                        if (newlang)
+                        {
+                            wchar_t* pwstLang = to_wide_string(newlang);
+                            setenvc("LANG", newlang);
+                            strncpy(CURRENTLANGUAGESTRING, newlang, 5);
+                            CURRENTLANGUAGESTRING[5] = '\0';
+                            exportLocaleToSystem(pwstLang);
+                            FREE(pwstLang);
+                        }
+                        else
+#endif
+                        {
+                            wcscpy(CURRENTLANGUAGESTRING, lang);
+                            exportLocaleToSystem(lang);
+                        }
                     }
                 }
 #ifndef _MSC_VER
                 setlanguagecode(CURRENTLANGUAGESTRING);
+#ifndef __APPLE__
+                if (newlang)
+                {
+                    FREE(newlang);
+                }
 #endif
-                exportLocaleToSystem(CURRENTLANGUAGESTRING);
+#endif
                 return TRUE;
             }
 #ifndef _MSC_VER
@@ -299,7 +366,7 @@ BOOL exportLocaleToSystem(wchar_t *locale)
 #ifdef _MSC_VER
         fprintf(stderr, "Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
 #else
-        fprintf(stderr, "Localization: Haven't been able to find a suitable locale. Remains to default %d.\n", EXPORTENVLOCALE);
+        fprintf(stderr, "Localization: Have not been able to find a suitable locale. Remains to default %ls.\n", EXPORTENVLOCALESTR);
 #endif
         return FALSE;
     }

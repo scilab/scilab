@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
 # File: sci_gateway/c/sci_dnaupd.c, line: 84
 # File: sci_gateway/c/sci_znaupd.c, line: 85
@@ -350,13 +350,13 @@ msgstr ""
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
-# File: macros/eigs.sci, line: 15
+# File: macros/eigs.sci, line: 14
 #, c-format
 msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 20
+# File: macros/eigs.sci, line: 19
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
@@ -372,17 +372,15 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 132
-# File: macros/eigs.sci, line: 172
-# File: macros/eigs.sci, line: 251
-# File: macros/eigs.sci, line: 289
+# File: macros/eigs.sci, line: 81
+# File: macros/eigs.sci, line: 153
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A structure expected"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 135
-# File: macros/eigs.sci, line: 175
+# File: macros/eigs.sci, line: 84
+# File: macros/eigs.sci, line: 156
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
@@ -390,22 +388,13 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 254
-# File: macros/eigs.sci, line: 292
-#, c-format
-msgid ""
-"%s: Wrong type for input argument: Use opts with tol, maxiter, ncv, resid, "
-"cholB, issym, isreal"
-msgstr ""
-
-#
-# File: macros/eigs.sci, line: 407
+# File: macros/eigs.sci, line: 274
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 413
+# File: macros/eigs.sci, line: 280
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -413,23 +402,23 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 425
-# File: macros/eigs.sci, line: 860
+# File: macros/eigs.sci, line: 292
+# File: macros/eigs.sci, line: 745
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 451
-# File: macros/eigs.sci, line: 886
+# File: macros/eigs.sci, line: 318
+# File: macros/eigs.sci, line: 771
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 476
-# File: macros/eigs.sci, line: 911
+# File: macros/eigs.sci, line: 343
+# File: macros/eigs.sci, line: 796
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
@@ -437,7 +426,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 522
+# File: macros/eigs.sci, line: 389
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be complex for "
@@ -445,17 +434,17 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 548
-# File: macros/eigs.sci, line: 984
+# File: macros/eigs.sci, line: 415
+# File: macros/eigs.sci, line: 869
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: B must be symmetric or hermitian, "
-"definite, semi positive.\n"
+"%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
+"upper triangular.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 561
-# File: macros/eigs.sci, line: 992
+# File: macros/eigs.sci, line: 428
+# File: macros/eigs.sci, line: 881
 #, c-format
 msgid ""
 "%s: Impossible to use the Cholesky factorisation with complex sparse "
@@ -463,31 +452,31 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 632
-# File: macros/eigs.sci, line: 637
-# File: macros/eigs.sci, line: 643
-# File: macros/eigs.sci, line: 715
-# File: macros/eigs.sci, line: 728
-# File: macros/eigs.sci, line: 748
-# File: macros/eigs.sci, line: 1042
-# File: macros/eigs.sci, line: 1047
-# File: macros/eigs.sci, line: 1053
-# File: macros/eigs.sci, line: 1134
-# File: macros/eigs.sci, line: 1148
-# File: macros/eigs.sci, line: 1168
+# File: macros/eigs.sci, line: 499
+# File: macros/eigs.sci, line: 504
+# File: macros/eigs.sci, line: 510
+# File: macros/eigs.sci, line: 582
+# File: macros/eigs.sci, line: 599
+# File: macros/eigs.sci, line: 633
+# File: macros/eigs.sci, line: 939
+# File: macros/eigs.sci, line: 944
+# File: macros/eigs.sci, line: 950
+# File: macros/eigs.sci, line: 1048
+# File: macros/eigs.sci, line: 1065
+# File: macros/eigs.sci, line: 1099
 #, c-format
 msgid "%s: Error with %s: info = %d.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 782
-# File: macros/eigs.sci, line: 786
+# File: macros/eigs.sci, line: 667
+# File: macros/eigs.sci, line: 671
 #, c-format
 msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 821
+# File: macros/eigs.sci, line: 706
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
@@ -495,7 +484,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 825
+# File: macros/eigs.sci, line: 710
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
@@ -503,19 +492,19 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 836
+# File: macros/eigs.sci, line: 721
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 843
+# File: macros/eigs.sci, line: 728
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 847
+# File: macros/eigs.sci, line: 732
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -523,7 +512,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 849
+# File: macros/eigs.sci, line: 734
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
@@ -531,14 +520,14 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 897
+# File: macros/eigs.sci, line: 782
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 948
+# File: macros/eigs.sci, line: 833
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
@@ -546,7 +535,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 954
+# File: macros/eigs.sci, line: 839
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
@@ -554,7 +543,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 958
+# File: macros/eigs.sci, line: 843
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
@@ -562,7 +551,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 1125
+# File: macros/eigs.sci, line: 1039
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: n does not match rows number of "
@@ -570,7 +559,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/eigs.sci, line: 1127
+# File: macros/eigs.sci, line: 1041
 #, c-format
 msgid "%s: Wrong type or value for input arguments.\n"
 msgstr ""

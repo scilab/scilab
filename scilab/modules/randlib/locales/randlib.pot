@@ -14,75 +14,61 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
-# File: sci_gateway/c/sci_grand.c, line: 143
-# File: sci_gateway/c/sci_grand.c, line: 412
-# File: sci_gateway/c/sci_grand.c, line: 458
-# File: sci_gateway/c/sci_grand.c, line: 737
+# File: sci_gateway/c/sci_grand.c, line: 146
+# File: sci_gateway/c/sci_grand.c, line: 502
+# File: sci_gateway/c/sci_grand.c, line: 562
+# File: sci_gateway/c/sci_grand.c, line: 913
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 148
+# File: sci_gateway/c/sci_grand.c, line: 151
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected the option '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 186
+# File: sci_gateway/c/sci_grand.c, line: 190
 #, c-format
 msgid "The %s option affects only the clcg4 generator\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 189
-# File: sci_gateway/c/sci_grand.c, line: 326
-# File: sci_gateway/c/sci_grand.c, line: 351
-# File: sci_gateway/c/sci_grand.c, line: 372
-# File: sci_gateway/c/sci_grand.c, line: 393
-# File: sci_gateway/c/sci_grand.c, line: 428
+# File: sci_gateway/c/sci_grand.c, line: 194
+# File: sci_gateway/c/sci_grand.c, line: 410
+# File: sci_gateway/c/sci_grand.c, line: 437
+# File: sci_gateway/c/sci_grand.c, line: 460
+# File: sci_gateway/c/sci_grand.c, line: 483
+# File: sci_gateway/c/sci_grand.c, line: 520
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 193
-# File: sci_gateway/c/sci_grand.c, line: 250
-# File: sci_gateway/c/sci_grand.c, line: 272
-# File: sci_gateway/c/sci_grand.c, line: 297
-# File: sci_gateway/c/sci_grand.c, line: 313
-# File: sci_gateway/c/sci_grand.c, line: 483
+# File: sci_gateway/c/sci_grand.c, line: 200
+# File: sci_gateway/c/sci_grand.c, line: 206
+# File: sci_gateway/c/sci_grand.c, line: 212
+# File: sci_gateway/c/sci_grand.c, line: 218
+# File: sci_gateway/c/sci_grand.c, line: 287
+# File: sci_gateway/c/sci_grand.c, line: 293
+# File: sci_gateway/c/sci_grand.c, line: 319
+# File: sci_gateway/c/sci_grand.c, line: 325
+# File: sci_gateway/c/sci_grand.c, line: 331
+# File: sci_gateway/c/sci_grand.c, line: 337
+# File: sci_gateway/c/sci_grand.c, line: 367
+# File: sci_gateway/c/sci_grand.c, line: 373
+# File: sci_gateway/c/sci_grand.c, line: 392
+# File: sci_gateway/c/sci_grand.c, line: 584
+# File: sci_gateway/c/sci_grand.c, line: 591
 #, c-format
-msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 196
-# File: sci_gateway/c/sci_grand.c, line: 253
-# File: sci_gateway/c/sci_grand.c, line: 275
-# File: sci_gateway/c/sci_grand.c, line: 300
-#, c-format
-msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 199
-# File: sci_gateway/c/sci_grand.c, line: 278
-#, c-format
-msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 202
-# File: sci_gateway/c/sci_grand.c, line: 281
-#, c-format
-msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grand.c, line: 220
+# File: sci_gateway/c/sci_grand.c, line: 239
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' with the %s "
@@ -90,7 +76,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 230
+# File: sci_gateway/c/sci_grand.c, line: 261
 #, c-format
 msgid ""
 "%s: Wrong values for input argument: Vector of %d or %d values for %s "
@@ -98,13 +84,13 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 241
+# File: sci_gateway/c/sci_grand.c, line: 272
 #, c-format
-msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 258
+# File: sci_gateway/c/sci_grand.c, line: 304
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: %d or %d expected for '%s' option with "
@@ -112,7 +98,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 267
+# File: sci_gateway/c/sci_grand.c, line: 313
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: expected %d for '%s' option with the %s "
@@ -120,8 +106,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 292
-# File: sci_gateway/c/sci_grand.c, line: 308
+# File: sci_gateway/c/sci_grand.c, line: 361
+# File: sci_gateway/c/sci_grand.c, line: 386
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' option with the %s "
@@ -129,271 +115,272 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 331
+# File: sci_gateway/c/sci_grand.c, line: 415
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 348
+# File: sci_gateway/c/sci_grand.c, line: 433
 #, c-format
 msgid "%s: The %s option affects only the %s generator\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 357
+# File: sci_gateway/c/sci_grand.c, line: 443
 #, c-format
-msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 369
-# File: sci_gateway/c/sci_grand.c, line: 390
+# File: sci_gateway/c/sci_grand.c, line: 456
+# File: sci_gateway/c/sci_grand.c, line: 479
 #, c-format
 msgid "The %s option affects only the %s generator\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 378
+# File: sci_gateway/c/sci_grand.c, line: 466
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 400
+# File: sci_gateway/c/sci_grand.c, line: 490
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 416
+# File: sci_gateway/c/sci_grand.c, line: 507
 msgid "This information concerns only the clcg4 generator\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 446
+# File: sci_gateway/c/sci_grand.c, line: 550
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
-"'%s' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 468
+# File: sci_gateway/c/sci_grand.c, line: 572
 #, c-format
-msgid "%s Wrong value for first input argument %s.\n"
+msgid "%s Wrong value for input argument #%d: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 479
+# File: sci_gateway/c/sci_grand.c, line: 599
+# File: sci_gateway/c/sci_grand.c, line: 605
 #, c-format
-msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 498
+# File: sci_gateway/c/sci_grand.c, line: 620
 msgid "Missing A and B for beta law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 500
-# File: sci_gateway/c/sci_grand.c, line: 502
-# File: sci_gateway/c/sci_grand.c, line: 522
-# File: sci_gateway/c/sci_grand.c, line: 524
-# File: sci_gateway/c/sci_grand.c, line: 551
-# File: sci_gateway/c/sci_grand.c, line: 607
-# File: sci_gateway/c/sci_grand.c, line: 609
+# File: sci_gateway/c/sci_grand.c, line: 626
 # File: sci_gateway/c/sci_grand.c, line: 632
-# File: sci_gateway/c/sci_grand.c, line: 634
+# File: sci_gateway/c/sci_grand.c, line: 659
+# File: sci_gateway/c/sci_grand.c, line: 665
+# File: sci_gateway/c/sci_grand.c, line: 700
+# File: sci_gateway/c/sci_grand.c, line: 763
+# File: sci_gateway/c/sci_grand.c, line: 769
+# File: sci_gateway/c/sci_grand.c, line: 800
+# File: sci_gateway/c/sci_grand.c, line: 806
 #, c-format
 msgid "%s: Wrong size for input argument: Scalar expected for %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 506
+# File: sci_gateway/c/sci_grand.c, line: 638
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 520
+# File: sci_gateway/c/sci_grand.c, line: 653
 msgid "Missing Dfn and Dfd for F law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 528
+# File: sci_gateway/c/sci_grand.c, line: 671
 msgid "Degrees of freedom nonpositive\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 544
+# File: sci_gateway/c/sci_grand.c, line: 688
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 549
+# File: sci_gateway/c/sci_grand.c, line: 694
 msgid "Missing N and P for MULtinomial law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 555
+# File: sci_gateway/c/sci_grand.c, line: 706
 #, c-format
 msgid "%s: Wrong size for input argument: Column vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 562
-# File: sci_gateway/c/sci_grand.c, line: 790
-# File: sci_gateway/c/sci_grand.c, line: 817
+# File: sci_gateway/c/sci_grand.c, line: 713
+# File: sci_gateway/c/sci_grand.c, line: 986
+# File: sci_gateway/c/sci_grand.c, line: 1024
 msgid "N < 0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 567
+# File: sci_gateway/c/sci_grand.c, line: 718
 msgid "Ncat <= 1\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 575
+# File: sci_gateway/c/sci_grand.c, line: 726
 #, c-format
 msgid "P(%d) < 0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 580
+# File: sci_gateway/c/sci_grand.c, line: 731
 #, c-format
 msgid "P(%d) > 1\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 587
+# File: sci_gateway/c/sci_grand.c, line: 738
 msgid "Sum of P(i) > 1\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 605
+# File: sci_gateway/c/sci_grand.c, line: 757
 msgid "Missing shape and scale for Gamma law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 613
+# File: sci_gateway/c/sci_grand.c, line: 775
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 630
+# File: sci_gateway/c/sci_grand.c, line: 794
 msgid "Missing Av and Sd for Normal law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 638
+# File: sci_gateway/c/sci_grand.c, line: 812
 msgid "SD < 0.0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 652
+# File: sci_gateway/c/sci_grand.c, line: 828
 msgid "Missing Low and High for Uniform Real law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 659
-# File: sci_gateway/c/sci_grand.c, line: 666
-# File: sci_gateway/c/sci_grand.c, line: 699
-# File: sci_gateway/c/sci_grand.c, line: 706
-# File: sci_gateway/c/sci_grand.c, line: 779
-# File: sci_gateway/c/sci_grand.c, line: 781
-# File: sci_gateway/c/sci_grand.c, line: 806
-# File: sci_gateway/c/sci_grand.c, line: 808
-# File: sci_gateway/c/sci_grand.c, line: 970
-# File: sci_gateway/c/sci_grand.c, line: 972
-# File: sci_gateway/c/sci_grand.c, line: 994
-# File: sci_gateway/c/sci_grand.c, line: 996
-# File: sci_gateway/c/sci_grand.c, line: 998
-# File: sci_gateway/c/sci_grand.c, line: 1021
-# File: sci_gateway/c/sci_grand.c, line: 1041
-# File: sci_gateway/c/sci_grand.c, line: 1063
-# File: sci_gateway/c/sci_grand.c, line: 1083
+# File: sci_gateway/c/sci_grand.c, line: 835
+# File: sci_gateway/c/sci_grand.c, line: 842
+# File: sci_gateway/c/sci_grand.c, line: 875
+# File: sci_gateway/c/sci_grand.c, line: 882
+# File: sci_gateway/c/sci_grand.c, line: 969
+# File: sci_gateway/c/sci_grand.c, line: 975
+# File: sci_gateway/c/sci_grand.c, line: 1007
+# File: sci_gateway/c/sci_grand.c, line: 1013
+# File: sci_gateway/c/sci_grand.c, line: 1216
+# File: sci_gateway/c/sci_grand.c, line: 1222
+# File: sci_gateway/c/sci_grand.c, line: 1249
+# File: sci_gateway/c/sci_grand.c, line: 1255
+# File: sci_gateway/c/sci_grand.c, line: 1261
+# File: sci_gateway/c/sci_grand.c, line: 1289
+# File: sci_gateway/c/sci_grand.c, line: 1316
+# File: sci_gateway/c/sci_grand.c, line: 1344
+# File: sci_gateway/c/sci_grand.c, line: 1374
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 675
-# File: sci_gateway/c/sci_grand.c, line: 714
+# File: sci_gateway/c/sci_grand.c, line: 851
+# File: sci_gateway/c/sci_grand.c, line: 890
 #, c-format
 msgid "%s: Wrong type for input argument. Low < High expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 691
+# File: sci_gateway/c/sci_grand.c, line: 867
 msgid "Missing Low and High for Uniform int law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 720
+# File: sci_gateway/c/sci_grand.c, line: 896
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 752
+# File: sci_gateway/c/sci_grand.c, line: 930
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: Number of random simulation expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 758
+# File: sci_gateway/c/sci_grand.c, line: 936
 msgid "Missing vect for random permutation\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 761
-# File: sci_gateway/c/sci_grand.c, line: 839
+# File: sci_gateway/c/sci_grand.c, line: 942
+# File: sci_gateway/c/sci_grand.c, line: 1053
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 777
+# File: sci_gateway/c/sci_grand.c, line: 963
 msgid "Missing N and P for Negative Binomial law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 785
-# File: sci_gateway/c/sci_grand.c, line: 812
+# File: sci_gateway/c/sci_grand.c, line: 981
+# File: sci_gateway/c/sci_grand.c, line: 1019
 msgid "P is not in [0,1]\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 804
+# File: sci_gateway/c/sci_grand.c, line: 1001
 msgid "Missing N and P for Binomial law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 833
-# File: sci_gateway/c/sci_grand.c, line: 870
+# File: sci_gateway/c/sci_grand.c, line: 1041
+# File: sci_gateway/c/sci_grand.c, line: 1096
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 837
+# File: sci_gateway/c/sci_grand.c, line: 1047
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 841
+# File: sci_gateway/c/sci_grand.c, line: 1059
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 842
+# File: sci_gateway/c/sci_grand.c, line: 1064
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments: Mean and Cov have incompatible "
@@ -401,122 +388,123 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 850
+# File: sci_gateway/c/sci_grand.c, line: 1074
 #, c-format
 msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 874
+# File: sci_gateway/c/sci_grand.c, line: 1102
 #, c-format
 msgid "%s: Missing P matrix and X0 for Markov chain\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 879
+# File: sci_gateway/c/sci_grand.c, line: 1109
 #, c-format
 msgid ""
-"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+"%s: Wrong type for input argument #%d: Square matrix or row vector "
+"expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 882
+# File: sci_gateway/c/sci_grand.c, line: 1115
 msgid "X0 is empty\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 887
+# File: sci_gateway/c/sci_grand.c, line: 1122
 #, c-format
 msgid "%s: X0(%d) must be in the range [1,%d[\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 902
+# File: sci_gateway/c/sci_grand.c, line: 1137
 #, c-format
 msgid "P(%d,%d) < 0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 907
+# File: sci_gateway/c/sci_grand.c, line: 1142
 #, c-format
 msgid "P(%d,%d) > 1\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 914
+# File: sci_gateway/c/sci_grand.c, line: 1149
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 954
+# File: sci_gateway/c/sci_grand.c, line: 1193
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 968
+# File: sci_gateway/c/sci_grand.c, line: 1210
 msgid "Missing Df and Xnonc for non-central chi-square law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 976
+# File: sci_gateway/c/sci_grand.c, line: 1228
 msgid "DF < 1 or XNONC < 0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 991
+# File: sci_gateway/c/sci_grand.c, line: 1243
 msgid "Missing Dfn, Dfd and Xnonc for non-central F law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1002
+# File: sci_gateway/c/sci_grand.c, line: 1267
 msgid "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1017
+# File: sci_gateway/c/sci_grand.c, line: 1283
 msgid "Missing Df for chi-square law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1025
+# File: sci_gateway/c/sci_grand.c, line: 1295
 msgid "Rand: DF <= 0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1038
+# File: sci_gateway/c/sci_grand.c, line: 1310
 msgid "Missing Av for Poisson law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1045
+# File: sci_gateway/c/sci_grand.c, line: 1322
 msgid "Av < 0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1060
+# File: sci_gateway/c/sci_grand.c, line: 1338
 msgid "Missing p for Geometric law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1065
+# File: sci_gateway/c/sci_grand.c, line: 1350
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1080
+# File: sci_gateway/c/sci_grand.c, line: 1368
 msgid "Missing Av for exponential law\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1087
+# File: sci_gateway/c/sci_grand.c, line: 1380
 msgid "Av < 0.0\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grand.c, line: 1101
+# File: sci_gateway/c/sci_grand.c, line: 1394
 #, c-format
 msgid "%s: Wrong value for input argument %s.\n"
 msgstr ""

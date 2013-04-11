@@ -223,6 +223,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\cpp\types_comparison_lt_le_gt_ge.cpp" />
     <ClCompile Include="src\cpp\types_comparison_ne.cpp" />
     <ClCompile Include="src\cpp\types_kronecker.cpp" />
+    <ClCompile Include="src\cpp\types_ldivide.cpp" />
     <ClCompile Include="src\c\doublecomplex.c" />
     <ClCompile Include="src\c\matrix_addition.c" />
     <ClCompile Include="src\c\matrix_division.c" />
@@ -265,6 +266,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\types_divide.hxx" />
     <ClInclude Include="includes\types_finite.hxx" />
     <ClInclude Include="includes\types_kronecker.hxx" />
+    <ClInclude Include="includes\types_ldivide.hxx" />
     <ClInclude Include="includes\types_multiplication.hxx" />
     <ClInclude Include="includes\types_power.hxx" />
     <ClInclude Include="includes\types_substraction.hxx" />

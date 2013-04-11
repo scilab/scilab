@@ -309,6 +309,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             enableHighlightedLine(SciNotesOptions.getSciNotesDisplay().highlightCurrentLine);
             setHighlightedLineColor(SciNotesOptions.getSciNotesDisplay().currentLineColor);
             enableColorization(SciNotesOptions.getSciNotesDisplay().keywordsColorization);
+            setBackground(SciNotesOptions.getSciNotesDisplay().backgroundColor);
+            setCaretColor(SciNotesOptions.getSciNotesDisplay().caretColor);
 
             boolean kw = SciNotesOptions.getSciNotesDisplay().highlightKeywords;
             boolean op = SciNotesOptions.getSciNotesDisplay().highlightBrackets;

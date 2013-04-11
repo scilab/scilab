@@ -80,6 +80,5 @@
     <PRIMITIVE gatewayId="34" primitiveId="45" primitiveName="mputl" />
     <PRIMITIVE gatewayId="34" primitiveId="46" primitiveName="tempname" />
     <PRIMITIVE gatewayId="34" primitiveId="47" primitiveName="getURL" />
-    <PRIMITIVE gatewayId="34" primitiveId="48" primitiveName="getURLcontent" />
-    <PRIMITIVE gatewayId="34" primitiveId="49" primitiveName="splitURL" />
+    <PRIMITIVE gatewayId="34" primitiveId="48" primitiveName="splitURL" />
 </GATEWAY>

@@ -13,6 +13,7 @@
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -22,6 +23,8 @@ extern "C"
 #include "getos.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "MALLOC.h"
+#include "os_swprintf.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -29,19 +32,19 @@ using namespace types;
 
 types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "warning", 1);
         return Function::Error;
     }
 
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "warning", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "warning", 1);
         return Function::Error;
@@ -52,21 +55,21 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     if (psInput->getSize() == 1)
     {
         /* "on" "off" "query" */
-        if(wcscmp(psInput->get(0), L"on") == 0)
+        if (wcscmp(psInput->get(0), L"on") == 0)
         {
             setWarningMode(TRUE);
             return Function::OK;
         }
 
-        if(wcscmp(psInput->get(0), L"off") == 0)
+        if (wcscmp(psInput->get(0), L"off") == 0)
         {
             setWarningMode(FALSE);
             return Function::OK;
         }
 
-        if(wcscmp(psInput->get(0), L"query") == 0)
+        if (wcscmp(psInput->get(0), L"query") == 0)
         {
-            if(getWarningMode())
+            if (getWarningMode())
             {
                 out.push_back(new String(L"on"));
             }
@@ -80,14 +83,20 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
 
     if (getWarningMode())
     {
-        for(int i = 0; i < psInput->getSize() ; ++i)
+        for (int i = 0; i < psInput->getSize() ; ++i)
         {
-            sciprint(_("WARNING: %ls\n"), psInput->get(i));
+            wchar_t* pwstTemp = psInput->get(i);
+            wchar_t* pwstWarn = _W("WARNING: %ls\n");
+            size_t iSize = (wcslen(pwstTemp) + wcslen(pwstWarn) + 1);
+            wchar_t* pwstToPrint = (wchar_t*)MALLOC(sizeof(wchar_t) * iSize);
+            os_swprintf(pwstToPrint, iSize, pwstWarn, pwstTemp);
+            scilabForcedWriteW(pwstToPrint);
+            FREE(pwstWarn);
+            FREE(pwstToPrint);
         }
-        sciprint("\n");
     }
 
 
-	return Function::OK;
+    return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

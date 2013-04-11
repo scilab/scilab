@@ -33,7 +33,9 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import org.scilab.modules.helptools.external.ExternalXMLHandler;
+import org.scilab.modules.helptools.external.HTMLMathMLHandler;
 import org.scilab.modules.helptools.external.HTMLScilabHandler;
+import org.scilab.modules.helptools.external.HTMLSVGHandler;
 
 /**
  * Class the convert a DocBook xml file
@@ -61,6 +63,11 @@ public class DocbookTagConverter extends DefaultHandler {
      * The file which is parsed
      */
     protected String currentFileName;
+
+    /**
+     * The file which is parsed
+     */
+    protected String currentBaseName;
 
     /**
      * Useful to locate the errors
@@ -123,6 +130,10 @@ public class DocbookTagConverter extends DefaultHandler {
 
     public String getCurrentFileName() {
         return currentFileName;
+    }
+
+    public String getCurrentBaseName() {
+        return currentBaseName;
     }
 
     /**
@@ -233,6 +244,9 @@ public class DocbookTagConverter extends DefaultHandler {
      */
     public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
         currentFileName = systemId;
+        currentBaseName = new File(systemId).getName();
+        HTMLMathMLHandler.getInstance().resetCompt();
+        HTMLSVGHandler.getInstance().resetCompt();
         HTMLScilabHandler.getInstance().resetCompt();
         if (converters != null) {
             for (DocbookTagConverter conv : converters) {
@@ -285,7 +299,7 @@ public class DocbookTagConverter extends DefaultHandler {
                 exceptionOccurred(new SAXException("uri " + uri + " not handled"));
                 return;
             }
-            StringBuilder buf = h.startExternalXML(localName, attributes);
+            StringBuilder buf = h.startExternalXML(localName, attributes, locator);
             if (buf != null) {
                 DocbookElement elem = baseElement.getNewInstance(localName, uri, null);
                 elem.setStringBuilder(buf);

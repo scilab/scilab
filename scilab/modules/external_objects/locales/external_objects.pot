@@ -14,14 +14,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-02-14 13:37+0100\n"
+"Revision-Date: 2013-03-27 13:20+0100\n"
 
-# File: includes/ScilabAbstractEnvironmentException.hxx, line: 96
+# File: includes/ScilabAbstractEnvironmentException.hxx, line: 108
 msgid "Exception thrown in file"
 msgstr ""
 
 #
-# File: includes/ScilabAbstractEnvironmentException.hxx, line: 96
+# File: includes/ScilabAbstractEnvironmentException.hxx, line: 108
 msgid "at line"
 msgstr ""
 
@@ -73,41 +73,47 @@ msgid "Invalid environment"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 69
-# File: src/cpp/ScilabObjects.cpp, line: 75
-# File: src/cpp/ScilabObjects.cpp, line: 81
-# File: src/cpp/ScilabObjects.cpp, line: 87
-# File: src/cpp/ScilabObjects.cpp, line: 123
-# File: src/cpp/ScilabObjects.cpp, line: 129
-# File: src/cpp/ScilabObjects.cpp, line: 135
-# File: src/cpp/ScilabObjects.cpp, line: 141
+# File: src/cpp/ScilabObjects.cpp, line: 71
+#, c-format
+msgid "Invalid variable name: %s"
+msgstr ""
+
+#
+# File: src/cpp/ScilabObjects.cpp, line: 74
+# File: src/cpp/ScilabObjects.cpp, line: 80
+# File: src/cpp/ScilabObjects.cpp, line: 86
+# File: src/cpp/ScilabObjects.cpp, line: 92
+# File: src/cpp/ScilabObjects.cpp, line: 128
+# File: src/cpp/ScilabObjects.cpp, line: 134
+# File: src/cpp/ScilabObjects.cpp, line: 140
+# File: src/cpp/ScilabObjects.cpp, line: 146
 msgid "Cannot allocate memory"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 202
-# File: src/cpp/ScilabObjects.cpp, line: 210
-# File: src/cpp/ScilabObjects.cpp, line: 223
-# File: src/cpp/ScilabObjects.cpp, line: 237
-# File: src/cpp/ScilabObjects.cpp, line: 246
-# File: src/cpp/ScilabObjects.cpp, line: 418
-# File: src/cpp/ScilabObjects.cpp, line: 433
-# File: src/cpp/ScilabObjects.cpp, line: 449
-# File: src/cpp/ScilabObjects.cpp, line: 471
-# File: src/cpp/ScilabObjects.cpp, line: 482
-# File: src/cpp/ScilabObjects.cpp, line: 501
-# File: src/cpp/ScilabObjects.cpp, line: 511
-# File: src/cpp/ScilabObjects.cpp, line: 522
-# File: src/cpp/ScilabObjects.cpp, line: 533
-# File: src/cpp/ScilabObjects.cpp, line: 544
-# File: src/cpp/ScilabObjects.cpp, line: 555
-# File: src/cpp/ScilabObjects.cpp, line: 566
-# File: src/cpp/ScilabObjects.cpp, line: 579
-# File: src/cpp/ScilabObjects.cpp, line: 590
-# File: src/cpp/ScilabObjects.cpp, line: 605
-# File: src/cpp/ScilabObjects.cpp, line: 622
-# File: src/cpp/ScilabObjects.cpp, line: 650
-# File: src/cpp/ScilabObjects.cpp, line: 667
+# File: src/cpp/ScilabObjects.cpp, line: 207
+# File: src/cpp/ScilabObjects.cpp, line: 215
+# File: src/cpp/ScilabObjects.cpp, line: 228
+# File: src/cpp/ScilabObjects.cpp, line: 242
+# File: src/cpp/ScilabObjects.cpp, line: 251
+# File: src/cpp/ScilabObjects.cpp, line: 423
+# File: src/cpp/ScilabObjects.cpp, line: 438
+# File: src/cpp/ScilabObjects.cpp, line: 454
+# File: src/cpp/ScilabObjects.cpp, line: 476
+# File: src/cpp/ScilabObjects.cpp, line: 487
+# File: src/cpp/ScilabObjects.cpp, line: 506
+# File: src/cpp/ScilabObjects.cpp, line: 516
+# File: src/cpp/ScilabObjects.cpp, line: 527
+# File: src/cpp/ScilabObjects.cpp, line: 538
+# File: src/cpp/ScilabObjects.cpp, line: 549
+# File: src/cpp/ScilabObjects.cpp, line: 560
+# File: src/cpp/ScilabObjects.cpp, line: 571
+# File: src/cpp/ScilabObjects.cpp, line: 584
+# File: src/cpp/ScilabObjects.cpp, line: 595
+# File: src/cpp/ScilabObjects.cpp, line: 610
+# File: src/cpp/ScilabObjects.cpp, line: 627
+# File: src/cpp/ScilabObjects.cpp, line: 655
+# File: src/cpp/ScilabObjects.cpp, line: 672
 # File: src/cpp/addNamedVariable.cpp, line: 41
 # File: src/cpp/addToClasspath.cpp, line: 46
 # File: src/cpp/addToClasspath.cpp, line: 56
@@ -195,46 +201,46 @@ msgid "Invalid variable: cannot retrieve the data"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 265
-# File: src/cpp/ScilabObjects.cpp, line: 283
+# File: src/cpp/ScilabObjects.cpp, line: 270
+# File: src/cpp/ScilabObjects.cpp, line: 288
 msgid "Invalid variable: cannot create data"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 455
-# File: src/cpp/ScilabObjects.cpp, line: 657
+# File: src/cpp/ScilabObjects.cpp, line: 460
+# File: src/cpp/ScilabObjects.cpp, line: 662
 msgid "External Class expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 639
+# File: src/cpp/ScilabObjects.cpp, line: 644
 # File: src/cpp/cast.cpp, line: 57
 msgid "Incompatible External Objects"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 674
+# File: src/cpp/ScilabObjects.cpp, line: 679
 msgid "External object expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 682
+# File: src/cpp/ScilabObjects.cpp, line: 687
 msgid "Unable to wrap. Unmanaged datatype ?"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 786
-# File: src/cpp/ScilabObjects.cpp, line: 801
+# File: src/cpp/ScilabObjects.cpp, line: 791
+# File: src/cpp/ScilabObjects.cpp, line: 806
 msgid "Invalid String"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 791
+# File: src/cpp/ScilabObjects.cpp, line: 796
 msgid "A single string expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 796
+# File: src/cpp/ScilabObjects.cpp, line: 801
 msgid "A single String expected"
 msgstr ""
 

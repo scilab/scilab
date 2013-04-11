@@ -103,7 +103,7 @@
             résumée par cette expression:
         </para>
         <para>
-            <latex><![CDATA[ Sortie=Entrée \vee Masque]]></latex>
+            <latex scilab:localized="true"><![CDATA[ Sortie=Entrée \vee Masque]]></latex>
         </para>
         <para>
             i.e. un <literal>OU</literal> bit à bit entre <literal>Entrée</literal> et
@@ -266,7 +266,7 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+            <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/BITSET_fr_FR.xcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>

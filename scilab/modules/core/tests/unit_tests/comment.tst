@@ -5,16 +5,13 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//for version after 3.0 the comments are no more handled by a preprocessor, 
+//for version after 3.0 the comments are no more handled by a preprocessor,
 //but by the parser itself
 
 a=1//test
 if a<>1 then pause,end
 a=2;//test
 if a<>2 then pause,end
-a=1..//test
-2
-if a<>12 then pause,end
 a='1//test';
 if a<>'1/'+'/test' then pause,end
 a=33;//'sqdf'qsdf'
@@ -329,7 +326,7 @@ function [C,L,lc]=getcommentsintree(T,lc)
     end
   end
 endfunction
-  
+
 function a=foo
   a=0;k=0;//initialization
   while %t //loop begin
@@ -390,7 +387,7 @@ if or(L<>Lref) then pause,end
 function a=foo
   a=0;k=0;//initialization
   while %t //loop begin
-    k=k+1; //ttttt tttt 
+    k=k+1; //ttttt tttt
     if a> 10 then //ff
       break // go out the loop
     else //111111
