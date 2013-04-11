@@ -21,8 +21,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            [ind, occ, info] = dsearch(X, s )
-            [ind, occ, info] = dsearch(X, s , ch )
+            [ind [,occ [,info]]] = dsearch(X, s )
+            [ind [,occ [,info]]] = dsearch(X, s , ch )
         </synopsis>
     </refsynopsisdiv>
     <refsection>
