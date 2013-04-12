@@ -8,13 +8,13 @@
 // <-- XCOS TEST -->
 //
 // <-- Short Description -->
-// scilab argument did not manage .xcos files
-// scilab -f toto.xcos
+// scilab argument did not manage .zcos files
+// scilab -f toto.zcos
 
 // on linux, macos
-scilab -f SCI/modules/xcos/tests/unit_tests/canimxy3d.xcos
+scilab -f SCI/modules/xcos/tests/unit_tests/canimxy3d.zcos
 
 // on windows
-wscilex -f SCI/modules/xcos/tests/unit_tests/canimxy3d.xcos
+wscilex -f SCI/modules/xcos/tests/unit_tests/canimxy3d.zcos
 
 // diagram opened in xcos 

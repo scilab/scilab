@@ -8,12 +8,12 @@
 // <-- Short Description -->
 // Check that Xcos never use Saxon (before or after building doc).
 
-xcos(SCI + "/modules/xcos/demos/Simple_Demo.xcos");
+xcos(SCI + "/modules/xcos/demos/Simple_Demo.zcos");
 closeXcos();
 
 // load the saxon jar using a documentation Java call
 execstr("buildDoc(""pdf"",""non-existing-file"",TMPDIR,TMPDIR);", "errcatch");
 
-xcos(SCI + "/modules/xcos/demos/Simple_Demo.xcos");
+xcos(SCI + "/modules/xcos/demos/Simple_Demo.zcos");
 closeXcos();
 

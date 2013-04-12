@@ -23,7 +23,7 @@ if scs_m.model.ipar <> 0 then pause,end;
 if scs_m.model.opar <> list() then pause,end;
 
 // Check for simulation for an old Xcos instance
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_4898.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_4898.zcos");
 if status <> %t then pause,end;
 
 scicos_simulate(scs_m);

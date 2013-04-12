@@ -214,7 +214,7 @@
         <para>
             In the following example the Super block encloses two discontinuities. The OUT_f block is the non linear output signal.
         </para>
-        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/OUT_f_en_US.xcos">
+        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/OUT_f_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>
@@ -222,12 +222,12 @@
         <para>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUT_f_en_US.xcos"/>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUT_f_en_US.zcos"/>
                 </imageobject>
             </mediaobject>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUT_f_internal_en_US.xcos"/>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUT_f_internal_en_US.zcos"/>
                 </imageobject>
             </mediaobject>
         </para>
@@ -240,7 +240,7 @@ function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
 	btn=1;
 endfunction
 
-importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/OUT_f_en_US.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/OUT_f_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>

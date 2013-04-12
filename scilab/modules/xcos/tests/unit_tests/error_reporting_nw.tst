@@ -17,7 +17,7 @@
 //-----------------------------------------------------------------------------
 
 // Check the report against wrong port numbering on super block
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/error_sb_port_numbering.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/error_sb_port_numbering.zcos"));
 scicos_simulate(scs_m, "nw");
 
 //-----------------------------------------------------------------------------
@@ -25,7 +25,7 @@ scicos_simulate(scs_m, "nw");
 //-----------------------------------------------------------------------------
 
 // Check the report against an invalid context value
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_updated_context.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/error_blocks_with_updated_context.zcos"));
 scicos_simulate(scs_m, "nw");
 
 

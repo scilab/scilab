@@ -321,10 +321,10 @@ u_0(t)
         </para>
         <para>Pour obtenir la sortie Vc(t) on utilise le bloc CLSS de la palette Systèmes à temps continu.</para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/CLSS_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/CLSS_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/CLSS_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/CLSS_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

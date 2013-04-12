@@ -11,9 +11,9 @@
     <property name="build.dir" location="build/"/>
     <!-- The building test directory -->
     <property name="build.test.dir" location="${build.dir}/test"/>
-    <!-- Where builded classes will be generated -->
+    <!-- Where built classes will be generated -->
     <property name="classes.dir" location="${build.dir}/classes"/>
-    <!-- Where builded test classes will be generated -->
+    <!-- Where built test classes will be generated -->
     <property name="classes.test.dir" location="${build.test.dir}/classes"/>
     <property name="instrumented.classes.test.dir" location="${build.test.dir}/instrumented-classes"/>
     <!-- Where we store cache files -->

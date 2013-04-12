@@ -37,7 +37,7 @@
         <title>Description</title>
         <para>
             <function>mdelete</function> may be used to delete a file or a set of files if
-            <varname>filename</varname> contains meta-charaters.
+            <varname>filename</varname> contains meta-characters.
         </para>
         <para>
             <caution>
@@ -51,9 +51,8 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-cd TMPDIR;
-r = mputl('I am a dummy String', 'dummyFile.dummy');
-mdelete("dummyFile.dummy");
+r = mputl('I am a dummy String', TMPDIR+'/dummyFile.dummy');
+mdelete(TMPDIR+"/dummyFile.dummy");
  ]]></programlisting>
     </refsection>
     

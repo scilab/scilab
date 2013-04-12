@@ -64,9 +64,10 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
     int iFile       = 0;
     int iNbItem     = 0;
     VarInfo* pInfo  = NULL;
+    const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckRhs(1, 1);
-    CheckLhs(1, 4);
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 4);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -157,11 +158,11 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
         //no variable returms [] for each Lhs
         for (int i = 0 ; i < Lhs ; i++)
         {
-            createEmptyMatrix(pvApiCtx, Rhs + i + 1);
-            LhsVar(i + 1) = Rhs + i + 1;
+            createEmptyMatrix(pvApiCtx, nbIn + i + 1);
+            AssignOutputVariable(pvApiCtx, i + 1) = nbIn + i + 1;
         }
 
-        PutLhsVar();
+        ReturnArguments(pvApiCtx);
         return 0;
     }
 
@@ -174,7 +175,7 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
         pstVarName[i] = pInfo[i].varName;
     }
 
-    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, iNbItem, 1, pstVarName);
+    sciErr = createMatrixOfString(pvApiCtx, nbIn + 1, iNbItem, 1, pstVarName);
     FREE(pstVarName);
     if (sciErr.iErr)
     {
@@ -182,13 +183,13 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
         return 1;
     }
 
-    LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
 
     if (Lhs > 1)
     {
         //2nd Lhs
         double* pdblType;
-        sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 2, iNbItem, 1, &pdblType);
+        sciErr = allocMatrixOfDouble(pvApiCtx, nbIn + 2, iNbItem, 1, &pdblType);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -200,43 +201,43 @@ int sci_listvar_in_hdf5(char *fname, int* pvApiCtx)
             pdblType[i] = pInfo[i].iType;
         }
 
-        LhsVar(2) = Rhs + 2;
+        AssignOutputVariable(pvApiCtx, 2) = nbIn + 2;
 
         if (Lhs > 2)
         {
             //3rd Lhs
             int* pList = NULL;
-            sciErr = createList(pvApiCtx, Rhs + 3, iNbItem, &pList);
+            sciErr = createList(pvApiCtx, nbIn + 3, iNbItem, &pList);
             for (int i = 0 ; i < iNbItem ; i++)
             {
                 double* pdblDims = NULL;
-                allocMatrixOfDoubleInList(pvApiCtx, Rhs + 3, pList, i + 1, 1, pInfo[i].iDims, &pdblDims);
+                allocMatrixOfDoubleInList(pvApiCtx, nbIn + 3, pList, i + 1, 1, pInfo[i].iDims, &pdblDims);
                 for (int j = 0 ; j < pInfo[i].iDims ; j++)
                 {
                     pdblDims[j] = pInfo[i].piDims[j];
                 }
             }
 
-            LhsVar(3) = Rhs + 3;
+            AssignOutputVariable(pvApiCtx, 3) = nbIn + 3;
         }
 
         if (Lhs > 3)
         {
             //4th Lhs
             double* pdblSize;
-            sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 4, iNbItem, 1, &pdblSize);
+            sciErr = allocMatrixOfDouble(pvApiCtx, nbIn + 4, iNbItem, 1, &pdblSize);
             for (int i = 0 ; i < iNbItem ; i++)
             {
                 pdblSize[i] = pInfo[i].iSize;
             }
 
-            LhsVar(4) = Rhs + 4;
+            AssignOutputVariable(pvApiCtx, 4) = nbIn + 4;
         }
 
     }
 
     FREE(pInfo);
-    PutLhsVar();
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

@@ -38,59 +38,52 @@ function bOK = dlwSetEnvVc80(msCompiler)
     return
   end
 
-  MSVCDir = MSVSDir + filesep() + 'VC';
+  MSVCDir = MSVSDir + '\VC';
   if ~setenv('VCINSTALLDIR', MSVCDir) then
     bOK = %F;
     return
   end
 
-  DevEnvDir = MSVSDir + filesep() +'Common7\IDE';
+  DevEnvDir = MSVSDir + '\Common7\IDE';
   if ~setenv('DevEnvDir', DevEnvDir) then
     bOK = %F;
     return
   end
 
-  err = setenv('PATH', DevEnvDir + pathsep() + ..
-               MSVCDir + filesep() + 'bin' + pathsep() + ..
-               MSVSDir + filesep() + 'Common7\Tools' + pathsep() + ..
-               MSVSDir + filesep() + 'SDK\v2.0\bin' + pathsep() + ..
-               MSVCDir + filesep() + 'VCPackages' + pathsep() + ..
-               PATH + pathsep() );
+  err = addPathToEnv('PATH', DevEnvDir + pathsep() + ..
+               MSVCDir + '\bin' + pathsep() + ..
+               MSVSDir + '\Common7\Tools' + pathsep() + ..
+               MSVSDir + '\SDK\v2.0\bin' + pathsep() + ..
+               MSVCDir + '\VCPackages');
   if (err == %F) then
     bOK = %F;
     return
   end
 
-  LIB = getenv('LIB', '');
-  INCLUDE = getenv('INCLUDE', '');
-
   if (msCompiler == 'msvc80express') then
     windowsSdkPath = dlwGetSdkPath();
-    LIB = MSVCDir + filesep() + 'LIB' + pathsep() + ..
-        MSVSDir + filesep() + 'SDK\v2.0\lib' + pathsep() + ..
-        windowsSdkPath + filesep() + 'Lib' + pathsep() + ..
-        LIB;
+    LIB = MSVCDir + '\lib' + pathsep() + ..
+        MSVSDir + '\SDK\v2.0\lib' + pathsep() + ..
+        windowsSdkPath + '\lib';
 
-    INCLUDE = MSVCDir + filesep() + 'INCLUDE' + pathsep() + ..
-              windowsSdkPath + 'INCLUDE' + pathsep();
+    include = MSVCDir + '\include' + pathsep() + ..
+              windowsSdkPath + '\include';
   else
-    LIB = MSVCDir + filesep() + 'LIB' + pathsep() + ..
-        MSVSDir + filesep() + 'SDK\v2.0\lib' + pathsep() + ..
-        MSVSDir + filesep() + 'VC\PlatformSDK\lib' + pathsep() + ..
-        LIB;
+    LIB = MSVCDir + '\lib' + pathsep() + ..
+        MSVSDir + '\SDK\v2.0\lib' + pathsep() + ..
+        MSVSDir + '\VC\PlatformSDK\lib';
 
-    INCLUDE = MSVCDir + filesep() + 'INCLUDE' + pathsep() + ..
-              MSVCDir + filesep() + 'PlatformSDK\include' + pathsep() + ..
-              MSVSDir + filesep() + 'SDK\v2.0\include' + pathsep() + ..
-              INCLUDE;
+    include = MSVCDir + '\include' + pathsep() + ..
+              MSVCDir + '\PlatformSDK\include' + pathsep() + ..
+              MSVSDir + '\SDK\v2.0\include';
   end
 
-  if ~setenv('LIB', LIB) then
+  if ~addPathToEnv('LIB', LIB) then
     bOK = %F;
     return
   end
 
-  if ~setenv('INCLUDE', INCLUDE) then
+  if ~addPathToEnv('include', include) then
     bOK = %F;
     return
   end

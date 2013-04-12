@@ -92,7 +92,7 @@ int sci_unzoom(char *fname, void *pvApiCtx)
         for (i = 0; i < nbObjects; i++)
         {
             objectUID = (char*)getObjectFromHandle((long int)stackPointer[i]);
-            getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_string, (void **) &piType);
+            getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_int, (void **) &piType);
             if (iType != __GO_FIGURE__ && iType != __GO_AXES__)
             {
                 FREE(objectsId);

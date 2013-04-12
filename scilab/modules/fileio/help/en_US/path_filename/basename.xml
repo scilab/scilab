@@ -40,8 +40,10 @@
             <varlistentry>
                 <term>flagexpand</term>
                 <listitem>
-                    <para>optional boolean, used to expand leading variables in paths.
-                        Only used with flag argument. Default value is true (<constant>%t</constant>).
+                    <para>optional boolean, used to expand leading 
+                        variables in paths. Only used with 
+                        <varname>flag</varname> argument. Default value 
+                        is true (<constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>

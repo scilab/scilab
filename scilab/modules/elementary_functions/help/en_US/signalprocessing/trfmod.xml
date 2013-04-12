@@ -47,7 +47,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// with a function transfert
+// with a transfer function 
 s=poly(0,'s');
 gs=syslin('c',1/(s+1));
 trfmod(gs)

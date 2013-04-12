@@ -18,7 +18,7 @@
 // open a modelica demo : xcos --> Modelica demos --> Bouncing Ball
 
 demopath = pathconvert(SCI+"/modules/xcos/demos/ModelicaBlocks/", %t, %t);
-xcos(demopath + "BouncingBall_Modelica.xcos");
+xcos(demopath + "BouncingBall_Modelica.zcos");
 
 // simulate the diagram
 

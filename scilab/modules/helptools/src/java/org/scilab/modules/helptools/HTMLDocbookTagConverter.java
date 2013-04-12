@@ -1020,7 +1020,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String type = attributes.get("type");
         String id;
         if (type != null && type.equals("scilab")) {
-            id = resolvScilabLink(link);
+            if (this.type == GenerationType.JAVAHELP) {
+                id = resolvScilabLink(link);
+            } else {
+                return contents;
+            }
         } else if (type != null && type.equals("remote")) {
             id = makeRemoteLink(link);
         } else {

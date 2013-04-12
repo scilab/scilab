@@ -1,0 +1,155 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ */
+
+package org.scilab.forge.scirenderer.implementation.jogl.lightning;
+
+import javax.media.opengl.GL2;
+
+import org.scilab.forge.scirenderer.implementation.jogl.utils.GLShortCuts;
+import org.scilab.forge.scirenderer.lightning.Light;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
+
+/**
+ * @author Pierre Lando
+ */
+public class JoGLLight implements Light {
+    private final int index;
+    private GL2 gl;
+    private boolean isEnable;
+    private Color ambientColor = new Color(0, 0, 0);
+    private Color diffuseColor = new Color(0, 0, 0);
+    private Color specularColor = new Color(0, 0, 0);
+    private Vector3d position = new Vector3d(0, 0, 0);
+    private Vector3d spotDirection = new Vector3d(0, 0, -1);
+    private float spotAngle = 180;
+
+    /**
+     * Default constructor.
+     * @param gl the gl context.
+     * @param index the light index.
+     */
+    public JoGLLight(GL2 gl, int index) {
+        this.gl = gl;
+        this.index = index;
+    }
+
+    /**
+     * Reload this light.
+     * @param gl the gl context.
+     */
+    public void reload(GL2 gl) {
+        this.gl = gl;
+
+        GLShortCuts.setEnable(gl, GL2.GL_LIGHT0 + index, isEnable);
+        gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_AMBIENT, ambientColor.getRGBComponents(null), 0);
+        gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_DIFFUSE, diffuseColor.getRGBComponents(null), 0);
+        gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_SPECULAR, specularColor.getRGBComponents(null), 0);
+        gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, position.getDataAsFloatArray(4), 0);
+        gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_SPOT_DIRECTION, spotDirection.getDataAsFloatArray(4), 0);
+    }
+
+    @Override
+    public boolean isEnable() {
+        return isEnable;
+    }
+
+    @Override
+    public void setEnable(boolean enable) {
+        if (enable != isEnable) {
+            isEnable = enable;
+            GLShortCuts.setEnable(gl, GL2.GL_LIGHT0 + index, isEnable);
+        }
+    }
+
+    @Override
+    public Color getAmbientColor() {
+        return ambientColor;
+    }
+
+    @Override
+    public void setAmbientColor(Color color) {
+        if (color != null) {
+            ambientColor = color;
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_AMBIENT, ambientColor.getRGBComponents(null), 0);
+        }
+    }
+
+    @Override
+    public Color getDiffuseColor() {
+        return diffuseColor;
+    }
+
+    @Override
+    public void setDiffuseColor(Color color) {
+        if (color != null) {
+            diffuseColor = color;
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_DIFFUSE, diffuseColor.getRGBComponents(null), 0);
+        }
+    }
+
+    @Override
+    public Color getSpecularColor() {
+        return specularColor;
+    }
+
+    @Override
+    public void setSpecularColor(Color color) {
+        if (color != null) {
+            specularColor = color;
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_SPECULAR, specularColor.getRGBComponents(null), 0);
+        }
+    }
+
+    @Override
+    public Vector3d getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setPosition(Vector3d position) {
+        if (position != null) {
+            this.position = position;
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_POSITION, position.getDataAsFloatArray(4), 0);
+        }
+    }
+
+    @Override
+    public Vector3d getSpotDirection() {
+        return spotDirection;
+    }
+
+    @Override
+    public void setSpotDirection(Vector3d spotDirection) {
+        if (spotDirection != null) {
+            this.spotDirection = spotDirection;
+            gl.glLightfv(GL2.GL_LIGHT0 + index, GL2.GL_SPOT_DIRECTION, spotDirection.getNormalized().getDataAsFloatArray(4), 0);
+        }
+    }
+
+    @Override
+    public float getSpotAngle() {
+        return spotAngle;
+    }
+
+    @Override
+    public void setSpotAngle(float angle) {
+        if (angle != spotAngle) {
+            spotAngle = angle;
+            gl.glLightf(GL2.GL_LIGHT0 + index, GL2.GL_SPOT_CUTOFF, spotAngle);
+        }
+    }
+
+    @Override
+    public int getIndex() {
+        return index;
+    }
+}

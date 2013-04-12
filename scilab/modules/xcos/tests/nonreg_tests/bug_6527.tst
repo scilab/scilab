@@ -16,7 +16,7 @@
 // multiple instance of the same variable when exporting via "to workspace"
 
 
-importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_6527.xcos");
+importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_6527.zcos");
 
 Info = scicos_simulate(scs_m,list());
 

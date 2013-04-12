@@ -21,6 +21,11 @@ function bOK = configure_msvc()
     load("SCI/modules/dynamic_link/macros/windows/lib");
   end
 
+  // Load dynamic_link Internal lib if it's not already loaded
+  if ~ exists("dynamic_linkutilslib") then
+    load("SCI/modules/dynamic_link/macros/utils/lib");
+  end
+
   msvc = findmsvccompiler();
   if win64() & detectmsvc64tools() then
     bOK = dlwConfigureVcx64();

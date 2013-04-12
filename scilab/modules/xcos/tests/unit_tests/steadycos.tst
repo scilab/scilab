@@ -17,7 +17,7 @@ funcprot(0);
 exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
 exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
 funcprot(prot);
-importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.xcos");
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.zcos");
 
 M  = 10;
 m  = 3;

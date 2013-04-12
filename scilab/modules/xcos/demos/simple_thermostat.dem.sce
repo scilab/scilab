@@ -4,5 +4,5 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-xcos("SCI/modules/xcos/demos/Simple_Thermostat.xcos");
+xcos("SCI/modules/xcos/demos/Simple_Thermostat.zcos");
 

@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU
+ * Copyright (C) 2013 - Scilab Enterprises - Sylvestre LEDRU
  * Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.

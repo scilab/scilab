@@ -17,7 +17,7 @@
 // Input/Output values must not be used for getting port number as they may
 // contain arbitrary user inputs.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8052.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8052.zcos");
 // open a super block
 // check that no exception is thrown
 

@@ -32,7 +32,9 @@
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>optional boolean, used to convert the given path(s) for the current operating system.
+                    <para>
+                        optional boolean, used to convert the given
+                        path(s) for the current operating system.
                         Default value is true (<constant>%t</constant>).
                     </para>
                 </listitem>
@@ -40,8 +42,11 @@
             <varlistentry>
                 <term>flagexpand</term>
                 <listitem>
-                    <para>optional boolean, used to expand leading variables in paths.
-                        Only used with flag argument. Default value is true (<constant>%t</constant>).
+                    <para>
+                        optional boolean, used to expand leading
+                        variables in paths. Only used with
+                        <varname>flag</varname> argument. Default value
+                        is true (<constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,17 +61,29 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>dirname</function> returns the directory paths of the file entries given in <varname>files</varname>.
+            <function>dirname</function> returns the directory paths of the file entries
+            given in <varname>files</varname>.
         </para>
         <para>
-            If <varname>flag</varname> is true the paths are first converted for the current operating system (for example, 'C:/Tmp/folder' will be converted on Windows to 'C:\Tmp\folder').
+            If <varname>flag</varname> is true the paths are first
+            converted for the current operating system (for example,
+            <code>C:/Tmp/folder'</code> will be converted on Windows to
+            <code>'C:\Tmp\folder'</code>).
         </para>
         <para>
-            if <varname>flagexpand</varname> is true, leading path variables (HOME, SCI, SCIHOME, ...) are expanded for the current operating system
-            (for example, 'HOME\tmp' will be converted on Linux to 'home/&lt;user&gt;/tmp', where &lt;user&gt; is the current user logged on).
+            If <varname>flagexpand</varname> is true, leading path
+            variables (<literal>home</literal>,
+            <constant>SCI</constant>, <constant>SCIHOME</constant>,
+            ...) are expanded for the current operating system (for
+            example, <code>'home\tmp'</code> will be converted on
+            GNU/Linux to <literal>'home/&lt;user&gt;/tmp'</literal>,
+            where <literal>&lt;user&gt;</literal> is the current user
+            logged on).
         </para>
         <para>
-            See more details on <varname>flag</varname> and <varname>flagexpand</varname> in <link linkend="pathconvert">pathconvert</link> section.
+            See more details on <varname>flag</varname> and
+            <varname>flagexpand</varname>
+            in <link linkend="pathconvert">pathconvert</link> section.
         </para>
     </refsection>
     <refsection>

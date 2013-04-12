@@ -6,5 +6,5 @@
 
 
 // electrical blocks are simulated with Modelica
-xcos("SCI/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.xcos");
+xcos("SCI/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.zcos");
 clear thispath;

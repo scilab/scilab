@@ -28,6 +28,7 @@ import javax.swing.text.Element;
 
     private ScilabDocument doc;
     private String id;
+    private boolean inRETS;
 
     public FunctionScanner(ScilabDocument doc) {
         this.doc = doc;
@@ -67,7 +68,12 @@ import javax.swing.text.Element;
                 elem = elem.getElement(elem.getElementIndex(end + 1));
                 end = elem.getEndOffset();
                 yyreset(new ScilabDocumentReader(doc, elem.getStartOffset(), end));
-                yybegin(ARGS);
+		if (inRETS) {
+		   inRETS = false;
+		   yybegin(RETS);
+		} else {
+                   yybegin(ARGS);
+		}
             }
         } catch (IOException e) {
             return ScilabDocument.ScilabLeafElement.NOTHING;
@@ -217,6 +223,11 @@ endfun = {white}* "endfunction" {spec}
   "]"{equal}                     {
                                    yybegin(FUNNAME);
                                  }
+
+  {break}			 {
+  				   inRETS = true;
+  				   return ScilabDocument.ScilabLeafElement.BROKEN;
+  				 }
 
   .                              |
   {eol}                          {

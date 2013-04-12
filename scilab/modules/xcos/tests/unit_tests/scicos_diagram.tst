@@ -93,5 +93,5 @@ endfunction
 assert_check_diagram(scicos_diagram());
 
 // assert on an empty xcos diagram
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/empty.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/empty.zcos"));
 assert_check_diagram(scs_m);

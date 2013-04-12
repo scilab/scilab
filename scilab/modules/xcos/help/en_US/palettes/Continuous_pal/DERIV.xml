@@ -204,15 +204,15 @@
             below:
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/DERIV_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/DERIV_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/continuous_pal/DERIV_Example.xcos"/>
+                        <imagedata fileref="../../../../examples/continuous_pal/DERIV_Example.zcos"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/DERIV_Example.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/DERIV_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>

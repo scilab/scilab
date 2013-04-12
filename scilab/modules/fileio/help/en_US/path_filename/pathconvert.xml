@@ -32,15 +32,19 @@
             <varlistentry>
                 <term>flagtrail</term>
                 <listitem>
-                    <para>optional boolean, used to add a trailing file separator to the paths ('\' or '/', depending on the target path format).
-                        Default value is true (<constant>%t</constant>).
+                    <para>
+                        optional boolean, used to add a trailing file separator to the
+                        paths (<literal>\</literal> or <literal>/</literal>,
+                        depending on the target path format). Default value is true
+                        (<constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flagexpand</term>
                 <listitem>
-                    <para>optional boolean, used to expand leading variables in paths.
+                    <para>
+                        optional boolean, used to expand leading variables in paths.
                         Default value is true (<constant>%t</constant>).
                     </para>
                 </listitem>
@@ -49,7 +53,7 @@
                 <term>type</term>
                 <listitem>
                     <para>
-                        optional string, used to specify the target path format: <literal>'u'</literal> for POSIX path format (Linux,...), and <literal>'w'</literal> for Windows path format.
+                        optional string, used to specify the target path format: <literal>'u'</literal> for POSIX path format (GNU/Linux,...), and <literal>'w'</literal> for Windows path format.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,39 +63,50 @@
         <title>Description</title>
         <para>
             <function>pathconvert</function> is used to convert a set of paths,
-            to be compatible with an OS (Operating System) path format. For example Windows path style uses '/' for file separator, while it is '\' on other OS.
+            to be compatible with an OS (Operating System) path format. For example Windows path style uses <literal>/</literal> for file separator, while it is <literal>\</literal> on other OS.
         </para>
         <para>
             By default, the paths are converted to the current OS path format (but another path format can be specified with argument <varname>type</varname>).
         </para>
         <para>
-            Note: Windows paths starting with a drive letter prefix are converted to the POSIX paths using the cygwin convention (with <literal>/cygdrive</literal>).
-            For ex: <literal>C:\tmp</literal> will be converted to <literal>/cygdrive/C/tmp</literal>.
+            <note>
+                Note: Windows paths starting with a drive letter prefix are converted to
+                the POSIX paths using the cygwin convention (with <literal>/cygdrive</literal>).
+                For example: <literal>C:\tmp</literal> will be converted to <literal>/cygdrive/C/tmp</literal>.
+            </note>
         </para>
         <para>
-            <varname>flagtrail</varname> is used to add or remove a file separator (depending on the target path format) to the end of paths.
-            When the parameter is set to true, a trailing file separator is added if missing. Otherwise, the trailing file separators are removed.
+            <varname>flagtrail</varname> is used to add or remove a file
+            separator (depending on the target path format) to the end
+            of paths. When the parameter is set to true, a trailing file
+            separator is added if missing. Otherwise, the trailing file
+            separators are removed.
         </para>
         <para>
-            <varname>flagexpand</varname> is used to expand the leading Scilab environment variables in paths.
-            The following variables are accepted:
+            <varname>flagexpand</varname> is used to expand the leading
+            Scilab environment variables in paths. The following
+            variables are accepted:
             <itemizedlist>
                 <listitem>
-                    <literal>SCI</literal>
+                    <constant>SCI</constant>
                 </listitem>
                 <listitem>
-                    <literal>WSCI</literal>
+                    <constant>WSCI</constant>
                 </listitem>
                 <listitem>
-                    <literal>SCIHOME</literal>
+                    <constant>SCIHOME</constant>
                 </listitem>
                 <listitem>
-                    <literal>TMPDIR</literal>
+                    <constant>TMPDIR</constant>
                 </listitem>
                 <listitem>
-                    <literal>HOME</literal> (or <literal>home</literal>, or <literal>~</literal>)
+                    <literal>home</literal> (or <literal>~</literal>)
                 </listitem>
             </itemizedlist>
+            <caution>
+                <constant>WSCI</constant> is unknown on GNU/Linux and
+                <literal>~</literal> in term "path" is unknown on Windows.
+            </caution>
         </para>
     </refsection>
     <refsection>
@@ -100,7 +115,8 @@
 pathconvert("SCI/modules/foo", %f, %t, "w")
 pathconvert("SCI\modules\foo", %f, %t, "u")
 pathconvert("SCI\modules\foo", %t, %t, "u")
-pathconvert("HOME/modules/foo", %f, %f, "w")
+pathconvert("SCI/modules/foo", %f, %f, "w")
+pathconvert("SCI/modules/foo", %t, %f, "w")
 pathconvert("C:/tmp", %f, %f, "u")
 pathconvert("/cygdrive/c/tmp", %f, %f, "w")
  ]]></programlisting>
@@ -113,6 +129,9 @@ pathconvert("/cygdrive/c/tmp", %f, %f, "w")
             </member>
             <member>
                 <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="dirname">dirname</link>
             </member>
         </simplelist>
     </refsection>

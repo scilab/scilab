@@ -7,7 +7,7 @@
 // <-- XCOS TEST -->
 // CUMSUM block test
 loadXcosLibs();
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cumsum.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cumsum.zcos"));
 scicos_simulate(scs_m, list());
 in = ones(4,2);
 v = cumsum_m.values(:,:,1);

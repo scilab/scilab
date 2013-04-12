@@ -16,7 +16,7 @@
 // The exported links points (link.xx and link.yy) must be column vectors.
 //
 
-result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6814.xcos");
+result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6814.zcos");
 if result <> %t then pause,end
 
 // checking the link

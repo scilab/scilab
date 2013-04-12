@@ -32,7 +32,7 @@ endfunction
 funcprot(prot);
 
 
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7639.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_7639.zcos");
 if ~status then pause, end
 
 // export the Superblock to the file
