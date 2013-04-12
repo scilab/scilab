@@ -315,6 +315,9 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\string\src\c\string.vcxproj">
+      <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\windows_tools.vcxproj">
       <Project>{9594ac02-20ee-4fbf-95b4-bfa5865ed7ca}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

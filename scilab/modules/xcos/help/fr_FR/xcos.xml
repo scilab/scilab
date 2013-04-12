@@ -40,7 +40,7 @@
             <listitem>
                 <para>
                     <emphasis role="bold">filename :</emphasis> une chaîne de caractères contenant
-                    le chemin du fichier de schéma (extension .cos, .cosf or .xcos). Si aucun argument
+                    le chemin du fichier de schéma (extension .cos, .cosf or .zcos). Si aucun argument
                     n'est fourni, un schéma vide est ouvert (nom par défaut <emphasis>Sans titre</emphasis>).
                 </para>
             </listitem>
@@ -119,9 +119,9 @@
             Pour ouvrir un schéma existant, vous devez fournir une nom de fichier valide, comme dans cet exemple :
         </para>
         <para/>
-        <programlisting role="example"><![CDATA[xcos("SCI/modules/xcos/demos/bounce.xcos")]]></programlisting>
+        <programlisting role="example"><![CDATA[xcos("SCI/modules/xcos/demos/bounce.zcos")]]></programlisting>
         <para>
-            Dans ce cas d'utilisation, la fenêtre d'édition  <emphasis>Xcos</emphasis> affiche le schéma de la démonstration<emphasis> bounce.xcos</emphasis>
+            Dans ce cas d'utilisation, la fenêtre d'édition  <emphasis>Xcos</emphasis> affiche le schéma de la démonstration<emphasis> bounce.zcos</emphasis>
         </para>
         <para/>
         <para>
@@ -140,7 +140,7 @@ scs_m.objs(1).graphics.sz = [30 50];
 
 xcos(scs_m);]]></programlisting>
         <para>
-            où <emphasis>scs_m</emphasis> est la structure de schéma de <emphasis> bounce.xcos</emphasis>.
+            où <emphasis>scs_m</emphasis> est la structure de schéma de <emphasis> bounce.zcos</emphasis>.
         </para>
         <para>
             Vous construisez vos modèles en liant les blocs fournis dans le navigateur de palettes ouvert simultanément avec

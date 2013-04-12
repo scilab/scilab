@@ -35,9 +35,9 @@
                 <listitem>
                     <para>
                         вектор-столбец. Он может быть равен <literal>x0</literal> или
-                        <literal>[x0;xdot0]</literal>, где <literal>x0</literal> -- это
+                        <literal>[x0;xdot0]</literal>, где <literal>x0</literal> - это
                         значение состояния в начальный момент времени <literal>t0</literal>,
-                        а <literal>xdot0</literal> -- значение производной исходного
+                        а <literal>xdot0</literal> - значение производной исходного
                         состояния или его оценка (см. ниже).
                     </para>
                 </listitem>
@@ -178,35 +178,35 @@
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <literal>t</literal> -- текущее значение
+                                            <literal>t</literal> - текущее значение
                                             времени;
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>x</literal> -- массив состояния;
+                                            <literal>x</literal> - массив состояния;
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>xdot</literal> -- массив производных
+                                            <literal>xdot</literal> - массив производных
                                             состояния;
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>res</literal> -- массив остатков;
+                                            <literal>res</literal> - массив остатков;
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>ires</literal> -- индикатор
+                                            <literal>ires</literal> - индикатор
                                             выполнения;
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>rpar</literal> -- массив целочисленных
+                                            <literal>rpar</literal> - массив целочисленных
                                             значений параметров с плавающей запятой, которые нужны, но
                                             не могут быть установлены с помощью функции
                                             <literal>dae</literal>.
@@ -214,7 +214,7 @@
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>ipar</literal> -- массив целочисленных
+                                            <literal>ipar</literal> - массив целочисленных
                                             значений параметров с плавающей запятой, которые нужны, но
                                             не могут быть установлены с помощью функции
                                             <literal>dae</literal>.
@@ -242,7 +242,7 @@
                                     <literal>r=jac(t,x,xdot,cj)</literal>, а
                                     <literal>jac</literal> должна возвращать
                                     <literal>r=dg(t,x,xdot)/dy+cj*dg(t,x,xdot)/dxdot</literal>,
-                                    где <literal>cj</literal> -- вещественный скаляр.
+                                    где <literal>cj</literal> - вещественный скаляр.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -309,7 +309,7 @@
                                 <para>
                                     где <literal>t, x, xdot, ires, rpar, ipar</literal>
                                     имеют аналогичное определение, что и выше,
-                                    <literal>r</literal> -- массив результатов
+                                    <literal>r</literal> - массив результатов
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -393,9 +393,9 @@
                                 <para>
                                     где <literal>t, x, xdot, ires, rpar, ipar</literal>
                                     имеют аналогичное определение, что и выше,
-                                    <literal>ng</literal> -- количество поверхностей,
-                                    <literal>nx</literal> -- размерность состояния и
-                                    <literal>r</literal> -- массив результатов.
+                                    <literal>ng</literal> - количество поверхностей,
+                                    <literal>nx</literal> - размерность состояния и
+                                    <literal>r</literal> - массив результатов.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -407,8 +407,8 @@
                 <listitem>
                     <para>
                         вектор с двумя элементами <literal>[times num]</literal>, где
-                        <literal>times</literal> -- значение момента времени пересечения
-                        поверхности, <literal>num</literal> -- число пересечённых
+                        <literal>times</literal> - значение момента времени пересечения
+                        поверхности, <literal>num</literal> - число пересечённых
                         поверхностей
                     </para>
                 </listitem>
@@ -433,8 +433,8 @@
                         </literal>
                         ,то каждый
                         столбец является вектором вида <literal>[t;x(t);xdot(t)]</literal>,
-                        где <literal>t</literal> -- индекс времени для которого вычислено
-                        решение. В противном случае <literal>y</literal> -- вектор вида
+                        где <literal>t</literal> - индекс времени для которого вычислено
+                        решение. В противном случае <literal>y</literal> - вектор вида
                         <literal>[x(t);xdot(t)]</literal>.
                     </para>
                 </listitem>
@@ -472,71 +472,133 @@
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"> 
-            //Пример с кодом Scilab
-            function [r,ires]=chemres(t,y,yd)
-            r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
-            r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
-            r(3) =       y(1) +     y(2)      + y(3)-1;
-            ires =  0;
-            endfunction
-            function pd=chemjac(x,y,yd,cj)
-            pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
-            0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
-            1       , 1                      , 1       ]
-            endfunction
+        <programlisting role="example"><![CDATA[
+//Пример с кодом Scilab
+function [r,ires]=chemres(t,y,yd)
+    r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
+    r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
+    r(3) =       y(1) +     y(2)      + y(3)-1;
+    ires =  0;
+endfunction
+
+function pd=chemjac(x,y,yd,cj)
+    pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+         0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+         1       , 1                      , 1       ]
+endfunction
+
+x0=[1; 0; 0];
+xd0=[-0.04; 0.04; 0];
+t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
             
-            x0=[1; 0; 0];
-            xd0=[-0.04; 0.04; 0];
-            t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
+y=dae([x0,xd0],0,t,chemres);// возвращает запрошенные моменты времени наблюдения
             
-            y=dae([x0,xd0],0,t,chemres);// возвращает запрошенные моменты времени наблюдения
-            
-            %DAEOPTIONS=list([],1,[],[],[],0,0); // просит вернуть сетку точек dae
-            y=dae([x0,xd0],0,4d10,chemres); // без якобиана
-            y=dae([x0,xd0],0,4d10,chemres,chemjac); // с якобианом
-            
-            //пример с кодом C (необходим C-компилятор) --------------------------------------------------
-            //-1- создать C-код в TMPDIR - Уравнение Вандерпола, неявная форма
-            code=['#include &lt;math.h&gt;'
-            'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
-            '{res[0] = yd[0] - y[1];'
-            ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
-            ' '
-            'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
-            '{pd[0]=*cj - 0.0;'
-            ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
-            ' pd[2]=    - 1.0;'
-            ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
-            ' '
-            'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
-            '{ groot[0] = y[0];}']
-            mputl(code,TMPDIR+'/t22.c') 
-            
-            //-2- скомпилировать и загрузить его
-            ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
-            exec(TMPDIR+'/t22loader.sce')
-            
-            //-3- запустить
-            rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
-            t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
-            
-            //простое моделирование
-            t=0:0.003:300;
-            yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
-            clf();plot(yy(1,:),yy(2,:))
-            
-            // найти первую точку, где yy(1)=0
-            [yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
-            plot(yy(1,1),yy(2,1),'r+')
-            xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
-            
-            // горячий перезапуск для следующей точки
-            t01=nn(1);[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
-            [yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
-            plot(yy(1,1),yy(2,1),'r+')
-            xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
-        </programlisting>
+%DAEOPTIONS=list([],1,[],[],[],0,0); // просит вернуть сетку точек dae
+y=dae([x0,xd0],0,4d10,chemres); // без якобиана
+y=dae([x0,xd0],0,4d10,chemres,chemjac); // с якобианом
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+//пример с кодом C (необходим C-компилятор)
+--------------------------------------------------
+bOK=haveacompiler();
+if bOK<>%t
+    [btn] = messagebox(["Для этого примера Вам необходим C-компилятор.";"Выполнение этого примера отменено."], "Проблема с программным обеспечением", 'info');
+    return
+end
+
+//-1- создать C-код в TMPDIR - Уравнение Вандерпола, неявная форма
+code=['#include <math.h>'
+      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+      '{res[0] = yd[0] - y[1];'
+      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
+      ' '
+      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
+      '{pd[0]=*cj - 0.0;'
+      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2]=    - 1.0;'
+      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      ' '
+      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
+      '{ groot[0] = y[0];}']
+previous_dir = pwd();
+cd TMPDIR;
+mputl(code, 't22.c')
+
+//-2- скомпилировать и загрузить его
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');
+exec('t22loader.sce')
+
+//-3- запустить
+rtol=[1.d-6;1.d-6];
+atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];
+y0d=[0;-2];
+t=[20:20:200];
+ng=1;
+
+//простое моделирование
+t=0:0.003:300;
+yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
+clf();plot(yy(1,:),yy(2,:))
+
+// найти первую точку, где yy(1)=0
+[yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
+plot(yy(1,1),yy(2,1),'r+')
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+t=0:0.003:300;
+yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
+clf();plot(yy(1,:),yy(2,:))
+
+// горячий перезапуск для следующей точки
+t01=nn(1);
+[pp,qq]=size(yy);
+y01=yy(2:3,qq);
+y0d1=yy(3:4,qq);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+plot(yy(1,1),yy(2,1),'r+')
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+cd(previous_dir);
+]]></programlisting>
+        <scilab:image><![CDATA[
+code=['#include <math.h>'
+      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+      '{res[0] = yd[0] - y[1];'
+      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
+      ' '
+      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
+      '{pd[0]=*cj - 0.0;'
+      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2]=    - 1.0;'
+      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      ' '
+      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
+      '{ groot[0] = y[0];}']
+previous_dir = pwd();
+cd TMPDIR;
+mputl(code, 't22.c')
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');
+exec('t22loader.sce')
+rtol=[1.d-6;1.d-6];
+atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];
+y0d=[0;-2];
+t=[20:20:200];
+ng=1;
+t=0:0.003:300;
+yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
+clf();plot(yy(1,:),yy(2,:))
+[yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
+plot(yy(1,1),yy(2,1),'r+')
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+t01=nn(1);
+[pp,qq]=size(yy);
+y01=yy(2:3,qq);
+y0d1=yy(3:4,qq);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+plot(yy(1,1),yy(2,1),'r+')
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)));
+cd(previous_dir);
+ ]]></scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

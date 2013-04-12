@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mkdir" xml:lang="fr">
     <refnamediv>
         <refname>mkdir</refname>
-        <refpurpose>Crйe un nouveau rйpertoire</refpurpose>
+        <refpurpose>CrГ©e un nouveau rГ©pertoire</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Sйquence d'appel</title>
+        <title>SГ©quence d'appel</title>
         <synopsis>
             mkdir('dirname')
             mkdir('parentdir','newdir')
@@ -16,23 +16,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>mkdir('dirname')</literal> crйe le rйpertoire <literal>dirname</literal>.
-            Si dirname reprйsente reprйsente un chemin relatif, le
-            rйpertoire dirname est crйй dans le rйpertoire
+            <literal>mkdir('dirname')</literal> crГ©e le rГ©pertoire <literal>dirname</literal>.
+            Si dirname reprГ©sente un chemin relatif, le
+            rГ©pertoire dirname est crГ©Г© dans le rГ©pertoire
             courant.
         </para>
         <para>
-            <literal>mkdir('parentdir', 'dirname')</literal> crйe le rйpertoire
-            <literal>dirname</literal> dans le rйpertoire existant
+            <literal>mkdir('parentdir', 'dirname')</literal> crГ©e le rГ©pertoire
+            <literal>dirname</literal> dans le rГ©pertoire existant
             <literal>parentdir</literal>, ou <literal>parentdir</literal> est un
             chemin relatif ou absolu.
         </para>
         <para>
-            <literal>[status,message] = mkdir('parentdir', 'dirname')</literal> crйe le rйpertoire
-            <literal>dirname</literal> dans le rйpertoire existant
+            <literal>[status,message] = mkdir('parentdir', 'dirname')</literal> crГ©e le rГ©pertoire
+            <literal>dirname</literal> dans le rГ©pertoire existant
             <literal>parentdir</literal>, retourne le statut, et un message. Ici,
-            <literal>status</literal> vaut 1 si tout c'est bien passй, 2 si le
-            rйpertoire existe dйjа, -2 si c'est un nom de fichiers, 0 dans
+            <literal>status</literal> vaut 1 si tout c'est bien passГ©, 2 si le
+            rГ©pertoire existe dГ©jГ , -2 si c'est un nom de fichiers, 0 dans
             un autre cas.
         </para>
     </refsection>

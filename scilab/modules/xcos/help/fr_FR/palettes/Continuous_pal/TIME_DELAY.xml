@@ -223,10 +223,10 @@
     <refsection id="Example_TIME_DELAY">
         <title>Exemple</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TIME_DELAY_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/TIME_DELAY_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/TIME_DELAY_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

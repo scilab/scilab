@@ -17,7 +17,7 @@
 // Opening a non-existing file lead to problems when closing Xcos.
 //
 
-execstr("xcos(); xcos(""DoesNotExist.xcos"")");
+execstr("xcos(); xcos(""DoesNotExist.zcos"")");
 // Answer NO to the create file dialog
 // Close the Xcos window
 // check that the palette is also closed

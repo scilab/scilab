@@ -82,6 +82,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
         catch (ScilabAbstractEnvironmentException & e)
         {
             delete[] args;
+            ScilabObjects::removeTemporaryVars(envId, tmpvar);
             delete[] tmpvar;
             throw;
         }

@@ -40,33 +40,26 @@ function bOK = dlwSetEnvVc70()
     return
   end
 
-  err = setenv('PATH', MSVCDir + filesep() + 'BIN;' + ..
+  err = addPathToEnv('PATH', MSVCDir + '\bin' + pathsep() + ..
                DevEnvDir + pathsep() + ..
-               DevEnvDir + filesep() + 'bin' + pathsep() + ..
-               MSVCDir + filesep() + '..\Common7\IDE' + pathsep() + ..
-               PATH + pathsep() );
+               DevEnvDir + '\bin' + pathsep() + ..
+               MSVCDir + '\..\Common7\IDE');
   if (err == %F) then
     bOK = %F;
     return
   end
 
-  INCLUDE = getenv('INCLUDE', '');
-
-  err = setenv('INCLUDE', MSVCDir + filesep() + 'ATLMFC\INCLUDE' + pathsep() + ..
-               MSVCDir + filesep() + 'INCLUDE' + pathsep() +..
-               MSVCDir + filesep() + 'PlatformSDK\include' + pathsep() + ..
-               INCLUDE);
+  err = addPathToEnv('include', MSVCDir + '\atlmfc\include' + pathsep() + ..
+               MSVCDir + '\include' + pathsep() +..
+               MSVCDir + '\PlatformSDK\include');
   if (err == %F) then
     bOK = %F;
     return
   end
 
-  LIB = getenv('LIB', '');
-
-  err = setenv('LIB',MSVCDir + filesep() + 'ATLMFC\LIB' + pathsep() + ..
-               MSVCDir + filesep() + 'LIB'+ pathsep() +..
-               MSVCDir + filesep() + 'PlatformSDK\lib' + pathsep() + ..
-               LIB);
+  err = setenv('lib', MSVCDir + '\atlmfc\lib' + pathsep() + ..
+               MSVCDir + '\lib'+ pathsep() +..
+               MSVCDir + '\PlatformSDK\lib');
   if (err == %F) then
     bOK = %F;
     return

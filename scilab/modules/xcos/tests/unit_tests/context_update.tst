@@ -10,7 +10,7 @@
 // test with context modification
 
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/context_update.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/context_update.zcos"));
 
 // checking without context re-definition
 Context=struct();

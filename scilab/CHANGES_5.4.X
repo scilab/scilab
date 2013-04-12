@@ -1,8 +1,6 @@
                     Changes between version 5.4.0 and 5.4.1
                     =======================================
 
-Syntax changes
-===============
 
 Improvements
 =============

@@ -71,7 +71,8 @@
         </para>
         <para>
             <code>l(i)=null()</code> removes the <literal>i</literal>-th
-            element of the <literal>tlist</literal> <literal>l</literal>.              <note>
+            element of the <literal>tlist</literal> <literal>l</literal>.
+            <note>
                 Note that the  semantics of <code>l.x=null()</code> is undefined, but a definition can be given through the <link linkend="overloading">overloading</link> mechanism.
             </note>
         </para>
@@ -79,8 +80,8 @@
             display.
         </para>
         <para>
-            Moreover if <code>typ(2:n+1)</code> are specified, user may point elements by
-            their names.
+            Moreover if <code>typ(2:n+1)</code> are specified, user may 
+            point elements by their names.
         </para>
         <para>
             We give below examples where <literal>tlist</literal> are used.

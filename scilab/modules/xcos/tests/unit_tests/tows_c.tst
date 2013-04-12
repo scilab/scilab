@@ -8,7 +8,7 @@
 // <-- XCOS TEST -->
 
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/tows_c.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/tows_c.zcos"));
 scicos_simulate(scs_m, list());
 
 t = (0.2:0.1:12.9)';

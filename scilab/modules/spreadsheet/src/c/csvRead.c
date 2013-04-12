@@ -401,7 +401,7 @@ static int getNumbersOfColumnsInLine(const char *line, const char *separator)
     {
         int i = 0;
         int nbTokens = 0;
-        char **splittedStr = splitLineCSV(line, separator, &nbTokens, 0);
+        char **splittedStr = splitLineCSV(line, separator, &nbTokens);
         if (splittedStr)
         {
             freeArrayOfString(splittedStr, nbTokens);
@@ -447,7 +447,7 @@ static char **getStringsFromLines(const char **lines, int sizelines,
         for (i = 0; i < sizelines; i++)
         {
             int nbTokens = 0;
-            char **lineStrings = splitLineCSV(lines[i], separator, &nbTokens, 0);
+            char **lineStrings = splitLineCSV(lines[i], separator, &nbTokens);
             int j = 0;
 
             if (lineStrings == NULL)

@@ -7,8 +7,6 @@ EXPORTS
 ;--------------------------
 callFunctionFromGateway
 freeArrayOfString
-oGetDoubleComplexFromPointer
-vGetPointerFromDoubleComplex
 MyHeapAlloc
 MyHeapFree
 

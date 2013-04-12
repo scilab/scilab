@@ -335,15 +335,13 @@ public class AxesDrawer {
         double w = (1 - margins[0] - margins[1]) * axesBounds[2];
         double h = (1 - margins[2] - margins[3]) * axesBounds[3];
 
-        // Don't know what's the goal of this code (finally w=h=minSize, so why a square ???)
-        // Comment it: that fixes bug 11801.
-        /*if (axes.getIsoview()) {
-          double minSize = Math.min(w, h);
-          y += (h - minSize);
-          h = minSize;
-          x += (w - minSize);
-          w = minSize;
-          }*/
+        if (axes.getIsoview()) {
+            double minSize = Math.min(w, h);
+            y += (h - minSize);
+            h = minSize;
+            x += (w - minSize);
+            w = minSize;
+        }
 
         return new Rectangle2D.Double(x, y, w, h);
     }
@@ -470,9 +468,10 @@ public class AxesDrawer {
         // Scale projected data to fit in the cube.
         Transformation isoScale;
         if (axes.getIsoview()) {
-            Double[] axesBounds = axes.getAxesBounds();
-            double minScale = Math.min(tmpX * axesBounds[2], tmpY * axesBounds[3]);
-            isoScale = TransformationFactory.getScaleTransformation(minScale / axesBounds[2], minScale / axesBounds[3], tmpZ);
+            double w = zone.getWidth();
+            double h = zone.getHeight();
+            double minScale = Math.min(tmpX * w, tmpY * h);
+            isoScale = TransformationFactory.getScaleTransformation(minScale / w, minScale / h, tmpZ);
         } else {
             isoScale = TransformationFactory.getScaleTransformation(tmpX, tmpY, tmpZ);
         }

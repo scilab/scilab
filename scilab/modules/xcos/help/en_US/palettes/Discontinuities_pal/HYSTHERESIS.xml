@@ -247,10 +247,10 @@
     </refsection>
     <refsection id="Example_HYSTHERESIS">
         <title>Example</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/HYSTERESIS_Example.xcos">
+        <link type="scilab" linkend="scilab.zcos/xcos/examples/discontinuities_pal/HYSTERESIS_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/discontinuities_pal/HYSTERESIS_Example.xcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/discontinuities_pal/HYSTERESIS_Example.zcos" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

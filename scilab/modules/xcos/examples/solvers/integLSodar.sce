@@ -8,20 +8,20 @@
 // Import the diagram and augment the ending time
 loadScicos();
 loadXcosLibs();
-importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
+importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.zcos");
 scs_m.props.tf = 30000;
 
 solverName = ["LSodar", "BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional"];
 
 for solver = 0:4
 
- // Select the solver
- scs_m.props.tol(6) = solver;
+    // Select the solver
+    scs_m.props.tol(6) = solver;
 
- // Start the timer, launch the simulation and display time
- tic();
- try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end;
- t = toc();
- disp(t, "Time for " + solverName(solver+1) + ":");
+    // Start the timer, launch the simulation and display time
+    tic();
+    try scicos_simulate(scs_m, "nw"); catch disp(lasterror()); end;
+    t = toc();
+    disp(t, "Time for " + solverName(solver+1) + ":");
 
 end
