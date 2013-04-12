@@ -103,6 +103,12 @@ class UserDefineGraduation implements Graduations {
     }
 
     @Override
+    public List<Double> getSubGraduations(int N) {
+        // TODO
+        return null;
+    }
+
+    @Override
     public int getSubDensity() {
         return axisProperty.getSubticks() + 1;
     }
