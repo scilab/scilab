@@ -751,7 +751,7 @@ AC_HDF5()
 AC_ARG_WITH(external-scirenderer,
     AC_HELP_STRING([--with-external-scirenderer],[Disable the usage of the internal copy of scirenderer. Intended for packaging of Scilab]))
 
-AM_CONDITIONAL(EXTERNAL_SCIRENDERER, "$with_external_scirenderer" = yes)
+AM_CONDITIONAL(EXTERNAL_SCIRENDERER, test "$with_external_scirenderer" = yes)
 
 
 #################
