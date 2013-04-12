@@ -40,7 +40,6 @@
 #include "Scierror.h"
 #include "suspendProcess.h"
 #include "sci_mode.h"
-#include "windowsChangeManagement.h"
 #include "backtrace_print.h"
 extern jmp_buf jmp_env;
 

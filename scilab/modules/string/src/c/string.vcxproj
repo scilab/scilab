@@ -280,7 +280,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="..\cpp\stripblanks.cpp" />
     <ClCompile Include="stringToDouble.c" />
     <ClCompile Include="stristr.c" />
-    <ClCompile Include="strsplitfunction.c" />
+    <ClCompile Include="strsplit.c" />
     <ClCompile Include="strsubst.c" />
     <ClCompile Include="tokens.c" />
   </ItemGroup>
@@ -359,7 +359,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="setScilabCharactersCodes.h" />
     <ClInclude Include="stringsCompare.h" />
     <ClInclude Include="stringsstrrev.h" />
-    <ClInclude Include="strsplitfunction.h" />
+    <ClInclude Include="strsplit.h" />
     <ClInclude Include="tokens.h" />
     <ClInclude Include="ucp.h" />
   </ItemGroup>

@@ -45,6 +45,20 @@
             Функция <function>mputstr</function> позволяет записать символьную строку <varname>str</varname> в двоичный файл.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+
+this_file = pathconvert(TMPDIR+"/mputstr.txt", %F);
+
+fd = mopen(this_file, "wt");
+mputstr("Scilab", fd);
+mclose(fd);
+
+mgetl(this_file) // Scilab
+
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

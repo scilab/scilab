@@ -16,7 +16,7 @@
 // Block with an empty gui string are translated to xcos_block one. These blocks 
 // must be removed from the diagram before any simulation.
 
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8441.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8441.zcos");
 if ~status then pause, end
 
 // compile and simulate

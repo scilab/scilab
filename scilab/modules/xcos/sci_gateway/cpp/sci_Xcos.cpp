@@ -66,7 +66,7 @@ int sci_Xcos(char *fname, void *pvApiCtx)
     }
 
     /*
-     * xcos("file.xcos") or xcos(["file.xcos" "foo.xcos"]) call
+     * xcos("file.zcos") or xcos(["file.zcos" "foo.zcos"]) call
      */
     if (Rhs == 1 && iType == sci_strings)
     {

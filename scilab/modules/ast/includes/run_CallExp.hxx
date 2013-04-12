@@ -104,10 +104,13 @@ void visitprivate(const CallExp &e)
 
             //reset previous error before call function
             ConfigVariable::resetError();
-
+            //update verbose";" flag
+            ConfigVariable::setVerbose(e.is_verbose());
+            //call function
             types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, this);
             expected_size_set(iSaveExpectedSize);
             result_clear();
+
             if (Ret == types::Callable::OK)
             {
                 if (expected_getSize() == 1 && out.size() == 0) //some function have no returns

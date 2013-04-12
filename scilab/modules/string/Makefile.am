@@ -9,7 +9,7 @@ STRING_C_SOURCES = \
 src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
-src/c/strsplitfunction.c \
+src/c/strsplit.c \
 src/c/partfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \

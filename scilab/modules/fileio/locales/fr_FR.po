@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: fr\n"
 
 #, c-format
@@ -448,23 +448,12 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Format non reconnu.\n"
 
 #, c-format
-msgid "%s: format is of 0 length.\n"
-msgstr "%s : Le format est de taille 0.\n"
+msgid "%s: No input file.\n"
+msgstr "%s : Aucun fichier d'entrée.\n"
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
 msgstr "%s : %s format non reconnu.\n"
-
-msgid "No input file\n"
-msgstr "Pas de fichier d'entrée\n"
-
-#, c-format
-msgid "%s: unknown format %s.\n"
-msgstr "%s : Format inconnu %s.\n"
-
-#, c-format
-msgid "%s: No input file.\n"
-msgstr "%s : Aucun fichier d'entrée.\n"
 
 #, c-format
 msgid "Warning: file '%s' already opened in Scilab.\n"

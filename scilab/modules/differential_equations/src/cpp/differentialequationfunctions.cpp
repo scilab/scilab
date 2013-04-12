@@ -17,8 +17,9 @@
 
 extern "C"
 {
-    #include "elem_common.h"
-    #include "scifunctions.h"
+#include "elem_common.h"
+#include "scifunctions.h"
+#include "Ex-odedc.h"
 }
 
 /*
@@ -105,7 +106,7 @@ DifferentialEquationFunctions::DifferentialEquationFunctions(std::wstring caller
     m_pStringGuessFunctionStatic    = NULL;
 
     // init static functions
-    if(callerName == L"ode")
+    if (callerName == L"ode")
     {
         m_staticFunctionMap[L"arnol"]   = (void*) C2F(arnol);
         m_staticFunctionMap[L"fex"]     = (void*) C2F(fex);
@@ -118,34 +119,34 @@ DifferentialEquationFunctions::DifferentialEquationFunctions(std::wstring caller
 
         m_staticFunctionMap[L"jex"]     = (void*) C2F(jex);
     }
-    else if(callerName == L"odedc")
+    else if (callerName == L"odedc")
     {
-        m_staticFunctionMap[L"fcd"]     = (void*) C2F(fcd);
-        m_staticFunctionMap[L"fcd1"]    = (void*) C2F(fcd1);
-        m_staticFunctionMap[L"fexcd"]   = (void*) C2F(fexcd);
-        m_staticFunctionMap[L"phis"]    = (void*) C2F(phis);
-        m_staticFunctionMap[L"phit"]    = (void*) C2F(phit);
+        m_staticFunctionMap[L"fcd"]     = (void*) fcd;
+        m_staticFunctionMap[L"fcd1"]    = (void*) fcd1;
+        m_staticFunctionMap[L"fexcd"]   = (void*) fexcd;
+        m_staticFunctionMap[L"phis"]    = (void*) phis;
+        m_staticFunctionMap[L"phit"]    = (void*) phit;
 
         m_staticFunctionMap[L"jex"]     = (void*) C2F(jex);
     }
-    else if(callerName == L"intg")
+    else if (callerName == L"intg")
     {
         m_staticFunctionMap[L"intgex"]  = (void*) C2F(intgex);
     }
-    else if(callerName == L"int2d")
+    else if (callerName == L"int2d")
     {
         m_staticFunctionMap[L"int2dex"] = (void*) C2F(int2dex);
     }
-    else if(callerName == L"int3d")
+    else if (callerName == L"int3d")
     {
         m_staticFunctionMap[L"int3dex"] = (void*) C2F(int3dex);
     }
-    else if(callerName == L"feval")
+    else if (callerName == L"feval")
     {
         m_staticFunctionMap[L"parab"]   = (void*) C2F(parab);
         m_staticFunctionMap[L"parabc"]  = (void*) C2F(parabc);
     }
-    else if(callerName == L"bvode")
+    else if (callerName == L"bvode")
     {
         m_staticFunctionMap[L"cndg"]    = (void*) C2F(cndg);
         m_staticFunctionMap[L"cng"]     = (void*) C2F(cng);
@@ -153,13 +154,13 @@ DifferentialEquationFunctions::DifferentialEquationFunctions(std::wstring caller
         m_staticFunctionMap[L"cndf"]    = (void*) C2F(cndf);
         m_staticFunctionMap[L"cngu"]    = (void*) C2F(cngu);
     }
-    else if(callerName == L"impl")
+    else if (callerName == L"impl")
     {
         m_staticFunctionMap[L"resid"]   = (void*) C2F(resid);  // res
         m_staticFunctionMap[L"aplusp"]  = (void*) C2F(aplusp); // adda
         m_staticFunctionMap[L"dgbydy"]  = (void*) C2F(dgbydy); // jac
     }
-    else if(callerName == L"dassl" || callerName == L"dasrt")
+    else if (callerName == L"dassl" || callerName == L"dasrt")
     {
         //res
         m_staticFunctionMap[L"res1"]    = (void*) C2F(res1);
@@ -173,7 +174,7 @@ DifferentialEquationFunctions::DifferentialEquationFunctions(std::wstring caller
         m_staticFunctionMap[L"djac1"]  = (void*) C2F(djac1);
 
         //g
-        if(callerName == L"dasrt")
+        if (callerName == L"dasrt")
         {
             m_staticFunctionMap[L"gr1"]  = (void*) C2F(gr1);
             m_staticFunctionMap[L"gr2"]  = (void*) C2F(gr2);
@@ -189,14 +190,14 @@ DifferentialEquationFunctions::~DifferentialEquationFunctions()
 /*------------------------------- public -------------------------------------------*/
 int DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, int* ipar)
 {
-    if(m_pCallGFunction)
+    if (m_pCallGFunction)
     {
         return callDasrtMacroG(ny, t, y, ng, gout, rpar, ipar);
     }
-    else if(m_pStringGFunctionDyn)
+    else if (m_pStringGFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -213,14 +214,14 @@ int DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, int
 
 int DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         return callDasslMacroF(t, y, ydot, delta, ires, rpar, ipar);
     }
-    else if(m_pStringFFunctionDyn)
+    else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -237,21 +238,21 @@ int DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydot
 
 int DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* ydot, double* pd, double* cj, double* rpar, int* ipar)
 {
-    if(m_pCallJacFunction)
+    if (m_pCallJacFunction)
     {
         return callDasslMacroJac(t, y, ydot, pd, cj, rpar, ipar);
     }
-    else if(m_pStringJacFunctionDyn)
+    else if (m_pStringJacFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
         ((dassl_jac_t)(func->functionPtr))(t, y, ydot, pd, cj, rpar, ipar);
         return 1;
     }
-    else if(m_pStringJacFunctionStatic)
+    else if (m_pStringJacFunctionStatic)
     {
         ((dassl_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->get(0)])(t, y, ydot, pd, cj, rpar, ipar);
         return 1;
@@ -261,14 +262,14 @@ int DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* yd
 
 int DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, double* s, double* r, int* ires)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         return callImplMacroF(neq, t, y, s, r, ires);
     }
-    else if(m_pStringFFunctionDyn)
+    else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -285,14 +286,14 @@ int DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, dou
 
 int DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, double* ml, double* mu, double* p, int* nrowp)
 {
-    if(m_pCallGFunction)
+    if (m_pCallGFunction)
     {
         return callImplMacroG(neq, t, y, ml, mu, p, nrowp);
     }
-    else if(m_pStringGFunctionDyn)
+    else if (m_pStringGFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -309,21 +310,21 @@ int DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, dou
 
 int DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, double* s, double* ml, double* mu, double* p, int* nrowp)
 {
-    if(m_pCallJacFunction)
+    if (m_pCallJacFunction)
     {
         return callImplMacroJac(neq, t, y, s, ml, mu, p, nrowp);
     }
-    else if(m_pStringJacFunctionDyn)
+    else if (m_pStringJacFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
         ((impl_jac_t)(func->functionPtr))(neq, t, y, s, ml, mu, p, nrowp);
         return 1;
     }
-    else if(m_pStringJacFunctionStatic)
+    else if (m_pStringJacFunctionStatic)
     {
         ((impl_jac_t)m_staticFunctionMap[m_pStringJacFunctionStatic->get(0)])(neq, t, y, s, ml, mu, p, nrowp);
         return 1;
@@ -333,21 +334,21 @@ int DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, d
 
 int DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double *d)
 {
-    if(m_pCallGuessFunction)
+    if (m_pCallGuessFunction)
     {
         return callBvodeMacroGuess(x, z, d);
     }
-    else if(m_pStringGuessFunctionDyn)
+    else if (m_pStringGuessFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGuessFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
         return 1;
     }
-    else if(m_pStringGuessFunctionStatic)
+    else if (m_pStringGuessFunctionStatic)
     {
         ((bvode_ddd_t)m_staticFunctionMap[m_pStringGuessFunctionStatic->get(0)])(x, z, d);
         return 1;
@@ -357,14 +358,14 @@ int DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double *
 
 int DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double *d)
 {
-    if(m_pCallDfsubFunction)
+    if (m_pCallDfsubFunction)
     {
         return callBvodeMacroDfsub(x, z, d);
     }
-    else if(m_pStringDfsubFunctionDyn)
+    else if (m_pStringDfsubFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDfsubFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -380,14 +381,14 @@ int DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double *
 
 int DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *d)
 {
-    if(m_pCallFsubFunction)
+    if (m_pCallFsubFunction)
     {
         return callBvodeMacroFsub(x, z, d);
     }
-    else if(m_pStringFsubFunctionDyn)
+    else if (m_pStringFsubFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsubFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -403,14 +404,14 @@ int DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *d
 
 int DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
 {
-    if(m_pCallDgsubFunction)
+    if (m_pCallDgsubFunction)
     {
         return callBvodeMacroDgsub(i, z, g);
     }
-    else if(m_pStringDgsubFunctionDyn)
+    else if (m_pStringDgsubFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgsubFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -426,14 +427,14 @@ int DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
 
 int DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
 {
-    if(m_pCallGsubFunction)
+    if (m_pCallGsubFunction)
     {
         return callBvodeMacroGsub(i, z, g);
     }
-    else if(m_pStringGsubFunctionDyn)
+    else if (m_pStringGsubFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGsubFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -449,14 +450,14 @@ int DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
 
 int DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, double *xres, int *itype)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         return callFevalMacroF(nn, x1, x2, xres, itype);
     }
-    else if(m_pStringFFunctionDyn)
+    else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 1;
         }
@@ -470,14 +471,14 @@ int DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, d
 
 double DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double* funvls)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         return callInt3dMacroF(x, numfun, funvls);
     }
-    else if(m_pStringFFunctionDyn)
+    else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -491,14 +492,14 @@ double DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double*
 
 double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         return callInt2dMacroF(x, y);
     }
-    else if(m_pStringFFunctionDyn)
+    else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -512,14 +513,14 @@ double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
 
 double DifferentialEquationFunctions::execIntgF(double* x)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         return callIntgMacroF(x);
     }
-    else if(m_pStringFFunctionDyn)
+    else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -533,14 +534,14 @@ double DifferentialEquationFunctions::execIntgF(double* x)
 
 int DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, double* yout)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         return callOdeMacroF(n, t, y, yout);
     }
-    else if(m_pStringFFunctionDyn)
+    else if (m_pStringFFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -548,12 +549,12 @@ int DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, double
     }
     else // function static
     {
-        if(m_wstrCaller == L"ode")
+        if (m_wstrCaller == L"ode")
         {
             ((ode_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(n, t, y, yout);
             return 1;
         }
-        else if(m_wstrCaller == L"odedc")
+        else if (m_wstrCaller == L"odedc")
         {
             ((odedc_f_t)m_staticFunctionMap[m_pStringFFunctionStatic->get(0)])(&m_odedcFlag, n, &m_odedcYDSize, t, y, yout);
             return 1;
@@ -562,16 +563,16 @@ int DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, double
     }
 }
 
-int DifferentialEquationFunctions::execFunctionJac(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd)
+int DifferentialEquationFunctions::execFunctionJac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd)
 {
-    if(m_pCallJacFunction)
+    if (m_pCallJacFunction)
     {
         return callMacroJac(n, t, y, ml, mu, J, nrpd);
     }
-    else if(m_pStringJacFunctionDyn)
+    else if (m_pStringJacFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -586,14 +587,14 @@ int DifferentialEquationFunctions::execFunctionJac(int *n,double *t,double *y,in
 
 int DifferentialEquationFunctions::execFunctionG(int* n, double* t, double* y, int* ng, double* gout)
 {
-    if(m_pCallGFunction)
+    if (m_pCallGFunction)
     {
         return callMacroG(n, t, y, ng, gout);
     }
-    else if(m_pStringGFunctionDyn)
+    else if (m_pStringGFunctionDyn)
     {
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
-        if(func == NULL)
+        if (func == NULL)
         {
             return 0;
         }
@@ -665,14 +666,14 @@ void DifferentialEquationFunctions::setGFunction(types::Callable* _odeGFunc)
 //set function f, jac, g as types::String
 bool DifferentialEquationFunctions::setFFunction(types::String* _odeFFunc)
 {
-    if(ConfigVariable::getEntryPoint(_odeFFunc->get(0)))
+    if (ConfigVariable::getEntryPoint(_odeFFunc->get(0)))
     {
         m_pStringFFunctionDyn = _odeFFunc;
         return true;
     }
     else
     {
-        if(m_staticFunctionMap.find(_odeFFunc->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_odeFFunc->get(0)) != m_staticFunctionMap.end())
         {
             m_pStringFFunctionStatic = _odeFFunc;
             return true;
@@ -683,14 +684,14 @@ bool DifferentialEquationFunctions::setFFunction(types::String* _odeFFunc)
 
 bool DifferentialEquationFunctions::setJacFunction(types::String* _odeJacFunc)
 {
-    if(ConfigVariable::getEntryPoint(_odeJacFunc->get(0)))
+    if (ConfigVariable::getEntryPoint(_odeJacFunc->get(0)))
     {
         m_pStringJacFunctionDyn = _odeJacFunc;
         return true;
     }
     else
     {
-        if(m_staticFunctionMap.find(_odeJacFunc->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_odeJacFunc->get(0)) != m_staticFunctionMap.end())
         {
             m_pStringJacFunctionStatic = _odeJacFunc;
             return true;
@@ -701,14 +702,14 @@ bool DifferentialEquationFunctions::setJacFunction(types::String* _odeJacFunc)
 
 bool DifferentialEquationFunctions::setGFunction(types::String* _odeGFunc)
 {
-    if(ConfigVariable::getEntryPoint(_odeGFunc->get(0)))
+    if (ConfigVariable::getEntryPoint(_odeGFunc->get(0)))
     {
         m_pStringGFunctionDyn = _odeGFunc;
         return true;
     }
     else
     {
-        if(m_staticFunctionMap.find(_odeGFunc->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_odeGFunc->get(0)) != m_staticFunctionMap.end())
         {
             m_pStringGFunctionStatic = _odeGFunc;
             return true;
@@ -762,14 +763,14 @@ void DifferentialEquationFunctions::setGuessFunction(types::Callable* _func)
 // bvode set function as types::String gsub, dgsub, fsub, dfsub, guess
 bool DifferentialEquationFunctions::setGsubFunction(types::String* _func)
 {
-    if(ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->get(0)))
     {
         m_pStringGsubFunctionDyn = _func;
         return true;
     }
     else
     {
-        if(m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
         {
             m_pStringGsubFunctionStatic = _func;
             return true;
@@ -780,14 +781,14 @@ bool DifferentialEquationFunctions::setGsubFunction(types::String* _func)
 
 bool DifferentialEquationFunctions::setDgsubFunction(types::String* _func)
 {
-    if(ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->get(0)))
     {
         m_pStringDgsubFunctionDyn = _func;
         return true;
     }
     else
     {
-        if(m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
         {
             m_pStringDgsubFunctionStatic = _func;
             return true;
@@ -798,14 +799,14 @@ bool DifferentialEquationFunctions::setDgsubFunction(types::String* _func)
 
 bool DifferentialEquationFunctions::setFsubFunction(types::String* _func)
 {
-    if(ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->get(0)))
     {
         m_pStringFsubFunctionDyn = _func;
         return true;
     }
     else
     {
-        if(m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
         {
             m_pStringFsubFunctionStatic = _func;
             return true;
@@ -816,14 +817,14 @@ bool DifferentialEquationFunctions::setFsubFunction(types::String* _func)
 
 bool DifferentialEquationFunctions::setDfsubFunction(types::String* _func)
 {
-    if(ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->get(0)))
     {
         m_pStringDfsubFunctionDyn = _func;
         return true;
     }
     else
     {
-        if(m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
         {
             m_pStringDfsubFunctionStatic = _func;
             return true;
@@ -834,14 +835,14 @@ bool DifferentialEquationFunctions::setDfsubFunction(types::String* _func)
 
 bool DifferentialEquationFunctions::setGuessFunction(types::String* _func)
 {
-    if(ConfigVariable::getEntryPoint(_func->get(0)))
+    if (ConfigVariable::getEntryPoint(_func->get(0)))
     {
         m_pStringGuessFunctionDyn = _func;
         return true;
     }
     else
     {
-        if(m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
+        if (m_staticFunctionMap.find(_func->get(0)) != m_staticFunctionMap.end())
         {
             m_pStringGuessFunctionStatic = _func;
             return true;
@@ -916,7 +917,7 @@ int DifferentialEquationFunctions::getOdedcFlag()
 /*------------------------------- private -------------------------------------------*/
 int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, double* ydot)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -935,7 +936,7 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
         types::Double* pDblT = new types::Double(*t);
         pDblT->IncreaseRef();
 
-        if(m_odedcYDSize) // odedc
+        if (m_odedcYDSize) // odedc
         {
             pDblYC = new types::Double(*n, 1);
             pDblYC->set(y);
@@ -955,7 +956,7 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
 
         // push_back
         in.push_back(pDblT);
-        if(m_odedcYDSize) // odedc
+        if (m_odedcYDSize) // odedc
         {
             in.push_back(pDblYC);
             in.push_back(pDblYD);
@@ -966,19 +967,19 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
             in.push_back(pDblY);
         }
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -986,25 +987,25 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
         out[0]->IncreaseRef();
 
         pDblT->DecreaseRef();
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
-        if(m_odedcYDSize) // odedc
+        if (m_odedcYDSize) // odedc
         {
             pDblYC->DecreaseRef();
-            if(pDblYC->isDeletable())
+            if (pDblYC->isDeletable())
             {
                 delete pDblY;
             }
             pDblYD->DecreaseRef();
-            if(pDblYD->isDeletable())
+            if (pDblYD->isDeletable())
             {
                 delete pDblY;
             }
             pDblFlag->DecreaseRef();
-            if(pDblFlag->isDeletable())
+            if (pDblFlag->isDeletable())
             {
                 delete pDblFlag;
             }
@@ -1012,16 +1013,16 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
         else
         {
             pDblY->DecreaseRef();
-            if(pDblY->isDeletable())
+            if (pDblY->isDeletable())
             {
                 delete pDblY;
             }
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
-            if(m_odedcFlag && m_odedcYDSize)
+            if (m_odedcFlag && m_odedcYDSize)
             {
                 C2F(dcopy)(&m_odedcYDSize, out[0]->getAs<types::Double>()->get(), &one, ydot, &one);
             }
@@ -1030,7 +1031,7 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
                 C2F(dcopy)(n, out[0]->getAs<types::Double>()->get(), &one, ydot, &one);
             }
 
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1042,7 +1043,7 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
 
 int DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, int* ml, int* mu, double* J, int* nrpd)
 {
-    if(m_pCallJacFunction)
+    if (m_pCallJacFunction)
     {
         int iRetCount   = 1;
         int one         = 1;
@@ -1063,14 +1064,14 @@ int DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, in
         in.push_back(pDblT);
         in.push_back(pDblY);
 
-        for(int i = 0; i < m_JacArgs.size(); i++)
+        for (int i = 0; i < m_JacArgs.size(); i++)
         {
             in.push_back(m_JacArgs[i]);
         }
 
         bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
@@ -1079,23 +1080,23 @@ int DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, in
         pDblT->DecreaseRef();
         pDblY->DecreaseRef();
 
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             // dimension y(*), pd(nrowpd,*)
             C2F(dcopy)(&size, out[0]->getAs<types::Double>()->get(), &one, J, &one);
@@ -1107,7 +1108,7 @@ int DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, in
 
 int DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int* ng, double* gout)
 {
-    if(m_pCallGFunction)
+    if (m_pCallGFunction)
     {
         int iRetCount   = 1;
         int one         = 1;
@@ -1127,19 +1128,19 @@ int DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int*
         in.push_back(pDblT);
         in.push_back(pDblY);
 
-        for(int i = 0; i < m_odeGArgs.size(); i++)
+        for (int i = 0; i < m_odeGArgs.size(); i++)
         {
             in.push_back(m_odeGArgs[i]);
         }
 
         bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1149,21 +1150,21 @@ int DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int*
         pDblT->DecreaseRef();
         pDblY->DecreaseRef();
 
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             C2F(dcopy)(ng, out[0]->getAs<types::Double>()->get(), &one, gout, &one);
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1175,7 +1176,7 @@ int DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int*
 
 double DifferentialEquationFunctions::callIntgMacroF(double* t)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1192,19 +1193,19 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
         // push_back
         in.push_back(pDblT);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1212,21 +1213,21 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
         out[0]->IncreaseRef();
 
         pDblT->DecreaseRef();
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if(pDblOut->getSize() != 1)
+            if (pDblOut->getSize() != 1)
             {
                 return 0;
             }
             double res = pDblOut->get(0);
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1238,7 +1239,7 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
 
 double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1258,19 +1259,19 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
         in.push_back(pDblX);
         in.push_back(pDblY);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1278,27 +1279,27 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
         out[0]->IncreaseRef();
 
         pDblX->DecreaseRef();
-        if(pDblX->isDeletable())
+        if (pDblX->isDeletable())
         {
             delete pDblX;
         }
 
         pDblY->DecreaseRef();
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if(pDblOut->getSize() != 1)
+            if (pDblOut->getSize() != 1)
             {
                 return 0;
             }
             double res = pDblOut->get(0);
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1310,7 +1311,7 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
 
 double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, double* funvls)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1321,7 +1322,7 @@ double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, 
         ast::ExecVisitor execFunc;
 
         // create input args
-        types::Double* pDblXYZ = new types::Double(3,1);
+        types::Double* pDblXYZ = new types::Double(3, 1);
         pDblXYZ->set(xyz);
         pDblXYZ->IncreaseRef();
         types::Double* pDblNumfun = new types::Double(*numfun);
@@ -1331,19 +1332,19 @@ double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, 
         in.push_back(pDblXYZ);
         in.push_back(pDblNumfun);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1351,27 +1352,27 @@ double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, 
         out[0]->IncreaseRef();
 
         pDblXYZ->DecreaseRef();
-        if(pDblXYZ->isDeletable())
+        if (pDblXYZ->isDeletable())
         {
             delete pDblXYZ;
         }
 
         pDblNumfun->DecreaseRef();
-        if(pDblNumfun->isDeletable())
+        if (pDblNumfun->isDeletable())
         {
             delete pDblNumfun;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if(pDblOut->getSize() != *numfun)
+            if (pDblOut->getSize() != *numfun)
             {
                 return 0;
             }
             C2F(dcopy)(numfun, pDblOut->get(), &one, funvls, &one);
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1381,9 +1382,9 @@ double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, 
     return 0;
 }
 
-int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* x2, double* xres, int* itype) 
+int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* x2, double* xres, int* itype)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1402,26 +1403,26 @@ int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* 
         pDblX->IncreaseRef();
         in.push_back(pDblX);
 
-        if(*nn == 2)
+        if (*nn == 2)
         {
             pDblY = new types::Double(*x2);
             pDblY->IncreaseRef();
             in.push_back(pDblY);
         }
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 1;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 1;
         }
@@ -1429,30 +1430,30 @@ int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* 
         out[0]->IncreaseRef();
 
         pDblX->DecreaseRef();
-        if(pDblX->isDeletable())
+        if (pDblX->isDeletable())
         {
             delete pDblX;
         }
 
-        if(*nn == 2)
+        if (*nn == 2)
         {
             pDblY->DecreaseRef();
-            if(pDblY->isDeletable())
+            if (pDblY->isDeletable())
             {
                 delete pDblY;
             }
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if(pDblOut->getSize() != 1)
+            if (pDblOut->getSize() != 1)
             {
                 return 1;
             }
 
-            if(pDblOut->isComplex())
+            if (pDblOut->isComplex())
             {
                 *itype = 1;
                 xres[0] = pDblOut->get(0);
@@ -1464,7 +1465,7 @@ int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* 
                 xres[0] = pDblOut->get(0);
             }
 
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1476,7 +1477,7 @@ int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* 
 
 int DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double* g)
 {
-    if(m_pCallGsubFunction)
+    if (m_pCallGsubFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1499,19 +1500,19 @@ int DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double*
         in.push_back(pDblZ);
 
 
-        for(int i = 0; i < m_GsubArgs.size(); i++)
+        for (int i = 0; i < m_GsubArgs.size(); i++)
         {
             in.push_back(m_GsubArgs[i]);
         }
 
         bool bOk = m_pCallGsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1519,28 +1520,28 @@ int DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double*
         out[0]->IncreaseRef();
 
         pDblI->DecreaseRef();
-        if(pDblI->isDeletable())
+        if (pDblI->isDeletable())
         {
             delete pDblI;
         }
 
         pDblZ->DecreaseRef();
-        if(pDblZ->isDeletable())
+        if (pDblZ->isDeletable())
         {
             delete pDblZ;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if(pDblOut->getSize() != 1)
+            if (pDblOut->getSize() != 1)
             {
                 return 0;
             }
 
             *g = pDblOut->get(0);
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1552,7 +1553,7 @@ int DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double*
 
 int DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, double* g)
 {
-    if(m_pCallDgsubFunction)
+    if (m_pCallDgsubFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1574,19 +1575,19 @@ int DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, double
         pDblZ->IncreaseRef();
         in.push_back(pDblZ);
 
-        for(int i = 0; i < m_DgsubArgs.size(); i++)
+        for (int i = 0; i < m_DgsubArgs.size(); i++)
         {
             in.push_back(m_DgsubArgs[i]);
         }
 
         bool bOk = m_pCallDgsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1594,28 +1595,28 @@ int DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, double
         out[0]->IncreaseRef();
 
         pDblI->DecreaseRef();
-        if(pDblI->isDeletable())
+        if (pDblI->isDeletable())
         {
             delete pDblI;
         }
 
         pDblZ->DecreaseRef();
-        if(pDblZ->isDeletable())
+        if (pDblZ->isDeletable())
         {
             delete pDblZ;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if(pDblOut->getSize() != m_bvodeM)
+            if (pDblOut->getSize() != m_bvodeM)
             {
                 return 0;
             }
 
             C2F(dcopy)(&m_bvodeM, pDblOut->get(), &one, g, &one);
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1627,7 +1628,7 @@ int DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, double
 
 int DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, double* d)
 {
-    if(m_pCallFsubFunction)
+    if (m_pCallFsubFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1650,19 +1651,19 @@ int DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, doub
         in.push_back(pDblZ);
 
 
-        for(int i = 0; i < m_FsubArgs.size(); i++)
+        for (int i = 0; i < m_FsubArgs.size(); i++)
         {
             in.push_back(m_FsubArgs[i]);
         }
 
         bool bOk = m_pCallFsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1670,28 +1671,28 @@ int DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, doub
         out[0]->IncreaseRef();
 
         pDblX->DecreaseRef();
-        if(pDblX->isDeletable())
+        if (pDblX->isDeletable())
         {
             delete pDblX;
         }
 
         pDblZ->DecreaseRef();
-        if(pDblZ->isDeletable())
+        if (pDblZ->isDeletable())
         {
             delete pDblZ;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
-            if(pDblOut->getSize() != m_bvodeN)
+            if (pDblOut->getSize() != m_bvodeN)
             {
                 return 0;
             }
 
             C2F(dcopy)(&m_bvodeN, pDblOut->get(), &one, d, &one);
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1703,7 +1704,7 @@ int DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, doub
 
 int DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, double* d)
 {
-    if(m_pCallDfsubFunction)
+    if (m_pCallDfsubFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1726,19 +1727,19 @@ int DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, dou
         in.push_back(pDblZ);
 
 
-        for(int i = 0; i < m_DfsubArgs.size(); i++)
+        for (int i = 0; i < m_DfsubArgs.size(); i++)
         {
             in.push_back(m_DfsubArgs[i]);
         }
 
         bool bOk = m_pCallDfsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1746,29 +1747,29 @@ int DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, dou
         out[0]->IncreaseRef();
 
         pDblX->DecreaseRef();
-        if(pDblX->isDeletable())
+        if (pDblX->isDeletable())
         {
             delete pDblX;
         }
 
         pDblZ->DecreaseRef();
-        if(pDblZ->isDeletable())
+        if (pDblZ->isDeletable())
         {
             delete pDblZ;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
             int size = m_bvodeN * m_bvodeM;
-            if(pDblOut->getSize() != size)
+            if (pDblOut->getSize() != size)
             {
                 return 0;
             }
 
             C2F(dcopy)(&size, pDblOut->get(), &one, d, &one);
-            if(out[0]->isDeletable())
+            if (out[0]->isDeletable())
             {
                 delete out[0];
             }
@@ -1780,7 +1781,7 @@ int DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, dou
 
 int DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, double* d)
 {
-    if(m_pCallGuessFunction)
+    if (m_pCallGuessFunction)
     {
         int one         = 1;
         int iRetCount   = 2;
@@ -1796,19 +1797,19 @@ int DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, dou
         pDblX->IncreaseRef();
         in.push_back(pDblX);
 
-        for(int i = 0; i < m_GuessArgs.size(); i++)
+        for (int i = 0; i < m_GuessArgs.size(); i++)
         {
             in.push_back(m_GuessArgs[i]);
         }
 
         bool bOk = m_pCallGuessFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 2)
+        if (out.size() != 2)
         {
             return 0;
         }
@@ -1817,42 +1818,42 @@ int DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, dou
         out[1]->IncreaseRef();
 
         pDblX->DecreaseRef();
-        if(pDblX->isDeletable())
+        if (pDblX->isDeletable())
         {
             delete pDblX;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble() == false)
+        if (out[0]->isDouble() == false)
         {
             return 0;
         }
 
         out[1]->DecreaseRef();
-        if(out[1]->isDouble() == false)
+        if (out[1]->isDouble() == false)
         {
             return 0;
         }
 
         types::Double* pDblOutZ = out[0]->getAs<types::Double>();
-        if(pDblOutZ->getSize() != m_bvodeM)
+        if (pDblOutZ->getSize() != m_bvodeM)
         {
             return 0;
         }
 
         types::Double* pDblOutD = out[1]->getAs<types::Double>();
-        if(pDblOutD->getSize() != m_bvodeN)
+        if (pDblOutD->getSize() != m_bvodeN)
         {
             return 0;
         }
 
         C2F(dcopy)(&m_bvodeM, pDblOutZ->get(), &one, z, &one);
         C2F(dcopy)(&m_bvodeN, pDblOutD->get(), &one, d, &one);
-        if(out[0]->isDeletable())
+        if (out[0]->isDeletable())
         {
             delete out[0];
         }
-        if(out[1]->isDeletable())
+        if (out[1]->isDeletable())
         {
             delete out[1];
         }
@@ -1864,7 +1865,7 @@ int DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, dou
 int DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y, double*s, double* r, int* ires)
 {
     *ires = 2;
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1888,19 +1889,19 @@ int DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y
         pDblS->IncreaseRef();
         in.push_back(pDblS);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1908,38 +1909,38 @@ int DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y
         out[0]->IncreaseRef();
 
         pDblT->DecreaseRef();
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
         pDblY->DecreaseRef();
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
         pDblS->DecreaseRef();
-        if(pDblS->isDeletable())
+        if (pDblS->isDeletable())
         {
             delete pDblS;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble() == false)
+        if (out[0]->isDouble() == false)
         {
             return 0;
         }
 
         types::Double* pDblOutR = out[0]->getAs<types::Double>();
-        if(pDblOutR->getSize() != *neq)
+        if (pDblOutR->getSize() != *neq)
         {
             return 0;
         }
 
         C2F(dcopy)(neq, pDblOutR->get(), &one, r, &one);
         *ires = 1;
-        if(out[0]->isDeletable())
+        if (out[0]->isDeletable())
         {
             delete out[0];
         }
@@ -1950,7 +1951,7 @@ int DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y
 
 int DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y, double* ml, double* mu, double* p, int* nrowp)
 {
-    if(m_pCallGFunction)
+    if (m_pCallGFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -1974,19 +1975,19 @@ int DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y
         pDblP->IncreaseRef();
         in.push_back(pDblP);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -1994,32 +1995,32 @@ int DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y
         out[0]->IncreaseRef();
 
         pDblT->DecreaseRef();
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
         pDblY->DecreaseRef();
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble() == false)
+        if (out[0]->isDouble() == false)
         {
             return 0;
         }
 
         types::Double* pDblOutP = out[0]->getAs<types::Double>();
-        if(pDblOutP->getCols() != *neq || pDblOutP->getRows() != *nrowp)
+        if (pDblOutP->getCols() != *neq || pDblOutP->getRows() != *nrowp)
         {
             return 0;
         }
 
         int size = *neq * *nrowp;
         C2F(dcopy)(&size, pDblOutP->get(), &one, p, &one);
-        if(out[0]->isDeletable())
+        if (out[0]->isDeletable())
         {
             delete out[0];
         }
@@ -2030,7 +2031,7 @@ int DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y
 
 int DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double* y, double* s, double* ml, double* mu, double* p, int* nrowp)
 {
-    if(m_pCallJacFunction)
+    if (m_pCallJacFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -2054,19 +2055,19 @@ int DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double*
         pDblS->IncreaseRef();
         in.push_back(pDblS);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -2074,38 +2075,38 @@ int DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double*
         out[0]->IncreaseRef();
 
         pDblT->DecreaseRef();
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
         pDblY->DecreaseRef();
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
         pDblS->DecreaseRef();
-        if(pDblS->isDeletable())
+        if (pDblS->isDeletable())
         {
             delete pDblS;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble() == false)
+        if (out[0]->isDouble() == false)
         {
             return 0;
         }
 
         types::Double* pDblOutP = out[0]->getAs<types::Double>();
-        if(pDblOutP->getCols() != *neq || pDblOutP->getRows() != *nrowp)
+        if (pDblOutP->getCols() != *neq || pDblOutP->getRows() != *nrowp)
         {
             return 0;
         }
 
         int size = *neq * *nrowp;
         C2F(dcopy)(&size, pDblOutP->get(), &one, p, &one);
-        if(out[0]->isDeletable())
+        if (out[0]->isDeletable())
         {
             delete out[0];
         }
@@ -2116,7 +2117,7 @@ int DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double*
 
 int DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double* ydot, double* delta, int* ires, double* rpar, int* ipar)
 {
-    if(m_pCallFFunction)
+    if (m_pCallFFunction)
     {
         int one         = 1;
         int iRetCount   = 2;
@@ -2140,19 +2141,19 @@ int DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double*
         pDblYdot->IncreaseRef();
         in.push_back(pDblYdot);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 2)
+        if (out.size() != 2)
         {
             return 0;
         }
@@ -2161,50 +2162,50 @@ int DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double*
         out[1]->IncreaseRef();
 
         pDblT->DecreaseRef();
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
         pDblY->DecreaseRef();
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
         pDblYdot->DecreaseRef();
-        if(pDblYdot->isDeletable())
+        if (pDblYdot->isDeletable())
         {
             delete pDblYdot;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble() == false)
+        if (out[0]->isDouble() == false)
         {
             return 0;
         }
 
         out[1]->DecreaseRef();
-        if(out[1]->isDouble() == false)
+        if (out[1]->isDouble() == false)
         {
             return 0;
         }
 
         types::Double* pDblOutDelta = out[0]->getAs<types::Double>();
-        if(pDblOutDelta->getSize() != m_odeYRows)
+        if (pDblOutDelta->getSize() != m_odeYRows)
         {
             return 0;
         }
 
         types::Double* pDblOutIres = out[1]->getAs<types::Double>();
-        if(pDblOutIres->getSize() != 1)
+        if (pDblOutIres->getSize() != 1)
         {
             return 0;
         }
 
         C2F(dcopy)(&m_odeYRows, pDblOutDelta->get(), &one, delta, &one);
         *ires = (int)pDblOutIres->get(0);
-        if(out[0]->isDeletable())
+        if (out[0]->isDeletable())
         {
             delete out[0];
         }
@@ -2215,7 +2216,7 @@ int DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double*
 
 int DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, double* ydot, double* pd, double* cj, double* rpar, int* ipar)
 {
-    if(m_pCallJacFunction)
+    if (m_pCallJacFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -2243,19 +2244,19 @@ int DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doubl
         pDblCj->IncreaseRef();
         in.push_back(pDblCj);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -2263,46 +2264,46 @@ int DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doubl
         out[0]->IncreaseRef();
 
         pDblT->DecreaseRef();
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
         pDblY->DecreaseRef();
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
         pDblYdot->DecreaseRef();
-        if(pDblYdot->isDeletable())
+        if (pDblYdot->isDeletable())
         {
             delete pDblYdot;
         }
 
         pDblCj->DecreaseRef();
-        if(pDblCj->isDeletable())
+        if (pDblCj->isDeletable())
         {
             delete pDblCj;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble() == false)
+        if (out[0]->isDouble() == false)
         {
             return 0;
         }
 
         types::Double* pDblOutPd = out[0]->getAs<types::Double>();
-        if( (pDblOutPd->getCols() != m_odeYRows) ||
-            (!m_bandedJac && pDblOutPd->getRows() != m_odeYRows) ||
-            (m_bandedJac && pDblOutPd->getRows() != (2 * m_ml + m_mu + 1)))
+        if ( (pDblOutPd->getCols() != m_odeYRows) ||
+                (!m_bandedJac && pDblOutPd->getRows() != m_odeYRows) ||
+                (m_bandedJac && pDblOutPd->getRows() != (2 * m_ml + m_mu + 1)))
         {
             return 0;
         }
 
         int size = pDblOutPd->getSize();
         C2F(dcopy)(&size, pDblOutPd->get(), &one, pd, &one);
-        if(out[0]->isDeletable())
+        if (out[0]->isDeletable())
         {
             delete out[0];
         }
@@ -2313,7 +2314,7 @@ int DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doubl
 
 int DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* y, int* ng, double* gout, double* rpar, int* ipar)
 {
-    if(m_pCallGFunction)
+    if (m_pCallGFunction)
     {
         int one         = 1;
         int iRetCount   = 1;
@@ -2332,19 +2333,19 @@ int DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* y
         pDblY->IncreaseRef();
         in.push_back(pDblY);
 
-        for(int i = 0; i < m_FArgs.size(); i++)
+        for (int i = 0; i < m_FArgs.size(); i++)
         {
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
@@ -2352,31 +2353,31 @@ int DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* y
         out[0]->IncreaseRef();
 
         pDblT->DecreaseRef();
-        if(pDblT->isDeletable())
+        if (pDblT->isDeletable())
         {
             delete pDblT;
         }
 
         pDblY->DecreaseRef();
-        if(pDblY->isDeletable())
+        if (pDblY->isDeletable())
         {
             delete pDblY;
         }
 
         out[0]->DecreaseRef();
-        if(out[0]->isDouble() == false)
+        if (out[0]->isDouble() == false)
         {
             return 0;
         }
 
         types::Double* pDblOutGout = out[0]->getAs<types::Double>();
-        if(pDblOutGout->getSize() != *ng)
+        if (pDblOutGout->getSize() != *ng)
         {
             return 0;
         }
 
         C2F(dcopy)(ng, pDblOutGout->get(), &one, gout, &one);
-        if(out[0]->isDeletable())
+        if (out[0]->isDeletable())
         {
             delete out[0];
         }

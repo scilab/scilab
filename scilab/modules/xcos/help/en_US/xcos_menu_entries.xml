@@ -120,7 +120,7 @@
                     </inlinemediaobject>
                 </para>
                 <para>
-                    Select the <emphasis>Open</emphasis> menu item to load a XML (<emphasis>.xcos</emphasis>) or a binary file
+                    Select the <emphasis>Open</emphasis> menu item to load a XML (<emphasis>.zcos</emphasis>) or a binary file
                     (<emphasis>.cos</emphasis>) which contain saved block diagram or a palette. The command open a dialog box allows
                     you to choose the folder and the file.
                 </para>
@@ -142,7 +142,7 @@
                 <para>
                     If you select this menu item and you have never clicked on the <emphasis>Save</emphasis> or
                     <emphasis>Save As</emphasis> menu item, a dialog allows you to choose a directory and
-                    specify a file name without extension. The default extension is <emphasis>.xcos</emphasis>.
+                    specify a file name without extension. The default extension is <emphasis>.zcos</emphasis>.
                 </para>
                 <para>The diagram takes the name of the file (without the extension).</para>
                 <para/>
@@ -161,7 +161,7 @@
                 </para>
                 <para>
                     A dialog box allows specifying a file name without the extension and a saving folder.
-                    The default extension is <emphasis>.xcos</emphasis>.
+                    The default extension is <emphasis>.zcos</emphasis>.
                 </para>
                 <para>The diagram takes the name of the file (without the extension).</para>
                 <para/>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-09-21 13:43+0000\n"
+"PO-Revision-Date: 2013-03-22 15:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: ja\n"
 
 #, c-format
@@ -501,6 +501,18 @@ msgstr "SciNotes"
 msgid "Error while reading the String"
 msgstr "文字列を読み込む際にエラーが発生しました"
 
+#, c-format
+msgid "File not found: %s"
+msgstr "ファイルが見つかりません: %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "I/Oエラー: %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr "ファイル %s が他のプログラムにより変更されました. 再度読み込みますか?"
+
 msgid "Source of '"
 msgstr "ソースコード '"
 
@@ -711,10 +723,8 @@ msgid "String %s not found"
 msgstr "文字列 %s は見つかりません"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr "ファイル %s が存在しません"
+msgid "The file %s does not exist. Do you want to create it?"
+msgstr "ファイル %s が存在しません.  作成しますか?"
 
 msgid "close this tab"
 msgstr "このタブを閉じる"
@@ -722,18 +732,13 @@ msgstr "このタブを閉じる"
 msgid "This file"
 msgstr "このファイル"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr " は 直近の保存の後で修正されました. 保存しますか?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
+msgstr "直近の保存以降, %s が変更されています. 保存しますか?"
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
-msgstr ""
-"ファイル %s は別のプログラムで修正されました !\n"
-"上書きしますか?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
+msgstr "%s が他のプログラムにより変更されています! 上書きしますか?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "警告: このファイルは他のプログラムで修正されています!"

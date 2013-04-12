@@ -19,7 +19,7 @@
 
 
 
-// xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.xcos');
+// xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.zcos');
 // Open a superblock
 // modify value inside
 // check that the simulation differs when values changes

@@ -41,7 +41,7 @@ degree(v) // Devrait retourner 2 et 3
 
 s=poly(0,"s");
 p=1+s+2*s^42;
-degree(v) // Devrait retourner 42
+degree(p) // Devrait retourner 42
  ]]></programlisting>
     </refsection>
     

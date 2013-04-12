@@ -84,31 +84,31 @@ int sci_matfile_listvar(char* fname, void* pvApiCtx)
   matvar = Mat_VarReadNext(matfile);
   while (matvar != NULL && matvar->name != NULL)
     {
-      nbvar++;
-      varnames = (char**) REALLOC(varnames, nbvar*sizeof(char*));
-      if (varnames == NULL)
-	{
-	  Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
-	  return 1;
-	}
-      varnames[nbvar-1] = os_strdup(matvar->name);
-      varclasses = (double*) REALLOC(varclasses, nbvar*sizeof(double));
-      if (varnames == NULL)
-	{
-	  Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
-	  return 1;
-	}
-      varclasses[nbvar-1] = (double) matvar->class_type;
-      vartypes = (double*) REALLOC(vartypes, nbvar*sizeof(double));
-      if (varnames == NULL)
-	{
-	  Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
-	  return 1;
-	}
-      vartypes[nbvar-1] = (double) matvar->data_type;
+        nbvar++;
+        varnames = (char**) REALLOC(varnames, nbvar * sizeof(char*));
+        if (varnames == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            return FALSE;
+        }
+        varnames[nbvar - 1] = os_strdup(matvar->name);
+        varclasses = (double*) REALLOC(varclasses, nbvar * sizeof(double));
+        if (varclasses  == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            return FALSE;
+        }
+        varclasses[nbvar - 1] = (double) matvar->class_type;
+        vartypes = (double*) REALLOC(vartypes, nbvar * sizeof(double));
+        if (vartypes == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
+            return FALSE;
+        }
+        vartypes[nbvar - 1] = (double) matvar->data_type;
 
-      Mat_VarFree(matvar);
-      matvar = Mat_VarReadNext(matfile);
+        Mat_VarFree(matvar);
+        matvar = Mat_VarReadNext(matfile);
     }
 
   Mat_VarFree(matvar);

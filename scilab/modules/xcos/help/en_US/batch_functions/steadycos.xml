@@ -52,7 +52,7 @@
 // loading data
 exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
 exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
-importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.xcos");
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.zcos");
 
 // configure the context
 M  = 10;

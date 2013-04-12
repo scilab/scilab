@@ -52,7 +52,7 @@ std::string getExpression(char* _pstFile, Exp* _pExp);
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int promptMode      = 0;//default value at startup, overthise 3
+    int promptMode      = 0;//default value at startup, overthise 3 or verbose ";"
     bool bPromptMode    = false;
     int iErr            = 0;
     bool bErrCatch	    = false;
@@ -62,7 +62,14 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
     if (ConfigVariable::getStartFinished())
     {
-        promptMode = 3;
+        if (ConfigVariable::getVerbose())
+        {
+            promptMode = 3;
+        }
+        else
+        {
+            promptMode = -1;
+        }
     }
 
     if (in.size() < 1 || in.size() > 3)
@@ -601,7 +608,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
                 //blank char at the end of previous line
                 printLine("", "", true);
             }
-            printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), true);
+            printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), false);
         }
         else
         {
@@ -614,7 +621,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
                 *_piCol = loc.first_column;
             }
 
-            printLine("", _pstPreviousBuffer + (loc.first_column - 1), true);
+            printLine("", _pstPreviousBuffer + (loc.first_column - 1), false);
         }
 
 
@@ -623,7 +630,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         {
             (*_piLine)++;
             _pFile->getline(_pstPreviousBuffer, 1024);
-            printLine(_pstPrompt, _pstPreviousBuffer, true);
+            printLine(_pstPrompt, _pstPreviousBuffer, false);
         }
 
         //last line

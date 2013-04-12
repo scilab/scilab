@@ -27,8 +27,12 @@ BOOL setenvc(char *stringIn,char *valueIn)
 #ifdef _MSC_VER
     wchar_t* wstringIn = to_wide_string(stringIn);
     wchar_t* wvalueIn = to_wide_string(valueIn);
+    BOOL ret = 0;
 
-    return setenvcW(wstringIn, wvalueIn);
+    ret = setenvcW(wstringIn, wvalueIn);
+    FREE(wstringIn);
+    FREE(wvalueIn);
+    return ret;
 #else
     /* linux and Mac OS X */
     /* setenv() function is strongly preferred to putenv() */
@@ -62,51 +66,9 @@ BOOL setenvcW(wchar_t *wstringIn,wchar_t *wvalueIn)
     BOOL ret = TRUE;
     int len_env = 0;
 #ifdef _MSC_VER
-    {
-        /*
-        On Windows :
-        each process has two copies of the environment variables,
-        one managed by the OS and one managed by the C library. We set
-        the value in both locations, so that other software that looks in
-        one place or the other is guaranteed to see the value.
-        */
-
-#define ENV_FORMAT L"%ls=%ls"
-
-        if (SetEnvironmentVariableW(wstringIn,wvalueIn) == 0)
-        {
-            ret = FALSE;
-        }
-
-        len_env = (int) (wcslen(wstringIn) + wcslen(wvalueIn) + wcslen(ENV_FORMAT)) + 1;
-        if (len_env < _MAX_ENV)
-        {
-            wchar_t *env = (wchar_t*) MALLOC(len_env * sizeof(wchar_t));
-            if (env)
-            {
-                os_swprintf(env, len_env, ENV_FORMAT, wstringIn, wvalueIn);
-                if(_wputenv(env))
-                {
-                    ret = FALSE;
-                }
-
-                FREE(env);env = NULL;
-            }
-        }
-        else ret = FALSE;
-    }
+    return SetEnvironmentVariableW(wstringIn,wvalueIn);
 #else
-
-    ret = setenvc(wide_string_to_UTF8(wstringIn), wide_string_to_UTF8(wvalueIn));
-
+    return setenvc(wide_string_to_UTF8(wstringIn), wide_string_to_UTF8(wvalueIn));
 #endif
-
-    // Disable TCLSCI
-    //if(ret)
-    //{
-    //    dynamic_setenvtcl(stringIn,valueIn);
-    //}
-
-    return ret;
 }
 /*--------------------------------------------------------------------------*/

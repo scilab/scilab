@@ -8,24 +8,24 @@
 // Import the diagram and augment the ending time
 loadScicos();
 loadXcosLibs();
-importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.xcos");
+importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.zcos");
 scs_m.props.tf = 30000;
 
 solverName=["BDF/Newton", "BDF/Functional", "Adams/Newton", "Adams/Functional", "implicit Runge-Kutta"];
 
 for solver=1:5
 
- // Select the solver (implicit Runge-Kutta is solver number 7)
- scs_m.props.tol(6) = solver;
- if (solver == 5) then scs_m.props.tol(6) = 7; end
+    // Select the solver (implicit Runge-Kutta is solver number 7)
+    scs_m.props.tol(6) = solver;
+    if (solver == 5) then scs_m.props.tol(6) = 7; end
 
- // Set max step size and reltol if implicit Runge-Kutta
- if (solver == 5) then scs_m.props.tol(7) = 0.01; scs_m.props.tol(2) = 1.0e-10; end
+    // Set max step size and reltol if implicit Runge-Kutta
+    if (solver == 5) then scs_m.props.tol(7) = 0.01; scs_m.props.tol(2) = 1.0e-10; end
 
- // Start the timer, launch the simulation and display time
- tic();
- try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end
- t = toc();
- disp(t, "Time for " + solverName(solver) + ":");
+    // Start the timer, launch the simulation and display time
+    tic();
+    try scicos_simulate(scs_m, "nw"); catch disp(lasterror()); end
+    t = toc();
+    disp(t, "Time for " + solverName(solver) + ":");
 
 end

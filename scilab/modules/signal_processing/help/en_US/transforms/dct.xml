@@ -393,12 +393,11 @@
         
         <para>2-D dct</para>
         <programlisting role="example"><![CDATA[ 
-  ----------------------------------
   x=-2:0.1:2;
   A=eval3d(milk_drop,x,x);
   d=dct(A);
   d(abs(d)<1)=0;
-  size(find(d1<>0),'*')
+  size(find(d<>0),'*')
   A1=dct(d,1);
   clf();fig=gcf();fig.color_map=graycolormap(128);
   subplot(121),grayplot(x,x,A)

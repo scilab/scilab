@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -205,6 +205,9 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\scilab_sscanf.cpp" />
+    <ClCompile Include="sci_gateway\c\sci_getURL.c" />
+    <ClCompile Include="sci_gateway\c\sci_splitURL.c" />
+    <ClCompile Include="sci_gateway\c\sci_tempname.c" />
     <ClCompile Include="src\c\addfile.c" />
     <ClCompile Include="src\c\basename.c" />
     <ClCompile Include="src\c\cluni0.c" />

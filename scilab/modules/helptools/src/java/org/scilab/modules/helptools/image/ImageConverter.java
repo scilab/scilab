@@ -221,11 +221,6 @@ public final class ImageConverter {
      * @return the HTML code to insert the image
      */
     public static String getImageByCode(String currentFile, String code, Map<String, String> attrs, String mime, File imageFile, String imageName, String baseImagePath, int lineNumber, String language, boolean isLocalized) {
-        File current = null;
-        try {
-            current = new File(new URI(currentFile));
-        } catch (URISyntaxException e) { }
-
         ExternalImageConverter conv = externalConverters.get(mime);
         if (conv == null) {
             System.err.println("In file " + currentFile + " at line " + lineNumber + ": invalid code:\n" + code);
@@ -237,9 +232,10 @@ public final class ImageConverter {
         }
 
         if (!compareMD5(code, imageFile.getName())) {
+            File current = new File(currentFile);
             if (isLocalized || language.equals("en_US")) {
                 System.err.println("Info: Create image " + imageFile.getName() + " from line " + lineNumber + " in " + current.getName());
-            } else if (!language.equals("en_US")) {
+            } else if (!language.equals("en_US") && imageFile.exists()) {
                 System.err.println("Warning: Overwrite image " + imageFile.getName() + " from line " + lineNumber + " in " + current.getName() + ". Check the code or use scilab:localized=\"true\" attribute.");
             }
 

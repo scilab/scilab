@@ -19,7 +19,7 @@
 #include "BOOL.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
-#include "strsplitfunction.h"
+#include "strsplit.h"
 /*----------------------------------------------------------------------------*/
 int sci_strsplit(char *fname, void* pvApiCtx)
 {
@@ -233,7 +233,7 @@ int sci_strsplit(char *fname, void* pvApiCtx)
 				int m_out = 0, n_out = 0;
 				strsplit_error ierr = STRSPLIT_NO_ERROR;
 
-				wchar_t **results = strsplitfunction(pStVarOne, pdVarTwo, m2 * n2, &ierr);
+				wchar_t **results = strsplit(pStVarOne, pdVarTwo, m2 * n2, &ierr);
 
 				switch (ierr)
 				{

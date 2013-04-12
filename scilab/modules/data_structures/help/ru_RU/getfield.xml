@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>[x,...] = getfield(i, lst)</synopsis>
+        <synopsis>[x,...] = getfield(i, l)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -29,7 +29,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>lst</term>
+                <term>l</term>
                 <listitem>
                     <para>
                         список (list), типизированный список (tlist) или матричноориентированный список (mlist).
@@ -49,7 +49,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Инструкция <literal>[x,...] = getfield(i, lst)</literal> эквивалентна  <literal>[x,...] = lst(i)</literal> для выделения поля с той лишь разницей, что она может также применяться к объектам типа <literal>mlist</literal>.
+            Инструкция <literal>[x,...] = getfield(i, l)</literal> эквивалентна  <literal>[x,...] = l(i)</literal> для выделения поля с той лишь разницей, что она может также применяться к объектам типа <literal>mlist</literal>.
         </para>
     </refsection>
     <refsection>

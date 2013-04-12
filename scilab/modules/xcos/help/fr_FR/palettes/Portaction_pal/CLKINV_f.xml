@@ -188,7 +188,7 @@
             Dans cet exemple nous créons un genérateur d'onde carrée avec deux sorties inverses l'une de l'autre.
             en utilisant un bloc SUPER_f avec le contenu décrit par la figure suivante, dans laquelle vous pouvez voir
             l'utilisation du bloc CLKINV_f comme entrée d'événement du générateur d'onde carrée. 
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
             .
@@ -197,12 +197,12 @@
         <para>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.xcos"/>
+                    <imagedata fileref="../../../../examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.zcos"/>
                 </imageobject>
             </mediaobject>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../..//examples/portaction_pal/en_US/CLKINV_f_internal_en_US.xcos"/>
+                    <imagedata fileref="../../../..//examples/portaction_pal/en_US/CLKINV_f_internal_en_US.zcos"/>
                 </imageobject>
             </mediaobject>
         </para>
@@ -210,7 +210,7 @@
             La figure suivante montre la sortie du Super bloc :
         </para>
         <scilab:image localized="true"><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>

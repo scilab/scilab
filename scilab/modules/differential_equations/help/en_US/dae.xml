@@ -453,13 +453,14 @@ x(t0)=x0  and   xdot(t0)=xdot0
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-//Example with Scilab  code
+//Example with Scilab code
 function [r,ires]=chemres(t,y,yd)
     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
     r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
     r(3) =       y(1) +     y(2)      + y(3)-1;
     ires =  0;
 endfunction
+
 function pd=chemjac(x,y,yd,cj)
     pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
          0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
@@ -478,7 +479,14 @@ y=dae([x0,xd0],0,4d10,chemres,chemjac); // with jacobian
  ]]></programlisting>
         <programlisting role="example"><![CDATA[
 
-//example with C code (C compiler needed) --------------------------------------------------
+//example with C code (C compiler needed)
+--------------------------------------------------
+bOK=haveacompiler();
+if bOK<>%t
+    [btn] = messagebox(["You need a C compiler for this example.";"Execution of this example is canceled."], "Software problem", 'info');
+    return
+end
+
 //-1- create the C codes in TMPDIR - Vanderpol equation, implicit form
 code=['#include <math.h>'
       'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
@@ -493,11 +501,14 @@ code=['#include <math.h>'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
+previous_dir = pwd();
 cd TMPDIR;
 mputl(code, 't22.c')
+
 //-2- compile and load them
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');
 exec('t22loader.sce')
+
 //-3- run
 rtol=[1.d-6;1.d-6];
 atol=[1.d-6;1.d-4];
@@ -505,6 +516,7 @@ t0=0;y0=[2;0];
 y0d=[0;-2];
 t=[20:20:200];
 ng=1;
+
 //simple simulation
 t=0:0.003:300;
 yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
@@ -522,6 +534,7 @@ y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
 plot(yy(1,1),yy(2,1),'r+')
 xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+cd(previous_dir);
  ]]></programlisting>
         <scilab:image><![CDATA[
 code=['#include <math.h>'
@@ -537,9 +550,10 @@ code=['#include <math.h>'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
+previous_dir = pwd()
 cd TMPDIR;
 mputl(code, 't22.c')
-ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');
 exec('t22loader.sce')
 rtol=[1.d-6;1.d-6];
 atol=[1.d-6;1.d-4];
@@ -559,7 +573,8 @@ y01=yy(2:3,qq);
 y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
 plot(yy(1,1),yy(2,1),'r+')
-xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)));
+cd(previous_dir);
  ]]></scilab:image>
     </refsection>
     <refsection role="see also">
@@ -573,6 +588,9 @@ xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
             </member>
             <member>
                 <link linkend="dassl">dassl</link>
+            </member>
+            <member>
+                <link linkend="daskr">daskr</link>
             </member>
             <member>
                 <link linkend="impl">impl</link>

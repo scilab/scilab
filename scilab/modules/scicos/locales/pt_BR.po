@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-04-28 01:56+0000\n"
-"Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
+"PO-Revision-Date: 2013-03-22 19:17+0000\n"
+"Last-Translator: Marcos CARDINOT <mcardinot@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -1037,8 +1037,8 @@ msgid ""
 " some functions might be called with illegal inputs."
 msgstr ""
 "\n"
-" A função residual returna NAN/Inf. \n"
-" por favor verfique seu modelo:\n"
+" A função residual retorna NAN/Inf. \n"
+" Por favor, verifique seu modelo:\n"
 " algumas funções podem estar sendo chamadas com entradas ilegais."
 
 #, c-format
@@ -1112,7 +1112,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Warning the variable %s do not match any context variable name\n"
+"Warning the variable %s does not match any context variable name\n"
 "ignored"
 msgstr ""
 
@@ -1257,12 +1257,12 @@ msgid "%s: Type %s is not implemented.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: invalid dimension for '%s', waiting for %s"
-msgstr "%s: dimensão inválida para '%s', esperando por %s"
+msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
+msgstr ""
 
 #, c-format
-msgid "%s: incorrect type for '%s', getting %s"
-msgstr "%s: tipo incorreto para '%s', obtendo %s"
+msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

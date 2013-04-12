@@ -71,6 +71,9 @@
             <literal>save(filename,"x","y")</literal> (with <literal>"x"</literal> and <literal>"y"</literal> names of variables of your environment) will save your data using the SOD (Scilab Open Data) format (based on HDF5), format that will be readable by Scilab 6 family.
         </para>
         <para>
+            <literal>save(filename,"-append","w", "z")</literal> (with <literal>"w"</literal> and <literal>"z"</literal> names of variables of your environment) will append your data in the existing SOD file called <literal>filename</literal>.
+        </para>
+        <para>
             The change of format between the family 5 and 6 of Scilab has been decided because the 5 format is undocumented, not specified and hard to read. SOD (Scilab 6 default format) is fully documented and easy to read through HDF5 libraries or applications.
         </para>
         <para>

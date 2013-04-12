@@ -7,8 +7,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+
 //=============================================================================
 function bOK = configure_msifort()
+
+// Load dynamic_link Internal lib if it's not already loaded
+if ~ exists("dynamic_linkutilslib") then
+  load("SCI/modules/dynamic_link/macros/utils/lib");
+end
 
 //=============================================================================
 //  functions defined only in configure_ifort
@@ -33,12 +39,10 @@ endfunction
 function bOK = set_commons_ifort12(ifpath, machinepath)
   // intel fortran directories changed (AGAIN !!!) with version 12
   bOK = %F;
-  ENV_PATH = getenv("PATH", "");
-  // example set PATH=%IFORT_COMPILER12%\Bin\intel64;
+    // example set PATH=%IFORT_COMPILER12%\Bin\intel64;
   PATH_TO_ADD = ifpath + "bin" + filesep() + machinepath;
   if isdir(PATH_TO_ADD) then
-    ENV_PATH = PATH_TO_ADD + pathsep() + ENV_PATH;
-    err = setenv("PATH", ENV_PATH);
+    err = addPathToEnv("PATH", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else
@@ -47,11 +51,9 @@ function bOK = set_commons_ifort12(ifpath, machinepath)
   end
 
   // example set INCLUDE=%IFORT_COMPILER12%\compiler\include\intel64;
-  ENV_INCLUDE = getenv("INCLUDE", "");
   PATH_TO_ADD = ifpath + "compiler" + filesep() + "include" + filesep() + machinepath;
   if isdir(PATH_TO_ADD) then
-    ENV_INCLUDE = PATH_TO_ADD + pathsep() + ENV_INCLUDE;
-    err = setenv("INCLUDE", ENV_INCLUDE);
+    err = addPathToEnv("INCLUDE", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else
@@ -60,11 +62,9 @@ function bOK = set_commons_ifort12(ifpath, machinepath)
   end
 
   // example set LIB=%IFORT_COMPILER12%\compiler\lib\intel64;
-  ENV_LIB = getenv("LIB", "");
   PATH_TO_ADD = ifpath + "compiler" + filesep() + "lib" + filesep() + machinepath;
   if isdir(PATH_TO_ADD) then
-    ENV_LIB = PATH_TO_ADD + pathsep() + ENV_LIB;
-    err = setenv("LIB", ENV_LIB);
+    err = addPathToEnv("LIB", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else
@@ -77,12 +77,10 @@ endfunction
 function bOK = set_commons_ifort11(ifpath, machinepath)
   // intel fortran directories changed with version 11
   bOK = %F;
-  ENV_PATH = getenv("PATH", "");
   // example set PATH=%IFORT_COMPILER11%\Bin\intel64;
   PATH_TO_ADD = ifpath + "bin" + filesep() + machinepath;
   if isdir(PATH_TO_ADD) then
-    ENV_PATH = PATH_TO_ADD + pathsep() + ENV_PATH;
-    err = setenv("PATH", ENV_PATH);
+    err = addPathToEnv("PATH", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else
@@ -91,11 +89,9 @@ function bOK = set_commons_ifort11(ifpath, machinepath)
   end
 
   // example set INCLUDE=%IFORT_COMPILER11%\include\intel64;
-  ENV_INCLUDE = getenv("INCLUDE", "");
   PATH_TO_ADD = ifpath + "include" + filesep() + machinepath;
   if isdir(PATH_TO_ADD) then
-    ENV_INCLUDE = PATH_TO_ADD + pathsep() + ENV_INCLUDE;
-    err = setenv("INCLUDE", ENV_INCLUDE);
+    err = addPathToEnv("INCLUDE", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else
@@ -104,11 +100,10 @@ function bOK = set_commons_ifort11(ifpath, machinepath)
   end
 
   // example set LIB=%IFORT_COMPILER10%\lib\intel64;
-  ENV_LIB = getenv("LIB", "");
   PATH_TO_ADD = ifpath + "lib" + filesep() + machinepath;
   if isdir(PATH_TO_ADD) then
     ENV_LIB = PATH_TO_ADD + pathsep() + ENV_LIB;
-    err = setenv("LIB", ENV_LIB);
+    err = addPathToEnv("LIB", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else
@@ -122,11 +117,9 @@ function bOK = set_commons_msi9and10(ifpath,machinepath)
   bOK = %F;
 
   // example set PATH=%IFORT_COMPILER10%\EM64T\Bin;
-  ENV_PATH = getenv("PATH", "");
   PATH_TO_ADD = ifpath + machinepath + filesep() + "bin";
   if isdir(PATH_TO_ADD) then
-    ENV_PATH = PATH_TO_ADD + pathsep() + ENV_PATH;
-    err = setenv("PATH", ENV_PATH);
+    err = addPathToEnv("PATH", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else
@@ -135,11 +128,9 @@ function bOK = set_commons_msi9and10(ifpath,machinepath)
   end
 
   // example set INCLUDE=%IFORT_COMPILER10%\EM64T\Include;
-  ENV_INCLUDE = getenv("INCLUDE", "");
   PATH_TO_ADD = ifpath + machinepath + filesep() + "Include";
   if isdir(PATH_TO_ADD) then
-    ENV_INCLUDE = PATH_TO_ADD + pathsep() + ENV_INCLUDE;
-    err = setenv("INCLUDE", ENV_INCLUDE);
+    err = addPathToEnv("INCLUDE", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else
@@ -148,11 +139,9 @@ function bOK = set_commons_msi9and10(ifpath,machinepath)
   end
 
   // example set LIB=%IFORT_COMPILER10%\EM64T\Lib;
-  ENV_LIB = getenv("LIB", "");
   PATH_TO_ADD = ifpath + machinepath + filesep() + "Lib";
   if isdir(PATH_TO_ADD) then
-    ENV_LIB = PATH_TO_ADD + pathsep() + ENV_LIB;
-    err = setenv("LIB", ENV_LIB);
+    err = addPathToEnv("LIB", PATH_TO_ADD);
     if (err == %F) then bOK = %F,return,end
     bOK = %T;
   else

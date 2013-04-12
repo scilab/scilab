@@ -273,15 +273,15 @@
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>

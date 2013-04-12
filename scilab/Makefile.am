@@ -31,7 +31,8 @@ changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X CHA
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
-bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
+bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
+bin/scinotes bin/xcos
 
 if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
@@ -446,10 +447,14 @@ endif
 DOCMASK=scilab_*_help.jar
 DOCIMAGES=scilab_images.jar
 
-# Path to builded files
+# Path to built files
 PATHTOHELPFILES = modules/helptools/jar/
 
-# Path javasci to builded files
+# Path to scirenderer jar
+PATHTOSCIRENDERER = modules/scirenderer/jar/
+SCIRENDERERJAR = scirenderer.jar
+
+# Path javasci to built files
 PATHTOJAVASCIDOC = modules/javasci/javadoc/
 JAVASCI_DIRS = . resources \
 	org/scilab/modules/javasci/ \
@@ -494,6 +499,11 @@ if BUILD_HELP
 			done; \
 	done; \
 	fi
+endif
+if !EXTERNAL_SCIRENDERER
+# Also install scirenderer.jar
+	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
+	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
 endif
 
 # Pkgconfig directory

@@ -16,7 +16,7 @@
 // Scilab crash when simulating scopes with the same window ids.
 
 
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8630.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8630.zcos");
 if ~status then pause, end
 
 prot = funcprot();

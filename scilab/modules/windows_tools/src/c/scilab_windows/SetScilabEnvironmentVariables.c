@@ -23,6 +23,8 @@
 #include "ConvertSlash.h"
 #include "charEncoding.h"
 #include "getshortpathname.h"
+#include "stristr.h"
+#include "strsubst.h"
 /*--------------------------------------------------------------------------*/
 static BOOL IsTheGoodShell(void);
 static BOOL Set_Shell(void);
@@ -219,29 +221,45 @@ BOOL Set_Shell(void)
 /*--------------------------------------------------------------------------*/
 static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath)
 {
-#define PATH_FORMAT "PATH=%s/bin;%s"
+#define SCILAB_BIN_PATH "%s/bin"
+#define NEW_PATH "PATH=%s;%s"
 
     BOOL bOK = FALSE;
     char *PATH = NULL;
     char *env = NULL;
+    char scilabBinPath[MAX_PATH];
+    char *scilabBinPathConverted;
 
     PATH = getenv("PATH");
 
-    env = (char*) MALLOC(sizeof(char) * (strlen(PATH_FORMAT) + strlen(PATH) +
+    env = (char*) MALLOC(sizeof(char) * (strlen(NEW_PATH) + strlen(PATH) +
                                          strlen(DefaultPath) + 1));
     if (env)
     {
-        sprintf(env, PATH_FORMAT, DefaultPath, PATH);
-        if (_putenv (env))
+        sprintf(scilabBinPath, SCILAB_BIN_PATH, DefaultPath);
+
+        scilabBinPathConverted = (char*) MALLOC(MAX_PATH * sizeof(char));
+#ifdef _MSC_VER
+        scilabBinPathConverted = strsub(scilabBinPath, "/", "\\");
+#else
+        scilabBinPathConverted = strdup(scilabBinPath);
+#endif
+        if (stristr(PATH, scilabBinPathConverted) == 0)
         {
-            bOK = FALSE;
+            sprintf(env, NEW_PATH, scilabBinPathConverted, PATH);
+            if (_putenv (env))
+            {
+                bOK = FALSE;
+            }
+            else
+            {
+                bOK = TRUE;
+            }
+            FREE(env);
+            env = NULL;
         }
-        else
-        {
-            bOK = TRUE;
-        }
-        FREE(env);
-        env = NULL;
+
+        FREE(scilabBinPathConverted);
     }
     return bOK;
 }

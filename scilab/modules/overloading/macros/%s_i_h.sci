@@ -8,7 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function h=%s_i_h(i,v,h)
-disp(i)
   h=generic_i_h(i,v,h)
 endfunction
 

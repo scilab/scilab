@@ -64,10 +64,10 @@
     y=cos(2*%pi*(0:4)/5);
 
     plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-    xset("color",5)
-    xpoly(x,y,"lines",1) // by default closed
-
+    xpoly(x,y,"lines") // by default closed
     e=gce(); // get the current entity (the last created: here the polyline)
+    set(e,"foreground",5);
+
     e.closed = 'off' // the polyline is now open
     ]]></programlisting>
         <scilab:image>
@@ -75,14 +75,31 @@
             y=cos(2*%pi*(0:4)/5);
             
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-            xset("color",5)
-            xpoly(x,y,"lines",1)
-            
+            xpoly(x,y,"lines")
             e=gce();
+            set(e,"foreground",5)
             e.closed = 'off'
             
         </scilab:image>
-        
+        <programlisting role="example"><![CDATA[
+    // With marks instead of lines
+    plot2d(0,0,1,rect=[0,0,12,10], frameflag=3)
+    t=[0:4]*2*%pi/5;
+    x=5+5*cos(t);
+    y=5+5*sin(t);
+    xpoly(x,y,"marks")
+    e=gce();
+    set(e,"mark_style",2);
+    ]]></programlisting>
+        <scilab:image>
+            plot2d(0,0,1,rect=[0,0,12,10], frameflag=3)
+            t=[0:4]*2*%pi/5;
+            x=5+5*cos(t);
+            y=5+5*sin(t);
+            xpoly(x,y,"marks")
+            e=gce();
+            set(e,"mark_style",2);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -95,6 +112,9 @@
             </member>
             <member>
                 <link linkend="xpolys">xpolys</link>
+            </member>
+            <member>
+                <link linkend="polyline_properties">polyline_properties</link>
             </member>
         </simplelist>
     </refsection>

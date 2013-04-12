@@ -74,14 +74,13 @@ e.closed = 'off' // ポリラインはオープンされます
             y=cos(2*%pi*(0:4)/5);
             
             plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-            xset("color",5)
-            xpoly(x,y,"lines",1)
-            
+            xpoly(x,y,"lines")
             e=gce();
+            set(e,"foreground",5)
             e.closed = 'off'
             
         </scilab:image>
-        
+         
     </refsection>
     <refsection role="see also">
         <title>参照</title>

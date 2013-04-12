@@ -96,10 +96,10 @@
         </para>
         <para>Un exemple de graphique d'une zone morte particulière est donné ci-dessous :</para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/fr_FR/deadband_fr_FR.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -246,10 +246,10 @@
         <para>Ce qui suit est un exemple de système avec zone morte.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/fr_FR/deadband_fr_FR.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -263,7 +263,7 @@
         <para>Ce graphique montre l'effet de la zone morte sur un signal sinusoïdal.</para>
         <para>
             <scilab:image localized="true"><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/discontinuities_pal/fr_FR/deadband_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>

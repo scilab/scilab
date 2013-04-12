@@ -3,18 +3,18 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="pathconvert">
     <refnamediv>
         <refname>pathconvert</refname>
-        <refpurpose>преобразование имён путей между POSIX и Windows.  </refpurpose>
+        <refpurpose>преобразование имён путей между POSIX и Windows.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
@@ -27,7 +27,7 @@
                 <term>paths</term>
                 <listitem>
                     <para>
-                        матрица строк, указывающая набор имён путей.
+                        матрица строк, указывающая набор путей к файлам.
                     </para>
                 </listitem>
             </varlistentry>
@@ -35,15 +35,20 @@
                 <term>flagtrail</term>
                 <listitem>
                     <para>
-                        логический необязательный параметр. Его значение по умолчанию равно <constant>%t</constant>.
+                        необязательное логическое значение, используемое для
+                        добавления завершающего разделителя к путям (<literal>\</literal>
+                        или <literal>/</literal> в зависимости от целевого формата пути).
+                        Его значение по умолчанию равно <constant>%t</constant>.
                     </para>
-                </listitem>
+                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flagexpand</term>
                 <listitem>
                     <para>
-                        логический необязательный параметр. Его значение по умолчанию зависит от результата <code>getos() == 'Windows'</code>.
+                        необязательное логическое значение, используемое для составления
+                        пути из переменных, идущих впереди. Его значение по умолчанию
+                        ИСТИНА (<constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,7 +56,9 @@
                 <term>type</term>
                 <listitem>
                     <para>
-                        строковое значение <literal>'u'</literal> или <literal>'w'</literal>.
+                        необязательное строковое значение, используемое для определения
+                        целевого формата пути: <literal>'u'</literal> для формата пути
+                        POSIX (GNU/Linux, ...) и <literal>'w'</literal> формата пути Windows.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,27 +67,69 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>pathconvert</function> может быть использована для преобразования набора имён путей (заданного матрицей строк <varname>paths</varname>) из имени файла, принятого в Windows, в имена путей, принятых в POSIX, и обратно. Целевой стиль указывается необязательным строкой <varname>type</varname>, который указывает тип: <literal>'u'</literal> для Unix или <literal>'w'</literal> для Windows. Стиль по умолчанию устанавливается в соответствии со значением <code>getos() == 'Windows'</code>. Если <code>getos() == 'Windows'</code> равно <constant>%t</constant> (соответственно <constant>%f</constant> ), то тип по умолчанию равен <literal>'w'</literal> (соответственно <literal>'u'</literal>).
+            Функция <function>pathconvert</function> используется для преобразования
+            набора имён путей в формат, совместимый с операционной системой. Например,
+            стиль путей в Windows использует <literal>/</literal> для разделителей
+            файлов, в то время как в других операционных системах это <literal>\</literal>.
         </para>
         <para>
-            Имена путей в Windows, начинающиеся с <literal>Имя:</literal> преобразуются в имена путей, начинающихся с <literal>/cygdrive/имя/</literal>, используя конвенцию cygwin.
+            По умолчанию пути преобразуются в формат путей текущей операционной
+            системы (но можно определить и другой формат путей с помощью
+            аргумента <varname>type</varname>).
         </para>
         <para>
-            <varname>flagtrail</varname> -- это необязательный логический параметр. Когда его значение равно <constant>%t</constant> (значение по умолчанию), то заключительный разделитель (<literal>'\'</literal> или <literal>'/'</literal>) добавляется к концу пути, если он был пропущен. Если <varname>flagtrail</varname> установлен в <constant>%f</constant>, то заключительный разделитель удаляется.
+            <note>
+                Заметьте: пути в Windows, начинающиеся с префикса буквы диска,
+                преобразуются в пути POSIX, используя соглашение cygwin (с
+                <literal>/cygdrive</literal>). Например: <literal>C:\tmp</literal>
+                будет преобразовано в <literal>/cygdrive/C/tmp</literal>.
+            </note>
         </para>
         <para>
-            <varname>flagexpand</varname> -- это необязательный логический параметр. Когда его значение равно<constant>%t</constant>, то строки, с которых начинается имя пути, такие как <literal>HOME</literal>, <literal>SCI</literal> или <literal>~</literal> расширяются с помощью переменных среды.
+            <varname>flagtrail</varname> используется для добавления или удаления
+            разделителя файлов (в зависимости от целевого формата пути) к концу
+            путей. Когда этот параметр установлен в ИСТИНУ, то заключительный
+            разделитель файлов добавляется. В противном случае заключительный
+            разделитель удаляется.
+        </para>
+        <para>
+            <varname>flagexpand</varname> используется для развёртывания
+            переменных окружения Scilab'а, стоящих в путях впереди.
+            Принимаются следующие переменные:
+            <itemizedlist>
+                <listitem>
+                    <constant>SCI</constant>
+                </listitem>
+                <listitem>
+                    <constant>WSCI</constant>
+                </listitem>
+                <listitem>
+                    <constant>SCIHOME</constant>
+                </listitem>
+                <listitem>
+                    <constant>TMPDIR</constant>
+                </listitem>
+                <listitem>
+                    <literal>home</literal> (или <literal>~</literal>)
+                </listitem>
+            </itemizedlist>
+            <caution>
+                <constant>WSCI</constant> не известна в GNU/Linux, а
+                <literal>~</literal> в значении "путь" неизвестна в
+                Windows.
+            </caution>
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
-pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"u")
-pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"w")
-pathconvert("SCI/modules/fileio/macros/foo.sci",%f,%t,"w")
-pathconvert("HOME/modules/fileio/macros/foo.sci",%t,%t,"w")
-pathconvert("c:/tmp",%f,%t,"u")
-pathconvert("/cygdrive/c/tmp",%f,%f,"w")
+        <programlisting role="example"><![CDATA[
+pathconvert("SCI/modules/foo", %f, %t, "w")
+pathconvert("SCI\modules\foo", %f, %t, "u")
+pathconvert("SCI\modules\foo", %t, %t, "u")
+pathconvert("SCI/modules/foo", %f, %f, "w")
+pathconvert("SCI/modules/foo", %t, %f, "w")
+pathconvert("C:/tmp", %f, %f, "u")
+pathconvert("/cygdrive/c/tmp", %f, %f, "w")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -91,6 +140,9 @@ pathconvert("/cygdrive/c/tmp",%f,%f,"w")
             </member>
             <member>
                 <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="dirname">dirname</link>
             </member>
         </simplelist>
     </refsection>

@@ -89,26 +89,24 @@ function tbx_build_blocks(module, names, macros_path)
             error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), h5Files(i)));
         end
 
-        block = scs_m;
-
-        // export an image file if it doesn't exist
-        files = gif_tlbx + "/" + names(i) + [".png" ".jpg" ".gif"];
-        files = files(isfile(files));
-        if files == [] then
-            filename = gif_tlbx + "/" + names(i) + ".gif";
-            if ~generateBlockImage(block, gif_tlbx, names(i), "gif", %t) then
-                error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), filename));
-            end
-        end
+        blk = scs_m;
 
         // export a schema file if it doesn't exist
         files = svg_tlbx + "/" + names(i) + [".svg" ".png" ".jpg" ".gif"];
         files = files(isfile(files));
         if files == [] then
             filename = svg_tlbx + "/" + names(i) + ".svg";
-            if ~generateBlockImage(block, svg_tlbx, names(i), "svg", %f) then
+            if ~generateBlockImage(blk, svg_tlbx, names(i), "svg", %f) then
                 error(msprintf(gettext("%s: Unable to export %s to %s .\n"),"tbx_build_blocks",names(i), filename));
             end
+        end
+
+        // export an image file if it doesn't exist
+        files = gif_tlbx + "/" + names(i) + [".png" ".jpg" ".gif"];
+        files = files(isfile(files));
+        if files == [] then
+            filename = gif_tlbx + "/" + names(i) + ".gif";
+            xcosPalGenerateIcon(filename);
         end
     end
 endfunction

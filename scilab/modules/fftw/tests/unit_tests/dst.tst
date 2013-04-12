@@ -48,7 +48,7 @@ assert_checkalmostequal(dst(dst(A,-1,"dst2"),1,"dst3"),2*n*A);
 
 //DST-III
 y_ref=((-1).^(0:n-1))*A(n)+ 2*sum((A(1:n-1).'*ones(1,n)).*sin(%pi*(1:n-1)'*(0.5:n)/(n)),1);
-assert_checkalmostequal(dst(A,1,"dst3"),y_ref,100*%eps,100*%eps);
+assert_checkalmostequal(dst(A,1,"dst3"),y_ref,100*%eps,104*%eps);
 assert_checkalmostequal(dst(dst(A,1,"dst3"),-1,"dst2"),2*n*A);
 
 

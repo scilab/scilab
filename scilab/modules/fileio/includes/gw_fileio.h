@@ -23,7 +23,6 @@ C_GATEWAY_PROTOTYPE(sci_copyfile);
 C_GATEWAY_PROTOTYPE(sci_movefile);
 C_GATEWAY_PROTOTYPE(sci_fscanfMat);
 C_GATEWAY_PROTOTYPE(sci_fprintfMat);
-
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

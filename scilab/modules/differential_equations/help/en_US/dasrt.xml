@@ -130,8 +130,11 @@ r=res(t,y,ydot,x1,x2,...)
                                 <literal>r=g(t,y,ydot)</literal> as a function of
                                 <literal>(t,y,ydot,x1,x2,...)</literal>.
                             </para>
-                            <para>Warning: this form must not be used if there is no extra
-                                argument to pass to <literal>the function.</literal>
+                            <para>
+                                <warning>
+                                    Warning: this form must not be used if there is no extra
+                                    argument to pass to the function.
+                                </warning>
                             </para>
                         </listitem>
                         <listitem>
@@ -163,7 +166,7 @@ integer ires,ipar(*)
                 <listitem>
                     <para>
                         <link linkend="external">external</link> (function or list or string). Computes the value of
-                        <literal>dg/dy+cj*dg/dydot</literal> for a given value of parameter
+                        <literal>dg/dy + cj*dg/dydot</literal> for a given value of parameter
                         <literal>cj</literal>.
                     </para>
                     <itemizedlist>
@@ -190,7 +193,7 @@ r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
                             <para>
                                 <literal>jac</literal> still returns
-                                <literal>dg/dy+cj*dg/dydot</literal> as a function of
+                                <literal>dg/dy + cj*dg/dydot</literal> as a function of
                                 <literal>(t,y,ydot,cj,x1,x2,...)</literal>.
                             </para>
                         </listitem>
@@ -401,6 +404,9 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
             </member>
             <member>
                 <link linkend="dassl">dassl</link>
+            </member>
+            <member>
+                <link linkend="daskr">daskr</link>
             </member>
             <member>
                 <link linkend="impl">impl</link>

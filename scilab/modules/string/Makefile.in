@@ -137,7 +137,7 @@ libscistring_algo_la_LIBADD =
 am__objects_1 = libscistring_algo_la-convstr.lo \
 	libscistring_algo_la-men_Sutils.lo \
 	libscistring_algo_la-tokens.lo \
-	libscistring_algo_la-strsplitfunction.lo \
+	libscistring_algo_la-strsplit.lo \
 	libscistring_algo_la-partfunction.lo \
 	libscistring_algo_la-InitializeString.lo \
 	libscistring_algo_la-setScilabCharactersCodes.lo \
@@ -402,6 +402,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -502,7 +503,7 @@ STRING_C_SOURCES = \
 src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
-src/c/strsplitfunction.c \
+src/c/strsplit.c \
 src/c/partfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
@@ -799,7 +800,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stringsstrrev.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stripblanks.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stristr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-strsplitfunction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-strsplit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-strsubst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-tokens.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-gw_string.Plo@am__quote@
@@ -874,12 +875,12 @@ libscistring_algo_la-tokens.lo: src/c/tokens.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o libscistring_algo_la-tokens.lo `test -f 'src/c/tokens.c' || echo '$(srcdir)/'`src/c/tokens.c
 
-libscistring_algo_la-strsplitfunction.lo: src/c/strsplitfunction.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT libscistring_algo_la-strsplitfunction.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-strsplitfunction.Tpo -c -o libscistring_algo_la-strsplitfunction.lo `test -f 'src/c/strsplitfunction.c' || echo '$(srcdir)/'`src/c/strsplitfunction.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_algo_la-strsplitfunction.Tpo $(DEPDIR)/libscistring_algo_la-strsplitfunction.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strsplitfunction.c' object='libscistring_algo_la-strsplitfunction.lo' libtool=yes @AMDEPBACKSLASH@
+libscistring_algo_la-strsplit.lo: src/c/strsplit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT libscistring_algo_la-strsplit.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-strsplit.Tpo -c -o libscistring_algo_la-strsplit.lo `test -f 'src/c/strsplit.c' || echo '$(srcdir)/'`src/c/strsplit.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_algo_la-strsplit.Tpo $(DEPDIR)/libscistring_algo_la-strsplit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strsplit.c' object='libscistring_algo_la-strsplit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o libscistring_algo_la-strsplitfunction.lo `test -f 'src/c/strsplitfunction.c' || echo '$(srcdir)/'`src/c/strsplitfunction.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o libscistring_algo_la-strsplit.lo `test -f 'src/c/strsplit.c' || echo '$(srcdir)/'`src/c/strsplit.c
 
 libscistring_algo_la-partfunction.lo: src/c/partfunction.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT libscistring_algo_la-partfunction.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-partfunction.Tpo -c -o libscistring_algo_la-partfunction.lo `test -f 'src/c/partfunction.c' || echo '$(srcdir)/'`src/c/partfunction.c

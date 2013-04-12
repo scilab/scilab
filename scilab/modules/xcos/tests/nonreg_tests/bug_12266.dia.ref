@@ -14,7 +14,7 @@
 // <-- Short Description -->
 // Stopping "Papillon de lorentz" demonstration while simulation was on made CMSCOPE crash. 
 clear is_crashed;
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_12266.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_12266.zcos"));
 xcos_simulate(scs_m, 4);
 assert_checkequal(length(is_crashed.values), 6);
 clear is_crashed;

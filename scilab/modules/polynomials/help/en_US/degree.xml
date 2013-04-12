@@ -50,7 +50,7 @@ degree(v) // should return 2 and 3
 
 s=poly(0,"s");
 p=1+s+2*s^42;
-degree(v) // should return 42
+degree(p) // should return 42
  ]]></programlisting>
     </refsection>
     

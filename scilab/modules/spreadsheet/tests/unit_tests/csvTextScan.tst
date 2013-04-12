@@ -9,8 +9,8 @@ B = "        4;        5;     6";
 C = [A;B];
 bbSTR = csvTextScan(C, ';', [], "string");
 expected = [
-"        1" , "        2" , "     3" 
-"        4" , "        5" , "     6" 
+"        1" , "        2" , "     3"
+"        4" , "        5" , "     6"
 ];
 assert_checkequal ( bbSTR , expected );
 // =============================================================================
@@ -128,4 +128,13 @@ b = csvTextScan(r, "|", ".", "double");
 ref = [%nan , 2, %nan; %nan, 3, %nan];
 assert_checkequal ( b , ref);
 // =============================================================================
-
+r = mgetl(fullfile(path, "double_quotes.csv"), 5);
+ref = ['Dummy1', 'Dummy1'; ..
+       'Dummy2', 'Dummy2, Dummy2'; ..
+       'Dummy3', '(""Dummy3"")'; ..
+       '""Dummy4"" Dummy4','Dummy4'; ..
+       'Dummy5', 'Dummy5 ""Dummy5""'];
+for i=1:5
+    b = csvTextScan(r(i), ",", [], "string");
+    assert_checkequal(b , ref(i,:));
+end
