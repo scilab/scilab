@@ -140,6 +140,8 @@ Bug fixes
 
 * Bug #7026 fixed - There was no unit test for plot2d.
 
+* Bug #7080 fixed - Some graphics macros did not use standard error messages.
+
 * Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
                     returned an error.
 
