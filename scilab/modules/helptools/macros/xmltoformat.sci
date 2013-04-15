@@ -518,33 +518,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
         end
 
-        // Check if the help file has been generated
-        if fileinfo(buildDoc_file)==[] then
-            chdir(cur_dir);
-            error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
-        end
-
-        // move the generated file(s)
-        if is_chm then
-
-        elseif is_html then
-            my_html_files = listfiles(buildDoc_dir);
-            for k=1:size(my_html_files,"*")
-                if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
-                    chdir(cur_dir);
-                    error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
-                end
-                mdelete(my_html_files(k));
-            end
-        else
-            copyfile(buildDoc_file,final_help_file);
-            mdelete(buildDoc_file);
-        end
-
-        // Move into the initial directory
-        if ~chdir(cur_dir) then
-            error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",cur_dir));
-        end
+        check_move(buildDoc_file);
 
         // Now we can add the help file to the list of all generated files
         generated_files = [ generated_files ; final_help_file ];
@@ -619,33 +593,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 buildDocv2("jar-only",this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
 
-            // Check if the help file has been generated
-            if fileinfo(buildDoc_file)==[] then
-                chdir(cur_dir);
-                error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
-            end
-
-            // move the generated file(s)
-            if is_chm then
-
-            elseif is_html then
-                my_html_files = listfiles(buildDoc_dir);
-                for k=1:size(my_html_files,"*")
-                    if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
-                        chdir(cur_dir);
-                        error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
-                    end
-                    mdelete(my_html_files(k));
-                end
-            else
-                copyfile(buildDoc_file,final_help_file);
-                mdelete(buildDoc_file);
-            end
-
-            // Move into the initial directory
-            if ~chdir(cur_dir) then
-                error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
-            end
+            check_move(buildDoc_file);
 
             // Now we can add the help file to the list of all generated files
             generated_files = [ generated_files ; final_help_file ];
@@ -744,33 +692,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 buildDocv2("jar-only",this_tree("master_document"),directory_language(k),dirs(k));
             end
 
-            // Check if the help file has been generated
-            if fileinfo(buildDoc_file)==[] then
-                chdir(cur_dir);
-                error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
-            end
-
-            // move the generated file(s)
-            if is_chm then
-                // nothing to do
-            elseif is_html then
-                my_html_files = listfiles(buildDoc_dir);
-                for k=1:size(my_html_files,"*")
-                    if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
-                        chdir(cur_dir);
-                        error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
-                    end
-                    mdelete(my_html_files(k));
-                end
-            else
-                copyfile(buildDoc_file,final_help_file);
-                mdelete(buildDoc_file);
-            end
-
-            // Move into the initial directory
-            if ~chdir(cur_dir) then
-                error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
-            end
+            check_move(buildDoc_file);
 
             // Now we can add the help file to the list of all generated files
             generated_files = [ generated_files ; final_help_file ];
@@ -788,6 +710,40 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
 endfunction
 
+// =============================================================================
+// check and move the generated files
+// =============================================================================
+function check_move(buildDoc_file)
+
+    // Check if the help file has been generated
+    if fileinfo(buildDoc_file)==[] then
+        chdir(cur_dir);
+        error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
+    end
+
+    // move the generated file(s)
+    if is_chm then
+
+    elseif is_html then
+        my_html_files = listfiles(buildDoc_dir);
+        for k=1:size(my_html_files,"*")
+            if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+                chdir(cur_dir);
+                error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
+            end
+            mdelete(my_html_files(k));
+        end
+    else
+        copyfile(buildDoc_file,final_help_file);
+        mdelete(buildDoc_file);
+    end
+
+    // Move into the initial directory
+    if ~chdir(cur_dir) then
+        error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",cur_dir));
+    end
+
+endfunction
 
 // =============================================================================
 // dirs_out = x2f_get_xml_path(dirs_in,my_wanted_language)
