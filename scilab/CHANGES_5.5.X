@@ -28,6 +28,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 * isnum has been redesigned in native code. Up to 130x performance
   improvements. See bug #10404
 
+* The deletion of variables from the Variable Browser is now possible.
+  See bug #9447
+
 
 
 Syntax changes

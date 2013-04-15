@@ -1,4 +1,4 @@
-/**
+/*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
@@ -16,10 +16,15 @@ package org.scilab.modules.ui_data.variablebrowser;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 
 import java.awt.Color;
+import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.ActionMap;
+import javax.swing.SwingUtilities;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +41,9 @@ import javax.swing.table.TableRowSorter;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -75,6 +83,7 @@ import org.scilab.modules.ui_data.actions.UncompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.datatable.SwingTableModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.actions.CloseAction;
+import org.scilab.modules.ui_data.variablebrowser.actions.DeleteAction;
 import org.scilab.modules.ui_data.variablebrowser.actions.RefreshAction;
 import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowDataFilter;
 import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowTypeFilter;
@@ -135,6 +144,8 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
         ToolBar toolBar = ScilabToolBar.createToolBar();
         toolBar.add(RefreshAction.createButton(UiDataMessages.REFRESH));
+        toolBar.addSeparator();
+        toolBar.add(DeleteAction.createButton(this, UiDataMessages.DELETE));
         toolBar.addSeparator();
         toolBar.add(HelpAction.createButton(UiDataMessages.HELP));
         filteringButton = ScilabVarFilteringButtonAction.createButton("Show/hide Scilab variable");
@@ -308,15 +319,22 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
          * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
          */
         public void mouseClicked(MouseEvent e) {
+
+            // Right click management
+            if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) || e.isPopupTrigger()) {
+
+
+                int clickedRow = ((JTable) e.getSource()).rowAtPoint(e.getPoint());
+                // Does nothing if no variable selected
+                if (clickedRow != -1) {
+                    displayContextMenu();
+                }
+            }
+
             if (e.getClickCount() >= 2) {
                 int clickedRow = ((JTable) e.getSource()).rowAtPoint(e.getPoint());
                 if (clickedRow != -1) {
                     String variableName = ((JTable) e.getSource()).getValueAt(clickedRow, 1).toString();
-                    final ActionListener action = new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-
-                        }
-                    };
 
                     String variableVisibility = ((JTable) e.getSource())
                                                 .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
@@ -331,7 +349,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                     }
 
                     try {
-                        asynchronousScilabExec(action,
+                        asynchronousScilabExec(null,
                                                "if exists(\"" + variableName + "\") == 1 then "
                                                + "  try "
                                                + "    editvar(\"" + variableName + "\"); "
@@ -387,6 +405,25 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         public void mouseReleased(MouseEvent e) {
 
         }
+
+        /**
+         * Create and display the context menu
+         */
+        private void displayContextMenu() {
+            ContextMenu menu = ScilabContextMenu.createContextMenu();
+
+            DeleteAction delete = new DeleteAction(SwingScilabVariableBrowser.this);
+            menu.add(delete.createMenuItem());
+
+            menu.setVisible(true);
+
+            ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+                MouseInfo.getPointerInfo().getLocation().x,
+                MouseInfo.getPointerInfo().getLocation().y);
+
+        }
+
+
     }
 
     /**
@@ -587,5 +624,14 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
      */
     public SwingScilabTab getBrowserTab() {
         return this;
+    }
+
+
+    /**
+     * Return the variable Browser Table
+     * @return The variable Browser Table
+     */
+    public JTable getTable() {
+        return table;
     }
 }
