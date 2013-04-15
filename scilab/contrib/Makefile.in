@@ -362,6 +362,8 @@ toolbox_skeleton/src/cleaner_src.sce \
 toolbox_skeleton/src/builder_src.sce \
 toolbox_skeleton/etc/toolbox_skeleton.quit \
 toolbox_skeleton/etc/toolbox_skeleton.start \
+toolbox_skeleton/etc/toolbox_skeleton_preferences.xml \
+toolbox_skeleton/etc/toolbox_skeleton_preferences.xsl \
 toolbox_skeleton/license.txt \
 toolbox_skeleton/DESCRIPTION \
 toolbox_skeleton/changelog.txt \
