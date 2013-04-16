@@ -115,6 +115,8 @@ Bug fixes
 
 * Bug #12475 fixed - csvRead() does not support double quoted fields.
 
+* Bug #12490 fixed - plot did not have a clf(); in its demo.
+
 * Bug #12506 fixed - In SciNotes, miscolorization when returned values list was broken.
 
 * Bug #12518 fixed - Polynoms were not displayed by default in browsevar.
