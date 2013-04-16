@@ -113,4 +113,6 @@ Bug fixes
 
 * Bug #12518 fixed - Polynoms were not displayed by default in browsevar.
 
+* Bug #12520 fixed - Improve the description of the size in the browservar.
+
 * Bug #12548 fixed - Duplicated code in xmltoformat.
