@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-03-27 13:20+0100\n"
+"Revision-Date: 2013-04-16 17:44+0100\n"
 
 # File: sci_gateway/c/sci_file.c, line: 65
 # File: sci_gateway/c/sci_file.c, line: 73
@@ -60,7 +60,7 @@ msgstr ""
 # File: sci_gateway/c/sci_file.c, line: 162
 # File: sci_gateway/c/sci_getenv.c, line: 87
 # File: sci_gateway/c/sci_getenv.c, line: 143
-# File: sci_gateway/c/sci_host.c, line: 35
+# File: sci_gateway/c/sci_host.c, line: 81
 # File: sci_gateway/c/sci_setenv.c, line: 100
 # File: sci_gateway/c/sci_setenv.c, line: 114
 #, c-format
@@ -146,7 +146,7 @@ msgid "%s: Undefined environment variable %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_host.c, line: 56
+# File: sci_gateway/c/sci_host.c, line: 102
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
@@ -202,9 +202,9 @@ msgid "%s: See help('save') for the rational.\n"
 msgstr ""
 
 #
-# File: src/c/getenvc.c, line: 52
-# File: src/c/getenvc.c, line: 64
-# File: src/c/getenvc.c, line: 93
+# File: src/c/getenvc.c, line: 48
+# File: src/c/getenvc.c, line: 61
+# File: src/c/getenvc.c, line: 84
 #, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr ""
@@ -256,19 +256,19 @@ msgid "%s : Invalid entity %s\n"
 msgstr ""
 
 #
-# File: macros/%_sodload.sci, line: 289
+# File: macros/%_sodload.sci, line: 295
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
 
 #
-# File: macros/%_sodload.sci, line: 811
+# File: macros/%_sodload.sci, line: 820
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/%_sodload.sci, line: 841
+# File: macros/%_sodload.sci, line: 851
 #, c-format
 msgid "%s: variable '%s' does not exist in '%s'.\n"
 msgstr ""
