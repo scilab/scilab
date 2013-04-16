@@ -119,6 +119,8 @@ Bug fixes
 
 * Bug #12506 fixed - In SciNotes, miscolorization when returned values list was broken.
 
+* Bug #12508 fixed - Wrong error message in the rand function fixed.
+
 * Bug #12518 fixed - Polynoms were not displayed by default in browsevar.
 
 * Bug #12520 fixed - Improve the description of the size in browsevar.
