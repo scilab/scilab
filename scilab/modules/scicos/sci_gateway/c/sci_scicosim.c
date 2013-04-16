@@ -544,7 +544,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_xptr = (int *) (listentry(il_sim, 3));
     m_xptr = il_sim_xptr[1];
     n_xptr = il_sim_xptr[2];
-    if (m_xptr*n_xptr == 0)
+    if (m_xptr * n_xptr == 0)
     {
         l_sim_xptr = NULL;
     }
@@ -570,7 +570,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_zptr = (int *) (listentry(il_sim, 4));
     m_zptr = il_sim_zptr[1];
     n_zptr = il_sim_zptr[2];
-    if (m_zptr*n_zptr == 0)
+    if (m_zptr * n_zptr == 0)
     {
         l_sim_zptr = NULL;
     }
@@ -597,7 +597,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_ozptr = (int *) (listentry(il_sim, 5));
     m_ozptr = il_sim_ozptr[1];
     n_ozptr = il_sim_ozptr[2];
-    if (m_ozptr*n_ozptr == 0)
+    if (m_ozptr * n_ozptr == 0)
     {
         l_sim_ozptr = NULL;
     }
@@ -625,7 +625,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_zcptr = (int *) (listentry(il_sim, 6));
     m_zcptr = il_sim_zcptr[1];
     n_zcptr = il_sim_zcptr[2];
-    if (m_zcptr*n_zcptr == 0)
+    if (m_zcptr * n_zcptr == 0)
     {
         l_sim_zcptr = NULL;
     }
@@ -654,7 +654,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_inpptr = (int *) (listentry(il_sim, 7));
     m_inpptr = il_sim_inpptr[1];
     n_inpptr = il_sim_inpptr[2];
-    if (m_inpptr*n_inpptr == 0)
+    if (m_inpptr * n_inpptr == 0)
     {
         l_sim_inpptr = NULL;
     }
@@ -684,7 +684,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_outptr = (int *) (listentry(il_sim, 8));
     m_outptr = il_sim_outptr[1];
     n_outptr = il_sim_outptr[2];
-    if (m_outptr*n_outptr == 0)
+    if (m_outptr * n_outptr == 0)
     {
         l_sim_outptr = NULL;
     }
@@ -715,7 +715,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_inplnk = (int *) (listentry(il_sim, 9));
     m_inplnk = il_sim_inplnk[1];
     n_inplnk = il_sim_inplnk[2];
-    if (m_inplnk*n_inplnk == 0)
+    if (m_inplnk * n_inplnk == 0)
     {
         l_sim_inplnk = NULL;
     }
@@ -747,7 +747,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_outlnk = (int *) (listentry(il_sim, 10));
     m_outlnk = il_sim_outlnk[1];
     n_outlnk = il_sim_outlnk[2];
-    if (m_outlnk*n_outlnk == 0)
+    if (m_outlnk * n_outlnk == 0)
     {
         l_sim_outlnk = NULL;
     }
@@ -780,7 +780,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_rpar = (int *) (listentry(il_sim, 11));
     m_rpar = il_sim_rpar[1];
     n_rpar = il_sim_rpar[2];
-    if (m_rpar*n_rpar == 0)
+    if (m_rpar * n_rpar == 0)
     {
         l_sim_rpar = NULL;
     }
@@ -793,7 +793,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_rpptr = (int *) (listentry(il_sim, 12));
     m_rpptr = il_sim_rpptr[1];
     n_rpptr = il_sim_rpptr[2];
-    if (m_rpptr*n_rpptr == 0)
+    if (m_rpptr * n_rpptr == 0)
     {
         l_sim_rpptr = NULL;
     }
@@ -827,7 +827,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_ipar = (int *) (listentry(il_sim, 13));
     m_ipar = il_sim_ipar[1];
     n_ipar = il_sim_ipar[2];
-    if (m_ipar*n_ipar == 0)
+    if (m_ipar * n_ipar == 0)
     {
         l_sim_ipar = NULL;
     }
@@ -862,7 +862,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_ipptr = (int *) (listentry(il_sim, 14));
     m_ipptr = il_sim_ipptr[1];
     n_ipptr = il_sim_ipptr[2];
-    if (m_ipptr*n_ipptr == 0)
+    if (m_ipptr * n_ipptr == 0)
     {
         l_sim_ipptr = NULL;
     }
@@ -921,7 +921,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_opptr = (int *) (listentry(il_sim, 16));
     m_opptr = il_sim_opptr[1];
     n_opptr = il_sim_opptr[2];
-    if (m_opptr*n_opptr == 0)
+    if (m_opptr * n_opptr == 0)
     {
         l_sim_opptr = NULL;
     }
@@ -958,7 +958,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_clkptr = (int *) (listentry(il_sim, 17));
     m_clkptr = il_sim_clkptr[1];
     n_clkptr = il_sim_clkptr[2];
-    if (m_clkptr*n_clkptr == 0)
+    if (m_clkptr * n_clkptr == 0)
     {
         l_sim_clkptr = NULL;
     }
@@ -1029,7 +1029,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_execlk = (int *) (listentry(il_sim, 19));
     m_execlk = il_sim_execlk[1];
     n_execlk = il_sim_execlk[2];
-    if (m_execlk*n_execlk == 0)
+    if (m_execlk * n_execlk == 0)
     {
         l_sim_execlk = NULL;
     }
@@ -1069,7 +1069,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_ordclk = (int *) (listentry(il_sim, 20));
     m_ordclk = il_sim_ordclk[1];
     n_ordclk = il_sim_ordclk[2];
-    if (m_ordclk*n_ordclk == 0)
+    if (m_ordclk * n_ordclk == 0)
     {
         l_sim_ordclk = NULL;
     }
@@ -1110,7 +1110,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_cord = (int *) (listentry(il_sim, 21));
     m_cord = il_sim_cord[1];
     n_cord = il_sim_cord[2];
-    if (m_cord*n_cord == 0)
+    if (m_cord * n_cord == 0)
     {
         l_sim_cord = NULL;
     }
@@ -1152,7 +1152,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_oord = (int *) (listentry(il_sim, 22));
     m_oord = il_sim_oord[1];
     n_oord = il_sim_oord[2];
-    if (m_oord*n_oord == 0)
+    if (m_oord * n_oord == 0)
     {
         l_sim_oord = NULL;
     }
@@ -1195,7 +1195,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_zord = (int *) (listentry(il_sim, 23));
     m_zord = il_sim_zord[1];
     n_zord = il_sim_zord[2];
-    if (m_zord*n_zord == 0)
+    if (m_zord * n_zord == 0)
     {
         l_sim_zord = NULL;
     }
@@ -1239,7 +1239,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_critev = (int *) (listentry(il_sim, 24));
     m_critev = il_sim_critev[1];
     n_critev = il_sim_critev[2];
-    if (m_critev*n_critev == 0)
+    if (m_critev * n_critev == 0)
     {
         l_sim_critev = NULL;
     }
@@ -1451,7 +1451,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_subscr = (int *) (listentry(il_sim, 29));
     m_subscr = il_sim_subscr[1];
     n_subscr = il_sim_subscr[2];
-    if (m_subscr*n_subscr == 0)
+    if (m_subscr * n_subscr == 0)
     {
         l_sim_subscr = NULL;
     }
@@ -1545,7 +1545,7 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     il_sim_iord = (int *) (listentry(il_sim, 31));
     m_iord = il_sim_iord[1];
     n_iord = il_sim_iord[2];
-    if (m_iord*n_iord == 0)
+    if (m_iord * n_iord == 0)
     {
         l_sim_iord = NULL;
     }
@@ -2660,3 +2660,4 @@ int sci_scicosim(char *fname, unsigned long fname_len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+

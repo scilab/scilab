@@ -71,17 +71,29 @@ Bug fixes
 
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
-* Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni)
+* Bug #8680 fixed - Output argument "end" of the regexp function has been changed.
+
+* Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
+
+* Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
+
+* Bug #9691 fixed - "imp" option of optim was poorly documented.
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
 
 * Bug #10995 fixed - Typo in grand() for Gamma law argument
 
+* Bug #11308 fixed - Calling sequences in help page of dsearch were wrong.
+
 * Bug #11343 fixed - The "isoview" figure property did not work when the axes
                      margins had been modified.
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
+
+* Bug #12415 fixed - PATH environment variable grew when using call_scilab in a loop.
+
+* Bug #12426 fixed - By using addErrorMessage, random string error could be displayed.
 
 * Bug #12443 fixed - Document behavior of mopen() in text file mode
                      on Windows.

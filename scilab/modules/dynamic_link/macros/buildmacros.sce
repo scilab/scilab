@@ -13,6 +13,7 @@ if (isdef('genlib') == %f) then
 end
 //=============================================================================
 genlib('dynamic_linklib','SCI/modules/dynamic_link/macros',%f,%t);
+genlib('dynamic_linkutilslib','SCI/modules/dynamic_link/macros/utils',%f,%t);
 //=============================================================================
 if getos() == 'Windows' then
   genlib('dynamic_linkwindowslib','SCI/modules/dynamic_link/macros/windows',%f,%t);
