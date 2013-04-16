@@ -85,6 +85,8 @@ Bug fixes
 
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
+* Bug #9004 fixed - bitcmp function called with one input argument returned an error.
+
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
 
 * Bug #9691 fixed - "imp" option of optim was poorly documented.
