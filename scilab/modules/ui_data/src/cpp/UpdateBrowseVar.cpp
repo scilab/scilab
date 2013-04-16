@@ -135,8 +135,7 @@ void UpdateBrowseVar(BOOL update)
         // global / local ??
         pstAllVariableVisibility[i] = strdup("local");
 
-        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() && piAllVariableTypes[i] != sci_c_function    /*TODO: voir si je fais sauter ou pas */
-                && piAllVariableTypes[i] != sci_lib)
+        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() && piAllVariableTypes[i] != sci_lib)
         {
             piAllVariableFromUser[i] = TRUE;
         }
