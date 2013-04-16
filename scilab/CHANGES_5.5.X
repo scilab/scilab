@@ -111,4 +111,6 @@ Bug fixes
 
 * Bug #12506 fixed - In SciNotes, miscolorization when returned values list was broken.
 
+* Bug #12518 fixed - Polynoms were not displayed by default in browsevar.
+
 * Bug #12548 fixed - Duplicated code in xmltoformat.

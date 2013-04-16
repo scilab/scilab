@@ -423,7 +423,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         filterMenu.add(filterDoubleCheckBox);
 
         filterPolynomialCheckBox = PolynomialFilteringAction.createCheckBoxMenu();
-        filterBooleanCheckBox.setChecked(true);
+        filterPolynomialCheckBox.setChecked(true);
         filterMenu.add(filterPolynomialCheckBox);
 
         filterFunctionLibCheckBox = FunctionLibFilteringAction.createCheckBoxMenu();
