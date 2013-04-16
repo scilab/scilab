@@ -65,6 +65,7 @@ void UpdateBrowseVar(BOOL update)
     int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    int *piAllVariableIntegerTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     bool *piAllVariableFromUser = (bool *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(bool));
     int nbRows, nbCols;
     char *sizeStr = NULL;
@@ -97,6 +98,38 @@ void UpdateBrowseVar(BOOL update)
             sprintf(sizeStr, "%dx%d", nbRows, nbCols);
             pstAllVariableSizes[i] = strdup(sizeStr);
             FREE(sizeStr);
+        }
+
+
+        if (piAllVariableTypes[i] == sci_ints)
+        {
+            // Integer case
+            int iPrec       = 0;
+            err = getNamedMatrixOfIntegerPrecision(pvApiCtx, pstAllVariableNames[i], &iPrec);
+            switch (iPrec)
+            {
+                case SCI_INT8:
+                    piAllVariableIntegerTypes[i] = 8;
+                    break;
+                case SCI_INT16:
+                    piAllVariableIntegerTypes[i] = 16;
+                    break;
+                case SCI_INT32:
+                    piAllVariableIntegerTypes[i] = 32;
+                    break;
+#ifdef __SCILAB_INT64__
+                case SCI_INT64:
+                    piAllVariableIntegerTypes[i] = 64;
+                    break;
+#endif
+                default:
+                    piAllVariableIntegerTypes[i] = 0; // Should never occurs
+                    break;
+            }
+        }
+        else
+        {
+            piAllVariableIntegerTypes[i] = -1;
         }
 
         // global / local ??
@@ -156,6 +189,7 @@ void UpdateBrowseVar(BOOL update)
                                    pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
@@ -179,6 +213,12 @@ void UpdateBrowseVar(BOOL update)
     {
         FREE(piAllVariableTypes);
         piAllVariableTypes = NULL;
+    }
+
+    if (piAllVariableIntegerTypes)
+    {
+        FREE(piAllVariableIntegerTypes);
+        piAllVariableIntegerTypes = NULL;
     }
 
     if (pstAllVariableSizes)

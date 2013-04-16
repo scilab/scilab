@@ -21,6 +21,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
+* The Variable Browser shows also the size of integers.
+  See bug #12523
+
 
 Syntax changes
 ===============
