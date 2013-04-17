@@ -21,10 +21,10 @@
 class StringModule
 {
 private :
-   StringModule(){};
-   ~StringModule(){};
+    StringModule() {};
+    ~StringModule() {};
 public :
-   EXTERN_STRING_GW static int Load();
+    EXTERN_STRING_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_grep);
@@ -50,4 +50,8 @@ CPP_GATEWAY_PROTOTYPE(sci_isletter);
 CPP_GATEWAY_PROTOTYPE(sci_strcspn);
 CPP_GATEWAY_PROTOTYPE(sci_strtok);
 CPP_GATEWAY_PROTOTYPE(sci_strspn);
+CPP_GATEWAY_PROTOTYPE(sci_isalphanum);
+CPP_GATEWAY_PROTOTYPE(sci_isdigit);
+CPP_GATEWAY_PROTOTYPE(sci_isascii);
+CPP_GATEWAY_PROTOTYPE(sci_strsplit);
 #endif /* !__STRING_GW_HXX__ */

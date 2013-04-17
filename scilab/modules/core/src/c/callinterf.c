@@ -57,7 +57,7 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 18  */ {NULL}, //gw_dynamic_signal_processing
     /* 19  */ {gw_dynamic_interpolation},
     /* 20  */ {gw_cacsd3},
-    /* 21  */ {gw_string},
+    /* 21  */ {NULL}, // string
     /* 22  */ {gw_dynamic_symbolic},
     /* 23  */ {NULL}, //gw_boolean
     /* 24  */ {gw_user2}, /* RESERVED (see callinter.h) */

@@ -28,16 +28,8 @@ src/c/StringConvert.c \
 src/c/os_wcsdup.c \
 src/c/os_wcstok.c \
 src/c/scistrtostr.c \
-src/c/stringToDouble.c
-
-STRING_FORTRAN_SOURCES =
-
-GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_string.c \
-    sci_gateway/c/sci_strsplit.c \
-    sci_gateway/c/sci_isdigit.c \
-    sci_gateway/c/sci_isalphanum.c \
-    sci_gateway/c/sci_isascii.c
+src/c/stringToDouble.c \
+src/c/isascii.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_stripblanks.cpp \
@@ -63,10 +55,11 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_isletter.cpp \
     sci_gateway/cpp/sci_strcspn.cpp \
     sci_gateway/cpp/sci_strtok.cpp \
-    sci_gateway/cpp/sci_strspn.cpp
-
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_string.f \
-sci_gateway/fortran/strops.f
+    sci_gateway/cpp/sci_strspn.cpp \
+    sci_gateway/cpp/sci_isalphanum.cpp \
+    sci_gateway/cpp/sci_isdigit.cpp \
+    sci_gateway/cpp/sci_isascii.cpp \
+    sci_gateway/cpp/sci_strsplit.cpp
 
 libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 	-I$(srcdir)/src/c \
@@ -90,11 +83,13 @@ libscistring_la_CPPFLAGS= $(PCRE_CFLAGS) \
 	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/ast/includes \
 	-I$(top_srcdir)/modules/elementary_funcions/includes \
-	-I$(top_srcdir)/modules//includes \
 	-I$(top_srcdir)/modules/core/includes \
 	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/modules/system_env/includes \
-    -I$(top_srcdir)/modules/dynamic_link/includes
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/console/includes \
+    $(EIGEN_CPPFLAGS)
 
 libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)
 
@@ -108,8 +103,8 @@ endif
 
 libscistring_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 
-libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_CPP_SOURCES) $(STRING_FORTRAN_SOURCES)
-libscistring_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_CPP_SOURCES)
+libscistring_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscistring_algo_la_CFLAGS = $(libscistring_la_CFLAGS)
 
 # For the code check (splint)

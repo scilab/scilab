@@ -41,7 +41,7 @@
 /* 18 */						#include "dynamic_gateways.h" /* signal_processing */
 /* 19 */						#include "dynamic_gateways.h" /* interpolation */
 /* 20 */						#include "../../cacsd/includes/gw_cacsd3.h"
-/* 21 */						#include "../../string/includes/gw_string.h"
+/* 21 */						/*#include "../../string/includes/gw_string.h"*/
 /* 22 */						#include "dynamic_gateways.h" /* symbolic */
 /* 23 */						#include "../../boolean/includes/gw_boolean.h"
 /* 24  gw_user2(); RESERVED to gw_user (see callinter.h) */
