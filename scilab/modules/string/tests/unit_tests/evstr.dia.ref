@@ -35,12 +35,12 @@ if isinf(evstr('-%inf')) <> %t then bugmes();quit;end
 if isinf(evstr('-Inf')) <> %t then bugmes();quit;end
 // =============================================================================
 Scilab_value = 3;
-if Scilab_value <> evstr('Scilab_value') then bugmes();quit;end 
+if Scilab_value <> evstr('Scilab_value') then bugmes();quit;end
 // =============================================================================
 clear toto;
-if execstr("evstr(''toto'')", "errcatch") <> 4 then bugmes();quit;end
-if execstr("evstr(toto)", "errcatch") <> 4 then bugmes();quit;end
+if execstr("evstr(''toto'')", "errcatch") == 0 then bugmes();quit;end
+if execstr("evstr(toto)", "errcatch") == 0 then bugmes();quit;end
 // =============================================================================
 s = rand(3,3,3);
-if execstr("evstr(s)", "errcatch") <> 10000 then bugmes();quit;end
+if execstr("evstr(s)", "errcatch") <> 0 then bugmes();quit;end
 // =============================================================================

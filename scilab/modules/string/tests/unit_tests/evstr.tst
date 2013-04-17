@@ -35,12 +35,12 @@ if isinf(evstr('-%inf')) <> %t then pause, end
 if isinf(evstr('-Inf')) <> %t then pause, end
 // =============================================================================
 Scilab_value = 3;
-if Scilab_value <> evstr('Scilab_value') then pause, end 
+if Scilab_value <> evstr('Scilab_value') then pause, end
 // =============================================================================
 clear toto;
-if execstr("evstr(''toto'')", "errcatch") <> 4 then pause, end
-if execstr("evstr(toto)", "errcatch") <> 4 then pause, end
+if execstr("evstr(''toto'')", "errcatch") == 0 then pause, end
+if execstr("evstr(toto)", "errcatch") == 0 then pause, end
 // =============================================================================
 s = rand(3,3,3);
-if execstr("evstr(s)", "errcatch") <> 10000 then pause, end
+if execstr("evstr(s)", "errcatch") <> 0 then pause, end
 // =============================================================================
