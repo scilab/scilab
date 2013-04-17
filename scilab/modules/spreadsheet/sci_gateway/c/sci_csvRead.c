@@ -27,7 +27,7 @@
 #endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
-#include "csv_complex.h"
+#include "complex_array.h"
 #include "gw_csv_helpers.h"
 #include "getRange.h"
 
@@ -408,9 +408,9 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                 else /* to double */
                 {
                     stringToComplexError ierr = STRINGTOCOMPLEX_ERROR;
-                    csv_complexArray *ptrCsvComplexArray = stringsToCsvComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
+                    complexArray *ptrComplexArray = stringsToComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
 
-                    if (ptrCsvComplexArray == NULL)
+                    if (ptrComplexArray == NULL)
                     {
                         releaseObjects(result, filename, conversion);
                         if (ierr == STRINGTOCOMPLEX_ERROR)
@@ -433,19 +433,19 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                             {
                                 int newM = 0;
                                 int newN = 0;
-                                csv_complexArray *csvComplexRange = getRangeAsCsvComplexArray(ptrCsvComplexArray, result->m, result->n, iRange, &newM, &newN);
-                                if (csvComplexRange)
+                                complexArray *complexRange = getRangeAsComplexArray(ptrComplexArray, result->m, result->n, iRange, &newM, &newN);
+                                if (complexRange)
                                 {
-                                    if (csvComplexRange->isComplex)
+                                    if (complexRange->isComplex)
                                     {
-                                        sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, ptrCsvComplexArray->realPart, ptrCsvComplexArray->imagPart);
+                                        sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, ptrComplexArray->realPart, ptrComplexArray->imagPart);
                                     }
                                     else
                                     {
-                                        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, csvComplexRange->realPart);
+                                        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, complexRange->realPart);
                                     }
-                                    freeCsvComplexArray(csvComplexRange);
-                                    csvComplexRange = NULL;
+                                    freeComplexArray(complexRange);
+                                    complexRange = NULL;
                                 }
                                 else
                                 {
@@ -463,16 +463,16 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                             }
                             else
                             {
-                                if (ptrCsvComplexArray->isComplex)
+                                if (ptrComplexArray->isComplex)
                                 {
-                                    sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrCsvComplexArray->realPart, ptrCsvComplexArray->imagPart);
+                                    sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrComplexArray->realPart, ptrComplexArray->imagPart);
                                 }
                                 else
                                 {
-                                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrCsvComplexArray->realPart);
+                                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrComplexArray->realPart);
                                 }
-                                freeCsvComplexArray(ptrCsvComplexArray);
-                                ptrCsvComplexArray = NULL;
+                                freeComplexArray(ptrComplexArray);
+                                ptrComplexArray = NULL;
                             }
                         }
                         break;

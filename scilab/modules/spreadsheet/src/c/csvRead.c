@@ -24,7 +24,7 @@
 #include "pcre_private.h"
 #include "sciprint.h"
 #include "splitLine.h"
-#include "csv_strsubst.h"
+#include "strsubst.h"
 #if _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -447,7 +447,7 @@ static char **getStringsFromLines(const char **lines, int sizelines,
                 {
                     /* Proceed to the remplacement of the provided decimal to the default on
                      * usually, it converts "," => "." */
-                    results[i + n * j] = csv_strsubst(lineStrings[j], decimal, getCsvDefaultDecimal());
+                    results[i + n * j] = strsub(lineStrings[j], decimal, getCsvDefaultDecimal());
                 }
 
                 if (lineStrings[j])
@@ -561,16 +561,16 @@ static char *stripCharacters(const char *line)
     char *returnedLine = NULL;
     if (line)
     {
-        char *tmpLineWithoutTab = csv_strsubst((char*)line, "\t", "");
+        char *tmpLineWithoutTab = strsub((char*)line, "\t", "");
         if (tmpLineWithoutTab)
         {
-            char *tmpLineWithoutLF = csv_strsubst(tmpLineWithoutTab, "\r", "");
+            char *tmpLineWithoutLF = strsub(tmpLineWithoutTab, "\r", "");
             if (tmpLineWithoutLF)
             {
-                char *tmpLineWithoutCR = csv_strsubst(tmpLineWithoutTab, "\n", "");
+                char *tmpLineWithoutCR = strsub(tmpLineWithoutTab, "\n", "");
                 if (tmpLineWithoutCR)
                 {
-                    returnedLine = csv_strsubst(tmpLineWithoutCR, " ", "");
+                    returnedLine = strsub(tmpLineWithoutCR, " ", "");
                     FREE(tmpLineWithoutCR);
                 }
                 else
@@ -621,7 +621,7 @@ static char **replaceStrings(const char **lines, int nbLines, const char **torep
             {
                 for (j = 0; j < nbLines; j++)
                 {
-                    replacedStrings[j] = csv_strsubst(replacedStrings[j], toreplace[i], toreplace[nr + i]);
+                    replacedStrings[j] = strsub(replacedStrings[j], toreplace[i], toreplace[nr + i]);
                 }
             }
         }

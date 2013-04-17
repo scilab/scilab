@@ -254,6 +254,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="..\..\sci_gateway\c\sci_strtod.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_strtok.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_tokens.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_isnum.c" />
     <ClCompile Include="scistrtostr.c" />
     <ClCompile Include="setScilabCharactersCodes.c" />
     <ClCompile Include="StringConvert.c" />
@@ -266,6 +267,9 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="strsplit.c" />
     <ClCompile Include="strsubst.c" />
     <ClCompile Include="tokens.c" />
+    <ClCompile Include="isnum.c" />
+    <ClCompile Include="stringToComplex.c" />
+    <ClCompile Include="complex_array.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\string.pot" />
@@ -316,6 +320,8 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="..\..\includes\stripblanks.h" />
     <ClInclude Include="..\..\includes\stristr.h" />
     <ClInclude Include="..\..\includes\strsubst.h" />
+    <ClInclude Include="..\..\includes\stringToComplex.h" />
+    <ClInclude Include="..\..\includes\complex_array.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="convstr.h" />
     <ClInclude Include="CreateEmptystr.h" />
@@ -332,6 +338,7 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="strsplit.h" />
     <ClInclude Include="tokens.h" />
     <ClInclude Include="ucp.h" />
+    <ClInclude Include="isnum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

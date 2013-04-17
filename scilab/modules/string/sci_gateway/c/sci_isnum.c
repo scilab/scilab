@@ -13,15 +13,14 @@
  *
  */
 
-#include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "csvIsnum.h"
+#include "isnum.h"
 #include "MALLOC.h"
 
 // =============================================================================
-int sci_csvIsnum(char *fname, unsigned long fname_len)
+int sci_isnum(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -31,6 +30,16 @@ int sci_csvIsnum(char *fname, unsigned long fname_len)
 
     CheckRhs(1, 1);
     CheckLhs(0, 1);
+
+    if (strcmp(fname, "csvIsnum") == 0)
+    {
+        if (getWarningMode())
+        {
+            sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), fname);
+            sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "isnum");
+            sciprint(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "6.0.0");
+        }
+    }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
@@ -51,7 +60,7 @@ int sci_csvIsnum(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    bRESULT = csv_isNumMatrix((const char**)pStrs, mOne, nOne);
+    bRESULT = isNumMatrix((const char**)pStrs, mOne, nOne);
 
     freeAllocatedMatrixOfString(mOne, nOne, pStrs);
     pStrs = NULL;

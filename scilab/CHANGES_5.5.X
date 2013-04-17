@@ -24,6 +24,9 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 * The Variable Browser shows also the size of integers.
   See bug #12523
 
+* isnum has been redesigned in native code. Up to 130x performance
+  improvements. See bug #10404
+
 
 Syntax changes
 ===============
@@ -49,7 +52,7 @@ Xcos
 
 * Bug #12359 fixed - Xcos files has been converted to zcos to gain some space.
 
-* Bug #12384 fixed - Using a modelica part linked with explicit link to 
+* Bug #12384 fixed - Using a modelica part linked with explicit link to
                      another modelica part lead to an algebraic loop error.
 
 
@@ -74,7 +77,7 @@ Bug fixes
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
-* Bug #7927 fixed - Output "flag" in qmr function was not well documented. 
+* Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
