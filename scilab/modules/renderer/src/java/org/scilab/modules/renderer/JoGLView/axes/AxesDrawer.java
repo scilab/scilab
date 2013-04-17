@@ -41,6 +41,7 @@ import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 import org.scilab.modules.renderer.JoGLView.label.YAxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
+import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.Map;
@@ -124,9 +125,9 @@ public class AxesDrawer {
 
     public Transformation getCurrentProjection(Axes axes) throws DegenerateMatrixException {
         DrawingTools drawingTools = visitor.getDrawingTools();
-        Canvas canvas = visitor.getCanvas();
+        Integer[] size = visitor.getFigure().getAxesSize();
         Transformation zoneProjection = computeZoneProjection(axes);
-        Transformation transformation = computeBoxTransformation(axes, canvas, false);
+        Transformation transformation = computeBoxTransformation(axes, new Dimension(size[0], size[1]), false);
         Transformation dataTransformation = computeDataTransformation(axes);
         Transformation windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
         Transformation current = zoneProjection.rightTimes(transformation);
@@ -141,7 +142,6 @@ public class AxesDrawer {
      */
     public void computeRulers(Axes axes) {
         DrawingTools drawingTools = visitor.getDrawingTools();
-        Canvas canvas = visitor.getCanvas();
         ColorMap colorMap = visitor.getColorMap();
         try {
             Integer[] size = visitor.getFigure().getAxesSize();
@@ -149,7 +149,7 @@ public class AxesDrawer {
             double h = ((double) (int) size[1]) / 2;
             Transformation windowTrans = TransformationFactory.getAffineTransformation(new Vector3d(w, h, 1), new Vector3d(w, h, 0));
             Transformation zoneProjection = computeZoneProjection(axes);
-            Transformation transformation = computeBoxTransformation(axes, canvas, false);
+            Transformation transformation = computeBoxTransformation(axes, new Dimension(size[0], size[1]), false);
             Transformation canvasTrans = windowTrans.rightTimes(zoneProjection).rightTimes(transformation);
 
             rulerDrawer.computeRulers(axes, this, colorMap, drawingTools, transformation, canvasTrans);
@@ -165,7 +165,8 @@ public class AxesDrawer {
      */
     public void draw(Axes axes) throws SciRendererException {
         DrawingTools drawingTools = visitor.getDrawingTools();
-        Canvas canvas = visitor.getCanvas();
+        Integer[] size = visitor.getFigure().getAxesSize();
+        Dimension canvasDimension = new Dimension(size[0], size[1]);
         ColorMap colorMap = visitor.getColorMap();
         TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
         TransformationStack projectionStack = drawingTools.getTransformationManager().getProjectionStack();
@@ -175,7 +176,7 @@ public class AxesDrawer {
         projectionStack.push(zoneProjection);
 
         // Set box projection.
-        Transformation transformation = computeBoxTransformation(axes, canvas, false);
+        Transformation transformation = computeBoxTransformation(axes, canvasDimension, false);
         modelViewStack.pushRightMultiply(transformation);
 
         /* Compute the data scale and translate transformation. */
@@ -197,7 +198,7 @@ public class AxesDrawer {
 
         /* 2d view projection, to do: optimize computation */
         if (axes.getRotationAngles()[0] != 0 || axes.getRotationAngles()[1] != DEFAULT_THETA) {
-            Transformation transformation2dView = computeBoxTransformation(axes, canvas, true);
+            Transformation transformation2dView = computeBoxTransformation(axes, canvasDimension, true);
             currentProjection = zoneProjection.rightTimes(transformation2dView);
             currentProjection = currentProjection.rightTimes(dataTransformation);
             currentProjection = windowTrans.rightTimes(currentProjection);
@@ -407,12 +408,12 @@ public class AxesDrawer {
      * The box transformation is applied to the axes box to fit in the canvas.
      *
      * @param axes the given {@see Axes}.
-     * @param canvas the current {@see Canvas}.
+     * @param canvasDimension the current canvas {@see Canvas}.
      * @param use2dView specifies whether the default 2d view rotation angles must be used (true) or the given Axes' ones (false).
      * @return box transformation for the given axes.
      * @throws DegenerateMatrixException if data bounds are incorrect or canvas with or length are zero.
      */
-    private Transformation computeBoxTransformation(Axes axes, Canvas canvas, boolean use2dView) throws DegenerateMatrixException {
+    private Transformation computeBoxTransformation(Axes axes, Dimension canvasDimension, boolean use2dView) throws DegenerateMatrixException {
         Double[] bounds = axes.getDisplayedBounds();
 
         double theta;
@@ -426,7 +427,7 @@ public class AxesDrawer {
         // Set zone aspect ratio.
         Rectangle2D zone = computeZone(axes);
         double axesRatio = zone.getWidth() / zone.getHeight();
-        transformation = TransformationFactory.getPreferredAspectRatioTransformation(canvas.getDimension(), axesRatio);
+        transformation = TransformationFactory.getPreferredAspectRatioTransformation(canvasDimension, axesRatio);
 
         // Rotate.
         if (use2dView) {
@@ -589,11 +590,11 @@ public class AxesDrawer {
      * Computes and return the object to window coordinate projection corresponding to the given Axes object.
      * @param axes the given Axes.
      * @param drawingTools the drawing tools.
-     * @param canvas the current canvas.
+     * @param canvasDimension the current canvas dimension.
      * @param use2dView specifies whether the default 2d view rotation angles must be used (true) or the given Axes' ones (false).
      * @return the projection
      */
-    private Transformation computeProjection(Axes axes, DrawingTools drawingTools, Canvas canvas, boolean use2dView) {
+    private Transformation computeProjection(Axes axes, DrawingTools drawingTools, Dimension canvasDimension, boolean use2dView) {
         Transformation projection;
 
         try {
@@ -601,7 +602,7 @@ public class AxesDrawer {
             Transformation zoneProjection = computeZoneProjection(axes);
 
             /* Compute the box transformation. */
-            Transformation transformation = computeBoxTransformation(axes, canvas, use2dView);
+            Transformation transformation = computeBoxTransformation(axes, canvasDimension, use2dView);
 
             /* Compute the data scale and translate transformation. */
             Transformation dataTransformation = computeDataTransformation(axes);
@@ -705,12 +706,14 @@ public class AxesDrawer {
     public static void updateAxesTransformation(Axes axes) {
         DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
         AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
+        Integer[] size = currentVisitor.getFigure().getAxesSize();
+        Dimension canvasDimension = new Dimension(size[0], size[1]);
 
         Transformation transformation = axesDrawer.getProjection(axes.getIdentifier());
 
         /* The projection must be updated */
         if (transformation == null) {
-            Transformation projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), false);
+            Transformation projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
 
             axesDrawer.addProjection(axes.getIdentifier(), projection);
         }
@@ -719,7 +722,7 @@ public class AxesDrawer {
 
         /* The projection must be updated */
         if (transformation2dView == null) {
-            Transformation projection2dView = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), true);
+            Transformation projection2dView = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, true);
 
             axesDrawer.addProjection2dView(axes.getIdentifier(), projection2dView);
         }
@@ -736,20 +739,21 @@ public class AxesDrawer {
      * @returns the 2d view coordinates (3-element array).
      */
     public static double[] compute2dViewCoordinates(Axes axes, double[] coordinates) {
-        DrawerVisitor currentVisitor;
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
         AxesDrawer axesDrawer;
         Transformation projection;
         Transformation projection2d;
 
-        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
-
         Vector3d point = new Vector3d(coordinates);
 
         if (currentVisitor != null) {
+            Integer[] size = currentVisitor.getFigure().getAxesSize();
+            Dimension canvasDimension = new Dimension(size[0], size[1]);
+
             axesDrawer = currentVisitor.getAxesDrawer();
 
-            projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), false);
-            projection2d = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas(), true);
+            projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
+            projection2d = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, true);
 
             point = projection.project(point);
             point = projection2d.unproject(point);
@@ -767,18 +771,15 @@ public class AxesDrawer {
      * @returns the pixel coordinates (2-element array: x, y).
      */
     public static double[] computePixelFrom2dViewCoordinates(Axes axes, double[] coordinates) {
-        DrawerVisitor currentVisitor;
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
         AxesDrawer axesDrawer;
-
         double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
-        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
-
         if (currentVisitor != null) {
-            double height;
+            Integer[] size = currentVisitor.getFigure().getAxesSize();
+            double height = (double) size[1];
 
             axesDrawer = currentVisitor.getAxesDrawer();
-            height = currentVisitor.getCanvas().getHeight();
 
             Transformation projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
 
@@ -811,10 +812,10 @@ public class AxesDrawer {
         currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
 
         if (currentVisitor != null) {
-            double height;
+            Integer[] size = currentVisitor.getFigure().getAxesSize();
+            double height = (double) size[1];
 
             axesDrawer = currentVisitor.getAxesDrawer();
-            height = currentVisitor.getCanvas().getHeight();
 
             /* Convert the pixel coordinates to window coordinates, only y changes due to the differing y-axis convention */
             Vector3d point = new Vector3d(coordinates[0], height - coordinates[1], 0.0);
@@ -864,15 +865,11 @@ public class AxesDrawer {
         currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
 
         if (currentVisitor != null) {
-            double width;
-            double height;
+            Integer[] size = currentVisitor.getFigure().getAxesSize();
+            double width = (double) size[0];
+            double height = (double) size[1];
             double upperLeftY;
-
             AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
-
-            width = (double) currentVisitor.getCanvas().getWidth();
-            height = (double) currentVisitor.getCanvas().getHeight();
-
             Rectangle2D axesZone = axesDrawer.computeZone(axes);
 
             /* Compute the upper-left point's y coordinate */

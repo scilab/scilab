@@ -58,6 +58,10 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣.\n"
 msgid "%s: Non convergence in QR steps.\n"
 msgstr "%s: 在 QR 計算步驟中未收斂.\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+
 #
 # File: sci_gateway/c/sci_schur.c, line: 109
 #, c-format

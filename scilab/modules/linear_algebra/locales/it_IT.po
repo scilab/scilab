@@ -29,6 +29,10 @@ msgid "%s: Non convergence in QR steps.\n"
 msgstr "%s: Non c'è convergenza nei passi di QR.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "

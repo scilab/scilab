@@ -27,6 +27,10 @@ msgid "%s: Non convergence in QR steps.\n"
 msgstr "%s：QR分解的迭代中不收敛。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵。\n"
 
