@@ -77,6 +77,8 @@ Bug fixes
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
+* Bug #7828 fixed - Slight improvements in nicholschart.
+
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.

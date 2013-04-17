@@ -35,8 +35,8 @@ function nicholschart(modules,args,colors)
   mod_min=ax.data_bounds(1,2)
   mod_max=ax.data_bounds(2,2)
 
-  defaultArgs = [1 5 10 20 30 50 90 120 150 180]
-  defaultModules=[mod_min:20:-40 -12 -6  -3   -1 0 0.25 0.5  1  2.3 4  6  12];
+  defaultArgs = [1 2 5 10 20 30 50 70 90 120 140 160 180];
+  defaultModules=[mod_min:20:-35 -30 -25 -20 -15 -12 -9 -6  -3 -2 -1 -0.5 -0.25 -0.1 0 0.1 0.25 0.5  1  2.3 4  6  12];
 
 
   if exists("modules","local")==0 then
