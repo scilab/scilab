@@ -166,7 +166,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
                             /* Use the getModel() method because the
                              * column 5 has been removed from display
                              * but still exist in the model */
-                            tip = Messages.gettext("Words:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
+                            tip = Messages.gettext("Bytes:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
                         }
                     }
                 }

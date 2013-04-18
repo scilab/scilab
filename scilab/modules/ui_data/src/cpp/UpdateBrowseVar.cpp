@@ -150,8 +150,8 @@ void UpdateBrowseVar(BOOL update)
     {
         // name
         pstAllVariableNames[i] = getGlobalNamefromId(j);
-        // Bytes used
-        piAllVariableBytes[i] = getGlobalSizefromId(j);
+        // Bytes used - 8 is the number of bytes in a word
+        piAllVariableBytes[i] = getGlobalSizefromId(j) * 8;
         // type
         // Calling "API Scilab": not yet implemented for global variable
         //getNamedVarType(pvApiCtx, pstAllVariableNames[i], &piAllVariableTypes[i]);
