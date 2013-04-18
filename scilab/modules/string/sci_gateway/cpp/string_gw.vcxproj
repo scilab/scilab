@@ -216,6 +216,9 @@
     <ProjectReference Include="..\..\..\ast\ast-tools\ast-tools.vcxproj">
       <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
@@ -237,6 +240,9 @@
     <ProjectReference Include="..\..\..\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\typesmacro\typesmacro.vcxproj">
+      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
