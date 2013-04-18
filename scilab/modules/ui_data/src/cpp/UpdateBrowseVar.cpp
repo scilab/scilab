@@ -195,6 +195,7 @@ void UpdateBrowseVar(BOOL update)
 
     freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
+    freeArrayOfString(pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed);
 
     if (piAllVariableFromUser)
     {
@@ -220,11 +221,6 @@ void UpdateBrowseVar(BOOL update)
         piAllVariableIntegerTypes = NULL;
     }
 
-    if (pstAllVariableSizes)
-    {
-        FREE(pstAllVariableSizes);
-        pstAllVariableSizes = NULL;
-    }
 }
 
 /*--------------------------------------------------------------------------*/
