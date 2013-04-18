@@ -178,6 +178,9 @@ Bug fixes
 
 * Bug #8687 fixed - typeof() function failed on uint8, depending on the format (+ unit test added).
 
+* Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
+                    than 80 times in a loop.
+
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
 * Bug #8856 fixed - Non regression test added for [k,l,m,...]=find(a==5).
