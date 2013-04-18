@@ -14,6 +14,7 @@
 #include <iostream>
 #include "BrowseVar.hxx"
 
+#include <sstream>
 #include <string>
 #include <iterator>
 using std::string;
@@ -41,7 +42,8 @@ using namespace org_scilab_modules_ui_data;
 
 static std::set < string > createScilabDefaultVariablesSet();
 static char * getListName(char * variableName);
-
+static std::string formatMatrix(int nbRows, int nbCols, BOOL isComplex, double *pdblReal, double *pdblImg);
+static char * valueToDisplay(char * variableName, int variableType, int nbRows, int nbCols);
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL update)
 {
@@ -95,11 +97,7 @@ void UpdateBrowseVar(BOOL update)
         }
         else
         {
-            // 11 =strlen("2147483647")+1 (1 for security)
-            sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
-            sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-            pstAllVariableSizes[i] = strdup(sizeStr);
-            FREE(sizeStr);
+            pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
         }
 
 
@@ -174,11 +172,7 @@ void UpdateBrowseVar(BOOL update)
 
         // Sizes of the variable
         getNamedVarDimension(pvApiCtx, pstAllVariableNames[i], &nbRows, &nbCols);
-        // 11 =strlen("2147483647")+1 (1 for security)
-        sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
-        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-        pstAllVariableSizes[i] = strdup(sizeStr);
-        FREE(sizeStr);
+        pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
 
         // global / local ??
         pstAllVariableVisibility[i] = strdup("global");
@@ -328,4 +322,88 @@ static char * getListName(char * variableName)
     tmpChar = strdup(pstType[0]);
     freeAllocatedMatrixOfString(iRows, iCols, pstType);
     return tmpChar;
+}
+
+static char * valueToDisplay(char * variableName, int variableType, int nbRows, int nbCols) {
+    SciErr err;
+
+
+            // 4 is the dimension max to which display the content
+            if (nbRows * nbCols <= 4 && variableType == sci_matrix)
+            {
+                // Small double value, display it
+                double* pdblReal = (double *)malloc(((nbRows) * (nbCols)) * sizeof(double));
+                double* pdblImg = (double *)malloc(((nbRows) * (nbCols)) * sizeof(double));
+                BOOL isComplex = FALSE;
+
+                if (isNamedVarComplex(pvApiCtx, variableName))
+                {
+                    err = readNamedComplexMatrixOfDouble(pvApiCtx, variableName, &nbRows, &nbCols, pdblReal, pdblImg);
+                    isComplex = TRUE;
+                }
+                else
+                {
+                    err = readNamedMatrixOfDouble(pvApiCtx, variableName, &nbRows, &nbCols, pdblReal);
+                }
+
+
+                return strdup(formatMatrix(nbRows, nbCols, isComplex, pdblReal, pdblImg).c_str());
+            }
+            else
+            {
+                char *sizeStr = NULL;
+                // 11 =strlen("2147483647")+1 (1 for security)
+                sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
+                sprintf(sizeStr, "%dx%d", nbRows, nbCols);
+                return sizeStr;
+            }
+}
+
+std::string formatMatrix(int nbRows, int nbCols, BOOL isComplex, double *pdblReal, double *pdblImg)
+{
+    int i, j ;
+#define PRECISION_DISPLAY 3
+    if (nbRows * nbCols == 1)
+    {
+        std::ostringstream os;
+        os.precision(PRECISION_DISPLAY);
+        os << pdblReal[0]; // Convert the double to string
+        if (isComplex)
+        {
+            os << " + " << pdblImg[0] << "i";
+        }
+        return os.str();
+    }
+
+    std::string formated = "[";
+    for (j = 0 ; j < nbRows ; j++)
+    {
+        for (i = 0 ; i < nbCols ; i++)
+        {
+            /* Display the formated matrix ... the way the user
+             * expect */
+            std::ostringstream os;
+            os.precision(PRECISION_DISPLAY);
+            os << pdblReal[i * nbRows + j]; // Convert the double to string
+            formated += os.str();
+            if (isComplex)
+            {
+                std::ostringstream osComplex;
+                osComplex.precision(PRECISION_DISPLAY);
+                osComplex << pdblImg[i * nbRows + j];
+                formated += " + " + osComplex.str() + "i";
+            }
+
+
+            if (i + 1 != nbCols) // Not the last element of the matrix
+            {
+                formated += ", ";
+            }
+        }
+        if (j + 1 != nbRows) // Not the last line of the matrix
+        {
+            formated += "; ";
+        }
+    }
+    return formated + "]";
 }
