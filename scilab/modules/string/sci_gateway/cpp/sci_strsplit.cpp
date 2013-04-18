@@ -143,7 +143,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
                 break;
                 case STRSPLIT_INCORRECT_VALUE_ERROR:
                 {
-                    Scierror(999, _("%s: Wrong value for input argument.\n"), "strsplit");
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "strsplit");
                     return types::Function::Error;
                 }
                 break;
