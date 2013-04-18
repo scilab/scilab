@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.types.ScilabTypeEnum;
 import org.scilab.modules.types.ScilabTypeEnumDescription;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
@@ -128,16 +129,20 @@ public class BrowseVar {
      * @param dataVisibility : local or global variable
      * @param dataFromUser : Scilab data or user data
      */
-    public static void openVariableBrowser(boolean update, String[] dataNames, int[] dataBytes, int[] dataTypes, int[] dataIntegerTypes, String[] dataSizes, String[] dataVisibility, boolean[] dataFromUser) {
+    public static void openVariableBrowser(boolean update, String[] dataNames, int[] dataBytes, int[] dataTypes, int[] dataIntegerTypes, String[] variableTlistTypes, String[] dataSizes, String[] dataVisibility, boolean[] dataFromUser) {
         Object[][] data = new Object[dataNames.length][COLUMNNAMES.length];
         for (int i = 0; i < dataNames.length; ++i) {
             data[i][ICON_COLUMN_INDEX] = getIconFromType(dataTypes[i]);
             data[i][NAME_COLUMN_INDEX] = dataNames[i];
             data[i][SIZE_COLUMN_INDEX] = dataSizes[i];
             data[i][TYPE_DESC_COLUMN_INDEX] = ScilabTypeEnumDescription.getTypeDescriptionFromId(dataTypes[i]);
-            if (dataTypes[i] == 8 && dataIntegerTypes[i] != 0) {
-                // It is an integer
+            if (dataTypes[i] == ScilabTypeEnum.sci_ints.swigValue() && dataIntegerTypes[i] != 0) {
+                // It is an integer. We want to detail the precision of the int
                 data[i][TYPE_DESC_COLUMN_INDEX] = data[i][TYPE_DESC_COLUMN_INDEX] + " " + dataIntegerTypes[i];
+            }
+            if (dataTypes[i] == ScilabTypeEnum.sci_tlist.swigValue() && !variableTlistTypes[i].equals("")) {
+                // It is a tlist and we want to display the user datatype
+                data[i][TYPE_DESC_COLUMN_INDEX] = variableTlistTypes[i] + " (" + data[i][TYPE_DESC_COLUMN_INDEX] + ")";
             }
             data[i][VISIBILITY_COLUMN_INDEX] = dataVisibility[i];
             data[i][BYTES_COLUMN_INDEX] = dataBytes[i];

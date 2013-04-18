@@ -21,11 +21,13 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
-* The Variable Browser shows also the size of integers.
-  See bug #12523
+* The Variable Browser shows also the size of integers and the user type of
+  the tlist.
+  See bug #12523 and #10409
 
 * isnum has been redesigned in native code. Up to 130x performance
   improvements. See bug #10404
+
 
 
 Syntax changes

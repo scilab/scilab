@@ -40,6 +40,7 @@ extern "C"
 using namespace org_scilab_modules_ui_data;
 
 static std::set < string > createScilabDefaultVariablesSet();
+static char * getTlistName(char * variableName);
 
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL update)
@@ -62,6 +63,7 @@ void UpdateBrowseVar(BOOL update)
 
     char **pstAllVariableNames = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     char **pstAllVariableVisibility = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    char **pstAllVariableTlistTypes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
@@ -132,6 +134,16 @@ void UpdateBrowseVar(BOOL update)
             piAllVariableIntegerTypes[i] = -1;
         }
 
+        if (piAllVariableTypes[i] == sci_tlist)
+        {
+            pstAllVariableTlistTypes[i] = getTlistName(pstAllVariableNames[i]);
+        }
+        else
+        {
+            pstAllVariableTlistTypes[i] = strdup("");
+        }
+
+
         // global / local ??
         pstAllVariableVisibility[i] = strdup("local");
 
@@ -171,6 +183,17 @@ void UpdateBrowseVar(BOOL update)
         // global / local ??
         pstAllVariableVisibility[i] = strdup("global");
 
+
+        if (piAllVariableTypes[i] == sci_tlist)
+        {
+            pstAllVariableTlistTypes[i] = getTlistName(pstAllVariableNames[i]);
+        }
+        else
+        {
+            pstAllVariableTlistTypes[i] = strdup("");
+        }
+
+
         if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end()
                 && piAllVariableTypes[i] != sci_c_function && piAllVariableTypes[i] != sci_lib)
         {
@@ -189,6 +212,7 @@ void UpdateBrowseVar(BOOL update)
                                    piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   pstAllVariableTlistTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
@@ -196,6 +220,7 @@ void UpdateBrowseVar(BOOL update)
     freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed);
+    freeArrayOfString(pstAllVariableTlistTypes, iLocalVariablesUsed + iGlobalVariablesUsed);
 
     if (piAllVariableFromUser)
     {
@@ -272,4 +297,35 @@ static std::set < string > createScilabDefaultVariablesSet()
     }
 
     return ScilabDefaultVariables;
+}
+
+static char * getTlistName(char * variableName)
+{
+    SciErr sciErr;
+    int *piAddr = NULL;
+    int* piAddr1 = NULL;
+    int iRows = 0;
+    int iCols = 0;
+    char **pstType;
+    char *tmpChar;
+    sciErr = getVarAddressFromName(pvApiCtx, variableName, &piAddr);
+    if (sciErr.iErr)
+    {
+        return strdup("");
+    }
+
+    sciErr = getListItemAddress(pvApiCtx, piAddr, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        return strdup("");
+    }
+
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddr1, &iRows, &iCols, &pstType))
+    {
+
+        return strdup("");
+    }
+    tmpChar = strdup(pstType[0]);
+    freeAllocatedMatrixOfString(iRows, iCols, pstType);
+    return tmpChar;
 }
