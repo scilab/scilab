@@ -130,3 +130,5 @@ Bug fixes
 * Bug #12527 fixed - Scilab user functions were not listed in browsevar.
 
 * Bug #12548 fixed - Duplicated code in xmltoformat.
+
+* Bug #12564 fixed - Javasci compile & run help page is not clear about needed packages.
