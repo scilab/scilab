@@ -140,9 +140,6 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
                 //avoid infinite loop
                 iStep++;
             }
-            else
-            {
-            }
         }
         else if (iPcreStatus != NO_MATCH)
         {

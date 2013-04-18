@@ -880,6 +880,12 @@ SKIP_DATA:
                                 {
                                     (*_pstCapturedString)[i] = os_strdup(pstSubstring);
                                 }
+                                else
+                                {
+                                    //empty string is matching, so create it
+                                    (*_pstCapturedString)[i] = os_strdup("");
+                                }
+
                                 pcre_free_substring(pstSubstring);
                             }
                         }
@@ -1175,11 +1181,11 @@ pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, in
         *_piStart               = (int)wcslen(pwstTempStart);
         *_piEnd                 = (int)wcslen(pwstTempEnd);
 
-        if(_piCapturedStringCount && *_piCapturedStringCount > 0)
+        if (_piCapturedStringCount && *_piCapturedStringCount > 0)
         {
             /*convert captured field in wide char*/
             *_pstCapturedString = (wchar_t**)MALLOC(sizeof(wchar_t*) * *_piCapturedStringCount);
-            for(i = 0 ; i < *_piCapturedStringCount ; i++)
+            for (i = 0 ; i < *_piCapturedStringCount ; i++)
             {
                 (*_pstCapturedString)[i] = to_wide_string(pstCaptured[i]);
             }
