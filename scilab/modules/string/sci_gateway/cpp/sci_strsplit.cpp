@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument#%d: A string expected.\n"), "strsplit", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strsplit", 1);
         return types::Function::Error;
     }
 
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
     if (pStrIn->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument#%d: A single string expected.\n"), "strsplit", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), "strsplit", 1);
         return types::Function::Error;
     }
 
@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
     {
         if (in[2]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument#%d: A double expected.\n"), "strsplit", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A double expected.\n"), "strsplit", 3);
             return types::Function::Error;
         }
 
@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
         if (pDblIn->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument#%d: A scalar double expected.\n"), "strsplit", 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar double expected.\n"), "strsplit", 3);
             return types::Function::Error;
         }
 
@@ -90,13 +90,13 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
         if ( (double)iValueThree != pDblIn->get(0))
         {
-            Scierror(999, _("%s: Wrong value for input argument#%d: An integer value expected.\n"), "strsplit", 3);
+            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "strsplit", 3);
             return types::Function::Error;
         }
 
         if ((iValueThree < 1) && (iValueThree != -1))
         {
-            Scierror(999, _("%s: Wrong size for input argument#%d: A positive value expected.\n"), "strsplit", 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A positive value expected.\n"), "strsplit", 3);
             return types::Function::Error;
         }
     }
@@ -115,7 +115,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
 
             if (pDbl->getRows() != 1 && pDbl->getCols() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument#%d: A Scalar or vector expected.\n"), "strsplit", 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A Scalar or vector expected.\n"), "strsplit", 2);
                 return types::Function::Error;
             }
 

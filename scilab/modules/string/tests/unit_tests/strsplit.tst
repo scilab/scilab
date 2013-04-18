@@ -23,7 +23,7 @@ assert_checkequal(strsplit([],[1 1 1]), []);
 // Scilab 5.x
 assert_checkequal(strsplit([],[3 2 1]), []);
 //===============================
-assert_checkequal(execstr('strsplit('',[0 1])','errcatch'), 31);
+assert_checkequal(execstr('strsplit('',[0 1])','errcatch'), 999);
 // Scilab 4.x 
 //if execstr('strsplit([])','errcatch') <> 39  then pause,end
 // Scilab 5.1
