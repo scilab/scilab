@@ -70,7 +70,7 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 
     if (string_to_search == NULL || replacement_string == NULL)
     {
-        return strdup(input_string);
+        return os_strdup(input_string);
     }
 
     occurrence_str = strstr (input_string, string_to_search);
@@ -275,19 +275,12 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 /*-------------------------------------------------------------------------------------*/
 wchar_t *wcssub_reg(wchar_t* _pwstInput, wchar_t* _pwstSearch, wchar_t* _pwstReplace, int* _piErr)
 {
-    int i;
     pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
-    int iStart                  = 0;
-    int iEnd                    = 0;
-    int iOccurs                 = 0;
-    int iStep                   = 0;
-    int iReplace                = 0;
-    int iOffset                 = 0;
+    int iStart = 0;
+    int iEnd = 0;
+    int iLen = 0;
 
-    int* piStart                = NULL;
-    int* piEnd                  = NULL;
-
-    wchar_t* pwstOutput         = NULL;
+    wchar_t* pwstOutput = NULL;
 
     if (_pwstInput == NULL)
     {
@@ -299,56 +292,25 @@ wchar_t *wcssub_reg(wchar_t* _pwstInput, wchar_t* _pwstSearch, wchar_t* _pwstRep
         return os_wcsdup(_pwstInput);
     }
 
-    iReplace    = (int)wcslen(_pwstReplace);
-
-    piStart     = (int*)MALLOC(sizeof(int) * wcslen(_pwstInput));
-    piEnd       = (int*)MALLOC(sizeof(int) * wcslen(_pwstInput));
-
-    do
+    iPcreStatus = wide_pcre_private(_pwstInput, _pwstSearch, &iStart, &iEnd, NULL, NULL);
+    if (iPcreStatus != PCRE_FINISHED_OK)
     {
-        iPcreStatus = wide_pcre_private(_pwstInput + iStep, _pwstSearch, &iStart, &iEnd, NULL, NULL);
-        if (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd)
-        {
-            //compute position on the output string, not original string
-            piStart[iOccurs]    = iStart + iStep;
-            piEnd[iOccurs++]    = iEnd + iStep;
-            iStep               += iEnd;
-            //compute new size of output string
-            iOffset             += iReplace - (iEnd - iStart);
-        }
-    }
-    while (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd);
-
-    pwstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(_pwstInput) + iOffset + 1));
-    memset(pwstOutput, 0x00, sizeof(wchar_t) * (wcslen(_pwstInput) + iOffset + 1));
-
-    if (iOccurs == 0)
-    {
-        wcscpy(pwstOutput, _pwstInput);
-    }
-    else
-    {
-        for (i = 0 ; i < iOccurs ; i++)
-        {
-            if (i == 0)
-            {
-                //copy start of original string
-                wcsncpy(pwstOutput, _pwstInput, piStart[i]);
-            }
-            else
-            {
-                //copy start of original string
-                wcsncpy(pwstOutput + wcslen(pwstOutput), _pwstInput + piEnd[i - 1], piStart[i] - piEnd[i - 1]);
-            }
-            //copy replace string
-            wcscpy(pwstOutput + wcslen(pwstOutput), _pwstReplace);
-        }
-        //copy end of original string
-        wcscpy(pwstOutput + wcslen(pwstOutput), _pwstInput + piEnd[iOccurs - 1]);
+        *_piErr = iPcreStatus;
+        return os_wcsdup(_pwstInput);
     }
 
-    FREE(piStart);
-    FREE(piEnd);
+    //compute new size of output string
+    iLen += (int)wcslen(_pwstReplace) - (iEnd - iStart);
+
+    pwstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(_pwstInput) + iLen + 1));
+    memset(pwstOutput, 0x00, sizeof(wchar_t) * (wcslen(_pwstInput) + iLen + 1));
+
+    //copy start of original string
+    wcsncpy(pwstOutput, _pwstInput, iStart);
+    //copy replace string
+    wcscpy(pwstOutput + wcslen(pwstOutput), _pwstReplace);
+    //copy end of original string
+    wcscpy(pwstOutput + wcslen(pwstOutput), _pwstInput + iEnd);
 
     *_piErr = iPcreStatus;
     return pwstOutput;
@@ -398,7 +360,6 @@ wchar_t **wcssubst(wchar_t** _pwstInput, int _iInputSize, wchar_t* _pwstSearch, 
 wchar_t *wcssub(wchar_t* _pwstInput, wchar_t* _pwstSearch, wchar_t* _pwstReplace)
 {
     int i               = 0;
-    size_t iStep        = 0;
     int iOccurs         = 0;
     size_t iReplace     = 0;
     size_t iSearch      = 0;
