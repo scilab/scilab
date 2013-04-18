@@ -139,7 +139,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void openVariableBrowser(JavaVM * jvm_, bool update, char const* const* variableNames, int variableNamesSize, int const* variableBytes, int variableBytesSize, int const* variableTypes, int variableTypesSize, int const* variableIntegerTypes, int variableIntegerTypesSize, char const* const* variableTlistTypes, int variableTlistTypesSize, char const* const* variableSize, int variableSizeSize, char const* const* variableVisibility, int variableVisibilitySize, bool const* variableFromUser, int variableFromUserSize);
+static void openVariableBrowser(JavaVM * jvm_, bool update, char const* const* variableNames, int variableNamesSize, int const* variableBytes, int variableBytesSize, int const* variableTypes, int variableTypesSize, int const* variableIntegerTypes, int variableIntegerTypesSize, char const* const* variableListTypes, int variableListTypesSize, char const* const* variableSize, int variableSizeSize, char const* const* variableVisibility, int variableVisibilitySize, bool const* variableFromUser, int variableFromUserSize);
 
 static bool isVariableBrowserOpened(JavaVM * jvm_);
 

@@ -40,7 +40,7 @@ extern "C"
 using namespace org_scilab_modules_ui_data;
 
 static std::set < string > createScilabDefaultVariablesSet();
-static char * getTlistName(char * variableName);
+static char * getListName(char * variableName);
 
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL update)
@@ -63,7 +63,7 @@ void UpdateBrowseVar(BOOL update)
 
     char **pstAllVariableNames = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     char **pstAllVariableVisibility = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    char **pstAllVariableTlistTypes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    char **pstAllVariableListTypes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
@@ -134,13 +134,13 @@ void UpdateBrowseVar(BOOL update)
             piAllVariableIntegerTypes[i] = -1;
         }
 
-        if (piAllVariableTypes[i] == sci_tlist)
+        if (piAllVariableTypes[i] == sci_tlist || piAllVariableTypes[i] == sci_mlist)
         {
-            pstAllVariableTlistTypes[i] = getTlistName(pstAllVariableNames[i]);
+            pstAllVariableListTypes[i] = getListName(pstAllVariableNames[i]);
         }
         else
         {
-            pstAllVariableTlistTypes[i] = strdup("");
+            pstAllVariableListTypes[i] = strdup("");
         }
 
 
@@ -184,13 +184,13 @@ void UpdateBrowseVar(BOOL update)
         pstAllVariableVisibility[i] = strdup("global");
 
 
-        if (piAllVariableTypes[i] == sci_tlist)
+        if (piAllVariableTypes[i] == sci_tlist || piAllVariableTypes[i] == sci_mlist)
         {
-            pstAllVariableTlistTypes[i] = getTlistName(pstAllVariableNames[i]);
+            pstAllVariableListTypes[i] = getListName(pstAllVariableNames[i]);
         }
         else
         {
-            pstAllVariableTlistTypes[i] = strdup("");
+            pstAllVariableListTypes[i] = strdup("");
         }
 
 
@@ -212,7 +212,7 @@ void UpdateBrowseVar(BOOL update)
                                    piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableTlistTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
@@ -220,7 +220,7 @@ void UpdateBrowseVar(BOOL update)
     freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed);
-    freeArrayOfString(pstAllVariableTlistTypes, iLocalVariablesUsed + iGlobalVariablesUsed);
+    freeArrayOfString(pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed);
 
     if (piAllVariableFromUser)
     {
@@ -299,7 +299,7 @@ static std::set < string > createScilabDefaultVariablesSet()
     return ScilabDefaultVariables;
 }
 
-static char * getTlistName(char * variableName)
+static char * getListName(char * variableName)
 {
     SciErr sciErr;
     int *piAddr = NULL;

@@ -7,7 +7,7 @@
             <parameter type="int[]" name="variableBytes"/>
             <parameter type="int[]" name="variableTypes"/>
             <parameter type="int[]" name="variableIntegerTypes"/>
-            <parameter type="String[]" name="variableTlistTypes"/>
+            <parameter type="String[]" name="variableListTypes"/>
             <parameter type="String[]" name="variableSize"/>
             <parameter type="String[]" name="variableVisibility"/>
             <parameter type="boolean[]" name="variableFromUser"/>
