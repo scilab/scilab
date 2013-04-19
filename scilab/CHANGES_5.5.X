@@ -151,12 +151,12 @@ Bug fixes
 
 * Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
                     returned an error.
+                    
+* Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
 
 * Bug #7486 fixed - DGELSY and ZGELSY closer to the upstream, to propose our modifications to LAPACK.
 
 * Bug #7655 fixed - An example added in help page of type, for type(X)=11 and type(X)=13.
-
-* Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
@@ -175,6 +175,9 @@ Bug fixes
 * Bug #8264 fixed - Documentation for Matlab's atan2() equivalent fixed.
 
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.
+
+* Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
+                    generator was changed.
 
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
 
