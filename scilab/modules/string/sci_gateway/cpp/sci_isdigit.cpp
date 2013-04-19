@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument#%d: A String expected.\n"), "isdigit", 1);
-        types::Function::Error;
+        return types::Function::Error;
     }
 
     pStrIn = in[0]->getAs<types::String>();
@@ -54,7 +54,7 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
     if (pStrIn->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument#%d: A scalar String expected.\n"), "isdigit", 1);
-        types::Function::Error;
+        return types::Function::Error;
     }
 
     wcstrIn = pStrIn->get(0);

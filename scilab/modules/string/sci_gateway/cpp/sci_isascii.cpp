@@ -85,7 +85,7 @@ types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, 
     else
     {
         Scierror(999, _("%s: Wrong type for input argument#%d: A string or matrix expected.\n"), "isascii", 1);
-        types::Function::Error;
+        return types::Function::Error;
     }
 
     return types::Function::OK;
