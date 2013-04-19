@@ -28,10 +28,13 @@
 
 #include "function.hxx"
 #include "string.hxx"
-#include "list.hxx"
+#include "mlist.hxx"
 #include "double.hxx"
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
+#include "context.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -60,25 +63,36 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
         return Function::Error;
     }
 
-    if (in[0]->isString())
+    switch (in[0]->getType())
     {
-        pOut = lengthStrings(in[0]->getAs<types::String>());
-    }
-    else if (in[0]->isGenericType())
-    {
-        pOut = lengthMatrix(in[0]->getAs<GenericType>());
-    }
-    else if (in[0]->isList())
-    {
-        pOut = lengthList(in[0]->getAs<List>());
-    }
-    //else if(in[0]->isSparse())
-    //{
-    //}
-    else
-    {
-        Scierror(999, _("%s: Wrong type for input argument(s).\n"), "length");
-        return Function::Error;
+        case InternalType::RealString :
+            pOut = lengthStrings(in[0]->getAs<types::String>());
+            break;
+        case InternalType::RealMList :
+        {
+            //build overload name and check if function exists.
+            MList* pML = in[0]->getAs<MList>();
+            std::wstring wst = L"%" + pML->getShortTypeStr() + L"_length";
+            symbol::Context* pCtx = symbol::Context::getInstance();
+            InternalType* pFunc = pCtx->get(symbol::Symbol(wst));
+            if (pFunc && pFunc->isCallable())
+            {
+                //call overload
+                Overload::generateNameAndCall(L"length", in, _iRetCount, out, new ExecVisitor());
+                return Function::OK;
+            }
+
+            //MList without overloading, manage like a list
+            //let pass !
+        }
+        case InternalType::RealList :
+            pOut = lengthList(in[0]->getAs<List>());
+            break;
+        case InternalType::RealGeneric :
+            pOut = lengthMatrix(in[0]->getAs<GenericType>());
+        default :
+            Scierror(999, _("%s: Wrong type for input argument(s).\n"), "length");
+            return Function::Error;
     }
 
     out.push_back(pOut);
