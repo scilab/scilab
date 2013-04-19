@@ -33,7 +33,7 @@ extern "C"
 
 using namespace types;
 
-static void getMacroString(Macro* _pM, String** _pOut, String** _pIn, String** _pBody)
+static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn, InternalType** _pBody)
 {
     //get body
     Exp* exp = _pM->getBody();
@@ -56,12 +56,11 @@ static void getMacroString(Macro* _pM, String** _pOut, String** _pIn, String** _
         }
     }
 
-    *_pBody = new String(iLines + 2, 1);
-    (*_pBody)->set(0, L" ");
+    String* pBody = new String(iLines, 1);
 
     //second loop to assign lines to output data
     int iOffset = 0;
-    int iIndex = 1;
+    int iIndex = 0;
     for (int i = 0 ; i < (int)wcslen(pwstBody) ; i++)
     {
         if (pwstBody[i] == L'\n')
@@ -70,32 +69,51 @@ static void getMacroString(Macro* _pM, String** _pOut, String** _pIn, String** _
             wchar_t* pwst = new wchar_t[iLen + 1];
             wcsncpy(pwst, pwstBody + iOffset, iLen);
             pwst[iLen] = L'\0';
-            (*_pBody)->set(iIndex++, pwst);
+            pBody->set(iIndex++, pwst);
             delete[] pwst;
             iOffset = i + 1;
         }
     }
 
-    (*_pBody)->set(iIndex, L" ");
+    *_pBody = pBody;
 
     //get inputs
     list<symbol::Symbol>* pIn = _pM->inputs_get();
-    *_pIn = new String(1, (int)pIn->size());
 
-    list<symbol::Symbol>::iterator itIn = pIn->begin();
-    for (int i = 0 ; i < pIn->size() ; i++, itIn++)
+    if (pIn->size() == 0)
     {
-        (*_pIn)->set(i, (*itIn).name_get().c_str());
+        *_pIn = Double::Empty();
+    }
+    else
+    {
+        String *pSIn = new String(1, (int)pIn->size());
+
+        list<symbol::Symbol>::iterator itIn = pIn->begin();
+        for (int i = 0 ; i < pIn->size() ; i++, itIn++)
+        {
+            pSIn->set(i, (*itIn).name_get().c_str());
+        }
+
+        *_pIn = pSIn;
     }
 
     //get outputs
     list<symbol::Symbol>* pOut = _pM->outputs_get();
-    *_pOut = new String(1, (int)pOut->size());
-
-    list<symbol::Symbol>::iterator itOut = pOut->begin();
-    for (int i = 0 ; i < pOut->size() ; i++, itOut++)
+    if (pOut->size() == 0)
     {
-        (*_pOut)->set(i, (*itOut).name_get().c_str());
+        *_pOut = Double::Empty();
+    }
+    else
+    {
+        String* pSOut = new String(1, (int)pOut->size());
+
+        list<symbol::Symbol>::iterator itOut = pOut->begin();
+        for (int i = 0 ; i < pOut->size() ; i++, itOut++)
+        {
+            pSOut->set(i, (*itOut).name_get().c_str());
+        }
+
+        *_pOut = pSOut;
     }
 }
 
@@ -231,9 +249,9 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             }
 
             MacroFile* pMF = in[0]->getAs<MacroFile>();
-            String* pOut = NULL;
-            String* pIn = NULL;
-            String* pBody = NULL;
+            InternalType* pOut = NULL;
+            InternalType* pIn = NULL;
+            InternalType* pBody = NULL;
 
             getMacroString(pMF->getMacro(), &pOut, &pIn, &pBody);
 
@@ -251,9 +269,9 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             }
 
             Macro* pM = in[0]->getAs<Macro>();
-            String* pOut = NULL;
-            String* pIn = NULL;
-            String* pBody = NULL;
+            InternalType* pOut = NULL;
+            InternalType* pIn = NULL;
+            InternalType* pBody = NULL;
 
             getMacroString(pM, &pOut, &pIn, &pBody);
 

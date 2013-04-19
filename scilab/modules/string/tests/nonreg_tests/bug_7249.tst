@@ -19,9 +19,7 @@ function myFunc
   disp('myFunc called');
 endfunction
 
-ref_txt = [' '; ..
-           'disp(''myFunc called'');'; ..
-           ' '];
+ref_txt = ['disp(""myFunc called"");'];
 
 [in, out, txt] = string(myFunc);
 assert_checkequal(out, []);
@@ -44,15 +42,13 @@ function [x, y, z] = myFunc1(a,b,c,d)
   y = myFunc2(a);
 endfunction
 
-ref_text = [" "; ..
-            "x = [];"; ..
+ref_text = ["x = [];"; ..
             "y = [];"; ..
             "z = [];"; ..
             "function k = myFunc2(x)"; ..
-            "   k = x + 1;"; ..
+            "    k = x + 1;"; ..
             "endfunction"; ..
-            "y = myFunc2(a);"; ..
-            " "];
+            "y = myFunc2(a);";];
 
 [in, out, txt] = string(myFunc1);
 assert_checkequal(out, ['a','b','c','d']);
@@ -63,13 +59,13 @@ deff('y = mymacro(x)', 'y = x + 1');
 [out, in, text] = string(mymacro);
 assert_checkequal(out, 'y');
 assert_checkequal(in, 'x');
-assert_checkequal(text, [' '; 'y = x + 1'; ' ']);
+assert_checkequal(text, ['y = x + 1']);
 // =============================================================================
 deff('y = mymacrob(x)', 'y = x + 1', 'n');
 [out, in, text] = string(mymacrob);
 assert_checkequal(out, 'y');
 assert_checkequal(in, 'x');
-assert_checkequal(text, [' '; 'y = x + 1'; ' ']);
+assert_checkequal(text, ['y = x + 1';]);
 // =============================================================================
 [out, in, text] = string(sinc);
 assert_checkequal(out, 'y');
@@ -86,6 +82,6 @@ deff('[y,z] = mymacroc(x,i)', 'y = x + 1;z = y;', 'n');
 [out, in, text] = string(mymacroc);
 assert_checkequal(out, ['y', 'z']);
 assert_checkequal(in, ['x', 'i']);
-assert_checkequal(text, [' '; 'y = x + 1;z = y;'; ' ']);
+assert_checkequal(text, ['y = x + 1;';'z = y;']);
 // =============================================================================
 

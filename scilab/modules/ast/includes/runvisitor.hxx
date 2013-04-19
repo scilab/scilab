@@ -1674,8 +1674,10 @@ public :
 
         //            Location* newloc = const_cast<Location*>(&location_get())->clone();
         Exp* exp = const_cast<Exp*>(&e.body_get())->clone();
-        MuteVisitor mute;
-        exp->accept(mute);
+
+        //MuteVisitor mute;
+        //exp->accept(mute);
+
         //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
         types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList,
                                                 static_cast<SeqExp&>(*exp), L"script");
