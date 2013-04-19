@@ -74,14 +74,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 
 
     Double* pD = in[1]->getAs<Double>();
-    if (pD->isEmpty())
-    {
-        out.push_back(new String(L""));
-        return Function::OK;
-    }
-
-
-    if (pD->isVector() == false)
+    if (pD->isVector() == false && pD->isEmpty() == false)
     {
         //non vector
         Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), "part", 2);
