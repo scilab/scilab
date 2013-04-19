@@ -31,6 +31,8 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 * The deletion of variables from the Variable Browser is now possible.
   See bug #9447
 
+* In browsevar, allows a user to plot the variable (already available in
+  editvar).
 
 
 Syntax changes

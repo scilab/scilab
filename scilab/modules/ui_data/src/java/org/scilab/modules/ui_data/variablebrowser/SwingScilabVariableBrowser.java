@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.swing.JMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -42,6 +43,7 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -83,6 +85,7 @@ import org.scilab.modules.ui_data.actions.UncompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.datatable.SwingTableModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variableeditor.actions.ExportToCsvAction;
+import org.scilab.modules.ui_data.variableeditor.actions.PlotAction;
 import org.scilab.modules.ui_data.variablebrowser.actions.CloseAction;
 import org.scilab.modules.ui_data.variablebrowser.actions.DeleteAction;
 import org.scilab.modules.ui_data.variablebrowser.actions.RefreshAction;
@@ -194,8 +197,15 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
 
         /* Hide the columns. But keep it in memory for the tooltip */
-        TableColumn column = table.getColumnModel().getColumn(BrowseVar.TYPE_COLUMN_INDEX);
+        TableColumn column = table.getColumnModel().getColumn(BrowseVar.NB_COLS_INDEX);
+        table.removeColumn(column);
+
         /* The order to removing does matter since it changes the positions */
+
+        column = table.getColumnModel().getColumn(BrowseVar.NB_ROWS_INDEX);
+        table.removeColumn(column);
+
+        column = table.getColumnModel().getColumn(BrowseVar.TYPE_COLUMN_INDEX);
         table.removeColumn(column);
 
         column = table.getColumnModel().getColumn(BrowseVar.FROM_SCILAB_COLUMN_INDEX);
@@ -421,6 +431,22 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
 
             ExportToCsvAction csvExport = new ExportToCsvAction((SwingScilabTab)SwingScilabVariableBrowser.this, UiDataMessages.EXPORTCSV);
             menu.add(csvExport.createMenuItem(SwingScilabVariableBrowser.this, UiDataMessages.EXPORTCSV));
+
+            Menu menuPlot = ScilabMenu.createMenu();
+            menuPlot.setText(UiDataMessages.PLOTALL);
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "plot2d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "Matplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "grayplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "Sgrayplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "champ", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "histplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "mesh", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "surf", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "hist3d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "contour2d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "pie", false));
+            menu.add(menuPlot);
+
             menu.setVisible(true);
 
             ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
