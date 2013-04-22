@@ -170,7 +170,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * Drawable component getter.
      * @return the drawable component.
      */
-    private Component getDrawableComponent() {
+    public Component getDrawableComponent() {
         return drawableComponent;
     }
 

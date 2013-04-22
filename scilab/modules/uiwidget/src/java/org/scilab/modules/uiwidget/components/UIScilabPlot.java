@@ -49,7 +49,6 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
 
     WindowAdapter winAdapter;
     Window parentWindow;
-    JPanel plot;
     Figure figure;
     SwingScilabCanvas canvas;
     String onrotate;
@@ -75,6 +74,7 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
         figure = GraphicObjectBuilder.createNewFigureWithAxes(figureId == Integer.MAX_VALUE ? null : figureId);
         int id = CallGraphicController.getGraphicObjectPropertyAsInteger(figure.getIdentifier(), GraphicObjectProperties.__GO_ID__);
         canvas = new SwingScilabCanvas(id, figure, isCanvas, true);
+
         winAdapter = new WindowAdapter() {
             public void windowClosed(WindowEvent e) {
                 parentWindow.removeWindowListener(winAdapter);
@@ -83,15 +83,15 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
             }
         };
 
-        canvas.addComponentListener(new ComponentAdapter() {
+        canvas.getDrawableComponent().addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent e) {
-                Integer[] newSize = new Integer[] {canvas.getWidth(), canvas.getHeight()};
+                Integer[] newSize = new Integer[] {canvas.getDrawableComponent().getWidth(), canvas.getDrawableComponent().getHeight()};
                 GraphicController.getController().setProperty(figure.getIdentifier(), GraphicObjectProperties.__GO_SIZE__, newSize);
 
                 Boolean autoreSize = (Boolean) GraphicController.getController().getProperty(figure.getIdentifier(), GraphicObjectProperties.__GO_AUTORESIZE__);
 
                 if (autoreSize != null && autoreSize) {
-                    Integer[] newAxesSize = new Integer[] {canvas.getWidth(), canvas.getHeight()};
+                    Integer[] newAxesSize = new Integer[] {newSize[0], newSize[1]};
                     GraphicController.getController().setProperty(figure.getIdentifier(), GraphicObjectProperties.__GO_AXES_SIZE__, newAxesSize);
                 }
             }
