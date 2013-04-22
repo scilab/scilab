@@ -73,7 +73,7 @@ Bug fixes
 
 * Bug #5539 fixed - sylv() help page was wrong in the discrete-time case.
 
-* Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear. 
+* Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
 
 * Bug #6693 fixed - modulo did not accept polynomial inputs. Help page was not updated.
 
@@ -101,6 +101,9 @@ Bug fixes
                      global configuration on the installer
 
 * Bug #10995 fixed - Typo in grand() for Gamma law argument
+
+* Bug #10226 fixed - When a // <empty session> line is delete, all sessions
+                     histories are folded.
 
 * Bug #11308 fixed - Calling sequences in help page of dsearch were wrong.
 
