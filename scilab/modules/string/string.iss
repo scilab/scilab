@@ -20,8 +20,6 @@
 ;
 Source: bin\{#STRING}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#STRING}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#STRING}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#STRING}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#STRING}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STRING}\license.txt; DestDir: {app}\modules\{#STRING}; Components: {#COMPN_SCILAB}
