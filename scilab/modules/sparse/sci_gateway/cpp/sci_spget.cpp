@@ -10,7 +10,7 @@
  *
  */
 
-#include "types_gw.hxx"
+#include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
 #include "gsort.hxx"

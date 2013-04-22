@@ -11,7 +11,7 @@
  */
 
 
-#include "types_gw.hxx"
+#include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
 
@@ -24,41 +24,41 @@ extern "C"
 
 namespace
 {
-    // C++ code straight from spcompack.f
-    template<typename XlindxIt, typename LindxIt, typename XlnzIt, typename AdjncyIt>
-    void spcompack(int neqns, int nsuper, int nsub, int nnz, XlindxIt xlindx
-        , LindxIt lindx, XlnzIt xlnz, AdjncyIt adjncy)
+// C++ code straight from spcompack.f
+template<typename XlindxIt, typename LindxIt, typename XlnzIt, typename AdjncyIt>
+void spcompack(int neqns, int nsuper, int nsub, int nnz, XlindxIt xlindx
+               , LindxIt lindx, XlnzIt xlnz, AdjncyIt adjncy)
+{
+    typedef typename std::iterator_traits<AdjncyIt>::difference_type AdjDiff_t;
+    typedef typename std::iterator_traits<LindxIt>::difference_type LindxDiff_t;
+    std::copy(lindx, lindx + nsub, adjncy);
+    std::size_t i(1), j(1);
+    for (i = j = 1 ; j <= neqns && i != nsuper + 1 ; ++j, ++i)
     {
-        typedef typename std::iterator_traits<AdjncyIt>::difference_type AdjDiff_t;
-        typedef typename std::iterator_traits<LindxIt>::difference_type LindxDiff_t;
-        std::copy(lindx, lindx+nsub, adjncy);
-        std::size_t i(1), j(1);
-        for(i = j = 1 ; j <= neqns && i != nsuper + 1 ; ++j, ++i)
-        {
-            if(!(((*(xlnz + j) - *(xlnz + j - 1)) == (*(xlindx + i) - *(xlindx + i - 1)))
+        if (!(((*(xlnz + j) - * (xlnz + j - 1)) == (*(xlindx + i) - * (xlindx + i - 1)))
                 && (*(adjncy + static_cast<AdjDiff_t>(*(xlnz + j - 1)) - 1) == j)))
-            {
-                std::size_t const l(*(xlindx + nsuper) - *(xlindx + i - 1) + (*(xlnz + j) - *(xlnz + j - 1)));
-                LindxIt const tmp(lindx + static_cast<LindxDiff_t>(*(xlindx + i - 1) - (*(xlnz + j) - *(xlnz + j - 1))) - 1);
-                std::copy(tmp, tmp + l, adjncy+static_cast<AdjDiff_t>(*(xlnz + j - 1)) - 1);
-                --i;
-            }
-        }
-        if(i == nsuper + 1)
         {
-            int const k(*(xlnz + neqns)- *(xlnz + j - 1));
-            i = 1;
-            int ii = 1;
-            while(i <= k)
-            {
-                for(j = 1; j <= ii; ++j, ++i)
-                {
-                    *(adjncy + static_cast<AdjDiff_t>(*(xlnz + neqns)) - i - 1) = neqns - j + 1;
-                }
-                ++ii;
-            }
+            std::size_t const l(*(xlindx + nsuper) - * (xlindx + i - 1) + (*(xlnz + j) - * (xlnz + j - 1)));
+            LindxIt const tmp(lindx + static_cast<LindxDiff_t>(*(xlindx + i - 1) - (*(xlnz + j) - * (xlnz + j - 1))) - 1);
+            std::copy(tmp, tmp + l, adjncy + static_cast<AdjDiff_t>(*(xlnz + j - 1)) - 1);
+            --i;
         }
     }
+    if (i == nsuper + 1)
+    {
+        int const k(*(xlnz + neqns) - * (xlnz + j - 1));
+        i = 1;
+        int ii = 1;
+        while (i <= k)
+        {
+            for (j = 1; j <= ii; ++j, ++i)
+            {
+                *(adjncy + static_cast<AdjDiff_t>(*(xlnz + neqns)) - i - 1) = neqns - j + 1;
+            }
+            ++ii;
+        }
+    }
+}
 }
 
 using namespace types;
@@ -66,23 +66,23 @@ using namespace types;
 //adjncy=spcompack(xadj,xlindx,lindx)
 Function::ReturnValue sci_spcompack(typed_list &in, int nbRes, typed_list &out)
 {
-    if(in.size() != 3)
+    if (in.size() != 3)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spcompack", 3);
         return Function::Error;
     }
 
-    for(std::size_t i = 0; i != 3; i++)
+    for (std::size_t i = 0; i != 3; i++)
     {
         /* Scilab <6 does not enforce vector args :( */
-        if(in[i]->isDouble() == false)
+        if (in[i]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Real vector expected.\n"), "spcompack", i+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Real vector expected.\n"), "spcompack", i + 1);
             return Function::Error;
         }
     }
 
-    if(nbRes > 1)
+    if (nbRes > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "spcompack", 1);
         return Function::Error;

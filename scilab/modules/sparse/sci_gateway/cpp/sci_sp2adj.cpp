@@ -10,7 +10,7 @@
  *
  */
 
-#include "types_gw.hxx"
+#include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
 
@@ -28,18 +28,18 @@ Function::ReturnValue sci_sp2adj(typed_list &in, int nbRes, typed_list &out)
 {
     Sparse *pRetVal = NULL;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "sp2adj", 1);
         return Function::Error;
     }
 
-    if(in[0]->isSparse() == false)
+    if (in[0]->isSparse() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: sparse matrix expected.\n"), "sp2adj", 1);
         return Function::Error;
     }
-    if(nbRes > 3)
+    if (nbRes > 3)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "sp2adj", 1, 3);
         return Function::Error;
@@ -50,25 +50,25 @@ Function::ReturnValue sci_sp2adj(typed_list &in, int nbRes, typed_list &out)
 
     types::Double* res = new Double(sp->getCols() + 1, 1);
     res->set(0, 1);
-    for(std::size_t i = 0; i != sp->getCols() ; i++)
+    for (std::size_t i = 0; i != sp->getCols() ; i++)
     {
         res->set(static_cast<int>(i + 1), res->get(static_cast<int>(i)) + sp->nonZeros(i));
     }
 
     out.push_back(res);
-    
-    if(nbRes >=2)
+
+    if (nbRes >= 2)
     {
         res = new Double(static_cast<int>(nonZeros), 1);
         sp->outputCols(res->getReal());
-        for(int i = 0 ; i < res->getSize() ; i++)
+        for (int i = 0 ; i < res->getSize() ; i++)
         {
             res->getReal()[i]++;
         }
         out.push_back(res);
     }
 
-    if(nbRes == 3)
+    if (nbRes == 3)
     {
         res = new Double(static_cast<int>(nonZeros), 1, sp->isComplex());
         sp->outputValues(res->getReal(), res->getImg());

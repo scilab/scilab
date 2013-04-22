@@ -30,16 +30,6 @@ int TypesModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getfield", &sci_getfield, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fieldnames", &sci_fieldnames, MODULE_NAME));
 
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"adj2sp", &sci_adj2sp, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"nnz", &sci_nnz, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sp2adj", &sci_sp2adj, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sparse", &sci_sparse, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spcompack", &sci_spcompack, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spget", &sci_spget, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spzeros", &sci_spzeros, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spones", &sci_spones, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"full", &sci_full, MODULE_NAME));
-
 #ifndef NDEBUG
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetItemCount", &sci_inspectorGetItemCount, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorShowItem", &sci_inspectorShowItem, MODULE_NAME));

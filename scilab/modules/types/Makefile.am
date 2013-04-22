@@ -97,18 +97,7 @@ TYPES_GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mlist.cpp \
 	sci_gateway/cpp/sci_isfield.cpp \
 	sci_gateway/cpp/sci_fieldnames.cpp \
-	sci_gateway/cpp/sci_getfield.cpp \
-	sci_gateway/cpp/sci_adj2sp.cpp \
-	sci_gateway/cpp/sci_full.cpp \
-	sci_gateway/cpp/sci_nnz.cpp \
-	sci_gateway/cpp/sci_sp2adj.cpp \
-	sci_gateway/cpp/sci_sparse.cpp \
-	sci_gateway/cpp/sci_spcompack.cpp \
-	sci_gateway/cpp/sci_spget.cpp \
-	sci_gateway/cpp/sci_spzeros.cpp \
-	sci_gateway/cpp/sci_spones.cpp
-
-
+	sci_gateway/cpp/sci_getfield.cpp
 
 
 if ENABLE_DEBUG

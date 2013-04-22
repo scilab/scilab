@@ -10,7 +10,7 @@
  *
  */
 
-#include "types_gw.hxx"
+#include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
 
@@ -25,19 +25,19 @@ using namespace types;
 
 Function::ReturnValue sci_spones(typed_list &in, int _piRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spones", 1);
         return Function::Error;
     }
 
-    if(in[0]->isSparse() == false && in[0]->isSparseBool() == false)
+    if (in[0]->isSparse() == false && in[0]->isSparseBool() == false)
     {
         Scierror(999, _("%s: Wrong type for argument %d: Sparse matrix expected.\n"), "spones", 1);
         return Function::Error;
     }
 
-    if(in[0]->isSparse())
+    if (in[0]->isSparse())
     {
         out.push_back(in[0]->getAs<Sparse>()->newOnes());
     }

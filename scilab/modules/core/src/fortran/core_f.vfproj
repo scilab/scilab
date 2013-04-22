@@ -104,7 +104,6 @@
 		<File RelativePath="getstr.f"/>
 		<File RelativePath="getsym.f"/>
 		<File RelativePath="hmcreate.f"/>
-		<File RelativePath="hndlops.f"/>
 		<File RelativePath="indxg.f"/>
 		<File RelativePath="intstr.f"/>
 		<File RelativePath="isany.f"/>
