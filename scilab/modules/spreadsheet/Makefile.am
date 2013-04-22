@@ -7,15 +7,11 @@
 SPREADSHEET_C_SOURCES = \
 src/c/xls.c \
 src/c/checkCsvWriteFormat.c \
-src/c/csv_complex.c \
 src/c/csvDefault.c \
-src/c/csvIsnum.c \
 src/c/csvRead.c \
-src/c/csv_strsubst.c \
 src/c/csvWrite.c \
 src/c/getRange.c \
 src/c/splitLine.c \
-src/c/stringToComplex.c \
 src/c/utftolatin.c
 
 RIPOLE_SOURCES = \
@@ -33,7 +29,6 @@ sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/sci_xls_open.c \
 sci_gateway/c/gw_csv_helpers.c \
 sci_gateway/c/sci_csvDefault.c \
-sci_gateway/c/sci_csvIsnum.c \
 sci_gateway/c/sci_csvRead.c \
 sci_gateway/c/sci_csvStringToDouble.c \
 sci_gateway/c/sci_csvTextScan.c \
@@ -64,7 +59,7 @@ libscispreadsheet_algo_la_CPPFLAGS = $(libscispreadsheet_la_CPPFLAGS)
 CHECK_SRC= $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
 INCLUDE_FLAGS = $(libscispreadsheet_la_CPPFLAGS)
 
-libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la 
+libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la
 
 #### Target ######
 modulename=spreadsheet
@@ -72,7 +67,7 @@ modulename=spreadsheet
 
 #### spreadsheet : Conf files ####
 libscispreadsheet_la_rootdir = $(mydatadir)
-libscispreadsheet_la_root_DATA =  license.txt 
+libscispreadsheet_la_root_DATA =  license.txt
 
 
 ####�spreadsheet : init scripts ####

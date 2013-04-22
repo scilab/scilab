@@ -17,76 +17,95 @@
     </refnamediv>
     <refsection>
         <title>Linux/Unix/MacOSX</title>
-            <para>On Linux/Unix/MacOSX, Scilab needs the SCI global variable to be set:</para>
-            <itemizedlist>
-                <listitem>
-                    <para>In the binary version of Scilab, SCI will point to /path/to/scilab/share/scilab/</para>
-                </listitem>
-                <listitem>
-                    <para>In the source tree of Scilab, SCI will point to the root of the source tree /path/to/scilab/source/tree/</para>
-                </listitem>
-            </itemizedlist>
-
-            <para>To compile a Java code based on Javasci v2, the path to the following libraries has to be added in the classpath:</para>
-            <itemizedlist>
-                <listitem>org.scilab.modules.javasci.jar</listitem>
-                <listitem>org.scilab.modules.types.jar</listitem>
-            </itemizedlist>
-
-            <para>So, to compile the example code (the code is further in this page), the command line is:</para>
-
-            <para>
-                <literal>javac -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample.java</literal>
-            </para>
-
-            <para>Then, to launch the Java application, the path to the libjavasci native library needs to be provided, either:</para>
-            <itemizedlist>
-                <listitem>
-                    <para>In the LD_LIBRARY_PATH:</para>
-                    <itemizedlist mark="opencircle">
-                        <listitem>
-                            <para>In the binary version of Scilab, LD_LIBRARY_PATH will point to /path/to/scilab/lib/scilab/</para>
-                        </listitem>
-                        <listitem>
-                            <para>In the source tree of Scilab, LD_LIBRARY_PATH will point to the root of the source tree /path/to/scilab/modules/javasci/.libs/, /path/to/scilab/modules/types/.libs/ and /path/to/scilab/.libs/</para>
-                        </listitem>
-                    </itemizedlist>
-
-                    <para>And the application is run with the command line:</para>
-                    <literal>java -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
-                </listitem>
-                <listitem>
-                    <para>Or as argurment of java, in the command line:</para>
-                    <para>
-                        <literal>java -Djava.library.path=/path/to/libjavasci/ -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
-                    </para>
-                </listitem>
-            </itemizedlist>
+        <para>On Linux/Unix/MacOSX, Scilab needs the SCI global variable to be set:</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    In the binary version of Scilab, SCI will point to <literal>/path/to/scilab/share/scilab/</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    In the source tree of Scilab, SCI will point to the root of the source tree <literal>/path/to/scilab/source/tree/</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
+        
+        <para>To compile a Java application using Javasci v2, the path to the following libraries may have to be added in the classpath:</para>
+        <itemizedlist>
+            <listitem>
+                <literal>org.scilab.modules.javasci.jar</literal> (required for all Javasci applications) 
+            </listitem>
+            <listitem>
+                <literal>org.scilab.modules.types.jar</literal> (if the application uses Javasci types) 
+            </listitem>
+        </itemizedlist>
+        
+        <para>To compile the example code (the code is further in this page), the command line is:</para>
+        
+        <para>
+            <literal>javac -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample.java</literal>
+        </para>
+        
+        <para>To launch the Java application, the path to the libjavasci native library needs to be provided, either:</para>
+        <itemizedlist>
+            <listitem>
+                <para>In the LD_LIBRARY_PATH:</para>
+                <itemizedlist mark="opencircle">
+                    <listitem>
+                        <para>
+                            In the binary version of Scilab, LD_LIBRARY_PATH will point to <literal>/path/to/scilab/lib/scilab/</literal> and <literal>/path/to/scilab/lib/thirdparty/</literal>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            In the source tree of Scilab, LD_LIBRARY_PATH will point to the root of the source tree <literal>/path/to/scilab/modules/javasci/.libs/</literal>, <literal>/path/to/scilab/modules/types/.libs/</literal> and <literal>/path/to/scilab/.libs/</literal>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                
+                <para>And the application is run with the command line:</para>
+                <literal>java -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
+            </listitem>
+            <listitem>
+                <para>Or as argurment of java, in the command line:</para>
+                <para>
+                    <literal>java -Djava.library.path=/path/to/libjavasci/:/path/to/scilab/lib/thirdparty/ -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection>
         <title>Windows</title>
-        <para>In this paragraph we suppose Scilab is installed in the directory "C:\Program Files\scilab-XXXX" (where XXXX is the version of Scilab, for example "5.4.0").</para>
-
-        <para>On windows, no specific environment variable needs to be defined.</para>
-
-        <para>The compilation is the quite the same as in Linux environment. The path to the following libraries has to be added in the classpath:</para>
-        <itemizedlist>
-            <listitem>org.scilab.modules.javasci.jar</listitem>
-            <listitem>org.scilab.modules.types.jar</listitem>
-        </itemizedlist>
-
-        <para>So, to compile the example code, the command line is:</para>
         <para>
-            <literal>javac -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar";. BasicExample.java</literal>
+            In this paragraph we suppose Scilab is installed in the directory <literal>C:\Program Files\scilab-XXXX</literal> (where XXXX is the version of Scilab, for example "5.4.0").
         </para>
-
+        
+        <para>On windows, no specific environment variable needs to be defined.</para>
+        
+        <para>To compile a Java application using Javasci v2, the path to the following libraries may have to be added in the classpath:</para>
+        <itemizedlist>
+            <listitem>
+                <literal>org.scilab.modules.javasci.jar</literal> (required for all Javasci applications) 
+            </listitem>
+            <listitem>
+                <literal>org.scilab.modules.types.jar</literal> (if the application uses Javasci types) 
+            </listitem>
+        </itemizedlist>
+        
+        <para>To compile the example code, the command line is:</para>
+        <para>
+            <literal>javac -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar";. BasicExample.java</literal>
+        </para>
+        
         <para>For execution, the path to the native library libjavasci.dll and to its dependencies must be added in the PATH environment variable.
-            All the needed libraries are in the "bin" folder, so the command line is:</para>
+            All the needed libraries are in the "bin" folder, so the command line is:
+        </para>
         <para>
             <literal>set PATH="C:\Program Files\scilab-XXXX\bin";%PATH%</literal>
         </para>
-
-        <para>Then, to launch the Java application, the command line is quite the same as for Linux:</para>
+        
+        <para>To launch the Java application, the command line is quite the same as for Linux:</para>
         <para>
             <literal>java -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar";. BasicExample</literal>
         </para>
@@ -121,6 +140,7 @@
 // Filename: BasicExample.java
 
 import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.types.ScilabType;
 
 class BasicExample {
 
@@ -129,6 +149,8 @@ class BasicExample {
             Scilab sci = new Scilab();
             sci.open();
             sci.exec("a=cos(%pi)*sin(%pi^2);");
+            ScilabType a = sci.get("a");
+            System.out.println("a = " + a);
         } catch (org.scilab.modules.javasci.JavasciException e) {
             System.err.println("Could not find variable type: " + e.getLocalizedMessage());
         }

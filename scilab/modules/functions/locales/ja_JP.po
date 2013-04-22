@@ -179,6 +179,10 @@ msgstr "%s: 書き込みのためのファイル %s を開くことができま�
 msgid "%s: File %s does not contain any function.\n"
 msgstr "%s: ファイル %s は、どんな関数も含みません。\n"
 
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+
 #
 # File: macros/getd.sci, line: 45
 #, c-format

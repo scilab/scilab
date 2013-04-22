@@ -1,16 +1,18 @@
 <?xml version="1.0"?>
 <package name="org.scilab.modules.ui_data">
-  <object name="BrowseVar">
-    <method name="openVariableBrowser" returnType="void" modifier="static">
-      <parameter type="boolean" name="update"/>
-      <parameter type="String[]" name="variableNames"/>
-      <parameter type="int[]" name="variableBytes"/>
-      <parameter type="int[]" name="variableTypes"/>
-      <parameter type="String[]" name="variableSize"/>
-      <parameter type="String[]" name="variableVisibility"/>
-      <parameter type="boolean[]" name="variableFromUser"/>
-    </method>
-    <method name="isVariableBrowserOpened" returnType="boolean" modifier="static"/>
-    <method name="closeVariableBrowser" returnType="void" modifier="static"/>
-  </object>
+    <object name="BrowseVar">
+        <method name="openVariableBrowser" returnType="void" modifier="static">
+            <parameter type="boolean" name="update"/>
+            <parameter type="String[]" name="variableNames"/>
+            <parameter type="int[]" name="variableBytes"/>
+            <parameter type="int[]" name="variableTypes"/>
+            <parameter type="int[]" name="variableIntegerTypes"/>
+            <parameter type="String[]" name="variableListTypes"/>
+            <parameter type="String[]" name="variableSize"/>
+            <parameter type="String[]" name="variableVisibility"/>
+            <parameter type="boolean[]" name="variableFromUser"/>
+        </method>
+        <method name="isVariableBrowserOpened" returnType="boolean" modifier="static"/>
+        <method name="closeVariableBrowser" returnType="void" modifier="static"/>
+    </object>
 </package>

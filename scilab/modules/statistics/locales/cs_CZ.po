@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2013-03-21 13:45+0000\n"
+"PO-Revision-Date: 2013-03-28 21:06+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -252,6 +252,40 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno stejný počet sloupců "
 "jako první vstupní argument.\n"
+
+msgid "histplot() : (normalized) histogram plot"
+msgstr "histplot() : (normalizovaný) graf histogramu"
+
+msgid "Gaussian random sample histogram"
+msgstr "Náhodný vzorek gaussovského histogramu"
+
+msgid "Exact gaussian density"
+msgstr "Přesná gaussovská hustota"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejméně %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Prvky musí být ve vzestupném "
+"pořadí.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
