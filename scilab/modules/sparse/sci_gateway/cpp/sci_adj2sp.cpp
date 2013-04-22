@@ -71,14 +71,14 @@ Function::ReturnValue sci_adj2sp(typed_list &in, int nbRes, typed_list &out)
             return Function::Error;
         }
 
-        if (n > dims.getReal(0, 0) || m > dims.getReal(0, 1))
+        if (m > dims.getReal(0, 0) || n > dims.getReal(0, 1))
         {
             Scierror(999, _("%s: Incompatible input argument.\n"), "adj2sp");
             return Function::Error;
         }
 
-        n = static_cast<size_t>(dims.getReal(0, 0));
-        m = static_cast<size_t>(dims.getReal(0, 1));
+        m = static_cast<size_t>(dims.getReal(0, 0));
+        n = static_cast<size_t>(dims.getReal(0, 1));
     }
 
     out.push_back(new types::Sparse(*xadj, *adjncy, *anz, m, n));
