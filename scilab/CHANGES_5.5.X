@@ -99,6 +99,9 @@ Bug fixes
 
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
+* Bug #8862 fixed -  mget and mput couldn't read and write 64 bit data from	78
+                     binary file.
+
 * Bug #9004 fixed - bitcmp function called with one input argument returned an error.
 
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
