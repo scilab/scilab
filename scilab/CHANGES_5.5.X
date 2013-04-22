@@ -51,6 +51,8 @@ Improvements
 * graypolarplot has been improved in term of performance and rendering.
   See bug #12641
 
+* New calling sequence allowed for nicholschart: nicholschart(gains, phases, colors).
+
 
 Obsolete
 =========
@@ -149,9 +151,9 @@ Bug fixes
 
 * Bug #7080 fixed - Some graphics macros did not use standard error messages.
 
-* Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
+* Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function
                     returned an error.
-                    
+
 * Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
 
 * Bug #7486 fixed - DGELSY and ZGELSY closer to the upstream, to propose our modifications to LAPACK.
