@@ -289,7 +289,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_elementary_functions.c \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
-    sci_gateway/c/sci_spones.c \
     sci_gateway/c/sci_nearfloat.c \
     sci_gateway/c/sci_real.c \
     sci_gateway/c/sci_round.c \
