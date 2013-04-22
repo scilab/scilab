@@ -334,6 +334,9 @@ msgstr "Anomena i desa"
 msgid "Export"
 msgstr "Exporta"
 
+msgid "Export all diagrams"
+msgstr ""
+
 msgid "Save as interface function"
 msgstr "Desa com una funció d'interfície"
 
@@ -397,8 +400,8 @@ msgstr "Visualitza a l'Scicos"
 msgid "View"
 msgstr "Visualitza"
 
-msgid "Fit diagram to view"
-msgstr "Ajusta el diagrama a la vista"
+msgid "Fit diagram or blocks to view"
+msgstr ""
 
 msgid "Normal 100%"
 msgstr "Normal 100%"

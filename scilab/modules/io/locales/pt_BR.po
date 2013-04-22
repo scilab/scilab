@@ -132,6 +132,10 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "Erro não gerenciado por v2cunit.\n"
 
 #, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr ""
+
+#, c-format
 msgid "%s : Invalid entity %s\n"
 msgstr ""
 

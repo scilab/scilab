@@ -77,15 +77,12 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     doublecomplex* pWORKL   = NULL;
 
     int mRVEC,     nRVEC;
-    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int D,        mD,        nD;
     int Z,        mZ,        nZ;
     int mSIGMA,    nSIGMA;
     int mWORKev,   nWORKev;
-    int mBMAT,     nBMAT;
     int mN,        nN;
-    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;

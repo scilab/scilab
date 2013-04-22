@@ -63,9 +63,7 @@ int sci_znaupd(char *fname, void *pvApiCtx)
     doublecomplex* pWORKL   = NULL;
 
     int IDO,   mIDO,   nIDO;
-    int mBMAT,  nBMAT;
     int mN,     nN;
-    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;

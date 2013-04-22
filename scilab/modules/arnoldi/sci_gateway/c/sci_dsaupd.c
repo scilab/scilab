@@ -57,9 +57,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     int* pINFO          = NULL;
 
     int IDO,   mIDO,   nIDO;
-    int mBMAT,  nBMAT;
     int mN,     nN;
-    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;

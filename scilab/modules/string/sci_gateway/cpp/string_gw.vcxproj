@@ -177,6 +177,7 @@
     <ClCompile Include="sci_isascii.cpp" />
     <ClCompile Include="sci_isdigit.cpp" />
     <ClCompile Include="sci_isletter.cpp" />
+    <ClCompile Include="sci_isnum.cpp" />
     <ClCompile Include="sci_length.cpp" />
     <ClCompile Include="sci_part.cpp" />
     <ClCompile Include="sci_regexp.cpp" />

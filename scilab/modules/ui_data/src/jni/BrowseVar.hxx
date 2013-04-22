@@ -76,7 +76,7 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_Stringjava_lang_StringjintArray_intintjintArray_intintjobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringjbooleanArray_booleanbooleanID; // cache method id
+jmethodID voidopenVariableBrowserjbooleanbooleanjobjectArray_java_lang_Stringjava_lang_StringjintArray_intintjintArray_intintjintArray_intintjobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringjobjectArray_java_lang_Stringjava_lang_StringjbooleanArray_booleanbooleanID; // cache method id
 jclass stringArrayClass;
 jmethodID jbooleanisVariableBrowserOpenedID; // cache method id
 jmethodID voidcloseVariableBrowserID; // cache method id
@@ -139,7 +139,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void openVariableBrowser(JavaVM * jvm_, bool update, char const* const* variableNames, int variableNamesSize, int const* variableBytes, int variableBytesSize, int const* variableTypes, int variableTypesSize, char const* const* variableSize, int variableSizeSize, char const* const* variableVisibility, int variableVisibilitySize, bool const* variableFromUser, int variableFromUserSize);
+static void openVariableBrowser(JavaVM * jvm_, bool update, char const* const* variableNames, int variableNamesSize, int const* variableBytes, int variableBytesSize, int const* variableTypes, int variableTypesSize, int const* variableIntegerTypes, int variableIntegerTypesSize, char const* const* variableListTypes, int variableListTypesSize, char const* const* variableSize, int variableSizeSize, char const* const* variableVisibility, int variableVisibilitySize, bool const* variableFromUser, int variableFromUserSize);
 
 static bool isVariableBrowserOpened(JavaVM * jvm_);
 

@@ -192,6 +192,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         // ---------------------------------------------------------------------
 
     elseif rhs == 4 then
+
         language_system   = [];
         default_language  = [];
 
@@ -275,6 +276,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         //
 
         for k=1:size(dirs_m,"*")
+
             this_tree                     = x2f_dir_to_tree(dirs_m(k),1);
             this_tree("title_addchapter") = titles_m(k);
             this_tree("language")         = directory_language_m(k);
@@ -516,33 +518,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
         end
 
-        // Check if the help file has been generated
-        if ~isfile(buildDoc_file) then
-            chdir(cur_dir);
-            error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
-        end
-
-        // move the generated file(s)
-        if is_chm then
-
-        elseif is_html then
-            my_html_files = listfiles(buildDoc_dir);
-            for k=1:size(my_html_files,"*")
-                if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
-                    chdir(cur_dir);
-                    error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
-                end
-                mdelete(my_html_files(k));
-            end
-        else
-            copyfile(buildDoc_file,final_help_file);
-            mdelete(buildDoc_file);
-        end
-
-        // Move into the initial directory
-        if ~chdir(cur_dir) then
-            error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",cur_dir));
-        end
+        check_move(buildDoc_file);
 
         // Now we can add the help file to the list of all generated files
         generated_files = [ generated_files ; final_help_file ];
@@ -617,33 +593,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 buildDocv2("jar-only",this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
 
-            // Check if the help file has been generated
-            if ~isfile(buildDoc_file) then
-                chdir(cur_dir);
-                error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
-            end
-
-            // move the generated file(s)
-            if is_chm then
-
-            elseif is_html then
-                my_html_files = listfiles(buildDoc_dir);
-                for k=1:size(my_html_files,"*")
-                    if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
-                        chdir(cur_dir);
-                        error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
-                    end
-                    mdelete(my_html_files(k));
-                end
-            else
-                copyfile(buildDoc_file,final_help_file);
-                mdelete(buildDoc_file);
-            end
-
-            // Move into the initial directory
-            if ~chdir(cur_dir) then
-                error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
-            end
+            check_move(buildDoc_file);
 
             // Now we can add the help file to the list of all generated files
             generated_files = [ generated_files ; final_help_file ];
@@ -742,33 +692,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
                 buildDocv2("jar-only",this_tree("master_document"),directory_language(k),dirs(k));
             end
 
-             // Check if the help file has been generated
-            if ~isfile(buildDoc_file) then
-                chdir(cur_dir);
-                error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
-            end
-
-            // move the generated file(s)
-            if is_chm then
-                // nothing to do
-            elseif is_html then
-                my_html_files = listfiles(buildDoc_dir);
-                for k=1:size(my_html_files,"*")
-                    if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
-                        chdir(cur_dir);
-                        error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
-                    end
-                    mdelete(my_html_files(k));
-                end
-            else
-                copyfile(buildDoc_file,final_help_file);
-                mdelete(buildDoc_file);
-            end
-
-            // Move into the initial directory
-            if ~chdir(cur_dir) then
-                error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
-            end
+            check_move(buildDoc_file);
 
             // Now we can add the help file to the list of all generated files
             generated_files = [ generated_files ; final_help_file ];
@@ -786,6 +710,40 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
 endfunction
 
+// =============================================================================
+// check and move the generated files
+// =============================================================================
+function check_move(buildDoc_file)
+
+    // Check if the help file has been generated
+    if fileinfo(buildDoc_file)==[] then
+        chdir(cur_dir);
+        error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
+    end
+
+    // move the generated file(s)
+    if is_chm then
+
+    elseif is_html then
+        my_html_files = listfiles(buildDoc_dir);
+        for k=1:size(my_html_files,"*")
+            if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+                chdir(cur_dir);
+                error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
+            end
+            mdelete(my_html_files(k));
+        end
+    else
+        copyfile(buildDoc_file,final_help_file);
+        mdelete(buildDoc_file);
+    end
+
+    // Move into the initial directory
+    if ~chdir(cur_dir) then
+        error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",cur_dir));
+    end
+
+endfunction
 
 // =============================================================================
 // dirs_out = x2f_get_xml_path(dirs_in,my_wanted_language)
@@ -951,13 +909,14 @@ function tree = x2f_dir_to_tree(directory,level)
     // Normalize the directory path
     directory    = pathconvert(directory);
 
+
     // init the structure
     tree          = struct();
     tree("path")  = directory;
     tree("level") = level;
 
     // If a master.xml file exists, don't go past
-    if isfile(directory+"master.xml") then
+    if fileinfo(directory+"master.xml")<>[] then
         tree("master.xml") = %T;
         return;
     else
@@ -969,17 +928,17 @@ function tree = x2f_dir_to_tree(directory,level)
     //
 
     // Parse the CHAPTER file to get the directory title if this file is present
-    if isfile(directory+"CHAPTER") then
+    if fileinfo(directory+"CHAPTER")<>[] then
         tree = x2f_cat(tree,x2f_read_CHAPTER(directory+"CHAPTER"));
     end
 
     // Check if the addchapter.sce is present
-    if isfile(directory+"addchapter.sce") then
+    if fileinfo(directory+"addchapter.sce")<>[] then
         tree("title_addchapter") = basename(directory);
     end
 
     // Check if the last_successful_build is present
-    if isfile(directory+".last_successful_build") then
+    if fileinfo(directory+".last_successful_build")<>[] then
         tree = x2f_cat(tree , x2f_read_lsb(directory+".last_successful_build"));
     end
 
@@ -1059,6 +1018,7 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     // Check the directory existence
     // =========================================================================
+
     if ~isdir(directory) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid existing directory is expected.\n"),"x2f_get_xml_files",1));
     end
@@ -1089,10 +1049,10 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     if xmlpaths<>[] then
         infos = fileinfo(xmlpaths);
-        //ft = format();
-        //format(20);
+        ft = format();
+        format(20);
         lmt   = string(infos(:,7));
-        //format(ft(2),ft(1));
+        format(ft(2),ft(1));
     else
         lmt   = [];
     end
@@ -1211,7 +1171,7 @@ function desc_out = x2f_read_CHAPTER(file_in)
     // Check the input file existence
     // =========================================================================
 
-    if ~isfile(file_in) then
+    if fileinfo( file_in ) == [] then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid existing file is expected.\n"),"x2f_read_CHAPTER",1));
     end
 
@@ -1281,7 +1241,7 @@ function desc_out = x2f_read_lsb(file_in)
     // Check the input file existence
     // =========================================================================
 
-    if ~isfile(file_in) then
+    if fileinfo( file_in ) == [] then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid existing file is expected.\n"),"x2f_read_lsb",1));
     end
 
@@ -1329,6 +1289,7 @@ endfunction
 function desc_out = x2f_cat(desc_in_1,desc_in_2)
 
     rhs = argn(2);
+
     // Check number of input arguments
     // =========================================================================
 
@@ -1350,8 +1311,8 @@ function desc_out = x2f_cat(desc_in_1,desc_in_2)
     // ... and now, Action
     // =========================================================================
 
-    fields_in_2      = fieldnames(desc_in_2);
-    //fields_in_2(1:2) = [];
+    fields_in_2      = getfield(1,desc_in_2);
+    fields_in_2(1:2) = [];
 
     if or(isfield(desc_in_1,fields_in_2)) then
         error(msprintf(gettext("%s: The 2 mlist must not have any field in common .\n"),"x2f_cat"));
@@ -1492,7 +1453,7 @@ function master_document = x2f_tree_to_master( tree )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = fieldnames(tree);
+    my_subtrees = getfield(1,tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
@@ -1603,7 +1564,7 @@ function master_section = x2f_tree_to_section( tree , offset )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees =fieldnames(tree);
+    my_subtrees = getfield(1,tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
@@ -1660,7 +1621,7 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = fieldnames(tree_in_1);
+    my_subtrees = getfield(1,tree_in_1);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
@@ -1752,7 +1713,7 @@ function xmllist_out = x2f_cat_xmllist( tree , xmllist_in )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = fieldnames(tree);
+    my_subtrees = getfield(1,tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")

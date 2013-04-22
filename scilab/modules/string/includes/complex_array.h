@@ -9,8 +9,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef __CSV_COMPLEX_H__
-#define __CSV_COMPLEX_H__
+#ifndef __COMPLEX_ARRAY_H__
+#define __COMPLEX_ARRAY_H__
+
+#include "dynlib_string.h"
 
 typedef struct
 {
@@ -18,16 +20,16 @@ typedef struct
     double *imagPart;
     int nbElements;
     int isComplex;
-} csv_complexArray;
+} complexArray;
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-    csv_complexArray *createCsvComplexArray(const double *realpart, const double *imagpart, int nbSize);
-    csv_complexArray *createCsvComplexArrayEmpty(int nbSize);
-    int cleanImagPartCsvComplexArray(csv_complexArray *pCsvComplexArray);
-    void freeCsvComplexArray(csv_complexArray *pCsvComplexArray);
+    STRING_IMPEXP complexArray *createComplexArray(const double *realpart, const double *imagpart, int nbSize);
+    STRING_IMPEXP complexArray *createComplexArrayEmpty(int nbSize);
+    STRING_IMPEXP int cleanImagPartComplexArray(complexArray *pComplexArray);
+    STRING_IMPEXP void freeComplexArray(complexArray *pComplexArray);
 
 #ifdef __cplusplus
 }

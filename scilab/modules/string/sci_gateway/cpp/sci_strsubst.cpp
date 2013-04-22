@@ -101,7 +101,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     if (bRegExp)
     {
         int iErr = 0;
-        pwstOutput = wcssubst_reg(pS->get(), pS->getSize(), pwstSearch, pwstReplace, &iErr);
+        pwstOutput = wcssubst_reg(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace, &iErr);
         if (iErr != NO_MATCH && iErr != PCRE_FINISHED_OK && iErr != PCRE_EXIT)
         {
             pcre_error("strsubst", iErr);
@@ -111,7 +111,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     }
     else
     {
-        pwstOutput = wcssubst(pS->get(), pS->getSize(), pwstSearch, pwstReplace);
+        pwstOutput = wcssubst(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace);
     }
 
     pOut->set(pwstOutput);

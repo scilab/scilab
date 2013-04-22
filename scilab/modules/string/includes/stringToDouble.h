@@ -16,22 +16,38 @@
 
 #include "dynlib_string.h"
 #include "BOOL.h"
+#include <wchar.h>
 
 #define NanString "Nan"
+#define NanStringW L"Nan"
 #define InfString "Inf"
+#define InfStringW L"Inf"
 #define NegInfString "-Inf"
+#define NegInfStringW L"-Inf"
 #define PosInfString "+Inf"
+#define PosInfStringW L"+Inf"
 #define NegNanString "-Nan" /* no sense but used by some users */
+#define NegNanStringW L"-Nan" /* no sense but used by some users */
 #define PosNanString "+Nan" /* no sense but used by some users */
+#define PosNanStringW L"+Nan" /* no sense but used by some users */
 #define ScilabNanString "%nan"
+#define ScilabNanStringW L"%nan"
 #define ScilabInfString "%inf"
+#define ScilabInfStringW L"%inf"
 #define ScilabNegInfString "-%inf"
+#define ScilabNegInfStringW L"-%inf"
 #define ScilabPosInfString "+%inf"
+#define ScilabPosInfStringW L"+%inf"
 #define ScilabNegNanString "-%nan" /* no sense but used by some users */
+#define ScilabNegNanStringW L"-%nan" /* no sense but used by some users */
 #define ScilabPosNanString "+%nan" /* no sense but used by some users */
+#define ScilabPosNanStringW L"+%nan" /* no sense but used by some users */
 #define ScilabPiString "%pi"
+#define ScilabPiStringW L"%pi"
 #define ScilabNegPiString "-%pi"
+#define ScilabNegPiStringW L"-%pi"
 #define ScilabPosPiString "+%pi"
+#define ScilabPosPiStringW L"+%pi"
 
 #ifdef __cplusplus
 extern "C" {
@@ -54,6 +70,7 @@ extern "C" {
      * @return <ReturnValue>
      */
     STRING_IMPEXP double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
+    STRING_IMPEXP double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
 
 #ifdef __cplusplus
 }

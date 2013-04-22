@@ -477,7 +477,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     {
                         for (int j = 0; j < poSource->getCols(); j++)
                         {
-                            bool bValue = poSource->get(i, j);
+                            bool bValue = poSource->get(i, j) == 1;
                             if (bValue)
                             {
                                 spResult->set(i + iCurRow, j + iCurCol, true);

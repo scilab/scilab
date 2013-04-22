@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        iMax = in[1]->getAs<types::Double>()->get(0);
+        iMax = (int)in[1]->getAs<types::Double>()->get(0);
     }
 
     int* piIndex = 0;
@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     else if(in[0]->isSparse())
     {
         types::Sparse* pSP = in[0]->getAs<types::Sparse>();
-        int iNNZ = pSP->nonZeros();
+        int iNNZ = (int)pSP->nonZeros();
         int iRows = pSP->getRows();
         double* pRows = new double[iNNZ * 2];
         
@@ -93,14 +93,14 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
 
         for(int i = 0 ; (iMax == -1 || iValues < iMax) && i < iNNZ ; i++)
         {
-            piIndex[iValues] = (pCols[i]-1) * iRows + (pRows[i]-1);
+            piIndex[iValues] = ((int)pCols[i]-1) * iRows + ((int)pRows[i]-1);
             iValues++;
         }
     }
     else if(in[0]->isSparseBool())
     {
         types::SparseBool* pSB = in[0]->getAs<types::SparseBool>();
-        int iNNZ = pSB->nbTrue();
+        int iNNZ = (int)pSB->nbTrue();
         int iRows = pSB->getRows();
         double* pRows = new double[iNNZ * 2];
         
@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
 
         for(int i = 0 ; (iMax == -1 || iValues < iMax) && i < iNNZ ; i++)
         {
-            piIndex[iValues] = (pCols[i]-1) * iRows + (pRows[i]-1);
+            piIndex[iValues] = ((int)pCols[i]-1) * iRows + ((int)pRows[i]-1);
             iValues++;
         }
     }

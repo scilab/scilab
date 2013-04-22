@@ -341,6 +341,9 @@ msgstr "Sal_va come"
 msgid "Export"
 msgstr "Esporta"
 
+msgid "Export all diagrams"
+msgstr ""
+
 msgid "Save as interface function"
 msgstr "Salva come funzione di interfaccia"
 
@@ -404,8 +407,8 @@ msgstr "Visualizza in Scicos"
 msgid "View"
 msgstr "_Visualizza"
 
-msgid "Fit diagram to view"
-msgstr "Riempi il diagramma da visualizzare"
+msgid "Fit diagram or blocks to view"
+msgstr ""
 
 msgid "Normal 100%"
 msgstr "Normale 100%"

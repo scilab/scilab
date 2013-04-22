@@ -17,6 +17,7 @@
 <librarypaths>
 <!-- Scilab binary -->
 <path value="$SCILAB/bin"/>
+<path value="$SCILAB/lib/thirdparty/"/>
 
 <!-- Developpement environment -->
 <path value="$SCILAB/modules/action_binding/.libs"/>

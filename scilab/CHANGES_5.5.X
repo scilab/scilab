@@ -21,6 +21,14 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
+* The Variable Browser shows also the size of integers and the user type of
+  the tlist/mlist.
+  See bug #12523 and #10409
+
+* isnum has been redesigned in native code. Up to 130x performance
+  improvements. See bug #10404
+
+
 
 Syntax changes
 ===============
@@ -46,7 +54,7 @@ Xcos
 
 * Bug #12359 fixed - Xcos files has been converted to zcos to gain some space.
 
-* Bug #12384 fixed - Using a modelica part linked with explicit link to 
+* Bug #12384 fixed - Using a modelica part linked with explicit link to
                      another modelica part lead to an algebraic loop error.
 
 
@@ -65,9 +73,17 @@ Bug fixes
 
 * Bug #5539 fixed - sylv() help page was wrong in the discrete-time case.
 
+* Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear. 
+
 * Bug #6693 fixed - modulo did not accept polynomial inputs. Help page was not updated.
 
+* Bug #6752 fixed - unit test scilab.tst has been split in different tests.
+
 * Bug #7684 fixed - Introduction demo splitted in subsections.
+
+* Bug #7828 fixed - Slight improvements in nicholschart.
+
+* Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
@@ -75,7 +91,11 @@ Bug fixes
 
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
+* Bug #9004 fixed - bitcmp function called with one input argument returned an error.
+
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
+
+* Bug #9691 fixed - "imp" option of optim was poorly documented.
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
@@ -103,4 +123,20 @@ Bug fixes
 
 * Bug #12475 fixed - csvRead() does not support double quoted fields.
 
+* Bug #12490 fixed - plot did not have a clf(); in its demo.
+
 * Bug #12506 fixed - In SciNotes, miscolorization when returned values list was broken.
+
+* Bug #12508 fixed - Wrong error message in the rand function fixed.
+
+* Bug #12518 fixed - Polynoms were not displayed by default in browsevar.
+
+* Bug #12520 fixed - Improve the description of the size in browsevar.
+
+* Bug #12527 fixed - Scilab user functions were not listed in browsevar.
+
+* Bug #12548 fixed - Duplicated code in xmltoformat.
+
+* Bug #12551 fixed - Stack problem with diary([],"pause") and diary([],"resume") fixed.
+
+* Bug #12564 fixed - Javasci compile & run help page is not clear about needed packages.

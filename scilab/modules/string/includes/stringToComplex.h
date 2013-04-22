@@ -14,9 +14,12 @@
 #ifndef __STRINGTOCOMPLEX_H__
 #define __STRINGTOCOMPLEX_H__
 
+#include <wchar.h>
 #include "doublecomplex.h"
-#include "csv_complex.h"
+#include "complex_array.h"
 #include "BOOL.h"
+
+#include "dynlib_string.h"
 
 typedef enum
 {
@@ -36,7 +39,12 @@ extern "C" {
                                   BOOL bConvertByNAN,
                                   stringToComplexError *ierr);
 
-    csv_complexArray *stringsToCsvComplexArray(const char **pSTRs, int nbElements,
+    doublecomplex stringToComplexW(const wchar_t *pSTR,
+                                  const wchar_t *decimal,
+                                  BOOL bConvertByNAN,
+                                  stringToComplexError *ierr);
+
+    STRING_IMPEXP  complexArray *stringsToComplexArray(const char **pSTRs, int nbElements,
             const char *decimal,
             BOOL bConvertByNAN,
             stringToComplexError *ierr);

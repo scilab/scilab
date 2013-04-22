@@ -10472,7 +10472,7 @@ if test "${with_external_scirenderer+set}" = set; then :
 fi
 
 
- if "$with_external_scirenderer" = yes; then
+ if test "$with_external_scirenderer" = yes; then
   EXTERNAL_SCIRENDERER_TRUE=
   EXTERNAL_SCIRENDERER_FALSE='#'
 else

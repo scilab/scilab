@@ -29,7 +29,10 @@ src/c/os_wcsdup.c \
 src/c/os_wcstok.c \
 src/c/scistrtostr.c \
 src/c/stringToDouble.c \
-src/c/isascii.c
+src/c/stringToComplex.c \
+src/c/complex_array.c \
+src/c/isascii.c \
+src/c/isnum.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_stripblanks.cpp \
@@ -59,7 +62,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_isalphanum.cpp \
     sci_gateway/cpp/sci_isdigit.cpp \
     sci_gateway/cpp/sci_isascii.cpp \
-    sci_gateway/cpp/sci_strsplit.cpp
+    sci_gateway/cpp/sci_strsplit.cpp \
+    sci_gateway/cpp/sci_isnum.cpp 
 
 libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 	-I$(srcdir)/src/c \

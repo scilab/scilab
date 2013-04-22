@@ -162,6 +162,10 @@ msgid "%s: File %s does not contain any function.\n"
 msgstr "%s: Datei %s enthält keine Funktion.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
 msgstr "%s: Kann keine Datei mit der Erweiterung %s in %s finden.\n"
 

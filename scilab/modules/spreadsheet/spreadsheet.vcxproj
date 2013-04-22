@@ -239,11 +239,8 @@
     <ClInclude Include="sci_gateway\c\gw_csv_helpers.h" />
     <ClInclude Include="src\c\checkCsvWriteFormat.h" />
     <ClInclude Include="src\c\csvDefault.h" />
-    <ClInclude Include="src\c\csvIsnum.h" />
     <ClInclude Include="src\c\csvRead.h" />
     <ClInclude Include="src\c\csvWrite.h" />
-    <ClInclude Include="src\c\csv_complex.h" />
-    <ClInclude Include="src\c\csv_strsubst.h" />
     <ClInclude Include="src\c\getRange.h" />
     <ClInclude Include="src\c\ripole\bt-int.h" />
     <ClInclude Include="src\c\ripole\bytedecoders.h" />
@@ -253,7 +250,6 @@
     <ClInclude Include="src\c\ripole\pldstr.h" />
     <ClInclude Include="src\c\ripole\ripole.h" />
     <ClInclude Include="src\c\splitLine.h" />
-    <ClInclude Include="src\c\stringToComplex.h" />
     <ClInclude Include="src\c\utftolatin.h" />
     <ClInclude Include="src\c\xls.h" />
   </ItemGroup>
@@ -261,7 +257,6 @@
     <ClCompile Include="sci_gateway\c\gw_csv_helpers.c" />
     <ClCompile Include="sci_gateway\c\gw_spreadsheet.c" />
     <ClCompile Include="sci_gateway\c\sci_csvDefault.c" />
-    <ClCompile Include="sci_gateway\c\sci_csvIsnum.c" />
     <ClCompile Include="sci_gateway\c\sci_csvRead.c" />
     <ClCompile Include="sci_gateway\c\sci_csvStringToDouble.c" />
     <ClCompile Include="sci_gateway\c\sci_csvTextScan.c" />
@@ -270,11 +265,8 @@
     <ClCompile Include="sci_gateway\cpp\sci_xls_read.cpp" />
     <ClCompile Include="src\c\checkCsvWriteFormat.c" />
     <ClCompile Include="src\c\csvDefault.c" />
-    <ClCompile Include="src\c\csvIsnum.c" />
     <ClCompile Include="src\c\csvRead.c" />
     <ClCompile Include="src\c\csvWrite.c" />
-    <ClCompile Include="src\c\csv_complex.c" />
-    <ClCompile Include="src\c\csv_strsubst.c" />
     <ClCompile Include="src\c\DllmainSpreadsheet.c" />
     <ClCompile Include="src\c\getRange.c" />
     <ClCompile Include="src\c\ripole\bt-int.c" />
@@ -285,7 +277,6 @@
     <ClCompile Include="src\c\ripole\pldstr.c" />
     <ClCompile Include="src\c\ripole\ripole.c" />
     <ClCompile Include="src\c\splitLine.c" />
-    <ClCompile Include="src\c\stringToComplex.c" />
     <ClCompile Include="src\c\utftolatin.c" />
     <ClCompile Include="src\c\xls.c" />
   </ItemGroup>

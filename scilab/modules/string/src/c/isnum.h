@@ -9,21 +9,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef __CSV_STRSUBST_H__
-#define __CSV_STRSUBST_H__
+#ifndef __CSV_ISNUM_H__
+#define __CSV_ISNUM_H__
+
+#include "BOOL.h"
+#include <wchar.h>
+#include "dynlib_string.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-    char * csv_strsubst(const char* input_string,
-                        const char* string_to_search,
-                        const char* replacement_string);
+    BOOL isNum(const char *pStr);
+
+    STRING_IMPEXP BOOL *isNumMatrix(const char **pStrs, int nbRows, int nbCols);
+
+    BOOL isNumW(const wchar_t *pStr);
+
+    STRING_IMPEXP BOOL *isNumMatrixW(const wchar_t **pStrs, int nbRows, int nbCols);
 
 #ifdef __cplusplus
 }
 #endif
 
 
-#endif /* __CSV_STRSUBST_H__ */
+#endif /* __CSV_ISNUM_H__ */
 // =============================================================================
