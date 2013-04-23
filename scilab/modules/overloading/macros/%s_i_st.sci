@@ -30,7 +30,7 @@ function out=%s_i_st(varargin)
       for k=Ndims+1:nindex
         i=varargin(k)
         if size(i,'*')>1|(i<>1&i<>eye()) then
-          error(_("A null assignment can have only one non-colon index"))
+          error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"%s_i_st"));
         end
       end
       nindex=Ndims
@@ -63,7 +63,7 @@ function out=%s_i_st(varargin)
           cj=ind 
           loc=k,
         else
-          error(_("A null assignment can have only one non-colon index"))
+          error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"%s_i_st"));
         end
       end
     end
@@ -90,6 +90,6 @@ function out=%s_i_st(varargin)
     out=varargin(3);
     out=generic_i_st(i,in,out)
   else
-    error("Not yet implemented")
+    error(msprintf(_("%s: Not yet implemented.\n"),"%s_i_st"));
   end
 endfunction
