@@ -49,7 +49,7 @@ msgid "Vertical"
 msgstr "Vertical"
 
 msgid "No trace nor debug printing"
-msgstr "Ni trace d'exécution ni déboguage"
+msgstr "Ni trace d'exécution ni débogage"
 
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
@@ -727,10 +727,10 @@ msgstr "Couleur du texte"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
-"Configurer le niveau de déboguage (0, 1, 2, 3) <br/> avec scicos_debug(n)"
+"Configurer le niveau de débogage (0, 1, 2, 3) <br/> avec scicos_debug(n)"
 
 msgid "Execution trace and Debug"
-msgstr "Trace d'exécution et déboguage"
+msgstr "Trace d'exécution et débogage"
 
 msgid "Default"
 msgstr "Standard"
