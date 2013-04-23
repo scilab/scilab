@@ -144,6 +144,8 @@ Bug fixes
 
 * Bug #12548 fixed - Duplicated code in xmltoformat.
 
+* Bug #12550 fixed - Optimbase and optimsimplex help pages were not standard.
+
 * Bug #12551 fixed - Stack problem with diary([],"pause") and diary([],"resume") fixed.
 
 * Bug #12564 fixed - Javasci compile & run help page is not clear about needed packages.
