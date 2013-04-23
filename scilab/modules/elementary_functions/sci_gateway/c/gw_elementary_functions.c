@@ -68,7 +68,7 @@ static gw_generic_table Tab[] =
 	{NULL, ""}, //nearfloat
 	{NULL, ""}, //dsearch
 	{NULL, ""}, //isequal
-	{sci_spones,"spones"},
+	{NULL, ""}, //spones
 	{NULL, ""}, //gsort
 	{NULL, ""}, //isequalbitwise
     {NULL, ""}, //rat
