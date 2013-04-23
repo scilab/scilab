@@ -203,6 +203,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\c\sci_chinesehat.c" />
+    <ClCompile Include="..\..\sci_gateway\c\sci_spones.c" />
     <ClCompile Include="..\cpp\cumprod.cpp" />
     <ClCompile Include="..\cpp\cumsum.cpp" />
     <ClCompile Include="..\cpp\diag.cpp" />
