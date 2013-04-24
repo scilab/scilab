@@ -18,6 +18,6 @@ a("toto%")=2;
 assert_checkequal(a("toto%"), 2);
 clear a
 // Non-existing field name
-refMsg = msprintf(_("%s is not a valid field name."), "toto%");
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: not a valid field name.\n"),"%st_e",1);
 a = struct();
 assert_checkerror("a(""toto%"")", refMsg);
