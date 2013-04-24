@@ -108,6 +108,8 @@ Bug fixes
 
 * Bug #9691 fixed - "imp" option of optim was poorly documented.
 
+* Bug #10254 fixed - Slight improvements in help page of ones.
+
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
 

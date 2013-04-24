@@ -69,12 +69,27 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>
-            Notez que <literal>ones(3)</literal> est équivalent à
-            <literal>ones(a)</literal> avec <literal>a=3</literal> et donc n'est PAS
-            une matrice 3x3 !
-        </para>
-        <para>ones() est équivalent à ones(1,1).</para>
+    </refsection>
+    <refsection>
+        <title>Remarques</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Notez que <literal>ones(3)</literal> est équivalent à
+                    <literal>ones(a)</literal> avec <literal>a=3</literal> et donc n'est PAS
+                    une matrice 3x3 !
+                </para>
+            </listitem>
+            <listitem>
+                <para>ones() est équivalent à ones(1,1).</para>
+            </listitem>
+            <listitem>
+                <para>
+                    Les commandes <literal>ones(3,-3)</literal> et <literal>ones(-3,-3)</literal> renvoient
+                    une matrice vide.
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection>
         <title>Exemples</title>
