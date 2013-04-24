@@ -86,7 +86,7 @@ void C2F(mgetnc) (int *fd, void *res, int *n1, char *type, int *ierr)
     switch (type[0])
     {
         case 'i':
-            MGET_GEN_NC(long, c1);
+            MGET_GEN_NC(int, c1);
             break;
 
         case 'l':
@@ -113,7 +113,7 @@ void C2F(mgetnc) (int *fd, void *res, int *n1, char *type, int *ierr)
             switch (c1)
             {
                 case 'i':
-                    MGET_GEN_NC(unsigned long, c2);
+                    MGET_GEN_NC(unsigned int, c2);
                     break;
 
                 case 'l':
@@ -177,7 +177,7 @@ void mget2(FILE * fa, int swap2, double *res, int n, char *type, int *ierr)
     switch (type[0])
     {
         case 'i':
-            MGET_GEN(long, c1);
+            MGET_GEN(int, c1);
             break;
 
         case 'l':
@@ -204,7 +204,7 @@ void mget2(FILE * fa, int swap2, double *res, int n, char *type, int *ierr)
             switch (c1)
             {
                 case 'i':
-                    MGET_GEN(unsigned long, c2);
+                    MGET_GEN(unsigned int, c2);
                     break;
 
                 case 'l':
