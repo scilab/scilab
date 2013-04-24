@@ -88,6 +88,8 @@ Bug fixes
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
 
+* Bug #7781 fixed - The second parameter of iqr function had not effect.
+
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
