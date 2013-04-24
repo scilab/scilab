@@ -125,6 +125,8 @@ Bug fixes
 
 * Bug #10254 fixed - Slight improvements in help page of ones.
 
+* Bug #10287 fixed - An error message added for complex expression as input argument of integrate function.
+
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
 
