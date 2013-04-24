@@ -84,6 +84,8 @@ Bug fixes
 
 * Bug #7026 fixed - There was no unit test for plot2d.
 
+* Bug #6988 fixed - Error messages in modules/data_structures/src/c/hmops.c were not standard.
+
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
