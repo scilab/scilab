@@ -30,12 +30,7 @@ int SparseLessSparse(types::Sparse* _pSparse1, types::Sparse* _pSparse2, types::
 int SparseLessEqualSparse(types::Sparse* _pSparse1, types::Sparse* _pSparse2, types::SparseBool** _pOut);
 
 int IntLessInt(types::InternalType* _pI1, types::InternalType*  _pI2, types::GenericType** _pOut);
-template <class T>
-int IntLessInt(T* _pI1, T* _pI2, types::GenericType** _pOut);
-
 int IntLessEqualInt(types::InternalType* _pI1, types::InternalType*  _pI2, types::GenericType** _pOut);
-template <class T>
-int IntLessEqualInt(T* _pI1, T* _pI2, types::GenericType** _pOut);
 
 
 #endif /* !__TYPES_COMPARAISON_LT_LE_HXX__ */

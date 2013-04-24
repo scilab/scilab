@@ -25,6 +25,8 @@
 
 using namespace types;
 
+static bool isIntTrue(InternalType* _pIT);
+
 bool bConditionState(types::InternalType *_pITResult)
 {
     if (_pITResult->isDouble() &&
@@ -62,12 +64,68 @@ bool bConditionState(types::InternalType *_pITResult)
     }
     else if (_pITResult->isInt())
     {
+        return isIntTrue(_pITResult);
     }
     else
     {
         return false;
     }
     return true;
+}
+
+template <class K>
+static bool isIntTrue(K* _pI)
+{
+    for (int i = 0 ; i < _pI->getSize() ; i++)
+    {
+        if (_pI->get(i) == 0)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+static bool isIntTrue(InternalType* _pIT)
+{
+    switch (_pIT->getType())
+    {
+        case InternalType::RealInt8 :
+        {
+            return isIntTrue(_pIT->getAs<Int8>());
+        }
+        case InternalType::RealUInt8 :
+        {
+            return isIntTrue(_pIT->getAs<UInt8>());
+        }
+        case InternalType::RealInt16 :
+        {
+            return isIntTrue(_pIT->getAs<Int16>());
+        }
+        case InternalType::RealUInt16 :
+        {
+            return isIntTrue(_pIT->getAs<UInt16>());
+        }
+        case InternalType::RealInt32 :
+        {
+            return isIntTrue(_pIT->getAs<Int32>());
+        }
+        case InternalType::RealUInt32 :
+        {
+            return isIntTrue(_pIT->getAs<UInt32>());
+        }
+        case InternalType::RealInt64 :
+        {
+            return isIntTrue(_pIT->getAs<Int64>());
+        }
+        case InternalType::RealUInt64 :
+        {
+            return isIntTrue(_pIT->getAs<UInt64>());
+        }
+    }
+
+    return false;
 }
 
 /*

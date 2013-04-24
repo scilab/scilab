@@ -460,65 +460,8 @@ InternalType *GenericGreaterEqual(InternalType *_pLeftOperand, InternalType *_pR
     return GenericLessEqual(_pRightOperand, _pLeftOperand);
 }
 
-int IntLessInt(types::InternalType* _pL, types::InternalType*  _pR, types::GenericType** _pOut)
-{
-    switch (_pL->getType())
-    {
-        case InternalType::RealInt8 :
-        {
-            Int8* pI1 = _pL->getAs<Int8>();
-            Int8* pI2 = _pR->getAs<Int8>();
-            return IntLessInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealUInt8 :
-        {
-            UInt8* pI1 = _pL->getAs<UInt8>();
-            UInt8* pI2 = _pR->getAs<UInt8>();
-            return IntLessInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealInt16 :
-        {
-            Int16* pI1 = _pL->getAs<Int16>();
-            Int16* pI2 = _pR->getAs<Int16>();
-            return IntLessInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealUInt16 :
-        {
-            UInt16* pI1 = _pL->getAs<UInt16>();
-            UInt16* pI2 = _pR->getAs<UInt16>();
-            return IntLessInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealInt32 :
-        {
-            Int32* pI1 = _pL->getAs<Int32>();
-            Int32* pI2 = _pR->getAs<Int32>();
-            return IntLessInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealUInt32 :
-        {
-            UInt32* pI1 = _pL->getAs<UInt32>();
-            UInt32* pI2 = _pR->getAs<UInt32>();
-            return IntLessInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealInt64 :
-        {
-            Int64* pI1 = _pL->getAs<Int64>();
-            Int64* pI2 = _pR->getAs<Int64>();
-            return IntLessInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealUInt64 :
-        {
-            UInt64* pI1 = _pL->getAs<UInt64>();
-            UInt64* pI2 = _pR->getAs<UInt64>();
-            return IntLessInt(pI1, pI2, _pOut);
-        }
-    }
-
-    return 0;
-}
-
 template <class T>
-int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
+static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
 {
     if (_pL->isScalar())
     {
@@ -576,57 +519,41 @@ int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
     return 0;
 }
 
-int IntLessEqualInt(types::InternalType* _pL, types::InternalType* _pR, types::GenericType** _pOut)
+int IntLessInt(types::InternalType* _pL, types::InternalType*  _pR, types::GenericType** _pOut)
 {
     switch (_pL->getType())
     {
         case InternalType::RealInt8 :
         {
-            Int8* pI1 = _pL->getAs<Int8>();
-            Int8* pI2 = _pR->getAs<Int8>();
-            return IntLessEqualInt(pI1, pI2, _pOut);
+            return IntLessInt(_pL->getAs<Int8>(), _pR->getAs<Int8>(), _pOut);
         }
         case InternalType::RealUInt8 :
         {
-            UInt8* pI1 = _pL->getAs<UInt8>();
-            UInt8* pI2 = _pR->getAs<UInt8>();
-            return IntLessEqualInt(pI1, pI2, _pOut);
+            return IntLessInt(_pL->getAs<UInt8>(), _pR->getAs<UInt8>(), _pOut);
         }
         case InternalType::RealInt16 :
         {
-            Int16* pI1 = _pL->getAs<Int16>();
-            Int16* pI2 = _pR->getAs<Int16>();
-            return IntLessEqualInt(pI1, pI2, _pOut);
+            return IntLessInt(_pL->getAs<Int16>(), _pR->getAs<Int16>(), _pOut);
         }
         case InternalType::RealUInt16 :
         {
-            UInt16* pI1 = _pL->getAs<UInt16>();
-            UInt16* pI2 = _pR->getAs<UInt16>();
-            return IntLessEqualInt(pI1, pI2, _pOut);
+            return IntLessInt(_pL->getAs<UInt16>(), _pR->getAs<UInt16>(), _pOut);
         }
         case InternalType::RealInt32 :
         {
-            Int32* pI1 = _pL->getAs<Int32>();
-            Int32* pI2 = _pR->getAs<Int32>();
-            return IntLessEqualInt(pI1, pI2, _pOut);
+            return IntLessInt(_pL->getAs<Int32>(), _pR->getAs<Int32>(), _pOut);
         }
         case InternalType::RealUInt32 :
         {
-            UInt32* pI1 = _pL->getAs<UInt32>();
-            UInt32* pI2 = _pR->getAs<UInt32>();
-            return IntLessEqualInt(pI1, pI2, _pOut);
+            return IntLessInt(_pL->getAs<UInt32>(), _pR->getAs<UInt32>(), _pOut);
         }
         case InternalType::RealInt64 :
         {
-            Int64* pI1 = _pL->getAs<Int64>();
-            Int64* pI2 = _pR->getAs<Int64>();
-            return IntLessInt(pI1, pI2, _pOut);
+            return IntLessInt(_pL->getAs<Int64>(), _pR->getAs<Int64>(), _pOut);
         }
         case InternalType::RealUInt64 :
         {
-            UInt64* pI1 = _pL->getAs<UInt64>();
-            UInt64* pI2 = _pR->getAs<UInt64>();
-            return IntLessEqualInt(pI1, pI2, _pOut);
+            return IntLessInt(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
         }
     }
 
@@ -634,7 +561,7 @@ int IntLessEqualInt(types::InternalType* _pL, types::InternalType* _pR, types::G
 }
 
 template <class T>
-int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
+static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
 {
     if (_pL->isScalar())
     {
@@ -689,5 +616,46 @@ int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
     }
 
     *_pOut = pB;
+    return 0;
+}
+
+int IntLessEqualInt(types::InternalType* _pL, types::InternalType* _pR, types::GenericType** _pOut)
+{
+    switch (_pL->getType())
+    {
+        case InternalType::RealInt8 :
+        {
+            return IntLessEqualInt(_pL->getAs<Int8>(), _pR->getAs<Int8>(), _pOut);
+        }
+        case InternalType::RealUInt8 :
+        {
+            return IntLessEqualInt(_pL->getAs<UInt8>(), _pR->getAs<UInt8>(), _pOut);
+        }
+        case InternalType::RealInt16 :
+        {
+            return IntLessEqualInt(_pL->getAs<Int16>(), _pR->getAs<Int16>(), _pOut);
+        }
+        case InternalType::RealUInt16 :
+        {
+            return IntLessEqualInt(_pL->getAs<UInt16>(), _pR->getAs<UInt16>(), _pOut);
+        }
+        case InternalType::RealInt32 :
+        {
+            return IntLessEqualInt(_pL->getAs<Int32>(), _pR->getAs<Int32>(), _pOut);
+        }
+        case InternalType::RealUInt32 :
+        {
+            return IntLessEqualInt(_pL->getAs<UInt32>(), _pR->getAs<UInt32>(), _pOut);
+        }
+        case InternalType::RealInt64 :
+        {
+            return IntLessEqualInt(_pL->getAs<Int64>(), _pR->getAs<Int64>(), _pOut);
+        }
+        case InternalType::RealUInt64 :
+        {
+            return IntLessEqualInt(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
+        }
+    }
+
     return 0;
 }

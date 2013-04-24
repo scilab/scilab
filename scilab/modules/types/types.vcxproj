@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -289,9 +289,6 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <Library Include="..\..\bin\libintl.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\dynamiclibrary\dynamiclibrary.vcxproj">
-      <Project>{77154919-8a20-4f35-b7c7-6b3b957bdca1}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\ast\ast-tools\ast-tools.vcxproj">
       <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
     </ProjectReference>

@@ -31,7 +31,7 @@
 // Needed by visitprivate(const OpExp &)
 // Needed by visitprivate(const LogicalOpExp &)
 #include "generic_operations.hxx"
-#include "types_bitwiseOp.hxx"
+#include "types_or_and.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabexception.hxx"
