@@ -100,7 +100,7 @@ x = umfpack(A,"\",b)  // x must be [1+i; 2+2i; 3+3i; 4 + 4i; 5+5i]
 
 // A benchmark of several linear solvers
 
-[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa"); 
 
 b = 0*ones(size(A,1),1);
 

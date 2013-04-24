@@ -77,7 +77,7 @@ K1 = condestsp(A)
 K1e = norm(A,1)*norm(inv(full(A)),1)
 
 // another example
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/arc130.rua");
 K1 = condestsp(A)
 // this example is not so big so that we can do the verif
 K1e = norm(A,1)*norm(inv(full(A)),1)

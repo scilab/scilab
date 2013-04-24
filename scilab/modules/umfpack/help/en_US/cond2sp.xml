@@ -120,7 +120,7 @@ B = A - l0*speye(A)
         </para>
         <programlisting role="example"><![CDATA[ 
 
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, 1.e-5, 50, %t );
 taucs_chdel(C_ptr)
@@ -143,7 +143,7 @@ mprintf(" |l-lr| <= ||Avr-lrvr|| = %e , |l-lr|/lr <= %e \n\r", norm_rr, norm_rr/
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-[A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
+[A] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 [K2, lm, vm, lM, vM] = cond2sp(A , C_ptr, 1.e-5, 50, %t );
 taucs_chdel(C_ptr)
