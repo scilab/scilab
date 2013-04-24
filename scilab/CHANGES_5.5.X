@@ -85,13 +85,11 @@ Bug fixes
 
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
-* Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
-
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.
 
-* Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
-
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.
+
+* Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
 
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
