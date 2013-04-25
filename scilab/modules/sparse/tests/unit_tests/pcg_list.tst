@@ -33,7 +33,7 @@ function y=Atimesx(x,mymatrix)
   y=mymatrix*x
 endfunction
 // With the default 10 iterations, the algorithm performs well
-Alist = list(Atimesx,mymatrix)
+Alist = list(Atimesx,mymatrix);
 [xcomputed, fail, err, iter, res]=pcg(Alist,b);
 xexpected=ones(10,1);
 if norm(xcomputed-xexpected)>10**3*%eps then pause,end
