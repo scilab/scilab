@@ -117,6 +117,8 @@ Bug fixes
 
 * Bug #9691 fixed - "imp" option of optim was poorly documented.
 
+* Bug #9780 fixed - gmres solver did not run with complex systems.
+
 * Bug #10254 fixed - Slight improvements in help page of ones.
 
 * Bug #10862 fixed - Add a without internet connection installation
