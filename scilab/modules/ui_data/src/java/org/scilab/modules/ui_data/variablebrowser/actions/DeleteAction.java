@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTable;
 
 import org.scilab.modules.ui_data.utils.UiDataMessages;
+import org.scilab.modules.ui_data.BrowseVar;
 
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 
@@ -109,7 +110,7 @@ public final class DeleteAction extends CommonCallBack {
         int clickedRow = variableBrowser.getTable().getSelectedRow();
         // Does nothing if no variable selected
         if (clickedRow != -1) {
-            return variableBrowser.getTable().getValueAt(clickedRow, 1).toString();
+            return variableBrowser.getTable().getValueAt(clickedRow, BrowseVar.NAME_COLUMN_INDEX).toString();
         }
         return "";
     }
