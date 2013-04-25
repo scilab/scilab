@@ -701,6 +701,7 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
             }
         }
 
+        pOut->finalize();
         *_pOut = pOut;
         return 0;
     }
@@ -719,12 +720,14 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
         }
 
         *_pOut = pOut;
+        pOut->finalize();
         return 0;
     }
 
     if (_pSB1->getRows() != _pSB2->getRows() || _pSB1->getCols() != _pSB2->getCols())
     {
-        return 1;
+        *_pOut = new Bool(false);
+        return 0;
     }
 
     pOut = new SparseBool(_pSB1->getRows(), _pSB1->getCols());
@@ -737,6 +740,7 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
         }
     }
 
+    pOut->finalize();
     *_pOut = pOut;
     return 0;
 }

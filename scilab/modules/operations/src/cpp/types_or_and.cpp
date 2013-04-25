@@ -11,14 +11,16 @@
  *
  */
 
-#include "types_or_and.hxx"
-#include "int.hxx"
-#include "bool.hxx"
-
 extern "C"
 {
 #include "os_swprintf.h"
 }
+
+#include "types_or_and.hxx"
+#include "int.hxx"
+#include "bool.hxx"
+#include "sparse.hxx"
+
 
 using namespace types;
 
@@ -34,6 +36,11 @@ InternalType* GenericShortcutAnd(InternalType* _pL)
     if (_pL->isInt())
     {
         IntAndInt(_pL, (Bool**)&pResult);
+    }
+
+    if (_pL->isSparseBool())
+    {
+        SparseBoolAndSparseBool(_pL, (Bool**)&pResult);
     }
 
     return pResult;
@@ -72,6 +79,22 @@ InternalType* GenericLogicalAnd(InternalType* _pL, InternalType* _pR)
         }
         return pResult;
     }
+
+    if (_pL->isSparseBool() && _pR->isSparseBool())
+    {
+        int iResult = SparseBoolLogicalAndSparseBool(_pL, _pR, &pResult);
+        if (iResult != 0)
+        {
+            GenericType* pL = _pL->getAs<GenericType>();
+            GenericType* pR = _pR->getAs<GenericType>();
+            wchar_t pMsg[bsiz];
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"&", pL->DimToString().c_str(), pR->DimToString().c_str());
+            throw ast::ScilabError(pMsg);
+        }
+        return pResult;
+    }
+
+    return NULL;
 }
 
 // ||
@@ -87,6 +110,11 @@ InternalType* GenericShortcutOr(InternalType* _pL)
     if (_pL->isInt())
     {
         IntOrInt(_pL, (Bool**)&pResult);
+    }
+
+    if (_pL->isSparseBool())
+    {
+        SparseBoolOrSparseBool(_pL, (Bool**)&pResult);
     }
 
     return pResult;
@@ -125,6 +153,22 @@ InternalType* GenericLogicalOr(InternalType* _pL, InternalType* _pR)
         }
         return pResult;
     }
+
+    if (_pL->isSparseBool() && _pR->isSparseBool())
+    {
+        int iResult = SparseBoolLogicalOrSparseBool(_pL, _pR, &pResult);
+        if (iResult != 0)
+        {
+            GenericType* pL = _pL->getAs<GenericType>();
+            GenericType* pR = _pR->getAs<GenericType>();
+            wchar_t pMsg[bsiz];
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
+            throw ast::ScilabError(pMsg);
+        }
+        return pResult;
+    }
+
+    return NULL;
 }
 
 int BoolAndBool(Bool* _pL, Bool** _pOut)
@@ -579,3 +623,133 @@ int BoolLogicalAndBool(Bool* _pL, Bool*  _pR, Bool** _pOut)
     return 1;
 }
 
+int SparseBoolAndSparseBool(InternalType* _pL, Bool** _pOut)
+{
+    SparseBool* pL = _pL->getAs<SparseBool>();
+    if (pL->nbTrue() != pL->getSize())
+    {
+        *_pOut = new Bool(0);
+        return 0;
+    }
+
+    *_pOut = NULL;
+    return 0;
+}
+
+int SparseBoolLogicalAndSparseBool(InternalType* _pL, InternalType*  _pR, InternalType** _pOut)
+{
+    SparseBool *pL = (SparseBool*)_pL;
+    SparseBool *pR = (SparseBool*)_pR;
+
+    if (pL->isScalar())
+    {
+        if (pL->get(0, 0))
+        {
+            *_pOut = pR->clone();
+        }
+        else
+        {
+            *_pOut = new SparseBool(pR->getRows(), pR->getCols());
+        }
+
+        return 0;
+    }
+
+    if (pR->isScalar())
+    {
+        if (pR->get(0, 0))
+        {
+            *_pOut = _pL->clone();
+        }
+        else
+        {
+            *_pOut = new SparseBool(pL->getRows(), pL->getCols());
+        }
+
+        return 0;
+    }
+
+    if (pL->getRows() == pR->getRows() && pL->getCols() == pR->getCols())
+    {
+        *_pOut = pL->newLogicalAnd(*pR);
+        return 0;
+        /*
+        int nbTrueL = static_cast<int>(_pL->nbTrue());
+        double* pLRows = new double[nbTrueL * 2];
+        _pL->outputRowCol(pLRows);
+        double* pLCols = pLRows + nbTrueL;
+
+        int nbTrueR = static_cast<int>(_pR->nbTrue());
+        double* pRRows = new double[nbTrueR * 2];
+        _pR->outputRowCol(pRRows);
+        double* pRCols = pRRows + nbTrueR;
+
+        *_pOut = new SparseBool(_pR->getRows(), _pL->getCols());
+        (*_pOut)->no
+        for(int i = 0 ; i < nbTrueL ; i++)
+        {
+            if(_pL->get(pLRows[i], pLRows[i]) == _pR->get(pLRows[i], pLRows[i]))
+            {//set 1
+                (*_pOut)->set(pLRows[i], pLRows[i], true);
+            }
+
+        }
+        */
+    }
+
+    return 1;
+}
+
+int SparseBoolOrSparseBool(InternalType* _pL, Bool** _pOut)
+{
+    SparseBool* pL = _pL->getAs<SparseBool>();
+    if (pL->nbTrue() == pL->getSize())
+    {
+        *_pOut = new Bool(1);
+        return 0;
+    }
+
+    *_pOut = NULL;
+    return 0;
+}
+
+int SparseBoolLogicalOrSparseBool(InternalType* _pL, InternalType*  _pR, InternalType** _pOut)
+{
+    SparseBool *pL = (SparseBool*)_pL;
+    SparseBool *pR = (SparseBool*)_pR;
+
+    if (pL->isScalar())
+    {
+        if (pL->get(0, 0))
+        {
+            *_pOut = _pR->clone();
+        }
+        else
+        {
+            *_pOut = new SparseBool(pR->getRows(), pR->getCols());
+        }
+
+        return 0;
+    }
+
+    if (pR->isScalar())
+    {
+        if (pR->get(0, 0))
+        {
+            *_pOut = _pL->clone();
+        }
+        else
+        {
+            *_pOut = new SparseBool(pL->getRows(), pL->getCols());
+        }
+
+        return 0;
+    }
+
+    if (pL->getRows() == pR->getRows() && pL->getCols() == pR->getCols())
+    {
+        *_pOut = pL->newLogicalOr(*pR);
+        return 0;
+    }
+    return 1;
+}

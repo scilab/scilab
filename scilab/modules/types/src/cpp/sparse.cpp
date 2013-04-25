@@ -1146,6 +1146,231 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     return this;
 }
 
+Sparse* Sparse::remove(typed_list* _pArgs)
+{
+    Sparse* pOut = NULL;
+    int iDims = (int)_pArgs->size();
+    if (iDims > 2)
+    {
+        //sparse are only in 2 dims
+        return NULL;
+    }
+
+    typed_list pArg;
+
+    int piMaxDim[2];
+    int piCountDim[2];
+
+    //on case of resize
+    int iNewRows    = 0;
+    int iNewCols    = 0;
+
+    //evaluate each argument and replace by appropriate value and compute the count of combinations
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
+    {
+        return this;
+    }
+
+    bool* pbFull = new bool[iDims];
+    //coord must represent all values on a dimension
+    for (int i = 0 ; i < iDims ; i++)
+    {
+        pbFull[i]       = false;
+        int iDimToCheck = getVarMaxDim(i, iDims);
+        int iIndexSize  = pArg[i]->getAs<GenericType>()->getSize();
+
+        //we can have index more than once
+        if (iIndexSize >= iDimToCheck)
+        {
+            //size is good, now check datas
+            double* pIndexes = getDoubleArrayFromDouble(pArg[i]);
+            for (int j = 0 ; j < iDimToCheck ; j++)
+            {
+                bool bFind = false;
+                for (int k = 0 ; k < iIndexSize ; k++)
+                {
+                    if ((int)pIndexes[k] == j + 1)
+                    {
+                        bFind = true;
+                        break;
+                    }
+                }
+                pbFull[i]  = bFind;
+            }
+        }
+    }
+
+    //only one dims can be not full/entire
+    bool bNotEntire = false;
+    int iNotEntire  = 0;
+    bool bTooMuchNotEntire = false;
+    for (int i = 0 ; i < iDims ; i++)
+    {
+        if (pbFull[i] == false)
+        {
+            if (bNotEntire == false)
+            {
+                bNotEntire = true;
+                iNotEntire = i;
+            }
+            else
+            {
+                bTooMuchNotEntire = true;
+                break;
+            }
+        }
+    }
+
+    if (bTooMuchNotEntire == true)
+    {
+        return NULL;
+    }
+
+    delete[] pbFull;
+
+    //find index to keep
+    int iNotEntireSize          = pArg[iNotEntire]->getAs<GenericType>()->getSize();
+    double* piNotEntireIndex    = getDoubleArrayFromDouble(pArg[iNotEntire]);
+    int iKeepSize               = getVarMaxDim(iNotEntire, iDims);
+    bool* pbKeep                = new bool[iKeepSize];
+
+    //fill pbKeep with true value
+    for (int i = 0 ; i < iKeepSize ; i++)
+    {
+        pbKeep[i] = true;
+    }
+
+    for (int i = 0 ; i < iNotEntireSize ; i++)
+    {
+        int idx = (int)piNotEntireIndex[i] - 1;
+
+        //don't care of value out of bounds
+        if (idx < iKeepSize)
+        {
+            pbKeep[idx] = false;
+        }
+    }
+
+    int iNewDimSize = 0;
+    for (int i = 0 ; i < iKeepSize ; i++)
+    {
+        if (pbKeep[i] == true)
+        {
+            iNewDimSize++;
+        }
+    }
+    delete[] pbKeep;
+
+    int* piNewDims = new int[iDims];
+    for (int i = 0 ; i < iDims ; i++)
+    {
+        if (i == iNotEntire)
+        {
+            piNewDims[i] = iNewDimSize;
+        }
+        else
+        {
+            piNewDims[i] = getVarMaxDim(i, iDims);
+        }
+    }
+
+    //remove last dimension if are == 1
+    int iOrigDims = iDims;
+    for (int i = (iDims - 1) ; i >= 2 ; i--)
+    {
+        if (piNewDims[i] == 1)
+        {
+            iDims--;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    if (iDims == 1)
+    {
+        if (iNewDimSize == 0)
+        {
+            return new Sparse(0, 0);
+        }
+        else
+        {
+            //two cases, depends of original matrix/vector
+            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
+            {
+                //special case for row vector
+                pOut = new Sparse(1, iNewDimSize, isComplex());
+                //in this case we have to care of 2nd dimension
+                //iNotEntire = 1;
+            }
+            else
+            {
+                pOut = new Sparse(iNewDimSize, 1, isComplex());
+            }
+        }
+    }
+    else
+    {
+        pOut = new Sparse(piNewDims[0], piNewDims[0], isComplex());
+    }
+
+    delete[] piNewDims;
+    //find a way to copy existing data to new variable ...
+    int iNewPos = 0;
+    int* piIndexes = new int[iOrigDims];
+    int* piViewDims = new int[iOrigDims];
+    for (int i = 0 ; i < iOrigDims ; i++)
+    {
+        piViewDims[i] = getVarMaxDim(i, iOrigDims);
+    }
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        bool bByPass = false;
+        getIndexesWithDims(i, piIndexes, piViewDims, iOrigDims);
+
+        //check if piIndexes use removed indexes
+        for (int j = 0 ; j < iNotEntireSize ; j++)
+        {
+            if ((piNotEntireIndex[j] - 1) == piIndexes[iNotEntire])
+            {
+                //by pass this value
+                bByPass = true;
+                break;
+            }
+        }
+
+        if (bByPass == false)
+        {
+            //compute new index
+            if (isComplex())
+            {
+                pOut->set(iNewPos, getImg(i));
+            }
+            else
+            {
+                pOut->set(iNewPos, get(i));
+            }
+            iNewPos++;
+        }
+    }
+
+    //free allocated data
+    for (int i = 0 ; i < iDims ; i++)
+    {
+        if (pArg[i] != (*_pArgs)[i])
+        {
+            delete pArg[i];
+        }
+    }
+
+    delete[] piIndexes;
+    delete[] piViewDims;
+    return pOut;
+}
+
 bool Sparse::append(int r, int c, types::Sparse CONST* src)
 {
     //        std::wcerr << L"to a sparse of size"<<getRows() << L","<<getCols() << L" should append @"<<r << L","<<c<< "a sparse:"<< src->toString(32,80)<<std::endl;
@@ -1540,7 +1765,7 @@ int* Sparse::getNbItemByRow(int* _piNbItemByRows)
         mycopy_n(matrixReal->outerIndexPtr(), getRows() + 1, piNbItemByRows);
     }
 
-    for(int i = 0 ; i < getRows() ; i++)
+    for (int i = 0 ; i < getRows() ; i++)
     {
         _piNbItemByRows[i] = piNbItemByRows[i + 1] - piNbItemByRows[i];
     }
@@ -1551,7 +1776,7 @@ int* Sparse::getNbItemByRow(int* _piNbItemByRows)
 
 int* Sparse::getColPos(int* _piColPos)
 {
-    if(isComplex())
+    if (isComplex())
     {
         mycopy_n(matrixCplx->innerIndexPtr(), nonZeros(), _piColPos);
     }
@@ -1831,8 +2056,11 @@ SparseBool::SparseBool(int _iRows, int _iCols) : matrixBool(new BoolSparse_t(_iR
 SparseBool::SparseBool(SparseBool const& src) : GenericType(src),  matrixBool(new BoolSparse_t(*src.matrixBool))
 {
     m_iDims = 2;
-    m_piDims[0] = const_cast<SparseBool*>(&src)->getRows();
-    m_piDims[1] = const_cast<SparseBool*>(&src)->getCols();
+    m_iRows = const_cast<SparseBool*>(&src)->getRows();
+    m_iCols = const_cast<SparseBool*>(&src)->getCols();
+    m_iSize = m_iRows * m_iCols;
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
 }
 
 SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
@@ -1840,6 +2068,9 @@ SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
     m_iRows = src->rows();
     m_iCols = src->cols();
     m_iSize = m_iRows * m_iCols;
+    m_iDims = 2;
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
 }
 
 template<typename DestIter>
@@ -1879,8 +2110,43 @@ SparseBool* SparseBool::clone(void) const
 
 bool SparseBool::resize(int _iNewRows, int _iNewCols)
 {
-    matrixBool->resize(_iNewRows, _iNewCols);
-    return true;
+    if (_iNewRows <= getRows() && _iNewCols <= getCols())
+    {
+        //nothing to do: hence we do NOT fail
+        return true;
+    }
+
+    bool res = false;
+    try
+    {
+        BoolSparse_t *newBool = new BoolSparse_t(_iNewRows, _iNewCols);
+
+        //item count
+        size_t iNonZeros = nbTrue();
+
+        //coords
+        double* pRows = new double[iNonZeros * 2];
+        outputRowCol(pRows);
+        double* pCols = pRows + iNonZeros;
+
+        for (size_t i = 0 ; i < iNonZeros ; i++)
+        {
+            newBool->insert((int)pRows[i] - 1, (int)pCols[i] - 1) = true;
+        }
+
+        delete matrixBool;
+        matrixBool = newBool;
+
+        m_iRows = _iNewRows;
+        m_iCols = _iNewCols;
+        m_iSize = _iNewRows * _iNewCols;
+        res = true;
+    }
+    catch (...)
+    {
+        res = false;
+    }
+    return res;
 }
 
 SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
@@ -2135,6 +2401,224 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     return this;
 }
 
+SparseBool* SparseBool::remove(typed_list* _pArgs)
+{
+    SparseBool* pOut = NULL;
+    int iDims = (int)_pArgs->size();
+    if (iDims > 2)
+    {
+        //sparse are only in 2 dims
+        return NULL;
+    }
+
+    typed_list pArg;
+
+    int piMaxDim[2];
+    int piCountDim[2];
+
+    //on case of resize
+    int iNewRows    = 0;
+    int iNewCols    = 0;
+
+    //evaluate each argument and replace by appropriate value and compute the count of combinations
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
+    {
+        return this;
+    }
+
+    bool* pbFull = new bool[iDims];
+    //coord must represent all values on a dimension
+    for (int i = 0 ; i < iDims ; i++)
+    {
+        pbFull[i]       = false;
+        int iDimToCheck = getVarMaxDim(i, iDims);
+        int iIndexSize  = pArg[i]->getAs<GenericType>()->getSize();
+
+        //we can have index more than once
+        if (iIndexSize >= iDimToCheck)
+        {
+            //size is good, now check datas
+            double* pIndexes = getDoubleArrayFromDouble(pArg[i]);
+            for (int j = 0 ; j < iDimToCheck ; j++)
+            {
+                bool bFind = false;
+                for (int k = 0 ; k < iIndexSize ; k++)
+                {
+                    if ((int)pIndexes[k] == j + 1)
+                    {
+                        bFind = true;
+                        break;
+                    }
+                }
+                pbFull[i]  = bFind;
+            }
+        }
+    }
+
+    //only one dims can be not full/entire
+    bool bNotEntire = false;
+    int iNotEntire  = 0;
+    bool bTooMuchNotEntire = false;
+    for (int i = 0 ; i < iDims ; i++)
+    {
+        if (pbFull[i] == false)
+        {
+            if (bNotEntire == false)
+            {
+                bNotEntire = true;
+                iNotEntire = i;
+            }
+            else
+            {
+                bTooMuchNotEntire = true;
+                break;
+            }
+        }
+    }
+
+    if (bTooMuchNotEntire == true)
+    {
+        return NULL;
+    }
+
+    delete[] pbFull;
+
+    //find index to keep
+    int iNotEntireSize          = pArg[iNotEntire]->getAs<GenericType>()->getSize();
+    double* piNotEntireIndex    = getDoubleArrayFromDouble(pArg[iNotEntire]);
+    int iKeepSize               = getVarMaxDim(iNotEntire, iDims);
+    bool* pbKeep                = new bool[iKeepSize];
+
+    //fill pbKeep with true value
+    for (int i = 0 ; i < iKeepSize ; i++)
+    {
+        pbKeep[i] = true;
+    }
+
+    for (int i = 0 ; i < iNotEntireSize ; i++)
+    {
+        int idx = (int)piNotEntireIndex[i] - 1;
+
+        //don't care of value out of bounds
+        if (idx < iKeepSize)
+        {
+            pbKeep[idx] = false;
+        }
+    }
+
+    int iNewDimSize = 0;
+    for (int i = 0 ; i < iKeepSize ; i++)
+    {
+        if (pbKeep[i] == true)
+        {
+            iNewDimSize++;
+        }
+    }
+    delete[] pbKeep;
+
+    int* piNewDims = new int[iDims];
+    for (int i = 0 ; i < iDims ; i++)
+    {
+        if (i == iNotEntire)
+        {
+            piNewDims[i] = iNewDimSize;
+        }
+        else
+        {
+            piNewDims[i] = getVarMaxDim(i, iDims);
+        }
+    }
+
+    //remove last dimension if are == 1
+    int iOrigDims = iDims;
+    for (int i = (iDims - 1) ; i >= 2 ; i--)
+    {
+        if (piNewDims[i] == 1)
+        {
+            iDims--;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    if (iDims == 1)
+    {
+        if (iNewDimSize == 0)
+        {
+            return new SparseBool(0, 0);
+        }
+        else
+        {
+            //two cases, depends of original matrix/vector
+            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
+            {
+                //special case for row vector
+                pOut = new SparseBool(1, iNewDimSize);
+                //in this case we have to care of 2nd dimension
+                //iNotEntire = 1;
+            }
+            else
+            {
+                pOut = new SparseBool(iNewDimSize, 1);
+            }
+        }
+    }
+    else
+    {
+        pOut = new SparseBool(piNewDims[0], piNewDims[0]);
+    }
+
+    delete[] piNewDims;
+    //find a way to copy existing data to new variable ...
+    int iNewPos = 0;
+    int* piIndexes = new int[iOrigDims];
+    int* piViewDims = new int[iOrigDims];
+    for (int i = 0 ; i < iOrigDims ; i++)
+    {
+        piViewDims[i] = getVarMaxDim(i, iOrigDims);
+    }
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        bool bByPass = false;
+        getIndexesWithDims(i, piIndexes, piViewDims, iOrigDims);
+
+        //check if piIndexes use removed indexes
+        for (int j = 0 ; j < iNotEntireSize ; j++)
+        {
+            if ((piNotEntireIndex[j] - 1) == piIndexes[iNotEntire])
+            {
+                //by pass this value
+                bByPass = true;
+                break;
+            }
+        }
+
+        if (bByPass == false)
+        {
+            //compute new index
+            pOut->set(iNewPos, get(i));
+            iNewPos++;
+        }
+    }
+
+    //free allocated data
+    for (int i = 0 ; i < iDims ; i++)
+    {
+        if (pArg[i] != (*_pArgs)[i])
+        {
+            delete pArg[i];
+        }
+    }
+
+    delete[] piIndexes;
+    delete[] piViewDims;
+    return pOut;
+}
+
 bool SparseBool::append(int r, int c, SparseBool CONST* src)
 {
     doAppend(*src, r, c, *matrixBool);
@@ -2308,8 +2792,20 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         // Check that we stay inside the input size.
         if (piMaxDim[0] <= getSize())
         {
-            int iNewRows = Max(pArg[0]->getAs<Double>()->getRows(), pArg[0]->getAs<Double>()->getCols());
-            int iNewCols = 1;
+            int iNewRows = 0;
+            int iNewCols = 0;
+
+            if (getRows() == 1 && getCols() != 1 && (*_pArgs)[0]->isColon() == false)
+            {
+                //special case for row vector
+                iNewRows = 1;
+                iNewCols = piCountDim[0];
+            }
+            else
+            {
+                iNewRows = piCountDim[0];
+                iNewCols = 1;
+            }
 
             pOut = new SparseBool(iNewRows, iNewCols);
             double* pIdx = pArg[0]->getAs<Double>()->get();
@@ -2393,7 +2889,7 @@ int* SparseBool::getNbItemByRow(int* _piNbItemByRows)
     int* piNbItemByRows = new int[getRows() + 1];
     mycopy_n(matrixBool->outerIndexPtr(), getRows() + 1, piNbItemByRows);
 
-    for(int i = 0 ; i < getRows() ; i++)
+    for (int i = 0 ; i < getRows() ; i++)
     {
         _piNbItemByRows[i] = piNbItemByRows[i + 1] - piNbItemByRows[i];
     }

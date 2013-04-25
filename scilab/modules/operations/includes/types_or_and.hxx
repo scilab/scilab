@@ -17,21 +17,26 @@
 #include "generic_operations.hxx"
 #include "types.hxx"
 #include "bool.hxx"
+//#include "sparse.hxx"
 
 // &&
 EXTERN_OP int IntAndInt(types::InternalType* _pL, types::Bool** _pOut);
 EXTERN_OP int BoolAndBool(types::Bool* _pL, types::Bool** _pOut);
+EXTERN_OP int SparseBoolAndSparseBool(types::InternalType* _pL, types::Bool** _pOut);
 
 // &
 EXTERN_OP int IntLogicalAndInt(types::InternalType* _pL, types::InternalType*  _pR, types::InternalType** _pOut);
 EXTERN_OP int BoolLogicalAndBool(types::Bool* _pL, types::Bool*  _pR, types::Bool** _pOut);
+EXTERN_OP int SparseBoolLogicalAndSparseBool(types::InternalType* _pL, types::InternalType*  _pR, types::InternalType** _pOut);
 
 // ||
 EXTERN_OP int IntOrInt(types::InternalType* _pL, types::Bool** _pOut);
 EXTERN_OP int BoolOrBool(types::Bool* _pI1, types::Bool** _pOut);
+EXTERN_OP int SparseBoolOrSparseBool(types::InternalType* _pL, types::Bool** _pOut);
 
 // |
 EXTERN_OP int IntLogicalOrInt(types::InternalType* _pL, types::InternalType*  _pR, types::InternalType** _pOut);
 EXTERN_OP int BoolLogicalOrBool(types::Bool* _pL, types::Bool*  _pR, types::Bool** _pOut);
+EXTERN_OP int SparseBoolLogicalOrSparseBool(types::InternalType* _pL, types::InternalType*  _pR, types::InternalType** _pOut);
 
 #endif /* __TYPES_BITWISEOP_H__ */

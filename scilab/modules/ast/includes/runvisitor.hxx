@@ -1520,6 +1520,27 @@ public :
 
             result_set(pReturn);
         }
+        else if (result_get()->isBool())
+        {
+            InternalType* pVar  = result_get();
+            types::Bool *pB = pVar->getAs<types::Bool>();
+            types::Bool* pReturn = new types::Bool(pB->getCols(), pB->getRows());
+
+            for (int i = 0 ; i < pB->getRows() ; i++)
+            {
+                for (int j = 0 ; j < pB->getCols() ; j++)
+                {
+                    pReturn->set(j, i, pB->get(i, j));
+                }
+            }
+
+            if (result_get()->isDeletable())
+            {
+                delete result_get();
+            }
+
+            result_set(pReturn);
+        }
         else if (result_get()->isSparse())
         {
             types::InternalType* pIT = result_get();

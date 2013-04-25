@@ -15,6 +15,8 @@
 #include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
+#include "double.hxx"
+#include "bool.hxx"
 
 extern "C"
 {
@@ -41,16 +43,31 @@ types::Function::ReturnValue sci_full(types::typed_list &in, int _iRetCount, typ
         types::Sparse* pSp = in[0]->getAs<types::Sparse>();
         types::Double* pOut = NULL;
 
-        pOut = new types::Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
-        pSp->fill(*pOut);
+        if (pSp->getRows() == 0 && pSp->getCols() == 0)
+        {
+            pOut = types::Double::Empty();
+        }
+        else
+        {
+            pOut = new types::Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
+            pSp->fill(*pOut);
+        }
+
         out.push_back(pOut);
     }
     else if (in[0]->isSparseBool())
     {
         types::SparseBool* pSb = in[0]->getAs<types::SparseBool>();
-        types::Bool* pOut = new types::Bool(pSb->getRows(), pSb->getCols());
-        pSb->fill(*pOut);
-        out.push_back(pOut);
+        if (pSb->getRows() == 0 && pSb->getCols() == 0)
+        {
+            out.push_back(types::Double::Empty());
+        }
+        else
+        {
+            types::Bool* pOut = new types::Bool(pSb->getRows(), pSb->getCols());
+            pSb->fill(*pOut);
+            out.push_back(pOut);
+        }
     }
     else
     {
