@@ -82,6 +82,8 @@ Bug fixes
 
 * Bug #6752 fixed - unit test scilab.tst has been split in different tests.
 
+* Bug #7026 fixed - There was no unit test for plot2d.
+
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
