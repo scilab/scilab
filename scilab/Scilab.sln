@@ -623,6 +623,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "types_gw", "modules\types\sci_gateway\cpp\types_gw.vcxproj", "{C2E5F4F6-5EE7-4B36-BFAC-4AC36BB41420}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sparse_gw", "modules\sparse\sci_gateway\cpp\sparse_gw.vcxproj", "{7FC7AEC9-4922-4864-83F1-EAED67981AAC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{13082624-97F9-47DB-A9A1-AD7D6BF3856A} = {13082624-97F9-47DB-A9A1-AD7D6BF3856A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

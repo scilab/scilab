@@ -37,5 +37,6 @@ CPP_GATEWAY_PROTOTYPE(sci_spget);
 CPP_GATEWAY_PROTOTYPE(sci_spzeros);
 CPP_GATEWAY_PROTOTYPE(sci_spones);
 CPP_GATEWAY_PROTOTYPE(sci_full);
+CPP_GATEWAY_PROTOTYPE(sci_ordmmd);
 
 #endif /* !__SPARSE_GW_HXX__ */
