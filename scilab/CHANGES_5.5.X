@@ -108,6 +108,8 @@ Bug fixes
 
 * Bug #8680 fixed - Output argument "end" of the regexp function has been changed.
 
+* Bug #8687 fixed - typeof() function failed on uint8, depending on the format (+ unit test added).
+
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
 * Bug #8862 fixed -  mget and mput couldn't read and write 64 bit data from	78
