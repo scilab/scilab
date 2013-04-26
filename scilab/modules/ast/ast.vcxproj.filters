@@ -19,6 +19,9 @@
     <ClCompile Include="src\cpp\visitor_common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\macrovarvisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\all.hxx">
@@ -223,6 +226,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\stepvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\macrovarvisitor.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

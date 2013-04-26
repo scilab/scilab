@@ -178,6 +178,7 @@
   <ItemGroup>
     <ClCompile Include="src\cpp\debugvisitor.cpp" />
     <ClCompile Include="src\cpp\libAst.cpp" />
+    <ClCompile Include="src\cpp\macrovarvisitor.cpp" />
     <ClCompile Include="src\cpp\mutevisitor.cpp" />
     <ClCompile Include="src\cpp\printvisitor.cpp" />
     <ClCompile Include="src\cpp\shortcutvisitor.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="includes\functiondec.hxx" />
     <ClInclude Include="includes\ifexp.hxx" />
     <ClInclude Include="includes\intexp.hxx" />
+    <ClInclude Include="includes\macrovarvisitor.hxx" />
     <ClInclude Include="includes\stepvisitor.hxx" />
     <ClInclude Include="src\cpp\libAst.hxx" />
     <ClInclude Include="includes\listexp.hxx" />

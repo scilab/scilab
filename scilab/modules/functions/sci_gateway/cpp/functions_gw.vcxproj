@@ -177,6 +177,7 @@
     <ClCompile Include="sci_functionlist.cpp" />
     <ClCompile Include="sci_getCurrentThreadId.cpp" />
     <ClCompile Include="sci_getThreads.cpp" />
+    <ClCompile Include="sci_macrovar.cpp" />
     <ClCompile Include="sci_mode.cpp" />
     <ClCompile Include="sci_whereis.cpp" />
   </ItemGroup>

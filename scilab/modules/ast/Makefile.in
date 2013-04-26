@@ -135,7 +135,8 @@ am_libsciast_la_OBJECTS = libsciast_la-libAst.lo \
 	libsciast_la-visitor_common.lo libsciast_la-printvisitor.lo \
 	libsciast_la-debugvisitor.lo libsciast_la-mutevisitor.lo \
 	libsciast_la-shortcutvisitor.lo \
-	libsciast_la-scilabexception.lo
+	libsciast_la-scilabexception.lo \
+	libsciast_la-macrovarvisitor.lo
 libsciast_la_OBJECTS = $(am_libsciast_la_OBJECTS)
 am_testConstExp_OBJECTS = testConstExp-testConstExp.$(OBJEXT)
 testConstExp_OBJECTS = $(am_testConstExp_OBJECTS)
@@ -457,7 +458,8 @@ libsciast_la_SOURCES = \
 	src/cpp/debugvisitor.cpp \
 	src/cpp/mutevisitor.cpp \
 	src/cpp/shortcutvisitor.cpp \
-	src/cpp/scilabexception.cpp
+	src/cpp/scilabexception.cpp \
+	src/cpp/macrovarvisitor.cpp
 
 libsciast_la_CPPFLAGS = \
 	-Iincludes \
@@ -671,6 +673,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-debugvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-libAst.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-macrovarvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-mutevisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-printvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciast_la-scilabexception.Plo@am__quote@
@@ -749,6 +752,13 @@ libsciast_la-scilabexception.lo: src/cpp/scilabexception.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/scilabexception.cpp' object='libsciast_la-scilabexception.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-scilabexception.lo `test -f 'src/cpp/scilabexception.cpp' || echo '$(srcdir)/'`src/cpp/scilabexception.cpp
+
+libsciast_la-macrovarvisitor.lo: src/cpp/macrovarvisitor.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciast_la-macrovarvisitor.lo -MD -MP -MF $(DEPDIR)/libsciast_la-macrovarvisitor.Tpo -c -o libsciast_la-macrovarvisitor.lo `test -f 'src/cpp/macrovarvisitor.cpp' || echo '$(srcdir)/'`src/cpp/macrovarvisitor.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciast_la-macrovarvisitor.Tpo $(DEPDIR)/libsciast_la-macrovarvisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/macrovarvisitor.cpp' object='libsciast_la-macrovarvisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciast_la-macrovarvisitor.lo `test -f 'src/cpp/macrovarvisitor.cpp' || echo '$(srcdir)/'`src/cpp/macrovarvisitor.cpp
 
 testConstExp-testConstExp.o: src/cpp/testConstExp.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testConstExp_CXXFLAGS) $(CXXFLAGS) -MT testConstExp-testConstExp.o -MD -MP -MF $(DEPDIR)/testConstExp-testConstExp.Tpo -c -o testConstExp-testConstExp.o `test -f 'src/cpp/testConstExp.cpp' || echo '$(srcdir)/'`src/cpp/testConstExp.cpp
