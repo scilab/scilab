@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [la,lb]=lattn(n,p,cov)
+function [la,lb]=lattn(n,p,mat_cov)
     //[la,lb]=lattn(n,p,cov)
     //macro which solves recursively on n (p being fixed)
     //the following system (normal equations), i.e. identifies
@@ -67,11 +67,11 @@ function [la,lb]=lattn(n,p,cov)
         error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be in the interval [%s, %s].\n"),"lattn",2,"-1","%inf"))
     end
 
-    if type(cov)<>1 then
+    if type(mat_cov)<>1 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"lattn",3))
     end
 
-    [l,d]=size(cov);
+    [l,d]=size(mat_cov);
     if d>l then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A tall matrix expected.\n"),"lattn",3))
     end
@@ -79,14 +79,14 @@ function [la,lb]=lattn(n,p,cov)
 
     a=eye(d);b=eye(d);
     z=poly(0,"z");la=list();lb=list();
-    no=p-n-1;cv=cov;
+    no=p-n-1;cv=mat_cov;
 
     if -no >= floor(l/d) then
         error(msprintf(gettext("%s: Wrong values for input arguments #%d and #%d.\n"),"lattn",1, 2))
     end
 
     if no<0,
-        for j=1:-no,cv=[cov(j*d+1:(j+1)*d,:)';cv];end;
+        for j=1:-no,cv=[mat_cov(j*d+1:(j+1)*d,:)';cv];end;
         p=p-no;
     end
 

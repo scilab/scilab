@@ -86,8 +86,8 @@ function [hzt,zt,gt]=trans(pd,zd,gd,tr_type,frq)
   case 'sb' then
     k=tan(%pi*fc)*tan(%pi*(fu-fl));
     alpha=cos(%pi*(fu+fl))/cos(%pi*(fu-fl));
-    num=(k+1)-2*alpha*z+(1-k)*z^2;
-    den=(k+1)*z^2-2*alpha*z+(1-k);
+    num=(k+1)-2*alpha*z+(1-k)*z.^2;
+    den=(k+1)*z.^2-2*alpha*z+(1-k);
   end
   [pt,zt,gt]=bilt(pd,zd,gd,num,den);
   if argn(1)==1 then
