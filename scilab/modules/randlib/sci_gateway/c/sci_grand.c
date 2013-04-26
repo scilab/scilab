@@ -135,7 +135,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
     Nbvars = 0;
     CheckRhs(minrhs, maxrhs);
     CheckLhs(minlhs, maxlhs);
-    if ( GetType(1) != sci_matrix)
+    if (GetType(1) != sci_matrix)
     {
         int un = 1, deux = 2, dim_state_mt = 625, dim_state_fsultra = 40, dim_state_4 = 4;
         GetRhsVar(1, STRING_DATATYPE, &ms, &ns, &ls);
@@ -424,7 +424,6 @@ int sci_Rand(char *fname, unsigned long fname_len)
             PutLhsVar();
             return 0;
         }
-
         else if (strcmp("initgn", cstk(ls)) == 0)
         {
             SeedType Where;
@@ -569,7 +568,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s Wrong value for input argument #%d: %s.\n"), fname, 1, cstk(ls));
+            Scierror(999, _("%s Wrong value for input argument #%d: '%s' is unknown.\n"), fname, 1, cstk(ls));
 
             return 0;
         }

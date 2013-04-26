@@ -12,7 +12,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "splitLine.h"
-#include "csv_strsubst.h"
+#include "strsubst.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 
@@ -96,11 +96,11 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
 
     sprintf(tokenstring_to_search, "%s%s", sep, sep);
     sprintf(tokenreplacement_string, "%s%s%s", sep, EMPTYFIELD, sep);
-    substitutedstring = csv_strsubst(str, tokenstring_to_search, tokenreplacement_string);
+    substitutedstring = strsub(str, tokenstring_to_search, tokenreplacement_string);
     /* in a string like foo;bar;;;, replace all the ;;, not only the first and last one */
     while (strstr(substitutedstring, tokenstring_to_search) != NULL)
     {
-        substitutedstring = csv_strsubst(substitutedstring, tokenstring_to_search, tokenreplacement_string);
+        substitutedstring = strsub(substitutedstring, tokenstring_to_search, tokenreplacement_string);
     }
 
     if (strncmp(substitutedstring, sep, strlen(sep)) == 0)

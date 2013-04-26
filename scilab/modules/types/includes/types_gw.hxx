@@ -42,17 +42,6 @@ CPP_GATEWAY_PROTOTYPE(sci_isfield);
 CPP_GATEWAY_PROTOTYPE(sci_getfield);
 CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
 
-/*sparses functions*/
-CPP_GATEWAY_PROTOTYPE(sci_adj2sp);
-CPP_GATEWAY_PROTOTYPE(sci_nnz);
-CPP_GATEWAY_PROTOTYPE(sci_sp2adj);
-CPP_GATEWAY_PROTOTYPE(sci_sparse);
-CPP_GATEWAY_PROTOTYPE(sci_spcompack);
-CPP_GATEWAY_PROTOTYPE(sci_spget);
-CPP_GATEWAY_PROTOTYPE(sci_spzeros);
-CPP_GATEWAY_PROTOTYPE(sci_spones);
-CPP_GATEWAY_PROTOTYPE(sci_full);
-
 #ifndef NDEBUG
 CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItemCount);
 CPP_GATEWAY_PROTOTYPE(sci_inspectorShowItem);

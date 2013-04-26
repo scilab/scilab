@@ -124,7 +124,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -184,7 +184,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -242,7 +242,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -305,7 +305,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>

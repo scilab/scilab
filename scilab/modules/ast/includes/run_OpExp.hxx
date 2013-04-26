@@ -200,242 +200,130 @@ void visitprivate(const OpExp &e)
 
 void visitprivate(const LogicalOpExp &e)
 {
-    e.left_get().accept(*this);
-    InternalType *pITL = result_get();
-    InternalType *pITR = NULL;
-
-    GenericType::RealType TypeL = pITL->getType();
-
-    InternalType *pResult = NULL;
-
-    if (TypeL == GenericType::RealBool)
+    try
     {
-        Bool *pL = pITL->getAs<types::Bool>();
+        InternalType *pITR = NULL; //assign only in non shortcut operations.
+
+        /*getting what to assign*/
+        e.left_get().accept(*this);
+        InternalType *pITL = result_get();
+        if (is_single_result() == false)
+        {
+            std::wostringstream os;
+            os << _W("Incompatible output argument.\n");
+            //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
+            throw ScilabError(os.str(), 999, e.right_get().location_get());
+        }
+
+        if (pITL->getType() == GenericType::RealImplicitList)
+        {
+            ImplicitList* pIL = pITL->getAs<ImplicitList>();
+            if (pIL->isComputable())
+            {
+                pITL = pIL->extractFullMatrix();
+            }
+        }
+
+        InternalType *pResult   = NULL;
+
         switch (e.oper_get())
         {
-            case LogicalOpExp::logicalShortCutOr :
-            {
-                int *piL	= pL->get();
-                bool iL     = true;
-                // Check if all values are true
-                // true || <something is always true>
-                for (int i = 0 ; i < pL->getSize() ; i++)
-                {
-                    if (piL[i] == false)
-                    {
-                        iL = false;
-                        break;
-                    }
-                }
-
-                if (iL)
-                {
-                    //we don't need to look at ohers exp
-                    result_set(new Bool(true));
-                    return;
-                }
-                // DO NOT break here, falling into normal Or if this can not be shotcutted.
-            }
-            case LogicalOpExp::logicalOr :
-            {
-                e.right_get().accept(*this);
-                pITR = result_get();
-                GenericType::RealType TypeR = pITR->getType();
-
-                if (TypeR == GenericType::RealBool)
-                {
-                    Bool *pR = pITR->getAs<types::Bool>();
-                    int* piR = pR->get();
-                    int* piL = pL->get();
-                    int* piB = NULL;
-
-                    // M | scalar
-                    if (pR->getSize() == 1)
-                    {
-                        pResult = new Bool(pL->getRows(), pL->getCols(), &piB);
-                        for (int i = 0 ; i < pL->getSize(); i++)
-                        {
-                            piB[i] = (piR[0] == 1) || (piL[i] == 1);
-                        }
-                    }
-                    else if (pL->getSize() == 1)
-                    {
-                        // scalar | M
-                        pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                        for (int i = 0 ; i < pR->getSize(); i++)
-                        {
-                            piB[i] = (piR[i] == 1) || (piL[0] == 1);
-                        }
-                    }
-                    else if (pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                    {
-                        // M | N (generic case)
-                        pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                        for (int i = 0 ; i < pL->getSize(); i++)
-                        {
-                            piB[i] = (piR[i] == 1) || (piL[i] == 1);
-                        }
-                    }
-                    else
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-                }
-                else
-                {
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
-                break;
-            }
             case LogicalOpExp::logicalShortCutAnd :
             {
-                int *piL	= pL->get();
-                // Check if one value is false
-                // false && <something> is always false
-                for (int i = 0 ; i < pL->getSize() ; i++)
+                pResult = GenericShortcutAnd(pITL);
+                if (pResult)
                 {
-                    if (piL[i] == false)
-                    {
-                        result_set(new Bool(false));
-                        return;
-                    }
+                    break;
                 }
-                // DO NOT break here, falling into normal And if this can not be shotcutted.
+
+                //Continue to logicalAnd
             }
             case LogicalOpExp::logicalAnd :
             {
+                /*getting what to assign*/
                 e.right_get().accept(*this);
                 pITR = result_get();
-                GenericType::RealType TypeR = pITR->getType();
-
-                if (TypeR == GenericType::RealBool)
+                if (is_single_result() == false)
                 {
-                    Bool *pR = pITR->getAs<types::Bool>();
-                    int* piR = pR->get();
-                    int* piL = pL->get();
-                    int* piB = NULL;
+                    std::wostringstream os;
+                    os << _W("Incompatible output argument.\n");
+                    //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
+                    throw ScilabError(os.str(), 999, e.right_get().location_get());
+                }
 
-                    // M & scalar
-                    if (pR->getSize() == 1)
+                if (pITR->getType() == GenericType::RealImplicitList)
+                {
+                    ImplicitList* pIR = pITR->getAs<ImplicitList>();
+                    if (pIR->isComputable())
                     {
-                        pResult = new Bool(pL->getRows(), pL->getCols(), &piB);
-                        for (int i = 0 ; i < pL->getSize(); i++)
-                        {
-                            piB[i] = (piR[0] == 1) && (piL[i] == 1);
-                        }
-                    }
-                    else if (pL->getSize() == 1)
-                    {
-                        // scalar & M
-                        pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                        for (int i = 0 ; i < pR->getSize(); i++)
-                        {
-                            piB[i] = (piR[i] == 1) && (piL[0] == 1);
-                        }
-                    }
-                    else if (pR->getRows() == pL->getRows() && pR->getCols() == pL->getCols())
-                    {
-                        // M & N (generic case)
-                        pResult = new Bool(pR->getRows(), pR->getCols(), &piB);
-                        for (int i = 0 ; i < pL->getSize(); i++)
-                        {
-                            piB[i] = (piR[i] == 1) && (piL[i] == 1);
-                        }
-                    }
-                    else
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
+                        pITR = pIR->extractFullMatrix();
                     }
                 }
-                else
-                {
-                    pResult = callOverload(e.oper_get(), pITL, pITR);
-                }
+                pResult = GenericLogicalAnd(pITL, pITR);
                 break;
             }
-
-            default :
+            case LogicalOpExp::logicalShortCutOr :
             {
-                pResult = callOverload(e.oper_get(), pITL, pITR);
+                pResult = GenericShortcutOr(pITL);
+                if (pResult)
+                {
+                    break;
+                }
+
+                //Continue to logicalAnd
+            }
+            case LogicalOpExp::logicalOr :
+            {
+                /*getting what to assign*/
+                e.right_get().accept(*this);
+                pITR = result_get();
+                if (is_single_result() == false)
+                {
+                    std::wostringstream os;
+                    os << _W("Incompatible output argument.\n");
+                    //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
+                    throw ScilabError(os.str(), 999, e.right_get().location_get());
+                }
+
+                if (pITR->getType() == GenericType::RealImplicitList)
+                {
+                    ImplicitList* pIR = pITR->getAs<ImplicitList>();
+                    if (pIR->isComputable())
+                    {
+                        pITR = pIR->extractFullMatrix();
+                    }
+                }
+                pResult = GenericLogicalOr(pITL, pITR);
                 break;
             }
         }
-    }
-    else if (pITL->isInt())
-    {
-        int iErr = 2;
-        e.right_get().accept(*this);
-        pITR = result_get();
-        GenericType::RealType TypeR = pITR->getType();
-
-        if (TypeL != TypeR)
+        //overloading
+        if (pResult == NULL)
         {
+            // We did not have any algorithm matching, so we try to call OverLoad
             pResult = callOverload(e.oper_get(), pITL, pITR);
         }
-        else
-        {
-            if (e.oper_get() == LogicalOpExp::logicalOr)
-            {
-                iErr = bitwiseOrToIntAndInt(pITL, pITR, &pResult);
-            }
-            else if (e.oper_get() == LogicalOpExp::logicalAnd)
-            {
-                iErr = bitwiseAndToIntAndInt(pITL, pITR, &pResult);
-            }
 
-            if (iErr)
-            {
-                std::wostringstream os;
-                switch (iErr)
-                {
-                    case 1:
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        break;
-                    case 2:
-                        os << _W("Bad operator.\n");
-                        break; // if the operator is not logicalOr or logicalAnd
-                    case 3:
-                        os << _W("Bad type.\n");
-                        break;// should never be occured.
-                }
-                throw ScilabError(os.str(), 999, e.right_get().location_get());
-            }
+        result_set(pResult);
+
+        //clear left and/or right operands
+        if (pITL->isDeletable())
+        {
+            delete pITL;
+        }
+
+        if (pITR && pITR->isDeletable())
+        {
+            delete pITR;
         }
     }
-    else
+    catch (ScilabError error)
     {
-        e.right_get().accept(*this);
-        pITR = result_get();
-        switch (e.oper_get())
-        {
-            case LogicalOpExp::logicalShortCutOr :
-            case LogicalOpExp::logicalOr :
-            case LogicalOpExp::logicalShortCutAnd :
-            case LogicalOpExp::logicalAnd :
-                pResult = callOverload(e.oper_get(), pITL, pITR);
-                break;
-            default :
-                break;
-        }
+        result_clear();
+        error.SetErrorLocation(e.location_get());
+        throw error;
     }
 
-    if (pITL && pITL->isDeletable())
-    {
-        delete pITL;
-    }
-
-    if (pITR && pITR->isDeletable())
-    {
-        delete pITR;
-    }
-
-    result_set(pResult);
 }
 
 types::InternalType* callOverload(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR)

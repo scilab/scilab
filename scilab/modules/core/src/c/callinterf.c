@@ -57,13 +57,13 @@ static OpTab Interfaces[INTERFACES_MAX] =
     /* 18  */ {NULL}, //gw_dynamic_signal_processing
     /* 19  */ {gw_dynamic_interpolation},
     /* 20  */ {gw_cacsd3},
-    /* 21  */ {gw_string},
+    /* 21  */ {NULL}, // string
     /* 22  */ {gw_dynamic_symbolic},
     /* 23  */ {NULL}, //gw_boolean
     /* 24  */ {gw_user2}, /* RESERVED (see callinter.h) */
     /* 25  */ {gw_gui},
     /* 26  */ {NULL}, //gw_differential_equations2
-    /* 27  */ {gw_sparse},
+    /* 27  */ {NULL}, //gw_sparse
     /* 28  */ {NULL}, //gw_slicot
     /* 29  */ {NULL}, //gw_differential_equations3
     /* 30  */ {NULL}, //gw_differential_equations4

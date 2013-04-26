@@ -168,6 +168,10 @@ msgid "%s: File %s does not contain any function.\n"
 msgstr "%s: El fitxer %s no conté cap funció.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
 msgstr "%s: No s'ha pogut trobar cap fitxer amb l'extensió %s a %s\n"
 

@@ -26,7 +26,7 @@ OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_comparison_lt_le_gt_ge.cpp \
 			src/cpp/types_kronecker.cpp \
 			src/cpp/types_comparison_ne.cpp \
-			src/cpp/types_bitwiseOp.cpp
+			src/cpp/types_or_and.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
 

@@ -10,21 +10,8 @@
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -33,21 +20,8 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -56,21 +30,8 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -79,21 +40,8 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
@@ -109,116 +57,10 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\sparse_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="blkfc1.f"/>
-		<File RelativePath="blkfct.f"/>
-		<File RelativePath="blkslv.f"/>
-		<File RelativePath="dcompa.f"/>
-		<File RelativePath="dful2sp.f"/>
-		<File RelativePath="dij2sp.f"/>
-		<File RelativePath="dperm.f"/>
-		<File RelativePath="dsmsp.f"/>
-		<File RelativePath="dsosp.f"/>
-		<File RelativePath="dspasp.f"/>
-		<File RelativePath="dspcle.f"/>
-		<File RelativePath="dspcsp.f"/>
-		<File RelativePath="dspe2.f"/>
-		<File RelativePath="dspful.f"/>
-		<File RelativePath="dspis.f"/>
-		<File RelativePath="dspisp.f"/>
-		<File RelativePath="dspmat.f"/>
-		<File RelativePath="dspms.f"/>
-		<File RelativePath="dspmsp.f"/>
-		<File RelativePath="dspos.f"/>
-		<File RelativePath="dsposp.f"/>
-		<File RelativePath="dspssp.f"/>
-		<File RelativePath="dspt.f"/>
-		<File RelativePath="dspxs.f"/>
-		<File RelativePath="dspxsp.f"/>
-		<File RelativePath="findl.f"/>
-		<File RelativePath="inpnv.f"/>
-		<File RelativePath="iperm.f"/>
 		<File RelativePath="isort1.f"/>
-		<File RelativePath="lcompa.f"/>
-		<File RelativePath="lful2sp.f"/>
-		<File RelativePath="lij2sp.f"/>
-		<File RelativePath="lsosp.f"/>
-		<File RelativePath="lspasp.f"/>
-		<File RelativePath="lspcsp.f"/>
-		<File RelativePath="lspe2.f"/>
-		<File RelativePath="lspful.f"/>
-		<File RelativePath="lspis.f"/>
-		<File RelativePath="lspisp.f"/>
-		<File RelativePath="lspmat.f"/>
-		<File RelativePath="lspops.f"/>
-		<File RelativePath="lspos.f"/>
-		<File RelativePath="lsposp.f"/>
-		<File RelativePath="lspt.f"/>
-		<File RelativePath="lspxsp.f"/>
-		<File RelativePath="ordmmd.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_bfinit.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_blkfc1i.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_blkslvi.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_fadj2sp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_full.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_inpnvi.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ludel.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lufact.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_luget.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lusolve.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_nnz.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ordmmd.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sfinit.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sparse.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spchol.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spclean.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spcompa.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spget.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spmatrix.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_symfcti.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ta2lpd.f"/>
-		<File RelativePath="sp2col.f"/>
-		<File RelativePath="spcho1.f"/>
-		<File RelativePath="spcho2.f"/>
-		<File RelativePath="spcompack.f"/>
-		<File RelativePath="spextr.f"/>
-		<File RelativePath="spextr1.f"/>
-		<File RelativePath="spif.f"/>
-		<File RelativePath="spif1b.f"/>
-		<File RelativePath="spifp.f"/>
-		<File RelativePath="spind.f"/>
-		<File RelativePath="spisp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\spops.f"/>
-		<File RelativePath="spord.f"/>
 		<File RelativePath="spreshape.f"/>
-		<File RelativePath="spsort.f"/>
 		<File RelativePath="spt.f"/>
-		<File RelativePath="sputil.f"/>
-		<File RelativePath="symfct.f"/>
-		<File RelativePath="sz2ptr.f"/>
-		<File RelativePath=".\ta2lpd.f"/>
-		<File RelativePath="wcompa.f"/>
-		<File RelativePath="wful2sp.f"/>
-		<File RelativePath="wij2sp.f"/>
-		<File RelativePath="wperm.f"/>
-		<File RelativePath=".\writebuf.f"/>
-		<File RelativePath="wsmsp.f"/>
-		<File RelativePath="wsosp.f"/>
-		<File RelativePath="wspasp.f"/>
-		<File RelativePath="wspcle.f"/>
-		<File RelativePath="wspcsp.f"/>
-		<File RelativePath="wspe2.f"/>
-		<File RelativePath="wspful.f"/>
-		<File RelativePath="wspis.f"/>
-		<File RelativePath="wspisp.f"/>
-		<File RelativePath="wspmat.f"/>
-		<File RelativePath="wspms.f"/>
-		<File RelativePath="wspmsp.f"/>
-		<File RelativePath="wspos.f"/>
-		<File RelativePath="wsposp.f"/>
-		<File RelativePath="wspssp.f"/>
-		<File RelativePath="wspt.f"/>
-		<File RelativePath="wspxs.f"/>
-		<File RelativePath="wspxsp.f"/></Filter>
+		<File RelativePath="sz2ptr.f"/></Filter>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\sparse_gateway.xml"/></Files>
 	<Globals/></VisualStudioProject>

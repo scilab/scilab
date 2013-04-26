@@ -71,14 +71,11 @@ int sci_dseupd(char *fname, void *pvApiCtx)
     int* pINFO          = NULL;
 
     int mRVEC,     nRVEC;
-    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int D,        mD,        nD;
     int Z,        mZ,        nZ;
     int mSIGMA,    nSIGMA;
-    int mBMAT,     nBMAT;
     int mN,        nN;
-    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;

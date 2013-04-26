@@ -332,6 +332,9 @@ msgstr "名前を付けて保存"
 msgid "Export"
 msgstr "エクスポート"
 
+msgid "Export all diagrams"
+msgstr ""
+
 msgid "Save as interface function"
 msgstr "インターフェース関数の保存"
 
@@ -395,8 +398,8 @@ msgstr "Scicosでの表示"
 msgid "View"
 msgstr "表示"
 
-msgid "Fit diagram to view"
-msgstr "表示領域にダイアグラムを合わせる"
+msgid "Fit diagram or blocks to view"
+msgstr ""
 
 msgid "Normal 100%"
 msgstr "標準 100%"

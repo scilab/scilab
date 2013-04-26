@@ -81,10 +81,10 @@
     <ClCompile Include="src\c\matrix_transpose.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\types_bitwiseOp.cpp">
+    <ClCompile Include="src\cpp\types_ldivide.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\types_ldivide.cpp">
+    <ClCompile Include="src\cpp\types_or_and.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -164,10 +164,10 @@
     <ClInclude Include="includes\matrix_transpose_int.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\types_bitwiseOp.hxx">
+    <ClInclude Include="includes\types_ldivide.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\types_ldivide.hxx">
+    <ClInclude Include="includes\types_or_and.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

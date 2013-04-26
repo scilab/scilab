@@ -391,7 +391,7 @@ function %cpr = xcos_simulate(scs_m, needcompile)
         if type(post_xcos_simulate) == 15 then
             // if has a multiple implementation (on a list)
             for f=post_xcos_simulate;
-                ok=invoke_post_simulate(f, scs_m, needcompile);
+                ok=invoke_post_simulate(f, %cpr, scs_m, needcompile);
                 if ~ok then
                     %cpr=[];
                     return;

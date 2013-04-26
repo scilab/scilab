@@ -44,6 +44,7 @@ public :
 
     Macro*                  getMacro(void)
     {
+        parse();
         return m_pMacro;
     }
 

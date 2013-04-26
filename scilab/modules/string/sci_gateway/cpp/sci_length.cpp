@@ -28,10 +28,13 @@
 
 #include "function.hxx"
 #include "string.hxx"
-#include "list.hxx"
+#include "mlist.hxx"
 #include "double.hxx"
 #include "funcmanager.hxx"
 #include "string_gw.hxx"
+#include "context.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -54,27 +57,41 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
 {
     Double* pOut = NULL;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: %d expected.\n"), "length", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "length", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString())
+    if (in[0]->isString())
     {
         pOut = lengthStrings(in[0]->getAs<types::String>());
     }
-    else if(in[0]->isGenericType())
+    else if (in[0]->isMList())
     {
-        pOut = lengthMatrix(in[0]->getAs<GenericType>());
+        //build overload name and check if function exists.
+        MList* pML = in[0]->getAs<MList>();
+        std::wstring wst = L"%" + pML->getShortTypeStr() + L"_length";
+        symbol::Context* pCtx = symbol::Context::getInstance();
+        InternalType* pFunc = pCtx->get(symbol::Symbol(wst));
+        if (pFunc && pFunc->isCallable())
+        {
+            //call overload
+            Overload::generateNameAndCall(L"length", in, _iRetCount, out, new ExecVisitor());
+            return Function::OK;
+        }
+
+        //MList without overloading, manage like a list
+        pOut = lengthList(in[0]->getAs<List>());
     }
-    else if(in[0]->isList())
+    else if (in[0]->isList())
     {
         pOut = lengthList(in[0]->getAs<List>());
     }
-    //else if(in[0]->isSparse())
-    //{
-    //}
+    else if (in[0]->isGenericType())
+    {
+        pOut = lengthMatrix(in[0]->getAs<GenericType>());
+    }
     else
     {
         Scierror(999, _("%s: Wrong type for input argument(s).\n"), "length");
@@ -87,7 +104,7 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
 /*--------------------------------------------------------------------------*/
 static Double* lengthStrings(String* _pS)
 {
-    if(_pS == NULL)
+    if (_pS == NULL)
     {
         return Double::Empty();
     }
@@ -95,16 +112,16 @@ static Double* lengthStrings(String* _pS)
     Double* pD = new Double(_pS->getRows(), _pS->getCols());
     double* pdblData = pD->getReal();
 
-    for(int i = 0 ; i < _pS->getSize() ; i++)
+    for (int i = 0 ; i < _pS->getSize() ; i++)
     {
         pdblData[i] = static_cast<double>(wcslen(_pS->get()[i]));
-   }
+    }
     return pD;
 }
 /*--------------------------------------------------------------------------*/
 static Double* lengthMatrix(GenericType* _pG)
 {
-    if(_pG == NULL)
+    if (_pG == NULL)
     {
         return Double::Empty();
     }
@@ -114,7 +131,7 @@ static Double* lengthMatrix(GenericType* _pG)
 /*--------------------------------------------------------------------------*/
 static Double* lengthList(List* _pL)
 {
-    if(_pL == NULL)
+    if (_pL == NULL)
     {
         return Double::Empty();
     }

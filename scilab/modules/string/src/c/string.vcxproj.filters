@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -33,9 +33,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getfastcode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_string.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InitializeString.c">
@@ -98,6 +95,9 @@
     <ClCompile Include="stristr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="isascii.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
@@ -106,20 +106,14 @@
     <None Include="localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="string_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\string.iss" />
     <None Include="..\..\sci_gateway\string_gateway.xml" />
-    <None Include="linpack_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\locales\string.pot">
       <Filter>localization</Filter>
     </None>
     <None Include="System_env_Import.def">
-      <Filter>Source Files</Filter>
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -141,9 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getfastcode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\InitializeString.h">
@@ -240,6 +231,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\stristr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="isascii.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

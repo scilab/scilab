@@ -41,34 +41,34 @@ using namespace ast;
 Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iErr            = 0;
-	bool bErrCatch		= false;
+    bool bErrCatch		= false;
     bool bMute          = true;
-	wchar_t* pstMsg     = NULL;
-	Exp* pExp           = NULL;
-	wchar_t *pstCommand = NULL;
+    wchar_t* pstMsg     = NULL;
+    Exp* pExp           = NULL;
+    wchar_t *pstCommand = NULL;
     Parser parser;
 
     int iOldSilentError = ConfigVariable::getSilentError();
-	if(in.size() < 1 || in.size() > 3)
-	{
+    if (in.size() < 1 || in.size() > 3)
+    {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "execstr" , 1, 3);
         return Function::Error;
-	}
+    }
 
     //2nd parameter
-	if(in.size() > 1)
-	{//errcatch
-        if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
+    if (in.size() > 1)
+    {
+        //errcatch
+        if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "execstr", 2);
             return Function::Error;
         }
 
         String* pS = in[1]->getAs<types::String>();
-        if(os_wcsicmp(pS->get(0), L"errcatch") == 0)
+        if (os_wcsicmp(pS->get(0), L"errcatch") == 0)
         {
             bErrCatch = true;
-            ConfigVariable::setSilentError(1);
         }
         else
         {
@@ -77,20 +77,20 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         }
     }
 
-	//3rd parameter
-	if(in.size() == 3)
-	{
-        if(in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
-		{
+    //3rd parameter
+    if (in.size() == 3)
+    {
+        if (in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
+        {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "execstr", 3);
             return Function::Error;
         }
 
-		if(os_wcsicmp(in[2]->getAs<types::String>()->get(0), MUTE_FLAG) == 0)
+        if (os_wcsicmp(in[2]->getAs<types::String>()->get(0), MUTE_FLAG) == 0)
         {
             bMute = true;
         }
-        else if(os_wcsicmp(in[2]->getAs<types::String>()->get(0), NO_MUTE_FLAG) == 0)
+        else if (os_wcsicmp(in[2]->getAs<types::String>()->get(0), NO_MUTE_FLAG) == 0)
         {
             bMute = false;
         }
@@ -99,63 +99,74 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "execstr", 3, MUTE_FLAG, NO_MUTE_FLAG);
             return Function::Error;
         }
-	}
+    }
 
     //1st argument
-    if(in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
-    {// execstr([])
+    if (in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
+    {
+        // execstr([])
         out.push_back(Double::Empty());
         return Function::OK;
     }
 
-    if(in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
-	{
+    if (in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
+    {
         Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), "execstr", 1);
         return Function::Error;
     }
 
-	String* pS = in[0]->getAs<types::String>();
-	int iTotalLen = pS->getSize(); //add \n after each string
-	for(int i = 0 ; i < pS->getSize() ; i++)
-	{
-		iTotalLen += (int)wcslen(pS->get(i));
-	}
+    String* pS = in[0]->getAs<types::String>();
+    int iTotalLen = pS->getSize(); //add \n after each string
+    for (int i = 0 ; i < pS->getSize() ; i++)
+    {
+        iTotalLen += (int)wcslen(pS->get(i));
+    }
 
-	pstCommand = (wchar_t*)MALLOC(sizeof(wchar_t) * (iTotalLen + 1));//+1 for null termination
+    pstCommand = (wchar_t*)MALLOC(sizeof(wchar_t) * (iTotalLen + 1));//+1 for null termination
 
-	for(int i = 0, iPos = 0 ; i < pS->getSize() ; i++)
-	{
-		wcscpy(pstCommand + iPos, pS->get(i));
-		iPos = (int)wcslen(pstCommand);
-		pstCommand[iPos++] = L'\n';
-		pstCommand[iPos] = 0;
-	}
+    for (int i = 0, iPos = 0 ; i < pS->getSize() ; i++)
+    {
+        wcscpy(pstCommand + iPos, pS->get(i));
+        iPos = (int)wcslen(pstCommand);
+        pstCommand[iPos++] = L'\n';
+        pstCommand[iPos] = 0;
+    }
 
-	parser.parse(pstCommand);
+    parser.parse(pstCommand);
     FREE(pstCommand);
-	if(parser.getExitStatus() !=  Parser::Succeded)
-	{
-        char* pst = wide_string_to_UTF8(parser.getErrorMessage());
-        Scierror(999, "%s", pst);
-        FREE(pst);
-		return Function::Error;
-	}
+    if (parser.getExitStatus() !=  Parser::Succeded)
+    {
+        if (bErrCatch)
+        {
+            out.push_back(new Double(999));
+            //to lock last error information
+            ConfigVariable::setLastErrorCall();
+            return Function::OK;
+        }
+        else
+        {
+            char* pst = wide_string_to_UTF8(parser.getErrorMessage());
+            Scierror(999, "%s", pst);
+            FREE(pst);
+            return Function::Error;
+        }
+    }
 
-	pExp = parser.getTree();
+    pExp = parser.getTree();
 
-	if(pExp == NULL)
-	{
-		return Function::Error;
-	}
+    if (pExp == NULL)
+    {
+        return Function::Error;
+    }
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
-    if(bMute)
+    if (bMute)
     {
         ConfigVariable::setPromptMode(-1);
     }
 
-    if(bErrCatch)
+    if (bErrCatch)
     {
         ConfigVariable::setSilentError(1);
     }
@@ -163,16 +174,16 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     std::list<Exp *>::iterator j;
     std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
 
-	for(j = LExp.begin() ; j != LExp.end() ; j++)
-	{
-		try
-		{
+    for (j = LExp.begin() ; j != LExp.end() ; j++)
+    {
+        try
+        {
             //excecute script
             ExecVisitor execMe;
             (*j)->accept(execMe);
 
             //to manage call without ()
-            if(execMe.result_get() != NULL && execMe.result_get()->isCallable())
+            if (execMe.result_get() != NULL && execMe.result_get()->isCallable())
             {
                 Callable *pCall = execMe.result_get()->getAs<Callable>();
                 types::typed_list out;
@@ -184,35 +195,35 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                     ExecVisitor execCall;
                     Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
 
-                    if(Ret == Callable::OK)
+                    if (Ret == Callable::OK)
                     {
-                        if(out.size() == 0)
+                        if (out.size() == 0)
                         {
                             execMe.result_set(NULL);
                         }
-                        else if(out.size() == 1)
+                        else if (out.size() == 1)
                         {
                             out[0]->DecreaseRef();
                             execMe.result_set(out[0]);
                         }
                         else
                         {
-                            for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
                             {
                                 out[i]->DecreaseRef();
                                 execMe.result_set(i, out[i]);
                             }
                         }
                     }
-                    else if(Ret == Callable::Error)
+                    else if (Ret == Callable::Error)
                     {
                         ConfigVariable::setSilentError(iOldSilentError);
-                        if(ConfigVariable::getLastErrorFunction() == L"")
+                        if (ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                         }
 
-                        if(pCall->isMacro() || pCall->isMacroFile())
+                        if (pCall->isMacro() || pCall->isMacroFile())
                         {
                             wchar_t szError[bsiz];
                             os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
@@ -224,19 +235,19 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                         }
                     }
                 }
-                catch(ScilabMessage sm)
+                catch (ScilabMessage sm)
                 {
                     ConfigVariable::setSilentError(iOldSilentError);
                     wostringstream os;
                     PrintVisitor printMe(os);
                     (*j)->accept(printMe);
                     os << std::endl << std::endl;
-                    if(ConfigVariable::getLastErrorFunction() == L"")
+                    if (ConfigVariable::getLastErrorFunction() == L"")
                     {
                         ConfigVariable::setLastErrorFunction(pCall->getName());
                     }
 
-                    if(pCall->isMacro() || pCall->isMacroFile())
+                    if (pCall->isMacro() || pCall->isMacroFile())
                     {
                         wstring szAllError;
                         wchar_t szError[bsiz];
@@ -255,42 +266,43 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             }
 
             //update ans variable.
-			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
-			{
+            if (execMe.result_get() != NULL && execMe.result_get()->isDeletable())
+            {
                 InternalType* pITAns = execMe.result_get();
-				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
-				if( (*j)->is_verbose() && bErrCatch == false)
-				{
-					std::wostringstream ostr;
-					ostr << L" ans  =" << std::endl;
-					ostr << std::endl;
+                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
+                if ( (*j)->is_verbose() && bErrCatch == false)
+                {
+                    std::wostringstream ostr;
+                    ostr << L" ans  =" << std::endl;
+                    ostr << std::endl;
                     pITAns->toString(ostr);
-					ostr << std::endl;
-					scilabWriteW(ostr.str().c_str());
-				}
-			}
+                    ostr << std::endl;
+                    scilabWriteW(ostr.str().c_str());
+                }
+            }
 
-			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) &&
-   //             bErrCatch == false)
-			//{
-			//	scilabWriteW(L"\n");
-			//}
-		}
-        catch(ScilabMessage sm)
+            //if( !checkPrompt(iMode, EXEC_MODE_MUTE) &&
+            //             bErrCatch == false)
+            //{
+            //	scilabWriteW(L"\n");
+            //}
+        }
+        catch (ScilabMessage sm)
         {
             ConfigVariable::setSilentError(iOldSilentError);
-            if(bErrCatch  == false && bMute == false)
+            if (bErrCatch  == false && bMute == false)
             {
                 scilabErrorW(sm.GetErrorMessage().c_str());
 
                 CallExp* pCall = dynamic_cast<CallExp*>(*j);
-                if(pCall != NULL)
-                {//to print call expression only of it is a macro
+                if (pCall != NULL)
+                {
+                    //to print call expression only of it is a macro
                     ExecVisitor execFunc;
                     pCall->name_get().accept(execFunc);
 
-                    if(execFunc.result_get() != NULL &&
-                        (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                    if (execFunc.result_get() != NULL &&
+                            (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
                     {
                         wostringstream os;
 
@@ -304,7 +316,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                         os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
                         os << szError;
 
-                        if(ConfigVariable::getLastErrorFunction() == L"")
+                        if (ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAs<Callable>()->getName());
                         }
@@ -322,10 +334,10 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 break;
             }
         }
-		catch(ScilabError se)
-		{
+        catch (ScilabError se)
+        {
             ConfigVariable::setSilentError(iOldSilentError);
-            if(ConfigVariable::getLastErrorMessage() == L"")
+            if (ConfigVariable::getLastErrorMessage() == L"")
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
                 ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
@@ -335,7 +347,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
             //store message
             iErr = ConfigVariable::getLastErrorNumber();
-            if(bErrCatch == false)
+            if (bErrCatch == false)
             {
                 //in case of error, change mode to 2 ( prompt )
                 ConfigVariable::setPromptMode(2);
@@ -352,14 +364,14 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 return Function::Error;
             }
             break;
-		}
-	}
+        }
+    }
 
     //restore previous prompt mode and silent mode
     ConfigVariable::setPromptMode(oldVal);
     ConfigVariable::setSilentError(iOldSilentError);
 
-    if(bErrCatch)
+    if (bErrCatch)
     {
         out.push_back(new Double(iErr));
         //to lock last error information
@@ -367,7 +379,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     }
 
     delete parser.getTree();
-	return Function::OK;
+    return Function::OK;
 }
 /*--------------------------------------------------------------------------*/
 

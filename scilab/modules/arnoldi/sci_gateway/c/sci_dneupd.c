@@ -75,7 +75,6 @@ int sci_dneupd(char *fname, void *pvApiCtx)
     int* pINFO          = NULL;
 
     int mRVEC,     nRVEC;
-    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int Dr,        mDr,       nDr;
     int Di,        mDi,       nDi;
@@ -83,9 +82,7 @@ int sci_dneupd(char *fname, void *pvApiCtx)
     int mSIGMAr,   nSIGMAr;
     int mSIGMAi,   nSIGMAi;
     int mWORKev,   nWORKev;
-    int mBMAT,     nBMAT;
     int mN,        nN;
-    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;

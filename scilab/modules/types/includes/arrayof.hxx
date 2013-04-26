@@ -623,13 +623,13 @@ public :
         {
             if (pSource->getCols() == 1)
             {
-                int piRealDim[2] = {piCountDim[0], 1};
+                int piRealDim[2] = {piMaxDim[0], 1};
                 pOut = pSource->createEmpty(2, piRealDim, bComplex);
             }
             else
             {
                 //rows == 1
-                int piRealDim[2] = {1, piCountDim[0]};
+                int piRealDim[2] = {1, piMaxDim[0]};
                 pOut = pSource->createEmpty(2, piRealDim, bComplex);
             }
         }

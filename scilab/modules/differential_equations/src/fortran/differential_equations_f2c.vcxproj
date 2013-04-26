@@ -300,7 +300,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-int3d.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-intg.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-ode.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\Ex-odedc.c" />
     <ClCompile Include="fnorm.c" />
     <ClCompile Include="greatr.c" />
     <ClCompile Include="hpdel.c" />
@@ -373,7 +372,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-int3d.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-intg.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-ode.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-odedc.f" />
     <f2c_rule Include="fnorm.f" />
     <f2c_rule Include="greatr.f" />
     <f2c_rule Include="hpdel.f" />

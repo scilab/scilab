@@ -31,6 +31,10 @@ msgid "%s: Non convergence in QR steps.\n"
 msgstr "%s: QR反復が収束しません。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型に誤りがあります: 実数行列を指定してください.\n"
 

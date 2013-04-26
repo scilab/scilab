@@ -85,4 +85,19 @@ EXTERN_OP types::InternalType* GenericKronrdivide(types::InternalType *_pLeftOpe
 
 // .\.
 EXTERN_OP types::InternalType* GenericKronldivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+
+// &&
+EXTERN_OP types::InternalType* GenericShortcutAnd(types::InternalType *_pLeftOperand);
+
+// &
+EXTERN_OP types::InternalType* GenericLogicalAnd(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+
+// ||
+EXTERN_OP types::InternalType* GenericShortcutOr(types::InternalType *_pLeftOperand);
+
+// |
+EXTERN_OP types::InternalType* GenericLogicalOr(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
+
 #endif /* !__GENERIC_OPERATIONS_HXX__ */
+
+

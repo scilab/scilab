@@ -13,8 +13,7 @@
 template<typename T>
 void vTransposeIntMatrix(T* _pIntIn, int _iRowsIn, int _iColsIn, T* _pIntOut)
 {
-    int iIndex = 0;
-    for (iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
+    for (int iIndex = 0 ; iIndex < _iRowsIn * _iColsIn ; iIndex++)
     {
         int iNewCoord = iIndex % _iRowsIn * _iColsIn + (iIndex / _iRowsIn);
         _pIntOut[iNewCoord] = _pIntIn[iIndex];

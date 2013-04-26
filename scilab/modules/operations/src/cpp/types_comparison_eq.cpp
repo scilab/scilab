@@ -701,6 +701,7 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
             }
         }
 
+        pOut->finalize();
         *_pOut = pOut;
         return 0;
     }
@@ -719,12 +720,14 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
         }
 
         *_pOut = pOut;
+        pOut->finalize();
         return 0;
     }
 
     if (_pSB1->getRows() != _pSB2->getRows() || _pSB1->getCols() != _pSB2->getCols())
     {
-        return 1;
+        *_pOut = new Bool(false);
+        return 0;
     }
 
     pOut = new SparseBool(_pSB1->getRows(), _pSB1->getCols());
@@ -737,6 +740,7 @@ int EqualToSparseBoolAndSparseBool(SparseBool* _pSB1, SparseBool* _pSB2, Generic
         }
     }
 
+    pOut->finalize();
     *_pOut = pOut;
     return 0;
 }
@@ -813,65 +817,8 @@ int EqualToBoolAndSparseBool(Bool* _pB1, SparseBool* _pSB2, GenericType** _pOut)
     return iRet;
 }
 
-int EqualToIntAndInt(InternalType* _pL, InternalType*  _pR, GenericType** _pOut)
-{
-    switch (_pL->getType())
-    {
-        case InternalType::RealInt8 :
-        {
-            Int8* pI1 = _pL->getAs<Int8>();
-            Int8* pI2 = _pR->getAs<Int8>();
-            return EqualToIntAndInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealUInt8 :
-        {
-            UInt8* pI1 = _pL->getAs<UInt8>();
-            UInt8* pI2 = _pR->getAs<UInt8>();
-            return EqualToIntAndInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealInt16 :
-        {
-            Int16* pI1 = _pL->getAs<Int16>();
-            Int16* pI2 = _pR->getAs<Int16>();
-            return EqualToIntAndInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealUInt16 :
-        {
-            UInt16* pI1 = _pL->getAs<UInt16>();
-            UInt16* pI2 = _pR->getAs<UInt16>();
-            return EqualToIntAndInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealInt32 :
-        {
-            Int32* pI1 = _pL->getAs<Int32>();
-            Int32* pI2 = _pR->getAs<Int32>();
-            return EqualToIntAndInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealUInt32 :
-        {
-            UInt32* pI1 = _pL->getAs<UInt32>();
-            UInt32* pI2 = _pR->getAs<UInt32>();
-            return EqualToIntAndInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealInt64 :
-        {
-            Int64* pI1 = _pL->getAs<Int64>();
-            Int64* pI2 = _pR->getAs<Int64>();
-            return EqualToIntAndInt(pI1, pI2, _pOut);
-        }
-        case InternalType::RealUInt64 :
-        {
-            UInt64* pI1 = _pL->getAs<UInt64>();
-            UInt64* pI2 = _pR->getAs<UInt64>();
-            return EqualToIntAndInt(pI1, pI2, _pOut);
-        }
-    }
-
-    return 0;
-}
-
 template <class T>
-int EqualToIntAndInt(T* _pL, T* _pR, GenericType** _pOut)
+static int EqualToIntAndInt(T* _pL, T* _pR, GenericType** _pOut)
 {
     if (_pL->isScalar())
     {
@@ -929,6 +876,47 @@ int EqualToIntAndInt(T* _pL, T* _pR, GenericType** _pOut)
 
     *_pOut = pB;
     return 0;
+}
+
+int EqualToIntAndInt(InternalType* _pL, InternalType*  _pR, GenericType** _pOut)
+{
+    switch (_pL->getType())
+    {
+        case InternalType::RealInt8 :
+        {
+            return EqualToIntAndInt(_pL->getAs<Int8>(), _pR->getAs<Int8>(), _pOut);
+        }
+        case InternalType::RealUInt8 :
+        {
+            return EqualToIntAndInt(_pL->getAs<UInt8>(), _pR->getAs<UInt8>(), _pOut);
+        }
+        case InternalType::RealInt16 :
+        {
+            return EqualToIntAndInt(_pL->getAs<Int16>(), _pR->getAs<Int16>(), _pOut);
+        }
+        case InternalType::RealUInt16 :
+        {
+            return EqualToIntAndInt(_pL->getAs<UInt16>(), _pR->getAs<UInt16>(), _pOut);
+        }
+        case InternalType::RealInt32 :
+        {
+            return EqualToIntAndInt(_pL->getAs<Int32>(), _pR->getAs<Int32>(), _pOut);
+        }
+        case InternalType::RealUInt32 :
+        {
+            return EqualToIntAndInt(_pL->getAs<UInt32>(), _pR->getAs<UInt32>(), _pOut);
+        }
+        case InternalType::RealInt64 :
+        {
+            return EqualToIntAndInt(_pL->getAs<Int64>(), _pR->getAs<Int64>(), _pOut);
+        }
+        case InternalType::RealUInt64 :
+        {
+            return EqualToIntAndInt(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
+        }
+    }
+
+    return 3;
 }
 
 static void clearAlloc(bool _bAllocL, InternalType* _pIL, bool _bAllocR, InternalType* _pIR)

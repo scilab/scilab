@@ -114,7 +114,7 @@ char **getRangeAsString(const char **pStrsValues,
     return NULL;
 }
 // =============================================================================
-csv_complexArray *getRangeAsCsvComplexArray(const csv_complexArray *pComplex,
+complexArray *getRangeAsComplexArray(const complexArray *pComplex,
         int nbRows, int nbCols,
         const int *iRange,
         int *returnedNbRows, int *returnedNbCols)
@@ -132,8 +132,8 @@ csv_complexArray *getRangeAsCsvComplexArray(const csv_complexArray *pComplex,
         rangeSize = (*returnedNbRows) * (*returnedNbCols);
         if (rangeSize > 0)
         {
-            csv_complexArray *newComplexArray =
-                createCsvComplexArrayEmpty(rangeSize);
+            complexArray *newComplexArray =
+                createComplexArrayEmpty(rangeSize);
             if (newComplexArray != NULL)
             {
                 int i = 0;

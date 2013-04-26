@@ -44,17 +44,14 @@ deff('y = mymacro(x)', 'y = x + 1');
 [out, in, text] = string(mymacro);
 assert_checkequal(out, 'y');
 assert_checkequal(in, 'x');
-assert_checkequal(text, [' '; 'y = x + 1'; ' ']);
+assert_checkequal(text, ['y = x + 1']);
 //===============================
 mymacro = null();
 deff('y = mymacro(x)', 'y = x + 1', 'n');
 [out, in, text]=string(mymacro);
 assert_checkequal(out, 'y');
 assert_checkequal(in, 'x');
-assert_checkequal(text, [' '; 'y = x + 1'; ' ']);
-//===============================
-R = string(corelib);
-assert_checkequal(strsubst(R(1),'\','/'), 'SCI/modules/core/macros/');
+assert_checkequal(text, ['y = x + 1']);
 //===============================
 A = floor(abs(2^8  * rand(10,10)));
 B = floor(abs(2^16 * rand(10,10)));

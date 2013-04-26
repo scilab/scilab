@@ -15,6 +15,7 @@
 
 #include "../../elementary_functions/includes/elem_func_gw.hxx"
 #include "../../types/includes/types_gw.hxx"
+#include "../../sparse/includes/sparse_gw.hxx"
 #include "../../boolean/includes/boolean_gw.hxx"
 #include "../../integer/includes/integer_gw.hxx"
 #include "../../core/includes/core_gw.hxx"

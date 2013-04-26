@@ -33,6 +33,8 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     types::String* pString = NULL;
 
     wchar_t pwstKey[] = L"1234567890";
+    wchar_t pwstSymbol[] = L"-+.";
+
     unsigned long long ullNan = 0x7ff8000000000000;
     double dblNan = *( double* )&ullNan;
 
@@ -77,12 +79,29 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         bool bStop = false;
         wchar_t *pwstStop = NULL;
         wchar_t* pstStr = pString->get(i);
-        int iPos = (int)wcscspn(pstStr, pwstKey);
+        int iSign = (int)wcscspn(pstStr, pwstSymbol);
+        int iKey = (int)wcscspn(pstStr, pwstKey);
+
+
+        //symbol can be use only if it is before key
+        if (iSign == iKey - 1)
+        {
+            //let strtod do with symbol
+            iKey -= 1;
+        }
+
+        //special case for "-.3"
+        if (iSign == iKey - 2 && pstStr[iSign + 1] == L'.')
+        {
+
+            //let strtod do with symbol
+            iKey -= 2;
+        }
 
         //Check if there is a number in the string
-        if (iPos)
+        if (iKey)
         {
-            for (int j = 0 ; j < iPos ; j++)
+            for (int j = 0 ; j < iKey ; j++)
             {
                 if (pstStr[j] != ' ') // spaces are accepted
                 {
@@ -97,14 +116,14 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
             if (bStop == false)
             {
                 //only spaces ?
-                if (wcslen(pstStr) == iPos) // strtod("  ")
+                if (wcslen(pstStr) == iKey) // strtod("  ")
                 {
                     pOutDouble->set(i, dblNan);
                     pwstStop = pstStr;
                 }
                 else // strtod("  000xxx")
                 {
-                    pOutDouble->set(i, wcstod(pstStr + iPos, &pwstStop));
+                    pOutDouble->set(i, wcstod(pstStr + iKey, &pwstStop));
                 }
             }
         }

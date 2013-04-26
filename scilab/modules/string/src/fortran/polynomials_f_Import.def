@@ -1,9 +1,0 @@
-LIBRARY   polynomials_f.dll
-
-
-EXPORTS
-impcnc_
-impext_
-impins_
-imptra_
-mpinsp_

@@ -383,6 +383,14 @@ void visitprivate(const AssignExp  &e)
                 {
                     pOut = pIT->getAs<UInt64>()->remove(pArgs);
                 }
+                else if (pIT->isSparse())
+                {
+                    pOut = pIT->getAs<Sparse>()->remove(pArgs);
+                }
+                else if (pIT->isSparseBool())
+                {
+                    pOut = pIT->getAs<SparseBool>()->remove(pArgs);
+                }
                 else if (pIT->isStruct())
                 {
                     // a("b") = [] is not a deletion !!

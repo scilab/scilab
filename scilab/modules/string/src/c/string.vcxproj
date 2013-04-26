@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -91,13 +91,12 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;string_f.lib;scilocalization.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>
@@ -133,14 +132,12 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
-
+lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;string_f.lib;scilocalization.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>
@@ -179,13 +176,12 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;string_f.lib;scilocalization.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>
@@ -230,14 +226,12 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
-
+lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;string_f.lib;scilocalization.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>
@@ -262,9 +256,9 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="cvstr.c" />
     <ClCompile Include="DllMainString.c" />
     <ClCompile Include="getfastcode.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_string.c" />
     <ClCompile Include="InitializeString.c" />
     <ClCompile Include="isalphanum.c" />
+    <ClCompile Include="isascii.c" />
     <ClCompile Include="isdigit.c" />
     <ClCompile Include="isletter.c" />
     <ClCompile Include="men_Sutils.c" />
@@ -283,13 +277,14 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="strsplit.c" />
     <ClCompile Include="strsubst.c" />
     <ClCompile Include="tokens.c" />
+    <ClCompile Include="isnum.c" />
+    <ClCompile Include="stringToComplex.c" />
+    <ClCompile Include="complex_array.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\string.pot" />
     <None Include="core_import.def" />
-    <None Include="linpack_f_Import.def" />
     <None Include="localization_Import.def" />
-    <None Include="string_f_Import.def" />
     <None Include="System_env_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\string.iss" />
@@ -329,7 +324,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="..\..\includes\dynlib_string.h" />
     <ClInclude Include="..\..\includes\dynlib_string_gw.h" />
     <ClInclude Include="..\..\includes\getfastcode.h" />
-    <ClInclude Include="..\..\includes\gw_string.h" />
     <ClInclude Include="..\..\includes\InitializeString.h" />
     <ClInclude Include="..\..\includes\men_Sutils.h" />
     <ClInclude Include="..\..\includes\os_strdup.h" />
@@ -347,10 +341,13 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="..\..\includes\stristr.h" />
     <ClInclude Include="..\..\includes\strsubst.h" />
     <ClInclude Include="..\cpp\stripblanks.hxx" />
+    <ClInclude Include="..\..\includes\stringToComplex.h" />
+    <ClInclude Include="..\..\includes\complex_array.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="convstr.h" />
     <ClInclude Include="CreateEmptystr.h" />
     <ClInclude Include="isalphanum.h" />
+    <ClInclude Include="isascii.h" />
     <ClInclude Include="isdigit.h" />
     <ClInclude Include="isletter.h" />
     <ClInclude Include="partfunction.h" />
@@ -362,6 +359,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="strsplit.h" />
     <ClInclude Include="tokens.h" />
     <ClInclude Include="ucp.h" />
+    <ClInclude Include="isnum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

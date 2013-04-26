@@ -14,11 +14,6 @@
 #include "context.hxx"
 #include "function.hxx"
 
-extern "C"
-{
-#include "gw_string.h"
-}
-
 #define MODULE_NAME L"string"
 
 int StringModule::Load()
@@ -47,5 +42,9 @@ int StringModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strcspn", &sci_strcspn, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strtok", &sci_strtok, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"strspn", &sci_strspn, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isalphanum", &sci_isalphanum, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isdigit", &sci_isdigit, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isascii", &sci_isascii, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isnum", &sci_isnum, MODULE_NAME));
     return 1;
 }

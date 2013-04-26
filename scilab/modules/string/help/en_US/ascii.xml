@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 ascii(["hello";"world"])
 ascii("scilab")
 ascii([115 99 105 108 97 98])
@@ -61,10 +61,7 @@ ascii([115 99 105 108 97 98])
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="code2str">code2str</link>
-            </member>
-            <member>
-                <link linkend="str2code">str2code</link>
+                <link linkend="asciimat">asciimat</link>
             </member>
         </simplelist>
     </refsection>

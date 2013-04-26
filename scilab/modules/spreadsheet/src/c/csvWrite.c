@@ -24,7 +24,6 @@
 #include "mclose.h"
 #include "MALLOC.h"
 #include "core_math.h"
-#include "csv_strsubst.h"
 #include "csvDefault.h"
 #include "utftolatin.h"
 // =============================================================================
@@ -167,7 +166,7 @@ csvWriteError csvWrite_double(const char *filename,
                 char buffer[65535];
                 char *result = NULL;
                 sprintf(buffer, precisionFormat, pdValues[i + m * j]);
-                result = csv_strsubst(buffer, getCsvDefaultDecimal(), decimal);
+                result = strsub(buffer, getCsvDefaultDecimal(), decimal);
                 if (result)
                 {
                     fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, result);
@@ -314,7 +313,7 @@ csvWriteError csvWrite_complex(const char *filename,
                     char *result = NULL;
 
                     sprintf(buffer, precisionFormat, pdValuesReal[i + m * j]);
-                    result = csv_strsubst(buffer, getCsvDefaultDecimal(), decimal);
+                    result = strsub(buffer, getCsvDefaultDecimal(), decimal);
                     if (result)
                     {
                         strcpy(StringValue, result);
@@ -377,7 +376,7 @@ csvWriteError csvWrite_complex(const char *filename,
                     }
 
                     sprintf(buffer, precisionFormat, fabs(imagValue));
-                    result = csv_strsubst(buffer, getCsvDefaultDecimal(), decimal);
+                    result = strsub(buffer, getCsvDefaultDecimal(), decimal);
                     if (result)
                     {
                         if ((hasReal) || (imagValue < 0))
@@ -532,7 +531,7 @@ csvWriteError csvWrite_string(const char *filename,
             else
             {
                 char *result = NULL;
-                result = csv_strsubst((char*)(pStrValues[i + m * j]), getCsvDefaultDecimal(), decimal);
+                result = strsub((char*)(pStrValues[i + m * j]), getCsvDefaultDecimal(), decimal);
                 if (result)
                 {
                     if (isIsoLatin)

@@ -36,6 +36,7 @@ using namespace types;
 
 /*------------------------------------------------------------------------*/
 #define GREP_OK             0
+#define GREP_ERROR          1
 #define MEMORY_ALLOC_ERROR -1
 /*------------------------------------------------------------------------*/
 typedef struct grep_results
@@ -199,6 +200,9 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         break;
 
         case MEMORY_ALLOC_ERROR :
+            Scierror(999, _("%s: No more memory.\n"), "grep");
+            //no break, to free reserved memory.
+        case GREP_ERROR :
         {
             if (grepresults.values)
             {
@@ -210,7 +214,6 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
                 FREE(grepresults.positions);
                 grepresults.positions = NULL;
             }
-            Scierror(999, _("%s: No more memory.\n"), "grep");
             return Function::Error;
         }
         break;
@@ -290,6 +293,7 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
 {
     int x = 0, y = 0;
     char *save = NULL;
+    int iRet = GREP_OK;
     pcre_error_code answer = PCRE_FINISHED_OK;
     for (x = 0; x <  mn_one ; x++)
     {
@@ -333,10 +337,12 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
                     results->currentLength++;
                 }
             }
-            else
+            else if (answer != NO_MATCH)
             {
                 pcre_error("grep", answer);
+                iRet = GREP_ERROR;
             }
+
             if (save)
             {
                 FREE(save);
@@ -350,7 +356,7 @@ static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, c
         results->currentLength = results->sizeArraysMax;
     }
 
-    return GREP_OK;
+    return iRet;
 }
 /*-----------------------------------------------------------------------------------*/
 static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two)

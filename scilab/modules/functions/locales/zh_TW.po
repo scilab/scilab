@@ -156,6 +156,10 @@ msgid "%s: File %s does not contain any function.\n"
 msgstr "%s: 檔案 %s 裏不含任何函式.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
 msgstr "%s:找不到任何延伸檔名 %s 在 %s\n"
 

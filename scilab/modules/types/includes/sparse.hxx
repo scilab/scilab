@@ -75,7 +75,16 @@ struct TYPES_IMPEXP Sparse : GenericType
 
     /*data management member function defined for compatibility with the Double API*/
     bool set(int _iRows, int _iCols, double _dblReal);
+    bool set(int _iIndex, double _dblReal)
+    {
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal);
+    }
+
     bool set(int _iRows, int _iCols, std::complex<double> v);
+    bool set(int _iIndex, std::complex<double> v)
+    {
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, v);
+    }
     /*
       set non zero values to 1.
     **/
@@ -83,8 +92,22 @@ struct TYPES_IMPEXP Sparse : GenericType
     /* get real value at coords (r,c)
     **/
     double getReal(int r, int c) const;
+    double getReal(int index) const
+    {
+        return getReal(index);
+    }
+
     double get(int r, int c) const;
+    double get(int _iIndex) const
+    {
+        return get(_iIndex % m_iRows, _iIndex / m_iRows);
+    }
+
     std::complex<double> getImg(int r, int c) const;
+    std::complex<double> getImg(int _iIndex) const
+    {
+        return getImg(_iIndex % m_iRows, _iIndex / m_iRows);
+    }
 
     /* return true if matrix contains complex numbers, false otherwise.
     **/
@@ -156,6 +179,8 @@ struct TYPES_IMPEXP Sparse : GenericType
      */
     Sparse* insert(typed_list* _pArgs, InternalType* _pSource);
     Sparse* insert(typed_list* _pArgs, Sparse* _pSource);
+
+    Sparse* remove(typed_list* _pArgs);
 
     static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
 
@@ -493,6 +518,7 @@ struct TYPES_IMPEXP SparseBool : GenericType
 
     SparseBool* insert(typed_list* _pArgs, InternalType* _pSource);
     SparseBool* insert(typed_list* _pArgs, SparseBool* _pSource);
+    SparseBool* remove(typed_list* _pArgs);
 
     bool append(int _iRows, int _iCols, SparseBool CONST* _poSource);
 
@@ -538,10 +564,24 @@ struct TYPES_IMPEXP SparseBool : GenericType
 
     RealType getType(void) CONST;
 
+    bool isScalar()
+    {
+        return (getRows() == 1 && getCols() == 1);
+    }
+
     void whoAmI() CONST;
 
     bool get(int r, int c) CONST;
+    bool get(int _iIndex) CONST
+    {
+        return get(_iIndex % m_iRows, _iIndex / m_iRows);
+    }
+
     bool set(int r, int c, bool b) CONST;
+    bool set(int _iIndex, bool b) CONST
+    {
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, b);
+    }
 
     void fill(Bool& dest, int r = 0, int c = 0) CONST;
 

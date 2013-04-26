@@ -18,7 +18,6 @@
 #include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 C_GATEWAY_PROTOTYPE(sci_csvDefault);
-C_GATEWAY_PROTOTYPE(sci_csvIsnum);
 C_GATEWAY_PROTOTYPE(sci_csvRead);
 C_GATEWAY_PROTOTYPE(sci_csvStringToDouble);
 C_GATEWAY_PROTOTYPE(sci_csvTextScan);

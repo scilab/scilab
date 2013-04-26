@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -103,9 +103,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\Ex-ode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\Ex-odedc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fnorm.c">
@@ -318,9 +315,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\Ex-ode.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-odedc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="fnorm.f">

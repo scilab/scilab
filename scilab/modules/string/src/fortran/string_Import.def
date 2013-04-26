@@ -1,5 +1,0 @@
-LIBRARY    string.dll
-
-
-EXPORTS
-cvstr_

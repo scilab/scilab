@@ -305,6 +305,9 @@
     <ProjectReference Include="..\signal_processing\sci_gateway\cpp\signal_processing_gw.vcxproj">
       <Project>{a968a82e-b2dc-4ed2-bd9b-12c1e97abbb4}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\sparse\sci_gateway\cpp\sparse_gw.vcxproj">
+      <Project>{7fc7aec9-4922-4864-83f1-eaed67981aac}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\statistics\sci_gateway\cpp\statistics_gw.vcxproj">
       <Project>{eae1009f-b967-43c4-9408-97a37efa8678}</Project>
     </ProjectReference>
@@ -324,9 +327,8 @@
       <Project>{28305722-6486-481d-bd0f-b4398d8a09c5}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\types\sci_gateway\cpp\types_gw\types_gw.vcxproj">
+    <ProjectReference Include="..\types\sci_gateway\cpp\types_gw.vcxproj">
       <Project>{c2e5f4f6-5ee7-4b36-bfac-4ac36bb41420}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>

@@ -25,55 +25,48 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos);
 /*--------------------------------------------------------------------------*/
-String * stripblanks(String *InputStrings, bool bWithTAB)
+String * stripblanks(String *InputStrings, bool bRemoveTAB)
 {
     String *pOutputStrings = new String(InputStrings->getRows(), InputStrings->getCols());
-    if(pOutputStrings)
+    if (pOutputStrings)
     {
         pOutputStrings->set(InputStrings->get());
 
-        for(int x = 0 ; x < InputStrings->getSize() ; x++)
+        for (int x = 0 ; x < InputStrings->getSize() ; x++)
         {
             wchar_t* pStr = InputStrings->get(x);
-            int iInputStartIndex    = static_cast<int>(wcslen(pStr) - 1);
-            int iInputEndIndex      = 0;
+            int iInputStartIndex    = 0;
+            int iInputEndIndex      = (int)wcslen(pStr);
 
             /* search character ' ' or TAB from end of the string */
-            for(int i = static_cast<int>(wcslen(pStr) - 1) ; i >= 0 ; i--)
+            for (int i = static_cast<int>(wcslen(pStr) - 1) ; i >= 0 ; i--)
             {
-                if(pStr[i] != BLANK_CHARACTER || (bWithTAB && pStr[i] == TAB_CHARACTER))
+                if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
                 {
-                    iInputEndIndex = i;
+                    iInputEndIndex--;
+                }
+                else
+                {
                     break;
                 }
             }
 
             /* search character ' ' or TAB from beginning of the string */
-            for(int i = 0 ; i < static_cast<int>(wcslen(pStr)) ; i++)
+            for (int i = 0 ; i < static_cast<int>(wcslen(pStr)) ; i++)
             {
-                if(pStr[i] != BLANK_CHARACTER || (bWithTAB && pStr[i] == TAB_CHARACTER))
+                if (pStr[i] == BLANK_CHARACTER || (bRemoveTAB == true && pStr[i] == TAB_CHARACTER))
                 {
-                    iInputStartIndex = i;
+                    iInputStartIndex++;
+                }
+                else
+                {
                     break;
                 }
             }
 
-            if(iInputStartIndex <= iInputEndIndex)
-            {
-                /*Get the substring without tabs*/
-                wchar_t* pstReplace = subwcs(pStr, iInputStartIndex, iInputEndIndex + 1 );
-                /*To add the substring into the output matrix*/
-                pOutputStrings->set(x, pstReplace);
-                if(pstReplace)
-                {
-                    FREE(pstReplace);
-                    pstReplace = NULL;
-                }
-            }
-            else
-            {//input string contains only BLANK or TAB characters
-                pOutputStrings->set(x, L"");
-            }
+            wchar_t* pwstReplace = subwcs(pStr, iInputStartIndex, iInputEndIndex);
+            pOutputStrings->set(x, pwstReplace);
+            FREE(pwstReplace);
         }
     }
     return pOutputStrings;
@@ -81,21 +74,21 @@ String * stripblanks(String *InputStrings, bool bWithTAB)
 /*--------------------------------------------------------------------------*/
 static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos)
 {
-    int iLen            = _iEndPos - _iStartPos;
-    wchar_t* pstBuf    = NULL;
+    int iLen = _iEndPos - _iStartPos;
+    wchar_t* pwstBuf = NULL;
 
     //bad len or empty string
-    if(iLen < 0 || wcscmp(_pstStr, L"") == 0)
+    if (iLen < 0 || wcscmp(_pstStr, L"") == 0)
     {
-       return os_wcsdup(L"");
+        return os_wcsdup(L"");
     }
 
-    pstBuf = (wchar_t*)MALLOC(sizeof(wchar_t)*(iLen + 1)); //+1 for null termination
-    if(pstBuf)
+    pwstBuf = (wchar_t*)MALLOC(sizeof(wchar_t) * (iLen + 1)); //+1 for null termination
+    if (pwstBuf)
     {
-        wcsncpy(pstBuf, _pstStr + _iStartPos, iLen);   /*Put a part of str into stbuf*/
-        pstBuf[iLen] = 0;
+        wcsncpy(pwstBuf, _pstStr + _iStartPos, iLen);   /*Put a part of str into stbuf*/
+        pwstBuf[iLen] = L'\0';
     }
-    return pstBuf;
+    return pwstBuf;
 }
 /*------------------------------------------------------------------------*/

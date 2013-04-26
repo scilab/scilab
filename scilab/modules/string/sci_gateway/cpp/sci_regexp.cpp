@@ -127,11 +127,19 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     do
     {
         iPcreStatus = wide_pcre_private(pwstInput + iStep, pwstPattern, &iStart, &iEnd, &pwstCapturedString[iOccurs], &piCapturedStringCount[iOccurs]);
-        if (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd)
+        if (iPcreStatus == PCRE_FINISHED_OK)
         {
-            piStart[iOccurs]    = iStart + iStep;
-            piEnd[iOccurs++]    = iEnd + iStep;
-            iStep               += iEnd;
+            if (iEnd != iStart)
+            {
+                piStart[iOccurs]    = iStart + iStep;
+                piEnd[iOccurs++]    = iEnd + iStep;
+                iStep               += iEnd;
+            }
+            else if (iEnd == 0 && pwstInput[iStep] != L'\0')
+            {
+                //avoid infinite loop
+                iStep++;
+            }
         }
         else if (iPcreStatus != NO_MATCH)
         {
@@ -207,17 +215,17 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         out.push_back(pS);
     }
 
-    if(_iRetCount > 3)
+    if (_iRetCount > 3)
     {
         //find max occurrences
         int iMax = 0;
-        for(int i = 0 ; i < iOccurs ; i++)
+        for (int i = 0 ; i < iOccurs ; i++)
         {
             iMax = Max(iMax, piCapturedStringCount[i]);
         }
 
         String* pS = NULL;
-        if(iOccurs == 0 || iMax == 0)
+        if (iOccurs == 0 || iMax == 0)
         {
             pS = new String(L"");
         }
@@ -225,11 +233,11 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         {
             int index = 0;
             pS = new String(iOccurs, iMax);
-            for(int i = 0 ; i < iMax ; i++)
+            for (int i = 0 ; i < iMax ; i++)
             {
-                for(int j = 0 ; j < iOccurs ; j++)
+                for (int j = 0 ; j < iOccurs ; j++)
                 {
-                    if(i < piCapturedStringCount[j])
+                    if (i < piCapturedStringCount[j])
                     {
                         pS->set(index, pwstCapturedString[j][i]);
                     }
@@ -245,7 +253,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         }
         out.push_back(pS);
 
-        for(int i = 0 ; i < iOccurs ; i++)
+        for (int i = 0 ; i < iOccurs ; i++)
         {
             freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
         }

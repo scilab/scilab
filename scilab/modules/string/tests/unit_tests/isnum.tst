@@ -7,36 +7,36 @@
 
 // <-- CLI SHELL MODE -->
 
-if ~isnum('%pi')       then pause, end
+assert_checktrue(isnum('%pi'));
 
-if ~isnum('1')         then pause, end
-if ~isnum('1.2')       then pause, end
-if ~isnum('+1.2')      then pause, end
-if ~isnum('-1.2')      then pause, end
+assert_checktrue(isnum('1'));
+assert_checktrue(isnum('1.2'));
+assert_checktrue(isnum('+1.2'));
+assert_checktrue(isnum('-1.2'));
 
-if ~isnum('1e2')       then pause, end
-if ~isnum('1d2')       then pause, end
-if ~isnum('1E2')       then pause, end
-if ~isnum('1D2')       then pause, end
+assert_checktrue(isnum('1e2'));
+assert_checktrue(isnum('1d2'));
+assert_checktrue(isnum('1E2'));
+assert_checktrue(isnum('1D2'));
 
-if ~isnum('1e+2')      then pause, end
-if ~isnum('1e-2')      then pause, end
-if ~isnum('+1e+2')     then pause, end
-if ~isnum('-1e+2')     then pause, end
+assert_checktrue(isnum('1e+2'));
+assert_checktrue(isnum('1e-2'));
+assert_checktrue(isnum('+1e+2'));
+assert_checktrue(isnum('-1e+2'));
 
-if ~isnum('-12e+3')    then pause, end
+assert_checktrue(isnum('-12e+3'));
 
-if ~isnum('-1.2e+3')   then pause, end
-if ~isnum('-1.2e+345') then pause, end
+assert_checktrue(isnum('-1.2e+3'));
+assert_checktrue(isnum('-1.2e+345'));
 
-if isnum('a')          then pause, end
-if isnum('e')          then pause, end
-if isnum('d')          then pause, end
-if isnum('E')          then pause, end
-if isnum('e')          then pause, end
+assert_checkfalse(isnum('a'));
+assert_checkfalse(isnum('e'));
+assert_checkfalse(isnum('d'));
+assert_checkfalse(isnum('E'));
+assert_checkfalse(isnum('e'));
 
-if isnum('-1.2a+345')  then pause, end
-if ~isnum('-1.2e+3+45') then pause, end
-if ~isnum('-1.2e+3-45') then pause, end
+assert_checkfalse(isnum('-1.2a+345'));
+assert_checkfalse(isnum('-1.2e+3+45'));
+assert_checkfalse(isnum('-1.2e+3-45'));
 
-if execstr("isnum(1)","errcatch") == 0 then pause, end
+assert_checkerror("isnum(1)",[],999);

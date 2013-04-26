@@ -87,16 +87,19 @@
     <ClCompile Include="string_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_strsplit.c">
+    <ClCompile Include="sci_isalphanum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_isalphanum.c">
+    <ClCompile Include="sci_isascii.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_isascii.c">
+    <ClCompile Include="sci_isdigit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_isdigit.c">
+    <ClCompile Include="sci_strsplit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_isnum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -20,7 +20,7 @@
 ELEMENTARY_FUNCTIONS_IMPEXP int gw_elementary_functions(void);
 /*--------------------------------------------------------------------------*/
 int sci_chinesehat(char *fname, unsigned long fname_len);
-int sci_spones(char *fname, unsigned long fname_len);
+//int sci_spones(char *fname, unsigned long fname_len);
 int sci_isequalbitwise(char *fname, unsigned long fname_len);
 
 // YaSp

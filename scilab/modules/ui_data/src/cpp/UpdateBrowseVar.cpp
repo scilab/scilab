@@ -14,6 +14,7 @@
 #include <iostream>
 #include "BrowseVar.hxx"
 
+#include <sstream>
 #include <string>
 #include <iterator>
 using std::string;
@@ -38,7 +39,9 @@ extern "C"
 using namespace org_scilab_modules_ui_data;
 
 static std::set < string > createScilabDefaultVariablesSet();
-
+static char * getListName(char * variableName);
+static std::string formatMatrix(int nbRows, int nbCols, BOOL isComplex, double *pdblReal, double *pdblImg);
+static char * valueToDisplay(char * variableName, int variableType, int nbRows, int nbCols);
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL update)
 {
@@ -60,9 +63,11 @@ void UpdateBrowseVar(BOOL update)
 
     char **pstAllVariableNames = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     char **pstAllVariableVisibility = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    char **pstAllVariableListTypes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
     int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    int *piAllVariableIntegerTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     bool *piAllVariableFromUser = (bool *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(bool));
     int nbRows, nbCols;
     char *sizeStr = NULL;
@@ -90,18 +95,55 @@ void UpdateBrowseVar(BOOL update)
         }
         else
         {
-            // 11 =strlen("2147483647")+1 (1 for security)
-            sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
-            sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-            pstAllVariableSizes[i] = os_strdup(sizeStr);
-            FREE(sizeStr);
+            pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
         }
+
+
+        if (piAllVariableTypes[i] == sci_ints)
+        {
+            // Integer case
+            int iPrec       = 0;
+            err = getNamedMatrixOfIntegerPrecision(NULL, pstAllVariableNames[i], &iPrec);
+            switch (iPrec)
+            {
+                case SCI_INT8:
+                    piAllVariableIntegerTypes[i] = 8;
+                    break;
+                case SCI_INT16:
+                    piAllVariableIntegerTypes[i] = 16;
+                    break;
+                case SCI_INT32:
+                    piAllVariableIntegerTypes[i] = 32;
+                    break;
+#ifdef __SCILAB_INT64__
+                case SCI_INT64:
+                    piAllVariableIntegerTypes[i] = 64;
+                    break;
+#endif
+                default:
+                    piAllVariableIntegerTypes[i] = 0; // Should never occurs
+                    break;
+            }
+        }
+        else
+        {
+            piAllVariableIntegerTypes[i] = -1;
+        }
+
+        if (piAllVariableTypes[i] == sci_tlist || piAllVariableTypes[i] == sci_mlist)
+        {
+            pstAllVariableListTypes[i] = getListName(pstAllVariableNames[i]);
+        }
+        else
+        {
+            pstAllVariableListTypes[i] = strdup("");
+        }
+
 
         // global / local ??
         pstAllVariableVisibility[i] = os_strdup("local");
 
-        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() && piAllVariableTypes[i] != sci_c_function    /*TODO: voir si je fais sauter ou pas */
-                && piAllVariableTypes[i] != sci_lib)
+        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() && piAllVariableTypes[i] != sci_lib)
         {
             piAllVariableFromUser[i] = TRUE;
         }
@@ -116,8 +158,8 @@ void UpdateBrowseVar(BOOL update)
     {
         // name
         pstAllVariableNames[i] = getGlobalNamefromId(j);
-        // Bytes used
-        piAllVariableBytes[i] = getGlobalSizefromId(j);
+        // Bytes used - 8 is the number of bytes in a word
+        piAllVariableBytes[i] = getGlobalSizefromId(j) * 8;
         // type
         // Calling "API Scilab": not yet implemented for global variable
         //getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
@@ -129,14 +171,21 @@ void UpdateBrowseVar(BOOL update)
 
         // Sizes of the variable
         getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
-        // 11 =strlen("2147483647")+1 (1 for security)
-        sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
-        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-        pstAllVariableSizes[i] = os_strdup(sizeStr);
-        FREE(sizeStr);
+        pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
 
         // global / local ??
         pstAllVariableVisibility[i] = os_strdup("global");
+
+
+        if (piAllVariableTypes[i] == sci_tlist || piAllVariableTypes[i] == sci_mlist)
+        {
+            pstAllVariableListTypes[i] = getListName(pstAllVariableNames[i]);
+        }
+        else
+        {
+            pstAllVariableListTypes[i] = os_strdup("");
+        }
+
 
         if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end()
                 && piAllVariableTypes[i] != sci_c_function && piAllVariableTypes[i] != sci_lib)
@@ -155,12 +204,16 @@ void UpdateBrowseVar(BOOL update)
                                    pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
 
     freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
+    freeArrayOfString(pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed);
+    freeArrayOfString(pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed);
 
     if (piAllVariableFromUser)
     {
@@ -180,11 +233,12 @@ void UpdateBrowseVar(BOOL update)
         piAllVariableTypes = NULL;
     }
 
-    if (pstAllVariableSizes)
+    if (piAllVariableIntegerTypes)
     {
-        FREE(pstAllVariableSizes);
-        pstAllVariableSizes = NULL;
+        FREE(piAllVariableIntegerTypes);
+        piAllVariableIntegerTypes = NULL;
     }
+
 }
 
 /*--------------------------------------------------------------------------*/
@@ -222,11 +276,12 @@ static std::set < string > createScilabDefaultVariablesSet()
                      "%toolboxes_dir",
                      "TICTOC",
                      "%helps_modules",
-                     "%_atoms_cache"
+                     "%_atoms_cache",
+                     "evoid" // Constant for external object
                    };
     int i = 0;
 
-#define NBELEMENT 32
+#define NBELEMENT 33
     std::set < string > ScilabDefaultVariables;
 
     for (i = 0; i <= NBELEMENT; i++)
@@ -235,4 +290,119 @@ static std::set < string > createScilabDefaultVariablesSet()
     }
 
     return ScilabDefaultVariables;
+}
+
+static char * getListName(char * variableName)
+{
+    SciErr sciErr;
+    int *piAddr = NULL;
+    int* piAddr1 = NULL;
+    int iRows = 0;
+    int iCols = 0;
+    char **pstType;
+    char *tmpChar;
+    sciErr = getVarAddressFromName(NULL, variableName, &piAddr);
+    if (sciErr.iErr)
+    {
+        return os_strdup("");
+    }
+
+    sciErr = getListItemAddress(NULL, piAddr, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        return os_strdup("");
+    }
+
+    if (getAllocatedMatrixOfString(NULL, piAddr1, &iRows, &iCols, &pstType))
+    {
+
+        return os_strdup("");
+    }
+    tmpChar = os_strdup(pstType[0]);
+    freeAllocatedMatrixOfString(iRows, iCols, pstType);
+    return tmpChar;
+}
+
+static char * valueToDisplay(char * variableName, int variableType, int nbRows, int nbCols) {
+    SciErr err;
+
+
+            // 4 is the dimension max to which display the content
+            if (nbRows * nbCols <= 4 && variableType == sci_matrix)
+            {
+                // Small double value, display it
+                double* pdblReal = (double *)malloc(((nbRows) * (nbCols)) * sizeof(double));
+                double* pdblImg = (double *)malloc(((nbRows) * (nbCols)) * sizeof(double));
+                BOOL isComplex = FALSE;
+
+                if (isNamedVarComplex(NULL, variableName))
+                {
+                    err = readNamedComplexMatrixOfDouble(NULL, variableName, &nbRows, &nbCols, pdblReal, pdblImg);
+                    isComplex = TRUE;
+                }
+                else
+                {
+                    err = readNamedMatrixOfDouble(NULL, variableName, &nbRows, &nbCols, pdblReal);
+                }
+
+
+                return os_strdup(formatMatrix(nbRows, nbCols, isComplex, pdblReal, pdblImg).c_str());
+            }
+            else
+            {
+                char *sizeStr = NULL;
+                // 11 =strlen("2147483647")+1 (1 for security)
+                sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
+                sprintf(sizeStr, "%dx%d", nbRows, nbCols);
+                return sizeStr;
+            }
+}
+
+std::string formatMatrix(int nbRows, int nbCols, BOOL isComplex, double *pdblReal, double *pdblImg)
+{
+    int i, j ;
+#define PRECISION_DISPLAY 3
+    if (nbRows * nbCols == 1)
+    {
+        std::ostringstream os;
+        os.precision(PRECISION_DISPLAY);
+        os << pdblReal[0]; // Convert the double to string
+        if (isComplex)
+        {
+            os << " + " << pdblImg[0] << "i";
+        }
+        return os.str();
+    }
+
+    std::string formated = "[";
+    for (j = 0 ; j < nbRows ; j++)
+    {
+        for (i = 0 ; i < nbCols ; i++)
+        {
+            /* Display the formated matrix ... the way the user
+             * expect */
+            std::ostringstream os;
+            os.precision(PRECISION_DISPLAY);
+            os << pdblReal[i * nbRows + j]; // Convert the double to string
+            formated += os.str();
+            if (isComplex)
+            {
+                std::ostringstream osComplex;
+                osComplex.precision(PRECISION_DISPLAY);
+                osComplex << pdblImg[i * nbRows + j];
+                formated += " + " + osComplex.str() + "i";
+            }
+
+
+            if (i + 1 != nbCols) // Not the last element of the matrix
+            {
+                formated += ", ";
+            }
+        }
+        if (j + 1 != nbRows) // Not the last line of the matrix
+        {
+            formated += "; ";
+        }
+    }
+    return formated + "]";
 }

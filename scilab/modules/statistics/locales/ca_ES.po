@@ -258,6 +258,37 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de tenir el mateix "
 "número de columna que el primer argument.\n"
 
+msgid "histplot() : (normalized) histogram plot"
+msgstr ""
+
+msgid "Gaussian random sample histogram"
+msgstr ""
+
+msgid "Exact gaussian density"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""

@@ -31,7 +31,7 @@
 // Needed by visitprivate(const OpExp &)
 // Needed by visitprivate(const LogicalOpExp &)
 #include "generic_operations.hxx"
-#include "types_bitwiseOp.hxx"
+#include "types_or_and.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabexception.hxx"
@@ -1520,6 +1520,27 @@ public :
 
             result_set(pReturn);
         }
+        else if (result_get()->isBool())
+        {
+            InternalType* pVar  = result_get();
+            types::Bool *pB = pVar->getAs<types::Bool>();
+            types::Bool* pReturn = new types::Bool(pB->getCols(), pB->getRows());
+
+            for (int i = 0 ; i < pB->getRows() ; i++)
+            {
+                for (int j = 0 ; j < pB->getCols() ; j++)
+                {
+                    pReturn->set(j, i, pB->get(i, j));
+                }
+            }
+
+            if (result_get()->isDeletable())
+            {
+                delete result_get();
+            }
+
+            result_set(pReturn);
+        }
         else if (result_get()->isSparse())
         {
             types::InternalType* pIT = result_get();
@@ -1674,8 +1695,10 @@ public :
 
         //            Location* newloc = const_cast<Location*>(&location_get())->clone();
         Exp* exp = const_cast<Exp*>(&e.body_get())->clone();
-        MuteVisitor mute;
-        exp->accept(mute);
+
+        //MuteVisitor mute;
+        //exp->accept(mute);
+
         //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
         types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList,
                                                 static_cast<SeqExp&>(*exp), L"script");

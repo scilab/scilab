@@ -22,7 +22,6 @@ static gw_generic_table Tab[] =
     {NULL, ""}, // "xls_open"
     {NULL, ""}, // "xls_read"
     {NULL, ""}, // "csvDefault"
-    {NULL, ""}, // "csvIsnum"
     {NULL, ""}, // "csvRead"
     {NULL, ""}, // "csvStringToDouble"
     {NULL, ""}, // "csvTextScan"

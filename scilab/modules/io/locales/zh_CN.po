@@ -123,6 +123,10 @@ msgid "unmanaged error by v2cunit.\n"
 msgstr "v2cunit引起的非托管错误。\n"
 
 #, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr ""
+
+#, c-format
 msgid "%s : Invalid entity %s\n"
 msgstr "%s：无效的实体 %s\n"
 

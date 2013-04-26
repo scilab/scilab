@@ -291,6 +291,7 @@ bool FuncManager::CreateModuleList(void)
 {
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"elementary_functions", &ElemFuncModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"types", &TypesModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"sparse", &SparseModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"boolean", &BooleanModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"integer", &IntegerModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"core", &CoreModule::Load));

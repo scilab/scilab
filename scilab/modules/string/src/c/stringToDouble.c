@@ -22,6 +22,8 @@
 #include "core_math.h"
 #include "MALLOC.h"
 #include "os_strdup.h"
+#include "os_wcsdup.h"
+#include "stricmp.h"
 #ifndef _MSC_VER
 #ifndef stricmp
 #define stricmp strcasecmp
@@ -57,6 +59,33 @@ static char* replace_D_By_E(const char* _pst)
         if(pstFind)
         {
             pstFind[0] = 'e';
+        }
+    }while(pstFind);
+
+    return pstReturn;
+}
+
+static wchar_t* replace_D_By_EW(const wchar_t* _pst)
+{
+    //find and replace d and D by E for compatibility with strtod Linux/Mac
+    wchar_t* pstReturn = os_wcsdup(_pst);
+    wchar_t* pstFind = pstReturn;
+    do
+    {
+        pstFind = wcschr(pstFind, L'D');
+        if(pstFind)
+        {
+            pstFind[0] = L'E';
+        }
+    }while(pstFind);
+
+    pstFind = pstReturn;
+    do
+    {
+        pstFind = wcschr(pstFind, L'd');
+        if(pstFind)
+        {
+            pstFind[0] = L'e';
         }
     }while(pstFind);
 
@@ -113,6 +142,85 @@ double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError 
             else
             {
                 if (strcmp(pEnd, "") == 0)
+                {
+                    dValue = v;
+                }
+                else
+                {
+                    if (bConvertByNAN)
+                    {
+                        dValue = returnNAN();
+                    }
+                    else
+                    {
+                        *ierr = STRINGTODOUBLE_NOT_A_NUMBER;
+                        FREE(pstReplaced);
+                        return (dValue = 0.0);
+                    }
+                }
+            }
+
+            FREE(pstReplaced);
+        }
+        *ierr = STRINGTODOUBLE_NO_ERROR;
+    }
+    else
+    {
+        *ierr = STRINGTODOUBLE_MEMORY_ALLOCATION;
+    }
+    return dValue;
+}
+// =============================================================================
+double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr)
+{
+    double dValue = 0.0;
+    *ierr = STRINGTODOUBLE_ERROR;
+    if (pSTR)
+    {
+        if ((wcsicmp(pSTR, NanStringW) == 0) || (wcsicmp(pSTR, NegNanStringW) == 0) ||
+                (wcsicmp(pSTR, PosNanStringW) == 0) || (wcsicmp(pSTR, ScilabPosNanStringW) == 0) ||
+                (wcsicmp(pSTR, ScilabNanStringW) == 0) || (wcsicmp(pSTR, ScilabNegNanStringW) == 0))
+        {
+            dValue = returnNAN();
+        }
+        else if ((wcsicmp(pSTR, InfStringW) == 0) || (wcsicmp(pSTR, PosInfStringW) == 0) ||
+                 (wcsicmp(pSTR, ScilabInfStringW) == 0) || (wcsicmp(pSTR, ScilabPosInfStringW) == 0))
+        {
+            dValue = returnINF(TRUE);
+        }
+        else if ((wcsicmp(pSTR, NegInfStringW) == 0) || (wcsicmp(pSTR, ScilabNegInfStringW) == 0))
+        {
+            dValue = returnINF(FALSE);
+        }
+        else if ((wcsicmp(pSTR, ScilabPiStringW) == 0) || (wcsicmp(pSTR, ScilabPosPiStringW) == 0))
+        {
+            dValue = M_PI;
+        }
+        else if (wcsicmp(pSTR, ScilabNegPiStringW) == 0)
+        {
+            dValue = -M_PI;
+        }
+        else
+        {
+            wchar_t* pstReplaced = replace_D_By_EW(pSTR);
+            wchar_t *pEnd = NULL;
+            double v = wcstod(pstReplaced, &pEnd);
+            if ((v == 0) && (pEnd == pstReplaced))
+            {
+                if (bConvertByNAN)
+                {
+                    dValue = returnNAN();
+                }
+                else
+                {
+                    *ierr = STRINGTODOUBLE_NOT_A_NUMBER;
+                    FREE(pstReplaced);
+                    return (dValue = 0.0);
+                }
+            }
+            else
+            {
+                if (wcscmp(pEnd, L"") == 0)
                 {
                     dValue = v;
                 }
