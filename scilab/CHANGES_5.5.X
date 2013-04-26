@@ -96,6 +96,8 @@ Bug fixes
 
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
 
+* Bug #8264 fixed - Documentation for Matlab's atan2() equivalent fixed.
+
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.
 
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
