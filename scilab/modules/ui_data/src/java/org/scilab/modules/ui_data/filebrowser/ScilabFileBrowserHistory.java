@@ -63,7 +63,7 @@ public class ScilabFileBrowserHistory {
         previous.setIcon(PREVIOUSICON);
 
         final SwingScilabPushButton swingPrevious = (SwingScilabPushButton) previous.getAsSimplePushButton();
-	swingPrevious.setToolTipText(UiDataMessages.PREVIOUSDIR);
+        swingPrevious.setToolTipText(UiDataMessages.PREVIOUSDIR);
         swingPrevious.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -94,6 +94,7 @@ public class ScilabFileBrowserHistory {
                     showPopup(true);
                 } else if (SwingUtilities.isLeftMouseButton(e) && !popup.isVisible() && previous.isEnabled()) {
                     ScilabFileBrowserHistory.this.stt.setBaseDir(history.get(position - 1), false);
+                    chDir(history.get(position - 1));
                     setPositionInHistory(position - 1);
                 }
             }
@@ -103,7 +104,7 @@ public class ScilabFileBrowserHistory {
         next.setIcon(NEXTICON);
 
         final SwingScilabPushButton swingNext = (SwingScilabPushButton) next.getAsSimplePushButton();
-	swingNext.setToolTipText(UiDataMessages.NEXTDIR);
+        swingNext.setToolTipText(UiDataMessages.NEXTDIR);
         swingNext.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
