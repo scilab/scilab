@@ -42,9 +42,11 @@ public class UIWidget {
      * Load a uiwidget XML file
      * @param filename the file name
      */
-    public static void uiwidgetLoad(String filename) throws Exception {
+    public static int uiwidgetLoad(String filename) throws Exception {
         final XMLToUIComponentConverter converter = new XMLToUIComponentConverter(filename);
         converter.convert();
+
+        return converter.rootUIComponent.getUid();
     }
 
     /**
@@ -78,12 +80,16 @@ public class UIWidget {
      * @return the corresponding handle
      */
     public static int getUidFromPath(final String path) {
-        UIComponent comp = UILocator.get(path);
-        if (comp == null) {
+        try {
+            UIComponent comp = UILocator.get(path);
+            if (comp == null) {
+                return -1;
+            }
+
+            return comp.getUid();
+        } catch (Exception e) {
             return -1;
         }
-
-        return comp.getUid();
     }
 
     /**
@@ -94,13 +100,13 @@ public class UIWidget {
      */
     public static void uiget(int uid, String property, int stackPos) throws Exception {
         if (property == null || property.isEmpty()) {
-            throw new Exception(String.format("Invalid argument: A property name expected"));
+            throw new Exception("Invalid argument: A valid property name expected");
         }
 
         final UIComponent comp = UILocator.get(uid);
 
         if (comp == null) {
-            throw new Exception("Invalid first argument: An uicontrol identifier expected");
+            throw new Exception("Invalid first argument: A valid uiwidget identifier expected");
         }
 
         String p = property.toLowerCase();
@@ -111,7 +117,7 @@ public class UIWidget {
             ObjectToScilabConverters.putOnScilabStack(comp.getPath(), stackPos);
         } else if (p.equals("parent")) {
             ObjectToScilabConverters.putOnScilabStack(comp.getParent(), stackPos);
-        } else if (p.equals("id")) {
+        } else if (p.equals("id") || p.equals("tag")) {
             ObjectToScilabConverters.putOnScilabStack(comp.getId(), stackPos);
         } else {
             Object o = comp.getProperty(property);
@@ -201,8 +207,15 @@ public class UIWidget {
      * @param uid the handle
      */
     public static void uiset(final int uid) throws Exception {
+        final UIComponent comp = UILocator.get(uid);
+
+        if (comp == null) {
+            throw new Exception("Unknown uid");
+        }
+
         final List<ScilabType> args = handler.getArgumentList();
         final List<String> proprName = new ArrayList<String>();
+        final List<ScilabType> values = new ArrayList<ScilabType>();
 
         for (int i = 0; i < args.size(); i += 2) {
             ScilabType arg = args.get(i);
@@ -210,28 +223,10 @@ public class UIWidget {
                 throw new Exception(String.format("Invalid argument: A property name expected"));
             }
             proprName.add(((ScilabString) arg).getData()[0][0]);
+            values.add(args.get(i + 1));
         }
 
-        final UIComponent comp = UILocator.get(uid);
-
-        if (comp == null) {
-            throw new Exception("Unknown id");
-        }
-
-        UIAccessTools.execOnEDT(new Runnable() {
-            public void run() {
-                for (int i = 0; i < proprName.size(); i++) {
-                    String name = proprName.get(i);
-                    ScilabType value = args.get(2 * i + 1);
-                    try {
-                        comp.setProperty(name, value);
-                    } catch (Exception e) {
-                        System.err.println(e);
-                        break;
-                    }
-                }
-            }
-        });
+        comp.setProperty(proprName, values);
     }
 
     /**

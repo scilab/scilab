@@ -78,7 +78,7 @@ private:
     JavaVM * jvm;
 
 protected:
-    jmethodID voiduiwidgetLoadjstringjava_lang_StringID; // cache method id
+    jmethodID jintuiwidgetLoadjstringjava_lang_StringID; // cache method id
     jmethodID jintuiwidgetID; // cache method id
     jmethodID voiduigetjintintjstringjava_lang_StringjintintID; // cache method id
     jmethodID voiduisetjintintID; // cache method id
@@ -147,7 +147,7 @@ public:
     void endSynchronize();
 
     // Methods
-    static void uiwidgetLoad(JavaVM * jvm_, char const* fileName);
+    static int uiwidgetLoad(JavaVM * jvm_, char const* fileName);
 
     static int uiwidget(JavaVM * jvm_);
 

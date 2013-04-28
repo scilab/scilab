@@ -14,10 +14,9 @@ package org.scilab.modules.uiwidget;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Class to help to locate a component given its path composed of ids
@@ -59,10 +58,10 @@ public final class UILocator {
      */
     public static void removeFromCachedPaths(final UIComponent ui) {
         final String id = ui.getId();
-        if (ui.isRoot()) {
+        if (ui.isRoot() && id != null) {
             roots.remove(id);
         }
-        Set<String> toRemove = new TreeSet<String>();
+        List<String> toRemove = new LinkedList<String>();
         for (Map.Entry<String, UIComponent> entry : pathToUI.entrySet()) {
             if (entry.getValue() == ui) {
                 toRemove.add(entry.getKey());
@@ -119,6 +118,7 @@ public final class UILocator {
      * @return the corresponding component.
      */
     public static UIComponent get(final String path) {
+        boolean putInCache = true;
         UIComponent ui = pathToUI.get(path);
         int start = 0;
         if (ui != null) {
@@ -149,15 +149,32 @@ public final class UILocator {
             } else if (el.equals("*")) {
                 if (i != pathElements.size() - 1) {
                     el = pathElements.get(++i);
-                    root = search(el, root.children);
+                    if (root.children != null) {
+                        root = search(el, root.children);
+                    } else {
+                        return null;
+                    }
                 } else {
                     root = null;
                 }
             } else if (!el.equals(".")) {
+                final UIComponent prev = root;
                 if (root.children != null) {
                     root = root.children.get(el);
                 } else {
                     root = null;
+                }
+                if (root == null) {
+                    int n;
+                    try {
+                        n = Integer.parseInt(el) - 1;
+                        if (prev.childrenList != null && n >= 0 && n < prev.childrenList.size()) {
+                            root = prev.childrenList.get(n);
+                            // we don't put the path in the cache since the children could change
+                            // so a valid number can become invalid !
+                            putInCache = false;
+                        }
+                    } catch (NumberFormatException e) { }
                 }
             }
             if (root == null) {
@@ -165,7 +182,9 @@ public final class UILocator {
             }
         }
 
-        pathToUI.put(path, root);
+        if (putInCache) {
+            pathToUI.put(path, root);
+        }
 
         return root;
     }

@@ -59,7 +59,6 @@ UIWidget::~UIWidget()
 {
     JNIEnv * curEnv = NULL;
     this->jvm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
-
     curEnv->DeleteGlobalRef(this->instance);
     curEnv->DeleteGlobalRef(this->instanceClass);
 }
@@ -114,7 +113,7 @@ UIWidget::UIWidget(JavaVM * jvm_)
     curEnv->DeleteLocalRef(localInstance);
 
     /* Methods ID set to NULL */
-    voiduiwidgetLoadjstringjava_lang_StringID = NULL;
+    jintuiwidgetLoadjstringjava_lang_StringID = NULL;
     jintuiwidgetID = NULL;
     voiduigetjintintjstringjava_lang_StringjintintID = NULL;
     voiduisetjintintID = NULL;
@@ -149,7 +148,7 @@ UIWidget::UIWidget(JavaVM * jvm_, jobject JObj)
         throw GiwsException::JniObjectCreationException(curEnv, this->className());
     }
     /* Methods ID set to NULL */
-    voiduiwidgetLoadjstringjava_lang_StringID = NULL;
+    jintuiwidgetLoadjstringjava_lang_StringID = NULL;
     jintuiwidgetID = NULL;
     voiduigetjintintjstringjava_lang_StringjintintID = NULL;
     voiduisetjintintID = NULL;
@@ -182,7 +181,7 @@ void UIWidget::endSynchronize()
 }
 // Method(s)
 
-void UIWidget::uiwidgetLoad (JavaVM * jvm_, char const* fileName)
+int UIWidget::uiwidgetLoad (JavaVM * jvm_, char const* fileName)
 {
 
     JNIEnv * curEnv = NULL;
@@ -193,8 +192,8 @@ void UIWidget::uiwidgetLoad (JavaVM * jvm_, char const* fileName)
         throw GiwsException::JniCallMethodException(curEnv);
     }
 
-    jmethodID voiduiwidgetLoadjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "uiwidgetLoad", "(Ljava/lang/String;)V" ) ;
-    if (voiduiwidgetLoadjstringjava_lang_StringID == NULL)
+    jmethodID jintuiwidgetLoadjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "uiwidgetLoad", "(Ljava/lang/String;)I" ) ;
+    if (jintuiwidgetLoadjstringjava_lang_StringID == NULL)
     {
         throw GiwsException::JniMethodNotFoundException(curEnv, "uiwidgetLoad");
     }
@@ -206,13 +205,15 @@ void UIWidget::uiwidgetLoad (JavaVM * jvm_, char const* fileName)
     }
 
 
-    curEnv->CallStaticVoidMethod(cls, voiduiwidgetLoadjstringjava_lang_StringID , fileName_);
+    jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintuiwidgetLoadjstringjava_lang_StringID , fileName_));
     curEnv->DeleteLocalRef(fileName_);
     curEnv->DeleteLocalRef(cls);
     if (curEnv->ExceptionCheck())
     {
         throw GiwsException::JniCallMethodException(curEnv);
     }
+    return res;
+
 }
 
 int UIWidget::uiwidget (JavaVM * jvm_)

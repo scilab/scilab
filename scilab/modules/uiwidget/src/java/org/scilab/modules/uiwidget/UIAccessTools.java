@@ -105,7 +105,7 @@ public final class UIAccessTools {
         final Method method = UIMethodFinder.findSetter(methName, clazz);
 
         if (method == null) {
-            throw new UIWidgetException("Cannot set the attribute " + name + " on " + clazz.getSimpleName() + ": No corresponding method found");
+            throw new UIWidgetException("No attribute " + name + " in " + clazz.getSimpleName());
         }
 
         execOnEDT(new Runnable() {
@@ -131,7 +131,7 @@ public final class UIAccessTools {
         final Method method = UIMethodFinder.findSetter(methName, clazz);
 
         if (method == null) {
-            throw new UIWidgetException("Cannot set the attribute " + name + " on " + obj + ": No corresponding method found");
+            throw new UIWidgetException("No attribute " + name + " in " + clazz.getSimpleName());
         }
 
         UIAccessTools.execOnEDT(new Runnable() {
@@ -167,9 +167,8 @@ public final class UIAccessTools {
             // Should not occur
             System.err.println(e);
         } catch (InvocationTargetException e) {
-            System.err.println(e.getCause());
             e.getCause().printStackTrace();
-            throw new UIWidgetException("An exception has been thrown in calling the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getCause());
+            throw new UIWidgetException("Error in calling " + m.getName() + " in class " + obj.getClass().getName());
         }
     }
 
@@ -195,9 +194,8 @@ public final class UIAccessTools {
             // Should not occur
             System.err.println(e);
         } catch (InvocationTargetException e) {
-            //System.err.println(e.getCause());
-            //e.getCause().printStackTrace();
-            throw new UIWidgetException("An exception has been thrown in calling the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getCause());
+            e.getCause().printStackTrace();
+            throw new UIWidgetException("Error in calling method " + m.getName() + " in class " + obj.getClass().getName());
         }
     }
 
@@ -217,7 +215,7 @@ public final class UIAccessTools {
         }
 
         if (method == null) {
-            throw new UIWidgetException("Cannot get the attribute " + name + " on " + clazz.getSimpleName() + ": No corresponding method found");
+            throw new UIWidgetException("No attribute " + name + " in " + clazz.getSimpleName());
         }
 
         if (SwingUtilities.isEventDispatchThread()) {
@@ -239,7 +237,8 @@ public final class UIAccessTools {
             } catch (InterruptedException e) {
                 throw new UIWidgetException("Error in getting property " + name);
             } catch (InvocationTargetException e) {
-                throw new UIWidgetException("Error in getting property " + name + ":\n" + e.getMessage());
+                e.getCause().printStackTrace();
+                throw new UIWidgetException("Error in getting property " + name);
             }
 
             return ptr[0];
@@ -269,8 +268,8 @@ public final class UIAccessTools {
             System.err.println(e);
         } catch (InvocationTargetException e) {
             //System.err.println(e.getCause());
-            //e.getCause().printStackTrace();
-            throw new UIWidgetException("An exception has been thrown in calling the method " + m.getName() + " in class " + obj.getClass().getName() + ":\n" + e.getCause());
+            e.getCause().printStackTrace();
+            throw new UIWidgetException("Error in calling the method " + m.getName() + " in class " + obj.getClass().getName());
         }
 
         return null;
@@ -403,15 +402,24 @@ public final class UIAccessTools {
         char[] chars = key.toCharArray();
 
         buffer.append(prefix).append(Character.toUpperCase(chars[0]));
+        int start = 1;
         for (int i = 1; i < chars.length; i++) {
             if (chars[i] == '-') {
+                if (start < i) {
+                    buffer.append(chars, start, i - start);
+                }
                 if (i + 1 < chars.length) {
                     buffer.append(Character.toUpperCase(chars[i + 1]));
+                    start = i + 2;
+                } else {
+                    start = i + 1;
                 }
                 i++;
-            } else {
-                buffer.append(chars[i]);
             }
+        }
+
+        if (start < chars.length) {
+            buffer.append(chars, start, chars.length - start);
         }
 
         return buffer.toString();

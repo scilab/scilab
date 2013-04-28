@@ -14,6 +14,7 @@ package org.scilab.modules.uiwidget;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -51,6 +52,8 @@ public class XMLToUIComponentConverter extends DefaultHandler {
     private StringBuilder buffer;
     private Map<String, Map<String, String>> style;
     private String modeleNS;
+    protected Locator locator;
+    protected UIComponent rootUIComponent;
 
     /**
      * Default constructor
@@ -123,36 +126,75 @@ public class XMLToUIComponentConverter extends DefaultHandler {
      * Start the conversion
      * @param f a File
      */
-    protected void convert(File f) throws Exception {
-        convert(new FileInputStream(f));
+    protected void convert(File f) throws SAXException {
+        try {
+            convert(new FileInputStream(f));
+        } catch (FileNotFoundException e) {
+            throw new SAXException(String.format("File not found: %s", f.getAbsolutePath()));
+        }
     }
 
     /**
      * Start the conversion
      * @param in an InputStream
      */
-    protected void convert(InputStream is) throws Exception {
+    protected void convert(InputStream is) throws SAXException {
+        SAXParser parser;
+
         try {
-            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParserFactory factory;
+            factory = SAXParserFactory.newInstance();
             factory.setValidating(false);
             factory.setNamespaceAware(true);
             factory.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
-
-            SAXParser parser = factory.newSAXParser();
-            parser.parse(is, this);
+            parser = factory.newSAXParser();
         } catch (Exception e) {
-            System.err.println(e);
-            while (!stack.empty()) {
-                UIComponent c = stack.pop();
-                if (c != null) {
-                    c.remove();
-                }
-            }
-
-            throw e;
-        } finally {
-            is.close();
+            throw new SAXException(String.format("Cannot initialize the XML parser: %s", e.getMessage()));
         }
+
+        try {
+            parser.parse(is, this);
+        } catch (IOException e) {
+            clearStack();
+            throw new SAXException("I/O error: cannot parse the file");
+        } catch (SAXException e) {
+            clearStack();
+            if (locator != null) {
+                throw new SAXException(String.format("Parse error at line %d: %s", locator.getLineNumber(), e.getMessage()));
+            } else {
+                throw new SAXException(String.format("Parse error: %s", e.getMessage()));
+            }
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) { }
+        }
+    }
+
+    /**
+     * Clear the stack
+     */
+    private void clearStack() {
+        while (!stack.empty()) {
+            UIComponent c = stack.pop();
+            if (c != null) {
+                c.remove();
+            }
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setDocumentLocator(Locator locator) {
+        this.locator = locator;
+    }
+
+    /**
+     * @return the document locator
+     */
+    public Locator getDocumentLocator() {
+        return locator;
     }
 
     /**
@@ -255,6 +297,8 @@ public class XMLToUIComponentConverter extends DefaultHandler {
                             }
                         }
                     });
+                } else {
+                    rootUIComponent = c;
                 }
             }
         }
@@ -278,7 +322,11 @@ public class XMLToUIComponentConverter extends DefaultHandler {
                 stack.push(ui);
             }
         } catch (UIWidgetException e) {
-            System.err.println("(Warning) Cannot create the component " + name + ": ignored");
+            if (locator != null) {
+                throw new SAXException(String.format("Error at line %d on tag %s: %s", locator.getLineNumber(), name, e.getMessage()));
+            } else {
+                throw new SAXException(String.format("Error on tag %s: %s", name, e.getMessage()));
+            }
         }
     }
 
@@ -300,7 +348,11 @@ public class XMLToUIComponentConverter extends DefaultHandler {
                 stack.push(ui);
             }
         } catch (UIWidgetException e) {
-            System.err.println("(Warning) Cannot create the component " + name + ": ignored");
+            if (locator != null) {
+                throw new SAXException(String.format("Error at line %d on tag %s: %s", locator.getLineNumber(), name, e.getMessage()));
+            } else {
+                throw new SAXException(String.format("Error on tag %s: %s", name, e.getMessage()));
+            }
         }
     }
 

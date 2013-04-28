@@ -1,6 +1,6 @@
 <package name="org.scilab.modules.uiwidget">
     <object name="UIWidget">
-        <method name="uiwidgetLoad" returnType="void" modifier="static">
+        <method name="uiwidgetLoad" returnType="int" modifier="static">
             <parameter name="fileName" type="String"/>
         </method>
         <method name="uiwidget" returnType="int" modifier="static" />

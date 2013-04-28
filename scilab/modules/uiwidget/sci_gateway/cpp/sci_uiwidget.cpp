@@ -37,6 +37,7 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
     SciErr err;
     int * addr = 0;
     const int nbIn = nbInputArgument(pvApiCtx);
+    int uid = -1;
 
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -68,23 +69,16 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
 
         try
         {
-            UIWidget::uiwidgetLoad(getScilabJavaVM(), expandedPath);
+            uid = UIWidget::uiwidgetLoad(getScilabJavaVM(), expandedPath);
         }
         catch (const GiwsException::JniException & e)
         {
-            Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+            Scierror(999, _("%s: %s\n"), fname, e.getJavaDescription().c_str());
             return 0;
         }
-
-        AssignOutputVariable(pvApiCtx, 1) = 0;
-        ReturnArguments(pvApiCtx);
-
-        return 0;
     }
     else
     {
-        int uid = -1;
-
         for (int i = 1; i <= nbIn; i++)
         {
             err = getVarAddressFromPosition(pvApiCtx, i, &addr);
@@ -102,23 +96,24 @@ int sci_uiwidget(char * fname, unsigned long fname_len)
         }
         catch (const GiwsException::JniException & e)
         {
-            Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+            Scierror(999, _("%s: %s\n"), fname, e.getJavaDescription().c_str());
             return 0;
         }
+    }
 
-        if (uid != -1)
-        {
-            UIWidgetTools::createOnScilabStack(uid, nbIn + 1, pvApiCtx);
-            AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
-            ReturnArguments(pvApiCtx);
 
-            return 0;
-        }
-        else
-        {
-            Scierror(999, _("%s: Invalid object.\n"), fname);
-            return 0;
-        }
+    if (uid != -1)
+    {
+        UIWidgetTools::createOnScilabStack(uid, nbIn + 1, pvApiCtx);
+        AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
+        ReturnArguments(pvApiCtx);
+
+        return 0;
+    }
+    else
+    {
+        Scierror(999, _("%s: Invalid object.\n"), fname);
+        return 0;
     }
 }
 

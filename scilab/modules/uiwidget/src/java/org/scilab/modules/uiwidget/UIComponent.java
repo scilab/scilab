@@ -540,6 +540,7 @@ public abstract class UIComponent {
             if (!isRoot() && this.id != null && parent.children != null) {
                 parent.children.remove(this.id);
             }
+            String old = this.id;
             UILocator.removeFromCachedPaths(this);
             this.id = id;
             invalidateUIPath();
@@ -579,15 +580,30 @@ public abstract class UIComponent {
      * Invalidate the path to this UIComponent
      */
     private void invalidateUIPath() {
+        UILocator.removeFromCachedPaths(this);
         if (id != null) {
             if (isRoot()) {
                 path = "/" + id;
             } else if (parent.path != null) {
                 path = parent.path + "/" + id;
             }
-            if (path != null && children != null) {
-                for (UIComponent ui : children.values()) {
-                    ui.invalidateUIPath();
+
+            if (path != null) {
+                if (children != null) {
+                    for (UIComponent ui : children.values()) {
+                        ui.invalidateUIPath();
+                    }
+                } else {
+                    if (childrenList != null) {
+                        for (UIComponent child : childrenList) {
+                            child.registerIdToParent();
+                        }
+                        if (children != null) {
+                            for (UIComponent ui : children.values()) {
+                                ui.invalidateUIPath();
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1966,6 +1982,62 @@ public abstract class UIComponent {
             } else {
                 setPropertyViaReflectionInThis(name, value);
             }
+        }
+    }
+
+    /**
+     * Set a property of this component
+     * @param name the property name
+     * @param value the property value
+     */
+    public void setProperty(final List<String> names, final List<ScilabType> values) throws UIWidgetException {
+        if (names != null && values != null) {
+            final Object modifiableComponent = getModifiableComponent();
+            final Class clazzThis = this.getClass();
+            final Class clazzComp = modifiableComponent.getClass();
+            final List<Object> objs = new ArrayList<Object>(names.size());
+            final List<Method> methods = new ArrayList<Method>(names.size());
+
+            for (String name : names) {
+                String methodName = UIAccessTools.getSetterName(name);
+                Method method;
+                if (thisOrComponent) {
+                    method = UIMethodFinder.findSetter(methodName, clazzThis);
+                    if (method == null) {
+                        method = UIMethodFinder.findSetter(methodName, clazzComp);
+                        if (method == null) {
+                            throw new UIWidgetException("No attribute " + name + " in " + clazzThis.getSimpleName());
+                        }
+                        objs.add(modifiableComponent);
+                    } else {
+                        objs.add(this);
+                    }
+                } else {
+                    method = UIMethodFinder.findSetter(methodName, clazzComp);
+                    if (method == null) {
+                        method = UIMethodFinder.findSetter(methodName, clazzThis);
+                        if (method == null) {
+                            throw new UIWidgetException("No attribute " + name + " in " + clazzThis.getSimpleName());
+                        }
+                        objs.add(this);
+                    } else {
+                        objs.add(modifiableComponent);
+                    }
+                }
+                methods.add(method);
+            }
+
+            UIAccessTools.execOnEDT(new Runnable() {
+                public void run() {
+                    try {
+                        for (int i = 0; i < objs.size(); i++) {
+                            UIAccessTools.invokeSetter(methods.get(i), objs.get(i), values.get(i));
+                        }
+                    } catch (Exception e) {
+                        System.err.println(e);
+                    }
+                }
+            });
         }
     }
 
