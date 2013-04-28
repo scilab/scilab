@@ -42,6 +42,7 @@ int sci_uiset(char *fname, unsigned long fname_len)
     char * str = 0;
     int uid = -1;
     std::vector<int> indexes;
+    bool varSentToJava = false;
 
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -114,17 +115,21 @@ int sci_uiset(char *fname, unsigned long fname_len)
                 return 0;
             }
             org_modules_types::ScilabToJava::sendVariable("", addr, false, handlerId, pvApiCtx);
+            varSentToJava = true;
         }
         freeAllocatedSingleString(str);
     }
 
-    try
+    if (varSentToJava)
     {
-        UIWidget::uiset(getScilabJavaVM(), uid);
-    }
-    catch (const GiwsException::JniException & e)
-    {
-        Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+        try
+        {
+            UIWidget::uiset(getScilabJavaVM(), uid);
+        }
+        catch (const GiwsException::JniException & e)
+        {
+            Scierror(999, _("%s: Java exception arisen:\n%s\n"), fname, e.what());
+        }
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

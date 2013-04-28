@@ -105,7 +105,7 @@ public final class UIAccessTools {
         final Method method = UIMethodFinder.findSetter(methName, clazz);
 
         if (method == null) {
-            throw new UIWidgetException("Cannot set the attribute " + name + ": No corresponding method found");
+            throw new UIWidgetException("Cannot set the attribute " + name + " on " + clazz.getSimpleName() + ": No corresponding method found");
         }
 
         execOnEDT(new Runnable() {
@@ -131,7 +131,7 @@ public final class UIAccessTools {
         final Method method = UIMethodFinder.findSetter(methName, clazz);
 
         if (method == null) {
-            throw new UIWidgetException("Cannot set the attribute " + name + ": No corresponding method found");
+            throw new UIWidgetException("Cannot set the attribute " + name + " on " + obj + ": No corresponding method found");
         }
 
         UIAccessTools.execOnEDT(new Runnable() {
@@ -217,7 +217,7 @@ public final class UIAccessTools {
         }
 
         if (method == null) {
-            throw new UIWidgetException("Cannot get the attribute " + name + ": No corresponding method found");
+            throw new UIWidgetException("Cannot get the attribute " + name + " on " + clazz.getSimpleName() + ": No corresponding method found");
         }
 
         if (SwingUtilities.isEventDispatchThread()) {

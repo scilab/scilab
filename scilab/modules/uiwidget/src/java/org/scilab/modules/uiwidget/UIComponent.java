@@ -229,11 +229,6 @@ public abstract class UIComponent {
                 attributes.remove("tab-title");
             }
             ui.createNewInstance(attributes);
-            if (ui.component instanceof JComponent) {
-                JComponent jc = (JComponent) ui.component;
-                Dimension d = jc.getPreferredSize();
-                ui.position = new Rectangle(0, 0, d.width, d.height);
-            }
             return ui;
         } catch (ClassNotFoundException e) {
             throw new UIWidgetException("Cannot find the class " + pack + "." + name);
@@ -274,6 +269,11 @@ public abstract class UIComponent {
      */
     public void setComponent(Object o) {
         this.component = o;
+        if (o instanceof JComponent) {
+            JComponent jc = (JComponent) o;
+            Dimension d = jc.getPreferredSize();
+            this.position = new Rectangle(0, 0, d.width, d.height);
+        }
     }
 
     /**
@@ -684,16 +684,32 @@ public abstract class UIComponent {
      * Remove the UIComponent from differents cache and delete its children
      */
     public void remove() {
+        remove(true);
+    }
+
+    /**
+     * Remove the UIComponent from differents cache and delete its children
+     * @param removeFromParent if true remove this from its parent
+     */
+    public void remove(boolean removeFromParent) {
         UserData.removeUIWidgetUserData(uid);
         UILocator.remove(this);
         if (childrenList != null) {
             for (UIComponent ui : childrenList) {
-                ui.remove();
+                ui.remove(false);
             }
             childrenList = null;
             children = null;
         }
         closeUIComponent();
+        if (removeFromParent && parent != null) {
+            if (parent.childrenList != null) {
+                parent.childrenList.remove(this);
+            }
+            if (parent.children != null && id != null) {
+                parent.children.remove(id);
+            }
+        }
         parent = null;
         if (mouseListener != null) {
             mouseListener.addListenerToComponent(null);
@@ -807,7 +823,11 @@ public abstract class UIComponent {
      * @return the children as an array
      */
     public UIComponent[] getChildren() {
-        return childrenList.toArray(new UIComponent[childrenList.size()]);
+        if (childrenList != null && !childrenList.isEmpty()) {
+            return childrenList.toArray(new UIComponent[childrenList.size()]);
+        } else {
+            return null;
+        }
     }
 
     /**

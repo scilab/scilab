@@ -164,6 +164,13 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
     }
 
     @Override
+    public void remove() {
+        super.remove();
+        GraphicController.getController().unregister(this);
+        ScilabNativeView.ScilabNativeView__deleteObject(figure.getIdentifier());
+    }
+
+    @Override
     public void updateObject(String id, int property) {
         if ((hasAction && (onrotateEnable || onzoomEnable)) && GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__) == ((Integer) GraphicObjectProperties.__GO_AXES__)) {
             GraphicObject obj = GraphicController.getController().getObjectFromId(id);
@@ -191,7 +198,7 @@ public class UIScilabPlot extends UIComponent implements GraphicView {
     @Override
     public void deleteObject(String id) {
         if (figure.getIdentifier().equals(id)) {
-            //GraphicController.getController().unregister(this);
+            GraphicController.getController().unregister(this);
         }
     }
 }

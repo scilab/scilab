@@ -511,7 +511,9 @@ public class ClosingOperationsManager {
         if (!askToExit || canClose(list, window, mustSave)) {
             ret = true;
             if (list.isEmpty()) {
-                window.close();
+                if (window != null) {
+                    window.close();
+                }
                 return ret;
             }
 
@@ -848,7 +850,7 @@ public class ClosingOperationsManager {
      * @return the corresponding window
      */
     private static final SwingScilabWindow getWindow(SwingScilabTab tab) {
-	return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tab);
+        return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tab);
     }
 
     /**
