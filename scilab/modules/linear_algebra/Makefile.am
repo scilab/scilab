@@ -5,7 +5,8 @@
 
 
 LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
-src/c/issymmetric.c
+src/c/issymmetric.c \
+src/c/norm.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
 src/fortran/intzgeqpf4.f \
@@ -79,13 +80,14 @@ sci_gateway/c/gw_linear_algebra.c \
 sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
 sci_gateway/c/sci_lsq.c \
+sci_gateway/c/sci_norm.c \
 sci_gateway/c/assembleEigenvectors.c \
 sci_gateway/c/sci_dgeev.c \
 sci_gateway/c/sci_dggev.c \
 sci_gateway/c/sci_dsyev.c \
 sci_gateway/c/sci_zgeev.c \
 sci_gateway/c/sci_zggev.c \
-sci_gateway/c/sci_zheev.c
+sci_gateway/c/sci_zheev.c 
 
 GATEWAY_FORTRAN_SOURCES =
 

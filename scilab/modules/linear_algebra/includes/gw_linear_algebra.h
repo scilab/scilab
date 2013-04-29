@@ -52,6 +52,7 @@ LINEAR_ALGEBRA_IMPEXP int sci_zggev(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 LINEAR_ALGEBRA_IMPEXP int C2F(intbalanc)(char *fname, unsigned long fname_len);
 LINEAR_ALGEBRA_IMPEXP int C2F(intschur)(char *fname, unsigned long fname_len);
+LINEAR_ALGEBRA_IMPEXP int C2F(intnorm) (char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LINEAR_ALGEBRA__ */
 /*--------------------------------------------------------------------------*/

@@ -46,4 +46,5 @@
     <PRIMITIVE gatewayId="44" primitiveId="12" primitiveName="hess" />
     <PRIMITIVE gatewayId="44" primitiveId="13" primitiveName="det" />
     <PRIMITIVE gatewayId="44" primitiveId="14" primitiveName="balanc" />
+    <PRIMITIVE gatewayId="44" primitiveId="15" primitiveName="norm" />
 </GATEWAY>

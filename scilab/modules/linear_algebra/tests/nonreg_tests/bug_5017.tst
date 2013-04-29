@@ -1,3 +1,37 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 5017 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=5017
+//
+// <-- Short Description -->
+// norm() now calls Lapack.
+
+//---------------------------------------------------
+// In this test, we make sure that the new implementation
+// of norm() yiels the same results as the old one,
+// with respect to the machine precision.
+
+// Square root of 5, with a 10^-307 padding.
+x1  = 1.e-307*[1 1 1 1 1];
+y1 = norm(x1);
+
+// Square root of 3, with a 10^-307 padding.
+x2  = 1.e-307*[1 1 1];
+z1 = norm(x2);
+
+// Now compute the same values with the old norm function:
+
+warning("off");
+
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2009 - INRIA Michael Baudin
@@ -137,3 +171,8 @@ function y=norm(A,flag)
     end
 endfunction
 
+y2 = norm(x1);
+z2 = norm(x2);
+
+assert_checktrue((y1-y2)/y1<=%eps);
+assert_checktrue((z2-z2)/z1<=%eps);

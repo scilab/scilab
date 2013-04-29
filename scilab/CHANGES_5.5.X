@@ -754,6 +754,8 @@ Scilab Bug Fixes
 
 * Bug #4743 fixed - Graphics with too big or too small values did not work.
 
+* Bug #5017 fixed - norm rewritten to take benefit from the Lapack package performance.
+
 * Bug #5073 fixed - New parameter added in strtod function (decimal separator).
 
 * Bug #5205 fixed - permute was slow for large hypermatrices.
@@ -763,7 +765,7 @@ Scilab Bug Fixes
 * Bug #5365 fixed - makecell help page was in the "compatibility functions" directory
                     instead of being in "data_structures".
 
-* Bug #5539 fixed - sylv help page was wrong in discrete-time cases.
+* Bug #5539 fixed - sylv help page was wrong in the discrete-time case.
 
 * Bug #5616 fixed - typeof(uiCreateTree(...)) returned "Tree" instead of "uitree".
 
