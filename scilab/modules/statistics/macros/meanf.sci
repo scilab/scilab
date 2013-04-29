@@ -13,8 +13,7 @@ function [m]=meanf(val,fre,orient)
     //
     //This function returns in scalar m the  mean of the  values of a vector
     //or matrix   val,  each  counted  with a  frequency   signaled  by  the
-    //corresponding values of the integer vector or matrix fre with the same
-    //type of val.
+    //corresponding values of the integer vector or matrix fre.
     //
     //For  a vector or matrix  val, m=meanf(val,fre) or m=meanf(val,fre,'*')
     //returns in scalar m the  mean of all the  entries  of val, each  value
@@ -35,8 +34,23 @@ function [m]=meanf(val,fre,orient)
     //Statistics, J.Wiley & Sons, 1990.
     //
     [lhs, rhs] = argn(0);
+    
     if rhs == 0 | rhs == 1| rhs >= 4 then 
         error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"meanf",2,3));
+    end
+    
+    // If val is not constant, sparse, integer, hypermat
+    if and(type(val) <> [1 5 8]) & typeof(val) <> "hypermat" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse matrix, or an integer matrix, or an hypermat expected.\n"),"meanf",1));
+    end
+    
+    // If fre is not constant, sparse, integer, hypermat
+    if and(type(fre) <> [1 5 8]) & typeof(fre) <> "hypermat" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse matrix, or an integer matrix, or an hypermat expected.\n"),"meanf", 2));
+    end
+    
+    if or(size(val) <> size(fre)) & (size(val, "*") <> 1 & size(fre, "*") <> 1 & ~isempty(fre)) then
+        error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"), "meanf", 1, 2));
     end
 
     if val == [] | fre == [] | and(fre == 0) then
@@ -54,7 +68,7 @@ function [m]=meanf(val,fre,orient)
         elseif orient=='c'|orient==2 then
             m=sum(val .* fre,'c') ./ sum(fre,'c')
         else
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"),"meanf",3,"r","c",1,2)),
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d.\n"),"meanf",3,"r","c",1,2)),
         end
     end
 endfunction
