@@ -140,6 +140,8 @@ Bug fixes
 * Bug #4042 fixed - squeeze returned an hypermatrix instead of a matrix when at least one 
                     dimension was equal to 1.
 
+* Bug #4383 fixed - csim with "step" and "impuls" now works with direct feedthrough.
+
 * Bug #4481 fixed - Help page of iir updated: frq can be a scalar.
 
 * Bug #4731 fixed - lqr() failed when time domain of input was a number.
