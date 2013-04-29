@@ -166,6 +166,8 @@ Bug fixes
 
 * Bug #10906 fixed - Typo in help page of cls2dls.
 
+* Bug #10930 fixed - The comments in armax function were in french.
+
 * Bug #10995 fixed - Typo in grand() for Gamma law argument
 
 * Bug #10226 fixed - When a // <empty session> line is delete, all sessions

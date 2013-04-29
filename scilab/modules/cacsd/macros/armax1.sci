@@ -9,42 +9,42 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [arc,resid]=armax1(r,s,q,y,u,b0f)
-//[arc,resid>=armax1(r,s,q,y,u,[b0f])
+// [arc, resid] = armax1(r, s, q, y, u, [b0f])
 //
-// Calcule les coefficients d'un ARMAX monodimensionnel
+// Compute the coefficient of monodimensional ARMAX
 //   A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
-//           e(t) est un bruit blanc de variance 1
+//           e(t) is a white noise of variance 1
 //           A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
 //           B(z)= b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
 //           D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
-// Entree
-//     y : serie de sortie
-//     u : serie d'entree
-//     r,s et q : les ordres d'autoregression r >=0 et s >=-1 et
-//       moyenne mobile q
-//     b0f : est un parametre optionnel. Par defaut il vaut
-//         0, et signifie qu'il faut identifier b0. Si on lui
-//         donne la valeur 1, alors b0 est suppose valoir zero et
-//         n'est pas identifie.
-//	   
-// Sortie
-//     a est le vecteur <1,a1,...,a_r>
-//     b est le vecteur <b0,......,b_s>
-//     d est le vecteur <1,d1,....,d_q>
-//     sig et resid=< sig*echap(1),....,>;
-// Methode :
-//     Cfre : Eykhoff (trends and progress in system identification) page 91
-//     En introduisant
-//        z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s),e(t-1),...,e(t-q)] et
-//     coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
-//     y(t)= coef'* z(t) + sig*e(t).
-//     on utilise alors la version sequentielle de l'estimation AR
-//     ou l'on remplace e(t-i) par son estimee
-//     Methode dite RLLS
-//     si q=0, C'est une version sequentielle de l'algorithme de
-//     moindre carre donne dans armax
-// Exemple :
 //
+// Intput:
+//      y: output process
+//      u: input process
+//      r, s and q: auto-regression orders r >= 0, s >= 1 and moving average q.
+//      b0f is a optional parameter. By default, b0f is 0 and it means that 
+//      this parameter must be identified. If b0f is 1, then b0f is supposed 
+//      to be zero and is not identified.
+//
+// Output:
+//      arc is the tlist with fields
+//      a is the vector [1,a1,...,a_r]
+//      b is the vector [b0, ..., b_s]
+//      d is the vector [1, d1, ..., d_q]
+//      sig is the estimated standard deviation
+//      resid = [sig*echap(1), ..., ]
+//
+// Method:
+//      Cfre : Eykhoff (trends and progress in system identification) page 91
+//      Introducing
+//      z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s),e(t-1),...,e(t-q)] and
+//      coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]', we obtain
+//      y(t)= coef'* z(t) + sig*e(t).
+//      We use the sequential version of the AR estimation where e(t-i) is 
+//      replaced by its estimated (Method RLLS).
+//      If q=0, it is a sequential version of the least squares algorithm given
+//      in armax function
+
   [lhs,rhs]=argn(0)
   if rhs<=5,b0f=0;end
   if s==-1,b0f=0;end // Seems not natural, but makes things work 
@@ -76,7 +76,7 @@ function [arc,resid]=armax1(r,s,q,y,u,b0f)
     PT=PTM1-KT*ZT'*PTM1
     XTM1=XT;UTM1=UT;CTM1=CT;ETM1=ET;ZTM1=ZT;PTM1=PT;
   end
-  // On extrait les coefficients a,b,d
+  // The coefficient a, b and d are extracted
   //
   if r<>0;a=[1;-CT(1:r)]';else a=1;end
   if s<>-1;
@@ -87,7 +87,7 @@ function [arc,resid]=armax1(r,s,q,y,u,b0f)
     b=0;
     if q<>0;d=[1;CT(r+s+1-b0f:(r+s+q-b0f))]';else d=[1];end
   end
-  //On simule pour avoir l'erreur de prediction
+  // Simulation to get the prediction error
   //
   [sig,resid]=epred(r,s,q,CTM1,y,u,b0f);
   arc=armac(a,b,d,1,1,sig);
@@ -98,11 +98,11 @@ endfunction
 
 function [sig,resid]=epred(r,s,q,coef,y,u,b0f)
 //=============================================
-//[sig,resid]=epred(r,s,q,coef,y,u,b0f)
-//  Utilisee par armax1 pour calculer l'erreur de prediction
-//     coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
-// ou
-//     coef= [-a1,..,-ar,b1,...,b_s,d1,...,d_q]' si b0f=1
+//      [sig,resid] = epred(r,s,q,coef,y,u,b0f)
+//      Used by armax1 function to compute the prediction error
+//      coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
+//      or
+//      coef= [-a1,..,-ar,b1,...,b_s,d1,...,d_q]' si b0f=1
 //!
   [n1,n2]=size(y);
   t0=max(max(r,s+1),1)+1;
