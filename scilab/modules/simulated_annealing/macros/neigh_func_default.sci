@@ -17,6 +17,6 @@ function x_neigh = neigh_func_default(x_current, T, param)
     [Min,err]          = get_param(param,"min_bound",-%inf*ones(size(x_current,1),size(x_current,2)));
     [Max,err]          = get_param(param,"max_bound",%inf*ones(size(x_current,1),size(x_current,2)));
 
-    x_neigh = x_current + (sa_max_delta - sa_min_delta).*rand(size(x_current,1),size(x_current,2)) + sa_min_delta;
+    x_neigh = x_current + (sa_max_delta - sa_min_delta).*grand(size(x_current,1),size(x_current,2),"def") + sa_min_delta;
     x_neigh = max(min(x_neigh, Max),Min);
 endfunction

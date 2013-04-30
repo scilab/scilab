@@ -17,7 +17,7 @@ function Mut_Indiv = mutation_ga_binary(Indiv,param)
     [MultiMutNb,err] = get_param(param,"multi_mut_nb",2);
 
     if ~MultiMut then
-        pos = ceil((length(Indiv)-1)*rand(1,1))+1;
+        pos = ceil((length(Indiv)-1)*grand(1,1,"def"))+1;
         Mut_Indiv = Indiv;
         if part(Indiv,pos)=="0" then
             Mut_Indiv = strcat([part(Indiv,1:pos-1) "1" part(Indiv,pos+1:length(Indiv))]);
@@ -26,7 +26,7 @@ function Mut_Indiv = mutation_ga_binary(Indiv,param)
             Mut_Indiv = strcat([part(Indiv,1:pos-1) "0" part(Indiv,pos+1:length(Indiv))]);
         end
     else
-        pos = ceil((length(Indiv)-1)*rand(MultiMutNb,1))+1;
+        pos = ceil((length(Indiv)-1)*grand(MultiMutNb,1,"def"))+1;
         pos = -unique(gsort(-pos));
         Mut_Indiv = Indiv;
         for i=1:length(pos)

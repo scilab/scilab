@@ -117,14 +117,14 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(ga_f, pop
 
         for j=1:nb_couples
             // Selection of the first individual in the couple
-            Shoot = rand(1,1)*Wheel($);
+            Shoot = grand(1,1,"def")*Wheel($);
             Index = find(Wheel<=Shoot);
             if length(Index)>1 then Index = Index($); end;
             if isempty(Index)  then Index = 1; end;
             Indiv1(j)           = Pop(Index);
             MO_FObj_Indiv1(j,:) = MO_FObj_Pop(Index,:);
             // Selection of the second individual in the couple
-            Shoot = rand(1,1)*Wheel($);
+            Shoot = grand(1,1,"def")*Wheel($);
             Index = find(Wheel<=Shoot);
             if length(Index)>1 then Index = Index($); end;
             if isempty(Index)  then Index = 1; end;
@@ -135,7 +135,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(ga_f, pop
         // Crossover
         //
         for j=1:nb_couples
-            if (p_cross>rand(1,1)) then
+            if (p_cross>grand(1,1,"def")) then
                 [x1, x2]  = crossover_func(Indiv1(j), Indiv2(j),param);
                 Indiv1(j) = x1;
                 Indiv2(j) = x2;
@@ -150,12 +150,12 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(ga_f, pop
         // Mutation
         //
         for j=1:nb_couples
-            if (p_mut>rand(1,1)) then
+            if (p_mut>grand(1,1,"def")) then
                 x1 = mutation_func(Indiv1(j),param);
                 Indiv1(j) = x1;
                 ToCompute_I1(j) = %T;
             end
-            if (p_mut>rand(1,1)) then
+            if (p_mut>grand(1,1,"def")) then
                 x2 = mutation_func(Indiv2(j),param);
                 Indiv2(j) = x2;
                 ToCompute_I2(j) = %T;

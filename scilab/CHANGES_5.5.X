@@ -259,6 +259,8 @@ Bug fixes
 
 * Bug #11869 fixed - "Environment" was not localized in preferences.
 
+* Bug #11885 fixed - Each rand has been changed to grand in genetic algorithms and simulated annealing functions.
+
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
 
 * Bug #12034 fixed - max function did not manage empty matrices.

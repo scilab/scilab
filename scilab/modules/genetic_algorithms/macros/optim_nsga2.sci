@@ -95,8 +95,8 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga2(ga_f, po
         Indiv2 = list();
         for j=1:nb_couples
             // Selection of 2 individuals via binary tournament selection to fill Indiv1
-            Index1 = ceil((size(FObj_Pop,1) - 1)*rand(1,1)+1);
-            Index2 = ceil((size(FObj_Pop,1) - 1)*rand(1,1)+1);
+            Index1 = ceil((size(FObj_Pop,1) - 1)*grand(1,1,"def")+1);
+            Index2 = ceil((size(FObj_Pop,1) - 1)*grand(1,1,"def")+1);
             if (Rank(Index1)<Rank(Index2)) | ((Rank(Index1)==Rank(Index2)) & (Crowdist(Index1)>Crowdist(Index2))) then
                 Indiv1(j)        = Pop(Index1);
                 FObj_Indiv1(j,:) = MO_FObj_Pop(Index1,:);
@@ -105,8 +105,8 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga2(ga_f, po
                 FObj_Indiv1(j,:) = MO_FObj_Pop(Index2,:);
             end
             // Selection of 2 individuals via binary tournament selection to fill Indiv2
-            Index1 = ceil((size(FObj_Pop,1) - 1)*rand(1,1)+1);
-            Index2 = ceil((size(FObj_Pop,1) - 1)*rand(1,1)+1);
+            Index1 = ceil((size(FObj_Pop,1) - 1)*grand(1,1,"def")+1);
+            Index2 = ceil((size(FObj_Pop,1) - 1)*grand(1,1,"def")+1);
             if (Rank(Index1)<Rank(Index2)) | ((Rank(Index1)==Rank(Index2)) & (Crowdist(Index1)>Crowdist(Index2))) then
                 Indiv2(j)        = Pop(Index1);
                 FObj_Indiv2(j,:) = MO_FObj_Pop(Index1,:);
@@ -119,7 +119,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga2(ga_f, po
         // Crossover
         //
         for j=1:nb_couples
-            if (p_cross>rand(1,1)) then
+            if (p_cross>grand(1,1,"def")) then
                 [x1, x2] = crossover_func(Indiv1(j), Indiv2(j),param);
                 Indiv1(j) = x1;
                 Indiv2(j) = x2;
@@ -134,12 +134,12 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga2(ga_f, po
         // Mutation
         //
         for j=1:nb_couples
-            if (p_mut>rand(1,1)) then
+            if (p_mut>grand(1,1,"def")) then
                 x1 = mutation_func(Indiv1(j),param);
                 Indiv1(j) = x1;
                 ToCompute_I1(j) = %T;
             end
-            if (p_mut>rand(1,1)) then
+            if (p_mut>grand(1,1,"def")) then
                 x2 = mutation_func(Indiv2(j),param);
                 Indiv2(j) = x2;
                 ToCompute_I2(j) = %T;

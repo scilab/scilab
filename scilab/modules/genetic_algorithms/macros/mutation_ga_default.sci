@@ -16,7 +16,7 @@ function Mut_Indiv = mutation_ga_default(Indiv,param)
     [MinBounds,err] = get_param(param,"minbound",-2*ones(size(Indiv,1),size(Indiv,2)));
     [MaxBounds,err] = get_param(param,"maxbound", 2*ones(size(Indiv,1),size(Indiv,2)));
 
-    Mut_Indiv = Indiv + 2*Delta*rand(size(Indiv,1),size(Indiv,2)) - Delta*ones(size(Indiv,1),size(Indiv,2));
+    Mut_Indiv = Indiv + 2*Delta*grand(size(Indiv,1),size(Indiv,2),"def") - Delta*ones(size(Indiv,1),size(Indiv,2));
 
     Mut_Indiv = max(min(Mut_Indiv, MaxBounds),MinBounds);
 endfunction

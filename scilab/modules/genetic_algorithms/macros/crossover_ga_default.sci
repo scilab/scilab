@@ -17,7 +17,7 @@ function [Crossed_Indiv1, Crossed_Indiv2] = crossover_ga_default(Indiv1,Indiv2,p
     [MinBounds,err] = get_param(param,"minbound",-2*ones(size(Indiv1,1),size(Indiv1,2)));
     [MaxBounds,err] = get_param(param,"maxbound",2*ones(size(Indiv1,1),size(Indiv1,2)));
 
-    mix = (1 + 2*Beta)*rand(1,1) - Beta;
+    mix = (1 + 2*Beta)*grand(1,1,"def") - Beta;
     Crossed_Indiv1 =     mix*Indiv1 + (1-mix)*Indiv2;
     Crossed_Indiv2 = (1-mix)*Indiv1 +     mix*Indiv2;
 
