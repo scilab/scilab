@@ -172,6 +172,8 @@ Bug fixes
 
 * Bug #10226 fixed - When a // <empty session> line is delete, all sessions
                      histories are folded.
+                     
+* Bug #10818 fixed - The following help pages have been added: hom, %e, %t, %f, %z and %s.
 
 * Bug #11308 fixed - Calling sequences in help page of dsearch were wrong.
 
