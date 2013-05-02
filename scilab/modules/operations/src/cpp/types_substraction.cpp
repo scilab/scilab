@@ -394,9 +394,21 @@ int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDou
 
         //return opposite
         double* pDbl = (*_pDoubleOut)->get();
-        for (int i = 0 ; i < _pDouble2->getSize() ; i++)
+        if ((*_pDoubleOut)->isComplex())
         {
-            pDbl[i] = -pDbl[i];
+            double* pDblImg = (*_pDoubleOut)->getImg();
+            for (int i = 0 ; i < _pDouble2->getSize() ; i++)
+            {
+                pDbl[i] = -pDbl[i];
+                pDblImg[i] = -pDblImg[i];
+            }
+        }
+        else
+        {
+            for (int i = 0 ; i < _pDouble2->getSize() ; i++)
+            {
+                pDbl[i] = -pDbl[i];
+            }
         }
         return 0;
     }
