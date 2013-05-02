@@ -19,12 +19,12 @@ function myNewTree = uiInsertNode(tree, position, node)
 
     // Check 1st, 2nd and 3rd inputs : tree, (position or parent node) & node
     if rhs == 3 then
-        if (typeof(tree) == "Tree") then
+        if (typeof(tree) == "uitree") then
             myTree = tree;
             isPosition = %F;
             isParentNode = %F;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiInsertNode",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiInsertNode",1));
             return;
         end
 
@@ -32,18 +32,18 @@ function myNewTree = uiInsertNode(tree, position, node)
             myPosition = position;
             isPosition = %T;
 
-        elseif (typeof(position) == "Tree") then
+        elseif (typeof(position) == "uitree") then
             myParentNode = position;
             isParentNode = %T;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or Tree expected.\n"), "uiInsertNode",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiInsertNode",2));
             return;
         end
 
-        if (typeof(node) == "Tree") then
+        if (typeof(node) == "uitree") then
             myNode = node;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiInsertNode",3));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiInsertNode",3));
             return;
         end
     end

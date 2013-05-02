@@ -19,12 +19,12 @@ function myNewTree = uiDeleteNode(tree, position)
 
     // Check 1st and 2nd inputs : tree & (position or node)
     if rhs == 2 then
-        if (typeof(tree) == "Tree") then
+        if (typeof(tree) == "uitree") then
             myTree = tree;
             isPosition = %F;
             isNode = %F;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "uiDeleteNode",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: uitree expected.\n"), "uiDeleteNode",1));
             return;
         end
 
@@ -32,11 +32,11 @@ function myNewTree = uiDeleteNode(tree, position)
             myPosition = position;
             isPosition = %T;
 
-        elseif (typeof(position) == "Tree") then
+        elseif (typeof(position) == "uitree") then
             myNode = position;
             isNode = %T;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or Tree expected.\n"), "uiDeleteNode",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: String or uitree expected.\n"), "uiDeleteNode",2));
             return;
         end
     end

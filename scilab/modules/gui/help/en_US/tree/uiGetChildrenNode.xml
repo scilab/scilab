@@ -15,7 +15,7 @@
             <varlistentry>
                 <term>tree</term>
                 <listitem>
-                    <para>Tree in which we look for children node(s)</para>
+                    <para>uitree in which we look for children node(s)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
