@@ -95,7 +95,7 @@ assert_checkalmostequal ( xcomputed , xexpected , %eps);
 // =================================================================================================
 A=[100,1;1,10.];
 b=[101;11];
-[xcomputed, flag, err, iter, res]=qmr(A,b,x0=[1.;1.]);
+[xcomputed, flag, err, iter, res]=qmr(A,b, [1.;1.]);
 assert_checkequal ( iter , 1 );
 
 // 9. Test the special case where b=0
@@ -282,7 +282,7 @@ b = [11;11];
 x0 = [1;1];
 M1=[1,0;0,1];
 M2 = eye(2,2);
-maxit = 10
+maxit = 10;
 [xcomputed, flag, err, iter, res]=qmr(func_qmr,b,x0,M1,M2,maxit);
 xexpected=[1;1];
 assert_checkalmostequal ( xcomputed , xexpected , %eps);
@@ -615,4 +615,5 @@ assert_checkalmostequal ( xcomputed , xexpected , %eps);
 
 
 
-
+
+
