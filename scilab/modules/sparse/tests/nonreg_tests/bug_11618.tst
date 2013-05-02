@@ -15,7 +15,7 @@
 // <-- Short Description -->
 //    if A is a complex sparse matrix, A(:) returned wrong values
 
-A = [0 %i;1 2]
+A = [0 %i;1 2];
 A1 = sparse(A);
 assert_checkequal(full(A1(:)), A(:));
 
