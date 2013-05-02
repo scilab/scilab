@@ -19,9 +19,7 @@
     <property file="${dependencies.prop}"/>
     
     <!-- Scirenderer is built from Scilab itself -->
-    <condition property="library.name" value="scirenderer.jar">
-        <isset property="fromScilab" />
-    </condition>
+    <property name="library.noversion.name" value="scirenderer.jar" />
     
     <!-- Scirenderer is built as a thirdparty application -->
     <condition property="library.name" value="scirenderer-${version}.jar">
@@ -44,7 +42,7 @@
     <property name="build.jar.dir"  value="jar/" />
     
     <property name="library.jar" value="${build.jar.dir}/${library.name}" />
-    <property name="library.no-version.jar" value="${build.jar.dir}/${library.no-version.name}" />
+    <property name="library.noversion.jar" value="${build.jar.dir}/${library.noversion.name}" />
     
     <!-- The building directory -->
     <property name="build.dir" location="build/"/>
@@ -174,6 +172,14 @@
                 <attribute name="Class-Path" value="jogl2.jar gluegen2.jar"/>
             </manifest>
         </jar>
+    </target>
+    
+    <!-- Create the jar without the extension -->
+    <target name="noversion" description="Build the jar file without version" depends="compile">
+        
+        <antcall target="jar">
+            <param name="library.jar" value="${library.noversion.jar}"/>
+        </antcall>
     </target>
     
     <target name="doc">

@@ -31,7 +31,7 @@ The main idea is to build at once all the var files
         <condition property="thirdparty.dir" value="../../thirdparty">
             <os family="windows"/>
         </condition>
-        <ant antfile="../scirenderer/build.xml" target="${target-jar}" inheritRefs="false" inheritAll="false">
+        <ant antfile="../scirenderer/build.xml" target="noversion" inheritRefs="false" inheritAll="false">
             <property name="thirdparty.dir" value="${thirdparty.dir}"/>
             <property name="fromScilab" value="yes"/>
         </ant>
