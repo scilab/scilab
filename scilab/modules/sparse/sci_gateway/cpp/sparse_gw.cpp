@@ -25,6 +25,6 @@ int SparseModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spzeros", &sci_spzeros, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spones", &sci_spones, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"full", &sci_full, MODULE_NAME));
-
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ordmmd", &sci_ordmmd, MODULE_NAME));
     return 1;
 }

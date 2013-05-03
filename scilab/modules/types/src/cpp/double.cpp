@@ -1113,7 +1113,6 @@ void Double::convertToInteger()
     //convert in place double to integer
     int* piR = (int*)get();
     double *pdblR = get();
-    //convert in place integer to double
 
     if (isComplex())
     {
@@ -1121,18 +1120,18 @@ void Double::convertToInteger()
         double *pdblI = getImg();
 
         //normal way to prevent overlap
-        for (int i = 0 ; i < getSize() ; i--)
+        for (int i = 0 ; i < getSize() ; i++)
         {
-            pdblR[i] = (double)piR[i];
-            pdblI[i] = (double)piI[i];
+            piR[i] = (int)pdblR[i];
+            piI[i] = (int)pdblI[i];
         }
     }
     else
     {
         //normal way to prevent overlap
-        for (int i = 0 ; i < getSize() ; i--)
+        for (int i = 0 ; i < getSize() ; i++)
         {
-            pdblR[i] = (double)piR[i];
+            piR[i] = (int)pdblR[i];
         }
     }
 

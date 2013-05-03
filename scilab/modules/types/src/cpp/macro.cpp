@@ -25,276 +25,276 @@
 
 extern "C"
 {
-    #include "Scierror.h"
-    #include "MALLOC.h"
-    #include "os_swprintf.h"
+#include "Scierror.h"
+#include "MALLOC.h"
+#include "os_swprintf.h"
 }
 
 namespace types
 {
-    Macro::Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule):
-        Callable(), m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body),
-        m_ArgInSymb(symbol::Symbol(L"nargin")), m_ArgOutSymb(symbol::Symbol(L"nargout"))
+Macro::Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule):
+    Callable(), m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body),
+    m_ArgInSymb(symbol::Symbol(L"nargin")), m_ArgOutSymb(symbol::Symbol(L"nargout"))
+{
+    setName(_stName);
+    setModule(_stModule);
+    bAutoAlloc = false;
+    m_pDblArgIn = new Double(1);
+    m_pDblArgIn->IncreaseRef(); //never delete
+    m_pDblArgOut = new Double(1);
+    m_pDblArgOut->IncreaseRef(); //never delete
+}
+
+Macro::~Macro()
+{
+    delete m_body;
+}
+
+InternalType* Macro::clone()
+{
+    IncreaseRef();
+    return this;
+}
+
+void Macro::whoAmI()
+{
+    std::cout << "types::Macro";
+}
+
+InternalType::RealType Macro::getType(void)
+{
+    return RealMacro;
+}
+
+ast::SeqExp* Macro::getBody(void)
+{
+    return m_body;
+}
+
+bool Macro::toString(std::wostringstream& ostr)
+{
+    ostr << L"FIXME : Implement Macro::toString" << std::endl;
+    return true;
+}
+
+Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+{
+    bool bVarargout = false;
+    ReturnValue RetVal = Callable::OK;
+    symbol::Context *pContext = symbol::Context::getInstance();
+
+    //open a new scope
+    pContext->scope_begin();
+
+    //add optional paramter in current scope
+    optional_list::const_iterator it;
+    for (it = opt.begin() ; it != opt.end() ; it++)
     {
-        setName(_stName);
-        setModule(_stModule);
-        bAutoAlloc = false;
-        m_pDblArgIn = new Double(1);
-        m_pDblArgIn->IncreaseRef(); //never delete
-        m_pDblArgOut = new Double(1);
-        m_pDblArgOut->IncreaseRef(); //never delete
+        pContext->put(symbol::Symbol(it->first), *it->second);
     }
+    //check excepted and input/output parameters numbers
+    // Scilab Macro can be called with less than prototyped arguments,
+    // but not more execpts with varargin
 
-    Macro::~Macro()
+    // varargin management
+    if (m_inputArgs->size() > 0 && m_inputArgs->back().name_get() == L"varargin")
     {
-        delete m_body;
-    }
-
-    InternalType* Macro::clone()
-    {
-        IncreaseRef();
-        return this;
-    }
-
-    void Macro::whoAmI()
-    {
-        std::cout << "types::Macro";
-    }
-
-    InternalType::RealType Macro::getType(void)
-    {
-        return RealMacro;
-    }
-
-    ast::SeqExp* Macro::getBody(void)
-    {
-        return m_body;
-    }
-
-    bool Macro::toString(std::wostringstream& ostr)
-    {
-        ostr << L"FIXME : Implement Macro::toString" << std::endl;
-        return true;
-    }
-
-    Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
-    {
-        bool bVarargout = false;
-        ReturnValue RetVal = Callable::OK;
-        symbol::Context *pContext = symbol::Context::getInstance();
-
-        //open a new scope
-        pContext->scope_begin();
-
-        //add optional paramter in current scope
-        optional_list::const_iterator it;
-        for(it = opt.begin() ; it != opt.end() ; it++)
+        int iVarPos = static_cast<int>(in.size());
+        if (iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
         {
-            pContext->put(symbol::Symbol(it->first), *it->second);
+            iVarPos = static_cast<int>(m_inputArgs->size()) - 1;
         }
-        //check excepted and input/output parameters numbers
-        // Scilab Macro can be called with less than prototyped arguments,
-        // but not more execpts with varargin
 
-        // varargin management
-        if(m_inputArgs->size() > 0 && m_inputArgs->back().name_get() == L"varargin")
+        //add all standard variable in function context but not varargin
+        std::list<symbol::Symbol>::const_iterator itName = m_inputArgs->begin();
+        typed_list::const_iterator itValue = in.begin();
+        while (iVarPos > 0)
         {
-            int iVarPos = static_cast<int>(in.size());
-            if(iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
-            {
-                iVarPos = static_cast<int>(m_inputArgs->size()) - 1;
-            }
+            pContext->put((*itName), **itValue);
+            iVarPos--;
+            itName++;
+            itValue++;
+        }
 
-            //add all standard variable in function context but not varargin
-            std::list<symbol::Symbol>::const_iterator itName = m_inputArgs->begin();
-            typed_list::const_iterator itValue = in.begin();
-            while(iVarPos > 0)
+        //create varargin only if previous variable are assigned
+        if (in.size() >= m_inputArgs->size() - 1)
+        {
+            //create and fill varargin
+            List* pL = new List();
+            while (itValue != in.end())
             {
-                pContext->put((*itName), **itValue);
-                iVarPos--;
-                itName++;
+                pL->append(*itValue);
                 itValue++;
             }
+            pContext->put(symbol::Symbol(L"varargin"), *pL);
+        }
+    }
+    else if (in.size() > m_inputArgs->size())
+    {
+        wostringstream ostr;
+        ostr << _W("Wrong number of input arguments:") << std::endl << std::endl;
+        ostr << _W("Excepted: ") << m_inputArgs->size() << std::endl;
 
-            //create varargin only if previous variable are assigned
-            if(in.size() >= m_inputArgs->size() - 1)
+        if (m_inputArgs->size() > 0)
+        {
+            ostr << _W("Arguments are:") << std::endl << std::endl;
+            ostr << " ";
+            for (std::list<symbol::Symbol>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
             {
-                //create and fill varargin
-                List* pL = new List();
-                while(itValue != in.end())
+                ostr << (*it).name_get() << L"    ";
+            }
+            ostr << std::endl;
+        }
+
+        char* pst = wide_string_to_UTF8(ostr.str().c_str());
+        Scierror(58, "%s", pst);
+        pContext->scope_end();
+        return Callable::Error;
+    }
+    else
+    {
+        //assign value to variable in the new context
+        std::list<symbol::Symbol>::const_iterator i;
+        typed_list::const_iterator j;
+
+        for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j, ++i)
+        {
+            pContext->put((*i), **j);
+        }
+    }
+
+    // varargout management
+    //rules :
+    // varargout must be alone
+    // varargout is a list
+    // varargout can containt more items than caller need
+    // varargout must containt at leat caller needs
+    if (m_outputArgs->size() == 1 && m_outputArgs->back().name_get() == L"varargout")
+    {
+        bVarargout = true;
+        List* pL = new List();
+        pContext->put(symbol::Symbol(L"varargout"), *pL);
+    }
+
+    //common part with or without varargin/varargout
+
+    // Declare nargin & nargout in function context.
+    m_pDblArgIn->set(0, static_cast<double>(in.size()));
+    m_pDblArgOut->set(0, _iRetCount);
+    pContext->put(m_ArgInSymb, *m_pDblArgIn);
+    pContext->put(m_ArgOutSymb, *m_pDblArgOut);
+
+    //save current prompt mode
+    int oldVal = ConfigVariable::getPromptMode();
+    try
+    {
+        //m_body->mute();
+        //MuteVisitor mute;
+        //m_body->accept(mute);
+
+        ConfigVariable::setPromptMode(-1);
+        m_body->returnable_set();
+        m_body->accept(*execFunc);
+        //restore previous prompt mode
+        ConfigVariable::setPromptMode(oldVal);
+        if (m_body->is_return())
+        {
+            m_body->returnable_set();
+        }
+
+        //varargout management
+        if (bVarargout)
+        {
+            InternalType* pOut = pContext->get(symbol::Symbol(L"varargout"));
+            if (pOut == NULL)
+            {
+                Scierror(999, _("Invalid index.\n"));
+                return Callable::Error;
+            }
+
+            if (pOut->isList() == false || pOut->getAs<List>()->getSize() == 0)
+            {
+                Scierror(999, _("Invalid index.\n"));
+                return Callable::Error;
+            }
+
+            List* pVarOut = pOut->getAs<List>();
+            for (int i = 0 ; i < Min(pVarOut->getSize(), _iRetCount) ; i++)
+            {
+                InternalType* pIT = pVarOut->get(i)->clone();
+                if (pIT->isListUndefined())
                 {
-                    pL->append(*itValue);
-                    itValue++;
+                    Scierror(999, _("List element number %d is Undefined.\n"), i + 1);
+                    return Callable::Error;
                 }
-                pContext->put(symbol::Symbol(L"varargin"), *pL);
+
+                out.push_back(pIT);
             }
         }
-		else if(in.size() > m_inputArgs->size())
-		{
-            wostringstream ostr;
-            ostr << _W("Wrong number of input arguments:") << std::endl << std::endl;
-            ostr << _W("Excepted: ") << m_inputArgs->size() << std::endl;
-
-            if(m_inputArgs->size() > 0)
-            {
-                ostr << _W("Arguments are:") << std::endl << std::endl;
-                ostr << " ";
-                for (std::list<symbol::Symbol>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
-                {
-                    ostr << (*it).name_get() << L"    ";
-                }
-                ostr << std::endl;
-            }
-
-            char* pst = wide_string_to_UTF8(ostr.str().c_str());
-            Scierror(58, "%s", pst);
-            pContext->scope_end();
-			return Callable::Error;
-		}
         else
         {
-            //assign value to variable in the new context
+            //normal output management
             std::list<symbol::Symbol>::const_iterator i;
-            typed_list::const_iterator j;
-
-            for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
+            for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
             {
-                pContext->put((*i), **j);
-            }
-        }
-
-        // varargout management
-        //rules : 
-        // varargout must be alone
-        // varargout is a list
-        // varargout can containt more items than caller need
-        // varargout must containt at leat caller needs
-        if(m_outputArgs->size() == 1 && m_outputArgs->back().name_get() == L"varargout")
-        {
-            bVarargout = true;
-            List* pL = new List();
-            pContext->put(symbol::Symbol(L"varargout"), *pL);
-        }
-
-        //common part with or without varargin/varargout
-
-        // Declare nargin & nargout in function context.
-        m_pDblArgIn->set(0, static_cast<double>(in.size()));
-        m_pDblArgOut->set(0, _iRetCount);
-        pContext->put(m_ArgInSymb, *m_pDblArgIn);
-        pContext->put(m_ArgOutSymb, *m_pDblArgOut);
-
-        //save current prompt mode
-        int oldVal = ConfigVariable::getPromptMode();
-        try
-        {
-            //m_body->mute();
-            //MuteVisitor mute;
-            //m_body->accept(mute);
-
-            ConfigVariable::setPromptMode(-1);
-            m_body->returnable_set();
-            m_body->accept(*execFunc);
-            //restore previous prompt mode
-            ConfigVariable::setPromptMode(oldVal);
-            if(m_body->is_return())
-            {
-                m_body->returnable_set();
-            }
-
-            //varargout management
-            if(bVarargout)
-            {
-                InternalType* pOut = pContext->get(symbol::Symbol(L"varargout"));
-                if(pOut == NULL)
+                InternalType *pIT = pContext->get((*i));
+                if (pIT != NULL)
                 {
-                    Scierror(999, _("Invalid index.\n"));
-                    return Callable::Error;
-                }
-
-                if(pOut->isList() == false || pOut->getAs<List>()->getSize() == 0)
-                {
-                    Scierror(999, _("Invalid index.\n"));
-                    return Callable::Error;
-                }
-
-                List* pVarOut = pOut->getAs<List>();
-                for(int i = 0 ; i < Min(pVarOut->getSize(), _iRetCount) ; i++)
-                {
-                    InternalType* pIT = pVarOut->get(i);
-                    if(pIT->isListUndefined())
-                    {
-                        Scierror(999, _("List element number %d is Undefined.\n"), i + 1);
-                        return Callable::Error;
-                    }
-
                     out.push_back(pIT);
                     pIT->IncreaseRef();
                 }
-            }
-            else
-            {//normal output management
-                std::list<symbol::Symbol>::const_iterator i;
-                for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
+                else
                 {
-                    InternalType *pIT = pContext->get((*i));
-                    if(pIT != NULL)
-                    {
-                        out.push_back(pIT);
-                        pIT->IncreaseRef();
-                    }
-                    else
-                    {
-                        char* pst = wide_string_to_UTF8((*i).name_get().c_str());
-                        Scierror(999, _("Undefined variable %s.\n"), pst);
-                        FREE(pst);
-                        return Callable::Error;
-                    }
+                    char* pst = wide_string_to_UTF8((*i).name_get().c_str());
+                    Scierror(999, _("Undefined variable %s.\n"), pst);
+                    FREE(pst);
+                    return Callable::Error;
                 }
             }
         }
-        catch(ast::ScilabMessage se)
-        {
-            //restore previous prompt mode
-            ConfigVariable::setPromptMode(oldVal);
-            //close the current scope
-            pContext->scope_end();
-            for (size_t j = 0; j < out.size(); ++j)
-            {
-                out[j]->DecreaseRef();
-            }
-            throw se;
-        }
-        catch(ast::InternalAbort sa)
-        {
-            //restore previous prompt mode
-            ConfigVariable::setPromptMode(oldVal);
-            //close the current scope
-            pContext->scope_end();
-            for (size_t j = 0; j < out.size(); ++j)
-            {
-                out[j]->DecreaseRef();
-            }
-            throw sa;
-        }
-
+    }
+    catch (ast::ScilabMessage se)
+    {
+        //restore previous prompt mode
+        ConfigVariable::setPromptMode(oldVal);
         //close the current scope
         pContext->scope_end();
-
         for (size_t j = 0; j < out.size(); ++j)
         {
             out[j]->DecreaseRef();
         }
-        return RetVal;
+        throw se;
+    }
+    catch (ast::InternalAbort sa)
+    {
+        //restore previous prompt mode
+        ConfigVariable::setPromptMode(oldVal);
+        //close the current scope
+        pContext->scope_end();
+        for (size_t j = 0; j < out.size(); ++j)
+        {
+            out[j]->DecreaseRef();
+        }
+        throw sa;
     }
 
-    std::list<symbol::Symbol>* Macro::inputs_get()
-    {
-        return m_inputArgs;
-    }
+    //close the current scope
+    pContext->scope_end();
 
-    std::list<symbol::Symbol>* Macro::outputs_get()
+    for (size_t j = 0; j < out.size(); ++j)
     {
-        return m_outputArgs;
+        out[j]->DecreaseRef();
     }
+    return RetVal;
+}
+
+std::list<symbol::Symbol>* Macro::inputs_get()
+{
+    return m_inputArgs;
+}
+
+std::list<symbol::Symbol>* Macro::outputs_get()
+{
+    return m_outputArgs;
+}
 }

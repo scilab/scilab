@@ -187,6 +187,12 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
                 Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), "sparse", 3, 1, 2);
                 return Function::Error;
             }
+
+            if (pDims->get(0) * pDims->get(1) == 0)
+            {
+                out.push_back(types::Double::Empty());
+                return types::Function::OK;
+            }
         }
 
         types::GenericType* pGT1 = in[0]->getAs<types::GenericType>();

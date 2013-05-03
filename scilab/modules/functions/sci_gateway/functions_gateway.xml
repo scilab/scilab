@@ -26,4 +26,5 @@
     <gateway name="sci_getCurrentThreadId"  function="getCurrentThreadId"   type="1" />
     <gateway name="sci_mode"                function="mode"                 type="1" />
     <gateway name="sci_getThreads"          function="getThreads"           type="1" />
+    <gateway name="sci_macrovar"            function="macrovar"           type="1" />
 </module>

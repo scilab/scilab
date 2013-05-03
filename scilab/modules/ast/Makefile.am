@@ -20,7 +20,8 @@ libsciast_la_SOURCES = \
 	src/cpp/debugvisitor.cpp \
 	src/cpp/mutevisitor.cpp \
 	src/cpp/shortcutvisitor.cpp \
-	src/cpp/scilabexception.cpp
+	src/cpp/scilabexception.cpp \
+	src/cpp/macrovarvisitor.cpp
 
 libsciast_la_CPPFLAGS = \
 	-Iincludes \

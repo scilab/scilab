@@ -23,161 +23,156 @@
 
 namespace types
 {
-    /**
-    ** Constructor & Destructor (public)
-    */
-    TList::TList() : List()
-    {
+/**
+** Constructor & Destructor (public)
+*/
+TList::TList() : List()
+{
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
-    }
+}
 
-    TList::~TList()
-    {
+TList::~TList()
+{
 #ifndef NDEBUG
-        Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
-    }
-    /**
-    ** Private Copy Constructor and data Access
-    */
-    TList::TList(TList *_oTListCopyMe)
+}
+/**
+** Private Copy Constructor and data Access
+*/
+TList::TList(TList *_oTListCopyMe)
+{
+    std::vector<InternalType *>::iterator itValues;
+    m_plData = new std::vector<InternalType *>;
+
+    for (int i = 0 ; i < _oTListCopyMe->getData()->size() ; i++)
     {
-        std::vector<InternalType *>::iterator itValues;
-        m_plData = new std::vector<InternalType *>;
+        InternalType* pIT = (*_oTListCopyMe->getData())[i];
+        append(pIT->clone());
+    }
 
-        for(int i = 0 ; i < _oTListCopyMe->getData()->size() ; i++)
-        {
-            InternalType* pIT = (*_oTListCopyMe->getData())[i];
-            append(pIT);
-        }
-
-        m_iSize = static_cast<int>(m_plData->size());
+    m_iSize = static_cast<int>(m_plData->size());
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
-    }
+}
 
-    /**
-    ** Clone
-    ** Create a new List and Copy all values.
-    */
-    InternalType* TList::clone()
+/**
+** Clone
+** Create a new List and Copy all values.
+*/
+InternalType* TList::clone()
+{
+    return new TList(this);
+}
+
+bool TList::exists(const std::wstring& _sKey)
+{
+    if (getSize() < 1)
     {
-        return new TList(this);
-    }
-
-    bool TList::exists(const std::wstring& _sKey)
-    {
-        if(getSize() < 1)
-        {
-            return false;
-        }
-
-        String* pS = (*m_plData)[0]->getAs<types::String>();
-
-        //first field is the tlist type
-        for(int i = 1 ; i < pS->getSize() ; i++)
-        {
-            if(wcscmp(pS->get(i), _sKey.c_str()) == 0)
-            {
-                return true;
-            }
-        }
         return false;
     }
 
-    InternalType* TList::get(const std::wstring& _sKey)
+    String* pS = (*m_plData)[0]->getAs<types::String>();
+
+    //first field is the tlist type
+    for (int i = 1 ; i < pS->getSize() ; i++)
     {
-        return List::get(getIndexFromString(_sKey));
+        if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
+        {
+            return true;
+        }
     }
+    return false;
+}
 
-    int TList::getIndexFromString(const std::wstring& _sKey)
+InternalType* TList::get(const std::wstring& _sKey)
+{
+    return List::get(getIndexFromString(_sKey));
+}
+
+int TList::getIndexFromString(const std::wstring& _sKey)
+{
+    if (getSize() < 1)
     {
-        if(getSize() < 1)
-        {
-            return -1;
-        }
-
-        String* pS = (*m_plData)[0]->getAs<types::String>();
-        //first field is the tlist type
-        for(int i = 1 ; i < pS->getSize() ; i++)
-        {
-            if(wcscmp(pS->get(i), _sKey.c_str()) == 0)
-            {
-                return i;
-            }
-        }
         return -1;
     }
 
-    std::vector<InternalType*> TList::extractStrings(const std::list<std::wstring>& _stFields)
+    String* pS = (*m_plData)[0]->getAs<types::String>();
+    //first field is the tlist type
+    for (int i = 1 ; i < pS->getSize() ; i++)
     {
-        std::vector<InternalType*> Result;
-
-        std::list<std::wstring>::const_iterator it;
-        for(it = _stFields.begin() ; it != _stFields.end() ; it++)
+        if (wcscmp(pS->get(i), _sKey.c_str()) == 0)
         {
-            if(exists(*it) == false)
-            {
-                return Result;
-            }
+            return i;
         }
+    }
+    return -1;
+}
 
-        for(it = _stFields.begin() ; it != _stFields.end() ; it++)
+std::vector<InternalType*> TList::extractStrings(const std::list<std::wstring>& _stFields)
+{
+    std::vector<InternalType*> Result;
+
+    std::list<std::wstring>::const_iterator it;
+    for (it = _stFields.begin() ; it != _stFields.end() ; it++)
+    {
+        if (exists(*it) == false)
         {
-            Result.push_back(get(*it));
+            return Result;
         }
-        return Result;
     }
 
-    std::wstring TList::getTypeStr()
+    for (it = _stFields.begin() ; it != _stFields.end() ; it++)
     {
-        if(getSize() < 1)
-        {
-            return L"";
-        }
+        Result.push_back(get(*it));
+    }
+    return Result;
+}
 
-        return (*m_plData)[0]->getAs<types::String>()->get(0);
+std::wstring TList::getTypeStr()
+{
+    if (getSize() < 1)
+    {
+        return L"";
     }
 
-    std::wstring TList::getShortTypeStr()
+    return (*m_plData)[0]->getAs<types::String>()->get(0);
+}
+
+std::wstring TList::getShortTypeStr()
+{
+    return getTypeStr();
+}
+
+bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
+{
+    return set(getIndexFromString(_sKey), _pIT);
+}
+
+bool TList::set(const int _iIndex, InternalType* _pIT)
+{
+    if (_iIndex < 0)
     {
-        return getTypeStr();
+        return false;
     }
 
-    bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
+    while (m_plData->size() < _iIndex)
     {
-        return set(getIndexFromString(_sKey), _pIT);
+        //incease list size and fill with "Undefined"
+        m_plData->push_back(new ListUndefined());
+        m_iSize = getSize();
     }
 
-    bool TList::set(const int _iIndex, InternalType* _pIT)
+    InternalType* pOld = (*m_plData)[_iIndex];
+    if (pOld && pOld->isDeletable())
     {
-        if(_iIndex < 0)
-        {
-            return false;
-        }
-
-        while(m_plData->size() <_iIndex)
-        {//incease list size and fill with "Undefined"
-            m_plData->push_back(new ListUndefined());
-            m_iSize = getSize();
-        }
-
-        //manage ref on the old value
-        InternalType* pOld = (*m_plData)[_iIndex];
-        if(pOld)
-        {
-            pOld->DecreaseRef();
-            if(pOld->isDeletable())
-            {
-                delete pOld;
-            }
-        }
-
-        _pIT->IncreaseRef();
-        (*m_plData)[_iIndex] = _pIT;
-        return true;
+        delete pOld;
     }
+
+    (*m_plData)[_iIndex] = _pIT->clone();
+    return true;
+}
 }

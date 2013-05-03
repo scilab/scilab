@@ -48,6 +48,9 @@
     <ClCompile Include="sparse_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_ordmmd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\sparse_gw.hxx">
@@ -56,5 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\libintl.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sparse_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
 </Project>

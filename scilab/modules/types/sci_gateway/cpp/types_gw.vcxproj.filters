@@ -18,82 +18,79 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\sci_cell.cpp">
+    <ClCompile Include="sci_cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_fieldnames.cpp">
+    <ClCompile Include="sci_fieldnames.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_insert.cpp">
+    <ClCompile Include="sci_insert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_isfield.cpp">
+    <ClCompile Include="sci_inspectorDeleteUnreferencedItems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_list.cpp">
+    <ClCompile Include="sci_inspectorGetItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_makecell.cpp">
+    <ClCompile Include="sci_inspectorGetItemCount.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_mlist.cpp">
+    <ClCompile Include="sci_inspectorGetUnreferencedItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_null.cpp">
+    <ClCompile Include="sci_inspectorShowItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_struct.cpp">
+    <ClCompile Include="sci_inspectorShowUnreferencedItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_tlist.cpp">
+    <ClCompile Include="sci_isfield.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_typeof.cpp">
+    <ClCompile Include="sci_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_usertype.cpp">
+    <ClCompile Include="sci_makecell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\types_gw.cpp">
+    <ClCompile Include="sci_mlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_getfield.cpp">
+    <ClCompile Include="sci_null.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_inspectorGetItemCount.cpp">
+    <ClCompile Include="sci_struct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_inspectorShowItem.cpp">
+    <ClCompile Include="sci_tlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_inspectorGetItem.cpp">
+    <ClCompile Include="sci_typeof.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_inspectorGetUnreferencedItem.cpp">
+    <ClCompile Include="sci_usertype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_inspectorDeleteUnreferencedItems.cpp">
+    <ClCompile Include="types_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sci_inspectorShowUnreferencedItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sci_inspectorGetFunctionList.cpp">
+    <ClCompile Include="sci_inspectorGetFunctionList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\includes\dynlib_types_gw.h">
+    <ClInclude Include="..\..\includes\dynlib_types_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\sci_tlist_or_mlist.hxx">
+    <ClInclude Include="sci_tlist_or_mlist.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\includes\types_gw.hxx">
+    <ClInclude Include="..\..\includes\types_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\..\..\..\bin\libintl.lib" />
+    <Library Include="..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
 </Project>

@@ -25,7 +25,8 @@ sci_gateway/cpp/sci_whereis.cpp \
 sci_gateway/cpp/sci_execstr.cpp \
 sci_gateway/cpp/sci_getCurrentThreadId.cpp \
 sci_gateway/cpp/sci_mode.cpp \
-sci_gateway/cpp/sci_getThreads.cpp
+sci_gateway/cpp/sci_getThreads.cpp \
+sci_gateway/cpp/sci_macrovar.cpp
 
 GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/intlib.f \

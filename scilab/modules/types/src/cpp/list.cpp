@@ -72,7 +72,7 @@ List::List(List *_oListCopyMe)
     for (int i = 0 ; i < _oListCopyMe->getData()->size() ; i++)
     {
         InternalType* pIT = (*_oListCopyMe->getData())[i];
-        append(pIT);
+        append(pIT->clone());
     }
 
     m_iSize = static_cast<int>(m_plData->size());
@@ -101,8 +101,7 @@ int List::getSize()
 */
 void List::append(InternalType *_typedValue)
 {
-    _typedValue->IncreaseRef();
-    m_plData->push_back(_typedValue);
+    m_plData->push_back(_typedValue->clone());
     m_iSize = static_cast<int>(m_plData->size());
 }
 
@@ -176,7 +175,7 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
             break;
         }
         InternalType* pIT = (*m_plData)[idx - 1];
-        outList.push_back(pIT);
+        outList.push_back(pIT->clone());
     }
 
     for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
@@ -229,13 +228,9 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         else if (idx <= m_plData->size())
         {
             InternalType* pIT = (*m_plData)[idx - 1];
-            if (pIT)
+            if (pIT && pIT->isDeletable())
             {
-                pIT->DecreaseRef();
-                if (pIT->isDeletable())
-                {
-                    delete pIT;
-                }
+                delete pIT;
             }
             m_plData->erase(m_plData->begin() + idx - 1);
         }
@@ -250,16 +245,13 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
             throw ast::ScilabError(os.str());
         }
 
-        InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert();
-        pInsert->IncreaseRef();
+        InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert()->clone();
         if (idx > m_plData->size())
         {
             //try to insert after the last index, increase list size and assign value
             while (m_plData->size() < idx)
             {
                 //incease list size and fill with "Undefined"
-                InternalType* pUndef = new ListUndefined();
-                pUndef->IncreaseRef();
                 m_plData->push_back(new ListUndefined());
             }
             (*m_plData)[idx - 1] = pInsert;
@@ -281,8 +273,8 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             pInsert = _pSource;
         }
-        pInsert->IncreaseRef();
-        m_plData->insert(m_plData->begin(), pInsert);
+
+        m_plData->insert(m_plData->begin(), pInsert->clone());
     }
     else
     {
@@ -293,14 +285,12 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         }
 
         InternalType* pIT = (*m_plData)[idx - 1];
-        pIT->DecreaseRef();
-        if (pIT->isDeletable())
+        if (pIT && pIT->isDeletable())
         {
             delete pIT;
         }
 
-        _pSource->IncreaseRef();
-        (*m_plData)[idx - 1] = _pSource;
+        (*m_plData)[idx - 1] = _pSource->clone();
     }
 
     m_iSize = (int)m_plData->size();

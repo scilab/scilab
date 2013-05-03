@@ -7,7 +7,6 @@
 
 // <-- CLI SHELL MODE -->
 
-mode(5)
 lines(0)
 ij=[1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6];
 v=[1;2;3;4;5;6;7;8;9];
@@ -26,7 +25,7 @@ bc=sparse([1 6;1 2;6 5],[-1;-1;-1]+%i*[0;0.3;-1.2],[6 6]);
 mac=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],-(1:9)-%i*(21:29),[6 6]);
 mbc=sparse([1 6;1 2;6 5],[1;1;1]+%i*[0;-0.3;1.2],[6 6]);
 //
-if %t then
+
 //-------------------------------------------------------------
 //test des primitives sparse, full
 //--------------------------------------------------------------
@@ -188,8 +187,6 @@ if or(full(2*eye()-ac)<>2*eye()-full(ac)) then pause,end
 if or(full(ac+full(bc))<>full(ac)+full(bc)) then pause,end
 if or(full(ac-full(bc))<>full(ac)-full(bc)) then pause,end
 if or(full(full(ac)+full(bc))<>full(ac)+full(bc)) then pause,end
-end
-if %t then
 //-----------------------------------------------
 // multiplication tests
 //-----------------------------------------------
@@ -351,7 +348,7 @@ if or(full(vc([1 1]))<>vcf([1 1])) then pause,end
 // ----------------------------------------------------------
 // test des insertions
 //-----------------------------------------------------------
-end
+
 a=sparse([1 6;1 5;1 3;2 4;2 1;4 4;4 3;5 1;6 6],1:9,[6 6]);
 vt=sparse([1 2;1 3;1 4;1 6],[10;11;12;13],[1,6]);
 // full line insertion

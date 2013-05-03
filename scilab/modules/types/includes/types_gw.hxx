@@ -39,7 +39,6 @@ CPP_GATEWAY_PROTOTYPE(sci_typeof);
 CPP_GATEWAY_PROTOTYPE(sci_tlist);
 CPP_GATEWAY_PROTOTYPE(sci_mlist);
 CPP_GATEWAY_PROTOTYPE(sci_isfield);
-CPP_GATEWAY_PROTOTYPE(sci_getfield);
 CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
 
 #ifndef NDEBUG

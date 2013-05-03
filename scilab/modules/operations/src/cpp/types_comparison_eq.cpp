@@ -751,10 +751,12 @@ int EqualToSparseAndSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType** _
             || _pSparse1->isScalar() || _pSparse2->isScalar()) //scalar cases
     {
         *_pOut = _pSparse1->newEqualTo(*_pSparse2);
-        return 0;
     }
-
-    return 1;
+    else
+    {
+        *_pOut = new Bool(false);
+    }
+    return 0;
 }
 
 int EqualToDoubleAndSparse(Double* _pDouble, Sparse* _pSparse, GenericType** _pOut)
