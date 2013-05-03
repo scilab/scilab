@@ -10,6 +10,8 @@
 // using a table
 // =============================================================================
 
+// Run with test_run('statistics','cdft',['no_check_error_output']);
+
 prec    = 1.e-5;
 
 Tab     = [0.9,0.5,0.3,0.20,0.10,0.05,0.02];
@@ -26,3 +28,17 @@ Df1   = cdft("Df",P,Q,Th);
 
 if norm(Th1-Th) > prec then pause,end
 if norm(Df1-Df) > prec then pause,end
+
+// IEEE support
+// See http://bugzilla.scilab.org/show_bug.cgi?id=7296
+Df       = 1;
+
+T        = %inf; // Inf
+[P,Q]    = cdfchi("PQ", T, Df);
+assert_checkequal(P, 1);
+assert_checkequal(Q, 0);
+
+T        = %nan; // NaN
+[P,Q]    = cdfchi("PQ", T, Df);
+assert_checkequal(P, %nan);
+assert_checkequal(Q, %nan);

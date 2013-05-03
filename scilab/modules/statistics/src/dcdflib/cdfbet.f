@@ -118,6 +118,7 @@ C     .. Local Scalars ..
       LOGICAL qhi,qleft,qporq
 C     ..
 C     .. External Functions ..
+      INTEGER vfinite
       DOUBLE PRECISION spmpar
       EXTERNAL spmpar
 C     ..
@@ -141,6 +142,13 @@ C
 C
 C     P
 C
+      IF (ISANAN(p).EQ.1) THEN
+         CALL RETURNANANFORTRAN(a)
+         CALL RETURNANANFORTRAN(b)
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(y)
+         RETURN
+      ENDIF
       IF (.NOT. ((p.LT.0.0D0).OR. (p.GT.1.0D0))) GO TO 60
       IF (.NOT. (p.LT.0.0D0)) GO TO 40
       bound = 0.0D0
@@ -155,6 +163,13 @@ C
 C
 C     Q
 C
+      IF (ISANAN(q).EQ.1) THEN
+         CALL RETURNANANFORTRAN(a)
+         CALL RETURNANANFORTRAN(b)
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(y)
+         RETURN
+      ENDIF
       IF (.NOT. ((q.LT.0.0D0).OR. (q.GT.1.0D0))) GO TO 100
       IF (.NOT. (q.LT.0.0D0)) GO TO 80
       bound = 0.0D0
@@ -169,6 +184,13 @@ C
 C
 C     X
 C
+      IF (ISANAN(x).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(a)
+         CALL RETURNANANFORTRAN(b)
+         RETURN
+      ENDIF
       IF (.NOT. ((x.LT.0.0D0).OR. (x.GT.1.0D0))) GO TO 140
       IF (.NOT. (x.LT.0.0D0)) GO TO 120
       bound = 0.0D0
@@ -183,6 +205,13 @@ C
 C
 C     Y
 C
+      IF (ISANAN(y).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(a)
+         CALL RETURNANANFORTRAN(b)
+         RETURN
+      ENDIF
       IF (.NOT. ((y.LT.0.0D0).OR. (y.GT.1.0D0))) GO TO 180
       IF (.NOT. (y.LT.0.0D0)) GO TO 160
       bound = 0.0D0
@@ -197,6 +226,15 @@ C
 C
 C     A
 C
+      IF (ISANAN(a).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(y)
+         CALL RETURNANANFORTRAN(b)
+         RETURN
+      ENDIF
+      IF (vfinite(1,a).EQ.0) a = SIGN(inf,a)
       IF (.NOT. (a.LE.0.0D0)) GO TO 200
       bound = 0.0D0
       status = -6
@@ -207,6 +245,15 @@ C
 C
 C     B
 C
+      IF (ISANAN(b).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(x)
+         CALL RETURNANANFORTRAN(y)
+         CALL RETURNANANFORTRAN(a)
+         RETURN
+      ENDIF
+      IF (vfinite(1,b).EQ.0) b = SIGN(inf,b)
       IF (.NOT. (b.LE.0.0D0)) GO TO 220
       bound = 0.0D0
       status = -7

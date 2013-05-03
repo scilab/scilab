@@ -96,6 +96,7 @@ C     .. Local Scalars ..
       LOGICAL qhi,qleft,qporq
 C     ..
 C     .. External Functions ..
+      INTEGER vfinite
       DOUBLE PRECISION spmpar,dt1
       EXTERNAL spmpar,dt1
 C     ..
@@ -119,6 +120,11 @@ C
 C
 C     P
 C
+      IF (ISANAN(p).EQ.1) THEN
+         CALL RETURNANANFORTRAN(t)
+         CALL RETURNANANFORTRAN(df)
+         RETURN
+      ENDIF
       IF (.NOT. ((p.LE.0.0D0).OR. (p.GT.1.0D0))) GO TO 60
       IF (.NOT. (p.LE.0.0D0)) GO TO 40
       bound = 0.0D0
@@ -133,6 +139,11 @@ C
 C
 C     Q
 C
+      IF (ISANAN(q).EQ.1) THEN
+         CALL RETURNANANFORTRAN(t)
+         CALL RETURNANANFORTRAN(df)
+         RETURN
+      ENDIF
       IF (.NOT. ((q.LE.0.0D0).OR. (q.GT.1.0D0))) GO TO 100
       IF (.NOT. (q.LE.0.0D0)) GO TO 80
       bound = 0.0D0
@@ -145,8 +156,39 @@ C
   100 CONTINUE
   110 IF (which.EQ.3) GO TO 130
 C
+C     T
+C
+      IF (ISANAN(t).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(df)
+         RETURN
+      ENDIF
+      IF (vfinite(1,t).EQ.0) then
+         IF (which.EQ.1) then
+            IF (t.GT.0) then
+               p = 1
+               q = 0
+               RETURN
+            ELSE
+               p = 0
+               q = 1
+               RETURN
+            ENDIF
+         ELSE
+            t = SIGN(1D300,t)
+         ENDIF
+      ENDIF
+C
 C     DF
 C
+      IF (ISANAN(df).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(t)
+         RETURN
+      ENDIF
+      IF (vfinite(1,df).EQ.0) df = SIGN(inf,df)
       IF (.NOT. (df.LE.0.0D0)) GO TO 120
       bound = 0.0D0
       status = -5
