@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>x,y</term>
                 <listitem>
-                    <para>real or complex matrix.</para>
+                    <para>real or complex matrix (full or sparse storage)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
