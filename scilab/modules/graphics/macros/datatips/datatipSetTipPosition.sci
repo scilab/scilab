@@ -16,7 +16,7 @@ function datatipSetTipPosition(ud,tip_handle,pt,k)
   [curve_handle,point_index]=tip_refs(:)
   formatfunction=ud.formatfunction
 
-  if ud.style==0 then
+  if ud.style==0 | size(curve_handle.data,1) == 1 then
     point_handle.data=pt
   else
     if k<size(curve_handle.data,1)
