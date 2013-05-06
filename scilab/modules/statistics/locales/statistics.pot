@@ -445,12 +445,6 @@ msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
 msgstr ""
 
 #
-# File: macros/cov.sci, line: 175
-#, c-format
-msgid "%s: Wrong value for inputDDDD argument #%d: %d or %d expected.\n"
-msgstr ""
-
-#
 # File: macros/cov.sci, line: 184
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
