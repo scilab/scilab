@@ -8,17 +8,15 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function bOK = IsAScalar(VarInput)
+function bOK = isscalar(VarInput)
 
-    warnobsolete("isscalar", "5.5.1");
-    rhs = argn(2);
-    if rhs <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"IsAScalar", 1));
-    end
+  rhs = argn(2);
+  if rhs <> 1 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"isscalar", 1));
+  end
 
-    bOK = %F;
-    if ( (length(VarInput)==1) & (type(VarInput)==1) ) then
-        bOK = %T;
-    end
+  bOK = %F;
+  if size(VarInput)==1 then
+    bOK = %T;
+  end
 endfunction
-

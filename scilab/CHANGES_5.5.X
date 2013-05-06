@@ -18,6 +18,10 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
  - getURL - Download an URL (HTTP, HTTPS, FTP...)
  - splitURL - Split a URL (HTTP, HTTPS, FTP...)
  - cov - Covariance matrix. Deprecates 'mvvacov'. See bug #11896 fixed.
+ - ismatrix - Check if a variable is a matrix. See bug #10456 fixed.
+ - isrow - Check if a variable is a row vector. See bug #10456 fixed.
+ - iscolumn - Check if a variable is a column vector. See bug #10456 fixed.
+ - issquare - Check if a variable is a square matrix. See bug #10456 fixed.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
@@ -53,6 +57,9 @@ Obsolete
 
 * nfreq() tagged as obsolete. Will be removed for Scilab 5.5.1.
   Use tabul() instead.
+
+* IsAScalar() tagged as obsolete. Will be removed for Scilab 5.5.1.
+  Use isscalar() instead.
 
 
 Xcos
