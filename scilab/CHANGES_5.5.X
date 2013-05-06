@@ -85,6 +85,8 @@ Bug fixes
 
 * Bug #4731 fixed - lqr() failed when time domain of input was a number.
 
+* Bug #5207 fixed - grand() can now return a hypermatrix.
+
 * Bug #5365 fixed - makecell help page was in the "compatibility functions" directory
                     instead of being in "data_structures".
 
