@@ -34,6 +34,10 @@ extern "C"
 #include "exit_status.hxx"
 #include "scilabWrite.hxx"
 
+#if defined(VMKIT_ENABLED)
+#include <vmkit.h>
+#endif
+
 #define INTERACTIVE     -1
 
 /*
@@ -189,6 +193,86 @@ static void TermPrintf(char *text)
     printf("%s", text);
 }
 
+#if defined(VMKIT_ENABLED)
+namespace VMKitScilab
+{
+void ScilabThread::setArgs(int argc, char** argv, int iFileIndex, int iLangIndex)
+{
+    this->argc = argc;
+    this->argv = argv;
+    this->iFileIndex = iFileIndex;
+    this->iLangIndex = iLangIndex;
+}
+void ScilabThread::setret(int ret)
+{
+    this->ret = ret;
+}
+int ScilabThread::getargc()
+{
+    return argc;
+}
+int ScilabThread::getiFileIndex()
+{
+    return iFileIndex;
+}
+int ScilabThread::getiLangIndex()
+{
+    return iLangIndex;
+}
+char **ScilabThread::getargv()
+{
+    return argv;
+}
+int ScilabThread::getret()
+{
+    return ret;
+}
+ScilabThread::ScilabThread (ScilabVM* vm) : vmkit::MutatorThread()
+{
+    MyVM = (vmkit::VirtualMachine*)vm;
+}
+ScilabVM* ScilabThread::vm()
+{
+    return (ScilabVM *)MyVM;
+}
+void ScilabThread::execute()
+{
+    setret(StartScilabEngine(getargc(), getargv(), getiFileIndex(), getiLangIndex()));
+}
+
+void ScilabVM::mainStart(ScilabThread* thread)
+{
+    ScilabVM* vm = thread->vm();
+    printf("\nVMKitThread: Create\n\n");
+
+    thread->execute();
+
+    vm->setret(thread->getret());
+
+    printf("\nVMKitThread: Exit\n\n");
+    vm->exit();
+}
+void ScilabVM::runApplication(int argc, char** argv, int iFileIndex, int iLangIndex)
+{
+    VMKitScilab::ScilabThread * mainThread = new VMKitScilab::ScilabThread(this);
+
+    mainThread->setArgs(argc, argv, iFileIndex, iLangIndex);
+
+    mainThread->start((void (*)(vmkit::Thread *))mainStart);
+}
+
+int ScilabVM::getret()
+{
+    return ret;
+}
+
+void ScilabVM::setret(int ret)
+{
+    this->ret = ret;
+}
+}
+#endif
+
 /*
 ** -*- MAIN -*-
 */
@@ -261,6 +345,22 @@ int main(int argc, char *argv[])
     setScilabMode(SCILAB_NWNI);
     setScilabInputMethod(&getCmdLine);
     setScilabOutputMethod(&TermPrintf);
+
+#if defined(VMKIT_ENABLED)
+    vmkit::CompiledFrames** frametables;
+    vmkit::BumpPtrAllocator Allocator;
+
+    VMKitScilab::ScilabVM* vm = new(Allocator, "VM") VMKitScilab::ScilabVM (Allocator, frametables);
+
+    vm->runApplication(argc, argv, iFileIndex, iLangIndex);
+
+    vm->waitForExit();
+
+    return vm->getret();
+
+#else
+    return StartScilabEngine(argc, argv, iFileIndex, iLangIndex);
+#endif // ifdef VMKIT_ENABLED
 #endif // defined(WITHOUT_GUI)
 
     StartScilabEngine(pSEI);

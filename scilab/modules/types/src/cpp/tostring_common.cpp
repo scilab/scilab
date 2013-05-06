@@ -228,7 +228,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
     }
 
-    if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
+    if ((_pDF->bPrintOne == true) || (SCI_IS_EQUAL(fabs(_dblVal), 1)) == false)
     {
         //do not print if _bPrintOne == false && _dblVal == 1
         if (ISNAN(_dblVal))
@@ -300,7 +300,7 @@ void addDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iP
     addSign(_postr, _dblVal, bPrintPlusSign, bPaddSign);
     configureStream(_postr, _iWidth, _iPrec, ' ');
 
-    if(bPrintOne == true || isEqual(_dblVal, 1) == false)
+    if(bPrintOne == true || SCI_IS_EQUAL(_dblVal, 1) == false)
     {
         NEWprintDoubleVar(_postr, _dblVal, _iWidth, _iPrec);
     }

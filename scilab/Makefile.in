@@ -123,10 +123,15 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @MPI_TRUE@am__append_10 = $(OPENMPI_CXXFLAGS)
 @MPI_TRUE@am__append_11 = $(top_srcdir)/modules/console/src/c/others/initMPI.c
 @MPI_TRUE@am__append_12 = $(OPENMPI_CXXFLAGS)
+@WITH_VMKIT_TRUE@am__append_13 = $(VMKIT_ALDFLAGS)
+@WITH_VMKIT_TRUE@am__append_14 = $(VMKIT_ALDFLAGS)
+@WITH_VMKIT_TRUE@am__append_15 = $(VMKIT_ACPPFLAGS)
+@WITH_VMKIT_TRUE@am__append_16 = $(VMKIT_ALDADD)
+@WITH_VMKIT_TRUE@am__append_17 = $(VMKIT_ALDADD)
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_13 = localization
-@COMPILATION_TESTS_TRUE@am__append_14 = check-java
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_18 = localization
+@COMPILATION_TESTS_TRUE@am__append_19 = check-java
 DIST_COMMON = $(top_srcdir)/Makefile.call_scilab.am \
 	$(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
@@ -176,7 +181,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
 	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
 	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/m4/vmkit.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
@@ -277,7 +283,7 @@ am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_8) \
 	$(top_builddir)/modules/libscilab.la $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) $(am__append_16)
 scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -290,7 +296,7 @@ am_scilab_cli_bin_OBJECTS = scilab_cli_bin-scilab.$(OBJEXT) \
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
 scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
 	$(top_builddir)/modules/libscilab-cli.la $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) $(am__append_17)
 scilab_cli_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) \
@@ -616,6 +622,8 @@ LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
+LLVM_BIN_DIR = @LLVM_BIN_DIR@
+LLVM_SRC_DIR = @LLVM_SRC_DIR@
 LN_S = @LN_S@
 LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
@@ -702,6 +710,8 @@ UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+VMKIT_BIN_DIR = @VMKIT_BIN_DIR@
+VMKIT_SRC_DIR = @VMKIT_SRC_DIR@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XCOS_ENABLE = @XCOS_ENABLE@
@@ -785,7 +795,7 @@ SUBDIRS = modules \
 ACLOCAL_AMFLAGS = -I m4/
 
 # Set AM_* SCI detected settings
-AM_CPPFLAGS = $(SCI_CPPFLAGS)
+AM_CPPFLAGS = $(SCI_CPPFLAGS) $(am__append_15)
 AM_CFLAGS = $(SCI_CFLAGS)
 AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS = $(SCI_FFLAGS)
@@ -794,9 +804,9 @@ changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X CHA
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 	bin/scinotes bin/xcos $(am__append_1)
 scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_2) \
-	$(am__append_4) $(am__append_6)
+	$(am__append_4) $(am__append_6) $(am__append_13)
 scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_3) \
-	$(am__append_5)
+	$(am__append_5) $(am__append_14)
 scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/parse/includes/ \
@@ -831,7 +841,7 @@ scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 # xerbla function
 scilab_bin_LDADD = $(COMMON_LIBS) $(am__append_8) \
 	$(top_builddir)/modules/libscilab.la $(BLAS_LIBS) \
-	$(LAPACK_LIBS) $(FLIBS)
+	$(LAPACK_LIBS) $(FLIBS) $(am__append_16)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES =  \
@@ -840,13 +850,20 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
 	$(am__append_12)
 
 # See the comment about scilab_bin_LDADD (relative to BLAS_LIBS & LAPACK_LIBS)
-scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
+scilab_cli_bin_LDADD = $(COMMON_LIBS) \
+	$(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) \
+	$(LAPACK_LIBS) $(FLIBS) $(am__append_17)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_13) $(am__append_14)
+TARGETS_ALL = macros $(am__append_18) $(am__append_19)
 
 # check is performed with scilab, so use the serial-tests on purpose
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_builddir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
+
+# VMKIT Stuff
+@WITH_VMKIT_TRUE@VMKIT_ACPPFLAGS = -I$(LLVM_SRC_DIR)/include -I$(VMKIT_SRC_DIR)/include -I$(VMKIT_SRC_DIR)/lib/vmkit/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual
+@WITH_VMKIT_TRUE@VMKIT_ALDFLAGS = -L$(LLVM_BIN_DIR)/lib -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport
+@WITH_VMKIT_TRUE@VMKIT_ALDADD = $(VMKIT_BIN_DIR)/lib/libFinalMMTk.a $(VMKIT_BIN_DIR)/lib/libJ3.a $(VMKIT_BIN_DIR)/lib/libClasspath.a $(VMKIT_BIN_DIR)/lib/libVmkit.a $(VMKIT_BIN_DIR)/lib/libVmkitCompiler.a $(VMKIT_BIN_DIR)/lib/libCommonThread.a
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \

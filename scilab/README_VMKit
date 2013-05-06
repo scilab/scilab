@@ -1,0 +1,14 @@
+It is necessary to compile both LLVM and VMKIT without the -fno-rtti compiler
+flag for integrating Scilab V6+ and VMKIT.
+
+1 - Configure LLVM following the standard instructions, but add REQUIRES_RTTI=1
+as make parameter like:
+$ cd LLVM-src/
+$ ./configure # See docs
+$ make REQUIRES_RTTI=1
+
+2 - Re-configure VMKIT, by running ./configure again with all its configuration
+parameters:
+$ cd VMKIT-src/
+$ ./configure # See docs
+$ make

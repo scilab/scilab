@@ -148,6 +148,11 @@ AC_ARG_ENABLE(build-giws,
 AC_ARG_ENABLE(build-parser,
     AC_HELP_STRING([--enable-build-parser],[Regenerate code for the parser (Lex & YACC)]))
 
+################################################
+########## VMKIT Stuff
+################################################
+AC_VMKIT()
+
 
 ################################################
 ########## compilator & misc programs detection

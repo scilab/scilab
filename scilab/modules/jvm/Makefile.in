@@ -134,7 +134,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
 	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
 	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
-	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/m4/vmkit.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -415,6 +416,8 @@ LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
+LLVM_BIN_DIR = @LLVM_BIN_DIR@
+LLVM_SRC_DIR = @LLVM_SRC_DIR@
 LN_S = @LN_S@
 LOGGING_LEVEL = @LOGGING_LEVEL@
 LOOKS = @LOOKS@
@@ -501,6 +504,8 @@ UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+VMKIT_BIN_DIR = @VMKIT_BIN_DIR@
+VMKIT_SRC_DIR = @VMKIT_SRC_DIR@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XCOS_ENABLE = @XCOS_ENABLE@
