@@ -14,63 +14,62 @@
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
-#include "api_scilab.h"
 #include "MALLOC.h"
 
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{NULL, ""}, //abs
-	{NULL, ""}, //real
-	{NULL, ""}, //imag
-	{NULL, ""}, //conj
-	{NULL, ""}, //round
-	{NULL, ""}, //int
-	{NULL, ""}, //size
-	{NULL, ""}, //sum
-	{NULL, ""}, //prod
-	{NULL, ""}, //diag
-	{NULL, ""}, //trui
-	{NULL, ""}, //tril
-	{NULL, ""}, //eye
-	{NULL, ""}, //rand
-	{NULL ,""}, //ones
-	{NULL ,""}, //max
-	{NULL ,""}, //min
-	{NULL ,""}, //kron
-	{NULL ,""}, //kron
-	{NULL ,""}, //kron
-	{NULL ,""}, //kron
-	{NULL ,""}, //sin
-	{NULL ,""}, //cos
-	{NULL ,""}, //atan
-	{NULL ,""}, //exp
-	{NULL ,""}, //sqrt
-	{NULL ,""}, //log
-	{sci_chinesehat,"^"},
-	{NULL, ""}, //sign
-	{NULL, ""}, //clean
-	{NULL, ""}, //floor
-	{NULL, ""}, //ceil
-	{NULL, ""}, //expm
-	{NULL, ""}, //cumsum
-	{NULL, ""}, //cumprod
-	{NULL, ""}, //testmatrix
-	{NULL, ""}, //isreal
-	{NULL, ""}, //frexp
-	{NULL, ""}, //zeros
-	{NULL, ""}, //tan
-	{NULL, ""}, //log1p
-	{NULL, ""}, //imult
-	{NULL, ""}, //asin
-	{NULL, ""}, //acos
-	{NULL, ""}, //number_properties
-	{NULL, ""}, //nearfloat
-	{NULL, ""}, //dsearch
-	{NULL, ""}, //isequal
-	{NULL, ""}, //spones
-	{NULL, ""}, //gsort
-	{NULL, ""}, //isequalbitwise
+    {NULL, ""}, //abs
+    {NULL, ""}, //real
+    {NULL, ""}, //imag
+    {NULL, ""}, //conj
+    {NULL, ""}, //round
+    {NULL, ""}, //int
+    {NULL, ""}, //size
+    {NULL, ""}, //sum
+    {NULL, ""}, //prod
+    {NULL, ""}, //diag
+    {NULL, ""}, //trui
+    {NULL, ""}, //tril
+    {NULL, ""}, //eye
+    {NULL, ""}, //rand
+    {NULL , ""}, //ones
+    {NULL , ""}, //max
+    {NULL , ""}, //min
+    {NULL , ""}, //kron
+    {NULL , ""}, //kron
+    {NULL , ""}, //kron
+    {NULL , ""}, //kron
+    {NULL , ""}, //sin
+    {NULL , ""}, //cos
+    {NULL , ""}, //atan
+    {NULL , ""}, //exp
+    {NULL , ""}, //sqrt
+    {NULL , ""}, //log
+    {sci_chinesehat, "^"},
+    {NULL, ""}, //sign
+    {NULL, ""}, //clean
+    {NULL, ""}, //floor
+    {NULL, ""}, //ceil
+    {NULL, ""}, //expm
+    {NULL, ""}, //cumsum
+    {NULL, ""}, //cumprod
+    {NULL, ""}, //testmatrix
+    {NULL, ""}, //isreal
+    {NULL, ""}, //frexp
+    {NULL, ""}, //zeros
+    {NULL, ""}, //tan
+    {NULL, ""}, //log1p
+    {NULL, ""}, //imult
+    {NULL, ""}, //asin
+    {NULL, ""}, //acos
+    {NULL, ""}, //number_properties
+    {NULL, ""}, //nearfloat
+    {NULL, ""}, //dsearch
+    {NULL, ""}, //isequal
+    {NULL, ""}, //spones
+    {NULL, ""}, //gsort
+    {NULL, ""}, //isequalbitwise
     {NULL, ""}, //rat
     {NULL, ""}, //base2dec
     {NULL, ""} //dec2base
@@ -78,6 +77,6 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

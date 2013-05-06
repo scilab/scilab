@@ -46,7 +46,7 @@ GenericType* buildSparse(Double CONST& indices, DenseType CONST& vals, Double CO
         }
 
         //can create an empty sparse matrix
-        return new Sparse(pDim->get(0), pDim->get(1));
+        return new Sparse((int)pDim->get(0), (int)pDim->get(1));
     }
 
     if (indices.getRows() != vals.getSize() || (indices.getCols() != 2 && indices.getCols() != 0))

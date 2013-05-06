@@ -349,6 +349,9 @@
     <ClInclude Include="..\..\includes\sci_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\gsort.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_f_Import.def">

@@ -290,7 +290,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
     sci_gateway/c/sci_nearfloat.c \
-    sci_gateway/c/sci_real.c \
     sci_gateway/c/sci_round.c \
     sci_gateway/c/sci_isequalbitwise.c \
     sci_gateway/c/sci_base2dec.c \
@@ -318,7 +317,6 @@ GATEWAY_FORTRAN_SOURCES =  \
     sci_gateway/fortran/sci_f_number_properties.f \
     sci_gateway/fortran/sci_f_spones.f \
     sci_gateway/fortran/sci_f_nearfloat.f \
-    sci_gateway/fortran/sci_f_real.f \
     sci_gateway/fortran/sci_f_round.f \
     sci_gateway/fortran/sci_f_conj.f
 
@@ -363,7 +361,8 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_min.cpp \
     sci_gateway/cpp/sci_rat.cpp \
     sci_gateway/cpp/sci_triu.cpp \
-    sci_gateway/cpp/sci_tril.cpp
+    sci_gateway/cpp/sci_tril.cpp \
+    sci_gateway/cpp/sci_real.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

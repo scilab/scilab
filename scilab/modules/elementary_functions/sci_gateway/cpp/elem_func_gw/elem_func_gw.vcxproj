@@ -209,7 +209,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\..\c\sci_isequalbitwise.c" />
     <ClCompile Include="..\..\c\sci_nearfloat.c" />
     <ClCompile Include="..\..\c\sci_number_properties.c" />
-    <ClCompile Include="..\..\c\sci_real.c" />
     <ClCompile Include="..\..\c\sci_round.c" />
     <ClCompile Include="..\..\c\sci_sign.c" />
     <ClCompile Include="..\..\c\sci_sqrt.c" />
@@ -257,6 +256,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_tril.cpp" />
     <ClCompile Include="..\sci_triu.cpp" />
     <ClCompile Include="..\sci_zeros.cpp" />
+    <ClCompile Include="..\sci_real.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_elementary_functions_gw.h" />

@@ -1344,9 +1344,9 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
 
     //get some information
     int iNonZeros = static_cast<int>(_pSparse->nonZeros());
-    double* pRows = new double[iNonZeros * 2];
+    int* pRows = new int[iNonZeros * 2];
     _pSparse->outputRowCol(pRows);
-    double* pCols = pRows + iNonZeros;
+    int* pCols = pRows + iNonZeros;
     double* pValR = new double[iNonZeros];
     double* pValI = new double[iNonZeros];
     _pSparse->outputValues(pValR, pValI);
@@ -1482,9 +1482,9 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
 
     //get some information
     int iNonZeros = static_cast<int>(_pSparse->nonZeros());
-    double* pRows = new double[iNonZeros * 2];
+    int* pRows = new int[iNonZeros * 2];
     _pSparse->outputRowCol(pRows);
-    double* pCols = pRows + iNonZeros;
+    int* pCols = pRows + iNonZeros;
     double* pValR = new double[iNonZeros];
     double* pValI = new double[iNonZeros];
     _pSparse->outputValues(pValR, pValI);
@@ -1609,9 +1609,9 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
     Sparse* pOut = new Sparse(_pDouble->getRows(), _pDouble->getCols(), _pSparse->isComplex() || _pDouble->isComplex());
     //get some information
     int iNonZeros = static_cast<int>(_pSparse->nonZeros());
-    double* pRows = new double[iNonZeros * 2];
+    int* pRows = new int[iNonZeros * 2];
     _pSparse->outputRowCol(pRows);
-    double* pCols = pRows + iNonZeros;
+    int* pCols = pRows + iNonZeros;
 
     if (_pDouble->isComplex() == false && _pSparse->isComplex() == false)
     {

@@ -74,16 +74,16 @@ struct TYPES_IMPEXP Sparse : GenericType
     void finalize();
 
     /*data management member function defined for compatibility with the Double API*/
-    bool set(int _iRows, int _iCols, double _dblReal);
-    bool set(int _iIndex, double _dblReal)
+    bool set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
+    bool set(int _iIndex, double _dblReal, bool _bFinalize = true)
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal);
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal, _bFinalize);
     }
 
-    bool set(int _iRows, int _iCols, std::complex<double> v);
-    bool set(int _iIndex, std::complex<double> v)
+    bool set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
+    bool set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, v);
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, v, _bFinalize);
     }
     /*
       set non zero values to 1.
@@ -92,9 +92,9 @@ struct TYPES_IMPEXP Sparse : GenericType
     /* get real value at coords (r,c)
     **/
     double getReal(int r, int c) const;
-    double getReal(int index) const
+    double getReal(int _iIndex) const
     {
-        return getReal(index);
+        return getReal(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
     double get(int r, int c) const;
@@ -304,6 +304,7 @@ struct TYPES_IMPEXP Sparse : GenericType
      */
     Sparse* newOnes() const;
 
+    Sparse* newReal() const;
     /** @return the nb of non zero values.
      */
     std::size_t nonZeros() const;
@@ -419,7 +420,7 @@ struct TYPES_IMPEXP Sparse : GenericType
        @param out : ptr used as an output iterator over double values
        @return past-the-end output iterators after ouput is done
      */
-    double* outputRowCol(double* out)const;
+    int* outputRowCol(int* out)const;
 
     /**
        @param dest Double to be filled with values from the current sparse matrix.
@@ -552,7 +553,7 @@ struct TYPES_IMPEXP SparseBool : GenericType
        @return past-the-end output iterator after ouput is done
      */
 
-    double* outputRowCol(double* out)const;
+    int* outputRowCol(int* out)const;
 
     bool operator==(const InternalType& it) CONST;
     bool operator!=(const InternalType& it) CONST;
@@ -577,10 +578,10 @@ struct TYPES_IMPEXP SparseBool : GenericType
         return get(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
-    bool set(int r, int c, bool b) CONST;
-    bool set(int _iIndex, bool b) CONST
+    bool set(int r, int c, bool b, bool _bFinalize = true) CONST;
+    bool set(int _iIndex, bool b, bool _bFinalize = true) CONST
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, b);
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, b, _bFinalize);
     }
 
     void fill(Bool& dest, int r = 0, int c = 0) CONST;

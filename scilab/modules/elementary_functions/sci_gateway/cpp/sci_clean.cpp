@@ -43,8 +43,8 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     int iSize       = 0;
 
     //Only for types::Sparse case
-    double* pRows = NULL;
-    double* pCols = NULL;
+    int* pRows = NULL;
+    int* pCols = NULL;
 
     if (in.size() < 1 || in.size() > 3)
     {
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols());
 
         iSize = static_cast<int>(pSparseIn->nonZeros());
-        pRows = new double[iSize * 2];
+        pRows = new int[iSize * 2];
         pSparseIn->outputRowCol(pRows);
         pCols = pRows + iSize;
 
@@ -201,16 +201,18 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
             for (int i = 0 ; i < iSize ; i++)
             {
                 std::complex<double> cplx = complex<double>(pdReal[i], pdImg[i]);
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx, false);
             }
         }
         else
         {
             for (int i = 0 ; i < iSize ; i++)
             {
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, pdReal[i]);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, pdReal[i], false);
             }
         }
+
+        pSparseOut->finalize();
 
         delete[] pdReal;
         delete[] pdImg;

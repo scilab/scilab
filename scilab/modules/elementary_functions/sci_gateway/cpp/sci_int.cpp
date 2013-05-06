@@ -79,9 +79,9 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
         types::Sparse* pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols(), pSparseIn->isComplex());
 
         int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
-        double* pRows = new double[nonZeros * 2];
+        int* pRows = new int[nonZeros * 2];
         pSparseIn->outputRowCol(pRows);
-        double* pCols = pRows + nonZeros;
+        int* pCols = pRows + nonZeros;
 
         double* pNonZeroR = new double[nonZeros];
         double* pNonZeroI = new double[nonZeros];
@@ -102,7 +102,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                 }
 
                 std::complex<double> cplx(pNonZeroR[i], pNonZeroI[i]);
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx, false);
             }
         }
         else
@@ -114,9 +114,11 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                     pNonZeroR[i] = (double)(long long int)pNonZeroR[i];
                 }
 
-                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, pNonZeroR[i]);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, pNonZeroR[i], false);
             }
         }
+
+        pSparseOut->finalize();
 
         delete[] pRows;
         delete[] pNonZeroR;

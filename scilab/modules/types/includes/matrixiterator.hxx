@@ -1,14 +1,14 @@
- /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Bernard HUGUENEY
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+/*
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2008-2008 - DIGITEO - Bernard HUGUENEY
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 #ifndef MATRIXITERATORS_HXX
 #define MATRIXITERATORS_HXX
 
@@ -34,7 +34,7 @@
   an iterator created from such a variable (IteratorFromVar).
  */
 template<typename T>
-    struct UndefinedAccessorForType {};
+struct UndefinedAccessorForType {};
 
 /**
    This free function overloads perform read access into a 2D container, using 0-based indices.
@@ -44,26 +44,68 @@ template<typename T>
    @return : the value of type V at row r and column c of structure s
 */
 
-template<typename V, typename S> V get(S CONST&, int, int){ return UndefinedAccessorForType<S>(); }
+template<typename V, typename S> V get(S CONST&, int, int)
+{
+    return UndefinedAccessorForType<S>();
+}
 
-template<> double get(types::Double CONST& d, int r, int c){ return d.getReal(r, c); }
-template<> std::complex<double> get(types::Double CONST& d, int r, int c){ return std::complex<double>(d.getReal(r, c), d.getImg(r,c)); }
+template<> double get(types::Double CONST& d, int r, int c)
+{
+    return d.getReal(r, c);
+}
+template<> std::complex<double> get(types::Double CONST& d, int r, int c)
+{
+    return std::complex<double>(d.getReal(r, c), d.getImg(r, c));
+}
 
-template<> bool get(types::Bool CONST& d, int r, int c){ return d.get(r, c) == 1; }
-template<> int get(types::Bool CONST& d, int r, int c){ return d.get(r, c); }
-template<> bool get(types::SparseBool CONST& d, int r, int c){ return d.get(r, c); }
-template<> int get(types::SparseBool CONST& d, int r, int c){ return d.get(r, c); }
+template<> bool get(types::Bool CONST& d, int r, int c)
+{
+    return d.get(r, c) == 1;
+}
+template<> int get(types::Bool CONST& d, int r, int c)
+{
+    return d.get(r, c);
+}
+template<> bool get(types::SparseBool CONST& d, int r, int c)
+{
+    return d.get(r, c);
+}
+template<> int get(types::SparseBool CONST& d, int r, int c)
+{
+    return d.get(r, c);
+}
 
-template<> double get(types::Sparse CONST& s, int r, int c){ return s.getReal(r, c); }
-template<> std::complex<double> get(types::Sparse CONST& s, int r, int c){ return s.get(r, c); }
+template<> double get(types::Sparse CONST& s, int r, int c)
+{
+    return s.getReal(r, c);
+}
+template<> std::complex<double> get(types::Sparse CONST& s, int r, int c)
+{
+    return s.get(r, c);
+}
 
-template<> double get(Eigen::SparseMatrix<double, 0, int> CONST&s, int r, int c){ return s.coeff(r, c);}
-template<> std::complex<double> get(Eigen::SparseMatrix<double, 0, int> CONST&s, int r, int c){ return std::complex<double>(s.coeff(r, c), 0.);}
+template<> double get(Eigen::SparseMatrix<double, 0, int> CONST&s, int r, int c)
+{
+    return s.coeff(r, c);
+}
+template<> std::complex<double> get(Eigen::SparseMatrix<double, 0, int> CONST&s, int r, int c)
+{
+    return std::complex<double>(s.coeff(r, c), 0.);
+}
 
-template<> bool get(Eigen::SparseMatrix<bool> CONST& d, int r, int c){ return d.coeff(r, c); }
+template<> bool get(Eigen::SparseMatrix<bool> CONST& d, int r, int c)
+{
+    return d.coeff(r, c);
+}
 
-template<> double get(Eigen::SparseMatrix<std::complex<double>, 0, int> CONST&s, int r, int c){ return s.coeff(r, c).real();}
-template<> std::complex<double> get(Eigen::SparseMatrix<std::complex<double>, 0, int> CONST&s, int r, int c){ return s.coeff(r, c);}
+template<> double get(Eigen::SparseMatrix<std::complex<double>, 0, int> CONST&s, int r, int c)
+{
+    return s.coeff(r, c).real();
+}
+template<> std::complex<double> get(Eigen::SparseMatrix<std::complex<double>, 0, int> CONST&s, int r, int c)
+{
+    return s.coeff(r, c);
+}
 
 
 /**
@@ -76,66 +118,93 @@ template<> std::complex<double> get(Eigen::SparseMatrix<std::complex<double>, 0,
 */
 
 
-template<typename S, typename V> bool set(S &, int, int, V){ return UndefinedAccessorForType<S>(); }
+template<typename S, typename V> bool set(S &, int, int, V)
+{
+    return UndefinedAccessorForType<S>();
+}
 
-template<> bool set(types::Double & d, int r, int c, double v){ return d.set(r, c, v); }
-template<> bool set(types::Double & d, int r, int c, std::complex<double> v){return d.set(r, c, v.real()) && d.setImg(r, c, v.imag());}
+template<> bool set(types::Double & d, int r, int c, double v)
+{
+    return d.set(r, c, v);
+}
+template<> bool set(types::Double & d, int r, int c, std::complex<double> v)
+{
+    return d.set(r, c, v.real()) && d.setImg(r, c, v.imag());
+}
 
-template<> bool set(types::Sparse & s, int r, int c, double v){ return s.set(r, c, v); }
-template<> bool set(types::Sparse & s, int r, int c, std::complex<double> v){ return s.set(r, c, v); }
-template<> bool set(types::Bool & d, int r, int c, bool v){ return d.set(r, c, v); }
-template<> bool set(types::SparseBool & d, int r, int c, bool v){ return d.set(r, c, v); }
-template<> bool set(types::Bool & d, int r, int c, int v){ return d.set(r, c, v); }
-template<> bool set(types::SparseBool & d, int r, int c, int v){ return d.set(r, c, v != 0); }
+template<> bool set(types::Sparse & s, int r, int c, double v)
+{
+    return s.set(r, c, v);
+}
+template<> bool set(types::Sparse & s, int r, int c, std::complex<double> v)
+{
+    return s.set(r, c, v);
+}
+template<> bool set(types::Bool & d, int r, int c, bool v)
+{
+    return d.set(r, c, v);
+}
+template<> bool set(types::SparseBool & d, int r, int c, bool v)
+{
+    return d.set(r, c, v);
+}
+template<> bool set(types::Bool & d, int r, int c, int v)
+{
+    return d.set(r, c, v);
+}
+template<> bool set(types::SparseBool & d, int r, int c, int v)
+{
+    return d.set(r, c, v != 0);
+}
 
 /*
  * TODO report possible bug in Eigen when inserting 0. invalidates Eigen::InnerIterator
  */
 template<> bool set(Eigen::SparseMatrix<double, 0, int>& s, int r, int c, double v)
 {
-    if(v != 0.)
+    if (v != 0.)
     {
-        s.insert(r,c)=v;
+        s.insert(r, c) = v;
     }
     return true;
 }
 
 template<> bool set(Eigen::SparseMatrix<double, 0, int>& s, int r, int c, std::complex<double> v)
 {
-    if( v.real() != 0.)
+    if ( v.real() != 0.)
     {
-        s.insert(r,c)=v.real();
+        s.insert(r, c) = v.real();
     }
     return  true;
 }
 // should we make this a compile error ?
 template<> bool set(Eigen::SparseMatrix<std::complex<double>, 0, int>& s, int r, int c, double v)
 {
-    if(v != 0.)
+    if (v != 0.)
     {
-        s.insert(r,c)=std::complex<double>(v);
+        s.insert(r, c) = std::complex<double>(v);
     }
     return true;
 }
 
 namespace
 {
-    std::complex<double> const cplxZero(0., 0.);
+std::complex<double> const cplxZero(0., 0.);
 }
 template<> bool set(Eigen::SparseMatrix<std::complex<double>, 0, int>& s, int r, int c, std::complex<double> v)
 {
-    if(v != cplxZero)
+    if (v != cplxZero)
     {
-        s.insert(r,c)=v;
+        s.insert(r, c) = v;
     }
     return true;
 }
 
 template<> bool set(Eigen::SparseMatrix<bool>& s, int r, int c, bool v)
 {
-    if(v)
+    if (v)
     {
-        s.insert(r,c)=v;
+        s.insert(r, c) = v;
     }
     return true;
 }
@@ -143,17 +212,47 @@ template<> bool set(Eigen::SparseMatrix<bool>& s, int r, int c, bool v)
 
 
 
-template<typename S> int rows(S CONST&s) { return s.rows();}
-template<typename S> int cols(S CONST&s) { return s.cols();}
+template<typename S> int rows(S CONST&s)
+{
+    return s.rows();
+}
+template<typename S> int cols(S CONST&s)
+{
+    return s.cols();
+}
 
-template<> int rows(types::Double CONST&d) { return d.getRows();}
-template<> int cols(types::Double CONST&d) { return d.getCols();}
-template<> int rows(types::Sparse CONST&s) { return s.getRows();}
-template<> int cols(types::Sparse CONST&s) { return s.getCols();}
-template<> int rows(types::Bool CONST&s) { return s.getRows();}
-template<> int cols(types::Bool CONST&s) { return s.getCols();}
-template<> int rows(types::SparseBool CONST&s) { return s.getRows();}
-template<> int cols(types::SparseBool CONST&s) { return s.getCols();}
+template<> int rows(types::Double CONST&d)
+{
+    return d.getRows();
+}
+template<> int cols(types::Double CONST&d)
+{
+    return d.getCols();
+}
+template<> int rows(types::Sparse CONST&s)
+{
+    return s.getRows();
+}
+template<> int cols(types::Sparse CONST&s)
+{
+    return s.getCols();
+}
+template<> int rows(types::Bool CONST&s)
+{
+    return s.getRows();
+}
+template<> int cols(types::Bool CONST&s)
+{
+    return s.getCols();
+}
+template<> int rows(types::SparseBool CONST&s)
+{
+    return s.getRows();
+}
+template<> int cols(types::SparseBool CONST&s)
+{
+    return s.getCols();
+}
 
 
 
@@ -177,46 +276,47 @@ template<> inline int cols(types::Double CONST&d);
 
 /* this proxy struct provides read and write access (using set and get)
    with the usual operators (operator*() and operator=() )*/
-template<typename S, typename V> struct Accessor{
-/**
-   @param s_ : 2D structure to access
-   @param r_ : row to access
-   @param c_ ; column to access
-*/
+template<typename S, typename V> struct Accessor
+{
+    /**
+       @param s_ : 2D structure to access
+       @param r_ : row to access
+       @param c_ ; column to access
+    */
     Accessor(S& s_, int r_, int c_): s(s_), r(r_), c(c_) {}
-/**
-   read accessor as a casting operator
-   @return : value of s at (r,c)
- */
+    /**
+       read accessor as a casting operator
+       @return : value of s at (r,c)
+     */
     operator V() CONST
     {
-//        std::cerr<<"reading "<<get<S,V>(s, r, c)<<" @("<<r<<","<<c<<")\n";
+        //        std::cerr<<"reading "<<get<S,V>(s, r, c)<<" @("<<r<<","<<c<<")\n";
         return ::get<V>(s, r, c);
     }
-/**
-   write accessor as an assignment operator
-   @param v : value to set at (r,c) in s.
-*/
+    /**
+       write accessor as an assignment operator
+       @param v : value to set at (r,c) in s.
+    */
     template<typename Sa, typename Va>
     Accessor& operator=(Accessor<Sa, Va> const& a)
     {
-//        std::cerr<<"writing "<<( Va(const_cast<Accessor<Sa, Va>&>(a)))<<" @("<<r<<","<<c<<")\n";
-//        Va tmp=const_cast<Accessor<Sa, Va>&>(a);
-//        ::set<S,V>(s, r, c, tmp);
-        ::set<S,V>(s, r, c, Va(const_cast<Accessor<Sa, Va>&>(a)));
+        //        std::cerr<<"writing "<<( Va(const_cast<Accessor<Sa, Va>&>(a)))<<" @("<<r<<","<<c<<")\n";
+        //        Va tmp=const_cast<Accessor<Sa, Va>&>(a);
+        //        ::set<S,V>(s, r, c, tmp);
+        ::set<S, V>(s, r, c, Va(const_cast<Accessor<Sa, Va>&>(a)));
         return *this;
     }
 
     Accessor& operator=(Accessor const& a)
     {
-//        std::cerr<<"writing "<<( V(const_cast<Accessor&>(a)))<<" @("<<r<<","<<c<<")\n";
-        ::set<S,V>(s, r, c, V(const_cast<Accessor&>(a)));
+        //        std::cerr<<"writing "<<( V(const_cast<Accessor&>(a)))<<" @("<<r<<","<<c<<")\n";
+        ::set<S, V>(s, r, c, V(const_cast<Accessor&>(a)));
         return *this;
     }
     Accessor& operator=(V const& v)
     {
-//        std::cerr<<"writing "<<v<<" @("<<r<<","<<c<<")\n";
-        ::set<S,V>(s, r, c, v);
+        //        std::cerr<<"writing "<<v<<" @("<<r<<","<<c<<")\n";
+        ::set<S, V>(s, r, c, v);
         return *this;
     }
 private:
@@ -234,43 +334,44 @@ typedef std::iterator<std::forward_iterator_tag, Coords2D > Coords2DIterator;
  */
 struct RowWiseFullIterator : Coords2DIterator
 {
-/**
-   @param cMax : size of the 2D structure
- */
-    RowWiseFullIterator(Coords2D cMax): c(0,0), cMax(cMax)
+    /**
+       @param cMax : size of the 2D structure
+     */
+    RowWiseFullIterator(Coords2D cMax): c(0, 0), cMax(cMax)
     {
     }
-/**
-   @param cMax : size of the 2D structure
-   @param cInit : starting coords of the traversal.
- */
+    /**
+       @param cMax : size of the 2D structure
+       @param cInit : starting coords of the traversal.
+     */
     RowWiseFullIterator(Coords2D cMax, Coords2D cInit): c(cInit), cMax(cMax)
     {
     }
-/**
-   @param rm : nb of rows of the 2D structure
-   @param cm : nb of column of the 2D structure
- */
-    RowWiseFullIterator(int rm, int cm): c(0,0), cMax(rm, cm)
+    /**
+       @param rm : nb of rows of the 2D structure
+       @param cm : nb of column of the 2D structure
+     */
+    RowWiseFullIterator(int rm, int cm): c(0, 0), cMax(rm, cm)
     {
     }
-/**
-   @param rm : nb of rows of the 2D structure
-   @param cm : nb of column of the 2D structure
-   @param rInit : starting row of the traversal
-   @param cInit : starting column of the traversal
- */
+    /**
+       @param rm : nb of rows of the 2D structure
+       @param cm : nb of column of the 2D structure
+       @param rInit : starting row of the traversal
+       @param cInit : starting column of the traversal
+     */
     RowWiseFullIterator(int rm, int cm, int rInit, int cInit): c(rInit, cInit), cMax(rm, cm)
     {
     }
     RowWiseFullIterator& operator++()
     {
-        if(++c.first == cMax.first)
+        if (++c.first == cMax.first)
         {
-            c.first= 0;
-            if(++c.second == cMax.second)
-            {/* wrap around */
-                c.first= c.second= 0;
+            c.first = 0;
+            if (++c.second == cMax.second)
+            {
+                /* wrap around */
+                c.first = c.second = 0;
             }
         }
         return *this;
@@ -293,23 +394,23 @@ private:
 /**
    Iterator over coords making a row-wise traversal of non zero elements of an Eigen Sparse Matrix
  */
-    template<typename Sp>
+template<typename Sp>
 struct RowWiseSparseIterator : Coords2DIterator
 {
-/**
-   @param sp: sparse matrix for non zero elements traversal
- */
+    /**
+       @param sp: sparse matrix for non zero elements traversal
+     */
     RowWiseSparseIterator(Sp const& sp): sp(sp), outerIdx(0), innerIt(sp, 0)
     {
     }
     RowWiseSparseIterator& operator++()
     {
         ++innerIt;
-        if(!innerIt)
+        if (!innerIt)
         {
-            if(++outerIdx >= sp.outerSize())
+            if (++outerIdx >= sp.outerSize())
             {
-                outerIdx= 0;
+                outerIdx = 0;
             }
             new (&innerIt) typename Sp::InnerIterator(sp, outerIdx);// innerIt= typename Sp::InnerIterator(sp, outerIdx) when Eigen will be fixed
         }
@@ -323,7 +424,7 @@ struct RowWiseSparseIterator : Coords2DIterator
     }
     std::pair<int, int> operator*() const
     {
-//        std::cerr<<"sparse it r="<<innerIt.row()<<" c="<<innerIt.col()<<std::endl;
+        //        std::cerr<<"sparse it r="<<innerIt.row()<<" c="<<innerIt.col()<<std::endl;
         return std::pair<int, int>(innerIt.row(), innerIt.col());
     }
 private:
@@ -335,13 +436,13 @@ private:
 /**
    translate an iterator
  */
-    template<typename C2DIter>
+template<typename C2DIter>
 struct TranslatedIterator : Coords2DIterator
 {
-/**
-   @param C2DIter: translation as a vector of (rows, cols)
-   @param tr: translation as a vector of (rows, cols)
- */
+    /**
+       @param C2DIter: translation as a vector of (rows, cols)
+       @param tr: translation as a vector of (rows, cols)
+     */
     TranslatedIterator(C2DIter const& c2dIter, Coords2D tr): it(c2dIter), tr(tr)
     {
     }
@@ -361,7 +462,7 @@ struct TranslatedIterator : Coords2DIterator
         std::pair<int, int>res(*it);
         res.first += tr.first;
         res.second += tr.second;
-//        std::cerr<<"translated it r="<< res.first<<" c="<<res.second<<std::endl;
+        //        std::cerr<<"translated it r="<< res.first<<" c="<<res.second<<std::endl;
 
         return res;
     }
@@ -375,15 +476,15 @@ private:
  * Could handle wrap around with a length arg (i.e. to recycle values instead of raising
  * "error 15 Submatrix incorrectly defined."
  */
-template<bool AsVector=false> struct Coords : Coords2DIterator
+template<bool AsVector = false> struct Coords : Coords2DIterator
 {
-    Coords(int CONST* coords, int unused=0):coords(coords)
+    Coords(int CONST* coords, int unused = 0): coords(coords)
     {
     }
 
     Coords& operator++()
     {
-        coords+= 2;
+        coords += 2;
         return *this;
     }
 
@@ -396,7 +497,7 @@ template<bool AsVector=false> struct Coords : Coords2DIterator
 
     Coords2D operator*()const
     {
-        return Coords2D(coords[0]-1, coords[1]-1);
+        return Coords2D(coords[0] - 1, coords[1] - 1);
     }
 
 private:
@@ -408,7 +509,7 @@ private:
  */
 template<> struct Coords<true> : Coords2DIterator
 {
-    Coords(int CONST* coords, int rMax):coords(coords), rMax(rMax)
+    Coords(int CONST* coords, int rMax): coords(coords), rMax(rMax)
     {
     }
 
@@ -427,7 +528,7 @@ template<> struct Coords<true> : Coords2DIterator
 
     Coords2D operator*()const
     {
-        return Coords2D((coords[0]-1) % rMax, (coords[0]-1) / rMax);
+        return Coords2D((coords[0] - 1) % rMax, (coords[0] - 1) / rMax);
     }
 
 private:
@@ -457,16 +558,19 @@ struct MatrixIterator : std::iterator<std::forward_iterator_tag, V>
         ++i;
         return tmp;
     }
-    Accessor<S,V> operator*()
+    Accessor<S, V> operator*()
     {
-        return Accessor<S,V>(s, (*i).first, (*i).second);
+        return Accessor<S, V>(s, (*i).first, (*i).second);
     }
 private:
     S& s;
     Iter i;
 };
 template<typename V, typename S, typename Iter>
-MatrixIterator<S,V, Iter> makeMatrixIterator(S& s, Iter i){ return MatrixIterator<S,V,Iter>(s, i);}
+MatrixIterator<S, V, Iter> makeMatrixIterator(S& s, Iter i)
+{
+    return MatrixIterator<S, V, Iter>(s, i);
+}
 
 template<typename S> struct IteratorFromVar;
 
@@ -474,32 +578,33 @@ template<typename S> IteratorFromVar<S> makeIteratorFromVar(S& s);
 
 struct Adjacency
 {
-    Adjacency(double const* x, double const*a): xadj(x), adjncy(a){}
+    Adjacency(double const* x, double const*a): xadj(x), adjncy(a) {}
     double const* xadj;
     double const* adjncy;
 };
 
 template<typename In, typename Sz, typename Out>
-Out mycopy_n(In i, Sz n, Out o){
-    for(; n; --n, ++i, ++o)
+Out mycopy_n(In i, Sz n, Out o)
+{
+    for (; n; --n, ++i, ++o)
     {
-        *o= *i;
+        *o = *i;
     }
     return o;
 }
 
-    template<typename T> std::size_t nonZeros(T CONST& t)
-    {
-        return t.getSize();
-    }
-    template<> std::size_t nonZeros(types::Sparse CONST& sp)
-    {
-        return sp.nonZeros();
-    }
-    template<typename Scalar, int Options, typename Index> std::size_t nonZeros(Eigen::SparseMatrix<Scalar, Options, Index> CONST& sp)
-    {
-        return sp.nonZeros();
-    }
+template<typename T> std::size_t nonZeros(T CONST& t)
+{
+    return t.getSize();
+}
+template<> std::size_t nonZeros(types::Sparse CONST& sp)
+{
+    return sp.nonZeros();
+}
+template<typename Scalar, int Options, typename Index> std::size_t nonZeros(Eigen::SparseMatrix<Scalar, Options, Index> CONST& sp)
+{
+    return sp.nonZeros();
+}
 
 
 /* Default for dense matrix Scilab matrix types
@@ -523,8 +628,9 @@ template<typename S> struct IteratorFromVar { };
 
 template<> struct IteratorFromVar<types::Double> : Coords2DIterator
 {
-    IteratorFromVar(types::Double& d_):d(d_),r(0)
-    { // check dimension ?
+    IteratorFromVar(types::Double& d_): d(d_), r(0)
+    {
+        // check dimension ?
     }
 
     IteratorFromVar& operator++()
@@ -540,7 +646,7 @@ template<> struct IteratorFromVar<types::Double> : Coords2DIterator
     }
     Coords2D operator*()
     {
-        return std::pair<int,int>(static_cast<int>(d.getReal(r,0)-1), d.getReal(r,1)-1);
+        return std::pair<int, int>(static_cast<int>(d.getReal(r, 0) - 1), static_cast<int>(d.getReal(r, 1) - 1));
     }
 private:
     types::Double& d;
@@ -552,7 +658,7 @@ private:
  */
 template<> struct IteratorFromVar<Adjacency> : Coords2DIterator
 {
-    IteratorFromVar(Adjacency& a):xadj(a.xadj), adjncy(a.adjncy),c(1), nb(1)
+    IteratorFromVar(Adjacency& a): xadj(a.xadj), adjncy(a.adjncy), c(1), nb(1)
     {
         update();
     }
@@ -574,12 +680,12 @@ template<> struct IteratorFromVar<Adjacency> : Coords2DIterator
     }
     std::pair<int, int> operator*()
     {
-        return std::pair<int,int>(static_cast<int>(*adjncy)-1, c-1);
+        return std::pair<int, int>(static_cast<int>(*adjncy) - 1, c - 1);
     }
 private:
     void update()
     {
-        for(; xadj[1] <= nb; ++c, ++xadj)
+        for (; xadj[1] <= nb; ++c, ++xadj)
         {
         }
     }
@@ -589,6 +695,9 @@ private:
     std::size_t nb;
 };
 
-template<typename S> IteratorFromVar<S> makeIteratorFromVar(S& s) { return IteratorFromVar<S>(s); }
+template<typename S> IteratorFromVar<S> makeIteratorFromVar(S& s)
+{
+    return IteratorFromVar<S>(s);
+}
 
 #endif

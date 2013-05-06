@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -279,6 +279,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\exp.h" />
     <ClInclude Include="..\..\includes\finite.h" />
     <ClInclude Include="..\..\includes\getmode.hxx" />
+    <ClInclude Include="..\..\includes\gsort.hxx" />
     <ClInclude Include="..\..\includes\gw_elementary_functions.h" />
     <ClInclude Include="..\..\includes\idmax.h" />
     <ClInclude Include="..\..\includes\idmin.h" />
@@ -340,11 +341,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\polynomials\src\c\polynomials.vcxproj">
-      <Project>{620d8fa7-3704-438e-bb1e-391c84401a2e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
