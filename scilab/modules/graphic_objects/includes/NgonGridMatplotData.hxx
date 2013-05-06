@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2012 - DIGITEO - Manuel Juliachs
+ *  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -19,6 +20,7 @@
 
 extern "C" {
 #include "BOOL.h"
+#include "Matplot.h"
 }
 
 /**
@@ -31,6 +33,7 @@ extern "C" {
 
 class NgonGridMatplotData : public NgonGridData
 {
+
 private :
 
     /** The 2D bounding rectangle {xmin, xmax, ymin, ymax} */
@@ -42,6 +45,16 @@ private :
      * or computed using the 2D bounding rectangle (1)
      */
     int type;
+    ImageType imagetype;
+    DataType datatype;
+    GLType gltype;
+    DataOrder dataorder;
+    void * data;
+    void * scilabData;
+    unsigned int dataSize;
+
+    static const bool isLittleEndian;
+    static bool isABGRSupported;
 
 protected :
 
@@ -122,6 +135,90 @@ public :
     int getType(void);
 
     /**
+     * Set the info about data
+     * @param[in] data info built with buildMatplotType
+     */
+    void setDataInfos(int datainfos);
+
+    /**
+     * Get the info about data
+     * @return the info
+     */
+    int getDataInfos();
+
+    /**
+     * Get the OpenGL type
+     * @return the type
+     */
+    int getGLType();
+
+    /**
+     * Get the image type
+     * @return the type
+     */
+    int getImageType();
+
+    /**
+     * Set the image type
+     * @param[in] imagetype the image type
+     */
+    int setImageType(int imagetype);
+
+    /**
+     * Get the data order (MATPLOT_FORTRAN or MATPLOT_C corresponding to COLUMN_MAJOR_ORDER & ROW_MAJOR_ORDER)
+     * @return the order
+     */
+    int getDataOrder();
+
+    /**
+     * Set the data order (MATPLOT_FORTRAN or MATPLOT_C corresponding to COLUMN_MAJOR_ORDER & ROW_MAJOR_ORDER)
+     * @param[in] the order
+     */
+    void setDataOrder(int dataOrder);
+
+    /**
+     * Set the Scilab data type
+     * @param[in] datatype the Scilab data type
+     */
+    void setDataType(int datatype);
+
+    /**
+     * Get the Scilab data type
+     * @return the Scilab data type
+     */
+    int getDataType();
+
+    /**
+     * Set the image data
+     * @param[in] data the image data
+     * @param[in] numElements the number of elements
+     */
+    void setImageData(void const* data, const int numElements);
+
+    /**
+     * Get the image data
+     * @return the image data
+     */
+    void * getImageData();
+
+    /**
+     * Get the Scilab data
+     * @return the Scilab data
+     */
+    void * getScilabData();
+
+    /**
+     * Get the image data size
+     * @return the iamge data size
+     */
+    unsigned int getImageDataSize();
+
+    /**
+     * Dispose the texture data
+     */
+    void disposeTextureData();
+
+    /**
      * Sets the grid's z data
      * This method is almost identical to NgonGridData's own setDataZ method
      * the only difference being how the maximum number of elements is computed
@@ -130,6 +227,20 @@ public :
      * @param[in] numElements the number of elements to set
      */
     void setDataZ(double const* data, int numElements);
+
+    /**
+     * Set true if ABGR extension is supported
+     * @param[in] _isABGRSupported true if ABGR extension is supported
+     */
+    static void setABGRSupported(bool _isABGRSupported);
+
+private:
+
+    /**
+     * Init a boolean to true or false according to the endianess
+     */
+    static bool initEndian();
+
 };
 
 #endif

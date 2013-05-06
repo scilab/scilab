@@ -57,7 +57,7 @@ protected :
      * @param[in] the grid's number of vertices along the y-axis.
      */
     virtual void fillGridVertices(float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask,
-        double* x, double* y, double* z, int numX, int numY);
+                                  double* x, double* y, double* z, int numX, int numY);
 
     /**
      * Fills a buffer with color data from a grid.
@@ -72,7 +72,7 @@ protected :
      * @param[in] the grid's number of vertices along the y-axis.
      */
     void fillNormalizedZGridColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
-        double* z, int numX, int numY);
+                                   double* z, int numX, int numY);
 
     /**
      * Fills a buffer with color data from a grid.
@@ -87,7 +87,7 @@ protected :
      * @param[in] the grid's number of vertices along the y-axis.
      */
     void fillDirectGridColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
-        double* z, int numX, int numY);
+                              double* z, int numX, int numY);
 
     /**
      * Returns the coordinates of the (i,j) facet's four vertices, where (i,j) is the facet's
@@ -102,7 +102,7 @@ protected :
      * @param[out] the facet's vertices (4 (x,y,z) triplets).
      */
     void getFacetCoordinates(double* x, double* y, double* z, int numX, int numY, int i, int j,
-        double vertices[4][3]);
+                             double vertices[4][3]);
 
     /**
      * Returns the z-coordinate of the (i,j) grid point.
@@ -156,7 +156,7 @@ protected :
      * @return the number of indices actually written.
      */
     int fillTriangleIndices(int* buffer, int bufferLength, int logMask, double* x, double* y, double* z, double* values, int perNodeValues,
-        int numX, int numY);
+                            int numX, int numY);
 
     /**
      * Decomposes facet (i,j) into triangles and outputs the resulting vertex indices, where (i,j) is
@@ -173,7 +173,7 @@ protected :
      * @param[out] the triangles' indices (6-element array: two consecutive triplets).
      */
     virtual void getFacetTriangles(double* x, double* y, double* z, int numX, int numY, int i, int j,
-        int* facetVertexIndices, int* triangleVertexIndices);
+                                   int* facetVertexIndices, int* triangleVertexIndices);
 
     /**
      * Determines whether a facet is valid.
@@ -251,7 +251,7 @@ protected :
      * @param[in] the facet color (3 or 4-element array).
      * @param[in] the number of components taken by a color element (3 or 4).
      */
-    static void writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize);
+    static void writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize, bool hasTransparency = false);
 
     /**
      * Returns the index of a facet's first vertex (its lower-left corner).

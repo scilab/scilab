@@ -10,27 +10,34 @@ package org.scilab.modules.graphic_objects;
 
 public class DataLoaderJNI {
 
-  static {
-    try {
-        System.loadLibrary("scigraphic_objects");
-    } catch (UnsatisfiedLinkError e) {
-      System.err.println("Native library failed to load. \n" + e);
-      System.exit(1);
+    static {
+        try {
+            System.loadLibrary("scigraphic_objects");
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("Native library failed to load. \n" + e);
+            System.exit(1);
+        }
     }
-  }
 
-  public final static native int getTextureWidth(String jarg1);
-  public final static native int getTextureHeight(String jarg1);
-  public final static native int fillTextureData(String jarg1, java.nio.ByteBuffer jarg2, int jarg3);
-  public final static native int fillSubTextureData(String jarg1, java.nio.ByteBuffer jarg2, int jarg3, int jarg4, int jarg5, int jarg6, int jarg7);
-  public final static native int getDataSize(String jarg1);
-  public final static native void fillVertices(String jarg1, java.nio.FloatBuffer jarg2, int jarg3, int jarg4, int jarg5, double[] jarg6, double[] jarg7, int jarg8);
-  public final static native void fillColors(String jarg1, java.nio.FloatBuffer jarg2, int jarg3, int jarg4);
-  public final static native void fillTextureCoordinates(String jarg1, java.nio.FloatBuffer jarg2, int jarg3);
-  public final static native int getIndicesSize(String jarg1);
-  public final static native int fillIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3, int jarg4);
-  public final static native int getWireIndicesSize(String jarg1);
-  public final static native int fillWireIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3, int jarg4);
-  public final static native int getMarkIndicesSize(String jarg1);
-  public final static native int fillMarkIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3);
+    public final static native int getTextureWidth(String jarg1);
+    public final static native int getTextureHeight(String jarg1);
+    public final static native int fillTextureData(String jarg1, java.nio.ByteBuffer jarg2, int jarg3);
+    public final static native int fillSubTextureData(String jarg1, java.nio.ByteBuffer jarg2, int jarg3, int jarg4, int jarg5, int jarg6, int jarg7);
+    public final static native int getDataSize(String jarg1);
+    public final static native void fillVertices(String jarg1, java.nio.FloatBuffer jarg2, int jarg3, int jarg4, int jarg5, double[] jarg6, double[] jarg7, int jarg8);
+    public final static native void fillColors(String jarg1, java.nio.FloatBuffer jarg2, int jarg3, int jarg4);
+    public final static native void fillTextureCoordinates(String jarg1, java.nio.FloatBuffer jarg2, int jarg3);
+    public final static native int getIndicesSize(String jarg1);
+    public final static native int fillIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3, int jarg4);
+    public final static native int getWireIndicesSize(String jarg1);
+    public final static native int fillWireIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3, int jarg4);
+    public final static native int getMarkIndicesSize(String jarg1);
+    public final static native int fillMarkIndices(String jarg1, java.nio.IntBuffer jarg2, int jarg3);
+    public final static native java.nio.ByteBuffer getTextureData(String jarg1);
+    public final static native int getTextureImageType(String jarg1);
+    public final static native int getTextureDataType(String jarg1);
+    public final static native int getTextureGLType(String jarg1);
+    public final static native void disposeTextureData(String jarg1, java.nio.ByteBuffer jarg2);
+    public final static native int isTextureRowOrder(String jarg1);
+    public final static native void setABGRExt(int jarg1);
 }
