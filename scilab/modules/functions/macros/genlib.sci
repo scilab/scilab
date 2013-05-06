@@ -232,12 +232,11 @@ function result = getsave(scifile)
 
     funcprot(0);
 
-    ierr=execstr("exec(scifile);","errcatch") // get functions defined in file 'scifile'
-
+    ierr=exec(scifile,"errcatch",-1);
     if ierr <> 0 then
-        clear ierr;
-        //mprintf(gettext("%s: Warning: Error in file %s : %s. File ignored\n"),"genlib",scifile,lasterror());
+        execstr("error(ierr)","errcatch");
         error(msprintf(gettext("%s: Error in file %s : %s.\n"), "genlib", scifile, lasterror()));
+        clear ierr;
         result = %f;
 
     else
