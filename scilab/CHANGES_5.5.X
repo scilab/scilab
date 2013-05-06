@@ -63,6 +63,9 @@ Xcos
 * Bug #12384 fixed - Using a modelica part linked with explicit link to
                      another modelica part lead to an algebraic loop error.
 
+* Bug #12568 fixed - "Recent files" menu entry should be placed next to the 
+                     "Open" one.
+
 
 Toolbox skeleton
 =================
