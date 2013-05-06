@@ -512,6 +512,9 @@
 /* Version number of package */
 #undef VERSION
 
+/* VMKIT Enabled */
+#undef VMKIT_ENABLED
+
 /* With the EIGEN library */
 #undef WITH_EIGEN
 

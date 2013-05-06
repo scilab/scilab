@@ -55,7 +55,7 @@
 
 #define getUnderflowThreshold()					C2F(dlamch)((char*)"u", 1L)
 #define getOverflowThreshold()					C2F(dlamch)((char*)"o", 1L)
-#define isEqual(x,y)										fabs((double)x - (double)y) <= getRelativeMachinePrecision()
+#define SCI_IS_EQUAL(x,y)					fabs((double)x - (double)y) <= getRelativeMachinePrecision()
 
 extern double C2F(dlamch) (char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);

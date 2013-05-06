@@ -9,7 +9,6 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 #pragma comment(lib,"../../bin/libintl.lib")
 
 #include <cstdio>
@@ -95,6 +94,10 @@ extern "C"
 #include "filemanager.hxx"
 #include "runner.hxx"
 
+#if defined(VMKIT_ENABLED)
+#include <vmkit.h>
+#endif
+
 #define INTERACTIVE     -1
 
 const wchar_t *prog_name;
@@ -142,6 +145,71 @@ bool execScilabStart(void);
 
 int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex);
 static Parser::ControlStatus processCommand(char *_pstCommand);
+
+#if defined(VMKIT_ENABLED)
+namespace VMKitScilab {
+	void ScilabThread::setArgs(int argc, char** argv, int iFileIndex, int iLangIndex){
+		this->argc = argc;
+		this->argv = argv;
+		this->iFileIndex = iFileIndex;
+		this->iLangIndex = iLangIndex;
+	}
+	void ScilabThread::setret(int ret){
+		this->ret = ret;
+	}
+	int ScilabThread::getargc(){
+		return argc;
+	}
+	int ScilabThread::getiFileIndex(){
+		return iFileIndex;
+	}
+	int ScilabThread::getiLangIndex(){
+		return iLangIndex;
+	}
+	char **ScilabThread::getargv(){
+		return argv;
+	}
+	int ScilabThread::getret(){
+		return ret;
+	}
+	ScilabThread::ScilabThread (ScilabVM* vm) : vmkit::MutatorThread(){
+		MyVM = (vmkit::VirtualMachine*)vm;
+	}
+	ScilabVM* ScilabThread::vm(){
+		return (ScilabVM *)MyVM;
+	}
+	void ScilabThread::execute(){
+		setret(StartScilabEngine(getargc(), getargv(), getiFileIndex(), getiLangIndex()));
+	}
+
+	void ScilabVM::mainStart(ScilabThread* thread){
+		ScilabVM* vm = thread->vm();
+		printf("\nVMKitThread: Create\n\n");
+
+		thread->execute();
+
+		vm->setret(thread->getret());
+
+		printf("\nVMKitThread: Exit\n\n");
+		vm->exit();
+	}
+	void ScilabVM::runApplication(int argc, char** argv, int iFileIndex, int iLangIndex){
+		VMKitScilab::ScilabThread * mainThread = new VMKitScilab::ScilabThread(this);
+
+		mainThread->setArgs(argc, argv, iFileIndex, iLangIndex);
+
+		mainThread->start((void (*)(vmkit::Thread *))mainStart);
+	}
+
+	int ScilabVM::getret(){
+		return ret;
+	}
+
+	void ScilabVM::setret(int ret){
+		this->ret = ret;
+	}
+}
+#endif
 
 /*
  * Private function to check any linker errors
@@ -645,7 +713,21 @@ int main(int argc, char *argv[])
 #else
     setScilabInputMethod(&getCmdLine);
     setScilabOutputMethod(&TermPrintf);
+#if defined(VMKIT_ENABLED)
+    vmkit::CompiledFrames** frametables;
+    vmkit::BumpPtrAllocator Allocator;
+
+    VMKitScilab::ScilabVM* vm = new(Allocator, "VM") VMKitScilab::ScilabVM (Allocator, frametables);
+
+    vm->runApplication(argc, argv, iFileIndex, iLangIndex);
+
+    vm->waitForExit();
+
+    return vm->getret();
+
+#else
     return StartScilabEngine(argc, argv, iFileIndex, iLangIndex);
+#endif // ifdef VMKIT_ENABLED
 #endif // defined(WITHOUT_GUI)
 }
 
