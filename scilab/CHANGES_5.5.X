@@ -68,6 +68,9 @@ Xcos
 * Bug #12568 fixed - "Recent files" menu entry should be placed next to the 
                      "Open" one.
 
+* Bug #12603 fixed - ZCOS files may contain blocs with modified (eg. invalid)
+                     parameters.
+
 
 Toolbox skeleton
 =================
