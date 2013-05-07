@@ -1,10 +1,19 @@
 ﻿                     Changes between version 5.5.0 and 5.5.1
                      =======================================
 
+Obsolete & Removed Functions
+============================
+
+* datatipContextMenu() and datatipEventhandler() removed (See bug #8646).
+
+
 Scilab Bug Fixes
 ================
 
 * Bug #7549 fixed - edit_curv did not disable standard plot menus.
+
+* Bug #8646 fixed - The datatips contextual menu opened a selection list which
+                    was not ergonomic.
 
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
@@ -3032,6 +3041,8 @@ Scilab Bug Fixes
 
 * Bug #8234 fixed - strtod did not return an empty matrix when the input argument was an
                     empty matrix.
+
+* Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
 * Bug #8264 fixed - Matlab to Scilab dictionary help page updated for atan2.
 
