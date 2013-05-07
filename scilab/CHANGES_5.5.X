@@ -80,6 +80,9 @@ Bug fixes
 
 * Bug #4731 fixed - lqr() failed when time domain of input was a number.
 
+* Bug #5365 fixed - makecell help page was in the "compatibility functions" directory
+                    instead of being in "data_structures".
+
 * Bug #5539 fixed - sylv() help page was wrong in the discrete-time case.
 
 * Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
