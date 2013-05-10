@@ -49,7 +49,15 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
 
     if (pIT == NULL || pIT->isCallable() == false)
     {
-        throw ast::ScilabError(_W("check or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 246, *new Location());
+        if (in.size() < 2)
+        {
+            throw ast::ScilabError(_W("Function not defined for given argument type(s),\n  check arguments or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 246, *new Location());
+        }
+        else
+        {
+            throw ast::ScilabError(_W("Undefined operation for the given operands.\ncheck or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 144, *new Location());
+        }
+
     }
     types::Callable *pCall = pIT->getAs<types::Callable>();
     try
