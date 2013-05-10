@@ -311,6 +311,7 @@ _LaTeX_cdfnor.xml_1.png=b86b06522195bfcbfd8f4536dfa11330
 _LaTeX_ceil.xml_1.png=701fa44621fd283e3f2c5468958859d8
 _LaTeX_ceil.xml_ru_RU_1.png=701fa44621fd283e3f2c5468958859d8
 _LaTeX_cov.xml_1.png=1c3e8061d5b85a1b05a8f1c390f6f94d
+_LaTeX_cross.xml_1.png=9653e9a5372afaed5d4a1ca1554ecac7
 _LaTeX_csc.xml_1.png=95c11e401eed01b86b588b99436708ae
 _LaTeX_csc.xml_2.png=e070fd531e084fbf4de11e4096f5d58
 _LaTeX_cscd.xml_1.png=95c11e401eed01b86b588b99436708ae

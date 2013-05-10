@@ -93,3 +93,5 @@ SEP #093: New function cov
 SEP #095: New functions: ismatrix, isrow,iscolumn and issquare.
 SEP #097: New argument added at strtod function (decimalseparator)
 SEP #098: New output argument for qp_solve function
+SEP #089: New parameter added at routh_t function (normalized).
+SEP #096: cross function.
