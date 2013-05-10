@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -33,11 +33,6 @@ function y = bitcmp(x,n)
     // P. Marechal, 5 Feb 2008
     //   - Add argument check
 
-    // Check input arguments
-    // =========================================================================
-
-    rhs = argn(2);
-
     // check number input argument
 
     rhs = argn(2);
@@ -66,7 +61,7 @@ function y = bitcmp(x,n)
     end
 
     // check n value
-    
+
         select inttype(x)
         case 0  then nmax = 52;
         case 11 then nmax = 8;

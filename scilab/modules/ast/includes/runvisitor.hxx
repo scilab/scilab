@@ -1383,7 +1383,7 @@ public :
     template <class intT, typename Y>
     InternalType* notInt(intT* _pInt)
     {
-        intT* pOut = new intT(_pInt->getCols(), _pInt->getRows());
+        intT* pOut = new intT(_pInt->getRows(), _pInt->getCols());
         Y* pDataIn = _pInt->get();
         Y* pDataOut = pOut->get();
         for (int i = 0 ; i < _pInt->getSize() ; i++)
