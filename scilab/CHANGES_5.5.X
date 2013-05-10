@@ -51,6 +51,9 @@ Obsolete
   Only the following strings will be allowed : option : "r" "c" "g" "lr" "lc"
                                               direction : "d" "i"
 
+* nfreq() tagged as obsolete. Will be removed for Scilab 5.5.1.
+  Use tabul() instead.
+
 
 Xcos
 ====
@@ -136,6 +139,8 @@ Bug fixes
 * Bug #9004 fixed - bitcmp function called with one input argument returned an error.
 
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
+
+* Bug #9109 fixed - nfreq tagged as obsolete.
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
