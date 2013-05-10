@@ -34,8 +34,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_lusolve.cpp \
     sci_gateway/cpp/sci_luget.cpp \
     sci_gateway/cpp/sci_ludel.cpp \
-    sci_gateway/cpp/sci_ordmmd.cpp
-
+    sci_gateway/cpp/sci_ordmmd.cpp \
+    sci_gateway/cpp/sci_spchol.cpp
 
 libscisparse_la_CPPFLAGS = \
     -I$(srcdir)/src/c/ \

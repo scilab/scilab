@@ -347,6 +347,8 @@ struct EXTERN_AST Sparse : GenericType
         return true;
     }
 
+    int newCholLLT(Sparse** permut, Sparse** factor) const;
+
     /** create a new sparse matrix containing the non zero values set to 1.
        equivalent but faster than calling one_set() on a new copy of the
        current matrix.
