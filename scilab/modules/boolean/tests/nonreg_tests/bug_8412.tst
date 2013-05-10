@@ -15,7 +15,6 @@
 // <-- Short Description -->
 // find did not return correct values with big vector
 
-stacksize(100000000);
 A=rand(19200000,1);
 
 i=[10336001, ..
@@ -26,7 +25,7 @@ i=[10336001, ..
    18762001, ..
    19198001];
 
-A(i) = %nan;   
+A(i) = %nan;
 A(isnan(A) == %T);
 R = find(isnan(A));
 B=A(R);
