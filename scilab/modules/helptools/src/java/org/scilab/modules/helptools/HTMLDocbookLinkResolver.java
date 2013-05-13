@@ -252,7 +252,7 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
                         break;
                     case '\"' :
                         buffer.append(ch, save, i - save);
-                        buffer.append("&#0034;");
+                        buffer.append("&quot;");
                         save = i + 1;
                         break;
                     case '<' :

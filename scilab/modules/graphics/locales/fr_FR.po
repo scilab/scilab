@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-30 13:59+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2013-03-29 13:44+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: fr\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -802,6 +802,11 @@ msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr "Dimension erronée de la propriété '%s' : Un scalaire attendu.\n"
 
 #, c-format
+msgid "Wrong dimension for '%s' property: The number of columns must be 3.\n"
+msgstr ""
+"Dimension erronée de la propriété '%s' : Le nombre de colonnes doit être 3.\n"
+
+#, c-format
 msgid ""
 "WARNING: Wrong value for '%s' property: indices outside the colormap will be "
 "clamped.\n"
@@ -1064,7 +1069,7 @@ msgid ""
 "Please press enter into the Scilab console to see more polarplot examples"
 msgstr ""
 "Veuillez appuyer sur Entrée dans la console de Scilab pour voir plus "
-"d'examples de 'polarplot"
+"d'exemples de \"polarplot\""
 
 msgid "Press enter to go on..."
 msgstr "Appuyez sur Entrée pour continuer..."
@@ -1207,7 +1212,7 @@ msgid ""
 "  = rounded value of M(i,j)"
 msgstr ""
 "Matplot(M) avec size(M)=>(%d,%d)\n"
-"Le numéro de la couleur du pixel(i,j)\n"
+"L'indice de la couleur du pixel(i,j)\n"
 "  = valeur arrondie de M(i,j)"
 
 msgid "For data-scaled axes, please use Matplot1(..)"
@@ -1215,7 +1220,7 @@ msgstr ""
 "Pour les axes à l'échelle des données, veuillez utiliser Matplot1(..)"
 
 msgid "Axes are scaled with M's indices"
-msgstr "Les échelles des axes sont définies avec les indices de M's"
+msgstr "Les axes sont gradués avec les indices de M."
 
 #, c-format
 msgid ""
@@ -1279,7 +1284,7 @@ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 #, c-format
 msgid "%s: Wrong size for input argument '%s': A vector expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée '%s' : Un vecteur attendu.\n"
+"%s : Dimension erronée de l'argument d'entrée '%s' : Un vecteur attendu.\n"
 
 #, c-format
 msgid ""
@@ -1308,7 +1313,7 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur de handle de type "
+"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur de handles de type "
 "'Figure' attendu."
 
 #, c-format
@@ -1319,7 +1324,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendue.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -1471,7 +1476,7 @@ msgstr "Mode datatip unique"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un handle de type %s "
+"%s : Type erroné de l'argument d'entrée n°%d : Un handle de type '%s' "
 "attendu.\n"
 
 msgid "createPopupItems: found an empty cascading menu."
@@ -1722,6 +1727,45 @@ msgstr "Numéro de la couleur"
 msgid "Name"
 msgstr "Nom"
 
+msgid "April"
+msgstr "Avril"
+
+msgid "Febuary"
+msgstr "Février"
+
+msgid "January"
+msgstr "Janvier"
+
+msgid "June"
+msgstr "Juin"
+
+msgid "March"
+msgstr "Mars"
+
+msgid "May"
+msgstr "Mai"
+
+msgid "August"
+msgstr "Août"
+
+msgid "July"
+msgstr "Juillet"
+
+msgid "November"
+msgstr "Novembre"
+
+msgid "October"
+msgstr "Octobre"
+
+msgid "September"
+msgstr "Septembre"
+
+msgid "Average"
+msgstr "Moyenne"
+
+msgid "December"
+msgstr "Décembre"
+
 msgid "Average monthly temperatures in french cities"
 msgstr "Températures mensuelles moyennes des villes françaises"
 
@@ -1756,7 +1800,7 @@ msgstr "%s : Dimension erronée de l'argument d'entrée n°%d."
 
 #, c-format
 msgid "%s: No '%s' handle found.\n"
-msgstr "%s : Aucun handle de '%s' trouvé.\n"
+msgstr "%s : Aucun handle de type '%s' trouvé.\n"
 
 #, c-format
 msgid ""
@@ -1793,11 +1837,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function '%s'."
-msgstr "%s : Erreur : Impossible d'évaluer la fonction d'entrée '%s'."
+msgstr "%s : Erreur : impossible d'évaluer la fonction en entrée '%s'."
 
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
-msgstr "Erreur %d à la ligne %d de la fonction : '%s"
+msgstr "Erreur %d à la ligne %d de la fonction : '%s'"
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
@@ -1823,7 +1867,7 @@ msgstr "%s : L'argument d'entrée n°%d : Doit être un handle de type axe.\n"
 msgid ""
 "%s: Wrong size for input arguments '%s': A vector of size %d expected.\n"
 msgstr ""
-"%s : Dimension erronée des arguments d'entrée '%s' : Un vecteur de dimension "
+"%s : Dimension erronée de l'argument d'entrée '%s' : Un vecteur de dimension "
 "%d attendu.\n"
 
 #, c-format
@@ -1835,8 +1879,28 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un handle de type "
-"'Axes' attendu.\n"
+"%s : Dimension erronée de l'argument d'entrée %d : Un handle de type 'Axes' "
+"attendu.\n"
+
+msgid "Color data must be a scalar."
+msgstr "La couleur doit être un scalaire."
+
+msgid "Color value must be a 3 element vector or an index in the colormap."
+msgstr ""
+"La valeur de la couleur doit être un vecteur de dimension 3 ou un indice "
+"dans la colormap."
+
+msgid "Incorrect input: Color vector should be a 3x1 or 1x3 vector"
+msgstr ""
+"Entrée invalide : La couleur doit être un vecteur de dimension 3x1 ou 1x3."
+
+msgid "Color value must be a 3 elements vector or an index in the colormap."
+msgstr ""
+"La valeur de la couleur doit être un vecteur de dimension 3 ou un indice "
+"dans la colormap."
+
+msgid "Incorrect input: ..."
+msgstr "Entrée invalide : ..."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -1882,23 +1946,23 @@ msgid ""
 "%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
 "%d expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée '%s' : Une matrice de "
-"dimension supérieure à %d-par-%d attendue.\n"
+"%s : Dimension erronée de l'argument d'entrée '%s' : Une matrice de taille "
+"supérieure à %d-par-%d attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
 "expected.\n"
 msgstr ""
-"%s : Dimension erronée des arguments d'entrée '%s' et '%s' : Des matrices de "
-"même dimension attendues.\n"
+"%s : Dimension erronée des arguments d'entrée '%s' et '%s' : Matrices de "
+"dimensions identiques attendues.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
-"%s : Dimension erronée des arguments d'entrée '%s' et '%s' : Même dimension "
-"attendue.\n"
+"%s : Dimension erronée des arguments d'entrée '%s' et '%s' : Mêmes "
+"dimensions attendues.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"

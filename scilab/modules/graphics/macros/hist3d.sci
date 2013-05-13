@@ -12,10 +12,10 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
     //!
     nep=8
 
-    if ~isdef('theta','local') then theta = 35; end;
-    if ~isdef('alpha','local') then alpha = 45; end;
-    if ~isdef('leg','local') then leg = 'X@Y@Z'; end;
-    if ~isdef('flags','local') then flags = [2 1 4]; end;
+    if ~isdef("theta","local") then theta = 35; end;
+    if ~isdef("alpha","local") then alpha = 45; end;
+    if ~isdef("leg","local") then leg = "X@Y@Z"; end;
+    if ~isdef("flags","local") then flags = [2 1 4]; end;
 
     def=list(theta,alpha,leg,flags);
     [lhs,rhs]=argn(0)
@@ -25,7 +25,7 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
         months = [_("January") _("Febuary") _("March") _("April") _("May") _("June")..
         _("July") _("August") _("September") _("October") _("November") ..
         _("December") _("Average") ]
-        months = "$\magnification{1300}\rotatebox{90}{\mbox{" + months + "}}$"
+        months = "$\scalebox{1.3}{\rotatebox{90}{\mbox{" + months + "}}}$"
 
         T = [5.7 5.9 9.8 12.1 16.0 19.4 21.8 21.5 18.4 14.7 9.3 5.2 13.5
         9.4 9.4 11.2 13.3 17.3 21.0 24.1 24.5 21.2 17.6 13.3 10.4 16.1
@@ -40,20 +40,20 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
         ];
         hist3d(T)
         ax = gca()
-        ax.y_ticks = tlist(['ticks' 'locations' 'labels'], (0:12)+0.5, months)
-        ax.x_ticks = tlist(['ticks' 'locations' 'labels'], (0:9)+0.5, towns)
+        ax.y_ticks = tlist(["ticks" "locations" "labels"], (0:12)+0.5, months)
+        ax.x_ticks = tlist(["ticks" "locations" "labels"], (0:9)+0.5, towns)
         zlabel("T [°C]")
         xtitle(_("Average monthly temperatures in french cities"),"","")
         ax.title.font_size = 3
-        ax.rotation_angles = [28 19] 
+        ax.rotation_angles = [28 19]
         return;
     end
-    if typeof(f)=='list' then 
+    if typeof(f)=="list" then
         [f,x,y]=f(1:3);
         sx=prod(size(x));
         sy=prod(size(y));
-        if [sx-1,sy-1]<>size(f) then 
-            write(%io(2),'f: Incompatible length ');
+        if [sx-1,sy-1]<>size(f) then
+            write(%io(2),"f: Incompatible length ");
             return;
         end
         dx=(x(2)-x(1))/nep;
@@ -88,7 +88,7 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
     yy=matrix(y(matrix(indy,1,nnl*nnc)),nnl,nnc);
     zz=matrix(f,1,nl*nc).*.[c,d,b,b,a,a];
 
-    if ~isdef('ebox','local') then ebox = bnds; else 'ebox = ebox'; end;
+    if ~isdef("ebox","local") then ebox = bnds; else "ebox = ebox"; end;
     plot3d(xx,yy,zz,def(1),def(2),def(3),def(4),ebox)
 
 endfunction

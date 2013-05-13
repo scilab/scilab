@@ -185,13 +185,19 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         C2F(cha1).buf[len_str] = '\0';
         /* search fun ptr of the comput func in the scilab func table */
         ifun = C2F(funnum)(C2F(cha1).buf);
-        if (ifun > 0) lfunpt = ifun;
+        if (ifun > 0)
+        {
+            lfunpt = ifun;
+        }
         else
         {
             C2F(namstr)(id, &il_sim[6], &len_str, (j = 0, &j));
             C2F(com).fin = 0;
             C2F(funs)(id);
-            if ((C2F(com).fun == -1) | (C2F(com).fun == -2)) lfunpt = -*Lstk(C2F(com).fin);
+            if ((C2F(com).fun == -1) | (C2F(com).fun == -2))
+            {
+                lfunpt = -*Lstk(C2F(com).fin);
+            }
             else
             {
                 lfunpt = 0;
@@ -265,7 +271,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.nin    = mh * nh;
     Block.insz   = NULL;
     Block.inptr  = NULL;
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         /* check value of in */
         for (i = 0; i < Block.nin; i++)
@@ -331,15 +337,42 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 Block.insz[i] = (int) * ((double *)(&ilh[4]) + i);
                 Block.insz[Block.nin + i] = (int) * ((double *)(&ilh2[4]) + i);
                 type = *((double *)(&ilh3[4]) + i);
-                if (type == 1) Block.insz[2 * Block.nin + i] = 10;
-                else if (type == 2) Block.insz[2 * Block.nin + i] = 11;
-                else if (type == 3) Block.insz[2 * Block.nin + i] = 84;
-                else if (type == 4) Block.insz[2 * Block.nin + i] = 82;
-                else if (type == 5) Block.insz[2 * Block.nin + i] = 81;
-                else if (type == 6) Block.insz[2 * Block.nin + i] = 814;
-                else if (type == 7) Block.insz[2 * Block.nin + i] = 812;
-                else if (type == 8) Block.insz[2 * Block.nin + i] = 811;
-                else Block.insz[2 * Block.nin + i] = 10;
+                if (type == 1)
+                {
+                    Block.insz[2 * Block.nin + i] = 10;
+                }
+                else if (type == 2)
+                {
+                    Block.insz[2 * Block.nin + i] = 11;
+                }
+                else if (type == 3)
+                {
+                    Block.insz[2 * Block.nin + i] = 84;
+                }
+                else if (type == 4)
+                {
+                    Block.insz[2 * Block.nin + i] = 82;
+                }
+                else if (type == 5)
+                {
+                    Block.insz[2 * Block.nin + i] = 81;
+                }
+                else if (type == 6)
+                {
+                    Block.insz[2 * Block.nin + i] = 814;
+                }
+                else if (type == 7)
+                {
+                    Block.insz[2 * Block.nin + i] = 812;
+                }
+                else if (type == 8)
+                {
+                    Block.insz[2 * Block.nin + i] = 811;
+                }
+                else
+                {
+                    Block.insz[2 * Block.nin + i] = 10;
+                }
             }
         }
         else
@@ -359,7 +392,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 case 10  :
                     if ((Block.inptr[i] = (double *) MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(double))) == NULL)
                     {
-                        for (j = 0; j < i; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -375,7 +411,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.inptr[i] = (double *) \
                                           MALLOC(2 * Block.insz[i] * Block.insz[Block.nin + i] * sizeof(double))) == NULL)
                     {
-                        for (j = 0; j < i; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -391,7 +430,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.inptr[i] = (long *) \
                                           MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(long))) == NULL)
                     {
-                        for (j = 0; j < i; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -407,7 +449,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.inptr[i] = (short *) \
                                           MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(short))) == NULL)
                     {
-                        for (j = 0; j < i; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -423,7 +468,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.inptr[i] = (char *) \
                                           MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(char))) == NULL)
                     {
-                        for (j = 0; j < i; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -439,7 +487,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.inptr[i] = (unsigned long *) \
                                           MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(unsigned long))) == NULL)
                     {
-                        for (j = 0; j < i; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -455,7 +506,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.inptr[i] = (unsigned short *) \
                                           MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(unsigned short))) == NULL)
                     {
-                        for (j = 0; j < i; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -471,7 +525,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.inptr[i] = (unsigned char *) \
                                           MALLOC(Block.insz[i] * Block.insz[Block.nin + i] * sizeof(unsigned char))) == NULL)
                     {
-                        for (j = 0; j < i; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -496,7 +553,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.nout   = mh * nh;
     Block.outsz  = NULL;
     Block.outptr = NULL;
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         /* check value of out */
         for (i = 0; i < Block.nout; i++)
@@ -505,7 +562,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             {
                 Scierror(888, _("%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"), \
                          fname, i + 1, (int)(*((double *)(&ilh[4]) + i)));
-                for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                for (j = 0; j < Block.nin; j++)
+                {
+                    FREE(Block.inptr[j]);
+                }
                 FREE(Block.inptr);
                 FREE(Block.insz);
                 return 0;
@@ -515,7 +575,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         if ((Block.outsz = (int *) MALLOC(Block.nout * 3 * sizeof(int))) == NULL)
         {
             Scierror(888, _("%s : Allocation error.\n"), fname);
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
             return 0;
@@ -524,7 +587,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         if ((Block.outptr = (void **) MALLOC(Block.nout * sizeof(void *))) == NULL)
         {
             FREE(Block.outsz);
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
             Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -542,7 +608,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             {
                 Scierror(888, _("%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"), \
                          fname, i + 1, (int)(*((double *)(&ilh2[4]) + i)));
-                for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                for (j = 0; j < Block.nin; j++)
+                {
+                    FREE(Block.inptr[j]);
+                }
                 FREE(Block.insz);
                 FREE(Block.inptr);
                 FREE(Block.outptr);
@@ -576,15 +645,42 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 Block.outsz[i] = (int) * ((double *)(&ilh[4]) + i);
                 Block.outsz[Block.nout + i] = (int) * ((double *)(&ilh2[4]) + i);
                 type = *((double *)(&ilh3[4]) + i);
-                if (type == 1) Block.outsz[2 * Block.nout + i] = 10;
-                else if (type == 2) Block.outsz[2 * Block.nout + i] = 11;
-                else if (type == 3) Block.outsz[2 * Block.nout + i] = 84;
-                else if (type == 4) Block.outsz[2 * Block.nout + i] = 82;
-                else if (type == 5) Block.outsz[2 * Block.nout + i] = 81;
-                else if (type == 6) Block.outsz[2 * Block.nout + i] = 814;
-                else if (type == 7) Block.outsz[2 * Block.nout + i] = 812;
-                else if (type == 8) Block.outsz[2 * Block.nout + i] = 811;
-                else Block.outsz[2 * Block.nout + i] = 10;
+                if (type == 1)
+                {
+                    Block.outsz[2 * Block.nout + i] = 10;
+                }
+                else if (type == 2)
+                {
+                    Block.outsz[2 * Block.nout + i] = 11;
+                }
+                else if (type == 3)
+                {
+                    Block.outsz[2 * Block.nout + i] = 84;
+                }
+                else if (type == 4)
+                {
+                    Block.outsz[2 * Block.nout + i] = 82;
+                }
+                else if (type == 5)
+                {
+                    Block.outsz[2 * Block.nout + i] = 81;
+                }
+                else if (type == 6)
+                {
+                    Block.outsz[2 * Block.nout + i] = 814;
+                }
+                else if (type == 7)
+                {
+                    Block.outsz[2 * Block.nout + i] = 812;
+                }
+                else if (type == 8)
+                {
+                    Block.outsz[2 * Block.nout + i] = 811;
+                }
+                else
+                {
+                    Block.outsz[2 * Block.nout + i] = 10;
+                }
             }
         }
         else
@@ -604,10 +700,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.outptr[i] = (double *) \
                                            MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(double))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < i; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -623,10 +725,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.outptr[i] = (double *) \
                                            MALLOC(2 * Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(double))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < i; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -642,10 +750,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.outptr[i] = (long *) \
                                            MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(long))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < i; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -661,10 +775,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.outptr[i] = (short *) \
                                            MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(short))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < i; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -680,10 +800,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.outptr[i] = (char *) \
                                            MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(char))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < i; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -699,10 +825,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.outptr[i] = (unsigned long *) \
                                            MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(unsigned long))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < i; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -718,10 +850,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.outptr[i] = (unsigned short *) \
                                            MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(unsigned short))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < i; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -737,10 +875,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     if ((Block.outptr[i] = (unsigned char *) \
                                            MALLOC(Block.outsz[i] * Block.outsz[Block.nout + i] * sizeof(unsigned char))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < i; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -767,14 +911,20 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     nh           = ilh[2];
     Block.nevout = mh * nh;
     Block.evout  = NULL;
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         if ((Block.evout = (double *) MALLOC(Block.nevout * sizeof(double))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -811,15 +961,21 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.xprop  = NULL;
     Block.xd     = NULL;
     Block.res    = NULL;
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         /* x */
         if ((Block.x = (double *) MALLOC(Block.nx * sizeof(double))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -835,10 +991,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         /* xd */
         if ((Block.xd = (double *) MALLOC(Block.nx * sizeof(double))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -854,10 +1016,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         /* xprop */
         if ((Block.xprop = (int *) MALLOC(Block.nx * sizeof(int))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -875,10 +1043,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         /*if (blktyp>10000) {*/
         if ((Block.res = (double *) MALLOC(Block.nx * sizeof(double))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -905,14 +1079,20 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.nz     = mh * nh;
     Block.z      = NULL;
 
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         if ((Block.z = (double *) MALLOC(Block.nz * sizeof(double))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -940,14 +1120,20 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.ozsz   = NULL;
     Block.oztyp  = NULL;
     Block.ozptr  = NULL;
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         if ((Block.ozsz = (int *) MALLOC(2 * Block.noz * sizeof(int))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -962,10 +1148,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 
         if ((Block.oztyp = (int *) MALLOC(Block.noz * sizeof(int))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -981,10 +1173,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 
         if ((Block.ozptr = (void **) MALLOC(Block.noz * sizeof(void *))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1013,10 +1211,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.oztyp[i] = 10;
                     if ((Block.ozptr[i] = (double *) MALLOC(mh2 * nh2 * sizeof(double))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1027,7 +1231,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < i; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1042,10 +1249,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.oztyp[i] = 11;
                     if ((Block.ozptr[i] = (double *) MALLOC(2 * mh2 * nh2 * sizeof(double))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1056,7 +1269,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < i; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1074,10 +1290,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.oztyp[i] = 84;
                     if ((Block.ozptr[i] = (long *) MALLOC(mh2 * nh2 * sizeof(long))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1088,7 +1310,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < i; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1103,10 +1328,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.oztyp[i] = 82;
                     if ((Block.ozptr[i] = (short *) MALLOC(mh2 * nh2 * sizeof(short))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1117,7 +1348,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < i; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1132,10 +1366,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.oztyp[i] = 81;
                     if ((Block.ozptr[i] = (char *) MALLOC(mh2 * nh2 * sizeof(char))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1146,7 +1386,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < i; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1161,10 +1404,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.oztyp[i] = 814;
                     if ((Block.ozptr[i] = (unsigned long *) MALLOC(mh2 * nh2 * sizeof(unsigned long))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1175,7 +1424,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < i; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1190,10 +1442,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.oztyp[i] = 812;
                     if ((Block.ozptr[i] = (unsigned short *) MALLOC(mh2 * nh2 * sizeof(unsigned short))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1204,7 +1462,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < i; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1219,10 +1480,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.oztyp[i] = 811;
                     if ((Block.ozptr[i] = (unsigned char *) MALLOC(mh2 * nh2 * sizeof(unsigned char))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1233,7 +1500,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < i; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1255,14 +1525,20 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     nh           = ilh[2];
     Block.nrpar  = mh * nh;
     Block.rpar   = NULL;
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         if ((Block.rpar = (double *) MALLOC(Block.nrpar * sizeof(double))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1273,7 +1549,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             FREE(Block.z);
             FREE(Block.ozsz);
             FREE(Block.oztyp);
-            for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+            for (j = 0; j < Block.noz; j++)
+            {
+                FREE(Block.ozptr[j]);
+            }
             Scierror(888, _("%s : Allocation error.\n"), fname);
             return 0;
         }
@@ -1291,14 +1570,20 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     nh           = ilh[2];
     Block.nipar  = mh * nh;
     Block.ipar   = NULL;
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         if ((Block.ipar = (int *) MALLOC(Block.nipar * sizeof(int))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1309,7 +1594,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             FREE(Block.z);
             FREE(Block.ozsz);
             FREE(Block.oztyp);
-            for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+            for (j = 0; j < Block.noz; j++)
+            {
+                FREE(Block.ozptr[j]);
+            }
             FREE(Block.rpar);
             Scierror(888, _("%s : Allocation error.\n"), fname);
             return 0;
@@ -1331,14 +1619,20 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     Block.oparsz  = NULL;
     Block.opartyp = NULL;
     Block.oparptr = NULL;
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         if ((Block.oparsz = (int *) MALLOC(2 * Block.nopar * sizeof(int))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1349,7 +1643,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             FREE(Block.z);
             FREE(Block.ozsz);
             FREE(Block.oztyp);
-            for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+            for (j = 0; j < Block.noz; j++)
+            {
+                FREE(Block.ozptr[j]);
+            }
             FREE(Block.rpar);
             FREE(Block.ipar);
             Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -1358,10 +1655,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 
         if ((Block.opartyp = (int *) MALLOC(Block.nopar * sizeof(int))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1372,7 +1675,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             FREE(Block.z);
             FREE(Block.ozsz);
             FREE(Block.oztyp);
-            for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+            for (j = 0; j < Block.noz; j++)
+            {
+                FREE(Block.ozptr[j]);
+            }
             FREE(Block.rpar);
             FREE(Block.ipar);
             FREE(Block.oparsz);
@@ -1382,10 +1688,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 
         if ((Block.oparptr = (void **) MALLOC(Block.nopar * sizeof(void *))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1396,7 +1708,10 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             FREE(Block.z);
             FREE(Block.ozsz);
             FREE(Block.oztyp);
-            for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+            for (j = 0; j < Block.noz; j++)
+            {
+                FREE(Block.ozptr[j]);
+            }
             FREE(Block.rpar);
             FREE(Block.ipar);
             FREE(Block.oparsz);
@@ -1419,10 +1734,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.opartyp[i] = 10;
                     if ((Block.oparptr[i] = (double *) MALLOC(mh2 * nh2 * sizeof(double))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1433,12 +1754,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < Block.noz; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         FREE(Block.rpar);
                         FREE(Block.ipar);
                         FREE(Block.oparsz);
                         FREE(Block.opartyp);
-                        for (j = 0; j < i; j++) FREE(Block.oparptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.oparptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1453,10 +1780,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.opartyp[i] = 11;
                     if ((Block.oparptr[i] = (double *) MALLOC(2 * mh2 * nh2 * sizeof(double))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1467,12 +1800,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < Block.noz; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         FREE(Block.rpar);
                         FREE(Block.ipar);
                         FREE(Block.oparsz);
                         FREE(Block.opartyp);
-                        for (j = 0; j < i; j++) FREE(Block.oparptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.oparptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1491,10 +1830,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.opartyp[i] = 84;
                     if ((Block.oparptr[i] = (long *) MALLOC(mh2 * nh2 * sizeof(long))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1505,12 +1850,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < Block.noz; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         FREE(Block.rpar);
                         FREE(Block.ipar);
                         FREE(Block.oparsz);
                         FREE(Block.opartyp);
-                        for (j = 0; j < i; j++) FREE(Block.oparptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.oparptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1525,10 +1876,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.opartyp[i] = 82;
                     if ((Block.oparptr[i] = (short *) MALLOC(mh2 * nh2 * sizeof(short))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1539,12 +1896,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < Block.noz; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         FREE(Block.rpar);
                         FREE(Block.ipar);
                         FREE(Block.oparsz);
                         FREE(Block.opartyp);
-                        for (j = 0; j < i; j++) FREE(Block.oparptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.oparptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1559,10 +1922,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.opartyp[i] = 81;
                     if ((Block.oparptr[i] = (char *) MALLOC(mh2 * nh2 * sizeof(char))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1573,12 +1942,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < Block.noz; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         FREE(Block.rpar);
                         FREE(Block.ipar);
                         FREE(Block.oparsz);
                         FREE(Block.opartyp);
-                        for (j = 0; j < i; j++) FREE(Block.oparptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.oparptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1593,10 +1968,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.opartyp[i] = 814;
                     if ((Block.oparptr[i] = (unsigned long *) MALLOC(mh2 * nh2 * sizeof(unsigned long))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1607,12 +1988,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < Block.noz; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         FREE(Block.rpar);
                         FREE(Block.ipar);
                         FREE(Block.oparsz);
                         FREE(Block.opartyp);
-                        for (j = 0; j < i; j++) FREE(Block.oparptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.oparptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1627,10 +2014,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.opartyp[i] = 812;
                     if ((Block.oparptr[i] = (unsigned short *) MALLOC(mh2 * nh2 * sizeof(unsigned short))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1641,12 +2034,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < Block.noz; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         FREE(Block.rpar);
                         FREE(Block.ipar);
                         FREE(Block.oparsz);
                         FREE(Block.opartyp);
-                        for (j = 0; j < i; j++) FREE(Block.oparptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.oparptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1661,10 +2060,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                     Block.opartyp[i] = 811;
                     if ((Block.oparptr[i] = (unsigned char *) MALLOC(mh2 * nh2 * sizeof(unsigned char))) == NULL)
                     {
-                        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                        for (j = 0; j < Block.nin; j++)
+                        {
+                            FREE(Block.inptr[j]);
+                        }
                         FREE(Block.inptr);
                         FREE(Block.insz);
-                        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                        for (j = 0; j < Block.nout; j++)
+                        {
+                            FREE(Block.outptr[j]);
+                        }
                         FREE(Block.outptr);
                         FREE(Block.outsz);
                         FREE(Block.evout);
@@ -1675,12 +2080,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                         FREE(Block.z);
                         FREE(Block.ozsz);
                         FREE(Block.oztyp);
-                        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                        for (j = 0; j < Block.noz; j++)
+                        {
+                            FREE(Block.ozptr[j]);
+                        }
                         FREE(Block.rpar);
                         FREE(Block.ipar);
                         FREE(Block.oparsz);
                         FREE(Block.opartyp);
-                        for (j = 0; j < i; j++) FREE(Block.oparptr[j]);
+                        for (j = 0; j < i; j++)
+                        {
+                            FREE(Block.oparptr[j]);
+                        }
                         Scierror(888, _("%s : Allocation error.\n"), fname);
                         return 0;
                     }
@@ -1701,17 +2112,23 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     mh           = ilh[1];
     nh           = ilh[2];
     Block.label  = "";
-    if (mh*nh != 0)
+    if (mh * nh != 0)
     {
         len_str  = ilh[5] - 1;
         if (len_str != 0)
         {
             if ((Block.label = (char *) MALLOC((len_str + 1) * sizeof(char))) == NULL)
             {
-                for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+                for (j = 0; j < Block.nin; j++)
+                {
+                    FREE(Block.inptr[j]);
+                }
                 FREE(Block.inptr);
                 FREE(Block.insz);
-                for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+                for (j = 0; j < Block.nout; j++)
+                {
+                    FREE(Block.outptr[j]);
+                }
                 FREE(Block.outptr);
                 FREE(Block.outsz);
                 FREE(Block.evout);
@@ -1722,12 +2139,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
                 FREE(Block.z);
                 FREE(Block.ozsz);
                 FREE(Block.oztyp);
-                for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+                for (j = 0; j < Block.noz; j++)
+                {
+                    FREE(Block.ozptr[j]);
+                }
                 FREE(Block.rpar);
                 FREE(Block.ipar);
                 FREE(Block.oparsz);
                 FREE(Block.opartyp);
-                for (j = 0; j < Block.nopar; j++) FREE(Block.oparptr[j]);
+                for (j = 0; j < Block.nopar; j++)
+                {
+                    FREE(Block.oparptr[j]);
+                }
                 Scierror(888, _("%s : Allocation error.\n"), fname);
                 return 0;
             }
@@ -1749,10 +2172,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     {
         if ((Block.g = (double *) MALLOC(Block.ng * sizeof(double))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1763,12 +2192,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             FREE(Block.z);
             FREE(Block.ozsz);
             FREE(Block.oztyp);
-            for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+            for (j = 0; j < Block.noz; j++)
+            {
+                FREE(Block.ozptr[j]);
+            }
             FREE(Block.rpar);
             FREE(Block.ipar);
             FREE(Block.oparsz);
             FREE(Block.opartyp);
-            for (j = 0; j < Block.nopar; j++) FREE(Block.oparptr[j]);
+            for (j = 0; j < Block.nopar; j++)
+            {
+                FREE(Block.oparptr[j]);
+            }
             FREE(Block.label);
             Scierror(888, _("%s : Allocation error.\n"), fname);
             return 0;
@@ -1780,10 +2215,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         }
         if ((Block.jroot = (int *) MALLOC(Block.ng * sizeof(int))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1794,12 +2235,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             FREE(Block.z);
             FREE(Block.ozsz);
             FREE(Block.oztyp);
-            for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+            for (j = 0; j < Block.noz; j++)
+            {
+                FREE(Block.ozptr[j]);
+            }
             FREE(Block.rpar);
             FREE(Block.ipar);
             FREE(Block.oparsz);
             FREE(Block.opartyp);
-            for (j = 0; j < Block.nopar; j++) FREE(Block.oparptr[j]);
+            for (j = 0; j < Block.nopar; j++)
+            {
+                FREE(Block.oparptr[j]);
+            }
             FREE(Block.label);
             FREE(Block.g);
             Scierror(888, _("%s : Allocation error.\n"), fname);
@@ -1824,10 +2271,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     {
         if ((Block.mode = (int *) MALLOC(Block.nmode * sizeof(double))) == NULL)
         {
-            for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+            for (j = 0; j < Block.nin; j++)
+            {
+                FREE(Block.inptr[j]);
+            }
             FREE(Block.inptr);
             FREE(Block.insz);
-            for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+            for (j = 0; j < Block.nout; j++)
+            {
+                FREE(Block.outptr[j]);
+            }
             FREE(Block.outptr);
             FREE(Block.outsz);
             FREE(Block.evout);
@@ -1838,12 +2291,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
             FREE(Block.z);
             FREE(Block.ozsz);
             FREE(Block.oztyp);
-            for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+            for (j = 0; j < Block.noz; j++)
+            {
+                FREE(Block.ozptr[j]);
+            }
             FREE(Block.rpar);
             FREE(Block.ipar);
             FREE(Block.oparsz);
             FREE(Block.opartyp);
-            for (j = 0; j < Block.nopar; j++) FREE(Block.oparptr[j]);
+            for (j = 0; j < Block.nopar; j++)
+            {
+                FREE(Block.oparptr[j]);
+            }
             FREE(Block.label);
             FREE(Block.g);
             FREE(Block.jroot);
@@ -1860,10 +2319,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     /* work */
     if ((Block.work = (void **) MALLOC(sizeof(void *))) == NULL)
     {
-        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+        for (j = 0; j < Block.nin; j++)
+        {
+            FREE(Block.inptr[j]);
+        }
         FREE(Block.inptr);
         FREE(Block.insz);
-        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+        for (j = 0; j < Block.nout; j++)
+        {
+            FREE(Block.outptr[j]);
+        }
         FREE(Block.outptr);
         FREE(Block.outsz);
         FREE(Block.evout);
@@ -1874,12 +2339,18 @@ int sci_model2blk(char *fname, unsigned long fname_len)
         FREE(Block.z);
         FREE(Block.ozsz);
         FREE(Block.oztyp);
-        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+        for (j = 0; j < Block.noz; j++)
+        {
+            FREE(Block.ozptr[j]);
+        }
         FREE(Block.rpar);
         FREE(Block.ipar);
         FREE(Block.oparsz);
         FREE(Block.opartyp);
-        for (j = 0; j < Block.nopar; j++) FREE(Block.oparptr[j]);
+        for (j = 0; j < Block.nopar; j++)
+        {
+            FREE(Block.oparptr[j]);
+        }
         FREE(Block.label);
         FREE(Block.g);
         FREE(Block.jroot);
@@ -1893,10 +2364,16 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 
     ierr = createblklist(&Block, &ierr, -1, Block.type);
 
-    for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+    for (j = 0; j < Block.nin; j++)
+    {
+        FREE(Block.inptr[j]);
+    }
     FREE(Block.inptr);
     FREE(Block.insz);
-    for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+    for (j = 0; j < Block.nout; j++)
+    {
+        FREE(Block.outptr[j]);
+    }
     FREE(Block.outptr);
     FREE(Block.outsz);
     FREE(Block.evout);
@@ -1906,13 +2383,22 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     FREE(Block.z);
     FREE(Block.ozsz);
     FREE(Block.oztyp);
-    for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+    for (j = 0; j < Block.noz; j++)
+    {
+        FREE(Block.ozptr[j]);
+    }
     FREE(Block.rpar);
     FREE(Block.ipar);
     FREE(Block.oparsz);
     FREE(Block.opartyp);
-    for (j = 0; j < Block.nopar; j++) FREE(Block.oparptr[j]);
-    if (len_str != 0) FREE(Block.label);
+    for (j = 0; j < Block.nopar; j++)
+    {
+        FREE(Block.oparptr[j]);
+    }
+    if (len_str != 0)
+    {
+        FREE(Block.label);
+    }
     FREE(Block.g);
     FREE(Block.jroot);
     FREE(Block.mode);
@@ -1925,3 +2411,4 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+

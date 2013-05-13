@@ -16,7 +16,7 @@
 // FROMWS block does not works
 
 
-status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9346.xcos");
+status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9346.zcos");
 if ~status then pause, end;
 
 V.time = (1:10)';

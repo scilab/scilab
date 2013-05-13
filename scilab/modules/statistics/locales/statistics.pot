@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-03-27 13:20+0100\n"
+"Revision-Date: 2013-04-16 17:44+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -406,51 +406,48 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/histplot.sci, line: 58
-msgid "histplot() : (normalized) histogram plot"
-msgstr ""
-
-#
-# File: macros/histplot.sci, line: 60
-msgid "Gaussian random sample histogram"
-msgstr ""
-
-#
-# File: macros/histplot.sci, line: 61
-msgid "Exact gaussian density"
-msgstr ""
-
-#
-# File: macros/histplot.sci, line: 72
+# File: macros/cov.sci, line: 103
+# File: macros/cov.sci, line: 115
+# File: macros/cov.sci, line: 152
+# File: macros/cov.sci, line: 155
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/histplot.sci, line: 76
-# File: macros/histplot.sci, line: 78
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr ""
-
-#
-# File: macros/histplot.sci, line: 103
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr ""
-
-#
-# File: macros/histplot.sci, line: 105
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
-
-#
-# File: macros/histplot.sci, line: 117
+# File: macros/cov.sci, line: 118
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+"%s: Wrong type for input argument #%d: an integer or a real matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 125
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 136
+# File: macros/cov.sci, line: 139
+# File: macros/cov.sci, line: 164
+# File: macros/cov.sci, line: 167
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 158
+# File: macros/cov.sci, line: 170
+#, c-format
+msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 184
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #
@@ -509,7 +506,7 @@ msgstr ""
 
 #
 # File: macros/mvcorrel.sci, line: 29
-# File: macros/mvvacov.sci, line: 31
+# File: macros/mvvacov.sci, line: 32
 # File: macros/samwr.sci, line: 19
 # File: macros/thrownan.sci, line: 27
 #, c-format

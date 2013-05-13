@@ -73,8 +73,8 @@
                 <listitem>
                     <para>
                         вектор с двумя элементами <literal>[times num]</literal>, где
-                        <literal>times</literal> -- значение момента времени, когда поверхность пересекается,
-                        <literal>num</literal> -- номер пересечённой поверхности.
+                        <literal>times</literal> - значение момента времени, когда поверхность пересекается,
+                        <literal>num</literal> - номер пересечённой поверхности.
                     </para>
                 </listitem>
             </varlistentry>
@@ -131,8 +131,10 @@ r=res(t,y,ydot,x1,x2,...)
                                 <literal>(t,y,ydot,x1,x2,...)</literal>.
                             </para>
                             <para>
-                                Внимание:
-                                эта форма не должна использоваться, если нет дополнительного аргумента для передачи в функцию.
+                                <warning>
+                                    Внимание:
+                                    эта форма не должна использоваться, если нет дополнительного аргумента для передачи в функцию.
+                                </warning>
                             </para>
                         </listitem>
                         <listitem>
@@ -175,7 +177,7 @@ integer ires,ipar(*)
                                 <literal>r=jac(t,y,ydot,cj)</literal> и
                                 <literal>jac</literal> должна возвращать 
                                 <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal>, где
-                                <literal>cj</literal> -- вещественный скаляр.
+                                <literal>cj</literal> - вещественный скаляр.
                             </para>
                         </listitem>
                         <listitem>
@@ -357,7 +359,7 @@ integer ny,ng
                 <listitem>
                     <para>
                         вещественная матрица. Каждый столбец является вектором <literal>[t;x(t);xdot(t)]</literal>,
-                        где <literal>t</literal> -- индекс времени для которого требуется найти решение.
+                        где <literal>t</literal> - индекс времени для которого требуется найти решение.
                     </para>
                 </listitem>
             </varlistentry>

@@ -50,7 +50,7 @@
             へのインターフェイスとして動作します.
         </para>
         <programlisting role="example"> 
-            xcos('mydiagram.xcos')
+            xcos('mydiagram.zcos')
         </programlisting>
     </refsection>
     <refsection id="Parameters_xcos">
@@ -59,7 +59,7 @@
             <listitem>
                 <para>
                     <emphasis role="bold">filename : </emphasis> 
-                    図形ファイル(拡張子: .cos, .cosf または .xcos)のパスを有する文字列.
+                    図形ファイル(拡張子: .cos, .cosf または .zcos)のパスを有する文字列.
                     入力引数を指定しない場合,空のダイアグラム(デフォルト名:Untitled)がオープンされます.
                 </para>
             </listitem>

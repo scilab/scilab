@@ -669,3 +669,4 @@ typedef enum
 #define GetLabelPtrs(blk) (blk->label)
 
 #endif /* __SCICOS_BLOCK_H__ */
+

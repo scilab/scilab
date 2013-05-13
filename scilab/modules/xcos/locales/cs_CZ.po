@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:09+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2013-03-28 21:07+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -331,6 +331,9 @@ msgstr "Uložit jako"
 msgid "Export"
 msgstr "Export"
 
+msgid "Export all diagrams"
+msgstr "Exportovat všechny grafy"
+
 msgid "Save as interface function"
 msgstr "Uložit jako funkci rozhraní"
 
@@ -394,8 +397,8 @@ msgstr "Zobrazit v Scicos"
 msgid "View"
 msgstr "Zobrazení"
 
-msgid "Fit diagram to view"
-msgstr "Přizpůsobit diagram pro zobrazení"
+msgid "Fit diagram or blocks to view"
+msgstr "Přizpůsobit graf nebo bloky zobrazení"
 
 msgid "Normal 100%"
 msgstr "Normální 100%"

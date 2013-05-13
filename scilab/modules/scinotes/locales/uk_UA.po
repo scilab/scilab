@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-09-19 10:39+0000\n"
+"PO-Revision-Date: 2013-03-19 18:18+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: uk\n"
 
 #, c-format
@@ -511,6 +511,19 @@ msgstr "SciNotes"
 msgid "Error while reading the String"
 msgstr "Помилка під час спроби читання рядка"
 
+#, c-format
+msgid "File not found: %s"
+msgstr "Файла не існує: %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "Помилка введення-виведення: %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr ""
+"До файла %s внесено зміни сторонньою програмою. Перезавантажити його вміст?"
+
 msgid "Source of '"
 msgstr "Джерело «"
 
@@ -721,12 +734,8 @@ msgid "String %s not found"
 msgstr "Рядка %s не знайдено"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Файла з назвою %s не існує.\n"
-"Створити такий файл?"
+msgid "The file %s does not exist. Do you want to create it?"
+msgstr "Файла з назвою %s не інує. Хочете його створити?"
 
 msgid "close this tab"
 msgstr "закрити цю вкладку"
@@ -734,20 +743,16 @@ msgstr "закрити цю вкладку"
 msgid "This file"
 msgstr "Поточний файл"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
 msgstr ""
-" було змінено з часу останнього збереження.\n"
-"Зберегти зміни?"
+"До файла %s було внесено зміни з часу його останнього збереження. Зберегти "
+"ці зміни?"
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
-"Вміст файла %s було змінено сторонньою програмою!\n"
-" Перезаписати його?"
+"Файл %s було змінено іншою програмою! Перезаписати його поточний вміст?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Попередження: до файла було внесено зміни сторонньою програмою!"

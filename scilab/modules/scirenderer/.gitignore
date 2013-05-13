@@ -1,0 +1,26 @@
+
+# Java stuff
+*.class
+*.jar
+docs
+
+# C/C++ stuff
+*.[oa]
+*.so
+*.dll
+*.lib
+*.exp
+*.ilk
+*.def
+*.mak
+*.obj
+
+# other
+*~
+*.log
+*.iml
+.idea
+loader.sce
+cleaner.sce
+loader_gateway.sce
+cleaner_gateway.sce

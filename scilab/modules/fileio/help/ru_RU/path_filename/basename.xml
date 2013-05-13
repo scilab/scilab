@@ -12,9 +12,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="basename" xml:lang="ru">
-    <info>
-        <pubdate>$LastChangedDate$</pubdate>
-    </info>
     <refnamediv>
         <refname>basename</refname>
         <refpurpose>отсекает директорию и расширение от имён файлов</refpurpose>
@@ -35,10 +32,25 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag, flagexpand</term>
+                <term>flag</term>
                 <listitem>
                     <para>
-                        логические необязательные параметры. Значение по умолчанию <constant>%t</constant>.
+                        логический необязательный параметр, используемые 
+                        для преобразования указанных путей в текущей 
+                        операционной системе. Значение по умолчанию 
+                        "истина" (<constant>%t</constant>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flagexpand</term>
+                <listitem>
+                    <para>
+                        логический необязательный параметр, используемый 
+                        для расширения переменных, идущих впереди, в 
+                        пути. Используется только с аргументом 
+                        <varname>flag</varname> argument. Значение по 
+                        умолчанию "истина" (<constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>

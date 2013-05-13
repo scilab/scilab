@@ -217,10 +217,10 @@
     <refsection id="Example_SAMPHOLD_m">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SAMPHOLD_m_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/signalrouting_pal/SAMPHOLD_m_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SAMPHOLD_m_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SAMPHOLD_m_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

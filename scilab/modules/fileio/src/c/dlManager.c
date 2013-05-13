@@ -305,6 +305,13 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
 
         init_string(&buffer);
 
+        res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
+        if (res != CURLE_OK)
+        {
+            Scierror(999, "Failed to set error buffer [%d]\n", res);
+            return NULL;
+        }
+
         if (dest == NULL)
         {
             /* No second argument provided */

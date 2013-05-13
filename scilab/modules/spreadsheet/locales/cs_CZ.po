@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-15 21:29+0000\n"
+"PO-Revision-Date: 2013-03-21 13:44+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -127,6 +127,10 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 #, c-format
 msgid "%s: separator and decimal must have different values.\n"
 msgstr "%s: oddělovač a desetinné číslo musí mít různé hodnoty.\n"
+
+#, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr "%s: Levé indexy rozsahu řádku a/nebo sloupce mimo rozsah.\n"
 
 #, c-format
 msgid "%s: can not convert data.\n"
@@ -249,6 +253,9 @@ msgid ""
 msgstr ""
 "%s: Ve sloupcích nalezena nesrovnalost. Na řádku %d nalezeno %d sloupců, "
 "zatímco předchozí obsahoval %d.\n"
+
+msgid "Warning"
+msgstr "Varování"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"

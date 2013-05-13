@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5mount" xml:lang="en">
+    <refnamediv>
+        <refname>h5mount</refname>
+        <refpurpose>Mount a file on a group</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5mount(obj, location, fileobj)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>location</term>
+                <listitem>
+                    <para>a string giving the mount point</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fileobj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Mount an HDF5 file on a mount point.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Create an HDF5 file
+a = h5open(TMPDIR + "/test.h5", "w")
+
+// we create a group which will be used as mount point
+h5group(a, "/mnt");
+
+// Create an other file with a group and a dataset
+b = h5open(TMPDIR + "/test1.h5", "w")
+h5group(b, "Group_1");
+h5write(b, "Group_1/Dataset_1", [1 2;3 4]);
+
+// Mount b on a
+h5mount(a, "/mnt", b)
+
+// Now we can modify or read b like if we were in a
+a.root.mnt.Group_1.Dataset_1.data
+h5write(a.root.mnt.Group_1, "Dataset_1", [10 11;12 13])
+
+// We can now unmount and remove the mount point
+h5umount(a, "/mnt")
+h5rm(a, "/mnt")
+
+// We close all
+h5close(a, b)
+
+// Check that the modification in b is ok
+h5dump(TMPDIR + "/test1.h5", "/Group_1/Dataset_1")
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5open">h5open</link>
+            </member>
+        </simplelist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5umount">h5umount</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // The Affich block doesn't refresh values.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_7315.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_7315.zcos");
 // start the simulation
 // Value must be updated
 

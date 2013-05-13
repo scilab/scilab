@@ -48,7 +48,7 @@ function M=generic_i_hm(default_value,varargin)
         if or(dk<>(dims(k):-1:1)) then
           if dk(1)<1|dk($)>dims(k) then error(21),end
           if ok<>[] then
-            error('A null assignment can have only one non-colon index')
+            error(msprintf(_("%s: A null assignment can have only one non-colon index.\n"),"generic_i_hm"));
           end
           ok=k
           I1=1:dims(k);I1(dk)=[]

@@ -77,6 +77,14 @@
         </para>
     </refsection>
     <refsection>
+        <title>Remarque</title>
+        <para>
+            <note>
+                Si <varname>x</varname> contient des NANs, le résultat correspondra au résultat obtenu avec des Inf.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 A=[1,2,10;7,7.1,7.01];

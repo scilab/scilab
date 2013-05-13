@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>nicholschart([ modules [,args [,colors]]])</synopsis>
+        <synopsis>nicholschart([modules] [,args] [,colors])</synopsis>
         <synopsis/>
     </refsynopsisdiv>
     <refsection>

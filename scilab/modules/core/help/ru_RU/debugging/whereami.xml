@@ -11,7 +11,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Выводит на экран дерево вызова инструкции, которая содержит <literal>whereami()</literal>. Может быть использована на уровнях в режиме паузы (<literal>pause</literal>).
+            Выводит на экран дерево вызова инструкции, которая содержит <code>whereami()</code>. Может быть использована на уровнях в режиме паузы (<function>pause</function>).
         </para>
     </refsection>
     <refsection>

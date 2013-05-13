@@ -11,7 +11,7 @@ function r=%i_b_s(varargin)
 //a:b where a is int and b double
 //a:b:c where a is int,  b double and c every type
   if round(varargin(1))<>varargin(1) then 
-    error('Colon operands should have integer values")
+    error(msprintf(_("%s: Wrong type for input argument #%d: integer values expected.\n"),"%i_b_s",1));
   end
   if size(varargin)==2 then //a:b
     it=inttype(varargin(1))

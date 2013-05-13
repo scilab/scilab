@@ -12,6 +12,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "callfftw.h"
 #include "api_scilab.h"
 #include "MALLOC.h"
@@ -72,8 +73,9 @@ int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
                     Scierror(999, _("%s: No more memory.\n"), fname);
                     if (Str)
                     {
-                        FREE(Str);
-                        Str = NULL;
+                        // According to the FFTW documentation we should free Str
+                        // string but doing makes Scilab crash!?
+                        //free(Str);
                     }
                     return 1;
                 }
@@ -85,8 +87,9 @@ int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
                     freeArrayOfString(Str1, n1 - 1);
                     if (Str)
                     {
-                        FREE(Str);
-                        Str = NULL;
+                        // According to the FFTW documentation we should free Str
+                        // string but doing makes Scilab crash!?
+                        //free(Str);
                     }
                     Scierror(999, _("%s: No more memory.\n"), fname);
                     return 1;
@@ -118,8 +121,9 @@ int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
         Scierror(999, _("%s: No more memory.\n"), fname);
         if (Str)
         {
-            FREE(Str);
-            Str = NULL;
+            // According to the FFTW documentation we should free Str
+            // string but doing makes Scilab crash!?
+            //free(Str);
         }
         return 1;
     }
@@ -129,8 +133,9 @@ int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
         freeArrayOfString(Str1, n1 - 1);
         if (Str)
         {
-            FREE(Str);
-            Str = NULL;
+            // According to the FFTW documentation we should free Str
+            // string but doing makes Scilab crash!?
+            //free(Str);
         }
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 1;
@@ -142,8 +147,9 @@ int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
     freeArrayOfString(Str1, n1);
     if (Str)
     {
-        FREE(Str);
-        Str = NULL;
+        // According to the FFTW documentation we should free Str
+        // string but doing makes Scilab crash!?
+        //free(Str);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: de\n"
 
 #, c-format
@@ -337,6 +337,9 @@ msgstr "Speichern als"
 msgid "Export"
 msgstr "Exportieren"
 
+msgid "Export all diagrams"
+msgstr ""
+
 msgid "Save as interface function"
 msgstr "Als Interface-Funktion speichern"
 
@@ -400,8 +403,8 @@ msgstr "In Scicos zeigen"
 msgid "View"
 msgstr "Ansicht"
 
-msgid "Fit diagram to view"
-msgstr "Diagramm an Anzeige anpassen"
+msgid "Fit diagram or blocks to view"
+msgstr ""
 
 msgid "Normal 100%"
 msgstr "Normal 100%"

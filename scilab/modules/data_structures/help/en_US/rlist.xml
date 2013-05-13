@@ -44,7 +44,6 @@ Den=[s*s,s;s,s*s];
 rlist(Num,Den,[])
  ]]></programlisting>
     </refsection>
-    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

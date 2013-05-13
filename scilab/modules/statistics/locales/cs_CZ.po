@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2013-01-09 21:20+0000\n"
+"PO-Revision-Date: 2013-03-28 21:06+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 msgid "X,Y,A and B"
 msgstr "X,Y,A a B"
@@ -253,6 +253,40 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno stejný počet sloupců "
 "jako první vstupní argument.\n"
 
+msgid "histplot() : (normalized) histogram plot"
+msgstr "histplot() : (normalizovaný) graf histogramu"
+
+msgid "Gaussian random sample histogram"
+msgstr "Náhodný vzorek gaussovského histogramu"
+
+msgid "Exact gaussian density"
+msgstr "Přesná gaussovská hustota"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejméně %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Prvky musí být ve vzestupném "
+"pořadí.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno alespoň %d.\n"
@@ -439,13 +473,13 @@ msgid "Unexpected value of orien : %s\n"
 msgstr "Nečekaná hodnota orien : %s\n"
 
 #, c-format
-msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
-msgstr "%s: Špatná hodnota w : %d; očekávána 0 nebo 1.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu: očekáváno '%s', '%s', %d nebo %d.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
+msgstr "%s: Špatná hodnota w: Očekáváno %s, %d nebo %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"

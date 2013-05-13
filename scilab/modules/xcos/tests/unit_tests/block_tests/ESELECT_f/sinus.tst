@@ -10,7 +10,7 @@
 //
 // <-- Short Description -->
 // This script validate the eselect functionnality with a sinus input.
-// The associated diagram (sinus.xcos) is run and export data to the workspace.
+// The associated diagram (sinus.zcos) is run and export data to the workspace.
 // These data are then compared to the default.
 //
 
@@ -21,7 +21,7 @@ ierr = import_from_hdf5(currentPath + "sinus_ref.sod");
 if ierr <> %t then pause; end
 
 // Import the diagram structure
-ierr = importXcosDiagram(currentPath + "sinus.xcos");
+ierr = importXcosDiagram(currentPath + "sinus.zcos");
 if ierr <> %t then pause; end
 
 // launch the simulation

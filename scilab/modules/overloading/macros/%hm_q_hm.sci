@@ -9,9 +9,9 @@
 
 function M2=%hm_q_hm(M1,M2)
 
-if and(M1('dims')==M2('dims')) then
-  M2('entries')=M1('entries').\M2('entries')
-else
- error('inconsistent element-wise operation')
-end
+    if and(M1('dims')==M2('dims')) then
+        M2('entries')=M1('entries').\M2('entries')
+    else
+        error(msprintf(_("%s: Inconsistent element-wise operation.\n"),"%hm_q_hm"));
+    end
 endfunction

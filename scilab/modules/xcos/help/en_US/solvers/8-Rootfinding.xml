@@ -62,17 +62,17 @@
     <refsection>
         <title>Examples and Overhead</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/demos/Threshold_ZeroCrossing.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Threshold_ZeroCrossing.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../demos/Threshold_ZeroCrossing.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../demos/Threshold_ZeroCrossing.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/demos/Threshold_ZeroCrossing.xcos");
+importXcosDiagram(SCI + "/modules/xcos/demos/Threshold_ZeroCrossing.zcos");
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
@@ -84,7 +84,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       // Import the diagram and set the ending time
       loadScicos();
       loadXcosLibs();
-      importXcosDiagram("SCI/modules/xcos/demos/Threshold_ZeroCrossing.xcos");
+      importXcosDiagram("SCI/modules/xcos/demos/Threshold_ZeroCrossing.zcos");
 
       // Start the timer, launch the simulation and display time
       tic();

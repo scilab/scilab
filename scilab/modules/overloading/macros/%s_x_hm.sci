@@ -9,9 +9,9 @@
 
 function M2=%s_x_hm(M1,M2)
 
-if size(M1,'*')<>1 then
-  error('inconsistent element-wise operation')
-else
-  M2('entries')=M1.*M2('entries')
-end
+    if size(M1,'*')<>1 then
+        error(msprintf(_("%s: Wrong size for input argument #%d.\n"),"%s_x_hm",1));
+    else
+        M2('entries')=M1.*M2('entries')
+    end
 endfunction

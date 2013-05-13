@@ -15,8 +15,8 @@
 // <-- Short Description -->
 // Modelica compiler fail for a diagram with accentuated filename.
 
-diagram = TMPDIR + "/Schema-@-electrique.xcos";
-[status,msg] = copyfile(SCI + "/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.xcos", diagram);
+diagram = TMPDIR + "/Schema-@-electrique.zcos";
+[status,msg] = copyfile(SCI + "/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.zcos", diagram);
 if ~status then pause, end
 
 if ~importXcosDiagram(diagram) then pause, end

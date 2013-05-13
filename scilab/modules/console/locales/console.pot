@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-03-27 13:20+0100\n"
+"Revision-Date: 2013-04-16 17:44+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 205
@@ -1279,7 +1279,7 @@ msgstr ""
 
 #
 # File: src/c/cmdLine/getKey.c, line: 361
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 563
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 561
 #, c-format
 msgid ""
 "Command is too long (more than %d characters long): could not send it to "
@@ -1310,16 +1310,16 @@ msgid "No help"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 448
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 446
 msgid "Out of Screen"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 651
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 649
 msgid "Could not change the Console Font."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 714
+# File: src/java/org/scilab/modules/console/SciConsole.java, line: 712
 msgid "Could not change the Console Foreground."
 msgstr ""

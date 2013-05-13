@@ -29,12 +29,12 @@
             <tr>
                 <td>
                     <programlisting role="example"><![CDATA[
-atan2
+atan2(y,x)
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-atan2
+atan(y,x)
 ]]></programlisting>
                 </td>
             </tr>

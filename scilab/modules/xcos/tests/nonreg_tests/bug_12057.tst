@@ -18,14 +18,14 @@
 // This test check cscope and cmscope huge-buffer (more than 4k points)
 // optimization.
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_12057_cscope.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_12057_cscope.zcos"));
 timer();
 xcos_simulate(scs_m, 4);
 t = timer();
 
 assert_checktrue(t < 60);
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_12057_cmscope.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_12057_cmscope.zcos"));
 timer();
 xcos_simulate(scs_m, 4);
 t = timer();

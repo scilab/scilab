@@ -76,7 +76,7 @@
         <title>説明</title>
         <para>
             この関数はバッチモードで xcos ダイアグラムをシミュレートする際に使用されます.
-            この関数には,<literal>.xcos</literal>ファイルをScilabにロードした際に
+            この関数には,<literal>.zcos</literal>ファイルをScilabにロードした際に
             得られる <link linkend="scicos_diagram">scs_m構造体</link>を指定します
             (<link linkend="importXcosDiagram">importXcosDiagram</link>参照).
         </para>
@@ -115,14 +115,14 @@
         </itemizedlist>
     </refsection>
     <refsection id="Examples_scicos_simulate">
-        <title>例</title><literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>のxcosダイアグラム
+        <title>例</title><literal>SCI/modules/xcos/demos/batch_simulation.zcos</literal>のxcosダイアグラム
         <mediaobject>
             <imageobject>
-                <imagedata align="center" fileref="../../../demos/batch_simulation.xcos"/>
+                <imagedata align="center" fileref="../../../demos/batch_simulation.zcos"/>
             </imageobject>
         </mediaobject>
         <programlisting role="example"><![CDATA[ 
-importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
+importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
 
 typeof(scs_m) //ダイアグラムデータ構造体
 

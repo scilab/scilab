@@ -56,7 +56,7 @@ slinf=round((log10(abs(fresp(k)))-log10(abs(fresp(km))))/(log10(w(k))-log10(w(km
 
 if slinf>0&slinf<20
   w=[w;[10;15]*w(npts)];
-  fresp=[fresp;[1;1]*10^slinf*abs(fresp(npts))];
+  fresp=[fresp;[1;1]*10.^slinf*abs(fresp(npts))];
   weight=[weight;1;1];
   npts=npts+2;
   slinf=0;
@@ -149,7 +149,7 @@ else
   fweight=ones(npts,1); 
   ind=find(w > 10);
 
-  fweight(ind)=((1) ./(w(ind)^order));
+  fweight(ind)=((1) ./(w(ind).^order));
   ind=find(w < .01);
 
   fweight(ind)=(1./(w(ind)^min(0,sl0)))';

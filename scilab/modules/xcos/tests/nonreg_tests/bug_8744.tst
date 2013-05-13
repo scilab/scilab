@@ -17,7 +17,7 @@
 // Using the modelica initialize gui, produced an OCaML exception while solved
 // twice.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8744.xcos")
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8744.zcos")
 
 // Compilation -> Initialize modelica
 // Solve (may produce and error)

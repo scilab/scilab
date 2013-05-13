@@ -203,7 +203,7 @@
             resistor and the other for the ground. These inputs are connected to the external environment of the bloc via two INIMPL_f blocks numbered 1
             and 2. The Super block output is connected via a <link linkend="OUTIMPL_f">OUTIMPL_f</link> block.
         </para>
-        <para><link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.xcos">
+        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>
@@ -211,12 +211,12 @@
         <para>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/en_US/INIMPL_f_en_US.xcos"/>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/INIMPL_f_en_US.zcos"/>
                 </imageobject>
             </mediaobject>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/en_US/INIMPL_f_internal_en_US.xcos"/>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/INIMPL_f_internal_en_US.zcos"/>
                 </imageobject>
             </mediaobject>
         </para>
@@ -229,7 +229,7 @@ function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
 	btn=1;
 endfunction
 
-importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>

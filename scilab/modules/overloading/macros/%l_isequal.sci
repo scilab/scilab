@@ -9,7 +9,7 @@
 
 function r=%l_isequal(x1,varargin)
   narg=size(varargin)
-  if narg==0 then error('isequal requires at least two input arguments'),end
+  if narg==0 then error(msprintf(_("%s: Wrong number of input arguments: At least %d expected.\n"),"%l_isequal",2)) ,end
 
   r=%t
   m=lstsize(x1)

@@ -236,7 +236,8 @@ function result = getsave(scifile)
 
   if ierr <> 0 then
     clear ierr;
-    mprintf(gettext("%s: Warning: Error in file %s : %s. File ignored\n"),"genlib",scifile,lasterror());
+    //mprintf(gettext("%s: Warning: Error in file %s : %s. File ignored\n"),"genlib",scifile,lasterror());
+    error(msprintf(gettext("%s: Error in file %s : %s.\n"), "genlib", scifile, lasterror()));
     result = %f;
 
   else

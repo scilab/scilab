@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: pl\n"
 
 #, c-format
@@ -78,6 +78,11 @@ msgstr "%s: Obliczona wartość jest liczbą rzeczywistą, oczekiwano zespolonej
 msgid "%s: Computed is complex, but expected is real."
 msgstr ""
 "%s: Obliczona wartość jest liczbą zespoloną, oczekiwano rzeczywistej."
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -254,6 +259,10 @@ msgstr "Test ukończony sukcesem"
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr "%s: Zły rozmiar parametru wejściowego."
+
+#, c-format
+msgid "%s: Wrong number of input arguments."
+msgstr ""
 
 #, c-format
 msgid "%s is not an installed module or toolbox"

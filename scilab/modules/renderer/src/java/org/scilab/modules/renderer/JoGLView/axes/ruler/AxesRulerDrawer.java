@@ -163,7 +163,7 @@ public class AxesRulerDrawer {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 if (axes.getAutoSubticks()) {
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
                 }
             }
 
@@ -210,7 +210,7 @@ public class AxesRulerDrawer {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 if (axes.getAutoSubticks()) {
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
                 }
             }
 
@@ -274,7 +274,7 @@ public class AxesRulerDrawer {
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                     if (axes.getAutoSubticks()) {
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity() - 1);
+                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
                     }
                 }
 
@@ -333,7 +333,12 @@ public class AxesRulerDrawer {
             if (axes.getXAxisGridColor() != -1) {
                 FloatBuffer vertexData;
                 if (axes.getXAxisLogFlag()) {
-                    vertexData = getXGridData(rulerDrawers[0].getSubTicksValue(), rulerDrawers[0].getModel());
+                    List<Double> values = rulerDrawers[0].getSubTicksValue();
+                    if (values == null || values.isEmpty()) {
+                        vertexData = getXGridData(rulerDrawers[0].getTicksValue(), rulerDrawers[0].getModel());
+                    } else {
+                        vertexData = getXGridData(values, rulerDrawers[0].getModel());
+                    }
                 } else {
                     vertexData = getXGridData(rulerDrawers[0].getTicksValue(), rulerDrawers[0].getModel());
                 }
@@ -369,7 +374,12 @@ public class AxesRulerDrawer {
             if (axes.getYAxisGridColor() != -1) {
                 FloatBuffer vertexData;
                 if (axes.getYAxisLogFlag()) {
-                    vertexData = getYGridData(rulerDrawers[1].getSubTicksValue(), rulerDrawers[1].getModel());
+                    List<Double> values = rulerDrawers[1].getSubTicksValue();
+                    if (values == null || values.isEmpty()) {
+                        vertexData = getYGridData(rulerDrawers[1].getTicksValue(), rulerDrawers[1].getModel());
+                    } else {
+                        vertexData = getYGridData(values, rulerDrawers[1].getModel());
+                    }
                 } else {
                     vertexData = getYGridData(rulerDrawers[1].getTicksValue(), rulerDrawers[1].getModel());
                 }
@@ -406,7 +416,12 @@ public class AxesRulerDrawer {
                 if (axes.getZAxisGridColor() != -1 || !axes.getZAxisVisible()) {
                     FloatBuffer vertexData;
                     if (axes.getZAxisLogFlag()) {
-                        vertexData = getZGridData(rulerDrawers[2].getSubTicksValue(), rulerDrawers[2].getModel());
+                        List<Double> values = rulerDrawers[2].getSubTicksValue();
+                        if (values == null || values.isEmpty()) {
+                            vertexData = getZGridData(rulerDrawers[2].getTicksValue(), rulerDrawers[2].getModel());
+                        } else {
+                            vertexData = getZGridData(values, rulerDrawers[2].getModel());
+                        }
                     } else {
                         vertexData = getZGridData(rulerDrawers[2].getTicksValue(), rulerDrawers[2].getModel());
                     }

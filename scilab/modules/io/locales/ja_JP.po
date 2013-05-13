@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -177,6 +177,10 @@ msgstr "ファイル \"%s\" への読み込みアクセスが拒否されまし�
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "v2cunitによる管理外のエラー.\n"
+
+#, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : Invalid entity %s\n"

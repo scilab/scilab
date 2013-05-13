@@ -1454,7 +1454,7 @@ recursive_amalgamate_supernodes(int           sn,
       if (i >= n) n = i+1;
     }
 
-    zcount = (double*) alloca(n * sizeof(double));
+    zcount = (double*) malloc(n * sizeof(double));
     assert(zcount);
     
     for (ip=0; ip<new_sn_size; ip++) {
@@ -1502,7 +1502,7 @@ recursive_amalgamate_supernodes(int           sn,
       assert(zcount[i] >= 0.0);
       merged_znz.zeros += zcount[i];
     }
-
+    FREE( zcount );
     /*printf("zeros after merging %.0f\n",merged_znz.zeros);*/
 
     /* voodoo constants (need some kind of a utility function */

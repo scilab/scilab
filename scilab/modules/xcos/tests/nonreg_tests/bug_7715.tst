@@ -17,13 +17,13 @@
 
 
 timer();
-xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.zcos");
 run1 = timer();
 
-xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.zcos");
 
 timer();
-xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.xcos");
+xcosDiagramToScilab(SCI+"/modules/xcos/demos/susp.zcos");
 run3 = timer();
 
 // If the computer slows for an other reasons, we might have this bug again.

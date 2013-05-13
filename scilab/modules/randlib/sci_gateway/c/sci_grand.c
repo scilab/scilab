@@ -135,7 +135,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
     Nbvars = 0;
     CheckRhs(minrhs, maxrhs);
     CheckLhs(minlhs, maxlhs);
-    if ( GetType(1) != sci_matrix)
+    if (GetType(1) != sci_matrix)
     {
         int un = 1, deux = 2, dim_state_mt = 625, dim_state_fsultra = 40, dim_state_4 = 4;
         GetRhsVar(1, STRING_DATATYPE, &ms, &ns, &ls);
@@ -424,7 +424,6 @@ int sci_Rand(char *fname, unsigned long fname_len)
             PutLhsVar();
             return 0;
         }
-
         else if (strcmp("initgn", cstk(ls)) == 0)
         {
             SeedType Where;
@@ -569,7 +568,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s Wrong value for input argument #%d: %s.\n"), fname, 1, cstk(ls));
+            Scierror(999, _("%s Wrong value for input argument #%d: '%s' is unknown.\n"), fname, 1, cstk(ls));
 
             return 0;
         }
@@ -592,6 +591,13 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         ResC = *istk(l2);
+        minrhs = 3;
+        CheckRhs(minrhs, maxrhs);
+        if ( GetType(3) != sci_strings )
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
+            return 0;
+        }
         GetRhsVar(3, STRING_DATATYPE, &ms, &ns, &ls);
         suite = 4;
         if (ResL < 0 && (ResL != -1 || ResC != -1)) //ResL=-1 & ResC=-1 => eye
@@ -750,11 +756,11 @@ int sci_Rand(char *fname, unsigned long fname_len)
     {
         if ( Rhs != suite + 1)
 
-            /*  ETRE PLUS CONSISTANT ICI : choisir entre shape , scale ou
+            /*  ETRE PLUS CONSISTANT ICI : choisir entre shape , rate ou
             bien A et R (idem pour le man)
             */
         {
-            Scierror(999, _("Missing shape and scale for Gamma law\n"));
+            Scierror(999, _("Missing shape and rate for Gamma law\n"));
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
@@ -766,7 +772,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
         if ( m1*n1 != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "scale");
+            Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "rate");
             return 0;
         }
         CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);

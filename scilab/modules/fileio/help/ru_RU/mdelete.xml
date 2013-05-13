@@ -46,6 +46,13 @@
             </caution>
         </para>
     </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+r = mputl('Эта строчка просто для образца.', TMPDIR+'/dummyFile.dummy');
+mdelete(TMPDIR+"/dummyFile.dummy");
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">

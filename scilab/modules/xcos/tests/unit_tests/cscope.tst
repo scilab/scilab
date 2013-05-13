@@ -12,7 +12,7 @@
 // test scope values 
 
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cscope.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cscope.zcos"));
 xcos_simulate(scs_m, 4);
 
 function assert_checkcscope()

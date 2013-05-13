@@ -22,7 +22,6 @@ static gw_generic_table Tab[] =
     {sci_xls_open, "xls_open"},
     {sci_xls_read, "xls_read"},
     {sci_csvDefault, "csvDefault"},
-    {sci_csvIsnum, "csvIsnum"},
     {sci_csvRead, "csvRead"},
     {sci_csvStringToDouble, "csvStringToDouble"},
     {sci_csvTextScan, "csvTextScan"},

@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.types.ScilabTypeEnum;
 import org.scilab.modules.types.ScilabTypeEnumDescription;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
@@ -35,18 +36,22 @@ public class BrowseVar {
     public static final int BYTES_COLUMN_INDEX = 5;
     public static final int FROM_SCILAB_COLUMN_INDEX = 6;
     public static final int TYPE_COLUMN_INDEX = 7;
+    public static final int NB_ROWS_INDEX = 8;
+    public static final int NB_COLS_INDEX = 9;
 
-    public static final String[] COLUMNNAMES = new String[]{"", /* Icon */
-                                                            Messages.gettext("Name"),
-                                                            Messages.gettext("Dimension"),
-                                                            Messages.gettext("Type"),
-                                                            Messages.gettext("Visibility"),
-                                                            Messages.gettext("Bytes"),
-                                                            Messages.gettext("User"),
-                                                            Messages.gettext("Type int value")
-    };
+    public static final String[] COLUMNNAMES = new String[] {"", /* Icon */
+            Messages.gettext("Name"),
+            Messages.gettext("Value"),
+            Messages.gettext("Type"),
+            Messages.gettext("Visibility"),
+            Messages.gettext("Bytes"),
+            Messages.gettext("User"),
+            Messages.gettext("Type int value"),
+            "", /* nbrows */
+            "" /* nbcols */
+                                                            };
 
-    public static final int[] COLUMNSALIGNMENT = new int[]{-1, JLabel.LEFT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT};
+    public static final int[] COLUMNSALIGNMENT = new int[] { -1, JLabel.LEFT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT};
 
     private static final ImageIcon NO_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("noicon"));
     private static final ImageIcon DOUBLE_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("double"));
@@ -75,39 +80,39 @@ public class BrowseVar {
      */
     private static ImageIcon getIconFromType(int type) {
         switch (type) {
-        case 1:
-            return DOUBLE_ICON;
-        case 2:
-            return POLYNOMIAL_ICON;
-        case 4:
-            return BOOLEAN_ICON;
-        case 5:
-        case 6:
-        case 7:
-            return SPARSE_ICON;
-        case 8:
-            return INT_ICON;
-        case 9:
-            return HANDLE_ICON;
-        case 10:
-            return STRING_ICON;
-        case 11:
-        case 13:
-            return FUNCTION_ICON;
-            /*case 14:
-              return LIBRARY_ICON;*/
-        case 15:
-            return LIST_ICON;
-        case 16:
-            return TLIST_ICON;
-        case 17:
-            return MLIST_ICON;
-        case 128:
-            return USER_ICON;
-        case 130:
-            return FPTR_ICON;
-        default:
-            return NO_ICON;
+            case 1:
+                return DOUBLE_ICON;
+            case 2:
+                return POLYNOMIAL_ICON;
+            case 4:
+                return BOOLEAN_ICON;
+            case 5:
+            case 6:
+            case 7:
+                return SPARSE_ICON;
+            case 8:
+                return INT_ICON;
+            case 9:
+                return HANDLE_ICON;
+            case 10:
+                return STRING_ICON;
+            case 11:
+            case 13:
+                return FUNCTION_ICON;
+                /*case 14:
+                  return LIBRARY_ICON;*/
+            case 15:
+                return LIST_ICON;
+            case 16:
+                return TLIST_ICON;
+            case 17:
+                return MLIST_ICON;
+            case 128:
+                return USER_ICON;
+            case 130:
+                return FPTR_ICON;
+            default:
+                return NO_ICON;
         }
     }
 
@@ -123,21 +128,32 @@ public class BrowseVar {
      * @param dataNames : scilab variable name
      * @param dataBytes : scilab variable size in bytes
      * @param dataTypes : scilab variable type (as integer)
+     * @param dataIntegerTypes : Type of int (-1 if not int)
      * @param dataSizes : scilab variable size under the form "XxX"
      * @param dataVisibility : local or global variable
      * @param dataFromUser : Scilab data or user data
      */
-    public static void openVariableBrowser(boolean update, String[] dataNames, int[] dataBytes, int[] dataTypes, String[] dataSizes, String[] dataVisibility, boolean[] dataFromUser) {
+    public static void openVariableBrowser(boolean update, String[] dataNames, int[] dataBytes, int[] dataTypes, int[] dataIntegerTypes, String[] variableListTypes, String[] dataSizes, int[] dataNbRows, int[] dataNbCols, String[] dataVisibility, boolean[] dataFromUser) {
         Object[][] data = new Object[dataNames.length][COLUMNNAMES.length];
         for (int i = 0; i < dataNames.length; ++i) {
             data[i][ICON_COLUMN_INDEX] = getIconFromType(dataTypes[i]);
             data[i][NAME_COLUMN_INDEX] = dataNames[i];
             data[i][SIZE_COLUMN_INDEX] = dataSizes[i];
             data[i][TYPE_DESC_COLUMN_INDEX] = ScilabTypeEnumDescription.getTypeDescriptionFromId(dataTypes[i]);
+            if (dataTypes[i] == ScilabTypeEnum.sci_ints.swigValue() && dataIntegerTypes[i] != 0) {
+                // It is an integer. We want to detail the precision of the int
+                data[i][TYPE_DESC_COLUMN_INDEX] = data[i][TYPE_DESC_COLUMN_INDEX] + " " + dataIntegerTypes[i];
+            }
+            if ((dataTypes[i] == ScilabTypeEnum.sci_tlist.swigValue() || dataTypes[i] == ScilabTypeEnum.sci_mlist.swigValue()) && !variableListTypes[i].equals("")) {
+                // It is a tlist and we want to display the user datatype
+                data[i][TYPE_DESC_COLUMN_INDEX] = variableListTypes[i] + " (" + data[i][TYPE_DESC_COLUMN_INDEX] + ")";
+            }
             data[i][VISIBILITY_COLUMN_INDEX] = dataVisibility[i];
             data[i][BYTES_COLUMN_INDEX] = dataBytes[i];
             data[i][FROM_SCILAB_COLUMN_INDEX] = dataFromUser[i]; /* Tag if it is a variable from the user or from Scilab (%pi, %eps, etc) */
             data[i][TYPE_COLUMN_INDEX] = dataTypes[i];
+            data[i][NB_ROWS_INDEX] = dataNbRows[i];
+            data[i][NB_COLS_INDEX] = dataNbCols[i];
         }
         ScilabVariableBrowser.getVariableBrowser(update, data);
     }

@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Xcos simulation were not halted at the end of a session
 
-xcos(SCI + "/modules/xcos/demos/bounce.xcos")
+xcos(SCI + "/modules/xcos/demos/bounce.zcos")
 // Start the simulation
 // close Xcos
 // --> the simulation must stop

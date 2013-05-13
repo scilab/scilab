@@ -8,12 +8,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y=%lss_norm(A,flag)
-  if argn(2)==1 then flag=2,end
-  if flag==2 then
-    y=h2norm(A)
-  elseif flag==%inf|flag=='inf' then
-    y=h_norm(A)
-  else
-    error('flag must be 2 or inf.')
-  end
+    if argn(2)==1 then flag=2,end
+    if flag==2 then
+        y=h2norm(A)
+    elseif flag==%inf|flag=='inf' then
+        y=h_norm(A)
+    else
+        error(msprintf(_("%s: Wrong value for input argument #%d: %d or %s expected.\n"),"%lss_norm",2,2,"inf"));
+    end
 endfunction
