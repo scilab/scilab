@@ -66,6 +66,10 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
         error(msprintf(gettext("%s: Wrong value for input argument #%d: syntax error in given expression\n"),"integrate",1));
     end
 
+    if strstr(%expr,'%i') <> "" then
+        error(msprintf(_("%s: Wrong value for input argument #%d: A real expected.\n"),"integrate",1));
+    end
+
     [%x1,%ks]=gsort(%x1,'g','i')
     %x=zeros(%x1)
 
@@ -86,6 +90,3 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
     %x=matrix(%x(%ks),size(%x1));
 
 endfunction
-
-
-

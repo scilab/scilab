@@ -20,7 +20,6 @@ int C2F(pjac1)(resfunc res, int *ires, int *nequations, double *tOld, double *ac
     double ysave = 0;
     double ypsave = 0;
     double* e = NULL;
-    int iFour = 4;
 
     double SQuround = sqrt(C2F(dlamch)("P"));
 
@@ -38,7 +37,7 @@ int C2F(pjac1)(resfunc res, int *ires, int *nequations, double *tOld, double *ac
         actualP[i] += *cj * del;
         res(&tx, actual, actualP, e, ires, rpar, ipar);
 
-        if (res < 0)
+        if (ires < 0)
         {
             return 0;
         }

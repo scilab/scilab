@@ -18,7 +18,7 @@ function [M] = %hm_e(varargin)
    nb_index_vect = rhs-1;
    
    if nb_index_vect > nbdims then
-      error('Too many subscripts')
+      error(msprintf(_("%s: Too many subscripts.\n"),"%hm_e"));
    elseif nb_index_vect < nbdims then
       nbdims = nb_index_vect;
       dims(nbdims) = prod(dims(nbdims:$))

@@ -191,7 +191,7 @@
                 <listitem>
                     <para>Si cette option est fournie, les fichiers de démarrage
                         "utilisateur" <literal>SCIHOME/.scilab</literal>,
-                        <literal>SCIHOME/scilab.ini</literal> ne sont pas éxécutés.
+                        <literal>SCIHOME/scilab.ini</literal> ne sont pas exécutés.
                     </para>
                 </listitem>
             </varlistentry>

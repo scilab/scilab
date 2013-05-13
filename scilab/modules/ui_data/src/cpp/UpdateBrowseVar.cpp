@@ -69,6 +69,10 @@ void UpdateBrowseVar(BOOL update)
     int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     int *piAllVariableIntegerTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
     bool *piAllVariableFromUser = (bool *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(bool));
+    /* Necessary for the plots in the var browser */
+    int *piAllVariableNbRows = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    int *piAllVariableNbCols = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+
     int nbRows, nbCols;
     char *sizeStr = NULL;
 
@@ -96,6 +100,8 @@ void UpdateBrowseVar(BOOL update)
         else
         {
             pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
+            piAllVariableNbRows[i] = nbRows;
+            piAllVariableNbCols[i] = nbCols;
         }
 
 
@@ -136,7 +142,7 @@ void UpdateBrowseVar(BOOL update)
         }
         else
         {
-            pstAllVariableListTypes[i] = strdup("");
+            pstAllVariableListTypes[i] = os_strdup("");
         }
 
 
@@ -172,6 +178,9 @@ void UpdateBrowseVar(BOOL update)
         // Sizes of the variable
         getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
         pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
+        piAllVariableNbRows[i] = nbRows;
+        piAllVariableNbCols[i] = nbCols;
+
 
         // global / local ??
         pstAllVariableVisibility[i] = os_strdup("global");
@@ -207,6 +216,8 @@ void UpdateBrowseVar(BOOL update)
                                    piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableNbRows, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                   piAllVariableNbCols, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
                                    piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
 
@@ -239,6 +250,17 @@ void UpdateBrowseVar(BOOL update)
         piAllVariableIntegerTypes = NULL;
     }
 
+    if (piAllVariableNbRows)
+    {
+        FREE(piAllVariableNbRows);
+        piAllVariableNbRows = NULL;
+    }
+
+    if (piAllVariableNbCols)
+    {
+        FREE(piAllVariableNbCols);
+        piAllVariableNbCols = NULL;
+    }
 }
 
 /*--------------------------------------------------------------------------*/
@@ -323,39 +345,38 @@ static char * getListName(char * variableName)
     return tmpChar;
 }
 
-static char * valueToDisplay(char * variableName, int variableType, int nbRows, int nbCols) {
+static char * valueToDisplay(char * variableName, int variableType, int nbRows, int nbCols)
+{
     SciErr err;
+    // 4 is the dimension max to which display the content
+    if (nbRows * nbCols <= 4 && variableType == sci_matrix)
+    {
+        // Small double value, display it
+        double* pdblReal = (double *)malloc(((nbRows) * (nbCols)) * sizeof(double));
+        double* pdblImg = (double *)malloc(((nbRows) * (nbCols)) * sizeof(double));
+        BOOL isComplex = FALSE;
+
+        if (isNamedVarComplex(NULL, variableName))
+        {
+            err = readNamedComplexMatrixOfDouble(NULL, variableName, &nbRows, &nbCols, pdblReal, pdblImg);
+            isComplex = TRUE;
+        }
+        else
+        {
+            err = readNamedMatrixOfDouble(NULL, variableName, &nbRows, &nbCols, pdblReal);
+        }
 
 
-            // 4 is the dimension max to which display the content
-            if (nbRows * nbCols <= 4 && variableType == sci_matrix)
-            {
-                // Small double value, display it
-                double* pdblReal = (double *)malloc(((nbRows) * (nbCols)) * sizeof(double));
-                double* pdblImg = (double *)malloc(((nbRows) * (nbCols)) * sizeof(double));
-                BOOL isComplex = FALSE;
-
-                if (isNamedVarComplex(NULL, variableName))
-                {
-                    err = readNamedComplexMatrixOfDouble(NULL, variableName, &nbRows, &nbCols, pdblReal, pdblImg);
-                    isComplex = TRUE;
-                }
-                else
-                {
-                    err = readNamedMatrixOfDouble(NULL, variableName, &nbRows, &nbCols, pdblReal);
-                }
-
-
-                return os_strdup(formatMatrix(nbRows, nbCols, isComplex, pdblReal, pdblImg).c_str());
-            }
-            else
-            {
-                char *sizeStr = NULL;
-                // 11 =strlen("2147483647")+1 (1 for security)
-                sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
-                sprintf(sizeStr, "%dx%d", nbRows, nbCols);
-                return sizeStr;
-            }
+        return os_strdup(formatMatrix(nbRows, nbCols, isComplex, pdblReal, pdblImg).c_str());
+    }
+    else
+    {
+        char *sizeStr = NULL;
+        // 11 =strlen("2147483647")+1 (1 for security)
+        sizeStr = (char *)MALLOC((11 + 11 + 1 + 1) * sizeof(char));
+        sprintf(sizeStr, "%dx%d", nbRows, nbCols);
+        return sizeStr;
+    }
 }
 
 std::string formatMatrix(int nbRows, int nbCols, BOOL isComplex, double *pdblReal, double *pdblImg)

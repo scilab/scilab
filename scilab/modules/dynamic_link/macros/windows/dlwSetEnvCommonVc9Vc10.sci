@@ -104,7 +104,7 @@ function VcPath = getVcPathx64(msvsPath, sdkPath, bIsExpress)
     VcPath = msvsPath;
   end
 
-  VcPath = VcPath + pathsep() + '\VC\bin\amd64' + pathsep() + ..
+  VcPath = VcPath + '\VC\bin\amd64' + pathsep() + ..
             msvsPath + '\VC\VCPackages' + pathsep() + ..
             msvsPath + '\Common7\IDE' + pathsep() + ..
             msvsPath + '\Common7\Tools' + pathsep() + ..

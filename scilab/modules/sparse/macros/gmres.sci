@@ -242,7 +242,7 @@ end
        s(i)   = temp;
        H(i,i) = cs(i)*H(i,i) + sn(i)*H(i+1,i);
        H(i+1,i) = 0.0;
-       resNorm  = abs(s(i+1)) / bnrm2;
+       resNorm  = real(abs(s(i+1))) / bnrm2;
        resVec = [resVec;resNorm];
        if ( resNorm <= tol ),
          y = H(1:i,1:i) \ s(1:i);
@@ -269,7 +269,7 @@ end
        r = M(r);
      end
      s(j+1) = norm(r);
-     resNorm = s(j+1) / bnrm2;
+     resNorm = real(s(j+1)) / bnrm2;
      resVec = [resVec; resNorm];
 
      if ( resNorm <= tol ),

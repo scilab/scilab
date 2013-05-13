@@ -27,5 +27,3 @@ if (hf.figure_size <> figureSize) then pause; end;
 figureSize = [640, 480];
 hf.figure_size = figureSize;
 if (hf.figure_size <> figureSize) then pause; end;
-
-

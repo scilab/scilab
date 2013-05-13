@@ -211,7 +211,7 @@ public class MatchingBlockManager {
     /**
      * Remove the highlights if they exist.
      */
-    private synchronized void update() {
+    public synchronized void update() {
         if (first != null) {
             highlighter.removeHighlight(first);
             first = null;
@@ -241,10 +241,12 @@ public class MatchingBlockManager {
                         highlighter.removeHighlight(second);
                     }
                 }
-                if (mpos != null && ScilabLexerConstants.isOpenClose(tok) && ocPainter != null && (!isMouse || isOCMouseover)) {
-                    createHighlights(mpos, insideOc, ocIncluded, ocPainter);
-                } else if (mpos != null && kwPainter != null && (!isMouse || isKWMouseover)) {
-                    createHighlights(mpos, insideKw, kwIncluded, kwPainter);
+                if (mpos != null) {
+                    if (ScilabLexerConstants.isOpenClose(tok) && ocPainter != null && (!isMouse || isOCMouseover)) {
+                        createHighlights(mpos, insideOc, ocIncluded, ocPainter);
+                    } else if (kwPainter != null && (!isMouse || isKWMouseover)) {
+                        createHighlights(mpos, insideKw, kwIncluded, kwPainter);
+                    }
                 }
             } catch (NullPointerException e) { }
         }
@@ -382,20 +384,20 @@ public class MatchingBlockManager {
                                 Shape bounds, JTextComponent c, View view) {
             try {
                 Rectangle r = (Rectangle) view.modelToView(offs0, Position.Bias.Forward,
-                              offs1, Position.Bias.Backward, bounds);
+                                                           offs1, Position.Bias.Backward, bounds);
                 g.setColor(color);
 
                 switch (type) {
-                    case UNDERLINED :
-                        g.drawLine(r.x, r.y + r.height - 1, r.x + r.width - 1, r.y + r.height - 1);
-                        return r;
-                    case FRAMED :
-                        g.drawRect(r.x, r.y, r.width - 1, r.height - 1);
-                        return r;
-                    case FILLED :
-                    default :
-                        g.fillRect(r.x, r.y, r.width, r.height);
-                        return r;
+                case UNDERLINED :
+                    g.drawLine(r.x, r.y + r.height - 1, r.x + r.width - 1, r.y + r.height - 1);
+                    return r;
+                case FRAMED :
+                    g.drawRect(r.x, r.y, r.width - 1, r.height - 1);
+                    return r;
+                case FILLED :
+                default :
+                    g.fillRect(r.x, r.y, r.width, r.height);
+                    return r;
                 }
             } catch (BadLocationException e) {
                 return null;

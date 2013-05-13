@@ -8,9 +8,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function M=%s_2_hm(s,M)
 
-//s>M
-if size(s,'*')<> 1 then
-  error('> : arguments have incompatible dimensions')
-end
-M('entries')=s>M('entries')
+    //s>M
+    if size(s,'*')<> 1 then
+        error(msprintf(_("%s: Wrong type for input argument #%d: A scalar expected.\n"),"%s_2_hm",1));
+    end
+    M('entries')=s>M('entries')
 endfunction

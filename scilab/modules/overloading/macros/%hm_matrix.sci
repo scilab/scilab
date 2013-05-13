@@ -14,7 +14,7 @@ function a=%hm_matrix(a,varargin)
     sz=[]
     for k=1:size(varargin)
       if size(varargin(k),'*')<>1|type(varargin(k))<>1 then
-	error('Size arguments must be integer scalars')
+	error(msprintf(_("%s: Wrong size for input argument(s): integer scalars expected.\n"),"%hm_matrix"));
       end
       sz=[sz varargin(k)]
     end
@@ -33,14 +33,13 @@ function a=%hm_matrix(a,varargin)
   P=prod(dims)
   if k<>[] then
     if size(k,'*')>1 then 
-      error('Only one -1 value admitted')
+      error(msprintf(_("%s: Only one -1 value admitted.\n"),"%hm_matrix"));
     end
     sz(k)=floor(P/(prod(sz(sz>0))))
   end
   
   if prod(P)<>prod(sz) then
-    error("MATRIX: input and output matrices  must have the same number"+...
-	  " of elements")
+    error(msprintf(_("%s: Input and output matrices  must have the same number of elements"),"%hm_matrix"));
   end
   
   if type(a)<>17 then 

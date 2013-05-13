@@ -512,7 +512,7 @@ function [x,y]=erfinv_ref()
      1.90695686467094561133550;1.94297485086632095708177;1.98487261261553223101737;2.03516768306608309650651;
      2.09850761179367089535179;2.18512421913300426570596;2.32675376551352467056022]';
 endfunction
-[Xr,Yr]=erfinv_ref();
-y=erfinv(Xr);
-k=find(abs(Yr)>0);
-if norm((Yr(k)-y(k))./Yr(k),1) >1d-12 then bugmes();quit;end
+[Xr,Yr] = erfinv_ref();
+y = erfinv(Xr);
+k = find(abs(Yr) > 0);
+assert_checkfalse(norm((Yr(k)-y(k))./Yr(k),1) > 1e-11);

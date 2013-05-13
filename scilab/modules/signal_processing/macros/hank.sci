@@ -9,13 +9,13 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function hk = hank(m, n, cov)
+function hk = hank(m, n, seq_cov)
   //hk = hank(m,n,cov)
   //this macro builds the hankel matrix of size (m*d,n*d)
   //from the covariance sequence of a vector process
   //   m  : number of bloc-rows
   //   n  : number of bloc-columns
-  //   cov: sequence of covariances; it must be given as :[R0 R1 R2...Rk]
+  //   seq_cov: sequence of covariances; it must be given as :[R0 R1 R2...Rk]
   //   hk : computed hankel matrix
   //
 
@@ -48,12 +48,12 @@ function hk = hank(m, n, cov)
     error(msprintf(gettext("%s: Wrong value for input argument #%d: A positive integer expected.\n"), "hank", 2));
   end
 
-  t = type(cov);
+  t = type(seq_cov);
   if (t > 10) | (t <= 0) then
     error(msprintf(gettext("%s: Wrong values for input argument #%d: Unsupported ''%s'' type.\n"), "hank", 3, typeof(t)));
   end
 
-  [r, c] = size(cov);
+  [r, c] = size(seq_cov);
   mr = m * r;
   nr = n * r;
   if (mr + nr - r > c) then
@@ -61,5 +61,5 @@ function hk = hank(m, n, cov)
   end
 
   index = ones(1, nr) .*. (1:r:mr)' + (0:(nr - 1)) .*. ones(m, 1);
-  hk = matrix(cov(:, index), mr, -1);
+  hk = matrix(seq_cov(:, index), mr, -1);
 endfunction

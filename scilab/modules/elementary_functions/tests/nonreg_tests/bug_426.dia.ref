@@ -36,4 +36,4 @@ trueValue=[1; 4; 3; 5; 2; 6];
 !eee  !
 !     !
 !rrr  !
-if result <> trueValue then bugmes();quit;end
+assert_checkequal(result, trueValue);
