@@ -52,13 +52,29 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
 
     if (pIT == NULL || pIT->isCallable() == false)
     {
+        char pstError1[512];
+        char pstError2[512];
+        char *pstFuncName = wide_string_to_UTF8(_stOverloadingFunctionName.c_str());
+        wchar_t* pwstError = NULL;
         if (_isOperator)
         {
-            throw ast::ScilabError(_W("Undefined operation for the given operands.\ncheck or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 144, *new Location());
+            sprintf(pstError2, _("  check or define function %s for overloading.\n"), pstFuncName);
+            sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
+            pwstError = to_wide_string(pstError1);
+            std::wstring wstError(pwstError);
+            FREE(pwstError);
+            FREE(pstFuncName);
+            throw ast::ScilabError(wstError, 144, *new Location());
         }
         else
         {
-            throw ast::ScilabError(_W("Function not defined for given argument type(s),\n  check arguments or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 246, *new Location());
+            sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), pstFuncName);
+            sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
+            pwstError = to_wide_string(pstError1);
+            std::wstring wstError(pwstError);
+            FREE(pwstError);
+            FREE(pstFuncName);
+            throw ast::ScilabError(wstError, 246, *new Location());
         }
     }
     types::Callable *pCall = pIT->getAs<types::Callable>();

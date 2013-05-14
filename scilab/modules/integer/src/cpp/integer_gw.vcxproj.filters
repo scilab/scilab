@@ -27,6 +27,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_int.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_iconvert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_integer_gw.h">

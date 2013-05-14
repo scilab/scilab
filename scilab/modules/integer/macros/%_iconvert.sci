@@ -7,30 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-function x = iconvert(a,typeToConvert)
-
-    [lhs, rhs] = argn();
-
-    if rhs <> 2 then
-        error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "iconvert", 2));
-    end
-
-    if lhs <> 1 then
-        error(msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "iconvert", 1));
-    end
-
-    if typeof(a) <> "constant" & type(a) <> 8 & typeof(a) <> "boolean" then
-        error(msprintf(_("%s: Wrong type for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"), "iconvert", 1, "integer", "boolean", "double"));
-    end
-
-    if typeof(a) == "constant" & isreal(a) == %f then
-        error(msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"), "iconvert", 1));
-    end
-
-    if floor(typeToConvert) <> typeToConvert then
-        error(msprintf(_("%s: Wrong value for input argument #%d: An integer value expected.\n"), "iconvert", 2));
-    end
+function x = %_iconvert(a,typeToConvert)
 
     if typeof(typeToConvert) <> "constant" | size(typeToConvert, "*") <> 1 then
         error(msprintf(_("%s: Wrong size for argument #%d: Real scalar expected.\n"), "iconvert", 2));
