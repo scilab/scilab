@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: de\n"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -769,6 +769,10 @@ msgid "Wrong size for '%s' property: Scalar expected.\n"
 msgstr "falsche Größe für Eigenschaft '%s': Skalar erwartet.\n"
 
 #, c-format
+msgid "Wrong dimension for '%s' property: The number of columns must be 3.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "WARNING: Wrong value for '%s' property: indices outside the colormap will be "
 "clamped.\n"
@@ -1214,21 +1218,17 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument '%s': A vector expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument '%s': ein Vektor erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument '%s': A non empty matrix expected.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargument '%s'. eine nicht-leere Matrix "
-"erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Incompatible dimensions.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargument '%s' und '%s': inkompatible "
-"Dimensionen.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
@@ -1237,14 +1237,11 @@ msgstr "%s: falsche Anzahl von Eingangsargumenten: %d nach %d erwartet."
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: 'clear' oder 'reset' erwartet."
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ein Vektor eines 'Diagramm' -"
-"Handhabung erwartet."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -1254,7 +1251,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -1609,6 +1606,45 @@ msgstr "Farbnummer"
 msgid "Name"
 msgstr "Name"
 
+msgid "April"
+msgstr ""
+
+msgid "Febuary"
+msgstr ""
+
+msgid "January"
+msgstr ""
+
+msgid "June"
+msgstr ""
+
+msgid "March"
+msgstr ""
+
+msgid "May"
+msgstr ""
+
+msgid "August"
+msgstr ""
+
+msgid "July"
+msgstr ""
+
+msgid "November"
+msgstr ""
+
+msgid "October"
+msgstr ""
+
+msgid "September"
+msgstr ""
+
+msgid "Average"
+msgstr ""
+
+msgid "December"
+msgstr ""
+
 msgid "Average monthly temperatures in french cities"
 msgstr ""
 
@@ -1670,11 +1706,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function '%s'."
-msgstr "%s: Fehler: kann die Eingangsfunktion nicht ermitteln '%s'."
+msgstr ""
 
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
-msgstr "Fehler %d bei Zeile %d der Funktion: '%s"
+msgstr ""
 
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
@@ -1698,20 +1734,29 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input arguments '%s': A vector of size %d expected.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargument '%s': ein Vektor der Größe %d "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument %d: eine 'Achsen' Handhabung "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargument %d: eine 'Achsen' Handhabung "
-"erwartet.\n"
+
+msgid "Color data must be a scalar."
+msgstr ""
+
+msgid "Color value must be a 3 element vector or an index in the colormap."
+msgstr ""
+
+msgid "Incorrect input: Color vector should be a 3x1 or 1x3 vector"
+msgstr ""
+
+msgid "Color value must be a 3 elements vector or an index in the colormap."
+msgstr ""
+
+msgid "Incorrect input: ..."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -1728,8 +1773,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An 'Axes' handle expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: eine 'Achsen' Handhabung "
-"erwartet.\n"
 
 #, c-format
 msgid ""
@@ -1750,31 +1793,23 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument '%s': eine reellwertige Matrix "
-"erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
 "%d expected.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargument '%s': eine Matrix der Größe größer "
-"als %d x %d erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
 "expected.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargurmente '%s' und '%s': Matrizen der gleiche "
-"Größe erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
-"%s: falsche Größe für Eingangsargumente '%s' und '%s': gleiche Größe "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"

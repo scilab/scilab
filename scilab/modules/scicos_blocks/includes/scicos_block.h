@@ -26,50 +26,51 @@
 
 #ifndef NULL
 #define NULL 0
-#endif 
+#endif
 typedef void (*voidg)();
 
-typedef struct {   
-	int nevprt;	   
-	voidg funpt ;	   
-	int type;	   
-	int scsptr;	   
-	int nz;	   
-	double *z;	   
-	int noz;	   
-	int *ozsz;	   
-	int *oztyp;	   
-	void **ozptr;	   
-	int nx;	   
-	double *x;	   
-	double *xd;	   
-	double *res;	   
-	int *xprop;	   
-	int nin;	   
-	int *insz;	   
-	double **inptr;  
-	int nout;	   
-	int *outsz;	   
-	double **outptr; 
-	int nevout;	   
-	double *evout;   
-	int nrpar;	   
-	double *rpar;	   
-	int nipar;	   
-	int *ipar;	   
-	int nopar;	   
-	int *oparsz;	   
-	int *opartyp;	   
-	void **oparptr;  
-	int ng;	   
-	double *g;	   
-	int ztyp;	   
-	int *jroot;	   
-	char *label;	   
-	void **work;	   
-	int nmode;	   
-	int *mode;	   
-} scicos_block;    
+typedef struct
+{
+    int nevprt;
+    voidg funpt ;
+    int type;
+    int scsptr;
+    int nz;
+    double *z;
+    int noz;
+    int *ozsz;
+    int *oztyp;
+    void **ozptr;
+    int nx;
+    double *x;
+    double *xd;
+    double *res;
+    int *xprop;
+    int nin;
+    int *insz;
+    double **inptr;
+    int nout;
+    int *outsz;
+    double **outptr;
+    int nevout;
+    double *evout;
+    int nrpar;
+    double *rpar;
+    int nipar;
+    int *ipar;
+    int nopar;
+    int *oparsz;
+    int *opartyp;
+    void **oparptr;
+    int ng;
+    double *g;
+    int ztyp;
+    int *jroot;
+    char *label;
+    void **work;
+    int nmode;
+    int *mode;
+} scicos_block;
 
 
 void do_cold_restart();
@@ -87,10 +88,11 @@ void Set_Jacobian_flag(int flag);
 int Convert_number (char *, double *);
 void homotopy(double *);
 int hfjac_(double *, double *, int *);
-int rhojac_(double *, double *,double *,double *, int *, double *,int *);
-int rho_( double *, double *,double *,double *,double *, int *);
+int rhojac_(double *, double *, double *, double *, int *, double *, int *);
+int rho_( double *, double *, double *, double *, double *, int *);
 int fx_( double *, double *);
-int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars);
-int write_xml_states(int,const char *, char **, double *);
+int read_xml_initial_states(int nvar, const char * xmlfile, char **ids, double *svars);
+int write_xml_states(int, const char *, char **, double *);
 
 #endif /* __SCICOS_BLOCK_H__ */
+

@@ -126,17 +126,17 @@
             We will begin with a simple nonstiff example: a Sinus integration.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/solvers/ODE_Example.zcos");
 scs_m.props.tol(6) = 0;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
@@ -298,17 +298,17 @@ Time for implicit Runge-Kutta:
         </para>
         <para>
             Next, a basic controller with six continuous states is tested.
-            <link type="scilab" linkend="scilab.xcos/xcos/demos/Controller.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Controller.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../demos/Controller.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../demos/Controller.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/demos/Controller.xcos");
+importXcosDiagram(SCI + "/modules/xcos/demos/Controller.zcos");
 scs_m.props.tol(6) = 0;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
@@ -467,17 +467,17 @@ Time for implicit Runge-Kutta:
         </para>
         <para>
             Now, we use Kalman's filter, which contains fifteen continuous states.
-            <link type="scilab" linkend="scilab.xcos/xcos/demos/Kalman.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/demos/Kalman.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../demos/Kalman.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../demos/Kalman.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
             <scilab:image><![CDATA[
 loadScicos();
 loadXcosLibs();
-importXcosDiagram(SCI + "/modules/xcos/demos/Kalman.xcos");
+importXcosDiagram(SCI + "/modules/xcos/demos/Kalman.zcos");
 scs_m.props.tol(6) = 0;
 try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>

@@ -22,12 +22,19 @@ end
 //compute first phase value in  (-pi, pi]
 phi1=atan(imag(z(:,1)),real(z(:,1)))
 //compute phase increments in (-pi, pi]
-z=z(:,2:$)./z(:,1:$-1)
-dphi=atan(imag(z),real(z))
+z2=z(:,2:$)./z(:,1:$-1)
+dphi=atan(imag(z2),real(z2))
 phi=cumsum([phi1 dphi],2)
 
 if part(mod,1)<>'c' then  // reset modulo 360
   phi=modulo(phi,2*%pi)
 end
 phi=phi*180/%pi //transform in degree
+
+if typeof(z) == 'hypermat' & typeof(phi) <> 'hypermat' then
+    phi_temp=phi;
+    phi = mlist(['hm','dims','entries']);
+    phi('dims') = [size(phi_temp,1) size(phi_temp,2)];
+    phi('entries') = matrix(phi_temp,size(phi_temp,1)*size(phi_temp,2),1);
+end
 endfunction

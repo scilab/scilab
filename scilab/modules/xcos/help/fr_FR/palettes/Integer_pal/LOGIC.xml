@@ -117,7 +117,7 @@
                 </para>
                 <para/>
                 <para>
-                    <latex><![CDATA[Nombre\,de\,lignes = {(Nombre\,d'entrées)}^2]]></latex>
+                    <latex scilab:localized="true"><![CDATA[Nombre\,de\,lignes = {(Nombre\,d'entrées)}^2]]></latex>
                 </para>
                 <para/>
             </listitem>
@@ -417,21 +417,21 @@
                 </emphasis>
                 de sélection du bloc sont générées par 
                 un compteur binaire.
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos">
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos">
                     Ouvrir cet exemple dans Xcos
                 </link>
             </para>
             <para/>
             <para>
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos">
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos">
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../../examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos" align="center" valign="middle"/>
+                            <imagedata fileref="../../../../examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos" align="center" valign="middle"/>
                         </imageobject>
                     </inlinemediaobject>
                 </link>
-                <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos");
+                <scilab:image localized="true"><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>

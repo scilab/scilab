@@ -408,6 +408,9 @@ y4=dassl([y0,yd0],0,t,'chemres','chemjac');
                 <link linkend="dasrt">dasrt</link>
             </member>
             <member>
+                <link linkend="daskr">daskr</link>
+            </member>
+            <member>
                 <link linkend="impl">impl</link>
             </member>
             <member>

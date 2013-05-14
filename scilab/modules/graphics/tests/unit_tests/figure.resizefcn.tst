@@ -20,7 +20,7 @@ assert_checkequal(f.resizefcn, "resizeMe()");
 // Try with wrong values
 refMsg = msprintf(_("Wrong type for ''%s'' property: String expected.\n"), "resizefcn");
 assert_checkerror("f = gcf();f.resizefcn = 10;", refMsg);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "set", 3);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A single string expected.\n"), "set", 3);
 assert_checkerror("f = gcf();f.resizefcn = [""resizeMe()"" ""resizeMe()""];", refMsg);
 
 // Test for other handles

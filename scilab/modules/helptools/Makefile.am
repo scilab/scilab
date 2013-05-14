@@ -40,7 +40,6 @@ pkglib_LTLIBRARIES = libscihelptools.la
 libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/commons/src/jni \

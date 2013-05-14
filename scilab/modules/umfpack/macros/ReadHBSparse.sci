@@ -50,7 +50,7 @@ function [A,description,ref,mtype] = ReadHBSparse(filename)
    //  COMMENTS 
    //     Generally the file name is of the form ref.matrixtype  
    //     where mtype is a 3 letters word given some 
-   //     informations (already inside the file) on the matrix : 
+   //     information (already inside the file) on the matrix : 
    //        1st letter : R|C|P   for real|complex|pattern (no values given)
    //        2d  letter : S|H|Z|U for symmetric|hermitian|skew symmetric|unsymmetric
    //        3d  letter : A|E     for assembled|unassembled matrix

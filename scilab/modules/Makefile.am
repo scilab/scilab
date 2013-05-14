@@ -116,15 +116,8 @@ libscilab_la_rootdir = $(mydatadir)
 # libscilab-cli is for scilab-cli (without GUI)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
-#libscilab_cli_la_SOURCES =
 
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
-#libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
-
-EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la  \
-$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
-$(top_builddir)/libs/libst/libscilibst.la
 
 
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
@@ -187,7 +180,6 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
 	$(top_builddir)/modules/preferences/libscipreferences-cli.la
@@ -215,20 +207,27 @@ ENGINE_LIBS += $(top_builddir)/modules/mpi/libscimpi.la
 endif
 
 # Core modules
-#libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 libscilab_la_LIBADD =
 
 if GUI
-libscilab_la_LIBADD += $(GUI_LIBS) 	$(top_builddir)/modules/types/libscitypes.la
+libscilab_la_LIBADD += $(GUI_LIBS)	$(top_builddir)/modules/types/libscitypes.la
 else
 libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
 # Core modules
-libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS) \
-	$(top_builddir)/modules/libscilab-cli.la
+libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
+if FORCE_LINK
+# This should never be used in production. It forces the explicit link
+# between libscilab and some "on-the-fly" loaded libraries.
+# It has been added to make sure that the full link is correctly done
+# and all symbols resolved.
+libscilab_la_LIBADD += $(ENGINE_LIBS_DYNAMIC_LOAD)
+endif
+
+libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli.la
 
 ################## libscilab-cli  ##################
 

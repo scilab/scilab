@@ -103,7 +103,7 @@ function [success, funcs, success_files, failed_files] = genlib(nam, path, force
 
   if exists('names', 'local')==0 then
     // list the sci files
-    files          = listfiles(path+"*.sci",%f);
+    files          = gsort(listfiles(path+"*.sci",%f), "r", "i");
     files_filtered = [];
 
     for i=1:size(files,"*")
@@ -236,7 +236,8 @@ function result = getsave(scifile)
 
   if ierr <> 0 then
     clear ierr;
-    mprintf(gettext("%s: Warning: Error in file %s : %s. File ignored\n"),"genlib",scifile,lasterror());
+    //mprintf(gettext("%s: Warning: Error in file %s : %s. File ignored\n"),"genlib",scifile,lasterror());
+    error(msprintf(gettext("%s: Error in file %s : %s.\n"), "genlib", scifile, lasterror()));
     result = %f;
 
   else

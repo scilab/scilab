@@ -4,7 +4,7 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-if ~isdef('setw') then exec("SCI/modules/xcos/demos/setw.sci",-1),end
-xcos("SCI/modules/xcos/demos/Inverted_pendulum.xcos");
+if ~isdef("setw") then exec("SCI/modules/xcos/demos/setw.sci",-1),end
+xcos("SCI/modules/xcos/demos/Inverted_pendulum.zcos");
 
 

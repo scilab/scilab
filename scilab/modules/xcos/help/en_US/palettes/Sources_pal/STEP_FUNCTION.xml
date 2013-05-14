@@ -355,22 +355,22 @@
             <para>
                 This diagram shows the use of the STEP_FUNCTION block to obtain the response to a step signal of
                 a first order's system defined by a transfer function.
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.xcos">
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos">
                     Open this example in Xcos
                 </link>
                 .
             </para>
             <para/>
             <para>
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.xcos">
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos">
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_1_en_US.xcos" align="center" valign="middle"/>
+                            <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_1_en_US.zcos" align="center" valign="middle"/>
                         </imageobject>
                     </inlinemediaobject>
                 </link>
                 <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/step_function_1_en_US.xcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
@@ -379,7 +379,7 @@ xcos_simulate(scs_m, 4);
             <title>Example 2</title>
             <para>
                 This diagram shows the use of STEP_FUNCTION to obtain four step signals
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_2_en_US.xcos">
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/step_function_2_en_US.zcos">
                     Open this example in Xcos
                 </link>
                 .
@@ -387,7 +387,7 @@ xcos_simulate(scs_m, 4);
             <para/>
             <mediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_2_en_US.xcos" align="center"/>
+                    <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_2_en_US.zcos" align="center"/>
                 </imageobject>
             </mediaobject>
         </refsection>

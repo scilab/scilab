@@ -37,7 +37,7 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab color map.
      * @return a mark sprite corresponding to the given scilab mark.
      */
-    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, ColorMap colorMap) {
+    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, ColorMap colorMap, Appearance appearance) {
         int finalSize;
 
         /**
@@ -57,7 +57,7 @@ public class MarkSpriteFactory {
         }
 
         Texture sprite = spriteManager.createTexture();
-        sprite.setDrawer(getSpriteDrawer(mark, finalSize, colorMap));
+        sprite.setDrawer(getSpriteDrawer(mark, finalSize, colorMap, appearance));
 
         return sprite;
     }
@@ -69,8 +69,7 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab colormap to use.
      * @return the sprite drawer corresponding to the given mark.
      */
-    private static TextureDrawer getSpriteDrawer(Mark mark, int finalSize, ColorMap colorMap) {
-
+    private static TextureDrawer getSpriteDrawer(Mark mark, int finalSize, ColorMap colorMap, Appearance usedAppearance) {
         final Appearance appearance = new Appearance();
         Color backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
         Color foregroundColor = ColorFactory.createColor(colorMap, mark.getForeground());
@@ -81,6 +80,9 @@ public class MarkSpriteFactory {
             appearance.setFillColor(new Color(0.0f, 0.0f, 0.0f, 0.0f));
         }
         appearance.setLineColor(foregroundColor);
+        if (usedAppearance != null) {
+            appearance.setLineWidth(usedAppearance.getLineWidth());
+        }
 
         if (finalSize != 1) {
             switch (mark.getStyle()) {
@@ -177,20 +179,14 @@ public class MarkSpriteFactory {
      * Scilab ID = 1
      */
     private static class PlusSpriteDrawer extends ScilabSpriteDrawer {
-        private final int[] coordinate1;
-        private final int[] coordinate2;
 
         public PlusSpriteDrawer(Appearance appearance, int size) {
             super(appearance, size);
-            int r = size / 2;
-            coordinate1 = new int[] { -r, 0, r, 0};
-            coordinate2 = new int[] { 0, -r, 0, r};
         }
 
         @Override
         public void draw(TextureDrawingTools textureDrawingTools) {
-            textureDrawingTools.drawPolyline(coordinate1, appearance);
-            textureDrawingTools.drawPolyline(coordinate2, appearance);
+            textureDrawingTools.drawPlus(size, appearance);
         }
     }
 

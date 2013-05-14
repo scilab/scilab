@@ -82,7 +82,7 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     <literal>fun1</literal> avec une syntaxe comme
                     <literal>y=fun1(x1=33,y='foo')</literal>. Dans ce cas la
                     variable <literal>y</literal> sera définie dans le contexte
-                    local de la fonction. Noter qu'alors il n'esp pas possible
+                    local de la fonction. Noter qu'alors il n'est pas possible
                     de passer plus d'arguments d'entrée que le nombre
                     d'arguments formel declarés dans la définition de la syntaxe
                     d'appel de la fonction.

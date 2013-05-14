@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: \n"
 
 #, c-format
@@ -121,6 +121,10 @@ msgstr "读取文件“%s”被拒。\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "v2cunit引起的非托管错误。\n"
+
+#, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : Invalid entity %s\n"

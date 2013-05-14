@@ -19,5 +19,5 @@ checkrhs_
 gettype_
 vstk_
 getWarningMode 
-;
-
+MyHeapAlloc
+MyHeapFree

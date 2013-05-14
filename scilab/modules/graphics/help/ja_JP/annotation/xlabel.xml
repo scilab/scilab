@@ -66,9 +66,34 @@
     </refsection>
     <refsection>
         <title>例</title>
+        <programlisting role="example">
+            t = linspace(-2*%pi, 2*%pi, 30);
+            
+            subplot(2,1,1);
+            plot(t, sin(t), "r");
+            xlabel("t", "fontsize", 2);
+            ylabel("sin(t)");
+            axis1_handle = gca();
+            
+            subplot(2,1,2);
+            plot(t, cos(t), "b");
+            xlabel("t", "fontsize", 2);
+            ylabel("cos(t)", "fontsize", 6, "color", "blue");
+            
+            ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
+        </programlisting>
         <scilab:image>
-            xlabel(["first line";"second line"])
-            ylabel("A label on y axis", "fontsize", 6)
+            t = linspace(-2*%pi, 2*%pi, 50);
+            subplot(2,1,1);
+            plot(t, sin(t), "r");
+            xlabel("t", "fontsize", 2);
+            ylabel("sin(t)");
+            axis1_handle = gca();
+            subplot(2,1,2);
+            plot(t, cos(t), "b");
+            xlabel("t", "fontsize", 2);
+            ylabel("cos(t)", "fontsize", 6, "color", "blue");
+            ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
         </scilab:image>
     </refsection>
     <refsection>

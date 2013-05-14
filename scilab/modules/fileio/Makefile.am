@@ -56,8 +56,8 @@ src/c/mputl.c \
 src/c/fscanfMat.c \
 src/c/fprintfMat.c \
 src/c/createtempfilename.c \
-src/c/dlManager.c
-
+src/c/dlManager.c \
+src/c/convert_tools.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -107,13 +107,11 @@ sci_gateway/c/sci_isfile.c \
 sci_gateway/c/sci_mputl.c \
 sci_gateway/c/sci_tempname.c \
 sci_gateway/c/sci_getURL.c \
-sci_gateway/c/sci_getURLcontent.c \
 sci_gateway/c/sci_splitURL.c
 
 
 libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/io/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \

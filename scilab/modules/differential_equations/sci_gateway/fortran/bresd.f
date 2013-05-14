@@ -11,7 +11,8 @@ c
       subroutine bresd(t,y,ydot,res,ires,rpar,ipar)
 c     
 c ======================================================================
-c     gestion external "soft" relatif a dassl calcul du residu
+c     external "soft" management dealing with
+c     ddassl residual calculation
 c ======================================================================
 c
       INCLUDE 'stack.h'
@@ -34,10 +35,10 @@ c
          write(tmpbuf(1:12),'(3i4)') top,r,sym
          call basout(io,wte,' bresd  top:'//tmpbuf(1:4))
       endif
-c     nordre est le numero d'ordre de cet external dans la structure
-c     de donnee,
-c     mlhs (mrhs) est le nombre de parametres de sortie (entree)
-c     du simulateur 
+c     nordre is the order number of that external in the
+c     data structure,
+c     mlhs (mrhs) is the number of output (input) parameters
+c     of the simulator
 c     
       mrhs=3
       iero=0
@@ -49,21 +50,21 @@ c
       ils=iadr(lstk(tops))
 c
       if(istk(ils).eq.10) then
-c     cas d'un simulateur en fortran
+c     Case of a Fortran simulator
          call fresd(t,y,ydot,res,ires,rpar,ipar)
          return
       endif
 c     external is a Scilab function
 
-c     on return iero=1 is used to notify to the ode solver that
+c     On return iero=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
       iero=1
 
 c     Putting Fortran arguments on Scilab stack 
 c     
-c     transfert des arguments d'entree minimaux du simulateur
-c     la valeur de ces arguments vient du contexte fortran (liste d'appel)
-c     la structure vient du contexte 
+c     Transferring the minimal input arguments of the simulator
+c     their value comes from the Fortran context (call list)
+c     the structure comes from the context
 c+    
       neq=istk(il+1)
       call ftob(t,1,istk(il+2))
@@ -76,21 +77,20 @@ c+
 c     
       if(istk(ils).eq.15) goto 10
 c     
-c     recuperation de l'adresse du simulateur
+c     Retrieving the simulator's address
       fin=lstk(tops)
 c     
       goto 40
-c     cas ou le simulateur est decrit par une liste
+c     Case when the simulator is described by a list
  10   nelt=istk(ils+1)
       l=sadr(ils+3+nelt)
       ils=ils+2
 c     
-c     recuperation de l'adresse du simulateur
+c     Retrieving the simulator's address
       fin=l
 c     
-c     gestion des parametres supplementaires du simulateur
-c     proviennent du contexte  (elements de la liste
-c     decrivant le simulateur
+c     Managing the additional simulator parameters coming from
+c     the context (elements of the list describing the simulator)
 c     
       nelt=nelt-1
       if(nelt.ne.0) then
@@ -114,7 +114,7 @@ c
       endif
  40   continue
 c     
-c     execution de la macro definissant le simulateur
+c     Running the macro defining the simulator
 c     
       pt=pt+1
       if(pt.gt.psiz) then
@@ -138,7 +138,7 @@ c
       pt=pt-1
       niv=niv-1
 c+    
-c     transfert des variables  de sortie vers fortran
+c     Transferring the output to Fortran
       call btof(res,1)
       if(err.gt.0.or.err1.gt.0) return
       ires=res(1)

@@ -346,20 +346,14 @@ assert_checkequal ( S , gen );
 //
 warning("off");
 grand('setsd',1,1,1,1);
-
-=> be aware that you have may lost synchronization
-    between the virtual gen 0 and the others !
-    use grand("setall", s1, s2, s3, s4) if you want recover it.warning("on");
+warning("on");
 S=grand('getsd');
 assert_checkequal ( typeof(S) , "constant" );
 assert_checkequal ( size(S) , [sdsize 1] );
 //
 warning("off");
 grand('setsd',123456,123456,123456,123456);
-
-=> be aware that you have may lost synchronization
-    between the virtual gen 0 and the others !
-    use grand("setall", s1, s2, s3, s4) if you want recover it.warning("on");
+warning("on");
 S=grand('getsd');
 assert_checkequal ( typeof(S) , "constant" );
 assert_checkequal ( size(S) , [sdsize 1] );
@@ -373,10 +367,7 @@ expected = [
 ];
 warning("off");
 grand('setsd',1,1,1,1);
-
-=> be aware that you have may lost synchronization
-    between the virtual gen 0 and the others !
-    use grand("setall", s1, s2, s3, s4) if you want recover it.warning("on");
+warning("on");
 computed = grand(4,6,"def");
 assert_checkalmostequal ( computed , expected, 1.e-6 );
 //
@@ -389,10 +380,7 @@ expected = [
 ];
 warning("off");
 grand('setsd',1,1,1,1);
-
-=> be aware that you have may lost synchronization
-    between the virtual gen 0 and the others !
-    use grand("setall", s1, s2, s3, s4) if you want recover it.warning("on");
+warning("on");
 computed = grand(4,6,"lgi");
 assert_checkequal ( computed , expected );
 //

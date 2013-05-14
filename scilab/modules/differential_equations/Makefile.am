@@ -62,6 +62,8 @@ src/fortran/vmnorm.f \
 src/fortran/prepj.f \
 src/fortran/lsdisc.f \
 src/fortran/fnorm.f \
+src/fortran/ddaskr.f \
+src/fortran/daux.f \
 src/fortran/ddasrt.f \
 src/fortran/stodi.f \
 src/fortran/xsetun.f \
@@ -87,9 +89,11 @@ sci_gateway/c/gw_differential_equations2.c \
 sci_gateway/c/gw_differential_equations3.c \
 sci_gateway/c/gw_differential_equations4.c \
 sci_gateway/c/sci_bvode.c \
+sci_gateway/c/Ex-daskr.c \
 sci_gateway/c/gw_differential_equations6.c
 
 GATEWAY_FORTRAN_SOURCES = \
+sci_gateway/fortran/sci_f_daskr.f \
 sci_gateway/fortran/sci_f_dasrt.f \
 sci_gateway/fortran/sci_f_feval.f \
 sci_gateway/fortran/sci_f_odedc.f \
@@ -123,11 +127,12 @@ sci_gateway/fortran/Ex-intg.f \
 sci_gateway/fortran/Ex-dasrt.f \
 sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f \
-sci_gateway/fortran/bbvode.f
+sci_gateway/fortran/bbvode.f \
+sci_gateway/fortran/bpsold.f \
+sci_gateway/fortran/bpjacd.f
 
 
 libscidifferential_equations_la_CPPFLAGS = -I$(srcdir)/includes/ \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \

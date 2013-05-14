@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-04-16 17:44+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -168,47 +168,47 @@ msgid "%s: An error occurred: %s\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 117
+# File: src/c/dynamic_link.c, line: 119
 #, c-format
 msgid "%s: can not to load a x86 dll in a x64 environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 126
+# File: src/c/dynamic_link.c, line: 128
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 139
+# File: src/c/dynamic_link.c, line: 141
 #, c-format
 msgid "%s: The file %s does not exist in PATH environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 146
+# File: src/c/dynamic_link.c, line: 148
 #, c-format
 msgid "Link failed for dynamic library '%s'.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 147
+# File: src/c/dynamic_link.c, line: 149
 #, c-format
 msgid "An error occurred: %s\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 157
+# File: src/c/dynamic_link.c, line: 159
 msgid "Shared archive loaded.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 158
+# File: src/c/dynamic_link.c, line: 160
 msgid "Link done.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 324
+# File: src/c/dynamic_link.c, line: 350
 #, c-format
 msgid ""
 "Number of entry points %d.\n"
@@ -216,43 +216,43 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 341
+# File: src/c/dynamic_link.c, line: 372
 #, c-format
 msgid "] : %d library.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 345
+# File: src/c/dynamic_link.c, line: 376
 #, c-format
 msgid "] : %d libraries.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 351
+# File: src/c/dynamic_link.c, line: 384
 #, c-format
 msgid "Entry point %s in shared library %d.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 406
+# File: src/c/dynamic_link.c, line: 445
 #, c-format
 msgid "Cannot open shared files max entry %d reached.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 438
+# File: src/c/dynamic_link.c, line: 484
 #, c-format
 msgid "Entry name %s.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 447
+# File: src/c/dynamic_link.c, line: 495
 #, c-format
 msgid "%s is not an entry point.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 453
+# File: src/c/dynamic_link.c, line: 504
 #, c-format
 msgid "Linking %s.\n"
 msgstr ""
@@ -431,7 +431,7 @@ msgid "A Fortran or C compiler is required."
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 109
+# File: macros/ilib_compile.sci, line: 108
 #, c-format
 msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
@@ -439,39 +439,39 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 137
+# File: macros/ilib_compile.sci, line: 136
 #, c-format
 msgid "%s: Build command: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 138
+# File: macros/ilib_compile.sci, line: 137
 # File: macros/ilib_gen_Make_unix.sci, line: 236
 #, c-format
 msgid "Output: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 139
+# File: macros/ilib_compile.sci, line: 138
 # File: macros/ilib_gen_Make_unix.sci, line: 238
 #, c-format
 msgid "stderr: %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 143
+# File: macros/ilib_compile.sci, line: 142
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 145
+# File: macros/ilib_compile.sci, line: 144
 #, c-format
 msgid "%s: The command was:\n"
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 154
+# File: macros/ilib_compile.sci, line: 153
 #, c-format
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
@@ -479,7 +479,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/ilib_compile.sci, line: 163
+# File: macros/ilib_compile.sci, line: 162
 #, c-format
 msgid "%s: Could not find the built library '%s'.\n"
 msgstr ""

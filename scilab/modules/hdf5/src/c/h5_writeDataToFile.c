@@ -120,7 +120,7 @@ static herr_t addIntAttribute(int _iDatasetId, const char *_pstName, const int _
     attributeSpace = H5Screate_simple(1, attributeDims, NULL);
 
     //Create the attribute and write it.
-    attributeTypeId = H5Acreate(_iDatasetId, _pstName, H5T_NATIVE_INT, attributeSpace, H5P_DEFAULT);
+    attributeTypeId = H5Acreate(_iDatasetId, _pstName, H5T_NATIVE_INT, attributeSpace, H5P_DEFAULT, H5P_DEFAULT);
     if (attributeTypeId < 0)
     {
         return -1;
@@ -166,7 +166,7 @@ static herr_t addAttribute(int _iDatasetId, const char *_pstName, const char *_p
     }
 
     //Create the attribute and write it.
-    attr = H5Acreate(_iDatasetId, _pstName, attributeTypeId, attributeSpace, H5P_DEFAULT);
+    attr = H5Acreate(_iDatasetId, _pstName, attributeTypeId, attributeSpace, H5P_DEFAULT, H5P_DEFAULT);
     if (attr < 0)
     {
         return -1;
@@ -272,7 +272,7 @@ int writeStringMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
     //Create the data set and write it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    dset = H5Dcreate(_iFile, _pstDatasetName, typeId, space, iCompress);
+    dset = H5Dcreate(_iFile, _pstDatasetName, typeId, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (dset < 0)
     {
         return -1;
@@ -360,7 +360,7 @@ int writeVoid(int _iFile, char *_pstDatasetName)
     }
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -412,7 +412,7 @@ int writeUndefined(int _iFile, char *_pstDatasetName)
     }
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -473,7 +473,7 @@ int writeDoubleMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
         iCompress = enableCompression(9, _iDims, piDims);
         free(piDims);
 
-        dset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress);
+        dset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
         if (dset < 0)
         {
             return -1;
@@ -513,7 +513,7 @@ int writeDoubleMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
     iCompress = enableCompression(9, _iDims, piDims);
     free(piDims);
 
-    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress);
+    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (dset < 0)
     {
         return -1;
@@ -584,7 +584,7 @@ int writeDoubleComplexMatrix(int _iFile, char *_pstDatasetName, int _iDims, int*
     iCompress = enableCompression(9, _iDims, piDims);
     free(piDims);
 
-    dset = H5Dcreate(_iFile, _pstDatasetName, compoundId, space, iCompress);
+    dset = H5Dcreate(_iFile, _pstDatasetName, compoundId, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (dset < 0)
     {
         return -1;
@@ -642,7 +642,7 @@ int writeBooleanMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDi
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -700,7 +700,7 @@ static int writeCommonPolyMatrix(int _iFile, char *_pstDatasetName, char *_pstVa
     pstGroupName = createGroupName(_pstDatasetName);
 
     //First create a group to store all referenced objects.
-    group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+    group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     status = H5Gclose(group);
 
     //Now create each String as a dedicated DataSet.
@@ -754,7 +754,7 @@ static int writeCommonPolyMatrix(int _iFile, char *_pstDatasetName, char *_pstVa
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (dset < 0)
     {
         FREE(pData);
@@ -841,7 +841,7 @@ int writeInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piD
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -903,7 +903,7 @@ int writeInteger16Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT16, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT16, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -964,7 +964,7 @@ int writeInteger32Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT32, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT32, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -1026,7 +1026,7 @@ int writeInteger64Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -1088,7 +1088,7 @@ int writeUnsignedInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, i
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_UINT8, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_UINT8, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -1150,7 +1150,7 @@ int writeUnsignedInteger16Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_UINT16, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_UINT16, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -1212,7 +1212,7 @@ int writeUnsignedInteger32Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_UINT32, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_UINT32, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -1274,7 +1274,7 @@ int writeUnsignedInteger64Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, _iDims, piDims);
     FREE(piDims);
-    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_UINT64, iSpace, iCompress);
+    iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_UINT64, iSpace, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (iDataset < 0)
     {
         return -1;
@@ -1335,7 +1335,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char *_pstDatasetName, int _iComp
     pstGroupName = createGroupName(_pstDatasetName);
 
     //First create a group to store all referenced objects.
-    group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+    group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     status = H5Gclose(group);
     if (status < 0)
     {
@@ -1424,7 +1424,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char *_pstDatasetName, int _iComp
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, dims);
-    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (dset < 0)
     {
         return -1;
@@ -1517,7 +1517,7 @@ int writeBooleanSparseMatrix(int _iFile, char *_pstDatasetName, int _iRows, int 
     pstGroupName = createGroupName(_pstDatasetName);
 
     //First create a group to store all referenced objects.
-    group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+    group = H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     status = H5Gclose(group);
     if (status < 0)
     {
@@ -1584,7 +1584,7 @@ int writeBooleanSparseMatrix(int _iFile, char *_pstDatasetName, int _iRows, int 
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, 1, dims);
-    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+    dset = H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
     if (dset < 0)
     {
         return -1;
@@ -1644,7 +1644,7 @@ void *openList(int _iFile, char *pstDatasetName, int _iNbItem)
     hobj_ref_t *pobjArray = NULL;
 
     //First create a group to store all referenced objects.
-    group = H5Gcreate(_iFile, pstDatasetName, H5P_DEFAULT);
+    group = H5Gcreate(_iFile, pstDatasetName, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     status = H5Gclose(group);
     if (status < 0)
     {
@@ -1709,7 +1709,7 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
 
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, 1, dims);
-        dset = H5Dcreate(_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
+        dset = H5Dcreate(_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
         if (dset < 0)
         {
             return -1;
@@ -1745,7 +1745,7 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
 
         //Create the dataset and write the array data to it.
         iCompress = enableCompression(9, 1, dims);
-        dset = H5Dcreate(_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
+        dset = H5Dcreate(_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress, H5P_DEFAULT, H5P_DEFAULT);
         if (dset < 0)
         {
             return -1;
@@ -1791,9 +1791,11 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
 static int deleteHDF5group(int _iFile, char* _pstName)
 {
     hid_t status = 0;
+    char** pstChildName = NULL;
+
     //open group
     char* pstGroupName = createGroupName(_pstName);
-    hid_t groupID = H5Gopen(_iFile, pstGroupName);
+    hid_t groupID = H5Gopen(_iFile, pstGroupName, H5P_DEFAULT);
     if (groupID >= 0)
     {
         int i = 0;
@@ -1808,25 +1810,30 @@ static int deleteHDF5group(int _iFile, char* _pstName)
         //for each child,
         for (i = 0 ; i < groupInfo.nlinks ; i++)
         {
-            ssize_t size = 0;
             char* pstPathName = NULL;
-            char* pstChildName = NULL;
             //build child path
             pstPathName = createPathName(pstGroupName, i);
 
             //try to delete child and his children
             deleteHDF5group(_iFile, pstPathName);
-
-            //get child name
-            size = H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, 0, 0, 0, H5P_DEFAULT) + 1;
-            pstChildName = (char*)MALLOC(sizeof(char) * size);
-            H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, 0, pstChildName, size, H5P_DEFAULT);
-
-            //unlink child
-            status = H5Ldelete(groupID, pstChildName, H5P_DEFAULT);
-
-            FREE(pstChildName);
             FREE(pstPathName);
+        }
+
+        pstChildName = (char**)MALLOC(sizeof(char*) * groupInfo.nlinks);
+
+        for (i = 0 ; i < groupInfo.nlinks ; i++)
+        {
+            //get child name
+            ssize_t size = H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, i, 0, 0, H5P_DEFAULT) + 1;
+            pstChildName[i] = (char*)MALLOC(sizeof(char) * size);
+            H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, i, pstChildName[i], size, H5P_DEFAULT);
+        }
+
+        for (i = 0 ; i < groupInfo.nlinks ; i++)
+        {
+            //unlink child
+            status = H5Ldelete(groupID, pstChildName[i], H5P_DEFAULT);
+            FREE(pstChildName[i]);
 
             if (status < 0)
             {
@@ -1834,6 +1841,7 @@ static int deleteHDF5group(int _iFile, char* _pstName)
             }
         }
 
+        FREE(pstChildName);
         //close group
         status = H5Gclose(groupID);
         if (status < 0)

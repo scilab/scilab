@@ -13,7 +13,7 @@
 #define __GETRANGE_H__
 
 #include "doublecomplex.h"
-#include "csv_complex.h"
+#include "complex_array.h"
 
 #define SIZE_RANGE_SUPPORTED 4
 
@@ -29,7 +29,7 @@ extern "C" {
 
 
     // Extract the double complexes in pComplex which are in the range.
-    csv_complexArray *getRangeAsCsvComplexArray(const csv_complexArray *pComplex,
+    complexArray *getRangeAsComplexArray(const complexArray *pComplex,
             int nbRows, int nbCols,
             const int *iRange,
             int *returnedNbRows, int *returnedNbCols);

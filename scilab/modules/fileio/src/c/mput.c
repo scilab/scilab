@@ -13,20 +13,16 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #ifndef _MSC_VER
-#include <stdint.h> 
-#else
-#define int32_t long
-#define uint32_t unsigned long
+#include <stdint.h>
 #endif
 #include "mput.h"
 #include "filesmanagement.h"
 #include "sciprint.h"
 #include "islittleendian.h"
-#include "../../../libs/libst/misc.h"
+#include "convert_tools.h"
 #include "localization.h"
 #include "warningmode.h"
 /*--------------------------------------------------------------------------*/
-extern struct soundstream ftf; /* defined in mget.c */
 extern int swap; /* defined in mget.c */
 /*--------------------------------------------------------------------------*/
 
@@ -44,7 +40,7 @@ extern int swap; /* defined in mget.c */
     if ( swap) {					\
       unsigned long long temp;				\
       for ( i=0; i< n; i++) {				\
-	swapb((char *)val,(char *)&temp, sizeof(Type));	\
+	swap_generic((char *)val,(char *)&temp, sizeof(Type));	\
         val++;						\
 	fwrite(&temp,sizeof(Type),1,fa);		\
       }							\
@@ -71,42 +67,69 @@ extern int swap; /* defined in mget.c */
 /* write data without convertion (res is supposed to have type type) */
 void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
 {
-  char c1,c2;
-  int i,n;
-  FILE *fa;
-  n=*n1;
-  *ierr=0;
-  if ((fa = GetFileOpenedInScilab(*fd)) ==NULL) {
-    if ( getWarningMode() )
-      {
-	sciprint(_("%s: No input file associated to logical unit %d.\n"),"mput",*fd);
-      }
-    *ierr=3;
-    return;
-  }
-
-  c1 = ( strlen(type) > 1) ? type[1] : ' ';
-  c2 = ( strlen(type) > 2) ? type[2] : ' ';
-  switch ( type[0] )
+    char c1, c2;
+    int i, n;
+    FILE *fa;
+    n = *n1;
+    *ierr = 0;
+    if ((fa = GetFileOpenedInScilab(*fd)) == NULL)
     {
-    case 'i' : MPUT_GEN_NC(int,c1);       break;
-    case 'l' : MPUT_GEN_NC(int32_t,c1);      break;
-    case 's' : MPUT_GEN_NC(short,c1);     break;
-    case 'c' : MPUT_CHAR_NC(char) ;       break;
-    case 'd' : MPUT_GEN_NC(double,c1);    break;
-    case 'f' : MPUT_GEN_NC(float,c1);     break;
-    case 'u' :
-      switch ( c1 )
-	{
-	case 'i' :  MPUT_GEN_NC(unsigned int,c2); break;
-	case 'l' :  MPUT_GEN_NC(uint32_t,c2); break;
-	case 's' :  MPUT_GEN_NC(unsigned short,c2); break;
-	case ' ' :  MPUT_GEN_NC(unsigned int,' '); break;
-	case 'c' :  MPUT_CHAR_NC(unsigned char); break;
-	default :  *ierr=1;return ;
-	}
-      break;
-    default : *ierr=1; break;
+        if ( getWarningMode() )
+        {
+            sciprint(_("%s: No input file associated to logical unit %d.\n"), "mput", *fd);
+        }
+        *ierr = 3;
+        return;
+    }
+
+    c1 = ( strlen(type) > 1) ? type[1] : ' ';
+    c2 = ( strlen(type) > 2) ? type[2] : ' ';
+    switch ( type[0] )
+    {
+        case 'i' :
+            MPUT_GEN_NC(int, c1);
+            break;
+        case 'l' :
+            MPUT_GEN_NC(long long, c1);
+            break;
+        case 's' :
+            MPUT_GEN_NC(short, c1);
+            break;
+        case 'c' :
+            MPUT_CHAR_NC(char) ;
+            break;
+        case 'd' :
+            MPUT_GEN_NC(double, c1);
+            break;
+        case 'f' :
+            MPUT_GEN_NC(float, c1);
+            break;
+        case 'u' :
+            switch ( c1 )
+            {
+                case 'i' :
+                    MPUT_GEN_NC(unsigned int, c2);
+                    break;
+                case 'l' :
+                    MPUT_GEN_NC(unsigned long long, c2);
+                    break;
+                case 's' :
+                    MPUT_GEN_NC(unsigned short, c2);
+                    break;
+                case ' ' :
+                    MPUT_GEN_NC(unsigned int, ' ');
+                    break;
+                case 'c' :
+                    MPUT_CHAR_NC(unsigned char);
+                    break;
+                default :
+                    *ierr = 1;
+                    return ;
+            }
+            break;
+        default :
+            *ierr = 1;
+            break;
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -131,7 +154,7 @@ void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
       val =(Type)res[i];					\
       if ( swap) {						\
 	unsigned long long temp;				\
-	swapb((char *)&val,(char *)&temp, sizeof(Type));	\
+	swap_generic((char *)&val,(char *)&temp, sizeof(Type));	\
 	fwrite(&temp,sizeof(Type),1,fa);			\
       }								\
       else fwrite(&val,sizeof(Type),1,fa);			\
@@ -158,71 +181,101 @@ void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
 /*--------------------------------------------------------------------------*/
 void mput2 (FILE *fa, int swap2, double *res, int n, char *type, int *ierr)
 {
-  char c1,c2;
-  int i;
-  ft_t ft = &ftf;
-  *ierr=0;
-  ft->fp = fa;
-  c1 = ( strlen(type) > 1) ? type[1] : ' ';
-  c2 = ( strlen(type) > 2) ? type[2] : ' ';
-  switch ( type[0] )
+    char c1, c2;
+    int i;
+    *ierr = 0;
+    c1 = ( strlen(type) > 1) ? type[1] : ' ';
+    c2 = ( strlen(type) > 2) ? type[2] : ' ';
+    switch ( type[0] )
     {
-    case 'i' : MPUT_GEN(int,c1);       break;
-    case 'l' : MPUT_GEN(int32_t,c1);      break;
-    case 's' : MPUT_GEN(short,c1);     break;
-    case 'c' : MPUT_CHAR(char) ;       break;
-    case 'd' : MPUT_GEN(double,c1);    break;
-    case 'f' : MPUT_GEN(float,c1);     break;
-    case 'u' :
-      switch ( c1 )
-	{
-	case 'i' :  MPUT_GEN(unsigned int,c2);   break;
-	case 'l' :  MPUT_GEN(uint32_t,c2);  break;
-	case 's' :  MPUT_GEN(unsigned short,c2); break;
-	case ' ' :  MPUT_GEN(unsigned int,' ');  break;
-	case 'c' :  MPUT_CHAR(unsigned char);    break;
-	default :  *ierr=1;return ;
-	}
-      break;
-    default : *ierr=1; break;
+        case 'i' :
+            MPUT_GEN(int, c1);
+            break;
+        case 'l' :
+            MPUT_GEN(long long, c1);
+            break;
+        case 's' :
+            MPUT_GEN(short, c1);
+            break;
+        case 'c' :
+            MPUT_CHAR(char) ;
+            break;
+        case 'd' :
+            MPUT_GEN(double, c1);
+            break;
+        case 'f' :
+            MPUT_GEN(float, c1);
+            break;
+        case 'u' :
+            switch ( c1 )
+            {
+                case 'i' :
+                    MPUT_GEN(unsigned int, c2);
+                    break;
+                case 'l' :
+                    MPUT_GEN(unsigned long long, c2);
+                    break;
+                case 's' :
+                    MPUT_GEN(unsigned short, c2);
+                    break;
+                case ' ' :
+                    MPUT_GEN(unsigned int, ' ');
+                    break;
+                case 'c' :
+                    MPUT_CHAR(unsigned char);
+                    break;
+                default :
+                    *ierr = 1;
+                    return ;
+            }
+            break;
+        default :
+            *ierr = 1;
+            break;
     }
 }
 /*--------------------------------------------------------------------------*/
 void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
 {
-  int nc = 0,swap2 = 0;
-  FILE *fa = NULL;
-  *ierr = 0;
-  if ((nc = (int)strlen(type)) == 0)
+    int nc = 0, swap2 = 0;
+    FILE *fa = NULL;
+    *ierr = 0;
+    if ((nc = (int)strlen(type)) == 0)
     {
-      if ( getWarningMode() ) sciprint(_("%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"),"mput",4,type);
-      *ierr = 2;
-      return;
+        if ( getWarningMode() )
+        {
+            sciprint(_("%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"), "mput", 4, type);
+        }
+        *ierr = 2;
+        return;
     }
 
-  if ( *fd == -1  &&  GetFileOpenedInScilab(*fd) == NULL )
+    if ( *fd == -1  &&  GetFileOpenedInScilab(*fd) == NULL )
     {
-      sciprint(_("%s: No File opened in Scilab.\n") , "mput" ) ;
-      *ierr = 3 ;
-      return ;
+        sciprint(_("%s: No File opened in Scilab.\n") , "mput" ) ;
+        *ierr = 3 ;
+        return ;
     }
 
-  if ((fa = GetFileOpenedInScilab(*fd)) !=NULL)
+    if ((fa = GetFileOpenedInScilab(*fd)) != NULL)
     {
-      swap2 = GetSwapStatus(*fd);
-      mput2(fa,swap2,res,*n,type,ierr);
-      if (*ierr > 0) {
-	if ( getWarningMode() ) {
-	  sciprint(_("%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"),"mput",4,type);
-	}
-      }
+        swap2 = GetSwapStatus(*fd);
+        mput2(fa, swap2, res, *n, type, ierr);
+        if (*ierr > 0)
+        {
+            if ( getWarningMode() )
+            {
+                sciprint(_("%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"), "mput", 4, type);
+            }
+        }
     }
-  else
+    else
     {
-      if ( getWarningMode() ) {
-	sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mput", GetFileNameOpenedInScilab(*fd));
-      }
-      *ierr=3;
+        if ( getWarningMode() )
+        {
+            sciprint(_("%s: Error while opening, reading or writing '%s'.\n"), "mput", GetFileNameOpenedInScilab(*fd));
+        }
+        *ierr = 3;
     }
 }
 /*--------------------------------------------------------------------------*/

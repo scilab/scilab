@@ -19,7 +19,7 @@ extern "C" {
     /**
     * split a line by separator
     */
-    char **splitLineCSV(const char *str, const char *sep, int *toks, char meta);
+    char **splitLineCSV(const char *str, const char *sep, int *toks);
 
 #ifdef __cplusplus
 }

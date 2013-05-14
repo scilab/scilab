@@ -167,6 +167,32 @@ subplot(2,1,2);
 PlotSparse(U,"x");
 xtitle("Sparsity pattern of U, such that P''*A*P=U''*U");
  ]]></programlisting>
+        <scilab:image localized="true">
+            A = [
+            4. 1. 2. 0.5 2.
+            1. 0.5 0. 0. 0.
+            2. 0. 3. 0. 0.
+            0.5 0. 0. 5./8. 0.
+            2. 0. 0. 0. 16.
+            ];
+            A = sparse(A);
+            U = sparse(chol(full(A)));
+            scf();
+            subplot(2,1,1);
+            PlotSparse(U,"x");
+            xtitle("Sparsity pattern of U, such that A=U''*U");
+            [xadj,iadj,val]=sp2adj(A);
+            n = size(A,"r");
+            [perm,invp,nofsub]=ordmmd(xadj,iadj,n);
+            P=spzeros(n,n);
+            for i=1:n
+            P(perm(i),i)=1;
+            end
+            U = sparse(chol(full(P'*A*P)));
+            subplot(2,1,2);
+            PlotSparse(U,"x");
+            xtitle("Sparsity pattern of U, such that P''*A*P=U''*U");
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Implementation notes</title>

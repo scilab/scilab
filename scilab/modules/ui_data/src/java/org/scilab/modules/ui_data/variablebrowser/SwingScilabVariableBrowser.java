@@ -1,4 +1,4 @@
-/**
+/*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Vincent COUVERT
@@ -16,14 +16,20 @@ package org.scilab.modules.ui_data.variablebrowser;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 
 import java.awt.Color;
+import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.ActionMap;
+import javax.swing.SwingUtilities;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.swing.JMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -36,6 +42,10 @@ import javax.swing.table.TableRowSorter;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.contextmenu.ContextMenu;
+import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -74,7 +84,11 @@ import org.scilab.modules.ui_data.actions.TListFilteringAction;
 import org.scilab.modules.ui_data.actions.UncompiledFunctionFilteringAction;
 import org.scilab.modules.ui_data.datatable.SwingTableModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
+import org.scilab.modules.ui_data.variableeditor.actions.ExportToCsvAction;
+import org.scilab.modules.ui_data.variableeditor.actions.PlotAction;
 import org.scilab.modules.ui_data.variablebrowser.actions.CloseAction;
+import org.scilab.modules.ui_data.variablebrowser.actions.DeleteAction;
+import org.scilab.modules.ui_data.variablebrowser.actions.ModifyAction;
 import org.scilab.modules.ui_data.variablebrowser.actions.RefreshAction;
 import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowDataFilter;
 import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowTypeFilter;
@@ -136,6 +150,9 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         ToolBar toolBar = ScilabToolBar.createToolBar();
         toolBar.add(RefreshAction.createButton(UiDataMessages.REFRESH));
         toolBar.addSeparator();
+        toolBar.add(ModifyAction.createButton(this, UiDataMessages.MODIFY));
+        toolBar.add(DeleteAction.createButton(this, UiDataMessages.DELETE));
+        toolBar.addSeparator();
         toolBar.add(HelpAction.createButton(UiDataMessages.HELP));
         filteringButton = ScilabVarFilteringButtonAction.createButton("Show/hide Scilab variable");
         //        toolBar.add(filteringButton);
@@ -182,8 +199,15 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
 
         /* Hide the columns. But keep it in memory for the tooltip */
-        TableColumn column = table.getColumnModel().getColumn(BrowseVar.TYPE_COLUMN_INDEX);
+        TableColumn column = table.getColumnModel().getColumn(BrowseVar.NB_COLS_INDEX);
+        table.removeColumn(column);
+
         /* The order to removing does matter since it changes the positions */
+
+        column = table.getColumnModel().getColumn(BrowseVar.NB_ROWS_INDEX);
+        table.removeColumn(column);
+
+        column = table.getColumnModel().getColumn(BrowseVar.TYPE_COLUMN_INDEX);
         table.removeColumn(column);
 
         column = table.getColumnModel().getColumn(BrowseVar.FROM_SCILAB_COLUMN_INDEX);
@@ -207,6 +231,9 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         for (int i = 0; i < aligment.length; i++) {
             align(table, columnsName[i], aligment[i]);
         }
+
+        // Plug the shortcuts
+        ExportToCsvAction.registerAction(this, table);
 
         JScrollPane scrollPane = new JScrollPane(table);
         setContentPane(scrollPane);
@@ -308,49 +335,30 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
          * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
          */
         public void mouseClicked(MouseEvent e) {
+
+            // Right click management
+            if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e)) || e.isPopupTrigger()) {
+
+
+                int clickedRow = ((JTable) e.getSource()).rowAtPoint(e.getPoint());
+                // Does nothing if no variable selected
+                if (clickedRow != -1) {
+                    // Right click ? We force the selection of the current row
+                    table.setRowSelectionInterval(clickedRow, clickedRow);
+                    table.setEditingRow(clickedRow);
+
+                    displayContextMenu();
+                }
+            }
+
             if (e.getClickCount() >= 2) {
                 int clickedRow = ((JTable) e.getSource()).rowAtPoint(e.getPoint());
                 if (clickedRow != -1) {
-                    String variableName = ((JTable) e.getSource()).getValueAt(clickedRow, 1).toString();
-                    final ActionListener action = new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-
-                        }
-                    };
+                    String variableName = table.getValueAt(clickedRow, BrowseVar.NAME_COLUMN_INDEX).toString();
 
                     String variableVisibility = ((JTable) e.getSource())
                                                 .getValueAt(((JTable) e.getSource()).getSelectedRow(), BrowseVar.VISIBILITY_COLUMN_INDEX).toString();
-
-                    // Global variables are not editable yet
-                    if (variableVisibility.equals("global")) {
-                        ScilabModalDialog.show(getBrowserTab(),
-                                               UiDataMessages.GLOBAL_NOT_EDITABLE,
-                                               UiDataMessages.VARIABLE_EDITOR,
-                                               IconType.ERROR_ICON);
-                        return;
-                    }
-
-                    try {
-                        asynchronousScilabExec(action,
-                                               "if exists(\"" + variableName + "\") == 1 then "
-                                               + "  try "
-                                               + "    editvar(\"" + variableName + "\"); "
-                                               + "  catch "
-                                               + "    messagebox(\"Variables of type \"\"\" + typeof ("
-                                               + variableName + ") + \"\"\" can not be edited.\""
-                                               + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                                               + "    clear ans;"   // clear return value of messagebox
-                                               + "  end "
-                                               + "else "
-                                               + "  messagebox(\"Variable \"\""
-                                               + variableName + "\"\" no more exists.\""
-                                               + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                                               + "  clear ans;"  // clear return value of messagebox
-                                               + "  browsevar();" // Reload browsevar to remove cleared variables
-                                               + "end");
-                    } catch (InterpreterException e1) {
-                        System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
-                    }
+                    SwingScilabVariableBrowser.this.startEditVar(variableVisibility, variableName);
                 }
             }
         }
@@ -387,6 +395,45 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         public void mouseReleased(MouseEvent e) {
 
         }
+
+        /**
+         * Create and display the context menu
+         */
+        private void displayContextMenu() {
+            ContextMenu menu = ScilabContextMenu.createContextMenu();
+            ModifyAction modify = new ModifyAction(SwingScilabVariableBrowser.this);
+            menu.add(modify.createMenuItem());
+
+            DeleteAction delete = new DeleteAction(SwingScilabVariableBrowser.this);
+            menu.add(delete.createMenuItem());
+
+            ExportToCsvAction csvExport = new ExportToCsvAction((SwingScilabTab)SwingScilabVariableBrowser.this, UiDataMessages.EXPORTCSV);
+            menu.add(csvExport.createMenuItem(SwingScilabVariableBrowser.this, UiDataMessages.EXPORTCSV));
+
+            Menu menuPlot = ScilabMenu.createMenu();
+            menuPlot.setText(UiDataMessages.PLOTALL);
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "plot2d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "Matplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "grayplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "Sgrayplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "champ", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "histplot", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "mesh", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "surf", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "hist3d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "contour2d", false));
+            menuPlot.add(PlotAction.createMenuItem((SwingScilabTab)SwingScilabVariableBrowser.this, "pie", false));
+            menu.add(menuPlot);
+
+            menu.setVisible(true);
+
+            ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(
+                MouseInfo.getPointerInfo().getLocation().x,
+                MouseInfo.getPointerInfo().getLocation().y);
+
+        }
+
+
     }
 
     /**
@@ -423,7 +470,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
         filterMenu.add(filterDoubleCheckBox);
 
         filterPolynomialCheckBox = PolynomialFilteringAction.createCheckBoxMenu();
-        filterBooleanCheckBox.setChecked(true);
+        filterPolynomialCheckBox.setChecked(true);
         filterMenu.add(filterPolynomialCheckBox);
 
         filterFunctionLibCheckBox = FunctionLibFilteringAction.createCheckBoxMenu();
@@ -588,4 +635,53 @@ public final class SwingScilabVariableBrowser extends SwingScilabTab implements 
     public SwingScilabTab getBrowserTab() {
         return this;
     }
+
+
+    /**
+     * Return the variable Browser Table
+     * @return The variable Browser Table
+     */
+    public JTable getTable() {
+        return table;
+    }
+
+    /**
+     * Start the variable editor
+     *
+     * @param variableVisibility the visibility of the variable
+     * @param variableName The variable name
+     */
+    public void startEditVar(String variableVisibility, String variableName) {
+        // Global variables are not editable yet
+        if (variableVisibility.equals("global")) {
+            ScilabModalDialog.show(getBrowserTab(),
+                                   UiDataMessages.GLOBAL_NOT_EDITABLE,
+                                   UiDataMessages.VARIABLE_EDITOR,
+                                   IconType.ERROR_ICON);
+            return;
+        }
+
+        try {
+            asynchronousScilabExec(null,
+                                   "if exists(\"" + variableName + "\") == 1 then "
+                                   + "  try "
+                                   + "    editvar(\"" + variableName + "\"); "
+                                   + "  catch "
+                                   + "    messagebox(\"Variables of type \"\"\" + typeof ("
+                                   + variableName + ") + \"\"\" can not be edited.\""
+                                   + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                   + "    clear ans;"   // clear return value of messagebox
+                                   + "  end "
+                                   + "else "
+                                   + "  messagebox(\"Variable \"\""
+                                   + variableName + "\"\" no more exists.\""
+                                   + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                   + "  clear ans;"  // clear return value of messagebox
+                                   + "  browsevar();" // Reload browsevar to remove cleared variables
+                                   + "end");
+        } catch (InterpreterException e1) {
+            System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
+        }
+    }
+
 }

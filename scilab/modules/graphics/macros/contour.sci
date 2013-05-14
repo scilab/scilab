@@ -12,11 +12,11 @@ function contour(x, y, z, nz, theta, alpha, leg, flag, ebox, zlev)
 
   function contour_demo()
     function z = Surf1(x, y)
-      z = x^2 + y^3;
+      z = x.^2 + y.^3;
     endfunction
 
     function z = Surf2(x, y)
-      z = x^2 + y^2;
+      z = x.^2 + y.^2;
     endfunction
 
     x = -1:0.1:1;

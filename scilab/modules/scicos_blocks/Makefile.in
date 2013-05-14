@@ -830,6 +830,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -1393,8 +1394,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@			-I$(srcdir)/src/c/ \
 @XCOS_TRUE@			-I$(srcdir)/src/cpp/ \
 @XCOS_TRUE@			-I$(srcdir)/src/jni/ \
-@XCOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
-@XCOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
 @XCOS_TRUE@	 		-I$(top_srcdir)/modules/commons/src/jni/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/elementary_functions/includes/ \

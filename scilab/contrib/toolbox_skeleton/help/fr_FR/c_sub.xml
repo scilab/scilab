@@ -4,7 +4,7 @@
  * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="c_sub" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:scilab="http://www.scilab.org" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="c_sub" xml:lang="en">
     <refnamediv>
         <refname>c_sub</refname>
         <refpurpose>calcule de la soustraction depuis du code C</refpurpose>
@@ -43,6 +43,30 @@
         <para>
             LaTeX peut etre utilisé pour afficher l'équation: Dans ce cas, le rendu pourrait être <latex>$x-y$</latex>
         </para>
+        <para>Il est possible d'inclure une image en utilisant du code Scilab (il faut déclarer au préalable le namespace xmlns:scilab="http://www.scilab.org"):</para>
+        <programlisting role="xml">
+            <![CDATA[
+	  <scilab:image>
+	    plot3d();
+	  </scilab:image>
+	  ]]>
+        </programlisting>
+        <scilab:image>
+            plot3d();
+        </scilab:image>
+        <para>Si une image contient une chaîne de caractères localisées, il faut alors ajouter l'attribut scilab:localized="true":</para>
+        <programlisting role="xml">
+            <![CDATA[
+	  <scilab:image localized="true">
+	    plot2d();
+	    xtitle("Mes jolis plots 2D");
+	  </scilab:image>
+	  ]]>
+        </programlisting>
+        <scilab:image localized="true">
+            plot2d();
+            xtitle("Mes jolis plots 2D");
+        </scilab:image>
     </refsection>
     <refsection>
         <title>Exemples</title>

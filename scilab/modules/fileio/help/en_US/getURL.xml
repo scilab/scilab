@@ -29,8 +29,8 @@
         <title>Calling Sequence</title>
         
         <synopsis>filename = getURL(URL);
-            filename = getURL(URL [, targetDir [, username [, password]]]]);
-            filename = getURL(URL [, targetFile [, username [, password]]]]);
+            [filename, [content]] = getURL(URL [, targetDir [, username [, password]]]]);
+            [filename, [content]] = getURL(URL [, targetFile [, username [, password]]]]);
         </synopsis>
     </refsynopsisdiv>
     
@@ -73,6 +73,12 @@
                     <para>String: The path to the downloaded file</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>content</term>
+                <listitem>
+                    <para>String: The content to the downloaded file</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     
@@ -84,6 +90,8 @@
         <para>
             getURL will download a file from a remote URL. By default, getURL will use the same name as provided in the URL. However, under some circumstances (for example, <emphasis role="italic">http://www.scilab.org/</emphasis>), the filename is not provided by the URL itself, getURL will rename the file to <emphasis role="italic">index.html</emphasis>
         </para>
+        
+        <para>content contains the content of a page pointed by an URL.</para>
         
         <para>
             This function is based on the <ulink url="http://curl.haxx.se/libcurl/">curl library</ulink>.
@@ -100,7 +108,7 @@
         </para>
         
         <para>
-            Due to the fact that getURL is based on libcurl, it is likely that <ulink url="http://curl.haxx.se/docs/features.html">other protocols</ulink> than HTTP, HTTPS and FTPS will work. However, they have not been tested enough.
+            <literal>getURL</literal> is based on libcurl. The version of this library in the official Scilab binary has been compiled with HTTP, HTTPS, FTP and FTPS support. If Scilab has been installed through a packaging system in a distribution, it is likely that <ulink url="http://curl.haxx.se/docs/features.html">other protocols</ulink> than HTTP, HTTPS and FTPS will work. However, they have not been tested enough.
         </para>
         
     </refsection>
@@ -127,14 +135,13 @@
             // Needs IPv6 connectivity
             getURL("http://ipv6.google.com/intl/en_com/images/srpr/logo3w.png")
             
+            // Retrieve the content
+            [myFile, content] = getURL("http://fileexchange.scilab.org/toolboxes/contour3d/10.03/files/contour3d.sci",TMPDIR)
         </programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="getURLcontent">getURLcontent</link>
-            </member>
             <member>
                 <link linkend="splitURL">splitURL</link>
             </member>

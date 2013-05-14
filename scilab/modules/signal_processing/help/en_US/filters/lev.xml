@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[ar,sigma2,rc]=lev(r)</synopsis>
+        <synopsis>[ar, sigma2, rc]=lev(r)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -40,10 +40,34 @@
     <refsection>
         <title>Description</title>
         <para>
-            resolve the Yule-Walker equations
+            This function resolves the Yule-Walker equations using Levinson's algorithm. Generally, it is used to estimate the coefficients of an autoregressive process.
         </para>
-        <para>
-            using Levinson's algorithm.
-        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="Example"><![CDATA[
+b=1; //numerator
+a=[1 -0.7 0.8]; //denominator
+x=[1 zeros(1,99)]; //input=impulse
+data=filter(b,a,x); //real data
+a2=lev(data); //modelized data
+a2=a2/a2(1); //normalization
+m_data=filter(1,a2,x);
+// Compare real data and modelized data
+plot(data,"color","blue","lineStyle","none","marker","d");
+plot(m_data,"color","red","lineStyle","none","marker","d");
+]]>
+        </programlisting>
+        <scilab:image>
+            b=1;
+            a=[1 -0.7 0.8];
+            x=[1 zeros(1,99)];
+            data=filter(b,a,x);
+            a2=lev(data);
+            a2=a2/a2(1);
+            m_data=filter(1,a2,x);
+            plot(data,"color","blue","lineStyle","none","marker","d");
+            plot(m_data,"color","red","lineStyle","none","marker","d");
+        </scilab:image>
     </refsection>
 </refentry>

@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2011-12-27 16:41+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"PO-Revision-Date: 2013-03-27 16:55+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: uk\n"
 
 #, c-format
@@ -42,27 +42,10 @@ msgstr ""
 "параметром «%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: помилковий тип другого вхідного параметра: слід використовувати дійсне "
-"число.\n"
-
-#, c-format
-msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr ""
-"%s: помилковий тип третього вхідного параметра: слід використовувати дійсне "
-"число.\n"
-
-#, c-format
-msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
-msgstr ""
-"%s: помилковий тип четвертого вхідного параметра: слід використовувати "
-"число.\n"
-
-#, c-format
-msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
-msgstr ""
-"%s: помилковий тип п’ятого вхідного параметра: слід використовувати число.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
 
 #, c-format
 msgid ""
@@ -81,8 +64,8 @@ msgstr ""
 "або %d значень для %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
-msgstr "%s: помилкова розмірність другого вхідного параметра: %dx%d.\n"
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %dx%d.\n"
 
 #, c-format
 msgid ""
@@ -119,47 +102,45 @@ msgid "%s: The %s option affects only the %s generator\n"
 msgstr "%s: параметр %s стосується лише генератора %s\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
-"%s: помилкове значення другого вхідного параметра: слід використовувати %d, "
-"%d або %d.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
 msgstr "Параметр %s стосується лише генератора %s\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: помилкове значення другого вхідного параметра: слід використовувати "
-"значення між %d та %d.\n"
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"між %d та %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: помилкове значення другого вхідного параметра: слід використовувати "
-"значення > %d.\n"
+"%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
 
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Ці дані стосуються лише генератора clcg4\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
-"'%s' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr ""
-"%s: помилкове значення другого вхідного параметра: слід використовувати "
-"«%s», «%s», «%s», «%s», «%s» або «%s».\n"
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
-msgid "%s Wrong value for first input argument %s.\n"
-msgstr "%s помилкове значення першого вхідного параметра %s.\n"
+msgid "%s Wrong value for input argument #%d: %s.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
 msgstr ""
-"%s: помилковий тип першого вхідного параметра: слід використовувати число.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано додатне "
+"скалярне значення.\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Не вказано A і B для закону бета розподілу\n"
@@ -182,11 +163,11 @@ msgstr "Кількість степенів свободи не є додатн�
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
 msgstr ""
-"%s: помилкове значення першого вхідного параметра: слід вказати кількість "
-"невдалих випробувань.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути значення "
+"випадкового відхилення.\n"
 
 msgid "Missing N and P for MULtinomial law\n"
 msgstr "Не вказано N і P для поліноміального закону розподілу\n"
@@ -276,11 +257,11 @@ msgstr "Не вказано N і P для біноміального закон�
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
 msgstr ""
-"%s: помилкове значення першого вхідного параметра: слід вказати кількість "
-"випробувань.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути значення випадкової "
+"імітації.\n"
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr ""
@@ -312,9 +293,10 @@ msgstr "%s: не вказано матриці P і X0 для ланцюжка �
 
 #, c-format
 msgid ""
-"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+"%s: Wrong type for input argument #%d: Square matrix or row vector "
+"expected.\n"
 msgstr ""
-"%s: помилковий другий вхідний параметр: слід використовувати квадратну "
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано квадратну "
 "матрицю або вектор-рядок.\n"
 
 msgid "X0 is empty\n"

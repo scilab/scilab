@@ -16,7 +16,7 @@
 // CLR and DLR blocks ignore context set by scicos_simulate
 // 
 
-importXcosDiagram(SCI+'/modules/xcos/tests/nonreg_tests/bug_4715.xcos');
+importXcosDiagram(SCI+'/modules/xcos/tests/nonreg_tests/bug_4715.zcos');
 %scicos_context.a = 0.1;
 %scicos_context.b = 0.1;
 global AA

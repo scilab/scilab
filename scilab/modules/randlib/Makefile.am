@@ -43,7 +43,6 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
 sci_gateway/c/sci_grand.c
 
 libscirandlib_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \

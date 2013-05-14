@@ -339,10 +339,12 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
         int numberOfSessions = scilabHistoryRootNode.getChildCount();
         int sessionIndex = 0;
         int numberOfLines = 0;
+
         while (sessionIndex < numberOfSessions) {
             if (numberOfLines == lineNumber) {
+                // Do we try to delete the last session node (which it is the current session used)
                 if (sessionIndex == (numberOfSessions - 1)) {
-                    /* Can not remove current session node */
+                    // Yes, we forbid it
                     MessageBox errorMsg = ScilabMessageBox.createMessageBox();
                     errorMsg.setTitle(CommandHistoryMessages.ERROR);
                     errorMsg.setMessage(CommandHistoryMessages.CANNOT_DELETE_CURRENT_SESSION_NODE);
@@ -350,23 +352,29 @@ public final class CommandHistory extends SwingScilabTab implements SimpleTab {
                     errorMsg.displayAndWait();
                     return;
                 }
+
+                // Otherwise it is OK, delete session node
+                TreeNode sessionNode = scilabHistoryRootNode.getChildAt(sessionIndex);
                 scilabHistoryRootNode.remove(sessionIndex);
-                scilabHistoryTreeModel.nodeStructureChanged((TreeNode) scilabHistoryTreeModel.getRoot());
+                scilabHistoryTreeModel.nodesWereRemoved(scilabHistoryRootNode, new int[] {sessionIndex},
+                                                        new Object[] {sessionNode});
                 break;
             }
 
-            /* Session line */
-            numberOfLines++;
+            DefaultMutableTreeNode sessionNode = (DefaultMutableTreeNode) scilabHistoryRootNode.getChildAt(sessionIndex);
 
-            if (numberOfLines + scilabHistoryRootNode.getChildAt(sessionIndex).getChildCount() > lineNumber) {
-                /* The line has to be remove in current session */
-                ((DefaultMutableTreeNode) scilabHistoryRootNode.getChildAt(sessionIndex)).remove(lineNumber - numberOfLines);
-                scilabHistoryTreeModel.nodeStructureChanged(scilabHistoryRootNode.getChildAt(sessionIndex));
-                expandAll();
+            // Did we reach the session containing the line to remove ?
+            if (numberOfLines + sessionNode.getChildCount() >= lineNumber) {
+                // Yes, delete the child line
+                int childIndex = lineNumber - numberOfLines - 1;
+                TreeNode childNode = sessionNode.getChildAt(childIndex);
+                sessionNode.remove(childIndex);
+                scilabHistoryTreeModel.nodesWereRemoved(sessionNode, new int[] {childIndex},
+                                                        new Object[] {childNode} );
                 break;
             } else {
-                /* An other session */
-                numberOfLines += scilabHistoryRootNode.getChildAt(sessionIndex).getChildCount();
+                /* No, jump to next session */
+                numberOfLines += sessionNode.getChildCount() + 1;
                 sessionIndex++;
             }
         }

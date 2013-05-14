@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-02-21 08:14+0000\n"
-"Last-Translator: Eliovir <Unknown>\n"
+"PO-Revision-Date: 2013-03-22 11:07+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: fr\n"
 
 #, c-format
@@ -199,9 +199,6 @@ msgstr "Fin de ligne"
 msgid "Previous char"
 msgstr "Caractère précédent"
 
-msgid "Next char"
-msgstr "Caractère suivant"
-
 msgid "Delete next char"
 msgstr "Supprimer le caractère suivant"
 
@@ -243,6 +240,9 @@ msgstr "Ligne suivante dans l'historique"
 
 msgid "Help Browser"
 msgstr "Navigateur d'aide"
+
+msgid "Console Search Field"
+msgstr "Champs de recherche de la console"
 
 msgid "Paste"
 msgstr "Coller"
@@ -590,7 +590,7 @@ msgid "Setup"
 msgstr "Configurer"
 
 msgid "Execution trace and Debug"
-msgstr "Trace d'exécution et déboguage"
+msgstr "Trace d'exécution et débogage"
 
 msgid "Set Context"
 msgstr "Modifier le contexte"

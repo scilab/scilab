@@ -71,6 +71,7 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
     public void add(Menu newMenu) {
         ScilabBridge.add(this, newMenu);
     }
+
     /**
      * Sets the text of a Scilab ContextMenu
      * @param newText the Text to set to the ContextMenu

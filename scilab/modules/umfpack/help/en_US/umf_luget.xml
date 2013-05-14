@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="umf_luget">
     <refnamediv>
         <refname>umf_luget</refname>
-        <refpurpose>retrieve lu factors at the scilab level  </refpurpose>
+        <refpurpose>retrieve lu factors at the Scilab level</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -40,8 +40,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function  may be used if you want  to plot  the sparse
-            pattern  of the lu factors (or if you  code something which
+            This function may be used if you want to plot the sparse
+            pattern of the lu factors (or if you code something which
             use the lu factors). The factorization provided by umfpack is
             of the form:
         </para>

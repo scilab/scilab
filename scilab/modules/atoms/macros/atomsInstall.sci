@@ -231,7 +231,7 @@ function result = atomsInstall(packages,section)
 
     end
 
-    // Force update the system informations
+    // Force update the system information
     // =========================================================================
     if from_localarchive then
         if (atomsGetConfig("offLine") == "True" | atomsGetConfig("offline") == "True") then

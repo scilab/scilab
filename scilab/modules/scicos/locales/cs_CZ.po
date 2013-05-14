@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2012-06-13 19:27+0000\n"
+"PO-Revision-Date: 2013-03-21 13:43+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
@@ -1241,11 +1241,11 @@ msgstr "Nelze převést starý graf (problém s verzí)"
 
 #, c-format
 msgid ""
-"Warning the variable %s do not match any context variable name\n"
+"Warning the variable %s does not match any context variable name\n"
 "ignored"
 msgstr ""
-"Varování, proměnná %s se neshoduje s žádným jménem proměnné kontextu\n"
-"ignorováno"
+"Varování: Proměnná %s se neshoduje s žádným názvem ignorované\n"
+"proměnné obsahu"
 
 #, c-format
 msgid "%s: Error during block parameters update.\n"
@@ -1400,12 +1400,12 @@ msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: Typ %s není zaveden.\n"
 
 #, c-format
-msgid "%s: invalid dimension for '%s', waiting for %s"
-msgstr "%s: neplatné rozměry pro '%s', čekám na %s"
+msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
+msgstr "%s: Špatná velikost parametru bloku '%s': Očekáváno %s, obdrženo %s"
 
 #, c-format
-msgid "%s: incorrect type for '%s', getting %s"
-msgstr "%s: nesprávný typ pro '%s', získáno %s"
+msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
+msgstr "%s: Špatný typ parametru bloku '%s': Očekáváno %s(%s), obdrženo %s"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

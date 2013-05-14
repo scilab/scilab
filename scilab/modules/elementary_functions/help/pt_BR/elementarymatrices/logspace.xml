@@ -42,9 +42,9 @@
         <title>Descrição</title>
         <para>
             Retorna um vetor linha de <literal>n</literal> pontos espaçados
-            logaritmicamente de maneira igual entre <literal>10^d1</literal> e
-            <literal>10^d2</literal>. Se <literal>d2=%pi</literal> então os pontos
-            estão entre <literal>10^d1</literal> e <literal>pi</literal>.
+            logaritmicamente de maneira igual entre <latex>10^{d1}</latex> e
+            <latex>10^{d2}</latex>. Se <literal>d2=%pi</literal> então os pontos
+            estão entre <latex>10^{d1}</latex> e <latex>\pi</latex>.
         </para>
     </refsection>
     <refsection>

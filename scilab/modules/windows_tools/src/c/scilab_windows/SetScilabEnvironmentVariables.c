@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -16,13 +16,15 @@
 #include <stdio.h>
 #include "SetScilabEnvironmentVariables.h"
 #include "PATH_MAX.h"
-#include "win_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h"
 #include "setgetSCIpath.h"
 #include "getScilabDirectory.h"
 #include "scilabDefaults.h"
 #include "ConvertSlash.h"
 #include "charEncoding.h"
 #include "getshortpathname.h"
+#include "stristr.h"
+#include "strsubst.h"
 /*--------------------------------------------------------------------------*/
 static BOOL IsTheGoodShell(void);
 static BOOL Set_Shell(void);
@@ -39,18 +41,18 @@ void SciEnvForWindows(void)
     char *SCIPathName = getScilabDirectory(TRUE);
 
     /* Correction Bug 1579 */
-    if (!IsTheGoodShell()) 
+    if (!IsTheGoodShell())
     {
         if ( (!Set_Shell()) || (!IsTheGoodShell()))
         {
             MessageBox(NULL,
-                "Please modify ""ComSpec"" environment variable.\ncmd.exe on W2K and more.",
-                "Warning",MB_ICONWARNING|MB_OK);
+                       "Please modify ""ComSpec"" environment variable.\ncmd.exe on W2K and more.",
+                       "Warning", MB_ICONWARNING | MB_OK);
         }
     }
 
     SetScilabEnvironmentVariables(SCIPathName);
-    if (SCIPathName) 
+    if (SCIPathName)
     {
         FREE(SCIPathName);
         SCIPathName = NULL;
@@ -91,7 +93,7 @@ BOOL Set_SCI_PATH(char *DefaultPath)
         sprintf (env, "SCI=%s", ShortPath);
         setSCIpath(ShortPath);
 
-        if (ShortPath) 
+        if (ShortPath)
         {
             FREE(ShortPath);
             ShortPath = NULL;
@@ -162,7 +164,7 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
     _putenv ("WIN64=OK");
 #endif
 
-    if ( GetSystemMetrics(SM_REMOTESESSION) ) 
+    if ( GetSystemMetrics(SM_REMOTESESSION) )
     {
         _putenv ("SCILAB_MSTS_SESSION=OK");
     }
@@ -183,7 +185,10 @@ BOOL IsTheGoodShell(void)
     GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
     _splitpath(shellCmd, drive, dir, fname, ext);
 
-    if (_stricmp(fname,"cmd") == 0) return TRUE;
+    if (_stricmp(fname, "cmd") == 0)
+    {
+        return TRUE;
+    }
 
     return FALSE;
 }
@@ -199,7 +204,7 @@ BOOL Set_Shell(void)
 
     if (_putenv (env))
     {
-        bOK = FALSE;		
+        bOK = FALSE;
     }
     else
     {
@@ -216,25 +221,45 @@ BOOL Set_Shell(void)
 /*--------------------------------------------------------------------------*/
 static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath)
 {
-    #define PATH_FORMAT "PATH=%s/bin;%s"
+#define SCILAB_BIN_PATH "%s/bin"
+#define NEW_PATH "PATH=%s;%s"
 
     BOOL bOK = FALSE;
     char *PATH = NULL;
     char *env = NULL;
+    char scilabBinPath[MAX_PATH];
+    char *scilabBinPathConverted;
 
     PATH = getenv("PATH");
 
-    env = (char*) MALLOC(sizeof(char)* (strlen(PATH_FORMAT) + strlen(PATH) +
-                        strlen(DefaultPath) + 1));
+    env = (char*) MALLOC(sizeof(char) * (strlen(NEW_PATH) + strlen(PATH) +
+                                         strlen(DefaultPath) + 1));
     if (env)
     {
-        sprintf(env, PATH_FORMAT, DefaultPath, PATH);
-        if (_putenv (env))
+        sprintf(scilabBinPath, SCILAB_BIN_PATH, DefaultPath);
+
+        scilabBinPathConverted = (char*) MALLOC(MAX_PATH * sizeof(char));
+#ifdef _MSC_VER
+        scilabBinPathConverted = strsub(scilabBinPath, "/", "\\");
+#else
+        scilabBinPathConverted = strdup(scilabBinPath);
+#endif
+        if (stristr(PATH, scilabBinPathConverted) == 0)
         {
-            bOK = FALSE;
+            sprintf(env, NEW_PATH, scilabBinPathConverted, PATH);
+            if (_putenv (env))
+            {
+                bOK = FALSE;
+            }
+            else
+            {
+                bOK = TRUE;
+            }
+            FREE(env);
+            env = NULL;
         }
-        else bOK = TRUE;
-        FREE(env); env = NULL;
+
+        FREE(scilabBinPathConverted);
     }
     return bOK;
 }

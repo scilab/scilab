@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Code generation failed if superblock had some gain blocks
 
-// xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.xcos');
+// xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.zcos');
 // rigth click on superblock
 // changes Created file Path
 // code must be generated without error

@@ -89,11 +89,23 @@ h=syslin('c',-1+%s,3+2*%s+%s^2) //continuous time case
 [g,fr]=g_margin(h)
 [g,fr]=g_margin(h-10)
 nyquist(h-10)
-
+ ]]></programlisting>
+        <scilab:image>
+            h=syslin('c',-1+%s,3+2*%s+%s^2)
+            [g,fr]=g_margin(h)
+            [g,fr]=g_margin(h-10)
+            nyquist(h-10)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 h = syslin(0.1,0.04798*%z+0.0464,%z^2-1.81*%z+0.9048);//discrete time case
 [g ,fr]=g_margin(h);
 show_margins(h)
  ]]></programlisting>
+        <scilab:image>
+            h = syslin(0.1,0.04798*%z+0.0464,%z^2-1.81*%z+0.9048);
+            [g ,fr]=g_margin(h);
+            show_margins(h)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

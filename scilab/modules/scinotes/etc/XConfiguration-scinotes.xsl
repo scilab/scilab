@@ -355,6 +355,27 @@
                     
                 </Checkbox>
                 
+                <Label text="_(Background color: )" gridx="1" gridy="4" weightx="0"/>
+                <Color color="{@background-color}" listener="ActionListener" gridx="2" gridy="4" fill="none" weightx="0" anchor="west">
+                    
+                    <actionPerformed choose="background-color">
+                        
+                        <xsl:call-template name="context"/>
+                        
+                    </actionPerformed>
+                    
+                </Color>
+                
+                <Label text="_(Cursor color: )" gridx="3" gridy="4" weightx="0"/>
+                <Color color="{@caret-color}" listener="ActionListener" gridx="4" gridy="4" weightx="0" fill="none" anchor="east">
+                    
+                    <actionPerformed choose="caret-color">
+                        
+                        <xsl:call-template name="context"/>
+                        
+                    </actionPerformed>
+                    
+                </Color>
             </Grid>
             
         </Title>
@@ -379,7 +400,7 @@
                 
                 <Link gridx="3" gridy="1" weightx="0" listener="MouseListener" text="_(Set syntax Colors)" enable="{@keywords-colorization}">
                     
-                    <mouseClicked set="path" value="scinotes/header" context="/" enable="{@keywords-colorization}"/>
+                    <mouseClicked set="path" value="colors" context="/" enable="{@keywords-colorization}"/>
                     
                 </Link>
                 

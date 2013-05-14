@@ -27,9 +27,11 @@
 #endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
-#include "csv_complex.h"
+#include "complex_array.h"
 #include "gw_csv_helpers.h"
 #include "getRange.h"
+
+static void releaseObjects(csvResult *result, char *filename, char *conversion);
 
 /* ==================================================================== */
 #define CONVTOSTR "string"
@@ -57,6 +59,8 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     csvResult *result = NULL;
 
     double *dRealValues = NULL;
+
+    sciErr.iErr = 0;
 
     CheckRhs(1, 7);
     CheckLhs(1, 2);
@@ -384,7 +388,16 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                         }
                         else
                         {
-                            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            if ((newM == 0) || (newN == 0))
+                            {
+                                Scierror(999, _("%s: Range row or/and column left indice(s) out of bounds.\n"), fname);
+                            }
+                            else
+                            {
+                                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            }
+                            releaseObjects(result, filename, conversion);
+                            return 0;
                         }
                     }
                     else
@@ -395,21 +408,11 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                 else /* to double */
                 {
                     stringToComplexError ierr = STRINGTOCOMPLEX_ERROR;
-                    csv_complexArray *ptrCsvComplexArray = stringsToCsvComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
+                    complexArray *ptrComplexArray = stringsToComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
 
-                    if (ptrCsvComplexArray == NULL)
+                    if (ptrComplexArray == NULL)
                     {
-                        freeCsvResult(result);
-                        if (filename)
-                        {
-                            FREE(filename);
-                            filename = NULL;
-                        }
-                        if (conversion)
-                        {
-                            FREE(conversion);
-                            conversion = NULL;
-                        }
+                        releaseObjects(result, filename, conversion);
                         if (ierr == STRINGTOCOMPLEX_ERROR)
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
@@ -430,37 +433,46 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                             {
                                 int newM = 0;
                                 int newN = 0;
-                                csv_complexArray *csvComplexRange = getRangeAsCsvComplexArray(ptrCsvComplexArray, result->m, result->n, iRange, &newM, &newN);
-                                if (csvComplexRange)
+                                complexArray *complexRange = getRangeAsComplexArray(ptrComplexArray, result->m, result->n, iRange, &newM, &newN);
+                                if (complexRange)
                                 {
-                                    if (csvComplexRange->isComplex)
+                                    if (complexRange->isComplex)
                                     {
-                                        sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, ptrCsvComplexArray->realPart, ptrCsvComplexArray->imagPart);
+                                        sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, ptrComplexArray->realPart, ptrComplexArray->imagPart);
                                     }
                                     else
                                     {
-                                        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, csvComplexRange->realPart);
+                                        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, complexRange->realPart);
                                     }
-                                    freeCsvComplexArray(csvComplexRange);
-                                    csvComplexRange = NULL;
+                                    freeComplexArray(complexRange);
+                                    complexRange = NULL;
                                 }
                                 else
                                 {
-                                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                                    if ((newM == 0) || (newN == 0))
+                                    {
+                                        Scierror(999, _("%s: Range row or/and column left indice(s) out of bounds.\n"), fname);
+                                    }
+                                    else
+                                    {
+                                        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                                    }
+                                    releaseObjects(result, filename, conversion);
+                                    return 0;
                                 }
                             }
                             else
                             {
-                                if (ptrCsvComplexArray->isComplex)
+                                if (ptrComplexArray->isComplex)
                                 {
-                                    sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrCsvComplexArray->realPart, ptrCsvComplexArray->imagPart);
+                                    sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrComplexArray->realPart, ptrComplexArray->imagPart);
                                 }
                                 else
                                 {
-                                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrCsvComplexArray->realPart);
+                                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrComplexArray->realPart);
                                 }
-                                freeCsvComplexArray(ptrCsvComplexArray);
-                                ptrCsvComplexArray = NULL;
+                                freeComplexArray(ptrComplexArray);
+                                ptrComplexArray = NULL;
                             }
                         }
                         break;
@@ -468,30 +480,23 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                         case STRINGTOCOMPLEX_MEMORY_ALLOCATION:
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            releaseObjects(result, filename, conversion);
+                            return 0;
                         }
                         default:
                         case STRINGTOCOMPLEX_ERROR:
                         {
                             Scierror(999, _("%s: can not convert data.\n"), fname);
+                            releaseObjects(result, filename, conversion);
+                            return 0;
                         }
                     }
                 }
 
                 if (sciErr.iErr)
                 {
-                    freeCsvResult(result);
-                    if (filename)
-                    {
-                        FREE(filename);
-                        filename = NULL;
-                    }
-                    if (conversion)
-                    {
-                        FREE(conversion);
-                        conversion = NULL;
-                    }
-                    printError(&sciErr, 0);
-                    Scierror(17, _("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    releaseObjects(result, filename, conversion);
                     return 0;
                 }
                 else
@@ -503,19 +508,8 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                         sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
                         if (sciErr.iErr)
                         {
-                            freeCsvResult(result);
-                            if (filename)
-                            {
-                                FREE(filename);
-                                filename = NULL;
-                            }
-                            if (conversion)
-                            {
-                                FREE(conversion);
-                                conversion = NULL;
-                            }
-                            printError(&sciErr, 0);
-                            Scierror(17, _("%s: Memory allocation error.\n"), fname);
+                            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                            releaseObjects(result, filename, conversion);
                             return 0;
                         }
                         LhsVar(2) = Rhs + 2;
@@ -561,18 +555,18 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
     }
-    freeCsvResult(result);
-    if (filename)
-    {
-        FREE(filename);
-        filename = NULL;
-    }
-    if (conversion)
-    {
-        FREE(conversion);
-        conversion = NULL;
-    }
+    releaseObjects(result, filename, conversion);
 
     return 0;
 }
 /* ==================================================================== */
+static void releaseObjects(csvResult *result, char* filename, char* conversion)
+{
+    freeCsvResult(result);
+
+    FREE(filename);
+    filename = NULL;
+
+    FREE(conversion);
+    conversion = NULL;
+}

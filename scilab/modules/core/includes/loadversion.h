@@ -22,7 +22,7 @@
  * @param[out] sci_version_maintenance   
  * @param[out] sci_version_string    
  * @param[out] sci_version_revision  
- * @return if the function has been able to load the informations
+ * @return if the function has been able to load the information
  */
 BOOL getversionmodule(char *modulename,
 					  int *sci_version_major,

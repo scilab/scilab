@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_getx" xml:lang="en">
+    <refnamediv>
+        <refname>optimsimplex_getx</refname>
+        <refpurpose>Gets the coordinates of the vertex at given index.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            x = optimsimplex_getx(opt, ive)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The current simplex object of TSIMPLEX type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ive </term>
+                <listitem>
+                    <para>An integer, the vectex index.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x </term>
+                <listitem>
+                    <para>The coordinates of the point, as a row vector.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimsimplex_getx</literal> function returns the coordinates of the 
+            vertex at given index, as a row vector.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
+    simplex = [
+3.  0.  0.
+4. 1.  0.
+5. 0.  2.
+];
+s1 = optimsimplex_new ();
+s1 = optimsimplex_setall ( s1 , simplex );
+    x1 = optimsimplex_getx(s1, 1);
+    x2 = optimsimplex_getx(s1, 2);
+    x3 = optimsimplex_getx(s1, 3);
+    disp(x1)
+    disp(x2)
+    disp(x3)
+    s1 = optimsimplex_destroy(s1);
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimsimplex_setx">optimsimplex_setx</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_getall">optimsimplex_getall</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_getallx">optimsimplex_getallx</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_setall">optimsimplex_setall</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_setallx">optimsimplex_setallx</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -22,6 +22,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.helptools.external.HTMLMathMLHandler;
 import org.scilab.modules.helptools.external.HTMLScilabHandler;
 import org.scilab.modules.helptools.external.HTMLSVGHandler;
+import org.scilab.modules.helptools.image.ImageConverter;
 import org.scilab.modules.helptools.image.ScilabImageConverter;
 
 /**
@@ -124,6 +125,7 @@ public final class SciDocMain {
                     converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.HTML);
                 } else if (format.equalsIgnoreCase("web")) {
                     converter = new HTMLDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, isToolbox, urlBase, language, HTMLDocbookTagConverter.GenerationType.WEB);
+                    ImageConverter.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
                 } else if (format.equalsIgnoreCase("chm")) {
                     converter = new CHMDocbookTagConverter(sourceDoc, outputDirectory, sciprim, scimacro, template, version, imagedir, conf.getWebSiteURL(), isToolbox, urlBase, language);
                 }

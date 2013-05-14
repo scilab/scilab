@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-01-24 17:03+0100\n"
-"PO-Revision-Date: 2013-01-11 15:17+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2013-03-29 13:48+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16506)\n"
+"X-Generator: Launchpad (build 16546)\n"
 "Language: fr\n"
 
 msgid "X,Y,A and B"
@@ -258,6 +258,42 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Même nombre de colonne que "
 "le premier argument d'entrée attendu.\n"
 
+msgid "histplot() : (normalized) histogram plot"
+msgstr "histplot() : tracé d'histogramme (normalisé)"
+
+msgid "Gaussian random sample histogram"
+msgstr "Échantillon d'histogramme aléatoire à répartition gaussienne"
+
+msgid "Exact gaussian density"
+msgstr "Répartition Gaussienne exacte"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être dans "
+"l'intervalle %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s : Valeurs erronées de l'argument d'entrée n°%d : Les éléments doivent "
+"être en ordre croissant.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : Au moins %d attendus.\n"
@@ -455,13 +491,13 @@ msgid "Unexpected value of orien : %s\n"
 msgstr "Valeur de orien inattendue : %s\n"
 
 #, c-format
-msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
-msgstr "%s : Valeur erronée de w : %d; 0 ou 1 attendu.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée : '%s', '%s', %d ou %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
+msgstr "%s : Valeur erronée de w : %s, %d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"

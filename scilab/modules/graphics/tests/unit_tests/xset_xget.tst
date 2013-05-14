@@ -90,9 +90,9 @@ assert_checkequal(out, 5);
 
 // wdim wpdim
 out = xget("wdim");
-assert_checkequal(out, f.position([3, 4]));
+assert_checkequal(out, f.figure_size);
 out = xget("wpdim");
-assert_checkequal(out, f.position([3, 4]));
+assert_checkequal(out, f.figure_size);
 
 // wpos
 out = xget("wpos");

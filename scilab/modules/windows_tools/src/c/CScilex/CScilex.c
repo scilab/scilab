@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "GetWindowsVersion.h"
-#include "win_mem_alloc.h" /* MALLOC */
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_XP_OR_MORE "Scilab requires Windows XP or more."
 #define MSG_DETECT_UNKNOW "Scilab does not support this unknow version of Windows."
@@ -41,12 +41,12 @@ typedef int (*MYPROC1) (int , char **);
 /*--------------------------------------------------------------------------*/
 int main (int argc, char **argv)
 {
-    #define MAXCMDTOKENS 128
+#define MAXCMDTOKENS 128
     int iExitCode = 0;
     UINT LastErrorMode = 0;
-    HINSTANCE hinstLib = NULL; 
+    HINSTANCE hinstLib = NULL;
 
-    BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE; 
+    BOOL fFreeResult = FALSE, fRunTimeLinkSuccess = FALSE;
 
     int argcbis = -1;
     LPSTR argvbis[MAXCMDTOKENS];
@@ -74,9 +74,18 @@ int main (int argc, char **argv)
 
     for (i = 0; i < argc; i++)
     {
-        if (_stricmp(argv[i], ARG_NW) == 0) FindNW = 1;
-        if (_stricmp(argv[i], ARG_NWNI) == 0 ) FindNW = 1;
-        if (_stricmp(argv[i], ARG_NOGUI) == 0 ) FindNW = 1;
+        if (_stricmp(argv[i], ARG_NW) == 0)
+        {
+            FindNW = 1;
+        }
+        if (_stricmp(argv[i], ARG_NWNI) == 0 )
+        {
+            FindNW = 1;
+        }
+        if (_stricmp(argv[i], ARG_NOGUI) == 0 )
+        {
+            FindNW = 1;
+        }
     }
 
     if ( FindNW == 0 )
@@ -84,16 +93,16 @@ int main (int argc, char **argv)
         /* -nw added as first argument and not last */
         char *nwparam = NULL;
         nwparam = (char*)MALLOC((strlen(ARG_NW) + 1) * sizeof(char));
-        strcpy_s(nwparam,(strlen(ARG_NW) + 1), ARG_NW);
+        strcpy_s(nwparam, (strlen(ARG_NW) + 1), ARG_NW);
 
         argvbis[0] = argv[0];
         argvbis[1] = nwparam;
 
-        for (i = 1; i<argc; i++)
+        for (i = 1; i < argc; i++)
         {
-            argvbis[i+1] = argv[i];
+            argvbis[i + 1] = argv[i];
         }
-        argcbis = argc+1;
+        argcbis = argc + 1;
     }
     else
     {
@@ -126,7 +135,7 @@ int main (int argc, char **argv)
 #ifndef _DEBUG
             /* catch system errors msgbox (release mode only) */
             /* http://msdn.microsoft.com/en-us/library/ms680621(VS.85).aspx */
-            LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS|SEM_NOALIGNMENTFAULTEXCEPT|SEM_NOGPFAULTERRORBOX );
+            LastErrorMode = SetErrorMode( SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX );
             _try
             {
 #endif
@@ -142,22 +151,22 @@ int main (int argc, char **argv)
         fFreeResult = FreeLibrary(hinstLib);
     }
 
-    if (! fRunTimeLinkSuccess) 
+    if (! fRunTimeLinkSuccess)
     {
-        #define BUFFER_SIZE 512
+#define BUFFER_SIZE 512
         char buffer[BUFFER_SIZE];
         char *OutputMsg = NULL;
         DWORD dw = GetLastError();
 
         if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
-            dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-            buffer, BUFFER_SIZE, NULL) == 0) 
+                          dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+                          buffer, BUFFER_SIZE, NULL) == 0)
         {
             StringCchPrintf(buffer, strlen("Unknown Error") + 1, "Unknown Error");
         }
 
         fprintf(stderr, "scilex can't launch scilab.\nError code : %lu\n", dw);
-        OutputMsg = (char*)MALLOC((strlen(buffer) + 1)*sizeof(char));
+        OutputMsg = (char*)MALLOC((strlen(buffer) + 1) * sizeof(char));
         if (OutputMsg)
         {
             CharToOem(buffer, OutputMsg);

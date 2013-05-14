@@ -17,7 +17,7 @@
 //    One can undo a diagram just after loading it
 
 
-xcos(SCI+"/modules/xcos/demos/Threshold_ZeroCrossing.xcos");
+xcos(SCI+"/modules/xcos/demos/Threshold_ZeroCrossing.zcos");
 // <CTRL+Z>
 // check that nothing should have changed
 

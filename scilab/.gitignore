@@ -90,7 +90,7 @@ modules/*/sci_gateway/fortran/*.c
 
 #
 # VS 2010 files
-# 
+#
 *.opensdf
 *.sdf
 *.old
@@ -120,7 +120,7 @@ Path.incl
 config.log
 config.status
 libtool
-history.scilab
+history
 lib
 tcllib
 _tmp_project.h

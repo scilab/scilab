@@ -381,6 +381,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -534,7 +535,6 @@ libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/src/jni/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni/ \

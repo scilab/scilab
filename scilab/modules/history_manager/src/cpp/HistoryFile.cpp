@@ -32,6 +32,8 @@ extern "C"
 #include "mgetl.h"
 #include "mclose.h"
 #include "freeArrayOfString.h"
+#include "getScilabPreference.h"
+#include "expandPathVariable.h"
 };
 /*------------------------------------------------------------------------*/
 #define DEFAULT_HISTORY_FILE_MAX_LINES 20000
@@ -49,7 +51,10 @@ HistoryFile::~HistoryFile()
 /*------------------------------------------------------------------------*/
 std::string HistoryFile::getFilename(void)
 {
-    if (this->my_history_filename.empty()) this->setDefaultFilename();
+    if (this->my_history_filename.empty())
+    {
+        this->setDefaultFilename();
+    }
     return this->my_history_filename;
 }
 /*------------------------------------------------------------------------*/
@@ -68,63 +73,62 @@ void HistoryFile::setFilename(std::string filename)
 /*------------------------------------------------------------------------*/
 BOOL HistoryFile::setDefaultFilename(void)
 {
-    BOOL bOK = FALSE;
-    char *SCIHOME = getSCIHOME();
-    std::string defaultfilename;
-    std::string defautlhistoryfile;
-
-    defautlhistoryfile.assign(DEFAULT_HISTORY_FILE);
-
-    if (SCIHOME)
+    const ScilabPreferences* prefs = getScilabPreferences();
+    if (prefs != NULL && prefs->historyFile != NULL)
     {
-        std::string sep;
-        std::string scihome;
-
-        sep.assign(DIR_SEPARATOR);
-        scihome.assign(SCIHOME);
-
-        defaultfilename = scihome + sep + defautlhistoryfile;
-
-        FREE(SCIHOME);
-        SCIHOME = NULL;
-        bOK = TRUE;
+        const char* prefHistoryFile = prefs->historyFile;
+        this->setFilename(expandPathVariable((char*)prefHistoryFile));
+        return TRUE;
     }
     else
     {
-        defaultfilename = defautlhistoryfile;
-        bOK = FALSE;
-        /* this isn't the standard path for history file */
-        /* but we set a filename */
+        std::string filename(DEFAULT_HISTORY_FILE);
+        char *SCIHOME = getSCIHOME();
+        if (SCIHOME)
+        {
+            std::string scihome(SCIHOME);
+            std::string sep(DIR_SEPARATOR);
+            this->setFilename(scihome + sep + filename);
+            return TRUE;
+        }
+        else
+        {
+            this->setFilename(filename);
+            return FALSE;
+        }
     }
-
-    this->setFilename(defaultfilename);
-
-    return bOK;
 }
+
 /*------------------------------------------------------------------------*/
 BOOL HistoryFile::writeToFile(std::string filename)
 {
     BOOL bOK = FALSE;
 
-    if (this->Commands.empty()) return bOK;
+    if (this->Commands.empty())
+    {
+        return bOK;
+    }
     else
     {
         FILE *pFile = NULL;
 
-        if (filename.empty())  return bOK;
+        if (filename.empty())
+        {
+            return bOK;
+        }
 
         wcfopen(pFile , (char*)filename.c_str(), "wt");
 
         if (pFile)
         {
             list<CommandLine>::iterator it_commands;
-            for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands)
+            for (it_commands = this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands)
             {
                 std::string line = (*it_commands).get();
                 if (!line.empty())
                 {
-                    fputs(line.c_str(),pFile);
-                    fputs("\n",pFile);
+                    fputs(line.c_str(), pFile);
+                    fputs("\n", pFile);
                 }
             }
             fclose(pFile);
@@ -137,7 +141,10 @@ BOOL HistoryFile::writeToFile(std::string filename)
 BOOL HistoryFile::writeToFile(void)
 {
     BOOL bOK = FALSE;
-    if (!this->my_history_filename.empty()) bOK = this->writeToFile(my_history_filename);
+    if (!this->my_history_filename.empty())
+    {
+        bOK = this->writeToFile(my_history_filename);
+    }
     return bOK;
 }
 /*------------------------------------------------------------------------*/
@@ -193,7 +200,10 @@ errorLoadHistoryCode HistoryFile::loadFromFile(std::string filename)
 errorLoadHistoryCode HistoryFile::loadFromFile(void)
 {
     errorLoadHistoryCode returnedError = ERROR_HISTORY_NOT_LOADED;
-    if (!this->my_history_filename.empty()) returnedError = this->loadFromFile(my_history_filename);
+    if (!this->my_history_filename.empty())
+    {
+        returnedError = this->loadFromFile(my_history_filename);
+    }
     return returnedError;
 }
 /*------------------------------------------------------------------------*/
@@ -208,9 +218,12 @@ BOOL HistoryFile::setHistory(list<CommandLine> commands)
     BOOL bOK = FALSE;
     list<CommandLine>::iterator it_commands;
 
-    if (!this->Commands.empty()) this->Commands.clear();
+    if (!this->Commands.empty())
+    {
+        this->Commands.clear();
+    }
 
-    for(it_commands=commands.begin(); it_commands != commands.end(); ++it_commands)
+    for (it_commands = commands.begin(); it_commands != commands.end(); ++it_commands)
     {
         std::string line = (*it_commands).get();
         if (!line.empty())
@@ -225,7 +238,7 @@ BOOL HistoryFile::setHistory(list<CommandLine> commands)
 BOOL HistoryFile::reset(void)
 {
     BOOL bOK = FALSE;
-    BOOL check1 = FALSE,check2 = FALSE;
+    BOOL check1 = FALSE, check2 = FALSE;
 
     if (!this->Commands.empty())
     {
@@ -239,7 +252,10 @@ BOOL HistoryFile::reset(void)
         check2 = TRUE;
     }
 
-    if (check1 && check2) bOK = TRUE;
+    if (check1 && check2)
+    {
+        bOK = TRUE;
+    }
 
     return bOK;
 }

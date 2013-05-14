@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:03+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-04-16 17:44+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -351,7 +351,7 @@ msgstr ""
 # File: macros/strange.sci, line: 24
 # File: macros/tabul.sci, line: 58
 # File: macros/trimmean.sci, line: 74
-# File: macros/variance.sci, line: 35
+# File: macros/variance.sci, line: 34
 # File: macros/variancef.sci, line: 37
 # File: macros/wcenter.sci, line: 40
 #, c-format
@@ -403,6 +403,51 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: Same number of column as first input "
 "argument expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 103
+# File: macros/cov.sci, line: 115
+# File: macros/cov.sci, line: 152
+# File: macros/cov.sci, line: 155
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 118
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: an integer or a real matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 125
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 136
+# File: macros/cov.sci, line: 139
+# File: macros/cov.sci, line: 164
+# File: macros/cov.sci, line: 167
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 158
+# File: macros/cov.sci, line: 170
+#, c-format
+msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
+msgstr ""
+
+#
+# File: macros/cov.sci, line: 184
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #
@@ -461,7 +506,7 @@ msgstr ""
 
 #
 # File: macros/mvcorrel.sci, line: 29
-# File: macros/mvvacov.sci, line: 31
+# File: macros/mvvacov.sci, line: 32
 # File: macros/samwr.sci, line: 19
 # File: macros/thrownan.sci, line: 27
 #, c-format
@@ -654,17 +699,15 @@ msgid "Unexpected value of orien : %s\n"
 msgstr ""
 
 #
-# File: macros/variance.sci, line: 47
-# File: macros/variance.sci, line: 59
-# File: macros/variance.sci, line: 72
+# File: macros/variance.sci, line: 55
 #, c-format
-msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
+msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/variance.sci, line: 76
+# File: macros/variance.sci, line: 62
 #, c-format
-msgid "%s: Wrong value for input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value of w : %s; %d or %d expected.\n"
 msgstr ""
 
 #

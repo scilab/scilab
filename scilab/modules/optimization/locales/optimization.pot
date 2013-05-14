@@ -8,52 +8,112 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-04-16 17:44+0100\n"
 
-# File: sci_gateway/c/sci_qld.c, line: 62
+# File: sci_gateway/c/sci_qld.c, line: 86
+# File: sci_gateway/c/sci_qld.c, line: 112
+# File: sci_gateway/c/sci_qld.c, line: 138
+# File: sci_gateway/c/sci_qld.c, line: 164
+# File: sci_gateway/c/sci_qld.c, line: 190
+# File: sci_gateway/c/sci_qld.c, line: 227
+# File: sci_gateway/c/sci_qld.c, line: 265
+# File: sci_gateway/c/sci_qld.c, line: 301
+# File: sci_gateway/c/sci_qp_solve.c, line: 94
+# File: sci_gateway/c/sci_qp_solve.c, line: 119
+# File: sci_gateway/c/sci_qp_solve.c, line: 148
+# File: sci_gateway/c/sci_qp_solve.c, line: 195
+# File: sci_gateway/c/sci_qp_solve.c, line: 221
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 94
+# File: sci_gateway/c/sci_qp_solve.c, line: 102
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 120
+# File: sci_gateway/c/sci_qld.c, line: 172
+# File: sci_gateway/c/sci_qld.c, line: 210
+# File: sci_gateway/c/sci_qld.c, line: 247
+# File: sci_gateway/c/sci_qp_solve.c, line: 127
+# File: sci_gateway/c/sci_qp_solve.c, line: 203
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 145
 #, c-format
 msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 148
+# File: sci_gateway/c/sci_qld.c, line: 201
+# File: sci_gateway/c/sci_qld.c, line: 238
+# File: sci_gateway/c/sci_qld.c, line: 321
+# File: sci_gateway/c/sci_qld.c, line: 329
+# File: sci_gateway/c/sci_qld.c, line: 337
+# File: sci_gateway/c/sci_qld.c, line: 347
+# File: sci_gateway/c/sci_qld.c, line: 355
+# File: sci_gateway/c/sci_qp_solve.c, line: 245
+# File: sci_gateway/c/sci_qp_solve.c, line: 253
+# File: sci_gateway/c/sci_qp_solve.c, line: 261
+# File: sci_gateway/c/sci_qp_solve.c, line: 269
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 273
+# File: sci_gateway/c/sci_qld.c, line: 309
+# File: sci_gateway/c/sci_qp_solve.c, line: 229
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_qld.c, line: 387
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 150
+# File: sci_gateway/c/sci_qld.c, line: 389
 #, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 152
+# File: sci_gateway/c/sci_qld.c, line: 391
 #, c-format
 msgid "%s: Length of working array is too short.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qld.c, line: 154
+# File: sci_gateway/c/sci_qld.c, line: 393
 #, c-format
 msgid "%s: The constraints are inconsistent.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 82
+# File: sci_gateway/c/sci_qp_solve.c, line: 178
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d column(s) expected for matrix %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 95
+# File: sci_gateway/c/sci_qp_solve.c, line: 235
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an integer in the range 0 "
@@ -61,21 +121,21 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 109
-# File: sci_gateway/c/sci_qp_solve.c, line: 133
-# File: sci_gateway/c/sci_qp_solve.c, line: 141
+# File: sci_gateway/c/sci_qp_solve.c, line: 278
+# File: sci_gateway/c/sci_qp_solve.c, line: 302
+# File: sci_gateway/c/sci_qp_solve.c, line: 310
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 169
+# File: sci_gateway/c/sci_qp_solve.c, line: 345
 #, c-format
 msgid "%s: The minimization problem has no solution.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_qp_solve.c, line: 173
+# File: sci_gateway/c/sci_qp_solve.c, line: 349
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr ""
@@ -432,8 +492,8 @@ msgstr ""
 # File: demos/neldermead/neldermead_rosenbrock.sce, line: 36
 # File: demos/neldermead/nmplot_han1.sce, line: 103
 # File: demos/neldermead/nmplot_han2.sce, line: 102
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 183
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 181
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 185
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 183
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 76
 # File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 76
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 75
@@ -660,30 +720,30 @@ msgid "Plot contour (please wait) ...\n"
 msgstr ""
 
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 166
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 164
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 168
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 166
 msgid "Function Value Average"
 msgstr ""
 
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 167
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 171
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 175
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 165
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 169
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 173
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 169
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 173
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 177
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 167
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 171
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 175
 msgid "Iterations"
 msgstr ""
 
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 170
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 168
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 172
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 170
 msgid "Minimum Function Value"
 msgstr ""
 
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 174
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 172
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 176
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 174
 msgid "Maximum Oriented length"
 msgstr ""
 
@@ -793,6 +853,12 @@ msgstr ""
 #
 # File: demos/optimization.dem.gateway.sce, line: 23
 msgid "Simulated Annealing"
+msgstr ""
+
+#
+# File: macros/bvodeS.sci, line: 25
+#, c-format
+msgid "%s: More than 20 equations are not allowed"
 msgstr ""
 
 #
@@ -990,7 +1056,13 @@ msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 
 #
-# File: macros/karmarkar.sci, line: 379
+# File: macros/karmarkar.sci, line: 238
+#, c-format
+msgid "%s: The algorithm did not converge (exitflag= %d).\n"
+msgstr ""
+
+#
+# File: macros/karmarkar.sci, line: 384
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
@@ -998,7 +1070,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/karmarkar.sci, line: 513
+# File: macros/karmarkar.sci, line: 518
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the equality "

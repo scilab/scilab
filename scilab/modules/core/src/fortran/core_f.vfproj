@@ -15,7 +15,7 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="core_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib  core.lib string.lib output_stream.lib output_stream_f.lib elementary_functions.lib elementary_functions_f.lib linpack_f.lib fileio.lib data_structures_f.lib data_structures.lib polynomials_f.lib string_f.lib fftw.lib integer_f.lib integer.lib sparse_f.lib double.lib console.lib boolean_f.lib io_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
@@ -35,7 +35,7 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="core_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib  core.lib string.lib output_stream.lib output_stream_f.lib elementary_functions.lib elementary_functions_f.lib linpack_f.lib fileio.lib data_structures_f.lib data_structures.lib polynomials_f.lib string_f.lib fftw.lib integer_f.lib integer.lib sparse_f.lib double.lib console.lib boolean_f.lib io_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
@@ -136,7 +136,6 @@
 		<File RelativePath="ref2val.f"/>
 		<File RelativePath="savlod.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_argn.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_clear.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_clearglobal.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_comp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_delbpt.f"/>

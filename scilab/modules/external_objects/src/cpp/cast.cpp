@@ -24,13 +24,11 @@ int ScilabGateway::cast(char * fname, const int envId, void * pvApiCtx)
     int row = 0, col = 0;
     int * id = 0;
     char * objName = 0;
-    char * errmsg = 0;
     int ret = 0;
 
     CheckInputArgument(pvApiCtx, 2, 2);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
-    OptionsHelper & helper = env.getOptionsHelper();
     ScilabGatewayOptions & options = env.getGatewayOptions();
     OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);

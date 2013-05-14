@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2emf" xml:lang="ru">
+    <refnamediv>
+        <refname>xs2emf</refname>
+        <refpurpose>
+            экспорт графиков в EMF (только в Windows)
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            xs2emf(win_num, file_name [,orientation])
+            xs2emf(fig, file_name [,orientation])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>win_num</term>
+                <listitem>
+                    <para>
+                        целое число, идентификатор графического 
+                        окна для экспорта.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fig</term>
+                <listitem>
+                    <para>
+                        дескриптор графического окна для экспорта.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>file_name</term>
+                <listitem>
+                    <para>
+                        строковое значение, имя экспортируемого файла.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orientation</term>
+                <listitem>
+                    <para>
+                        необязательная строка, ориентация; возможные
+                        значения <literal>'portrait'</literal> 
+                        ("портрет") и <literal>'landscape'</literal> 
+                        ("альбом"). Значение по умолчанию -
+                        <literal>'portrait'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>xs2emf</function> экспортирует 
+            отображение графического окна в EMF-файл.
+        </para>
+        <para>
+            Экспортированный файл получается через создание EPS-            файла
+            и преобразования его в формат EMF с помощью программы "pstoedit".
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+if getos() == 'Windows' then
+  scf(0);
+  plot2d();
+  // экспорт в EMF
+  xs2emf(0,'foo.emf');
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="toprint">toprint</link>
+            </member>
+            <member>
+                <link linkend="printfigure">printfigure</link>
+            </member>
+            <member>
+                <link linkend="xs2bmp">xs2bmp</link>
+            </member>
+            <member>
+                <link linkend="xs2gif">xs2gif</link>
+            </member>
+            <member>
+                <link linkend="xs2jpg">xs2jpg</link>
+            </member>
+            <member>
+                <link linkend="xs2png">xs2png</link>
+            </member>
+            <member>
+                <link linkend="xs2ppm">xs2ppm</link>
+            </member>
+            <member>
+                <link linkend="xs2eps">xs2eps</link>
+            </member>
+            <member>
+                <link linkend="xs2pdf">xs2pdf</link>
+            </member>
+            <member>
+                <link linkend="xs2svg">xs2svg</link>
+            </member>
+            <member>
+                <link linkend="xs2ps">xs2ps</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

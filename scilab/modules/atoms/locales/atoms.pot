@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-01-24 17:14+0100\n"
+"Revision-Date: 2013-04-16 17:44+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -1416,55 +1416,55 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 195
 #, c-format
-msgid "%s: Error: Invalid URL.\n"
+msgid "%s: Error: the response status from the URL %s is invalid.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 196
 #, c-format
-msgid "%s: Error: Internet Open.\n"
+msgid "%s: Error while opening an Internet connection.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 197
 #, c-format
-msgid "%s: Error: URL Open.\n"
+msgid "%s: Error while opening the URL %s.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 198
 #, c-format
-msgid "%s: Error: Createfile.\n"
+msgid "%s: Error while creating the file %s on disk.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 199
 #, c-format
-msgid "%s: Error: Invalid File size.\n"
+msgid "%s: Error while retrieving the size of file at URL %s.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 200
 #, c-format
-msgid "%s: Error: Internet Read file.\n"
+msgid "%s: Error while reading the file from the URL %s.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 201
 #, c-format
-msgid "%s: Error: Write file.\n"
+msgid "%s: Error while writing the file %s on disk.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 202
 #, c-format
-msgid "%s: Error: Failure.\n"
+msgid "%s: Error while downloading the file from the URL %s.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 203
 #, c-format
-msgid "%s: Error: Out Of Memory.\n"
+msgid "%s: Error: out of memory.\n"
 msgstr ""
 
 #

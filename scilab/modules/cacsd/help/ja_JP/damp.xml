@@ -149,7 +149,7 @@
    plot(wn/(2*%pi)*[1 1],[0 70],'r') // 固有周波数
    ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=%s;
                 wn=1;
                 clf();

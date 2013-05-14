@@ -44,6 +44,7 @@ import org.scilab.modules.renderer.JoGLView.interaction.util.PointCComputer;
 import org.scilab.modules.renderer.JoGLView.interaction.util.PointComputer;
 import org.scilab.modules.renderer.JoGLView.interaction.util.PointDComputer;
 import org.scilab.modules.renderer.JoGLView.postRendering.PostRendered;
+import org.scilab.modules.localization.Messages;
 
 /**
  * @author Pierre Lando
@@ -266,16 +267,16 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
         if (isEnable()) {
             switch (status) {
             case WAIT_POINT_A:
-                setInfoMessage("Click to set first bounds", pointAComputer, false);
+                setInfoMessage(Messages.gettext("Click to set first bounds"), pointAComputer, false);
                 break;
             case WAIT_POINT_B:
-                setInfoMessage("Click to set second bounds", pointBComputer, false);
+                setInfoMessage(Messages.gettext("Click to set second bounds"), pointBComputer, false);
                 break;
             case WAIT_POINT_C:
-                setInfoMessage("Click to set first", pointCComputer, true);
+                setInfoMessage(Messages.gettext("Click to set first"), pointCComputer, true);
                 break;
             case WAIT_POINT_D:
-                setInfoMessage("Click to set second ", pointDComputer, true);
+                setInfoMessage(Messages.gettext("Click to set second"), pointDComputer, true);
                 break;
             default:
             }
@@ -317,7 +318,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
                      message
                      );
          } else {
-             String message = "Move your mouse on an axes box.";
+             String message = Messages.gettext("Move your mouse on an axes box.");
              GraphicController.getController().setProperty(
                      getDrawerVisitor().getFigure().getIdentifier(),
                      GraphicObjectProperties.__GO_INFO_MESSAGE__,

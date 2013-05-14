@@ -66,7 +66,8 @@
                 <term>"l", "i", "s", "ul", "ui", "us", "d", "f", "c", "uc"</term>
                 <listitem>
                     <para>
-                        for  writing respectively a long, an int, a short, an unsigned long, an unsigned int, an unsigned short, a double, a float, a char and an unsigned char. The bytes which are wrote are automatically swapped if necessary (by checking little-endian status) in order to produce machine independent binary files (in little-endian mode). This default swapping mode can be suppressed by adding a flag <code>swap = 0</code> in the <function>mopen</function> function.
+                        for  writing respectively a long long, an int (long
+                        int), a short, an unsigned long long int, an unsigned int (long int), an unsigned short, a double, a float, a char and an unsigned char. The bytes which are wrote are automatically swapped if necessary (by checking little-endian status) in order to produce machine independent binary files (in little-endian mode). This default swapping mode can be suppressed by adding a flag <code>swap = 0</code> in the <function>mopen</function> function.
                     </para>
                 </listitem>
             </varlistentry>

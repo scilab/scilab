@@ -203,9 +203,12 @@ void ScilabView::deleteObject(char const* pstId)
 
     // Remove the corresponding handle.
     __handleList_iterator it = m_handleList.find(pstId);
-    m_uidList.erase(it->second);
-    m_handleList.erase(it);
-    
+    if (it != m_handleList.end())
+    {
+        m_uidList.erase(it->second);
+        m_handleList.erase(it);
+    }
+
     deleteDataObject(pstId);
 }
 
@@ -214,8 +217,8 @@ void ScilabView::updateObject(char const* pstId, int iProperty)
     //std::cerr << "[ScilabView] == updateObject UID=" << pstId << " PROPERTY=" << pstProperty << std::endl;
 
     /*
-     ** Take care of update if the value update is ID and object type is a Figure I manage.
-     */
+    ** Take care of update if the value update is ID and object type is a Figure I manage.
+    */
     if (iProperty == __GO_ID__ && m_figureList.find(pstId) != m_figureList.end())
     {
         int iNewId = 0;

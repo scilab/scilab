@@ -112,7 +112,7 @@
     <refsection>
         <title>Design</title>
         <para>
-            The neldermead component is built on top of the <link linkend="optimbase">optimbase</link> and <link linkend="optimsimplex">optimsimplex</link> components.
+            The neldermead component is built on top of the <link linkend="optimbase_overview">optimbase</link> and <link linkend="optimsimplex_overview">optimsimplex</link> components.
         </para>
     </refsection>
     <refsection>
@@ -2800,13 +2800,19 @@ nm = neldermead_destroy(nm);
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="optimbase">optimbase</link>
+                <link linkend="optimbase_new">optimbase_new</link>
             </member>
             <member>
-                <link linkend="optimsimplex">optimsimplex</link>
+                <link linkend="optimsimplex_new">optimsimplex_new</link>
             </member>
             <member>
-                <link linkend="optimsimplex">nmplot</link>
+                <link linkend="optimbase_overview">optimbase</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_overview">optimsimplex</link>
+            </member>
+            <member>
+                <link linkend="nmplot">nmplot</link>
             </member>
         </simplelist>
     </refsection>

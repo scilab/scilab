@@ -89,7 +89,7 @@
  * M(i) is not the i th field of the list but is interpreted as
  * the i th entry of M seen as a vector. 
  * This is the only difference between mlist and tlist .
- * @see Scilab documentation at mlist for more informations
+ * @see Scilab documentation at mlist for more information
  */
 #define MATRIX_ORIENTED_TYPED_LIST_DATATYPE "m"
 

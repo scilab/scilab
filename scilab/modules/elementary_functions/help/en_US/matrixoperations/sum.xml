@@ -88,11 +88,11 @@
                     if <literal>orientation</literal> is equal to 1 or "r" then
                 </para>
                 <para>
-                    <latex><![CDATA[ y(1,j) = \sum_i x(i,j)]]></latex>
+                    <latex><![CDATA[{ y(\mathbf{1},j) = \sum_{\mathbf{i}} x(\mathbf{i},j)}]]></latex>
                 </para>
                 <para>or </para>
                 <para>
-                    <latex><![CDATA[ y(1,j,k,\ldots) = \sum_i x(i,j,k,\ldots)]]></latex>
+                    <latex><![CDATA[ y(\mathbf{1},j,k,\ldots) = \sum_{\mathbf{i}} x(\mathbf{i},j,k,\ldots)]]></latex>
                 </para>
             </listitem>
             <listitem>

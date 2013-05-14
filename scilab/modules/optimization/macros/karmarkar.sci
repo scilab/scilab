@@ -233,6 +233,11 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
     //
     // Extract the solution from the initial problem
     [xopt,fopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb , ub , pinit , xxopt , yyopt , exitflag )
+
+    if lhs < 3 & exitflag~= 1 then
+        warning(msprintf(gettext("%s: The algorithm did not converge (exitflag= %d).\n"),"karmarkar",exitflag));
+    end
+
 endfunction
 
 function [AAeq,bbeq,cc,xx0,pinit,newposvars] = karmarkar_preprocess ( Aeq , beq , c , A , b , lb , ub , x0 )

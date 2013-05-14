@@ -17,6 +17,7 @@ optimization
 genetic_algorithms
 simulated_annealing
 xml
+hdf5
 fileio
 io
 graphics

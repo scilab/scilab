@@ -161,7 +161,7 @@ C1= [ 1,-1, 2;
       1, 6, 0];
 b1=[1;2;3];
 
-// x'*C2 >= b2 (2 inequality constraints)
+// x'*C2 >= b2 (2 inequality constraints i.e md=2)
 C2= [ 0 ,1;
      -1, 0;
       0,-2;

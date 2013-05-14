@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="backslash">
+    <refnamediv>
+        <refname>обратный слэш (\)</refname>
+        <refpurpose>(\) левое матричное деление.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>X=A\B</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Обратный слэш означает левое матричное деление.
+            <code>X=A\B</code> является решением для <code>A*X=B</code>.
+        </para>
+        <para>
+            Если <literal>A</literal> - квадратная и невырожденная, то  <code>X=A\B</code> 
+            (уникально определённая) эквивалентно <code>X=inv(A)*B</code> в точном арифметическом смысле, однако вычисления гораздо точнее и дешевле в арифметике с плавающей запятой.
+            Следовательно, чтобы вычислить решение линейной системы уравнений <code>A*X=B</code>,
+            следует использовать оператор "обратный слэш", а функцию  <function>inv</function> не следует использовать.
+        </para>
+        <para>
+            В случае, когда <literal>A</literal> - квадратная матрица, 
+            решение <literal>X</literal> может быть вычислено
+            либо через LU-разложение, либо через программу линейного 
+            решения по методу наименьших квадратов.
+            Если число обусловленности матрицы <literal>A</literal> 
+            меньше, чем <code>1/(10*%eps)</code> (то есть, если 
+            <literal>A</literal> хорошо обусловлена),
+            то используется LU-разложение с перестановками строк матрицы.
+            Если нет (то есть, если <literal>A</literal> плохо 
+            обусловлена), то <literal>X</literal> является решением с 
+            минимальной нормой, которое минимизирует
+            <literal>||A*X-B||</literal> используя полное ортогональное 
+            разложение <literal>A</literal> (то есть 
+            <literal>X</literal> - это решение линейной задачи по методу 
+            наименьших квадратов).
+        </para>
+        <para>
+            Если <literal>A</literal> не квадратная, то <literal>X</literal> является решением наименьших квадратов,
+            т.е. <code>norm(A*X-B)</code> является минимальной (эвклидова норма). Если ранг матрицы <literal>A</literal>
+            полный, то решение наименьших квадратов, <code>X=A\B</code>, является уникально 
+            определённым (есть уникальное <literal>X</literal>, которое минимизирует <code>norm(A*X-B)</code>).
+            Если ранг матрицы <literal>A</literal> неполный, то решение наименьших квадратов не является уникальным, 
+            и <code>X=A\B</code>, в общем, не является решением с минимальной нормой (решение минимальной 
+            нормы равно  <code>X=pinv(A)*B</code>).
+        </para>
+        <para>
+            <code>A.\B</code> является матрицей с <literal>(i,j)</literal>-тым элементом, равным <literal>A(i,j)\B(i,j)</literal>.
+            Если <literal>A</literal> (или <literal>B</literal>) является скаляром, то <code>A.\B</code> эквивалентно
+            <code>A*ones(B).\B</code> (или <code>A.\(B*ones(A))</code>.
+        </para>
+        <para>
+            <literal>A\.B</literal> является оператором без предопределённого значения. Он может использоваться 
+            для определения нового оператора (см. <link linkend="overloading">перегрузку</link>) с тем же самым приоритетом что и <literal>*</literal> или <literal>/</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+A=[
+   9.   -36.    30.
+  -36.   192.  -180.
+   30.  -180.   180.
+];
+b=[
+   3.
+  -24.
+   30.
+];
+x=A\b
+A*x-b // close to zero
+
+A=rand(3,2);
+b=[1;1;1];
+x=A\b;
+y=pinv(A)*b;
+x-y
+A=rand(2,3);b=[1;1];
+x=A\b;
+y=pinv(A)*b;
+x-y, A*x-b, A*y-b
+
+// если ранг неполный
+A=rand(3,1)*rand(1,2);
+b=[1;1;1];
+x=A\b;
+y=pinv(A)*b;
+A*x-b, A*y-b
+A=rand(2,1)*rand(1,3);
+b=[1;1];
+x=A\b;
+y=pinv(A)*b;
+A*x-b, A*y-b
+ 
+// Проверка эффективности нескольких программ решения систем линейных уравнений
+ 
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa"); 
+ 
+b = zeros(size(A,1),1);
+ 
+tic();
+res = umfpack(A,'\',b);
+mprintf('\nвремя, необходимое для решения системы с помощью umfpack: %.3f\n',toc());
+ 
+tic();
+res = linsolve(A,b);
+mprintf('\nвремя, необходимое для решения системы с помощью linsolve: %.3f\n',toc());
+ 
+tic();
+res = A\b;
+mprintf('\nвремя, необходимое для решения системы с помощью оператора ""обратный слэш"": %.3f\n',toc());
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="slash">слэш</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="percent">процент</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+            <member>
+                <link linkend="linsolve">linsolve</link>
+            </member>
+            <member>
+                <link linkend="umfpack">umfpack</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Пороговый уровень для обусловливания в обратном слэше увеличен.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

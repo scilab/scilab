@@ -3,5 +3,7 @@ LIBRARY    core.dll
 
 EXPORTS
 ; core
-  iop_
+iop_
+MyHeapAlloc
+MyHeapFree
 

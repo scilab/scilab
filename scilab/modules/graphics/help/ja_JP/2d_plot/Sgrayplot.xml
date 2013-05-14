@@ -272,7 +272,12 @@ _____________
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>Sgrayplot();</scilab:image>
+        <scilab:image>
+            x=-10:10; y=-10:10;m =rand(21,21);
+            clf()
+            xset("colormap",hotcolormap(64))
+            Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

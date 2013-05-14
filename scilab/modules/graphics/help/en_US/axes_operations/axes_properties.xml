@@ -676,6 +676,9 @@
                                     whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see
                                     <link linkend="getmark">getmark</link>).
                                 </para>
+                                <para>
+                                    <warning>In the special case where mark_style and mark_size are 0, a dot of one pixel is drawn.</warning>
+                                </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>

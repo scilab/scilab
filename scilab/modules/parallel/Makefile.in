@@ -142,7 +142,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciparallel_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciparallel_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciparallel_la_LIBADD =
+am__DEPENDENCIES_1 =
+libsciparallel_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__libsciparallel_la_SOURCES_DIST = src/noparallel/noparallel.h \
 	src/noparallel/noparallel.c sci_gateway/c/gw_parallel.c \
 	sci_gateway/c/sci_parallel_concurrency.c \
@@ -359,6 +360,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -457,8 +459,7 @@ GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c \
 sci_gateway/c/sci_parallel_concurrency.c
 
-libsciparallel_la_CPPFLAGS = $(OPENMP_CPPFLAGS) \
--I$(top_srcdir)/libs/MALLOC/includes/ \
+libsciparallel_la_CPPFLAGS = $(OPENMP_CXXFLAGS) \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes/ \
 -I$(srcdir)/src/cpp/ \
@@ -471,6 +472,7 @@ libsciparallel_la_CPPFLAGS = $(OPENMP_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciparallel.la
+libsciparallel_la_LIBADD = $(OPENMP_LIBS)
 @OPENMP_FALSE@libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
 @OPENMP_FALSE@src/noparallel/noparallel.c
 

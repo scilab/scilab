@@ -17,7 +17,7 @@
 
 x=linspace(-1,1,1000);
 clf()
-plot(x,sinc(20*x),x,1-x^2);
+plot(x,sinc(20*x),x,1-x.^2);
 e=gce();e=e.children;
 d21=datatipCreate(e(2),600);
 d22=datatipCreate(e(2),200);

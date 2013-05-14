@@ -10,7 +10,7 @@
 function M=%hm_1_s(M,s)
 //M<s
 if size(s,'*')<> 1 then
-  error('< : arguments have incompatible dimensions')
+  error(msprintf(_("%s: Wrong type for input argument #%d: A scalar expected.\n"),"%hm_1_s",2));
 end
 M('entries')=M('entries')<s
 endfunction

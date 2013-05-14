@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_checkx0" xml:lang="en">
+    <refnamediv>
+        <refname>optimbase_checkx0</refname>
+        <refpurpose>Checks initial guess.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            opt = optimbase_checkx0(opt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The object of TOPTIM type (tlist).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimbase_checkx0</literal> function checks if the initial guess is 
+            consistent with the bounds and the non-linear inequality constraints,	if any and
+            produces an error message if not.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
+    opt = optimbase_new();
+
+    opt = optimbase_configure ( opt, "-numberofvariables", 2);
+    opt = optimbase_configure ( opt , "-verbose",1);
+   	opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
+    opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0] );
+    opt = optimbase_configure ( opt , "-x0", [1.0 1.0]' );
+
+    // Check x0
+    opt = optimbase_checkx0(opt)
+
+    opt = optimbase_destroy(opt);
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimbase_isfeasible">optimbase_isfeasible</link>
+            </member>
+            <member>
+                <link linkend="optimbase_configure">optimbase_configure</link>
+            </member>
+            <member>
+                <link linkend="optimbase_cget">optimbase_cget</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

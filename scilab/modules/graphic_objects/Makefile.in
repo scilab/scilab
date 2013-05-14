@@ -99,11 +99,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
-	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
-	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
+	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -148,7 +148,6 @@ am_libscigraphic_objects_disable_la_OBJECTS = $(am__objects_1)
 libscigraphic_objects_disable_la_OBJECTS =  \
 	$(am_libscigraphic_objects_disable_la_OBJECTS)
 libscigraphic_objects_la_DEPENDENCIES =  \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 = libscigraphic_objects_la-DataLoader_wrap.lo \
 	libscigraphic_objects_la-ScilabNativeView_wrap.lo
@@ -355,6 +354,7 @@ MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
+MPI_ENABLE = @MPI_ENABLE@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
 MSGFMT_015 = @MSGFMT_015@
@@ -368,6 +368,9 @@ OCAMLDEP = @OCAMLDEP@
 OCAMLLEX = @OCAMLLEX@
 OCAMLOPT = @OCAMLOPT@
 OCAMLYACC = @OCAMLYACC@
+OPENMPI_CC = @OPENMPI_CC@
+OPENMPI_FLAGS = @OPENMPI_FLAGS@
+OPENMPI_LIBS = @OPENMPI_LIBS@
 OPENMP_CFLAGS = @OPENMP_CFLAGS@
 OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
 OPENMP_ENABLE = @OPENMP_ENABLE@
@@ -400,6 +403,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -498,7 +502,7 @@ modulename = graphic_objects
 
 #### graphic_objects : Conf files ####
 libscigraphic_objects_la_rootdir = $(mydatadir)
-libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt
 
 #### graphic_objects : init scripts ####
 libscigraphic_objects_la_etcdir = $(mydatadir)/etc
@@ -630,7 +634,6 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni/ \
 			-I$(top_srcdir)/modules/core/includes/ \
@@ -642,7 +645,6 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 
 # Without the graphic_objects module
 libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			$(AM_CPPFLAGS)
@@ -661,9 +663,7 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 SWIG_WRAPPERS = src/jni/DataLoader.i \
 				src/jni/ScilabNativeView.i
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
-$(top_builddir)/modules/output_stream/libscioutput_stream.la
-
+libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### graphic_objects : gateway declaration ####
 libscigraphic_objects_la_sci_gatewaydir = $(mydatadir)/sci_gateway

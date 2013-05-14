@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5attr" xml:lang="en">
+    <refnamediv>
+        <refname>h5attr</refname>
+        <refpurpose>Create an attribute</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            h5attr(obj, location, name, data [, targetType])
+            h5attr(filename, location, name, data [, targetType])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj</term>
+                <listitem>
+                    <para>a H5Object</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>location</term>
+                <listitem>
+                    <para>a string giving the location in the object or in the file</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>a string giving the path to the new dataset</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data</term>
+                <listitem>
+                    <para>a Scilab data</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>targetType</term>
+                <listitem>
+                    <para>a string giving the type of the target</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string giving the filename</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Create a new named attribute based on the Scilab data passed as argument.</para>
+        <para>
+            The target HDF5 type can be chosen in the list available in the <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5 manual</ulink>.
+            Examples of this HDF5 type are "H5T_MIPS_U32" or "H5T_STD_B64BE", but shortcuts as "MIPS_U32" or "STD_B64BE" can also be used.
+        </para>
+        <para>An attribute can be located in a group or in a dataset</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = 1:5 + %pi;
+save(TMPDIR + "/x.sod", "x"); // SOD files are HDF5 ones 	
+
+// We open the file
+a = h5open(TMPDIR + "/x.sod");
+
+// Add an attribute to the root element
+h5attr(a, ".", "My Attribute", int8(123));
+
+// Check
+h5dump(a)
+
+// ...or
+a.root("My Attribute").data
+
+// Add an attribute to the dataset named "x"
+h5attr(a, "/x", "My Dataset Attribute", int16(321));
+
+// Check
+h5dump(a.root.x)
+
+// We have finished so we free all the resources
+h5close(a);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="h5group">h5group</link>
+            </member>
+            <member>
+                <link linkend="h5attr">h5dataset</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HDF5 module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

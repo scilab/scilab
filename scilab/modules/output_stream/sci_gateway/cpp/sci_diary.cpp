@@ -1133,7 +1133,14 @@ static int PauseByIds(char *fname)
     int ierr = 0;
 
     dIDs = getInputArgumentOneIDs(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr == 2)
+    {
+        // diary([],"pause")
+        diaryPauseAll();
+        PutLhsVar();
+        return 0;
+    }
+    else if (ierr) return 0;
 
     ierr = checkExistByIDs(fname, dIDs, dIDs_size);
     if (ierr) return 0;
@@ -1191,7 +1198,14 @@ static int ResumeByIds(char *fname)
     int ierr = 0;
 
     dIDs = getInputArgumentOneIDs(fname, &dIDs_size, &ierr);
-    if (ierr) return 0;
+    if (ierr == 2)
+    {
+        //diary([],"resume")
+        diaryResumeAll();
+        PutLhsVar();
+        return 0;
+    }
+    else if (ierr) return 0;
 
     ierr = checkExistByIDs(fname, dIDs, dIDs_size);
     if (ierr) return 0;

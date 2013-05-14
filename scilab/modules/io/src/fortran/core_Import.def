@@ -17,6 +17,8 @@ eqid_
 cremat_
 getendian_
 namstr_
+isanan_
+returnananfortran_
 ;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
 ;

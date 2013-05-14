@@ -68,15 +68,21 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@MPI_TRUE@am__append_1 = mpi
-@XCOS_TRUE@am__append_2 = scicos_blocks
+@XCOS_TRUE@am__append_1 = scicos_blocks
+@MPI_TRUE@am__append_2 = mpi
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_3 = javasci
 @MPI_TRUE@am__append_4 = $(top_builddir)/modules/mpi/libscimpi.la
-@GUI_TRUE@am__append_5 = $(GUI_LIBS) 	$(top_builddir)/modules/types/libscitypes.la
+@GUI_TRUE@am__append_5 = $(GUI_LIBS)	$(top_builddir)/modules/types/libscitypes.la
 @GUI_FALSE@am__append_6 = $(NO_GUI_LIBS)
+
+# This should never be used in production. It forces the explicit link
+# between libscilab and some "on-the-fly" loaded libraries.
+# It has been added to make sure that the full link is correctly done
+# and all symbols resolved.
+@FORCE_LINK_TRUE@am__append_7 = $(ENGINE_LIBS_DYNAMIC_LOAD)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -132,15 +138,14 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS) \
-	$(EXTERNAL_LIBS)
+libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS)
 am_libscilab_cli_la_OBJECTS =
 libscilab_cli_la_OBJECTS = $(am_libscilab_cli_la_OBJECTS)
 libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 libscilab_la_DEPENDENCIES = $(am__append_5) $(am__append_6) \
-	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la
+	$(am__append_7) $(top_builddir)/modules/libscilab-cli.la
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -190,8 +195,8 @@ DIST_SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
 	scinotes parallel modules_manager ui_data history_browser \
-	preferences xml types external_objects mpi scicos_blocks \
-	scicos . javasci
+	preferences xml types external_objects scicos_blocks scicos \
+	mpi . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -387,6 +392,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -492,8 +498,8 @@ SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms hdf5 graph \
 	xcos scinotes parallel modules_manager ui_data history_browser \
-	preferences xml types external_objects $(am__append_1) \
-	$(am__append_2) scicos . $(am__append_3)
+	preferences xml types external_objects $(am__append_1) scicos \
+	$(am__append_2) . $(am__append_3)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -502,14 +508,7 @@ libscilab_la_rootdir = $(mydatadir)
 # libscilab-cli is for scilab-cli (without GUI)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES = 
-#libscilab_cli_la_SOURCES =
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
-#libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) -lstdc++
-EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la  \
-$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
-$(top_builddir)/libs/libst/libscilibst.la
-
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
@@ -569,7 +568,6 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
 	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
@@ -595,11 +593,11 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 
 
 # Core modules
-#libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
 # Core modules
 libscilab_la_LIBADD = $(am__append_5) $(am__append_6) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(top_builddir)/modules/libscilab-cli.la
+	$(EXTERNAL_LIBS) $(am__append_7) \
+	$(top_builddir)/modules/libscilab-cli.la
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 

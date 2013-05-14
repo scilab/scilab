@@ -121,11 +121,11 @@ function atomsDownload(url_in,file_out,md5sum)
       timeout_arg = " --timeout=";
     end
 
-    timeout = string(strtod(atomsGetConfig("downloadTimeout")));
+    timeout = strtod(atomsGetConfig("downloadTimeout"));
 
-    if timeout <> "0" then
-      timeout_arg = timeout_arg + timeout;
-    else
+    if ~isnan(timeout) then // Value found in config file
+      timeout_arg = timeout_arg + string(timeout);
+    else // Default timeout
       timeout_arg = timeout_arg + "5";
     end
 

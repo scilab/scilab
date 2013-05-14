@@ -16,6 +16,7 @@ import org.scilab.modules.graphic_objects.axes.AxisProperty;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ class UserDefineGraduation implements Graduations {
     private final double upperBound;
 
     private List<Double> allValues;
+    private List<Double> subValues;
 
     public UserDefineGraduation(AxisProperty axisProperty, double lowerBound, double upperBound) {
         this.axisProperty = axisProperty;
@@ -103,8 +105,34 @@ class UserDefineGraduation implements Graduations {
     }
 
     @Override
+    public List<Double> getSubGraduations(final int N) {
+        if (subValues == null) {
+            List<Double> ticksValue = getAllValues();
+            if (N == 0 || ticksValue.size() == 0) {
+                subValues = new LinkedList<Double>();
+            } else {
+                Collections.sort(ticksValue);
+                subValues = new LinkedList<Double>();
+
+                for (int i = 0; i < ticksValue.size() - 1; i++) {
+                    final double first = ticksValue.get(i);
+                    final double second = ticksValue.get(i + 1);
+                    final double step = (second - first) / (N + 1);
+                    double v = first;
+                    for (int j = 0; j <= N; j++) {
+                        subValues.add(v);
+                        v += step;
+                    }
+                }
+                subValues.add(ticksValue.get(ticksValue.size() - 1));
+            }
+        }
+
+        return subValues;
+    }
+
+    @Override
     public int getSubDensity() {
         return axisProperty.getSubticks() + 1;
     }
-
 }

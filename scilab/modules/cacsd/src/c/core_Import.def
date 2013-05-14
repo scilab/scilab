@@ -21,3 +21,5 @@ GetData
 iIsComplex
 gettype_
 vstk_
+MyHeapAlloc
+MyHeapFree

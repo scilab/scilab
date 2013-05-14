@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="qmr">
     <refnamediv>
         <refname>qmr</refname>
-        <refpurpose>quasi minimal resiqual method with preconditioning  </refpurpose>
+        <refpurpose>quasi minimal residual method with preconditioning  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -165,24 +165,19 @@ function y = Ap ( x )
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <variablelist>
-                        <varlistentry>
-                            <term>0 =</term>
-                            <listitem>
-                                <para>
-                                    <literal>gmres</literal> converged to the desired tolerance within <literal>maxi</literal> iterations
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>1 =</term>
-                            <listitem>
-                                <para>
-                                    no convergence given <literal>maxi</literal>
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <itemizedlist>
+                        <listitem>
+                            <para><varname>flag</varname>=0: <code>qmr</code> converged to the desired tolerance within <varname>maxi</varname>
+                            iterations,</para>
+                        </listitem>
+                        <listitem>
+                            <para><varname>flag</varname>=1: no convergence given <varname>maxi</varname>,</para>
+                        </listitem>
+                        <listitem>
+                            <para><literal>-7 &lt; flag &lt; 0</literal>: A breakdown occurred because one of the scalar quantities calculated during
+                            <code>qmr</code> was equal to zero.</para>
+                        </listitem>
+                    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>

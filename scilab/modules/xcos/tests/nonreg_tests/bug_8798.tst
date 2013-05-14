@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // The context parameter of scicos_simulate is not taken into account
 
-importXcosDiagram("SCI/modules/xcos/tests/nonreg_tests/batch_simulation.xcos")
+importXcosDiagram("SCI/modules/xcos/tests/nonreg_tests/batch_simulation.zcos")
 
 scicos_simulate(scs_m,list(),'nw');
 c1=counter;

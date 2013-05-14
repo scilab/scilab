@@ -595,6 +595,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -959,9 +960,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 @XCOS_TRUE@libsciscicos_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @XCOS_TRUE@			-I$(srcdir)/src/c/ \
-@XCOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
-@XCOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/graphics/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/string/includes/ \

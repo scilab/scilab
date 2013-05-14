@@ -85,40 +85,36 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     /** Set of properties changed during a draw if auto-ticks is on for X axis. */
     private static final Set<Integer> X_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                         GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
-                                                                                         GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__,
-                                                                                         GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__
-                                                                                         ));
+                GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__
+            ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Y axis. */
     private static final Set<Integer> Y_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                         GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
-                                                                                         GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__,
-                                                                                         GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__
-                                                                                         ));
+                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__
+            ));
 
     /** Set of properties changed during a draw if auto-ticks is on for Z axis. */
     private static final Set<Integer> Z_AXIS_TICKS_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                         GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
-                                                                                         GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__,
-                                                                                         GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__
-                                                                                         ));
+                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__,
+                GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__
+            ));
 
     /** Set of figure properties for witch a change doesn't lead to a redraw */
     private static final Set<Integer> SILENT_FIGURE_PROPERTIES = new HashSet<Integer>(Arrays.asList(
-                                                                                          GraphicObjectProperties.__GO_ROTATION_TYPE__,
-                                                                                          GraphicObjectProperties.__GO_INFO_MESSAGE__,
-                                                                                          GraphicObjectProperties.__GO_FIGURE_NAME__,
-                                                                                          GraphicObjectProperties.__GO_AUTORESIZE__,
-                                                                                          GraphicObjectProperties.__GO_POSITION__,
-                                                                                          GraphicObjectProperties.__GO_SIZE__,
-                                                                                          GraphicObjectProperties.__GO_ID__
-                                                                                          ));
+                GraphicObjectProperties.__GO_ROTATION_TYPE__,
+                GraphicObjectProperties.__GO_INFO_MESSAGE__,
+                GraphicObjectProperties.__GO_FIGURE_NAME__,
+                GraphicObjectProperties.__GO_AUTORESIZE__,
+                GraphicObjectProperties.__GO_POSITION__,
+                GraphicObjectProperties.__GO_SIZE__,
+                GraphicObjectProperties.__GO_ID__
+            ));
 
     private static final boolean DEBUG_MODE = false;
 
     private final Component component;
-    private final Canvas canvas;
     private final Figure figure;
     private final InteractionManager interactionManager;
 
@@ -132,7 +128,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     private final ContouredObjectDrawer contouredObjectDrawer;
     private final LegendDrawer legendDrawer;
-    private final AxesDrawer axesDrawer;
+    protected final AxesDrawer axesDrawer;
     private final AxisDrawer axisDrawer;
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
@@ -142,6 +138,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private ColorMap colorMap;
 
     private Axes currentAxes;
+    private Canvas canvas;
 
     /**
      * The map between the existing Figures' identifiers and their corresponding Visitor.
@@ -202,6 +199,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         return canvas;
     }
 
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
+    }
+
     /**
      * @return the DataManager
      */
@@ -241,7 +242,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public ColorMap getColorMap() {
         return colorMap;
     }
-
 
     /**
      * Returns the visitor corresponding to the Figure identifier.
@@ -375,7 +375,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             colorMap = figure.getColorMap();
             drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
             drawingTools.clearDepthBuffer();
-            if (figure.getVisible() && figure.getImmediateDrawing()) {
+            if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing()) {
                 askAcceptVisitor(figure.getChildren());
             }
         }
@@ -394,12 +394,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 triangles.setFaceCullingMode(Geometry.FaceCullingMode.BOTH);
                 Appearance trianglesAppearance = new Appearance();
                 drawingTools.draw(triangles, trianglesAppearance);
-            } catch (ObjectRemovedException e) {
-                invalidate(grayplot, e);
-            } catch (SciRendererException e) {
-                invalidate(grayplot, e);
-            } catch (OutOfMemoryException e) {
-                invalidate(grayplot, e);
+                /*} catch (ObjectRemovedException e) {
+                        invalidate(grayplot, e);
+                    } catch (SciRendererException e) {
+                        invalidate(grayplot, e);
+                    } catch (OutOfMemoryException e) {
+                        invalidate(grayplot, e);
+                }*/
+            } catch (Exception e) {
+                System.err.println(e);
+                e.printStackTrace();
             }
             axesDrawer.disableClipping(grayplot.getClipProperty());
         }
@@ -444,7 +448,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void visit(Label label) {
-        if (label.isValid() && label.getVisible()) {
+        if (label.isValid() && label.getVisible() && !label.isEmpty()) {
             try {
                 labelManager.draw(drawingTools, colorMap, label, axesDrawer);
             } catch (SciRendererException e) {
@@ -526,7 +530,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     if (polyline.getMarkMode()) {
-                        Texture sprite = markManager.getMarkSprite(polyline, colorMap);
+                        Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                         drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
                     }
@@ -618,7 +622,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (fac3d.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(fac3d, colorMap);
+                    Appearance appearance = null;
+                    if (fac3d.getLineThickness() > 0.0) {
+                        appearance = new Appearance();
+                        appearance.setLineWidth(fac3d.getLineThickness().floatValue());
+                    }
+
+                    Texture texture = markManager.getMarkSprite(fac3d, colorMap, appearance);
                     ElementsBuffer positions = dataManager.getVertexBuffer(fac3d.getIdentifier());
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
                 }
@@ -631,7 +641,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
             axesDrawer.disableClipping(fac3d.getClipProperty());
         }
-
     }
 
     @Override
@@ -662,7 +671,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
 
-
                     if (plot3d.getColorFlag() == 1) {
                         geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
                     } else {
@@ -692,7 +700,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (plot3d.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(plot3d, colorMap);
+                    Appearance appearance = null;
+                    if (plot3d.getLineThickness() > 0.0) {
+                        appearance = new Appearance();
+                        appearance.setLineWidth(plot3d.getLineThickness().floatValue());
+                    }
+
+                    Texture texture = markManager.getMarkSprite(plot3d, colorMap, appearance);
                     ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
                 }
@@ -801,9 +815,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                  * in order to obtain the latter's Mark (all arrows are supposed to have the same contour properties for now).
                  */
                 if (segs.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap);
+                    Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap, null);
                     ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
+                    // Take only into account start-end of segs and not the arrow head.
+                    positions.getData().limit(segs.getNumberArrows() * 2 * 4);
                     drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+                    positions.getData().limit(positions.getData().capacity());
                 }
 
                 /* Draw the arrows */
@@ -826,7 +843,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void updateObject(String id, int property) {
         try {
             if (needUpdate(id, property)) {
-                GraphicController.getController().setProperty(id, GraphicObjectProperties.__GO_VALID__, true);
                 if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
@@ -877,12 +893,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param property the changed property.
      * @return true id the given changed property make the figure out of date.
      */
-    private boolean needUpdate(String id, int property) {
+    protected boolean needUpdate(String id, int property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
         if ((object != null) && isFigureChild(id)
-            && objectType != GraphicObjectProperties.__GO_UICONTROL__
-            && objectType !=GraphicObjectProperties.__GO_UIMENU__) {
+                && objectType != GraphicObjectProperties.__GO_UICONTROL__
+                && objectType != GraphicObjectProperties.__GO_UIMENU__) {
 
             if (GraphicObjectProperties.__GO_VALID__ == property) {
                 return false;
@@ -890,6 +906,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
             if (object instanceof Axes) {
                 Axes axes = (Axes) object;
+
                 if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
                     return false;
                 }
@@ -901,12 +918,30 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property)) {
                     return false;
                 }
+
+                if (property != GraphicObjectProperties.__GO_CHILDREN__) {
+                    axesDrawer.computeRulers(axes);
+                }
             }
 
             if (object instanceof Figure) {
+                if (property == GraphicObjectProperties.__GO_SIZE__ || property == GraphicObjectProperties.__GO_AXES_SIZE__ || property == GraphicObjectProperties.__GO_CHILDREN__) {
+                    Figure fig = (Figure) object;
+                    for (String gid : fig.getChildren()) {
+                        GraphicObject go = GraphicController.getController().getObjectFromId(gid);
+                        if (go instanceof Axes) {
+                            axesDrawer.computeRulers((Axes) go);
+                        }
+                    }
+                }
+
                 if (SILENT_FIGURE_PROPERTIES.contains(property)) {
                     return false;
                 }
+            }
+
+            if (!object.isValid()) {
+                GraphicController.getController().setProperty(id, GraphicObjectProperties.__GO_VALID__, true);
             }
 
             return true;
@@ -917,7 +952,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     private boolean isImmediateDrawing(String id) {
         String parentId = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        if (parentId == null) {
+        if (parentId == null || !parentId.equals(figure.getIdentifier())) {
             return false;
         } else {
             Boolean b =  (Boolean) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
@@ -934,7 +969,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (isImmediateDrawing(id)) {
             canvas.redraw();
         }
-        
+
         dataManager.dispose(id);
         markManager.dispose(id);
         textManager.dispose(id);
@@ -942,7 +977,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         axesDrawer.dispose(id);
         legendDrawer.dispose(id);
         fecDrawer.dispose(id);
-        textureManager.dispose(id); 
+        textureManager.dispose(id);
         /*
          * Check we are deleting Figure managed by DrawerVisitor(this)
          * Otherwise do nothing on deletion.
@@ -950,6 +985,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (!figure.getIdentifier().equals(id)) {
             return;
         }
+
         visitorMap.remove(id);
         GraphicController.getController().unregister(this);
         if (SwingUtilities.isEventDispatchThread()) {

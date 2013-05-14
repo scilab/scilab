@@ -107,7 +107,7 @@ public class TextManager {
         drawingTools.getTransformationManager().useWindowCoordinate();
 
         /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
-        drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0*text.getFontAngle()/Math.PI);
+        drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0 * text.getFontAngle() / Math.PI);
 
         drawingTools.getTransformationManager().useSceneCoordinate();
 
@@ -145,7 +145,7 @@ public class TextManager {
         /* The text position vector before logarithmic scaling */
         Vector3d unscaledTextPosition = new Vector3d(text.getPosition());
 
-        boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
+        boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
         /* Apply logarithmic scaling and then project */
         Vector3d textPosition = ScaleUtils.applyLogScale(unscaledTextPosition, logFlags);
@@ -238,7 +238,7 @@ public class TextManager {
     private double[] computeRatios(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDimension,
                                    Dimension baseSpriteDimension) {
         /* 1st element: ratio for the current texture, 2nd element: ratio for the unscaled texture */
-        double[] ratios = new double[]{1.0, 1.0};
+        double[] ratios = new double[] {1.0, 1.0};
 
         /* Ratios are relevant only to the filled text box mode */
         if (text.getTextBoxMode() == 2) {
@@ -278,7 +278,7 @@ public class TextManager {
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
 
         /* Apply logarithmic scaling */
-        boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
+        boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
         textPosition = ScaleUtils.applyLogScale(textPosition, logFlags);
 
 
@@ -324,11 +324,11 @@ public class TextManager {
              * Compute the final text box's and text's half-length vectors,
              * using the rotated text label vectors.
              */
-            revTextBoxWidth = textWidth.getNormalized().times(0.5*revTextBoxWidth.getX());
-            revTextBoxHeight = textHeight.getNormalized().times(0.5*revTextBoxHeight.getY());
+            revTextBoxWidth = textWidth.getNormalized().times(0.5 * revTextBoxWidth.getX());
+            revTextBoxHeight = textHeight.getNormalized().times(0.5 * revTextBoxHeight.getY());
 
-            textBoxWidth = textWidth.getNormalized().times(0.5*textBoxWidth.getX());
-            textBoxHeight = textHeight.getNormalized().times(0.5*textBoxHeight.getY());
+            textBoxWidth = textWidth.getNormalized().times(0.5 * textBoxWidth.getX());
+            textBoxHeight = textHeight.getNormalized().times(0.5 * textBoxHeight.getY());
 
             textWidth = textWidth.times(0.5);
             textHeight = textHeight.times(0.5);
@@ -397,7 +397,7 @@ public class TextManager {
          * Apparently uses the same convention as the texts (clockwise positive directions).
          * To be verified.
          */
-        Transformation projRotation = TransformationFactory.getRotationTransformation(180.0*fontAngle/Math.PI, 0.0, 0.0, 1.0);
+        Transformation projRotation = TransformationFactory.getRotationTransformation(180.0 * fontAngle / Math.PI, 0.0, 0.0, 1.0);
 
         projCorners[0] = projPosition;
 
@@ -423,7 +423,7 @@ public class TextManager {
      */
     private Vector3d[] computeCorners(Transformation projection, Vector3d[] projCorners, Axes parentAxes) {
         Vector3d[] corners = new Vector3d[4];
-        boolean[] logFlags = new boolean[]{parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
+        boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
         corners[0] = projection.unproject(projCorners[0]);
         corners[1] = projection.unproject(projCorners[1]);
@@ -550,6 +550,8 @@ public class TextManager {
     private Texture createSprite(final ColorMap colorMap, final Text textObject) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject);
         Texture texture = textureManager.createTexture();
+        texture.setMagnificationFilter(Texture.Filter.LINEAR);
+        texture.setMinifyingFilter(Texture.Filter.LINEAR);
         texture.setDrawer(spriteDrawer);
         return texture;
     }
@@ -564,6 +566,8 @@ public class TextManager {
     private Texture createSprite(final ColorMap colorMap, final Text textObject, double scaleFactor) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject, scaleFactor);
         Texture texture = textureManager.createTexture();
+        texture.setMagnificationFilter(Texture.Filter.LINEAR);
+        texture.setMinifyingFilter(Texture.Filter.LINEAR);
         texture.setDrawer(spriteDrawer);
         return texture;
     }
@@ -596,14 +600,14 @@ public class TextManager {
         Vector3d[] projCorners = null;
 
         DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(text.getParentFigure());
-        Transformation currentProj = currentVisitor.getAxesDrawer().getProjection(text.getParentAxes());
-
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(text.getParentAxes());
-
-        Dimension spriteDim = currentVisitor.getTextManager().getSpriteDims(currentVisitor.getColorMap(), text);
 
         /* Compute the corners */
         try {
+            Transformation currentProj = currentVisitor.getAxesDrawer().getCurrentProjection(parentAxes);
+
+            Dimension spriteDim = currentVisitor.getTextManager().getSpriteDims(currentVisitor.getColorMap(), text);
+
             Vector3d[] textBoxVectors = currentVisitor.getTextManager().computeTextBoxVectors(currentProj, text, spriteDim, parentAxes);
             Vector3d[] cornerPositions = currentVisitor.getTextManager().computeTextPosition(currentProj, text, textBoxVectors, spriteDim);
 
@@ -612,15 +616,16 @@ public class TextManager {
             } else {
                 projCorners = currentVisitor.getTextManager().computeProjCorners(cornerPositions[0], text.getFontAngle(), spriteDim);
             }
+
+            Vector3d[] corners = currentVisitor.getTextManager().computeCorners(currentProj, projCorners, parentAxes);
+            Double[] coordinates = currentVisitor.getTextManager().cornersToCoordinateArray(corners);
+
+            /* Set the computed coordinates */
+            text.setCorners(coordinates);
+
         } catch (DegenerateMatrixException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        Vector3d[] corners = currentVisitor.getTextManager().computeCorners(currentProj, projCorners, parentAxes);
-        Double[] coordinates = currentVisitor.getTextManager().cornersToCoordinateArray(corners);
-
-        /* Set the computed coordinates */
-        text.setCorners(coordinates);
     }
 }

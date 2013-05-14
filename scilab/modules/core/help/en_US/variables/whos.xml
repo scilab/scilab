@@ -6,7 +6,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>whos()
+        <synopsis>
+            whos()
             whos -type typ
             whos -name nam
         </synopsis>
@@ -33,15 +34,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>whos()</literal> displays all current variable names sorted by name (case insensitive), types and memory used.
+            <code>whos()</code> displays all current variable names 
+            sorted by name (case insensitive), types and memory used.
         </para>
         <para>
-            <literal>whos -type typ</literal> displays all current variables with specified type.
+            <literal>whos -type typ</literal> displays all current variables with specified type <varname>typ</varname>.
         </para>
         <para>
-            <literal>whos -name nam</literal> displays all current variables whose names begin with <literal>nam</literal>.
+            <literal>whos -name nam</literal> displays all current variables whose names begin with <varname>nam</varname>.
         </para>
-        <para>Note : If a variable is global, a * appears after his type name.</para>
+        <para>
+            <note>
+                Note: If a variable is global, a <literal>*</literal> appears after its type name.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

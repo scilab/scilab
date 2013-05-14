@@ -8,3 +8,5 @@ EXPORTS
 callFunctionFromGateway
 ierode_
 com_
+MyHeapAlloc
+MyHeapFree

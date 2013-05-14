@@ -1,18 +1,18 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) DIGITEO - 2009 - Bruno JOFRET
-dnl 
+dnl
 dnl This file must be used under the terms of the CeCILL.
 dnl This source file is licensed as described in the file COPYING, which
 dnl you should have received as part of this distribution.  The terms
-dnl are also available at    
+dnl are also available at
 dnl http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 dnl
-dnl libhdf5 is mandatory in Scilab 
+dnl libhdf5 is mandatory in Scilab
 dnl When we check :
 dnl * if the path is provided or that we have to find it ourself
 dnl * if it is available
-dnl * what are the compilation flags 
+dnl * what are the compilation flags
 dnl * what are linking flags
 AC_DEFUN([AC_HDF5], [
 
@@ -48,19 +48,19 @@ save_LIBS="$LIBS"
 
 # --with-hdf5-library set then check in this dir
 if test "x$with_hdf5_library" != "xyes"; then
-    HDF5_LIBS="-L$with_hdf5_library -lhdf5"
+    HDF5_LIBS="-L$with_hdf5_library -lhdf5 -lhdf5_hl"
     LIBS="$LIBS $HDF5_LIBS"
     AC_CHECK_LIB([hdf5], [H5Fopen],
             [],
-            [AC_MSG_ERROR([libhdf5 : library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct])]
+            [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct])]
             )
     
 else
-    HDF5_LIBS="-lhdf5"
+    HDF5_LIBS="-lhdf5 -lhdf5_hl"
     LIBS="$LIBS $HDF5_LIBS"
     AC_CHECK_LIB([hdf5], [H5Fopen],
             [],
-            [AC_MSG_ERROR([libhdf5 : library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])]
+            [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])]
             )
 fi
 

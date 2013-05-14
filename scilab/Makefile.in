@@ -532,6 +532,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -625,8 +626,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
-SUBDIRS = libs \
-	modules \
+SUBDIRS = modules \
 	contrib \
 	desktop
 
@@ -640,7 +640,7 @@ AM_FFLAGS = $(SCI_FFLAGS)
 AM_LDFLAGS = $(SCI_LDFLAGS)
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CHANGES_5.5.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
-	$(am__append_1)
+	bin/scinotes bin/xcos $(am__append_1)
 scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_2)
 scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
@@ -714,10 +714,14 @@ valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 DOCMASK = scilab_*_help.jar
 DOCIMAGES = scilab_images.jar
 
-# Path to builded files
+# Path to built files
 PATHTOHELPFILES = modules/helptools/jar/
 
-# Path javasci to builded files
+# Path to scirenderer jar
+PATHTOSCIRENDERER = modules/scirenderer/jar/
+SCIRENDERERJAR = scirenderer.jar
+
+# Path javasci to built files
 PATHTOJAVASCIDOC = modules/javasci/javadoc/
 JAVASCI_DIRS = . resources \
 	org/scilab/modules/javasci/ \
@@ -1918,11 +1922,13 @@ code-coverage:
 @CODE_COVERAGE_TRUE@	@if test ! -d $(top_builddir)/coverage/; then \
 @CODE_COVERAGE_TRUE@		mkdir $(top_builddir)/coverage/; \
 @CODE_COVERAGE_TRUE@	fi; \
-@CODE_COVERAGE_TRUE@	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h; \
+@CODE_COVERAGE_TRUE@	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h; \
 @CODE_COVERAGE_TRUE@	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
-@CODE_COVERAGE_TRUE@	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+@CODE_COVERAGE_TRUE@	echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > $(top_builddir)/coverage/lcovrc; \
+@CODE_COVERAGE_TRUE@	$(GENHTML) -o $(top_builddir)/coverage/results/ --config-file $(top_builddir)/coverage/lcovrc --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+@CODE_COVERAGE_TRUE@	rm -f $(top_builddir)/coverage/lcovrc; \
 @CODE_COVERAGE_TRUE@	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"; \
-@CODE_COVERAGE_TRUE@	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h
+@CODE_COVERAGE_TRUE@	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h
 #--frames is disable because of : http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=607206
 @CODE_COVERAGE_FALSE@	@echo "Cannot start the code coverage. Add --enable-code-coverage to the ./configure and 'make clean all'."
 
@@ -2086,6 +2092,9 @@ codecoverage-java: clean-reports
 @BUILD_HELP_TRUE@			done; \
 @BUILD_HELP_TRUE@	done; \
 @BUILD_HELP_TRUE@	fi
+# Also install scirenderer.jar
+@EXTERNAL_SCIRENDERER_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
+@EXTERNAL_SCIRENDERER_FALSE@	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
 
 .PHONY: macros localization doc
 

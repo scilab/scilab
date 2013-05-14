@@ -9,7 +9,7 @@
         <para>
             有理数 <literal>r</literal> は,2つの多項式の商<literal>r=num/den</literal>です.
             有理数の内部表現はリストです.
-            <literal>r=tlist('['r','num','den','dt'],num,den,[])</literal>は
+            <literal>r=tlist(['r','num','den','dt'],num,den,[])</literal>は
             <literal>r=num/den</literal>と同じです.
             有理行列は通常の構文で定義できます.
             例えば, <literal>[r11,r12;r21,r22]</literal>は 2x2 行列です.

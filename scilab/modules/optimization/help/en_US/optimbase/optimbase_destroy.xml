@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_destroy" xml:lang="en">
+    <refnamediv>
+        <refname>optimbase_destroy</refname>
+        <refpurpose>Resets the historyfopt and historyxopt fields of an object.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            opt = optimbase_destroy(opt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The object of TOPTIM type (tlist).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimbase_destroy</literal> function resets the <literal>historyfopt</literal> 
+            and <literal>historyxopt</literal> fields at empty matrix ([]). 
+        </para>
+        <para>
+            If the <literal>-logstartup</literal> option is set to true (%t), the 
+            <literal>optimbase_logshutdown</literal> function is called. She sets the
+            <literal>-logstartup</literal> option at false (%f) and close the log file if the 
+            <literal>-logfile</literal> option is different to empty string.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
+    opt = optimbase_new();
+    opt = optimbase_configure ( opt , "-storehistory" , %t );
+    opt = optimbase_histset ( opt , 1 , "-xopt" , [1.0 1.0]' );
+    val = optimbase_get(opt, "-historyxopt")
+    opt = optimbase_destroy(opt);
+    val = optimbase_get(opt, "-historyxopt")
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimbase_new">optimbase_new</link>
+            </member>
+            <member>
+                <link linkend="optimbase_configure">optimbase_configure</link>
+            </member>
+            <member>
+                <link linkend="optimbase_get">optimbase_get</link>
+            </member>
+            <member>
+                <link linkend="optimbase_cget">optimbase_cget </link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

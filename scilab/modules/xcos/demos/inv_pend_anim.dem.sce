@@ -5,9 +5,9 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function demo_xcospendul()
-  exec("SCI/modules/xcos/demos/PENDULUM_ANIM.sci",-1);
-  exec("SCI/modules/xcos/demos/anim_pen.sci",-1);
-  xcos("SCI/modules/xcos/demos/pendulum_anim5.xcos");
+    exec("SCI/modules/xcos/demos/PENDULUM_ANIM.sci",-1);
+    exec("SCI/modules/xcos/demos/anim_pen.sci",-1);
+    xcos("SCI/modules/xcos/demos/pendulum_anim5.zcos");
 endfunction
 
 demo_xcospendul();

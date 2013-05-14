@@ -64,8 +64,12 @@ public final class ScilabCommonsUtils {
             return null;
         }
 
-        byte[] bytes = MD5.digest(str.getBytes());
-        return new BigInteger(1, bytes).toString(16);
+        try {
+            byte[] bytes = MD5.digest(str.getBytes("UTF-8"));
+            return new BigInteger(1, bytes).toString(16);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

@@ -15,11 +15,11 @@ if type(i)==10 then  // sl('D')
   [lhs,rhs]=argn(0)
   if rhs<>3 then  error(21),end
   if i<>'D' then
-    error('inserted element '+i+' has inconsistent type')
+    error(msprintf(_("%s: Wrong type for input argument #%d.\n"),"%p_i_lss",1));
   end
   s2=s1;kf=5
   if size(s2(kf))<>size(j) then 
-    warning('inserted element '+i+' has inconsistent dimension')
+    warning(msprintf(_("%s: Wrong type for input argument #%d.\n"),"%p_i_lss",1));
   end
   s2(kf)=j
   return

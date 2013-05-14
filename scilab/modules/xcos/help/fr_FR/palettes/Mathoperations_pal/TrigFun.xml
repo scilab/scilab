@@ -130,13 +130,8 @@
             </tr>
             <tr>
                 <td align="left">atan</td>
-                <td align="left">Arc tangente (radians) de l'entrée</td>
+                <td align="left">2-quadrant et 4-quadrant arc tangente (radians) de l'entrée</td>
                 <td align="left">y = atan(u)</td>
-            </tr>
-            <tr>
-                <td align="left">atan2</td>
-                <td align="left">Arc tangente quatre quadrants (radians) de l'entrée</td>
-                <td align="left">y = atan2(u)</td>
             </tr>
             <tr>
                 <td align="left">sinh</td>

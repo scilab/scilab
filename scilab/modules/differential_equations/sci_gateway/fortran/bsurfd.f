@@ -35,10 +35,10 @@ c
          call basout(io,wte,' bsurfd  top:'//tmpbuf(1:4))
       endif
 c     
-c     nordre est le numero d'ordre de cet external dans la structure
-c     de donnee,
-c     mlhs (mrhs) est le nombre de parametres de sortie (entree)
-c     du simulateur 
+c     nordre is the order number of that external in the
+c     data structure,
+c     mlhs (mrhs) is the number of output (input) parameters
+c     of the simulator
 c     
       iero=0
       mrhs=2
@@ -50,14 +50,14 @@ c
       ils=iadr(lstk(tops))
 c
       if(istk(ils).eq.10) then
-c     cas d'un simulateur en fortran
+c     Case of a Fortran simulator
          call fsurfd(ny, t, y, ng, gout,RPAR,IPAR)
          return
       endif
 c     
 c     external is a Scilab function
 
-c     on return iero=1 is used to notify to the ode solver that
+c     On return iero=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
       iero=1
 
@@ -71,21 +71,20 @@ c+
 c     
       if(istk(ils).eq.15) goto 10
 c     
-c     recuperation de l'adresse du simulateur
+c     Retrieving the simulator's address
       fin=lstk(tops)
 c     
       goto 40
-c     cas ou le simulateur est decrit par une liste
+c     Case when the simulator is described by a list
  10   nelt=istk(ils+1)
       l=sadr(ils+3+nelt)
       ils=ils+2
 c     
-c     recuperation de l'adresse du simulateur
+c     Retrieving the simulator's address
       fin=l
 c     
-c     gestion des parametres supplementaires du simulateur
-c     proviennent du contexte  (elements de la liste
-c     decrivant le simulateur
+c     Managing the additional simulator parameters coming from
+c     the context (elements of the list describing the simulator)
 c     
       nelt=nelt-1
       if(nelt.eq.0) goto 40
@@ -108,7 +107,7 @@ c
       mrhs=mrhs+nelt
  40   continue
 c     
-c     execution de la macro definissant le simulateur
+c     Running the macro defining the simulator
 c     
       pt=pt+1
       if(pt.gt.psiz) then
@@ -132,7 +131,7 @@ c
       pt=pt-1
       niv=niv-1
 c+    
-c     transfert des variables  de sortie vers fortran
+c     transfert des variables  de sortie vers Fortran
       call btof(gout,ng)
       if(err.gt.0.or.err1.gt.0) return
 c+    

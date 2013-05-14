@@ -22,7 +22,7 @@
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={ 
-	{sci_Rand, "Rand"}
+	{sci_Rand, "grand"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_randlib(void)

@@ -140,8 +140,7 @@
                                             </para>
                                             <para>
                                                 <latex>
-                                                    $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n}
-                                                    (m-1) (k-1)}$
+                                                    $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n}(m-1) (k-1)}$
                                                 </latex>
                                             </para>
                                             <para>

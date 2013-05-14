@@ -273,6 +273,7 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_bvode.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_daskr.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dasrt.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dassl.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_feval.c" />
@@ -292,6 +293,8 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\bjacd.c" />
     <ClCompile Include="bnorm.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bresd.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\bpsold.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\bpjacd.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bresid.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bsurf.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bsurfd.c" />
@@ -300,7 +303,9 @@ cd ..
     <ClCompile Include="cfode.c" />
     <ClCompile Include="colnew.c" />
     <ClCompile Include="..\c\commons_f2c.c" />
+    <ClCompile Include="daux.c" />
     <ClCompile Include="dcutet.c" />
+    <ClCompile Include="ddaskr.c" />
     <ClCompile Include="ddasrt.c" />
     <ClCompile Include="ddassl.c" />
     <ClCompile Include="dgbsl.c" />
@@ -366,6 +371,7 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_bvode.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_daskr.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dasrt.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dassl.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_feval.f" />
@@ -385,6 +391,8 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\bjacd.f" />
     <f2c_rule Include="bnorm.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bresd.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\bpsold.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\bpjacd.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bresid.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bsurf.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bsurfd.f" />
@@ -392,7 +400,9 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\bydot2.f" />
     <f2c_rule Include="cfode.f" />
     <f2c_rule Include="colnew.f" />
+    <f2c_rule Include="daux.f" />
     <f2c_rule Include="dcutet.f" />
+    <f2c_rule Include="ddaskr.f" />
     <f2c_rule Include="ddasrt.f" />
     <f2c_rule Include="ddassl.f" />
     <f2c_rule Include="dgbsl.f" />

@@ -234,13 +234,13 @@
                         <varlistentry>
                             <term>resizefcn: </term>
                             <listitem>
-                                <para>This field can be use to store the name of a Scilab function as a character string. This Scilab function will be called whenever you resize the figure and when the figure is created. </para>
+                                <para>This field can be used to store the name of a Scilab function or a Scilab expression as a character string. This character string will be evaluated whenever the user resizes the figure and when the figure is created. </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>closerequestfcn: </term>
                             <listitem>
-                                <para>This field can be use to store the name of a Scilab function as a character string. This Scilab function will be called whenever the user tries to close the figure using the top-right cross.</para>
+                                <para>This field can be used to store the name of a Scilab function or a Scilab expression as a character string. This character string will be evaluated whenever the user tries to close the figure using the top-right cross.</para>
                                 <para>When this property is set, the "figure closed" event (-1000) will no more be trapped by the event handler function.</para>
                             </listitem>
                         </varlistentry>

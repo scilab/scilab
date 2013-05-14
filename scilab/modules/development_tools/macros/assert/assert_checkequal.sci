@@ -135,7 +135,12 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
             end
             cstr = "[" + string(val) + " ...]"
         end
-        errmsg = msprintf(gettext("%s: Assertion failed: expected = %s while computed = %s"),"assert_checkequal",estr,cstr)
+        ierr = execstr("mdiff = string(mean(computed - expected))", "errcatch");
+        if ( ierr == 0 ) then
+            errmsg = msprintf(gettext("%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"),"assert_checkequal",estr,cstr,mdiff)
+        else
+            errmsg = msprintf(gettext("%s: Assertion failed: expected = %s while computed = %s"),"assert_checkequal",estr,cstr)
+        end
         if ( lhs < 2 ) then
             // If no output variable is given, generate an error
             assert_generror ( errmsg )

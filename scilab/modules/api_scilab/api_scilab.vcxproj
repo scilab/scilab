@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -119,7 +119,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -160,7 +160,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -209,7 +209,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../windows_tools/includes;../elementary_functions/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -258,6 +258,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="src\cpp\api_double.cpp" />
     <ClCompile Include="src\cpp\api_error.cpp" />
     <ClCompile Include="src\cpp\api_handle.cpp" />
+    <ClCompile Include="src\cpp\api_hypermat.cpp" />
     <ClCompile Include="src\cpp\api_int.cpp" />
     <ClCompile Include="src\cpp\api_list.cpp" />
     <ClCompile Include="src\cpp\api_optional.cpp" />
@@ -274,6 +275,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="includes\api_double.h" />
     <ClInclude Include="includes\api_error.h" />
     <ClInclude Include="includes\api_handle.h" />
+    <ClInclude Include="includes\api_hypermat.h" />
     <ClInclude Include="includes\api_int.h" />
     <ClInclude Include="includes\api_internal_handle.h" />
     <ClInclude Include="includes\api_optional.h" />
@@ -312,10 +314,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <None Include="Makefile.am" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

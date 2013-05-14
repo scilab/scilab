@@ -102,10 +102,6 @@ _____________
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>Sfgrayplot();</scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // 例 #1: 4 個の面をプロット
 function z=surf1(x,y), z=x*y, endfunction
@@ -113,7 +109,7 @@ function z=surf2(x,y), z=x^2-y^2, endfunction
 function z=surf3(x,y), z=x^3+y^2, endfunction
 function z=surf4(x,y), z=x^2+y^2, endfunction
 clf()
-xset("colormap",[jetcolormap(64);hotcolormap(64)])
+set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 drawlater() ;
@@ -135,13 +131,42 @@ subplot(2,2,4)
   xtitle("f(x,y) = x^2+y^2")
 drawnow() ;
 show_window()
-
+ ]]></programlisting>
+        <scilab:image>
+            function z=surf1(x,y), z=x*y, endfunction
+            function z=surf2(x,y), z=x^2-y^2, endfunction
+            function z=surf3(x,y), z=x^3+y^2, endfunction
+            function z=surf4(x,y), z=x^2+y^2, endfunction
+            clf()
+            set(gcf(),"color_map",[jetcolormap(64);hotcolormap(64)])
+            x = linspace(-1,1,60);
+            y = linspace(-1,1,60);
+            drawlater();
+            subplot(2,2,1)
+            colorbar(-1,1,[1,64])
+            Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
+            xtitle("f(x,y) = x*y")
+            subplot(2,2,2)
+            colorbar(-1,1,[65,128])
+            Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
+            xtitle("f(x,y) = x^2-y^2")
+            subplot(2,2,3)
+            colorbar(-1,2,[65,128])
+            Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
+            xtitle("f(x,y) = x^3+y^2")
+            subplot(2,2,4)
+            colorbar(0,2,[1,64])
+            Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
+            xtitle("f(x,y) = x^2+y^2")
+            drawnow();
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 // 例 #2: surf3 をプロットしいくつかの等高線を追加
 function z=surf3(x,y), z=x^3+y^2, endfunction
 clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
-xset("colormap",hotcolormap(128))
+set(gcf(),"color_map",hotcolormap(128))
 drawlater() ;
 colorbar(-1,2)
 Sfgrayplot(x,y,surf3,strf="041")
@@ -149,14 +174,29 @@ fcontour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
 xtitle("f(x,y) = x^3+y^2")
 drawnow() ;
 show_window()
-
+ ]]></programlisting>
+        <scilab:image>
+            function z=surf3(x,y), z=x^3+y^2, endfunction
+            clf()
+            x = linspace(-1,1,60);
+            y = linspace(-1,1,60);
+            set(gcf(),"color_map",hotcolormap(128))
+            drawlater();
+            colorbar(-1,2)
+            Sfgrayplot(x,y,surf3,strf="041")
+            contour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
+            xtitle("f(x,y) = x^3+y^2")
+            drawnow() ;
+            show_window()
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 // 例 #3: surf3 をプロットし,プロットを -0.5<= z <= 1に制限するために
 // オプションの引数 zminmax および colout を使用
 function z=surf3(x,y), z=x^3+y^2, endfunction
 clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
-xset("colormap",jetcolormap(128))
+set(gcf(),"color_map",jetcolormap(128))
 drawlater() ;
 zminmax = [-0.5 1]; colors=[32 96];
 colorbar(zminmax(1),zminmax(2),colors)
@@ -166,6 +206,21 @@ xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
 drawnow() ;
 show_window()
  ]]></programlisting>
+        <scilab:image>
+            function z=surf3(x,y), z=x^3+y^2, endfunction
+            clf()
+            x = linspace(-1,1,60);
+            y = linspace(-1,1,60);
+            set(gcf(),"color_map",jetcolormap(128))
+            drawlater() ;
+            zminmax = [-0.5 1]; colors=[32 96];
+            colorbar(zminmax(1),zminmax(2),colors)
+            Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
+            contour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
+            xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
+            drawnow() ;
+            show_window()
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

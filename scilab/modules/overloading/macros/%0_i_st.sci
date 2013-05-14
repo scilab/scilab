@@ -8,17 +8,17 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function st=%0_i_st(i,void,st)
-  if type(i)==10 then
-    f=getfield(1,st);
-    k=find(f(3:$)==i);
-    if k<>[] then
-      f(k+2)=[];
-      setfield(k+2,null(),st);
-      setfield(1,f,st);
+    if type(i)==10 then
+        f=getfield(1,st);
+        k=find(f(3:$)==i);
+        if k<>[] then
+            f(k+2)=[];
+            setfield(k+2,null(),st);
+            setfield(1,f,st);
+        else
+            error(msprintf(_("%s: Invalid index.\n"),"%0_i_st"));
+        end
     else
-      error(_("Invalid index.\n"))
+        error(msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"),"%0_i_st",1));
     end
-  else
-    error(_("Incorrect assignment.\n"))
-  end
 endfunction
