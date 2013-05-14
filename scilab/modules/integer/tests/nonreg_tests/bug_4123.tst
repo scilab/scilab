@@ -14,7 +14,7 @@
 // %i_prod(int32([0 0])) crashs in release mode with F2C on windows
 
 A = int32([0 0]);
-ierr = execstr('B=%i_prod(A);','errcatch');
+ierr = execstr('B=prod(A);','errcatch');
 if ierr <> 0 then pause,end
 
 if B <> 0 then pause,end
