@@ -22,42 +22,44 @@ extern "C"
 #include "context.hxx"
 #include "scilabexception.hxx"
 
-std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount)
+std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, bool _isOperator)
 {
     switch (in.size())
     {
         case 0 :
             return L"%_" + _stFunctionName;
+        case 2:
+            if (_isOperator)
+            {
+                return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
+            }
         case 1:
             return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName;
-        case 2:
-            return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
         default :
             throw ast::ScilabError(L"Don't know how to overload " + _stFunctionName, 246, *new Location());
     }
     return _stFunctionName;
 }
 
-types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe)
+types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
 {
-    return call(buildOverloadName(_stFunctionName, in, _iRetCount), in, _iRetCount, out, _execMe);
+    return call(buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator), in, _iRetCount, out, _execMe, _isOperator);
 }
 
-types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe)
+types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
 {
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
 
     if (pIT == NULL || pIT->isCallable() == false)
     {
-        if (in.size() < 2)
-        {
-            throw ast::ScilabError(_W("Function not defined for given argument type(s),\n  check arguments or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 246, *new Location());
-        }
-        else
+        if (_isOperator)
         {
             throw ast::ScilabError(_W("Undefined operation for the given operands.\ncheck or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 144, *new Location());
         }
-
+        else
+        {
+            throw ast::ScilabError(_W("Function not defined for given argument type(s),\n  check arguments or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n"), 246, *new Location());
+        }
     }
     types::Callable *pCall = pIT->getAs<types::Callable>();
     try

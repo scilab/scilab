@@ -338,7 +338,7 @@ types::InternalType* callOverload(OpExp::Oper _oper, types::InternalType* _param
     {
         _paramR->IncreaseRef();
         in.push_back(_paramR);
-        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this);
+        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
 
         _paramR->DecreaseRef();
         return out[0];
@@ -348,7 +348,7 @@ types::InternalType* callOverload(OpExp::Oper _oper, types::InternalType* _param
     in.push_back(_paramL);
     in.push_back(_paramR);
 
-    Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this);
+    Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
 
     _paramL->DecreaseRef();
     _paramR->DecreaseRef();
