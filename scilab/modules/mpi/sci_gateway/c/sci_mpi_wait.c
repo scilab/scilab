@@ -18,6 +18,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "serialization.h"
+#include "deserialization.h"
 
 #define TAG 0
 
@@ -64,7 +65,7 @@ int sci_mpi_wait(char *fname, unsigned long fname_len)
         int length_of_error_string;
 
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror("%s: Failed to wait for the \n", fname, NodeID, error_string);
+        Scierror(999, "%s: Failed to wait for the \n", fname, NodeID, error_string);
         return 1;
     }
 

@@ -9,8 +9,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include <stdio.h>
 #include "gw_mpi.h"
 #include "sci_mpi.h"
+#include "Scierror.h"
 
 /******************************************
  * SCILAB function : mpi_finalize, fin = 2
@@ -37,7 +40,7 @@ int sci_mpi_finalize(char *fname, unsigned long fname_len)
         int length_of_error_string;
 
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror("%s: Could not finalize the MPI instance: %s\n", fname, error_string);
+        Scierror(999, "%s: Could not finalize the MPI instance: %s\n", fname, error_string);
         return 1;
     }
 

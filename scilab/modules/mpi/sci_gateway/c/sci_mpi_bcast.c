@@ -17,6 +17,7 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "serialization.h"
+#include "deserialization.h"
 
 int sci_mpi_bcast(char *fname, unsigned long fname_len)
 {
@@ -105,7 +106,7 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
         printf("ICI \n");
         fflush(NULL);
         MPI_Error_string(iRet, error_string, &length_of_error_string);
-        Scierror("%s: Could not broadcast the variable to the node %d: %s\n", fname, rootID, error_string);
+        Scierror(999, "%s: Could not broadcast the variable to the node %d: %s\n", fname, rootID, error_string);
         return 1;
     }
 
