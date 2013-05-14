@@ -36,8 +36,8 @@ int sci_mpi_isend(char *fname, unsigned long fname_len)
     double NodeID = 0;
     double RequestID = 0;
 
-    CheckRhs(3, 3);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 3, 3);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
@@ -129,7 +129,7 @@ int sci_mpi_isend(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    LhsVar(1) = 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

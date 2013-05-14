@@ -26,8 +26,8 @@ static void mpi_finalize_internal()
 int sci_mpi_finalize(char *fname, unsigned long fname_len)
 {
     int iRet;
-    CheckRhs(0, 0);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 1, 1);
     mpi_finalize_internal();
     iRet = MPI_Finalize();
     if (iRet != MPI_SUCCESS)
@@ -42,7 +42,7 @@ int sci_mpi_finalize(char *fname, unsigned long fname_len)
     }
 
     // TODO: catch les erreurs
-    LhsVar(1) = 0;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     C2F(putlhsvar) ();
 
     return 0;

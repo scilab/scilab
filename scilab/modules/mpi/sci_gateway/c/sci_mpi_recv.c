@@ -31,8 +31,8 @@ int sci_mpi_recv(char *fname, unsigned long fname_len)
 
     MPI_Status status;
 
-    CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     //Rank
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
@@ -47,7 +47,7 @@ int sci_mpi_recv(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    //Tag    
+    //Tag
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
     {
@@ -60,20 +60,20 @@ int sci_mpi_recv(char *fname, unsigned long fname_len)
         return 1;
     }
 
-/*
-    iRet = mpi_my_recv(&piBuffer, &iBufferSize);
-    if(iRet)
-    {
-        return 1;
-    }
-*/
+    /*
+        iRet = mpi_my_recv(&piBuffer, &iBufferSize);
+        if(iRet)
+        {
+            return 1;
+        }
+    */
 
     iRet = MPI_Probe(Rank, Tag, MPI_COMM_WORLD, &status);
     if (iRet != MPI_SUCCESS)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
-        
+
         MPI_Error_string(iRet, error_string, &length_of_error_string);
         Scierror(999, "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n", fname, Rank, Tag, error_string);
         return 1;
@@ -83,7 +83,7 @@ int sci_mpi_recv(char *fname, unsigned long fname_len)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
-        
+
         MPI_Error_string(iRet, error_string, &length_of_error_string);
         Scierror(999, "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n", fname, Rank, Tag, error_string);
         return 1;
@@ -101,7 +101,7 @@ int sci_mpi_recv(char *fname, unsigned long fname_len)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
-        
+
         MPI_Error_string(iRet, error_string, &length_of_error_string);
         Scierror(999, "%s: MPI_Recv failed. Rank %d / Tag %d: %s\n", fname, Rank, Tag, error_string);
 
@@ -110,27 +110,27 @@ int sci_mpi_recv(char *fname, unsigned long fname_len)
 
     switch (piBuffer[0])
     {
-    case sci_matrix:
-        iRet = deserialize_double(pvApiCtx, piBuffer, iBufferSize);
-        break;
-    case sci_strings:
-        iRet = deserialize_string(pvApiCtx, piBuffer, iBufferSize);
-        break;
-    case sci_boolean:
-        iRet = deserialize_boolean(pvApiCtx, piBuffer, iBufferSize);
-        break;
-    case sci_sparse:
-        iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, TRUE);
-        break;
-    case sci_boolean_sparse:
-        iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, FALSE);
-        break;
-    case sci_ints:
-        iRet = deserialize_int(pvApiCtx, piBuffer, iBufferSize);
-        break;
-    default:
-        return 1;
-        break;
+        case sci_matrix:
+            iRet = deserialize_double(pvApiCtx, piBuffer, iBufferSize);
+            break;
+        case sci_strings:
+            iRet = deserialize_string(pvApiCtx, piBuffer, iBufferSize);
+            break;
+        case sci_boolean:
+            iRet = deserialize_boolean(pvApiCtx, piBuffer, iBufferSize);
+            break;
+        case sci_sparse:
+            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, TRUE);
+            break;
+        case sci_boolean_sparse:
+            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, FALSE);
+            break;
+        case sci_ints:
+            iRet = deserialize_int(pvApiCtx, piBuffer, iBufferSize);
+            break;
+        default:
+            return 1;
+            break;
     }
 
     free(piBuffer);
@@ -139,8 +139,8 @@ int sci_mpi_recv(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    LhsVar(1) = 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

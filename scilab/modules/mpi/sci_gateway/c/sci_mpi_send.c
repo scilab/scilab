@@ -33,8 +33,8 @@ int sci_mpi_send(char *fname, unsigned long fname_len)
     int iBufferSize = 0;
     double NodeID = 0;
 
-    CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOuputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
@@ -64,27 +64,27 @@ int sci_mpi_send(char *fname, unsigned long fname_len)
 
     switch (iType)
     {
-    case sci_matrix:
-        iRet = serialize_double(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-        break;
-    case sci_strings:
-        iRet = serialize_string(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-        break;
-    case sci_boolean:
-        iRet = serialize_boolean(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-        break;
-    case sci_sparse:
-        iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, TRUE);
-        break;
-    case sci_boolean_sparse:
-        iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, FALSE);
-        break;
-    case sci_ints:
-        iRet = serialize_int(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-        break;
-    default:
-        Scierror(999, _("%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"), fname, iType);
-        break;
+        case sci_matrix:
+            iRet = serialize_double(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_strings:
+            iRet = serialize_string(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_boolean:
+            iRet = serialize_boolean(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_sparse:
+            iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, TRUE);
+            break;
+        case sci_boolean_sparse:
+            iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, FALSE);
+            break;
+        case sci_ints:
+            iRet = serialize_int(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        default:
+            Scierror(999, _("%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"), fname, iType);
+            break;
     }
 
     if (iRet)
@@ -96,7 +96,7 @@ int sci_mpi_send(char *fname, unsigned long fname_len)
     {
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
-        
+
         MPI_Error_string(iRet, error_string, &length_of_error_string);
         Scierror("%s: Could not send the variable to the node %d: %s\n", fname, NodeID, error_string);
         return 1;
@@ -108,7 +108,7 @@ int sci_mpi_send(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    LhsVar(1) = 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

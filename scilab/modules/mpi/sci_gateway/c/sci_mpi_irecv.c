@@ -35,8 +35,8 @@ int sci_mpi_irecv(char *fname, unsigned long fname_len)
 
     MPI_Status status;
 
-    CheckRhs(3, 3);
-    CheckLhs(0, 1);
+    CheckInputArgument(pvApiCtx, 3, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     //Rank
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
@@ -177,8 +177,8 @@ int sci_mpi_irecv(char *fname, unsigned long fname_len)
             return 1;
         }
     */
-    LhsVar(1) = 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

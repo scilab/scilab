@@ -19,7 +19,7 @@
 
 /**
  * SCILAB function : mpi_get_processor_name, fin = 3
- * This function returns the rank of a process 
+ * This function returns the rank of a process
  */
 int sci_mpi_get_processor_name(char *fname, unsigned long fname_len)
 {
@@ -32,8 +32,8 @@ int sci_mpi_get_processor_name(char *fname, unsigned long fname_len)
     int iSizeProcessorName;
     char processorName[MPI_MAX_PROCESSOR_NAME];
 
-    CheckRhs(0, 0);
-    CheckLhs(1, 1);             // The output of the function (1 parameter)
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 1, 1);            // The output of the function (1 parameter)
 
     MPI_Get_processor_name(processorName, &iSizeProcessorName);
 
@@ -45,7 +45,7 @@ int sci_mpi_get_processor_name(char *fname, unsigned long fname_len)
         Scierror(999, "error in the creation of the variable");
     }
 
-    LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
     C2F(putlhsvar) ();
     return 0;
 }

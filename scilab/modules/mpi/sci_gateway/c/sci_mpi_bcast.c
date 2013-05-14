@@ -30,8 +30,8 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
     int iBufferSize = 0;
     double rootID = 0;
 
-    CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)
@@ -61,27 +61,27 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
 
     switch (iType)
     {
-    case sci_matrix:
-        iRet = serialize_double(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-        break;
-    case sci_strings:
-        iRet = serialize_string(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-        break;
-    case sci_boolean:
-        iRet = serialize_boolean(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-        break;
-    case sci_sparse:
-        iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, TRUE);
-        break;
-    case sci_boolean_sparse:
-        iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, FALSE);
-        break;
-    case sci_ints:
-        iRet = serialize_int(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
-        break;
-    default:
-        Scierror(999, _("%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"), fname, iType);
-        break;
+        case sci_matrix:
+            iRet = serialize_double(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_strings:
+            iRet = serialize_string(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_boolean:
+            iRet = serialize_boolean(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        case sci_sparse:
+            iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, TRUE);
+            break;
+        case sci_boolean_sparse:
+            iRet = serialize_sparse(pvApiCtx, piAddr, &piBuffer, &iBufferSize, FALSE);
+            break;
+        case sci_ints:
+            iRet = serialize_int(pvApiCtx, piAddr, &piBuffer, &iBufferSize);
+            break;
+        default:
+            Scierror(999, _("%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"), fname, iType);
+            break;
     }
 
     if (iRet)
@@ -89,7 +89,7 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
         printf("pas reussi a seraliser\n");
     }
     int rank, length;
-    MPI_Comm_rank(MPI_COMM_WORLD,&rank);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 
     /* First, send the size of the data as broadcast */
     iRet = MPI_Bcast(&iBufferSize, 1, MPI_INT, rootID, MPI_COMM_WORLD);
@@ -102,7 +102,8 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
         char error_string[MPI_MAX_ERROR_STRING];
         int length_of_error_string;
 
-        printf("ICI \n"); fflush(NULL);
+        printf("ICI \n");
+        fflush(NULL);
         MPI_Error_string(iRet, error_string, &length_of_error_string);
         Scierror("%s: Could not broadcast the variable to the node %d: %s\n", fname, rootID, error_string);
         return 1;
@@ -110,32 +111,32 @@ int sci_mpi_bcast(char *fname, unsigned long fname_len)
 
     switch (piBuffer[0])
     {
-    case sci_matrix:
-        iRet = deserialize_double(pvApiCtx, piBuffer, iBufferSize);
-        break;
-    case sci_strings:
-        iRet = deserialize_string(pvApiCtx, piBuffer, iBufferSize);
-        break;
-    case sci_boolean:
-        iRet = deserialize_boolean(pvApiCtx, piBuffer, iBufferSize);
-        break;
-    case sci_sparse:
-        iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, TRUE);
-        break;
-    case sci_boolean_sparse:
-        iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, FALSE);
-        break;
-    case sci_ints:
-        iRet = deserialize_int(pvApiCtx, piBuffer, iBufferSize);
-        break;
-    default:
-        return 1;
-        break;
+        case sci_matrix:
+            iRet = deserialize_double(pvApiCtx, piBuffer, iBufferSize);
+            break;
+        case sci_strings:
+            iRet = deserialize_string(pvApiCtx, piBuffer, iBufferSize);
+            break;
+        case sci_boolean:
+            iRet = deserialize_boolean(pvApiCtx, piBuffer, iBufferSize);
+            break;
+        case sci_sparse:
+            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, TRUE);
+            break;
+        case sci_boolean_sparse:
+            iRet = deserialize_sparse(pvApiCtx, piBuffer, iBufferSize, FALSE);
+            break;
+        case sci_ints:
+            iRet = deserialize_int(pvApiCtx, piBuffer, iBufferSize);
+            break;
+        default:
+            return 1;
+            break;
     }
 
-//    free(piBuffer);
+    //    free(piBuffer);
 
-    LhsVar(1) = 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 1;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

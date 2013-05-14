@@ -61,8 +61,8 @@ int sci_mpi_init(char *fname, unsigned long fname_len)
 {
     int flag;
 
-    CheckRhs(0, 0);
-    CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 1, 1);
     mpi_init_internal();
     MPI_Initialized(&flag);
     if (!flag)
@@ -73,7 +73,7 @@ int sci_mpi_init(char *fname, unsigned long fname_len)
 
         printf("MPI_INIT : init done\n");
     }
-    LhsVar(1) = 0;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }

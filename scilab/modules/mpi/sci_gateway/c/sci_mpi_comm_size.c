@@ -19,7 +19,7 @@
 
 /**
  * SCILAB function : mpi_comm_size, fin = 3
- * This function returns the rank of a process 
+ * This function returns the rank of a process
  */
 int sci_mpi_comm_size(char *fname, unsigned long fname_len)
 {
@@ -32,8 +32,8 @@ int sci_mpi_comm_size(char *fname, unsigned long fname_len)
     int iCols2 = 1;
     double *pdblReal = NULL;
 
-    CheckRhs(0, 1);             // Check the parameters of the function ... Here 0 or 1
-    CheckLhs(1, 1);             // The output of the function (1 parameter)
+    CheckInputArgument(pvApiCtx, 0, 1);            // Check the parameters of the function ... Here 0 or 1
+    CheckOutputArgument(pvApiCtx, 1, 1);            // The output of the function (1 parameter)
     if (Rhs == 1)
     {
         int typevar;
@@ -74,7 +74,7 @@ int sci_mpi_comm_size(char *fname, unsigned long fname_len)
     //  CreateVar(1, "d", &m1, &n1 ,&l1); // Create the space in the stack for comm_size
     //  *stk(l1)=(double)comm_size; // Copy comm_size into the stack
 
-    LhsVar(1) = Rhs + 1;
+    AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
     C2F(putlhsvar) ();
     return 0;
 }
