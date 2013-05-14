@@ -190,6 +190,6 @@ abs(exact-I)
         <para>As rotinas associadas podem ser encontradas no diretório
             SCI/modules/differential_equations/src/fortran :
         </para>
-        <para>dqag0.f e dqags.f de quadpack</para>
+        <para>dqags.f e dqagse.f de quadpack</para>
     </refsection>
 </refentry>

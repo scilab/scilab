@@ -195,6 +195,6 @@ abs(exact-I)
             SCI/modules/differential_equations/src/fortran ディレクトリにあります
             :
         </para>
-        <para>quadpackのdqag0.f および dqags.f</para>
+        <para>quadpackのdqags.f および dqagse.f</para>
     </refsection>
 </refentry>

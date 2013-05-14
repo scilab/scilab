@@ -11,5 +11,131 @@
 x0 = 0;
 x1=0:0.1:2*%pi;
 computed = integrate('sin(x)','x',x0,x1);
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
+Warning: argument function is detected to be very smooth.
+Reduce integration interval if you think edges have been missed.
 expected = 1 - cos(x1);
 if (norm(computed-expected) > 10* %eps) then bugmes();quit;end
