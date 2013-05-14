@@ -15,7 +15,7 @@
 // http://bugzilla.scilab.org/11046
 //
 // <-- Short Description -->
-// Sometimes, OverLoad(0) did not called %_xxx but %x_xxx overload
+// Sometimes, OverLoad(0) did not call %_xxx but %x_xxx overload
 
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/bug_11046"));
