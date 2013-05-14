@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
- * Copyright (C) 2013 - Samuel GOUGEON : extension to tlist and mlist
+ * Copyright (C) 2013 - Samuel GOUGEON : traduction et extension aux tlist et mlist
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,35 +11,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="isfield">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="isfield">
     <refnamediv>
         <refname>isfield</refname>
-        <refpurpose>checks if the given fieldname exists in a structure or mlist or tlist</refpurpose>
+        <refpurpose>teste l'existence d'un ou plusieurs champs pour une structure, une tlist ou une mlist</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Calling Sequence</title>
+        <title>Séquence d'appel</title>
         <synopsis>bool = isfield(s, fieldname)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>a struct array, a tlist or a mlist.</para>
+                    <para>un tableau de structures, ou une liste typée tlist ou mlist</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fieldname</term>
                 <listitem>
-                    <para>a matrix of strings: names of fields to be detected</para>
+                    <para>matrice de textes : noms des champs à détecter</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>bool</term>
                 <listitem>
                     <para>
-                        a matrix of boolean (same format as <varname>fieldname></varname>)
+                        matrice booléenne (même format que <varname>fieldname</varname>)
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,27 +48,29 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function returns <constant>%t</constant> if the specified structure or tlist or mlist <varname>s</varname> includes the field <varname>fieldname</varname>, regardless of the corresponding value. For a structure, the hidden field <code class="literal">dims</code> is ignored.
+            bool(i,j) vaut <constant>%t</constant> si le champ nommé <varname>fieldname(i,j)</varname> existe pour le tableau de structure ou tlist ou mlist <varname>s</varname>(indépendamment de la valeur éventuellement affectée à ce champ). Si <varname>s</varname> est une structure, son champ caché <code class="literal">dims</code> est ignoré.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 s = struct("field_1",123,"field_2",456,"field_4",789)
  
-// Single Fieldname Syntax
+// Test pour un nom de champ unique :
 isfield( s , "field_1"  )
  
-// Multiple Fieldname Syntax
+// Test simultané pour plusieurs noms de champs :
 isfield( s , [ "field_1" "field_2" ; "field_3" "field_4" ] )
 
-// with a tlist:
+// Test sur une liste typée tlist:
 s = tlist(["test" "t" "n","","p"], "Hello", %pi, "anonymous", (1-%z)^3)
-isfield(s, ["b" "t" ""])  // =>  F  T  T  (anonymous fields can be detected)
+isfield( s, ["b" "t" ""])  
+   // =>  F  T  T  (la présence de champs anonymes peut être détectée)
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="struct">struct</link>
@@ -88,12 +90,12 @@ isfield(s, ["b" "t" ""])  // =>  F  T  T  (anonymous fields can be detected)
         </simplelist>
     </refsection>
     <refsection>
-        <title>History</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.5</revnumber>
                 <revremark>
-                    Extension to any mlist and tlist. 
+                    Extension aux mlist et tlist
                 </revremark>
             </revision>
         </revhistory>
