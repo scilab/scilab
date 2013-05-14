@@ -34,7 +34,7 @@ int sci_mpi_send(char *fname, unsigned long fname_len)
     double NodeID = 0;
 
     CheckInputArgument(pvApiCtx, 2, 2);
-    CheckOuputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
     if (sciErr.iErr)

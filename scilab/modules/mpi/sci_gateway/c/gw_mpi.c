@@ -28,8 +28,7 @@ static MPITable Tab[] =
     {sci_mpi_bcast, "MPI_Bcast"},
     {sci_mpi_irecv, "MPI_Irecv"},
     {sci_mpi_isend, "MPI_Isend"},
-    {sci_mpi_wait, "MPI_Wait"},
-    {sci_mpi_bcast, "MPI_Bcast"}
+    {sci_mpi_wait, "MPI_Wait"}
 
 };
 
