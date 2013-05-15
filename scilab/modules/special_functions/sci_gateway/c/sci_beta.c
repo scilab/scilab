@@ -63,7 +63,7 @@ int sci_beta(char *fname, unsigned long fname_len)
 
     if (isVarComplex(pvApiCtx, piAddr1))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: No complex input argument expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 1);
         return 1;
     }
 
@@ -85,7 +85,7 @@ int sci_beta(char *fname, unsigned long fname_len)
 
     if (isVarComplex(pvApiCtx, piAddr2))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: No complex input argument expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 2);
         return 1;
     }
 

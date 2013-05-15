@@ -43,7 +43,7 @@ msgstr ""
 # File: sci_gateway/c/sci_legendre.c, line: 144
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: No complex input argument expected.\n"
+"%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
