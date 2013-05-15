@@ -40,7 +40,7 @@
         <para>
             Renvoie un vecteur ligne <literal>n</literal> de valeurs
             logarithmiquement équidistantes entre <latex>10^{d1}</latex> et
-            <latex>10^{d2}</latex>. Si <literal>d2=%pi</literal> alors les valeurs
+            <latex>10^{d2}</latex>. Si <latex>d2=\pi</latex> alors les valeurs
             sont comprises entre <latex>10^{d1}</latex> et
             <latex>\pi</latex>.
         </para>
