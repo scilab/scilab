@@ -114,6 +114,7 @@ workspace/
 # scilab/ specific files
 #
 /thirdparty
+/include
 Makefile.OBJ
 Makefile.incl
 Makemex

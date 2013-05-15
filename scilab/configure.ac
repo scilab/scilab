@@ -1619,9 +1619,9 @@ MATIO_ENABLE=no
 if test "$with_matio" != no; then
    if test -n "$with_matio_include" -o -n "$with_matio_library" ; then
       MATIO_CFLAGS="$with_matio_include"
-      MATIO_LIBS="$with_matio_library -lm -lz -lmatio"
+      MATIO_LIBS="$with_matio_library -lm -lz -lmatio -lhdf5"
    else
-      PKG_CHECK_MODULES(MATIO, [matio >= 1.3.3])
+      PKG_CHECK_MODULES(MATIO, [matio >= 1.5.0])
    fi
 
    save_CFLAGS="$CFLAGS"
@@ -1630,7 +1630,7 @@ if test "$with_matio" != no; then
    CFLAGS="$CFLAGS $MATIO_CFLAGS"
    LIBS="$LIBS $MATIO_LIBS"
 
-   AC_CHECK_HEADERS([matio.h matioConfig.h], [],
+   AC_CHECK_HEADERS([matio.h], [],
      [AC_MSG_ERROR([Invalid MATIO_CFLAGS returned by pkg-config. Try to define MATIO_CFLAGS.])])
    AC_CHECK_LIB([matio], [Mat_Open], [],
      [AC_MSG_ERROR([Invalid MATIO_LIBS returned by pkg-config. Try to define MATIO_LIBS.])])
@@ -1640,6 +1640,9 @@ if test "$with_matio" != no; then
 
    AC_DEFINE([WITH_MATIO], [], [With the MATIO library])
    MATIO_ENABLE=yes
+
+   AC_SUBST(MATIO_LIBS)
+   AC_SUBST(MATIO_CFLAGS)
 fi
 
 

@@ -17,14 +17,7 @@
 #include "Scierror.h"
 #include "sciprint.h"
 
-
-#define MATIO_ERROR if(_SciErr.iErr) \
-    {				     \
-      printError(&_SciErr, 0);	     \
-      return 0;			     \
-    }
-
-int CreateCellVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
     static const char *fieldNames[] = {"ce", "dims", "entries"};
     int nbFields = 3;
@@ -34,45 +27,70 @@ int CreateCellVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * pa
     int * cell_addr = NULL;
     int * cell_entry_addr = NULL;
     matvar_t ** allData = NULL;
-    SciErr _SciErr;
+    SciErr sciErr;
+
+    int *piDims = NULL;
+    int i = 0;
 
     /* Returned mlist initialization */
     if (parent == NULL)
     {
-        _SciErr = createMList(pvApiCtx, iVar, nbFields, &cell_addr);
-        MATIO_ERROR;
+        sciErr = createMList(pvApiCtx, iVar, nbFields, &cell_addr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
     }
     else
     {
-        _SciErr = createMListInList(pvApiCtx, iVar, parent, item_position, nbFields, &cell_addr);
-        MATIO_ERROR;
+        sciErr = createMListInList(pvApiCtx, iVar, parent, item_position, nbFields, &cell_addr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
     }
 
     /* FIRST LIST ENTRY: fieldnames */
-    _SciErr = createMatrixOfStringInList(pvApiCtx, iVar, cell_addr, 1, 1, nbFields, (char **)fieldNames);
-    MATIO_ERROR;
+    sciErr = createMatrixOfStringInList(pvApiCtx, iVar, cell_addr, 1, 1, nbFields, (const char **)fieldNames);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    piDims = (int *) MALLOC(matVariable->rank * sizeof(int));
+    for (i = 0 ; i < matVariable->rank ; ++i)
+    {
+        piDims[i] = (int)matVariable->dims[i]; // Copy dims to make size_t values fit int
+    }
 
     /* SECOND LIST ENTRY: Dimensions (int32 type) */
     if (matVariable->rank == 2) /* Two dimensions */
     {
-        _SciErr = createMatrixOfInteger32InList(pvApiCtx, iVar, cell_addr, 2, 1, matVariable->rank, matVariable->dims);
-        MATIO_ERROR;
+        sciErr = createMatrixOfInteger32InList(pvApiCtx, iVar, cell_addr, 2, 1, matVariable->rank, piDims);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
     }
     else /* 3 or more dimensions -> Scilab HyperMatrix */
     {
-        /*
-        type = I_INT32;
-        CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,
-        		&type, &matVariable->rank, matVariable->dims, matVariable->data,
-        		NULL, cell_addr, 2);
-                */
+        //type = I_INT32;
+        //CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,
+        //                          &type, &matVariable->rank, piDims, (double*)matVariable->data,
+        //                          NULL, cell_addr, 2);
     }
+
+    FREE(piDims);
 
     /* ALL OTHER ENTRIES: Fields data */
     prodDims = 1;
     for (K = 0; K < matVariable->rank; K++)
     {
-        prodDims *= matVariable->dims[K];
+        prodDims *= (int)matVariable->dims[K];
     }
 
     allData = (matvar_t**) (matVariable->data);
@@ -87,8 +105,12 @@ int CreateCellVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * pa
     }
     else
     {
-        _SciErr = createListInList(pvApiCtx, iVar, cell_addr, 3, prodDims, &cell_entry_addr);
-        MATIO_ERROR;
+        sciErr = createListInList(pvApiCtx, iVar, cell_addr, 3, prodDims, &cell_entry_addr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
         for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
         {

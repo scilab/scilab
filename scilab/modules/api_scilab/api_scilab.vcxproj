@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -308,6 +308,7 @@ cd .. &gt;nul
     <ClCompile Include="src\cpp\api_double.cpp" />
     <ClCompile Include="src\cpp\api_error.cpp" />
     <ClCompile Include="src\cpp\api_handle.cpp" />
+    <ClCompile Include="src\cpp\api_hypermat.cpp" />
     <ClCompile Include="src\cpp\api_int.cpp" />
     <ClCompile Include="src\cpp\api_list.cpp" />
     <ClCompile Include="src\cpp\api_optional.cpp" />
@@ -327,6 +328,7 @@ cd .. &gt;nul
     <ClInclude Include="includes\api_double.h" />
     <ClInclude Include="includes\api_error.h" />
     <ClInclude Include="includes\api_handle.h" />
+    <ClInclude Include="includes\api_hypermat.h" />
     <ClInclude Include="includes\api_int.h" />
     <ClInclude Include="includes\api_internal_handle.h" />
     <ClInclude Include="includes\api_optional.h" />

@@ -152,7 +152,8 @@ am__objects_1 = libsciapi_scilab_la-api_boolean.lo \
 	libsciapi_scilab_la-overload.lo \
 	libsciapi_scilab_la-returnProperty.lo \
 	libsciapi_scilab_la-returnPropertyList.lo \
-	libsciapi_scilab_la-api_optional.lo
+	libsciapi_scilab_la-api_optional.lo \
+	libsciapi_scilab_la-api_hypermat.lo
 am_libsciapi_scilab_la_OBJECTS = $(am__objects_1)
 libsciapi_scilab_la_OBJECTS = $(am_libsciapi_scilab_la_OBJECTS)
 libsciapi_scilab_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -468,7 +469,8 @@ src/cpp/api_error.cpp \
 src/cpp/overload.cpp \
 src/cpp/returnProperty.cpp \
 src/cpp/returnPropertyList.cpp \
-src/cpp/api_optional.cpp
+src/cpp/api_optional.cpp \
+src/cpp/api_hypermat.cpp
 
 libsciapi_scilab_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
@@ -518,6 +520,7 @@ includes/api_boolean_sparse.h \
 includes/api_common.h \
 includes/api_error.h \
 includes/api_double.h \
+includes/api_hypermat.h \
 includes/api_int.h \
 includes/api_list.h \
 includes/api_pointer.h \
@@ -692,6 +695,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_double.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_handle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_hypermat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciapi_scilab_la-api_optional.Plo@am__quote@
@@ -835,6 +839,13 @@ libsciapi_scilab_la-api_optional.lo: src/cpp/api_optional.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/api_optional.cpp' object='libsciapi_scilab_la-api_optional.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciapi_scilab_la-api_optional.lo `test -f 'src/cpp/api_optional.cpp' || echo '$(srcdir)/'`src/cpp/api_optional.cpp
+
+libsciapi_scilab_la-api_hypermat.lo: src/cpp/api_hypermat.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciapi_scilab_la-api_hypermat.lo -MD -MP -MF $(DEPDIR)/libsciapi_scilab_la-api_hypermat.Tpo -c -o libsciapi_scilab_la-api_hypermat.lo `test -f 'src/cpp/api_hypermat.cpp' || echo '$(srcdir)/'`src/cpp/api_hypermat.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciapi_scilab_la-api_hypermat.Tpo $(DEPDIR)/libsciapi_scilab_la-api_hypermat.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/api_hypermat.cpp' object='libsciapi_scilab_la-api_hypermat.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciapi_scilab_la-api_hypermat.lo `test -f 'src/cpp/api_hypermat.cpp' || echo '$(srcdir)/'`src/cpp/api_hypermat.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -50,7 +50,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Libraires or C/C++ functions: Many librairies have been developed on the free/Open source or proprietary markets. This library can be loaded and used in a high level language like Scilab. API Scilab provides the capabilities to interact with such libraries.
+                    Libraries or C/C++ functions: Many libraries have been developed on the free/Open source or proprietary markets. This library can be loaded and used in a high level language like Scilab. API Scilab provides the capabilities to interact with such libraries.
                 </para>
             </listitem>
             <listitem>

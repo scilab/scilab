@@ -11,8 +11,8 @@
  *
  */
 
-#include "CreateMatlabVariable.h"
 #include "os_strdup.h"
+#include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 #include "MALLOC.h"
@@ -20,13 +20,7 @@
 #include "Scierror.h"
 #include "sciprint.h"
 
-#define MATIO_ERROR if(_SciErr.iErr) \
-    {				     \
-      printError(&_SciErr, 0);	     \
-      return 0;			     \
-    }
-
-int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
+int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
     char **fieldNames = NULL;
     int nbFields = 0;
@@ -38,7 +32,9 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
     matvar_t ** allData = NULL;
     int * cell_addr = NULL;
     int * cell_entry_addr = NULL;
-    SciErr _SciErr;
+    SciErr sciErr;
+    int *piDims = NULL;
+    int i = 0;
 
     /* Fields of the struct */
     nbFields = 2; /* "st" "dims" */
@@ -66,7 +62,7 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
 
     for (fieldIndex = 1; fieldIndex < nbFields - 1; fieldIndex++)
     {
-        fieldMatVar = Mat_VarGetStructField(matVariable, &fieldIndex, BY_INDEX, 0);
+        fieldMatVar = Mat_VarGetStructField(matVariable, &fieldIndex, MAT_BY_INDEX, 0);
         fieldNames[fieldIndex + 1] = os_strdup(fieldMatVar->name);
         if (fieldNames[fieldIndex + 1] == NULL)
         {
@@ -78,18 +74,30 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
     /* Returned mlist initialization */
     if (parent == NULL)
     {
-        _SciErr = createMList(pvApiCtx, iVar, nbFields, &cell_addr);
-        MATIO_ERROR;
+        sciErr = createMList(pvApiCtx, iVar, nbFields, &cell_addr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
     }
     else
     {
-        _SciErr = createMListInList(pvApiCtx, iVar, parent, item_position, nbFields, &cell_addr);
-        MATIO_ERROR;
+        sciErr = createMListInList(pvApiCtx, iVar, parent, item_position, nbFields, &cell_addr);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
     }
 
     /* FIRST LIST ENTRY: fieldnames */
-    _SciErr = createMatrixOfStringInList(pvApiCtx, iVar, cell_addr, 1, 1, nbFields, fieldNames);
-    MATIO_ERROR;
+    sciErr = createMatrixOfStringInList(pvApiCtx, iVar, cell_addr, 1, 1, nbFields, fieldNames);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
     /* SECOND LIST ENTRY: Dimensions (int32 type) */
     if (nbFields == 2) /* Empty struct must have size 0x0 in Scilab */
@@ -98,25 +106,36 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
         matVariable->dims[1] = 0;
     }
 
+    piDims = (int *) MALLOC(matVariable->rank * sizeof(int));
+    for (i = 0 ; i < matVariable->rank ; ++i)
+    {
+        piDims[i] = (int)matVariable->dims[i];
+    }
+
     if (matVariable->rank == 2) /* Two dimensions */
     {
-        _SciErr = createMatrixOfInteger32InList(pvApiCtx, iVar, cell_addr, 2, 1, matVariable->rank, matVariable->dims);
-        MATIO_ERROR;
+        sciErr = createMatrixOfInteger32InList(pvApiCtx, iVar, cell_addr, 2, 1, matVariable->rank, piDims);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
     }
     else /* 3 or more dimensions -> Scilab HyperMatrix */
     {
-        /*      type = I_INT32;
-              CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,
-        				&type, &matVariable->rank, matVariable->dims, matVariable->data,
-        				NULL, cell_addr, 2);
-        */
+        //type = I_INT32;
+        //CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,
+        //                          &type, &matVariable->rank, piDims, (double*)matVariable->data,
+        //                          NULL, cell_addr, 2);
     }
+
+    FREE(piDims);
 
     /* ALL OTHER ENTRIES: Fields data */
     prodDims = 1;
     for (K = 0; K < matVariable->rank; K++)
     {
-        prodDims *= matVariable->dims[K];
+        prodDims *= (int)matVariable->dims[K];
     }
 
     allData = (matvar_t**) (matVariable->data);
@@ -139,8 +158,12 @@ int CreateStructVariable(void* pvApiCtx, int iVar, matvar_t *matVariable, int * 
     {
         for (fieldIndex = 0; fieldIndex < nbFields - 2; fieldIndex++)
         {
-            _SciErr = createListInList(pvApiCtx, iVar, cell_addr, fieldIndex + 3, prodDims, &cell_entry_addr);
-            MATIO_ERROR;
+            sciErr = createListInList(pvApiCtx, iVar, cell_addr, fieldIndex + 3, prodDims, &cell_entry_addr);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
 
             for (valueIndex = 0; valueIndex < prodDims; valueIndex++)
             {
