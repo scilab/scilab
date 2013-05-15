@@ -9,6 +9,14 @@
 
 function x = %_iconvert(a,typeToConvert)
 
+    if typeof(a) == "constant" & isreal(a) == %f then
+        error(msprintf(_("%s: Wrong type for argument #%d: Real matrix expected.\n"), "iconvert", 1));
+    end
+
+    if floor(typeToConvert) <> typeToConvert then
+        error(msprintf(_("%s: Wrong value for input argument #%d: An integer value expected.\n"), "iconvert", 2));
+    end
+
     if typeof(typeToConvert) <> "constant" | size(typeToConvert, "*") <> 1 then
         error(msprintf(_("%s: Wrong size for argument #%d: Real scalar expected.\n"), "iconvert", 2));
     end
