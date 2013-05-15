@@ -74,6 +74,8 @@ Xcos
 * Bug #12603 fixed - ZCOS files may contain blocs with modified (eg. invalid)
                      parameters.
 
+* Bug #12561 fixed - SELECT_m and RELAY_f no more behaved as expected.
+
 
 Toolbox skeleton
 =================
