@@ -100,6 +100,22 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
     }
 
     /**
+     * @param varName the variable name
+     * @param size the initial list size
+     */
+    public ScilabMList(String varName, int size) {
+        super(size);
+        this.varName = varName;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return false;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public String getVarName() {
@@ -256,8 +272,7 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
 
         StringBuffer result = new StringBuffer();
         if (isEmpty()) {
-            result.append("mlist()");
-            return result.toString();
+            return "mlist()";
         }
 
         result.append("mlist(");

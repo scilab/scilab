@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,5 +15,7 @@
 #define __GETSCILABVARIABLE_H__
 
 void getScilabVariable(const char * scilabVarName, int swapRowCol, int handlerId);
+
+void getScilabVariableAsReference(const char * variableName, int handlerId);
 
 #endif

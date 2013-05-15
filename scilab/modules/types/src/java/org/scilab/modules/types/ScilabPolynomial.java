@@ -171,6 +171,13 @@ public class ScilabPolynomial implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return false;
+    }
+
+    /**
      * Return the type of Scilab
      *
      * @return the type of Scilab
