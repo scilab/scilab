@@ -170,37 +170,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_format.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_ieee.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_sciargs.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_type.c" />
-    <ClCompile Include="banner.cpp" />
+    <ClCompile Include="..\..\src\cpp\banner.cpp" />
+    <ClCompile Include="..\..\src\cpp\runner.cpp" />
+    <ClCompile Include="sci_format.cpp" />
+    <ClCompile Include="sci_funcprot.cpp" />
+    <ClCompile Include="sci_ieee.cpp" />
+    <ClCompile Include="sci_sciargs.cpp" />
+    <ClCompile Include="..\c\sci_getdebuginfo.c" />
+    <ClCompile Include="..\c\sci_type.c" />
     <ClCompile Include="core_gw.cpp" />
-    <ClCompile Include="runner.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_abort.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_argn.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_banner.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_clear.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_clearglobal.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_error.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_exists.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_exit.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getmd5.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getmodules.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getos.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getscilabmode.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getversion.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_global.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_isglobal.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_lasterror.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_pause.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_quit.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_resume.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_stacksize.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_warning.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_who.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_with_module.cpp" />
+    <ClCompile Include="sci_abort.cpp" />
+    <ClCompile Include="sci_argn.cpp" />
+    <ClCompile Include="sci_banner.cpp" />
+    <ClCompile Include="sci_clear.cpp" />
+    <ClCompile Include="sci_clearglobal.cpp" />
+    <ClCompile Include="sci_error.cpp" />
+    <ClCompile Include="sci_exists.cpp" />
+    <ClCompile Include="sci_exit.cpp" />
+    <ClCompile Include="sci_getmd5.cpp" />
+    <ClCompile Include="sci_getmodules.cpp" />
+    <ClCompile Include="sci_getos.cpp" />
+    <ClCompile Include="sci_getscilabmode.cpp" />
+    <ClCompile Include="sci_getversion.cpp" />
+    <ClCompile Include="sci_global.cpp" />
+    <ClCompile Include="sci_isglobal.cpp" />
+    <ClCompile Include="sci_lasterror.cpp" />
+    <ClCompile Include="sci_pause.cpp" />
+    <ClCompile Include="sci_quit.cpp" />
+    <ClCompile Include="sci_resume.cpp" />
+    <ClCompile Include="sci_stacksize.cpp" />
+    <ClCompile Include="sci_warning.cpp" />
+    <ClCompile Include="sci_who.cpp" />
+    <ClCompile Include="sci_with_module.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\banner.hxx" />
@@ -260,7 +261,7 @@
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\c\core.vcxproj">
+    <ProjectReference Include="..\..\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
   </ItemGroup>

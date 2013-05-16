@@ -15,97 +15,100 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="banner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="core_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="runner.cpp">
+    <ClCompile Include="..\..\src\cpp\banner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_abort.cpp">
+    <ClCompile Include="..\..\src\cpp\runner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_argn.cpp">
+    <ClCompile Include="sci_format.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_banner.cpp">
+    <ClCompile Include="sci_ieee.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_clear.cpp">
+    <ClCompile Include="sci_sciargs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_clearglobal.cpp">
+    <ClCompile Include="..\c\sci_getdebuginfo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_error.cpp">
+    <ClCompile Include="..\c\sci_type.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_exists.cpp">
+    <ClCompile Include="sci_abort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_exit.cpp">
+    <ClCompile Include="sci_argn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getmd5.cpp">
+    <ClCompile Include="sci_banner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getmodules.cpp">
+    <ClCompile Include="sci_clear.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getos.cpp">
+    <ClCompile Include="sci_clearglobal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getscilabmode.cpp">
+    <ClCompile Include="sci_error.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_getversion.cpp">
+    <ClCompile Include="sci_exists.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_global.cpp">
+    <ClCompile Include="sci_exit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_isglobal.cpp">
+    <ClCompile Include="sci_getmd5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_lasterror.cpp">
+    <ClCompile Include="sci_getmodules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_pause.cpp">
+    <ClCompile Include="sci_getos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_quit.cpp">
+    <ClCompile Include="sci_getscilabmode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_resume.cpp">
+    <ClCompile Include="sci_getversion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_stacksize.cpp">
+    <ClCompile Include="sci_global.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_warning.cpp">
+    <ClCompile Include="sci_isglobal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_who.cpp">
+    <ClCompile Include="sci_lasterror.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_with_module.cpp">
+    <ClCompile Include="sci_pause.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_sciargs.cpp">
+    <ClCompile Include="sci_quit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_type.c">
+    <ClCompile Include="sci_resume.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c">
+    <ClCompile Include="sci_stacksize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_format.cpp">
+    <ClCompile Include="sci_warning.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_ieee.cpp">
+    <ClCompile Include="sci_who.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_with_module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_funcprot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

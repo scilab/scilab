@@ -334,6 +334,14 @@ private :
 public :
     static void setSimpMode(int _iSimpMode);
     static int getSimpMode();
+
+    // funcprot mode
+private :
+    static int m_iFuncprot;
+
+public :
+    static void setFuncprot(int _iFuncprot);
+    static int getFuncprot();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

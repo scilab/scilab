@@ -43,6 +43,7 @@ extern "C" {
 #include "matrix_transpose.h"
 #include "os_swprintf.h"
 #include "more.h"
+#include "sciprint.h"
     //#include "HandleManagement.h"
 }
 
@@ -1673,6 +1674,42 @@ public :
         function foo
         endfunction
         */
+
+        // funcprot(0) : do nothing
+        // funcprot(1) && warning(on) : warning
+        // funcprot(2) : error
+        if (ConfigVariable::getFuncprot() == 1 && ConfigVariable::getWarningMode())
+        {
+            types::InternalType* pITFunc = symbol::Context::getInstance()->get(symbol::Symbol(e.name_get().name_get()));
+
+            if (pITFunc && pITFunc->isCallable())
+            {
+                wchar_t pwstFuncName[1024];
+                os_swprintf(pwstFuncName, 1024, L"%-24ls", e.name_get().name_get().c_str());
+                char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
+
+                sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
+                sciprint("\n");
+                FREE(pstFuncName);
+            }
+        }
+        else if (ConfigVariable::getFuncprot() == 2)
+        {
+            types::InternalType* pITFunc = symbol::Context::getInstance()->get(symbol::Symbol(e.name_get().name_get()));
+
+            if (pITFunc && pITFunc->isCallable())
+            {
+                char pstError[1024];
+                char* pstFuncName = wide_string_to_UTF8(e.name_get().name_get().c_str());
+                sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
+                wchar_t* pwstError = to_wide_string(pstError);
+                std::wstring wstError(pwstError);
+                FREE(pstFuncName);
+                FREE(pwstError);
+                throw ScilabError(wstError, 999, e.location_get());
+            }
+        }
+
         std::list<ast::Var *>::const_iterator	i;
 
         //get input parameters list

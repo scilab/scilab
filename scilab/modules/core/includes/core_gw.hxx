@@ -53,5 +53,6 @@ CPP_GATEWAY_PROTOTYPE(sci_stacksize);
 CPP_GATEWAY_PROTOTYPE(sci_sciargs);
 CPP_GATEWAY_PROTOTYPE(sci_format);
 CPP_GATEWAY_PROTOTYPE(sci_ieee);
+CPP_GATEWAY_PROTOTYPE(sci_funcprot);
 
 #endif /* __CORE_GW_HXX__ */
