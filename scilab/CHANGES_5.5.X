@@ -181,6 +181,8 @@ Bug fixes
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
+* Bug #12376 fixed - Exec & edit buttons in examples in help were sometimes misplaced.
+
 * Bug #12415 fixed - PATH environment variable grew when using call_scilab in a loop.
 
 * Bug #12426 fixed - By using addErrorMessage, random string error could be displayed.
