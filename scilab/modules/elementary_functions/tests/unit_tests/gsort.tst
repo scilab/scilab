@@ -1768,7 +1768,7 @@ assert_checkequal(find(isnan(b)), [7 8]);
 
 m = [1 2 %nan;1 3 %nan;1 2 3];
 b = gsort(m,'lr','i');
-assert_checkequal(sci2exp(b,0), '[1,2,%nan;1,2,3;1,3,%nan]');
+assert_checkequal(sci2exp(b,0), '[1,2,3;1,2,%nan;1,3,%nan]');
 
 b = gsort(m,'lr','d');
 assert_checkequal(sci2exp(b,0), '[1,3,%nan;1,2,%nan;1,2,3]');

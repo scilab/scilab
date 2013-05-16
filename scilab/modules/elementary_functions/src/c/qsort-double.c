@@ -139,11 +139,12 @@ static void setLexiSizedouble(int n,int p)
 static  int LexiRowcompareCdouble(double *i,double *j)
 {
   int jc;
+
   for ( jc = 0 ; jc < lexicolsdouble ; jc++) 
     {
-      if (*i > *j)
+      if (*i > *j || (double *)C2F(isanan)((double *)i)==1)
 	return (1);
-      if (*i < *j)
+      if (*i < *j || (double *)C2F(isanan)((double *)j)==1)
 	return (-1);
       i += lexirowsdouble;
       j += lexirowsdouble;
@@ -154,11 +155,12 @@ static  int LexiRowcompareCdouble(double *i,double *j)
 static  int LexiRowcompareDdouble(double *i, double*j)
 {
   int jc;
+
   for ( jc = 0 ; jc < lexicolsdouble ; jc++) 
     {
-      if (*i < *j)
+      if (*i < *j || (double *)C2F(isanan)((double *)j)==1)
 	return (1);
-      if (*i > *j)
+      if (*i > *j || (double *)C2F(isanan)((double *)i)==1)
 	return (-1);
       i += lexirowsdouble;
       j += lexirowsdouble;
@@ -210,9 +212,9 @@ static  int LexiColcompareCdouble(double *i,double *j)
   int ic;
   for ( ic = 0 ; ic < lexirowsdouble ; ic++) 
     {
-      if (*i > *j)
+      if (*i > *j || (double *)C2F(isanan)((double *)i)==1)
 	return (1);
-      if (*i < *j)
+      if (*i < *j || (double *)C2F(isanan)((double *)j)==1)
 	return (-1);
       i++;
       j++;
@@ -225,9 +227,9 @@ static  int LexiColcompareDdouble(double *i,double *j)
   int ic;
   for ( ic = 0 ; ic < lexirowsdouble ; ic++) 
     {
-      if (*i < *j)
+      if (*i < *j || (double *)C2F(isanan)((double *)j)==1)
 	return (1);
-      if (*i > *j)
+      if (*i > *j || (double *)C2F(isanan)((double *)i)==1)
 	return (-1);
       i++;
       j++;

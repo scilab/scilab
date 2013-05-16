@@ -250,10 +250,11 @@ Bug fixes
 
 * Bug #12606 fixed - Overloads for grand were not standard.
 
+* Bug #12613 fixed - gsort did not return correct results with %nan.
+
 * Bug #12614 fixed - Helpbrowser was not launched in EDT.
 
 * Bug #12631 fixed - A "see also" link has been added from progressionbar to waitbar and vice versa.
 
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
                      already existing in SCI/contrib/archives in offline mode.
-
