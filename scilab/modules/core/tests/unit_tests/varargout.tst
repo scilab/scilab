@@ -36,13 +36,8 @@ clear b;
 clear c;
 
 // Check call with too much output values.
-<<<<<<< HEAD
-ierr = execstr("[a,b,c,d] = __test_function__();", "errcatch")
-if ierr == 0 then pause, end;
-=======
 ierr = execstr("[a,b,c,d] = __test_function__();", "errcatch");
 assert_checkfalse(ierr == 0);
->>>>>>> origin/master
 
 //
 // Return a list of 3 elements with second missing.
@@ -61,11 +56,7 @@ clear a;
 
 // varargout(2) is undefined
 ierr = execstr("[a,b] = __test_function2__();", "errcatch");
-<<<<<<< HEAD
-if ierr == 0 then pause, end;
-=======
 assert_checkfalse(ierr == 0);
->>>>>>> origin/master
 
 //
 // varargout is not set : should not work.
@@ -74,8 +65,4 @@ function varargout=__test_function3__()
 endfunction
 
 ierr = execstr("__test_function3__();", "errcatch");
-<<<<<<< HEAD
-if ierr == 0 then pause, end;
-=======
 assert_checkfalse(ierr == 0);
->>>>>>> origin/master
