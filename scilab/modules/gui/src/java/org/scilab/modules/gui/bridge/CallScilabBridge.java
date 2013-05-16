@@ -2240,11 +2240,15 @@ public class CallScilabBridge {
      */
     public static void launchHelpBrowser(final String[] helps, final String language) {
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
+            public void run() {
+                try {
                     ScilabHelpBrowser.createHelpBrowser(helps, language);
                     ScilabHelpBrowser.startHomePage();
+                } catch (Exception e) {
+                    System.err.println(e);
                 }
-            });
+            }
+        });
     }
 
     /**
@@ -2254,36 +2258,60 @@ public class CallScilabBridge {
      * @param language Scilab current language
      * @param fullText true for a full-text search
      */
-    public static void searchKeyword(String[] helps, String keyword, String language, boolean fullText) {
-        if (fullText) {
-            HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(helps, language);
-            if (helpBrowser != null) {
-                helpBrowser.fullTextSearch(keyword);
+    public static void searchKeyword(final String[] helps, final String keyword, final String language, final boolean fullText) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    if (fullText) {
+                        HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(helps, language);
+                        if (helpBrowser != null) {
+                            helpBrowser.fullTextSearch(keyword);
+                        }
+                    } else {
+                        HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(helps, language);
+                        if (helpBrowser != null) {
+                            helpBrowser.searchKeywork(keyword);
+                        }
+                    }
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
             }
-        } else {
-            HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(helps, language);
-            if (helpBrowser != null) {
-                helpBrowser.searchKeywork(keyword);
-            }
-        }
+        });
     }
 
     /**
      * Open HelpBrowser on the page with the given xmlID
      * @param xmlID the xml id
      */
-    public static void openHelp(String xmlID) {
-        HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(null, ScilabCommons.getlanguage());
-        if (helpBrowser != null) {
-            helpBrowser.searchKeywork(xmlID);
-        }
+    public static void openHelp(final String xmlID) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    HelpBrowser helpBrowser = ScilabHelpBrowser.createHelpBrowser(null, ScilabCommons.getlanguage());
+                    if (helpBrowser != null) {
+                        helpBrowser.searchKeywork(xmlID);
+                    }
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+            }
+        });
     }
 
     /**
      * Close Scilab Help Browser
      */
     public static void closeHelpBrowser() {
-        ScilabHelpBrowser.getHelpBrowser().close();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    ScilabHelpBrowser.getHelpBrowser().close();
+                } catch (Exception e) {
+                    System.err.println(e);
+                }
+            }
+        });
     }
 
     /**
@@ -2297,14 +2325,22 @@ public class CallScilabBridge {
      * Increase the font in the help viewer
      */
     public static void increaseFontInHelpViewer() {
-        ScilabHelpBrowser.getHelpBrowser().increaseFont();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                ScilabHelpBrowser.getHelpBrowser().increaseFont();
+            }
+        });
     }
 
     /**
      * Decrease the font in the help viewer
      */
     public static void decreaseFontInHelpViewer() {
-        ScilabHelpBrowser.getHelpBrowser().decreaseFont();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                ScilabHelpBrowser.getHelpBrowser().decreaseFont();
+            }
+        });
     }
 
     /************/

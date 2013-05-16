@@ -226,3 +226,5 @@ Bug fixes
 * Bug #12589 fixed - Call sequence for spzeros & spones were missing in the french help pages.
 
 * Bug #12606 fixed - Overloads for grand were not standard.
+
+* Bug #12614 fixed - Helpbrowser was not launched in EDT.
