@@ -106,5 +106,4 @@ private :
 #ifdef _MSC_VER
 template class TYPES_IMPEXP types::ArrayOf<types::SingleStruct*>; //Struct
 #endif
-
 #endif /* !__STRUCT_HXX__ */

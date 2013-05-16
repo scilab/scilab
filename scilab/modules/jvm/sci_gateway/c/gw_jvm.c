@@ -15,17 +15,8 @@
 #include "gw_jvm.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table  Tab[]=
-{
-	{NULL, ""}, //with_embedded_jre
-	{NULL, ""}, //system_setproperty
-	{NULL, ""}, //system_getproperty
-	{NULL, ""}, //javaclasspath
-	{NULL, ""} //javalibrarypath
-};
-/*--------------------------------------------------------------------------*/
 int gw_jvm(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

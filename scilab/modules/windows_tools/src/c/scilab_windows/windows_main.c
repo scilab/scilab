@@ -233,7 +233,7 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine, 
             else if ( _stricmp(ArgTmp, "-L") == 0 && argcount + 1 < my_argc)
             {
                 char *language = my_argv[argcount + 1];
-                setLanguageFromCommandLine(language);
+                //setLanguageFromCommandLine(language);
             }
         }
 

@@ -274,10 +274,6 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <Library Include="..\..\bin\libjvm.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\doublylinkedlist\doublylinkedlist.vcxproj">
-      <Project>{ed02137f-0a4f-4ef0-ac58-97ace37fa89d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

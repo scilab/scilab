@@ -44,65 +44,65 @@ struct UndefinedAccessorForType {};
    @return : the value of type V at row r and column c of structure s
 */
 
-template<typename V, typename S> V get(S CONST&, int, int)
+template<typename V, typename S> V get(S SPARSE_CONST&, int, int)
 {
     return UndefinedAccessorForType<S>();
 }
 
-template<> double get(types::Double CONST& d, int r, int c)
+template<> double get(types::Double SPARSE_CONST& d, int r, int c)
 {
     return d.getReal(r, c);
 }
-template<> std::complex<double> get(types::Double CONST& d, int r, int c)
+template<> std::complex<double> get(types::Double SPARSE_CONST& d, int r, int c)
 {
     return std::complex<double>(d.getReal(r, c), d.getImg(r, c));
 }
 
-template<> bool get(types::Bool CONST& d, int r, int c)
+template<> bool get(types::Bool SPARSE_CONST& d, int r, int c)
 {
     return d.get(r, c) == 1;
 }
-template<> int get(types::Bool CONST& d, int r, int c)
+template<> int get(types::Bool SPARSE_CONST& d, int r, int c)
 {
     return d.get(r, c);
 }
-template<> bool get(types::SparseBool CONST& d, int r, int c)
+template<> bool get(types::SparseBool SPARSE_CONST& d, int r, int c)
 {
     return d.get(r, c);
 }
-template<> int get(types::SparseBool CONST& d, int r, int c)
+template<> int get(types::SparseBool SPARSE_CONST& d, int r, int c)
 {
     return d.get(r, c);
 }
 
-template<> double get(types::Sparse CONST& s, int r, int c)
+template<> double get(types::Sparse SPARSE_CONST& s, int r, int c)
 {
     return s.getReal(r, c);
 }
-template<> std::complex<double> get(types::Sparse CONST& s, int r, int c)
+template<> std::complex<double> get(types::Sparse SPARSE_CONST& s, int r, int c)
 {
     return s.get(r, c);
 }
 
-template<> double get(Eigen::SparseMatrix<double, 0, int> CONST&s, int r, int c)
+template<> double get(Eigen::SparseMatrix<double, 0, int> SPARSE_CONST&s, int r, int c)
 {
     return s.coeff(r, c);
 }
-template<> std::complex<double> get(Eigen::SparseMatrix<double, 0, int> CONST&s, int r, int c)
+template<> std::complex<double> get(Eigen::SparseMatrix<double, 0, int> SPARSE_CONST&s, int r, int c)
 {
     return std::complex<double>(s.coeff(r, c), 0.);
 }
 
-template<> bool get(Eigen::SparseMatrix<bool> CONST& d, int r, int c)
+template<> bool get(Eigen::SparseMatrix<bool> SPARSE_CONST& d, int r, int c)
 {
     return d.coeff(r, c);
 }
 
-template<> double get(Eigen::SparseMatrix<std::complex<double>, 0, int> CONST&s, int r, int c)
+template<> double get(Eigen::SparseMatrix<std::complex<double>, 0, int> SPARSE_CONST&s, int r, int c)
 {
     return s.coeff(r, c).real();
 }
-template<> std::complex<double> get(Eigen::SparseMatrix<std::complex<double>, 0, int> CONST&s, int r, int c)
+template<> std::complex<double> get(Eigen::SparseMatrix<std::complex<double>, 0, int> SPARSE_CONST&s, int r, int c)
 {
     return s.coeff(r, c);
 }
@@ -212,44 +212,44 @@ template<> bool set(Eigen::SparseMatrix<bool>& s, int r, int c, bool v)
 
 
 
-template<typename S> int rows(S CONST&s)
+template<typename S> int rows(S SPARSE_CONST&s)
 {
     return s.rows();
 }
-template<typename S> int cols(S CONST&s)
+template<typename S> int cols(S SPARSE_CONST&s)
 {
     return s.cols();
 }
 
-template<> int rows(types::Double CONST&d)
+template<> int rows(types::Double SPARSE_CONST&d)
 {
     return d.getRows();
 }
-template<> int cols(types::Double CONST&d)
+template<> int cols(types::Double SPARSE_CONST&d)
 {
     return d.getCols();
 }
-template<> int rows(types::Sparse CONST&s)
+template<> int rows(types::Sparse SPARSE_CONST&s)
 {
     return s.getRows();
 }
-template<> int cols(types::Sparse CONST&s)
+template<> int cols(types::Sparse SPARSE_CONST&s)
 {
     return s.getCols();
 }
-template<> int rows(types::Bool CONST&s)
+template<> int rows(types::Bool SPARSE_CONST&s)
 {
     return s.getRows();
 }
-template<> int cols(types::Bool CONST&s)
+template<> int cols(types::Bool SPARSE_CONST&s)
 {
     return s.getCols();
 }
-template<> int rows(types::SparseBool CONST&s)
+template<> int rows(types::SparseBool SPARSE_CONST&s)
 {
     return s.getRows();
 }
-template<> int cols(types::SparseBool CONST&s)
+template<> int cols(types::SparseBool SPARSE_CONST&s)
 {
     return s.getCols();
 }
@@ -262,8 +262,8 @@ template<> int cols(types::SparseBool CONST&s)
    @param s : 2D structure to query
    @return : nb of rows
 */
-template<typename S> inline int rows(S CONST&s);
-template<> inline int rows(types::Double CONST&d);
+template<typename S> inline int rows(S SPARSE_CONST&s);
+template<> inline int rows(types::Double SPARSE_CONST&d);
 
 /**
   These free function overloads handle nb of cols size queries for 2D containers
@@ -271,8 +271,8 @@ template<> inline int rows(types::Double CONST&d);
    @param s : 2D structure to query
    @return : nb of cols
 */
-template<typename S> inline int cols(S CONST&s);
-template<> inline int cols(types::Double CONST&d);
+template<typename S> inline int cols(S SPARSE_CONST&s);
+template<> inline int cols(types::Double SPARSE_CONST&d);
 
 /* this proxy struct provides read and write access (using set and get)
    with the usual operators (operator*() and operator=() )*/
@@ -288,7 +288,7 @@ template<typename S, typename V> struct Accessor
        read accessor as a casting operator
        @return : value of s at (r,c)
      */
-    operator V() CONST
+    operator V() SPARSE_CONST
     {
         //        std::cerr<<"reading "<<get<S,V>(s, r, c)<<" @("<<r<<","<<c<<")\n";
         return ::get<V>(s, r, c);
@@ -478,7 +478,7 @@ private:
  */
 template<bool AsVector = false> struct Coords : Coords2DIterator
 {
-    Coords(int CONST* coords, int unused = 0): coords(coords)
+    Coords(int SPARSE_CONST* coords, int unused = 0): coords(coords)
     {
     }
 
@@ -509,7 +509,7 @@ private:
  */
 template<> struct Coords<true> : Coords2DIterator
 {
-    Coords(int CONST* coords, int rMax): coords(coords), rMax(rMax)
+    Coords(int SPARSE_CONST* coords, int rMax): coords(coords), rMax(rMax)
     {
     }
 
@@ -593,15 +593,15 @@ Out mycopy_n(In i, Sz n, Out o)
     return o;
 }
 
-template<typename T> std::size_t nonZeros(T CONST& t)
+template<typename T> std::size_t nonZeros(T SPARSE_CONST& t)
 {
     return t.getSize();
 }
-template<> std::size_t nonZeros(types::Sparse CONST& sp)
+template<> std::size_t nonZeros(types::Sparse SPARSE_CONST& sp)
 {
     return sp.nonZeros();
 }
-template<typename Scalar, int Options, typename Index> std::size_t nonZeros(Eigen::SparseMatrix<Scalar, Options, Index> CONST& sp)
+template<typename Scalar, int Options, typename Index> std::size_t nonZeros(Eigen::SparseMatrix<Scalar, Options, Index> SPARSE_CONST& sp)
 {
     return sp.nonZeros();
 }
@@ -609,11 +609,11 @@ template<typename Scalar, int Options, typename Index> std::size_t nonZeros(Eige
 
 /* Default for dense matrix Scilab matrix types
  */
-template<typename D> RowWiseFullIterator makeNonZerosIterator(D CONST& d)
+template<typename D> RowWiseFullIterator makeNonZerosIterator(D SPARSE_CONST& d)
 {
     return RowWiseFullIterator(d.getRows(), d.getCols());
 }
-template<typename Scalar, int Options, typename Index> RowWiseSparseIterator<Eigen::SparseMatrix<Scalar, Options, Index> > makeNonZerosIterator(Eigen::SparseMatrix<Scalar, Options, Index> CONST& sp)
+template<typename Scalar, int Options, typename Index> RowWiseSparseIterator<Eigen::SparseMatrix<Scalar, Options, Index> > makeNonZerosIterator(Eigen::SparseMatrix<Scalar, Options, Index> SPARSE_CONST& sp)
 {
     return RowWiseSparseIterator<Eigen::SparseMatrix<Scalar, Options, Index> >(sp);
 }

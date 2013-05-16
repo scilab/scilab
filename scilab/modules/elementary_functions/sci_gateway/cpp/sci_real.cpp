@@ -199,6 +199,7 @@ SciErr real_poly(void* pvApiCtx, int* _piAddress)
 SciErr real_sparse(void* pvApiCtx, int* _piAddress)
 {
     SciErr sciErr;
+    sciErr.iErr = 0;
 
     types::Sparse* pS = (types::Sparse*)_piAddress;
     types::Sparse* pSReal = pS->newReal();

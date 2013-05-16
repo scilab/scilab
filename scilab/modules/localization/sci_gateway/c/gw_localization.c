@@ -17,18 +17,8 @@
 #include "callFunctionFromGateway.h"
 
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-	{NULL, ""}, // setlanguage
-	{NULL, ""}, // getlanguage
-	{NULL, ""}, // getdefaultlanguage
-	{NULL, ""}, //gettext
-	{NULL, ""}, //dgettext
-	{NULL, ""} //setdefaultlanguage
-};
-/*--------------------------------------------------------------------------*/
 int gw_localization(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

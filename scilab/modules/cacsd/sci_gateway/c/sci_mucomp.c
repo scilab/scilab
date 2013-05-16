@@ -35,9 +35,9 @@ int sci_mucomp(char *fname, void* pvApiCtx)
     int* lIWORK     = NULL;
     double* lRWORK  = NULL;
 
-    int* piAddrlZ           = NULL;
-    doublecomplex* lZ       = NULL;
-    doublecomplex* lZWORK   = NULL;
+    int* piAddrlZ               = NULL;
+    doublecomplex* lZ           = NULL;
+    const doublecomplex* lZWORK = NULL;
 
     int LRWORK = 0, LZWRKMIN = 0;
     int M  = 0, N  = 0;

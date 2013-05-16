@@ -17,23 +17,8 @@
 #include "gw_linear_algebra.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static int C2F(intvoid)(char *fname, unsigned long fname_len)
-{
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-#define LINEAR_ALGEBRA_TAB_SIZE 6
-static gw_generic_table Tab[LINEAR_ALGEBRA_TAB_SIZE]={
-  {NULL, ""}, //hess
-  {NULL, ""}, //schur
-  {NULL, ""}, //spec
-  {NULL, ""}, //bdiag
-  {NULL,""}, //xxxx
-  {NULL, ""} //balanc
-};
-/*--------------------------------------------------------------------------*/
 int gw_linear_algebra(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

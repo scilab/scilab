@@ -17,6 +17,7 @@
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
+#include <string.h>
 
 /*******************************************************************************
    Interface for MATIO function called Mat_Open

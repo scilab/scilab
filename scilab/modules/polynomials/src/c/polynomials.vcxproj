@@ -209,6 +209,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_polynomials.h" />
+    <ClInclude Include="..\..\includes\dynlib_polynomials_gw.h" />
     <ClInclude Include="..\..\includes\polynomials_gw.hxx" />
   </ItemGroup>
   <ItemGroup>

@@ -152,7 +152,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
             {
                 if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                 {
-                    if (with_module("scinotes"))
+                    if (with_module(L"scinotes"))
                     {
                         wsprintf(Cmd, MSG_SCIMSG5_EDITOR, PathWScilex, FinalFileName);
                     }
@@ -166,7 +166,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                 {
                     char *ScilabDestination = NULL;
 
-                    if (with_module("scinotes"))
+                    if (with_module(L"scinotes"))
                     {
                         wsprintf(Cmd, MSG_SCIMSG6_EDITOR, FinalFileName);
                     }
@@ -185,7 +185,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                     }
                     else
                     {
-                        if (with_module("scinotes"))
+                        if (with_module(L"scinotes"))
                         {
                             wsprintf(Cmd, MSG_SCIMSG5_EDITOR, PathWScilex, FinalFileName);
                         }
@@ -213,7 +213,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                         ExtensionFileIntoLowerCase(FinalFileName);
                         if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                         {
-                            if (with_module("xcos"))
+                            if (with_module(L"xcos"))
                             {
                                 wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
                             }
@@ -227,7 +227,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                         {
                             char *ScilabDestination = NULL;
 
-                            if (with_module("xcos"))
+                            if (with_module(L"xcos"))
                             {
                                 wsprintf(Cmd, MSG_SCIMSG3_XCOS, FinalFileName);
                             }
@@ -246,7 +246,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                             }
                             else
                             {
-                                if (with_module("xcos"))
+                                if (with_module(L"xcos"))
                                 {
                                     wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
                                 }

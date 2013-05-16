@@ -27,49 +27,63 @@
 
 namespace types
 {
-    class TYPES_IMPEXP Int32 : public ArrayOf<int>
+class TYPES_IMPEXP Int32 : public ArrayOf<int>
+{
+public :
+    Int32(int _iVal);
+    Int32(int _iRows, int _iCols);
+    Int32(int _iDims, int* _piDims);
+    Int32(int _iRows, int _iCols, int **_piData);
+    ~Int32();
+
+    InternalType*               clone();
+
+
+    /*Config management*/
+    void                        whoAmI();
+
+    bool                        isInt()
     {
-    public :
-                                    Int32(int _iVal);
-                                    Int32(int _iRows, int _iCols);
-                                    Int32(int _iDims, int* _piDims);
-                                    Int32(int _iRows, int _iCols, int **_piData);
-                                    ~Int32();
+        return true;
+    }
+    bool                        isInt32()
+    {
+        return true;
+    }
 
-        InternalType*               clone();
+    bool                        operator==(const InternalType& it);
+    bool                        operator!=(const InternalType& it);
 
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring        getTypeStr()
+    {
+        return L"int32";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring        getShortTypeStr()
+    {
+        return L"i";
+    }
 
-        /*Config management*/
-        void                        whoAmI();
+protected :
+    RealType				    getType(void)
+    {
+        return InternalType::RealInt32;
+    }
 
-        bool                        isInt() { return true; }
-        bool                        isInt32() { return true; }
+private :
+    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
-        bool                        operator==(const InternalType& it);
-        bool                        operator!=(const InternalType& it);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring        getTypeStr() {return L"int32";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring        getShortTypeStr() {return L"i";}
-
-    protected :
-        RealType				    getType(void){return InternalType::RealInt32;}
-
-    private :
-        virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-
-        virtual int                 getNullValue();
-        virtual Int32*              createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual int                 copyValue(int _iData);
-        virtual void                deleteAll();
-        virtual void                deleteImg();
-        virtual int*                allocData(int _iSize);
-    };
+    virtual int                 getNullValue();
+    virtual Int32*              createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual int                 copyValue(int _iData);
+    virtual void                deleteAll();
+    virtual void                deleteImg();
+    virtual int*                allocData(int _iSize);
+};
 }
 
 #ifdef _MSC_VER
 template class TYPES_IMPEXP types::ArrayOf<int>; //Int32
 #endif
-
 #endif /* !__INT32_HXX__ */

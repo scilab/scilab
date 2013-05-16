@@ -16,17 +16,8 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-{NULL, ""}, //clc
-{NULL, ""}, //tohome
-{NULL, ""}, //lines
-{NULL, ""}, //prompt
-{NULL, ""} //iswaitingforinput
-};
-/*--------------------------------------------------------------------------*/
 int gw_console(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

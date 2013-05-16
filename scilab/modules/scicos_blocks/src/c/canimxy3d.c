@@ -544,7 +544,6 @@ static char *getAxe(char const* pFigureUID, scicos_block * block)
 static char *getPolyline(char *pAxeUID, scicos_block * block, int row)
 {
     char *pPolyline;
-    static double d__0 = 0.0;
     static BOOL b__true = TRUE;
 
     int color;

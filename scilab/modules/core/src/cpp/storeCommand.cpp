@@ -36,9 +36,9 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 typedef struct commandRec
 {
-	char              *command;		/* command info one string two integers */
-	int               flag; /* 1 if the command execution cannot be interrupted */
-	struct commandRec *next;
+    char              *command;		/* command info one string two integers */
+    int               flag; /* 1 if the command execution cannot be interrupted */
+    struct commandRec *next;
 } CommandRec;
 /*--------------------------------------------------------------------------*/
 /* Extern Signal to say we git a StoreCommand. */
@@ -49,7 +49,7 @@ static __threadLock commandQueueSingleAccess = __StaticInitLock;
 /*--------------------------------------------------------------------------*/
 int StoreCommand (wchar_t *command)
 {
-	return StoreCommandWithFlag (command, 0);
+    return StoreCommandWithFlag (command, 0);
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -57,13 +57,13 @@ int StoreCommand (wchar_t *command)
  * flag = 0 : the command is not shown in scilab window
  * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
  */
-int StoreCommandWithFlag (wchar_t *command,int flag)
+int StoreCommandWithFlag (wchar_t *command, int flag)
 {
     Parser parser;
     try
     {
         parser.parse(command);
-        if(parser.getExitStatus() == Parser::Succeded)
+        if (parser.getExitStatus() == Parser::Succeded)
         {
             ast::ExecVisitor exec;
             parser.getTree()->accept(exec);
@@ -73,7 +73,7 @@ int StoreCommandWithFlag (wchar_t *command,int flag)
             throw ScilabException(parser.getErrorMessage());
         }
     }
-    catch(ScilabException se)
+    catch (ScilabException se)
     {
         scilabErrorW(L"\n");
         scilabErrorW(L"\n");
@@ -83,19 +83,9 @@ int StoreCommandWithFlag (wchar_t *command,int flag)
         scilabErrorW(L"\n");
         scilabErrorW(_W("while executing a callback"));
     }
-    catch(ScilabMessage sm)
-    {
-        scilabErrorW(L"\n");
-        scilabErrorW(L"\n");
-        scilabErrorW(command);
-        scilabErrorW(L"\n");
-        scilabErrorW(sm.GetErrorMessage().c_str());
-        scilabErrorW(L"\n");
-        scilabErrorW(_W("while executing a callback"));
-    }
 
     delete parser.getTree();
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -103,14 +93,14 @@ int StoreCommandWithFlag (wchar_t *command,int flag)
  * flag = 0 : the command is not shown in scilab window
  * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
  */
-int StorePrioritaryCommandWithFlag (wchar_t *command,int flag)
+int StorePrioritaryCommandWithFlag (wchar_t *command, int flag)
 {
     Parser parser;
 
     try
     {
         parser.parse(command);
-        if(parser.getExitStatus() == Parser::Succeded)
+        if (parser.getExitStatus() == Parser::Succeded)
         {
             ast::ExecVisitor exec;
             parser.getTree()->accept(exec);
@@ -120,7 +110,7 @@ int StorePrioritaryCommandWithFlag (wchar_t *command,int flag)
             throw ScilabException(parser.getErrorMessage());
         }
     }
-    catch(ScilabException se)
+    catch (ScilabException se)
     {
         scilabErrorW(L"\n");
         scilabErrorW(L"\n");
@@ -130,25 +120,15 @@ int StorePrioritaryCommandWithFlag (wchar_t *command,int flag)
         scilabErrorW(L"\n");
         scilabErrorW(_W("while executing a callback"));
     }
-    catch(ScilabMessage sm)
-    {
-        scilabErrorW(L"\n");
-        scilabErrorW(L"\n");
-        scilabErrorW(command);
-        scilabErrorW(L"\n");
-        scilabErrorW(sm.GetErrorMessage().c_str());
-        scilabErrorW(L"\n");
-        scilabErrorW(_W("while executing a callback"));
-    }
 
     delete parser.getTree();
-	return (0);
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 int isEmptyCommandQueue(void)
 {
 #pragma message("WARNING : isEmptyCommandQueue is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-	// FIXME : Do not forget to remove me.
+    // FIXME : Do not forget to remove me.
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -159,22 +139,22 @@ int isEmptyCommandQueue(void)
 int GetCommand ( char *str)
 {
 #pragma message("WARNING : GetCommand is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-	// FIXME : Do not forget to remove me.
+    // FIXME : Do not forget to remove me.
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 int ismenu(void)
 {
 #pragma message("WARNING : ismenu is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-	// FIXME : Do not forget to remove me.
+    // FIXME : Do not forget to remove me.
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 /* menu/button info for Scilab */
-int C2F(getmen)(char * btn_cmd,int * lb, int * entry)
+int C2F(getmen)(char * btn_cmd, int * lb, int * entry)
 {
 #pragma message("WARNING : C2F(getmen) is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-	// FIXME : Do not forget to remove me.
+    // FIXME : Do not forget to remove me.
     return 0;
 }
 /*--------------------------------------------------------------------------*/

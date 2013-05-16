@@ -26,7 +26,7 @@ using namespace types;
 namespace
 {
 template<typename DenseType>
-GenericType* buildSparse(Double CONST& indices, DenseType CONST& vals, Double CONST* pDim)
+GenericType* buildSparse(Double SPARSE_CONST& indices, DenseType SPARSE_CONST& vals, Double SPARSE_CONST* pDim)
 {
     GenericType* pRes = NULL;
     InternalType* pVals = (InternalType*)&vals;

@@ -19,14 +19,6 @@
 #include "callFunctionFromGateway.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-//    {sci_gschur, "gschur"}, obsolete (use schur in linear algebra)
-//    {sci_gspec, "gspec"}, obsolete (use spec in linear algebra)
-    {sci_ereduc, "ereduc"},
-    {sci_fstair, "fstair"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_cacsd0(void)
 {
     return 0;

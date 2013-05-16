@@ -20,22 +20,8 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-{ sci_loadfftwlibrary,"loadfftwlibrary"},
-{ sci_disposefftwlibrary,"disposefftwlibrary"},
-{ sci_fftwlibraryisloaded,"fftwlibraryisloaded"},
-{ sci_fftw,"fftw"},
-{ sci_fftw_flags,"fftw_flags"},
-{ sci_get_fftw_wisdom,"get_fftw_wisdom"},
-{ sci_set_fftw_wisdom,"set_fftw_wisdom"},
-{ sci_fftw_forget_wisdom,"fftw_forget_wisdom"},
-{ sci_dct,"dct"},
-{ sci_dst,"dst"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_fftw(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

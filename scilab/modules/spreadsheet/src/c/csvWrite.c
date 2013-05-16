@@ -26,6 +26,7 @@
 #include "core_math.h"
 #include "csvDefault.h"
 #include "utftolatin.h"
+#include "strsubst.h"
 // =============================================================================
 #define DEFAULT_CSV_WRITE_STRING_FORMAT "%s"
 #define DEFAULT_CSV_WRITE_DOUBLE_FORMAT "%.lg"

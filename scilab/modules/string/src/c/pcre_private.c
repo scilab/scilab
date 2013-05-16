@@ -874,7 +874,7 @@ SKIP_DATA:
                             *_pstCapturedString = (char**)MALLOC(sizeof(char*) * *_piCapturedStringCount);
                             for (i = 0 ; i < *_piCapturedStringCount ; i++)
                             {
-                                char* pstSubstring = NULL;
+                                const char* pstSubstring = NULL;
                                 pcre_get_substring(bptr, use_offsets, count, i + 1, &pstSubstring);
                                 if (pstSubstring != NULL)
                                 {

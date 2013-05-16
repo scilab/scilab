@@ -192,6 +192,7 @@
     <ClCompile Include="sci_svd.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_linear_algebra_gw.h" />
     <ClInclude Include="..\..\includes\linear_algebra_gw.hxx" />
   </ItemGroup>
   <ItemGroup>

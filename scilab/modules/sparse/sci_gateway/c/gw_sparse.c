@@ -17,36 +17,6 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-	{NULL, ""}, //sparse
-	{NULL, ""}, //spget
-	{NULL, ""}, //full
-	{sci_lufact,"lufact"},
-	{sci_lusolve,"lusolve"},
-	{sci_ludel,"ludel"},
-	{sci_luget,"luget"},
-	{sci_spclean,"spclean"},
-	{NULL, ""}, //nnz
-	{NULL, ""}, //spmax
-	{NULL, ""}, //spmin
-	{sci_spmatrix,"spmatrix"},
-	{sci_spchol,"spchol"},
-	{sci_fadj2sp,"fadj2sp"},
-	{NULL, ""}, //spcompa
-	{sci_ordmmd,"ordmmd"},
-	{sci_blkfc1i,"blkfc1i"},
-	{sci_blkslvi,"blkslvi"},
-	{sci_inpnvi,"inpnvi"},
-	{sci_sfinit,"sfinit"},
-	{sci_symfcti,"symfcti"},
-	{sci_bfinit,"bfinit"},
-	{NULL, ""}, //msparse
-	{NULL, ""}, //mspget
-	{NULL, ""}, //mfull
-	{C2F(scita2lpd),"ta2lpd"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_sparse(void)
 {
     return 0;

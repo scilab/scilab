@@ -18,26 +18,8 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-#define LINEAR_ALGEBRA2_TAB_SIZE 15
-static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={
-	{NULL, ""}, //qr
-	{NULL, ""}, //svd
-	{NULL, ""}, //lsq
-	{NULL, ""}, //spec
-	{NULL, ""}, //inv
-	{NULL, ""}, //rcond
-	{NULL, ""}, //chol
-	{NULL, ""}, //lu
-	{NULL, ""}, //slash
-	{NULL, ""}, //backslash
-	{NULL, ""}, //schur
-	{NULL, ""}, //hess
-	{NULL, ""}, //det
-	{NULL, ""} //balanc
-};
-/*--------------------------------------------------------------------------*/
 int gw_linear_algebra2(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

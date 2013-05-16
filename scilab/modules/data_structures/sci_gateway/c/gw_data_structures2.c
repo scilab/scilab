@@ -18,12 +18,6 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-    {NULL, ""}, //getfield
-    {NULL, ""} //setfield
-};
-/*--------------------------------------------------------------------------*/
 int gw_data_structures2(void)
 {
     return 0;

@@ -13,6 +13,9 @@
 #ifndef __CONFIGVARIABLE_HXX__
 #define __CONFIGVARIABLE_HXX__
 
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 #include <list>
 #include <map>
 #include <string>

@@ -37,11 +37,11 @@ int sci_zrankqr(char *fname, void* pvApiCtx)
     int* piAddrptrQ     = NULL;
     int* piAddrptrDWORK = NULL;
 
-    doublecomplex* ptrA     = NULL;
-    doublecomplex* ptrTAU   = NULL;
-    doublecomplex* ptrR     = NULL;
-    doublecomplex* ptrQ     = NULL;
-    doublecomplex* ptrDWORK = NULL;
+    doublecomplex* ptrA             = NULL;
+    const doublecomplex* ptrTAU     = NULL;
+    const doublecomplex* ptrR       = NULL;
+    const doublecomplex* ptrQ       = NULL;
+    const doublecomplex* ptrDWORK   = NULL;
 
     int minrhs = 1;
     int maxrhs = 3;

@@ -35,7 +35,7 @@
 void* get_thickness_property(void* _pvCtx, char* pobjUID)
 {
     double lineThickness = 0.0;
-    double *pdblLineThickness = &lineThickness;
+    void* pdblLineThickness = &lineThickness;
 
     getGraphicObjectProperty(pobjUID, __GO_LINE_THICKNESS__, jni_double,  &pdblLineThickness);
 

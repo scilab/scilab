@@ -23,35 +23,13 @@
 extern BOOL BuildWithVS8ExpressF2C(void);
 #endif
 /*--------------------------------------------------------------------------*/
-static int C2F(scivoid)(char *fname,unsigned long fname_len)
+static int C2F(scivoid)(char *fname, unsigned long fname_len)
 {
-	return 0;
+    return 0;
 }
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-  {NULL, ""}, //int32
-  {NULL, ""}, //int16
-  {NULL, ""}, //int8
-  {NULL, ""}, //inttype
-  {NULL, ""}, //double
-  {NULL, ""}, //uint32
-  {NULL, ""}, //uint16
-  {NULL, ""}, //uint8
-  {C2F(scimgeti),"mgeti"},
-  {C2F(scivoid),"sci_void"},
-  {C2F(sciimput),"%i_mput"},
-  {C2F(sciitriu),"%i_triu"},
-  {C2F(sciitril),"%i_tril"},
-  {C2F(sciisum),"%i_sum"},
-//  {C2F(sciimax),"%i_max"},
-//  {C2F(sciimin),"%i_min"},
-  {C2F(sciip),"%i_p"},
-  {C2F(sciiprod),"%i_prod"},
-};
 /*--------------------------------------------------------------------------*/
 int gw_integer(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

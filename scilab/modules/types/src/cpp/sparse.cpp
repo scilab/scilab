@@ -211,7 +211,7 @@ template<typename T> bool setNonZero(T& s, typename Eigen::internal::traits<T>::
 
 
 template<typename Src, typename Sp>
-void doAppend(Src CONST& src, int r, int c, Sp& dest)
+void doAppend(Src SPARSE_CONST& src, int r, int c, Sp& dest)
 {
     typedef typename Eigen::internal::traits<Sp>::Scalar data_t;
     mycopy_n(makeMatrixIterator<data_t>(src, makeNonZerosIterator(src)), nonZeros(src)
@@ -220,7 +220,7 @@ void doAppend(Src CONST& src, int r, int c, Sp& dest)
 
 // TODO : awaiting ggael's response to bug for [sp, sp]
 template<typename Scalar1, typename Scalar2>
-void doAppend(Eigen::SparseMatrix<Scalar1> CONST& src, int r, int c, Eigen::SparseMatrix<Scalar2>& dest)
+void doAppend(Eigen::SparseMatrix<Scalar1> SPARSE_CONST& src, int r, int c, Eigen::SparseMatrix<Scalar2>& dest)
 {
     typedef typename Eigen::SparseMatrix<Scalar1>::InnerIterator srcIt_t;
     typedef Eigen::SparseMatrix<Scalar2> dest_t;
@@ -236,7 +236,7 @@ void doAppend(Eigen::SparseMatrix<Scalar1> CONST& src, int r, int c, Eigen::Spar
 Sp is an Eigen::SparseMatrix
 */
 template<typename Sp, typename M>
-void cwiseInPlaceProduct(Sp& sp, M CONST& m)
+void cwiseInPlaceProduct(Sp& sp, M SPARSE_CONST& m)
 {
     // should be a transform_n() over makeNonZerosIterator(src)
     for (std::size_t k = 0; k != sp.outerSize(); ++k)
@@ -313,20 +313,20 @@ Sparse::Sparse(int _iRows, int _iCols, bool cplx)
     m_piDims[1] = _iCols;
 }
 
-Sparse::Sparse(Double CONST& src)
+Sparse::Sparse(Double SPARSE_CONST& src)
 {
     create(src.getRows(), src.getCols(), src, RowWiseFullIterator(src.getRows(), src.getCols()), src.getSize());
 }
 
-Sparse::Sparse(Double CONST& src, Double CONST& idx)
+Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx)
 {
-    double CONST* const endOfRow(idx.getReal() + idx.getRows());
+    double SPARSE_CONST* const endOfRow(idx.getReal() + idx.getRows());
     create( static_cast<int>(*std::max_element(idx.getReal(), endOfRow))
             , static_cast<int>(*std::max_element(endOfRow, endOfRow + idx.getRows()))
             , src, makeIteratorFromVar(idx), idx.getSize() / 2 );
 }
 
-Sparse::Sparse(Double CONST& src, Double CONST& idx, Double CONST& dims)
+Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims)
 {
     create(static_cast<int>(dims.getReal(0, 0))
            , static_cast<int>(dims.getReal(0, 1))
@@ -351,14 +351,14 @@ Sparse::Sparse(RealSparse_t* realSp, CplxSparse_t* cplxSp):  matrixReal(realSp),
     m_piDims[1] = m_iCols;
 }
 
-Sparse::Sparse(Double CONST& xadj, Double CONST& adjncy, Double CONST& src, std::size_t r, std::size_t c)
+Sparse::Sparse(Double SPARSE_CONST& xadj, Double SPARSE_CONST& adjncy, Double SPARSE_CONST& src, std::size_t r, std::size_t c)
 {
     Adjacency a(xadj.getReal(), adjncy.getReal());
     create(static_cast<int>(r), static_cast<int>(c), src, makeIteratorFromVar(a), src.getSize());
 }
 
 template<typename DestIter>
-void Sparse::create(int rows, int cols, Double CONST& src, DestIter o, std::size_t n)
+void Sparse::create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, std::size_t n)
 {
     m_iCols = cols;
     m_iRows = rows;
@@ -385,7 +385,7 @@ void Sparse::create(int rows, int cols, Double CONST& src, DestIter o, std::size
     finalize();
 }
 
-void Sparse::fill(Double& dest, int r, int c) CONST
+void Sparse::fill(Double& dest, int r, int c) SPARSE_CONST
 {
     Sparse & cthis(const_cast<Sparse&>(*this));
     if (isComplex())
@@ -502,7 +502,7 @@ std::complex<double> Sparse::getImg(int _iRows, int _iCols) const
     return res;
 }
 
-void Sparse::whoAmI() CONST
+void Sparse::whoAmI() SPARSE_CONST
 {
     std::cout << "types::Sparse";
 }
@@ -512,7 +512,7 @@ Sparse* Sparse::clone(void) const
     return new Sparse(*this);
 }
 
-GenericType::RealType Sparse::getType(void) CONST
+GenericType::RealType Sparse::getType(void) SPARSE_CONST
 {
     return RealSparse;
 }
@@ -646,7 +646,7 @@ bool Sparse::resize(int _iNewRows, int _iNewCols)
 }
 // TODO decide if a complex matrix with 0 imag can be == to a real matrix
 // not true for dense (cf double.cpp)
-bool Sparse::operator==(const InternalType& it) CONST
+bool Sparse::operator==(const InternalType& it) SPARSE_CONST
 {
     Sparse* otherSparse = const_cast<Sparse*>(dynamic_cast<Sparse const*>(&it));/* types::GenericType is not const-correct :( */
     Sparse & cthis (const_cast<Sparse&>(*this));
@@ -1369,7 +1369,7 @@ Sparse* Sparse::remove(typed_list* _pArgs)
     return pOut;
 }
 
-bool Sparse::append(int r, int c, types::Sparse CONST* src)
+bool Sparse::append(int r, int c, types::Sparse SPARSE_CONST* src)
 {
     //        std::wcerr << L"to a sparse of size"<<getRows() << L","<<getCols() << L" should append @"<<r << L","<<c<< "a sparse:"<< src->toString(32,80)<<std::endl;
     if (src->isComplex())
@@ -1527,7 +1527,7 @@ InternalType* Sparse::extract(typed_list* _pArgs)
     return pOut;
 }
 
-Sparse* Sparse::extract(int nbCoords, int CONST* coords, int CONST* maxCoords, int CONST* resSize, bool asVector) CONST
+Sparse* Sparse::extract(int nbCoords, int SPARSE_CONST* coords, int SPARSE_CONST* maxCoords, int SPARSE_CONST* resSize, bool asVector) SPARSE_CONST
 {
     if ( (asVector && maxCoords[0] > getSize()) ||
     (asVector == false && maxCoords[0] > getRows()) ||
@@ -1563,7 +1563,7 @@ coords are Scilab 1-based
 extract std::make_pair(coords, asVector), rowIter
 */
 template<typename Src, typename SrcTraversal, typename Sz, typename DestTraversal>
-bool Sparse::copyToSparse(Src CONST& src, SrcTraversal srcTrav, Sz n, Sparse& sp, DestTraversal destTrav)
+bool Sparse::copyToSparse(Src SPARSE_CONST& src, SrcTraversal srcTrav, Sz n, Sparse& sp, DestTraversal destTrav)
 {
     if (!(src.isComplex() || sp.isComplex()))
     {
@@ -1673,7 +1673,7 @@ Sparse* Sparse::multiply(Sparse const& o) const
     return new Sparse(realSp, cplxSp);
 }
 
-Sparse* Sparse::dotMultiply(Sparse CONST& o) const
+Sparse* Sparse::dotMultiply(Sparse SPARSE_CONST& o) const
 {
     RealSparse_t* realSp(0);
     CplxSparse_t* cplxSp(0);
@@ -2054,16 +2054,16 @@ bool Sparse::reshape(int _iNewRows, int _iNewCols)
 
 //    SparseBool* SparseBool::new
 
-SparseBool::SparseBool(Bool CONST& src)
+SparseBool::SparseBool(Bool SPARSE_CONST& src)
 {
     create(src.getRows(), src.getCols(), src, RowWiseFullIterator(src.getRows(), src.getCols()), src.getSize());
 }
 /* @param src : Bool matrix to copy into a new sparse matrix
 @param idx : Double matrix to use as indexes to get values from the src
 **/
-SparseBool::SparseBool(Bool CONST& src, Double CONST& idx)
+SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
 {
-    double CONST* const endOfRow(idx.getReal() + idx.getRows());
+    double SPARSE_CONST* const endOfRow(idx.getReal() + idx.getRows());
     create( static_cast<int>(*std::max_element(idx.getReal(), endOfRow))
             , static_cast<int>(*std::max_element(endOfRow, endOfRow + idx.getRows()))
             , src, makeIteratorFromVar(idx), idx.getSize() / 2 );
@@ -2073,7 +2073,7 @@ SparseBool::SparseBool(Bool CONST& src, Double CONST& idx)
 @param idx : Double matrix to use as indexes to get values from the src
 @param dims : Double matrix containing the dimensions of the new matrix
 **/
-SparseBool::SparseBool(Bool CONST& src, Double CONST& idx, Double CONST& dims)
+SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims)
 {
     create((int)dims.getReal(0, 0) , (int)dims.getReal(0, 1) , src, makeIteratorFromVar(idx), (int)idx.getSize() / 2);
 }
@@ -2109,7 +2109,7 @@ SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
 }
 
 template<typename DestIter>
-void SparseBool::create(int rows, int cols, Bool CONST& src, DestIter o, std::size_t n)
+void SparseBool::create(int rows, int cols, Bool SPARSE_CONST& src, DestIter o, std::size_t n)
 {
     m_iCols = cols;
     m_iRows = rows;
@@ -2133,7 +2133,7 @@ bool SparseBool::toString(std::wostringstream& ostr) const
     return true;
 }
 
-void SparseBool::whoAmI() CONST
+void SparseBool::whoAmI() SPARSE_CONST
 {
     std::cout << "types::SparseBool";
 }
@@ -2667,7 +2667,7 @@ SparseBool* SparseBool::remove(typed_list* _pArgs)
     return pOut;
 }
 
-bool SparseBool::append(int r, int c, SparseBool CONST* src)
+bool SparseBool::append(int r, int c, SparseBool SPARSE_CONST* src)
 {
     doAppend(*src, r, c, *matrixBool);
     finalize();
@@ -2781,7 +2781,7 @@ InternalType* SparseBool::insertNew(typed_list* _pArgs, InternalType* _pSource)
     return pOut2;
 }
 
-SparseBool* SparseBool::extract(int nbCoords, int CONST* coords, int CONST* maxCoords, int CONST* resSize, bool asVector) CONST
+SparseBool* SparseBool::extract(int nbCoords, int SPARSE_CONST* coords, int SPARSE_CONST* maxCoords, int SPARSE_CONST* resSize, bool asVector) SPARSE_CONST
 {
     if ( (asVector && maxCoords[0] > getSize()) ||
     (asVector == false && maxCoords[0] > getRows()) ||
@@ -2958,7 +2958,7 @@ int* SparseBool::outputRowCol(int* out)const
     return sparseTransform(*matrixBool, sparseTransform(*matrixBool, out, GetRow<BoolSparse_t>()), GetCol<BoolSparse_t>());
 }
 
-bool SparseBool::operator==(const InternalType& it) CONST
+bool SparseBool::operator==(const InternalType& it) SPARSE_CONST
 {
     SparseBool* otherSparse = const_cast<SparseBool*>(dynamic_cast<SparseBool const*>(&it));/* types::GenericType is not const-correct :( */
     return (otherSparse
@@ -2967,7 +2967,7 @@ bool SparseBool::operator==(const InternalType& it) CONST
     && equal(*matrixBool, *otherSparse->matrixBool));
 }
 
-bool SparseBool::operator!=(const InternalType& it) CONST
+bool SparseBool::operator!=(const InternalType& it) SPARSE_CONST
 {
     return !(*this == it);
 }
@@ -2978,17 +2978,17 @@ void SparseBool::finalize()
     matrixBool->finalize();
 }
 
-GenericType::RealType SparseBool::getType(void) CONST
+GenericType::RealType SparseBool::getType(void) SPARSE_CONST
 {
     return InternalType::RealSparseBool;
 }
 
-bool SparseBool::get(int r, int c) CONST
+bool SparseBool::get(int r, int c) SPARSE_CONST
 {
     return matrixBool->coeff(r, c);
 }
 
-bool SparseBool::set(int _iRows, int _iCols, bool _bVal, bool _bFinalize) CONST
+bool SparseBool::set(int _iRows, int _iCols, bool _bVal, bool _bFinalize) SPARSE_CONST
 {
     matrixBool->coeffRef(_iRows, _iCols) = _bVal;
 
@@ -2999,7 +2999,7 @@ bool SparseBool::set(int _iRows, int _iCols, bool _bVal, bool _bFinalize) CONST
     return true;
 }
 
-void SparseBool::fill(Bool& dest, int r, int c) CONST
+void SparseBool::fill(Bool& dest, int r, int c) SPARSE_CONST
 {
     mycopy_n(makeMatrixIterator<bool >(*matrixBool, RowWiseFullIterator(getRows(), getCols())), getSize()
     , makeMatrixIterator<bool >(dest, RowWiseFullIterator(dest.getRows(), dest.getCols(), r, c)));

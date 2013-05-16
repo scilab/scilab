@@ -11,7 +11,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-#if POLYNOMIALS_GW_EXPORTS
+#if POLYNOMIALS_EXPORTS
 #define EXTERN_POLYNOMIALS_GW __declspec (dllexport)
 #else
 #define EXTERN_POLYNOMIALS_GW __declspec (dllimport)

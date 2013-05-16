@@ -442,7 +442,7 @@ int	iRightDivisionOfComplexMatrix(
 
     dblEps		= F2C(dlamch)("eps", 1L);
     cNorm		= '1';
-    dblAnorm	= C2F(zlange)(&cNorm, &_iRows2, &_iCols2, poVar2, &_iRows2, poDwork);
+    dblAnorm	= C2F(zlange)(&cNorm, &_iRows2, &_iCols2, (double*)poVar2, &_iRows2, (double*)poDwork);
 
     //tranpose A and B
 
@@ -467,8 +467,8 @@ int	iRightDivisionOfComplexMatrix(
     if (_iRows2 == _iCols2)
     {
         cNorm		= 'F';
-        C2F(zlacpy)(&cNorm, &_iCols2, &_iCols2, poAt, &_iCols2, poAf, &_iCols2);
-        C2F(zgetrf)(&_iCols2, &_iCols2, poAf, &_iCols2, pIpiv, &iInfo);
+        C2F(zlacpy)(&cNorm, &_iCols2, &_iCols2, (double*)poAt, &_iCols2, (double*)poAf, &_iCols2);
+        C2F(zgetrf)(&_iCols2, &_iCols2, (double*)poAf, &_iCols2, pIpiv, &iInfo);
         if (iInfo == 0)
         {
             cNorm = '1';
@@ -476,7 +476,7 @@ int	iRightDivisionOfComplexMatrix(
             if (dblRcond > dsqrts(dblEps))
             {
                 cNorm	= 'N';
-                C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, poAf, &_iCols2, pIpiv, poBt, &_iCols2, &iInfo);
+                C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, (double*)poAf, &_iCols2, pIpiv, (double*)poBt, &_iCols2, &iInfo);
                 vTransposeDoubleComplexMatrix(poBt, _iCols2, _iRows2, poOut, 1);
                 vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
                 iExit = 1;
@@ -723,14 +723,14 @@ int	iLeftDivisionOfComplexMatrix(
     cNorm		= '1';
     pDwork		= (doublecomplex*)malloc(sizeof(doublecomplex) * iWorkMin);
     dblEps		= F2C(dlamch)("eps", 1L);
-    dblAnorm	= C2F(zlange)(&cNorm, &_iRows1, &_iCols1, poVar1, &_iRows1, pDwork);
+    dblAnorm	= C2F(zlange)(&cNorm, &_iRows1, &_iCols1, (double*)poVar1, &_iRows1, (double*)pDwork);
 
     if (_iRows1 == _iCols1)
     {
         cNorm		= 'F';
-        C2F(zlacpy)(&cNorm, &_iCols1, &_iCols1,	poVar1, &_iCols1, pAf, &_iCols1);
-        C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2,	poVar2, &_iCols1, pXb, &_iCols1);
-        C2F(zgetrf)(&_iCols1, &_iCols1, pAf, &_iCols1, pIpiv, &iInfo);
+        C2F(zlacpy)(&cNorm, &_iCols1, &_iCols1,	(double*)poVar1, &_iCols1, (double*)pAf, &_iCols1);
+        C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2,	(double*)poVar2, &_iCols1, (double*)pXb, &_iCols1);
+        C2F(zgetrf)(&_iCols1, &_iCols1, (double*)pAf, &_iCols1, pIpiv, &iInfo);
         if (iInfo == 0)
         {
             cNorm = '1';
@@ -738,9 +738,9 @@ int	iLeftDivisionOfComplexMatrix(
             if (dblRcond > dsqrts(dblEps))
             {
                 cNorm	= 'N';
-                C2F(zgetrs)(&cNorm, &_iCols1, &_iCols2, pAf, &_iCols1, pIpiv, pXb, &_iCols1, &iInfo);
+                C2F(zgetrs)(&cNorm, &_iCols1, &_iCols2, (double*)pAf, &_iCols1, pIpiv, (double*)pXb, &_iCols1, &iInfo);
                 cNorm	= 'F';
-                C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2, pXb, &_iCols1, poOut, &_iCols1);
+                C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2, (double*)pXb, &_iCols1, (double*)poOut, &_iCols1);
                 vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
                 iExit = 1;
             }
@@ -758,7 +758,7 @@ int	iLeftDivisionOfComplexMatrix(
         dblRcond = dsqrts(dblEps);
         cNorm = 'F';
         iMax = Max(_iRows1, _iCols1);
-        C2F(zlacpy)(&cNorm, &_iRows1, &_iCols2, poVar2, &_iRows1, pXb, &iMax);
+        C2F(zlacpy)(&cNorm, &_iRows1, &_iCols2, (double*)poVar2, &_iRows1, (double*)pXb, &iMax);
         memset(pJpvt, 0x00, sizeof(int) * _iCols1);
         C2F(zgelsy1)(	&_iRows1, &_iCols1, &_iCols2, poVar1, &_iRows1, pXb, &iMax,
                         pJpvt, &dblRcond, &pRank[0], pDwork, &iWorkMin, pRwork, &iInfo);
@@ -773,7 +773,7 @@ int	iLeftDivisionOfComplexMatrix(
             }
 
             cNorm = 'F';
-            C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2, pXb, &iMax, poOut, &_iCols1);
+            C2F(zlacpy)(&cNorm, &_iCols1, &_iCols2, (double*)pXb, &iMax, (double*)poOut, &_iCols1);
             vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
         }
     }

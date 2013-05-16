@@ -15,18 +15,8 @@
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-/*static BOOL loadedDep = FALSE;*/
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-    {NULL, ""}, //"editvar"
-    {NULL, ""}, //"browsevar"
-    {NULL, ""}, //filebrowser
-    {NULL, ""} //updatebrowsevar
-};
-/*--------------------------------------------------------------------------*/
 int gw_ui_data(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

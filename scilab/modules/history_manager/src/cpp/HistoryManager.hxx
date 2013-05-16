@@ -26,6 +26,10 @@ extern "C"
 #include <list>
 #include "HistoryFile.hxx"
 #include "HistorySearch.hxx"
+
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 /*------------------------------------------------------------------------*/
 class HISTORY_MANAGER_IMPEXP HistoryManager
 {

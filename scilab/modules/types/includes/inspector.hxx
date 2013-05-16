@@ -13,12 +13,15 @@
 #ifndef __INSPECTOR_HXX__
 #define __INSPECTOR_HXX__
 
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 #include <vector>
 #include <string>
 
 extern "C"
 {
-    #include "dynlib_types.h"
+#include "dynlib_types.h"
 }
 
 #include "internal.hxx"
@@ -26,25 +29,25 @@ extern "C"
 namespace types
 {
 #ifndef NDEBUG
-    class TYPES_IMPEXP Inspector
-    {
-    protected :
-        static std::vector<InternalType*> m_vIT;
+class TYPES_IMPEXP Inspector
+{
+protected :
+    static std::vector<InternalType*> m_vIT;
 
-    public : 
-        static int getItemCount();
-        static int getUnreferencedItemCount();
+public :
+    static int getItemCount();
+    static int getUnreferencedItemCount();
 
-        static void addItem(InternalType* _pIT);
-        static void removeItem(InternalType* _pIT);
+    static void addItem(InternalType* _pIT);
+    static void removeItem(InternalType* _pIT);
 
-        static InternalType* getItem(int _iPos);
-        static InternalType* getUnreferencedItem(int _iPos);
+    static InternalType* getItem(int _iPos);
+    static InternalType* getUnreferencedItem(int _iPos);
 
-        static std::wstring showItem(int _iPos);
-        static std::wstring showUnreferencedItem(int _iPos);
-        static void deleteItems();
-    };
+    static std::wstring showItem(int _iPos);
+    static std::wstring showUnreferencedItem(int _iPos);
+    static void deleteItems();
+};
 #endif
 }
 #endif /* !__INSPECTOR_HXX__ */

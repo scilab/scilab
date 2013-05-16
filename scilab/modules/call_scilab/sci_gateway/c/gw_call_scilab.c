@@ -15,14 +15,8 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-{sci_fromjava,"fromjava"},
-{sci_fromc,"fromc"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_call_scilab(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

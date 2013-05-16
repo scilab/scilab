@@ -13,17 +13,8 @@
 #include "gw_symbolic.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-{sci_addf,"addf"},
-{sci_subf,"subf"},
-{sci_mulf,"mulf"},
-{sci_ldivf,"ldivf"},
-{sci_rdivf,"rdivf"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_symbolic(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

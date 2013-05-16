@@ -19,6 +19,10 @@ extern "C"
 #include "dynlib_history_manager.h"
 #include "BOOL.h"
 }
+
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 /*------------------------------------------------------------------------*/
 typedef enum
 {

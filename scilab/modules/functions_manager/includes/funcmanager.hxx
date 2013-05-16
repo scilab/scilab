@@ -18,15 +18,17 @@
 #include <iostream>
 #include <string>
 
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
 
 #ifdef _MSC_VER
-	#if FUNC_MAN_EXPORTS
-		#define EXTERN_FUNC_MAN __declspec (dllexport)
-	#else
-		#define EXTERN_FUNC_MAN __declspec (dllimport)
-	#endif
+#if FUNC_MAN_EXPORTS
+#define EXTERN_FUNC_MAN __declspec (dllexport)
 #else
-	#define EXTERN_FUNC_MAN 
+#define EXTERN_FUNC_MAN __declspec (dllimport)
+#endif
+#else
+#define EXTERN_FUNC_MAN
 #endif
 
 using namespace std;
@@ -39,30 +41,30 @@ using namespace std;
 #define END_EXT     L".end"
 
 //Gateway function pointer
-typedef int (*GW_MOD)(void); 
+typedef int (*GW_MOD)(void);
 
 class EXTERN_FUNC_MAN FuncManager
 {
-private : 
-//	map <string, FuncInfo*>	m_FuncMap;
-	map<wstring, GW_MOD>    m_ModuleMap;
-	map<wstring, GW_MOD>    m_ActivModuleMap;
-	list<wstring>           m_ModuleName;
-	wstring                 m_szXmlFile;
+private :
+    //	map <string, FuncInfo*>	m_FuncMap;
+    map<wstring, GW_MOD>    m_ModuleMap;
+    map<wstring, GW_MOD>    m_ActivModuleMap;
+    list<wstring>           m_ModuleName;
+    wstring                 m_szXmlFile;
     bool                    m_bNoStart;
 public:
-	FuncManager(void);
-	~FuncManager(void);
+    FuncManager(void);
+    ~FuncManager(void);
 
     bool LoadModules(bool _bNoStart);
 
 private :
-	bool GetModules();
-	bool AppendModules();
-	bool VerifyModule(wchar_t* ModuleName);
+    bool GetModules();
+    bool AppendModules();
+    bool VerifyModule(wchar_t* ModuleName);
 
-	bool CreateModuleList(void);
-	bool LoadFuncByModule(void);
+    bool CreateModuleList(void);
+    bool LoadFuncByModule(void);
 
     bool ExecuteStartFile(wstring _stModule);
 

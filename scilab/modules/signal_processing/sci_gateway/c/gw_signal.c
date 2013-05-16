@@ -14,23 +14,8 @@
 #include "callFunctionFromGateway.h"
 #include <stdlib.h>
 
-#define GWTABLE_LENGTH(t) (sizeof(Tab) / sizeof(gw_generic_table))
-
-static gw_generic_table Tab[] = {
-    {NULL, ""}, /* placeholder */
-    {NULL, ""}, //fft
-    {NULL, ""}, /* placeholder */
-    {NULL, ""}, //corr
-    {NULL, ""}, //rpem
-    {NULL, ""}, //amell
-    {NULL, ""}, //delip
-    {NULL, ""}, //remez
-    {NULL, ""},  //syredi
-    {NULL, ""} // conv2
-};
-
 int gw_signal_processing(void)
 {
-  return 0;
+    return 0;
 
 }

@@ -17,22 +17,8 @@
 #include "api_scilab.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-{sci_winopen,"winopen"},
-{NULL, ""}, // winqueryreg
-{sci_findfileassociation,"findfileassociation"},
-{NULL, ""}, //dos
-{sci_mcisendstring,"mcisendstring"},
-{sci_consolebox,"consolebox"},
-{NULL, ""}, //win64
-{sci_istssession,"istssession"},
-{sci_getsystemmetrics,"getsystemmetrics"},
-{sci_createGUID,"createGUID"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_windows_tools(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

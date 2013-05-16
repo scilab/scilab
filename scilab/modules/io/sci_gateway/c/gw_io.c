@@ -16,32 +16,6 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intsave)(); /* fortran subroutine */
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-
-{NULL, ""}, //setenv
-{NULL,""}, //read
-{NULL, ""}, //getenv
-{NULL,""}, //getio
-{NULL,""},
-{NULL,""},
-{NULL,""}, //write
-{NULL,""}, //rat
-{NULL, ""}, //file
-{NULL ,""}, //host
-{NULL, ""}, //unix
-{NULL,""}, //readb
-{NULL,""}, //writb
-{NULL,""}, //getpid
-{NULL,""}, //read4b
-{NULL,""}, //write4b
-{NULL,""}, //save
-{NULL, ""}, //load
-{NULL, ""} //%_load
-};
-/*--------------------------------------------------------------------------*/
 int gw_io(void)
 {
     return 0;

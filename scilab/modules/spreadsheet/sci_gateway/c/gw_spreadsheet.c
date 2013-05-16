@@ -17,21 +17,8 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-    {NULL, ""}, // "xls_open"
-    {NULL, ""}, // "xls_read"
-    {NULL, ""}, // "csvDefault"
-    {NULL, ""}, // "csvRead"
-    {NULL, ""}, // "csvStringToDouble"
-    {NULL, ""}, // "csvTextScan"
-    {NULL, ""}, // "csvWrite"
-    {NULL, ""}, // "write_csv"
-    {NULL, ""} // "read_csv"
-};
-/*--------------------------------------------------------------------------*/
 int gw_spreadsheet(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

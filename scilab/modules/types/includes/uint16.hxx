@@ -27,49 +27,63 @@
 
 namespace types
 {
-    class TYPES_IMPEXP UInt16 : public ArrayOf<unsigned short>
+class TYPES_IMPEXP UInt16 : public ArrayOf<unsigned short>
+{
+public :
+    UInt16(unsigned short _usVal);
+    UInt16(int _iRows, int _iCols);
+    UInt16(int _iDims, int* _piDims);
+    UInt16(int _iRows, int _iCols, unsigned short** _pusData);
+    ~UInt16();
+
+    InternalType*               clone();
+
+
+    /*Config management*/
+    void                        whoAmI();
+
+    bool                        isInt()
     {
-    public :
-                                    UInt16(unsigned short _usVal);
-                                    UInt16(int _iRows, int _iCols);
-                                    UInt16(int _iDims, int* _piDims);
-                                    UInt16(int _iRows, int _iCols, unsigned short** _pusData);
-                                    ~UInt16();
+        return true;
+    }
+    bool                        isUInt16()
+    {
+        return true;
+    }
 
-        InternalType*               clone();
+    bool                        operator==(const InternalType& it);
+    bool                        operator!=(const InternalType& it);
 
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring        getTypeStr()
+    {
+        return L"uint16";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring        getShortTypeStr()
+    {
+        return L"i";
+    }
 
-        /*Config management*/
-        void                        whoAmI();
+protected :
+    RealType				    getType(void)
+    {
+        return InternalType::RealUInt16;
+    }
 
-        bool                        isInt() { return true; }
-        bool                        isUInt16() { return true; }
+private :
+    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
-        bool                        operator==(const InternalType& it);
-        bool                        operator!=(const InternalType& it);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring        getTypeStr() {return L"uint16";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring        getShortTypeStr() {return L"i";}
-
-    protected :
-        RealType				    getType(void){return InternalType::RealUInt16;}
-
-    private :
-        virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-
-        virtual unsigned short      getNullValue();
-        virtual UInt16*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual unsigned short      copyValue(unsigned short _usData);
-        virtual void                deleteAll();
-        virtual void                deleteImg();
-        virtual unsigned short*     allocData(int _iSize);
-    };
+    virtual unsigned short      getNullValue();
+    virtual UInt16*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual unsigned short      copyValue(unsigned short _usData);
+    virtual void                deleteAll();
+    virtual void                deleteImg();
+    virtual unsigned short*     allocData(int _iSize);
+};
 }
 
 #ifdef _MSC_VER
 template class TYPES_IMPEXP types::ArrayOf<unsigned short>; //UInt16
 #endif
-
 #endif /* !__UINT16_HXX__ */
