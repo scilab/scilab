@@ -3027,16 +3027,19 @@ public class CallScilabBridge {
      * Copy figure to clipboard
      * @param figID the ID of the figure
      */
-    public static void copyFigureToClipBoard(int figID) {
+    public static void copyFigureToClipBoard(String figID) {
         Image figureImage = ImageExporter.imageExport(figID);
-        Transferable clipboardImage = new ClipboardImage(figureImage);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(clipboardImage, null);
+        if (figureImage != null) {
+            Transferable clipboardImage = new ClipboardImage(figureImage);
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(clipboardImage, null);
+        }
     }
 
     /**
      * Class used to store Images in the clipboard
      */
     public static class ClipboardImage implements Transferable {
+        private final DataFlavor[] flavors = new DataFlavor[] {DataFlavor.imageFlavor};
         private final Image image;
 
         /**
@@ -3053,17 +3056,17 @@ public class CallScilabBridge {
          */
         @Override
         public DataFlavor[] getTransferDataFlavors() {
-            return new DataFlavor[] {DataFlavor.imageFlavor};
+            return flavors;
         }
 
         /**
-         * Test supproted DataFlavors
+         * Test supported DataFlavors
          * @param flavor the flavor to test
          * @return true if the flavor is supported
          */
         @Override
         public boolean isDataFlavorSupported(DataFlavor flavor) {
-            return DataFlavor.imageFlavor.equals(flavor);
+            return flavors[0].equals(flavor);
         }
 
         /**
@@ -3074,9 +3077,10 @@ public class CallScilabBridge {
          */
         @Override
         public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException {
-            if (!DataFlavor.imageFlavor.equals(flavor)) {
+            if (!flavors[0].equals(flavor)) {
                 throw new UnsupportedFlavorException(flavor);
             }
+
             return image;
         }
     }

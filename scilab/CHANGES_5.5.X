@@ -180,6 +180,8 @@ Bug fixes
 * Bug #11343 fixed - The "isoview" figure property did not work when the axes
                      margins had been modified.
 
+* Bug #11648 fixed - Copy graphic to clipboard did not work.
+
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
 
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
