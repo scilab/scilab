@@ -28,7 +28,7 @@
             Y = grand(m, n, "exp", Av)
             Y = grand(m, n, "f", Dfn, Dfd)
             Y = grand(m, n, "nf", Dfn, Dfd, Xnon)
-            Y = grand(m, n, "gam", shape, scale)
+            Y = grand(m, n, "gam", shape, rate)
             Y = grand(m, n, "nor", Av, Sd)
             Y = grand(m, n, "geom", p)
             Y = grand(m, n, "poi", mu)
@@ -117,7 +117,7 @@
             Y = grand(m, n, "exp", Av)
             Y = grand(m, n, "f", Dfn, Dfd)
             Y = grand(m, n, "nf", Dfn, Dfd, Xnon)
-            Y = grand(m, n, "gam", shape, scale)
+            Y = grand(m, n, "gam", shape, rate)
             Y = grand(m, n, "nor", Av, Sd)
             Y = grand(m, n, "geom", p)
             Y = grand(m, n, "poi", mu)
@@ -291,13 +291,13 @@
                 <term>gamma</term>
                 <listitem>
                     <para>
-                        <literal>Y = grand(m, n, "gam", shape, scale)</literal> génère des nombres aléatoires suivant la loi
+                        <literal>Y = grand(m, n, "gam", shape, rate)</literal> génère des nombres aléatoires suivant la loi
                         gamma de paramètres <literal>shape</literal> (réel &gt; 0) et <literal>scale</literal>
                         (réel &gt; 0). La densité est :
                     </para>
                     <para>
                         <latex>
-                            \dfrac{ \textrm{scale}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{scale} x}}{\gamma(\textrm{shape}) }
+                            \dfrac{ \textrm{rate}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{rate} x}}{\gamma(\textrm{shape}) }
                         </latex>
                     </para>
                     <para>
