@@ -166,11 +166,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     // utiliser pour la generation de code
 
     if xptr($)==1 & zcptr($)>1 then
-        mess=msprintf(_("No continuous-time state. Thresholds are ignored; this \n"+..
-        "may be OK if you don''t generate external events with them.\n"+..
-        "If you want to reactivate the thresholds, the you need\n\n"+..
-        "to include a block with continuous-time state in your diagram.\n"+..
-        "You can for example include DUMMY CLSS block (linear palette)."))
+        mess=msprintf(_("No continuous-time state. Thresholds are ignored; this \nmay be OK if you don''t generate external events with them.\nIf you want to reactivate the thresholds, the you need\n\nto include a block with continuous-time state in your diagram.\n   You can for example include DUMMY CLSS block (linear palette)."))
         messagebox(mess,"modal","error");
     end
 
@@ -1317,7 +1313,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         //    typ_z(i)=ll.blocktype=='z'
         typ_z(i)=ll.nzcross
         if typ_z(i)<0 then
-            messagebox(msprintf(_("Number of zero crossings in block #i cannot be determined."),i),"modal","error")
+            messagebox(msprintf(_("Number of zero crossings in block #%d cannot be determined."),i),"modal","error")
             ok=%f
         end
         typ_x(i)=ll.state<>[]|ll.blocktype=="x" // some blocks like delay
@@ -2125,9 +2121,7 @@ function ninnout=under_connection(path_out,prt_out,nout,path_in,prt_in,nin,flagg
         hilite_path(path_in, msg)
     end
 
-    mess=msprintf(_("Highlighted block(s) have connected ports \n"+..
-    "with  sizes that cannot be determined by the context.\n"+..
-    "What is the size of this link?"))
+    mess=msprintf(_("Highlighted block(s) have connected ports \nwith  sizes that cannot be determined by the context.\nWhat is the size of this link?"))
 
     if flagg==1 then
         ninnout=evstr(dialog(mess,"[1,1]"))
