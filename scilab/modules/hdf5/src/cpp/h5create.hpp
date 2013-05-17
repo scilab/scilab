@@ -60,7 +60,7 @@ int h5create(char * fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, _("%s: Wrong input argument #%d: a H5Object expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: a H5Object expected.\n"), fname, 1);
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 2, &addr);

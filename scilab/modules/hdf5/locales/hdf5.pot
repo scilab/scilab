@@ -411,7 +411,7 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_h5delete.cpp, line: 60
 #, c-format
-msgid "%s: Wrong input argument #%d: a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
 msgstr ""
 
 #
@@ -596,7 +596,7 @@ msgstr ""
 #
 # File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 45
 #, c-format
-msgid "%s: Wrong number of input argument: More than %d expected.\n"
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
 msgstr ""
 
 #

@@ -42,7 +42,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
 
     if (nbIn < 2)
     {
-        Scierror(999, gettext("%s: Wrong number of input argument: More than %d expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong number of input arguments: More than %d expected.\n"), fname, 2);
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
