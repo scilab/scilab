@@ -153,7 +153,7 @@ int sci_h5write(char *fname, unsigned long fname_len)
         {
             if (!checkVarDimension(pvApiCtx, addr, 1, 1))
             {
-                Scierror(999, _("%s: Invalid dimension for input argument #%d: a single string expected.\n"), fname, 4);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 4);
                 return 0;
             }
 
@@ -185,7 +185,7 @@ int sci_h5write(char *fname, unsigned long fname_len)
                 err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, dptrs[i - rhsBegin]);
                 if (row > 1 && col > 1)
                 {
-                    Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, i);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: Real row or column vector expected.\n"), fname, i);
                     return 0;
                 }
 
@@ -197,7 +197,7 @@ int sci_h5write(char *fname, unsigned long fname_len)
                     }
                     else if (size != (row > col ? row : col))
                     {
-                        Scierror(999, _("%s: Bad dimensions for input argument #%d: the same size are expected.\n"), fname, i);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: Same size expected.\n"), fname, i);
                         return 0;
                     }
                 }
@@ -208,7 +208,7 @@ int sci_h5write(char *fname, unsigned long fname_len)
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A row of doubles expected.\n"), fname, i);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, i);
                 return 0;
             }
         }

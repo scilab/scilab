@@ -384,7 +384,7 @@ hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t ty
 
                 if (ndims != dndims)
                 {
-                    throw H5Exception(__LINE__, __FILE__, _("Invalid dimensions."));
+                    throw H5Exception(__LINE__, __FILE__, _("Wrong dimensions."));
                 }
                 else
                 {
@@ -392,7 +392,7 @@ hid_t H5Dataset::create(H5Object & loc, const std::string & name, const hid_t ty
                     {
                         if (maxdims[i] != dmaxdims[i])
                         {
-                            throw H5Exception(__LINE__, __FILE__, _("Cannot modify maximaum dimensions."));
+                            throw H5Exception(__LINE__, __FILE__, _("Cannot modify maximum dimensions."));
                         }
                         if (ddims[i] > dims[i])
                         {

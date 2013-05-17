@@ -142,7 +142,7 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
 
     if (row != 5)
     {
-        Scierror(999, _("%s: Bad dimensions for input argument #%d: five rows expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrogn size for input argument #%d: five row vector expected.\n"), fname, 3);
         return 0;
     }
 
@@ -202,13 +202,13 @@ int sci_h5dataset(char *fname, unsigned long fname_len)
 
     if (row != 6)
     {
-        Scierror(999, _("%s: Bad dimensions for input argument #%d: six rows expected.\n"), fname, hasSourceType ? 6 : 5);
+        Scierror(999, _("%s: Wrong size for input argument #%d: six row vector expected.\n"), fname, hasSourceType ? 6 : 5);
         return 0;
     }
 
     if (col != size)
     {
-        Scierror(999, _("%s: Bad dimensions for input argument #%d: %d columns expected.\n"), fname, hasSourceType ? 6 : 5, size);
+        Scierror(999, _("%s: Wrong size for input argument #%d: %d column vector expected.\n"), fname, hasSourceType ? 6 : 5, size);
         return 0;
     }
 
