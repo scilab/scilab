@@ -37,9 +37,9 @@ public :
     };
 
     Callable(): InternalType() {}
-    virtual               ~Callable() {}
+    virtual             ~Callable() {}
 
-    bool                  isCallable()
+    bool                isCallable()
     {
         return true;
     }
@@ -50,7 +50,7 @@ public :
     {
         m_wstName = _wstName;
     }
-    std::wstring          getName()
+    std::wstring        getName()
     {
         return m_wstName;
     }
@@ -58,7 +58,7 @@ public :
     {
         m_wstModule = _wstModule;
     }
-    std::wstring          getModule()
+    std::wstring        getModule()
     {
         return m_wstModule;
     }
@@ -71,6 +71,11 @@ public :
     /* return type as short string ( s, i, ce, l, ... )*/
     virtual std::wstring  getShortTypeStr() = 0;
     virtual InternalType* clone(void) = 0;
+
+    virtual bool        isAssignable(void)
+    {
+        return true;
+    }
 
 protected :
     std::wstring           m_wstName;
