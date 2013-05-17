@@ -372,7 +372,7 @@ msgstr ""
 # File: sci_gateway/c/sci_linmeq.c, line: 1183
 #, c-format
 msgid ""
-"%s: Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"%s: Wrong value for input argument #%d: eigenvalues must have negative real parts.\n"
 msgstr ""
 
 #
@@ -380,7 +380,7 @@ msgstr ""
 # File: sci_gateway/c/sci_linmeq.c, line: 1193
 #, c-format
 msgid ""
-"%s: Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"%s: Wrong value for input argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr ""
 
 #
