@@ -235,11 +235,11 @@ void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int buff
             maxColorIndex = 0;
         }
 
-        if (maxColorIndex > colormapSize-1)
+        if (maxColorIndex > colormapSize - 1)
         {
             maxColorIndex = colormapSize - 1;
         }
-        if (minColorIndex > colormapSize-1)
+        if (minColorIndex > colormapSize - 1)
         {
             minColorIndex = colormapSize - 1;
         }
@@ -248,7 +248,7 @@ void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int buff
     else
     {
         minColorIndex = 0;
-        maxColorIndex = colormapSize-1;
+        maxColorIndex = colormapSize - 1;
     }
 
     releaseGraphicObjectProperty(__GO_COLOR_RANGE__, colorRange, jni_int_vector, 0);
@@ -288,21 +288,21 @@ void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int buff
 
     for (int i = 0; i < numVertices; i++)
     {
-        bufferOffset = elementsSize*i;
+        bufferOffset = elementsSize * i;
 
         if (useOutsideColors == 1)
         {
             if (values[i] < minValue)
             {
                 buffer[bufferOffset] = minColor[0];
-                buffer[bufferOffset+1] = minColor[1];
-                buffer[bufferOffset+2] = minColor[2];
+                buffer[bufferOffset + 1] = minColor[1];
+                buffer[bufferOffset + 2] = minColor[2];
             }
             else if (values[i] > maxValue)
             {
                 buffer[bufferOffset] = maxColor[0];
-                buffer[bufferOffset+1] = maxColor[1];
-                buffer[bufferOffset+2] = maxColor[2];
+                buffer[bufferOffset + 1] = maxColor[1];
+                buffer[bufferOffset + 2] = maxColor[2];
             }
             else
             {
@@ -318,7 +318,7 @@ void TriangleMeshFecDataDecomposer::fillColors(char* id, float* buffer, int buff
 
         if (elementsSize == 4)
         {
-            buffer[bufferOffset+3] = 1.0;
+            buffer[bufferOffset + 3] = 1.0;
         }
     }
 
@@ -358,7 +358,7 @@ int TriangleMeshFecDataDecomposer::getIndicesSize(char* id)
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**) &piNumIndices);
 
-    return 3*numIndices;
+    return 3 * numIndices;
 }
 
 int TriangleMeshFecDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
@@ -394,17 +394,17 @@ int TriangleMeshFecDataDecomposer::fillIndices(char* id, int* buffer, int buffer
 
     for (int i = 0; i < numIndices; i++)
     {
-        v0 = triangleIndices[3*i];
-        v1 = triangleIndices[3*i+1];
-        v2 = triangleIndices[3*i+2];
+        v0 = triangleIndices[3 * i];
+        v1 = triangleIndices[3 * i + 1];
+        v2 = triangleIndices[3 * i + 2];
 
         if (areFaceIndicesValid(numVertices, v0, v1, v2) &&
-            areFaceVerticesValid(coordinates, v0, v1, v2, logMask) &&
-            areFaceValuesValid(values, v0, v1, v2))
+                areFaceVerticesValid(coordinates, v0, v1, v2, logMask) &&
+                areFaceValuesValid(values, v0, v1, v2))
         {
             buffer[bufferOffset] = v0;
-            buffer[bufferOffset+1] = v1;
-            buffer[bufferOffset+2] = v2;
+            buffer[bufferOffset + 1] = v1;
+            buffer[bufferOffset + 2] = v2;
 
             bufferOffset += 3;
         }
@@ -425,11 +425,11 @@ int TriangleMeshFecDataDecomposer::areFaceVerticesValid(double* coordinates, int
     getVertexCoordinates(coordinates, v2, vertex2);
 
     if (DecompositionUtils::isValid(vertex0[0], vertex0[1], vertex0[2]) &&
-        DecompositionUtils::isLogValid(vertex0[0], vertex0[1], vertex0[2], logMask) &&
-        DecompositionUtils::isValid(vertex1[0], vertex1[1], vertex1[2]) &&
-        DecompositionUtils::isLogValid(vertex1[0], vertex1[1], vertex1[2], logMask) &&
-        DecompositionUtils::isValid(vertex2[0], vertex2[1], vertex2[2]) &&
-        DecompositionUtils::isLogValid(vertex2[0], vertex2[1], vertex2[2], logMask))
+            DecompositionUtils::isLogValid(vertex0[0], vertex0[1], vertex0[2], logMask) &&
+            DecompositionUtils::isValid(vertex1[0], vertex1[1], vertex1[2]) &&
+            DecompositionUtils::isLogValid(vertex1[0], vertex1[1], vertex1[2], logMask) &&
+            DecompositionUtils::isValid(vertex2[0], vertex2[1], vertex2[2]) &&
+            DecompositionUtils::isLogValid(vertex2[0], vertex2[1], vertex2[2], logMask))
     {
         return 1;
     }
@@ -459,9 +459,9 @@ int TriangleMeshFecDataDecomposer::areFaceIndicesValid(int numVertices, int v0, 
 
 void TriangleMeshFecDataDecomposer::getVertexCoordinates(double* coordinates, int index, double* vertexCoordinates)
 {
-    vertexCoordinates[0] = coordinates[3*index];
-    vertexCoordinates[1] = coordinates[3*index+1];
-    vertexCoordinates[2] = coordinates[3*index+2];
+    vertexCoordinates[0] = coordinates[3 * index];
+    vertexCoordinates[1] = coordinates[3 * index + 1];
+    vertexCoordinates[2] = coordinates[3 * index + 2];
 }
 
 int TriangleMeshFecDataDecomposer::getWireIndicesSize(char* id)
@@ -471,11 +471,11 @@ int TriangleMeshFecDataDecomposer::getWireIndicesSize(char* id)
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**) &piNumTriangles);
 
-    return 6*numTriangles;
+    return 6 * numTriangles;
 }
 
 /*
- * To do: ouput shared edges once instead of twice (once per adjacent face).
+ * To do: output shared edges once instead of twice (once per adjacent face).
  */
 int TriangleMeshFecDataDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
@@ -509,20 +509,20 @@ int TriangleMeshFecDataDecomposer::fillWireIndices(char* id, int* buffer, int bu
 
     for (int i = 0; i < numIndices; i++)
     {
-        v0 = triangleIndices[3*i];
-        v1 = triangleIndices[3*i+1];
-        v2 = triangleIndices[3*i+2];
+        v0 = triangleIndices[3 * i];
+        v1 = triangleIndices[3 * i + 1];
+        v2 = triangleIndices[3 * i + 2];
 
         if (areFaceIndicesValid(numVertices, v0, v1, v2) &&
-            areFaceVerticesValid(coordinates, v0, v1, v2, logMask) &&
-            areFaceValuesValid(values, v0, v1, v2))
+                areFaceVerticesValid(coordinates, v0, v1, v2, logMask) &&
+                areFaceValuesValid(values, v0, v1, v2))
         {
             buffer[bufferOffset] = v0;
-            buffer[bufferOffset+1] = v1;
-            buffer[bufferOffset+2] = v1;
-            buffer[bufferOffset+3] = v2;
-            buffer[bufferOffset+4] = v2;
-            buffer[bufferOffset+5] = v0;
+            buffer[bufferOffset + 1] = v1;
+            buffer[bufferOffset + 2] = v1;
+            buffer[bufferOffset + 3] = v2;
+            buffer[bufferOffset + 4] = v2;
+            buffer[bufferOffset + 5] = v0;
 
             bufferOffset += 6;
         }

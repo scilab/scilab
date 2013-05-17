@@ -221,7 +221,7 @@ int read_integer(char *fname,unsigned long fname_len)
 	unsigned short* pusDataOut	= NULL;
 	unsigned int* puiDataOut	= NULL;
 
-	//check input/ouput arguments count
+	//check input/output arguments count
     CheckInputArgument(pvApiCtx, 6, 6);
     CheckOutputArgument(pvApiCtx, 6, 6);
 

@@ -26,7 +26,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     //        Each element must be a list with 16 elements:
     //          1- a list containing function name and function type
     //          2- vector of number of inputs
-    //          3- vector of number of ouputs
+    //          3- vector of number of outputs
     //          4- vector of number of clock inputs
     //          5- vector of number of clock outputs
     //          6- vector (column) of continuous initial condition
