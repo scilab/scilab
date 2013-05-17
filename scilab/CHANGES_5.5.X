@@ -149,6 +149,8 @@ Bug fixes
 
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.
 
+* Bug #8636 fixed - roots() help page updated (default algorithm value was wrong).
+
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
 * Bug #8680 fixed - Output argument "end" of the regexp function has been changed.
@@ -157,8 +159,8 @@ Bug fixes
 
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
-* Bug #8862 fixed -  mget and mput couldn't read and write 64 bit data from	78
-                     binary file.
+* Bug #8862 fixed - mget and mput couldn't read and write 64 bit data from
+                    binary files.
 
 * Bug #9004 fixed - bitcmp function called with one input argument returned an error.
 

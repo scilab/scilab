@@ -39,7 +39,7 @@
                 <term>algo</term>
                 <listitem>
                     <para>
-                        a string, the algorithm to be used (default algo="f").
+                        a string, the algorithm to be used (default algo="e").
                         If algo="e", then the eigenvalues of the companion matrix are returned.
                         If algo="f", then the Jenkins-Traub method is used (if the polynomial is real and 
                         has degree lower than 100).
@@ -69,6 +69,8 @@
             which might be faster in some cases. 
             On the other hand, some specific polynomials are known to be able to 
             make this option to fail.
+            For instance, <literal>p=poly([1.e300,1.e0,1.e-300],'x');</literal>
+            provokes infinite looping of <literal>roots(p,"f")</literal>
         </para>
     </refsection>
     <refsection>
