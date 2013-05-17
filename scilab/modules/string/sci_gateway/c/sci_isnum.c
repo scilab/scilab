@@ -18,6 +18,8 @@
 #include "Scierror.h"
 #include "isnum.h"
 #include "MALLOC.h"
+#include "sciprint.h"
+#include "warningmode.h"
 
 // =============================================================================
 int sci_isnum(char *fname, unsigned long fname_len)
