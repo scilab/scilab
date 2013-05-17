@@ -338,7 +338,7 @@ msgstr ""
 # File: sci_gateway/c/sci_waitbar.c, line: 250
 # File: sci_gateway/c/sci_waitbar.c, line: 345
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
 msgstr ""
 
 #
@@ -623,7 +623,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_uimenu.c, line: 96
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
 msgstr ""
 
 #
