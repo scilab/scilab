@@ -106,7 +106,7 @@ msgstr ""
 # File: sci_gateway/c/sci_unzoom.c, line: 78
 # File: sci_gateway/c/sci_zoom_rect.c, line: 128
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
 msgstr ""
 
 #
