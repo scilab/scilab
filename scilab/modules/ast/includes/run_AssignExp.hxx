@@ -46,6 +46,12 @@ void visitprivate(const AssignExp  &e)
                 result_set(NULL);
             }
 
+            if (pIT->isAssignable() == false)
+            {
+                result_set(NULL);
+                return;
+            }
+
             if (pIT->isImplicitList())
             {
                 if (pIT->getAs<ImplicitList>()->isComputable())

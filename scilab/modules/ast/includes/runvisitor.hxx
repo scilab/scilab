@@ -373,9 +373,7 @@ public :
 
     void visitprivate(const NilExp &e)
     {
-        /*
-        FIXME :
-        */
+        result_set(new types::Void());
     }
 
 

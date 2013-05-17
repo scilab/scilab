@@ -566,7 +566,12 @@ variable			{
 				}
 | COLON				{
 				  $$ = new ast::exps_t;
-				  $$->push_front(new ast::ColonVar(@$));
+				  $$->push_front(new ast::ColonVar(@1));
+				}
+| COMMA {
+    $$ = new ast::exps_t;
+    $$->push_front(new ast::NilExp(@1));
+    $$->push_front(new ast::NilExp(@1));
 				}
 | variableDeclaration		{
 				  $$ = new ast::exps_t;
@@ -584,15 +589,20 @@ variable			{
 				  $$ = $1;
 				}
 | functionArgs COMMA COLON	{
-				  $1->push_back(new ast::ColonVar(@$));
-			          $$ = $1;
+				  $1->push_back(new ast::ColonVar(@1));
+			      $$ = $1;
 				}
 | functionArgs COMMA variableDeclaration {
 				  $1->push_back($3);
 				  $$ = $1;
 				}
-| functionArgs COMMA		{
+| functionArgs COMMA {
+                  $1->push_back(new ast::NilExp(@2));
 				  $$ = $1;
+				}
+| COMMA functionArgs {
+                  $2->push_front(new ast::NilExp(@1));
+				  $$ = $2;
 				}
 ;
 
