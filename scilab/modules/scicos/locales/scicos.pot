@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-04-16 17:44+0100\n"
+"Revision-Date: 2013-05-17 15:10+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -1345,6 +1345,16 @@ msgstr ""
 # File: macros/scicos_scicos/setvalue.sci, line: 266
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/translator.sci, line: 73
+msgid "There are too many Modelica files.\n"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/translator.sci, line: 106
+msgid "-------Modelica translator error message:-----"
 msgstr ""
 
 #

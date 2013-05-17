@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-04-16 17:44+0100\n"
+"Revision-Date: 2013-05-17 15:10+0100\n"
 
 # File: sci_gateway/c/sci_basename.c, line: 49
 # File: sci_gateway/c/sci_basename.c, line: 57
@@ -664,9 +664,9 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_mgetl.c, line: 220
-# File: src/c/mget.c, line: 82
-# File: src/c/mget.c, line: 268
-# File: src/c/mput.c, line: 82
+# File: src/c/mget.c, line: 79
+# File: src/c/mget.c, line: 269
+# File: src/c/mput.c, line: 79
 #, c-format
 msgid "%s: No input file associated to logical unit %d.\n"
 msgstr ""
@@ -897,20 +897,20 @@ msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
 msgstr ""
 
 #
-# File: src/c/mget.c, line: 68
+# File: src/c/mget.c, line: 65
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/c/mget.c, line: 252
+# File: src/c/mget.c, line: 253
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
 
 #
-# File: src/c/mget.c, line: 263
+# File: src/c/mget.c, line: 264
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr ""
@@ -937,34 +937,34 @@ msgid "Warning: file '%s' already opened in Scilab.\n"
 msgstr ""
 
 #
-# File: src/c/mput.c, line: 66
-# File: src/c/mput.c, line: 181
+# File: src/c/mput.c, line: 63
+# File: src/c/mput.c, line: 178
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/c/mput.c, line: 250
+# File: src/c/mput.c, line: 247
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
 msgstr ""
 
 #
-# File: src/c/mput.c, line: 258
+# File: src/c/mput.c, line: 255
 #, c-format
 msgid "%s: No File opened in Scilab.\n"
 msgstr ""
 
 #
-# File: src/c/mput.c, line: 271
+# File: src/c/mput.c, line: 268
 #, c-format
 msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 
 #
-# File: src/c/mput.c, line: 279
+# File: src/c/mput.c, line: 276
 # File: src/c/mputstr.c, line: 29
 # File: src/c/mseek.c, line: 45
 # File: src/c/mtell.c, line: 28

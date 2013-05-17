@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-04-16 17:44+0100\n"
+"Revision-Date: 2013-05-17 15:10+0100\n"
 
 # File: sci_gateway/c/sci_mprintf.c, line: 64
 # File: sci_gateway/c/sci_msprintf.c, line: 156
@@ -72,8 +72,8 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_msprintf.c, line: 104
 # File: sci_gateway/cpp/sci_diary.cpp, line: 861
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1375
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1445
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1389
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1459
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
@@ -99,13 +99,13 @@ msgstr ""
 # File: sci_gateway/cpp/sci_diary.cpp, line: 879
 # File: sci_gateway/cpp/sci_diary.cpp, line: 948
 # File: sci_gateway/cpp/sci_diary.cpp, line: 964
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1225
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1247
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1271
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1292
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1349
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1239
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1261
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1285
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1306
 # File: sci_gateway/cpp/sci_diary.cpp, line: 1363
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1432
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1377
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1446
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -144,16 +144,16 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 253
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1326
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1402
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1340
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1416
 #, c-format
 msgid "%s: error can not create diary: %s.\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_diary.cpp, line: 259
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1332
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1408
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1346
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1422
 #, c-format
 msgid "%s: error can not create diary.\n"
 msgstr ""
@@ -249,19 +249,19 @@ msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1145
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1152
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1175
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1182
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_diary.cpp, line: 1203
+# File: sci_gateway/cpp/sci_diary.cpp, line: 1217
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
