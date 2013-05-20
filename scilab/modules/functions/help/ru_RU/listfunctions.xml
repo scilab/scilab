@@ -104,9 +104,6 @@ flist(profilable)
                 <link linkend="deff">deff</link>
             </member>
             <member>
-                <link linkend="comp">comp</link>
-            </member>
-            <member>
                 <link linkend="fun2string">fun2string</link>
             </member>
             <member>

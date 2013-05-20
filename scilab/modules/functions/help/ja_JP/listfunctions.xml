@@ -132,7 +132,7 @@
                     
                     11型または13型の変数を収集します;
                     
-                    後者の場合, 
+                    後者の場合,
                     
                     最初のコード行の末尾の特殊なプロファイル用エントリ,
                     
@@ -183,12 +183,6 @@ flist(profilable)
             <member>
                 
                 <link linkend="deff">deff</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="comp">comp</link>
                 
             </member>
             

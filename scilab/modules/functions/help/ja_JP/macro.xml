@@ -104,12 +104,6 @@ function [y1,...,yn]=foo(x1,...,xm)
             
             <member>
                 
-                <link linkend="comp">comp</link>
-                
-            </member>
-            
-            <member>
-                
                 <link linkend="lib">lib</link>
                 
             </member>
