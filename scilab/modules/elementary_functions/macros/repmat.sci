@@ -38,7 +38,7 @@ function B = repmat(A,varargin)
         if typeof(A)=="rational" then
             B=rlist(repmat(A.num,varargin(:)),repmat(A.den,varargin(:)),A.dt)
             return
-        elseif typeof(A)<>"hypermat" then
+        else
             execstr('B=%'+typeof(A)+"_repmat(A,varargin(:))")
             return
         end
@@ -99,7 +99,7 @@ function B = repmat(A,varargin)
             I(i)=ind;
         end
 
-        if typeof(A) == 'hypermat' | (size(varargin(1),"*") <> 1 & size(varargin(1)) <3) then // Works if A is hypermat but not for int8,int16 matrix
+        if nda > 2 | (size(varargin(1),"*") <> 1 & size(varargin(1)) <3) then // Works if A is hypermat but not for int8,int16 matrix
             B=A(I(:));
         else // Works for int8, int16... matrix but not for hypermat
             if rhs ==2 then
@@ -113,7 +113,7 @@ function B = repmat(A,varargin)
                         for i=1:size(varargin(1),2)
                             varargin(i)=varargin_temp(1)(i);
                         end
-                    else 
+                    else
                         error(msprintf(_("%s: Wrong size for input argument #%d: a vector expected.\n"),"repmat",2));
                     end
                 end
@@ -146,7 +146,7 @@ function B = repmat(A,varargin)
                 end
                 J=J';
                 A_final=A_base(J);
-                B=mlist(["hm", "dims", "entries"], matrix(dims,1,-1), matrix(A_final,-1,1));
+                B=matrix(A_final, dims);
             end
         end
     end

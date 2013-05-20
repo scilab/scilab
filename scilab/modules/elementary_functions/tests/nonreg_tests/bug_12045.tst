@@ -24,9 +24,9 @@ A_uint16=uint16(A);
 A_int32=int32(A);
 A_uint32=uint32(A);
 
-assert_checkequal(repmat(A_int8,1,1,2),repmat(A,1,1,2));
-assert_checkequal(repmat(A_uint8,1,1,2),repmat(A,1,1,2));
-assert_checkequal(repmat(A_int16,1,1,2),repmat(A,1,1,2));
-assert_checkequal(repmat(A_uint16,1,1,2),repmat(A,1,1,2));
-assert_checkequal(repmat(A_int32,1,1,2),repmat(A,1,1,2));
-assert_checkequal(repmat(A_uint32,1,1,2),repmat(A,1,1,2));
+assert_checkequal(double(repmat(A_int8,1,1,2)),repmat(A,1,1,2));
+assert_checkequal(double(repmat(A_uint8,1,1,2)),repmat(A,1,1,2));
+assert_checkequal(double(repmat(A_int16,1,1,2)),repmat(A,1,1,2));
+assert_checkequal(double(repmat(A_uint16,1,1,2)),repmat(A,1,1,2));
+assert_checkequal(double(repmat(A_int32,1,1,2)),repmat(A,1,1,2));
+assert_checkequal(double(repmat(A_uint32,1,1,2)),repmat(A,1,1,2));
