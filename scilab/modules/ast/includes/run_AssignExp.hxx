@@ -46,12 +46,6 @@ void visitprivate(const AssignExp  &e)
                 result_set(NULL);
             }
 
-            if (pIT->isAssignable() == false)
-            {
-                result_set(NULL);
-                return;
-            }
-
             if (pIT->isImplicitList())
             {
                 if (pIT->getAs<ImplicitList>()->isComputable())
@@ -60,6 +54,12 @@ void visitprivate(const AssignExp  &e)
                     delete pIT;
                     pIT = pTemp;
                 }
+            }
+
+            if (pIT->isAssignable() == false)
+            {
+                result_set(NULL);
+                return;
             }
 
             const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
