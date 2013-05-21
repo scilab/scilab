@@ -265,6 +265,9 @@ Bug fixes
 
 * Bug #12614 fixed - Helpbrowser was not launched in EDT.
 
+* Bug #12629 fixed - Last example of csim help page defined a function called
+                     input() (overwriting the Scilab one).
+
 * Bug #12631 fixed - A "see also" link has been added from progressionbar to waitbar and vice versa.
 
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
