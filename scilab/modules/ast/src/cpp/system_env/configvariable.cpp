@@ -29,7 +29,6 @@ std::list<std::wstring> ConfigVariable::m_ModuleList;
 void ConfigVariable::setModuleList(std::list<std::wstring>& _pModule_list)
 {
     m_ModuleList = _pModule_list;
-
 }
 
 std::list<std::wstring> ConfigVariable::getModuleList()
