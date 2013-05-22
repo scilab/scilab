@@ -261,6 +261,8 @@ Bug fixes
 * Bug #12070 fixed - Removing a module can now be done in on-line mode even if
                      it installed in off-line mode.
 
+* Bug #12080 fixed - lsqrsolve always printed messages.
+
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
 
 * Bug #12143 fixed - "stop entity picker" (ged(11)) returned an error message.

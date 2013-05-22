@@ -203,13 +203,7 @@ c     info = 4   iteration is not making good progress.
          if (.not.cremat(fname,top,0,1,1,lr,lc)) return
          stk(lr)=info
       else
-         if(info.eq.1.or.info.eq.3) then
-            call msgs(108,0)
-         elseif(info.eq.2) then
-            call msgs(109,0)
-         elseif(info.eq.4) then
-            call msgs(110,0)
-         elseif(info.eq.5) then
+          if(info.eq.5) then
             call msgs(111,0)
           elseif(info.eq.6) then
             call msgs(112,0)
