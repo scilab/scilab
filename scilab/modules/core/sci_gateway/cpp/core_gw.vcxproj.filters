@@ -93,9 +93,6 @@
     <ClCompile Include="sci_quit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_resume.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_stacksize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

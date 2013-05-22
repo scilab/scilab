@@ -197,7 +197,6 @@
     <ClCompile Include="sci_lasterror.cpp" />
     <ClCompile Include="sci_pause.cpp" />
     <ClCompile Include="sci_quit.cpp" />
-    <ClCompile Include="sci_resume.cpp" />
     <ClCompile Include="sci_stacksize.cpp" />
     <ClCompile Include="sci_warning.cpp" />
     <ClCompile Include="sci_who.cpp" />

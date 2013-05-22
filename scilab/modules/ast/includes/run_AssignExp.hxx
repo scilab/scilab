@@ -30,7 +30,7 @@ void visitprivate(const AssignExp  &e)
             InternalType *pIT = e.right_val_get();
             if (pIT == NULL)
             {
-                expected_size_set(1);
+                expected_setSize(1);
                 e.right_exp_get().accept(*this);
 
                 if (result_getSize() != 1)
@@ -67,7 +67,7 @@ void visitprivate(const AssignExp  &e)
             {
                 //ReturnExp so, put the value in the previous scope
                 symbol::Context::getInstance()->putInPreviousScope(pVar->name_get(), *pIT);
-                ((AssignExp*)&e)->break_set();
+                ((AssignExp*)&e)->return_set();
             }
             else
             {
@@ -88,7 +88,6 @@ void visitprivate(const AssignExp  &e)
         if (pCell)
         {
             InternalType *pIT;
-            bool bRet           = true;
             bool bNew           = false;
 
             //retrieve variable
@@ -225,7 +224,7 @@ void visitprivate(const AssignExp  &e)
             }
             //            delete piMaxDim;
             //            delete[] piDimSize;
-            for (int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            for (int iArg = 0 ; iArg < (int)pArgs->size() ; iArg++)
             {
                 if ((*pArgs)[iArg]->isDeletable())
                 {
@@ -400,7 +399,8 @@ void visitprivate(const AssignExp  &e)
                 else if (pIT->isStruct())
                 {
                     // a("b") = [] is not a deletion !!
-                    Struct* pStr = pIT->getAs<Struct>();
+
+                    //Struct* pStr = pIT->getAs<Struct>();
 
                     pOut = pIT->getAs<Struct>()->insert(pArgs, pITR);
                 }
@@ -683,8 +683,8 @@ void visitprivate(const AssignExp  &e)
                         in.push_back(pS);
                         in.push_back(pInsert);
 
-                        Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
-                        Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, this);
+                        Function* pCallSet = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
+                        Callable::ReturnValue ret =  pCallSet->call(in, opt, 1, out, this);
                         if (ret == Callable::OK)
                         {
                             pRet = pIT;
@@ -707,7 +707,7 @@ void visitprivate(const AssignExp  &e)
                     //dest : variable where to insert data
                     //source : data to insert
 
-                    for (int i = 0 ; i < pArgs->size() ; i++)
+                    for (int i = 0 ; i < (int)pArgs->size() ; i++)
                     {
                         (*pArgs)[i]->IncreaseRef();
                         in.push_back((*pArgs)[i]);
@@ -729,7 +729,7 @@ void visitprivate(const AssignExp  &e)
 
                     pIT->DecreaseRef();
                     pInsert->DecreaseRef();
-                    for (int i = 0 ; i < pArgs->size() ; i++)
+                    for (int i = 0 ; i < (int)pArgs->size() ; i++)
                     {
                         (*pArgs)[i]->DecreaseRef();
                     }
@@ -760,10 +760,9 @@ void visitprivate(const AssignExp  &e)
                     {
                         //is not a(x) = y but something like a.b(x) = y
                         //so we have to retrieve struct and children to assign new value
-                        InternalType *pHead     = NULL;
                         InternalType* pMain     = NULL;
                         InternalType* pCurrent  = NULL;
-                        bool bOK = getStructFromExp(&pCall->name_get(), &pMain, &pCurrent, NULL, pOut);
+                        getStructFromExp(&pCall->name_get(), &pMain, &pCurrent, NULL, pOut);
                         //change pOut only to toString call
                         pOut = pMain;
                     }
@@ -800,7 +799,7 @@ void visitprivate(const AssignExp  &e)
             }
             //delete piMaxDim;
             //delete[] piDimSize;
-            for (int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            for (int iArg = 0 ; iArg < (int)pArgs->size() ; iArg++)
             {
                 if ((*pArgs)[iArg]->isDeletable())
                 {
@@ -820,7 +819,7 @@ void visitprivate(const AssignExp  &e)
 
             /*getting what to assign*/
             T exec;
-            exec.expected_size_set(iLhsCount);
+            exec.expected_setSize(iLhsCount);
             e.right_exp_get().accept(exec);
 
             if (exec.result_getSize() != iLhsCount)
@@ -853,7 +852,7 @@ void visitprivate(const AssignExp  &e)
             //a.b = x
             //a.b can be a struct or a tlist/mlist or a handle
             /*getting what to assign*/
-            expected_size_set(1);
+            expected_setSize(1);
             e.right_exp_get().accept(*this);
             InternalType *pIT = result_get();
             if (pIT->isImplicitList())

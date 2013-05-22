@@ -296,6 +296,9 @@ void visitprivate(const LogicalOpExp &e)
                 pResult = GenericLogicalOr(pITL, pITR);
                 break;
             }
+
+            default :
+                break;
         }
         //overloading
         if (pResult == NULL)

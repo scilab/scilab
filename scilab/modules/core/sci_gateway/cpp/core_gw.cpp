@@ -45,7 +45,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"getmd5", &sci_getmd5, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"error", &sci_error, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"pause", &sci_pause, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"resume", &sci_resume, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"abort", &sci_abort, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"who", &sci_who, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"stacksize", &sci_stacksize, MODULE_NAME));

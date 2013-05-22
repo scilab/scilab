@@ -325,6 +325,9 @@
       <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\time\sci_gateway\cpp\time_gw.vcxproj">
       <Project>{28305722-6486-481d-bd0f-b4398d8a09c5}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

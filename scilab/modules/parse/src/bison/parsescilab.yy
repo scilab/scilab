@@ -537,7 +537,7 @@ simpleFunctionCall :
 
 ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); }
 | ID LBRACE functionArgs RBRACE				{ $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); }
-| ID LPAREN RPAREN				            { printf("simpleFunctionCall ()\n");$$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); }
+| ID LPAREN RPAREN				            { $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); }
 | ID LBRACE RBRACE				            { $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); }
 ;
 
@@ -562,7 +562,6 @@ ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar
 /* What can be use in a function call */
 functionArgs :
 variable			{
-                  printf("variable\n");
 				  $$ = new ast::exps_t;
 				  $$->push_front($1);
 				}
@@ -579,17 +578,12 @@ variable			{
 				  $$->push_front($1);
 				}
 | COMMA {
-                  printf("COMMA\n");
                   $$ = new ast::exps_t;
 				  $$->push_front(new ast::NilExp(@1));
 				  $$->push_front(new ast::NilExp(@1));
 }
-| COMMA SPACES {
-                  printf("COMMA SPACES\n");
-}
 /*| // Epsilon 
                 {
-                  printf("Epsilon\n");
                   $$ = new ast::exps_t;
 				  $$->push_front(new ast::NilExp(@$));
 				}
@@ -610,12 +604,10 @@ variable			{
 				  $$ = $1;
 				}
 | functionArgs COMMA {
-    printf("functionArgs COMMA\n");
                   $1->push_back(new ast::NilExp(@2));
 				  $$ = $1;
 				}
 | COMMA functionArgs {
-    printf("COMMA functionArgs\n");
                   $2->push_front(new ast::NilExp(@1));
 				  $$ = $2;
 				}
@@ -1685,7 +1677,8 @@ expressions                     { $$ = $1; }
 /* Make a break in a function or make the variable getting one scope up. */
 returnControl :
 RETURN				{ $$ = new ast::ReturnExp(@$); }
-| RETURN variable		{ $$ = new ast::ReturnExp(@$, $2); }
+| RETURN variable   { $$ = new ast::ReturnExp(@$, $2); }
+| RETURN functionCall   { $$ = new ast::ReturnExp(@$, $2); }
 ;
 
 /*

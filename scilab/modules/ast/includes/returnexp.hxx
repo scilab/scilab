@@ -22,100 +22,100 @@
 
 namespace ast
 {
-    /** \brief Abstract a Return Expression node.
-    **
-    ** \b Example: return or return plop */
-    class ReturnExp : public ControlExp
+/** \brief Abstract a Return Expression node.
+**
+** \b Example: return or return plop */
+class ReturnExp : public ControlExp
+{
+    /** \name Ctor & dtor.
+    ** \{ */
+public:
+    /** \brief Construct a Return Expression node.
+    ** \param location scanner position informations
+    ** \param exp the returned exp
+    */
+    ReturnExp (const Location& location, Exp  *exp)
+        : ControlExp (location),
+          _exp (exp),
+          _is_global(true)
     {
-        /** \name Ctor & dtor.
-        ** \{ */
-    public:
-        /** \brief Construct a Return Expression node.
-        ** \param location scanner position informations
-        ** \param exp the returned exp
-        */
-        ReturnExp (const Location& location, Exp  *exp) 
-            : ControlExp (location), 
-            _exp (exp),
-            _is_global(false)
+        if (exp)
         {
-            if(exp)
-            {
-                _is_global = false;
-            }
+            _is_global = false;
+        }
+    }
+
+    ReturnExp (const Location& location)
+        : ControlExp (location),
+          _exp (NULL),
+          _is_global(true)
+    {
+    }
+
+    virtual ~ReturnExp ()
+    {
+        if (_exp != NULL)
+        {
+            delete _exp;
+        }
+    }
+
+    virtual ReturnExp* clone()
+    {
+        Location* newloc = const_cast<Location*>(&location_get())->clone();
+        ReturnExp* cloned = NULL;
+        if (is_global())
+        {
+            cloned = new ReturnExp(*newloc);
+        }
+        else
+        {
+            cloned = new ReturnExp(*newloc, exp_get().clone());
         }
 
-        ReturnExp (const Location& location) 
-            : ControlExp (location),
-            _exp (NULL),
-            _is_global(true)
-        {
-        }
+        cloned->set_verbose(is_verbose());
+        return cloned;
+    }
 
-        virtual ~ReturnExp ()
-        {
-            if(_exp != NULL)
-            {
-                delete _exp;
-            }
-        }
+    /** \name Visitors entry point.
+    ** \{ */
+public:
+    /** \brief Accept a const visitor \a v. */
+    virtual void accept (Visitor& v)
+    {
+        v.visit (*this);
+    }
+    /** \brief Accept a non-const visitor \a v. */
+    virtual void accept (ConstVisitor& v) const
+    {
+        v.visit (*this);
+    }
+    /** \} */
 
-        virtual ReturnExp* clone()
-        {
-            Location* newloc = const_cast<Location*>(&location_get())->clone();
-            ReturnExp* cloned = NULL;
-            if(is_global())
-            {
-                cloned = new ReturnExp(*newloc);
-            }
-            else
-            {
-                cloned = new ReturnExp(*newloc, exp_get().clone());
-            }
+    /** \name Accessors.
+    ** \{ */
+public:
+    const Exp &	exp_get() const
+    {
+        return *_exp;
+    }
 
-            cloned->set_verbose(is_verbose());
-            return cloned;
-        }
+    Exp &	exp_get()
+    {
+        return *_exp;
+    }
 
-        /** \name Visitors entry point.
-        ** \{ */
-    public:
-        /** \brief Accept a const visitor \a v. */
-        virtual void accept (Visitor& v)
-        {
-            v.visit (*this);
-        }
-        /** \brief Accept a non-const visitor \a v. */
-        virtual void accept (ConstVisitor& v) const
-        {
-            v.visit (*this);
-        }
-        /** \} */
-
-        /** \name Accessors.
-        ** \{ */
-    public:
-        const Exp &	exp_get() const
-        {
-            return *_exp;
-        }
-
-        Exp &	exp_get()
-        {
-            return *_exp;
-        }
-
-        bool is_global() const
-        {
-            return _is_global;
-        }
-        /** \} */
+    bool is_global() const
+    {
+        return _is_global;
+    }
+    /** \} */
 
 
-    protected:
-        Exp		*_exp;
-        bool	_is_global;
-    };
+protected:
+    Exp		*_exp;
+    bool	_is_global;
+};
 
 } // namespace ast
 
