@@ -477,7 +477,7 @@ int	iRightDivisionOfComplexMatrix(
             {
                 cNorm	= 'N';
                 C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, (double*)poAf, &_iCols2, pIpiv, (double*)poBt, &_iCols2, &iInfo);
-                vTransposeDoubleComplexMatrix(poBt, _iCols2, _iRows2, poOut, 1);
+                vTransposeDoubleComplexMatrix(poBt, _iCols2, _iRows1, poOut, 1);
                 vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
                 iExit = 1;
             }
