@@ -78,6 +78,8 @@ Xcos
 
 * Bug #12561 fixed - SELECT_m and RELAY_f no more behaved as expected.
 
+* Bug #12590 fixed - Block shape style was removed on file loading.
+
 
 Toolbox skeleton
 =================
