@@ -53,6 +53,12 @@ void visitprivate(const CallExp &e)
                 InternalType* pITR = result_get();
 
                 opt.push_back(std::pair<std::wstring, InternalType*>(pVar->name_get().name_get(), pITR));
+                //in case of macro/macrofile, we have to shift input param
+                //so add NULL item in in list to keep initial order
+                if (pIT->isMacro() || pIT->isMacroFile())
+                {
+                    in.push_back(NULL);
+                }
                 continue;
             }
 
@@ -120,6 +126,11 @@ void visitprivate(const CallExp &e)
                         //clear input parameters
                         for (unsigned int k = 0; k < in.size(); k++)
                         {
+                            if (in[k] == NULL)
+                            {
+                                continue;
+                            }
+
                             in[k]->DecreaseRef();
                             if (in[k]->isDeletable())
                             {
@@ -157,7 +168,7 @@ void visitprivate(const CallExp &e)
             //clear input parameters
             for (unsigned int k = 0; k < in.size(); k++)
             {
-                if (in[k]->isDeletable())
+                if (in[k] && in[k]->isDeletable())
                 {
                     delete in[k];
                 }
@@ -178,6 +189,11 @@ void visitprivate(const CallExp &e)
         //clear input parameters but take care in case of in[k] == out[i]
         for (unsigned int k = 0; k < in.size(); k++)
         {
+            if (in[k] == NULL)
+            {
+                continue;
+            }
+
             //check if input data are use as output data
             bool bFind = false;
             for (int i = 0 ; i < out.size() ; i++)

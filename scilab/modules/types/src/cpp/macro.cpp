@@ -159,7 +159,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
         for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j, ++i)
         {
-            pContext->put((*i), **j);
+            if (*j)
+            {
+                //prevent assignation of NULL value
+                pContext->put((*i), **j);
+            }
         }
     }
 
