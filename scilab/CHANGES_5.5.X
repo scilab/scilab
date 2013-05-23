@@ -234,6 +234,9 @@ Bug fixes
 
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
 
+* Bug #12070 fixed - Removing a module can now be done in on-line mode even if
+                     it installed in off-line mode.
+
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
 
 * Bug #12143 fixed - "stop entity picker" (ged(11)) returned an error message.
@@ -243,6 +246,8 @@ Bug fixes
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
 * Bug #12376 fixed - Exec & edit buttons in examples in help were sometimes misplaced.
+
+* Bug #12413 fixed - ATOMS packages could not be removed if ATOMS had never been on-line.
 
 * Bug #12415 fixed - PATH environment variable grew when using call_scilab in a loop.
 
