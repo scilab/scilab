@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-17 16:27+0100\n"
+"Revision-Date: 2013-05-23 15:50+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -1070,8 +1070,8 @@ msgstr ""
 #
 # File: macros/scicos_scicos/bad_connection.sci, line: 86
 # File: macros/scicos_scicos/bad_connection.sci, line: 112
-# File: macros/scicos_scicos/c_pass2.sci, line: 2098
-# File: macros/scicos_scicos/c_pass2.sci, line: 2115
+# File: macros/scicos_scicos/c_pass2.sci, line: 2094
+# File: macros/scicos_scicos/c_pass2.sci, line: 2111
 #, c-format
 msgid "Output port %s size is: %s"
 msgstr ""
@@ -1079,9 +1079,9 @@ msgstr ""
 #
 # File: macros/scicos_scicos/bad_connection.sci, line: 88
 # File: macros/scicos_scicos/bad_connection.sci, line: 113
-# File: macros/scicos_scicos/c_pass2.sci, line: 2079
-# File: macros/scicos_scicos/c_pass2.sci, line: 2099
-# File: macros/scicos_scicos/c_pass2.sci, line: 2116
+# File: macros/scicos_scicos/c_pass2.sci, line: 2075
+# File: macros/scicos_scicos/c_pass2.sci, line: 2095
+# File: macros/scicos_scicos/c_pass2.sci, line: 2112
 #, c-format
 msgid "Input port %s size is: %s"
 msgstr ""
@@ -1139,131 +1139,141 @@ msgstr ""
 
 #
 # File: macros/scicos_scicos/c_pass2.sci, line: 169
-msgid "No continuous-time state. Thresholds are ignored; this \n"
+msgid ""
+"No continuous-time state. Thresholds are ignored; this \n"
+"may be OK if you don't generate external events with them.\n"
+"If you want to reactivate the thresholds, the you need\n"
+"\n"
+"to include a block with continuous-time state in your diagram.\n"
+"   You can for example include DUMMY CLSS block (linear palette)."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 201
+# File: macros/scicos_scicos/c_pass2.sci, line: 197
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 529
+# File: macros/scicos_scicos/c_pass2.sci, line: 525
 msgid "Algebraic loop on events."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 570
-# File: macros/scicos_scicos/c_pass2.sci, line: 605
-# File: macros/scicos_scicos/c_pass2.sci, line: 674
-# File: macros/scicos_scicos/c_pass2.sci, line: 997
-# File: macros/scicos_scicos/c_pass2.sci, line: 1101
-# File: macros/scicos_scicos/c_pass2.sci, line: 1481
+# File: macros/scicos_scicos/c_pass2.sci, line: 566
+# File: macros/scicos_scicos/c_pass2.sci, line: 601
+# File: macros/scicos_scicos/c_pass2.sci, line: 670
+# File: macros/scicos_scicos/c_pass2.sci, line: 993
+# File: macros/scicos_scicos/c_pass2.sci, line: 1097
+# File: macros/scicos_scicos/c_pass2.sci, line: 1477
 msgid "Algebraic loop."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 1209
+# File: macros/scicos_scicos/c_pass2.sci, line: 1205
 msgid "A C or Fortran block is used but not linked.\n"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 1270
+# File: macros/scicos_scicos/c_pass2.sci, line: 1266
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 1320
-msgid "Number of zero crossings in block #i cannot be determined."
+# File: macros/scicos_scicos/c_pass2.sci, line: 1316
+#, c-format
+msgid "Number of zero crossings in block #%d cannot be determined."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 1911
+# File: macros/scicos_scicos/c_pass2.sci, line: 1907
 msgid "Not enough information to find port sizes.\n"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2030
-# File: macros/scicos_scicos/c_pass2.sci, line: 2607
+# File: macros/scicos_scicos/c_pass2.sci, line: 2026
+# File: macros/scicos_scicos/c_pass2.sci, line: 2601
 msgid "I cannot find a link with undetermined size.\n"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2068
+# File: macros/scicos_scicos/c_pass2.sci, line: 2064
 msgid "One of this block output has negative size.<br />Please check."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2077
+# File: macros/scicos_scicos/c_pass2.sci, line: 2073
 msgid "Block input has negative size:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2089
+# File: macros/scicos_scicos/c_pass2.sci, line: 2085
 msgid "Please compile the diagram to report the error."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2089
+# File: macros/scicos_scicos/c_pass2.sci, line: 2085
 msgid "Unable to report an error into a SuperBlock"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2096
+# File: macros/scicos_scicos/c_pass2.sci, line: 2092
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2101
+# File: macros/scicos_scicos/c_pass2.sci, line: 2097
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2103
-# File: macros/scicos_scicos/c_pass2.sci, line: 2120
+# File: macros/scicos_scicos/c_pass2.sci, line: 2099
+# File: macros/scicos_scicos/c_pass2.sci, line: 2116
 #, c-format
 msgid "Output port %s type."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2104
-# File: macros/scicos_scicos/c_pass2.sci, line: 2121
+# File: macros/scicos_scicos/c_pass2.sci, line: 2100
+# File: macros/scicos_scicos/c_pass2.sci, line: 2117
 #, c-format
 msgid "Input port %s type."
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2113
+# File: macros/scicos_scicos/c_pass2.sci, line: 2109
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2118
+# File: macros/scicos_scicos/c_pass2.sci, line: 2114
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2128
-msgid "Highlighted block(s) have connected ports \n"
+# File: macros/scicos_scicos/c_pass2.sci, line: 2124
+msgid ""
+"Highlighted block(s) have connected ports \n"
+"with  sizes that cannot be determined by the context.\n"
+"What is the size of this link?"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2273
+# File: macros/scicos_scicos/c_pass2.sci, line: 2267
 #, c-format
 msgid "the dep_ut size of the %s block is not correct.\n"
 msgstr ""
 
 #
-# File: macros/scicos_scicos/c_pass2.sci, line: 2571
+# File: macros/scicos_scicos/c_pass2.sci, line: 2565
 msgid "Not enough information to find port type.\n"
 msgstr ""
 

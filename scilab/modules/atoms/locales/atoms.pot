@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-17 16:27+0100\n"
+"Revision-Date: 2013-05-23 15:49+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -638,7 +638,7 @@ msgstr ""
 
 #
 # File: macros/atomsInstall.sci, line: 317
-# File: macros/atomsInstall.sci, line: 434
+# File: macros/atomsInstall.sci, line: 440
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
 msgstr ""
@@ -648,6 +648,12 @@ msgstr ""
 # File: macros/atomsInstall.sci, line: 386
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
+msgstr ""
+
+#
+# File: macros/atomsInstall.sci, line: 435
+#, c-format
+msgid "%s: Previously existing file with the same name in '%s'.\n"
 msgstr ""
 
 #
