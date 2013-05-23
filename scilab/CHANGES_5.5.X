@@ -249,3 +249,6 @@ Bug fixes
 * Bug #12606 fixed - Overloads for grand were not standard.
 
 * Bug #12614 fixed - Helpbrowser was not launched in EDT.
+
+* Bug #12634 fixed - ATOMS modules could not be installed from an archive file
+                     already existing in SCI/contrib/archives in offline mode.
