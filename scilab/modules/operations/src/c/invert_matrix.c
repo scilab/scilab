@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY 
+ *  Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -22,27 +22,27 @@
 
 extern double C2F(dlamch)(char const* , unsigned long int);
 extern double C2F(dlange)(char const * norm, int const * piRows, int const * piCols
-			  , double const *pData, int const * piLDData, double* pdblWork);
+                          , double const *pData, int const * piLDData, double* pdblWork);
 extern double C2F(zlange)(char const * norm, int const * piRows, int const * piCols
-			  , double const *pData, int const * piLDData, double* pdblWork);
+                          , double const *pData, int const * piLDData, double* pdblWork);
 extern void C2F(zgetrf)( int const* piRows, int const* piCols, double * pData
-			 , int const * piLDData, int* piPivot, int* piInfo);
+                         , int const * piLDData, int* piPivot, int* piInfo);
 extern void C2F(dgetrf)( int const* piRows, int const* piCols, double * pData
-			 , int const * piLDData, int* piPivot, int* piInfo);
+                         , int const * piLDData, int* piPivot, int* piInfo);
 extern void C2F(zgecon)(char const * norm, int const* piCols, double const * pData
-			, int const * piLDDA, double const* pdblAnorm
-			, double* pdblRcond, double* pdblWork, double* pdblRWork, int* piInfo);
+                        , int const * piLDDA, double const* pdblAnorm
+                        , double* pdblRcond, double* pdblWork, double* pdblRWork, int* piInfo);
 extern void C2F(dgecon)(char const * norm, int const* piCols, double const * pData
-			, int const * piLDDA, double const* pdblAnorm
-			, double* pdblRcond, double* pdblWork, int* piRWork, int* piInfo);
+                        , int const * piLDDA, double const* pdblAnorm
+                        , double* pdblRcond, double* pdblWork, int* piRWork, int* piInfo);
 
 extern void C2F(zgetri)( int const* n, doublecomplex* a, int const* ldA, int const* iPiv, doublecomplex* work, int const* workSize, int* info);
 extern void C2F(dgetri)( int const* n, double* a, int const* ldA, int const* iPiv, double* work, int const* workSize, int* info);
 
 
 int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
-		  , double * pdblRcond, int* piPivot, void* pWork
-		  , int iWorkSize, double* pdblWork);
+                  , double * pdblRcond, int* piPivot, void* pWork
+                  , int iWorkSize, double* pdblWork);
 
 
 /*
@@ -52,25 +52,25 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
 int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg, double* pdblRcond)
 {
     int ret = 0;
-    int* piPivot = (int*)MALLOC(iCols*sizeof(int));
-    if(piPivot)
+    int* piPivot = (int*)MALLOC(iCols * sizeof(int));
+    if (piPivot)
     {
-        int iWorkSize = Max(1, 4*iCols);
+        int iWorkSize = Max(1, 4 * iCols);
         void* pWork = NULL;
-        if(complexArg)
+        if (complexArg)
         {
-            pWork = MALLOC(iWorkSize*sizeof(doublecomplex));
+            pWork = MALLOC(iWorkSize * sizeof(doublecomplex));
         }
         else
         {
-            pWork = MALLOC(iCols*sizeof(int));
+            pWork = MALLOC(iCols * sizeof(int));
         }
 
-        if(pWork)
+        if (pWork)
         {
             double* pdblWork = (double*)MALLOC(iWorkSize * sizeof(double) * (complexArg  ? 2 : 1));
 
-            if(pdblWork)
+            if (pdblWork)
             {
                 ret = iInvertMatrix(iRows, iCols, pData, complexArg, pdblRcond, piPivot, pWork, iWorkSize, pdblWork);
                 FREE(pdblWork);
@@ -82,13 +82,15 @@ int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg, double* 
             FREE(pWork);
         }
         else
-        {// pWork alloc did not succeed
+        {
+            // pWork alloc did not succeed
             ret = 17;
         }
         FREE(piPivot);
     }
     else
-    { // piPivot alloc did not succeed
+    {
+        // piPivot alloc did not succeed
         ret = 17;
     }
     return ret;
@@ -105,16 +107,16 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg, double * 
     */
     /* using "1" to pass '1' to Fortran ("by ref"->pointer to char)*/
     double dblAnorm  = 0;
-    if(complexArg)
+    if (complexArg)
     {
         dblAnorm = C2F(zlange)("1", &iRows, &iCols, pData, &iRows, NULL /*see comment above */);
     }
     else
     {
-        dblAnorm = C2F(dlange)("1", &iRows, &iCols, pData, &iRows,pdblWork/*see above*/);
+        dblAnorm = C2F(dlange)("1", &iRows, &iCols, pData, &iRows, pdblWork/*see above*/);
     }
 
-    if(complexArg)
+    if (complexArg)
     {
         C2F(zgetrf)(&iRows, &iCols, pData, &iCols, piPivot, &iInfo);
     }
@@ -123,9 +125,9 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg, double * 
         C2F(dgetrf)(&iRows, &iCols, pData, &iCols, piPivot, &iInfo);
     }
 
-    if(iInfo !=0)
+    if (iInfo != 0)
     {
-        if(iInfo >0)
+        if (iInfo > 0)
         {
             ret = 19;
         }
@@ -133,7 +135,7 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg, double * 
     else
     {
         *pdblRcond = 0.;
-        if(complexArg)
+        if (complexArg)
         {
             C2F(zgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork, (double*)pWork, &iInfo);
         }
@@ -142,12 +144,12 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg, double * 
             C2F(dgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork, (int*)pWork, &iInfo);
         }
 
-        if(*pdblRcond <= sqrt(C2F(dlamch)("e",1L)))
+        if (*pdblRcond <= sqrt(C2F(dlamch)("e", 1L)))
         {
             ret = -1;
         }
 
-        if(complexArg)
+        if (complexArg)
         {
             C2F(zgetri)( &iCols, (doublecomplex*)pData, &iCols, piPivot, (doublecomplex*)pdblWork, &iWorkSize, &iInfo);
         }
