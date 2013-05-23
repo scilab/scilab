@@ -23,7 +23,7 @@ extern "C"
 #include "createdirectory.h"
 #include "isdir.h"
 #include "expandPathVariable.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -35,13 +35,13 @@ using namespace types;
 
 Function::ReturnValue sci_createdir(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "createdir", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "createdir", 1);
         return Function::Error;
@@ -49,13 +49,13 @@ Function::ReturnValue sci_createdir(typed_list &in, int _iRetCount, typed_list &
 
     wchar_t* pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
     int iRet = 0;
-    if(!isdirW(pwstPath))
+    if (!isdirW(pwstPath))
     {
         iRet = createdirectoryW(pwstPath);
     }
     else
     {
-        if(getWarningMode())
+        if (getWarningMode())
         {
             sciprint(_("%ls: Warning: Directory '%ls' already exists.\n"), L"createdir", pwstPath);
         }
@@ -67,47 +67,47 @@ Function::ReturnValue sci_createdir(typed_list &in, int _iRetCount, typed_list &
 
     out.push_back(pOut);
     return Function::OK;
-	//CheckRhs(1,1);
-	//CheckLhs(0,1);
+    //CheckRhs(1,1);
+    //CheckLhs(0,1);
 
-	//if (GetType(1) == sci_strings)
-	//{
-	//	BOOL bOK = FALSE;
-	//	int m1 = 0, n1 = 0, l1 = 0;
-	//	char *expandedpath = NULL;
-	//	int out_n = 0;
+    //if (GetType(1) == sci_strings)
+    //{
+    //	BOOL bOK = FALSE;
+    //	int m1 = 0, n1 = 0, l1 = 0;
+    //	char *expandedpath = NULL;
+    //	int out_n = 0;
 
-	//	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+    //	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
-	//	expandedpath = expandPathVariable(cstk(l1));
+    //	expandedpath = expandPathVariable(cstk(l1));
 
-	//	if (!isdir(expandedpath))
-	//	{
-	//		bOK = createdirectory(expandedpath);
-	//	}
-	//	else
-	//	{
-	//		if (getWarningMode()) sciprint(_("%s: Warning: Directory '%s' already exists.\n"),fname,expandedpath);
-	//		bOK = TRUE;
-	//	}
+    //	if (!isdir(expandedpath))
+    //	{
+    //		bOK = createdirectory(expandedpath);
+    //	}
+    //	else
+    //	{
+    //		if (getWarningMode()) sciprint(_("%s: Warning: Directory '%s' already exists.\n"),fname,expandedpath);
+    //		bOK = TRUE;
+    //	}
 
-	//	if (expandedpath)
-	//	{
-	//		FREE(expandedpath);
-	//		expandedpath = NULL;
-	//	}
+    //	if (expandedpath)
+    //	{
+    //		FREE(expandedpath);
+    //		expandedpath = NULL;
+    //	}
 
-	//	m1 = 1; n1 = 1;
-	//	CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1 ,&l1);
-	//	*istk(l1) = bOK;
+    //	m1 = 1; n1 = 1;
+    //	CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1 ,&l1);
+    //	*istk(l1) = bOK;
 
-	//	LhsVar(1)=Rhs+1;
-	//	C2F(putlhsvar)();
-	//}
-	//else
-	//{
-	//	Scierror(999,_("%s: Wrong type for input argument: A string expected.\n"), fname);
-	//}
-	//return 0;
+    //	LhsVar(1)=Rhs+1;
+    //	C2F(putlhsvar)();
+    //}
+    //else
+    //{
+    //	Scierror(999,_("%s: Wrong type for input argument: A string expected.\n"), fname);
+    //}
+    //return 0;
 }
 /*--------------------------------------------------------------------------*/

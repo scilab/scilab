@@ -19,7 +19,7 @@
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 #if 0 /* to debug TeXmacs interface */
 #define DATA_BEGIN  ((char) 'B')
@@ -31,8 +31,8 @@
 #define DATA_ESCAPE  ((char) 27)
 #define Pause C2F(recu).paus
 /*--------------------------------------------------------------------------*/
-static int first=1;
-static int texmacs_mode=0;
+static int first = 1;
+static int texmacs_mode = 0;
 /*--------------------------------------------------------------------------*/
 void settexmacs(void)
 {
@@ -46,7 +46,7 @@ int C2F(intexmacs)(void)
 /*--------------------------------------------------------------------------*/
 void next_input (void)
 {
-    fprintf(stdout, "%cchannel:prompt%c", DATA_BEGIN,DATA_END);
+    fprintf(stdout, "%cchannel:prompt%c", DATA_BEGIN, DATA_END);
     if (Pause == 0)
     {
         fprintf(stdout, SCIPROMPT);
@@ -62,8 +62,8 @@ void next_input (void)
 /*--------------------------------------------------------------------------*/
 void C2F(texmacsin)(char buffer[], int *buf_size, int *len_line, int *eof, long int dummy1)
 {
-    #define STDIN_ID 5
-    #define TEXMACSLIB "texmacslib"
+#define STDIN_ID 5
+#define TEXMACSLIB "texmacslib"
     int nr = 0, info = 0;
     if (first == 1)
     {

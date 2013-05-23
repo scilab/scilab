@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA/ENPC
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,21 +16,21 @@
 
 extern "C"
 {
-#include <string.h> 
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "core_math.h"
 #include "dynamic_link.h"
 #include "men_Sutils.h"
-#include "addinter.h" 
+#include "addinter.h"
 
 #include "do_error_number.h"
 #include "stack-c.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "Funtab.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "GetenvB.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -41,38 +41,40 @@ extern "C"
 
 int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleName, wchar_t** _pwstEntryPointName, int _iEntryPointSize)
 {
-	int iLibID = -1; /* Id of library */
-	int iErr = 0;
-	
-	/** Try to unlink the interface if it was previously linked **/
+    int iLibID = -1; /* Id of library */
+    int iErr = 0;
+
+    /** Try to unlink the interface if it was previously linked **/
     ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pwstModuleName);
-    if(pEP)
-    {//entry point already linked, so remove it before add it
+    if (pEP)
+    {
+        //entry point already linked, so remove it before add it
         ConfigVariable::removeDynamicLibrary(pEP->iLibIndex);
     }
 
-	/* link then search  */ 
-	/* Haven't been able to find the symbol. Try C symbol */
+    /* link then search  */
+    /* Haven't been able to find the symbol. Try C symbol */
     iLibID =  scilabLink(iLibID, _pwstDynamicLibraryName, &_pwstModuleName, 1, FALSE, &iErr);
-    if(iErr)
-	{
-    	/* Trying with the fortran symbol */
+    if (iErr)
+    {
+        /* Trying with the fortran symbol */
         iLibID =  scilabLink(iLibID, _pwstDynamicLibraryName, &_pwstModuleName, 1, TRUE, &iErr);
-        if(iErr)
+        if (iErr)
         {
             return iErr;
         }
     }
 
     pEP = ConfigVariable::getEntryPoint(_pwstModuleName);
-    if(pEP == NULL)
-    {//
+    if (pEP == NULL)
+    {
+        //
         return -1;
     }
 
-    for(int i = 0 ; i < _iEntryPointSize ; i++)
+    for (int i = 0 ; i < _iEntryPointSize ; i++)
     {
         pEP->functionPtr(_pwstEntryPointName[i]);
     }
-	return 0;
+    return 0;
 }

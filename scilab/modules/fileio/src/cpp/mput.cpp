@@ -27,7 +27,7 @@ extern "C"
 #include "islittleendian.h"
 #include "convert_tools.h"
 #include "localization.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "charEncoding.h"
 }
 /*--------------------------------------------------------------------------*/

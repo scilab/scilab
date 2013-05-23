@@ -30,7 +30,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 }
 
 /* Benchmark

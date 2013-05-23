@@ -21,7 +21,7 @@ extern "C"
 #include "sciprint.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 }
 
 using namespace types;

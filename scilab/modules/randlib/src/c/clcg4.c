@@ -61,7 +61,7 @@
 #include "sciprint.h"
 #include "others_generators.h"
 #include "localization.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 
 /***********************************************************************/
 /* Private part.                                                       */

@@ -23,7 +23,7 @@ extern "C"
 #include "removedir.h"
 #include "isdir.h"
 #include "expandPathVariable.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -35,13 +35,13 @@ using namespace types;
 
 Function::ReturnValue sci_removedir(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "removedir", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "removedir", 1);
         return Function::Error;
@@ -49,9 +49,9 @@ Function::ReturnValue sci_removedir(typed_list &in, int _iRetCount, typed_list &
 
     wchar_t* pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
     int iRet = 0;
-    if(!isdirW(pwstPath))
+    if (!isdirW(pwstPath))
     {
-        if(getWarningMode())
+        if (getWarningMode())
         {
             sciprint(_("%s: Warning: Directory '%ls' doesn't exists.\n"), "removedir", pwstPath);
         }

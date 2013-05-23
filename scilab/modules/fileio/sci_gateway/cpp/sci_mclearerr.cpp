@@ -23,7 +23,7 @@ extern "C"
 #include <stdio.h>
 #include <string.h>
 #include "expandPathVariable.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -36,14 +36,14 @@ Function::ReturnValue sci_mclearerr(types::typed_list &in, int _iRetCount, types
     int iRet  = 0;
     int iFile = -1; //default file : last opened file
 
-    if(in.size() > 1)
+    if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mclearerr", 0, 1);
         return types::Function::Error;
     }
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
-        if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
+        if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mclearerr", 1);
             return types::Function::Error;
@@ -53,7 +53,7 @@ Function::ReturnValue sci_mclearerr(types::typed_list &in, int _iRetCount, types
     }
 
     File* pF = FileManager::getFile(iFile);
-    if(pF != NULL)
+    if (pF != NULL)
     {
         clearerr(pF->getFiledesc());
         iRet = 1;

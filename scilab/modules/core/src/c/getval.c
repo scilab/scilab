@@ -144,7 +144,7 @@
 #include "parserConstant.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 /* Table of constant values */
 #define EXPMAX 309

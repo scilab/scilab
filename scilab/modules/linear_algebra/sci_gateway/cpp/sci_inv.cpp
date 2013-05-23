@@ -24,7 +24,7 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "invert_matrix.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -34,13 +34,13 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
     double* pData       = NULL;
     int ret             = 0;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "inv", 1);
         return types::Function::Error;
     }
 
-    if((in[0]->isDouble() == false))
+    if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_inv";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
@@ -48,19 +48,19 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
 
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>(); // input data will be modified
 
-    if(pDbl->getRows() != pDbl->getCols())
+    if (pDbl->getRows() != pDbl->getCols())
     {
         Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "inv", 1);
-        return types::Function::Error;      
+        return types::Function::Error;
     }
 
-    if(pDbl->getRows() == 0)
+    if (pDbl->getRows() == 0)
     {
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         /* c -> z */
         pData = (double*)oGetDoubleComplexFromPointer( pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
@@ -70,33 +70,33 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
         pData = pDbl->getReal();
     }
 
-    if(pDbl->getCols() == -1)
+    if (pDbl->getCols() == -1)
     {
-        pData[0] = 1./pData[0];
+        pData[0] = 1. / pData[0];
     }
     else
     {
         double dblRcond;
         ret = iInvertMatrixM(pDbl->getRows(), pDbl->getCols(), pData, pDbl->isComplex(), &dblRcond);
-        if(pDbl->isComplex())
+        if (pDbl->isComplex())
         {
             /* z -> c */
             vGetPointerFromDoubleComplex((doublecomplex*)pData, pDbl->getSize(), pDbl->getReal(), pDbl->getImg());
             vFreeDoubleComplexFromPointer((doublecomplex*)pData);
         }
 
-        if(ret == -1)
+        if (ret == -1)
         {
-            if(getWarningMode())
+            if (getWarningMode())
             {
                 sciprint(_("Warning :\n"));
                 sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
                 sciprint(_("computing least squares solution. (see lsq).\n"));
             }
-	    }
+        }
     }
 
-    if(ret == 19)
+    if (ret == 19)
     {
         Scierror(19, _("%s: Problem is singular.\n"), "inv");
         return types::Function::Error;

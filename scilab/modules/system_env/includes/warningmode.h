@@ -21,8 +21,8 @@ extern "C"
 {
 #endif
 
-EXTERN_SYSTEM_ENV int getWarningMode(void);
-EXTERN_SYSTEM_ENV void setWarningMode(int _iMode);
+    EXTERN_SYSTEM_ENV int getWarningMode(void);
+    EXTERN_SYSTEM_ENV void setWarningMode(int _iMode);
 
 #ifdef __cplusplus
 }

@@ -22,7 +22,7 @@ extern "C"
 {
 #include <stdio.h>
 #include <string.h>
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -34,16 +34,16 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
 {
     int iRet  = 0;
     int iFile = -1; //default file : last opened file
-    int dimsArray[2] = {1,1};
+    int dimsArray[2] = {1, 1};
 
-    if(in.size() > 1)
+    if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "merror", 0, 1);
         return types::Function::Error;
     }
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
-        if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
+        if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "merror", 1);
             return types::Function::Error;
@@ -53,7 +53,7 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
     }
 
     File* pF = FileManager::getFile(iFile);
-    if(pF != NULL)
+    if (pF != NULL)
     {
         iRet = ferror(pF->getFiledesc());
     }
@@ -73,7 +73,7 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
     pDoubleOut->set(0, iRet);
     out.push_back(pDoubleOut);
 
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
         types::String* pStringOut = new types::String(2, dimsArray);
         pStringOut->set(0, to_wide_string(strerror(iRet)));

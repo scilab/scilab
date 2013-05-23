@@ -25,7 +25,7 @@ extern "C"
 #include "charEncoding.h"
 #include "setgetlanguage.h"
 #include "os_wcsdup.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #ifdef _MSC_VER
 #include "LanguagePreferences_Windows.h"
 #endif
@@ -63,13 +63,13 @@ static wchar_t *getLanguageFromAlias(wchar_t *alias)
 
 Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "setdefaultlanguage", 1);
         return Function::Error;
     }
 
-    if(_piRetCount != 1)
+    if (_piRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "setdefaultlanguage", 1);
         return Function::Error;
@@ -90,9 +90,9 @@ Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, ty
 
     return Function::OK;
 #else
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "setdefaultlanguage" ,1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "setdefaultlanguage" , 1);
         return Function::Error;
     }
     wchar_t *newlang = getLanguageFromAlias(in[0]->getAs<types::String>()->get(0));
@@ -101,7 +101,7 @@ Function::ReturnValue sci_setdefaultlanguage(typed_list &in, int _piRetCount, ty
     {
         if ( getWarningMode() )
         {
-            sciprint(_("Unsupported language '%ls'.\n"),newlang);
+            sciprint(_("Unsupported language '%ls'.\n"), newlang);
         }
         out.push_back(new Bool(FALSE));
 

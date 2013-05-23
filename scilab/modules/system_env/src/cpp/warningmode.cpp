@@ -19,12 +19,12 @@
 
 extern "C"
 {
-#include "sci_warning.h"
+#include "warningmode.h"
 }
 
 int getWarningMode(void)
 {
-    if(ConfigVariable::getWarningMode())
+    if (ConfigVariable::getWarningMode())
     {
         return 1;
     }
@@ -33,7 +33,7 @@ int getWarningMode(void)
 
 void setWarningMode(int _iMode)
 {
-    if(_iMode == 0)
+    if (_iMode == 0)
     {
         ConfigVariable::setWarningMode(false);
     }
