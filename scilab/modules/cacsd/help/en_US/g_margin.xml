@@ -126,7 +126,7 @@ show_margins(h)
                 <link linkend="bode">bode</link>
             </member>
             <member>
-                <link linkend="chart">chart</link>
+                <link linkend="nicholschart">nicholschart</link>
             </member>
             <member>
                 <link linkend="nyquist">nyquist</link>

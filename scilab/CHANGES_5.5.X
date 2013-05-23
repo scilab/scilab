@@ -61,6 +61,9 @@ Obsolete
 * IsAScalar() tagged as obsolete. Will be removed for Scilab 5.5.1.
   Use isscalar() instead.
 
+* chart() tagged as obsolete. Will be removed for Scilab 5.5.1.
+  Use nicholschart() instead.
+
 
 Xcos
 ====
@@ -144,6 +147,8 @@ Bug fixes
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
 * Bug #7781 fixed - The second parameter of iqr function had not effect.
+
+* Bug #7826 fixed - chart tagged as obsolete.
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
 
