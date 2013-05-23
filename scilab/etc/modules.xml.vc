@@ -83,8 +83,8 @@
     <module name="modules_manager" activate="yes"/>
     <module name="history_browser" activate="yes"/>
     <module name="preferences" activate="yes"/>
-    <module name="xml" activate="yes"/>
-    <module name="external_objects" activate="yes"/>
+    <module name="xml" activate="no"/>
+    <module name="external_objects" activate="no"/>
     <module name="operations" activate="yes"/>
     <module name="ast" activate="yes"/>
 </modules>
