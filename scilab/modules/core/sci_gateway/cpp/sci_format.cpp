@@ -166,31 +166,49 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
 
             iLen = (int)pD->get(0);
 
-            if(in[1]->isString() == false)
+            if(in[1]->isString() == true)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected."), "format", 2);
-                return types::Function::Error;
-            }
+                types::String *pS = in[1]->getAs<types::String>();
+                if(pS->isScalar() == false)
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, _e_type_format, _v_type_format);
+                    return types::Function::Error;
+                }
 
-            types::String *pS = in[1]->getAs<types::String>();
-            if(pS->isScalar() == false)
-            {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, _e_type_format, _v_type_format);
-                return types::Function::Error;
+                wchar_t* pwst = pS->get(0);
+                if(wcscmp(pwst, e_type_format) == 0)
+                {
+                    iType = 0;
+                }
+                else if(wcscmp(pwst, v_type_format) == 0)
+                {
+                    iType = 1;
+                }
+                else
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, _e_type_format, _v_type_format);
+                    return types::Function::Error;
+                }
             }
+            else if(in[1]->isDouble() == true)
+            {
+                types::Double* pD = in[1]->getAs<types::Double>();
+                if(pD->isScalar() == false)
+                {//set length
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "format", 2);
+                    return types::Function::Error;
+                }
 
-            wchar_t* pwst = pS->get(0);
-            if(wcscmp(pwst, e_type_format) == 0)
-            {
-                iType = 0;
-            }
-            else if(wcscmp(pwst, v_type_format) == 0)
-            {
-                iType = 1;
+                iType = (int)pD->get(0);
+                if(iType != 0 && iType != 1)
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "format", 1);
+                    return types::Function::Error;
+                }
             }
             else
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "format", 2, _e_type_format, _v_type_format);
+                Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), "format", 2);
                 return types::Function::Error;
             }
         }
