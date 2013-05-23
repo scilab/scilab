@@ -875,5 +875,5 @@ msgstr ""
 #
 # File: tests/unit_tests/hypermatIntExample.c, line: 166
 #, c-format
-msgid "%s: Wrong type for argument %d: An integer expected.\n"
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
 msgstr ""
