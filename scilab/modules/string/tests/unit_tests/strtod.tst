@@ -61,7 +61,7 @@ assert_checkequal(d, %nan);
 //===============================
 [d,s] = strtod([]);
 assert_checkequal(s, "");
-assert_checkequal(d, %nan);
+assert_checkequal(d, []);
 //===============================
 [d,s] = strtod("-3 sdf");
 assert_checkequal(s, " sdf");
@@ -144,7 +144,7 @@ assert_checkequal(d, %nan);
 //===============================
 [d,s] = strtod([],".");
 assert_checkequal(s, "");
-assert_checkequal(d, %nan);
+assert_checkequal(d, []);
 //===============================
 [d,s] = strtod("-3 sdf",".");
 assert_checkequal(s, " sdf");
@@ -226,7 +226,7 @@ assert_checkequal(d, %nan);
 //===============================
 [d,s] = strtod([],",");
 assert_checkequal(s, "");
-assert_checkequal(d, %nan);
+assert_checkequal(d, []);
 //===============================
 [d,s] = strtod("-3 sdf",",");
 assert_checkequal(s, " sdf");

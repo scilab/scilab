@@ -141,6 +141,8 @@ Bug fixes
 
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
 
+* Bug #8234 fixed - strtod did not return an empty matrix when input argument was an empty matrix.
+
 * Bug #8264 fixed - Documentation for Matlab's atan2() equivalent fixed.
 
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.

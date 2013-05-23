@@ -92,7 +92,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
     if (isEmptyMatrix(pvApiCtx, piAddr))
     {
-        if (createScalarDouble(pvApiCtx, iRhs + 1, not_a_number) != 0)
+        if (createEmptyMatrix(pvApiCtx, iRhs + 1) != 0)
         {
             return 0;
         }
