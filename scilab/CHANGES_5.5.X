@@ -109,6 +109,8 @@ Bug fixes
 
 * Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
 
+* Bug #6466 fixed - Example with vectorized input added in help pages of mprintf and msprintf.
+
 * Bug #6693 fixed - modulo did not accept polynomial inputs. Help page was not updated.
 
 * Bug #6752 fixed - unit test scilab.tst has been split in different tests.
