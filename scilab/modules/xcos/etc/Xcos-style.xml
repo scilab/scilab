@@ -589,7 +589,7 @@
         <add as="displayedLabel" value="N(z,p)&lt;BR&gt;&lt;HR&gt;D(z,p)"/>
     </add>
     <add as="DLR" extend="blockWithLabel">
-        <add as="displayedLabel" value="num(z)&lt;BR&gt;&lt;HR&gt;den(z)"/>
+        <add as="displayedLabel" value="$\frac{%s}{%s}$"/>
     </add>
     <add as="DLR_f" extend="DLR"/>
     <add as="DLSS" extend="blockWithLabel">

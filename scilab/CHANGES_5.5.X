@@ -77,15 +77,18 @@ Xcos
 
 * Bug #12424 fixed - Calling lincos on a Derivative block made scilab crash.
 
+* Bug #12561 fixed - SELECT_m and RELAY_f no more behaved as expected.
+
 * Bug #12568 fixed - "Recent files" menu entry should be placed next to the 
                      "Open" one.
+
+* Bug #12590 fixed - Block shape style was removed on file loading.
 
 * Bug #12603 fixed - ZCOS files may contain blocs with modified (eg. invalid)
                      parameters.
 
-* Bug #12561 fixed - SELECT_m and RELAY_f no more behaved as expected.
-
-* Bug #12590 fixed - Block shape style was removed on file loading.
+* Bug #12619 fixed - The discrete block DLR was not displaying latex formula
+                     like continuous CLR block.
 
 
 Toolbox skeleton
