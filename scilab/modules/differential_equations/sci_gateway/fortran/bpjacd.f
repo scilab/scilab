@@ -24,8 +24,8 @@ c
       double precision res(*), t, y(*), ydot(*), rewt(*), savr(*),
      *                  wk(*), h, cj, wp(*), rpar(*)
       integer ires, neq, iwp(*), ier, ipar(*)
-      double precision dneq, diwp(2*neq*neq)
-      integer vol,tops,nordre
+      double precision dneq
+      integer vol,tops,nordre,hsize
       data nordre/5/,mlhs/3/
 c
       iadr(l)=l+l-1
@@ -153,14 +153,26 @@ c+
 c     Transferring the output to Fortran
       call btof(ier,1)
       if(err.gt.0.or.err1.gt.0) return
-      call btof(diwp,2*neq*neq)
+c      call btof(iwp,2*neq*neq)
+      il2=iadr(lstk(top))
+      hsize=4
+      n=istk(il2+1)*istk(il2+2)*(istk(il2+3)+1)
+      liwp = 2*neq*neq
+c     Test if the variable on the stack has same type and size as the theoretical iwp
+      if (istk(il2).ne.1.or.n.ne.liwp) then
+         call error(98)
+         return
+      endif
+      lx=sadr(il2+hsize)
+      do 900 i=1,liwp
+         iwp(i) = stk(lx+i-1)
+900   continue
+      top = top-1
       if(err.gt.0.or.err1.gt.0) return
-      call btof(wp,neq*neq)
+      lwp = neq*neq
+      call btof(wp,lwp)
       if(err.gt.0.or.err1.gt.0) return
 c+
-      do 100 i=1, 2*neq*neq
-        iwp(i) = diwp(i)
- 100  continue
 
 c     Normal return iero set to 0
       iero=0
