@@ -157,6 +157,8 @@ Bug fixes
 
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.
 
+* Bug #8614 fixed - Unit test for barhomogenize added.
+
 * Bug #8636 fixed - roots() help page updated (default algorithm value was wrong).
 
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
