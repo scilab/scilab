@@ -169,7 +169,9 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
     }
 
 #ifdef DEBUG
-    std::cerr << "File : " << argv[*_piFileIndex] << std::endl;
+    if (*_piFileIndex >= 0) {
+        std::cerr << "File : " << argv[*_piFileIndex] << std::endl;
+    }
 #endif
 
     ConfigVariable::setCommandLineArgs(argc, argv);
