@@ -343,26 +343,31 @@ public class XcosDiagram extends ScilabGraph {
 
             /*  Get an empty index :
              *  The list should always have a size greater of equal to one
-             *  since new element with numbering "1" is always added to the list
+             *  since new added element is always added to the list
              */
             if (listOfBlocks.size() > 1) {
-                /*
-                 * The new element is the first element of the list
-                 */
-                int index_first = (int) ((ScilabDouble) listOfBlocks.get(1).getIntegerParameters()).getRealPart()[0][0];
-                if (index_first > 1) {
-                    newIndex = 1;
-                } else {
+                // if a hole exists, then assign a port from this hole
+                for (int i = 0; i < listOfBlocks.size() - 1; i++) {
+                    int indexNext = (int) ((ScilabDouble) listOfBlocks.get(i + 1).getIntegerParameters()).getRealPart()[0][0];
+                    int indexPrevious = (int) ((ScilabDouble) listOfBlocks.get(i).getIntegerParameters()).getRealPart()[0][0];
+                    if (indexNext - indexPrevious > 1) {
+                        newIndex = indexPrevious + 1;
+                        break;
+                    }
+                }
+                // if no hole is present, then detect multiple items
+                if (newIndex == 0) {
                     for (int i = 0; i < listOfBlocks.size() - 1; i++) {
-                        int index_next = (int) ((ScilabDouble) listOfBlocks.get(i + 1).getIntegerParameters()).getRealPart()[0][0];
-                        int index_previous = (int) ((ScilabDouble) listOfBlocks.get(i).getIntegerParameters()).getRealPart()[0][0];
-                        if (index_next - index_previous > 1) {
-                            newIndex = i + 1;
+                        int indexNext = (int) ((ScilabDouble) listOfBlocks.get(i + 1).getIntegerParameters()).getRealPart()[0][0];
+                        int indexPrevious = (int) ((ScilabDouble) listOfBlocks.get(i).getIntegerParameters()).getRealPart()[0][0];
+                        if (indexNext - indexPrevious == 0) {
+                            newIndex = (int) ((ScilabDouble) listOfBlocks.get(listOfBlocks.size() - 1).getIntegerParameters()).getRealPart()[0][0] + 1;
                             break;
                         }
                     }
+                    // if no multiple items are present, item is already at the right place
                     if (newIndex == 0) {
-                        newIndex = (int) ((ScilabDouble) listOfBlocks.get(listOfBlocks.size() - 1).getIntegerParameters()).getRealPart()[0][0] + 1;
+                        newIndex = (int) ((ScilabDouble) block.getIntegerParameters()).getRealPart()[0][0];
                     }
                 }
             } else {
