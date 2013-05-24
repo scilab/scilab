@@ -378,7 +378,7 @@ Scilab
 
 * Bug #12043 fixed - Typo in the atomsShow help page fixed.
 
-* Bug #12050 fixed - Typo dimensionnal => dimensional fixed.
+* Bug #12050 fixed - Fix a typo: dimensionnal => dimensional.
 
 * Bug #12059 fixed - Indices returned by gsort were wrong for sparse matrices.
 

@@ -18,26 +18,13 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-	{NULL, ""}, // list => Moved to type module
-	{NULL, ""}, // tlist => Moved to type module
-	{sci_rlist, "rlist"},
-	{sci_lsslist, "lsslist"},
-	{sci_glist, "glist"},
-	{sci_lstcat, "lstcat"},
-	{NULL, ""}, // mlist => Moved to type module
-	{sci_definedfields, "definedfields"},
-	{sci_lstsize, "lstsize"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_data_structures1(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(gwdatastructures1)(void)
 {
-	return gw_data_structures1();
+    return gw_data_structures1();
 }
 /*--------------------------------------------------------------------------*/

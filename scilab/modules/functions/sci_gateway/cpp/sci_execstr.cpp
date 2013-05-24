@@ -42,7 +42,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 {
     int iErr            = 0;
     bool bErrCatch		= false;
-    bool bMute          = true;
+    bool bMute          = false;
     wchar_t* pstMsg     = NULL;
     Exp* pExp           = NULL;
     wchar_t *pstCommand = NULL;
@@ -75,6 +75,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "execstr", 2);
             return Function::Error;
         }
+
+        bMute = true;
     }
 
     //3rd parameter

@@ -103,9 +103,9 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
         }
 
         int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
-        double* pRows = new double[nonZeros * 2];
+        int* pRows = new int[nonZeros * 2];
         pSparseIn->outputRowCol(pRows);
-        double* pCols = pRows + nonZeros;
+        int* pCols = pRows + nonZeros;
 
         for (int i = 0 ; i < nonZeros ; i++)
         {

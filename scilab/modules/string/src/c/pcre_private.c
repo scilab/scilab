@@ -25,7 +25,7 @@
 #include "pcre_private.h"
 #include "os_strdup.h"
 #include "strsubst.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 #include "charEncoding.h"
 #include "freeArrayOfString.h"
@@ -874,7 +874,7 @@ SKIP_DATA:
                             *_pstCapturedString = (char**)MALLOC(sizeof(char*) * *_piCapturedStringCount);
                             for (i = 0 ; i < *_piCapturedStringCount ; i++)
                             {
-                                char* pstSubstring = NULL;
+                                const char* pstSubstring = NULL;
                                 pcre_get_substring(bptr, use_offsets, count, i + 1, &pstSubstring);
                                 if (pstSubstring != NULL)
                                 {

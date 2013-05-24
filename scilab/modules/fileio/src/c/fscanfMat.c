@@ -84,6 +84,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
 
 
     fscanfMatResult *resultFscanfMat = NULL;
+    wchar_t **pwsLines = NULL;
     char **lines = NULL;
     int nblines = 0;
     double *dValues = NULL;
@@ -124,7 +125,16 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         return resultFscanfMat;
     }
 
-    lines = mgetl(fd, -1, &nblines, &errMGETL);
+    pwsLines = mgetl(fd, -1, &nblines, &errMGETL);
+
+    lines = (char**)MALLOC(sizeof(char*) * nblines);
+    for (i = 0 ; i < nblines ; i++)
+    {
+        lines[i] = wide_string_to_UTF8(pwsLines[i]);
+    }
+
+    freeArrayOfWideString(pwsLines, nblines);
+
     C2F(mclose)(&fd, &dErrClose);
     if (errMGETL != MGETL_NO_ERROR)
     {

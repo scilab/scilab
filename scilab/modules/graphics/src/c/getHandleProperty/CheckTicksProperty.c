@@ -31,6 +31,12 @@ AssignedList * createTlistForTicks(void* _pvCtx)
 
     tlist = createAssignedList(_pvCtx, 3, 2);
 
+    if (tlist == NULL)
+    {
+        Scierror(999, _("Tlist could not be created, check ticks location and label vectors.\n"));
+        return NULL;
+    }
+
     if (!isListCurrentElementDoubleMatrix(_pvCtx, tlist))
     {
         Scierror(999, _("%s should be a vector of double.\n"), "locations");

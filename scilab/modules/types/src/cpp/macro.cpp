@@ -132,7 +132,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     else if (in.size() > m_inputArgs->size())
     {
         wostringstream ostr;
-        ostr << _W("Wrong number of input arguments:") << std::endl << std::endl;
+        ostr << _W("Wrong number of input arguments.") << std::endl << std::endl;
         ostr << _W("Excepted: ") << m_inputArgs->size() << std::endl;
 
         if (m_inputArgs->size() > 0)
@@ -159,7 +159,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
         for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j, ++i)
         {
-            pContext->put((*i), **j);
+            if (*j)
+            {
+                //prevent assignation of NULL value
+                pContext->put((*i), **j);
+            }
         }
     }
 

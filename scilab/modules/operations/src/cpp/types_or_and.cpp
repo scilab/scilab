@@ -673,28 +673,6 @@ int SparseBoolLogicalAndSparseBool(InternalType* _pL, InternalType*  _pR, Intern
     {
         *_pOut = pL->newLogicalAnd(*pR);
         return 0;
-        /*
-        int nbTrueL = static_cast<int>(_pL->nbTrue());
-        double* pLRows = new double[nbTrueL * 2];
-        _pL->outputRowCol(pLRows);
-        double* pLCols = pLRows + nbTrueL;
-
-        int nbTrueR = static_cast<int>(_pR->nbTrue());
-        double* pRRows = new double[nbTrueR * 2];
-        _pR->outputRowCol(pRRows);
-        double* pRCols = pRRows + nbTrueR;
-
-        *_pOut = new SparseBool(_pR->getRows(), _pL->getCols());
-        (*_pOut)->no
-        for(int i = 0 ; i < nbTrueL ; i++)
-        {
-            if(_pL->get(pLRows[i], pLRows[i]) == _pR->get(pLRows[i], pLRows[i]))
-            {//set 1
-                (*_pOut)->set(pLRows[i], pLRows[i], true);
-            }
-
-        }
-        */
     }
 
     return 1;

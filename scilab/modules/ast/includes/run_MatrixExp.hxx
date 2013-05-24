@@ -68,12 +68,12 @@ void visitprivate(const MatrixExp &e)
                 if (pGT->isImplicitList() && pGT->getAs<ImplicitList>()->isComputable())
                 {
                     ImplicitList *pIL = pGT->getAs<ImplicitList>();
-                    InternalType* pIT = pIL->extractFullMatrix();
+                    InternalType* pIT2 = pIL->extractFullMatrix();
                     if (pGT->isDeletable())
                     {
                         delete pGT;
                     }
-                    pGT = pIT->getAs<GenericType>();
+                    pGT = pIT2->getAs<GenericType>();
                 }
 
                 if (pGT->isDouble() && pGT->getAs<Double>()->isEmpty())

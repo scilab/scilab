@@ -17,20 +17,8 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-	{NULL, ""}, //getdynlibext
-	{NULL, ""}, //addinter
-	{sci_fort,"fort"},
-	{sci_call,"call"},
-	{NULL ,""}, //link
-	{NULL, ""}, //ulink
-	{NULL, ""}, //c_link
-	{NULL, ""} // ilib_verbose
-};
-/*--------------------------------------------------------------------------*/
 int gw_dynamic_link(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

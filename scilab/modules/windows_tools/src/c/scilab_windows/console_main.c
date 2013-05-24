@@ -129,7 +129,7 @@ int Console_Main(int argc, char **argv)
         else if ( _stricmp(my_argv[argcount], "-L") == 0 && argcount + 1 < my_argc)
         {
             char *language = my_argv[argcount + 1];
-            setLanguageFromCommandLine(language);
+            //setLanguageFromCommandLine(language);
         }
         else if ( (_stricmp (my_argv[argcount], "-H") == 0) ||
                   (_stricmp (my_argv[argcount], "-?") == 0) ||
@@ -155,7 +155,7 @@ int Console_Main(int argc, char **argv)
         }
     }
 
-    if (!with_module("jvm"))
+    if (!with_module(L"jvm"))
     {
         /* no module jvm then we force NWNI mode */
         setScilabMode(SCILAB_NWNI);

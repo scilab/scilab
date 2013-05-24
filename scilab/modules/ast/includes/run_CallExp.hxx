@@ -53,10 +53,16 @@ void visitprivate(const CallExp &e)
                 InternalType* pITR = result_get();
 
                 opt.push_back(std::pair<std::wstring, InternalType*>(pVar->name_get().name_get(), pITR));
+                //in case of macro/macrofile, we have to shift input param
+                //so add NULL item in in list to keep initial order
+                if (pIT->isMacro() || pIT->isMacroFile())
+                {
+                    in.push_back(NULL);
+                }
                 continue;
             }
 
-            expected_size_set(1);
+            expected_setSize(1);
             (*itExp)->accept (*this);
 
             if (result_get() == NULL)
@@ -99,7 +105,7 @@ void visitprivate(const CallExp &e)
         try
         {
             int iSaveExpectedSize = iRetCount;
-            expected_size_set(iSaveExpectedSize);
+            expected_setSize(iSaveExpectedSize);
             iRetCount = Max(1, iRetCount);
 
             //reset previous error before call function
@@ -108,7 +114,7 @@ void visitprivate(const CallExp &e)
             ConfigVariable::setVerbose(e.is_verbose());
             //call function
             types::Function::ReturnValue Ret = pCall->call(in, opt, iRetCount, out, this);
-            expected_size_set(iSaveExpectedSize);
+            expected_setSize(iSaveExpectedSize);
             result_clear();
 
             if (Ret == types::Callable::OK)
@@ -120,6 +126,11 @@ void visitprivate(const CallExp &e)
                         //clear input parameters
                         for (unsigned int k = 0; k < in.size(); k++)
                         {
+                            if (in[k] == NULL)
+                            {
+                                continue;
+                            }
+
                             in[k]->DecreaseRef();
                             if (in[k]->isDeletable())
                             {
@@ -157,7 +168,7 @@ void visitprivate(const CallExp &e)
             //clear input parameters
             for (unsigned int k = 0; k < in.size(); k++)
             {
-                if (in[k]->isDeletable())
+                if (in[k] && in[k]->isDeletable())
                 {
                     delete in[k];
                 }
@@ -178,9 +189,14 @@ void visitprivate(const CallExp &e)
         //clear input parameters but take care in case of in[k] == out[i]
         for (unsigned int k = 0; k < in.size(); k++)
         {
+            if (in[k] == NULL)
+            {
+                continue;
+            }
+
             //check if input data are use as output data
             bool bFind = false;
-            for (int i = 0 ; i < out.size() ; i++)
+            for (int i = 0 ; i < (int)out.size() ; i++)
             {
                 if (out[i] == in[k])
                 {
@@ -345,7 +361,7 @@ void visitprivate(const CallExp &e)
                         //create input argument list
 
                         //protect inputs
-                        for (int i = 0 ; i < pArgs->size() ; i++)
+                        for (int i = 0 ; i < (int)pArgs->size() ; i++)
                         {
                             (*pArgs)[i]->IncreaseRef();
                             in.push_back((*pArgs)[i]);
@@ -366,7 +382,7 @@ void visitprivate(const CallExp &e)
                             Overload::call(L"%l_e", in, 1, ResultList, this);
                         }
 
-                        for (int i = 0 ; i < pArgs->size() ; i++)
+                        for (int i = 0 ; i < (int)pArgs->size() ; i++)
                         {
                             (*pArgs)[i]->DecreaseRef();
                         }
@@ -433,7 +449,7 @@ void visitprivate(const CallExp &e)
                         //create input argument list
 
                         //protect inputs
-                        for (int i = 0 ; i < pArgs->size() ; i++)
+                        for (int i = 0 ; i < (int)pArgs->size() ; i++)
                         {
                             (*pArgs)[i]->IncreaseRef();
                             in.push_back((*pArgs)[i]);
@@ -454,7 +470,7 @@ void visitprivate(const CallExp &e)
                             Overload::call(L"%l_e", in, 1, ResultList, this);
                         }
 
-                        for (int i = 0 ; i < pArgs->size() ; i++)
+                        for (int i = 0 ; i < (int)pArgs->size() ; i++)
                         {
                             (*pArgs)[i]->DecreaseRef();
                         }
@@ -566,7 +582,7 @@ void visitprivate(const CallExp &e)
             }
 
             //clean pArgs return by GetArgumentList
-            for (int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            for (int iArg = 0 ; iArg < (int)pArgs->size() ; iArg++)
             {
                 if ((*pArgs)[iArg]->isDeletable())
                 {
@@ -666,7 +682,7 @@ void visitprivate(const CellCallExp &e)
             }
 
             //clean pArgs return by GetArgumentList
-            for (int iArg = 0 ; iArg < pArgs->size() ; iArg++)
+            for (int iArg = 0 ; iArg < (int)pArgs->size() ; iArg++)
             {
                 if ((*pArgs)[iArg]->isDeletable())
                 {

@@ -72,15 +72,17 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
         }
 
         int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
-        double* pRows = new double[nonZeros * 2];
+        int* pRows = new int[nonZeros * 2];
         pSparseIn->outputRowCol(pRows);
-        double* pCols = pRows + nonZeros;
+        int* pCols = pRows + nonZeros;
 
         for (int i = 0 ; i < nonZeros ; i++)
         {
             std::complex<double> cplx = pSparseIn->getImg(pRows[i] - 1, pCols[i] - 1);
-            pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx.imag());
+            pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx.imag(), false);
         }
+
+        pSparseOut->finalize();
 
         delete[] pRows;
 

@@ -34,5 +34,6 @@ int IntegerModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"uint64", &sci_uinteger64, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"inttype", &sci_inttype, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"double", &sci_double, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"iconvert", &sci_iconvert, MODULE_NAME));
     return 1;
 }

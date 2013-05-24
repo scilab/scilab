@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_setve" xml:lang="en">
+    <refnamediv>
+        <refname>optimsimplex_setve</refname>
+        <refpurpose>Sets the data at given index in the current simplex.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            opt = optimsimplex_setve(opt, ive, fv, x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The current simplex object of TSIMPLEX type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ive </term>
+                <listitem>
+                    <para>An integer, the vectex index.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fv </term>
+                <listitem>
+                    <para>The function value.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x </term>
+                <listitem>
+                    <para>The coordinates of the point, as a row vector.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimsimplex_setve</literal> function sets the coordinates of the vertex 
+            and the function value at given index in the current simplex.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
+    s1 = optimsimplex_new ();
+    s1 = optimsimplex_setn ( s1 , 2 );
+    s1 = optimsimplex_setnbve(s1,3);
+    s1 = optimsimplex_setve ( s1 , 1 , 3.0 , [0.0 0.0] );
+    s1 = optimsimplex_setve ( s1 , 2 , 4.0 , [1.0 0.0] );
+    s1 = optimsimplex_setve ( s1 , 3 , 5.0 , [0.0 2.0] );
+    ve1 = optimsimplex_getve ( s1 , 1 );
+    ve2 = optimsimplex_getve ( s1 , 2 );
+    ve3 = optimsimplex_getve ( s1 , 3 );
+    disp(ve1)
+    disp(ve2)
+    disp(ve3)
+    s1 = optimsimplex_destroy(s1);
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimsimplex_getve">optimsimplex_getve</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

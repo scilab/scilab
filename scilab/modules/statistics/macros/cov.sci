@@ -172,7 +172,7 @@ function C = cov(varargin)
         //
         // Check content
         if (nrmlztn <> 0 & nrmlztn <> 1)
-            error(msprintf(gettext("%s: Wrong value for inputDDDD argument #%d: %d or %d expected.\n"),"cov", 3, 0, 1));
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: %d or %d expected.\n"),"cov", 3, 0, 1));
         end
         A = [x, y]
         if (nrmlztn == 1) then

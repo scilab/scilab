@@ -40,7 +40,7 @@
 #include "getGraphicObjectProperty.h"
 #include "deleteGraphicObject.h"
 //#include "warningmode.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 
 /*--------------------------------------------------------------------------*/

@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
     int iCols           = 0;
     bool bComplex       = false;
     int nonZeros        = 0;
-    double* pRows       = NULL;
+    int* pRows       = NULL;
     double* pNonZeroR   = NULL;
     double* pNonZeroI   = NULL;
 
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
             return types::Function::OK;
         }
 
-        pRows = new double[nonZeros * 2];
+        pRows = new int[nonZeros * 2];
         sp->outputRowCol(pRows);
 
         if (_iRetCount > 1)
@@ -108,7 +108,7 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
         }
 
 
-        pRows = new double[nonZeros * 2];
+        pRows = new int[nonZeros * 2];
         sp->outputRowCol(pRows);
 
         iRows = sp->getRows();
@@ -129,7 +129,7 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
     }
 
     types::Double* pCoord = new types::Double(nonZeros, 2);
-    pCoord->set(pRows);
+    pCoord->setInt(pRows);
 
     if (_iRetCount > 1)
     {

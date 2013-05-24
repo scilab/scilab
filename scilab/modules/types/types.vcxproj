@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -119,7 +119,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
       <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib;operations.lib</AdditionalDependencies>
-	  <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
@@ -162,7 +162,8 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-	<AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>      <PreprocessorDefinitions>FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -174,8 +175,8 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-	<AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib;operations.lib</AdditionalDependencies>
-	<RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <AdditionalDependencies>dynamic_link.lib;core.lib;scilocalization.lib;system_env.lib;operations.lib</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
@@ -222,6 +223,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\cpp\uint32.cpp" />
     <ClCompile Include="src\cpp\uint64.cpp" />
     <ClCompile Include="src\cpp\uint8.cpp" />
+    <ClCompile Include="src\cpp\void.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\alltypes.hxx" />
@@ -274,6 +276,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\uint64.hxx" />
     <ClInclude Include="includes\uint8.hxx" />
     <ClInclude Include="includes\user.hxx" />
+    <ClInclude Include="includes\void.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def" />

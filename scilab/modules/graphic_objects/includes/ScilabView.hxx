@@ -18,6 +18,9 @@
 
 #include "dynlib_graphic_objects.h"
 
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 extern "C"
 {
     void ScilabNativeView__createObject(char const* pstId);

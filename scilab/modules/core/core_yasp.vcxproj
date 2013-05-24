@@ -270,6 +270,9 @@
       <Project>{c456d5b8-8a32-496a-a2ee-164b0d734126}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -285,9 +288,8 @@
       <Project>{9594ac02-20ee-4fbf-95b4-bfa5865ed7ca}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="src\cpp\core_gw.vcxproj">
+    <ProjectReference Include="sci_gateway\cpp\core_gw.vcxproj">
       <Project>{3e933eb6-d427-4828-9b30-b6b9987491f6}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>

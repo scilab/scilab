@@ -69,26 +69,26 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
         types::Sparse* pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols(), true);
 
         int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
-        double* pRows = new double[nonZeros * 2];
+        int* pRows = new int[nonZeros * 2];
         pSparseIn->outputRowCol(pRows);
-        double* pCols = pRows + nonZeros;
+        int* pCols = pRows + nonZeros;
 
         if (pSparseIn->isComplex())
         {
             for (int i = 0 ; i < nonZeros ; i++)
             {
-                std::complex<double> cplxIn = pSparseIn->getImg((int)pRows[i] - 1, (int)pCols[i] - 1);
+                std::complex<double> cplxIn = pSparseIn->getImg(pRows[i] - 1, pCols[i] - 1);
                 std::complex<double> cplxOut(cplxIn.imag() * -1, cplxIn.real());
-                pSparseOut->set((int)pRows[i] - 1, (int)pCols[i] - 1, cplxOut);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplxOut);
             }
         }
         else
         {
             for (int i = 0 ; i < nonZeros ; i++)
             {
-                double dReal = pSparseIn->get((int)pRows[i] - 1, (int)pCols[i] - 1);
+                double dReal = pSparseIn->get(pRows[i] - 1, pCols[i] - 1);
                 std::complex<double> cplxOut(0, dReal);
-                pSparseOut->set((int)pRows[i] - 1, (int)pCols[i] - 1, cplxOut);
+                pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplxOut);
             }
         }
 

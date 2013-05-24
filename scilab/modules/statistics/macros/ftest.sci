@@ -1,5 +1,6 @@
 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Michael Baudin
 // Copyright (C) 2000 - INRIA - Carlos Klimann
 //
 // This file must be used under the terms of the CeCILL.
@@ -28,5 +29,5 @@ function [f,p]=ftest(samples)
     sx2=sum((xbar-xbarbar).^2)/(nc-1)
     sp2=(sum(sum((samples-ones(nr,1)*xbar).^2),"r"))/(nc*(nr-1))
     f=(nr*sx2)/sp2
-    p=1-cdff("PQ",f,(nc-1),(nc*(nr-1)))
+    [ignored,p]=cdff("PQ",f,(nc-1),(nc*(nr-1)))
 endfunction

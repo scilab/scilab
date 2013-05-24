@@ -946,3 +946,22 @@ int ConfigVariable::getSimpMode()
 /*
 ** \}
 */
+
+/*
+** funcprot Mode
+** \{
+*/
+int ConfigVariable::m_iFuncprot = 1;
+
+void ConfigVariable::setFuncprot(int _iFuncprot)
+{
+    m_iFuncprot = _iFuncprot;
+}
+
+int ConfigVariable::getFuncprot()
+{
+    return m_iFuncprot;
+}
+/*
+** \}
+*/

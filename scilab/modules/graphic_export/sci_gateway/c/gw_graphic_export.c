@@ -17,24 +17,8 @@
 #include "gw_graphic_export.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static BOOL loadedDep = FALSE;
-static BOOL loadedDepVectorialExport = FALSE;
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-  {NULL, "xs2bmp"}, //sci_xs2bmp
-  {NULL, "xs2gif"}, //sci_xs2gif
-  {NULL, "xs2jpg"}, //sci_xs2jpg
-  {NULL, "xs2png"}, //sci_xs2png
-  {NULL, "xs2ppm"}, //sci_xs2ppm
-  {NULL, "xs2eps"}, //sci_xs2eps
-  {NULL, "xs2pdf"}, //sci_xs2pdf
-  {NULL, "xs2svg"}, //sci_xs2svg
-  {NULL, "xs2ps"}   //sci_xs2ps
-};
-/*--------------------------------------------------------------------------*/
 int gw_graphic_export(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

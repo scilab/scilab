@@ -38,4 +38,9 @@
       <Filter>Libraries Dependencies\Exports</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\jvm_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

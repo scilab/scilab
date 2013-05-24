@@ -13,7 +13,7 @@ function r=%hm_g_hm(a,b)
    //                  and if a and b have the same dimensions
    //                      or if one have only one element
    if type(a.entries) ~= 4 | type(b.entries) ~= 4 then
-      error("operand not a boolean hypermat")
+      error(msprintf(_("%s: Operand not a boolean hypermat.\n"),"%hm_g_hm"));
    end
    if and(a.dims==b.dims) then
       r=hypermat(a.dims,a.entries | b.entries)
@@ -22,6 +22,6 @@ function r=%hm_g_hm(a,b)
    elseif prod(b.dims) == 1 then
       r=hypermat(a.dims,a.entries | b.entries)
    else
-      error("incompatible operand dimensions")
+      error(msprintf(_("%s: incompatible operand dimensions.\n"),"%hm_g_hm"));
    end
 endfunction

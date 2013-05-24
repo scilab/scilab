@@ -1120,13 +1120,9 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
         }
 
         int nonZeros = static_cast<int>(sp->nonZeros());
-        double* pRows = new double[nonZeros * 2];
+        int* pRows = new int[nonZeros * 2];
         sp->outputRowCol(pRows);
-        double* pCols = pRows + nonZeros;
-
-        double* pNonZeroR = new double[nonZeros];
-        double* pNonZeroI = new double[nonZeros];
-        sp->outputValues(pNonZeroR, pNonZeroI);
+        int* pCols = pRows + nonZeros;
 
         if (bComplex1)
         {
@@ -1152,8 +1148,6 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
 
         //clear
         delete[] pRows;
-        delete[] pNonZeroR;
-        delete[] pNonZeroI;
 
         return 0;
     }
@@ -1196,13 +1190,9 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
         pRes->setComplex(bComplex1 | bComplex2);
 
         int nonZeros = static_cast<int>(sp->nonZeros());
-        double* pRows = new double[nonZeros * 2];
+        int* pRows = new int[nonZeros * 2];
         sp->outputRowCol(pRows);
-        double* pCols = pRows + nonZeros;
-
-        double* pNonZeroR = new double[nonZeros];
-        double* pNonZeroI = new double[nonZeros];
-        sp->outputValues(pNonZeroR, pNonZeroI);
+        int* pCols = pRows + nonZeros;
 
         if (bComplex1)
         {
@@ -1227,8 +1217,6 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
 
         //clear
         delete[] pRows;
-        delete[] pNonZeroR;
-        delete[] pNonZeroI;
         *pDRes = pRes;
         return 0;
     }

@@ -183,7 +183,7 @@
     <ClCompile Include="src\cpp\sci_mode.cpp" />
     <ClCompile Include="src\cpp\sci_path.cpp" />
     <ClCompile Include="src\cpp\sci_tmpdir.cpp" />
-    <ClCompile Include="src\cpp\sci_warning.cpp" />
+    <ClCompile Include="src\cpp\warningmode.cpp" />
     <ClCompile Include="src\cpp\setenvvar.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +199,7 @@
     <ClInclude Include="includes\sci_mode.h" />
     <ClInclude Include="includes\sci_path.h" />
     <ClInclude Include="includes\sci_tmpdir.h" />
-    <ClInclude Include="includes\sci_warning.h" />
+    <ClInclude Include="includes\warningmode.h" />
     <ClInclude Include="includes\setenvvar.hxx" />
   </ItemGroup>
   <ItemGroup>

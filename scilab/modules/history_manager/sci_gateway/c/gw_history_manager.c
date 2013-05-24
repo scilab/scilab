@@ -21,25 +21,8 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-	{NULL,""}, // loadhistory
-	{NULL,""}, // savehistory
-	{NULL,""}, // gethistory
-	{NULL,""}, // resethistory
-	{NULL,""}, // displayhistory
-	{NULL,""}, // addhistory
-	{NULL,""}, // saveconsecutivecommands
-	{NULL,""}, // saveafterncommands
-	{NULL,""}, // gethistoryfile
-	{NULL,""}, // sethistoryfile
-	{NULL,""}, // removelinehistory
-	{NULL,""}, // historysize
-	{NULL,""}  // historymanager
-};
-/*--------------------------------------------------------------------------*/
 int gw_history_manager(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

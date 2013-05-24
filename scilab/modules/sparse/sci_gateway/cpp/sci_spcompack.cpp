@@ -38,7 +38,7 @@ void spcompack(int neqns, int nsuper, int nsub, int nnz, XlindxIt xlindx
         if (!(((*(xlnz + j) - * (xlnz + j - 1)) == (*(xlindx + i) - * (xlindx + i - 1)))
                 && (*(adjncy + static_cast<AdjDiff_t>(*(xlnz + j - 1)) - 1) == j)))
         {
-            std::size_t const l(*(xlindx + nsuper) - * (xlindx + i - 1) + (*(xlnz + j) - * (xlnz + j - 1)));
+            std::size_t const l((int) * (xlindx + nsuper) - (int) * (xlindx + i - 1) + ((int) * (xlnz + j) - (int) * (xlnz + j - 1)));
             LindxIt const tmp(lindx + static_cast<LindxDiff_t>(*(xlindx + i - 1) - (*(xlnz + j) - * (xlnz + j - 1))) - 1);
             std::copy(tmp, tmp + l, adjncy + static_cast<AdjDiff_t>(*(xlnz + j - 1)) - 1);
             --i;
@@ -46,14 +46,14 @@ void spcompack(int neqns, int nsuper, int nsub, int nnz, XlindxIt xlindx
     }
     if (i == nsuper + 1)
     {
-        int const k(*(xlnz + neqns) - * (xlnz + j - 1));
+        int const k((int) * (xlnz + neqns) - (int) * (xlnz + j - 1));
         i = 1;
         int ii = 1;
         while (i <= k)
         {
             for (j = 1; j <= ii; ++j, ++i)
             {
-                *(adjncy + static_cast<AdjDiff_t>(*(xlnz + neqns)) - i - 1) = neqns - j + 1;
+                *(adjncy + static_cast<AdjDiff_t>((int) * (xlnz + neqns)) - i - 1) = (double)(neqns - j + 1);
             }
             ++ii;
         }
@@ -95,11 +95,11 @@ Function::ReturnValue sci_spcompack(typed_list &in, int nbRes, typed_list &out)
     double const*const lindx    = in[2]->getAs<Double>()->getReal();
     std::size_t const nSuper    = in[2]->getAs<Double>()->getSize();
 
-    std::size_t const nnz = xadj[nEqns - 1] - 1;
-    types::Double* const pAdjncy = new types::Double(nnz, 1);
+    std::size_t const nnz = (std::size_t)xadj[nEqns - 1] - 1;
+    types::Double* const pAdjncy = new types::Double((int)nnz, 1);
     double* const adjncy(pAdjncy->getReal());
 
-    spcompack(nEqns - 1, nbSub - 1,  nSuper - 1, nnz - 1, xlindx, lindx, xadj, adjncy);
+    spcompack((int)nEqns - 1, (int)nbSub - 1,  (int)nSuper - 1, (int)nnz - 1, xlindx, lindx, xadj, adjncy);
     out.push_back(pAdjncy);
     return Function::OK;
 }

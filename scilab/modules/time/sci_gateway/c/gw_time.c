@@ -16,19 +16,8 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define TIME_TAB_SIZE 7
-static gw_generic_table Tab[TIME_TAB_SIZE]={
-	{NULL, ""}, //getdate
-	{NULL, ""}, //Calendar
-	{NULL, ""}, //timer
-	{NULL, ""}, //sleep
-	{NULL, ""}, //xpause
-	{NULL, ""}, //realtimeinit
-	{NULL, ""}, //realtime
-};
-/*--------------------------------------------------------------------------*/
 int gw_time(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

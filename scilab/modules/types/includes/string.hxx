@@ -30,54 +30,62 @@
 
 namespace types
 {
-    class TYPES_IMPEXP String : public ArrayOf<wchar_t*>
+class TYPES_IMPEXP String : public ArrayOf<wchar_t*>
+{
+public :
+    String(int _iRows, int _iCols);
+    String(int _iDims, int* _piDims);
+    String(int _iRows, int _iCols, wchar_t** _pstData);
+    String(const wchar_t *_pstData);
+    String(const char *_pstData);
+    virtual                 ~String();
+
+    void                    whoAmI();
+
+    virtual bool            set(int _iPos, wchar_t* _pwstData);
+    virtual bool            set(int _iPos, const wchar_t* _pwstData);
+    virtual bool            set(int _iRows, int _iCols, const wchar_t* _pwstData);
+    virtual bool            set(int _iRows, int _iCols, wchar_t* _pwstData);
+    virtual bool            set(wchar_t** _pwstData);
+
+    bool                    operator==(const InternalType& it);
+    bool                    operator!=(const InternalType& it);
+
+    bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring    getTypeStr()
     {
-    public :
-                                String(int _iRows, int _iCols);
-                                String(int _iDims, int* _piDims);
-                                String(int _iRows, int _iCols, wchar_t** _pstData);
-                                String(const wchar_t *_pstData);
-                            	String(const char *_pstData);
-        virtual                 ~String();
+        return L"string";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring    getShortTypeStr()
+    {
+        return L"c";
+    }
+    InternalType*           clone();
 
-        void                    whoAmI();
+    RealType                getType();//			{ return RealString; }
+    bool                    isString()
+    {
+        return true;
+    }
 
-        virtual bool            set(int _iPos, wchar_t* _pwstData);
-        virtual bool            set(int _iPos, const wchar_t* _pwstData);
-        virtual bool            set(int _iRows, int _iCols, const wchar_t* _pwstData);
-        virtual bool            set(int _iRows, int _iCols, wchar_t* _pwstData);
-        virtual bool            set(wchar_t** _pwstData);
+private :
+    void                    deleteString(int _iRows, int _iCols);
+    void                    deleteString(int _iPos);
 
-        bool                    operator==(const InternalType& it);
-        bool                    operator!=(const InternalType& it);
-
-        bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring    getTypeStr() {return L"string";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring    getShortTypeStr() {return L"c";}
-        InternalType*           clone();
-
-        RealType                getType();//			{ return RealString; }
-        bool                    isString() { return true; }
-
-    private :
-        void                    deleteString(int _iRows, int _iCols);
-        void                    deleteString(int _iPos);
-
-        void                    createString(int _iDims, int* _piDims);
-        virtual wchar_t*        copyValue(wchar_t* _pwstData);
-        virtual wchar_t*        copyValue(const wchar_t* _pwstData);
-        virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual wchar_t*        getNullValue();
-        virtual void            deleteAll();
-        virtual void            deleteImg();
-        virtual wchar_t**       allocData(int _iSize);
-    };
+    void                    createString(int _iDims, int* _piDims);
+    virtual wchar_t*        copyValue(wchar_t* _pwstData);
+    virtual wchar_t*        copyValue(const wchar_t* _pwstData);
+    virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual wchar_t*        getNullValue();
+    virtual void            deleteAll();
+    virtual void            deleteImg();
+    virtual wchar_t**       allocData(int _iSize);
+};
 }
 
 #ifdef _MSC_VER
 template class TYPES_IMPEXP types::ArrayOf<wchar_t*>; //String
 #endif
-
 #endif /* !__STRING_HXX__ */

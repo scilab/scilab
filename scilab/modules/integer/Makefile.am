@@ -74,7 +74,8 @@ GATEWAY_CPP_SOURCES = \
 				sci_gateway/cpp/integer_gw.cpp \
 				sci_gateway/cpp/sci_inttype.cpp \
 				sci_gateway/cpp/sci_double.cpp \
-				sci_gateway/cpp/sci_int.cpp
+				sci_gateway/cpp/sci_int.cpp \
+				sci_gateway/cpp/sci_iconvert.cpp
 
 GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_i_mput.f \
@@ -101,6 +102,11 @@ libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/ast/includes/ \
 				-I$(top_srcdir)/modules/symbol/includes/ \
 				-I$(top_srcdir)/modules/dynamic_link/includes/ \
+				-I$(top_srcdir)/modules/system_env/includes/ \
+				-I$(top_srcdir)/modules/threads/includes/ \
+				-I$(top_srcdir)/modules/string/includes/ \
+				-I$(top_srcdir)/modules/console/includes/ \
+				$(EIGEN_CPPFLAGS)
 				$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

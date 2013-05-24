@@ -50,10 +50,6 @@
 
 #define MAX(A,B) ((A<B)?B:A)
 
-static double spans[18] = {10, 12, 14, 15, 16, 18, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100};
-static int ticks[18] = {11, 7, 8, 4, 9, 10, 11, 6, 7, 8, 9, 10, 11, 7, 8, 9, 10, 11};
-static double width[18] = {1, 2, 2, 5, 2, 2, 2, 5, 5, 5, 5, 5, 5, 10, 10, 10, 10, 10};
-
 /** Maximum of ticks for log mode */
 #define MAX_LOG_TICKS 15
 

@@ -62,9 +62,6 @@
     <ClCompile Include="freeArrayOfString.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="funcprot.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Funtab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -198,9 +195,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_errclear.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_funcprot.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_funptr.c">

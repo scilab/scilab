@@ -20,41 +20,67 @@
 #include "visitor.hxx"
 #include "dynlib_types.h"
 
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 using namespace ast;
 namespace types
 {
-  class TYPES_IMPEXP Callable : public InternalType
-  {
-  public :
-      enum ReturnValue
-      {
-          OK,
-          OK_NoResult,
-          Error
-      };
-    
-                            Callable(): InternalType() {}
-      virtual               ~Callable() {}
+class TYPES_IMPEXP Callable : public InternalType
+{
+public :
+    enum ReturnValue
+    {
+        OK,
+        OK_NoResult,
+        Error
+    };
 
-      bool                  isCallable() { return true; }
+    Callable(): InternalType() {}
+    virtual             ~Callable() {}
 
-      virtual ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
+    bool                isCallable()
+    {
+        return true;
+    }
 
-      void                  setName(std::wstring _wstName) { m_wstName = _wstName; }
-      std::wstring          getName() { return m_wstName; }
-      void                  setModule(std::wstring _wstModule) { m_wstModule = _wstModule; }
-      std::wstring          getModule() { return m_wstModule; }
+    virtual ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
 
-      /* return type as string ( double, int, cell, list, ... )*/
-      virtual std::wstring  getTypeStr() {return L"callable";}
-      /* return type as short string ( s, i, ce, l, ... )*/
-      virtual std::wstring  getShortTypeStr() = 0;
-      virtual InternalType* clone(void) = 0;
+    void                  setName(std::wstring _wstName)
+    {
+        m_wstName = _wstName;
+    }
+    std::wstring        getName()
+    {
+        return m_wstName;
+    }
+    void                  setModule(std::wstring _wstModule)
+    {
+        m_wstModule = _wstModule;
+    }
+    std::wstring        getModule()
+    {
+        return m_wstModule;
+    }
 
-  protected :
-      std::wstring           m_wstName;
-      std::wstring           m_wstModule;
-  };
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring  getTypeStr()
+    {
+        return L"callable";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring  getShortTypeStr() = 0;
+    virtual InternalType* clone(void) = 0;
+
+    virtual bool        isAssignable(void)
+    {
+        return true;
+    }
+
+protected :
+    std::wstring           m_wstName;
+    std::wstring           m_wstModule;
+};
 }
 
 

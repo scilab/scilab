@@ -27,48 +27,10 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
-
-
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-	{sci_var2vec,"var2vec"},
-	{sci_vec2var,"vec2var"},
-	{sci_getblocklabel,"getblocklabel"},
-	{sci_scicos_debug,"scicos_debug"},
-	{sci_scicos_debug_count,"scicos_debug_count"},
-	{sci_sctree,"sctree"},
-	{sci_ftree2,"sci_tree2"},
-	{sci_ftree3,"sci_tree3"},
-	{sci_ftree4,"sci_tree4"},
-	{sci_curblock,"curblock"},
-	{sci_scicos_time,"scicos_time"},
-	{sci_duplicate,"duplicate"},
-	{sci_diffobjs,"diffobjs"},
-	{sci_pointer_xproperty,"pointer_xproperty"},
-	{sci_phase_simulation,"phase_simulation"},
-	{sci_set_xproperty,"set_xproperty"},
-	{sci_set_blockerror,"set_blockerror"},
-	{sci_ctree2,"ctree2"},
-	{sci_ctree3,"ctree3"},
-	{sci_ctree4,"ctree4"},
-	{sci_scicosim,"scicosim"},
-	{sci_getscicosvars,"getscicosvars"},
-	{sci_curblockc,"curblockc"},
-	{sci_buildouttb,"buildouttb"},
-	{sci_end_scicosim,"end_scicosim"},
-	{sci_coserror, "coserror"},
-	{sci_haltscicos, "sci_haltscicos"},
-	{sci_data2sig,"data2sig"},
-	{sci_sig2data,"sig2data"},
-	{sci_model2blk,"model2blk"},
-	{sci_callblk,"callblk"},
-	{sci_loadScicos,"loadScicos"}
-};
 /*--------------------------------------------------------------------------*/
 int gw_scicos(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 

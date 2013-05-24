@@ -20,12 +20,13 @@
 #include "expandPathVariable.h"
 #include "FileExist.h"
 #include "mclose.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "pcre_private.h"
 #include "sciprint.h"
 #include "splitLine.h"
 #include "os_strdup.h"
 #include "csvDefault.h"
+#include "strsubst.h"
 // =============================================================================
 #if _MSC_VER
 #define READ_ONLY_TEXT_MODE "rt"
@@ -56,7 +57,8 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
     double res = 0.0;
     int errMOPEN = MOPEN_INVALID_STATUS;
     int errMGETL = MGETL_ERROR;
-    char **lines = NULL;
+    wchar_t **pwstLines = NULL;
+    char **pstLines = NULL;
     int nblines = 0;
     char **replacedInLines = NULL;
     char **pComments = NULL;
@@ -114,13 +116,15 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         return result;
     }
 
-    lines = mgetl(fd, -1, &nblines, &errMGETL);
+    pwstLines = mgetl(fd, -1, &nblines, &errMGETL);
+    pstLines = (char**)MALLOC(sizeof(char*) * nblines);
 
     {
         int i = 0;
         for (i = 0 ; i < nblines ; i++)
         {
-            printf("mgetl %s\n", lines[i]);
+            pstLines[i] = wide_string_to_UTF8(pwstLines[i]);
+            printf("mgetl %s\n", pstLines[i]);
         }
 
     }
@@ -129,10 +133,10 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     if (errMGETL != MGETL_NO_ERROR)
     {
-        if (lines)
+        if (pwstLines)
         {
-            freeArrayOfString(lines, nblines);
-            lines = NULL;
+            freeArrayOfWideString(pwstLines, nblines);
+            pwstLines = NULL;
         }
 
         result = (csvResult*)(MALLOC(sizeof(csvResult)));
@@ -152,7 +156,7 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
     {
         int iErr = 0;
 
-        pComments = extractComments((const char**)lines, nblines, regexpcomments, &nbComments, &iErr);
+        pComments = extractComments((const char**)pstLines, nblines, regexpcomments, &nbComments, &iErr);
 
         if ((iErr == CAN_NOT_COMPILE_PATTERN) || (iErr == DELIMITER_NOT_ALPHANUMERIC))
         {
@@ -179,11 +183,12 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
             int nbCleanedLines = 0;
             int i = 0;
 
-            pCleanedLines = removeComments((const char**)lines, nblines, (const char*)regexpcomments, &nbCleanedLines, &iErr);
+            pCleanedLines = removeComments((const char**)pstLines, nblines, (const char*)regexpcomments, &nbCleanedLines, &iErr);
             if (pCleanedLines)
             {
-                FREE(lines);
-                lines = pCleanedLines;
+                FREE(pwstLines);
+                FREE(pstLines);
+                pstLines = pCleanedLines;
                 nblines = nbCleanedLines;
             }
 
@@ -192,11 +197,11 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
 
     if (toreplace && (sizetoreplace > 0))
     {
-        replacedInLines = replaceStrings((const char**)lines, nblines, toreplace, sizetoreplace);
+        replacedInLines = replaceStrings((const char**)pstLines, nblines, toreplace, sizetoreplace);
         if (replacedInLines)
         {
-            freeArrayOfString(lines, nblines);
-            lines = replacedInLines;
+            freeArrayOfString(pstLines, nblines);
+            pstLines = replacedInLines;
         }
     }
 
@@ -204,15 +209,21 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         int i = 0;
         for (i = 0 ; i < nblines ; i++)
         {
-            printf("csvtextscan %s\n", lines[i]);
+            printf("csvtextscan %s\n", pstLines[i]);
         }
 
     }
-    result = csvTextScan((const char**)lines, nblines, (const char*)separator, (const char*)decimal);
-    if (lines)
+    result = csvTextScan((const char**)pstLines, nblines, (const char*)separator, (const char*)decimal);
+    if (pstLines)
     {
-        freeArrayOfString(lines, nblines);
-        lines = NULL;
+        freeArrayOfString(pstLines, nblines);
+        pstLines = NULL;
+    }
+
+    if (pwstLines)
+    {
+        freeArrayOfWideString(pwstLines, nblines);
+        pwstLines = NULL;
     }
 
     if (result)

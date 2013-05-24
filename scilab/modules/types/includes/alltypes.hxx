@@ -13,11 +13,11 @@
 #define ALL_TYPES_HXX
 
 #ifdef getType
-    #undef getType
+#undef getType
 #endif
 
 #ifdef isComplex
-    #undef isComplex
+#undef isComplex
 #endif
 
 #include "internal.hxx"
@@ -57,5 +57,6 @@
 #include "dollar.hxx"
 #include "sparse.hxx"
 #include "graphichandle.hxx"
+#include "void.hxx"
 
 #endif /* !ALL_TYPES_HXX */

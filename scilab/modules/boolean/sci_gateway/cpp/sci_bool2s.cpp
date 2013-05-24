@@ -85,9 +85,9 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
         size_t iNonZeros = pSpIn->nonZeros();
 
         //coords
-        double* pRows = new double[iNonZeros * 2];
+        int* pRows = new int[iNonZeros * 2];
         pSpIn->outputRowCol(pRows);
-        double* pCols = pRows + iNonZeros;
+        int* pCols = pRows + iNonZeros;
 
         //values
         double* pNonZeroR = new double[iNonZeros];
@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
 
         for (int i = 0; i < iNonZeros; i++)
         {
-            pSpOut->set((int)pRows[i] - 1, (int)pCols[i] - 1, static_cast<double>(pNonZeroR[i] != 0));
+            pSpOut->set(pRows[i] - 1, pCols[i] - 1, static_cast<double>(pNonZeroR[i] != 0));
         }
 
         pOut = pSpOut;
@@ -109,13 +109,13 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
         size_t iNonZeros = pSpbIn ->nbTrue();
 
         //coords
-        double* pRows = new double[iNonZeros * 2];
-        pSpbIn ->outputRowCol(pRows);
-        double* pCols = pRows + iNonZeros;
+        int* pRows = new int[iNonZeros * 2];
+        pSpbIn->outputRowCol(pRows);
+        int* pCols = pRows + iNonZeros;
 
         for (int i = 0; i < iNonZeros; i++)
         {
-            pSpOut->set((int)pRows[i] - 1, (int)pCols[i] - 1, 1);
+            pSpOut->set(pRows[i] - 1, pCols[i] - 1, 1);
         }
 
         pOut = pSpOut;

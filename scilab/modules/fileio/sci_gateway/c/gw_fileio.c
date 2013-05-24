@@ -16,62 +16,8 @@
 #include "MALLOC.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-/*  interface function */
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={
-	{NULL, ""}, //mopen
-	{NULL, ""}, //mputstr
-	{NULL, ""}, //mclose
-	{NULL, ""}, //mput
-	{NULL, ""}, //mget
-	{NULL, ""}, //mgetstr
-	{NULL, ""}, //meof
-	{NULL, ""}, //mseek
-	{NULL, ""}, //mtell
-	{NULL, ""}, //mclearerr
-	{NULL, ""}, //mfprintf *
-	{NULL, ""}, //mscanf *
-	{NULL, ""}, //mfscanf *
-	{NULL, ""}, //msscanf *
-	{NULL,"" }, //fscanfMat
-	{NULL,"" }, //fprintfMat
-	{NULL, ""}, //merror
-	{NULL, ""}, //findfiles
-	{NULL, ""}, //maxfiles => deprecated (Scilab 5.4)
-	{NULL, ""}, //getdrives
-	{NULL, ""}, //fullpath
-	{NULL, ""}, //deletefile
-	{NULL, ""}, //pathsep
-	{NULL, ""}, //filesep
-	{NULL, ""}, //getlongpathname
-	{NULL, ""}, //getshortpathname
-	{NULL, ""}, //fileext
-	{NULL, ""}, //isdir
-	{NULL, ""}, //removedir
-	{NULL, ""}, //createdir
-	{NULL, ""}, //pwd
-	{NULL, ""}, //chdir
-	{NULL, ""}, //fileinfo
-	{NULL, ""}, //newest
-	{NULL, ""}, //getrelativefilename
-	{NULL, ""}, //get_absolute_file_path
-	{NULL, ""}, //copyfile
-	{NULL, ""}, //isfile
-	{NULL, ""}, //fileparts
-	{NULL, ""}, //movefile
-	{NULL, ""}, //basename
-	{NULL, ""}, //pathconvert
-	{NULL, ""}, //cd
-    {NULL, ""}, //mgetl
-    {NULL, ""}, //mputl
-    {NULL, ""}, //tempname
-    {NULL, ""}, //getURL
-    {NULL, ""}  //splitURL
-};
-/*--------------------------------------------------------------------------*/
 int gw_fileio(void)
 {
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-

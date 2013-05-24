@@ -45,7 +45,7 @@ Function::ReturnValue sci_sp2adj(typed_list &in, int nbRes, typed_list &out)
         return Function::Error;
     }
 
-    Sparse* CONST sp = in[0]->getAs<Sparse>();
+    Sparse* SPARSE_CONST sp = in[0]->getAs<Sparse>();
     std::size_t const nonZeros = sp->nonZeros();
 
     types::Double* res = new Double(sp->getCols() + 1, 1);

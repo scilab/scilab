@@ -8,10 +8,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function M1=%hm_x_p(M1,M2)
-//author Serge Steer
-  if size(M2,'*')<>1 then
-    error('inconsistent element-wise operation')
-  else
-    M1.entries=M1.entries.*M2
-  end
+    //author Serge Steer
+    if size(M2,'*')<>1 then
+        error(msprintf(_("%s: Inconsistent element-wise operation.\n"),"%hm_x_p"));
+    else
+        M1.entries=M1.entries.*M2
+    end
 endfunction

@@ -19,5 +19,4 @@ a = ['aaa';'eee';'ccc';'bbb';'ddd';'rrr'];
 trueValue=[1; 4; 3; 5; 2; 6];
 
 [b result] = gsort(a,'r','i')
-if result <> trueValue then pause,end
-
+assert_checkequal(result, trueValue);

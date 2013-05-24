@@ -969,10 +969,16 @@ int DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, d
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -1195,10 +1201,16 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -1261,10 +1273,16 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -1334,10 +1352,16 @@ double DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, 
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -1412,10 +1436,16 @@ int DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double* 
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -1891,10 +1921,16 @@ int DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* y
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -1977,10 +2013,16 @@ int DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* y
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -2057,10 +2099,16 @@ int DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double*
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -2143,10 +2191,16 @@ int DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double*
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -2246,10 +2300,16 @@ int DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doubl
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {
@@ -2335,10 +2395,16 @@ int DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* y
 
         for (int i = 0; i < m_FArgs.size(); i++)
         {
+            m_FArgs[i]->IncreaseRef();
             in.push_back(m_FArgs[i]);
         }
 
         bool bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+
+        for (int i = 0; i < m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
 
         if (bOk == false)
         {

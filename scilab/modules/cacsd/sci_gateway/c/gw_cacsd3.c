@@ -17,13 +17,6 @@
 #include "callFunctionFromGateway.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-    {sci_arl2, "arl2_ius"},
-    {sci_residu, "residu"},
-    {sci_ldiv, "ldiv"}
-};
-/*--------------------------------------------------------------------------*/
 int gw_cacsd3(void)
 {
     return 0;

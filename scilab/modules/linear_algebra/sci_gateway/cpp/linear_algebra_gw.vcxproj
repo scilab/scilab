@@ -192,6 +192,7 @@
     <ClCompile Include="sci_svd.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_linear_algebra_gw.h" />
     <ClInclude Include="..\..\includes\linear_algebra_gw.hxx" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +228,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
       <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\types\types.vcxproj">
       <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>

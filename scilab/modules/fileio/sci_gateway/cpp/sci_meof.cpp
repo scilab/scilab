@@ -22,7 +22,7 @@ extern "C"
 {
 #include <stdio.h>
 #include "expandPathVariable.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -34,14 +34,14 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
     int iRet  = 0;
     int iFile = -1; //default file : last opened file
 
-    if(in.size() > 1)
+    if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "meof", 0, 1);
         return types::Function::Error;
     }
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
-        if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
+        if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "meof", 1);
             return types::Function::Error;
@@ -49,17 +49,17 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
 
         iFile = (int)in[0]->getAs<types::Double>()->get(0);
         switch (iFile)
-	    {
-        case 0: // stderr
-        case 5: // stdin
-        case 6: // stdout
-            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "meof", iFile);
-            return types::Function::Error;
+        {
+            case 0: // stderr
+            case 5: // stdin
+            case 6: // stdout
+                Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "meof", iFile);
+                return types::Function::Error;
         }
     }
 
     File* pF = FileManager::getFile(iFile);
-    if(pF != NULL)
+    if (pF != NULL)
     {
         iRet = feof(pF->getFiledesc());
     }

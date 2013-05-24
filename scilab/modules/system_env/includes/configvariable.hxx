@@ -13,6 +13,9 @@
 #ifndef __CONFIGVARIABLE_HXX__
 #define __CONFIGVARIABLE_HXX__
 
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 #include <list>
 #include <map>
 #include <string>
@@ -331,6 +334,14 @@ private :
 public :
     static void setSimpMode(int _iSimpMode);
     static int getSimpMode();
+
+    // funcprot mode
+private :
+    static int m_iFuncprot;
+
+public :
+    static void setFuncprot(int _iFuncprot);
+    static int getFuncprot();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

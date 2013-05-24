@@ -253,7 +253,8 @@ int sci_model2blk(char *fname, unsigned long fname_len)
     else
     {
         lfunpt -= (ntabsim + 1);
-        GetDynFunc(lfunpt, &Block.funpt);
+        //TODO: see in dynamic_lin how to get funcptr from index
+        //GetDynFunc(lfunpt, &Block.funpt);
         if (Block.funpt == (voidf) 0)
         {
             Scierror(888, _("%s : Function not found\n"), fname);

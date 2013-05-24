@@ -7,8 +7,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            [x, lagr] = qld(Q, p, C, b, ci, cs, me [,tol])
-            [x, lagr, info] = qld(Q, p, C, b, ci, cs, me [,tol])
+            [x [,lagr [,info]]] = qld(Q, p, C, b, ci, cs, me [,tol])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -176,7 +175,7 @@ C1= [1,-1,1,0,3,1;
      2,5,3,0,1,0];
 b1=[1;2;3];
 
-//C2*x <= b2 (2 inequality constraints)
+//C2*x <= b2 (2 inequality constraints i.e md=2)
 C2=[0,1,0,1,2,-1;
     -1,0,2,1,1,0];
 b2=[-1;2.5];

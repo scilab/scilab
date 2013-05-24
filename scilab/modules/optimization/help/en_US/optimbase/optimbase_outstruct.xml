@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_outstruct" xml:lang="en">
+    <refnamediv>
+        <refname>optimbase_outstruct</refname>
+        <refpurpose>Returns a data structure with type T_OPTDATA.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            data = optimbase_outstruct(opt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The object of TOPTIM type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data </term>
+                <listitem>
+                    <para>A data structure with type T_OPTDATA containing at least the following fields.</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>x </term>
+                            <listitem>
+                                <para>The current optimum.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>fval </term>
+                            <listitem>
+                                <para>The current function value.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>iteration </term>
+                            <listitem>
+                                <para>The current iteration index.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>funccount</term>
+                            <listitem>
+                                <para>The number of function evaluations.</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimbase_outstruct</literal> function returns a data structure with 
+            T_OPTDATA type. This data structure contains basic optimization fields.
+        </para>
+        <para>
+            The output argument <literal>data</literal> is designed to be the input of the 
+            <literal>optimbase_outputcmd</literal> function which, in turn, calls back the output 
+            function. This data structure may be enriched by children (specialized) optimization 
+            methods.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
+function [f,index] = fun(x, index)
+    f = 2*x - 4;
+endfunction
+
+function stop = myoutputcmd(state, data)
+    iter = data.iteration
+    if ( state == "init" ) then
+        mprintf ( "=================================\n");
+        mprintf ( "Initialization\n");
+    elseif ( state == "done" ) then
+        mprintf ( "=================================\n");
+        mprintf ( "End of Optimization\n");
+    end
+    fc = data.funccount
+    fval = data.fval
+    x = data.x
+    mprintf ( "Iter. #%3d, Feval #%3d, Fval = %.1e, x = %s \n" , ..
+    iter, fc, fval, strcat(string(x)," "));
+    stop = %f
+endfunction
+
+a = -5;
+b = 5;
+x0 = (a+b)/2;;
+
+// Creates the object
+opt = optimbase_new();
+
+// Configures the object
+opt = optimbase_configure(opt,"-numberofvariables",2);
+opt = optimbase_configure(opt, "-x0", x0);
+opt = optimbase_configure(opt, "-tolxrelative", 10*%eps);
+opt = optimbase_configure(opt, "-maxiter", 100);
+opt = optimbase_configure(opt, "-function", fun);
+opt = optimbase_configure(opt,"-outputcommand", myoutputcmd);
+
+function x = Dicho(opt,a,b)
+    xk = optimbase_cget(opt, "-x0");
+    [opt, fx0,index] = optimbase_function (opt , xk , 4);
+    opt = optimbase_set ( opt , "-fx0" , fx0 );
+    opt = optimbase_set ( opt , "-xopt" , x0 );
+    opt = optimbase_set ( opt , "-fopt" , fx0 );
+
+    // OutputCmd
+    brutedata = optimbase_outstruct ( opt );
+    data = tlist(["T_OPTBDATA",...
+    "x","fval","iteration","funccount"]);
+    data.x = brutedata.x;
+    data.fval = brutedata.fval;
+    data.iteration = brutedata.iteration;
+    data.funccount = brutedata.funccount;
+    stop = optimbase_outputcmd (opt , "init" , data );
+
+
+    while optimbase_get(opt, "-iterations") <optimbase_cget(opt, "-maxiter")
+        [opt, f,index] = optimbase_function(opt, xk, 4);
+        [opt, g, index] = optimbase_function(opt, a, 4);
+        if g*f <=0 then
+           b = xk;
+        else
+            a = xk;
+        end
+        x = (a+b)/2;
+        opt = optimbase_incriter(opt);
+        opt = optimbase_set ( opt , "-xopt" , x );
+        opt = optimbase_set ( opt , "-fopt" , f );
+        temp = abs(x-xk);
+        
+        if temp < optimbase_cget(opt, "-tolxrelative")
+            // OutputCmd
+            brutedata = optimbase_outstruct ( opt );
+            data = tlist(["T_OPTBDATA",...
+            "x","fval","iteration","funccount"]);
+            data.x = brutedata.x;
+            data.fval = brutedata.fval;
+            data.iteration = brutedata.iteration;
+            data.funccount = brutedata.funccount;
+            stop = optimbase_outputcmd (opt , "done" , data );
+            break
+        end
+        xk = x;
+        
+        // OutputCmd
+        brutedata = optimbase_outstruct ( opt );
+        data = tlist(["T_OPTBDATA",...
+        "x","fval","iteration","funccount"]);
+        data.x = brutedata.x;
+        data.fval = brutedata.fval;
+        data.iteration = brutedata.iteration;
+        data.funccount = brutedata.funccount;
+        stop = optimbase_outputcmd (opt , "iter" , data );
+    end
+
+endfunction
+x = Dicho(opt,a,b)
+]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimbase_outputcmd">optimbase_outputcmd</link>
+            </member>
+            <member>
+                <link linkend="optimbase_function">optimbase_function</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

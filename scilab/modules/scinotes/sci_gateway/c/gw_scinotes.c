@@ -15,14 +15,6 @@
 #include "callFunctionFromGateway.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
-static BOOL loadedDep = FALSE;
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-    {NULL, ""}, //"editor"
-    {NULL, ""} // "closeEditor"
-};
-/*--------------------------------------------------------------------------*/
 int gw_scinotes(void)
 {
     return 0;

@@ -17,17 +17,8 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{ 
-	{NULL, ""}, //print
-	{NULL, ""}, //mprintf
-	{NULL, ""}, //msprintf
-	{NULL, ""}, //disp
-	{NULL, ""} //diary
-};
-/*--------------------------------------------------------------------------*/
 int gw_output_stream(void)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

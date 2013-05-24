@@ -20,14 +20,15 @@
 class IntegerModule
 {
 private :
-	IntegerModule(){};
-	~IntegerModule(){};
+    IntegerModule() {};
+    ~IntegerModule() {};
 public :
-	INTEGER_GW_IMPEXP static int Load();
+    INTEGER_GW_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_inttype);
 CPP_GATEWAY_PROTOTYPE(sci_double);
+CPP_GATEWAY_PROTOTYPE(sci_iconvert);
 //YaSp
 CPP_GATEWAY_PROTOTYPE(sci_integer8);
 CPP_GATEWAY_PROTOTYPE(sci_uinteger8);

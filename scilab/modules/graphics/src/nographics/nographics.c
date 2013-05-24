@@ -15,29 +15,11 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_graphics.h"
-#include "callFunctionFromGateway.h"
-#include "graphicModuleLoad.h"
 #include "TerminateGraphics.h"
-#include "getDictionaryGetProperties.h"
-#include "getDictionarySetProperties.h"
-#include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "math_graphics.h"
-#include "DestroyObjects.h"
-#include "axesScale.h"
 #include "BuildObjects.h"
-#include "BasicAlgos.h"
-#include "pixel_mode.h"
-#include "Axes.h"
-#include "getPropertyAssignedValue.h"
-#include "SetHashTable.h"
-#include "Scierror.h"
-#include "localization.h"
-#include "Format.h"
 #include "MALLOC.h"
-#include "Interaction.h"
-#include "InitObjects.h"
 
 /*--------------------------------------------------------------------------*/
 

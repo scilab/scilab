@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-
-// =============================================================================
-
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
-// Copyright (C) 2011 - DIGITEO - Bruno JOFRET
-
-//
-
-//  This file is distributed under the same license as the Scilab package.
-
-// =============================================================================
-
-//
-
-// Return 3 values
-
-//
-
-=======
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Bruno JOFRET
@@ -28,63 +7,12 @@
 //
 // Return 3 values
 //
->>>>>>> origin/master
 function varargout=__test_function__()
   varargout(1) = 42;
   varargout(2) = "value";
   varargout(3) = list(51);
 endfunction
 // Simple call
-<<<<<<< HEAD
-
-__test_function__();
-
-a = __test_function__();
-
-if a <> 42 then bugmes();quit;end;
-
-clear a;
-
-[a,b] = __test_function__();
-
-if a <> 42 then bugmes();quit;end;
-
-if b <> "value" then bugmes();quit;end;
-
-clear a;
-
-clear b;
-
-[a,b,c] = __test_function__();
-
-if a <> 42 then bugmes();quit;end;
-
-if b <> "value" then bugmes();quit;end;
-
-if c <> list(51) then bugmes();quit;end;
-
-clear a;
-
-clear b;
-
-clear c;
-
-// Check call with too much output values.
-
-ierr = execstr("[a,b,c,d] = __test_function__();", "errcatch")
-ierr = 
-
-  999
-
-if ierr == 0 then bugmes();quit;end;
-
-//
-
-// Return a list of 3 elements with second missing.
-
-//
-
-=======
 __test_function__();
 a = __test_function__();
 if a <> 42 then bugmes();quit;end;
@@ -107,41 +35,11 @@ assert_checkfalse(ierr == 0);
 //
 // Return a list of 3 elements with second missing.
 //
->>>>>>> origin/master
 function varargout=__test_function2__()
   varargout(1) = 42;
   varargout(3) = "value";
 endfunction
 // Simple call
-<<<<<<< HEAD
-
-__test_function2__();
-
-a = __test_function2__();
-
-if a <> 42 then bugmes();quit;end;
-
-clear a;
-
-// varargout(2) is undefined
-
-ierr = execstr("[a,b] = __test_function2__();", "errcatch");
-
-if ierr == 0 then bugmes();quit;end;
-
-//
-
-// varargout is not set : should not work.
-
-//
-
-function varargout=__test_function3__()
-endfunction
-ierr = execstr("__test_function3__();", "errcatch");
-
-if ierr == 0 then bugmes();quit;end;
-
-=======
 __test_function2__();
 a = __test_function2__();
 if a <> 42 then bugmes();quit;end;
@@ -156,4 +54,3 @@ function varargout=__test_function3__()
 endfunction
 ierr = execstr("__test_function3__();", "errcatch");
 assert_checkfalse(ierr == 0);
->>>>>>> origin/master

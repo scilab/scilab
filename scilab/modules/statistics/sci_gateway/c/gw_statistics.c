@@ -15,22 +15,7 @@
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-	{NULL, ""}, //cdfbet
-	{NULL, ""}, //cdfbin
-	{NULL, ""}, //cdfchi
-	{NULL, ""}, //cdfchn
-	{NULL, ""}, //cdff
-	{NULL, ""}, //cdffnc
-	{NULL, ""}, //cdfgam
-	{NULL , ""}, //cdfnbn
-	{NULL, ""}, //cdfnor
-	{NULL, ""}, //cdfpoi
-	{NULL, ""} //cdft
-};
-/*--------------------------------------------------------------------------*/
 int gw_statistics()
 {
-	return 0;
+    return 0;
 }

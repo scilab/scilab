@@ -36,6 +36,8 @@ public class BrowseVar {
     public static final int BYTES_COLUMN_INDEX = 5;
     public static final int FROM_SCILAB_COLUMN_INDEX = 6;
     public static final int TYPE_COLUMN_INDEX = 7;
+    public static final int NB_ROWS_INDEX = 8;
+    public static final int NB_COLS_INDEX = 9;
 
     public static final String[] COLUMNNAMES = new String[] {"", /* Icon */
             Messages.gettext("Name"),
@@ -45,6 +47,8 @@ public class BrowseVar {
             Messages.gettext("Bytes"),
             Messages.gettext("User"),
             Messages.gettext("Type int value"),
+            "", /* nbrows */
+            "" /* nbcols */
                                                             };
 
     public static final int[] COLUMNSALIGNMENT = new int[] { -1, JLabel.LEFT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT};
@@ -129,7 +133,7 @@ public class BrowseVar {
      * @param dataVisibility : local or global variable
      * @param dataFromUser : Scilab data or user data
      */
-    public static void openVariableBrowser(boolean update, String[] dataNames, int[] dataBytes, int[] dataTypes, int[] dataIntegerTypes, String[] variableListTypes, String[] dataSizes, String[] dataVisibility, boolean[] dataFromUser) {
+    public static void openVariableBrowser(boolean update, String[] dataNames, int[] dataBytes, int[] dataTypes, int[] dataIntegerTypes, String[] variableListTypes, String[] dataSizes, int[] dataNbRows, int[] dataNbCols, String[] dataVisibility, boolean[] dataFromUser) {
         Object[][] data = new Object[dataNames.length][COLUMNNAMES.length];
         for (int i = 0; i < dataNames.length; ++i) {
             data[i][ICON_COLUMN_INDEX] = getIconFromType(dataTypes[i]);
@@ -148,6 +152,8 @@ public class BrowseVar {
             data[i][BYTES_COLUMN_INDEX] = dataBytes[i];
             data[i][FROM_SCILAB_COLUMN_INDEX] = dataFromUser[i]; /* Tag if it is a variable from the user or from Scilab (%pi, %eps, etc) */
             data[i][TYPE_COLUMN_INDEX] = dataTypes[i];
+            data[i][NB_ROWS_INDEX] = dataNbRows[i];
+            data[i][NB_COLS_INDEX] = dataNbCols[i];
         }
         ScilabVariableBrowser.getVariableBrowser(update, data);
     }

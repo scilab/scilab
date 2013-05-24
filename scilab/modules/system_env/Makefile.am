@@ -16,7 +16,7 @@ SYSTEM_ENV_CPP_SOURCES = \
 	src/cpp/sci_home.cpp \
 	src/cpp/home.cpp \
 	src/cpp/sci_tmpdir.cpp \
-	src/cpp/sci_warning.cpp \
+	src/cpp/warningmode.cpp \
 	src/cpp/sci_mode.cpp \
 	src/cpp/configvariable.cpp \
 	src/cpp/lasterror.cpp \
@@ -53,4 +53,4 @@ libscisystem_env_la_CPPFLAGS = \
 libscisystem_env_la_includedir=$(pkgincludedir)/system_env
 
 libscisystem_env_la_include_HEADERS = includes/setenvvar.hxx \
-includes/sci_warning.h
+includes/warningmode.h

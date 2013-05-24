@@ -26,7 +26,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "elem_common.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 #include "common_structure.h"
 #include "scifunctions.h"
@@ -72,11 +72,11 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     int sizeYc      = 0;
     int sizeOfYSize = 1;
-    int* YSize      = NULL;    // YSize(1) = size of y0, 
-                               // YSize(n) = size of Args(n) in list case.
+    int* YSize      = NULL;    // YSize(1) = size of y0,
+    // YSize(n) = size of Args(n) in list case.
 
     C2F(eh0001).mesflg = 1; // flag to control printing of error messages in lapack routine.
-                            // 1 means print, 0 means no printing.
+    // 1 means print, 0 means no printing.
     C2F(eh0001).lunit = 6;  // 6 = stdout
 
     int one = 1; // used in C2F(dcopy)
@@ -84,48 +84,48 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     // For root methode
     int* jroot = NULL;
 
-// *** check the minimal number of input args. ***
-    if(in.size() < 4)
+    // *** check the minimal number of input args. ***
+    if (in.size() < 4)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", 6);
         return types::Function::Error;
     }
 
-// *** Get the methode. ***
-    if(in[0]->isString())
+    // *** Get the methode. ***
+    if (in[0]->isString())
     {
         pStrType = in[0]->getAs<types::String>();
         wcsType = pStrType->get(0);
         iPos++;
     }
 
-    if(iPos)
+    if (iPos)
     {
-        if(wcscmp(wcsType, L"adams") == 0)
+        if (wcscmp(wcsType, L"adams") == 0)
         {
             meth = 1;
         }
-        else if(wcscmp(wcsType, L"stiff") == 0)
+        else if (wcscmp(wcsType, L"stiff") == 0)
         {
             meth = 2;
         }
-        else if(wcscmp(wcsType, L"root") == 0)
+        else if (wcscmp(wcsType, L"root") == 0)
         {
             meth = 3;
         }
-        else if(wcscmp(wcsType, L"discrete") == 0)
+        else if (wcscmp(wcsType, L"discrete") == 0)
         {
             meth = 4;
         }
-        else if(wcscmp(wcsType, L"rk") == 0)
+        else if (wcscmp(wcsType, L"rk") == 0)
         {
             meth = 5;
         }
-        else if(wcscmp(wcsType, L"rkf") == 0)
+        else if (wcscmp(wcsType, L"rkf") == 0)
         {
             meth = 6;
         }
-        else if(wcscmp(wcsType, L"fix") == 0)
+        else if (wcscmp(wcsType, L"fix") == 0)
         {
             meth = 7;
         }
@@ -136,18 +136,18 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-// *** check number of output args according the methode. ***
-    if(meth < 3)
+    // *** check number of output args according the methode. ***
+    if (meth < 3)
     {
-        if(_iRetCount != 1 && _iRetCount != 3)
+        if (_iRetCount != 1 && _iRetCount != 3)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "odedc", 1, 3);
             return types::Function::Error;
         }
     }
-    else if(meth == 3)
+    else if (meth == 3)
     {
-        if(_iRetCount == 3 || _iRetCount > 4)
+        if (_iRetCount == 3 || _iRetCount > 4)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d, %d or %d expected.\n"), "odedc", 1, 2, 4);
             return types::Function::Error;
@@ -155,101 +155,101 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
     else // meth > 3
     {
-        if(_iRetCount != 1)
+        if (_iRetCount != 1)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "odedc", 1);
             return types::Function::Error;
         }
     }
 
-// *** check type of input args and get it. ***
+    // *** check type of input args and get it. ***
     // y0 => [y0c ; y0d]
-    if(in[iPos]->isDouble())
+    if (in[iPos]->isDouble())
     {
         pDblY0 = in[iPos]->getAs<types::Double>();
-        if(pDblY0->isComplex())
+        if (pDblY0->isComplex())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "odedc", iPos+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "odedc", iPos + 1);
             return types::Function::Error;
         }
 
-        if(pDblY0->getCols() != 1)
+        if (pDblY0->getCols() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d : A real colunm vector expected (n x 1).\n"), "odedc", iPos+1);
+            Scierror(999, _("%s: Wrong size for input argument #%d : A real colunm vector expected (n x 1).\n"), "odedc", iPos + 1);
             return types::Function::Error;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix\n"), "odedc", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
     // nd
     iPos++;
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
     pDblNd = in[iPos]->getAs<types::Double>();
 
-    if(pDblNd->isComplex() || pDblNd->isScalar() == false)
+    if (pDblNd->isComplex() || pDblNd->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
-    if(pDblNd->get(0) > pDblY0->getSize())
+    if (pDblNd->get(0) > pDblY0->getSize())
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d : Value must not exceeds dimension of argument %d.\n"), "odedc", iPos+1, iPos);
+        Scierror(999, _("%s: Wrong value for input argument #%d : Value must not exceeds dimension of argument %d.\n"), "odedc", iPos + 1, iPos);
         return types::Function::Error;
     }
 
     // stdel => hstep and/or delta with delta=0 as default value
     iPos++;
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "odedc", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
     pDblStdel = in[iPos]->getAs<types::Double>();
 
-    if(pDblStdel->isComplex())
+    if (pDblStdel->isComplex())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
-    if(pDblStdel->getSize() > 2)
+    if (pDblStdel->getSize() > 2)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : %d or %d values expected.\n"), "odedc", iPos+1, 1, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d : %d or %d values expected.\n"), "odedc", iPos + 1, 1, 2);
         return types::Function::Error;
     }
 
     // t0
     iPos++;
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "odedc", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
     pDblT0 = in[iPos]->getAs<types::Double>();
 
-    if(pDblT0->isScalar() == false)
+    if (pDblT0->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "odedc", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
     // t
     iPos++;
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 1);
         return types::Function::Error;
     }
 
@@ -257,7 +257,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     // size of continuous part
     sizeYc = pDblY0->getSize() - (int)pDblNd->get(0);
-    if(sizeYc < 0)
+    if (sizeYc < 0)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d : Value of nd exceeds dimension of y0.\n"), "odedc", 2);
         return types::Function::Error;
@@ -275,208 +275,221 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     pdYData = (double*)malloc(pDblY0->getSize() * sizeof(double));
     C2F(dcopy)(YSize, pDblY0->get(), &one, pdYData, &one);
 
-    if(meth == 4)
+    if (meth == 4)
     {
-        if(in.size() != 7)
+        if (in.size() != 7)
         {
             Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", 7);
             DifferentialEquation::removeDifferentialEquationFunctions();
-            free(pdYData);free(YSize);
+            free(pdYData);
+            free(YSize);
             return types::Function::Error;
         }
 
-        if(in[6]->isCallable() == false && in[6]->isString() == false && in[6]->isList() == false)
+        if (in[6]->isCallable() == false && in[6]->isString() == false && in[6]->isList() == false)
         {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "odedc", 7);
-                DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
-                return types::Function::Error;
+            Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "odedc", 7);
+            DifferentialEquation::removeDifferentialEquationFunctions();
+            free(pdYData);
+            free(YSize);
+            return types::Function::Error;
         }
     }
 
-    for(iPos++; iPos < in.size(); iPos++)
+    for (iPos++; iPos < in.size(); iPos++)
     {
-        if(in[iPos]->isDouble())
+        if (in[iPos]->isDouble())
         {
-            if(pDblRtol == NULL && bFuncF == false)
+            if (pDblRtol == NULL && bFuncF == false)
             {
                 pDblRtol = in[iPos]->getAs<types::Double>();
-                if(pDblRtol->getSize() != pDblY0->getSize() && pDblRtol->isScalar() == false)
+                if (pDblRtol->getSize() != pDblY0->getSize() && pDblRtol->isScalar() == false)
                 {
-                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "odedc", pStrType ? 2 : 1, iPos+1);
+                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "odedc", pStrType ? 2 : 1, iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);free(YSize);
+                    free(pdYData);
+                    free(YSize);
                     return types::Function::Error;
                 }
             }
-            else if(pDblAtol == NULL && bFuncF == false)
+            else if (pDblAtol == NULL && bFuncF == false)
             {
                 pDblAtol = in[iPos]->getAs<types::Double>();
-                if(pDblAtol->getSize() != pDblY0->getSize() && pDblAtol->isScalar() == false)
+                if (pDblAtol->getSize() != pDblY0->getSize() && pDblAtol->isScalar() == false)
                 {
-                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "odedc", pStrType ? 2 : 1, iPos+1);
+                    Scierror(267, _("%s: Arg %d and arg %d must have equal dimensions.\n"), "odedc", pStrType ? 2 : 1, iPos + 1);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);free(YSize);
+                    free(pdYData);
+                    free(YSize);
                     return types::Function::Error;
                 }
             }
-            else if(pDblNg == NULL && bFuncF == true && meth == 3)
+            else if (pDblNg == NULL && bFuncF == true && meth == 3)
             {
                 pDblNg = in[iPos]->getAs<types::Double>();
             }
-            else if(pDblW == NULL && bFuncF == true && (bFuncG == true || meth != 3))
+            else if (pDblW == NULL && bFuncF == true && (bFuncG == true || meth != 3))
             {
-                if(in.size() == iPos + 2)
+                if (in.size() == iPos + 2)
                 {
-                    if(in[iPos+1]->isDouble() == false)
+                    if (in[iPos + 1]->isDouble() == false)
                     {
-                        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos+2);
+                        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 2);
                         DifferentialEquation::removeDifferentialEquationFunctions();
-                        free(pdYData);free(YSize);
+                        free(pdYData);
+                        free(YSize);
                         return types::Function::Error;
                     }
 
                     pDblW = in[iPos]->getAs<types::Double>();
-                    pDblIw = in[iPos+1]->getAs<types::Double>();
+                    pDblIw = in[iPos + 1]->getAs<types::Double>();
                     iPos++;
                 }
                 else
                 {
-                    Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", iPos+2);
+                    Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", iPos + 2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);free(YSize);
+                    free(pdYData);
+                    free(YSize);
                     return types::Function::Error;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "odedc", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
+                free(pdYData);
+                free(YSize);
                 return types::Function::Error;
             }
         }
-        else if(in[iPos]->isCallable())
+        else if (in[iPos]->isCallable())
         {
             types::Callable* pCall = in[iPos]->getAs<types::Callable>();
-            if(bFuncF == false)
+            if (bFuncF == false)
             {
                 deFunctionsManager->setFFunction(pCall);
                 bFuncF = true;
             }
-            else if(bFuncJac == false && (pDblNg == NULL || meth != 3))
+            else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
             {
                 deFunctionsManager->setJacFunction(pCall);
                 bFuncJac = true;
             }
-            else if(bFuncG == false && meth == 3)
+            else if (bFuncG == false && meth == 3)
             {
                 deFunctionsManager->setGFunction(pCall);
                 bFuncG = true;
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
+                free(pdYData);
+                free(YSize);
                 return types::Function::Error;
             }
         }
-        else if(in[iPos]->isString())
+        else if (in[iPos]->isString())
         {
             types::String* pStr = in[iPos]->getAs<types::String>();
             bool bOK = false;
 
-            if(bFuncF == false)
+            if (bFuncF == false)
             {
                 bOK = deFunctionsManager->setFFunction(pStr);
                 bFuncF = true;
             }
-            else if(bFuncJac == false && (pDblNg == NULL || meth != 3))
+            else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
             {
                 bOK = deFunctionsManager->setJacFunction(pStr);
                 bFuncJac = true;
             }
-            else if(bFuncG == false && meth == 3)
+            else if (bFuncG == false && meth == 3)
             {
                 bOK = deFunctionsManager->setGFunction(pStr);
                 bFuncG = true;
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
+                free(pdYData);
+                free(YSize);
                 return types::Function::Error;
             }
 
-            if(bOK == false)
+            if (bOK == false)
             {
                 char* pst = wide_string_to_UTF8(pStr->get(0));
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "odedc", pst);
                 FREE(pst);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
+                free(pdYData);
+                free(YSize);
                 return types::Function::Error;
             }
         }
-        else if(in[iPos]->isList())
+        else if (in[iPos]->isList())
         {
             types::List* pList = in[iPos]->getAs<types::List>();
 
-            if(pList->getSize() == 0)
+            if (pList->getSize() == 0)
             {
-                Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "odedc", iPos+1, "(string empty)");
+                Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "odedc", iPos + 1, "(string empty)");
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
+                free(pdYData);
+                free(YSize);
                 return types::Function::Error;
             }
 
-            if(bFuncF && (bFuncJac || pDblNg) && (bFuncG || meth != 3))
+            if (bFuncF && (bFuncJac || pDblNg) && (bFuncG || meth != 3))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
+                free(pdYData);
+                free(YSize);
                 return types::Function::Error;
             }
 
-            if(pList->get(0)->isString())
+            if (pList->get(0)->isString())
             {
                 types::String* pStr = pList->get(0)->getAs<types::String>();
                 bool bOK = false;
 
-                if(bFuncF == false)
+                if (bFuncF == false)
                 {
                     bFuncF = true;
                     bOK = deFunctionsManager->setFFunction(pStr);
                     sizeOfpdYData = *YSize;
                 }
-                else if(bFuncJac == false && (pDblNg == NULL || meth != 3))
+                else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
                 {
                     bFuncJac = true;
                     bOK = deFunctionsManager->setJacFunction(pStr);
-                    if(sizeOfpdYData == 0)
+                    if (sizeOfpdYData == 0)
                     {
                         sizeOfpdYData = *YSize;
                     }
                 }
-                else if(bFuncG == false && meth == 3)
+                else if (bFuncG == false && meth == 3)
                 {
                     bFuncG = true;
                     bOK = deFunctionsManager->setGFunction(pStr);
-                    if(sizeOfpdYData == 0)
+                    if (sizeOfpdYData == 0)
                     {
                         sizeOfpdYData = *YSize;
                     }
                 }
 
-                if(bOK == false)
+                if (bOK == false)
                 {
                     char* pst = wide_string_to_UTF8(pStr->get(0));
-                    Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "odedc", iPos+1, pst);
+                    Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "odedc", iPos + 1, pst);
                     FREE(pst);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);free(YSize);
+                    free(pdYData);
+                    free(YSize);
                     return types::Function::Error;
                 }
 
@@ -488,16 +501,17 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 memcpy(YSize, sizeTemp, sizeOfYSize * sizeof(int));
 
                 std::vector<types::Double*> vpDbl;
-                for(int iter = 0; iter < pList->getSize() - 1; iter++)
+                for (int iter = 0; iter < pList->getSize() - 1; iter++)
                 {
-                    if(pList->get(iter + 1)->isDouble() == false)
+                    if (pList->get(iter + 1)->isDouble() == false)
                     {
-                        Scierror(999, _("%s: Wrong type for input argument #%d : Argument %d in the list must be a matrix.\n"), "odedc", iPos+1, iter+1);
-                        free(pdYData);free(YSize);
+                        Scierror(999, _("%s: Wrong type for input argument #%d : Argument %d in the list must be a matrix.\n"), "odedc", iPos + 1, iter + 1);
+                        free(pdYData);
+                        free(YSize);
                         return types::Function::Error;
                     }
 
-                    vpDbl.push_back(pList->get(iter+1)->getAs<types::Double>());
+                    vpDbl.push_back(pList->get(iter + 1)->getAs<types::Double>());
                     YSize[sizeOfYSize + iter] = vpDbl[iter]->getSize();
                     totalSize += YSize[sizeOfYSize + iter];
                 }
@@ -508,7 +522,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 C2F(dcopy)(&sizeOfpdYData, pdYDataTemp, &one, pdYData, &one);
 
                 int position = sizeOfpdYData;
-                for(int iter = 0; iter < pList->getSize()-1; iter++)
+                for (int iter = 0; iter < pList->getSize() - 1; iter++)
                 {
                     C2F(dcopy)(&YSize[sizeOfYSize + iter], vpDbl[iter]->get(), &one, &pdYData[position], &one);
                     position += vpDbl[iter]->getSize();
@@ -519,31 +533,31 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 free(pdYDataTemp);
                 free(sizeTemp);
             }
-            else if(pList->get(0)->isCallable())
+            else if (pList->get(0)->isCallable())
             {
-                if(bFuncF == false)
+                if (bFuncF == false)
                 {
                     bFuncF = true;
                     deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
-                    for(int iter = 1; iter < pList->getSize(); iter++)
+                    for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
-                else if(bFuncJac == false && (pDblNg == NULL || meth != 3))
+                else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
                 {
                     bFuncJac = true;
                     deFunctionsManager->setJacFunction(pList->get(0)->getAs<types::Callable>());
-                    for(int iter = 1; iter < pList->getSize(); iter++)
+                    for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager->setJacArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
-                else if(bFuncG == false && meth == 3)
+                else if (bFuncG == false && meth == 3)
                 {
                     bFuncG = true;
                     deFunctionsManager->setGFunction(pList->get(0)->getAs<types::Callable>());
-                    for(int iter = 1; iter < pList->getSize(); iter++)
+                    for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager->setGArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
@@ -551,45 +565,50 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a string or a function.\n"), "odedc", iPos+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a string or a function.\n"), "odedc", iPos + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
+                free(pdYData);
+                free(YSize);
                 return types::Function::Error;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix or a function expected.\n"), "odedc", iPos+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A matrix or a function expected.\n"), "odedc", iPos + 1);
             DifferentialEquation::removeDifferentialEquationFunctions();
-            free(pdYData);free(YSize);
+            free(pdYData);
+            free(YSize);
             return types::Function::Error;
         }
     }
 
-    if(bFuncF == false)
+    if (bFuncF == false)
     {
         int val = (meth == 3) ? 3 : 1;
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + val);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);free(YSize);
+        free(pdYData);
+        free(YSize);
         return types::Function::Error;
     }
-    if(pDblNg == NULL && meth == 3)
+    if (pDblNg == NULL && meth == 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + 2);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);free(YSize);
+        free(pdYData);
+        free(YSize);
         return types::Function::Error;
     }
-    if(bFuncG == false && meth == 3)
+    if (bFuncG == false && meth == 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "odedc", in.size() + 1);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);free(YSize);
+        free(pdYData);
+        free(YSize);
         return types::Function::Error;
     }
 
-// *** Initialization. ***
+    // *** Initialization. ***
 
     int itol        = 1;
     int itask       = 4;
@@ -625,10 +644,10 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     // get %ODEOPTIONS
     types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(L"%ODEOPTIONS"));
-    if(pIT != NULL && pIT->isDouble())
+    if (pIT != NULL && pIT->isDouble())
     {
         pDblOdeOptions = pIT->getAs<types::Double>();
-        if(pDblOdeOptions->getSize() == 12)
+        if (pDblOdeOptions->getSize() == 12)
         {
             iopt    = 1;
             itask   = (int)pDblOdeOptions->get(0);
@@ -636,9 +655,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             ml      = (int)pDblOdeOptions->get(10);
             mu      = (int)pDblOdeOptions->get(11);
 
-            if(itask != 4 && itask != 5)
+            if (itask != 4 && itask != 5)
             {
-                if(itask == 1)
+                if (itask == 1)
                 {
                     itask = 4;
                 }
@@ -647,43 +666,45 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     itask = 5;
                 }
 
-                if(getWarningMode())
+                if (getWarningMode())
                 {
-                    sciprint(_("%s: Warning: odedc forces itask = %d.\n"), "odedc",itask);
+                    sciprint(_("%s: Warning: odedc forces itask = %d.\n"), "odedc", itask);
                 }
             }
         }
     }
 
-    if(iopt == 1 && (pDblOdeOptions->get(4) > pDblOdeOptions->get(3))) // hmin > hmax ?
+    if (iopt == 1 && (pDblOdeOptions->get(4) > pDblOdeOptions->get(3))) // hmin > hmax ?
     {
         Scierror(9999, _("%s: Wrong value of hmin and hmax : hmin = %d is greater than hmax = %d.\n"), "odedc", pDblOdeOptions->get(4), pDblOdeOptions->get(3));
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);free(YSize);
+        free(pdYData);
+        free(YSize);
         return types::Function::Error;
     }
 
-    if(jt < 0 || jt > 5)
+    if (jt < 0 || jt > 5)
     {
         Scierror(9999, _("%s: Wrong value of Jacobian type : A number between %d and %d expected.\n"), "odedc", 0, 5);
         DifferentialEquation::removeDifferentialEquationFunctions();
-        free(pdYData);free(YSize);
+        free(pdYData);
+        free(YSize);
         return types::Function::Error;
     }
 
-    if(iopt == 0 && bFuncJac)
+    if (iopt == 0 && bFuncJac)
     {
         jt = 1;
     }
 
-    if(bFuncJac && (jt == 2 || jt == 5) && getWarningMode())
+    if (bFuncJac && (jt == 2 || jt == 5) && getWarningMode())
     {
         sciprint(_("%s: Warning: Jacobian is given, but not used.\n"), "odedc");
     }
 
-    if(bFuncJac == false && (jt == 1 || jt == 4))
+    if (bFuncJac == false && (jt == 1 || jt == 4))
     {
-        if(getWarningMode())
+        if (getWarningMode())
         {
             sciprint(_("%s: Warning: No Jacobian external given, but one is required by %ODEOPTIONS(6) value. Jacobian will be estimated.\n"), "odedc");
         }
@@ -695,9 +716,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     double* rtol = NULL;
     double* atol = NULL;
 
-    if(pDblRtol)
+    if (pDblRtol)
     {
-        if(pDblRtol->isScalar())
+        if (pDblRtol->isScalar())
         {
             rtol = (double*)malloc(sizeof(double));
             *rtol = pDblRtol->get(0);
@@ -711,7 +732,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     else
     {
         rtol = (double*)malloc(sizeof(double));
-        if(meth == 6 || meth == 7)
+        if (meth == 6 || meth == 7)
         {
             *rtol = 1.e-3;
         }
@@ -721,9 +742,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    if(pDblAtol)
+    if (pDblAtol)
     {
-        if(pDblAtol->isScalar())
+        if (pDblAtol->isScalar())
         {
             atol = (double*)malloc(sizeof(double));
             *atol = pDblAtol->get(0);
@@ -737,7 +758,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     else
     {
         atol = (double*)malloc(sizeof(double));
-        if(meth == 6 || meth == 7)
+        if (meth == 6 || meth == 7)
         {
             *atol = 1.e-4;
         }
@@ -755,20 +776,20 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     int lrn     = 0;
     int lrs     = 0;
 
-    if(pDblW) // structure ls0001 have been restored.
+    if (pDblW) // structure ls0001 have been restored.
     {
         nyh = C2F(ls0001).nyh;
     }
 
-    if(iopt == 1)
+    if (iopt == 1)
     {
         mxordn = (int)pDblOdeOptions->get(7);
         mxords = (int)pDblOdeOptions->get(8);
     }
 
-    if(mxordn > 12 || mxords > 5 || mxordn < 1 || mxords < 1)
+    if (mxordn > 12 || mxords > 5 || mxordn < 1 || mxords < 1)
     {
-        if(getWarningMode())
+        if (getWarningMode())
         {
             sciprint(_("%s: Warning: Wrong value for maximun stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
         }
@@ -779,21 +800,21 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     int maxord = mxords;
 
-    switch(meth)
+    switch (meth)
     {
         case 3 : // lsodar (root)
         {
-//             lrn = 20 + nyh*(mxordn+1) + 3*neq + 3*ng,
-//             lrs = 20 + nyh*(mxords+1) + 3*neq + lmat + 3*ng,
-//          where
-//             nyh    = the initial value of neq,
-//             mxordn = 12, unless a smaller value is given as an
-//                      optional input,
-//             mxords = 5, unless a smaller value is given as an
-//                      optional input,
-//             lmat   = length of matrix work space..
-//             lmat   = neq**2 + 2              if jt = 1 or 2,
-//             lmat   = (2*ml + mu + 1)*neq + 2 if jt = 4 or 5.
+            //             lrn = 20 + nyh*(mxordn+1) + 3*neq + 3*ng,
+            //             lrs = 20 + nyh*(mxords+1) + 3*neq + lmat + 3*ng,
+            //          where
+            //             nyh    = the initial value of neq,
+            //             mxordn = 12, unless a smaller value is given as an
+            //                      optional input,
+            //             mxords = 5, unless a smaller value is given as an
+            //                      optional input,
+            //             lmat   = length of matrix work space..
+            //             lmat   = neq**2 + 2              if jt = 1 or 2,
+            //             lmat   = (2*ml + mu + 1)*neq + 2 if jt = 4 or 5.
 
             lrn = 3 * (int)pDblNg->get(0);
             lrs = lrn;
@@ -803,32 +824,33 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
         case 0 : // lsoda
         {
-//             lrn = 20 + nyh*(mxordn+1) + 3*neq,
-//             lrs = 20 + nyh*(mxords+1) + 3*neq + lmat,
-//          where
-//             nyh    = the initial value of neq,
-//             mxordn = 12, unless a smaller value is given as an
-//                      optional input,
-//             mxords = 5, unless a smaller value is given as an
-//                      optional input,
-//             lmat   = length of matrix work space..
-//             lmat   = neq**2 + 2              if jt = 1 or 2,
-//             lmat   = (2*ml + mu + 1)*neq + 2 if jt = 4 or 5.
+            //             lrn = 20 + nyh*(mxordn+1) + 3*neq,
+            //             lrs = 20 + nyh*(mxords+1) + 3*neq + lmat,
+            //          where
+            //             nyh    = the initial value of neq,
+            //             mxordn = 12, unless a smaller value is given as an
+            //                      optional input,
+            //             mxords = 5, unless a smaller value is given as an
+            //                      optional input,
+            //             lmat   = length of matrix work space..
+            //             lmat   = neq**2 + 2              if jt = 1 or 2,
+            //             lmat   = (2*ml + mu + 1)*neq + 2 if jt = 4 or 5.
 
-            if(jt == 1 || jt == 2)
+            if (jt == 1 || jt == 2)
             {
                 lmat = (sizeYc) * (sizeYc) + 2;       //  if jt = 1 or 2,
             }
-            else if(jt == 4 || jt == 5)
-            {   //ml and mu = -1 in all cases
-                lmat = (2 * ml + mu + 1) * (sizeYc) + 2; //  if jt = 4 or 5. 
+            else if (jt == 4 || jt == 5)
+            {
+                //ml and mu = -1 in all cases
+                lmat = (2 * ml + mu + 1) * (sizeYc) + 2; //  if jt = 4 or 5.
             }
 
             lrn += 20 + nyh * (mxordn + 1) + 3 * (sizeYc);
             lrs += 20 + nyh * (mxords + 1) + 3 * (sizeYc) + lmat;
 
             rworkSize   = max(lrn, lrs);
-            iworkSize   = 20 + sizeYc;     
+            iworkSize   = 20 + sizeYc;
 
             dStructTabSize += 241;
             iStructTabSize += 50;
@@ -841,32 +863,32 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
         case 2 : // lsode (stiff)
         {
-//          20 + nyh*(maxord + 1) + 3*neq + lmat
-//        where
-//          nyh    = the initial value of neq,
-//          maxord = 12 (if meth = 1) or 5 (if meth = 2) (unless a
-//                   smaller value is given as an optional input),
-//          lmat   = 0             if miter = 0,
-//          lmat   = neq**2 + 2    if miter is 1 or 2,
-//          lmat   = neq + 2       if miter = 3, and
-//          lmat   = (2*ml+mu+1)*neq + 2 if miter is 4 or 5.
+            //          20 + nyh*(maxord + 1) + 3*neq + lmat
+            //        where
+            //          nyh    = the initial value of neq,
+            //          maxord = 12 (if meth = 1) or 5 (if meth = 2) (unless a
+            //                   smaller value is given as an optional input),
+            //          lmat   = 0             if miter = 0,
+            //          lmat   = neq**2 + 2    if miter is 1 or 2,
+            //          lmat   = neq + 2       if miter = 3, and
+            //          lmat   = (2*ml+mu+1)*neq + 2 if miter is 4 or 5.
 
-            if(jt == 1 || jt == 2)
+            if (jt == 1 || jt == 2)
             {
                 lmat = (sizeYc) * (sizeYc) + 2;
             }
-            else if(jt == 3)
+            else if (jt == 3)
             {
                 lmat = (sizeYc) + 2;
             }
-            else if(jt == 4 || jt == 5)
+            else if (jt == 4 || jt == 5)
             {
                 lmat = (2 * ml + mu + 1) * (sizeYc) + 2;
             }
 
             rworkSize = 20 + nyh * (maxord + 1) + 3 * (sizeYc) + lmat;
             iworkSize = 20; // if jt = 0 or 3
-            if(jt == 1 || jt == 2 || jt == 4 || jt == 5)// iSize = 20 + neq  otherwise
+            if (jt == 1 || jt == 2 || jt == 4 || jt == 5) // iSize = 20 + neq  otherwise
             {
                 iworkSize += (sizeYc);
             }
@@ -907,18 +929,28 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     rwork = (double*)malloc(rworkSize * sizeof(double));
     iwork = (int*)malloc(iworkSize * sizeof(int));
 
-    if(meth < 4)
+    if (meth < 4)
     {
-        if(pDblW && pDblIw)
+        if (pDblW && pDblIw)
         {
-            if(pDblW->getSize() != rwSize || pDblIw->getSize() != iwSize)
+            if (pDblW->getSize() != rwSize || pDblIw->getSize() != iwSize)
             {
                 Scierror(9999, _("%s: Wrong size for w and iw : w = %d and iw = %d expected.\n"), "odedc", rwSize, iwSize);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
-                if(jroot) free(jroot);
-                if(itol == 1 || itol == 3) free(atol);
-                if(itol < 3) free(rtol);
+                free(pdYData);
+                free(YSize);
+                if (jroot)
+                {
+                    free(jroot);
+                }
+                if (itol == 1 || itol == 3)
+                {
+                    free(atol);
+                }
+                if (itol < 3)
+                {
+                    free(rtol);
+                }
                 return types::Function::Error;
             }
 
@@ -930,12 +962,12 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             C2F(dcopy)(&rworkSize, pDblW->get(), &one, rwork, &one);
             C2F(dcopy)(&dStructTabSize, pDblW->get() + rworkSize, &one, dStructTab, &one);
 
-            for(int i = 0; i < iworkSize; i++)
+            for (int i = 0; i < iworkSize; i++)
             {
                 iwork[i] = (int)pDblIw->get(i);
             }
 
-            for(int i = 0; i < iStructTabSize; i++)
+            for (int i = 0; i < iStructTabSize; i++)
             {
                 iStructTab[i] = (int)pDblIw->get(i + iworkSize);
             }
@@ -943,9 +975,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         else
         {
             //if iopt = 0 default value are used without set it.
-            if(iopt == 1)
+            if (iopt == 1)
             {
-                if(itask >= 4)
+                if (itask >= 4)
                 {
                     rwork[0] = pDblOdeOptions->get(1); // tcrit
                 }
@@ -964,16 +996,16 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    if(pDblOdeOptions && pDblOdeOptions->get(9) == 1)
+    if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
     {
         sciprint(_("itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\n"), itask, meth, jt, ml, mu, iopt);
         sciprint(_("tcrit = %lf\th0 = %lf\thmax = %lf\thmin = %lf\n"), pDblOdeOptions->get(1), pDblOdeOptions->get(2), pDblOdeOptions->get(3), pDblOdeOptions->get(4));
     }
 
     // get rwork and iwork
-    if(meth < 4)
+    if (meth < 4)
     {
-        if(pDblW && pDblIw)
+        if (pDblW && pDblIw)
         {
             int dPos    = 0;
             int iPos    = 0;
@@ -987,7 +1019,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             iPos = 39;
 
             //restore lsa001 from w (rwork) and iw (iwork).
-            if(meth == 0 || meth == 3)
+            if (meth == 0 || meth == 3)
             {
                 dSize = 22;
                 C2F(dcopy)(&dSize, dStructTab + dPos, &one, lsa001d, &one);
@@ -998,16 +1030,16 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             }
 
             //restore lsr001
-            if(meth == 3)
+            if (meth == 3)
             {
                 dSize = 5;
                 C2F(dcopy)(&dSize, dStructTab + dPos, &one, lsr001d, &one);
                 memcpy(lsr001i, &iStructTab[iPos], 9 * sizeof(int));
-            }           
+            }
         }
     }
 
-// *** Perform operation. ***
+    // *** Perform operation. ***
     double ret      = 0;
     double nhpass   = 0;
     double delta    = 0;
@@ -1022,21 +1054,21 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
     char* strMeth;
 
-    if(pDblStdel->isScalar() == false)
+    if (pDblStdel->isScalar() == false)
     {
         delta = (int)pDblStdel->get(1);
     }
 
-    if(itask == 5 || itask == 3 || itask == 2)
+    if (itask == 5 || itask == 3 || itask == 2)
     {
         bOneStep = true;
-        if(getWarningMode() && pDblT->isScalar() == false)
+        if (getWarningMode() && pDblT->isScalar() == false)
         {
             sciprint(_("itask = %d : At most one value of t is allowed, the last element of t is used.\n"), itask);
         }
     }
 
-    if(bOneStep)
+    if (bOneStep)
     {
         std::list<double*> pDblYOutList = std::list<double*>();
         std::list<double> pDblTOutList = std::list<double>();
@@ -1045,31 +1077,47 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
         do
         {
-            if(bIntegrateContPart == false)
+            if (bIntegrateContPart == false)
             {
                 hf = min(pDblT0->get(0) + (nhpass + delta) * pDblStdel->get(0), pDblT->get(iLastT));
             }
 
-            if(fabs(tleft - hf) < 1.0e-12) // update discrete part
+            if (fabs(tleft - hf) < 1.0e-12) // update discrete part
             {
                 bIntegrateContPart = false;
                 deFunctionsManager->setOdedcFlag();
 
-                if(pDblOdeOptions && pDblOdeOptions->get(9) == 1)
+                if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
                 {
                     sciprint(_("update at t = %lf\n"), tright);
                 }
 
-                if(ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc) == 0)
+                if (ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc) == 0)
                 {
                     Scierror(999, _("%s: Update failed at t = %lf\n"), "odedc", tright);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);free(YSize);
-                    if(jroot) free(jroot);
-                    if(dStructTab) free(dStructTab);
-                    if(iStructTab) free(iStructTab);
-                    if(itol == 1 || itol == 3) free(atol);
-                    if(itol < 3) free(rtol);
+                    free(pdYData);
+                    free(YSize);
+                    if (jroot)
+                    {
+                        free(jroot);
+                    }
+                    if (dStructTab)
+                    {
+                        free(dStructTab);
+                    }
+                    if (iStructTab)
+                    {
+                        free(iStructTab);
+                    }
+                    if (itol == 1 || itol == 3)
+                    {
+                        free(atol);
+                    }
+                    if (itol < 3)
+                    {
+                        free(rtol);
+                    }
                     return types::Function::Error;
                 }
 
@@ -1087,12 +1135,12 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 tright = hf;
                 rwork[0] = hf; // tcrit = hf
 
-                if(pDblOdeOptions && pDblOdeOptions->get(9) == 1)
+                if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
                 {
                     sciprint(_("integ. from tleft= %lf to tf= %lf\n"), tleft, tright);
                 }
 
-                switch(meth)
+                switch (meth)
                 {
                     case 0 : // lsoda
                     {
@@ -1104,7 +1152,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     case 2 : // lsode (stiff)
                     {
                         strMeth = "lsode";
-                        int jacType = 10*meth + jt;
+                        int jacType = 10 * meth + jt;
                         ret = C2F(lsode)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jacType);
                         break;
                     }
@@ -1142,24 +1190,40 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 }
                 // check error
                 int err = checkOdeError(meth, istate);
-                if(err == 1) // error case
+                if (err == 1) // error case
                 {
                     Scierror(999, _("%s: %s exit with state %d.\n"), "odedc", strMeth, istate);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);free(YSize);
-                    if(jroot) free(jroot);
-                    if(dStructTab) free(dStructTab);
-                    if(iStructTab) free(iStructTab);
-                    if(itol == 1 || itol == 3) free(atol);
-                    if(itol < 3) free(rtol);
+                    free(pdYData);
+                    free(YSize);
+                    if (jroot)
+                    {
+                        free(jroot);
+                    }
+                    if (dStructTab)
+                    {
+                        free(dStructTab);
+                    }
+                    if (iStructTab)
+                    {
+                        free(iStructTab);
+                    }
+                    if (itol == 1 || itol == 3)
+                    {
+                        free(atol);
+                    }
+                    if (itol < 3)
+                    {
+                        free(rtol);
+                    }
                     return types::Function::Error;
                 }
 
-                if(err == 2) // warning case
+                if (err == 2) // warning case
                 {
-                    if(getWarningMode())
+                    if (getWarningMode())
                     {
-                        sciprint(_("Integration was stoped at t = %lf.\n"),tleft);
+                        sciprint(_("Integration was stoped at t = %lf.\n"), tleft);
                     }
                     break;
                 }
@@ -1169,14 +1233,14 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 pDblYOutList.push_back(copy);
                 pDblTOutList.push_back(tleft);
 
-                if(meth == 3 && istate == 3 && getWarningMode())
+                if (meth == 3 && istate == 3 && getWarningMode())
                 {
-                // istate == 3  means the integration was successful, and one or more
-                //              roots were found before satisfying the stop condition
-                //              specified by itask.  see jroot.
+                    // istate == 3  means the integration was successful, and one or more
+                    //              roots were found before satisfying the stop condition
+                    //              specified by itask.  see jroot.
 
                     sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "odedc", tleft);
-                    for(int k = 0; k < pDblNg->get(0); k++)
+                    for (int k = 0; k < pDblNg->get(0); k++)
                     {
                         sciprint("\t%d", jroot[k]);
                     }
@@ -1185,15 +1249,15 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 }
             }
         }
-        while(fabs(tleft - pDblT->get(iLastT)) > 1.0e-12 || bIntegrateContPart);
+        while (fabs(tleft - pDblT->get(iLastT)) > 1.0e-12 || bIntegrateContPart);
 
         // Create result
         pDblYOut = new types::Double(pDblY0->getRows() + 1, (int)pDblYOutList.size() * pDblY0->getCols());
         int iSizeList = (int)pDblYOutList.size();
-        for(int i = 0; i < iSizeList; i++)
+        for (int i = 0; i < iSizeList; i++)
         {
             pDblYOut->set(i * (*YSize + 1), pDblTOutList.front());
-            for(int j = 0; j < *YSize; j++)
+            for (int j = 0; j < *YSize; j++)
             {
                 pDblYOut->set(i * (*YSize + 1) + (j + 1), pDblYOutList.front()[j]);
             }
@@ -1206,49 +1270,49 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         // Create result
         pDblYOut = new types::Double(pDblY0->getRows(), pDblT->getSize() * pDblY0->getCols());
 
-        for(int i = 0; i < pDblT->getSize(); i++)
+        for (int i = 0; i < pDblT->getSize(); i++)
         {
             hf = pDblT0->get(0) + (nhpass + delta) * pDblStdel->get(0);
             tf = pDblT->get(i);
 
-            if(pDblOdeOptions && pDblOdeOptions->get(9) == 1)
+            if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
             {
                 sciprint("tf - hf = %lf\n", tf - hf);
             }
 
-            if(fabs(tf - hf) < 1.0e-12)
+            if (fabs(tf - hf) < 1.0e-12)
             {
                 tright  = hf;
                 bStore  = true;
                 bUpdate = true;
-                if(pDblOdeOptions && pDblOdeOptions->get(9) == 1)
+                if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
                 {
                     sciprint(_("integ. from tleft= %lf to hf=tf= %lf\n"), tleft, tright);
                 }
             }
-            else if(tf < hf)
+            else if (tf < hf)
             {
                 tright  = tf;
                 bStore  = true;
                 bUpdate = false;
-                if(pDblOdeOptions && pDblOdeOptions->get(9) == 1)
+                if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
                 {
                     sciprint(_("integ. from tleft= %lf to tf= %lf\n"), tleft, tright);
                 }
             }
-            else if(tf > hf)
+            else if (tf > hf)
             {
                 tright  = hf;
                 bStore  = false;
                 bUpdate = true;
-                if(pDblOdeOptions && pDblOdeOptions->get(9) == 1)
+                if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
                 {
                     sciprint(_("integ. from tleft= %lf to hf= %lf\n"), tleft, tright);
                 }
             }
 
             rwork[0] = hf; // tcrit = hf
-            switch(meth)
+            switch (meth)
             {
                 case 0 : // lsoda
                 {
@@ -1260,7 +1324,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 case 2 : // lsode (stiff)
                 {
                     strMeth = "lsode";
-                    int jacType = 10*meth + jt;
+                    int jacType = 10 * meth + jt;
                     ret = C2F(lsode)(ode_f, &sizeYc, pdYData, &tleft, &tright, &itol, rtol, atol, &itask, &istate, &iopt, rwork, &rworkSize, iwork, &iworkSize, bFuncJac ? ode_jac : NULL, &jacType);
                     break;
                 }
@@ -1298,38 +1362,70 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             }
             // check error
             int err = checkOdeError(meth, istate);
-            if(err == 1) // error case
+            if (err == 1) // error case
             {
                 Scierror(999, _("%s: %s exit with state %d.\n"), "odedc", strMeth, istate);
                 DifferentialEquation::removeDifferentialEquationFunctions();
-                free(pdYData);free(YSize);
-                if(jroot) free(jroot);
-                if(dStructTab) free(dStructTab);
-                if(iStructTab) free(iStructTab);
-                if(itol == 1 || itol == 3) free(atol);
-                if(itol < 3) free(rtol);
+                free(pdYData);
+                free(YSize);
+                if (jroot)
+                {
+                    free(jroot);
+                }
+                if (dStructTab)
+                {
+                    free(dStructTab);
+                }
+                if (iStructTab)
+                {
+                    free(iStructTab);
+                }
+                if (itol == 1 || itol == 3)
+                {
+                    free(atol);
+                }
+                if (itol < 3)
+                {
+                    free(rtol);
+                }
                 return types::Function::Error;
             }
 
-            if(bUpdate)
+            if (bUpdate)
             {
                 deFunctionsManager->setOdedcFlag();
 
-                if(pDblOdeOptions && pDblOdeOptions->get(9) == 1)
+                if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
                 {
                     sciprint(_("update at t = %lf\n"), tright);
                 }
 
-                if(ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc) == 0)
+                if (ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc) == 0)
                 {
                     Scierror(999, _("%s: Update failed at t = %lf\n"), "odedc", tright);
                     DifferentialEquation::removeDifferentialEquationFunctions();
-                    free(pdYData);free(YSize);
-                    if(jroot) free(jroot);
-                    if(dStructTab) free(dStructTab);
-                    if(iStructTab) free(iStructTab);
-                    if(itol == 1 || itol == 3) free(atol);
-                    if(itol < 3) free(rtol);
+                    free(pdYData);
+                    free(YSize);
+                    if (jroot)
+                    {
+                        free(jroot);
+                    }
+                    if (dStructTab)
+                    {
+                        free(dStructTab);
+                    }
+                    if (iStructTab)
+                    {
+                        free(iStructTab);
+                    }
+                    if (itol == 1 || itol == 3)
+                    {
+                        free(atol);
+                    }
+                    if (itol < 3)
+                    {
+                        free(rtol);
+                    }
                     return types::Function::Error;
                 }
 
@@ -1337,11 +1433,11 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 nhpass++;
             }
 
-            if(bStore)
+            if (bStore)
             {
-                for(int j = 0; j < *YSize; j++)
+                for (int j = 0; j < *YSize; j++)
                 {
-                    pDblYOut->set(i*(*YSize) + j, pdYData[j]);
+                    pDblYOut->set(i * (*YSize) + j, pdYData[j]);
                 }
             }
             else
@@ -1349,16 +1445,16 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 i--;
             }
 
-            if(err == 2) // warning case
+            if (err == 2) // warning case
             {
-                if(getWarningMode())
+                if (getWarningMode())
                 {
-                    sciprint(_("Integration was stoped at t = %lf.\n"),tleft);
+                    sciprint(_("Integration was stoped at t = %lf.\n"), tleft);
                 }
 
                 types::Double* pDblYOutTemp = pDblYOut;
-                pDblYOut = new types::Double(pDblYOutTemp->getRows(), i+1);
-                for(int k = 0; k < pDblYOut->getSize(); k++)
+                pDblYOut = new types::Double(pDblYOutTemp->getRows(), i + 1);
+                for (int k = 0; k < pDblYOut->getSize(); k++)
                 {
                     pDblYOut->set(k, pDblYOutTemp->get(k));
                 }
@@ -1366,22 +1462,22 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 break;
             }
 
-            if(meth == 3 && istate == 3 && getWarningMode())
+            if (meth == 3 && istate == 3 && getWarningMode())
             {
                 // istate == 3  means the integration was successful, and one or more
                 //              roots were found before satisfying the stop condition
                 //              specified by itask.  see jroot.
 
                 sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "odedc", tleft);
-                for(int k = 0; k < pDblNg->get(0); k++)
+                for (int k = 0; k < pDblNg->get(0); k++)
                 {
                     sciprint("\t%d", jroot[k]);
                 }
                 sciprint("\n");
 
                 types::Double* pDblYOutTemp = pDblYOut;
-                pDblYOut = new types::Double(pDblYOutTemp->getRows(), i+1);
-                for(int k = 0; k < pDblYOut->getSize(); k++)
+                pDblYOut = new types::Double(pDblYOutTemp->getRows(), i + 1);
+                for (int k = 0; k < pDblYOut->getSize(); k++)
                 {
                     pDblYOut->set(k, pDblYOutTemp->get(k));
                 }
@@ -1391,15 +1487,15 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    if(meth < 4)
+    if (meth < 4)
     {
-        if(_iRetCount > 2)//save ls0001 and eh0001 following w and iw.
+        if (_iRetCount > 2) //save ls0001 and eh0001 following w and iw.
         {
             int dPos    = 0;
             int iPos    = 0;
             int dSize   = 219;
 
-            if(dStructTab == NULL)
+            if (dStructTab == NULL)
             {
                 dStructTab = (double*)malloc(dStructTabSize * sizeof(double));
                 iStructTab = (int*)malloc(iStructTabSize * sizeof(int));
@@ -1412,7 +1508,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             iPos = 39;
 
             //save lsa001
-            if(meth == 0 || meth == 3)
+            if (meth == 0 || meth == 3)
             {
                 dSize = 22;
                 C2F(dcopy)(&dSize, lsa001d, &one, dStructTab + dPos, &one);
@@ -1423,7 +1519,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             }
 
             //save lsr001
-            if(meth == 3)
+            if (meth == 3)
             {
                 dSize = 5;
                 C2F(dcopy)(&dSize, lsr001d, &one, dStructTab + dPos, &one);
@@ -1436,18 +1532,18 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-// *** Return result in Scilab. ***
+    // *** Return result in Scilab. ***
 
     out.push_back(pDblYOut); // y
 
-    if(meth == 3 && _iRetCount >= 2)
+    if (meth == 3 && _iRetCount >= 2)
     {
         int sizeOfRd = 1;
         int k = 0;
 
-        for(int i = 0; i < pDblNg->get(0); i++)
+        for (int i = 0; i < pDblNg->get(0); i++)
         {
-            if(jroot[i])
+            if (jroot[i])
             {
                 sizeOfRd++;
             }
@@ -1456,9 +1552,9 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         types::Double* pDblRd = new types::Double(1, sizeOfRd);
         //rd : The first entry contains the stopping time.
         pDblRd->set(0, C2F(lsr001).tlast);
-        for(int i = 0; i < pDblNg->get(0); i++)
+        for (int i = 0; i < pDblNg->get(0); i++)
         {
-            if(jroot[i])
+            if (jroot[i])
             {
                 k++;
                 pDblRd->set(k, (double)i + 1);
@@ -1467,19 +1563,19 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         out.push_back(pDblRd); // rd
     }
 
-    if((meth < 3 && _iRetCount == 3) || (meth == 3 && _iRetCount == 4))
+    if ((meth < 3 && _iRetCount == 3) || (meth == 3 && _iRetCount == 4))
     {
-        types::Double* pDblWOut = new types::Double(1,rwSize);
+        types::Double* pDblWOut = new types::Double(1, rwSize);
         C2F(dcopy)(&rworkSize, rwork, &one, pDblWOut->get(), &one);
         C2F(dcopy)(&dStructTabSize, dStructTab, &one, pDblWOut->get() + rworkSize, &one);
 
-        types::Double* pDblIwOut = new types::Double(1,iwSize);
-        for(int i = 0; i < iworkSize; i++)
+        types::Double* pDblIwOut = new types::Double(1, iwSize);
+        for (int i = 0; i < iworkSize; i++)
         {
             pDblIwOut->set(i, (double)iwork[i]);
         }
 
-        for(int i = 0; i < iStructTabSize; i++)
+        for (int i = 0; i < iStructTabSize; i++)
         {
             pDblIwOut->set(iworkSize + i, (double)iStructTab[i]);
         }
@@ -1488,13 +1584,13 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         out.push_back(pDblIwOut); // iw
     }
 
-// *** free. ***
-    if(itol == 1 || itol == 3) // atol is scalar
+    // *** free. ***
+    if (itol == 1 || itol == 3) // atol is scalar
     {
         free(atol);
     }
 
-    if(itol < 3) // rtol is scalar
+    if (itol < 3) // rtol is scalar
     {
         free(rtol);
     }
@@ -1504,12 +1600,12 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     free(rwork);
     free(iwork);
 
-    if(jroot)
+    if (jroot)
     {
         free(jroot);
     }
 
-    if(dStructTab)
+    if (dStructTab)
     {
         free(dStructTab);
         free(iStructTab);

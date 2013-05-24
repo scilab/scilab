@@ -15,15 +15,6 @@
 #include "gw_helptools.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static BOOL loadedDep = FALSE;
-
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-	{NULL, ""} // buildDocv2
-};
-
-/*--------------------------------------------------------------------------*/
 int gw_helptools(void)
 {
     return 0;

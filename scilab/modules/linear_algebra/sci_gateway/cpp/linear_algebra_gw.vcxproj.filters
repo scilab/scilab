@@ -68,6 +68,9 @@
     <ClInclude Include="..\..\includes\linear_algebra_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_linear_algebra_gw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\libintl.lib" />

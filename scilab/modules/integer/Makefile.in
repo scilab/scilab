@@ -184,7 +184,7 @@ am__objects_4 = sci_i_mput.lo sci_int32.lo sci_int16.lo sci_mgeti.lo \
 	sci_i_triu.lo sci_inttype.lo
 am__objects_5 = libsciinteger_la-integer_gw.lo \
 	libsciinteger_la-sci_inttype.lo libsciinteger_la-sci_double.lo \
-	libsciinteger_la-sci_int.lo
+	libsciinteger_la-sci_int.lo libsciinteger_la-sci_iconvert.lo
 am_libsciinteger_la_OBJECTS = $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5)
 libsciinteger_la_OBJECTS = $(am_libsciinteger_la_OBJECTS)
@@ -571,7 +571,8 @@ GATEWAY_CPP_SOURCES = \
 				sci_gateway/cpp/integer_gw.cpp \
 				sci_gateway/cpp/sci_inttype.cpp \
 				sci_gateway/cpp/sci_double.cpp \
-				sci_gateway/cpp/sci_int.cpp
+				sci_gateway/cpp/sci_int.cpp \
+				sci_gateway/cpp/sci_iconvert.cpp
 
 GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_i_mput.f \
@@ -598,7 +599,11 @@ libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/ast/includes/ \
 				-I$(top_srcdir)/modules/symbol/includes/ \
 				-I$(top_srcdir)/modules/dynamic_link/includes/ \
-				$(AM_CPPFLAGS)
+				-I$(top_srcdir)/modules/system_env/includes/ \
+				-I$(top_srcdir)/modules/threads/includes/ \
+				-I$(top_srcdir)/modules/string/includes/ \
+				-I$(top_srcdir)/modules/console/includes/ \
+				$(EIGEN_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciinteger.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
@@ -824,6 +829,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-gw_integer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-integer_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-sci_double.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-sci_iconvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-sci_int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciinteger_la-sci_inttype.Plo@am__quote@
 
@@ -1134,6 +1140,13 @@ libsciinteger_la-sci_int.lo: sci_gateway/cpp/sci_int.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_int.cpp' object='libsciinteger_la-sci_int.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciinteger_la-sci_int.lo `test -f 'sci_gateway/cpp/sci_int.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_int.cpp
+
+libsciinteger_la-sci_iconvert.lo: sci_gateway/cpp/sci_iconvert.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciinteger_la-sci_iconvert.lo -MD -MP -MF $(DEPDIR)/libsciinteger_la-sci_iconvert.Tpo -c -o libsciinteger_la-sci_iconvert.lo `test -f 'sci_gateway/cpp/sci_iconvert.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_iconvert.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciinteger_la-sci_iconvert.Tpo $(DEPDIR)/libsciinteger_la-sci_iconvert.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_iconvert.cpp' object='libsciinteger_la-sci_iconvert.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciinteger_la-sci_iconvert.lo `test -f 'sci_gateway/cpp/sci_iconvert.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_iconvert.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -1559,6 +1572,7 @@ uninstall-am: uninstall-libsciinteger_la_etcDATA \
 	uninstall-libsciinteger_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
+				$(AM_CPPFLAGS)
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

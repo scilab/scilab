@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,12 +19,13 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "dynlib_matio.h"
+
 /*
  * Get a Matlab variable from a Scilab variable on stack
- * This function reads nothing on stack but calls the function which 
+ * This function reads nothing on stack but calls the function which
  * does the work according to Scilab Variable type
- * 
+ *
+ * @param pvApiCtx Scilab context
  * @param iVar position on the stack
  * @param name the name of the variable
  * @param matfile_version version of the file to write (See MATIO library)
@@ -33,11 +34,12 @@
  *
  * @return Matlab variable (See MATIO library)
  */
-MATIO_IMPEXP matvar_t *GetMatlabVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+MATIO_IMPEXP matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Integer variable from stack
- * 
+ *
+ * @param pvApiCtx Scilab context
  * @param iVar position on the stack
  * @param name the name of the variable
  * @param parent parent mlist. If NULL, a normal variable is created.
@@ -45,11 +47,12 @@ MATIO_IMPEXP matvar_t *GetMatlabVariable(void* pvApiCtx, int iVar, const char *n
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetIntegerVariable(void* pvApiCtx, int iVar, const char *name, int * parent, int item_position);
+matvar_t *GetIntegerVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position);
 
 /*
  * Get a Matlab Mlist-equivalent variable from stack
- * 
+ *
+ * @param pvApiCtx Scilab context
  * @param iVar position on the stack
  * @param name the name of the variable
  * @param matfile_version version of the file to write (See MATIO library)
@@ -58,11 +61,12 @@ matvar_t *GetIntegerVariable(void* pvApiCtx, int iVar, const char *name, int * p
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetMlistVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Struct variable from stack
- * 
+ *
+ * @param pvApiCtx Scilab context
  * @param iVar position on the stack
  * @param name the name of the variable
  * @param matfile_version version of the file to write (See MATIO library)
@@ -73,11 +77,12 @@ matvar_t *GetMlistVariable(void* pvApiCtx, int iVar, const char *name, int matfi
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetStructVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
+matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
 
 /*
  * Get a Matlab Cell variable from stack
- * 
+ *
+ * @param pvApiCtx Scilab context
  * @param iVar position on the stack
  * @param name the name of the variable
  * @param matfile_version version of the file to write (See MATIO library)
@@ -86,11 +91,12 @@ matvar_t *GetStructVariable(void* pvApiCtx, int iVar, const char *name, int matf
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetCellVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Char variable from stack
- * 
+ *
+ * @param pvApiCtx Scilab context
  * @param iVar position on the stack
  * @param name the name of the variable
  * @param parent parent mlist. If NULL, a normal variable is created.
@@ -98,11 +104,12 @@ matvar_t *GetCellVariable(void* pvApiCtx, int iVar, const char *name, int matfil
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetCharVariable(void* pvApiCtx, int iVar, const char *name, int * parent, int item_position);
+matvar_t *GetCharVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position);
 
 /*
  * Get a Matlab Sparse variable from stack
- * 
+ *
+ * @param pvApiCtx Scilab context
  * @param iVar position on the stack
  * @param name the name of the variable
  * @param parent parent mlist. If NULL, a normal variable is created.
@@ -110,11 +117,12 @@ matvar_t *GetCharVariable(void* pvApiCtx, int iVar, const char *name, int * pare
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetSparseVariable(void* pvApiCtx, int iVar, const char *name, int * parent, int item_position);
+matvar_t *GetSparseVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position);
 
 /*
  * Get a Matlab Double variable from stack
- * 
+ *
+ * @param pvApiCtx Scilab context
  * @param iVar position on the stack
  * @param name the name of the variable
  * @param matfile_version version of the file to write (See MATIO library)
@@ -123,6 +131,6 @@ matvar_t *GetSparseVariable(void* pvApiCtx, int iVar, const char *name, int * pa
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetDoubleVariable(void* pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetDoubleVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 #endif /* !__GETMATLABVARIABLE_H__ */

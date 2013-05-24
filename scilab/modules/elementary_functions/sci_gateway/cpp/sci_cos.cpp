@@ -71,9 +71,9 @@ types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, type
         types::Double* pDblOut = new types::Double(pSparseIn->getRows(), pSparseIn->getCols(), pSparseIn->isComplex());
 
         int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
-        double* pRows = new double[nonZeros * 2];
+        int* pRows = new int[nonZeros * 2];
         pSparseIn->outputRowCol(pRows);
-        double* pCols = pRows + nonZeros;
+        int* pCols = pRows + nonZeros;
 
         double* pNonZeroR = new double[nonZeros];
         double* pNonZeroI = new double[nonZeros];

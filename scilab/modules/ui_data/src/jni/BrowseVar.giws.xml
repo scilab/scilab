@@ -9,6 +9,8 @@
             <parameter type="int[]" name="variableIntegerTypes"/>
             <parameter type="String[]" name="variableListTypes"/>
             <parameter type="String[]" name="variableSize"/>
+            <parameter type="int[]" name="variableNbRows"/>
+            <parameter type="int[]" name="variableNbCols"/>
             <parameter type="String[]" name="variableVisibility"/>
             <parameter type="boolean[]" name="variableFromUser"/>
         </method>

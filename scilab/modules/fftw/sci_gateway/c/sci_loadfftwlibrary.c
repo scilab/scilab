@@ -20,7 +20,6 @@
 /*--------------------------------------------------------------------------*/
 int sci_loadfftwlibrary(char *fname, void* pvApiCtx)
 {
-    static int l1, n1, m1;
     char* FFTWLibname = NULL;
     char* l1char = NULL;
     int* piAddr1 = NULL;
@@ -53,7 +52,6 @@ int sci_loadfftwlibrary(char *fname, void* pvApiCtx)
     FFTWLibname = l1char;
     setfftwlibname(FFTWLibname);
 
-    n1 = 1;
     if ( LoadFFTWLibrary(FFTWLibname) )
     {
         iErr = createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1); // true

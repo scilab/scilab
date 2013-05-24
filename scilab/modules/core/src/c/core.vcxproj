@@ -243,7 +243,6 @@ cd ..
     <ClCompile Include="exitCodeValue.c" />
     <ClCompile Include="force_link.c" />
     <ClCompile Include="freeArrayOfString.c" />
-    <ClCompile Include="funcprot.c" />
     <ClCompile Include="Funtab.c" />
     <ClCompile Include="getcommandlineargs.c" />
     <ClCompile Include="getdynamicdebuginfo.c" />
@@ -298,7 +297,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\c\sci_dispbpt.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_errcatch.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_errclear.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_funcprot.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_funptr.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getmd5.c" />

@@ -17,6 +17,7 @@
 #include "mgetl.h"
 #include "stack-def.h" /* bsiz */
 #include "freeArrayOfString.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 #define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/
@@ -27,28 +28,31 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
     int nbLinesReaded = 0;
     int mgetIerr = MGETL_ERROR;
 
-    char **lines = mgetl(fd, nbLinesToRead, &nbLinesReaded, &mgetIerr);
+    wchar_t **lines = mgetl(fd, nbLinesToRead, &nbLinesReaded, &mgetIerr);
+    char* line = wide_string_to_UTF8(lines[0]);
+    freeArrayOfWideString(lines, nbLinesReaded);
+
     *cnt = 0;
     *nr = 0;
 
     memset(buf, 0, n);
     strcpy(buf, EMPTYSTR);
 
-    switch(mgetIerr)
+    switch (mgetIerr)
     {
-    case MGETL_NO_ERROR:
+        case MGETL_NO_ERROR:
         {
-            if ((lines[0]) && (lines) && (nbLinesReaded == 1))
+            if (line && nbLinesReaded == 1)
             {
                 /* current limitation (bsiz) of line readed by scilab */
-                if ((int)strlen(lines[0]) < bsiz)
+                if ((int)wcslen(lines[0]) < bsiz)
                 {
-                    strcpy(buf, lines[0]);
+                    strcpy(buf, line);
                     returnedInfo = READNEXTLINE_ERROR_EOL;
                 }
                 else
                 {
-                    strncpy(buf, lines[0], bsiz);
+                    strncpy(buf, line, bsiz);
                     returnedInfo = READNEXTLINE_ERROR_BUFFER_FULL;
                 }
             }
@@ -59,7 +63,7 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
         }
         break;
 
-    case MGETL_EOF:
+        case MGETL_EOF:
         {
             if (lines)
             {
@@ -70,14 +74,14 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
                 else
                 {
                     /* current limitation (bsiz) of line readed by scilab */
-                    if ((int)strlen(lines[0]) >= bsiz)
+                    if ((int)strlen(line) >= bsiz)
                     {
-                        strcpy(buf, lines[0]);
+                        strcpy(buf, line);
                         returnedInfo = READNEXTLINE_ERROR_EOF_REACHED_AFTER_EOL;
                     }
                     else
                     {
-                        strncpy(buf, lines[0], bsiz);
+                        strncpy(buf, line, bsiz);
                         returnedInfo = READNEXTLINE_ERROR_BUFFER_FULL;
                     }
                 }
@@ -89,9 +93,9 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
         }
         break;
 
-    case MGETL_MEMORY_ALLOCATION_ERROR:
-    case MGETL_ERROR:
-    default:
+        case MGETL_MEMORY_ALLOCATION_ERROR:
+        case MGETL_ERROR:
+        default:
         {
             returnedInfo = READNEXTLINE_ERROR_ERROR_UNMANAGED;
         }
@@ -101,10 +105,9 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
     *cnt = (int)strlen(buf) + 1;
     *nr = *cnt;
 
-    if (lines)
+    if (line)
     {
-            freeArrayOfString(lines, nbLinesReaded);
-            lines = NULL;
+        FREE(line);
     }
 
     return returnedInfo;

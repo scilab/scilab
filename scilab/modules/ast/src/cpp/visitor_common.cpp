@@ -123,6 +123,8 @@ static bool isIntTrue(InternalType* _pIT)
         {
             return isIntTrue(_pIT->getAs<UInt64>());
         }
+        default:
+            break;
     }
 
     return false;
@@ -697,7 +699,7 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
 
                 //create field "x"
                 std::wstring var = pVar->name_get().name_get();
-                bool bOK = pCurStr->addField(pVar->name_get().name_get());
+                pCurStr->addField(pVar->name_get().name_get());
                 if (*_pMain == NULL && _pIT != NULL)
                 {
                     //first stack, assign value to field and return main structure
@@ -705,7 +707,6 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     if (pArgs != NULL && pArgs->size() != 0)
                     {
                         //args returned by "parent"
-                        std::wstring var = pVar->name_get().name_get();
                         //be careful, extract functions copy values
 
                         Struct *pStr = pCurStr->extractWithoutClone(pArgs)->getAs<Struct>();
@@ -718,14 +719,12 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                     }
                     else if (_pArgs == NULL || *_pArgs == NULL)
                     {
-                        std::wstring var = pVar->name_get().name_get();
                         //std::wcout << var << L" <- " << pIT->getTypeStr() << std::endl;
                         pCurStr->get(0)->set(pVar->name_get().name_get(), pIT);
                     }
                     else
                     {
                         Struct* pStr = new Struct(1, 1);
-                        std::wstring var = pVar->name_get().name_get();
                         pStr->addField(pVar->name_get().name_get());
                         pStr->get(0)->set(pVar->name_get().name_get(), pIT);
                         pCurStr->insertWithoutClone(*_pArgs, pStr->get(0));
@@ -774,8 +773,6 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
 
                         if (pArgs != NULL)
                         {
-                            std::wstring var = pVar->name_get().name_get();
-
                             Struct* pStepStr = pCurStr->extractWithoutClone(pArgs)->getAs<Struct>();
                             pStepStr->setCloneInCopyValue(false);
                             SingleStruct* pSS = pStepStr->get(0);
@@ -786,7 +783,6 @@ bool getStructFromExp(const Exp* _pExp, types::InternalType** _pMain, types::Int
                         }
                         else
                         {
-                            std::wstring var = pVar->name_get().name_get();
                             pCurStr->get(0)->set(pVar->name_get().name_get(), pStr);
                         }
                     }

@@ -26,7 +26,7 @@ using namespace types;
 namespace
 {
 template<typename DenseType>
-GenericType* buildSparse(Double CONST& indices, DenseType CONST& vals, Double CONST* pDim)
+GenericType* buildSparse(Double SPARSE_CONST& indices, DenseType SPARSE_CONST& vals, Double SPARSE_CONST* pDim)
 {
     GenericType* pRes = NULL;
     InternalType* pVals = (InternalType*)&vals;
@@ -46,7 +46,7 @@ GenericType* buildSparse(Double CONST& indices, DenseType CONST& vals, Double CO
         }
 
         //can create an empty sparse matrix
-        return new Sparse(pDim->get(0), pDim->get(1));
+        return new Sparse((int)pDim->get(0), (int)pDim->get(1));
     }
 
     if (indices.getRows() != vals.getSize() || (indices.getCols() != 2 && indices.getCols() != 0))

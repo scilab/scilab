@@ -17,7 +17,7 @@
 
 extern "C"
 {
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "charEncoding.h"
 #include "sciprint.h"
 #include "getos.h"

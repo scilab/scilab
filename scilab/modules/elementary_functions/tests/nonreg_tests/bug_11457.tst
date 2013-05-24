@@ -17,8 +17,6 @@
 
 //thanks at Joe Seale for sample code to reproduce this bug
 
-stacksize('max');                                           // make room for large arrays
-
 maxN = 16;                                                  // maximum polynomial order sought
 x = poly(0,"x");                                            // starting polynomial to work with
 LegPolys = [1,x];                                           // starting array of Legendre polynomials

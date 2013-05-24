@@ -29,7 +29,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
 #include "loadOnUseClassPath.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -287,7 +287,7 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     FREE(lenStVarOne);
                     lenStVarOne = NULL;
                 }
-                if(sciErr.iErr)
+                if (sciErr.iErr)
                 {
                     freeArrayOfString(pStVarOne, mnOne);
                     printError(&sciErr, 0);

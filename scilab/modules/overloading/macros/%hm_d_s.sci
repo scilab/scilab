@@ -9,9 +9,9 @@
 
 function M1=%hm_d_s(M1,M2)
 
-if size(M2,'*')<>1 then
-  error('inconsistent element-wise operation')
-else
-  M1('entries')=M1('entries')./M2
-end
+    if size(M2,'*')<>1 then
+        error(msprintf(_("%s: Inconsistent element-wise operation.\n"),"%hm_d_s"));
+    else
+        M1('entries')=M1('entries')./M2
+    end
 endfunction

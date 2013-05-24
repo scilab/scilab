@@ -24,7 +24,7 @@
 #include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
-#include "sci_warning.h"
+#include "warningmode.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int sci_mpopup(char *fname, void* pvApiCtx)

@@ -15,7 +15,6 @@ src/c/intmacr2tree.c \
 src/c/InitScilab.c \
 src/c/getval.c \
 src/c/md5.c \
-src/c/inisci-c.c \
 src/c/IsAScalar.c \
 src/c/texmacs.c \
 src/c/sciquit.c \
@@ -63,7 +62,6 @@ src/c/transposeMatrix.c \
 src/c/recursionFunction.c \
 src/c/typename.c \
 src/c/inittypenames.c \
-src/c/funcprot.c \
 src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
@@ -82,7 +80,6 @@ src/c/hashtable/hashtable_itr.c \
 src/c/hashtable/hashtable_utility.c
 
 CORE_CPP_SOURCES = \
-src/cpp/core_gw.cpp \
 src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
 src/cpp/search_functions.cpp \
@@ -146,7 +143,6 @@ src/fortran/mklist.f \
 src/fortran/sigbas.f \
 src/fortran/indxg.f \
 src/fortran/istrue.f \
-src/fortran/inisci.f \
 src/fortran/getfunction.f \
 src/fortran/extlarg.f \
 src/fortran/getstr.f \
@@ -181,7 +177,6 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_delbpt.c \
 	sci_gateway/c/sci_macr2lst.c \
 	sci_gateway/c/sci_errclear.c \
-	sci_gateway/c/sci_funcprot.c \
 	sci_gateway/c/sci_newfun.c \
 	sci_gateway/c/sci_dispbpt.c \
 	sci_gateway/c/sci_intppty.c \
@@ -218,6 +213,7 @@ sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_f_iserror.f
 
 GATEWAY_CPP_SOURCES = 	\
+	sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_getmodules.cpp \
 	sci_gateway/cpp/sci_clear.cpp \
 	sci_gateway/cpp/sci_banner.cpp \
@@ -237,13 +233,13 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_getmd5.cpp \
 	sci_gateway/cpp/sci_error.cpp \
 	sci_gateway/cpp/sci_pause.cpp \
-	sci_gateway/cpp/sci_resume.cpp \
 	sci_gateway/cpp/sci_abort.cpp \
 	sci_gateway/cpp/sci_who.cpp \
 	sci_gateway/cpp/sci_stacksize.cpp \
 	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp \
-	sci_gateway/cpp/sci_ieee.cpp
+	sci_gateway/cpp/sci_ieee.cpp \
+	sci_gateway/cpp/sci_funcprot.cpp
 
 
 libscicore_la_CPPFLAGS = \

@@ -173,7 +173,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         iErr = iLeftDivisionOfComplexMatrix(
                    _pDouble1->getReal(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
                    _pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
-                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), _pDouble1->getRows(), _pDouble2->getRows(), &dblRcond);
+                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), (*_pDoubleOut)->getRows(), (*_pDoubleOut)->getCols(), &dblRcond);
     }
     else
     {
@@ -181,7 +181,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         iErr = iLeftDivisionOfRealMatrix(
                    _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getCols(),
                    _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getCols(),
-                   (*_pDoubleOut)->getReal(), _pDouble1->getRows(), _pDouble2->getRows(), &dblRcond);
+                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getRows(), (*_pDoubleOut)->getCols(), &dblRcond);
     }
 
     return iErr;

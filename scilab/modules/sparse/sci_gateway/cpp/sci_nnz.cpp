@@ -26,7 +26,7 @@ using namespace std;
 
 namespace
 {
-size_t nonZeros(types::Double CONST& d)
+size_t nonZeros(types::Double SPARSE_CONST& d)
 {
     size_t res = 0;
     size_t n = d.getSize();

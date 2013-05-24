@@ -522,7 +522,9 @@ simpleFunctionCall			{ $$ = $1; }
 /* To manage %t(a, b) and %f(a, b) */
 specificFunctionCall :
 BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%t")), *$3); }
-| BOOLFALSE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%f")), *$3); }
+| BOOLFALSE LPAREN functionArgs RPAREN		{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%f")), *$3); }
+| BOOLFALSE LPAREN RPAREN 			        { $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%f")), *new ast::exps_t); }
+| BOOLTRUE LPAREN RPAREN 			        { $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%t")), *new ast::exps_t); }
 ;
 
 /*
@@ -532,8 +534,11 @@ BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::Simp
 ** or extract cell values foo{arg1, arg2, arg3}
 */
 simpleFunctionCall :
+
 ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); }
 | ID LBRACE functionArgs RBRACE				{ $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); }
+| ID LPAREN RPAREN				            { $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); }
+| ID LBRACE RBRACE				            { $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); }
 ;
 
 /*
@@ -566,16 +571,23 @@ variable			{
 				}
 | COLON				{
 				  $$ = new ast::exps_t;
-				  $$->push_front(new ast::ColonVar(@$));
+				  $$->push_front(new ast::ColonVar(@1));
 				}
 | variableDeclaration		{
 				  $$ = new ast::exps_t;
 				  $$->push_front($1);
 				}
-| /* Epsilon */			{
-				  $$ = new ast::exps_t;
+| COMMA {
+                  $$ = new ast::exps_t;
+				  $$->push_front(new ast::NilExp(@1));
+				  $$->push_front(new ast::NilExp(@1));
+}
+/*| // Epsilon 
+                {
+                  $$ = new ast::exps_t;
+				  $$->push_front(new ast::NilExp(@$));
 				}
-| functionArgs COMMA variable	{
+*/| functionArgs COMMA variable	{
 				  $1->push_back($3);
 				  $$ = $1;
 				}
@@ -584,15 +596,20 @@ variable			{
 				  $$ = $1;
 				}
 | functionArgs COMMA COLON	{
-				  $1->push_back(new ast::ColonVar(@$));
-			          $$ = $1;
+				  $1->push_back(new ast::ColonVar(@1));
+			      $$ = $1;
 				}
 | functionArgs COMMA variableDeclaration {
 				  $1->push_back($3);
 				  $$ = $1;
 				}
-| functionArgs COMMA		{
+| functionArgs COMMA {
+                  $1->push_back(new ast::NilExp(@2));
 				  $$ = $1;
+				}
+| COMMA functionArgs {
+                  $2->push_front(new ast::NilExp(@1));
+				  $$ = $2;
 				}
 ;
 
@@ -1660,7 +1677,8 @@ expressions                     { $$ = $1; }
 /* Make a break in a function or make the variable getting one scope up. */
 returnControl :
 RETURN				{ $$ = new ast::ReturnExp(@$); }
-| RETURN variable		{ $$ = new ast::ReturnExp(@$, $2); }
+| RETURN variable   { $$ = new ast::ReturnExp(@$, $2); }
+| RETURN functionCall   { $$ = new ast::ReturnExp(@$, $2); }
 ;
 
 /*

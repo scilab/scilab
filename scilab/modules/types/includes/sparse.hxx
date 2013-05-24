@@ -18,7 +18,7 @@
 #include "double.hxx"
 #include "bool.hxx"
 
-#define CONST
+#define SPARSE_CONST
 
 #include "dynlib_types.h"
 
@@ -40,16 +40,16 @@ struct TYPES_IMPEXP Sparse : GenericType
     virtual ~Sparse();
     /* @param src: Double matrix to copy into a new sparse matrix
     **/
-    Sparse(Double CONST& src);
+    Sparse(Double SPARSE_CONST& src);
     /* @param src : Double matrix to copy into a new sparse matrix
        @param idx : Double matrix to use as indexes to get values from the src
     **/
-    Sparse(Double CONST& src, Double CONST& idx);
+    Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx);
     /* @param src : Double matrix to copy into a new sparse matrix
        @param idx : Double matrix to use as indexes to get values from the src
        @param dims : Double matrix containing the dimensions of the new matrix
     **/
-    Sparse(Double CONST& src, Double CONST& idx, Double CONST& dims);
+    Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims);
     /*
       @param rows : nb of rows of the new matrix
       @param rows : nb of columns of the new matrix
@@ -64,7 +64,7 @@ struct TYPES_IMPEXP Sparse : GenericType
       @param r : nb of rows for the new matrix
       @param c : nb of columns for the new matrix
     **/
-    Sparse(Double CONST& xadj, Double CONST& adjncy, Double CONST& src, std::size_t r, std::size_t c);
+    Sparse(Double SPARSE_CONST& xadj, Double SPARSE_CONST& adjncy, Double SPARSE_CONST& src, std::size_t r, std::size_t c);
 
 
     bool isSparse()
@@ -74,16 +74,16 @@ struct TYPES_IMPEXP Sparse : GenericType
     void finalize();
 
     /*data management member function defined for compatibility with the Double API*/
-    bool set(int _iRows, int _iCols, double _dblReal);
-    bool set(int _iIndex, double _dblReal)
+    bool set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
+    bool set(int _iIndex, double _dblReal, bool _bFinalize = true)
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal);
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, _dblReal, _bFinalize);
     }
 
-    bool set(int _iRows, int _iCols, std::complex<double> v);
-    bool set(int _iIndex, std::complex<double> v)
+    bool set(int _iRows, int _iCols, std::complex<double> v, bool _bFinalize = true);
+    bool set(int _iIndex, std::complex<double> v, bool _bFinalize = true)
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, v);
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, v, _bFinalize);
     }
     /*
       set non zero values to 1.
@@ -92,9 +92,9 @@ struct TYPES_IMPEXP Sparse : GenericType
     /* get real value at coords (r,c)
     **/
     double getReal(int r, int c) const;
-    double getReal(int index) const
+    double getReal(int _iIndex) const
     {
-        return getReal(index);
+        return getReal(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
     double get(int r, int c) const;
@@ -136,7 +136,7 @@ struct TYPES_IMPEXP Sparse : GenericType
     /*
       Config management and GenericType methods overrides
     */
-    void whoAmI() CONST;
+    void whoAmI() SPARSE_CONST;
     bool isExtract() const;
     Sparse* clone(void) const;
     Sparse* clone(void)
@@ -189,7 +189,7 @@ struct TYPES_IMPEXP Sparse : GenericType
        @param _iCols col to append from
        @param _poSource src data to append
      */
-    bool append(int r, int c, types::Sparse CONST* src);
+    bool append(int r, int c, types::Sparse SPARSE_CONST* src);
 
     /*
       extract a submatrix
@@ -201,7 +201,7 @@ struct TYPES_IMPEXP Sparse : GenericType
 
      */
     InternalType* extract(typed_list* _pArgs);
-    Sparse* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) CONST;
+    Sparse* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
 
     /*
        change the sign (inplace).
@@ -212,21 +212,21 @@ struct TYPES_IMPEXP Sparse : GenericType
       compares with an other value for equality (same nb of elts, with same values)
       TODO: should it handle other types ?
      */
-    bool operator==(const InternalType& it) CONST;
+    bool operator==(const InternalType& it) SPARSE_CONST;
     /*
       compares with an other value for inequality (same nb of elts, with same values)
       TODO: should it handle other types ?
      */
-    bool operator!=(const InternalType& it) CONST
+    bool operator!=(const InternalType& it) SPARSE_CONST
     {
         return !(*this == it);
     }
 
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring         getTypeStr() CONST {return std::wstring(L"sparse");}
+    virtual std::wstring         getTypeStr() SPARSE_CONST {return std::wstring(L"sparse");}
     /* return type as short string ( s, i, ce, l, ... ), as in overloading macros*/
-    virtual std::wstring         getShortTypeStr() CONST {return std::wstring(L"sp");}
+    virtual std::wstring         getShortTypeStr() SPARSE_CONST {return std::wstring(L"sp");}
 
     /* create a new sparse matrix containing the result of an addition
        @param o other matrix to add
@@ -290,7 +290,7 @@ struct TYPES_IMPEXP Sparse : GenericType
        @param o sparse matrix to .*
        @return ptr to the new matrix, 0 in case of failure
      */
-    Sparse* dotMultiply(Sparse CONST& o) const;
+    Sparse* dotMultiply(Sparse SPARSE_CONST& o) const;
 
     /* create a new sparse matrix containing the result of a transposition
        @return ptr to the new matrix, 0 in case of failure
@@ -304,6 +304,7 @@ struct TYPES_IMPEXP Sparse : GenericType
      */
     Sparse* newOnes() const;
 
+    Sparse* newReal() const;
     /** @return the nb of non zero values.
      */
     std::size_t nonZeros() const;
@@ -419,15 +420,15 @@ struct TYPES_IMPEXP Sparse : GenericType
        @param out : ptr used as an output iterator over double values
        @return past-the-end output iterators after ouput is done
      */
-    double* outputRowCol(double* out)const;
+    int* outputRowCol(int* out)const;
 
     /**
        @param dest Double to be filled with values from the current sparse matrix.
      */
-    void fill(Double& dest, int r = 0, int c = 0) CONST;
+    void fill(Double& dest, int r = 0, int c = 0) SPARSE_CONST;
 
 
-    RealType getType(void) CONST;
+    RealType getType(void) SPARSE_CONST;
 
 
     SparseBool* newLesserThan(Sparse const&o);
@@ -455,7 +456,7 @@ private :
         @param n : nb of elements to copy from data source.
      */
     template<typename DestIter>
-    void create(int rows, int cols, Double CONST& src, DestIter o, std::size_t n);
+    void create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, std::size_t n);
 
     /** utility function used by insert functions conceptually : sp[destTrav]= src[srcTrav]
         @param src : data source
@@ -465,7 +466,7 @@ private :
         @param destTrav : iterator over the data sink (i.e. sp)
      */
     template<typename Src, typename SrcTraversal, typename Sz, typename DestTraversal>
-    static bool copyToSparse(Src CONST& src, SrcTraversal srcTrav, Sz n, Sparse& sp, DestTraversal destTrav);
+    static bool copyToSparse(Src SPARSE_CONST& src, SrcTraversal srcTrav, Sz n, Sparse& sp, DestTraversal destTrav);
 };
 /*
   Implement sparse boolean matrix
@@ -475,16 +476,16 @@ struct TYPES_IMPEXP SparseBool : GenericType
 
     /* @param src: Bool matrix to copy into a new sparse matrix
     **/
-    SparseBool(Bool CONST& src);
+    SparseBool(Bool SPARSE_CONST& src);
     /* @param src : Bool matrix to copy into a new sparse matrix
        @param idx : Double matrix to use as indexes to get values from the src
     **/
-    SparseBool(Bool CONST& src, Double CONST& idx);
+    SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx);
     /* @param src : Bool matrix to copy into a new sparse matrix
        @param idx : Double matrix to use as indexes to get values from the src
        @param dims : Double matrix containing the dimensions of the new matrix
     **/
-    SparseBool(Bool CONST& src, Double CONST& idx, Double CONST& dims);
+    SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims);
     /*
        @param rows : nb of rows of the new matrix
        @param rows : nb of columns of the new matrix
@@ -520,10 +521,10 @@ struct TYPES_IMPEXP SparseBool : GenericType
     SparseBool* insert(typed_list* _pArgs, SparseBool* _pSource);
     SparseBool* remove(typed_list* _pArgs);
 
-    bool append(int _iRows, int _iCols, SparseBool CONST* _poSource);
+    bool append(int _iRows, int _iCols, SparseBool SPARSE_CONST* _poSource);
 
     static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
-    SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) CONST;
+    SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
     InternalType* extract(typed_list* _pArgs);
 
     SparseBool* getColumnValues(int _iPos)
@@ -552,38 +553,38 @@ struct TYPES_IMPEXP SparseBool : GenericType
        @return past-the-end output iterator after ouput is done
      */
 
-    double* outputRowCol(double* out)const;
+    int* outputRowCol(int* out)const;
 
-    bool operator==(const InternalType& it) CONST;
-    bool operator!=(const InternalType& it) CONST;
+    bool operator==(const InternalType& it) SPARSE_CONST;
+    bool operator!=(const InternalType& it) SPARSE_CONST;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr() CONST {return std::wstring(L"boolean sparse");}
+    virtual std::wstring getTypeStr() SPARSE_CONST {return std::wstring(L"boolean sparse");}
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr() CONST {return std::wstring(L"spb");}
+    virtual std::wstring getShortTypeStr() SPARSE_CONST {return std::wstring(L"spb");}
 
-    RealType getType(void) CONST;
+    RealType getType(void) SPARSE_CONST;
 
     bool isScalar()
     {
         return (getRows() == 1 && getCols() == 1);
     }
 
-    void whoAmI() CONST;
+    void whoAmI() SPARSE_CONST;
 
-    bool get(int r, int c) CONST;
-    bool get(int _iIndex) CONST
+    bool get(int r, int c) SPARSE_CONST;
+    bool get(int _iIndex) SPARSE_CONST
     {
         return get(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
-    bool set(int r, int c, bool b) CONST;
-    bool set(int _iIndex, bool b) CONST
+    bool set(int r, int c, bool b, bool _bFinalize = true) SPARSE_CONST;
+    bool set(int _iIndex, bool b, bool _bFinalize = true) SPARSE_CONST
     {
-        return set(_iIndex % m_iRows, _iIndex / m_iRows, b);
+        return set(_iIndex % m_iRows, _iIndex / m_iRows, b, _bFinalize);
     }
 
-    void fill(Bool& dest, int r = 0, int c = 0) CONST;
+    void fill(Bool& dest, int r = 0, int c = 0) SPARSE_CONST;
 
     Sparse* newOnes() const;
     SparseBool* newNotEqualTo(SparseBool const&o) const;
@@ -598,7 +599,7 @@ struct TYPES_IMPEXP SparseBool : GenericType
 
 private:
     template<typename DestIter>
-    void create(int rows, int cols, Bool CONST& src, DestIter o, std::size_t n);
+    void create(int rows, int cols, Bool SPARSE_CONST& src, DestIter o, std::size_t n);
 
 };
 template<typename T>

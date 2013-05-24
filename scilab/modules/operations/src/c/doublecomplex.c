@@ -14,8 +14,10 @@
 
 void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
 {
-	if(_poComplex != NULL)
-		free(_poComplex);
+    if (_poComplex != NULL)
+    {
+        free(_poComplex);
+    }
 }
 
 /*
@@ -28,26 +30,26 @@ Arguments
 */
 void vGetPointerFromDoubleComplex(const doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
-	int iIndex = 0;
+    int iIndex = 0;
 
-	int iTwo	= 2;
-	int iOne	= 1;
-	double *pReal = &_poComplex[0].r;
-	double *pImg = &_poComplex[0].i;
+    int iTwo	= 2;
+    int iOne	= 1;
+    double *pReal = (double*)&_poComplex[0].r;
+    double *pImg = (double*)&_poComplex[0].i;
 
-	if(_pdblReal != NULL && _pdblImg != NULL)
-	{
-		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
-		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
-	}
-	else if(_pdblReal != NULL && _pdblImg == NULL)
-	{
-		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
-	}
-	else if(_pdblReal == NULL && _pdblImg != NULL)
-	{
-		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
-	}
+    if (_pdblReal != NULL && _pdblImg != NULL)
+    {
+        C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+        C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+    }
+    else if (_pdblReal != NULL && _pdblImg == NULL)
+    {
+        C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+    }
+    else if (_pdblReal == NULL && _pdblImg != NULL)
+    {
+        C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+    }
 }
 /*
 oGetDoubleComplexFromPointer --
@@ -64,35 +66,35 @@ Arguments
 */
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)
 {
-	int iIndex = 0;
-	doublecomplex *poComplex = (doublecomplex*)malloc(sizeof(doublecomplex) * _iSize);
-	int iTwo	= 2;
-	int iOne	= 1;
-	double *pReal = &poComplex[0].r;
-	double *pImg = &poComplex[0].i;
+    int iIndex = 0;
+    doublecomplex *poComplex = (doublecomplex*)malloc(sizeof(doublecomplex) * _iSize);
+    int iTwo	= 2;
+    int iOne	= 1;
+    double *pReal = &poComplex[0].r;
+    double *pImg = &poComplex[0].i;
 
-	if(_pdblReal != NULL && _pdblImg != NULL)
-	{
+    if (_pdblReal != NULL && _pdblImg != NULL)
+    {
 
-		C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
-		C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
-	}
-	else if(_pdblReal != NULL && _pdblImg == NULL)
-	{
-		double ZERO = 0.;
-		C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
-		C2F(dset)(&_iSize, &ZERO, pImg, &iTwo);
-	}
-	else if(_pdblReal == NULL && _pdblImg != NULL)
-	{
-		double ZERO = 0.;
-		C2F(dset)(&_iSize, &ZERO, pReal, &iTwo);
-		C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
-	}
-	else
-	{
-		free(poComplex);
-		return NULL;
-	}
-	return poComplex;
+        C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
+        C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
+    }
+    else if (_pdblReal != NULL && _pdblImg == NULL)
+    {
+        double ZERO = 0.;
+        C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
+        C2F(dset)(&_iSize, &ZERO, pImg, &iTwo);
+    }
+    else if (_pdblReal == NULL && _pdblImg != NULL)
+    {
+        double ZERO = 0.;
+        C2F(dset)(&_iSize, &ZERO, pReal, &iTwo);
+        C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
+    }
+    else
+    {
+        free(poComplex);
+        return NULL;
+    }
+    return poComplex;
 }

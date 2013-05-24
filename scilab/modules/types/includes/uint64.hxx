@@ -27,49 +27,63 @@
 
 namespace types
 {
-    class TYPES_IMPEXP UInt64 : public ArrayOf<unsigned long long>
+class TYPES_IMPEXP UInt64 : public ArrayOf<unsigned long long>
+{
+public :
+    UInt64(unsigned long long _ullVal);
+    UInt64(int _iRows, int _iCols);
+    UInt64(int _iDims, int* _piDims);
+    UInt64(int _iRows, int _iCols, unsigned long long** _pullData);
+    ~UInt64();
+
+    InternalType*               clone();
+
+
+    /*Config management*/
+    void                        whoAmI();
+
+    bool                        isInt()
     {
-    public :
-                                    UInt64(unsigned long long _ullVal);
-                                    UInt64(int _iRows, int _iCols);
-                                    UInt64(int _iDims, int* _piDims);
-                                    UInt64(int _iRows, int _iCols, unsigned long long** _pullData);
-                                    ~UInt64();
+        return true;
+    }
+    bool                        isUInt64()
+    {
+        return true;
+    }
 
-        InternalType*               clone();
+    bool                        operator==(const InternalType& it);
+    bool                        operator!=(const InternalType& it);
 
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring        getTypeStr()
+    {
+        return L"uint64";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring        getShortTypeStr()
+    {
+        return L"i";
+    }
 
-        /*Config management*/
-        void                        whoAmI();
+protected :
+    RealType				    getType(void)
+    {
+        return InternalType::RealUInt64;
+    }
 
-        bool                        isInt() { return true; }
-        bool                        isUInt64() { return true; }
+private :
+    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
-        bool                        operator==(const InternalType& it);
-        bool                        operator!=(const InternalType& it);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring        getTypeStr() {return L"uint64";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring        getShortTypeStr() {return L"i";}
-
-    protected :
-        RealType				    getType(void){return InternalType::RealUInt64;}
-
-    private :
-        virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-
-        virtual unsigned long long  getNullValue();
-        virtual UInt64*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual unsigned long long  copyValue(unsigned long long _ullData);
-        virtual void                deleteAll();
-        virtual void                deleteImg();
-        virtual unsigned long long* allocData(int _iSize);
-    };
+    virtual unsigned long long  getNullValue();
+    virtual UInt64*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual unsigned long long  copyValue(unsigned long long _ullData);
+    virtual void                deleteAll();
+    virtual void                deleteImg();
+    virtual unsigned long long* allocData(int _iSize);
+};
 }
 
 #ifdef _MSC_VER
 template class TYPES_IMPEXP types::ArrayOf<unsigned long long>; //UInt64
 #endif
-
 #endif /* !__UINT64_HXX__ */

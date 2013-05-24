@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        pSpOut = new types::Sparse(pDblRows->get(0), pDblCols->get(0), false);
+        pSpOut = new types::Sparse((int)pDblRows->get(0), (int)pDblCols->get(0), false);
 
     }
     else // in.size() == 1

@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_function" xml:lang="en">
+    <refnamediv>
+        <refname>optimbase_function</refname>
+        <refpurpose>Calls cost function.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            [opt, f, index] = optimbase_function(opt, x, index)
+            [opt, f, c, index] = optimbase_function(opt, x, index)
+            [opt, f, g, index] = optimbase_function(opt, x, index)
+            [opt, f, g, c, gc, index] = optimbase_function(opt, x, index)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>
+                        The object of TOPTIM type (tlist). (INPUT/OUTPUT)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x </term>
+                <listitem>
+                    <para>
+                        A column vector of doubles, the current point.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>index </term>
+                <listitem>
+                    <para>
+                        An integer. (INPUT/OUTPUT)
+                    </para>
+                    <para>
+                        The index input parameter has the following meaning.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                index = 1: nothing is to be computed, the user may display messages, for example.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                index = 2: compute f.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                index = 3: compute g.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                index = 4: compute f and g.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                index = 5: compute c.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                index = 6: compute f and c.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                index = 7: compute f, g, c and gc.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        The index output parameter has the following meaning
+                        .
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                index &gt; 0: everything is fine.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                index = 0: the optimization must stop.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                index &lt; 0: one function could not be evaluated.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f </term>
+                <listitem>
+                    <para>
+                        Scalar. The value of the cost function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>g </term>
+                <listitem>
+                    <para>
+                        Row matrix of doubles. The gradient of the cost function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c </term>
+                <listitem>
+                    <para>
+                        Row matrix of doubles. The non-linear, positive, inequality constraints.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gc </term>
+                <listitem>
+                    <para>
+                        Matrix of doubles. The gradient of the non-linear, positive, inequality constraints.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimbase_function</literal> function calls the cost function and return 
+            the required results. If a cost function additional argument is defined in current 
+            object, it is passed it to the function as the last argument.
+        </para>
+        <para>
+            The <literal>-function()</literal> option allows to configure the cost function. 
+            The cost function is used, dependind on the context,	to compute the cost, the 
+            non-linear inequality positive constraints, the gradient of the function and 
+            the gradient of the non-linear inequality constraints.
+        </para>
+        <para>
+            The cost function can also be used to produce outputs and to terminate an 
+            optimization algorithm.
+        </para>
+        <para>
+            Each calling sequence of the <literal>optimbase_function</literal> function corresponds 
+            to a specific calling sequence of the user-provided cost function.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If the <literal>-withderivatives</literal> is false and there is no non-linear
+                    constraint, the calling sequence is
+                </para>
+                <programlisting role="no-scilab-exec">
+                    <![CDATA[ 
+                    [ this , f , index ] = optimbase_function ( this , x , index )
+                ]]>
+                </programlisting>
+                <para>which corresponds to the cost functions: </para>
+                <programlisting role="no-scilab-exec">
+                    <![CDATA[ 
+                    [f , index ] = costf( x , index )
+                ]]>
+                </programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    If the <literal>-withderivatives</literal> is false and there are non-linear constraints, 
+                    the calling sequence is
+                </para>
+                <programlisting role="no-scilab-exec">
+                    <![CDATA[ 
+                    [ this , f , c , index ] = optimbase_function ( this , x , index )
+                ]]>
+                </programlisting>
+                <para>
+                    which corresponds to the cost functions: 
+                </para>
+                <programlisting role="no-scilab-exec">
+                    <![CDATA[ 
+                    [f , c , index ] = costf( x , index )
+                ]]>
+                </programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    If the <literal>-withderivatives</literal> is true and there is no non-linear constraint, 
+                    the calling sequence is
+                </para>
+                <programlisting role="no-scilab-exec">
+                    <![CDATA[ 
+                    [ this , f , g , index ] = optimbase_function ( this , x , index )
+                ]]>
+                </programlisting>
+                <para>
+                    which corresponds to the cost functions: 
+                </para>
+                <programlisting role="no-scilab-exec">
+                    <![CDATA[ 
+                    [f , g , index ] = costf( x , index )
+                ]]>
+                </programlisting>
+            </listitem>
+            <listitem>
+                <para>
+                    If the <literal>-withderivatives</literal> is true and there are non-linear constraints, 
+                    the calling sequence is
+                </para>
+                <programlisting role="no-scilab-exec">
+                    <![CDATA[ 
+                    [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
+                ]]>
+                </programlisting>
+                <para>
+                    which corresponds to the cost functions: 
+                </para>
+                <programlisting role="no-scilab-exec">
+                    <![CDATA[ 
+                    [f , g , c , gc , index ] = costf( x , index )
+                ]]>
+                </programlisting>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Each calling sequence corresponds to a particular class of algorithms, includinf for e
+            xample
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    unconstrained, derivative-free algorithms,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    unconstrained constrained, derivative-free algorithms,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    unconstrained, derivative-based algorithms,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    nonlinearily constrained, derivative-based algorithms,
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    etc.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            It might happen that the function requires additional arguments to be evaluated. 
+            In this case, we can use the following feature. The argument <literal>fun</literal> 
+            can also be the list <literal>(f, a1, a2, ...)</literal>. 
+            In this case <literal>f</literal>, the first element in the list, must bea function and 
+            must have the header:
+        </para>
+        <programlisting role="no-scilab-exec">
+            <![CDATA[ 
+                    [ f , index ] = f ( x , index , a1 , a2 , ... )
+                [ f , c , index ] = f ( x , index , a1 , a2 , ... )
+                [ f , g , index ] = f ( x , index , a1 , a2 , ... )
+                [ f , g , c , gc , index ] = f ( x , index , a1 , a2 , ... )
+                ]]>
+        </programlisting>
+        <para>
+            where the input arguments <literal>a1, a2, ...</literal> are automatically appended at 
+            the end of the calling sequence.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example : Setting up an optimization</title>
+        <para>In the following example, one searches the minimum of the 2D
+            Rosenbrock function. One begins by defining the function "rosenbrock"
+            which computes the Rosenbrock function. The traditionnal initial guess
+            [-1.2 1.0] is used. The initial simplex is computed along the axes with a
+            length equal to 0.1. The Nelder-Mead algorithm with variable simplex size
+            is used. The verbose mode is enabled so that messages are generated during
+            the algorithm. After the optimization is performed, the optimum is
+            retrieved with quiery features.
+        </para>
+        <programlisting role="example">
+            <![CDATA[ 
+            function [ f , index ] = rosenbrock ( x , index )
+            f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+            endfunction
+            
+            opt = optimbase_new();
+            opt = optimbase_configure(opt,"-numberofvariables",2);
+            nbvar = optimbase_cget(opt,"-numberofvariables");
+            opt = optimbase_configure(opt,"-function",rosenbrock);
+            [ opt , f , index ] = optimbase_function ( opt , [0.0 0.0] , 1 );
+            expectedf = 1
+            disp(f)
+            opt = optimbase_destroy(opt);
+        ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Example : Passing extra parameters</title>
+        <para>In the following example, we consider a function which has two
+            additional parameters <literal>a</literal> and <literal>b</literal>. In
+            this case, we can configure the "-function" option as a list, where the
+            first element is the function and the two extra arguments are located at
+            the end of the list.
+        </para>
+        <programlisting role="example">
+            <![CDATA[ 
+            function [ f , index ] = rosenbrock2 ( x , index , a , b )
+            f = a*(x(2)-x(1)^2)^2 + (b-x(1))^2;
+            endfunction
+            
+            opt = optimbase_new();
+            opt = optimbase_configure(opt,"-numberofvariables",2);
+            nbvar = optimbase_cget(opt,"-numberofvariables");
+            a = 100;
+            b = 1;
+            opt = optimbase_configure(opt,"-function",list(rosenbrock2,a,b));
+            [ opt , f , index ] = optimbase_function ( opt , [0.0 0.0] , 1 );
+            expectedf = 1
+            disp(f)
+            opt = optimbase_destroy(opt);
+         ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimbase_new">optimbase_new</link>
+            </member>
+            <member>
+                <link linkend="optimbase_configure">optimbase_configure</link>
+            </member>
+            <member>
+                <link linkend="optimbase_destroy">optimbase_destroy </link>
+            </member>
+            <member>
+                <link linkend="optimbase_checkcostfun">optimbase_checkcostfun </link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

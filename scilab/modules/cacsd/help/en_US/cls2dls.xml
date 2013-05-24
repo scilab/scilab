@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>fp</term>
                 <listitem>
-                    <para>prevarping frequency in hertz</para>
+                    <para>pre-warping frequency in hertz</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -68,6 +68,9 @@ sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
         <simplelist type="inline">
             <member>
                 <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
             </member>
         </simplelist>
     </refsection>

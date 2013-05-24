@@ -20,6 +20,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
+import org.scilab.modules.types.ScilabTypeEnumDescription;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -28,9 +30,16 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.EditVar;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
+import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
+
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
+
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+
 
 /**
  * RefreshAction class
@@ -95,7 +104,7 @@ public final class PlotAction extends CommonCallBack {
 
     private static final String CREATE = "Create";
 
-    private final SwingScilabVariableEditor editor;
+    private final SwingScilabTab editor;
     private final int type;
     private final boolean onSelection;
 
@@ -104,7 +113,7 @@ public final class PlotAction extends CommonCallBack {
      * @param editor the editor
      * @param name the name of the action
      */
-    private PlotAction(SwingScilabVariableEditor editor, String name, boolean onSelection) {
+    public PlotAction(SwingScilabTab editor, String name, boolean onSelection) {
         super(name);
         this.editor = editor;
         this.type = map.get(name);
@@ -116,45 +125,69 @@ public final class PlotAction extends CommonCallBack {
      */
     @Override
     public void callBack() {
-        JTable table = editor.getCurrentTable();
-        SwingEditvarTableModel model = (SwingEditvarTableModel) table.getModel();
-        String datas = null;
+
+        String data = null;
         int rowC = 0;
         int colC = 0;
+        String modelType = null;
+        SwingEditvarTableModel model = null;
 
-        if (!onSelection) {
-            rowC = model.getScilabMatrixRowCount();
-            colC = model.getScilabMatrixColCount();
-            datas = model.getVarName();
-        } else {
-            int[] cols = table.getSelectedColumns();
-            int[] rows = table.getSelectedRows();
-            if (cols == null || cols.length == 0 || rows == null || rows.length == 0) {
+        if (editor instanceof SwingScilabVariableEditor) {
+            JTable table = ((SwingScilabVariableEditor)editor).getCurrentTable();
+            model = (SwingEditvarTableModel) table.getModel();
+            modelType = model.getType();
+
+            if (!onSelection) {
                 rowC = model.getScilabMatrixRowCount();
                 colC = model.getScilabMatrixColCount();
-                datas = model.getVarName();
+                data = model.getVarName();
             } else {
-                if (model.getType().equals(EditVar.STRING)) {
-                    return;
-                }
+                int[] cols = table.getSelectedColumns();
+                int[] rows = table.getSelectedRows();
+                if (cols == null || cols.length == 0 || rows == null || rows.length == 0) {
+                    rowC = model.getScilabMatrixRowCount();
+                    colC = model.getScilabMatrixColCount();
+                    data = model.getVarName();
+                } else {
+                    if (model.getType().equals(EditVar.STRING)) {
+                        return;
+                    }
 
-                int[] rowSize = new int[1];
-                int[] colSize = new int[1];
-                datas = model.getScilabSubMatrix(rows, cols, rowSize, colSize);
-                if (datas == null) {
-                    return;
+                    int[] rowSize = new int[1];
+                    int[] colSize = new int[1];
+                    data = model.getScilabSubMatrix(rows, cols, rowSize, colSize);
+                    if (data == null) {
+                        return;
+                    }
+                    rowC = rowSize[0];
+                    colC = colSize[0];
                 }
-                rowC = rowSize[0];
-                colC = colSize[0];
             }
+
+            if (!modelType.equals(EditVar.DOUBLE)) {
+                data = "double(" + data + ")";
+            }
+
+        } else {
+            // Variable Browser
+            int clickedRow = ((SwingScilabVariableBrowser)editor).getTable().getSelectedRow();
+
+            // Does nothing if no variable selected
+            if (clickedRow != -1) {
+                rowC = Integer.parseInt(((SwingScilabVariableBrowser)editor).getTable().getModel().getValueAt(clickedRow, BrowseVar.NB_ROWS_INDEX).toString());
+                colC = Integer.parseInt(((SwingScilabVariableBrowser)editor).getTable().getModel().getValueAt(clickedRow, BrowseVar.NB_COLS_INDEX).toString());
+                data = ((SwingScilabVariableBrowser)editor).getTable().getValueAt(clickedRow, BrowseVar.NAME_COLUMN_INDEX).toString();
+            }
+            int type = Integer.parseInt(((SwingScilabVariableBrowser)editor).getTable().getModel().getValueAt(clickedRow, BrowseVar.TYPE_COLUMN_INDEX).toString());
+
+            if (!ScilabTypeEnumDescription.getTypeDescriptionFromId(type).equals(EditVar.DOUBLE)) {
+                data = "double(" + data + ")";
+            }
+
         }
 
         if (rowC == 0 || colC == 0) {
             return;
-        }
-
-        if (!model.getType().equals(EditVar.DOUBLE)) {
-            datas = "double(" + datas + ")";
         }
 
         String com = COMMANDS[type];
@@ -166,25 +199,34 @@ public final class PlotAction extends CommonCallBack {
             case 7:
             case 8:
             case 10:
-                com = String.format(com, datas);
+                com = String.format(com, data);
                 break;
             case 2:
             case 3:
-                com = String.format(com, rowC, colC, datas);
+                com = String.format(com, rowC, colC, data);
                 break;
             case 4:
-                com = String.format(com, rowC, colC, datas, datas);
+                com = String.format(com, rowC, colC, data, data);
                 break;
             case 9:
                 if (rowC >= 2 && colC >= 2) {
-                    com = String.format(com, rowC, colC, datas);
+                    com = String.format(com, rowC, colC, data);
                 } else {
                     return;
                 }
                 break;
         }
+        if (editor instanceof SwingScilabVariableEditor) {
+            model.execCommand("clf();" + com);
+        } else {
+            // Browse var case
+            try {
+                asynchronousScilabExec(null, "clf();" + com);
+            } catch (InterpreterException e1) {
+                System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
+            }
 
-        model.execCommand("clf();" + com);
+        }
     }
 
     /**
@@ -193,7 +235,7 @@ public final class PlotAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
+    public static PushButton createButton(SwingScilabTab editor, String title) {
         final PushButton button = ScilabPushButton.createPushButton();
         button.setToolTipText(title);
         ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("plot"));
@@ -242,7 +284,7 @@ public final class PlotAction extends CommonCallBack {
      * @param title the menu title
      * @return the menu item
      */
-    public static MenuItem createMenuItem(SwingScilabVariableEditor editor, String title, boolean onSelection) {
+    public static MenuItem createMenuItem(SwingScilabTab editor, String title, boolean onSelection) {
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(new PlotAction(editor, title, onSelection));
         menu.setText(title);
@@ -257,7 +299,7 @@ public final class PlotAction extends CommonCallBack {
      * @param title the menu title
      * @return the menu item
      */
-    public static SwingScilabMenuItem createJMenuItem(SwingScilabVariableEditor editor, String title, boolean onSelection) {
+    public static SwingScilabMenuItem createJMenuItem(SwingScilabTab editor, String title, boolean onSelection) {
         return (SwingScilabMenuItem) createMenuItem(editor, title, onSelection).getAsSimpleMenuItem();
     }
 }

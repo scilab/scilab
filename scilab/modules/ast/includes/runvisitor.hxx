@@ -43,6 +43,7 @@ extern "C" {
 #include "matrix_transpose.h"
 #include "os_swprintf.h"
 #include "more.h"
+#include "sciprint.h"
     //#include "HandleManagement.h"
 }
 
@@ -131,7 +132,7 @@ public:
         }
     }
 
-    void expected_size_set(int _iSize)
+    void expected_setSize(int _iSize)
     {
         _excepted_result = _iSize;
     }
@@ -373,9 +374,7 @@ public :
 
     void visitprivate(const NilExp &e)
     {
-        /*
-        FIXME :
-        */
+        result_set(new types::Void());
     }
 
 
@@ -767,7 +766,6 @@ public :
 
         if (result_get()->isImplicitList())
         {
-            bool bNeedUpdate = false;
             InternalType* pIL = result_get();
             ImplicitList* pVar = pIL->getAs<ImplicitList>();
 
@@ -882,10 +880,34 @@ public :
 
     void visitprivate(const ReturnExp &e)
     {
-        if (e.is_global() == false)
+        //
+        if (e.is_global())
+        {
+            //return or resume
+            if (ConfigVariable::getPauseLevel() != 0)
+            {
+                ThreadId* pThreadId = ConfigVariable::getLastPausedThread();
+                if (pThreadId == NULL)
+                {
+                    //no paused thread, so just go leave
+                    return;
+                }
+
+                __threadId id = pThreadId->getId();
+                pThreadId->resume();
+                __WaitThreadDie(id);
+                return;
+            }
+        }
+        else
         {
             //return(x)
+
+            //in case of CallExp, we can return only one values
+            int iSaveExpectedSize = expected_getSize();
+            expected_setSize(1);
             e.exp_get().accept(*this);
+            expected_setSize(iSaveExpectedSize);
 
             if (result_getSize() == 1)
             {
@@ -900,21 +922,22 @@ public :
                     result_get(i)->IncreaseRef();
                 }
             }
-        }
 
-        if (result_getSize() == 1)
-        {
-            //unprotect variable
-            result_get()->DecreaseRef();
-        }
-        else
-        {
-            for (int i = 0 ; i < result_getSize() ; i++)
+            if (result_getSize() == 1)
             {
                 //unprotect variable
-                result_get(i)->DecreaseRef();
+                result_get()->DecreaseRef();
+            }
+            else
+            {
+                for (int i = 0 ; i < result_getSize() ; i++)
+                {
+                    //unprotect variable
+                    result_get(i)->DecreaseRef();
+                }
             }
         }
+
         const_cast<ReturnExp*>(&e)->return_set();
     }
 
@@ -1071,7 +1094,7 @@ public :
             {
                 //reset default values
                 result_set(NULL);
-                expected_size_set(-1);
+                expected_setSize(-1);
                 (*itExp)->accept(*this);
 
                 if (result_get() != NULL)
@@ -1088,9 +1111,9 @@ public :
                         {
                             //in this case of calling, we can return only one values
                             int iSaveExpectedSize = expected_getSize();
-                            expected_size_set(1);
+                            expected_setSize(1);
                             Function::ReturnValue Ret = pCall->call(in, opt, expected_getSize(), out, this);
-                            expected_size_set(iSaveExpectedSize);
+                            expected_setSize(iSaveExpectedSize);
 
                             if (Ret == Callable::OK)
                             {
@@ -1258,11 +1281,18 @@ public :
     {
         std::list<Exp *>::const_iterator it;
         int i = 0;
+
+        std::list<InternalType*> lstIT;
         for (it = e.exps_get().begin() ; it != e.exps_get().end() ; it++)
         {
             (*it)->accept(*this);
-            result_set(i, result_get()->clone());
-            i++;
+            lstIT.push_back(result_get()->clone());
+        }
+
+        std::list<InternalType*>::iterator itIT = lstIT.begin();
+        for (; itIT != lstIT.end(); itIT++)
+        {
+            result_set(i++, *itIT);
         }
     }
 
@@ -1369,6 +1399,8 @@ public :
                 case InternalType::RealUInt64 :
                     pReturn = notInt<UInt64, unsigned long long>(pIT->getAs<UInt64>());
                     break;
+                default :
+                    break;
             }
 
             if (result_get()->isDeletable())
@@ -1383,7 +1415,7 @@ public :
     template <class intT, typename Y>
     InternalType* notInt(intT* _pInt)
     {
-        intT* pOut = new intT(_pInt->getCols(), _pInt->getRows());
+        intT* pOut = new intT(_pInt->getRows(), _pInt->getCols());
         Y* pDataIn = _pInt->get();
         Y* pDataOut = pOut->get();
         for (int i = 0 ; i < _pInt->getSize() ; i++)
@@ -1638,6 +1670,8 @@ public :
                     pReturn = pIntOut;
                     break;
                 }
+                default:
+                    break;
             }
 
             if (pVar->isDeletable())
@@ -1675,6 +1709,42 @@ public :
         function foo
         endfunction
         */
+
+        // funcprot(0) : do nothing
+        // funcprot(1) && warning(on) : warning
+        // funcprot(2) : error
+        if (ConfigVariable::getFuncprot() == 1 && ConfigVariable::getWarningMode())
+        {
+            types::InternalType* pITFunc = symbol::Context::getInstance()->get(symbol::Symbol(e.name_get().name_get()));
+
+            if (pITFunc && pITFunc->isCallable())
+            {
+                wchar_t pwstFuncName[1024];
+                os_swprintf(pwstFuncName, 1024, L"%-24ls", e.name_get().name_get().c_str());
+                char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
+
+                sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
+                sciprint("\n");
+                FREE(pstFuncName);
+            }
+        }
+        else if (ConfigVariable::getFuncprot() == 2)
+        {
+            types::InternalType* pITFunc = symbol::Context::getInstance()->get(symbol::Symbol(e.name_get().name_get()));
+
+            if (pITFunc && pITFunc->isCallable())
+            {
+                char pstError[1024];
+                char* pstFuncName = wide_string_to_UTF8(e.name_get().name_get().c_str());
+                sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
+                wchar_t* pwstError = to_wide_string(pstError);
+                std::wstring wstError(pwstError);
+                FREE(pstFuncName);
+                FREE(pwstError);
+                throw ScilabError(wstError, 999, e.location_get());
+            }
+        }
+
         std::list<ast::Var *>::const_iterator	i;
 
         //get input parameters list

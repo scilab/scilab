@@ -28,6 +28,9 @@
 #include "dynlib_types.h"
 #include "dynlib_types.h"
 
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 namespace types
 {
 class TYPES_IMPEXP Polynom : public ArrayOf<SinglePoly*>
@@ -108,5 +111,4 @@ private :
 #ifdef _MSC_VER
 template class TYPES_IMPEXP types::ArrayOf<types::SinglePoly*>; //Polynom
 #endif
-
 #endif /* !__POLYNOM_HXX__ */
