@@ -9,7 +9,6 @@ LINEAR_ALGEBRA_CPP_SOURCES = \
 
 LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
 src/c/issymmetric.c \
-src/c/invert_matrix.c \
 src/c/lu.c \
 src/c/qr.c \
 src/c/hess.c \

@@ -141,7 +141,8 @@ am__objects_1 = libscioperations_la-doublecomplex.lo \
 	libscioperations_la-matrix_finite.lo \
 	libscioperations_la-matrix_kronecker.lo \
 	libscioperations_la-matrix_transpose.lo \
-	libscioperations_la-operations_tools.lo
+	libscioperations_la-operations_tools.lo \
+	libscioperations_la-invert_matrix.lo
 am__objects_2 = libscioperations_la-operations.lo \
 	libscioperations_la-types_substraction.lo \
 	libscioperations_la-types_multiplication.lo \
@@ -459,46 +460,46 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 OPERATIONS_C_SOURCES = src/c/doublecomplex.c \
-			src/c/matrix_multiplication.c \
-			src/c/matrix_addition.c \
-			src/c/matrix_substraction.c \
-			src/c/matrix_division.c \
-			src/c/matrix_power.c \
-			src/c/matrix_finite.c \
-            src/c/matrix_kronecker.c \
-            src/c/matrix_transpose.c \
-			src/c/operations_tools.c
+    src/c/matrix_multiplication.c \
+    src/c/matrix_addition.c \
+    src/c/matrix_substraction.c \
+    src/c/matrix_division.c \
+    src/c/matrix_power.c \
+    src/c/matrix_finite.c \
+    src/c/matrix_kronecker.c \
+    src/c/matrix_transpose.c \
+    src/c/operations_tools.c \
+    src/c/invert_matrix.c
 
 OPERATIONS_CPP_SOURCES = src/cpp/operations.cpp \
-			src/cpp/types_substraction.cpp \
-			src/cpp/types_multiplication.cpp \
-			src/cpp/types_divide.cpp \
-			src/cpp/types_ldivide.cpp \
-			src/cpp/types_addition.cpp \
-			src/cpp/types_power.cpp \
-			src/cpp/types_finite.cpp \
-			src/cpp/types_comparison_eq.cpp \
-			src/cpp/types_comparison_lt_le_gt_ge.cpp \
-			src/cpp/types_kronecker.cpp \
-			src/cpp/types_comparison_ne.cpp \
-			src/cpp/types_or_and.cpp
+    src/cpp/types_substraction.cpp \
+    src/cpp/types_multiplication.cpp \
+    src/cpp/types_divide.cpp \
+    src/cpp/types_ldivide.cpp \
+    src/cpp/types_addition.cpp \
+    src/cpp/types_power.cpp \
+    src/cpp/types_finite.cpp \
+    src/cpp/types_comparison_eq.cpp \
+    src/cpp/types_comparison_lt_le_gt_ge.cpp \
+    src/cpp/types_kronecker.cpp \
+    src/cpp/types_comparison_ne.cpp \
+    src/cpp/types_or_and.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
 libscioperations_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libscioperations_la_CPPFLAGS = \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/types/includes \
-	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-	-I$(top_srcdir)/modules/core/includes \
-	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/elementary_functions/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/linear_algebra/includes \
-	$(EIGEN_CPPFLAGS) \
-	$(AM_CPPFLAGS)
+    -I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/types/includes \
+    -I$(top_srcdir)/modules/symbol/includes \
+    -I$(top_srcdir)/modules/ast/includes \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/elementary_functions/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/system_env/includes \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 libscioperations_la_SOURCES = $(OPERATIONS_C_SOURCES) $(OPERATIONS_CPP_SOURCES)
 libscioperations_la_LIBADD = 
@@ -663,6 +664,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-doublecomplex.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-invert_matrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-matrix_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-matrix_division.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-matrix_finite.Plo@am__quote@
@@ -776,6 +778,13 @@ libscioperations_la-operations_tools.lo: src/c/operations_tools.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/operations_tools.c' object='libscioperations_la-operations_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-operations_tools.lo `test -f 'src/c/operations_tools.c' || echo '$(srcdir)/'`src/c/operations_tools.c
+
+libscioperations_la-invert_matrix.lo: src/c/invert_matrix.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscioperations_la-invert_matrix.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-invert_matrix.Tpo -c -o libscioperations_la-invert_matrix.lo `test -f 'src/c/invert_matrix.c' || echo '$(srcdir)/'`src/c/invert_matrix.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioperations_la-invert_matrix.Tpo $(DEPDIR)/libscioperations_la-invert_matrix.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/invert_matrix.c' object='libscioperations_la-invert_matrix.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscioperations_la-invert_matrix.lo `test -f 'src/c/invert_matrix.c' || echo '$(srcdir)/'`src/c/invert_matrix.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
