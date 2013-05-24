@@ -75,6 +75,9 @@ Xcos
 * Bug #12384 fixed - Using a modelica part linked with explicit link to
                      another modelica part lead to an algebraic loop error.
 
+* Bug #12387 fixed - Setup menu option "Modelica initialize" did not blur
+                     during simulation.
+
 * Bug #12424 fixed - Calling lincos on a Derivative block made scilab crash.
 
 * Bug #12561 fixed - SELECT_m and RELAY_f no more behaved as expected.
