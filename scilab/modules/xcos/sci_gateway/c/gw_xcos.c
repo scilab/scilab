@@ -43,7 +43,6 @@ static gw_generic_table Tab[] =
     {sci_xcosUpdateBlock, "xcosUpdateBlock"},
     {sci_loadXcos, "loadXcos"},
     {sci_xcosSimulationStarted, "xcosSimulationStarted"},
-    {sci_xcosPalGenerateAllIcons, "xcosPalGenerateAllIcons"}
 };
 
 /*--------------------------------------------------------------------------*/
