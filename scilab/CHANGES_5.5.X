@@ -155,6 +155,8 @@ Bug fixes
 
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
 
+* Bug #8858 fixed - Non regression test of bug #480 updated.
+
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.
 
 * Bug #8614 fixed - Unit test for barhomogenize added.

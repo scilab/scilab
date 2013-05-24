@@ -30,12 +30,6 @@
 //    Israel  July 27, 2003 at 10:7:54
 
 a=hypermat([1,3,3],1:9);
-
-result = execstr("int8(a)","errcatch","n");
-
-if result <> 0 then pause,end
-
-if result == 0 then
-  toto = (hypermat(a.dims,int8(a.entries)) == int8(a));
-  if ~(and(toto(:,:,1))) then pause,end
-end
+assert_checktrue(execstr("int8(a)", "errcatch")==0)
+toto = (hypermat(a.dims,int8(a.entries)) == int8(a));
+assert_checkfalse(~(and(toto(:,:,1))));
