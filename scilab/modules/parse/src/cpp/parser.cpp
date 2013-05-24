@@ -55,7 +55,8 @@ void Parser::parseFile(const wstring& fileName, const wstring& progName)
     ParserSingleInstance::parseFile(fileName, progName);
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
-    if (getExitStatus() == Parser::Succeded) {
+    if (getExitStatus() == Parser::Succeded)
+    {
         this->setTree(ParserSingleInstance::getTree());
     }
     else
@@ -99,7 +100,8 @@ void ParserSingleInstance::parseFile(const wstring& fileName, const wstring& pro
     fclose(yyin);
 }
 
-void Parser::parse(wchar_t *command) {
+void Parser::parse(wchar_t *command)
+{
     // Calling Parse state machine in C with global values
     // Must be locked to avoid concurrent access
     // FIXME : LOCK
@@ -116,13 +118,21 @@ void Parser::parse(wchar_t *command) {
     ParserSingleInstance::parse(pstCommand);
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
-    if (getExitStatus() == Parser::Succeded) {
+    if (getExitStatus() == Parser::Succeded)
+    {
         this->setTree(ParserSingleInstance::getTree());
     }
     else
     {
         this->setErrorMessage(ParserSingleInstance::getErrorMessage());
     }
+
+    if (getControlStatus() == AllControlClosed && get_last_token() != YYEOF)
+    {
+        //set parser last token to EOF
+        scan_throw(YYEOF);
+    }
+
     FREE(pstCommand);
     // FIXME : UNLOCK
 }
@@ -140,7 +150,7 @@ void ParserSingleInstance::parse(char *command)
     char* pstTmpDIr = getTMPDIR();
     sprintf(szFile, "%s\\%s", pstTmpDIr, "command.temp");
     FREE(pstTmpDIr);
-    if(fileLocker)
+    if (fileLocker)
     {
         fclose(fileLocker);
     }
@@ -156,7 +166,7 @@ void ParserSingleInstance::parse(char *command)
     char* pstTmpDIr = "/tmp";
     sprintf(szFile, "%s/%s", getTMPDIR(), "command.temp");
     //FREE(pstTmpDIr);
-    if(fileLocker)
+    if (fileLocker)
     {
         fclose(fileLocker);
     }
@@ -196,7 +206,8 @@ void ParserSingleInstance::parse(char *command)
 }
 
 /** \brief put the asked line in codeLine */
-char *ParserSingleInstance::getCodeLine(int line, char **codeLine) {
+char *ParserSingleInstance::getCodeLine(int line, char **codeLine)
+{
     size_t len = 0;
     int i = 0;
 

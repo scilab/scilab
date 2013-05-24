@@ -30,7 +30,7 @@ typedef struct __EXPRESSIONLINEBREAK__
 {
     bool bVerbose;
     int iNbBreaker;
-}LineBreakStr;
+} LineBreakStr;
 
 
 /**
@@ -49,6 +49,8 @@ void yyerror(std::string msg);
 
 /** \brief FIXME . */
 int scan_throw(int);
+
+int get_last_token();
 
 /** \brief For scanner just step . */
 void scan_step(void);

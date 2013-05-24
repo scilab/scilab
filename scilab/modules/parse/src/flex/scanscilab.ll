@@ -1320,6 +1320,10 @@ int scan_throw(int token) {
   return token;
 }
 
+int get_last_token() {
+    return last_token;
+}
+
 void scan_step() {
   yylloc.first_line = yylloc.last_line;
   yylloc.first_column = yylloc.last_column;
