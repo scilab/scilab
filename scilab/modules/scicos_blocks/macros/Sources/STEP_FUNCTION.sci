@@ -173,8 +173,7 @@ function [x,y,typ]=STEP_FUNCTION(job,arg1,arg2)
 
         model=scicos_model();
         model.sim = "csuper";
-        model.in = 1;
-        model.evtout = 1;
+        model.out = 1;
         model.rpar = scs_m_1;
 
         gr_i=[  "thick=xget(''thickness'')"
