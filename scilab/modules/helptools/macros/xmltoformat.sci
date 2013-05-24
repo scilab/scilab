@@ -65,9 +65,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"xmltoformat",1,5));
     end
 
-    // Transformation du %helps_modules jar => help/language
+    // Transformation of %helps_modules jar => help/language
 
-    // Default case : construction de l'aide en ligne de Scilab
+    // Default case : building of the online help of Scilab
     // ---------------------------------------------------------------------
 
     if (  (rhs <= 1) ..
@@ -430,7 +430,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // scilab help files generation
     // 2 steps :
     // -- scilab help
-    // -- scilab internal toolbox (example: scicos)
+    // -- scilab internal toolbox
     // =========================================================================
 
     select output_format
@@ -716,7 +716,7 @@ endfunction
 function check_move(buildDoc_file)
 
     // Check if the help file has been generated
-    if fileinfo(buildDoc_file)==[] then
+    if ~isfile(buildDoc_file) then
         chdir(cur_dir);
         error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
     end
@@ -916,7 +916,7 @@ function tree = x2f_dir_to_tree(directory,level)
     tree("level") = level;
 
     // If a master.xml file exists, don't go past
-    if fileinfo(directory+"master.xml")<>[] then
+    if isfile(directory+"master.xml") then
         tree("master.xml") = %T;
         return;
     else
@@ -928,17 +928,17 @@ function tree = x2f_dir_to_tree(directory,level)
     //
 
     // Parse the CHAPTER file to get the directory title if this file is present
-    if fileinfo(directory+"CHAPTER")<>[] then
+    if isfile(directory+"CHAPTER") then
         tree = x2f_cat(tree,x2f_read_CHAPTER(directory+"CHAPTER"));
     end
 
     // Check if the addchapter.sce is present
-    if fileinfo(directory+"addchapter.sce")<>[] then
+    if isfile(directory+"addchapter.sce") then
         tree("title_addchapter") = basename(directory);
     end
 
     // Check if the last_successful_build is present
-    if fileinfo(directory+".last_successful_build")<>[] then
+    if isfile(directory+".last_successful_build") then
         tree = x2f_cat(tree , x2f_read_lsb(directory+".last_successful_build"));
     end
 
@@ -1171,7 +1171,7 @@ function desc_out = x2f_read_CHAPTER(file_in)
     // Check the input file existence
     // =========================================================================
 
-    if fileinfo( file_in ) == [] then
+    if ~isfile( file_in ) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid existing file is expected.\n"),"x2f_read_CHAPTER",1));
     end
 
@@ -1241,7 +1241,7 @@ function desc_out = x2f_read_lsb(file_in)
     // Check the input file existence
     // =========================================================================
 
-    if fileinfo( file_in ) == [] then
+    if ~isfile( file_in ) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid existing file is expected.\n"),"x2f_read_lsb",1));
     end
 

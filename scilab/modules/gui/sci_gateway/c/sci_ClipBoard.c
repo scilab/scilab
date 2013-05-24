@@ -26,6 +26,8 @@
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
 #include "os_strdup.h"
+#include "FigureList.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_ClipBoard(char *fname, void* pvApiCtx)
 {
@@ -370,12 +372,12 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                             if ( strcmp(param2, "EMF") == 0)
                             {
                                 /* @TODO create EMF */
-                                copyFigureToClipBoard(num_win);
+                                copyFigureToClipBoard(getFigureFromIndex(num_win));
                             }
                             else
                             {
                                 /* @TODO create DIB */
-                                copyFigureToClipBoard(num_win);
+                                copyFigureToClipBoard(getFigureFromIndex(num_win));
                             }
 
                             m1 = 0;

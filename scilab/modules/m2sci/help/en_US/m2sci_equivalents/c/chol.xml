@@ -43,7 +43,7 @@ chol
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab <emphasis role="bold">chol</emphasis> function can only have one output whereas Matlab one can have two ouputs.
+            Scilab <emphasis role="bold">chol</emphasis> function can only have one output whereas Matlab one can have two outputs.
         </para>
     </refsection>
 </refentry>

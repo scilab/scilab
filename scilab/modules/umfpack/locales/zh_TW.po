@@ -93,7 +93,7 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
 # File: sci_gateway/c/sci_taucs_chsolve.c, line: 111
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorisation.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 與 Cholesky 分解因子不相容.\n"
 

@@ -9,27 +9,28 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c
       subroutine bpsold (neq, t, y, ydot, savr, wk, cj, wght,
      *                     wp, iwp, b, eplin, ier, rpar, ipar)
-c     
+c
 c ======================================================================
 c     Management of external dealing with preconditioned linear systems.
 c ======================================================================
 c
       INCLUDE 'stack.h'
       integer iadr,sadr
-c     
+c
       common/ierode/iero
       logical allowptr
-c      
-      character tmpbuf * (bsiz) 
+c
+      character tmpbuf * (bsiz)
       double precision t,y(*),ydot(*),savr(*),wk(*),cj,wght(*),wp(*),
      *                  b(*),eplin,rpar(*)
       integer neq,iwp(*),ier,ipar(*)
       integer vol,tops,nordre
+      double precision diwp(2*neq*neq)
       data nordre/4/,mlhs/2/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
+c
 c
       if (ddt .eq. 4) then
          write(tmpbuf(1:12),'(3i4)') top,r,sym
@@ -38,10 +39,10 @@ c
 c     nordre is the external's order number in the data structure,
 c     mlhs (mrhs) is the number of output (input) parameters
 c     of the simulator
-c     
-      mrhs=8
+c
+      mrhs=3
       iero=0
-c     
+c
       ilp=iadr(lstk(top))
       il=istk(ilp+nordre)
 c
@@ -60,45 +61,41 @@ c     On return iero=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
       iero=1
 
-c     Putting Fortran arguments on Scilab stack 
-c     
+c     Putting Fortran arguments on Scilab stack
+c
 c     Minimum entry arguments for the simulator. The value of these arguments
 c     comes from the Fortran context (call list)
-c+    
-      neq=istk(il+1)
-      call ftob(t,1,istk(il+2))
+c+
+      isize = 2*neq*neq
+      do 100 i=1, isize
+        diwp(i) = iwp(i)
+ 100  continue
+c
+      call ftob(wp,neq*neq,istk(il+1))
       if(err.gt.0.or.err1.gt.0) return
-      call ftob(y,neq,istk(il+3))
+      call ftob(diwp,isize,istk(il+2))
       if(err.gt.0.or.err1.gt.0) return
-      call ftob(ydot,neq,istk(il+3))
+      call ftob(b,neq,istk(il+3))
       if(err.gt.0.or.err1.gt.0) return
-      call ftob(wp,neq,istk(il+4))
-      if(err.gt.0.or.err1.gt.0) return
-      call ftob(iwp,neq,istk(il+5))
-      if(err.gt.0.or.err1.gt.0) return
-      call ftob(b,neq,istk(il+6))
-      if(err.gt.0.or.err1.gt.0) return
-      h=istk(il+7)
-      cj=istk(il+8)
-c+    
-c     
+c+
+c
       if(istk(ils).eq.15) goto 10
-c     
+c
 c     Retrieving the simulator's address
       fin=lstk(tops)
-c     
+c
       goto 40
 c     If the simulator is defined by a list
  10   nelt=istk(ils+1)
       l=sadr(ils+3+nelt)
       ils=ils+2
-c     
+c
 c     Retrieving the simulator's address
       fin=l
-c     
+c
 c     Managing the additional simulator parameters coming from
 c     the context (elements of the list describing the simulator)
-c     
+c
       nelt=nelt-1
       if(nelt.ne.0) then
          l=l+istk(ils+1)-istk(ils)
@@ -120,9 +117,9 @@ c
          mrhs=mrhs+nelt
       endif
  40   continue
-c     
+c
 c     Executing the macro defining the simulator
-c     
+c
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
@@ -135,27 +132,26 @@ c
       rhs=mrhs
       niv=niv+1
       fun=0
-c     
+c
       icall=5
 
       include 'callinter.h'
-c     
+c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
       niv=niv-1
-c+    
+c+
 c     Transferring the output to Fortran
-      call btof(b,neq)
-      if(err.gt.0.or.err1.gt.0) return
       call btof(ier,1)
       if(err.gt.0.or.err1.gt.0) return
-
-c+    
+      call btof(b,neq)
+      if(err.gt.0.or.err1.gt.0) return
+c+
 c     Normal return iero set to 0
-      iero=0 
+      iero=0
       return
-c     
+c
  9999 continue
       niv=niv-1
       if(err1.gt.0) then

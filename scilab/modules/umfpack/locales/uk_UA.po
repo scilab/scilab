@@ -79,7 +79,7 @@ msgstr "%s: помилкова розмірність вхідного пара�
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorisation.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: вона несумісна з "

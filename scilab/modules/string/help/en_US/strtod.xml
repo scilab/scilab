@@ -62,11 +62,20 @@
         </para>
     </refsection>
     <refsection>
-        <title>Remark</title>
-        <para>
-            This function is based on the strtod C function which causes different behaviors on Windows and Linux. In fact, on Windows, it is possible to use
-            d or D for exponents, but it is not possible to use hexadecimal numbers.
-        </para>
+        <title>Remarks</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    This function is based on the strtod C function which causes different behaviors on Windows and Linux. In fact, on Windows, it is possible to use
+                    d or D for exponents, but it is not possible to use hexadecimal numbers.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Note that <literal>strtod("%inf")</literal> returns <literal>Nan</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection> 
     <refsection>
         <title>Examples</title>

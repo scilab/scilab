@@ -1,0 +1,23 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 12629 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=12629
+//
+// <-- Short Description -->
+// Last example of csim help page defines a function input() overwriting the scilab one
+
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+assert_checktrue(execstr("deff(''u=timefun(t)'',''u=abs(sin(t))'');", "errcatch") == 0);

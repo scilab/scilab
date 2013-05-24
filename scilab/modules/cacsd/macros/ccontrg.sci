@@ -12,7 +12,7 @@ function [K]=ccontrg(PP,r,Gamma);
 //***********************************
 //   returns a realization of the central controller for the
 //   general problem using the formulas in Gahinet, 92
-//   Note that Gamma must be > gopt (ouput of gamitg)
+//   Note that Gamma must be > gopt (output of gamitg)
 
 
 //  PP contains the parameters of plant realization (sylin list)

@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 //    input() function of scilab cvs doesn't work like scilab 2.7.x
-//    when the ouput argument is empty, the ouput is not detected
+//    when the output argument is empty, the output is not detected
 //    as an empty result ?
 
 disp("press enter");

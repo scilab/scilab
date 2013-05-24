@@ -19,6 +19,7 @@ function [m]=nfreq(x)
 //frequences of the corresponding values.
 //
 //
+warnobsolete("tabul", "5.5.1");
   lxnozero=size(x,'*');
   xx=matrix(x,lxnozero,1);
   m=[]

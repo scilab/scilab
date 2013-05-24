@@ -35,7 +35,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     if ( typeof(expectederrnb) <> "constant" ) then
         errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Matrix expected.\n") , "assert_checkerror" , 3 )
         error(errmsg)
-    end  
+    end
     //
     // Check sizes of variables
     if ( size(instr,"*") <> 1 ) then
@@ -64,7 +64,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
             end
         end
     else
-        // If the message is empty (arg #2), check that the error 
+        // If the message is empty (arg #2), check that the error
         // number is not empty (arg #3).
         if ( expectederrnb == [] ) then
             errmsg = sprintf ( gettext ( "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"  ) , "assert_checkerror" , 3 )
@@ -91,33 +91,28 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     //
     // Localize the message, if necessary.
     if ( rhs >= 4 ) then
-      localmsg = gettext(expectedmsg)
-      instr = "expectedmsg = msprintf(localmsg, varargin(4:$))"
-      ierr = execstr(instr,"errcatch")
-      if ( ierr <> 0 ) then
-        fmterrmsg = lasterror();
-        localstr = gettext ( "%s: Error while formatting the error message: ""%s""")
-        errmsg = sprintf ( localstr , "assert_checkerror" , fmterrmsg )
-        error(errmsg)
-      end
+        localmsg = gettext(expectedmsg)
+        instr = "expectedmsg = msprintf(localmsg, varargin(4:$))"
+        ierr = execstr(instr,"errcatch")
+        if ( ierr <> 0 ) then
+            fmterrmsg = lasterror();
+            localstr = gettext ( "%s: Error while formatting the error message: ""%s""")
+            errmsg = sprintf ( localstr , "assert_checkerror" , fmterrmsg )
+            error(errmsg)
+        end
     end
     //
     // Check the error message
     if (expectedmsg <> []) then
-        isdifferentmsg = %t;
-        if size(expectedmsg, '*') <> size(compmsg, '*') then
-          isdifferentmsg = expectedmsg <> compmsg;
-        else
-          isdifferentmsg = or(expectedmsg <> compmsg);
-        end
+        isdifferentmsg = or(expectedmsg <> compmsg);
 
         if (isdifferentmsg) then
             flag = %f
-            if size(compmsg, '*') <> 1 then
-              compmsg = sci2exp(compmsg);
+            if size(compmsg, "*") <> 1 then
+                compmsg = sci2exp(compmsg);
             end
-            if size(expectedmsg, '*') <> 1 then
-              expectedmsg = sci2exp(expectedmsg);
+            if size(expectedmsg, "*") <> 1 then
+                expectedmsg = sci2exp(expectedmsg);
             end
             localstr = gettext("%s: Assertion failed: expected error message = ""%s"" while computed error message = ""%s"".")
             errmsg = msprintf(localstr,"assert_checkerror", expectedmsg, compmsg)
@@ -147,7 +142,7 @@ function [flag,errmsg] = assert_checkerror ( varargin )
 endfunction
 function argin = argindefault ( rhs , vararglist , ivar , default )
     // Returns the value of the input argument #ivar.
-    // If this argument was not provided, or was equal to the 
+    // If this argument was not provided, or was equal to the
     // empty matrix, returns the default value.
     if ( rhs < ivar ) then
         argin = default

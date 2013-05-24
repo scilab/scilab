@@ -35,7 +35,7 @@
 #define ComplexStr "i"
 #define EMPTY_STRING ""
 #if _MSC_VER
-#define MODEWFD "wt"
+#define MODEWFD "wb"
 #else
 #define MODEWFD "w"
 #endif

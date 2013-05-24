@@ -1,5 +1,7 @@
+!_deff_wrapper
 %0_i_st
 %3d_i_h
+%Block_xcosUpdateBlock
 %TNELDER_p
 %TNELDER_string
 %TNMPLOT_p
@@ -14,6 +16,8 @@
 %_champ1
 %_fec
 %_grayplot
+%_gsort
+%_listvarinfile
 %_param3d
 %_param3d1
 %_plot2d
@@ -23,6 +27,8 @@
 %_plot2d4
 %_plot3d
 %_plot3d1
+%_save
+%_sodload
 %_strsplit
 %_xget
 %_xset
@@ -56,6 +62,8 @@
 %b_m_b
 %b_m_s
 %b_matrix
+%b_n_hm
+%b_o_hm
 %b_p_s
 %b_prod
 %b_r_b
@@ -147,9 +155,9 @@
 %hm_degree
 %hm_e
 %hm_f_hm
-%hm_fft
 %hm_find
 %hm_g_hm
+%hm_gsort
 %hm_h_hm
 %hm_i_b
 %hm_i_ce
@@ -168,12 +176,22 @@
 %hm_m_p
 %hm_m_r
 %hm_m_s
+%hm_matrix
+%hm_max
 %hm_mean
 %hm_median
+%hm_min
+%hm_n_b
+%hm_n_c
 %hm_n_hm
+%hm_n_i
+%hm_n_p
 %hm_n_s
+%hm_o_b
+%hm_o_c
 %hm_o_hm
 %hm_o_i
+%hm_o_p
 %hm_o_s
 %hm_ones
 %hm_or
@@ -342,6 +360,7 @@
 %mc_i_st
 %mc_n_st
 %mc_o_st
+%mc_string
 %mps_p
 %mps_string
 %msp_a_s
@@ -659,6 +678,8 @@
 %sp_l_s
 %sp_l_sp
 %sp_length
+%sp_max
+%sp_min
 %sp_norm
 %sp_or
 %sp_p_s
@@ -671,6 +692,7 @@
 %sp_s_s
 %sp_s_sp
 %sp_sqrt
+%sp_string
 %sp_sum
 %sp_tril
 %sp_triu
@@ -736,6 +758,7 @@
 %xlssheet_p
 %xlssheet_size
 %xlssheet_string
+DominationRank
 G_make
 IsAScalar
 NDcost
@@ -751,7 +774,6 @@ TitleLabel
 WritemiMatrix
 abcd
 abinv
-about
 accept_func_default
 accept_func_vfsa
 acf
@@ -772,7 +794,6 @@ add_param
 add_profiling
 addcolor
 addmenu
-addmenus
 adj2sp
 aff2ab
 ana_style
@@ -783,6 +804,7 @@ apropos
 arhnk
 arl2
 arma2p
+arma2ss
 armac
 armax
 armax1
@@ -817,21 +839,27 @@ atomsAutoloadAdd
 atomsAutoloadDel
 atomsAutoloadList
 atomsCategoryList
+atomsCheckModule
 atomsDepTreeShow
 atomsGetConfig
 atomsGetInstalled
+atomsGetInstalledPath
 atomsGetLoaded
 atomsGetLoadedPath
 atomsGui
+atomsGuiResizeFcn
 atomsInstall
 atomsIsInstalled
 atomsIsLoaded
 atomsList
 atomsLoad
+atomsQuit
 atomsRemove
 atomsRepositoryAdd
 atomsRepositoryDel
 atomsRepositoryList
+atomsRestoreConfig
+atomsSaveConfig
 atomsSearch
 atomsSetConfig
 atomsShow
@@ -848,7 +876,6 @@ balreal
 bar
 barh
 barhomogenize
-base2dec
 bench_run
 bilin
 bilt
@@ -874,6 +901,7 @@ bytecode
 bytecodewalk
 cainv
 calendar
+calerf
 calfrq
 canon
 casc
@@ -940,9 +968,11 @@ contour
 contour2d
 contourf
 contrss
+conv
 convert_to_float
 convertindex
 convol
+convol2d
 coolcolormap
 copfac
 coppercolormap
@@ -955,9 +985,9 @@ cotd
 cotg
 coth
 cothm
+cov
 covar
 createfun
-createpopup
 createstruct
 crossover_ga_binary
 crossover_ga_default
@@ -973,22 +1003,36 @@ dae
 daeoptions
 damp
 datafit
+datatipContextMenu
 datatipCreate
+datatipCreatePopupMenu
 datatipDefaultDisplay
+datatipDeleteSelected
 datatipEventhandler
+datatipGUIEventHandler
 datatipGetEntities
+datatipGetSelected
 datatipGetStruct
+datatipHilite
 datatipInitStruct
 datatipManagerMode
 datatipMove
+datatipRadioCallback
 datatipRedraw
 datatipRemove
 datatipRemoveAll
+datatipRemoveNearest
 datatipSetDisplay
+datatipSetGUI
 datatipSetInterp
 datatipSetOrientation
+datatipSetSelected
 datatipSetStruct
+datatipSetStyle
+datatipSetTipPosition
+datatipSetTipStyle
 datatipToggle
+datatipsGUI
 date
 datenum
 datevec
@@ -1000,6 +1044,7 @@ dec2hex
 dec2oct
 del_help_chapter
 del_module_help_chapter
+delete_frame
 demo_begin
 demo_choose
 demo_compiler
@@ -1023,6 +1068,7 @@ determ
 detr
 detrend
 devtools_run_builder
+dft
 dhnorm
 diff
 diophant
@@ -1031,7 +1077,6 @@ dirname
 dispfiles
 dllinfo
 dragrect
-driver
 dscr
 dsimul
 dt_ility
@@ -1039,7 +1084,9 @@ dtsi
 edit
 edit_curv
 edit_error
+editor
 eigenmarkov
+eigs
 ell1mag
 enlarge_shape
 entropy
@@ -1049,9 +1096,6 @@ eqfir
 eqiir
 equil
 equil1
-erf
-erfc
-erfcx
 erfinv
 errbar
 etime
@@ -1060,6 +1104,7 @@ eval3d
 eval3dp
 evans
 evstr
+example_run
 expression2code
 extract_help_examples
 fac3d
@@ -1211,6 +1256,8 @@ hsv2rgb
 hsvcolormap
 htrianr
 hypermat
+idct
+idst
 ifft
 iir
 iirgroup
@@ -1261,7 +1308,6 @@ isempty
 isfield
 isinf
 isnan
-isnum
 isoview
 issparse
 isstruct
@@ -1277,6 +1323,7 @@ kpure
 krac2
 kroneck
 lattn
+lattp
 launchtest
 lcf
 lcm
@@ -1362,7 +1409,6 @@ mtlb_choices
 mtlb_close
 mtlb_colordef
 mtlb_cond
-mtlb_conv
 mtlb_cov
 mtlb_cumprod
 mtlb_cumsum
@@ -1433,7 +1479,6 @@ mtlb_randn
 mtlb_rcond
 mtlb_realmax
 mtlb_realmin
-mtlb_repmat
 mtlb_s
 mtlb_semilogx
 mtlb_semilogy
@@ -1488,8 +1533,8 @@ neigh_func_vfsa
 neldermead_cget
 neldermead_configure
 neldermead_costf
+neldermead_defaultoutput
 neldermead_destroy
-neldermead_display
 neldermead_function
 neldermead_get
 neldermead_log
@@ -1506,7 +1551,6 @@ nmplot_cget
 nmplot_configure
 nmplot_contour
 nmplot_destroy
-nmplot_display
 nmplot_function
 nmplot_get
 nmplot_historyplot
@@ -1520,6 +1564,7 @@ noisegen
 nonreg_test_run
 norm
 now
+nthroot
 null
 num2cell
 numdiff
@@ -1534,7 +1579,6 @@ obsvss
 oceancolormap
 oct2dec
 odeoptions
-oldplot
 optim_ga
 optim_moga
 optim_nsga
@@ -1546,7 +1590,6 @@ optimbase_checkcostfun
 optimbase_checkx0
 optimbase_configure
 optimbase_destroy
-optimbase_display
 optimbase_function
 optimbase_get
 optimbase_hasbounds
@@ -1595,7 +1638,6 @@ optimsimplex_getx
 optimsimplex_gradientfv
 optimsimplex_log
 optimsimplex_new
-optimsimplex_print
 optimsimplex_reflect
 optimsimplex_setall
 optimsimplex_setallfv
@@ -1608,7 +1650,6 @@ optimsimplex_setx
 optimsimplex_shrink
 optimsimplex_size
 optimsimplex_sort
-optimsimplex_tostring
 optimsimplex_xbar
 orth
 orthProj
@@ -1633,6 +1674,7 @@ pertrans
 pfactors
 pfss
 phasemag
+phaseplot
 phc
 pie
 pinkcolormap
@@ -1643,7 +1685,6 @@ plot
 plot3d2
 plot3d3
 plotframe
-plotout
 plotprofile
 plzr
 pmodulo
@@ -1672,7 +1713,6 @@ rainbowcolormap
 randpencil
 range
 rank
-read_csv
 readxls
 recompilefunction
 recons
@@ -1686,6 +1726,7 @@ replace_Ix_by_Fx
 replot
 repmat
 reset_profiling
+resize_demo_gui
 resize_matrix
 returntoscilab
 rgb2name
@@ -1711,7 +1752,6 @@ scaling
 scanf
 scf
 sci2exp
-sci2map
 sciGUI_init
 sci_sparse
 scicos_getvalue
@@ -1719,7 +1759,6 @@ scicos_simulate
 scicos_workspace_init
 scisptdemo
 scitest
-sd2sci
 sda
 sdf
 sdiff
@@ -1836,8 +1875,8 @@ temp_law_vfsa
 test_clean
 test_on_columns
 test_run
+test_run_level
 testexamples
-texout
 tf2des
 tf2ss
 thrownan
@@ -1853,6 +1892,7 @@ trace
 trans
 translatepaths
 tree2code
+tree_show
 trfmod
 trianfml
 trimmean
@@ -1872,6 +1912,7 @@ uiGetNodePosition
 uiGetParentNode
 uiInsertNode
 ui_observer
+uitable
 union
 unique
 unit_test_run
@@ -1892,6 +1933,7 @@ wavwrite
 wcenter
 weekday
 wfir
+wfir_gui
 whereami
 whitecolormap
 who_user
@@ -1906,10 +1948,10 @@ with_javasci
 with_macros_source
 with_modelica_compiler
 with_tk
-write_csv
 x_choices
 x_matrix
 xclear
+xcorr
 xcosBlockEval
 xcosBlockInterface
 xcosCodeGeneration
@@ -1919,16 +1961,16 @@ xcosPalAdd
 xcosPalAddBlock
 xcosPalExport
 xcosShowBlockWarning
+xcosValidateBlockSet
+xcosValidateCompareBlock
 xcos_compile
 xcos_run
 xcos_simulate
-xcos_workspace_init
-xend
+xcov
+xgetech
 xinfo
-xinit
 xlabel
 xload
-xmlfiletohtml
 xmltochm
 xmltoformat
 xmltohtml
@@ -1939,8 +1981,8 @@ xmltoweb
 xnumb
 xrpoly
 xs2emf
-xs2fig
 xsave
+xsetech
 xsetm
 xstringl
 ylabel

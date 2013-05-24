@@ -13,7 +13,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="nfreq">
     <refnamediv>
         <refname>nfreq</refname>
-        <refpurpose>frequence of the values in a vector or matrix</refpurpose>
+        <refpurpose>
+            frequence of the values in a vector or matrix. <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -46,6 +48,8 @@
         <para>
             Note that the  <link linkend="tabul">tabul</link> function is more efficient, applies
             also to vector of strings and returns a sorted <literal>m</literal>.
+            <warning>This function is obsolete.</warning>
+            It is better to use <link linkend="tabul">tabul</link> instead of <literal>nfreq</literal>.
         </para>
     </refsection>
     <refsection>
@@ -68,5 +72,16 @@ m=nfreq(x)
                 <link linkend="histplot">histplot</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed in 5.5.1. Please use <link linkend="tabul">tabul</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -48,7 +48,7 @@ H5Object & H5LinksList::getObject(const int pos, const bool checkPos)
         unsigned int size = getSize();
         if (pos < 0 || pos >= size)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Invalid index %u: must be between 0 and %u."), pos, size);
+            throw H5Exception(__LINE__, __FILE__, _("Invalid index %d: must be between 0 and %d."), pos, size);
         }
     }
 

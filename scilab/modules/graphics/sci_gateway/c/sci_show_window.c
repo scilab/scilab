@@ -75,7 +75,7 @@ int sci_show_window(char *fname, void *pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname,  1);
+                Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname,  1);
                 return 1;
             }
 

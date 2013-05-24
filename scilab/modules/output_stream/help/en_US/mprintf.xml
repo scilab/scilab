@@ -63,6 +63,8 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
+mprintf('%e ', [1; 2; 3])
+mprintf('%d %d\n', [1, 2; 3, 4])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
