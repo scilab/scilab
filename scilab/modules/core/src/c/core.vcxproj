@@ -310,7 +310,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\c\sci_isglobal.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_macr2lst.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_macr2tree.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_mode.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_mtlb_mode.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_newfun.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_predef.c" />

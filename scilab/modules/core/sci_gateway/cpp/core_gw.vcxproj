@@ -175,6 +175,7 @@
     <ClCompile Include="sci_format.cpp" />
     <ClCompile Include="sci_funcprot.cpp" />
     <ClCompile Include="sci_ieee.cpp" />
+    <ClCompile Include="sci_mode.cpp" />
     <ClCompile Include="sci_sciargs.cpp" />
     <ClCompile Include="..\c\sci_getdebuginfo.c" />
     <ClCompile Include="..\c\sci_type.c" />

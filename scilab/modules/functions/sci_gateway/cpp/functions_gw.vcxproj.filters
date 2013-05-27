@@ -30,9 +30,6 @@
     <ClCompile Include="sci_getThreads.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_mode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_whereis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -189,7 +189,6 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_predef.c \
 	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_typename.c \
-	sci_gateway/c/sci_mode.c \
 	sci_gateway/c/sci_macr2tree.c \
 	sci_gateway/c/sci_iserror.c \
 	sci_gateway/c/sci_getdebuginfo.c \
@@ -239,7 +238,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \
-	sci_gateway/cpp/sci_funcprot.cpp
+	sci_gateway/cpp/sci_funcprot.cpp \
+	sci_gateway/cpp/sci_mode.cpp
 
 
 libscicore_la_CPPFLAGS = \
