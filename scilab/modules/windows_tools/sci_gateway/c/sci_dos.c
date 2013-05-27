@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 static int PrintOuput(char **output, int nbrlines);
 /*--------------------------------------------------------------------------*/
-int sci_dos(char *fname, unsigned long l)
+int sci_dos(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
