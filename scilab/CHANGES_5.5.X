@@ -304,3 +304,5 @@ Bug fixes
 
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
                      already existing in SCI/contrib/archives in offline mode.
+
+* Bug #12639 fixed - justify([], position) returned an error instead of [].

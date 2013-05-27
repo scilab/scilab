@@ -20,6 +20,10 @@ function t = justify(t, job)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"justify",2))
     end
 
+    if t == [] then
+        t = [];
+        return;
+    end
     if type(t) <> 10 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "justify", 1));
     end
