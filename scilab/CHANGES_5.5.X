@@ -232,6 +232,8 @@ Bug fixes
 
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
 
+* Bug #12143 fixed - "stop entity picker" (ged(11)) returned an error message.
+
 * Bug #12150 fixed - datatipCreate failed with one single point.
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
