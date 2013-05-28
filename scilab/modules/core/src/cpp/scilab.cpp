@@ -35,7 +35,7 @@ extern "C"
 #include "scilabWrite.hxx"
 
 #if defined(VMKIT_ENABLED)
-#include <vmkit.h>
+#include <vmkit_core.h>
 #endif
 
 #define INTERACTIVE     -1
@@ -80,6 +80,14 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
 #ifdef DEBUG
     std::cerr << "-*- Getting Options -*-" << std::endl;
 #endif
+
+    bool execFile = false;
+    bool parseFile = false;
+
+    bool ASTrunVMKit = false;
+
+    using symbol::Context;
+    using std::string;
 
     for (i = 1; i < argc; ++i)
     {
@@ -147,6 +155,9 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
             if (argc >= i)
             {
                 _pSEI->pstLang = argv[i];
+                //before calling YaspReader, try to call %onprompt function
+                callOnPrompt();
+                execAstTask(parser->getTree(), timed, ASTtimed, execVerbose, ASTrunVMKit);
             }
         }
         else if (!strcmp("-nw", argv[i]))
@@ -169,7 +180,8 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
     }
 
 #ifdef DEBUG
-    if (*_piFileIndex >= 0) {
+    if (*_piFileIndex >= 0)
+    {
         std::cerr << "File : " << argv[*_piFileIndex] << std::endl;
     }
 #endif

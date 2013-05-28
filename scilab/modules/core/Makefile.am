@@ -137,7 +137,10 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c \
-	sci_gateway/c/sci_readgateway.c
+	sci_gateway/c/gw_user2.c \
+	sci_gateway/c/sci_getvariablesonstack.c \
+	sci_gateway/c/sci_readgateway.c \
+	sci_gateway/c/sci_comp.c
 
 GATEWAY_FORTRAN_SOURCES =  \
 sci_gateway/fortran/where.f
@@ -174,6 +177,11 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_typename.cpp \
 	sci_gateway/cpp/sci_where.cpp \
 	sci_gateway/cpp/sci_getmemory.cpp
+	sci_gateway/cpp/sci_format.cpp \
+	sci_gateway/cpp/sci_sciargs.cpp \
+	sci_gateway/cpp/sci_ieee.cpp \
+	sci_gateway/cpp/sci_funcprot.cpp \
+	sci_gateway/cpp/sci_runASTwithVMKit.cpp
 
 
 libscicore_la_CPPFLAGS = \
