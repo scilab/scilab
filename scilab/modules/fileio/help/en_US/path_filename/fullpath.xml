@@ -42,11 +42,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>fullpath(relative_path)</code> сreates an full path name
+            <code>fullpath(relative_path)</code> сreates a full path name
             for the specified relative path name.
-        </para>
-        <para>
-            On GNU/Linux <varname>relative_path</varname> needs to exist.
         </para>
     </refsection>
     <refsection>
