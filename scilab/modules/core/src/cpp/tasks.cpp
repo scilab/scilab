@@ -29,6 +29,9 @@
 
 Timer _timer;
 
+// Defined at modules/core/src/cpp/scilab.cpp
+extern bool ASTrunVMKit;
+
 //#define DEBUG
 
 /*
@@ -133,7 +136,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 **
 ** Execute the stored AST.
 */
-void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
+void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bool ASTrunVMKit)
 {
     if(tree == NULL)
     {
@@ -153,7 +156,7 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
 
     if(execVerbose)
     {
-        exec = (ast::ExecVisitor*)new ast::StepVisitor();
+       exec = (ast::ExecVisitor*)new ast::StepVisitor();
     }
 
     if(!execVerbose && !ASTtimed)
@@ -161,8 +164,13 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
         exec = new ast::ExecVisitor();
     }
 
-    Runner::execAndWait(tree, exec);
-    //delete exec;
+    if (ASTrunVMKit) {
+        printf("VMKit implementation goes here\n");
+        exit(1);
+    } else {
+        Runner::execAndWait(tree, exec);
+        //delete exec;
+    }
 
     if(timed)
     {
@@ -209,7 +217,7 @@ void execScilabStartTask(void)
         return;
     }
 
-    execAstTask(parse.getTree(), false, false, false);
+    execAstTask(parse.getTree(), false, false, false, ASTrunVMKit);
 }
 
 /*
@@ -231,7 +239,7 @@ void execScilabQuitTask(void)
         return;
     }
 
-    execAstTask(parse.getTree(), false, false, false);
+    execAstTask(parse.getTree(), false, false, false, ASTrunVMKit);
 }
 
 

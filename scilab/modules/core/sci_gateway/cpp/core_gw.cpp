@@ -53,5 +53,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"ieee", &sci_ieee, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"typename", &sci_typename, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"funcprot", &sci_funcprot, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"runVMKit", &sci_runVMKit, MODULE_NAME));
     return 1;
 }

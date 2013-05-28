@@ -60,7 +60,7 @@ namespace VMKitScilab {
 
 		virtual void runApplication(int argc, char** argv){}
 
-		virtual void runApplication(int argc, char** argv, int iFileIndex, int iLangIndex);
+		virtual void runApplication(int argc, char**  argv, int iFileIndex, int iLangIndex);
 
 		virtual void nullPointerException(){}
 		virtual void stackOverflowError(){}

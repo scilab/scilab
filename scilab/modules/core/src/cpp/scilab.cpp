@@ -95,7 +95,7 @@ extern "C"
 #include "runner.hxx"
 
 #if defined(VMKIT_ENABLED)
-#include <vmkit.h>
+#include <vmkit_core.h>
 #endif
 
 #define INTERACTIVE     -1
@@ -118,6 +118,8 @@ bool noBanner = false;
 bool execCommand = false;
 bool execFile = false;
 bool parseFile = false;
+
+bool ASTrunVMKit = false;
 
 using symbol::Context;
 using std::string;
@@ -590,7 +592,7 @@ static Parser::ControlStatus processCommand(char *_pstCommand)
             {
                 //before calling YaspReader, try to call %onprompt function
                 callOnPrompt();
-                execAstTask(parser->getTree(), timed, ASTtimed, execVerbose);
+                execAstTask(parser->getTree(), timed, ASTtimed, execVerbose, ASTrunVMKit);
             }
 
             /*
