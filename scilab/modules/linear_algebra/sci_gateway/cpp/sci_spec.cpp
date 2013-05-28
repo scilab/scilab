@@ -262,7 +262,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        //chekc if A and B are real complex or with imamg part at 0
+        //chekc if A and B are real complex or with imag part at 0
         if (isNoZeroImag(pDblA) == false && isNoZeroImag(pDblB) == false)
         {
             //view A and B as real matrix
@@ -483,11 +483,14 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 bool isNoZeroImag(types::Double* _pDbl)
 {
     double* pdbl = _pDbl->getImg();
-    for (int i = 0 ; i < _pDbl->getSize() ; i++)
+    if (pdbl)
     {
-        if (pdbl[i])
+        for (int i = 0 ; i < _pDbl->getSize() ; i++)
         {
-            return true;
+            if (pdbl[i])
+            {
+                return true;
+            }
         }
     }
     return false;
