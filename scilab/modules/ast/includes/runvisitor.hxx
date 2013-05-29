@@ -893,10 +893,18 @@ public :
                     return;
                 }
 
-                __threadId id = pThreadId->getId();
+                //force exit without prompt of current thread ( via Aborted status )
+                ThreadId* pMe = ConfigVariable::getThread(__GetCurrentThreadKey());
+                pMe->setStatus(ThreadId::Aborted);
+
+                //resume previous execution thread
                 pThreadId->resume();
-                __WaitThreadDie(id);
+
                 return;
+            }
+            else
+            {
+                const_cast<ReturnExp*>(&e)->return_set();
             }
         }
         else
@@ -936,9 +944,10 @@ public :
                     result_get(i)->DecreaseRef();
                 }
             }
+
+            const_cast<ReturnExp*>(&e)->return_set();
         }
 
-        const_cast<ReturnExp*>(&e)->return_set();
     }
 
 

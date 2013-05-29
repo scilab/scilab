@@ -27,24 +27,31 @@ extern "C"
 
 types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "pause", 0);
         return types::Function::Error;
     }
 
     ConfigVariable::IncreasePauseLevel();
+
+    //unlock prompt thread.
     Runner::UnlockPrompt();
+
     ThreadId* pThread = ConfigVariable::getLastRunningThread();
 
     //return to console so change mode to 2
     int iOldMode = ConfigVariable::getPromptMode();
     ConfigVariable::setPromptMode(2);
+
+    //suspend current thread
     pThread->suspend();
-    ConfigVariable::setPromptMode(iOldMode);
-    //return from console so change mode to initial
 
     // Running from here means we have been awaken by some resume / abort
+
+    //return from console so change mode to initial
+    ConfigVariable::setPromptMode(iOldMode);
+
     ConfigVariable::DecreasePauseLevel();
     if (pThread->getStatus() == types::ThreadId::Aborted)
     {
@@ -52,5 +59,4 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
     }
 
     return types::Function::OK;
-
 }
