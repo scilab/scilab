@@ -98,27 +98,30 @@ public class ScilabFileSelectorFilter extends JPanel {
         gbc.gridwidth = 2;
         gbc.gridheight = 1;
         gbc.weightx = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(textfield, gbc);
 
         gbc.gridx = 2;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(validate, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(caseSensitive, gbc);
 
         gbc.gridx = 1;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.LINE_START;
         add(regexp, gbc);
     }
 

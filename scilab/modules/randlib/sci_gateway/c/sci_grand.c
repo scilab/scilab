@@ -20,7 +20,8 @@
 #include <string.h>
 #include <math.h>
 #include "localization.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "MALLOC.h"
 
 /** external functions to be called through this interface **/
 
@@ -71,6 +72,9 @@ double factor[NbGenInScilab] = { 2.3283064365386963e-10,  /* mt    */
                                  4.6566128730773926e-10,  /* urand */
                                  2.3283064365386963e-10
                                }; /* fsultra*/
+
+
+static double* createOutputVar(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piDims, int _iDims);
 
 double C2F(ranf)(void)
 {
@@ -131,11 +135,15 @@ int sci_Rand(char *fname, unsigned long fname_len)
     int ResL, ResC, suite, m2, n2, l2, m1, n1, l1, ls, ms, ns, la, lr, lb, lc;
     int l3, l4;
     int i;
+    int iHyperMat = 0;
+    int iDims = 0;
+    int* piDims = NULL;
+    double* pdblData = NULL;
 
     Nbvars = 0;
     CheckRhs(minrhs, maxrhs);
     CheckLhs(minlhs, maxlhs);
-    if (GetType(1) != sci_matrix)
+    if (GetType(1) != sci_matrix && GetType(1) != 17)
     {
         int un = 1, deux = 2, dim_state_mt = 625, dim_state_fsultra = 40, dim_state_4 = 4;
         GetRhsVar(1, STRING_DATATYPE, &ms, &ns, &ls);
@@ -154,27 +162,27 @@ int sci_Rand(char *fname, unsigned long fname_len)
 
             switch (current_gen)
             {
-                case(MT) :
+                case (MT) :
                     CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &dim_state_mt, &un, &lr);
                     get_state_mt(stk(lr));
                     break;
-                case(KISS) :
+                case (KISS) :
                     CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &dim_state_4, &un, &lr);
                     get_state_kiss(stk(lr));
                     break;
-                case(CLCG4) :
+                case (CLCG4) :
                     CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &dim_state_4, &un, &lr);
                     get_state_clcg4(current_clcg4, stk(lr));
                     break;
-                case(CLCG2) :
+                case (CLCG2) :
                     CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &deux, &un, &lr);
                     get_state_clcg2(stk(lr));
                     break;
-                case(URAND) :
+                case (URAND) :
                     CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &lr);
                     get_state_urand(stk(lr));
                     break;
-                case(FSULTRA) :
+                case (FSULTRA) :
                     CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &dim_state_fsultra, &un, &lr);
                     get_state_fsultra(stk(lr));
                     break;
@@ -195,25 +203,25 @@ int sci_Rand(char *fname, unsigned long fname_len)
                 return 0;
             }
             GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-            if ( m1*n1 != 1)
+            if ( m1 * n1 != 1)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 2);
                 return 0;
             }
             GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l2);
-            if ( m1*n1 != 1)
+            if ( m1 * n1 != 1)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 3);
                 return 0;
             }
             GetRhsVar(4, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l3);
-            if ( m1*n1 != 1)
+            if ( m1 * n1 != 1)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 4);
                 return 0;
             }
             GetRhsVar(5, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l4);
-            if ( m1*n1 != 1)
+            if ( m1 * n1 != 1)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 5);
                 return 0;
@@ -233,14 +241,14 @@ int sci_Rand(char *fname, unsigned long fname_len)
         {
             switch (current_gen)
             {
-                case(MT) :
+                case (MT) :
                     if ( Rhs != 2 )
                     {
                         Scierror(999, _("%s: Wrong number of input arguments: %d expected for '%s' with the %s generator.\n"), fname, 2, "setsd", "mt");
                         return 0;
                     }
                     GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-                    if ( m1*n1 == 1)          /* simple init of mt     */
+                    if ( m1 * n1 == 1)        /* simple init of mt     */
                     {
                         if (! set_state_mt_simple(*stk(l1)) )
                         {
@@ -248,7 +256,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
                             return(0);
                         };
                     }
-                    else if ( m1*n1 == 625 )  /* init of all the state */
+                    else if ( m1 * n1 == 625 ) /* init of all the state */
                     {
                         if (! set_state_mt(stk(l1)))
                         {
@@ -263,7 +271,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
                     };
                     break;
 
-                case(FSULTRA) :
+                case (FSULTRA) :
                     if ( Rhs == 2 ) /* init via a "complete" state */
                     {
                         GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
@@ -282,13 +290,13 @@ int sci_Rand(char *fname, unsigned long fname_len)
                     else if ( Rhs == 3 ) /* init with 2 integers (like before) */
                     {
                         GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-                        if ( m1*n1 != 1)
+                        if ( m1 * n1 != 1)
                         {
                             Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 2);
                             return 0;
                         };
                         GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l2);
-                        if ( m1*n1 != 1)
+                        if ( m1 * n1 != 1)
                         {
                             Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 3);
                             return 0;
@@ -306,33 +314,33 @@ int sci_Rand(char *fname, unsigned long fname_len)
                     }
                     break;
 
-                case(KISS) :
-                case(CLCG4) :
+                case (KISS) :
+                case (CLCG4) :
                     if ( Rhs != 5 )
                     {
                         Scierror(999, _("%s: Wrong number of input arguments: expected %d for '%s' option with the %s or %s generator.\n"), fname, 5, "setsd", "kiss", "clcg4");
                         return 0;
                     }
                     GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-                    if ( m1*n1 != 1)
+                    if ( m1 * n1 != 1)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 2);
                         return 0;
                     }
                     GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l2);
-                    if ( m1*n1 != 1)
+                    if ( m1 * n1 != 1)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 3);
                         return 0;
                     }
                     GetRhsVar(4, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l3);
-                    if ( m1*n1 != 1)
+                    if ( m1 * n1 != 1)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 4);
                         return 0;
                     }
                     GetRhsVar(5, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l4);
-                    if ( m1*n1 != 1)
+                    if ( m1 * n1 != 1)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 5);
                         return 0;
@@ -355,20 +363,20 @@ int sci_Rand(char *fname, unsigned long fname_len)
                     }
                     break;
 
-                case(CLCG2) :
+                case (CLCG2) :
                     if ( Rhs != 3 )
                     {
                         Scierror(999, _("%s: Wrong number of input arguments: %d expected for '%s' option with the %s generator.\n"), fname, 3, "setsd", "clcg2");
                         return 0;
                     }
                     GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-                    if ( m1*n1 != 1)
+                    if ( m1 * n1 != 1)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 2);
                         return 0;
                     };
                     GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l2);
-                    if ( m1*n1 != 1)
+                    if ( m1 * n1 != 1)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 3);
                         return 0;
@@ -380,14 +388,14 @@ int sci_Rand(char *fname, unsigned long fname_len)
                     };
                     break;
 
-                case(URAND) :
+                case (URAND) :
                     if ( Rhs != 2 )
                     {
                         Scierror(999, _("%s: Wrong number of input arguments: %d expected for '%s' option with the %s generator.\n"), fname, 2, "setsd", "urand");
                         return 0;
                     }
                     GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-                    if ( m1*n1 != 1)
+                    if ( m1 * n1 != 1)
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 2);
                         return 0;
@@ -577,29 +585,82 @@ int sci_Rand(char *fname, unsigned long fname_len)
     CheckRhs(minrhs, maxrhs);
     if ( GetType(2) == sci_matrix ) /** m,n,'string' */
     {
-        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
-        if ( m1*n1 != 1)
+        //find all sci_matrix before sci_string.
+        SciErr sciErr;
+        int iSize = 1;
+
+        for (iDims = 2 ; iDims < Rhs ; iDims++)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 1);
+            int* piAddr = NULL;
+            sciErr = getVarAddressFromPosition(pvApiCtx, iDims + 1, &piAddr);
+            if (isDoubleType(pvApiCtx, piAddr))
+            {
+                //set hypermatrix flag
+                iHyperMat = 1;
+                continue;
+            }
+
+            if (isStringType(pvApiCtx, piAddr))
+            {
+                break;
+            }
+
+            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, iDims);
             return 0;
         }
-        ResL = *istk(l1);
-        GetRhsVar(2, MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
-        if ( m2*n2 != 1)
+
+        suite = iDims + 1;
+        if (iHyperMat)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 2);
+            piDims = (int*)MALLOC(sizeof(int) * iDims);
+            for (i = 0 ; i < iDims ; i++)
+            {
+                double dblVal = 0;
+                int* piAddr = NULL;
+                sciErr = getVarAddressFromPosition(pvApiCtx, i + 1 , &piAddr);
+
+                if (getScalarDouble(pvApiCtx, piAddr, &dblVal))
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, i + 1);
+                    return 0;
+                }
+
+                iSize *= (int)dblVal;
+                piDims[i] = (int)dblVal;
+            }
+
+            ResL = 1;
+            ResC = iSize;
+
+            //reset iHypermat flag to make difference between input hypermatrix cases
+            iHyperMat = 0;
+        }
+        else
+        {
+            GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
+            if ( m1 * n1 != 1)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 1);
+                return 0;
+            }
+            ResL = *istk(l1);
+            GetRhsVar(2, MATRIX_OF_INTEGER_DATATYPE, &m2, &n2, &l2);
+            if ( m2 * n2 != 1)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), fname, 2);
+                return 0;
+            }
+            ResC = *istk(l2);
+        }
+
+        if ( GetType(suite) != sci_strings )
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, suite);
             return 0;
         }
-        ResC = *istk(l2);
-        minrhs = 3;
-        CheckRhs(minrhs, maxrhs);
-        if ( GetType(3) != sci_strings )
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
-            return 0;
-        }
-        GetRhsVar(3, STRING_DATATYPE, &ms, &ns, &ls);
-        suite = 4;
+
+        GetRhsVar(suite, STRING_DATATYPE, &ms, &ns, &ls);
+        suite++;
         if (ResL < 0 && (ResL != -1 || ResC != -1)) //ResL=-1 & ResC=-1 => eye
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Positive scalar expected.\n"), fname, 1);
@@ -614,9 +675,29 @@ int sci_Rand(char *fname, unsigned long fname_len)
     }
     else
     {
-        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &ResL, &ResC, &l1);
+        int* piAddr = NULL;
+        getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+        if (isHypermatType(pvApiCtx, piAddr))
+        {
+            //get dimension information from input hypermatrix
+            getHypermatDimensions(pvApiCtx, piAddr, &piDims, &iDims);
+            iHyperMat = 1;
+
+            ResL = 1;
+            ResC = 1;
+            for (i = 0 ; i < iDims ; i++)
+            {
+                ResC *= piDims[i];
+            }
+        }
+        else
+        {
+            GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &ResL, &ResC, &l1);
+        }
+
         GetRhsVar(2, STRING_DATATYPE, &ms, &ns, &ls);
         suite = 3;
+
     }
     if ( strcmp(cstk(ls), "bet") == 0)
     {
@@ -627,18 +708,20 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "A");
             return 0;
         }
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "B");
             return 0;
         }
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         if ( *stk(la) < minlog || *stk(lb) < minlog)
         {
             Scierror(999, _("Rand(...,'bet',..): A or B < %f\n"), minlog);
@@ -646,11 +729,11 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(genbet)(stk(la), stk(lb));
+            pdblData[i] = C2F(genbet)(stk(la), stk(lb));
         }
+
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "f") == 0)
     {
@@ -660,18 +743,20 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "Dfn");
             return 0;
         }
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "Dfd");
             return 0;
         }
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         if ( *stk(la) <= 0.0 || *stk(lb) <= 0.0)
         {
             Scierror(999, _("Degrees of freedom nonpositive\n"));
@@ -679,17 +764,16 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(genf)(stk(la), stk(lb));
+            pdblData[i] = C2F(genf)(stk(la), stk(lb));
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "mul") == 0)
     {
         int l_i, nn, ncat;
         double ptot;
-        if ( suite != 3 || ResL*ResC != 1)
+        if ( suite != 3 || ResL * ResC != 1)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Must be the number of random deviate.\n"), fname, 1);
             return 0;
@@ -701,7 +785,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "N");
             return 0;
@@ -750,7 +834,6 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "gam") == 0)
     {
@@ -764,18 +847,20 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "shape");
             return 0;
         }
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "rate");
             return 0;
         }
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         if ( (*stk(la)) <= 0.0 ||  (*stk(lb)) <= 0.0 )
         {
             Scierror(999, _("grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"));
@@ -786,13 +871,11 @@ int sci_Rand(char *fname, unsigned long fname_len)
             /** WARNING : order is changed in parameters for
             compatibility between Rand(...'gam',..) and cdfgam
             **/
-            *stk(lr + i) = C2F(gengam)(stk(lb), stk(la));
+            pdblData[i] = C2F(gengam)(stk(lb), stk(la));
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
-
     else if ( strcmp(cstk(ls), "nor") == 0)
     {
         if ( Rhs != suite + 1)
@@ -801,18 +884,20 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "Av");
             return 0;
         }
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument: Scalar expected for %s.\n"), fname, "Sd");
             return 0;
         }
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         if ( *stk(lb) < 0 )
         {
             Scierror(999, _("SD < 0.0\n"));
@@ -820,11 +905,10 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(gennor)(stk(la), stk(lb));
+            pdblData[i] = C2F(gennor)(stk(la), stk(lb));
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "unf") == 0)
     {
@@ -836,20 +920,21 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
 
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
 
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
 
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         low = *stk(la);
         high =  *stk(lb);
         if ( low > high )
@@ -859,11 +944,10 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = low + (high - low) * C2F(ranf)();
+            pdblData[i] = low + (high - low) * C2F(ranf)();
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "uin") == 0)
     {
@@ -876,14 +960,14 @@ int sci_Rand(char *fname, unsigned long fname_len)
 
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
 
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
 
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
@@ -903,14 +987,15 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(ignuin)(stk(la), stk(lb));
+            pdblData[i] = C2F(ignuin)(stk(la), stk(lb));
         }
+
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "lgi") == 0)
     {
@@ -919,19 +1004,20 @@ int sci_Rand(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Wrong number of input argument: %d expected with option '%s'.\n"), fname, suite - 1, "lgi");
             return 0;
         }
-        CreateVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
+        pdblData = createOutputVar(pvApiCtx, suite, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = ignlgi();
+            pdblData[i] = ignlgi();
         }
         LhsVar(1) = suite;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "prm") == 0)
     {
         int nn;
-        if ( suite != 3 || ResL*ResC != 1)
+        if ( suite != 3 || ResL * ResC != 1)
         {
             Scierror(999, _("%s: Wrong value for input argument: Number of random simulation expected.\n"), fname);
             return 0;
@@ -970,18 +1056,20 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         if ( *stk(lb) < 0.0 || *stk(lb) > 1.0 )
         {
             Scierror(999, _("P is not in [0,1]\n"));
@@ -994,11 +1082,10 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = (double) C2F(ignnbn)(istk(la), stk(lb));
+            pdblData[i] = (double) C2F(ignnbn)(istk(la), stk(lb));
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "bin") == 0)
     {
@@ -1008,18 +1095,20 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         if ( *stk(lb) < 0.0 || *stk(lb) > 1.0 )
         {
             Scierror(999, _("P is not in [0,1]\n"));
@@ -1032,17 +1121,16 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = (double) C2F(ignbin)(istk(la), stk(lb));
+            pdblData[i] = (double) C2F(ignbin)(istk(la), stk(lb));
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
 
     else if ( strcmp(cstk(ls), "mn") == 0)
     {
         int nn, un = 1, work, mp, parm, ierr;
-        if ( suite != 3 || ResL*ResC != 1)
+        if ( suite != 3 || ResL * ResC != 1)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Must be the number of random simulation.\n"), fname, 1);
             return 0;
@@ -1092,12 +1180,11 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "markov") == 0)
     {
         int nn, n1p1, lr1, j, icur, mm, jj;
-        if ( suite != 3 || ResL*ResC != 1)
+        if ( suite != 3 || ResL * ResC != 1)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Must be the number of random simulation.\n"), fname, 1);
             return 0;
@@ -1116,7 +1203,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        if ( m2*n2 == 0 )
+        if ( m2 * n2 == 0 )
         {
             Scierror(999, _("X0 is empty\n"));
             return 0;
@@ -1199,14 +1286,15 @@ int sci_Rand(char *fname, unsigned long fname_len)
             Scierror(999, _("%s: Wrong number of input argument.\n"), fname);
             return 0;
         }
-        CreateVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
+        pdblData = createOutputVar(pvApiCtx, suite, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(ranf)();
+            pdblData[i] = C2F(ranf)();
         }
         LhsVar(1) = suite;
         PutLhsVar();
-        return 0;
     }
 
     else if ( strcmp(cstk(ls), "nch") == 0)
@@ -1217,30 +1305,32 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
-        CreateVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
         if ( *stk(la) < 1.0 || *stk(lb) < 0.0 )
         {
             Scierror(999, _("DF < 1 or XNONC < 0\n"));
             return 0;
         }
+
+        pdblData = createOutputVar(pvApiCtx, suite + 2, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(gennch)(stk(la), stk(lb));
+            pdblData[i] = C2F(gennch)(stk(la), stk(lb));
         }
         LhsVar(1) = suite + 2;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "nf") == 0)
     {
@@ -1250,38 +1340,39 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
         GetRhsVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
         GetRhsVar(suite + 2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lc);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
-        CreateVar(suite + 3, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
         if ( *stk(la) < 1.0 || *stk(lb) < 0.0 || *stk(lc) < 0.0 )
         {
             Scierror(999, _("DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"));
             return 0;
         }
+
+        pdblData = createOutputVar(pvApiCtx, suite + 3, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(gennf)(stk(la), stk(lb), stk(lc));
+            pdblData[i] = C2F(gennf)(stk(la), stk(lb), stk(lc));
         }
         LhsVar(1) = suite + 3;
         PutLhsVar();
-        return 0;
     }
-
     else if ( strcmp(cstk(ls), "chi") == 0)
     {
         if ( Rhs != suite )
@@ -1290,24 +1381,26 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
-        CreateVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
         if  ( *stk(la) <= 0.0)
         {
             Scierror(999, _("Rand: DF <= 0\n"));
             return 0;
         }
+
+        pdblData = createOutputVar(pvApiCtx, suite + 1, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(genchi)(stk(la));
+            pdblData[i] = C2F(genchi)(stk(la));
         }
         LhsVar(1) = suite + 1;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "poi") == 0)
     {
@@ -1317,24 +1410,26 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
-        CreateVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
         if ( *stk(la) < 0.0 )
         {
             Scierror(999, _("Av < 0\n"));
             return 0;
         }
+
+        pdblData = createOutputVar(pvApiCtx, suite + 1, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = (double) C2F(ignpoi)(stk(la));
+            pdblData[i] = (double) C2F(ignpoi)(stk(la));
         }
         LhsVar(1) = suite + 1;
         PutLhsVar();
-        return 0;
     }
     else if ( strcmp(cstk(ls), "geom") == 0)
     {
@@ -1345,7 +1440,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
@@ -1357,14 +1452,14 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        CreateVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+        pdblData = createOutputVar(pvApiCtx, suite + 1, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = igngeom(p);
+            pdblData[i] = igngeom(p);
         }
         LhsVar(1) = suite + 1;
         PutLhsVar();
-        return 0;
     }
 
     else if ( strcmp(cstk(ls), "exp") == 0)
@@ -1375,29 +1470,58 @@ int sci_Rand(char *fname, unsigned long fname_len)
             return 0;
         }
         GetRhsVar(suite, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1)
+        if ( m1 * n1 != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument: Scalar expected.\n"), fname);
             return 0;
         }
-        CreateVar(suite + 1, MATRIX_OF_DOUBLE_DATATYPE, &ResL, &ResC, &lr);
+
         if ( *stk(la) < 0.0 )
         {
             Scierror(999, _("Av < 0.0\n"));
             return 0;
         }
+
+        pdblData = createOutputVar(pvApiCtx, suite + 1, ResL, ResC, piDims, iDims);
+
         for ( i = 0 ; i < ResL * ResC ; i++)
         {
-            *stk(lr + i) = C2F(genexp)(stk(la));
+            pdblData[i] = C2F(genexp)(stk(la));
         }
         LhsVar(1) = suite + 1;
         PutLhsVar();
-        return 0;
     }
-
     else
     {
         Scierror(999, _("%s: Wrong value for input argument %s.\n"), fname, cstk(ls));
         return 0;
     }
+
+    if (piDims && iHyperMat == 0)
+    {
+        FREE(piDims);
+    }
+
+    return 0;
+}
+
+
+static double* createOutputVar(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piDims, int _iDims)
+{
+    double* pdblData = NULL;
+    if (_piDims)
+    {
+        int* piAddr = NULL;
+        int* piAddrEntries = NULL;
+        int iRows = 0, iCols = 0;
+        allocHypermatOfDouble(pvApiCtx, _iVar, _piDims, _iDims, &pdblData);
+    }
+    else
+    {
+        int lr = 0;
+        CreateVar(_iVar, MATRIX_OF_DOUBLE_DATATYPE, &_iRows, &_iCols, &lr);
+        pdblData = stk(lr);
+    }
+
+    return pdblData;
 }

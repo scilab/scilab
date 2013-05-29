@@ -33,14 +33,9 @@ function y = bitcmp(x,n)
     // P. Marechal, 5 Feb 2008
     //   - Add argument check
 
-    // Check input arguments
-    // =========================================================================
-
-    rhs = argn(2);
-
     // check number input argument
-
     rhs = argn(2);
+
     if rhs == 0 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"bitcmp",1));
     elseif (type(x) == 1) & (rhs == 1) then

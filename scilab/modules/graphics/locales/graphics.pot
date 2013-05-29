@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-04-16 17:44+0100\n"
+"Revision-Date: 2013-05-23 15:50+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 136
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
@@ -106,7 +106,7 @@ msgstr ""
 # File: sci_gateway/c/sci_unzoom.c, line: 78
 # File: sci_gateway/c/sci_zoom_rect.c, line: 128
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
 msgstr ""
 
 #
@@ -500,6 +500,8 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_contour2di.c, line: 124
+# File: sci_gateway/c/sci_set.c, line: 162
+# File: sci_gateway/c/sci_set.c, line: 249
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
@@ -511,7 +513,7 @@ msgstr ""
 # File: sci_gateway/c/sci_glue.c, line: 119
 # File: sci_gateway/c/sci_move.c, line: 101
 # File: sci_gateway/c/sci_rotate_axes.c, line: 98
-# File: sci_gateway/c/sci_set.c, line: 216
+# File: sci_gateway/c/sci_set.c, line: 301
 # File: sci_gateway/c/sci_unglue.c, line: 80
 #, c-format
 msgid "%s: The handle is not or no more valid.\n"
@@ -631,6 +633,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_is_handle_valid.c, line: 48
+# File: sci_gateway/c/sci_set.c, line: 259
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
 msgstr ""
@@ -797,13 +800,68 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set.c, line: 205
+# File: sci_gateway/c/sci_set.c, line: 56
+# File: sci_gateway/c/sci_set.c, line: 127
+# File: sci_gateway/c/sci_set.c, line: 141
+# File: sci_gateway/c/sci_set.c, line: 239
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set.c, line: 99
+#, c-format
+msgid "%s: Can not get type of input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set.c, line: 118
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set.c, line: 133
+# File: sci_gateway/c/sci_set.c, line: 195
+# File: sci_gateway/c/sci_set.c, line: 229
+# File: sci_gateway/c/sci_set.c, line: 280
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set.c, line: 172
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of boolean expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set.c, line: 182
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of handle expected\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set.c, line: 206
+# File: sci_gateway/c/sci_set.c, line: 272
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set.c, line: 218
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_set.c, line: 290
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set.c, line: 293
+# File: sci_gateway/c/sci_set.c, line: 372
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
 msgstr ""
@@ -1598,18 +1656,23 @@ msgstr ""
 
 #
 # File: src/c/getHandleProperty/CheckTicksProperty.c, line: 36
+msgid "Tlist could not be created, check ticks location and label vectors.\n"
+msgstr ""
+
+#
+# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 42
 #, c-format
 msgid "%s should be a vector of double.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 47
-# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 63
+# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 53
+# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 69
 msgid "Ticks location and label vectors must have the same size.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 55
+# File: src/c/getHandleProperty/CheckTicksProperty.c, line: 61
 #, c-format
 msgid "%s should be a string vector.\n"
 msgstr ""
@@ -1713,7 +1776,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_cdata_mapping_property.c, line: 58
 # File: src/c/getHandleProperty/set_color_flag_property.c, line: 64
 # File: src/c/getHandleProperty/set_data_mapping_property.c, line: 60
-# File: src/c/getHandleProperty/set_figure_style_property.c, line: 55
+# File: src/c/getHandleProperty/set_figure_style_property.c, line: 53
 # File: src/c/getHandleProperty/set_grid_position_property.c, line: 54
 # File: src/c/getHandleProperty/set_mark_size_unit_property.c, line: 57
 # File: src/c/getHandleProperty/set_tics_direction_property.c, line: 69
@@ -2035,7 +2098,7 @@ msgid "Wrong value for '%s' property: Must be '%s'.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_figure_style_property.c, line: 43
+# File: src/c/getHandleProperty/set_figure_style_property.c, line: 42
 # File: src/c/getHandleProperty/set_old_style_property.c, line: 38
 msgid ""
 "Old graphic mode is no longer available. Please refer to the set help page.\n"
@@ -3525,12 +3588,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/name2rgb.sci, line: 21
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#
 # File: macros/pie.sci, line: 25
 #, c-format
 msgid "%s: Wrong size for input arguments: Matrices of same size expected.\n"
@@ -3617,18 +3674,6 @@ msgstr ""
 # File: macros/sca.sci, line: 25
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An '%s' handle expected.\n"
-msgstr ""
-
-#
-# File: macros/sca.sci, line: 20
-#, c-format
-msgid "%s: Wrong type for input argument %d: An 'Axes' handle expected.\n"
-msgstr ""
-
-#
-# File: macros/sca.sci, line: 25
-#, c-format
-msgid "%s: Wrong size for input argument %d: An 'Axes' handle expected.\n"
 msgstr ""
 
 #
@@ -3759,6 +3804,12 @@ msgstr ""
 # File: macros/xload.sci, line: 16
 #, c-format
 msgid "%s: file %s does not exist.\n"
+msgstr ""
+
+#
+# File: macros/xnumb.sci, line: 19
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #

@@ -238,14 +238,14 @@
                 <term>ガンマ分布</term>
                 <listitem>
                     <para>
-                        <literal>Y=grand(m,n,'gam',shape,scale)</literal>
+                        <literal>Y=grand(m,n,'gam',shape,rate)</literal>
                         は,パラメータ<literal>shape</literal> (実数 &gt; 0)および
-                        <literal>scale</literal> (実数 &gt; 0)を指定して
+                        <literal>rate</literal> (実数 &gt; 0)を指定して
                         ガンマ分布に基づくランダム変量を生成します.
                         ガンマの密度は以下となります :
                     </para>
                     <latex>
-                        \dfrac{ \textrm{scale}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{scale} x}}{\gamma(\textrm{shape}) }
+                        \dfrac{ \textrm{rate}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{rate} x}}{\gamma(\textrm{shape}) }
                     </latex>
                     <para>
                         関係する関数 : <link linkend="gamma">gamma</link>,

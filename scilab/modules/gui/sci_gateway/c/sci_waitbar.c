@@ -198,7 +198,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -247,7 +247,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -342,7 +342,7 @@ int sci_waitbar(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 3);
                 return 1;
             }
 

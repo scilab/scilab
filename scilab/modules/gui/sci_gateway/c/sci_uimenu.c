@@ -93,7 +93,7 @@ int sci_uimenu(char *fname, unsigned long fname_len)
             // YOU MUST REMOVE YOUR VARIABLE DECLARATION "int stkAdr".
             if (getScalarHandle(pvApiCtx, piAddr, &hParent))
             {
-                Scierror(202, _("%s: Wrong type for argument %d: Handle expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for input argument #%d: Handle expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -226,7 +226,7 @@ int sci_uimenu(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, iPropertyValuePositionIndex);
+                    Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, iPropertyValuePositionIndex);
                     return 1;
                 }
                 setStatus = callSetProperty(pvApiCtx, (char*)getObjectFromHandle(GraphicHandle), phValues, sci_handles, nbRow, nbCol, propertyName);

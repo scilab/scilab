@@ -22,7 +22,7 @@ c
       subroutine eselect(flag,nevprt,ntvec,rpar,nrpar,ipar,nipar,u,nu)
 c     Scicos block simulator
 c     if-then-else block
-c     if event input exits from then or else clock ouputs based
+c     if event input exits from then or else clock outputs based
 c     on the sign of the unique input (if input>0 then  else )
 c
 c     Copyright INRIA

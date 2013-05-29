@@ -8,7 +8,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            pal = xcosPalGenerateAllIcons(path)
+            lst = xcosPalGenerateAllIcons(path)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -18,6 +18,12 @@
                 <term>path</term>
                 <listitem>
                     <para>the palette path</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lst</term>
+                <listitem>
+                    <para>list (names) of the generated block</para>
                 </listitem>
             </varlistentry>
         </variablelist>

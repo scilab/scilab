@@ -38,5 +38,5 @@ a       = hypermat([3,3,1],int8(1:9));
 [i,j]   = find(a==5);
 [k,l,m] = find(a==5);
 
-if m<>1 then pause,end
-if (i==k)<>(j==l) then pause,end
+assert_checkequal(m, 1);
+assert_checkfalse((i==k)<>(j==l));

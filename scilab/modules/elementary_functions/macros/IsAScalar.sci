@@ -10,14 +10,15 @@
 
 function bOK = IsAScalar(VarInput)
 
-  rhs = argn(2);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"IsAScalar", 1));
-  end
+    warnobsolete("isscalar", "5.5.1");
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"IsAScalar", 1));
+    end
 
-  bOK = %F;
-  if ( (length(VarInput)==1) & (type(VarInput)==1) ) then
-    bOK = %T;
-  end
+    bOK = %F;
+    if ( (length(VarInput)==1) & (type(VarInput)==1) ) then
+        bOK = %T;
+    end
 endfunction
 

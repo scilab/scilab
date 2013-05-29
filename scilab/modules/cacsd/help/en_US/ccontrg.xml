@@ -51,7 +51,7 @@
             general standard problem in state-space form.
         </para>
         <para>
-            Note that gamma must be &gt; gopt (ouput of <literal>gamitg</literal>)
+            Note that gamma must be &gt; gopt (output of <literal>gamitg</literal>)
         </para>
         <para>
             P contains the parameters of plant realization <literal>(A,B,C,D)</literal>

@@ -4,16 +4,18 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "BOOL.h"
+#include "localization.h"
+#include "Scierror.h"
 
 /**
  * Launch a Scilab Help Browser
@@ -22,7 +24,7 @@
  * @param helpsSize number of entries in helps
  * @param language Scilab current locale
  */
-void launchHelpBrowser(char **helps, int helpsSize, char *language);
+int launchHelpBrowser(char **helps, int helpsSize, char *language);
 
 /**
  * Search a keyword in Scilab Help Browser
@@ -33,7 +35,7 @@ void launchHelpBrowser(char **helps, int helpsSize, char *language);
  * @param language Scilab current locale
  * @param fullText true to execute a full-text search
  */
-void searchKeyword(char **helps, int helpsSize, char *keyword, char *language, BOOL fullText);
+int searchKeyword(char **helps, int helpsSize, char *keyword, char *language, BOOL fullText);
 
 #endif /* !__CALLHELPBROWSER_H__ */
 

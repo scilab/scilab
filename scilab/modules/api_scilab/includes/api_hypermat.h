@@ -235,6 +235,7 @@ extern "C" {
      * @return if the operation succeeded ( 0 ) or not ( !0 )
      */
     SciErr createHypermatOfDouble(void* _pvCtx, int _iVar, int *_dims, int _ndims, const double* _pdblReal);
+    SciErr allocHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _ndims, double** _pdblReal);
 
     /**
      * Create a complex hypermatrix

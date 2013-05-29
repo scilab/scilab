@@ -19,7 +19,7 @@ A = [-5,-6;
 //five inputs
 B = [0,-14,17,2,9;
      2,17,19,-10,-9]
-//three ouputs
+//three outputs
 C = [0,-17;
      3,-14;
      8,7]

@@ -69,7 +69,7 @@ H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
         unsigned int size = getSize();
         if (pos < 0 || pos >= (int)size)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Invalid index %u: must be between 0 and %u."), pos, size);
+            throw H5Exception(__LINE__, __FILE__, _("Invalid index %d: must be between 0 and %d."), pos, size);
         }
     }
 
@@ -81,7 +81,7 @@ H5Attribute & H5AttributesList::getObject(const int pos, const bool checkPos)
     attr = H5Aopen_by_idx(parent.getH5Id(), ".", H5_INDEX_NAME, H5_ITER_NATIVE, (hsize_t)_pos, H5P_DEFAULT, H5P_DEFAULT);
     if (attr < 0)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Cannot open attribute at position %u."), pos);
+        throw H5Exception(__LINE__, __FILE__, _("Cannot open attribute at position %d."), pos);
     }
 
     ssize = H5Aget_name(attr, 0, 0);

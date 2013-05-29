@@ -17,9 +17,9 @@
 // Can not save correctly a sparse matrix in a MAT-file using savematfile.
 
 A = sprand(1000,1000,0.01);
-savematfile('test_matfile.mat','A');
+savematfile(TMPDIR + filesep() + "bug_5462.mat", "A");
 A1 = A;
 clear A
-loadmatfile('test_matfile.mat','A');
+loadmatfile(TMPDIR + filesep() + "bug_5462.mat", "A");
 
 if (norm(A1 - A)>=10*%eps) then pause,end

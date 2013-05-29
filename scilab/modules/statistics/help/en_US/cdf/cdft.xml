@@ -44,7 +44,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>DF:  </term>
+                <term>Df</term>
                 <listitem>
                     <para>Degrees of freedom of the t-distribution. Input range: (0 , +infinity). Search range: [1e-300, 1E10]</para>
                 </listitem>

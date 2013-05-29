@@ -518,13 +518,37 @@ SciErr createComplexHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, i
     return sciErr;
 }
 
+SciErr allocHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _ndims, double** _pdblReal)
+{
+    int * _piAddress = NULL;
+    int iNbElements = 1;
+    SciErr sciErr;
+
+    sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
+    if (sciErr.iErr)
+    {
+        return sciErr;
+    }
+
+    for (int i = 0; i < _ndims; i++)
+    {
+        iNbElements *= _dims[i];
+    }
+
+    sciErr = allocMatrixOfDoubleInList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _pdblReal);
+    if (sciErr.iErr)
+    {
+        return sciErr;
+    }
+
+    return sciErr;
+}
+
 SciErr createHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _ndims, const double * _pdblReal)
 {
     int * _piAddress = NULL;
     int iNbElements = 1;
     SciErr sciErr;
-    sciErr.iErr = 0;
-    sciErr.iMsgCount = 0;
 
     sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
     if (sciErr.iErr)

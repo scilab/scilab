@@ -925,7 +925,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                        [JOGL2_LIBS="-ljogl_desktop -lGL"],
                        [AC_MSG_ERROR(["libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
-interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])],
+interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path to the JNI libraries."])],
                        [-lGL])
                    fi
 
@@ -948,7 +948,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/lib/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
                    AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN2_RT_LIBS="-lgluegen2-rt"],
-                   [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
+                   [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path to the JNI libraries.])],
                    [-ldl])
                    LDFLAGS=$LDFLAGS_save
                 fi
@@ -1582,9 +1582,9 @@ MATIO_ENABLE=no
 if test "$with_matio" != no; then
    if test -n "$with_matio_include" -o -n "$with_matio_library" ; then
       MATIO_CFLAGS="$with_matio_include"
-      MATIO_LIBS="$with_matio_library -lm -lz -lmatio"
+      MATIO_LIBS="$with_matio_library -lm -lz -lmatio -lhdf5"
    else
-      PKG_CHECK_MODULES(MATIO, [matio >= 1.3.3])
+      PKG_CHECK_MODULES(MATIO, [matio >= 1.5.0])
    fi
 
    save_CFLAGS="$CFLAGS"
@@ -1593,7 +1593,7 @@ if test "$with_matio" != no; then
    CFLAGS="$CFLAGS $MATIO_CFLAGS"
    LIBS="$LIBS $MATIO_LIBS"
 
-   AC_CHECK_HEADERS([matio.h matioConfig.h], [],
+   AC_CHECK_HEADERS([matio.h], [],
      [AC_MSG_ERROR([Invalid MATIO_CFLAGS returned by pkg-config. Try to define MATIO_CFLAGS.])])
    AC_CHECK_LIB([matio], [Mat_Open], [],
      [AC_MSG_ERROR([Invalid MATIO_LIBS returned by pkg-config. Try to define MATIO_LIBS.])])
@@ -1603,6 +1603,9 @@ if test "$with_matio" != no; then
 
    AC_DEFINE([WITH_MATIO], [], [With the MATIO library])
    MATIO_ENABLE=yes
+
+   AC_SUBST(MATIO_LIBS)
+   AC_SUBST(MATIO_CFLAGS)
 fi
 
 

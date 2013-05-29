@@ -18,6 +18,10 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
  - getURL - Download an URL (HTTP, HTTPS, FTP...)
  - splitURL - Split a URL (HTTP, HTTPS, FTP...)
  - cov - Covariance matrix. Deprecates 'mvvacov'. See bug #11896 fixed.
+ - ismatrix - Check if a variable is a matrix. See bug #10456 fixed.
+ - isrow - Check if a variable is a row vector. See bug #10456 fixed.
+ - iscolumn - Check if a variable is a column vector. See bug #10456 fixed.
+ - issquare - Check if a variable is a square matrix. See bug #10456 fixed.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
@@ -51,6 +55,12 @@ Obsolete
   Only the following strings will be allowed : option : "r" "c" "g" "lr" "lc"
                                               direction : "d" "i"
 
+* nfreq() tagged as obsolete. Will be removed for Scilab 5.5.1.
+  Use tabul() instead.
+
+* IsAScalar() tagged as obsolete. Will be removed for Scilab 5.5.1.
+  Use isscalar() instead.
+
 
 Xcos
 ====
@@ -65,8 +75,25 @@ Xcos
 * Bug #12384 fixed - Using a modelica part linked with explicit link to
                      another modelica part lead to an algebraic loop error.
 
+* Bug #12387 fixed - Setup menu option "Modelica initialize" did not blur
+                     during simulation.
+
+* Bug #12424 fixed - Calling lincos on a Derivative block made scilab crash.
+
+* Bug #12460 fixed - xcosPalGenerateAllIcons sometimes crashed Scilab.
+
+* Bug #12561 fixed - SELECT_m and RELAY_f no more behaved as expected.
+
 * Bug #12568 fixed - "Recent files" menu entry should be placed next to the 
                      "Open" one.
+
+* Bug #12590 fixed - Block shape style was removed on file loading.
+
+* Bug #12603 fixed - ZCOS files may contain blocs with modified (eg. invalid)
+                     parameters.
+
+* Bug #12619 fixed - The discrete block DLR was not displaying latex formula
+                     like continuous CLR block.
 
 
 Toolbox skeleton
@@ -80,32 +107,49 @@ Bug fixes
 
 * paramfplot2d: When input argument theta was column vector, an error occurred.
 
+* Bug #4481 fixed - Help page of iir updated: frq can be a scalar.
+
 * Bug #4731 fixed - lqr() failed when time domain of input was a number.
+
+* Bug #5073 fixed - New parameter added at strtod function (decimal separator).
+
+* Bug #5207 fixed - grand() can now return a hypermatrix.
 
 * Bug #5365 fixed - makecell help page was in the "compatibility functions" directory
                     instead of being in "data_structures".
 
 * Bug #5539 fixed - sylv() help page was wrong in the discrete-time case.
 
+* Bug #5779 fixed - xnumb number format was too small (+ unit test added).
+
 * Bug #6168 fixed - Help for zpbutt, zpch1, zpch2 and zpell were unclear.
+
+* Bug #6466 fixed - Example with vectorized input added in help pages of mprintf and msprintf.
 
 * Bug #6693 fixed - modulo did not accept polynomial inputs. Help page was not updated.
 
 * Bug #6752 fixed - unit test scilab.tst has been split in different tests.
 
+* Bug #6988 fixed - Error messages in modules/data_structures/src/c/hmops.c were not standard.
+
 * Bug #7026 fixed - There was no unit test for plot2d.
 
-* Bug #6988 fixed - Error messages in modules/data_structures/src/c/hmops.c were not standard.
+* Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
+                    returned an error.
+
+* Bug #7655 fixed - An example added in help page of type, for type(X)=11 and type(X)=13.
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
-* Bug #7828 fixed - Slight improvements in nicholschart.
-
 * Bug #7781 fixed - The second parameter of iqr function had not effect.
+
+* Bug #7828 fixed - Slight improvements in nicholschart.
 
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
+
+* Bug #8234 fixed - strtod did not return an empty matrix when input argument was an empty matrix.
 
 * Bug #8264 fixed - Documentation for Matlab's atan2() equivalent fixed.
 
@@ -115,6 +159,10 @@ Bug fixes
 
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.
 
+* Bug #8614 fixed - Unit test for barhomogenize added.
+
+* Bug #8636 fixed - roots() help page updated (default algorithm value was wrong).
+
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
 * Bug #8680 fixed - Output argument "end" of the regexp function has been changed.
@@ -123,12 +171,21 @@ Bug fixes
 
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
-* Bug #8862 fixed -  mget and mput couldn't read and write 64 bit data from	78
-                     binary file.
+* Bug #8856 fixed - Non regression test added for [k,l,m,...]=find(a==5).
+                    Non regression test of bug #476 updated.
+
+* Bug #8857 fixed - Non regression test of bug #477 updated.
+
+* Bug #8858 fixed - Non regression test of bug #480 updated.
+
+* Bug #8862 fixed - mget and mput couldn't read and write 64 bit data from
+                    binary files.
 
 * Bug #9004 fixed - bitcmp function called with one input argument returned an error.
 
 * Bug #9059 fixed - tbx_build_macros and genlib do not stop on error.
+
+* Bug #9109 fixed - nfreq tagged as obsolete.
 
 * Bug #9459 fixed - Default values of the optional plot3d arguments were not documented.
 
@@ -140,32 +197,48 @@ Bug fixes
 
 * Bug #9851 fixed - Error message occurred because of a cut-off frequency of 0.25Hz with irr.
 
+* Bug #10213 fixed - sci2exp can be impacted by format which has been mentionned in its help page.
+
+* Bug #10226 fixed - When a // <empty session> line is delete, all sessions
+                     histories are folded.
+
 * Bug #10254 fixed - Slight improvements in help page of ones.
 
 * Bug #10287 fixed - An error message added for complex expression as input argument of integrate function.
+
+* Bug #10818 fixed - The following help pages have been added: hom, %e, %t, %f, %z and %s.
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
 
 * Bug #10906 fixed - Typo in help page of cls2dls.
 
-* Bug #10995 fixed - Typo in grand() for Gamma law argument
+* Bug #10930 fixed - The comments in armax function were in french.
 
-* Bug #10226 fixed - When a // <empty session> line is delete, all sessions
-                     histories are folded.
+* Bug #10995 fixed - Typo in grand() for Gamma law argument
 
 * Bug #11308 fixed - Calling sequences in help page of dsearch were wrong.
 
 * Bug #11343 fixed - The "isoview" figure property did not work when the axes
                      margins had been modified.
 
+* Bug #11648 fixed - Copy graphic to clipboard did not work.
+
+* Bug #11869 fixed - "Environment" was not localized in preferences.
+
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
 
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
 
+* Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
+
+* Bug #12143 fixed - "stop entity picker" (ged(11)) returned an error message.
+
 * Bug #12150 fixed - datatipCreate failed with one single point.
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
+
+* Bug #12376 fixed - Exec & edit buttons in examples in help were sometimes misplaced.
 
 * Bug #12415 fixed - PATH environment variable grew when using call_scilab in a loop.
 
@@ -193,6 +266,8 @@ Bug fixes
 
 * Bug #12527 fixed - Scilab user functions were not listed in browsevar.
 
+* Bug #12547 fixed - In SciNotes, lines were wrongly numbered with splitted function declarations.
+
 * Bug #12548 fixed - Duplicated code in xmltoformat.
 
 * Bug #12550 fixed - Optimbase and optimsimplex help pages were not standard.
@@ -202,3 +277,21 @@ Bug fixes
 * Bug #12556 fixed - A fatal error occurred when calling set() with wrong instructions.
 
 * Bug #12564 fixed - Javasci compile & run help page is not clear about needed packages.
+
+* Bug #12581 fixed - isfield could not support mlist or tlist.
+
+* Bug #12589 fixed - Call sequence for spzeros & spones were missing in the french help pages.
+
+* Bug #12606 fixed - Overloads for grand were not standard.
+
+* Bug #12613 fixed - gsort did not return correct results with %nan.
+
+* Bug #12614 fixed - Helpbrowser was not launched in EDT.
+
+* Bug #12629 fixed - Last example of csim help page defined a function called
+                     input() (overwriting the Scilab one).
+
+* Bug #12631 fixed - A "see also" link has been added from progressionbar to waitbar and vice versa.
+
+* Bug #12634 fixed - ATOMS modules could not be installed from an archive file
+                     already existing in SCI/contrib/archives in offline mode.

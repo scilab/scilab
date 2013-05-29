@@ -67,7 +67,7 @@ msgstr "%s：输入参数#%d的大小错误。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorisation.\n"
 msgstr "%s：输入参数#%d的大小错误：跟Cholesky因式分解不兼容。\n"
 

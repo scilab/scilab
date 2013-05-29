@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2008 - INRIA - 
+ * Copyright (C) 2006-2008 - INRIA -
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
@@ -18,9 +18,9 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(cdfchi)(int *,double *,double *,double *,double *, int *,double *);
+extern int C2F(cdfchi)(int *, double *, double *, double *, double *, int *, double *);
 /*--------------------------------------------------------------------------*/
-static void cdfchiErr(int status,double bound);
+static void cdfchiErr(int status, double bound);
 /*--------------------------------------------------------------------------*/
 /*
 *  hand written interface
@@ -31,64 +31,64 @@ static void cdfchiErr(int status,double bound);
 *              CHI-Square distribution
 */
 /*--------------------------------------------------------------------------*/
-int cdfchiI(char* fname,unsigned long l)
+int cdfchiI(char* fname, unsigned long l)
 {
-    int m1,n1,l1;
+    int m1, n1, l1;
     Nbvars = 0;
-    CheckRhs(3,4);
-    CheckLhs(1,2);
-    GetRhsVar(1,STRING_DATATYPE, &m1, &n1, &l1);
-    if ( strcmp(cstk(l1),"PQ")==0)
+    CheckRhs(3, 4);
+    CheckLhs(1, 2);
+    GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+    if ( strcmp(cstk(l1), "PQ") == 0)
     {
-        static int callpos[4] = {2,3,0,1};
-        CdfBase(fname,2,2,callpos,"PQ",_("X and Df"),1,C2F(cdfchi),
-            cdfchiErr);
+        static int callpos[4] = {2, 3, 0, 1};
+        CdfBase(fname, 2, 2, callpos, "PQ", _("X and Df"), 1, C2F(cdfchi),
+                cdfchiErr);
     }
-    else if ( strcmp(cstk(l1),"X")==0)
+    else if ( strcmp(cstk(l1), "X") == 0)
     {
-        static int callpos[4] = {1,2,3,0};
-        CdfBase(fname,3,1,callpos,"X",_("Df, P and Q"),2,C2F(cdfchi),
-            cdfchiErr);
+        static int callpos[4] = {1, 2, 3, 0};
+        CdfBase(fname, 3, 1, callpos, "X", _("Df, P and Q"), 2, C2F(cdfchi),
+                cdfchiErr);
     }
-    else if ( strcmp(cstk(l1),"Df")==0)
+    else if ( strcmp(cstk(l1), "Df") == 0)
     {
-        static int callpos[4] = {0,1,2,3};
-        CdfBase(fname,3,1,callpos,"Df",_("P,Q and X"),3,C2F(cdfchi),
-            cdfchiErr);
+        static int callpos[4] = {0, 1, 2, 3};
+        CdfBase(fname, 3, 1, callpos, "Df", _("P,Q and X"), 3, C2F(cdfchi),
+                cdfchiErr);
     }
     else
     {
-        Scierror(999,_("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"),fname,1,"PQ","X","DF");
+        Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"), fname, 1, "PQ", "X", "Df");
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static void cdfchiErr(int status,double bound)
+static void cdfchiErr(int status, double bound)
 {
-    static char *param[7]={"X", "P","Q","X","Df"};
+    static char *param[7] = {"X", "P", "Q", "X", "Df"};
     switch ( status )
     {
-    case 1 : 
+        case 1 :
         {
             cdfLowestSearchError(bound);
         }
         break;
-    case 2 : 
+        case 2 :
         {
             cdfGreatestSearchError(bound);
         }
         break;
-    case 3 : 
+        case 3 :
         {
-            Scierror(999," P + Q .ne. 1 \n");
+            Scierror(999, " P + Q .ne. 1 \n");
         }
         break ;
-    case 10 : 
+        case 10 :
         {
-            Scierror(999,_("cdfchi: Error in cumgam\n"));
+            Scierror(999, _("cdfchi: Error in cumgam\n"));
         }
         break ;
-    default :
+        default :
         {
             CdfDefaultError(param, status, bound);
         }

@@ -64,7 +64,7 @@ extern int swap; /* defined in mget.c */
       *ierr=1;return;							\
     }
 /*--------------------------------------------------------------------------*/
-/* write data without convertion (res is supposed to have type type) */
+/* write data without conversion (res is supposed to have type type) */
 void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
 {
     char c1, c2;
