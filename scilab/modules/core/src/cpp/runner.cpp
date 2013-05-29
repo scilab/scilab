@@ -35,9 +35,9 @@ void *Runner::launch(void *args)
     try
     {
         me->getProgram()->accept(*(me->getVisitor()));
-        ConfigVariable::clearLastError();
+        //ConfigVariable::clearLastError();
     }
-    catch(ScilabException se)
+    catch (ScilabException se)
     {
         scilabErrorW(se.GetErrorMessage().c_str());
     }
@@ -46,7 +46,7 @@ void *Runner::launch(void *args)
 
     //change thread status
     ThreadId* pThread = ConfigVariable::getThread(currentThreadKey);
-    if(pThread->getStatus() != ThreadId::Aborted)
+    if (pThread->getStatus() != ThreadId::Aborted)
     {
         pThread->setStatus(ThreadId::Done);
         bdoUnlock = true;
@@ -57,7 +57,7 @@ void *Runner::launch(void *args)
 
     delete me;
 
-    if(bdoUnlock)
+    if (bdoUnlock)
     {
         UnlockPrompt();
     }
@@ -104,12 +104,13 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
         LockPrompt();
 
         types::ThreadId* pExecThread = ConfigVariable::getThread(threadKey);
-        if(pExecThread == NULL)
-        {//call pthread_join to clean stack allocation
+        if (pExecThread == NULL)
+        {
+            //call pthread_join to clean stack allocation
             __WaitThreadDie(threadId);
         }
     }
-    catch(ScilabException se)
+    catch (ScilabException se)
     {
         throw se;
     }

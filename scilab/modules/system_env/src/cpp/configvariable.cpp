@@ -293,7 +293,7 @@ void ConfigVariable::setLastErrorCall(void)
 
 void ConfigVariable::clearLastError(void)
 {
-    if (m_bLastErrorCall == false)
+    //if (m_bLastErrorCall == false)
     {
         m_wstError          = L"";
         m_iError            = 0;

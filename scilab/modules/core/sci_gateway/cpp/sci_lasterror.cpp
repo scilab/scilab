@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
             vectLines.push_back(line);
         }
 
-        types::String* StrLastError = new types::String(vectLines.size(), 1);
+        types::String* StrLastError = new types::String((int)vectLines.size(), 1);
         // put lines in output
         for (int i = 0; i < (int)vectLines.size(); i++)
         {
@@ -93,7 +93,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
                 std::wstring wstLastErrorFunction = ConfigVariable::getLastErrorFunction();
                 if (wstLastErrorFunction.size() == 0)
                 {
-                    out.push_back(Double::Empty());
+                    out.push_back(new String(L""));
                 }
                 else
                 {
