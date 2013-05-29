@@ -141,9 +141,9 @@ Bug fixes
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
-* Bug #7828 fixed - Slight improvements in nicholschart.
-
 * Bug #7781 fixed - The second parameter of iqr function had not effect.
+
+* Bug #7828 fixed - Slight improvements in nicholschart.
 
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
@@ -156,8 +156,6 @@ Bug fixes
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.
 
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
-
-* Bug #8858 fixed - Non regression test of bug #480 updated.
 
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.
 
@@ -177,6 +175,8 @@ Bug fixes
                     Non regression test of bug #476 updated.
 
 * Bug #8857 fixed - Non regression test of bug #477 updated.
+
+* Bug #8858 fixed - Non regression test of bug #480 updated.
 
 * Bug #8862 fixed - mget and mput couldn't read and write 64 bit data from
                     binary files.
@@ -199,9 +199,14 @@ Bug fixes
 
 * Bug #10213 fixed - sci2exp can be impacted by format which has been mentionned in its help page.
 
+* Bug #10226 fixed - When a // <empty session> line is delete, all sessions
+                     histories are folded.
+
 * Bug #10254 fixed - Slight improvements in help page of ones.
 
 * Bug #10287 fixed - An error message added for complex expression as input argument of integrate function.
+
+* Bug #10818 fixed - The following help pages have been added: hom, %e, %t, %f, %z and %s.
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
@@ -211,11 +216,6 @@ Bug fixes
 * Bug #10930 fixed - The comments in armax function were in french.
 
 * Bug #10995 fixed - Typo in grand() for Gamma law argument
-
-* Bug #10226 fixed - When a // <empty session> line is delete, all sessions
-                     histories are folded.
-                     
-* Bug #10818 fixed - The following help pages have been added: hom, %e, %t, %f, %z and %s.
 
 * Bug #11308 fixed - Calling sequences in help page of dsearch were wrong.
 
