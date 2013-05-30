@@ -1,4 +1,3 @@
-
       SUBROUTINE ZGELSY1( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND, RANK,
      $                   WORK, LWORK, RWORK, INFO )
 *
@@ -16,13 +15,24 @@
       DOUBLE PRECISION   RWORK( * )
       COMPLEX*16         A( LDA, * ), B( LDB, * ), WORK( * )
 *     ..
+*     Common blocks to return operation counts and timings
+*     .. Common blocks ..
+      COMMON             / LATIME / OPS, ITCNT
+      COMMON             / LSTIME / OPCNT, TIMNG
+*     ..
+*     .. Scalars in Common ..
+      DOUBLE PRECISION   ITCNT, OPS
+*     ..
+*     .. Arrays in Common ..
+      DOUBLE PRECISION   OPCNT( 6 ), TIMNG( 6 )
+*     ..
 *
 *  Purpose
 *  =======
 *
-*  ZGELSY1 computes a solution with at least N-RANK zeros to a complex 
-*  linear leastsquares problem:
-*      minimize || A * X - B ||
+*  ZGELSY1 computes a solution, either with at least N-RANK zeros or
+*  the minimum-norm to a complex linear least squares problem:
+*      min || A * X - B ||
 *  using a complete orthogonal factorization of A.  A is an M-by-N
 *  matrix which may be rank-deficient.
 *
@@ -38,8 +48,16 @@
 *  condition number is less than 1/RCOND.  The order of R11, RANK,
 *  is the effective rank of A.
 *
-*  Then, R22 is considered to be negligible
-*  The returned  solution is then
+*  Then, R22 is considered to be negligible. If we ask for the
+*  minimum-norm solution, then R12 is annihilated by unitary
+*  transformations from the right, arriving at the
+*  complete orthogonal factorization:
+*     A * P = Q * [ T11 0 ] * Z
+*                 [  0  0 ]
+*  The minimum-norm solution is then
+*     X = P * Z' [ inv(T11)*Q1'*B ]
+*                [        0       ]
+*  Otherwise, the returned solution is
 *     X = P *  [ inv(T11)*Q1'*B ]
 *              [        0       ]
 *  where Q1 consists of the first RANK columns of Q.
@@ -119,9 +137,15 @@
 *
 *  RWORK   (workspace) DOUBLE PRECISION array, dimension (2*N)
 *
-*  INFO    (output) INTEGER
-*          = 0: successful exit
-*          < 0: if INFO = -i, the i-th argument had an illegal value
+ccccc Scilab Enterprises input, allow INFO to be input
+*  INFO    (input/output) INTEGER
+*          On entry:
+*             = 0: minimum norm least square solution requested
+*             > 0: least square solution requested
+ccccc
+*          On exit:
+*             = 0: successful exit
+*             < 0: if INFO = -i, the i-th argument had an illegal value
 *
 *  Further Details
 *  ===============
@@ -144,23 +168,28 @@
 *     ..
 *     .. Local Scalars ..
       LOGICAL            LQUERY
-      INTEGER            I, IASCL, IBSCL, ISMAX, ISMIN, J, LWKOPT, MN,
-     $                   NB, NB1, NB2, NB3, NB4
+      INTEGER            GELSY, GEQP3, I, IASCL, IBSCL, ISMAX, ISMIN, J,
+     $                   LWKOPT, MN, NB, NB1, NB2, NB3, NB4, TRSM,
+     $                   TZRZF, UNMQR, UNMRZ
       DOUBLE PRECISION   ANRM, BIGNUM, BNRM, SMAX, SMAXPR, SMIN, SMINPR,
-     $                   SMLNUM, WSIZE
+     $                   SMLNUM, T1, T2, WSIZE
       COMPLEX*16         C1, C2, S1, S2
-*     ..
-*     .. External Subroutines ..
-      EXTERNAL           DLABAD, XERBLA, ZCOPY, ZGEQP3, ZLAIC1, ZLASCL,
-     $                   ZLASET, ZTRSM, ZUNMQR 
 *     ..
 *     .. External Functions ..
       INTEGER            ILAENV
-      DOUBLE PRECISION   DLAMCH, ZLANGE
-      EXTERNAL           ILAENV, DLAMCH, ZLANGE
+      DOUBLE PRECISION   DLAMCH, DOPBL3, DOPLA, DSECND, ZLANGE
+      EXTERNAL           ILAENV, DLAMCH, DOPBL3, DOPLA, DSECND, ZLANGE
+*     ..
+*     .. External Subroutines ..
+      EXTERNAL           DLABAD, XERBLA, ZCOPY, ZGEQP3, ZLAIC1, ZLASCL,
+     $                   ZLASET, ZTRSM, ZTZRZF, ZUNMQR, ZUNMRZ
 *     ..
 *     .. Intrinsic Functions ..
       INTRINSIC          ABS, DBLE, DCMPLX, MAX, MIN
+*     ..
+*     .. Data statements ..
+      DATA               GELSY / 1 / , GEQP3 / 2 / , TRSM / 5 / ,
+     $                   TZRZF / 3 / , UNMQR / 4 / , UNMRZ / 6 /
 *     ..
 *     .. Executable Statements ..
 *
@@ -170,6 +199,9 @@
 *
 *     Test the input arguments.
 *
+ccccc Scilab Enterprises input, save the input INFO
+      MIN_NORM = INFO
+ccccc 
       INFO = 0
       NB1 = ILAENV( 1, 'ZGEQRF', ' ', M, N, -1, -1 )
       NB2 = ILAENV( 1, 'ZGERQF', ' ', M, N, -1, -1 )
@@ -210,6 +242,7 @@
 *
 *     Get machine parameters
 *
+c      OPCNT( GELSY ) = OPCNT( GELSY ) + DBLE( 2 )
       SMLNUM = DLAMCH( 'S' ) / DLAMCH( 'P' )
       BIGNUM = ONE / SMLNUM
       CALL DLABAD( SMLNUM, BIGNUM )
@@ -222,12 +255,14 @@
 *
 *        Scale matrix norm up to SMLNUM
 *
+c         OPCNT( GELSY ) = OPCNT( GELSY ) + DBLE( 6*M*N )
          CALL ZLASCL( 'G', 0, 0, ANRM, SMLNUM, M, N, A, LDA, INFO )
          IASCL = 1
       ELSE IF( ANRM.GT.BIGNUM ) THEN
 *
 *        Scale matrix norm down to BIGNUM
 *
+c         OPCNT( GELSY ) = OPCNT( GELSY ) + DBLE( 6*M*N )
          CALL ZLASCL( 'G', 0, 0, ANRM, BIGNUM, M, N, A, LDA, INFO )
          IASCL = 2
       ELSE IF( ANRM.EQ.ZERO ) THEN
@@ -245,12 +280,14 @@
 *
 *        Scale matrix norm up to SMLNUM
 *
+c         OPCNT( GELSY ) = OPCNT( GELSY ) + DBLE( 6*M*NRHS )
          CALL ZLASCL( 'G', 0, 0, BNRM, SMLNUM, M, NRHS, B, LDB, INFO )
          IBSCL = 1
       ELSE IF( BNRM.GT.BIGNUM ) THEN
 *
 *        Scale matrix norm down to BIGNUM
 *
+c         OPCNT( GELSY ) = OPCNT( GELSY ) + DBLE( 6*M*NRHS )
          CALL ZLASCL( 'G', 0, 0, BNRM, BIGNUM, M, NRHS, B, LDB, INFO )
          IBSCL = 2
       END IF
@@ -258,8 +295,12 @@
 *     Compute QR factorization with column pivoting of A:
 *        A * P = Q * R
 *
+c      OPCNT( GEQP3 ) = OPCNT( GEQP3 ) + DOPLA( 'ZGEQPF', M, N, 0, 0, 0 )
+c      T1 = DSECND( )
       CALL ZGEQP3( M, N, A, LDA, JPVT, WORK( 1 ), WORK( MN+1 ),
      $             LWORK-MN, RWORK, INFO )
+c      T2 = DSECND( )
+c      TIMNG( GEQP3 ) = TIMNG( GEQP3 ) + ( T2-T1 )
       WSIZE = MN + DBLE( WORK( MN+1 ) )
 *
 *     complex workspace: MN+NB*(N+1). real workspace 2*N.
@@ -282,12 +323,15 @@
    10 CONTINUE
       IF( RANK.LT.MN ) THEN
          I = RANK + 1
+c         OPS = 0
          CALL ZLAIC1( IMIN, RANK, WORK( ISMIN ), SMIN, A( 1, I ),
      $                A( I, I ), SMINPR, S1, C1 )
          CALL ZLAIC1( IMAX, RANK, WORK( ISMAX ), SMAX, A( 1, I ),
      $                A( I, I ), SMAXPR, S2, C2 )
+c         OPCNT( GELSY ) = OPCNT( GELSY ) + OPS + DBLE( 1 )
 *
          IF( SMAXPR*RCOND.LE.SMINPR ) THEN
+c            OPCNT( GELSY ) = OPCNT( GELSY ) + DBLE( RANK*6 )
             DO 20 I = 1, RANK
                WORK( ISMIN+I-1 ) = S1*WORK( ISMIN+I-1 )
                WORK( ISMAX+I-1 ) = S2*WORK( ISMAX+I-1 )
@@ -307,41 +351,55 @@
 *                             [  0  R22 ]
 *     where R11 = R(1:RANK,1:RANK)
 *
-c*     [R11,R12] = [ T11, 0 ] * Y
-c*
-c      IF( RANK.LT.N )
-c     $   CALL ZTZRZF( RANK, N, A, LDA, WORK( MN+1 ), WORK( 2*MN+1 ),
-c     $                LWORK-2*MN, INFO )
-c*
+*     [R11,R12] = [ T11, 0 ] * Y
+*
+      IF ( MIN_NORM.EQ.0 ) THEN
+         IF( RANK.LT.N ) THEN
+           CALL ZTZRZF( RANK, N, A, LDA, WORK( MN+1 ), WORK( 2*MN+1 ),
+     $                LWORK-2*MN, INFO )
+         END IF
+      END IF
+*
 *     complex workspace: 2*MN.
 *     Details of Householder rotations stored in WORK(MN+1:2*MN)
 *
 *     B(1:M,1:NRHS) := Q' * B(1:M,1:NRHS)
 *
+c      OPCNT( UNMQR ) = OPCNT( UNMQR ) +
+c     $                 DOPLA( 'ZUNMQR', M, NRHS, MN, 0, 0 )
+c      T1 = DSECND( )
       CALL ZUNMQR( 'Left', 'Conjugate transpose', M, NRHS, MN, A, LDA,
      $             WORK( 1 ), B, LDB, WORK( 2*MN+1 ), LWORK-2*MN, INFO )
+c      T2 = DSECND( )
+c      TIMNG( UNMQR ) = TIMNG( UNMQR ) + ( T2-T1 )
       WSIZE = MAX( WSIZE, 2*MN+DBLE( WORK( 2*MN+1 ) ) )
 *
 *     complex workspace: 2*MN+NB*NRHS.
 *
 *     B(1:RANK,1:NRHS) := inv(T11) * B(1:RANK,1:NRHS)
 *
+c      OPCNT( TRSM ) = OPCNT( TRSM ) + DOPBL3( 'ZTRSM ', RANK, NRHS, 0 )
+c      T1 = DSECND( )
       CALL ZTRSM( 'Left', 'Upper', 'No transpose', 'Non-unit', RANK,
      $            NRHS, CONE, A, LDA, B, LDB )
+c      T2 = DSECND( )
+c      TIMNG( TRSM ) = TIMNG( TRSM ) + ( T2-T1 )
 *
       DO 40 J = 1, NRHS
          DO 30 I = RANK + 1, N
             B( I, J ) = CZERO
    30    CONTINUE
    40 CONTINUE
-c*
-c*     B(1:N,1:NRHS) := Y' * B(1:N,1:NRHS)
-c*
-c      IF( RANK.LT.N ) THEN
-c         CALL ZUNMRZ( 'Left', 'Conjugate transpose', N, NRHS, RANK,
-c     $                N-RANK, A, LDA, WORK( MN+1 ), B, LDB,
-c     $                WORK( 2*MN+1 ), LWORK-2*MN, INFO )
-c      END IF
+*
+*     B(1:N,1:NRHS) := Y' * B(1:N,1:NRHS)
+*
+      IF ( MIN_NORM.EQ.0 ) THEN
+         IF( RANK.LT.N ) THEN
+         CALL ZUNMRZ( 'Left', 'Conjugate transpose', N, NRHS, RANK,
+     $                N-RANK, A, LDA, WORK( MN+1 ), B, LDB,
+     $                WORK( 2*MN+1 ), LWORK-2*MN, INFO )
+         END IF
+      END IF
 *
 *     complex workspace: 2*MN+NRHS.
 *
@@ -359,17 +417,23 @@ c      END IF
 *     Undo scaling
 *
       IF( IASCL.EQ.1 ) THEN
+c         OPCNT( GELSY ) = OPCNT( GELSY ) +
+c     $                    DBLE( ( N*NRHS+RANK*RANK )*6 )
          CALL ZLASCL( 'G', 0, 0, ANRM, SMLNUM, N, NRHS, B, LDB, INFO )
          CALL ZLASCL( 'U', 0, 0, SMLNUM, ANRM, RANK, RANK, A, LDA,
      $                INFO )
       ELSE IF( IASCL.EQ.2 ) THEN
+c         OPCNT( GELSY ) = OPCNT( GELSY ) +
+c     $                    DBLE( ( N*NRHS+RANK*RANK )*6 )
          CALL ZLASCL( 'G', 0, 0, ANRM, BIGNUM, N, NRHS, B, LDB, INFO )
          CALL ZLASCL( 'U', 0, 0, BIGNUM, ANRM, RANK, RANK, A, LDA,
      $                INFO )
       END IF
       IF( IBSCL.EQ.1 ) THEN
+c         OPCNT( GELSY ) = OPCNT( GELSY ) + DBLE( N*NRHS*6 )
          CALL ZLASCL( 'G', 0, 0, SMLNUM, BNRM, N, NRHS, B, LDB, INFO )
       ELSE IF( IBSCL.EQ.2 ) THEN
+c         OPCNT( GELSY ) = OPCNT( GELSY ) + DBLE( N*NRHS*6 )
          CALL ZLASCL( 'G', 0, 0, BIGNUM, BNRM, N, NRHS, B, LDB, INFO )
       END IF
 *
@@ -381,3 +445,4 @@ c      END IF
 *     End of ZGELSY1
 *
       END
+

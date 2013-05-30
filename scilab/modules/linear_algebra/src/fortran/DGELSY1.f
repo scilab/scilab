@@ -1,11 +1,11 @@
       SUBROUTINE DGELSY1( M, N, NRHS, A, LDA, B, LDB, JPVT, RCOND, RANK,
-     $     WORK, LWORK, INFO )
-*     
-*     -- LAPACK driver routine (version 3.0) --
-*     Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
-*     Courant Institute, Argonne National Lab, and Rice University
-*     June 30, 1999
-*     
+     $                   WORK, LWORK, INFO )
+*
+*  -- LAPACK driver routine (version 3.3.1) --
+*  -- LAPACK is a software package provided by Univ. of Tennessee,    --
+*  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..--
+*  -- April 2011                                                      --
+*
 *     .. Scalar Arguments ..
       INTEGER            INFO, LDA, LDB, LWORK, M, N, NRHS, RANK
       DOUBLE PRECISION   RCOND
@@ -14,127 +14,135 @@
       INTEGER            JPVT( * )
       DOUBLE PRECISION   A( LDA, * ), B( LDB, * ), WORK( * )
 *     ..
-*     
-*     Purpose
-*     =======
-*     
-*     DGELSY1 computes a solution, with at least N-RANK zeros to a real 
-*     linear least squares problem:
-*     minimize || A * X - B ||
-*     using a complete orthogonal factorization of A.  A is an M-by-N
-*     matrix which may be rank-deficient.
-*     
-*     Several right hand side vectors b and solution vectors x can be
-*     handled in a single call; they are stored as the columns of the
-*     M-by-NRHS right hand side matrix B and the N-by-NRHS solution
-*     matrix X.
-*     
-*     The routine first computes a QR factorization with column
-c     pivoting:
-*     A * P = Q * [ R11 R12 ]
-*                 [  0  R22 ]
-*     with R11 defined as the largest leading submatrix whose estimated
-*     condition number is less than 1/RCOND.  The order of R11, RANK,
-*     is the effective rank of A.
-*     
-*     Then, R22 is considered to be negligible, 
-*     The  solution return is then
-*     X = P * [ inv(R11)*Q1'*B ]
-*             [        0       ]
-*     where Q1 consists of the first RANK columns of Q.
-*     
-*     This routine is basically identical to the original xGELSX except
-*     three differences:
-*     o The call to the subroutine xGEQPF has been substituted by the
-*     the call to the subroutine xGEQP3. This subroutine is a Blas-3
-*     version of the QR factorization with column pivoting.
-*     o Matrix B (the right hand side) is updated with Blas-3.
-*     o The permutation of matrix B (the right hand side) is faster and
-*     more simple.
-*     
-*     Arguments
-*     =========
-*     
-*     M       (input) INTEGER
-*     The number of rows of the matrix A.  M >= 0.
-*     
-*     N       (input) INTEGER
-*     The number of columns of the matrix A.  N >= 0.
-*     
-*     NRHS    (input) INTEGER
-*     The number of right hand sides, i.e., the number of
-*     columns of matrices B and X. NRHS >= 0.
-*     
-*     A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
-*     On entry, the M-by-N matrix A.
-*     On exit, A has been overwritten by details of its
-*     complete orthogonal factorization.
-*     
-*     LDA     (input) INTEGER
-*     The leading dimension of the array A.  LDA >= max(1,M).
-*     
-*     B       (input/output) DOUBLE PRECISION array, dimension (LDB,NRHS
-c     )
-*     On entry, the M-by-NRHS right hand side matrix B.
-*     On exit, the N-by-NRHS solution matrix X.
-*     
-*     LDB     (input) INTEGER
-*     The leading dimension of the array B. LDB >= max(1,M,N).
-*     
-*     JPVT    (input/output) INTEGER array, dimension (N)
-*     On entry, if JPVT(i) .ne. 0, the i-th column of A is permuted
-*     to the front of AP, otherwise column i is a free column.
-*     On exit, if JPVT(i) = k, then the i-th column of AP
-*     was the k-th column of A.
-*     
-*     RCOND   (input) DOUBLE PRECISION
-*     RCOND is used to determine the effective rank of A, which
-*     is defined as the order of the largest leading triangular
-*     submatrix R11 in the QR factorization with pivoting of A,
-*     whose estimated condition number < 1/RCOND.
-*     
-*     RANK    (output) INTEGER
-*     The effective rank of A, i.e., the order of the submatrix
-*     R11.  This is the same as the order of the submatrix T11
-*     in the complete orthogonal factorization of A.
-*     
-*     WORK    (workspace/output) DOUBLE PRECISION array, dimension
-c     (LWORK)
-*     On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
-*     
-*     LWORK   (input) INTEGER
-*     The dimension of the array WORK.
-*     The unblocked strategy requires that:
-*     LWORK >= MAX( MN+3*N+1, 2*MN+NRHS ),
-*     where MN = min( M, N ).
-*     The block algorithm requires that:
-*     LWORK >= MAX( MN+2*N+NB*(N+1), 2*MN+NB*NRHS ),
-*     where NB is an upper bound on the blocksize returned
-*     by ILAENV for the routines DGEQP3, DTZRZF, STZRQF, DORMQR,
-*     and DORMRZ.
-*     
-*     If LWORK = -1, then a workspace query is assumed; the routine
-*     only calculates the optimal size of the WORK array, returns
-*     this value as the first entry of the WORK array, and no error
-*     message related to LWORK is issued by XERBLA.
-*     
-*     INFO    (output) INTEGER
-*     = 0: successful exit
-*     < 0: If INFO = -i, the i-th argument had an illegal value.
-*     
-*     Further Details
-*     ===============
-*     
-*     Based on contributions by
-*     A. Petitet, Computer Science Dept., Univ. of Tenn., Knoxville, USA
-*     E. Quintana-Orti, Depto. de Informatica, Universidad Jaime I,
-c     Spain
-*     G. Quintana-Orti, Depto. de Informatica, Universidad Jaime I,
-c     Spain
-*     
-*     ==================================================================
-c     ===
-*     
+*
+*  Purpose
+*  =======
+*
+*  DGELSY1 computes a solution, either with at least N-RANK zeros or
+*  the minimum-norm to a real linear least squares problem:
+*      minimize || A * X - B ||
+*  using a complete orthogonal factorization of A.  A is an M-by-N
+*  matrix which may be rank-deficient.
+*
+*  Several right hand side vectors b and solution vectors x can be
+*  handled in a single call; they are stored as the columns of the
+*  M-by-NRHS right hand side matrix B and the N-by-NRHS solution
+*  matrix X.
+*
+*  The routine first computes a QR factorization with column pivoting:
+*      A * P = Q * [ R11 R12 ]
+*                  [  0  R22 ]
+*  with R11 defined as the largest leading submatrix whose estimated
+*  condition number is less than 1/RCOND.  The order of R11, RANK,
+*  is the effective rank of A.
+*
+*  Then, R22 is considered to be negligible. If we ask for the
+*  minimum-norm solution, then R12 is annihilated by unitary
+*  transformations from the right, arriving at the
+*  complete orthogonal factorization:
+*     A * P = Q * [ T11 0 ] * Z
+*                 [  0  0 ]
+*  The minimum-norm solution is then
+*     X = P * Z**T [ inv(T11)*Q1**T*B ]
+*                  [        0         ]
+*  Otherwise, the returned solution is
+*  X = P * [ inv(R11)*Q1'*B ]
+*          [        0       ]
+*  where Q1 consists of the first RANK columns of Q.
+*
+*  This routine is basically identical to the original xGELSX except
+*  three differences:
+*    o The call to the subroutine xGEQPF has been substituted by the
+*      the call to the subroutine xGEQP3. This subroutine is a Blas-3
+*      version of the QR factorization with column pivoting.
+*    o Matrix B (the right hand side) is updated with Blas-3.
+*    o The permutation of matrix B (the right hand side) is faster and
+*      more simple.
+*
+*  Arguments
+*  =========
+*
+*  M       (input) INTEGER
+*          The number of rows of the matrix A.  M >= 0.
+*
+*  N       (input) INTEGER
+*          The number of columns of the matrix A.  N >= 0.
+*
+*  NRHS    (input) INTEGER
+*          The number of right hand sides, i.e., the number of
+*          columns of matrices B and X. NRHS >= 0.
+*
+*  A       (input/output) DOUBLE PRECISION array, dimension (LDA,N)
+*          On entry, the M-by-N matrix A.
+*          On exit, A has been overwritten by details of its
+*          complete orthogonal factorization.
+*
+*  LDA     (input) INTEGER
+*          The leading dimension of the array A.  LDA >= max(1,M).
+*
+*  B       (input/output) DOUBLE PRECISION array, dimension (LDB,NRHS)
+*          On entry, the M-by-NRHS right hand side matrix B.
+*          On exit, the N-by-NRHS solution matrix X.
+*
+*  LDB     (input) INTEGER
+*          The leading dimension of the array B. LDB >= max(1,M,N).
+*
+*  JPVT    (input/output) INTEGER array, dimension (N)
+*          On entry, if JPVT(i) .ne. 0, the i-th column of A is permuted
+*          to the front of AP, otherwise column i is a free column.
+*          On exit, if JPVT(i) = k, then the i-th column of AP
+*          was the k-th column of A.
+*
+*  RCOND   (input) DOUBLE PRECISION
+*          RCOND is used to determine the effective rank of A, which
+*          is defined as the order of the largest leading triangular
+*          submatrix R11 in the QR factorization with pivoting of A,
+*          whose estimated condition number < 1/RCOND.
+*
+*  RANK    (output) INTEGER
+*          The effective rank of A, i.e., the order of the submatrix
+*          R11.  This is the same as the order of the submatrix T11
+*          in the complete orthogonal factorization of A.
+*
+*  WORK    (workspace/output) DOUBLE PRECISION array, dimension (MAX(1,LWORK))
+*          On exit, if INFO = 0, WORK(1) returns the optimal LWORK.
+*
+*  LWORK   (input) INTEGER
+*          The dimension of the array WORK.
+*          The unblocked strategy requires that:
+*             LWORK >= MAX( MN+3*N+1, 2*MN+NRHS ),
+*          where MN = min( M, N ).
+*          The block algorithm requires that:
+*             LWORK >= MAX( MN+2*N+NB*(N+1), 2*MN+NB*NRHS ),
+*          where NB is an upper bound on the blocksize returned
+*          by ILAENV for the routines DGEQP3, DTZRZF, STZRQF, DORMQR,
+*          and DORMRZ.
+*
+*          If LWORK = -1, then a workspace query is assumed; the routine
+*          only calculates the optimal size of the WORK array, returns
+*          this value as the first entry of the WORK array, and no error
+*          message related to LWORK is issued by XERBLA.
+*
+ccccc Scilab Enterprises input, allow INFO to be input
+*  INFO    (input/output) INTEGER
+*          On entry:
+*             = 0: minimum norm least square solution requested
+*             > 0: least square solution requested
+ccccc
+*          On exit:
+*             = 0: successful exit
+*             < 0: If INFO = -i, the i-th argument had an illegal value
+*
+*  Further Details
+*  ===============
+*
+*  Based on contributions by
+*    A. Petitet, Computer Science Dept., Univ. of Tenn., Knoxville, USA
+*    E. Quintana-Orti, Depto. de Informatica, Universidad Jaime I, Spain
+*    G. Quintana-Orti, Depto. de Informatica, Universidad Jaime I, Spain
+*
+*  =====================================================================
+*
 *     .. Parameters ..
       INTEGER            IMAX, IMIN
       PARAMETER          ( IMAX = 1, IMIN = 2 )
@@ -143,10 +151,10 @@ c     ===
 *     ..
 *     .. Local Scalars ..
       LOGICAL            LQUERY
-      INTEGER            I, IASCL, IBSCL, ISMAX, ISMIN, J, LWKOPT, MN,
-     $     NB, NB1, NB2, NB3, NB4
+      INTEGER            I, IASCL, IBSCL, ISMAX, ISMIN, J, LWKMIN,
+     $                   LWKOPT, MN, NB, NB1, NB2, NB3, NB4
       DOUBLE PRECISION   ANRM, BIGNUM, BNRM, C1, C2, S1, S2, SMAX,
-     $     SMAXPR, SMIN, SMINPR, SMLNUM, WSIZE
+     $                   SMAXPR, SMIN, SMINPR, SMLNUM, WSIZE
 *     ..
 *     .. External Functions ..
       INTEGER            ILAENV
@@ -155,27 +163,23 @@ c     ===
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           DCOPY, DGEQP3, DLABAD, DLAIC1, DLASCL, DLASET,
-     $     DORMQR, DTRSM, XERBLA
+     $                   DORMQR, DORMRZ, DTRSM, DTZRZF, XERBLA
 *     ..
 *     .. Intrinsic Functions ..
-      INTRINSIC          ABS, DBLE, MAX, MIN
+      INTRINSIC          ABS, MAX, MIN
 *     ..
 *     .. Executable Statements ..
-*     
+*
       MN = MIN( M, N )
       ISMIN = MN + 1
       ISMAX = 2*MN + 1
-*     
+*
 *     Test the input arguments.
-*     
+*
+ccccc Scilab Enterprises input, save the input INFO
+      MIN_NORM = INFO
+ccccc 
       INFO = 0
-      NB1 = ILAENV( 1, 'DGEQRF', ' ', M, N, -1, -1 )
-      NB2 = ILAENV( 1, 'DGERQF', ' ', M, N, -1, -1 )
-      NB3 = ILAENV( 1, 'DORMQR', ' ', M, N, NRHS, -1 )
-      NB4 = ILAENV( 1, 'DORMRQ', ' ', M, N, NRHS, -1 )
-      NB = MAX( NB1, NB2, NB3, NB4 )
-      LWKOPT = MAX( 1, MN+2*N+NB*( N+1 ), 2*MN+NB*NRHS )
-      WORK( 1 ) = DBLE( LWKOPT )
       LQUERY = ( LWORK.EQ.-1 )
       IF( M.LT.0 ) THEN
          INFO = -1
@@ -187,84 +191,104 @@ c     ===
          INFO = -5
       ELSE IF( LDB.LT.MAX( 1, M, N ) ) THEN
          INFO = -7
-      ELSE IF( LWORK.LT.MAX( 1, MN+3*N+1, 2*MN+NRHS ) .AND. .NOT.
-     $        LQUERY ) THEN
-         INFO = -12
       END IF
-*     
+*
+*     Figure out optimal block size
+*
+      IF( INFO.EQ.0 ) THEN
+         IF( MN.EQ.0 .OR. NRHS.EQ.0 ) THEN
+            LWKMIN = 1
+            LWKOPT = 1
+         ELSE
+            NB1 = ILAENV( 1, 'DGEQRF', ' ', M, N, -1, -1 )
+            NB2 = ILAENV( 1, 'DGERQF', ' ', M, N, -1, -1 )
+            NB3 = ILAENV( 1, 'DORMQR', ' ', M, N, NRHS, -1 )
+            NB4 = ILAENV( 1, 'DORMRQ', ' ', M, N, NRHS, -1 )
+            NB = MAX( NB1, NB2, NB3, NB4 )
+            LWKMIN = MN + MAX( 2*MN, N + 1, MN + NRHS )
+            LWKOPT = MAX( LWKMIN,
+     $                    MN + 2*N + NB*( N + 1 ), 2*MN + NB*NRHS )
+         END IF
+         WORK( 1 ) = LWKOPT
+*
+         IF( LWORK.LT.LWKMIN .AND. .NOT.LQUERY ) THEN
+            INFO = -12
+         END IF
+      END IF
+*
       IF( INFO.NE.0 ) THEN
          CALL XERBLA( 'DGELSY1', -INFO )
          RETURN
       ELSE IF( LQUERY ) THEN
          RETURN
       END IF
-*     
+*
 *     Quick return if possible
-*     
-      IF( MIN( M, N, NRHS ).EQ.0 ) THEN
+*
+      IF( MN.EQ.0 .OR. NRHS.EQ.0 ) THEN
          RANK = 0
          RETURN
       END IF
-*     
+*
 *     Get machine parameters
-*     
+*
       SMLNUM = DLAMCH( 'S' ) / DLAMCH( 'P' )
       BIGNUM = ONE / SMLNUM
       CALL DLABAD( SMLNUM, BIGNUM )
-*     
+*
 *     Scale A, B if max entries outside range [SMLNUM,BIGNUM]
-*     
+*
       ANRM = DLANGE( 'M', M, N, A, LDA, WORK )
       IASCL = 0
       IF( ANRM.GT.ZERO .AND. ANRM.LT.SMLNUM ) THEN
-*     
-*     Scale matrix norm up to SMLNUM
-*     
+*
+*        Scale matrix norm up to SMLNUM
+*
          CALL DLASCL( 'G', 0, 0, ANRM, SMLNUM, M, N, A, LDA, INFO )
          IASCL = 1
       ELSE IF( ANRM.GT.BIGNUM ) THEN
-*     
-*     Scale matrix norm down to BIGNUM
-*     
+*
+*        Scale matrix norm down to BIGNUM
+*
          CALL DLASCL( 'G', 0, 0, ANRM, BIGNUM, M, N, A, LDA, INFO )
          IASCL = 2
       ELSE IF( ANRM.EQ.ZERO ) THEN
-*     
-*     Matrix all zero. Return zero solution.
-*     
+*
+*        Matrix all zero. Return zero solution.
+*
          CALL DLASET( 'F', MAX( M, N ), NRHS, ZERO, ZERO, B, LDB )
          RANK = 0
          GO TO 70
       END IF
-*     
+*
       BNRM = DLANGE( 'M', M, NRHS, B, LDB, WORK )
       IBSCL = 0
       IF( BNRM.GT.ZERO .AND. BNRM.LT.SMLNUM ) THEN
-*     
-*     Scale matrix norm up to SMLNUM
-*     
+*
+*        Scale matrix norm up to SMLNUM
+*
          CALL DLASCL( 'G', 0, 0, BNRM, SMLNUM, M, NRHS, B, LDB, INFO )
          IBSCL = 1
       ELSE IF( BNRM.GT.BIGNUM ) THEN
-*     
-*     Scale matrix norm down to BIGNUM
-*     
+*
+*        Scale matrix norm down to BIGNUM
+*
          CALL DLASCL( 'G', 0, 0, BNRM, BIGNUM, M, NRHS, B, LDB, INFO )
          IBSCL = 2
       END IF
-*     
+*
 *     Compute QR factorization with column pivoting of A:
-*     A * P = Q * R
-*     
+*        A * P = Q * R
+*
       CALL DGEQP3( M, N, A, LDA, JPVT, WORK( 1 ), WORK( MN+1 ),
-     $     LWORK-MN, INFO )
+     $             LWORK-MN, INFO )
       WSIZE = MN + WORK( MN+1 )
-*     
+*
 *     workspace: MN+2*N+NB*(N+1).
 *     Details of Householder rotations stored in WORK(1:MN).
-*     
+*
 *     Determine RANK using incremental condition estimation
-*     
+*
       WORK( ISMIN ) = ONE
       WORK( ISMAX ) = ONE
       SMAX = ABS( A( 1, 1 ) )
@@ -276,20 +300,20 @@ c     ===
       ELSE
          RANK = 1
       END IF
-*     
- 10   CONTINUE
+*
+   10 CONTINUE
       IF( RANK.LT.MN ) THEN
          I = RANK + 1
          CALL DLAIC1( IMIN, RANK, WORK( ISMIN ), SMIN, A( 1, I ),
-     $        A( I, I ), SMINPR, S1, C1 )
+     $                A( I, I ), SMINPR, S1, C1 )
          CALL DLAIC1( IMAX, RANK, WORK( ISMAX ), SMAX, A( 1, I ),
-     $        A( I, I ), SMAXPR, S2, C2 )
-*     
+     $                A( I, I ), SMAXPR, S2, C2 )
+*
          IF( SMAXPR*RCOND.LE.SMINPR ) THEN
             DO 20 I = 1, RANK
                WORK( ISMIN+I-1 ) = S1*WORK( ISMIN+I-1 )
                WORK( ISMAX+I-1 ) = S2*WORK( ISMAX+I-1 )
- 20         CONTINUE
+   20       CONTINUE
             WORK( ISMIN+RANK ) = C1
             WORK( ISMAX+RANK ) = C2
             SMIN = SMINPR
@@ -298,84 +322,89 @@ c     ===
             GO TO 10
          END IF
       END IF
-*     
+*
 *     workspace: 3*MN.
-*     
+*
 *     Logically partition R = [ R11 R12 ]
-*     [  0  R22 ]
+*                             [  0  R22 ]
 *     where R11 = R(1:RANK,1:RANK)
-*     
-c     *     [R11,R12] = [ T11, 0 ] * Y
-c     *
-c     IF( RANK.LT.N )
-c     $   CALL DTZRZF( RANK, N, A, LDA, WORK( MN+1 ), WORK( 2*MN+1 ),
-c     $                LWORK-2*MN, INFO )
-c     *
-c     *     workspace: 2*MN.
+*
+*     [R11,R12] = [ T11, 0 ] * Y
+*
+      IF ( MIN_NORM.EQ.0 ) THEN
+         IF( RANK.LT.N )
+     $      CALL DTZRZF( RANK, N, A, LDA, WORK( MN+1 ), WORK( 2*MN+1 ),
+     $                LWORK-2*MN, INFO )
+      END IF
+*
+*     workspace: 2*MN.
 *     Details of Householder rotations stored in WORK(MN+1:2*MN)
-*     
+*
 *     B(1:M,1:NRHS) := Q' * B(1:M,1:NRHS)
-*     
+*
       CALL DORMQR( 'Left', 'Transpose', M, NRHS, MN, A, LDA, WORK( 1 ),
-     $     B, LDB, WORK( 2*MN+1 ), LWORK-2*MN, INFO )
+     $             B, LDB, WORK( 2*MN+1 ), LWORK-2*MN, INFO )
       WSIZE = MAX( WSIZE, 2*MN+WORK( 2*MN+1 ) )
-*     
+*
 *     workspace: 2*MN+NB*NRHS.
-*     
+*
 *     B(1:RANK,1:NRHS) := inv(T11) * B(1:RANK,1:NRHS)
-*     
+*
       CALL DTRSM( 'Left', 'Upper', 'No transpose', 'Non-unit', RANK,
-     $     NRHS, ONE, A, LDA, B, LDB )
-*     
+     $            NRHS, ONE, A, LDA, B, LDB )
+*
       DO 40 J = 1, NRHS
          DO 30 I = RANK + 1, N
             B( I, J ) = ZERO
- 30      CONTINUE
- 40   CONTINUE
-c     *
-c     *     B(1:N,1:NRHS) := Y' * B(1:N,1:NRHS)
-c     *
-c     IF( RANK.LT.N ) THEN
-c     CALL DORMRZ( 'Left', 'Transpose', N, NRHS, RANK, N-RANK, A,
-c     $                LDA, WORK( MN+1 ), B, LDB, WORK( 2*MN+1 ),
-c     $                LWORK-2*MN, INFO )
-c     END IF
-c     *
-c     *     workspace: 2*MN+NRHS.
-*     
+   30    CONTINUE
+   40 CONTINUE
+*
+*     B(1:N,1:NRHS) := Y' * B(1:N,1:NRHS)
+*
+      IF ( MIN_NORM.EQ.0 ) THEN
+        IF( RANK.LT.N ) THEN
+           CALL DORMRZ( 'Left', 'Transpose', N, NRHS, RANK, N-RANK, A,
+     $                LDA, WORK( MN+1 ), B, LDB, WORK( 2*MN+1 ),
+     $                LWORK-2*MN, INFO )
+         END IF
+      END IF
+*
+*     workspace: 2*MN+NRHS.
+*
 *     B(1:N,1:NRHS) := P * B(1:N,1:NRHS)
-*     
+*
       DO 60 J = 1, NRHS
          DO 50 I = 1, N
             WORK( JPVT( I ) ) = B( I, J )
- 50      CONTINUE
+   50    CONTINUE
          CALL DCOPY( N, WORK( 1 ), 1, B( 1, J ), 1 )
- 60   CONTINUE
-*     
+   60 CONTINUE
+*
 *     workspace: N.
-*     
+*
 *     Undo scaling
-*     
+*
       IF( IASCL.EQ.1 ) THEN
          CALL DLASCL( 'G', 0, 0, ANRM, SMLNUM, N, NRHS, B, LDB, INFO )
          CALL DLASCL( 'U', 0, 0, SMLNUM, ANRM, RANK, RANK, A, LDA,
-     $        INFO )
+     $                INFO )
       ELSE IF( IASCL.EQ.2 ) THEN
          CALL DLASCL( 'G', 0, 0, ANRM, BIGNUM, N, NRHS, B, LDB, INFO )
          CALL DLASCL( 'U', 0, 0, BIGNUM, ANRM, RANK, RANK, A, LDA,
-     $        INFO )
+     $                INFO )
       END IF
       IF( IBSCL.EQ.1 ) THEN
          CALL DLASCL( 'G', 0, 0, SMLNUM, BNRM, N, NRHS, B, LDB, INFO )
       ELSE IF( IBSCL.EQ.2 ) THEN
          CALL DLASCL( 'G', 0, 0, BIGNUM, BNRM, N, NRHS, B, LDB, INFO )
       END IF
-*     
- 70   CONTINUE
-      WORK( 1 ) = DBLE( LWKOPT )
-*     
+*
+   70 CONTINUE
+      WORK( 1 ) = LWKOPT
+*
       RETURN
-*     
+*
 *     End of DGELSY1
-*     
+*
       END
+

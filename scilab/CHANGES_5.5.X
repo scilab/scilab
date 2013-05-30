@@ -140,6 +140,8 @@ Bug fixes
 * Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
                     returned an error.
 
+* Bug #7486 fixed - DGELSY and ZGELSY closer to the upstream, to propose our modifications to LAPACK.
+
 * Bug #7655 fixed - An example added in help page of type, for type(X)=11 and type(X)=13.
 
 * Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.

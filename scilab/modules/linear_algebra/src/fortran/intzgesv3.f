@@ -120,6 +120,7 @@ c     SUBROUTINE ZLACPY( UPLO, M, N, A, LDA, B, LDB )
       do 10 i = 1, N
           istk(lJPVT+i-1) = 0
  10   continue
+      info = 1
       call ZGELSY1( M, N, NRHS, zstk(lA), M, zstk(lXB), max(M,N),
      $     istk(lJPVT), RCOND, istk(lRANK), zstk(lDWORK),
      $     LWORK, stk(lRWORK), INFO )
