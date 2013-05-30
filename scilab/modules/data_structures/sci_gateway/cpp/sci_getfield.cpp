@@ -17,6 +17,7 @@
 #include "list.hxx"
 #include "mlist.hxx"
 #include "tlist.hxx"
+#include "struct.hxx"
 
 extern "C"
 {
@@ -26,6 +27,8 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 
+static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, int _iRetCount, types::typed_list &out);
+
 /*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -33,6 +36,12 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getfield", 2);
         return types::Function::Error;
+    }
+
+    //special case for struct
+    if (in[1]->isStruct())
+    {
+        return sci_getfieldStruct(in, _iRetCount, out);
     }
 
     types::InternalType* pIndex = in[0];
@@ -92,6 +101,50 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     for (int i = 0 ; i < vOut.size() ; i++)
     {
         out.push_back(vOut[i]);
+    }
+
+    return types::Function::OK;
+}
+
+static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    types::InternalType* pIndex = in[0];
+    types::Struct* pSt = in[1]->getAs<types::Struct>();
+    std::vector<types::InternalType*> vectResult;
+
+    if (pIndex->isString())
+    {
+        types::String* pFields = pIndex->getAs<types::String>();
+        std::vector<std::wstring> wstFields;
+
+        for (int i = 0 ; i < pFields->getSize() ; i++)
+        {
+            wstFields.push_back(pFields->get(i));
+        }
+
+        vectResult = pSt->extractFields(wstFields);
+    }
+    else
+    {
+        //extraction by index
+        vectResult = pSt->extractFields(&in);
+    }
+
+    if (vectResult.size() == 0)
+    {
+        Scierror(78, _("%s: Invalid index.\n"), "getfield");
+        return types::Function::Error;
+    }
+
+    if (_iRetCount != vectResult.size())
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getfield", vectResult.size());
+        return types::Function::Error;
+    }
+
+    for (int i = 0 ; i < _iRetCount ; i++)
+    {
+        out.push_back(vectResult[i]);
     }
 
     return types::Function::OK;

@@ -477,7 +477,7 @@ public :
                 {
                     if (psValue->getSize() != 1)
                     {
-                        std::list<std::wstring> wstFields;
+                        std::vector<std::wstring> wstFields;
                         wstFields.push_back(psvRightMember->name_get().name_get());
 
                         std::vector<InternalType*> result;

@@ -11,417 +11,526 @@
 */
 #include "struct.hxx"
 #include "string.hxx"
+#include "double.hxx"
 #include "list.hxx"
+#include "int32.hxx"
 
 namespace types
 {
-    Struct::Struct()
-    {
-        m_bDisableCloneInCopyValue = false;
-        SingleStruct** pIT  = NULL;
-        int piDims[2] = {0, 0};
-		create(piDims, 2, &pIT, NULL);
+Struct::Struct()
+{
+    m_bDisableCloneInCopyValue = false;
+    SingleStruct** pIT  = NULL;
+    int piDims[2] = {0, 0};
+    create(piDims, 2, &pIT, NULL);
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
-    }
+}
 
-    Struct::Struct(int _iRows, int _iCols)
+Struct::Struct(int _iRows, int _iCols)
+{
+    m_bDisableCloneInCopyValue = false;
+    SingleStruct** pIT  = NULL;
+    SingleStruct *p = new SingleStruct();
+    int piDims[2] = {_iRows, _iCols};
+    create(piDims, 2, &pIT, NULL);
+    for (int i = 0 ; i < getSize() ; i++)
     {
-        m_bDisableCloneInCopyValue = false;
-        SingleStruct** pIT  = NULL;
+        set(i, p);
+    }
+    delete p;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
+Struct::Struct(int _iDims, int* _piDims)
+{
+    m_bDisableCloneInCopyValue = false;
+    SingleStruct** pIT  = NULL;
+    create(_piDims, _iDims, &pIT, NULL);
+    for (int i = 0 ; i < getSize() ; i++)
+    {
         SingleStruct *p = new SingleStruct();
-        int piDims[2] = {_iRows, _iCols};
-		create(piDims, 2, &pIT, NULL);
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            set(i, p);
-        }
+        set(i, p);
         delete p;
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
     }
-
-    Struct::Struct(int _iDims, int* _piDims)
-    {
-        m_bDisableCloneInCopyValue = false;
-        SingleStruct** pIT  = NULL;
-		create(_piDims, _iDims, &pIT, NULL);
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            SingleStruct *p = new SingleStruct();
-            set(i, p);
-            delete p;
-        }
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
-    }
+}
 
-    Struct::~Struct()
+Struct::~Struct()
+{
+    if (isDeletable() == true)
     {
-        if(isDeletable() == true)
+        for (int i = 0 ; i < getSize() ; i++)
         {
-            for(int i = 0 ; i < getSize() ; i++)
+            SingleStruct *pStr = m_pRealData[i];
+            if (pStr)
             {
-                SingleStruct *pStr = m_pRealData[i];
-                if(pStr)
+                pStr->DecreaseRef();
+                if (pStr->isDeletable())
                 {
-                    pStr->DecreaseRef();
-                    if(pStr->isDeletable())
-                    {
-                        //std::wcout << L"delete sub struct(" << i << L") : " << pStr << std::endl;
-                        delete pStr;
-                    }
-                    else
-                    {
-                        //std::wcout << L"!!!!!!!!!!!!!!! pas touche sub struct(" << i << L") : " << pStr->getRef() << L" @" << pStr << std::endl;
-                    }
-                }
-            }
-        }
-#ifndef NDEBUG
-        Inspector::removeItem(this);
-#endif
-    }
-
-    Struct::Struct(Struct *_oStructCopyMe)
-    {
-        m_bDisableCloneInCopyValue = false;
-        SingleStruct** pIT = NULL;
-        create(_oStructCopyMe->getDimsArray(), _oStructCopyMe->getDims(), &pIT, NULL);
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            m_pRealData[i] = NULL;
-        }
-
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            pIT[i] = _oStructCopyMe->get(i)->clone();
-        }
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
-    }
-
-    InternalType* Struct::clone()
-    {
-        return new Struct(this);
-    }
-
-    bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
-    {
-        if(_iRows < getRows() && _iCols < getCols())
-        {
-            return set(_iCols * getRows() + _iRows, _pIT);
-        }
-        return false;
-    }
-
-    bool Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
-    {
-        if(_iRows < getRows() && _iCols < getCols())
-        {
-            return set(_iCols * getRows() + _iRows, _pIT);
-        }
-        return false;
-    }
-
-    bool Struct::set(int _iIndex, SingleStruct* _pIT)
-    {
-        if(_iIndex < getSize())
-        {
-            if(m_pRealData[_iIndex] != NULL)
-            {
-                m_pRealData[_iIndex]->DecreaseRef();
-                if(m_pRealData[_iIndex]->isDeletable())
-                {
-                    delete m_pRealData[_iIndex];
+                    //std::wcout << L"delete sub struct(" << i << L") : " << pStr << std::endl;
+                    delete pStr;
                 }
                 else
                 {
-                    //std::wcout << L"Found singlestruct with more than one ref(" << m_pRealData[_iIndex]->getRef() << L")" << std::endl;
+                    //std::wcout << L"!!!!!!!!!!!!!!! pas touche sub struct(" << i << L") : " << pStr->getRef() << L" @" << pStr << std::endl;
                 }
             }
-
-            m_pRealData[_iIndex] = copyValue(_pIT);
-            m_pRealData[_iIndex]->IncreaseRef();
-            //std::wcout << L"set -> " << m_pRealData[_iIndex] << L" : " << m_pRealData[_iIndex]->getRef() << std::endl;
-            return true;
         }
-        return false;
+    }
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
+}
+
+Struct::Struct(Struct *_oStructCopyMe)
+{
+    m_bDisableCloneInCopyValue = false;
+    SingleStruct** pIT = NULL;
+    create(_oStructCopyMe->getDimsArray(), _oStructCopyMe->getDims(), &pIT, NULL);
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        m_pRealData[i] = NULL;
     }
 
-    bool Struct::set(int _iIndex, const SingleStruct* _pIT)
+    for (int i = 0 ; i < getSize() ; i++)
     {
-        if(_iIndex < getSize())
-        {
-            if(m_pRealData[_iIndex] != NULL)
-            {
-                m_pRealData[_iIndex]->DecreaseRef();
-                if(m_pRealData[_iIndex]->isDeletable())
-                {
-                    delete m_pRealData[_iIndex];
-                }
-            }
-
-            m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT)->clone();
-            return true;
-        }
-        return false;
+        pIT[i] = _oStructCopyMe->get(i)->clone();
     }
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
 
-    bool Struct::set(SingleStruct** _pIT)
+InternalType* Struct::clone()
+{
+    return new Struct(this);
+}
+
+bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
+{
+    if (_iRows < getRows() && _iCols < getCols())
     {
-        for(int i = 0 ; i < getSize() ; i++)
+        return set(_iCols * getRows() + _iRows, _pIT);
+    }
+    return false;
+}
+
+bool Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
+{
+    if (_iRows < getRows() && _iCols < getCols())
+    {
+        return set(_iCols * getRows() + _iRows, _pIT);
+    }
+    return false;
+}
+
+bool Struct::set(int _iIndex, SingleStruct* _pIT)
+{
+    if (_iIndex < getSize())
+    {
+        if (m_pRealData[_iIndex] != NULL)
         {
-            if(set(i, _pIT[i]) == false)
+            m_pRealData[_iIndex]->DecreaseRef();
+            if (m_pRealData[_iIndex]->isDeletable())
             {
-                return false;
+                delete m_pRealData[_iIndex];
+            }
+            else
+            {
+                //std::wcout << L"Found singlestruct with more than one ref(" << m_pRealData[_iIndex]->getRef() << L")" << std::endl;
             }
         }
+
+        m_pRealData[_iIndex] = copyValue(_pIT);
+        m_pRealData[_iIndex]->IncreaseRef();
+        //std::wcout << L"set -> " << m_pRealData[_iIndex] << L" : " << m_pRealData[_iIndex]->getRef() << std::endl;
         return true;
     }
+    return false;
+}
 
-    String* Struct::getFieldNames()
+bool Struct::set(int _iIndex, const SingleStruct* _pIT)
+{
+    if (_iIndex < getSize())
     {
-        if(getSize() != 0)
+        if (m_pRealData[_iIndex] != NULL)
         {
-            return get(0)->getFieldNames();
+            m_pRealData[_iIndex]->DecreaseRef();
+            if (m_pRealData[_iIndex]->isDeletable())
+            {
+                delete m_pRealData[_iIndex];
+            }
         }
-        else
-        {
-            return NULL;
-        }
+
+        m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT)->clone();
+        return true;
     }
+    return false;
+}
 
-    bool Struct::exists(const std::wstring& _sKey)
+bool Struct::set(SingleStruct** _pIT)
+{
+    for (int i = 0 ; i < getSize() ; i++)
     {
-        if(getSize() != 0)
-        {
-            return get(0)->exists(_sKey);
-        }
-        else
+        if (set(i, _pIT[i]) == false)
         {
             return false;
         }
     }
-    
-    bool Struct::operator==(const InternalType& it)
+    return true;
+}
+
+String* Struct::getFieldNames()
+{
+    if (getSize() != 0)
     {
-        if(const_cast<InternalType &>(it).isStruct())
+        return get(0)->getFieldNames();
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
+bool Struct::exists(const std::wstring& _sKey)
+{
+    if (getSize() != 0)
+    {
+        return get(0)->exists(_sKey);
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Struct::operator==(const InternalType& it)
+{
+    if (const_cast<InternalType &>(it).isStruct())
+    {
+        return false;
+    }
+
+    Struct* pStr = const_cast<InternalType &>(it).getAs<Struct>();
+
+    for (int i = 0 ; i < getDims() ; i++)
+    {
+        if (pStr->getDimsArray()[i] != getDimsArray()[i])
         {
             return false;
         }
+    }
 
-        Struct* pStr = const_cast<InternalType &>(it).getAs<Struct>();
-
-        for(int i = 0 ; i < getDims() ; i++)
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        if (get(i) != pStr->get(i))
         {
-            if(pStr->getDimsArray()[i] != getDimsArray()[i])
-            {
-                return false;
-            }
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Struct::operator!=(const InternalType& it)
+{
+    return !(*this == it);
+}
+
+SingleStruct* Struct::getNullValue()
+{
+    return new SingleStruct();
+}
+
+Struct* Struct::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+{
+    Struct* pStr = new Struct(_iDims, _piDims);
+    pStr->setCloneInCopyValue(m_bDisableCloneInCopyValue);
+    return pStr;
+}
+
+SingleStruct* Struct::copyValue(SingleStruct* _pData)
+{
+    SingleStruct* pStr = NULL;
+    if (m_bDisableCloneInCopyValue)
+    {
+        pStr = _pData;
+        //pStr->IncreaseRef();
+        //std::wcout << L"copyValueWithoutClone -> " << pStr << L" : " << pStr->getRef() << std::endl;
+    }
+    else
+    {
+        pStr = _pData->clone();
+    }
+
+    return pStr;
+}
+
+void Struct::deleteAll()
+{
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        m_pRealData[i]->DecreaseRef();
+        if (m_pRealData[i]->isDeletable())
+        {
+            delete m_pRealData[i];
+        }
+    }
+    delete[] m_pRealData;
+    m_pRealData = NULL;
+}
+
+void Struct::deleteImg()
+{
+    return;
+}
+
+SingleStruct** Struct::allocData(int _iSize)
+{
+    SingleStruct** pData = new SingleStruct*[_iSize];
+    for (int i = 0 ; i < _iSize ; i++)
+    {
+        pData[i] = NULL;
+    }
+    return pData;
+}
+
+bool Struct::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+{
+    return true;
+}
+
+bool Struct::addField(const std::wstring& _sKey)
+{
+    if (getSize() == 0)
+    {
+        //change dimension to 1x1 and add field
+        resize(1, 1);
+    }
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        /*
+                    if(get(i)->isRef(1))
+                    {//assign more than once
+                        //clone it before add field
+                        set(i, get(i)->clone());
+                    }
+        */
+        get(i)->addField(_sKey);
+    }
+    return true;
+}
+
+bool Struct::toString(std::wostringstream& ostr)
+{
+    if (getSize() == 0)
+    {
+        ostr << L"0x0 struct array with no field.";
+    }
+    else if (getSize() == 1)
+    {
+        SingleStruct* pSS =  get(0);
+        String* pwstFields =  pSS->getFieldNames();
+        if (pwstFields->getSize() == 0)
+        {
+            ostr << L"1x1 struct array with no field.";
         }
 
-        for(int i = 0 ; i < getSize() ; i++)
+        for (int i = 0 ; i < pwstFields->getSize() ; i++)
         {
-            if(get(i) != pStr->get(i))
-            {
-                return false;
-            }
+            std::wstring wstField(pwstFields->get(i));
+            InternalType* pIT = pSS->get(wstField);
+
+            //                ostr << L"  " << wstField << ": ";
+            ostr << L"  " << wstField << L": ";
+            ostr << pIT->toStringInLine();
+            ostr << std::endl;
         }
-        return true;
+        delete pwstFields;
     }
-
-    bool Struct::operator!=(const InternalType& it)
+    else
     {
-        return !(*this == it);
-    }
-
-    SingleStruct* Struct::getNullValue()
-    {
-        return new SingleStruct();
-    }
-
-    Struct* Struct::createEmpty(int _iDims, int* _piDims, bool _bComplex)
-    {
-        Struct* pStr = new Struct(_iDims, _piDims);
-        pStr->setCloneInCopyValue(m_bDisableCloneInCopyValue);
-        return pStr;
-    }
-
-    SingleStruct* Struct::copyValue(SingleStruct* _pData)
-    {
-        SingleStruct* pStr = NULL;
-        if(m_bDisableCloneInCopyValue)
+        ostr << L"  ";
+        for (int i = 0 ; i < m_iDims ; i++)
         {
-            pStr = _pData;
-            //pStr->IncreaseRef();
-            //std::wcout << L"copyValueWithoutClone -> " << pStr << L" : " << pStr->getRef() << std::endl;
+            if (i > 0)
+            {
+                ostr << L"x";
+            }
+            ostr << m_piDims[i];
+        }
+        ostr << L" struct array with ";
+
+        String* pwstFields = getFieldNames();
+        ostr <<  L"fields:" << std::endl;
+        for (int i = 0 ; i < pwstFields->getSize() ; i++)
+        {
+            ostr << L"    " << pwstFields->get(i) << std::endl;
+        }
+        delete pwstFields;
+    }
+
+    return true;
+}
+
+std::vector<InternalType*> Struct::extractFields(std::vector<std::wstring> _wstFields)
+{
+    std::vector<InternalType*> ResultList;
+
+    for (int i = 0 ; i < _wstFields.size() ; i++)
+    {
+        if (_wstFields[i] == L"dims")
+        {
+            Int32* pDims = new Int32(1, getDims());
+            for (int j = 0 ; j < getDims() ; j++)
+            {
+                pDims->set(j, getDimsArray()[j]);
+            }
+
+            ResultList.push_back(pDims);
         }
         else
         {
-            pStr = _pData->clone();
-        }
-        
-        return pStr;
-    }
-
-    void Struct::deleteAll()
-    {
-		for(int i = 0 ; i < getSize() ; i++)
-		{
-            m_pRealData[i]->DecreaseRef();
-            if(m_pRealData[i]->isDeletable())
+            if (getSize() == 1)
             {
-                delete m_pRealData[i];
+                ResultList.push_back(get(0)->get(_wstFields[i])->clone());
             }
-		}
-		delete[] m_pRealData;
-        m_pRealData = NULL;
-    }
-
-    void Struct::deleteImg()
-    {
-        return;
-    }
-
-    SingleStruct** Struct::allocData(int _iSize)
-    {
-        SingleStruct** pData = new SingleStruct*[_iSize];
-        for(int i = 0 ; i < _iSize ; i++)
-        {
-            pData[i] = NULL;
-        }
-        return pData;
-   }
-
-    bool Struct::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
-    {
-        return true;
-    }
-
-    bool Struct::addField(const std::wstring& _sKey)
-    {
-        if(getSize() == 0)
-        {
-            //change dimension to 1x1 and add field
-            resize(1,1);
-        }
-
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-/*
-            if(get(i)->isRef(1))
-            {//assign more than once
-                //clone it before add field
-                set(i, get(i)->clone());
-            }
-*/
-            get(i)->addField(_sKey);
-        }
-        return true;
-    }
-
-    bool Struct::toString(std::wostringstream& ostr)
-    {
-        if(getSize() == 0)
-        {
-            ostr << L"0x0 struct array with no field.";
-        }
-        else if(getSize() == 1)
-        {
-            SingleStruct* pSS =  get(0);
-            String* pwstFields =  pSS->getFieldNames();
-            if(pwstFields->getSize() == 0)
+            else
             {
-                ostr << L"1x1 struct array with no field.";
-            }
-            
-            for(int i = 0 ; i < pwstFields->getSize() ; i++)
-            {
-                std::wstring wstField(pwstFields->get(i));
-                InternalType* pIT = pSS->get(wstField);
-
-//                ostr << L"  " << wstField << ": ";
-                ostr << L"  " << wstField << L": ";
-                ostr << pIT->toStringInLine();
-                ostr << std::endl;
-            }
-            delete pwstFields;
-        }
-        else
-        {
-            ostr << L"  ";
-            for(int i = 0 ; i < m_iDims ; i++)
-            {
-                if(i > 0)
+                List* pL = new List();
+                for (int j = 0 ; j < getSize() ; j++)
                 {
-                    ostr << L"x";
+                    pL->append(get(j)->get(_wstFields[i])->clone());
                 }
-                ostr << m_piDims[i];
-            }
-            ostr << L" struct array with ";
 
-            String* pwstFields = getFieldNames();
-            ostr <<  L"fields:" << std::endl;
-            for(int i = 0 ; i < pwstFields->getSize() ; i++)
-            {
-                ostr << L"    " << pwstFields->get(i) << std::endl;
+                ResultList.push_back(pL);
             }
-            delete pwstFields;
         }
-
-        return true;
     }
+    return ResultList;
+}
 
-    std::vector<InternalType*> Struct::extractFields(std::list<std::wstring> _wstFields)
+std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
+{
+    std::vector<InternalType*> ResultList;
+
+    int iDims           = (int)_pArgs->size();
+    typed_list pArg;
+
+    int* piMaxDim       = new int[iDims];
+    int* piCountDim     = new int[iDims];
+
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
     {
-        std::vector<InternalType*> ResultList;
-        for(int i = 0 ; i < _wstFields.size() ; i++)
-        {
-            ResultList.push_back(new List());
-        }
-
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            std::vector<InternalType*> fields = get(i)->extract(_wstFields);
-
-            for(int j = 0 ; j < fields.size() ; j++)
-            {
-                ResultList[j]->getAs<List>()->append(fields[j]);
-            }
-        }
+        ResultList.push_back(createEmptyDouble());
         return ResultList;
     }
 
-    InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
+    Double* pIndex = pArg[0]->getAs<Double>();
+
+    for (int i = 0 ; i < iSeqCount ; i++)
     {
-        //std::wcout << L"insertWithoutClone start" << std::endl;
-        m_bDisableCloneInCopyValue = true;
-        InternalType* pIT = insert(_pArgs, _pSource);
-        _pSource->IncreaseRef();
-        //std::wcout << L"insertWithoutClone -> " << _pSource << L" : " << _pSource->getRef() << std::endl;
-        m_bDisableCloneInCopyValue = false;
-        //std::wcout << L"insertWithoutClone end" << std::endl;
-        return pIT;
+        int iIndex = (int)pIndex->get(i);
+
+        if (iIndex == 1)
+        {
+            //struct fields name
+            String* pS = getFieldNames();
+
+            String* pFields = new String(1, pS->getSize() + 2);
+
+            pFields->set(0, L"st");
+            pFields->set(1, L"dims");
+
+            for (int j = 0 ; j < pS->getSize() ; j++)
+            {
+                pFields->set(2 + j, pS->get(j));
+            }
+
+            delete pS;
+            ResultList.push_back(pFields);
+            return ResultList;
+        }
+
+        if (iIndex == 2)
+        {
+            //struct dims
+            Int32* pDims = new Int32(1, getDims());
+            for (int j = 0 ; j < getDims() ; j++)
+            {
+                pDims->set(j, getDimsArray()[j]);
+            }
+
+            ResultList.push_back(pDims);
+            return ResultList;
+        }
+
+        if (getSize() == 0)
+        {
+            return ResultList;
+        }
+
+        if (iIndex > get(0)->getData().size() + 2)
+        {
+            return ResultList;
+        }
+
+
+        if (getSize() == 1)
+        {
+            //return elements
+            ResultList.push_back(get(0)->getData()[iIndex - 3]->clone());
+        }
+        else
+        {
+            //return each elements for sub structs in a list
+            List* pL = new List();
+
+            for (int j = 0 ; j < getSize() ; j++)
+            {
+                //-2 for fieldlist and dims, -1 for indexed at 0
+                pL->append(get(j)->getData()[iIndex - 3]->clone());
+            }
+
+            ResultList.push_back(pL);
+        }
     }
 
-    InternalType* Struct::extractWithoutClone(typed_list* _pArgs)
-    {
-        //std::wcout << L"extractWithoutClone start" << std::endl;
-        m_bDisableCloneInCopyValue = true;
-        InternalType* pIT = extract(_pArgs);
-        m_bDisableCloneInCopyValue = false;
-        //std::wcout << L"extractWithoutClone end" << std::endl;
-        return pIT;
-    }
+    return ResultList;
+}
 
-    void Struct::setCloneInCopyValue(bool _val)
-    {
-        m_bDisableCloneInCopyValue = _val;
-    }
+InternalType* Struct::insertWithoutClone(typed_list* _pArgs, InternalType* _pSource)
+{
+    //std::wcout << L"insertWithoutClone start" << std::endl;
+    m_bDisableCloneInCopyValue = true;
+    InternalType* pIT = insert(_pArgs, _pSource);
+    _pSource->IncreaseRef();
+    //std::wcout << L"insertWithoutClone -> " << _pSource << L" : " << _pSource->getRef() << std::endl;
+    m_bDisableCloneInCopyValue = false;
+    //std::wcout << L"insertWithoutClone end" << std::endl;
+    return pIT;
+}
+
+InternalType* Struct::extractWithoutClone(typed_list* _pArgs)
+{
+    //std::wcout << L"extractWithoutClone start" << std::endl;
+    m_bDisableCloneInCopyValue = true;
+    InternalType* pIT = extract(_pArgs);
+    m_bDisableCloneInCopyValue = false;
+    //std::wcout << L"extractWithoutClone end" << std::endl;
+    return pIT;
+}
+
+void Struct::setCloneInCopyValue(bool _val)
+{
+    m_bDisableCloneInCopyValue = _val;
+}
 
 }
