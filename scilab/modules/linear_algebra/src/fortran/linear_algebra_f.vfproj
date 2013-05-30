@@ -106,6 +106,7 @@ lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\complexify.f"/>
 		<File RelativePath=".\DGELSY1.f"/>
+		<File RelativePath=".\ZGELSY1.f"/>
 		<File RelativePath=".\doldqr.f"/>
 		<File RelativePath=".\intddet.f"/>
 		<File RelativePath=".\intdgebal.f"/>
