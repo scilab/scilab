@@ -23,7 +23,7 @@ Source: bin\{#SPARSE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SPARSE}\license.txt; DestDir: {app}\modules\{#SPARSE}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SPARSE}\sci_gateway\{#SPARSE}_gateway.xml; DestDir: {app}\modules\{#SPARSE}\sci_gateway; Components: {#COMPN_SCILAB}
+;Source: modules\{#SPARSE}\sci_gateway\{#SPARSE}_gateway.xml; DestDir: {app}\modules\{#SPARSE}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SPARSE}\etc\{#SPARSE}.quit; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SPARSE}\etc\{#SPARSE}.start; DestDir: {app}\modules\{#SPARSE}\etc; Components: {#COMPN_SCILAB}
