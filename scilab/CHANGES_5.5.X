@@ -306,6 +306,9 @@ Bug fixes
 
 * Bug #12614 fixed - Helpbrowser was not launched in EDT.
 
+* Bug #12615 fixed - Graphics seemed to be dead after a call to plot/bar/barh with
+                     a bad LineSpec argument.
+
 * Bug #12629 fixed - Last example of csim help page defined a function called
                      input() (overwriting the Scilab one).
 
