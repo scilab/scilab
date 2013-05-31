@@ -39,24 +39,19 @@ extern "C"
 #include "PATH_MAX.h"
 }
 
-
-using namespace types;
-using namespace ast;
-using namespace std;
-
 bool checkPrompt(int _iMode, int _iCheck);
-void printLine(char* _stPrompt, char* _stLine, bool _bLF);
-void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, char* _pstPreviousBuffer);
-std::string getExpression(char* _pstFile, Exp* _pExp);
+void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
+std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string _stPreviousBuffer);
+std::string getExpression(const std::string& _stFile, Exp* _pExp);
 
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int promptMode      = 0;//default value at startup, overthise 3 or verbose ";"
     bool bPromptMode    = false;
     int iErr            = 0;
-    bool bErrCatch	    = false;
-    Exp* pExp		    = NULL;
+    bool bErrCatch      = false;
+    Exp* pExp           = NULL;
     int iID             = 0;
     Parser parser;
 
@@ -184,16 +179,18 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     std::list<Exp *>::iterator j;
     std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
 
-    char stPrompt[64];
+    char pstPrompt[64];
     //get prompt
-    GetCurrentPrompt(stPrompt);
+    GetCurrentPrompt(pstPrompt);
+    std::string stPrompt(pstPrompt);
     //    MessageBoxA(NULL, stPrompt, "", 0);
 
     wchar_t* pwstFile =  expandPathVariableW(in[0]->getAs<types::String>()->get(0));
     char* pstFile = wide_string_to_UTF8(pwstFile);
+    std::string stFile(pstFile);
     std::ifstream file(pstFile);
 
-    char str[1024];
+    std::string str;
     int iCurrentLine = -1; //no data in str
     int iCurrentCol = 0; //no data in str
 
@@ -213,7 +210,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 int iLastLine = (*j)->location_get().last_line;
                 do
                 {
-                    printExp(&file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
+                    str = printExp(file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
                     iLastLine = (*k)->location_get().last_line;
                     k++;
                 }
@@ -392,7 +389,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             {
                 file.close();
                 //print failed command
-                scilabError(getExpression(pstFile, *j).c_str());
+                scilabError(getExpression(stFile, *j).c_str());
                 scilabErrorW(L"\n");
 
                 //write error
@@ -431,19 +428,18 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
     return Function::OK;
 }
 
-std::string getExpression(char* _pstFile, Exp* _pExp)
+std::string getExpression(const std::string& _stFile, Exp* _pExp)
 {
     std::string out;
-    char strLastLine[1024];
-    char pstBuffer[1024];
+    std::string stBuffer;
     int iLine = 0;
     Location loc = _pExp->location_get();
-    std::ifstream file(_pstFile);
+    std::ifstream file(_stFile.c_str());
 
     //bypass previous lines
     for (int i = 0 ; i < loc.first_line; i++)
     {
-        file.getline(pstBuffer, 1024);
+        std::getline(file, stBuffer);
     }
 
     if (loc.first_line == loc.last_line)
@@ -451,33 +447,28 @@ std::string getExpression(char* _pstFile, Exp* _pExp)
         int iStart = loc.first_column - 1;
         int iEnd = loc.last_column - 1;
         int iLen = iEnd - iStart;
-        strncpy(strLastLine, pstBuffer + iStart, iLen);
-        strLastLine[iLen] = 0;
-        out += strLastLine;
+        out += string(stBuffer.c_str() + iStart, iLen);
     }
     else
     {
         //
 
         //first line, entire or not
-        strcpy(strLastLine, pstBuffer + loc.first_column - 1);
-        out += strLastLine;
+        out += string(stBuffer.c_str() + loc.first_column - 1);
         out += "\n";
 
         //print other full lines
         for (int i = loc.first_line; i < (loc.last_line - 1) ; i++)
         {
-            file.getline(pstBuffer, 1024);
-            out += pstBuffer;
+            std::getline(file, stBuffer);
+            out += stBuffer;
             out += "\n";
         }
 
 
         //last line, entire or not
-        file.getline(pstBuffer, 1024);
-        strncpy(strLastLine, pstBuffer, loc.last_column - 1);
-        strLastLine[loc.last_column - 1] = 0;
-        out += strLastLine;
+        getline(file, stBuffer);
+        out += string(stBuffer.c_str(), loc.last_column - 1);
         out += "\n";
     }
     return out;
@@ -488,9 +479,8 @@ bool checkPrompt(int _iMode, int _iCheck)
     return ((_iMode & _iCheck) == _iCheck);
 }
 
-void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, char* _pstPreviousBuffer)
+std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string _stPreviousBuffer)
 {
-    char strLastLine[1024];
     //case 1, exp is on 1 line and take the entire line
 
     //case 2, exp is multiline
@@ -513,7 +503,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         {
             //reset line counter and restart reading at the start of the file.
             *_piLine = -1;
-            _pFile->seekg( 0, ios_base::beg );
+            _File.seekg( 0, ios_base::beg );
         }
 
         //bypass previous lines
@@ -526,7 +516,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
                 //empty line but not sequential lines
                 printLine("", "", true);
             }
-            _pFile->getline(_pstPreviousBuffer, 1024);
+            std::getline(_File, _stPreviousBuffer);
         }
     }
 
@@ -536,12 +526,10 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
         int iStart = loc.first_column - 1;
         int iEnd = loc.last_column - 1;
         int iLen = iEnd - iStart;
-        strncpy(strLastLine, _pstPreviousBuffer + iStart, iLen);
-        strLastLine[iLen] = 0;
-        int iExpLen = (int)strlen(strLastLine);
-        int iLineLen = (int)strlen(_pstPreviousBuffer);
+        std::string strLastLine(_stPreviousBuffer.c_str() + iStart, iLen);
+        int iExpLen = iLen;
+        int iLineLen = (int)_stPreviousBuffer.size();
         //printLine(_pstPrompt, strLastLine, true, false);
-
 
         if (iStart == 0 && iExpLen == iLineLen)
         {
@@ -551,7 +539,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
                 //blank char at the end of previous line
                 printLine("", "", true);
             }
-            printLine(_pstPrompt, strLastLine, true);
+            printLine(_stPrompt, strLastLine, true);
             *_piCol = 0;
         }
         else
@@ -564,23 +552,23 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
                     //blank char at the end of previous line
                     printLine("", "", true);
                 }
-                printLine(_pstPrompt, strLastLine, false);
+                printLine(_stPrompt, strLastLine, false);
                 *_piCol = loc.last_column;
             }
             else
             {
                 if (*_piCol == 0)
                 {
-                    printLine(_pstPrompt, "", false);
+                    printLine(_stPrompt, "", false);
                     (*_piCol)++;
                 }
 
                 if (*_piCol < loc.first_column)
                 {
                     //pickup separator between expressionsfrom file and add to output
-                    char pstTemp[1024] = {0};
-                    strncpy(pstTemp, _pstPreviousBuffer +  (*_piCol - 1), loc.first_column - *_piCol);
-                    printLine("", pstTemp, false);
+                    int iSize = loc.first_column - *_piCol;
+                    std::string stTemp(_stPreviousBuffer.c_str() +  (*_piCol - 1), iSize);
+                    printLine("", stTemp, false);
                     *_piCol = loc.first_column;
                 }
 
@@ -608,69 +596,67 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
                 //blank char at the end of previous line
                 printLine("", "", true);
             }
-            printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), false);
+            printLine(_stPrompt, _stPreviousBuffer.c_str() + (loc.first_column - 1), false);
         }
         else
         {
             if (*_piCol < loc.first_column)
             {
                 //pickup separator between expressionsfrom file and add to output
-                char pstTemp[1024] = {0};
-                strncpy(pstTemp, _pstPreviousBuffer +  (*_piCol - 1), loc.first_column - *_piCol);
-                printLine("", pstTemp, false);
+                int iSize = loc.first_column - *_piCol;
+                std::string stTemp(_stPreviousBuffer.c_str() +  (*_piCol - 1), iSize);
+                printLine("", stTemp, false);
                 *_piCol = loc.first_column;
             }
 
-            printLine("", _pstPreviousBuffer + (loc.first_column - 1), false);
+            printLine("", _stPreviousBuffer.c_str() + (loc.first_column - 1), false);
         }
-
 
         //print other full lines
         for (int i = loc.first_line; i < (loc.last_line - 1) ; i++)
         {
             (*_piLine)++;
-            _pFile->getline(_pstPreviousBuffer, 1024);
-            printLine(_pstPrompt, _pstPreviousBuffer, false);
+            std::getline(_File, _stPreviousBuffer);
+            printLine(_stPrompt, _stPreviousBuffer.c_str(), false);
         }
 
         //last line
-        _pFile->getline(_pstPreviousBuffer, 1024);
+        std::getline(_File, _stPreviousBuffer);
         (*_piLine)++;
 
-        strncpy(strLastLine, _pstPreviousBuffer, loc.last_column - 1);
-        strLastLine[loc.last_column - 1] = 0;
-        int iLineLen = (int)strlen(_pstPreviousBuffer);
-        if (iLineLen == (loc.last_column - 1))
+        int iSize = loc.last_column - 1;
+        std::string stLastLine(_stPreviousBuffer.c_str(), iSize);
+        int iLineLen = (int)_stPreviousBuffer.size();
+        if (iLineLen == iSize)
         {
-            printLine(_pstPrompt, strLastLine, true);
+            printLine(_stPrompt, stLastLine, true);
             *_piCol = 0;
         }
         else
         {
-            printLine(_pstPrompt, strLastLine, false);
+            printLine(_stPrompt, stLastLine, false);
             *_piCol = loc.last_column;
         }
     }
+
+    return _stPreviousBuffer;
 }
 
-void printLine(char* _stPrompt, char* _stLine, bool _bLF)
+void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF)
 {
-    char* sz = (char*)MALLOC(sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 3));
-    memset(sz, 0x00, sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 3));
+    std::string st;
 
-    if (strlen(_stPrompt) != 0)
+    if (_stPrompt.size() != 0)
     {
-        strcat(sz, "\n");
-        strcat(sz, _stPrompt);
+        st = "\n" + _stPrompt;
     }
 
-    strcat(sz, _stLine);
+    st += _stLine;
     if (_bLF)
     {
-        strcat(sz, "\n");
+        st += "\n";
     }
 
-    scilabWrite(sz);
-    FREE(sz);
+    scilabWrite(st.c_str());
 }
 /*--------------------------------------------------------------------------*/
