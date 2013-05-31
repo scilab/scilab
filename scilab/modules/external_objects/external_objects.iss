@@ -17,8 +17,8 @@
 ;
 #define EXTERNAL_OBJECTS "external_objects"
 ;
-Source: bin\external_objects.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\external_objects.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#EXTERNAL_OBJECTS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#EXTERNAL_OBJECTS}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#EXTERNAL_OBJECTS}\sci_gateway\{#EXTERNAL_OBJECTS}_gateway.xml; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
