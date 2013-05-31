@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>fullpath</term>
                 <listitem>
-                    <para> a character string, the given file path.</para>
+                    <para> a string or a string matrix, the given file path.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -43,7 +43,7 @@
                 <term>path</term>
                 <listitem>
                     <para>
-                        a character string, the path of the directory pointed to by <varname>fullpath</varname>.
+                        a string or a string matrix, the path of the directory pointed to by <varname>fullpath</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,7 +51,7 @@
                 <term>fname</term>
                 <listitem>
                     <para>
-                        a character string, the filename part is any or <literal>''</literal>.
+                        a string or a string matrix, the filename part is any or <literal>''</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,7 +59,7 @@
                 <term>extension</term>
                 <listitem>
                     <para>
-                        a character string, the extension part is any or <literal>''</literal>.
+                        a string or a string matrix, the extension part is any or <literal>''</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,7 +67,7 @@
                 <term>value</term>
                 <listitem>
                     <para>
-                        a character string, depending on <varname>sel</varname> value.
+                        a string or a string matrix, depending on <varname>sel</varname> value.
                     </para>
                 </listitem>
             </varlistentry>
@@ -87,6 +87,8 @@
         <programlisting role="example"><![CDATA[ 
 [path,fname,extension]=fileparts('SCI/etc/scilab.start')
 fileparts('SCI/etc/scilab.start','extension')
+[path,fname,extension]=fileparts(['SCI/etc/scilab.start', 'SCI/etc/scilab.start'])
+fileparts(['SCI/etc/scilab.start', 'SCI/etc/scilab.start'],'extension')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -254,6 +254,8 @@ Bug fixes
 
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
 
+* Bug #8840 fixed - fileparts did not manage matrix of strings.
+
 * Bug #8856 fixed - Non regression test added for [k,l,m,...]=find(a==5).
                     Non regression test of bug #476 updated.
 
