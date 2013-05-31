@@ -292,6 +292,8 @@ Bug fixes
 
 * Bug #12556 fixed - A fatal error occurred when calling set() with wrong instructions.
 
+* Bug #12557 fixed - Valid function names were not specified in help pages of function and functions.
+
 * Bug #12564 fixed - Javasci compile & run help page is not clear about needed packages.
 
 * Bug #12581 fixed - isfield could not support mlist or tlist.
