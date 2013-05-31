@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -485,7 +485,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\sci_gateway\sparse_gateway.xml" />
     <None Include="Core_f_Import.def" />
     <None Include="Elementary_functions_f_Import.def" />
     <None Include="Elementary_functions_Import.def" />

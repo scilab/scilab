@@ -246,7 +246,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <None Include="sparse_f_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sparse.iss" />
-    <None Include="..\..\sci_gateway\sparse_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sparse.rc" />
