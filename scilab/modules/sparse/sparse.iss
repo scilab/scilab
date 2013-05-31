@@ -20,6 +20,7 @@
 ;
 Source: bin\{#SPARSE}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#SPARSE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#SPARSE}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SPARSE}\license.txt; DestDir: {app}\modules\{#SPARSE}; Components: {#COMPN_SCILAB}
 ;
