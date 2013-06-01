@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5attr" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5attr</refname>
+        
+        <refpurpose>属性を作成する</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5attr(obj, location, name, data [, targetType])
+            
+            h5attr(filename, location, name, data [, targetType])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>location</term>
+                
+                <listitem>
+                    
+                    <para>オブジェクト内またはファイル内の位置を指定する文字列
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>name</term>
+                
+                <listitem>
+                    
+                    <para>新規データセットへのパスを指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>data</term>
+                
+                <listitem>
+                    
+                    <para>Scilabデータ</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>targetType</term>
+                
+                <listitem>
+                    
+                    <para>ターゲットの型を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>ファイル名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            引数としてScilabデータに基づき新規に属性を作成します.
+            
+        </para>
+        
+        <para>
+            
+            ターゲットのHDF5型は,
+            
+            <ulink url="http://www.hdfgroup.org/HDF5/doc/RM/PredefDTypes.html">HDF5マニュアル</ulink>で利用可能なリストの中から選択できます.
+            
+            このHDF5型の例は"H5T_MIPS_U32" または "H5T_STD_B64BE"ですが, 
+            
+            "MIPS_U32" または "STD_B64BE" のような短縮形も使用可能です.
+            
+        </para>
+        
+        <para>属性をグループ内またはデータセット内に配置することが可能です.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+x = 1:5 + %pi;
+save(TMPDIR + "/x.sod", "x"); // SODファイルはHDF5ファイルです
+
+// ファイルをオープン
+a = h5open(TMPDIR + "/x.sod");
+
+// ルート要素に属性を追加
+h5attr(a, ".", "My Attribute", int8(123));
+
+// 確認
+h5dump(a)
+
+// ...または
+a.root("My Attribute").data
+
+// データセットに"x"という名前の属性を追加
+h5attr(a, "/x", "My Dataset Attribute", int16(321));
+
+// 確認
+h5dump(a.root.x)
+
+// 完了し,リソースを全て解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5group">h5group</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5attr">h5dataset</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

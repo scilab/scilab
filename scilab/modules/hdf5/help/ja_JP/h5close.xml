@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5close" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5close</refname>
+        
+        <refpurpose>HDF5オブジェクトを閉じる</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5close([obj_1 [, obj_2 [, ...]]])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj_i</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            オブジェクトとその全ての派生ノードを閉じます.
+            
+            これにより,このオブジェクトに関連する全メモリを解放できます.
+            
+        </para>
+        
+        <para>
+            
+            ファイルに関連する全てのバッファはファイルを閉じる前にフラッシュされます.
+            
+        </para>
+        
+        <para>引数を指定しない場合, オープンされている全オブジェクトが閉じられます
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+x = ["Hello" "World"; "Salut" "Monde"];
+save(TMPDIR + "/x.sod", "x"); // SODファイルはHDF5ファイルです
+
+// 作成済みのファイルをオープン
+a = h5open(TMPDIR + "/x.sod");
+
+// ファイルの内容をダンプ
+h5dump(a);
+
+// "x"という名前のデータセットをオープン
+ds = a.root.x
+
+// 属性'SCILAB_Class'を取得
+attr = ds.SCILAB_Class
+
+// 値を読み込む
+attr.data
+
+// dsからデータを取得
+d = ds.data
+
+// データセットを終了
+h5close(ds)
+
+// attrはdsからオープンされていたため, attr はもう利用可能ではありません
+// ... よってエラーが発生します
+attr
+
+// 処理を完了し, リソースを全て解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5open">h5open</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5group">h5group</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5dataset">h5dataset</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5attr">h5attr</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
