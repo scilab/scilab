@@ -225,6 +225,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             std::list<Exp *>::iterator p = j;
             for (; p != k; p++)
             {
+                bool bImplicitCall = false;
                 j = p;
                 //excecute script
                 //force -1 to prevent recursive call to exec to write in console
@@ -244,7 +245,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                     try
                     {
+                        //in this case of calling, we can return only one values
                         ExecVisitor execCall;
+                        execCall.expected_setSize(1);
                         Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
 
                         if (Ret == Callable::OK)
@@ -257,6 +260,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                             {
                                 out[0]->DecreaseRef();
                                 execMe.result_set(out[0]);
+                                bImplicitCall = true;
                             }
                             else
                             {
@@ -314,19 +318,19 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                         }
                     }
                 }
-                //update ans variable.
-                if (execMe.result_get() != NULL && execMe.result_get()->isDeletable())
+
+                //update ans variable
+                SimpleVar* pVar = dynamic_cast<SimpleVar*>(*j);
+                //don't output Simplevar and empty result
+                if (execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
                 {
                     InternalType* pITAns = execMe.result_get();
                     symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
                     if ( (*j)->is_verbose() && bErrCatch == false)
                     {
-                        std::wostringstream ostr;
-                        ostr << L" ans  =" << std::endl;
-                        ostr << std::endl;
-                        pITAns->toString(ostr);
-                        ostr << std::endl;
-                        scilabWriteW(ostr.str().c_str());
+                        //TODO manage multiple returns
+                        scilabWriteW(L" ans  =\n\n");
+                        execMe.VariableToString(pITAns);
                     }
                 }
             }
