@@ -258,6 +258,8 @@ Bug fixes
 
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
 
+* Bug #12034 fixed - max function did not manage empty matrices.
+
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
 
 * Bug #12070 fixed - Removing a module can now be done in on-line mode even if
