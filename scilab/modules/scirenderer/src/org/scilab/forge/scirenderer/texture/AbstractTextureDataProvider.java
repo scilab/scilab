@@ -22,6 +22,18 @@ import org.scilab.forge.scirenderer.data.AbstractDataProvider;
  */
 public abstract class AbstractTextureDataProvider extends AbstractDataProvider<Texture> implements TextureDataProvider {
 
+    protected ImageType imageType;
+
+    @Override
+    public ImageType getImageType() {
+        return imageType;
+    }
+
+    @Override
+    public boolean isRowMajorOrder() {
+        return true;
+    }
+
     @Override
     public BufferedImage getImage() {
         final ByteBuffer data = getData();

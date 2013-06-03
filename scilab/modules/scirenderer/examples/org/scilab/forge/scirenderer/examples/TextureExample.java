@@ -276,6 +276,7 @@ public final class TextureExample extends ExampleFrame {
          * Default constructor.
          */
         public Simple1DTextureDataProvider() {
+	    imageType = ImageType.RGBA_BYTE;
             this.buffer = ByteBuffer.allocate(4 * size);  // 4 for RGBA.
             buffer.rewind();
             new SimpleThread().start();
@@ -371,6 +372,7 @@ public final class TextureExample extends ExampleFrame {
          * Default constructor.
          */
         public Simple2DTextureDataProvider() {
+	    imageType = ImageType.RGBA_BYTE;
             this.buffer = ByteBuffer.allocate(4 * size * size);  // 4 for RGBA.
             buffer.rewind();
             new SimpleThread().start();
