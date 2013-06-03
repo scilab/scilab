@@ -174,6 +174,23 @@ void visitprivate(const OpExp &e)
         {
             // We did not have any algorithm matching, so we try to call OverLoad
             pResult = callOverload(e.oper_get(), pITL, pITR);
+            result_set(pResult);
+
+            // protect output to manage case where output is an input.
+            pResult->IncreaseRef();
+            //clear left and/or right operands
+            if (pITL->isDeletable())
+            {
+                delete pITL;
+            }
+
+            if (pITR->isDeletable())
+            {
+                delete pITR;
+            }
+
+            pResult->DecreaseRef();
+            return;
         }
 
         result_set(pResult);
