@@ -328,4 +328,7 @@ Bug fixes
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
                      already existing in SCI/contrib/archives in offline mode.
 
+* Bug #12637 fixed - Some signal processing functions were not in the correct
+                     section of the help pages.
+
 * Bug #12639 fixed - justify([], position) returned an error instead of [].
