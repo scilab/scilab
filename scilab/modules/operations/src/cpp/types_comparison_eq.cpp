@@ -19,10 +19,12 @@
 #include "cell.hxx"
 #include "sparse.hxx"
 #include "int.hxx"
+#include "graphichandle.hxx"
 
 using namespace types;
 
 static void clearAlloc(bool _bAllocL, InternalType* _pIL, bool _bAllocR, InternalType* _pIR);
+template <class T> static int EqualToArrayAndArray(T* _pL, T* _pR, GenericType** _pOut);
 
 InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
@@ -550,6 +552,24 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
     }
+
+    /*
+    ** HANDLE == HANDLE
+    */
+
+    if (pIL->isHandle() && pIR->isHandle())
+    {
+        int iResult = EqualToArrayAndArray(pIL->getAs<GraphicHandle>(), pIR->getAs<GraphicHandle>(), (GenericType**)&pResult);
+        if (iResult)
+        {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
+        return pResult;
+    }
+
     /*
     ** Default case : Return NULL will Call Overloading.
     */
@@ -820,7 +840,7 @@ int EqualToBoolAndSparseBool(Bool* _pB1, SparseBool* _pSB2, GenericType** _pOut)
 }
 
 template <class T>
-static int EqualToIntAndInt(T* _pL, T* _pR, GenericType** _pOut)
+static int EqualToArrayAndArray(T* _pL, T* _pR, GenericType** _pOut)
 {
     if (_pL->isScalar())
     {
@@ -886,35 +906,35 @@ int EqualToIntAndInt(InternalType* _pL, InternalType*  _pR, GenericType** _pOut)
     {
         case InternalType::RealInt8 :
         {
-            return EqualToIntAndInt(_pL->getAs<Int8>(), _pR->getAs<Int8>(), _pOut);
+            return EqualToArrayAndArray(_pL->getAs<Int8>(), _pR->getAs<Int8>(), _pOut);
         }
         case InternalType::RealUInt8 :
         {
-            return EqualToIntAndInt(_pL->getAs<UInt8>(), _pR->getAs<UInt8>(), _pOut);
+            return EqualToArrayAndArray(_pL->getAs<UInt8>(), _pR->getAs<UInt8>(), _pOut);
         }
         case InternalType::RealInt16 :
         {
-            return EqualToIntAndInt(_pL->getAs<Int16>(), _pR->getAs<Int16>(), _pOut);
+            return EqualToArrayAndArray(_pL->getAs<Int16>(), _pR->getAs<Int16>(), _pOut);
         }
         case InternalType::RealUInt16 :
         {
-            return EqualToIntAndInt(_pL->getAs<UInt16>(), _pR->getAs<UInt16>(), _pOut);
+            return EqualToArrayAndArray(_pL->getAs<UInt16>(), _pR->getAs<UInt16>(), _pOut);
         }
         case InternalType::RealInt32 :
         {
-            return EqualToIntAndInt(_pL->getAs<Int32>(), _pR->getAs<Int32>(), _pOut);
+            return EqualToArrayAndArray(_pL->getAs<Int32>(), _pR->getAs<Int32>(), _pOut);
         }
         case InternalType::RealUInt32 :
         {
-            return EqualToIntAndInt(_pL->getAs<UInt32>(), _pR->getAs<UInt32>(), _pOut);
+            return EqualToArrayAndArray(_pL->getAs<UInt32>(), _pR->getAs<UInt32>(), _pOut);
         }
         case InternalType::RealInt64 :
         {
-            return EqualToIntAndInt(_pL->getAs<Int64>(), _pR->getAs<Int64>(), _pOut);
+            return EqualToArrayAndArray(_pL->getAs<Int64>(), _pR->getAs<Int64>(), _pOut);
         }
         case InternalType::RealUInt64 :
         {
-            return EqualToIntAndInt(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
+            return EqualToArrayAndArray(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
         }
     }
 
