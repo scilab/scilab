@@ -311,6 +311,8 @@ Bug fixes
 
 * Bug #11766 fixed - nthroot has been added to the m2sci documentation.
 
+* Bug #11792 fixed - Lists can be accessed with non integer indexes (help page updated).
+
 * Bug #11869 fixed - "Environment" was not localized in preferences.
 
 * Bug #11885 fixed - Each rand has been changed to grand in genetic algorithms and simulated annealing functions.
