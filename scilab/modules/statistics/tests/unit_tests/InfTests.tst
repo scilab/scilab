@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-// <-- ENGLISH INPOSED -->
+// <-- ENGLISH IMPOSED -->
 
 // Run with test_run('statistics', 'InfTests', ['no_check_error_output'])
 

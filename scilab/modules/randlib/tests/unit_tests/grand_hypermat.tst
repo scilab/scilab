@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-// <-- ENGLISH INPOSED -->
+// <-- ENGLISH IMPOSED -->
 
 // Run with test_run('randlib', 'grand_hypermat', ['no_check_error_output'])
 
