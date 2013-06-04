@@ -218,6 +218,8 @@ Bug fixes
 
 * Bug #10287 fixed - An error message added for complex expression as input argument of integrate function.
 
+* Bug #10596 fixed - exit(xxx) from Scilab was failing.
+
 * Bug #10818 fixed - The following help pages have been added: hom, %e, %t, %f, %z and %s.
 
 * Bug #10862 fixed - Add a without internet connection installation
@@ -311,6 +313,9 @@ Bug fixes
 
 * Bug #12615 fixed - Graphics seemed to be dead after a call to plot/bar/barh with
                      a bad LineSpec argument.
+
+* Bug #12624 fixed - In case of errors in Scilab macros, make sure that
+                     "make check-TESTS" fails correctly.
 
 * Bug #12629 fixed - Last example of csim help page defined a function called
                      input() (overwriting the Scilab one).
