@@ -21,7 +21,7 @@ typedef struct
     wchar_t* pwstToken;
     types::InternalType::RealType outputType;
     bool bLengthFlag;
-}TokenDef;
+} TokenDef;
 
 
 typedef struct
@@ -29,9 +29,9 @@ typedef struct
     int iArg;
     int iPos;
     types::InternalType::RealType type;
-}ArgumentPosition;
+} ArgumentPosition;
 
-OUTPUT_STREAM_IMPEXP_GW wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, types::typed_list &in, ArgumentPosition* _pArgs, bool _bKeepEOL, int _iArgsCount, int* _piOutputRows);
+OUTPUT_STREAM_IMPEXP_GW wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, types::typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows, int* piNewLine);
 
 
 #endif /* !__SCILAB_SPRINTF_HXX__ */
