@@ -98,6 +98,9 @@ Xcos
 * Bug #12619 fixed - The discrete block DLR was not displaying latex formula
                      like continuous CLR block.
 
+* Bug #12651 fixed - The 'nw' scicos_simulate option did not work while
+                     passing a previous Info simulation status.
+
 
 Toolbox skeleton
 =================
