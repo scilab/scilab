@@ -1799,7 +1799,13 @@ msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 157
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 95
+#, c-format
+msgid "Failed to exec %s:"
+msgstr ""
+
+#
+# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 163
 msgid "&File"
 msgstr ""
 
