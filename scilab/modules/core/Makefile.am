@@ -73,7 +73,11 @@ src/cpp/getvariablesname.cpp \
 src/cpp/getmacrosname.cpp \
 src/cpp/getfunctionsname.cpp \
 src/cpp/InitScilab.cpp
-
+src/cpp/storeCommand.cpp \
+src/cpp/banner.cpp \
+src/cpp/with_module.cpp \
+src/cpp/runner.cpp \
+src/cpp/jitter.cpp
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -219,7 +223,8 @@ libscicore_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/system_env/includes/ \
 $(EIGEN_CPPFLAGS) \
 $(XML_FLAGS) \
-$(AM_CPPFLAGS)
+$(AM_CPPFLAGS) \
+$(VMKIT_ACPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK

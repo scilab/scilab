@@ -16,13 +16,33 @@
 #include "visitor.hxx"
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
+#include "JITvisitor.hxx"
 #include "timedvisitor.hxx"
 #include "debugvisitor.hxx"
 #include "stepvisitor.hxx"
 #include "configvariable.hxx"
 
+#if defined(VMKIT_ENABLED)
+
+//Needed as both llvm and scilab has #define ...
+#undef ID
+#undef LT
+
+#include "llvm/Constants.h"
+#include "llvm/DerivedTypes.h"
+#include "llvm/IRBuilder.h"
+#include "llvm/LLVMContext.h"
+#include "llvm/Module.h"
+#include "llvm/Analysis/Verifier.h"
+#include <cstdio>
+#include <string>
+#include <map>
+#include <vector>
+#endif
+
 #include "scilabWrite.hxx"
 #include "runner.hxx"
+#include "jitter.hxx"
 
 #define SCILAB_START    L"/etc/scilab.start"
 #define SCILAB_QUIT     L"/etc/scilab.quit"
@@ -166,8 +186,15 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose, bo
 
     if (ASTrunVMKit)
     {
-        printf("VMKit implementation goes here\n");
-        exit(1);
+        ast::JITVisitor *jitExec;
+
+        jitExec = new ast::JITVisitor();
+        Jitter::execAndWait(tree, jitExec);
+    }
+    else
+    {
+        Runner::execAndWait(tree, exec);
+        //delete exec;
     }
     else
     {
