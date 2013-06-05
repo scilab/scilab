@@ -159,15 +159,6 @@ endif
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_builddir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 
-# VMKIT Stuff
-if WITH_VMKIT
-VMKIT_ACPPFLAGS=-I$(LLVM_SRC_DIR)/include -I$(VMKIT_SRC_DIR)/include -I$(VMKIT_SRC_DIR)/lib/vmkit/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual
-
-VMKIT_ALDFLAGS=-L$(LLVM_BIN_DIR)/lib -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport
-
-VMKIT_ALDADD=$(VMKIT_BIN_DIR)/lib/libFinalMMTk.a $(VMKIT_BIN_DIR)/lib/libJ3.a $(VMKIT_BIN_DIR)/lib/libClasspath.a $(VMKIT_BIN_DIR)/lib/libVmkit.a $(VMKIT_BIN_DIR)/lib/libVmkitCompiler.a $(VMKIT_BIN_DIR)/lib/libCommonThread.a
-endif
-
 all-local: $(TARGETS_ALL)
 
 rootdir=$(pkgdatadir)/etc/

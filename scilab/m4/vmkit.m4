@@ -59,4 +59,14 @@ AC_SUBST([VMKIT_BIN_DIR])
 
 AM_CONDITIONAL(WITH_VMKIT, test -n "$with_vmkit")
 
+VMKIT_ACPPFLAGS="-I$LLVM_SRC_DIR/include -I$VMKIT_SRC_DIR/include -I$VMKIT_SRC_DIR/lib/vmkit/MMTk/ -D_DEBUG -D_GNU_SOURCE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -O3 -fomit-frame-pointer -fvisibility-inlines-hidden -fPIC -Woverloaded-virtual -Wcast-qual"
+AC_SUBST([VMKIT_ACPPFLAGS])
+
+VMKIT_ALDFLAGS="-L$LLVM_BIN_DIR/lib -lLLVMBitReader -lLLVMipo -lLLVMVectorize -lLLVMInstrumentation -lLLVMX86CodeGen -lLLVMX86Desc -lLLVMX86Info -lLLVMX86AsmPrinter -lLLVMX86Utils -lLLVMSelectionDAG -lLLVMAsmPrinter -lLLVMMCParser -lLLVMJIT -lLLVMRuntimeDyld -lLLVMExecutionEngine -lLLVMCodeGen -lLLVMScalarOpts -lLLVMInstCombine -lLLVMTransformUtils -lLLVMipa -lLLVMAnalysis -lLLVMTarget -lLLVMMC -lLLVMObject -lLLVMCore -lLLVMSupport"
+AC_SUBST([VMKIT_ALDFLAGS])
+
+
+VMKIT_ALDADD="$VMKIT_BIN_DIR/lib/libFinalMMTk.a $VMKIT_BIN_DIR/lib/libJ3.a $VMKIT_BIN_DIR/lib/libClasspath.a $VMKIT_BIN_DIR/lib/libVmkit.a $VMKIT_BIN_DIR/lib/libVmkitCompiler.a $VMKIT_BIN_DIR/lib/libCommonThread.a"
+AC_SUBST([VMKIT_ALDADD])
+
 ])
