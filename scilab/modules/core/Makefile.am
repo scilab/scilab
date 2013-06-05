@@ -88,7 +88,8 @@ src/cpp/backtrace_print.cpp \
 src/cpp/storeCommand.cpp \
 src/cpp/banner.cpp \
 src/cpp/with_module.cpp \
-src/cpp/runner.cpp
+src/cpp/runner.cpp \
+src/cpp/jitter.cpp
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -275,7 +276,8 @@ libscicore_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/functions/includes/ \
 $(EIGEN_CPPFLAGS) \
 $(XML_FLAGS) \
-$(AM_CPPFLAGS)
+$(AM_CPPFLAGS) \
+$(VMKIT_ACPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK
