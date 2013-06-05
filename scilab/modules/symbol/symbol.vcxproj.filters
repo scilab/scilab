@@ -21,7 +21,10 @@
     <ClCompile Include="src\cpp\symbol.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\table.cpp">
+    <ClCompile Include="src\cpp\variables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\scope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,22 +35,13 @@
     <ClInclude Include="includes\export_symbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\heap.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\scope.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\stack.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\symbol.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\table.hxx">
+    <ClInclude Include="includes\addGatewayInContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\addGatewayInContext.h">
+    <ClInclude Include="includes\variables.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

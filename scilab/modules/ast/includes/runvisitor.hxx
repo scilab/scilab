@@ -44,7 +44,7 @@ extern "C" {
 #include "os_swprintf.h"
 #include "more.h"
 #include "sciprint.h"
-    //#include "HandleManagement.h"
+#include "MALLOC.h"
 }
 
 #include "timer.hxx"

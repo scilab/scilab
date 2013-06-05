@@ -14,6 +14,7 @@
 #include "function.hxx"
 #include "context.hxx"
 #include "string.hxx"
+#include "bool.hxx"
 
 extern "C"
 {

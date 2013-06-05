@@ -23,7 +23,7 @@ Function::ReturnValue sci_who(typed_list& in, int iRetCount, typed_list& out)
     std::wstringstream wstream;
     wstream << *(symbol::Context::getInstance()) << std::endl;
 
-    scilabWriteW(wstream.str().c_str());
+    scilabForcedWriteW(wstream.str().c_str());
 
     return Function::OK;
 }

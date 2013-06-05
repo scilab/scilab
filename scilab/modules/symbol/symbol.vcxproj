@@ -171,18 +171,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\context.cpp" />
+    <ClCompile Include="src\cpp\scope.cpp" />
     <ClCompile Include="src\cpp\symbol.cpp" />
-    <ClCompile Include="src\cpp\table.cpp" />
+    <ClCompile Include="src\cpp\variables.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addGatewayInContext.h" />
     <ClInclude Include="includes\context.hxx" />
     <ClInclude Include="includes\export_symbol.h" />
-    <ClInclude Include="includes\heap.hxx" />
-    <ClInclude Include="includes\scope.hxx" />
-    <ClInclude Include="includes\stack.hxx" />
     <ClInclude Include="includes\symbol.hxx" />
-    <ClInclude Include="includes\table.hxx" />
+    <ClInclude Include="includes\variables.hxx" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />

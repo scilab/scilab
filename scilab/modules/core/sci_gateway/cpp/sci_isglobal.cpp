@@ -15,6 +15,7 @@
 #include "callable.hxx"
 #include "context.hxx"
 #include "string.hxx"
+#include "bool.hxx"
 
 extern "C"
 {
@@ -51,11 +52,11 @@ Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount, types:
 
         if (symbol::Context::getInstance()->isGlobalExists(symbol::Symbol(pS->get(0))))
         {
-            out.push_back(new Bool(1));
+            out.push_back(new types::Bool(1));
         }
         else
         {
-            out.push_back(new Bool(0));
+            out.push_back(new types::Bool(0));
         }
     }
     return Function::OK;

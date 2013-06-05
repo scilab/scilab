@@ -32,9 +32,8 @@ Context* Context::me;
 
 Context::Context()
 {
-    PrivateVarTable.scope_begin();
-    HeapVarTable.scope_begin();
-    EnvVarTable.scope_begin();
+    m_scopes = new Scopes();
+    m_scopes->scope_begin();
 }
 
 Context* Context::getInstance(void)
@@ -48,147 +47,115 @@ Context* Context::getInstance(void)
 
 void Context::scope_begin()
 {
-    HeapVarTable.scope_begin();
-    EnvVarTable.scope_begin();
+    m_scopes->scope_begin();
 }
 
 void Context::scope_end()
 {
-    HeapVarTable.scope_end();
-    EnvVarTable.scope_end();
+    m_scopes->scope_end();
 }
 
-types::InternalType* Context::get(const symbol::Symbol& key) const
+types::InternalType* Context::get(const symbol::Symbol& _key) const
 {
-    types::InternalType* pI = NULL;
-
-    //global scope
-    if (HeapVarTable.isGlobalVisible(key))
-    {
-        return HeapVarTable.getGlobalValue(key);
-    }
-
-    //local scope
-    return EnvVarTable.get(key);
+    return m_scopes->get(_key);
 }
 
-types::InternalType* Context::getCurrentLevel(const symbol::Symbol& key) const
+types::InternalType* Context::getCurrentLevel(const symbol::Symbol& _key) const
 {
-    return EnvVarTable.getCurrentLevel(key);
+    return m_scopes->getCurrentLevel(_key);
 }
 
-types::InternalType* Context::getAllButCurrentLevel(const symbol::Symbol& key) const
+types::InternalType* Context::getAllButCurrentLevel(const symbol::Symbol& _key) const
 {
-    return EnvVarTable.getAllButCurrentLevel(key);
+    return m_scopes->getAllButCurrentLevel(_key);
 }
 
-types::InternalType* Context::getFunction(const symbol::Symbol& key) const
+types::InternalType* Context::getFunction(const symbol::Symbol& _key) const
 {
-    return EnvVarTable.get(key);
+    return m_scopes->get(_key);
 }
 
 std::list<symbol::Symbol>& Context::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd)
 {
-    return EnvVarTable.getFunctionList(_stModuleName, _bFromEnd);
+    return m_scopes->getFunctionList(_stModuleName, _bFromEnd);
 }
 
-bool Context::put(const symbol::Symbol& key, types::InternalType &type)
+bool Context::put(const symbol::Symbol& _key, types::InternalType &type)
 {
-    if (HeapVarTable.isGlobalVisible(key))
-    {
-        HeapVarTable.setGlobalValue(key, type);
-    }
-    else
-    {
-        //variable is not in current global scope
-        EnvVarTable.put(key, type);
-    }
-
+    m_scopes->put(_key, type);
     return true;
 }
 
-bool Context::remove(const symbol::Symbol& key)
+bool Context::remove(const symbol::Symbol& _key)
 {
-    // look in local global scope
-    if (HeapVarTable.isGlobalVisible(key))
-    {
-        HeapVarTable.setGlobalVisible(key, false);
-        return true;
-    }
-    // look in Variables Environment
-    else if (EnvVarTable.getCurrentLevel(key) == NULL)
-    {
-        return false;
-    }
-
-    EnvVarTable.remove(key);
+    m_scopes->remove(_key);
     return true;
 }
 
-bool Context::putInPreviousScope(const symbol::Symbol& key, types::InternalType &type)
+bool Context::putInPreviousScope(const symbol::Symbol& _key, types::InternalType &type)
 {
-    EnvVarTable.putInPreviousScope(key, type);
+    m_scopes->putInPreviousScope(_key, type);
     return true;
 }
 
 bool Context::addFunction(types::Function *_info)
 {
-    EnvVarTable.put(symbol::Symbol(_info->getName()), *_info);
+    m_scopes->put(symbol::Symbol(_info->getName()), *_info);
     return true;
 }
 
 bool Context::AddMacro(types::Macro *_info)
 {
-    EnvVarTable.put(symbol::Symbol(_info->getName()), *_info);
+    m_scopes->put(symbol::Symbol(_info->getName()), *_info);
     return true;
 }
 
 bool Context::AddMacroFile(types::MacroFile *_info)
 {
-    EnvVarTable.put(symbol::Symbol(_info->getName()), *_info);
+    m_scopes->put(symbol::Symbol(_info->getName()), *_info);
     return true;
 }
 
-bool Context::isGlobalVisible(const symbol::Symbol& key) const
+bool Context::isGlobalVisible(const symbol::Symbol& _key) const
 {
-    return HeapVarTable.isGlobalVisible(key);
+    return m_scopes->isGlobalVisible(_key);
 }
 
 /*return global variable, search in global scope ( highest )*/
-types::InternalType* Context::getGlobalValue(const symbol::Symbol& key) const
+types::InternalType* Context::getGlobalValue(const symbol::Symbol& _key) const
 {
-    return HeapVarTable.getGlobalValue(key);
+    m_scopes->getGlobalValue(_key);
+    return NULL;
 }
 
 /*return global variable existance status*/
-bool Context::isGlobalExists(const symbol::Symbol& key) const
+bool Context::isGlobalExists(const symbol::Symbol& _key) const
 {
-    return HeapVarTable.isGlobalExists(key);
+    return m_scopes->isGlobalExists(_key);
 }
 
-void Context::setGlobalValue(const symbol::Symbol& key, types::InternalType &value)
+void Context::setGlobalValue(const symbol::Symbol& _key, types::InternalType &value)
 {
-    HeapVarTable.setGlobalValue(key, value);
+    m_scopes->setGlobalValue(_key, value);
 }
 
-void Context::createEmptyGlobalValue(const symbol::Symbol& key)
+void Context::createEmptyGlobalValue(const symbol::Symbol& _key)
 {
-    HeapVarTable.createEmptyGlobalValue(key);
+    m_scopes->createEmptyGlobalValue(_key);
 }
 
-void Context::setGlobalVisible(const symbol::Symbol& key, bool bVisible)
+void Context::setGlobalVisible(const symbol::Symbol& _key, bool bVisible)
 {
-    HeapVarTable.setGlobalVisible(key, bVisible);
+    m_scopes->setGlobalVisible(_key, bVisible);
 }
 
-void Context::removeGlobal(const symbol::Symbol& key)
+void Context::removeGlobal(const symbol::Symbol& _key)
 {
-    HeapVarTable.removeGlobal(key);
+    m_scopes->removeGlobal(_key);
 }
 
 void Context::removeGlobalAll()
 {
-    HeapVarTable.removeGlobalAll();
+    m_scopes->removeGlobalAll();
 }
 }
-

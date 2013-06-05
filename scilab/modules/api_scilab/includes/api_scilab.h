@@ -53,6 +53,7 @@
 #include "core_math.h"
 #include "sci_types.h"
 #include "BOOL.h"
+#include "MALLOC.h"
 
 /*Constants*/
 #define ROW_LETTER		'r'

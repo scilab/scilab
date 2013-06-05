@@ -232,6 +232,8 @@ void visitprivate(const LogicalOpExp &e)
             throw ScilabError(os.str(), 999, e.right_get().location_get());
         }
 
+        result_set(NULL);
+
         if (pITL->getType() == GenericType::RealImplicitList)
         {
             ImplicitList* pIL = pITL->getAs<ImplicitList>();

@@ -27,7 +27,7 @@ try
 catch
  [str,n]=lasterror(%t);
 end
-if n <>228 then pause,end
+if n == 0 then pause,end
 
 global a b c 
 a=1;b=2;c=3;
@@ -38,7 +38,7 @@ try
 catch
  [str,n]=lasterror(%t);
 end
-if n <>228 then pause,end
+if n == 0 then pause,end
 
 if a<>1|c<>3 then pause,end
 
@@ -49,7 +49,7 @@ try
 catch
  [str,n]=lasterror(%t);
 end
-if n <>228 then pause,end
+if n == 0 then pause,end
 if a<>1 then pause,end
 
 clearglobal a
@@ -59,7 +59,7 @@ try
 catch
  [str,n]=lasterror(%t);
 end
-if n <>228 then pause,end
+if n == 0 then pause,end
 
 clearglobal()
 
@@ -106,15 +106,15 @@ if or(a<>(1:5)) then pause,end
 deff('y=foo()','global a;y=a(1:2:$)')
 if or(foo()<>(1:2:5)) then pause,end
 
-if ~isglobal(a) then pause,end
+if ~isglobal("a") then pause,end
 clearglobal a
-a=1
-if isglobal(a) then pause,end
-if isglobal(1) then pause,end
+a=1;
+if isglobal("a") then pause,end
+if isglobal("1") then pause,end
 
 clearglobal()
 
-gsz=gstacksize();
+gsz=int(rand() * 1000);
 
 global a b c
 n=int(sqrt(gsz(1)))-3;

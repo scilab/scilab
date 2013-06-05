@@ -17,8 +17,10 @@
 
 #ifndef __CONTEXT_HXX__
 #define __CONTEXT_HXX__
-#include "stack.hxx"
-#include "heap.hxx"
+//#include "stack.hxx"
+//#include "heap.hxx"
+#include "scope.hxx"
+#include "variables.hxx"
 #include "internal.hxx"
 #include "function.hxx"
 #include "macro.hxx"
@@ -29,38 +31,37 @@ namespace symbol
 {
 
 /** \brief Define class Context.
- */
+*/
 class EXTERN_SYMBOL Context
 {
 public :
-    Context();
     static Context* getInstance(void);
 
     /** Open a context scope i.e
-     ** open the heap table one
-     ** and the env table too. */
+    ** open the heap table one
+    ** and the env table too. */
     void scope_begin();
 
     /** Close a context scope i.e
-     ** close the heap table one
-     ** and the env table too. */
+    ** close the heap table one
+    ** and the env table too. */
     void scope_end();
 
     /** If key was associated to some Entry_T in the open scopes, return the
-     ** most recent insertion. Otherwise return the empty pointer. */
-    types::InternalType*	get(const symbol::Symbol& key) const;
+    ** most recent insertion. Otherwise return the empty pointer. */
+    types::InternalType* get(const symbol::Symbol& key) const;
 
     /** If key was associated to some Entry_T in the last opened scope, return it.
-     ** Otherwise return the empty pointer. */
-    types::InternalType*	getCurrentLevel(const symbol::Symbol& key) const;
+    ** Otherwise return the empty pointer. */
+    types::InternalType* getCurrentLevel(const symbol::Symbol& key) const;
 
     /** If key was associated to some Entry_T in the open scopes, return the
-     ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
-    types::InternalType*	getAllButCurrentLevel(const symbol::Symbol& key) const;
+    ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
+    types::InternalType* getAllButCurrentLevel(const symbol::Symbol& key) const;
 
     /** If key was associated to some Entry_T in the open scopes, return the
-     ** most recent insertion. Otherwise return the empty pointer. */
-    types::InternalType*	getFunction(const symbol::Symbol& key) const;
+    ** most recent insertion. Otherwise return the empty pointer. */
+    types::InternalType* getFunction(const symbol::Symbol& key) const;
 
     /*return function list in the module _stModuleName*/
     std::list<symbol::Symbol>& getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd = true);
@@ -95,9 +96,9 @@ public :
     void print();
 
     /*add symbol and value in the stack*/
-    bool put(const symbol::Symbol& key, types::InternalType &type);
+    bool put(const symbol::Symbol& key, types::InternalType& type);
     /*add symbol and value in the previous scope*/
-    bool putInPreviousScope(const symbol::Symbol& key, types::InternalType &type);
+    bool putInPreviousScope(const symbol::Symbol& key, types::InternalType& type);
 
     /* remove symbol/value association */
     bool remove(const symbol::Symbol& key);
@@ -109,13 +110,13 @@ public :
     {
         ostr << L"  Environment Variables:" << std::endl;
         ostr << L"==========================" << std::endl;
-        ostr << EnvVarTable;
+        ostr << *m_scopes;
     };
 private :
-    Stack PrivateVarTable;
-    Heap HeapVarTable;
-    Stack EnvVarTable;
 
+    Scopes* m_scopes;
+
+    Context();
     static Context* me;
 };
 

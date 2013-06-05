@@ -20,6 +20,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "sci_path.h"
 #include "os_wcsdup.h"
 #include "charEncoding.h"

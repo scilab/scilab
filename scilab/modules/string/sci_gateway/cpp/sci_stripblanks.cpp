@@ -14,6 +14,7 @@
 #include "function.hxx"
 #include "context.hxx"
 #include "types.hxx"
+#include "bool.hxx"
 #include "stripblanks.hxx"
 /*--------------------------------------------------------------------------*/
 extern "C"

@@ -27,6 +27,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #include "os_strdup.h"
 #ifndef _MSC_VER
 #include "stricmp.h"

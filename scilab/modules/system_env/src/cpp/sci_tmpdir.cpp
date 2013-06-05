@@ -19,6 +19,7 @@
 
 extern "C"
 {
+#include "MALLOC.h"
 #ifdef _MSC_VER
 #include <process.h>
 #else

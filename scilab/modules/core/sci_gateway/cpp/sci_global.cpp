@@ -61,23 +61,32 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
             if (pCtx->isGlobalExists(pstVar) == false)
             {
                 InternalType* pIT = pCtx->get(pstVar);
+                //create global variable with default value []
                 if (pIT)
                 {
-                    //variable have already a value in current local scope
-
-                    //set global at local value
-                    pCtx->setGlobalValue(pstVar, *pIT);
-                    pCtx->remove(pstVar);
+                    //protect var againt setGlobalVisible
+                    pIT->IncreaseRef();
                 }
-                else
+
+                //create a empty global variable => []
+                pCtx->createEmptyGlobalValue(pstVar);
+
+                //set visible in current global scope
+                pCtx->setGlobalVisible(pstVar);
+
+                if (pIT)
                 {
-                    //create global variable with default value []
-                    pCtx->createEmptyGlobalValue(pstVar);
+                    //assign old local value
+                    pCtx->put(pstVar, *pIT);
+                    //unprotect var againt setGlobalVisible
+                    pIT->DecreaseRef();
                 }
             }
-
-            //set visible in current global scope
-            pCtx->setGlobalVisible(pstVar);
+            else
+            {
+                //set visible in current global scope
+                pCtx->setGlobalVisible(pstVar);
+            }
         }
     }
     return types::Function::OK;
