@@ -327,7 +327,8 @@ am__objects_8 = libscicore_la-core_gw.lo \
 	libscicore_la-sci_abort.lo libscicore_la-sci_who.lo \
 	libscicore_la-sci_stacksize.lo libscicore_la-sci_format.lo \
 	libscicore_la-sci_sciargs.lo libscicore_la-sci_ieee.lo \
-	libscicore_la-sci_funcprot.lo
+	libscicore_la-sci_funcprot.lo \
+	libscicore_la-sci_runASTwithVMKit.lo
 am_libscicore_la_OBJECTS = $(am__objects_6) $(am__objects_7) \
 	$(am__objects_8)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -572,6 +573,9 @@ UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 USE_NLS = @USE_NLS@
 VERSION = @VERSION@
+VMKIT_ACPPFLAGS = @VMKIT_ACPPFLAGS@
+VMKIT_ALDADD = @VMKIT_ALDADD@
+VMKIT_ALDFLAGS = @VMKIT_ALDFLAGS@
 VMKIT_BIN_DIR = @VMKIT_BIN_DIR@
 VMKIT_SRC_DIR = @VMKIT_SRC_DIR@
 WITH_OCAML = @WITH_OCAML@
@@ -747,7 +751,7 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_getvariablesonstack.c \
 	sci_gateway/c/sci_readgateway.c \
-	sci_gateway/c/sci_comp.c
+	sci_gateway/c/sci_comp.c 
 
 GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_f_mtlb_mode.f \
@@ -787,7 +791,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \
-	sci_gateway/cpp/sci_funcprot.cpp
+	sci_gateway/cpp/sci_funcprot.cpp \
+	sci_gateway/cpp/sci_runASTwithVMKit.cpp 
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
@@ -1176,6 +1181,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_quit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_readgateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_return.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_runASTwithVMKit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_sciargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_setbpt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_stacksize.Plo@am__quote@
@@ -2187,6 +2193,13 @@ libscicore_la-sci_funcprot.lo: sci_gateway/cpp/sci_funcprot.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_funcprot.cpp' object='libscicore_la-sci_funcprot.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_funcprot.lo `test -f 'sci_gateway/cpp/sci_funcprot.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_funcprot.cpp
+
+libscicore_la-sci_runASTwithVMKit.lo: sci_gateway/cpp/sci_runASTwithVMKit.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-sci_runASTwithVMKit.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_runASTwithVMKit.Tpo -c -o libscicore_la-sci_runASTwithVMKit.lo `test -f 'sci_gateway/cpp/sci_runASTwithVMKit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_runASTwithVMKit.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_runASTwithVMKit.Tpo $(DEPDIR)/libscicore_la-sci_runASTwithVMKit.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_runASTwithVMKit.cpp' object='libscicore_la-sci_runASTwithVMKit.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-sci_runASTwithVMKit.lo `test -f 'sci_gateway/cpp/sci_runASTwithVMKit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_runASTwithVMKit.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
