@@ -335,6 +335,8 @@ Bug fixes
 
 * Bug #10213 fixed - sci2exp can be impacted by format which has been mentionned in its help page.
 
+* Bug #10216 fixed - Invalid syntaxes for zeros, ones, eye, rand, like zeros(2,:).
+
 * Bug #10226 fixed - When a // <empty session> line is delete, all sessions
                      histories are folded.
 

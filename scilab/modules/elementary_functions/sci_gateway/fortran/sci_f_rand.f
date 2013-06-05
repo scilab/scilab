@@ -17,11 +17,11 @@ c     Interface for rand function
       integer id(nsiz),tops,topk
       double precision urand
       logical checkrhs,checklhs,getsmat,getscalar,cremat
-      logical cresmat2
+      logical cresmat2, getmat
       integer gettype
       character*(20) randtype
       logical phase
-      integer iadr
+      integer iadr, mattyp1, areadr1, aimadr1
       save    phase
       data    phase /.true./
       
@@ -144,6 +144,34 @@ c     . rand(n1,n2)
          top=top-1
          call getdimfromvar(top,rhs-irt-1,m)
          if(err.gt.0.or.err1.gt.0) return
+         if(rhs.eq.2) then
+            if (.not.getmat('rand', tops, top-rhs-irt+2, 
+     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #1 
+            if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
+               call error(21) !To avoid rand(:,5)
+               return
+            endif
+            if (.not.getmat('rand', tops, top-rhs-irt+3, 
+     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #2
+            if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
+               call error(21) !To avoid rand(5,:)
+               return
+            endif
+         endif
+         if(rhs.eq.3) then
+            if (.not.getmat('rand', tops, top-rhs-irt+4, 
+     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #1 
+            if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
+               call error(21) !To avoid rand(:,5)
+               return
+            endif
+            if (.not.getmat('rand', tops, top-rhs-irt+5, 
+     +            mattyp1, u1, v1, areadr1, aimadr1)) return !To have the dimensions of argument #2
+            if(u1.ne.u1.and.v1.ne.v1) then !detect nan because isanan does not work here
+               call error(21) !To avoid rand(5,:)
+               return
+            endif
+         endif
       else
 c     . rand(A)
          if(gettype(top).le.10) then
@@ -151,6 +179,10 @@ c     . rand(A)
             if(istk(il).lt.0) il=iadr(istk(il+1))
             m=istk(il+1)
             n=istk(il+2)
+            if(m.eq.-1.and.n.eq.-1) then !To avoid rand(:)
+               call error(21)
+               return
+            endif
             if(gettype(top).le.2.or.gettype(top).eq.5) then
 c     .        ask for result of the same real/complex type
                itres=istk(il+3)
