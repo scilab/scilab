@@ -421,6 +421,11 @@
                         <varname>n</varname> random permutations of the column
                         vector (<literal>m x 1</literal>)
                         <varname>vect</varname>.
+                        Due to the stack structure, <varname>vect</varname> should not and cannot be a row vector.
+                        This feature covers Matlab's <code>randperm()</code> function,
+                        because <code>randperm(n)</code> is equivalent to <code>grand(1,'prm',(1:n)')</code>
+                        and <code>randperm(n, k)</code> can be obtained through
+                        <code>grand(1,'prm',(1:n)'); ans(1:k)</code>.
                     </para>
                 </listitem>
             </varlistentry>
