@@ -339,7 +339,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         catch (ScilabError se)
         {
             ConfigVariable::setSilentError(iOldSilentError);
-            if (ConfigVariable::getLastErrorMessage() == L"")
+            // check on error number because error message can be empty.
+            if (ConfigVariable::getLastErrorNumber() == 0)
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
                 ConfigVariable::setLastErrorNumber(se.GetErrorNumber());

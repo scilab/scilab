@@ -379,7 +379,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
         catch (ScilabError se)
         {
-            if (ConfigVariable::getLastErrorMessage() == L"")
+            if (ConfigVariable::getLastErrorNumber() == 0)
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
                 ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
