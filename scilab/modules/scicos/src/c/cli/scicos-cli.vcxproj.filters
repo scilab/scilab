@@ -26,265 +26,265 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="copyvarfromlistentry.c">
+    <ClCompile Include="..\copyvarfromlistentry.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="createblklist.c">
+    <ClCompile Include="..\createblklist.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DllmainScicos.c">
+    <ClCompile Include="..\DllmainScicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="extractblklist.c">
+    <ClCompile Include="..\extractblklist.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ezxml.c">
+    <ClCompile Include="..\ezxml.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_scicos.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\gw_scicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="il_sim.c">
+    <ClCompile Include="..\il_sim.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="il_state.c">
+    <ClCompile Include="..\il_state.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="import.c">
+    <ClCompile Include="..\import.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MlistGetFieldNumber.c">
+    <ClCompile Include="..\MlistGetFieldNumber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lsodar.c">
+    <ClCompile Include="..\lsodar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_buildouttb.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_buildouttb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_callblk.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_callblk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_coserror.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_coserror.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ctree2.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ctree3.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ctree4.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_curblock.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_curblock.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_curblockc.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_curblockc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_data2sig.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_data2sig.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_diffobjs.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_diffobjs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_duplicate.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_duplicate.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_end_scicosim.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_end_scicosim.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree2.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree3.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ftree4.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getblocklabel.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_getblocklabel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getscicosvars.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_getscicosvars.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_haltscicos.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_haltscicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_model2blk.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_model2blk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_phase_simulation.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_phase_simulation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_pointer_xproperty.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_pointer_xproperty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_scicos_debug.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_scicos_debug_count.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug_count.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_scicos_time.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_time.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_scicosim.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicosim.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_sctree.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_sctree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_set_blockerror.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_set_blockerror.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_set_xproperty.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_set_xproperty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_sig2data.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_sig2data.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_var2vec.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_var2vec.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_vec2var.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_vec2var.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sciblk2.c">
+    <ClCompile Include="..\sciblk2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sciblk4.c">
+    <ClCompile Include="..\sciblk4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scicos.c">
+    <ClCompile Include="..\scicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scicos_free.c">
+    <ClCompile Include="..\scicos_free.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scicos_malloc.c">
+    <ClCompile Include="..\scicos_malloc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tree.c">
+    <ClCompile Include="..\tree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="var2sci.c">
+    <ClCompile Include="..\var2sci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c">
+    <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="copyvarfromlistentry.h">
+    <ClInclude Include="..\copyvarfromlistentry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="createblklist.h">
+    <ClInclude Include="..\createblklist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\dynlib_scicos.h">
+    <ClInclude Include="..\..\..\includes\dynlib_scicos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="extractblklist.h">
+    <ClInclude Include="..\extractblklist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ezxml.h">
+    <ClInclude Include="..\ezxml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_scicos.h">
+    <ClInclude Include="..\..\..\includes\gw_scicos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="il_sim.h">
+    <ClInclude Include="..\il_sim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="il_state.h">
+    <ClInclude Include="..\il_state.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\import.h">
+    <ClInclude Include="..\..\..\includes\import.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MlistGetFieldNumber.h">
+    <ClInclude Include="..\MlistGetFieldNumber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lsodar.h">
+    <ClInclude Include="..\lsodar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scicos-def.h">
+    <ClInclude Include="..\..\..\includes\scicos-def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scicos.h">
+    <ClInclude Include="..\..\..\includes\scicos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scicos_free.h">
+    <ClInclude Include="..\..\..\includes\scicos_free.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scicos_malloc.h">
+    <ClInclude Include="..\..\..\includes\scicos_malloc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\scicos_math.h">
+    <ClInclude Include="..\..\..\includes\scicos_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tree.h">
+    <ClInclude Include="..\tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="var2sci.h">
+    <ClInclude Include="..\var2sci.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sciblk2.h">
+    <ClInclude Include="..\sciblk2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sciblk4.h">
+    <ClInclude Include="..\sciblk4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dynamic_link_Import.def">
+    <None Include="..\Dynamic_link_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Graphics_Import.def">
+    <None Include="..\nographics_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="core_import.def">
+    <None Include="..\core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Output_stream_Import.def">
+    <None Include="..\Output_stream_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Scicos_blocks_f_Import.def">
+    <None Include="..\Scicos_blocks_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="scicos_f_Import.def">
+    <None Include="..\scicos_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="String_Import.def">
+    <None Include="..\String_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Scicos_Export.def">
-      <Filter>Libraries Dependencies\Export</Filter>
-    </None>
-    <None Include="..\..\Makefile.am" />
-    <None Include="..\..\scicos.iss" />
-    <None Include="..\..\sci_gateway\scicos_gateway.xml" />
-    <None Include="Localization_Import.def">
+    <None Include="..\..\..\Makefile.am" />
+    <None Include="..\..\..\scicos.iss" />
+    <None Include="..\..\..\sci_gateway\scicos_gateway.xml" />
+    <None Include="..\Localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="elementary_functions_f_Import.def">
+    <None Include="..\elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="..\..\locales\scicos.pot">
+    <None Include="..\..\..\locales\scicos.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="Core_f_Import.def">
+    <None Include="..\Core_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="differential_equations_f_Import.def">
+    <None Include="..\differential_equations_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\scicos-cli_Export.def">
+      <Filter>Libraries Dependencies\Export</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="scicos.rc">
+    <ResourceCompile Include="scicos-cli.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

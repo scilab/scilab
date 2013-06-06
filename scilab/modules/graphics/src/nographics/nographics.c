@@ -399,3 +399,15 @@ BOOL sciIsExistingFigure(int figNum)
 {
     return FALSE;
 }
+
+/*--------------------------------------------------------------------------*/
+void cloneAxesModel(char const* pstFigureUID)
+{
+}
+
+/*--------------------------------------------------------------------------*/
+char * createNewFigureWithAxes(void)
+{
+    return NULL;
+}
+
