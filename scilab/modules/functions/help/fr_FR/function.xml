@@ -74,7 +74,7 @@ endfunction
                 <term>&lt;instructions&gt;</term>
                 <listitem>
                     <para>
-                        une suite d'instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir functions) en ligne ou dans un script (voir exec). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <literal>exec</literal>.
+                        une suite d'instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir <link linkend="functions">functions</link>) en ligne ou dans un script (voir <link linkend="exec">exec</link>). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <literal>exec</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,7 +83,10 @@ endfunction
             La séquence <literal>function &lt;arguments_sortie&gt;=&lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</literal>
             doit apparaître sur une seule ligne. Cette suite peut être suivie d'instructions Scilab si une virgule ou un point-virgule est ajouté à la fin.
         </para>
-        <para>    Les définitions de fonctions peuvent être imbriquées.  </para>
+        <para>
+            Certaines règles ont été établies quant à la syntaxe des noms de fonctions dans Scilab (voir <link linkend="names">names</link>).
+        </para> 
+        <para>Les définitions de fonctions peuvent être imbriquées.</para>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -122,6 +125,9 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
             </member>
             <member>
                 <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
             </member>
         </simplelist>
     </refsection>

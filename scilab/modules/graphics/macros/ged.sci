@@ -142,6 +142,8 @@ function ged(k,win)
     end
     ged_cur_fig_handle.info_message=_("Left click on a graphic entity to open its property editor");
   case 11 then //stop Entity picker
+    fig=ged_cur_fig_handle
+    fig_ud=get(fig,"user_data")
     seteventhandler("")
     fig.event_handler_enable = "off"
     if typeof(fig_ud)=="st"&isfield(fig_ud,"handlers")&fig_ud.handlers<>[] then

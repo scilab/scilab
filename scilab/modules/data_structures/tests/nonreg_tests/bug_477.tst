@@ -34,14 +34,11 @@
 // ...
 
 a   = hypermat([1,3,3],1:9);
-if max(a)<>9 then pause,end
+assert_checkequal(max(a), 9);
 
 result = execstr("[n,i]=max(a)","errcatch","n");
-
-if result <> 0 then pause,end
-
-if result == 0 then
-   if n<>9 then pause,end
-   if or(i<>[1,3,3]) then pause,end        
-end
-if execstr("[m,i,j,k]=max(a)","errcatch","n") <> 78 then pause,end
+assert_checkequal(result, 0);
+assert_checkequal(n, 9);
+assert_checkfalse(or(i<>[1,3,3]));
+errmsg=msprintf(_("%s: Wrong number of output argument(s): %d to %d expected.\n"), "max", 1, 2);
+assert_checkerror("[m,i,j,k]=max(a)", errmsg, 78);

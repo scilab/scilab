@@ -88,9 +88,9 @@
             beta.
         </para>
         <para>
-            Computation of other parameters involve a seach for a value that
+            Computation of other parameters involve a search for a value that
             produces  the desired  value  of P.   The search relies  on  the
-            monotinicity of P with the other parameter.
+            monotonicity of P with the other parameter.
         </para>
         <para>
             From DCDFLIB: Library of Fortran Routines for Cumulative Distribution

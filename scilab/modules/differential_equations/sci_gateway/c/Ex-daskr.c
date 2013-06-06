@@ -46,8 +46,8 @@ int C2F(pjac1)(resfunc res, int *ires, int *nequations, double *tOld, double *ac
         for (j = 0 ; j < neq ; j++)
         {
             wp[nrow + j] = (e[j] - savr[j]) * delinv;
-            iwp[nrow + j] = nrow + j + 1;
-            iwp[nrow + j + neq * neq] = nrow + j + 1;
+            iwp[nrow + j] = i + 1;
+            iwp[nrow + j + neq * neq] = j + 1;
         }
         nrow       += neq;
         actual[i]  =  ysave;

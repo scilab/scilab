@@ -34,7 +34,7 @@ info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 if abs(nn(1)-2.53)>0.001 then pause,end
 
 // Same problem, but using macro for the derivative evaluation function 'res1'
-deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
+deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2.*log(y)+8)./t-5).*y')
 deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 
 y0=1;t=2:6;t0=1;y0d=3;
@@ -99,7 +99,6 @@ if abs(nn(1)-2.5)>0.001 then pause,end
 y0=yy(2,1);y0d=yy(3,1);t0=nn(1);t=[3,4,5,6];
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res1,ng,'gr1',info,psol,pjac);
 if abs(nn(1)-2.53)>0.001 then pause,end
-info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 
 //C
 //C-----------------------------------------------------------------------
@@ -112,6 +111,7 @@ info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 //C An analytic solution is not known, but the zeros of Y1 are known
 //C to 15 figures for purposes of checking the accuracy.
 //C-----------------------------------------------------------------------
+info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,'res2','jac2',ng,'gr2',info);
@@ -124,6 +124,53 @@ deff('J=jac2(t,y,ydot,c)','y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]'
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info);
 deff('s=gr2(t,y,yd)','s=y(1)')
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info);
+
+// Same problem, with psol and pjac example routines
+
+info=list([],0,[],[],[],0,[],1,[],0,1,[],[],1);
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info,'psol1','pjac1');
+if abs(nn(1)-81.163512)>0.009 then pause,end
+deff('s=gr2(t,y,yd)','s=y(1)')
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info,'psol1','pjac1');
+if abs(nn(1)-81.163512)>0.009 then pause,end
+
+// Same problem, with psol and pjac macros
+
+// Redefine pjac to use res2
+function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
+    ires = 0;
+    SQuround = 1.490D-08;
+    tx = t;
+    nrow = 0;
+    e = zeros(1, neq);
+    wp = zeros(neq*neq, 1);
+    iwp = zeros(neq*neq, 2);
+    for i=1:neq
+        del = max(SQuround*max(abs(y(i)), abs(h*ydot(i))), 1/rewt(i))
+        if h*ydot(i) < 0 then del = -del; end
+        ysave = y(i);
+        ypsave = ydot(i);
+        y(i) = y(i) + del;
+        ydot(i) = ydot(i) + cj*del;
+        [e ires]=res2(tx, y, ydot);
+        if ires < 0 then return; end
+        delinv = 1/del;
+        for j=1:neq
+            wp(nrow+j) = delinv*(e(j)-savr(j));
+            iwp(nrow+j,1) = i;
+            iwp(nrow+j,2) = j;
+        end
+        nrow = nrow + neq;
+        y(i) = ysave;
+        ydot(i) = ypsave;
+    end
+endfunction
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,'gr2',info,psol,pjac);
+if abs(nn(1)-81.163512)>0.003 then pause,end
+deff('s=gr2(t,y,yd)','s=y(1)')
+[yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,gr2,info,psol,pjac);
+if abs(nn(1)-81.163512)>0.003 then pause,end
+info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 
 //           Hot Restart
 

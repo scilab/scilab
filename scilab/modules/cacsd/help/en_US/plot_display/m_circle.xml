@@ -100,7 +100,7 @@ m_circle([-8 -6 -4]);
                 <link linkend="nyquist">nyquist</link>
             </member>
             <member>
-                <link linkend="chart">chart</link>
+                <link linkend="nicholschart">nicholschart</link>
             </member>
             <member>
                 <link linkend="black">black</link>

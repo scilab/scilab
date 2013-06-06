@@ -76,7 +76,7 @@ endfunction
                 <term>&lt;statements&gt;</term>
                 <listitem>
                     <para>
-                        stands for a set of scilab instructions (statements)  This syntax may be used to define function (see functions) inline or in a script file (see exec). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <literal>exec</literal> function.
+                        stands for a set of scilab instructions (statements)  This syntax may be used to define function (see <link linkend="functions">functions</link>) inline or in a script file (see <link linkend="exec">exec</link>). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <literal>exec</literal> function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -88,7 +88,10 @@ endfunction
             added at its end.
         </para>
         <para>
-            function definitions can be nested
+            Note that <literal>&lt;function_name&gt;</literal> must respect some syntax rules (see <link linkend="names">names</link>).
+        </para>
+        <para>
+            Function definitions can be nested.
         </para>
     </refsection>
     <refsection>
@@ -128,6 +131,9 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
             </member>
             <member>
                 <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
             </member>
         </simplelist>
     </refsection>

@@ -1,23 +1,23 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2012 - Allan CORNET
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
 // ====================================================================
-// This file contains scilab command to be executed at the end 
+// This file contains scilab command to be executed at the end
 // of a scilab session
 // ====================================================================
 function scilabQuit()
 
   // ATOMS ===============================================================
   if with_module("atoms") then
-    if sciargs() <> "-noatomsautoload" then
+    if sciargs() <> "-noatomsautoload" & isdef("atomsQuit") then
       //atomsQuit();
     end
   end
@@ -26,10 +26,10 @@ function scilabQuit()
   modules = getmodules();
 
   WITH_DEMOS     = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
- 
+
   for i=1:size(modules,"*")
     exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".quit",-1);
-  end  
+  end
 endfunction
 // ====================================================================
 scilabQuit();

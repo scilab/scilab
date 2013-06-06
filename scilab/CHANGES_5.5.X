@@ -61,6 +61,9 @@ Obsolete
 * IsAScalar() tagged as obsolete. Will be removed for Scilab 5.5.1.
   Use isscalar() instead.
 
+* chart() tagged as obsolete. Will be removed for Scilab 5.5.1.
+  Use nicholschart() instead.
+
 
 Xcos
 ====
@@ -79,6 +82,8 @@ Xcos
                      during simulation.
 
 * Bug #12424 fixed - Calling lincos on a Derivative block made scilab crash.
+
+* Bug #12460 fixed - xcosPalGenerateAllIcons sometimes crashed Scilab.
 
 * Bug #12561 fixed - SELECT_m and RELAY_f no more behaved as expected.
 
@@ -135,13 +140,19 @@ Bug fixes
 * Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
                     returned an error.
 
+* Bug #7486 fixed - DGELSY and ZGELSY closer to the upstream, to propose our modifications to LAPACK.
+
 * Bug #7655 fixed - An example added in help page of type, for type(X)=11 and type(X)=13.
+
+* Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
-* Bug #7828 fixed - Slight improvements in nicholschart.
-
 * Bug #7781 fixed - The second parameter of iqr function had not effect.
+
+* Bug #7826 fixed - chart tagged as obsolete.
+
+* Bug #7828 fixed - Slight improvements in nicholschart.
 
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
@@ -157,6 +168,8 @@ Bug fixes
 
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.
 
+* Bug #8614 fixed - Unit test for barhomogenize added.
+
 * Bug #8636 fixed - roots() help page updated (default algorithm value was wrong).
 
 * Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
@@ -165,7 +178,17 @@ Bug fixes
 
 * Bug #8687 fixed - typeof() function failed on uint8, depending on the format (+ unit test added).
 
+* Bug #8778 fixed - Call_ScilabOpen, TerminateScilab can not be called more
+                    than 80 times in a loop.
+
 * Bug #8824 fixed - taucs_chfact returned a segfault (not the case in mode nwni).
+
+* Bug #8856 fixed - Non regression test added for [k,l,m,...]=find(a==5).
+                    Non regression test of bug #476 updated.
+
+* Bug #8857 fixed - Non regression test of bug #477 updated.
+
+* Bug #8858 fixed - Non regression test of bug #480 updated.
 
 * Bug #8862 fixed - mget and mput couldn't read and write 64 bit data from
                     binary files.
@@ -186,9 +209,18 @@ Bug fixes
 
 * Bug #9851 fixed - Error message occurred because of a cut-off frequency of 0.25Hz with irr.
 
+* Bug #10213 fixed - sci2exp can be impacted by format which has been mentionned in its help page.
+
+* Bug #10226 fixed - When a // <empty session> line is delete, all sessions
+                     histories are folded.
+
 * Bug #10254 fixed - Slight improvements in help page of ones.
 
 * Bug #10287 fixed - An error message added for complex expression as input argument of integrate function.
+
+* Bug #10596 fixed - exit(xxx) from Scilab was failing.
+
+* Bug #10818 fixed - The following help pages have been added: hom, %e, %t, %f, %z and %s.
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
@@ -199,10 +231,7 @@ Bug fixes
 
 * Bug #10995 fixed - Typo in grand() for Gamma law argument
 
-* Bug #10226 fixed - When a // <empty session> line is delete, all sessions
-                     histories are folded.
-                     
-* Bug #10818 fixed - The following help pages have been added: hom, %e, %t, %f, %z and %s.
+* Bug #11139 fixed - conj was not defined for sparse matrices (+ unit test added).
 
 * Bug #11308 fixed - Calling sequences in help page of dsearch were wrong.
 
@@ -217,13 +246,20 @@ Bug fixes
 
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
 
+* Bug #12070 fixed - Removing a module can now be done in on-line mode even if
+                     it installed in off-line mode.
+
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
+
+* Bug #12143 fixed - "stop entity picker" (ged(11)) returned an error message.
 
 * Bug #12150 fixed - datatipCreate failed with one single point.
 
 * Bug #12163 fixed - unzoom did not work with a single input argument.
 
 * Bug #12376 fixed - Exec & edit buttons in examples in help were sometimes misplaced.
+
+* Bug #12413 fixed - ATOMS packages could not be removed if ATOMS had never been on-line.
 
 * Bug #12415 fixed - PATH environment variable grew when using call_scilab in a loop.
 
@@ -261,6 +297,8 @@ Bug fixes
 
 * Bug #12556 fixed - A fatal error occurred when calling set() with wrong instructions.
 
+* Bug #12557 fixed - Valid function names were not specified in help pages of function and functions.
+
 * Bug #12564 fixed - Javasci compile & run help page is not clear about needed packages.
 
 * Bug #12581 fixed - isfield could not support mlist or tlist.
@@ -273,6 +311,12 @@ Bug fixes
 
 * Bug #12614 fixed - Helpbrowser was not launched in EDT.
 
+* Bug #12615 fixed - Graphics seemed to be dead after a call to plot/bar/barh with
+                     a bad LineSpec argument.
+
+* Bug #12624 fixed - In case of errors in Scilab macros, make sure that
+                     "make check-TESTS" fails correctly.
+
 * Bug #12629 fixed - Last example of csim help page defined a function called
                      input() (overwriting the Scilab one).
 
@@ -280,3 +324,5 @@ Bug fixes
 
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
                      already existing in SCI/contrib/archives in offline mode.
+
+* Bug #12639 fixed - justify([], position) returned an error instead of [].

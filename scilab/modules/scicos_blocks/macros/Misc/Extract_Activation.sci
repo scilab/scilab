@@ -151,7 +151,7 @@ function [x,y,typ]=Extract_Activation(job,arg1,arg2)
 
         model=scicos_model();
         model.sim = "csuper";
-        model.evtin = 1;
+        model.in = 1;
         model.evtout = 1;
         model.rpar = scs_m_1;
 

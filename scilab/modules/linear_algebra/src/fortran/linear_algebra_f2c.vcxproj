@@ -263,6 +263,7 @@ cd ..
     <ClCompile Include="common_f2c.c" />
     <ClCompile Include="complexify.c" />
     <ClCompile Include="DGELSY1.c" />
+    <ClCompile Include="ZGELSY1.c" />
     <ClCompile Include="doldqr.c" />
     <ClCompile Include="intddet.c" />
     <ClCompile Include="intdgebal.c" />
@@ -318,6 +319,7 @@ cd ..
   <ItemGroup>
     <f2c_rule Include="complexify.f" />
     <f2c_rule Include="DGELSY1.f" />
+    <f2c_rule Include="ZGELSY1.f" />
     <f2c_rule Include="doldqr.f" />
     <f2c_rule Include="intddet.f" />
     <f2c_rule Include="intdgebal.f" />

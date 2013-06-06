@@ -135,7 +135,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscilinear_algebra_algo_la_LIBADD =
 am__objects_1 = intdggbal.lo intzgeqpf4.lo intzgehrd.lo intzgesvd1.lo \
-	intzgesvd2.lo intdgesv3.lo intdgesv4.lo DGELSY1.lo \
+	intzgesvd2.lo intdgesv3.lo intdgesv4.lo DGELSY1.lo ZGELSY1.lo \
 	intdpotrf.lo intdoldsvd.lo intdgecon.lo zoldqr.lo intzgetrf.lo \
 	complexify.lo intzgebal.lo intzgetri.lo intzggbal.lo \
 	intddet.lo intzgesv3.lo intzgesv4.lo intzpotrf.lo intzgecon.lo \
@@ -530,6 +530,7 @@ LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/intdgesv3.f \
     src/fortran/intdgesv4.f \
     src/fortran/DGELSY1.f \
+    src/fortran/ZGELSY1.f \
     src/fortran/intdpotrf.f \
     src/fortran/intdoldsvd.f \
     src/fortran/intdgecon.f \
@@ -1183,6 +1184,9 @@ intdgesv4.lo: src/fortran/intdgesv4.f
 
 DGELSY1.lo: src/fortran/DGELSY1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o DGELSY1.lo `test -f 'src/fortran/DGELSY1.f' || echo '$(srcdir)/'`src/fortran/DGELSY1.f
+
+ZGELSY1.lo: src/fortran/ZGELSY1.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ZGELSY1.lo `test -f 'src/fortran/ZGELSY1.f' || echo '$(srcdir)/'`src/fortran/ZGELSY1.f
 
 intdpotrf.lo: src/fortran/intdpotrf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdpotrf.lo `test -f 'src/fortran/intdpotrf.f' || echo '$(srcdir)/'`src/fortran/intdpotrf.f

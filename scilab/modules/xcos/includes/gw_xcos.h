@@ -39,7 +39,6 @@ XCOS_IMPEXP int sci_xcosUpdateBlock(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_loadXcos(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosSimulationStarted(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalGenerateAllIcons(char *fname, void *pvApiCtx);
-
 /*--------------------------------------------------------------------------*/
 /**
 * xcos already started
