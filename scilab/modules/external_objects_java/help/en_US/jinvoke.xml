@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* JIMS ( http://forge.scilab.org/index.php/p/JIMS/ ) - This file is a part of JIMS
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jinvoke">
+    <refnamediv>
+        <refname>jinvoke</refname>
+        <refpurpose>Invoke a method of a Java object</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            ret = jinvoke(object, methodName [, arg_1 [, arg_2...]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>object</term>
+                <listitem>
+                    <para>A mlist typed _JObj or _JClass or a Scilab variable</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>methodName</term>
+                <listitem>
+                    <para>A string giving the method name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arg_i</term>
+                <listitem>
+                    <para>A Scilab variable as method argument</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Invoke the Java method (static or not) called methodName of the given object. The result is returned as a mlist typed _JObj.
+        </para>
+        <para>
+            The polymorphism is handled in using Java Reflection and the autoboxing is handled too so ArrayList.add(1.234) or ArrayList.add("Hello") are allowed. If it exists a method Foo.bar(int), it is possible to write Foo.bar(123) even if 123 is a Scilab double but Foo.bar(double), if it exists, will be choosen.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               jimport java.lang.System;
+               jimport java.awt.Color;
+
+               // Non-static methods
+               jinvoke("Hello World !!", "length");
+
+               // Static method
+               T = jinvoke(System, "currentTimeMillis");
+
+               // Combine
+               c = jinvoke(Color, "decode", "123456");
+               cb = jinvoke(c, "brighter");
+               jcode = jinvoke(cb, "getRGB");
+               code = junwrap(jcode)
+
+               jremove System Color T c cb jcode;
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jautoUnwrap">jautoUnwrap</link>
+            </member>
+            <member>
+                <link linkend="jinvoke_db">jinvoke_db</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

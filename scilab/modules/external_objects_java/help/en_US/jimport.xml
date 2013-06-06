@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* JIMS ( http://forge.scilab.org/index.php/p/JIMS/ ) - This file is a part of JIMS
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jimport">
+    <refnamediv>
+        <refname>jimport</refname>
+        <refpurpose>Import a Java class</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            jimport(className)
+            cl = jimport(className, isAClassReturned)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>className</term>
+                <listitem>
+                    <para>A string giving the class name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>isAClassReturned</term>
+                <listitem>
+                    <para>A boolean to indicate if a class object must be returned</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The class must be in the classpath (to add a package or a directory in the Java classpath, just use <link type="scilab" linkend="scilab.help/javaclasspath">javaclasspath</link>).
+        </para>
+        <para>
+            When <literal>jimport("java.lang.String")</literal>, a mlist named String is created on the Scilab stack. The created mlist has a type equals to _JClass and can be used to instantiate new objects in using something like <literal>str = String.new("A Scilab String");</literal>. It is possible to call the static methods (if exist) of the class
+        </para>
+        <programlisting role="example"><![CDATA[
+               jimport java.lang.System;
+               jimport java.util.Date;
+               System.err.println("A message print in the Scilab console");
+               l = System.currentTimeMillis();
+               d = Date.new(l)
+               jremove(l,d);
+      ]]></programlisting>
+        <para>
+            To avoid confusion with already existing Scilab variables, the second argument isAClassReturned can be used
+        </para>
+        <programlisting role="example"><![CDATA[
+                 String = "Hello";
+                 foo = jimport("java.lang.String", %f);
+                 obj = foo.new("A string...")
+                 jremove(obj);
+        ]]></programlisting>
+        <para>
+            A class can be reloaded if it is allowed by the function <literal>jallowReloadClass</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               jimport javax.swing.JFrame;
+               jimport javax.swing.JLabel;
+
+               jframe = JFrame.new("Hello World !! Window");
+               jlabel = JLabel.new("A JLabel containing ""Hello Wolrd""");
+               cp = jframe.getContentPane();
+               cp.add(jlabel);
+               jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+               jframe.pack();
+               jframe.setVisible(%t);
+               jremove jlabel cp jframe;
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link type="scilab" linkend="scilab.help/javaclasspath">javaclasspath</link>
+            </member>
+            <member>
+                <link linkend="jallowClassReloading">jallowClassReloading</link>
+            </member>
+            <member>
+                <link linkend="jremove">jremove</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

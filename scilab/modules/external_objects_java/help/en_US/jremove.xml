@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* JIMS ( http://forge.scilab.org/index.php/p/JIMS/ ) - This file is a part of JIMS
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jremove">
+    <refnamediv>
+        <refname>jremove</refname>
+        <refpurpose>Remove a Java Object on the Java side</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            jremove()
+            jremove(varName_1 [, varName_2, ...])
+            jremove varName_1 [varName_2 ...]
+            jremove(object_1 [, object_2 ...])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>varName_i</term>
+                <listitem>
+                    <para>A string giving the variable name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>object_i</term>
+                <listitem>
+                    <para>A mlist typed _JObj or _JClass.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If no argument are given to jremove, then all the variables are removed on the Java side and garbage collection is called.
+        </para>
+        <para>
+            Else the corresponding variable is removed on the Java side.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               jimport java.lang.String;
+
+               s = String.new("Hello world");
+               jremove s;
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jexists">jexists</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

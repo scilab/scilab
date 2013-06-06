@@ -189,4 +189,6 @@ The option is "disableUnderMode" and can be:
 
 <path value="$SCILAB/modules/history_browser/jar/org.scilab.modules.history_browser.jar" disableUnderMode="NW"/>
 
+<path value="$SCILAB/modules/external_objects_java/jar/org.scilab.modules.external_objects_java.jar" />
+
 </classpaths>

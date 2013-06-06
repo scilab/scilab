@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* JIMS ( http://forge.scilab.org/index.php/p/JIMS/ ) - This file is a part of JIMS
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jwrapinfloat">
+    <refnamediv>
+        <refname>jwrapinfloat</refname>
+        <refpurpose>Wrap Scilab double matrix into Java float multiarray.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            [jw_1, jw_2, ...] = jwrapinfloat(sc_1 [, sc_2 [, sc_3 [,... ]]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>sc_i</term>
+                <listitem>
+                    <para>A Scilab variable</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>jw_i</term>
+                <listitem>
+                    <para>A Java wrapping in a float of the corresponding Scilab variable</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Since the float data type does not exist in Scilab, it is possible with this function to wrap a double in a float.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               f = jwrapinfloat(%pi);
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jwrap">jwrap</link>
+            </member>
+            <member>
+                <link linkend="jwrapinchar">jwrapinchar</link>
+            </member>
+            <member>
+                <link linkend="junwrap">junwrap</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

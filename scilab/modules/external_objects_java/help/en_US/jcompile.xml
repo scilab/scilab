@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* JIMS ( http://forge.scilab.org/index.php/p/JIMS/ ) - This file is a part of JIMS
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jcompile">
+    <refnamediv>
+        <refname>jcompile</refname>
+        <refpurpose>Compile Java code</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            class = jcompile(className, code);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>className</term>
+                <listitem>
+                    <para>A string giving the class name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>code</term>
+                <listitem>
+                    <para>A row or a column of strings containing the Java code.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>class</term>
+                <listitem>
+                    <para>A mlist typed _JClass</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Compile Java source code and load the corresponding class. If the package tools.jar, distributed with JDK, is not in the classpath, the Eclipse Compiler for Java (ECJ) will be used.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               hw = jcompile("HelloWorld", ["public class HelloWorld {"
+                                            "public static String getHello() {"
+                                            "return ""Hello World !!"";"
+                                            "}"
+                                            "}"]);
+
+               hello = hw.getHello()
+
+               jremove hello hw
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jimport">jimport</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -112,6 +112,7 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
         delete[] tmpvar;
+        throw;
     }
 
     delete[] args;

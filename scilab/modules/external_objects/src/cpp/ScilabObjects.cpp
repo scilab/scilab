@@ -277,7 +277,6 @@ bool ScilabObjects::unwrap(int idObj, int pos, const int envId, void * pvApiCtx)
     const ScilabAbstractEnvironmentWrapper & wrapper = env.getWrapper();
 
     type = env.isunwrappable(idObj);
-
     switch (type)
     {
         case Nothing:

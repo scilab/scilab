@@ -1,0 +1,6 @@
+javaclasspath("/usr/share/java/libintl.jar"); 
+jimport("gnu.gettext.GettextResource");
+GettextResource
+ GettextResource  =
+ 
+class gnu.gettext.GettextResource

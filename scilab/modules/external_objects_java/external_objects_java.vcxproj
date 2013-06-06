@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}</ProjectGuid>
+    <RootNamespace>external_objects</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../output_stream/includes;../core/includes;../api_scilab/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>core_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../output_stream/includes;../core/includes;../api_scilab/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>core_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../output_stream/includes;../core/includes;../api_scilab/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>core_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../output_stream/includes;../core/includes;../api_scilab/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <WarningLevel>Level3</WarningLevel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>core_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\dynlib_external_objects_java_scilab.h" />
+    <ClInclude Include="includes\ExternalObjects.h" />
+    <ClInclude Include="includes\ExternalObjectsFunction.h" />
+    <ClInclude Include="includes\gw_external_objects.h" />
+    <ClInclude Include="includes\OptionsHelper.hxx" />
+    <ClInclude Include="includes\ScilabAbstractEnvironment.hxx" />
+    <ClInclude Include="includes\ScilabAbstractEnvironmentException.hxx" />
+    <ClInclude Include="includes\ScilabAbstractEnvironmentWrapper.hxx" />
+    <ClInclude Include="includes\ScilabAbstractInvoker.hxx" />
+    <ClInclude Include="includes\ScilabAbstractMemoryAllocator.hxx" />
+    <ClInclude Include="includes\ScilabAbstractOptionsSetter.hxx" />
+    <ClInclude Include="includes\ScilabAutoCleaner.hxx" />
+    <ClInclude Include="includes\ScilabEnvironments.hxx" />
+    <ClInclude Include="includes\ScilabGateway.hxx" />
+    <ClInclude Include="includes\ScilabGatewayOptions.hxx" />
+    <ClInclude Include="includes\ScilabObjects.hxx" />
+    <ClInclude Include="includes\ScilabOptionsSetter.hxx" />
+    <ClInclude Include="includes\ScilabStream.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\sci_doubleExclam_invoke_.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_invoke_lu.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EClass_e.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_0.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_1_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_2_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_3_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_4_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_5.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_a_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_disp.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_d_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_e.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_g_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_h_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_j_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_k_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_l_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_m_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_n_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_o_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_p.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_p_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_q_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_r_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_s_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_t.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_x_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_y_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_z_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_foo_i_EObj.cpp" />
+    <ClCompile Include="sci_gateway\c\gw_external_objects.c" />
+    <ClCompile Include="src\cpp\addNamedVariable.cpp" />
+    <ClCompile Include="src\cpp\addToClasspath.cpp" />
+    <ClCompile Include="src\cpp\array.cpp" />
+    <ClCompile Include="src\cpp\cast.cpp" />
+    <ClCompile Include="src\cpp\classExtract.cpp" />
+    <ClCompile Include="src\cpp\compile.cpp" />
+    <ClCompile Include="src\cpp\convMatrixMethod.cpp" />
+    <ClCompile Include="src\cpp\deff.cpp" />
+    <ClCompile Include="src\cpp\display.cpp" />
+    <ClCompile Include="src\cpp\doubleExclam_invoke.cpp" />
+    <ClCompile Include="src\cpp\evalString.cpp" />
+    <ClCompile Include="src\cpp\exists.cpp" />
+    <ClCompile Include="src\cpp\ExternalObjectsFunction.cpp" />
+    <ClCompile Include="src\cpp\getClassName.cpp" />
+    <ClCompile Include="src\cpp\getClasspath.cpp" />
+    <ClCompile Include="src\cpp\getEnvId.cpp" />
+    <ClCompile Include="src\cpp\getEnvironmentInfos.cpp" />
+    <ClCompile Include="src\cpp\getEnvironmentName.cpp" />
+    <ClCompile Include="src\cpp\getField.cpp" />
+    <ClCompile Include="src\cpp\getFields.cpp" />
+    <ClCompile Include="src\cpp\getMethods.cpp" />
+    <ClCompile Include="src\cpp\getNamedVariable.cpp" />
+    <ClCompile Include="src\cpp\getRepresentation.cpp" />
+    <ClCompile Include="src\cpp\getsetOptions.cpp" />
+    <ClCompile Include="src\cpp\import.cpp" />
+    <ClCompile Include="src\cpp\invoke.cpp" />
+    <ClCompile Include="src\cpp\invoker.cpp" />
+    <ClCompile Include="src\cpp\invoke_lu.cpp" />
+    <ClCompile Include="src\cpp\newInstance.cpp" />
+    <ClCompile Include="src\cpp\objectExtract.cpp" />
+    <ClCompile Include="src\cpp\objectInsert.cpp" />
+    <ClCompile Include="src\cpp\objectPrint.cpp" />
+    <ClCompile Include="src\cpp\operation.cpp" />
+    <ClCompile Include="src\cpp\OptionsHelper.cpp" />
+    <ClCompile Include="src\cpp\remove.cpp" />
+    <ClCompile Include="src\cpp\ScilabAutoCleaner.cpp" />
+    <ClCompile Include="src\cpp\ScilabEnvironments.cpp" />
+    <ClCompile Include="src\cpp\ScilabObjects.cpp" />
+    <ClCompile Include="src\cpp\ScilabOptionsSetter.cpp" />
+    <ClCompile Include="src\cpp\setField.cpp" />
+    <ClCompile Include="src\cpp\trace.cpp" />
+    <ClCompile Include="src\cpp\unwrap.cpp" />
+    <ClCompile Include="src\cpp\unwrapremove.cpp" />
+    <ClCompile Include="src\cpp\wrap.cpp" />
+    <ClCompile Include="src\cpp\wrapAsRef.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
+      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
+      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\fileio\fileio.vcxproj">
+      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\libintl.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="core_f_Import.def" />
+    <None Include="core_Import.def" />
+    <None Include="external_objects.iss" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="external_objects.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

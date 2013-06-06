@@ -191,6 +191,8 @@ int gw_dynamic_history_browser(void);
 
 int gw_dynamic_external_objects(void);
 
+int gw_dynamic_external_objects_java(void);
+
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/
 

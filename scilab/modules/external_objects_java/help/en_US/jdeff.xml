@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* JIMS ( http://forge.scilab.org/index.php/p/JIMS/ ) - This file is a part of JIMS
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jdeff">
+    <refnamediv>
+        <refname>jdeff</refname>
+        <refpurpose>Map a static Java method onto a Scilab macro</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            jdeff(className, javaMethodName, scilabMacroName)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>className</term>
+                <listitem>
+                    <para>A string giving the class name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>javaMethodName</term>
+                <listitem>
+                    <para>A string giving the method name in the class (the method must be static)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>scilabMacroName</term>
+                <listitem>
+                    <para>A string giving the macro name</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Provides a simple way to map a static Java method onto a Scilab macro. The result is automatically unwrapped (if it is possible).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               jdeff("java.lang.Double", "parseDouble", "str2number");
+               PI = str2number("3.141592653589");
+               PI - %pi
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link type="scilab" linkend="scilab.help/deff">deff</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

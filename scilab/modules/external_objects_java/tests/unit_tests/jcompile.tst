@@ -1,0 +1,28 @@
+//
+//  Copyright (C) 2013 - S/E - Sylvestre Ledru
+//
+//  This file must be used under the terms of the CeCILL.
+//  This source file is licensed as described in the file COPYING, which
+//  you should have received as part of this distribution.  The terms
+//  are also available at
+//  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+//
+// <-- JVM MANDATORY -->
+//
+
+c = jcompile("Test", ["public class Test {";
+       "public int field;";
+       "public Test(int n) {";
+       "field = n;";
+       "}";
+       "}";]);
+assert_checkequal(jgetclassname(c),"Test");
+
+t = c.new(128);
+v = jgetfield(t, "field");
+
+// or more easier
+//junwraprem(t.field)
+
+jremove c t v;
