@@ -76,9 +76,9 @@ function [c,lagindex]=xcorr(x,varargin)
     if isreal(x) then c=real(c);end
   else //cross correlation
     x=matrix(x,-1,1);nx=size(x,1)
-    xx=sum(abs(x)^2)
+    xx=sum(abs(x).^2)
     y=matrix(y,-1,1);ny=size(y,1)
-    yy=sum(abs(y)^2)
+    yy=sum(abs(y).^2)
     if nx<ny then 
       x(ny)=0;
     elseif ny<nx then

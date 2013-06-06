@@ -590,7 +590,7 @@ msgid "Setup"
 msgstr "Configurer"
 
 msgid "Execution trace and Debug"
-msgstr "Trace d'exécution et déboguage"
+msgstr "Trace d'exécution et débogage"
 
 msgid "Set Context"
 msgstr "Modifier le contexte"

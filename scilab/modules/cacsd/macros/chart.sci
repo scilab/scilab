@@ -8,6 +8,7 @@
 
 function chart(attenu,angl,flags)
   
+  warnobsolete("nicholschart", "5.5.1");
   titre=_("Amplitude and phase contours of y/(1+y)")
   l10=log(10);
   ratio=%pi/180;

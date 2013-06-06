@@ -31,6 +31,8 @@ public final class UiDataMessages {
     /* File menu */
     public static final String FILE = Messages.gettext("File");
     public static final String CLOSE = Messages.gettext("Close");
+    public static final String DELETE = Messages.gettext("Delete");
+    public static final String MODIFY = Messages.gettext("Modify");
     public static final String FILTER = Messages.gettext("Filter");
 
     public static final String SCILABVAR = Messages.gettext("Hide Scilab variables");

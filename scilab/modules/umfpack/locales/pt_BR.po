@@ -78,7 +78,7 @@ msgstr "%s: Tamanho errado para o argumento de entrada #%d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorisation.\n"
 msgstr ""
 "%s: Tamanho errado para o argumento de entrada #%d: Não é compatível com a "

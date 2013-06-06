@@ -4,6 +4,12 @@
         <refname>spzeros</refname>
         <refpurpose>matrice creuse nulle</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>sp = spzeros(nrows, ncols)
+            sp = spzeros(A)
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>

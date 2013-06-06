@@ -25,7 +25,7 @@ if rhs==3 then
     c2(i)=c1
     b2=b1
   else
-    error('Invalid syntax for a MIMO system')
+    error(msprintf(_("%s: Invalid syntax for a MIMO system.\n"),"%lss_i_p"));
   end
   d2(i)=d1;
   s=lsslist(a1,b2,c2,d2,x1,dom1)

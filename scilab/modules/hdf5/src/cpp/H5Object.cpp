@@ -234,7 +234,7 @@ H5Object & H5Object::getObject(H5Object & parent, hid_t obj)
 
     if (err < 0)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Cannot retrieve informations about the object"));
+        throw H5Exception(__LINE__, __FILE__, _("Cannot retrieve information about the object"));
     }
 
     size = H5Iget_name(obj, 0, 0);

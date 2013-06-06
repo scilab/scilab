@@ -118,6 +118,9 @@ fun a toto 'une chaîne'
             utilisées pour la surcharge des opérateurs (voir <link linkend="overloading">overloading</link>) ou des fonctions pour
             des nouveaux types de données.
         </para>
+        <para>
+            Certaines règles ont été établies quant à la syntaxe des noms de fonctions dans Scilab (voir <link linkend="names">names</link>).
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -169,6 +172,9 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
             </member>
             <member>
                 <link linkend="varargout">varargout</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
             </member>
         </simplelist>
     </refsection>

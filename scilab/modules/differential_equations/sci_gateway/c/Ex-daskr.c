@@ -20,15 +20,14 @@ int C2F(pjac1)(resfunc res, int *ires, int *nequations, double *tOld, double *ac
     double ysave = 0;
     double ypsave = 0;
     double* e = NULL;
-    int iFour = 4;
-
+    int neq = *nequations;
     double SQuround = sqrt(C2F(dlamch)("P"));
 
     tx = *tOld;
 
-    e = (double*)calloc(*nequations, sizeof(double));
+    e = (double*)calloc(neq, sizeof(double));
 
-    for (i = 0 ; i < *nequations ; ++i)
+    for (i = 0 ; i < neq ; ++i)
     {
         del = Max(SQuround * Max(fabs(actual[i]), fabs(*h * actualP[i])), 1. / rewt[i]);
         del *= (*h * actualP[i] >= 0) ? 1 : -1;
@@ -38,21 +37,21 @@ int C2F(pjac1)(resfunc res, int *ires, int *nequations, double *tOld, double *ac
         actualP[i] += *cj * del;
         res(&tx, actual, actualP, e, ires, rpar, ipar);
 
-        if (res < 0)
+        if (ires < 0)
         {
             return 0;
         }
 
         delinv = 1. / del;
-        for (j = 0 ; j < *nequations ; j++)
+        for (j = 0 ; j < neq ; j++)
         {
             wp[nrow + j] = (e[j] - savr[j]) * delinv;
+            iwp[nrow + j] = i + 1;
+            iwp[nrow + j + neq * neq] = j + 1;
         }
-        nrow       += *nequations;
+        nrow       += neq;
         actual[i]  =  ysave;
         actualP[i] =  ypsave;
-        iwp[i] = i;
-        iwp[i + *nequations] = i;
     }
 
     free(e);
@@ -68,7 +67,7 @@ int C2F(psol1)(int *nequations, double *tOld, double *actual, double *actualP,
     int info = 0;
     int *ipiv = NULL;
 
-    ipiv = (int*)malloc(sizeof(int) * *nequations);
+    ipiv = (int *) malloc(*nequations * sizeof(int));
 
     C2F(dgesv) (nequations, &nColB, wp, nequations, ipiv, b, nequations, &info);
 

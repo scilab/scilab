@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-04-16 17:44+0100\n"
+"Revision-Date: 2013-05-23 15:50+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -424,6 +424,7 @@ msgstr ""
 
 #
 # File: macros/cov.sci, line: 125
+# File: macros/cov.sci, line: 175
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
@@ -445,19 +446,13 @@ msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
 msgstr ""
 
 #
-# File: macros/cov.sci, line: 175
-#, c-format
-msgid "%s: Wrong value for inputDDDD argument #%d: %d or %d expected.\n"
-msgstr ""
-
-#
 # File: macros/cov.sci, line: 184
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/iqr.sci, line: 34
+# File: macros/iqr.sci, line: 35
 # File: macros/msd.sci, line: 33
 # File: macros/quart.sci, line: 40
 #, c-format
@@ -465,9 +460,32 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 
 #
+# File: macros/iqr.sci, line: 50
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A column vector or matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/iqr.sci, line: 55
+#, c-format
+msgid ""
+"%s: Wrong dimensions for input argument #%d: A row vector or matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/iqr.sci, line: 59
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', %d, '%s' or %d expected.\n"
+msgstr ""
+
+#
 # File: macros/mad.sci, line: 35
 # File: macros/mean.sci, line: 26
-# File: macros/meanf.sci, line: 38
+# File: macros/meanf.sci, line: 39
 # File: macros/moment.sci, line: 46
 # File: macros/nanmedian.sci, line: 29
 # File: macros/nanstdev.sci, line: 34
@@ -478,7 +496,6 @@ msgstr ""
 
 #
 # File: macros/mad.sci, line: 49
-# File: macros/meanf.sci, line: 51
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s','%s', %d or %d.\n"
 msgstr ""
@@ -500,6 +517,29 @@ msgstr ""
 # File: macros/mean.sci, line: 50
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr ""
+
+#
+# File: macros/meanf.sci, line: 44
+# File: macros/meanf.sci, line: 49
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A full or sparse matrix, or an "
+"integer matrix, or an hypermat expected.\n"
+msgstr ""
+
+#
+# File: macros/meanf.sci, line: 53
+# File: macros/stdevf.sci, line: 41
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+
+#
+# File: macros/meanf.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
 msgstr ""
 
 #
@@ -618,13 +658,6 @@ msgstr ""
 #
 # File: macros/show_pca.sci, line: 67
 msgid "Eigenvalues"
-msgstr ""
-
-#
-# File: macros/stdevf.sci, line: 41
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr ""
 
 #

@@ -8,6 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function M=generic_i_ce(varargin)
-// Generic function for insertion of any type of data in a cell
-error("Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y");
+    // Generic function for insertion of any type of data in a cell
+    error(msprintf(_("%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"),"generic_i_ce"));
 endfunction

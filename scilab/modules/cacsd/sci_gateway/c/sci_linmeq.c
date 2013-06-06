@@ -1180,17 +1180,17 @@ int sci_linmeq(char *fname, unsigned long fname_len)
                 if (C2F(lsame)(&DICO, "C"))
                 {
                     //     .        Matrix is not stable (cont)
-                    Scierror(999, _("%s: Wrong value for argument %d: eigenvalues must have negative real parts.\n"), fname, 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: eigenvalues must have negative real parts.\n"), fname, 1);
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong value for argument %d: eigenvalues modulus must be less than one.\n"), fname, 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: eigenvalues modulus must be less than one.\n"), fname, 1);
                 }
             }
             else if (INFO == 4 || INFO == 5)
             {
                 //     .        not a schur form
-                Scierror(999, _("%s: Wrong value for argument %d: eigenvalues modulus must be less than one.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: eigenvalues modulus must be less than one.\n"), fname, 1);
             }
             else if (INFO == 6)
             {

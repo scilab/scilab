@@ -31,7 +31,7 @@ function result = atomsRemove(packages,section,del)
 
     // Get scilab version (needed for later)
     // =========================================================================
-    sciversion = strcat(string(getversion('scilab')) + ".");
+    sciversion = strcat(string(getversion("scilab")) + ".");
 
     // Check input parameters
     // =========================================================================
@@ -234,10 +234,6 @@ function result = atomsRemove(packages,section,del)
         this_package_version   = remove_package_list(i,4);
         this_package_section   = remove_package_list(i,5);
 
-        this_package_details   = atomsToolboxDetails([this_package_name this_package_version]);
-        this_package_insdet    = atomsGetInstalledDetails([this_package_name this_package_version],section);
-        this_package_directory = this_package_insdet(4);
-
         // Add the package to list of package to remove
         atomsToremoveRegister(this_package_name,this_package_version,this_package_section);
 
@@ -248,6 +244,17 @@ function result = atomsRemove(packages,section,del)
         end
 
         atomsDisp(msprintf(gettext("Removing %s (%s)(%s).\n\n"), this_package_name , this_package_version , this_package_section));
+
+        // Online or offline, we only need the information registered in
+        load(atomsPath("system",this_package_section)+"installed.bin");
+        this_package_insdet    = installed_struct(this_package_name+" - "+this_package_version)';
+        this_package_directory = this_package_insdet(3);
+
+        // switching section and path columns to get the same output format as usual
+        tmp = this_package_insdet(3);
+        this_package_insdet(3) = this_package_insdet(4);
+        this_package_insdet(4) = tmp;
+        clear installed_struct;
 
         // Check if this_package_directory start with SCI or SCIHOME
 
@@ -314,7 +321,7 @@ function result = atomsRemove(packages,section,del)
         // Remove it from the DESCRIPTION_installed file
         // =====================================================================
 
-        DESCRIPTION_file = atomsPath("system",this_package_insdet(3)) + "DESCRIPTION_installed";
+        DESCRIPTION_file = atomsPath("system",this_package_section) + "DESCRIPTION_installed";
 
         if ~ isempty(fileinfo(DESCRIPTION_file)) then
             DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
@@ -328,6 +335,7 @@ function result = atomsRemove(packages,section,del)
 
         // Fill the result matrix
         // =====================================================================
+
         result = [ result ; this_package_insdet ];
 
         // Sucess message if needed

@@ -39,6 +39,7 @@ int sci_helpbrowser(char *fname, unsigned long fname_len)
     int nbColHelp       = 0;
     char** helpAdr      = NULL;
     char** languageAdr  = NULL;
+    int ret = 1;
 
     CheckInputArgument(pvApiCtx, 2, 4);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -125,7 +126,7 @@ int sci_helpbrowser(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        launchHelpBrowser(helpAdr, nbRowHelp * nbColHelp, languageAdr[0]);
+        ret = launchHelpBrowser(helpAdr, nbRowHelp * nbColHelp, languageAdr[0]);
 
         if (helpAdr)
         {
@@ -286,7 +287,7 @@ int sci_helpbrowser(char *fname, unsigned long fname_len)
             return FALSE;
         }
 
-        searchKeyword(helpAdr, nbRowHelp * nbColHelp, keywordAdr[0], languageAdr[0], *fullTextAdr == 1);
+        ret = searchKeyword(helpAdr, nbRowHelp * nbColHelp, keywordAdr[0], languageAdr[0], *fullTextAdr == 1);
 
         if (helpAdr)
         {
@@ -299,6 +300,11 @@ int sci_helpbrowser(char *fname, unsigned long fname_len)
     else
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), fname, 2, 4);
+        return FALSE;
+    }
+
+    if (ret == 0)
+    {
         return FALSE;
     }
 

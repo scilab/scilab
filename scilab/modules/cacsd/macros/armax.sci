@@ -8,44 +8,45 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [archap,la,lb,sig,resid]=armax(r,s,y,u,b0f,prf)
-//[la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])
-// Identification ARX
-// Calcule les coefficients d'un ARX n-dimensionnel
+// [la, lb, sig, resid] = armax(r, s, y, u, [b0f, prf])
+// armax identification
+// Compute the coefficients of a n-dimensional ARX
 //   A(z^-1)y= B(z^-1)u + sig*e(t)
-//           e(t) est un bruit blanc de variance Id n-dimenssionnel
-//           sig: est une matrice (n,n)
+//           e(t) is a white noise of n-dimensional Id variance
+//           sig is a n by n matrix
 //           A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
 //           B(z)= b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
-// Methode :
+// Method:
 //     Cfre : Eykhoff (trends and progress in system identification) page 96
-//     En introduisant z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)] et
-//     coef= [-a1,..,-ar,b0,...,b_s]
-//     y(t)= coef* z(t) + sig*e(t) et l'algorithme consiste
-//     a trouver coef qui minimise  sum_{t=1}^N ( [y(t)- coef'z(t)]^2)
+//     Introducing z(t)=[y(t-1),..,y(t-r),u(t),...,u(t-s)] and
+//     oeff = [-a1,..,-ar,b0,...,b_s], we obtain
+//     y(t)= coef* z(t) + sig*e(t)
+//     and the algorithm is finding coef which minimizes
+//     sum_{t=1}^N ( [y(t)- coef'z(t)]^2)
 //
-// Entree :
-//     y : serie de sortie y(ny,n); ny: dimension,
-//                                  n : taille de l'echantillon
-//     u : serie d'entree; u(nu,n); nu: dimension,
-//                                  n : taille de l'echantillon
-//     r et s : les ordres d'autoregression r >=0 et s >=-1
-//     b0f : est un parametre optionnel. Par defaut il vaut
-//         0, et signifie qu'il faut identifier b0. Si on lui
-//         donne la valeur 1, alors b0 est suppose valoir zero et
-//         n'est pas identifie.
-//     prf : parametre optionnel controlant le display
-//         si prf=1, un display est donne (c'est la valeur par defaut)
-// Sortie :
-//     la est la liste list(a,a+eta,a-eta);(eta : ecart type estime)
-//        a=[Id,a1,a2,...,ar] ai(ny,ny)
-//     lb est la liste list(b,b+etb,b-etb);(etb : ecart type estime)
-//        b=[b0,.....,b_s] bi(nu,nu)
-//     sig est l'ecart type estime du bruit
-//     et resid=[ sig*e(t0),....]; t0=max(max(r,s)+1,1));
+// Input: 
+//     y: output process y(ny, n); ny: dimension,
+//                                 n: sample size
+//     u: input process u(nu, n); nu: dimension
+//                                n: sample size
+//     r and s: auto-regression orders r >=0 and s >=-1
+//     b0f is optional parameter. By default, b0f is 0 and it
+//     means that this parameter must be identified. If b0f is 1, then
+//     b0f is supposed to be zero and is not identified.
+//     prf is optional parameter for display control.
+//         if prf = 1, a display is done (the default value)
+// Output:
+//     la is the list(a,a+eta,a-eta); eta: estimated standard deviation
+//                                a=[Id,a1,a2,...,ar] where ai: ny-by-ny matrix
+//     lb is the list(b,b+etb,b-etb); etb: estimated standard deviation
+//                               b=[b0,.....,b_s] where bi is nu-by-nu matrix
+//     sig is the estimated standard deviation of noise
+//     resid=[ sig*e(t0),....];
+//     t0=max(max(r,s)+1,1));
 //
-// Exemple :
-//     taper [a,b,sig,resid]=armax(); pour voir un exemple
-//     en dimension 1.
+// Example:
+//      Enter the command [a,b,sig,resid]=armax();
+//      to see an example in dimension 1.
 // Auteur: J-Ph. Chancelier ENPC Cergrene
 //!
 // Copyright INRIA
@@ -64,9 +65,9 @@ if rhs<=5,prf=1;end
 if rhs<=4,b0f=0;end
 [ny,n2]=size(y)
 [nu,n2u]=size(u)
-// calul de la matrice zz telle que
-// zz(:,j)=[ y(t-1),...,y(t-r),u(t),...,u(t-s)]', avec  t=t0-1+j
-// on peut calcule zz a partir de t=t0;
+// Compute zz matrix as
+// zz(:,j)=[ y(t-1),...,y(t-r),u(t),...,u(t-s)]', with  t=t0-1+j
+// zz can be computed from t = t0
  t0=max(max(r,s)+1,1);
  if r==0;if s==-1;error(msprintf(gettext("%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"),"armax","r==0","s==-1"))
  end;end
@@ -75,7 +76,7 @@ if rhs<=4,b0f=0;end
  if s>=-1;for i=b0f:s,z=[z ; u(:,t0-i:(n2-(i)))];end;end
  zz= z*z';
  zy= z*y(:,t0:n2)';
-// Test de rang
+// Rank test
  [nzl,nzc]=size(zz);
  k=rank(zz);
 if k<>nzl then
@@ -83,11 +84,11 @@ if k<>nzl then
 end;
  pv=pinv(zz);
  coef=(pv*zy)';
-//le bruit residuel
+// The residual noise
  resid=y(:,t0:n2) - coef*z;
-// la variance du bruit residuel
+// The variance of the residual noise
  sig2= resid*resid'/(n2-t0+1)
-// l'ecart type
+// The standart deviation
  sig=sqrtm(sig2);
  a=[eye(ny,ny),-coef(:,1:r*ny)];
  if b0f==0 then
@@ -95,8 +96,8 @@ end;
  else 
    b=[0*ones(ny,nu),coef(:,r*ny+1:r*ny+s*nu)];
  end
-// Pour les systemes SISO on rajoute les ecarts types des estimateur
-// cela reste a faire pour les MIMO
+// For the SISO systems, the estimated standard deviation is added.
+// It is to be done for the MIMO
  if ny == 1,
    dve=sqrt(diag(sig*pv,0))';
    la=list(a,a+[0,dve(1:r)],a-[0,dve(1:r)]);
@@ -108,6 +109,7 @@ end;
  else 
    la=a;lb=b;
  end
+ // If prf = 1, the display is done
 //si prf vaut 1 on donne un display
 archap=armac(a,b,eye(ny,ny),ny,nu,sig);
 

@@ -22,6 +22,6 @@ cd('bug_9059');
 exec("macrobug.sci","errcatch");
 str=lasterror();
 msgerr="%s: Error in file %s : %s.\n";
-assert_checkerror("genlib(''bug_9059lib'',''TMPDIR/bug_9059'',%f,%t)",msgerr,[],"genlib",TMPDIR +"/bug_9059/macrobug.sci",str);
--- Création de [bug_9059lib] (Macros) --
-genlib : Traitement du fichier : macrobug.sci
+assert_checkerror("genlib(''bug_9059lib'',''TMPDIR/bug_9059'',%f,%t)",msgerr,[],"genlib",pathconvert("TMPDIR" +"/bug_9059/macrobug.sci", %f),str);
+-- Creation of [bug_9059lib] (Macros) --
+genlib: Processing file: macrobug.sci

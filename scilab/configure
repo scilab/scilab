@@ -13767,7 +13767,7 @@ if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
 else
   as_fn_error $? "\"libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
-interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.\"" "$LINENO" 5
+interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path to the JNI libraries.\"" "$LINENO" 5
 fi
 
                    fi
@@ -13943,7 +13943,7 @@ $as_echo "$ac_res" >&6; }
 if eval test \"x\$"$as_ac_Lib"\" = x"yes"; then :
   GLUEGEN2_RT_LIBS="-lgluegen2-rt"
 else
-  as_fn_error $? "libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries." "$LINENO" 5
+  as_fn_error $? "libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path to the JNI libraries." "$LINENO" 5
 fi
 
                    LDFLAGS=$LDFLAGS_save
@@ -25345,7 +25345,8 @@ CHK_TCL_MIN=$TCL_MINOR_VERSION
 TCL_LIB_OK=0
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for tcl library tcl$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION" >&5
 $as_echo_n "checking for tcl library tcl$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION... " >&6; }
-dirs="$USER_TCL_LIB_PATH /lib /usr/lib /usr/lib64 /usr/lib/tcl /usr/lib/tcl8.* /shlib /shlib/tcl /shlib/tcl8.* /usr/shlib /shlib/tcl /usr//shlib/tcl8.* /usr/local/lib /usr/local/lib/tcl /usr/local/lib/tcl8.* /usr/local/shlib /usr/X11/lib/tcl /usr/X11/lib/tcl8.* /usr/lib/X11 /usr/lib/X11/tcl /usr/lib/X11/tcl8.* ../lib ../../lib  /usr/local/tcl /usr/tcl /usr/tcl/lib /usr/local/tcl/lib /sw/lib/ ."
+MULTIARCH_HOST=`gcc -v 2>&1|grep Target|cut -d" " -f2`
+dirs="$USER_TCL_LIB_PATH /lib /usr/lib /usr/lib64 /usr/lib/tcl /usr/lib/tcl8.* /shlib /shlib/tcl /shlib/tcl8.* /usr/shlib /shlib/tcl /usr//shlib/tcl8.* /usr/local/lib /usr/local/lib/tcl /usr/local/lib/tcl8.* /usr/local/shlib /usr/X11/lib/tcl /usr/X11/lib/tcl8.* /usr/lib/X11 /usr/lib/X11/tcl /usr/lib/X11/tcl8.* ../lib ../../lib  /usr/local/tcl /usr/tcl /usr/tcl/lib /usr/local/tcl/lib /sw/lib/ /usr/lib/$MULTIARCH_HOST ."
 libexts="so so.1.0 sl dylib a"
 libnames="tcl$CHK_TCL_MAJ.$CHK_TCL_MIN tcl.$CHK_TCL_MAJ.$CHK_TCL_MIN tcl$CHK_TCL_MAJ$CHK_TCL_MIN tcl.$CHK_TCL_MAJ$CHK_TCL_MIN"
 for e in $libexts; do
@@ -25550,7 +25551,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 25553 "configure"
+#line 25554 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -25641,7 +25642,9 @@ TK_LIB_OK=0
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for tk library tk$TK_MAJOR_VERSION.$TK_MINOR_VERSION" >&5
 $as_echo_n "checking for tk library tk$TK_MAJOR_VERSION.$TK_MINOR_VERSION... " >&6; }
-dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib64 /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/tk /shlib/tk8.* /usr/shlib /shlib/tk /usr/shlib/tk8.* /usr/local/lib /usr/local/lib/tk /usr/local/lib/tk8.* /usr/local/shlib /usr/X11/lib/tk /usr/X11/lib/tk8.*  /usr/lib/X11 /usr/lib/X11/tk /usr/lib/X11/tk8.* ../lib ../../lib /usr/tk /usr/local/tk /usr/local/tk/lib /usr/tk/lib /usr/local/tcl /usr/tcl /usr/local/tcl/lib /usr/tcl/lib /sw/lib "
+MULTIARCH_HOST=`gcc -v 2>&1|grep Target|cut -d" " -f2`
+
+dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib64 /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/tk /shlib/tk8.* /usr/shlib /shlib/tk /usr/shlib/tk8.* /usr/local/lib /usr/local/lib/tk /usr/local/lib/tk8.* /usr/local/shlib /usr/X11/lib/tk /usr/X11/lib/tk8.*  /usr/lib/X11 /usr/lib/X11/tk /usr/lib/X11/tk8.* ../lib ../../lib /usr/tk /usr/local/tk /usr/local/tk/lib /usr/tk/lib /usr/local/tcl /usr/tcl /usr/local/tcl/lib /usr/tcl/lib /sw/lib /usr/lib/$MULTIARCH_HOST ."
 libexts="so so.1.0 sl dylib a"
 libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
 
@@ -25881,7 +25884,7 @@ MATIO_ENABLE=no
 if test "$with_matio" != no; then
    if test -n "$with_matio_include" -o -n "$with_matio_library" ; then
       MATIO_CFLAGS="$with_matio_include"
-      MATIO_LIBS="$with_matio_library -lm -lz -lmatio"
+      MATIO_LIBS="$with_matio_library -lm -lz -lmatio -lhdf5"
    else
 
 pkg_failed=no
@@ -25893,12 +25896,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_MATIO_CFLAGS="$MATIO_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"matio >= 1.3.3\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "matio >= 1.3.3") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"matio >= 1.5.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "matio >= 1.5.0") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_MATIO_CFLAGS=`$PKG_CONFIG --cflags "matio >= 1.3.3" 2>/dev/null`
+  pkg_cv_MATIO_CFLAGS=`$PKG_CONFIG --cflags "matio >= 1.5.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -25911,12 +25914,12 @@ if test -n "$PKG_CONFIG"; then
         pkg_cv_MATIO_LIBS="$MATIO_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"matio >= 1.3.3\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "matio >= 1.3.3") 2>&5
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"matio >= 1.5.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "matio >= 1.5.0") 2>&5
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_MATIO_LIBS=`$PKG_CONFIG --libs "matio >= 1.3.3" 2>/dev/null`
+  pkg_cv_MATIO_LIBS=`$PKG_CONFIG --libs "matio >= 1.5.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -25935,14 +25938,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        MATIO_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "matio >= 1.3.3"`
+	        MATIO_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "matio >= 1.5.0"`
         else
-	        MATIO_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "matio >= 1.3.3"`
+	        MATIO_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "matio >= 1.5.0"`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$MATIO_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (matio >= 1.3.3) were not met:
+	as_fn_error $? "Package requirements (matio >= 1.5.0) were not met:
 
 $MATIO_PKG_ERRORS
 
@@ -25981,13 +25984,12 @@ fi
    CFLAGS="$CFLAGS $MATIO_CFLAGS"
    LIBS="$LIBS $MATIO_LIBS"
 
-   for ac_header in matio.h matioConfig.h
+   for ac_header in matio.h
 do :
-  as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
-ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
-if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+  ac_fn_c_check_header_mongrel "$LINENO" "matio.h" "ac_cv_header_matio_h" "$ac_includes_default"
+if test "x$ac_cv_header_matio_h" = xyes; then :
   cat >>confdefs.h <<_ACEOF
-#define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+#define HAVE_MATIO_H 1
 _ACEOF
 
 else
@@ -26059,6 +26061,9 @@ fi
 $as_echo "#define WITH_MATIO /**/" >>confdefs.h
 
    MATIO_ENABLE=yes
+
+
+
 fi
 
 
@@ -26128,7 +26133,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26131 "configure"
+// #line 26136 "configure"
 import java.util.regex.Pattern;
 
 import com.icl.saxon.Loader;
@@ -26245,7 +26250,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26248 "configure"
+// #line 26253 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
@@ -32673,7 +32678,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 32676 "configure"
+#line 32681 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -32779,7 +32784,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 32782 "configure"
+#line 32787 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H

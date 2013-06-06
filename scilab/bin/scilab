@@ -847,6 +847,7 @@ do_scinotes()
 
     # Call scinotes with no argument
         "$SCILABBIN" -e "scinotes($ARGS)"
+        exit $?
     fi
 }
 
@@ -884,6 +885,7 @@ do_xcos()
 
     # Call xcos with the arguments
         "$SCILABBIN" -e "xcos($ARGS)"
+        exit $?
     fi
 
 }
@@ -897,6 +899,7 @@ do_scilex()
             do_scinotes "$@"
         else
             "$SCILABBIN" "$@"
+            exit $?
         fi
     fi
 }

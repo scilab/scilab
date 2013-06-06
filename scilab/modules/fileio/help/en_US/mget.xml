@@ -115,13 +115,13 @@
             <varlistentry>
                 <term>l</term>
                 <listitem>
-                    <para>long</para>
+                    <para>long long int</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>i</term>
                 <listitem>
-                    <para>int</para>
+                    <para>int or long int</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

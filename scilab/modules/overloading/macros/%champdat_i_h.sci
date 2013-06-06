@@ -28,7 +28,7 @@ elseif type(i)==15 then
     elseif type(p)==15 then
       hdl=hdl(p(:))
     else
-      error('Invalid path')
+      error(msprintf(_("%s: Invalid path.\n"),"%champdat_i_h"));
     end
   end
   if type(index)==15 then
@@ -38,6 +38,6 @@ elseif type(i)==15 then
   end
   set(hdl,i($),v)
 else
-  error('Invalid path')
+  error(msprintf(_("%s: Wrong type for input argument #%d.\n"),"%champdat_i_h",1));
 end
 endfunction

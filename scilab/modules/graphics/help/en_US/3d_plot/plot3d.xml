@@ -86,7 +86,7 @@
                 <term>theta, alpha</term>
                 <listitem>
                     <para>real values giving in degree the spherical coordinates of the
-                        observation point.
+                        observation point (by default, <varname>alpha</varname>=35° and <varname>theta</varname>=45°).
                     </para>
                 </listitem>
             </varlistentry>
@@ -94,7 +94,7 @@
                 <term>leg</term>
                 <listitem>
                     <para>string defining the labels for each axis with @ as a field
-                        separator, for example "X@Y@Z".
+                        separator, for example "X@Y@Z" (by default, axis have no label).
                     </para>
                 </listitem>
             </varlistentry>
@@ -102,7 +102,7 @@
                 <term>flag</term>
                 <listitem>
                     <para>a real vector of size three.
-                        <literal>flag=[mode,type,box]</literal>.
+                        <literal>flag=[mode,type,box]</literal>(by default <varname>flag</varname>=[2,8,4]).
                     </para>
                     <variablelist>
                         <varlistentry>
@@ -272,7 +272,7 @@
                         <literal>flag</literal> : if it is set to <literal>1</literal>,
                         <literal>3</literal> or <literal>5</literal> (see above to see the
                         corresponding behaviour). If <literal>flag</literal> is missing,
-                        <literal>ebox</literal> is not taken into acoount.
+                        <literal>ebox</literal> is not taken into acoount (by default <varname>ebox</varname> is missing).
                     </para>
                     <para>
                         Note that, when specified, the <literal>ebox</literal>

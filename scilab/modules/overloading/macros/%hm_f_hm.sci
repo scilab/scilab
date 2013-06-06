@@ -12,13 +12,13 @@ function M1=%hm_f_hm(M1,M2)
 d1=M1.dims;
 d2=M2.dims;
 if size(d1,'*')<>size(d2,'*') then
-  error('In concatenation the number of dimensions for each component must match');
+  error(msprintf(_("%s: In concatenation the number of dimensions for each component must match.\n"),"%hm_f_hm"));
 end
 
 
 kd=find(d1(2:$)<>d2(2:$))
 if kd<>[] then
-  error('inconsistent dimensions')
+  error(msprintf(_("%s: Inconsistent dimensions.\n"),"%hm_f_hm"));
 end
 
 M1.entries=matrix([matrix(M1.entries,double(d1(1)),-1);

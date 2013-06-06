@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[r, nn [, hd]] = daskr(x0, t0, t [, atol [, rtol]], res [, jac], ng, surf [, info [, psol] [, jac]] [, hd])</synopsis>
+        <synopsis>[r, nn [, hd]] = daskr(x0, t0, t [, atol [, rtol]], res [, jac], ng, surf [, info [, psol] [, pjac]] [, hd])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -475,7 +475,7 @@ integer ny,ng
                         <listitem>
                             <para>A Scilab function.</para>
                             <para>Its calling sequence must be
-                                <literal>[r,ier] = psol(neq,R,iR,b)</literal> and the
+                                <literal>[r, ier] = psol(wp, iwp, b)</literal> and the
                                 <literal>psol</literal> function must return the solution of that system in
                                 <literal>r</literal> and an error flag <literal>ier</literal>.
                             </para>
@@ -490,7 +490,7 @@ list(psol,x1,x2,...)
                                 <literal>psol</literal> is now
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[
-psol(R,iR,b,x1,x2,...)
+psol(wp,iwp,b,x1,x2,...)
  ]]></programlisting>
                             <para>
                                 <literal>psol</literal> still returns the solution in <literal>r</literal>.
@@ -532,8 +532,8 @@ integer neq,iwp(*),ier,ipar(*)
                         <listitem>
                             <para>A Scilab function.</para>
                             <para>Its calling sequence must be
-                                <literal>[R,iR,ier] = pjac(neq,t,y,ydot,h,cj)</literal> and in return,
-                                the arrays R and iR must contain all preconditioner information in compressed sparse row format.
+                                <literal>[wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)</literal> and in return,
+                                the arrays wp and iwp must contain all preconditioner information in compressed sparse row format.
                             </para>
                         </listitem>
                         <listitem>
@@ -546,12 +546,12 @@ list(pjac,x1,x2,...)
                                 <literal>pjac</literal> is now
                             </para>
                             <programlisting role="no-scilab-exec"><![CDATA[
-pjac(neq,t,y,ydot,h,cj,x1,x2,...)
+pjac(neq,t,y,ydot,h,cj,rewt,savr,x1,x2,...)
  ]]></programlisting>
                             <para>
                                 <literal>pjac</literal> still returns factorised
                                 <literal>dg/dy + cj*dg/dydot</literal> as a function of
-                                <literal>(neq,t,y,ydot,h,cj,x1,x2,...)</literal>.
+                                <literal>(neq,t,y,ydot,h,cj,rewt,savr,x1,x2,...)</literal>.
                             </para>
                         </listitem>
                         <listitem>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5isAttr" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5isAttr</refname>
+        
+        <refpurpose>HDF5オブジェクトが属性かどうか確認</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            b = h5isAttr(obj)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>b</term>
+                
+                <listitem>
+                    
+                    <para>論理値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>属性オブジェクトがHDF5オブジェクトかどうか確認します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例を</title>
+        
+        <programlisting role="example"><![CDATA[
+// HDF5ファイルをであるSODファイルを作成
+x = 1:10;
+save(TMPDIR + "/x.sod", "x");
+
+// ファイルをオープン
+a = h5open(TMPDIR + "/x.sod", "r");
+
+// テスト
+h5isAttr(a)
+
+// 'SCILAB_scilab_version'属性に関してテスト
+h5isAttr(a.root.SCILAB_scilab_version)
+
+// 全て閉じる
+h5close(a)
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isFile">h5isFile</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isGroup">h5isGroup</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isSet">h5isSet</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isSpace">h5isSpace</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isType">h5isType</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isRef">h5isRef</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isArray">h5isCompound</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isArray">h5isArray</link>
+                
+            </member>
+            
+        </simplelist>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5isVlen">h5isVlen</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

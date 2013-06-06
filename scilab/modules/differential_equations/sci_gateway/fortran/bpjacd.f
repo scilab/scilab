@@ -9,28 +9,30 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c
       subroutine bpjacd (res, ires, neq, t, y, ydot, rewt, savr,
      *                     wk, h, cj, wp, iwp, ier, rpar, ipar)
-c     
+c
 c ======================================================================
 c     Management of external dealing with preconditioning of linear systems.
 c ======================================================================
 c
       INCLUDE 'stack.h'
       integer iadr,sadr
-c     
+c
       common/ierode/iero
       logical allowptr
-c      
-      character tmpbuf * (bsiz) 
+c
+      character tmpbuf * (bsiz)
       double precision res(*), t, y(*), ydot(*), rewt(*), savr(*),
      *                  wk(*), h, cj, wp(*), rpar(*)
       integer ires, neq, iwp(*), ier, ipar(*)
-      integer vol,tops,nordre
+      double precision dneq
+      integer vol,tops,nordre,hsize
       data nordre/5/,mlhs/3/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
 c
+c
+
       if (ddt .eq. 4) then
          write(tmpbuf(1:12),'(3i4)') top,r,sym
          call basout(io,wte,' bpjacd  top:'//tmpbuf(1:4))
@@ -38,10 +40,10 @@ c
 c     nordre is the external's order number in the data structure,
 c     mlhs (mrhs) is the number of output (input) parameters
 c     of the simulator
-c     
-      mrhs=5
+c
+      mrhs=8
       iero=0
-c     
+c
       ilp=iadr(lstk(top))
       il=istk(ilp+nordre)
 c
@@ -61,37 +63,47 @@ c     scilab was not able to evaluate the external
       iero=1
 
 c     Putting Fortran arguments on Scilab stack
-c     
+c
 c     Minimum entry arguments for the simulator. The value of these arguments
 c     comes from the Fortran context (call list)
-c+    
-      neq=istk(il+1)
-      call ftob(t,1,istk(il+2))
+c+
+c     function res
+      dneq = neq
+      call ftob(dneq,1,istk(il+1))
       if(err.gt.0.or.err1.gt.0) return
-      call ftob(y,neq,istk(il+3))
+      call ftob(t,1,istk(il+1))
       if(err.gt.0.or.err1.gt.0) return
-      call ftob(ydot,neq,istk(il+3))
+      call ftob(y,neq,istk(il+2))
       if(err.gt.0.or.err1.gt.0) return
-      cj=istk(il+4)
-c+    
-c     
+      call ftob(ydot,neq,istk(il+2))
+      if(err.gt.0.or.err1.gt.0) return
+      call ftob(h,1,istk(il+1))
+      if(err.gt.0.or.err1.gt.0) return
+      call ftob(cj,1,istk(il+1))
+      if(err.gt.0.or.err1.gt.0) return
+      call ftob(rewt,neq,istk(il+2))
+      if(err.gt.0.or.err1.gt.0) return
+      call ftob(savr,neq,istk(il+2))
+      if(err.gt.0.or.err1.gt.0) return
+c+
+c
       if(istk(ils).eq.15) goto 10
-c     
+c
 c     Retrieving the simulator's address
       fin=lstk(tops)
-c     
+c
       goto 40
 c     If the simulator is defined by a list
  10   nelt=istk(ils+1)
       l=sadr(ils+3+nelt)
       ils=ils+2
-c     
+c
 c     Retrieving the simulator's address
       fin=l
-c     
+c
 c     Managing the additional simulator parameters coming from
 c     the context (elements of the list describing the simulator)
-c     
+c
       nelt=nelt-1
       if(nelt.ne.0) then
          l=l+istk(ils+1)-istk(ils)
@@ -113,14 +125,15 @@ c
          mrhs=mrhs+nelt
       endif
  40   continue
-c     
+c
 c     Executing the macro defining the simulator
-c     
+c
       pt=pt+1
       if(pt.gt.psiz) then
          call  error(26)
          return
       endif
+
       ids(1,pt)=lhs
       ids(2,pt)=rhs
       rstk(pt)=1001
@@ -128,29 +141,43 @@ c
       rhs=mrhs
       niv=niv+1
       fun=0
-c     
+c
       icall=5
-
       include 'callinter.h'
-c     
+c
  200  lhs=ids(1,pt)
       rhs=ids(2,pt)
       pt=pt-1
       niv=niv-1
-c+    
+c+
 c     Transferring the output to Fortran
-      call btof(wp,neq*neq)
-      if(err.gt.0.or.err1.gt.0) return
-      call btof(iwp,neq*neq)
-      if(err.gt.0.or.err1.gt.0) return
       call btof(ier,1)
       if(err.gt.0.or.err1.gt.0) return
+c      call btof(iwp,2*neq*neq)
+      il2=iadr(lstk(top))
+      hsize=4
+      n=istk(il2+1)*istk(il2+2)*(istk(il2+3)+1)
+      liwp = 2*neq*neq
+c     Test if the variable on the stack has same type and size as the theoretical iwp
+      if (istk(il2).ne.1.or.n.ne.liwp) then
+         call error(98)
+         return
+      endif
+      lx=sadr(il2+hsize)
+      do 900 i=1,liwp
+         iwp(i) = stk(lx+i-1)
+900   continue
+      top = top-1
+      if(err.gt.0.or.err1.gt.0) return
+      lwp = neq*neq
+      call btof(wp,lwp)
+      if(err.gt.0.or.err1.gt.0) return
+c+
 
-c+    
 c     Normal return iero set to 0
-      iero=0 
+      iero=0
       return
-c     
+c
  9999 continue
       niv=niv-1
       if(err1.gt.0) then

@@ -85,12 +85,15 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   // If A is a function
   if (cpt==0),
       fct = 0;
-      if (rhs >= 2 & fct==0 ),
+      if rhs >= 2,
           funcorvec=varargin(1);
-          if ((type(funcorvec) ~= 13) & (type(funcorvec) ~=1)),
+          if and(type(funcorvec) <> [1 5 13]) then
               error(msprintf(gettext("%s: Wrong value for input argument #%d: Transpose of the function %s expected.\n"),"qmr",2,"A"));
-          // if the following input argument is a matrix
-          elseif (type(funcorvec) == 1) then
+          // if the following input argument is a sparse or dense matrix
+          elseif or(type(funcorvec) == [1 5]) then
+              if size(getfield(1,macrovar(A)),"*") == 1 then
+                  error(msprintf(gettext("%s: Wrong type for input argument #%d: A transpose of the function %s expected.\n"), "qmr", 2, "A"));
+              end
               matvec = A;
               cptmat = 1;
           // if the following input argument is a function
@@ -107,6 +110,10 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   // Parsing right hand side b
   if ( rhs >= fct+2 ),
       b=varargin(fct+1);
+      // if b is not constant or sparse
+      if and(type(b) <> [1 5])  then
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex, full or sparse column vector expected.\n"), "qmr", fct+2));
+      end
       if ( size(b,2) ~= 1),
           error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"qmr",fct+2));
       end
@@ -115,6 +122,10 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   // Parsing initial vector x
   if ( rhs >= fct+3),
       x=varargin(fct+2);
+      // if x is not constant or sparse
+      if and(type(x) <> [1 5])  then
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex, full or sparse column vector expected.\n"), "qmr", fct + 3));
+      end
       if (size(x,2) ~= 1),
           error(msprintf(gettext("%s: Wrong size for input argument #%d: Column vector expected.\n"),"qmr",fct+3));
       end
@@ -138,6 +149,8 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
           cpt=1;
       case 13 then
           cpt=0;
+      else
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex, full or sparse, square matrix or a function expected.\n"), "qmr", fct + 4));
       end
        
         // if M1 is a matrix
@@ -158,12 +171,16 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
             if ( rhs >= fct+5 & size(getfield(1,macrovar(precond_g)),"*") == 1),
                 Precp_g = varargin(fct+4);
                 if (type(Precp_g) == 13 & size(getfield(1,macrovar(Precp_g)),"*")==1) then
-                    precond_g = Prec_g;
+                    //precond_g = Prec_g;
                     precondp_g = Precp_g;
                     cptmatM1 = 2;
                     fct = fct+1;
                     warning(msprintf(gettext("%s : Calling qmr(...,M1,M1p) is deprecated. Please see qmr documentation for more details.\n"),"qmr"));
+                else
+                    error(msprintf(gettext("%s: Wrong type for input argument #%d: A transpose of the function expected.\n"), "qmr", fct + 5));
                 end
+            elseif rhs < fct+5 & size(getfield(1, macrovar(precond_g)), "*") == 1 then
+                error(msprintf(gettext("%s: Wrong prototype of input argument #%d: If M1 is function, use the header M1(x,t) instead M1(x).\n"), "qmr", fct+4));
             end
         end
   // By default
@@ -185,10 +202,13 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
           cpt=1;
       case 13 then
          cpt=0;
+      else
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: A real or complex, full or sparse, square matrix or a function expected.\n"), "qmr", fct + 5));
      end
       
       // M2 matrix
       if ( cpt==1 ),
+
           if (size(Prec_d,1) ~= size(Prec_d,2)),
               error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"qmr",fct+5));
           end
@@ -196,6 +216,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
               error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"qmr",fct+5,fct+2));
           end
           cptmatM2 = 1;
+
       end
       
       // M2 function
@@ -210,9 +231,13 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
                   cptmatM2 = 2;
                   fct = fct+1;
                   warning(msprintf(gettext("%s : Calling qmr(...,M2,M2p) is deprecated. Please see qmr documentation for more details.\n"),"qmr"));
+              else
+                  error(msprintf(gettext("%s: Wrong type for input argument #%d: A transpose of the function expected.\n"), "qmr", fct + 6));
               end
+          elseif rhs < fct+6 & size(getfield(1, macrovar(precond_d)), "*") == 1 then
+              error(msprintf(gettext("%s: Wrong prototype of input argument #%d: If M2 is function, use the header M2(x,t) instead M2(x).\n"), "qmr", fct+5));
           end
-      end
+       end
   // By default
   else
       deff('y=precond_d(x)','y=x');
@@ -225,8 +250,16 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   //--------------------------------------------------------
   if (rhs >= fct+6),
       max_it=varargin(fct+5);
+      // if max_it is not constant
+      if type(max_it) <> 1 then
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"qmr",fct + 6));
+      end
+      
+      if ~isreal(max_it) then
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar expected.\n"),"qmr",fct + 6));
+      end
+      
       if (size(max_it,1) ~= 1 | size(max_it,2) ~=1),
-
           error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"qmr",fct+6));
       end
   // By default
@@ -239,6 +272,15 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
   //--------------------------------------------------------
   if (rhs == fct+7),
       tol=varargin(fct+6);
+      // if tol is not constant
+      if type(tol) <> 1 then
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"qmr",fct + 7));
+      end
+      
+      if ~isreal(tol) then
+          error(msprintf(gettext("%s: Wrong type for input argument #%d: A real scalar expected.\n"),"qmr",fct + 7));
+      end
+      
       if (size(tol,1) ~= 1 | size(tol,2) ~=1),
           error(msprintf(gettext("%s: Wrong size for input argument #%d: Scalar expected.\n"),"qmr",fct+7));
       end
@@ -261,6 +303,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
 // initialization
   i = 0;
   flag = 0;
+  iter = 0;
   bnrm2 = norm( b );
   if  (bnrm2 == 0.0), 
       bnrm2 = 1.0; 
@@ -269,7 +312,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
 //   r = b - A*x;
   if (cptmat == 1) then
       r = b - matvec(x,"notransp");
-  elseif (cptmat==2) then
+  elseif (cptmat==2) then  // If A is a function
       r = b - matvec(x);
   end
 
@@ -318,7 +361,7 @@ function [x, flag, err, iter, res] = qmr( A, varargin)
       if (cptmatM2 == 1) then
           y_tld = precond_d(y,"notransp");
       elseif (cptmatM2 == 2) then
-          y_tld = precondp_d(y);
+          y_tld = precond_d(y);
       end
 
       //    z_tld = M1'\ z;

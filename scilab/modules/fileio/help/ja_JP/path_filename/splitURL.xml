@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - S/E - Sylvestre Ledru
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xml:id="splitURL" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+    
+    
+    
+    <refnamediv>
+        
+        <refname>splitURL</refname>
+        
+        
+        
+        <refpurpose>URL (HTTP, HTTPS, FTP...) を分解</refpurpose>
+        
+    </refnamediv>
+    
+    
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        
+        
+        <synopsis>[proto, server, path, query, username, port, fragment] = splitURL(URL);
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>URL</term>
+                
+                <listitem>
+                    
+                    <para>文字列: URL. サポート/テスト済み: HTTP, HTTPS, FTP (IPv4 および IPv6)</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>proto</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        文字列: プロトコル (例: <emphasis role="italic">http, ftp, 等</emphasis>)
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>server</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        文字列: サーバー (例: <emphasis role="italic">www.scilab.org</emphasis>)
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>path</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        文字列: パス (例: <emphasis role="italic">/products/scilab</emphasis>)
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>query</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        文字列: クエリ (例: <emphasis role="italic">?SearchText=plot3d</emphasis>)
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>username</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        文字列: ユーザ名 (例: <emphasis role="italic">username:pass</emphasis>)
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>port</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        int: ポート (例: <emphasis role="italic">80</emphasis>)
+                        
+                    </para>
+                    
+                    <para>URLにポートが指定されない場合, 値は 0となることに注意してください.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>fragment</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        文字列: フラグメント (例: <emphasis role="italic">#chapter1</emphasis>)
+                        
+                    </para>
+                    
+                    <para>フラグメントはアンカーとも呼ばれ,
+                        
+                        HTML文書内にブックマークを作成する際に使用されます.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        
+        
+        <para>URLを要素毎に分解します. </para>
+        
+        
+        
+        <para>
+            
+            この関数は <ulink url="http://xmlsoft.org/html/libxml-uri.html#xmlParseURI">libxml2ライブラリ
+                
+                (特に, 関数 xmlParseURI)
+            </ulink>
+            に基づいています.
+            
+        </para>
+        
+        
+        
+    </refsection>
+    
+    
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        
+        
+        <programlisting role="example">
+            
+            [proto, server, path, query, username, port, fragment] = splitURL("http://xmlsoft.org/html/libxml-uri.html#xmlParseURI")
+            
+            
+            
+            [proto, server, path] = splitURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README")
+            
+            
+            
+            [a,b,c,d]=splitURL("http://www.scilab.org/content/search?SearchText=plot")
+            
+            
+            
+        </programlisting>
+        
+        <!-- 
+// This example fails for now (probably a bug on evstr)
+// Retrieve the content and execute it
+[f,content]=getURL("http://fileexchange.scilab.org/toolboxes/161000/1.0/files/cshift.sci")
+evstr(content);
+M = grand(3,4,"uin",0,9);
+cshift(M,1);
+-->
+        
+        
+        
+    </refsection>
+    
+    
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="getURL">getURL</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

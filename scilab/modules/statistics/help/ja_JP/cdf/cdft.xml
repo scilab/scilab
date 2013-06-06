@@ -46,7 +46,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>DF:  </term>
+                <term>Df</term>
                 <listitem>
                     <para>t分布の自由度. 入力範囲: (0 , +i無限大). 探索範囲: [1e-300, 1E10]</para>
                 </listitem>

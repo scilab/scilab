@@ -17,8 +17,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>lusolve(hand,b)
-            lusolve(A,b)
+        <synopsis>x=lusolve(hand,b)
+            x=lusolve(A,b)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,6 +40,12 @@
                 <term>hand</term>
                 <listitem>
                     <para>handle to a previously computed sparse lu factors (output of lufact)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>full real matrix</para>
                 </listitem>
             </varlistentry>
         </variablelist>

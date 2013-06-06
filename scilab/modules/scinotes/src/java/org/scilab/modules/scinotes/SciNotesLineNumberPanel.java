@@ -131,14 +131,14 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
 
     public static boolean[] getState(int state) {
         switch (state) {
-            case 0:
-                return new boolean[] { false, false };
-            case 1:
-                return new boolean[] { true, false };
-            case 2:
-                return new boolean[] { true, true };
-            default:
-                return null;
+        case 0:
+            return new boolean[] { false, false };
+        case 1:
+            return new boolean[] { true, false };
+        case 2:
+            return new boolean[] { true, true };
+        default:
+            return null;
         }
     }
 
@@ -357,30 +357,41 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             lineLevel = new byte[nlines + 1];
             lineNumber[0] = 1;
             int current = 1;
+            boolean prevBroken = false;
             ScilabDocument.ScilabLeafElement elem;
             for (int i = 0; i < nlines; i++) {
                 elem = (ScilabDocument.ScilabLeafElement) root.getElement(i);
                 int type = elem.getType();
                 switch (type) {
-                    case ScilabDocument.ScilabLeafElement.NOTHING :
-                        lineNumber[i] = current++;
-                        lineLevel[i] = (byte) stk.size();
-                        break;
-                    case ScilabDocument.ScilabLeafElement.FUN :
-                        stk.push(new Integer(current));
-                        lineLevel[i] = (byte) stk.size();
-                        current = 2;
-                        lineNumber[i] = 1;
-                        break;
-                    case ScilabDocument.ScilabLeafElement.ENDFUN :
-                        lineNumber[i] = current++;
-                        lineLevel[i] = (byte) stk.size();
-                        if (!stk.empty()) {
-                            current = stk.pop().intValue() + lineNumber[i];
+                case ScilabDocument.ScilabLeafElement.NOTHING :
+                    if (prevBroken) {
+                        lineNumber[i] = -1;
+                        if (!elem.isBroken()) {
+                            prevBroken = false;
                         }
-                        break;
-                    default :
-                        break;
+                    } else {
+                        lineNumber[i] = current++;
+                    }
+                    lineLevel[i] = (byte) stk.size();
+                    break;
+                case ScilabDocument.ScilabLeafElement.FUN :
+                    stk.push(new Integer(current));
+                    lineLevel[i] = (byte) stk.size();
+                    current = 2;
+                    lineNumber[i] = 1;
+                    if (elem.isBroken()) {
+                        prevBroken = true;
+                    }
+                    break;
+                case ScilabDocument.ScilabLeafElement.ENDFUN :
+                    lineNumber[i] = current++;
+                    lineLevel[i] = (byte) stk.size();
+                    if (!stk.empty()) {
+                        current = stk.pop().intValue() + lineNumber[i];
+                    }
+                    break;
+                default :
+                    break;
                 }
             }
         }

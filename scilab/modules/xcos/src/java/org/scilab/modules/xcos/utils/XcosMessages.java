@@ -48,7 +48,7 @@ public final class XcosMessages {
     public static final String PRINT = Messages.gettext("Print") + DOTS;
     public static final String CLOSE = Messages.gettext("Close");
     public static final String QUIT = Messages.gettext("Quit Xcos");
-    public static final String RECENT_FILES = Messages.gettext("Recent Files");
+    public static final String RECENT_FILES = Messages.gettext("Recent files");
 
     /* Edit Menu */
     public static final String EDIT = Messages.gettext("Edit");

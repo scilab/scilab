@@ -10,7 +10,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c
       subroutine daskri(fname)
 c ====================================================================
-C     daskr 
+C     daskr
 c ====================================================================
 c
 c     This code was inspired by sci_f_dasrt.f from the same folder.
@@ -35,9 +35,9 @@ c
       external bresd,bjacd,bsurfd,bpsold,bpjacd
       external setfresd,setfjacd,setfsurfd,setfpsold,setfpjacd
       common/ierode/iero
-c     
+c
       data atol/1.d-7/,rtol/1.d-9/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 
@@ -70,7 +70,7 @@ c     -------------------------------
          err = 1
          call error(89)
          return
-      else 
+      else
          il1 = iadr(lstk(top-rhs+1))
          istk(il1+2)=1
       endif
@@ -83,7 +83,7 @@ c     Checking variable t1 (number 3)
 c     -------------------------------
       if(.not.getrmat(fname,topk,top-rhs+3,m3,n3,l3))return
       nt=m3*n3
-c     
+c
 c     Checking variable atol (number 4)
 c     --------------------------------
       iskip=0
@@ -123,7 +123,7 @@ c     --------------------------------
       else
          info(2)=1
       endif
-      
+
 c     Checking variable res (number 6)
 c     --------------------------------
  1105 kres=top-rhs+6-iskip
@@ -168,7 +168,7 @@ c     Checking variable number 9
       ksurf=top-rhs+9-iskip
       if (.not.getexternal(fname,topk,ksurf,names,type,
      $        setfsurfd)) return
-c     
+c
 c     Checking variable info (number 10)
 c     ------------------------------------
       kinfo = top-rhs+10-iskip
@@ -212,7 +212,7 @@ c     Default info values
       endif
       n10=istk(il10+1)
       l10=sadr(il10+n10+3)
-c     
+c
 c     --   subvariable tstop(info) --
       il10e1=iadr(l10+istk(il10+1+1)-1)
       l10e1 = sadr(il10e1+4)
@@ -223,14 +223,14 @@ c     --   subvariable tstop(info) --
          info(4)=1
          tstop=stk(l10e1)
       endif
-      
-c     
+
+c
 c     --   subvariable imode(info) --
       il10e2=iadr(l10+istk(il10+1+2)-1)
       l10e2 = sadr(il10e2+4)
       info(3)=stk(l10e2)
-      
-c     
+
+c
 c     --   subvariable band(info) --
       il10e3=iadr(l10+istk(il10+1+3)-1)
       m10e3 =istk(il10e3+2)*istk(il10e3+2)
@@ -247,7 +247,7 @@ c     --   subvariable band(info) --
          return
       endif
 
-c     
+c
 c     --   subvariable maxstep(info) --
       il10e4=iadr(l10+istk(il10+1+4)-1)
       m10e4 =istk(il10e4+2)*istk(il10e4+2)
@@ -258,8 +258,8 @@ c     --   subvariable maxstep(info) --
          info(7)=1
          maxstep=stk(l10e4)
       endif
-      
-c     
+
+c
 c     --   subvariable stepin(info) --
       il10e5=iadr(l10+istk(il10+1+5)-1)
       m10e5 =istk(il10e5+2)*istk(il10e5+2)
@@ -270,14 +270,14 @@ c     --   subvariable stepin(info) --
          info(8)=1
          stepin=stk(l10e5)
       endif
-      
-c     
+
+c
 c     --   subvariable nonneg(info) --
       il10e6=iadr(l10+istk(il10+1+6)-1)
       l10e6 = sadr(il10e6+4)
       info(10)=stk(l10e6)
 
-c     
+c
 c     --   subvariable consistent(info) --
       il10e7=iadr(l10+istk(il10+1+7)-1)
       m10e7 =istk(il10e7+2)*istk(il10e7+2)
@@ -296,7 +296,7 @@ c        Make no further changes here, but copy the [+-1] tab
 c in 'iwork' once its size 'liw' is defined.
       endif
 
-c     
+c
 c     --   subvariable iteration(info) --
       il10e8=iadr(l10+istk(il10+1+8)-1)
       l10e8 = sadr(il10e8+4)
@@ -307,7 +307,7 @@ c     --   subvariable iteration(info) --
          info(12)=0
       endif
 
-c     
+c
 c     --   subvariable defaultKrylov(info) --
       il10e9=iadr(l10+istk(il10+1+9)-1)
       m10e9 =istk(il10e9+2)*istk(il10e9+2)
@@ -326,7 +326,7 @@ c     info then looks like list(..., [maxl kmp nrmax epli],...)
          epli  = stk(l10e9+3)
       endif
 
-c     
+c
 c     --   subvariable justConsistentComp(info) --
       il10e10=iadr(l10+istk(il10+1+10)-1)
       l10e10 = sadr(il10e10+4)
@@ -339,7 +339,7 @@ c        are not consistent
          if (info(11).eq.1)  info(14) = 1
       endif
 
-c     
+c
 c     --   subvariable psolJac(info) --
       il10e11=iadr(l10+istk(il10+1+11)-1)
       l10e11 = sadr(il10e11+4)
@@ -350,7 +350,7 @@ c     --   subvariable psolJac(info) --
          info(15)=1
       endif
 
-c     
+c
 c     --   subvariable excludeAlgebraic(info) --
       il10e12=iadr(l10+istk(il10+1+12)-1)
       m10e12 =istk(il10e12+2)*istk(il10e12+2)
@@ -369,7 +369,7 @@ c        Make no further changes here, but copy the [+-1] tab
 c in 'iwork' once its size 'liw' is defined.
       endif
 
-c     
+c
 c     --   subvariable defaultHeuristic(info) --
       il10e13=iadr(l10+istk(il10+1+13)-1)
       m10e13 =istk(il10e13+2)*istk(il10e13+2)
@@ -387,7 +387,7 @@ c  info then looks like list(..., [mxnit mxnj lsoff stptol epinit],...)
          epinit = stk(l10e9+5)
       endif
 
-c     
+c
 c     --   subvariable verbosity(info) --
       il10e14=iadr(l10+istk(il10+1+14)-1)
       l10e14 = sadr(il10e14+4)
@@ -399,7 +399,7 @@ c     --   subvariable verbosity(info) --
       else
          info(18)=0
       endif
-c     
+c
 c     Checking variable psol (number 11)
 c     --------------------------------------
 8      kpsol=top-rhs+11-iskip
@@ -415,7 +415,7 @@ c     --------------------------------------
       endif
       if (.not.getexternal(fname,topk,kpsol,namep,type,
      $        setfpsold)) return
-c     
+c
 c     Checking variable pjac (number 12)
 c     --------------------------------------
 9      kpjac=top-rhs+12-iskip
@@ -435,7 +435,7 @@ c     --------------------------------------
  10   hotstart=.false.
       if(rhs.eq.13-iskip) then
          hotstart=.true.
-c     
+c
 c     Checking variable hotdata (number 13)
 c     --------------------------------------
          il13 = iadr(lstk(top-rhs+13-iskip))
@@ -451,11 +451,11 @@ c     --------------------------------------
          return
       endif
 
-c     --------------------Work Tables 
+c     --------------------Work Tables
       if (.not.cremat(fname,topw,0,1,2,lw15,lc)) return
-      topw=topw+1      
+      topw=topw+1
       if (.not.cremat(fname,topw,0,1,30,lw17,lc)) return
-      topw=topw+1      
+      topw=topw+1
       il17=iadr(lw17)
 c     Set ipar and rpar to 0 by default
       do 98 i=0,1
@@ -466,9 +466,9 @@ c     Set ipar and rpar to 0 by default
 99    continue
 c     daskr needs more
       if (.not.cremat(fname,topw,0,1,nh,lgr,lc)) return
-      topw=topw+1      
+      topw=topw+1
       lgroot=iadr(lgr)
-c     
+c
 c     base = lrw = 60 then augment size
 c     according to the case (full dense, banded, ...)
       base = 60
@@ -487,14 +487,14 @@ c        For the banded finite-difference-generated JACOBIAN case
       elseif(info(12).eq.1) then
 c        LENWP is the length ot the rwork segment containing
 c        the matrix elements of the preconditioner P
-         LENWP = 7*neq
+         LENWP = neq*neq
          lrw = base + (maxord+5)*neq + 3*nh
      $                   + (maxl + 3 + min(1,maxl-kmp))*neq
      $                   + (maxl+3)*maxl + 1 + LENWP
       endif
       if(info(16).eq.1) lrw = lrw + neq
 
-c     
+c
 c     base = liw = 40, then augment size according to the case
       base = 40
       if (info(12).eq.0) then
@@ -503,7 +503,7 @@ c     base = liw = 40, then augment size according to the case
 c        LENIWP is the length ot the iwork segment containing
 c        the matrix indexes of the preconditioner P
 c        (compressed sparse row format)
-         LENIWP = 25*neq + 1
+         LENIWP = 2*neq*neq
          liw = base + LENIWP
       endif
       if(info(10).eq.1.or.info(10).eq.3) liw = liw + neq
@@ -525,7 +525,7 @@ c           to hold at least rwork and iwork
          liwork=lhot+lrw
          call entier(liw,stk(liwork),istk(iadr(liwork)))
       endif
-c     
+c
       if(info(4).eq.1) then
          stk(lrwork)=tstop
       endif
@@ -580,6 +580,15 @@ c        Set ipar and rpar
       istk(iadr(liwork)+16) = lrw
       istk(iadr(liwork)+17) = liw
 
+c     create header of wp
+      if (.not.cremat(fname,topw,0,neq*neq,1,lr,lc)) return
+      iheaderwp = topw
+      topw=topw+1
+c     create header of wp and iwp
+      if (.not.cremat(fname,topw,0,neq*neq,2,lr,lc)) return
+      iheaderiwp = topw
+      topw=topw+1
+
 c     Structure d'info pour les externals
       top=topw
       lw=lstk(top)
@@ -601,17 +610,24 @@ c     Structure d'info pour les externals
       istk(ilext+14)=ksurf
       istk(ilext+15)=kt0
       istk(ilext+16)=ky
+c
+c     function psol
       istk(ilext+17)=kpsol
-      istk(ilext+18)=neq
-      istk(ilext+19)=kt0
+c     header used to create wp
+      istk(ilext+18)=iheaderwp
+c     header used to create iwp
+      istk(ilext+19)=iheaderiwp
+c     header of y used to create b
       istk(ilext+20)=ky
+c
+c     function pjac
       istk(ilext+21)=kpjac
-      istk(ilext+22)=neq
-      istk(ilext+23)=kt0
-      istk(ilext+24)=ky
-c     istk(ilext+25)=ky
-      lw=sadr(ilext)+25
-      
+c     header of t0 used to create neq, t0, h, cj
+      istk(ilext+22)=kt0
+c     header of y used to create y, ydot, rewt and savr
+      istk(ilext+23)=ky
+      lw=sadr(ilext)+24
+
       lw0=lw
       ilyr=iadr(lw)
       istk(ilyr)=1
@@ -625,7 +641,7 @@ c     istk(ilext+25)=ky
       info(9)=0
       do 1120 i=0,nt-1
          tout=stk(l3+i)
-c     
+c
  1115    k=k+1
          lyri=lyri+(2*n1+1)
          lw=lyri+(2*n1+1)
@@ -646,7 +662,7 @@ c     Not enough memory
             l1=lyri+1
             lydot=lyri+n1+1
             t0=tout
-            goto 1120            
+            goto 1120
          else
             stk(lyri)=tout
             call unsfdcopy(n1,stk(l1),1,stk(lyri+1),1)
@@ -670,18 +686,18 @@ C     *   RT, NRT, JROOT)
          endif
          if(err.gt.0.or.err1.gt.0)  return
          if(idid.eq.1) then
-C     A step was successfully taken in the intermediate-output mode. 
+C     A step was successfully taken in the intermediate-output mode.
 C     The code has not yet reached TOUT.
             stk(lyri)=t0
             info(1)=1
             goto 1115
-            
+
          elseif(idid.eq.2.or.idid.eq.4) then
 C     The integration to TSTOP was successfully completed (T=TSTOP)
             goto 1125
-            
+
          elseif(idid.eq.3) then
-C     The integration to TOUT was successfully completed (T=TOUT) by 
+C     The integration to TOUT was successfully completed (T=TOUT) by
 C     stepping past TOUT. Y and Ydot are obtained by interpolation.
             t0=tout
             info(1)=1
@@ -690,7 +706,7 @@ C     stepping past TOUT. Y and Ydot are obtained by interpolation.
 C     One or more root found
             stk(lyri)=t0
 C     stk(lrw+41)
-            goto 1125 
+            goto 1125
          elseif(idid.eq.-1) then
 C     A large amount of work has been expended (About 500 steps)
             call msgstxt('Too many steps necessary to reach next '//
@@ -708,9 +724,9 @@ c     buf='The error tolerances are too stringent'
 c     call error(9982)
 c     return
          elseif(idid.eq.-3) then
-C     The local error test cannot be satisfied because you specified 
+C     The local error test cannot be satisfied because you specified
 C     a zero component in ATOL and the corresponding computed solution
-C     component is zero. Thus, a pure relative error test is impossible 
+C     component is zero. Thus, a pure relative error test is impossible
 C     for this component.
             buf='atol and computed test value are zero.'
             call error(9983)
@@ -738,7 +754,7 @@ C     The matrix of partial derivatives is singular.
             call error(9986)
             return
          elseif(idid.eq.-9) then
-C     The corrector could not converge. there were repeated error 
+C     The corrector could not converge. there were repeated error
 c     test failures in this step.
             call msgstxt('Either ill-posed problem or '//
      &           'discontinuity or singularity encountered.')
@@ -781,20 +797,20 @@ C     when invalid input is detected.
          t0=tout
          info(1)=1
  1120 continue
-c     
+c
  1125 top=topk-rhs
       mv=lw0-l0
-c     
+c
 c     Variable de sortie: y0
-c     
+c
       top=top+1
       if(k.eq.0) istk(ilyr+1)=0
       istk(ilyr+2)=k
       lw=lyr+(2*n1+1)*k
       lstk(top+1)=lw-mv
-c     
+c
 c     Variable de sortie: roots
-c     
+c
       top=top+1
       ilw=iadr(lw)
       err=lw+4+nh+1-lstk(bot)
@@ -820,9 +836,9 @@ c
       lw=l+1
       lstk(top+1)=lw-mv
       if(lhs.eq.2) goto 1150
-c     
+c
 c     Variable de sortie: rwork
-c     
+c
       top=top+1
       ilw=iadr(lw)
       err=lw+4+lrw+liw-lstk(bot)
@@ -839,9 +855,9 @@ c
       call int2db(liw,istk(iadr(liwork)),1,stk(lw+lrw),1)
       lw=lw+lrw+liw
       lstk(top+1)=lw-mv
-c     
+c
 c     Remise en place de la pile
- 1150 call unsfdcopy(lw-lw0,stk(lw0),1,stk(l0),1)      
+ 1150 call unsfdcopy(lw-lw0,stk(lw0),1,stk(l0),1)
       return
       end
 

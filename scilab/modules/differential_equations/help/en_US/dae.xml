@@ -550,7 +550,7 @@ code=['#include <math.h>'
       ' '
       'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
       '{ groot[0] = y[0];}']
-previous_dir = pwd()
+previous_dir = pwd();
 cd TMPDIR;
 mputl(code, 't22.c')
 ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c','Makefile','t22loader.sce');

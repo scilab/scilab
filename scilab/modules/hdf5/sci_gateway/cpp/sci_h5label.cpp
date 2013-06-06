@@ -132,7 +132,7 @@ int sci_h5label(char *fname, unsigned long fname_len)
     if (!isDoubleType(pvApiCtx, addr))
     {
         printError(&err, 0);
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: a row of doubles expected.\n"), fname, 3);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, 3);
         return 0;
     }
 
@@ -146,7 +146,7 @@ int sci_h5label(char *fname, unsigned long fname_len)
 
     if (row != 1 && col != 1)
     {
-        Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Real row or column vector expected.\n"), fname, 3);
         return 0;
     }
 
@@ -170,7 +170,7 @@ int sci_h5label(char *fname, unsigned long fname_len)
     if (!isStringType(pvApiCtx, addr))
     {
         delete[] _dims;
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: a row of strings expected.\n"), fname, 4);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: Row array of strings expected.\n"), fname, 4);
         return 0;
     }
 
@@ -185,7 +185,7 @@ int sci_h5label(char *fname, unsigned long fname_len)
     {
         delete[] _dims;
         freeAllocatedMatrixOfString(row, col, strs);
-        Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, 4);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A row or column vector expected.\n"), fname, 4);
         return 0;
     }
 

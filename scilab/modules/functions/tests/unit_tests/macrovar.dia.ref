@@ -1,0 +1,71 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+funcprot(0);
+//1 in, 0 out
+ref = list("i1", [], [], [], []);
+function foo(i1)
+endfunction
+val = macrovar(foo);
+assert_checkequal(ref, val);
+//1 in, 1 out
+ref = list("i1", "o1", [], [], []);
+function o1 = foo(i1)
+    o1 = i1;
+endfunction
+val = macrovar(foo);
+assert_checkequal(ref, val);
+//n in, n out
+ref = list(["i1";"i2";"i3";"i4"], ["o1";"o2";"o3"], [], [], []);
+function [o1, o2, o3] = foo(i1, i2, i3, i4)
+    o1 = i1 + i2;
+    o2 = i2 + i3;
+    o3 = i3 + i4;
+endfunction
+val = macrovar(foo);
+assert_checkequal(ref, val);
+//add local vars
+ref = list(["i1";"i2";"i3";"i4"], ["o1";"o2";"o3"], [], [], ["l1";"l2";"l3"]);
+function [o1, o2, o3] = foo(i1, i2, i3, i4)
+    l1 = i1 + i2;
+    l2 = i2 + i3;
+    l3 = i3 + i4;
+    o1 = l1;
+    o2 = l2;
+    o3 = l3;
+endfunction
+val = macrovar(foo);
+assert_checkequal(ref, val);
+//add external vars
+e1 = 1;
+e2 = 2;
+e3 = 3;
+ref = list(["i1";"i2";"i3";"i4"], ["o1";"o2";"o3"], ["e1";"e2";"e3"], [], ["l1";"l2";"l3"]);
+function [o1, o2, o3] = foo(i1, i2, i3, i4)
+    l1 = i1 + i2;
+    l2 = i2 + i3;
+    l3 = i3 + i4;
+    o1 = l1 + e1;
+    o2 = l2 + e2;
+    o3 = l3 + e3;
+endfunction
+val = macrovar(foo);
+assert_checkequal(ref, val);
+//add function calls
+e1 = 1;
+e2 = 2;
+e3 = 3;
+ref = list(["i1";"i2";"i3";"i4"], ["o1";"o2";"o3"], ["e1";"e2";"e3"], ["cos";"sin";"tan"], ["l1";"l2";"l3"]);
+function [o1, o2, o3] = foo(i1, i2, i3, i4)
+    l1 = i1 + i2;
+    l2 = i2 + i3;
+    l3 = i3 + i4;
+    o1 = cos(l1 + e1);
+    o2 = sin(l2 + e2);
+    o3 = tan(l3 + e3);
+endfunction
+val = macrovar(foo);
+assert_checkequal(ref, val);

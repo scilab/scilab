@@ -108,13 +108,13 @@
             <varlistentry>
                 <term>l</term>
                 <listitem>
-                    <para>длинное, long</para>
+                    <para>длинное, long long</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>i</term>
                 <listitem>
-                    <para>целочисленное, int</para>
+                    <para>целочисленное, int (long int)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

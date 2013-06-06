@@ -71,9 +71,9 @@
             that of an incomplete beta.
         </para>
         <para>
-            Computation of other parameters involve a seach for a value that
+            Computation of other parameters involve a search for a value that
             produces  the desired  value  of P.   The search relies  on  the
-            monotinicity of P with the other parameter.
+            monotonicity of P with the other parameter.
         </para>
         <para>
             The value of the  cumulative  F distribution is  not necessarily

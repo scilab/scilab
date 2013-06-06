@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function M1=%hm_1_hm(M1,M2)
   if and(M1.dims==M2.dims)==%f then
-    error('< : arguments have incompatible dimensions')
+    error(msprintf(_("%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"),"%hm_1_hm",1,2));
   end
   M1.entries=(M1.entries<M2.entries)
 endfunction
