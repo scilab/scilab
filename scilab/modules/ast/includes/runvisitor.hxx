@@ -753,7 +753,7 @@ public :
     void visitprivate(const ForExp  &e)
     {
         e.vardec_get().accept(*this);
-
+        InternalType* pIT = result_get();
         //allow break and continue operations
         const_cast<Exp*>(&e.body_get())->breakable_set();
         const_cast<Exp*>(&e.body_get())->continuable_set();
@@ -766,18 +766,16 @@ public :
 
         if (result_get()->isImplicitList())
         {
-            InternalType* pIL = result_get();
-            ImplicitList* pVar = pIL->getAs<ImplicitList>();
+            ImplicitList* pVar = pIT->getAs<ImplicitList>();
 
-            InternalType *pIT = NULL;
-            pIT = pVar->extractValue(0);
+            InternalType *pIL = NULL;
+            pIL = pVar->extractValue(0);
             symbol::Symbol varName = e.vardec_get().name_get();
 
             for (int i = 0 ; i < pVar->getSize() ; i++)
             {
-
-                pIT = pVar->extractValue(i);
-                symbol::Context::getInstance()->put(varName, *pIT);
+                pIL = pVar->extractValue(i);
+                symbol::Context::getInstance()->put(varName, *pIL);
 
                 e.body_get().accept(*this);
                 if (e.body_get().is_break())
@@ -798,12 +796,9 @@ public :
                     break;
                 }
             }
-
-            pVar->DecreaseRef();
         }
         else if (result_get()->isList())
         {
-            InternalType* pIT = result_get();
             List* pL = pIT->getAs<List>();
             for (int i = 0 ; i < pL->getSize() ; i++)
             {
@@ -832,7 +827,6 @@ public :
         else
         {
             //Matrix i = [1,3,2,6] or other type
-            InternalType* pIT = result_get();
             GenericType* pVar = pIT->getAs<GenericType>();
             if (pVar->getDims() > 2)
             {
@@ -862,6 +856,12 @@ public :
                     break;
                 }
             }
+        }
+
+        pIT->DecreaseRef();
+        if (pIT->isDeletable())
+        {
+            delete pIT;
         }
 
         result_set(NULL);
