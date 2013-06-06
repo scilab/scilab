@@ -776,7 +776,9 @@ void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
     m_Args.clear();
     for (int i = 0 ; i < _iArgs ; i++)
     {
-        m_Args.push_back(to_wide_string(_pstArgs[i]));
+        wchar_t * ws = to_wide_string(_pstArgs[i]);
+        m_Args.push_back(ws);
+        FREE(ws);
     }
 }
 

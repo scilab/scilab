@@ -325,6 +325,7 @@ expressions                     { ParserSingleInstance::setTree($1); }
                                       tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty body")));
                                   #endif
                                   ParserSingleInstance::setTree(new ast::SeqExp(@$, *tmp));
+				  delete $1;
                                 }
 | /* Epsilon */                 {
                                   ast::exps_t *tmp = new ast::exps_t;
@@ -382,6 +383,7 @@ recursiveExpression expression expressionLineBreak	{
                               {
                                   $2->location_get().last_column = $3->iNbBreaker;
                               }
+			      delete $3;
 							}
 | recursiveExpression expression COMMENT expressionLineBreak {
 							  $2->set_verbose($4->bVerbose);
@@ -389,6 +391,7 @@ recursiveExpression expression expressionLineBreak	{
                               @3.columns($4->iNbBreaker);
 							  $1->push_back(new ast::CommentExp(@3, $3));
 							  $$ = $1;
+							  delete $4;
 							}
 | expression COMMENT expressionLineBreak		{
 							  ast::exps_t *tmp = new ast::exps_t;
@@ -397,6 +400,7 @@ recursiveExpression expression expressionLineBreak	{
 							  $1->set_verbose($3->bVerbose);
 							  tmp->push_front($1);
 							  $$ = tmp;
+							  delete $3;
 							}
 | expression expressionLineBreak			{
 							  ast::exps_t *tmp = new ast::exps_t;
@@ -407,6 +411,7 @@ recursiveExpression expression expressionLineBreak	{
                               {
                                   $1->location_get().last_column = $2->iNbBreaker;
                               }
+			      delete $2;
 							}
 ;
 
@@ -439,7 +444,7 @@ functionDeclaration				{ $$ = $1; }
 | variable			%prec TOPLEVEL	{ $$ = $1; }
 | implicitFunctionCall		%prec TOPLEVEL	{ $$ = $1; }
 | BREAK						{ $$ = new ast::BreakExp(@$); }
-| CONTINUE						{ $$ = new ast::ContinueExp(@$); }
+| CONTINUE					{ $$ = new ast::ContinueExp(@$); }
 | returnControl					{ $$ = $1; }
 | COMMENT					{ $$ = new ast::CommentExp(@$, $1); }
 | error						{
@@ -463,6 +468,7 @@ implicitFunctionCall implicitCallable		{
 						  ast::exps_t *tmp = new ast::exps_t;
 						  tmp->push_front($2);
 						  $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *tmp);
+						  delete $1;
 						}
 ;
 
@@ -474,7 +480,7 @@ implicitFunctionCall implicitCallable		{
 ** Describe 'bar', 'titi' that can be more complex.
 */
 implicitCallable :
-ID						{ $$ = new ast::StringExp(@$, *$1); }
+ID						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 | VARINT					{
 						  std::wstringstream tmp;
 						  tmp << $1;
@@ -490,19 +496,20 @@ ID						{ $$ = new ast::StringExp(@$, *$1); }
 						  tmp << $1;
 						  $$ = new ast::StringExp(@$, tmp.str());
 						}
-| STR						{ $$ = new ast::StringExp(@$, *$1); }
-| DOLLAR					{ $$ = new ast::StringExp(@$, *new std::wstring(L"$")); }
-| BOOLTRUE					{ $$ = new ast::StringExp(@$, *new std::wstring(L"%t")); }
-| BOOLFALSE					{ $$ = new ast::StringExp(@$, *new std::wstring(L"%f")); }
+| STR						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
+| DOLLAR					{ $$ = new ast::StringExp(@$, std::wstring(L"$")); }
+| BOOLTRUE					{ $$ = new ast::StringExp(@$, std::wstring(L"%t")); }
+| BOOLFALSE					{ $$ = new ast::StringExp(@$, std::wstring(L"%f")); }
 | implicitCallable DOT ID			{
 						  std::wstringstream tmp;
 						  tmp << $1->value_get() << "." << *$3;
 						  $$ = new ast::StringExp(@$, tmp.str());
+						  delete $3;
 						}
-| implicitCallable DOT functionCall		{ $$ = new ast::StringExp(@$, *new std::wstring(L"!! FIXME : implicitCallable implicitCallable DOT functionCall !!")); }
-| simpleFunctionCall				{ $$ = new ast::StringExp(@$, *new std::wstring(L"!! FIXME : implicitCallable simpleFunctionCall !!")); }
-| implicitCallable rightOperand			{ $$ = new ast::StringExp(@$, *new std::wstring(L"!! FIXME : implicitCallable implicitCallable rightOperand !!")); }
-| PATH						{ $$ = new ast::StringExp(@$, *$1); }
+| implicitCallable DOT functionCall		{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable implicitCallable DOT functionCall !!")); }
+| simpleFunctionCall				{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable simpleFunctionCall !!")); }
+| implicitCallable rightOperand			{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable implicitCallable rightOperand !!")); }
+| PATH						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 ;
 
 /*
@@ -535,10 +542,10 @@ BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::Simp
 */
 simpleFunctionCall :
 
-ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); }
-| ID LBRACE functionArgs RBRACE				{ $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); }
-| ID LPAREN RPAREN				            { $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); }
-| ID LBRACE RBRACE				            { $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); }
+ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); delete $1;}
+| ID LBRACE functionArgs RBRACE				{ $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); delete $1;}
+| ID LPAREN RPAREN				            { $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); delete $1;}
+| ID LBRACE RBRACE				            { $$ = new ast::CellCallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *new ast::exps_t); delete $1;}
 ;
 
 /*
@@ -626,6 +633,8 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@5, *$5),
 							    *new ast::ArrayListVar(@2, *tmp),
 							    *$7);
+				  delete $2;
+				  delete $4;
 				}
 | FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -633,6 +642,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@7, *$7),
 							    *new ast::ArrayListVar(@3 ,*$3),
 							    *$9);
+				  delete $6;
 				}
 | FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -640,6 +650,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@6, *$6),
 							    *new ast::ArrayListVar(@2, *new ast::vars_t),
 							    *$8);
+				  delete $5;
 				}
 | FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -647,6 +658,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@3, *$3),
 							    *new ast::ArrayListVar(@$, *new ast::vars_t),
 							    *$5);
+				  delete $2;
 				}
 | FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::vars_t *tmp = new ast::vars_t;
@@ -656,6 +668,8 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@5, *$5),
 							    *new ast::ArrayListVar(@2, *tmp),
 							    *$7);
+				  delete $2;
+				  delete $4;
 				}
 | FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -663,6 +677,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@7, *$7),
 							    *new ast::ArrayListVar(@3 ,*$3),
 							    *$9);
+				  delete $6;
 				}
 | FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -670,6 +685,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@6, *$6),
 							    *new ast::ArrayListVar(@2, *new ast::vars_t),
 							    *$8);
+				  delete $5;
 				}
 | FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -677,6 +693,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@3, *$3),
 							    *new ast::ArrayListVar(@$, *new ast::vars_t),
 							    *$5);
+				  delete $2;
 				}
 | HIDDENFUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::vars_t *tmp = new ast::vars_t;
@@ -686,6 +703,8 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@5, *$5),
 							    *new ast::ArrayListVar(@2, *tmp),
 							    *$7);
+				  delete $2;
+				  delete $4;
 				}
 | HIDDENFUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -693,6 +712,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@7, *$7),
 							    *new ast::ArrayListVar(@3 ,*$3),
 							    *$9);
+				  delete $6;
 				}
 | HIDDENFUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -700,6 +720,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@6, *$6),
 							    *new ast::ArrayListVar(@2, *new ast::vars_t),
 							    *$8);
+				  delete $5;
 				}
 | HIDDENFUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -707,6 +728,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@3, *$3),
 							    *new ast::ArrayListVar(@$, *new ast::vars_t),
 							    *$5);
+				  delete $2;
 				}
 | HIDDENFUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::vars_t *tmp = new ast::vars_t;
@@ -716,6 +738,8 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@5, *$5),
 							    *new ast::ArrayListVar(@2, *tmp),
 							    *$7);
+				  delete $2;
+				  delete $4;
 				}
 | HIDDENFUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -723,6 +747,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@7, *$7),
 							    *new ast::ArrayListVar(@3 ,*$3),
 							    *$9);
+				  delete $6;
 				}
 | HIDDENFUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -730,6 +755,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@6, *$6),
 							    *new ast::ArrayListVar(@2, *new ast::vars_t),
 							    *$8);
+				  delete $5;
 				}
 | HIDDENFUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -737,6 +763,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@3, *$3),
 							    *new ast::ArrayListVar(@$, *new ast::vars_t),
 							    *$5);
+				  delete $2;
 				}
 | HIDDEN FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::vars_t *tmp = new ast::vars_t;
@@ -746,6 +773,8 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@6, *$6),
 							    *new ast::ArrayListVar(@3, *tmp),
 							    *$8);
+				  delete $3;
+				  delete $5;
 				}
 | HIDDEN FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -753,6 +782,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@8, *$8),
 							    *new ast::ArrayListVar(@4 ,*$4),
 							    *$10);
+				  delete $7;
 				}
 | HIDDEN FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -760,6 +790,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@7, *$7),
 							    *new ast::ArrayListVar(@3, *new ast::vars_t),
 							    *$9);
+				  delete $6;
 				}
 | HIDDEN FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
@@ -767,6 +798,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@4, *$4),
 							    *new ast::ArrayListVar(@$, *new ast::vars_t),
 							    *$6);
+				  delete $3;
 				}
 | HIDDEN FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::vars_t *tmp = new ast::vars_t;
@@ -776,6 +808,8 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@6, *$6),
 							    *new ast::ArrayListVar(@2, *tmp),
 							    *$8);
+				  delete $3;
+				  delete $5;
 				}
 | HIDDEN FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -783,6 +817,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@8, *$8),
 							    *new ast::ArrayListVar(@4 ,*$4),
 							    *$10);
+				  delete $7;
 				}
 | HIDDEN FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -790,6 +825,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@7, *$7),
 							    *new ast::ArrayListVar(@3, *new ast::vars_t),
 							    *$9);
+				  delete $6;
 				}
 | HIDDEN FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  $$ = new ast::FunctionDec(@$,
@@ -797,6 +833,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@4, *$4),
 							    *new ast::ArrayListVar(@$, *new ast::vars_t),
 							    *$6);
+				  delete $3;
 				}
 ;
 
@@ -825,11 +862,13 @@ LPAREN idList RPAREN		{ $$ = $2; }
 idList:
 idList COMMA ID			{
 				  $1->push_back(new ast::SimpleVar(@3, *new symbol::Symbol(*$3)));
+				  delete $3;
 				  $$ = $1;
 				}
 | ID				{
 				  $$ = new ast::vars_t;
 				  $$->push_front(new ast::SimpleVar(@$, *new symbol::Symbol(*$1)));
+				  delete $1;
 				}
 ;
 
@@ -1034,7 +1073,7 @@ listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@
 variable :
 NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | NOT functionCall			%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
-| variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); }
+| variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); delete $3;}
 | variable DOT keywords 	%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | variable DOT functionCall				{
 							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
@@ -1049,15 +1088,16 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 							  $$ = $3;
 }
 | variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
+| variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | functionCall listableEnd		%prec UPLEVEL	{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | matrix						{ $$ = $1; }
 | cell							{ $$ = $1; }
 | operation				%prec UPLEVEL		{ $$ = $1; }
-| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
+| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); delete $1;}
 | VARINT				%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | NUM					%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | VARFLOAT						{ $$ = new ast::DoubleExp(@$, $1); }
-| STR							{ $$ = new ast::StringExp(@$, *$1); }
+| STR							{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 | DOLLAR						{ $$ = new ast::DollarVar(@$); }
 | BOOLTRUE				%prec BOOLTRUE	{ $$ = new ast::BoolExp(@$, true); }
 | BOOLFALSE				%prec BOOLFALSE	{ $$ = new ast::BoolExp(@$, false); }
@@ -1273,7 +1313,7 @@ assignable ASSIGN variable		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *
 */
 /* What we can assign something to. */
 assignable :
-variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); }
+variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); delete $3;}
 | variable DOT keywords	%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | variable DOT functionCall                 {
                                                 $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
@@ -1287,7 +1327,7 @@ variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::Sim
 							  $3->location_set(@$);
 							  $$ = $3;
                                             }
-| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
+| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); delete $1;}
 | multipleResults					{ $$ = $1; }
 | variable LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
 | functionCall LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
@@ -1430,8 +1470,8 @@ ELSEIF condition then thenBody						{
 selectControl :
 select selectable selectConditionBreak casesControl END									{ $$ = new ast::SelectExp(@$, *$2, *$4); }
 | select selectable selectConditionBreak casesControl defaultCase elseBody END			{ $$ = new ast::SelectExp(@$, *$2, *$4, *$6); }
-| select selectable COMMENT selectConditionBreak casesControl END						{ $$ = new ast::SelectExp(@$, *$2, *$5); }
-| select selectable COMMENT selectConditionBreak casesControl defaultCase elseBody END	{ $$ = new ast::SelectExp(@$, *$2, *$5, *$7); }
+| select selectable COMMENT selectConditionBreak casesControl END						{ $$ = new ast::SelectExp(@$, *$2, *$5); delete $3;}
+| select selectable COMMENT selectConditionBreak casesControl defaultCase elseBody END	{ $$ = new ast::SelectExp(@$, *$2, *$5, *$7); delete $3;}
 ;
 
 /*
@@ -1544,8 +1584,8 @@ THEN						{ /* !! Do Nothing !! */ }
 */
 /* For ... End control block */
 forControl :
-FOR ID ASSIGN forIterator forConditionBreak forBody END			{ $$ = new ast::ForExp(@$, *new ast::VarDec(@3, *new symbol::Symbol(*$2), *$4), *$6); }
-| FOR LPAREN ID ASSIGN forIterator RPAREN forConditionBreak forBody END { $$ = new ast::ForExp(@$, *new ast::VarDec(@4, *new symbol::Symbol(*$3), *$5), *$8); }
+FOR ID ASSIGN forIterator forConditionBreak forBody END			{ $$ = new ast::ForExp(@$, *new ast::VarDec(@3, *new symbol::Symbol(*$2), *$4), *$6); delete $2;}
+| FOR LPAREN ID ASSIGN forIterator RPAREN forConditionBreak forBody END { $$ = new ast::ForExp(@$, *new ast::VarDec(@4, *new symbol::Symbol(*$3), *$5), *$8); delete $3;}
 ;
 
 /*
@@ -1620,7 +1660,7 @@ COMMA                   { /* !! Do Nothing !! */ }
 | THEN                  { /* !! Do Nothing !! */ }
 | THEN COMMA            { /* !! Do Nothing !! */ }
 | THEN SEMI             { /* !! Do Nothing !! */ }
-| COMMENT EOL           { /* !! Do Nothing !! */ }
+| COMMENT EOL           { delete $1;/* !! Do Nothing !! */ }
 | EOL                   { /* !! Do Nothing !! */ }
 | COMMA EOL             { /* !! Do Nothing !! */ }
 | SEMI EOL              { /* !! Do Nothing !! */ }
@@ -1686,7 +1726,7 @@ RETURN				{ $$ = new ast::ReturnExp(@$); }
 */
 comments :
 COMMENT EOL
-| comments COMMENT EOL
+| comments COMMENT EOL { delete $2; }
 ;
 
 /*
@@ -1695,7 +1735,7 @@ COMMENT EOL
 /* Comment can be added also to end a line */
 lineEnd :
 EOL
-| COMMENT EOL
+| COMMENT EOL { delete $1; }
 ;
 
 /*

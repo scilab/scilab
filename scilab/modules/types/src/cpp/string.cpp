@@ -20,6 +20,7 @@ extern "C"
 {
 #include "charEncoding.h"
 #include "os_wcsdup.h"
+#include "MALLOC.h"
 }
 
 using namespace std;
@@ -29,437 +30,442 @@ using namespace std;
 
 namespace types
 {
-	String::~String()
-	{
-		if(isDeletable() == true)
-		{
-			deleteAll();
-		}
-#ifndef NDEBUG
-        Inspector::removeItem(this);
-#endif
-	}
-
-    String::String(int _iDims, int* _piDims)
+String::~String()
+{
+    if (isDeletable() == true)
     {
-        wchar_t** pwsData = NULL;
-		create(_piDims, _iDims, &pwsData, NULL);
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
+        deleteAll();
     }
-
-    String::String(const wchar_t* _pwstData)
-	{
-        wchar_t** pwsData = NULL;
-        int piDims[] = {1,1};
-		create(piDims, 2, &pwsData, NULL);
-		set(0,0, _pwstData);
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::removeItem(this);
 #endif
-	}
+}
 
-	String::String(const char *_pstData)
-	{
-        wchar_t** pwsData = NULL;
-        int piDims[] = {1,1};
-		create(piDims, 2, &pwsData, NULL);
-		set(0,0, to_wide_string(const_cast<char*>(_pstData)));
+String::String(int _iDims, int* _piDims)
+{
+    wchar_t** pwsData = NULL;
+    create(_piDims, _iDims, &pwsData, NULL);
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
-	}
+}
 
-	String::String(int _iRows, int _iCols)
-	{
-        wchar_t** pwsData = NULL;
-        int piDims[] = {_iRows, _iCols};
-		create(piDims, 2, &pwsData, NULL);
+String::String(const wchar_t* _pwstData)
+{
+    wchar_t** pwsData = NULL;
+    int piDims[] = {1, 1};
+    create(piDims, 2, &pwsData, NULL);
+    set(0, 0, _pwstData);
 #ifndef NDEBUG
-        Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
-	}
+}
 
-    String::String(int _iRows, int _iCols, wchar_t** _pstData)
+String::String(const char *_pstData)
+{
+    wchar_t** pwsData = NULL;
+    int piDims[] = {1, 1};
+    create(piDims, 2, &pwsData, NULL);
+    set(0, 0, to_wide_string(const_cast<char*>(_pstData)));
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
+String::String(int _iRows, int _iCols)
+{
+    wchar_t** pwsData = NULL;
+    int piDims[] = {_iRows, _iCols};
+    create(piDims, 2, &pwsData, NULL);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
+String::String(int _iRows, int _iCols, wchar_t** _pstData)
+{
+    wchar_t** pwsData = NULL;
+    int piDims[] = {_iRows, _iCols};
+    create(piDims, 2, &pwsData, NULL);
+    for (int i = 0 ; i < m_iSize ; i++)
     {
-        wchar_t** pwsData = NULL;
-        int piDims[] = {_iRows, _iCols};
-		create(piDims, 2, &pwsData, NULL);
-        for(int i = 0 ; i < m_iSize ; i++)
+        set(i, os_wcsdup(_pstData[i]));
+    }
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
+InternalType* String::clone()
+{
+    String *pstClone = new String(getDims(), getDimsArray());
+    pstClone->set(m_pRealData);
+    return pstClone;
+}
+
+void String::whoAmI()
+{
+    cout << "types::String";
+}
+
+void String::deleteString(int _iPos)
+{
+    if (m_pRealData != NULL)
+    {
+        if (m_pRealData[_iPos] != NULL)
         {
-            set(i, os_wcsdup(_pstData[i]));
+            FREE(m_pRealData[_iPos]);
+            m_pRealData[_iPos] = NULL;
         }
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
     }
+}
 
-	InternalType* String::clone()
-	{
-	  String *pstClone = new String(getDims(), getDimsArray());
-	  pstClone->set(m_pRealData);
-	  return pstClone;
-	}
+void String::deleteAll()
+{
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        deleteString(i);
+    }
+    delete[] m_pRealData;
+    m_pRealData = NULL;
+}
 
-	void String::whoAmI()
-	{
-		cout << "types::String";
-	}
+void String::deleteImg()
+{
+    return;
+}
 
-	void String::deleteString(int _iPos)
-	{
-		if(m_pRealData != NULL)
-		{
-			if(m_pRealData[_iPos] != NULL)
-			{
-				delete[] m_pRealData[_iPos];
-				m_pRealData[_iPos] = NULL;
-			}
-		}
-	}
+GenericType::RealType String::getType()
+{
+    return GenericType::RealString;
+}
 
-	void String::deleteAll()
-	{
-		for(int i = 0 ; i < getSize() ; i++)
-		{
-			deleteString(i);
-		}
-		delete[] m_pRealData;
-		m_pRealData = NULL;
-	}
+bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
+{
+    int iPrecision = getFormatSize();
+    int iLineLen = getConsoleWidth();
+    int iMaxLines = getConsoleLines();
+    int iCurrentLine = 0;
 
-	void String::deleteImg()
-	{
-        return;
-	}
-
-	GenericType::RealType String::getType()
-	{
-		return GenericType::RealString;
-	}
-
-    bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
-	{
-        int iPrecision = getFormatSize();
-        int iLineLen = getConsoleWidth();
-        int iMaxLines = getConsoleLines();
-        int iCurrentLine = 0;
-
-		if(isScalar())
-		{
-            _piDims[0] = 0;
+    if (isScalar())
+    {
+        _piDims[0] = 0;
+        _piDims[1] = 0;
+        int iPos = getIndex(_piDims);
+        ostr << L" " << get(iPos) << endl;
+    }
+    else if (getCols() == 1)
+    {
+        int iMaxLen = 0;
+        for (int i = 0 ; i < getRows() ; i++)
+        {
             _piDims[1] = 0;
+            _piDims[0] = i;
             int iPos = getIndex(_piDims);
-			ostr << L" " << get(iPos) << endl;
-		}
-		else if(getCols() == 1)
-		{
-			int iMaxLen = 0;
-			for(int i = 0 ; i < getRows() ; i++)
-			{
-                _piDims[1] = 0;
-                _piDims[0] = i;
-                int iPos = getIndex(_piDims);
-				iMaxLen = Max(iMaxLen, static_cast<int>(wcslen(get(iPos))));
-			}
+            iMaxLen = Max(iMaxLen, static_cast<int>(wcslen(get(iPos))));
+        }
 
-			iMaxLen += 2;
+        iMaxLen += 2;
 
-            for(int i = m_iRows1PrintState ; i < getRows() ; i++)
-			{
-                iCurrentLine += 2;
-                if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
-                {
-                    m_iRows1PrintState = i;
-                    return false;
-                }
-
-                _piDims[1] = 0;
-                _piDims[0] = i;
-                int iPos = getIndex(_piDims);
-
-                ostr << L"!";
-				configureStream(&ostr, iMaxLen, iPrecision, ' ');
-				ostr << left << get(iPos);
-				ostr << L"!" << endl;
-				if((i+1) < m_iSize)
-				{//for all but last one
-					ostr << L"!";
-					configureStream(&ostr, iMaxLen, iPrecision, ' ');
-					ostr << left << L" ";
-					ostr << L"!" << endl;
-				}
-			}
-		}
-		else if(getRows() == 1)
-		{
-			wostringstream ostemp;
-			int iLastVal = m_iCols1PrintState;
-
-			for(int i = m_iCols1PrintState ; i < getCols() ; i++)
-			{
-                _piDims[0] = 0;
-                _piDims[1] = i;
-                int iPos = getIndex(_piDims);
-
-                int iLen = 0;
-				int iCurLen = static_cast<int>(wcslen(get(iPos)));
-				iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + static_cast<int>(ostemp.str().size());
-				if(iLen > iLineLen)
-				{//Max length, new line
-                    iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
-                    if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
-                    {
-                        m_iCols1PrintState = iLastVal;
-                        return false;
-                    }
-					
-                    ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
-					ostr << L"!" << ostemp.str() << L"!" << endl;
-					ostemp.str(L"");
-					iLastVal = i;
-				}
-
-				configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
-				ostemp << left << get(0,i);
-			}
-
-			if(iLastVal != 0)
-			{
-                ostr << endl << L"       column " << iLastVal + 1 << L" to " << getCols() << endl << endl;
-			}
-			ostr << L"!" << ostemp.str() << L"!" << endl;
-		}
-		else //Matrix
-		{
-			wostringstream ostemp;
-			int iLen = 0;
-			int iLastCol = m_iCols1PrintState;
-
-			//Array with the max printed size of each col
-			int *piSize = new int[getCols()];
-			memset(piSize, 0x00, getCols() * sizeof(int));
-
-			for(int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
-			{
-				for(int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
-				{
-                    _piDims[1] = iCols1;
-                    _piDims[0] = iRows1;
-                    int iPos = getIndex(_piDims);
-					piSize[iCols1] = Max(piSize[iCols1], static_cast<int>(wcslen(get(iPos))));
-				}
-
-				if(iLen + piSize[iCols1] > iLineLen)
-				{//find the limit, print this part
-					for(int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
-					{
-                        iCurrentLine += 2;
-                        if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
-                            ( (iMaxLines != 0 && iCurrentLine + 3 >= iMaxLines && iRows2 == m_iRows2PrintState) || 
-                            (iMaxLines != 0 && iCurrentLine + 1 >= iMaxLines && iRows2 != m_iRows2PrintState)))
-                        {
-                            if(m_iRows2PrintState == 0 && iRows2 != 0)
-                            {//add header
-                                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
-                            }
-                            ostr << ostemp.str();
-                            m_iRows2PrintState = iRows2;
-                            m_iCols1PrintState = iLastCol;
-                            return false;
-                        }
-
-                        ostemp << L"!";
-						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
-						{
-                            _piDims[0] = iRows2;
-                            _piDims[1] = iCols2;
-                            int iPos = getIndex(_piDims);
-							configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-							ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_VALUES;
-						}
-
-						ostemp << L"!" << endl;
-						if((iRows2 + 1) != m_iRows)
-						{
-							ostemp << L"!";
-							configureStream(&ostemp, iLen, iPrecision, ' ');
-							ostemp << left << L" ";
-							ostemp << L"!" << endl;
-						}
-					}
-
-					iLen = 0;
-                    iCurrentLine += 2;
-                    if(m_iRows2PrintState == 0)
-                    {
-                        iCurrentLine += 3;
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
-                    }
-					ostr << ostemp.str();
-					ostemp.str(L"");
-					iLastCol = iCols1;
-                    m_iRows2PrintState = 0;
-                    m_iCols1PrintState = 0;
-				}
-				iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
-			}
-
-			for(int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
-			{
-                iCurrentLine += 2;
-                if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
-                {
-                    if(m_iRows2PrintState == 0 && iLastCol != 0)
-                    {//add header
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
-                    }
-
-                    ostr << ostemp.str();
-                    m_iRows2PrintState = iRows2;
-                    m_iCols1PrintState = iLastCol;
-                    return false;
-                }
-
-                ostemp << L"!";
-                iLen = 0;
-                for(int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
-				{
-                    _piDims[0] = iRows2;
-                    _piDims[1] = iCols2;
-                    int iPos = getIndex(_piDims);
-
-                    configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-					ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_VALUES;
-					iLen += piSize[iCols2] + SIZE_BETWEEN_TWO_VALUES;
-				}
-				ostemp << L"!" << endl;
-				if((iRows2 + 1) != m_iRows)
-				{
-					ostemp << L"!";
-					configureStream(&ostemp, iLen, iPrecision, ' ');
-					ostemp << left << L" ";
-					ostemp << L"!" << endl;
-				}
-			}
-
-            if(m_iRows2PrintState == 0 && iLastCol != 0)
+        for (int i = m_iRows1PrintState ; i < getRows() ; i++)
+        {
+            iCurrentLine += 2;
+            if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
             {
-                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
-            }
-            ostr << ostemp.str();
-        }
-
-        return true;
-	}
-
-	bool String::operator==(const InternalType& it)
-	{
-		if(const_cast<InternalType&>(it).isString() == false)
-		{
-			return false;
-		}
-
-		String* pS = const_cast<InternalType&>(it).getAs<types::String>();
-
-		if(pS->getRows() != getRows() || pS->getCols() != getCols())
-		{
-			return false;
-		}
-
-		wchar_t **p1 = get();
-		wchar_t **p2 = pS->get();
-
-		for(int i = 0 ; i < getSize() ; i++)
-		{
-			if(wcscmp(p1[i], p2[i]) != 0)
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-
-	bool String::operator!=(const InternalType& it)
-	{
-		return !(*this == it);
-	}
-
-    wchar_t* String::getNullValue()
-    {
-        return os_wcsdup(L"");
-    }
-
-    String* String::createEmpty(int _iDims, int* _piDims, bool _bComplex)
-    {
-        return new String(_iDims, _piDims);
-    }
-
-    wchar_t* String::copyValue(wchar_t* _pwstData)
-    {
-        return os_wcsdup(_pwstData);
-    }
-
-    wchar_t* String::copyValue(const wchar_t* _pwstData)
-    {
-        return os_wcsdup(_pwstData);
-    }
-
-    bool String::set(int _iPos, wchar_t* _pwstData)
-    {
-        if(m_pRealData == NULL || _iPos >= m_iSize)
-        {
-            return false;
-        }
-        m_pRealData[_iPos] = copyValue(_pwstData);
-        return true;
-    }
-
-    bool String::set(int _iPos, const wchar_t* _pwstData)
-    {
-        if(m_pRealData == NULL || _iPos >= m_iSize)
-        {
-            return false;
-        }
-        m_pRealData[_iPos] = copyValue(_pwstData);
-        return true;
-    }
-
-    bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
-    {
-        int piIndexes[2] = {_iRows, _iCols};
-        return set(getIndex(piIndexes), _pwstData);
-    }
-
-    bool String::set(int _iRows, int _iCols, wchar_t* _pwstData)
-    {
-        int piIndexes[2] = {_iRows, _iCols};
-        return set(getIndex(piIndexes), _pwstData);
-    }
-
-    bool String::set(wchar_t** _pwstData)
-    {
-        if(m_pRealData == NULL)
-        {
-            return false;
-        }
-
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            if(set(i, _pwstData[i]) == false)
-            {
+                m_iRows1PrintState = i;
                 return false;
             }
+
+            _piDims[1] = 0;
+            _piDims[0] = i;
+            int iPos = getIndex(_piDims);
+
+            ostr << L"!";
+            configureStream(&ostr, iMaxLen, iPrecision, ' ');
+            ostr << left << get(iPos);
+            ostr << L"!" << endl;
+            if ((i + 1) < m_iSize)
+            {
+                //for all but last one
+                ostr << L"!";
+                configureStream(&ostr, iMaxLen, iPrecision, ' ');
+                ostr << left << L" ";
+                ostr << L"!" << endl;
+            }
         }
-        return true;
+    }
+    else if (getRows() == 1)
+    {
+        wostringstream ostemp;
+        int iLastVal = m_iCols1PrintState;
+
+        for (int i = m_iCols1PrintState ; i < getCols() ; i++)
+        {
+            _piDims[0] = 0;
+            _piDims[1] = i;
+            int iPos = getIndex(_piDims);
+
+            int iLen = 0;
+            int iCurLen = static_cast<int>(wcslen(get(iPos)));
+            iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + static_cast<int>(ostemp.str().size());
+            if (iLen > iLineLen)
+            {
+                //Max length, new line
+                iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
+                if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                {
+                    m_iCols1PrintState = iLastVal;
+                    return false;
+                }
+
+                ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
+                ostr << L"!" << ostemp.str() << L"!" << endl;
+                ostemp.str(L"");
+                iLastVal = i;
+            }
+
+            configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
+            ostemp << left << get(0, i);
+        }
+
+        if (iLastVal != 0)
+        {
+            ostr << endl << L"       column " << iLastVal + 1 << L" to " << getCols() << endl << endl;
+        }
+        ostr << L"!" << ostemp.str() << L"!" << endl;
+    }
+    else //Matrix
+    {
+        wostringstream ostemp;
+        int iLen = 0;
+        int iLastCol = m_iCols1PrintState;
+
+        //Array with the max printed size of each col
+        int *piSize = new int[getCols()];
+        memset(piSize, 0x00, getCols() * sizeof(int));
+
+        for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+        {
+            for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
+            {
+                _piDims[1] = iCols1;
+                _piDims[0] = iRows1;
+                int iPos = getIndex(_piDims);
+                piSize[iCols1] = Max(piSize[iCols1], static_cast<int>(wcslen(get(iPos))));
+            }
+
+            if (iLen + piSize[iCols1] > iLineLen)
+            {
+                //find the limit, print this part
+                for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+                {
+                    iCurrentLine += 2;
+                    if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
+                            ( (iMaxLines != 0 && iCurrentLine + 3 >= iMaxLines && iRows2 == m_iRows2PrintState) ||
+                              (iMaxLines != 0 && iCurrentLine + 1 >= iMaxLines && iRows2 != m_iRows2PrintState)))
+                    {
+                        if (m_iRows2PrintState == 0 && iRows2 != 0)
+                        {
+                            //add header
+                            ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                        }
+                        ostr << ostemp.str();
+                        m_iRows2PrintState = iRows2;
+                        m_iCols1PrintState = iLastCol;
+                        return false;
+                    }
+
+                    ostemp << L"!";
+                    for (int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+                    {
+                        _piDims[0] = iRows2;
+                        _piDims[1] = iCols2;
+                        int iPos = getIndex(_piDims);
+                        configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
+                        ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_VALUES;
+                    }
+
+                    ostemp << L"!" << endl;
+                    if ((iRows2 + 1) != m_iRows)
+                    {
+                        ostemp << L"!";
+                        configureStream(&ostemp, iLen, iPrecision, ' ');
+                        ostemp << left << L" ";
+                        ostemp << L"!" << endl;
+                    }
+                }
+
+                iLen = 0;
+                iCurrentLine += 2;
+                if (m_iRows2PrintState == 0)
+                {
+                    iCurrentLine += 3;
+                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                }
+                ostr << ostemp.str();
+                ostemp.str(L"");
+                iLastCol = iCols1;
+                m_iRows2PrintState = 0;
+                m_iCols1PrintState = 0;
+            }
+            iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
+        }
+
+        for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+        {
+            iCurrentLine += 2;
+            if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+            {
+                if (m_iRows2PrintState == 0 && iLastCol != 0)
+                {
+                    //add header
+                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+                }
+
+                ostr << ostemp.str();
+                m_iRows2PrintState = iRows2;
+                m_iCols1PrintState = iLastCol;
+                return false;
+            }
+
+            ostemp << L"!";
+            iLen = 0;
+            for (int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
+            {
+                _piDims[0] = iRows2;
+                _piDims[1] = iCols2;
+                int iPos = getIndex(_piDims);
+
+                configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
+                ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_VALUES;
+                iLen += piSize[iCols2] + SIZE_BETWEEN_TWO_VALUES;
+            }
+            ostemp << L"!" << endl;
+            if ((iRows2 + 1) != m_iRows)
+            {
+                ostemp << L"!";
+                configureStream(&ostemp, iLen, iPrecision, ' ');
+                ostemp << left << L" ";
+                ostemp << L"!" << endl;
+            }
+        }
+
+        if (m_iRows2PrintState == 0 && iLastCol != 0)
+        {
+            ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+        }
+        ostr << ostemp.str();
     }
 
-    wchar_t** String::allocData(int _iSize)
+    return true;
+}
+
+bool String::operator==(const InternalType& it)
+{
+    if (const_cast<InternalType&>(it).isString() == false)
     {
-        wchar_t** pStr = new wchar_t*[_iSize];
-        memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
-        return pStr;
+        return false;
     }
+
+    String* pS = const_cast<InternalType&>(it).getAs<types::String>();
+
+    if (pS->getRows() != getRows() || pS->getCols() != getCols())
+    {
+        return false;
+    }
+
+    wchar_t **p1 = get();
+    wchar_t **p2 = pS->get();
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        if (wcscmp(p1[i], p2[i]) != 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool String::operator!=(const InternalType& it)
+{
+    return !(*this == it);
+}
+
+wchar_t* String::getNullValue()
+{
+    return os_wcsdup(L"");
+}
+
+String* String::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+{
+    return new String(_iDims, _piDims);
+}
+
+wchar_t* String::copyValue(wchar_t* _pwstData)
+{
+    return os_wcsdup(_pwstData);
+}
+
+wchar_t* String::copyValue(const wchar_t* _pwstData)
+{
+    return os_wcsdup(_pwstData);
+}
+
+bool String::set(int _iPos, wchar_t* _pwstData)
+{
+    if (m_pRealData == NULL || _iPos >= m_iSize)
+    {
+        return false;
+    }
+    m_pRealData[_iPos] = copyValue(_pwstData);
+    return true;
+}
+
+bool String::set(int _iPos, const wchar_t* _pwstData)
+{
+    if (m_pRealData == NULL || _iPos >= m_iSize)
+    {
+        return false;
+    }
+    m_pRealData[_iPos] = copyValue(_pwstData);
+    return true;
+}
+
+bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
+{
+    int piIndexes[2] = {_iRows, _iCols};
+    return set(getIndex(piIndexes), _pwstData);
+}
+
+bool String::set(int _iRows, int _iCols, wchar_t* _pwstData)
+{
+    int piIndexes[2] = {_iRows, _iCols};
+    return set(getIndex(piIndexes), _pwstData);
+}
+
+bool String::set(wchar_t** _pwstData)
+{
+    if (m_pRealData == NULL)
+    {
+        return false;
+    }
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        if (set(i, _pwstData[i]) == false)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+wchar_t** String::allocData(int _iSize)
+{
+    wchar_t** pStr = new wchar_t*[_iSize];
+    memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
+    return pStr;
+}
 }
 

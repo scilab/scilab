@@ -239,5 +239,7 @@ void defineTMPDIR()
 
 void clearTMPDIR()
 {
-    removedir(getTMPDIR());
+    char * tmpdir = getTMPDIR();
+    removedir(tmpdir);
+    FREE(tmpdir);
 }

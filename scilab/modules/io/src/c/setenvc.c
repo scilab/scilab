@@ -22,7 +22,7 @@
 #include "charEncoding.h"
 #include "os_swprintf.h"
 /*--------------------------------------------------------------------------*/
-BOOL setenvc(char *stringIn,char *valueIn)
+BOOL setenvc(char *stringIn, char *valueIn)
 {
 #ifdef _MSC_VER
     wchar_t* wstringIn = to_wide_string(stringIn);
@@ -61,14 +61,20 @@ BOOL setenvc(char *stringIn,char *valueIn)
 #endif
 }
 /*--------------------------------------------------------------------------*/
-BOOL setenvcW(wchar_t *wstringIn,wchar_t *wvalueIn)
+BOOL setenvcW(wchar_t *wstringIn, wchar_t *wvalueIn)
 {
     BOOL ret = TRUE;
     int len_env = 0;
 #ifdef _MSC_VER
-    return SetEnvironmentVariableW(wstringIn,wvalueIn);
+    return SetEnvironmentVariableW(wstringIn, wvalueIn);
 #else
-    return setenvc(wide_string_to_UTF8(wstringIn), wide_string_to_UTF8(wvalueIn));
+    char * stringIn = wide_string_to_UTF8(wstringIn);
+    char * valueIn = wide_string_to_UTF8(wvalueIn);
+    ret = setenvc(stringIn, valueIn);
+    FREE(stringIn);
+    FREE(valueIn);
+
+    return ret;
 #endif
 }
 /*--------------------------------------------------------------------------*/

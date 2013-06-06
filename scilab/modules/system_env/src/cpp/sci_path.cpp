@@ -71,7 +71,7 @@ void setSCI(const char* _sci_path)
     pwstWSCI = to_wide_string(pstBackSlash);
     types::String *pSWSCI = new types::String(pwstWSCI);
     symbol::Context::getInstance()->put(symbol::Symbol(L"WSCI"), *pSWSCI);
-    FREE(pstBackSlash);
+    delete[] pstBackSlash;
 #else
     pwstWSCI = to_wide_string(_sci_path);
 #endif
@@ -81,8 +81,14 @@ void setSCI(const char* _sci_path)
 
     FREE(pwstWSCI);
     FREE(pwstSCI);
-    FREE(pstSlash);
-    FREE(ShortPath);
+    if (pstSlash)
+    {
+        delete[] pstSlash;
+    }
+    if (ShortPath)
+    {
+        delete[] ShortPath;
+    }
 }
 /*--------------------------------------------------------------------------*/
 void putenvSCIW(const wchar_t* _sci_path)
@@ -106,15 +112,15 @@ void putenvSCI(const char* _sci_path)
         bool bConvertOK = false;
         ShortPath = getshortpathname(_sci_path, &bConvertOK);
         //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
-        AntislashToSlash(ShortPath,CopyOfDefaultPath);
+        AntislashToSlash(ShortPath, CopyOfDefaultPath);
         setenvc("SCI", ShortPath);
-        if(CopyOfDefaultPath)
+        if (CopyOfDefaultPath)
         {
             delete[] CopyOfDefaultPath;
             CopyOfDefaultPath = NULL;
         }
 
-        if(ShortPath)
+        if (ShortPath)
         {
             delete[] ShortPath;
             ShortPath = NULL;
@@ -137,11 +143,11 @@ char* getenvSCI()
     int lbuf = PATH_MAX;
     char *SciPath = new char[PATH_MAX];
 
-    if(SciPath)
+    if (SciPath)
     {
         getenvc(&ierr, "SCI", SciPath, &lbuf, &iflag);
 
-        if(ierr == 1)
+        if (ierr == 1)
         {
             return NULL;
         }
@@ -169,23 +175,23 @@ char* computeSCI()
     char fname[_MAX_FNAME];
     char ext[_MAX_EXT];
 
-    char *SciPathName=NULL;
-    char *DirTmp=NULL;
+    char *SciPathName = NULL;
+    char *DirTmp = NULL;
 
-    if(!GetModuleFileName((HINSTANCE)GetModuleHandle("libScilab"), ScilabModuleName, MAX_PATH))
+    if (!GetModuleFileName((HINSTANCE)GetModuleHandle("libScilab"), ScilabModuleName, MAX_PATH))
     {
         return NULL;
     }
 
     _splitpath(ScilabModuleName, drive, dir, fname, ext);
 
-    if(dir[strlen(dir) - 1] == '\\')
+    if (dir[strlen(dir) - 1] == '\\')
     {
         dir[strlen(dir) - 1] = '\0';
     }
 
     DirTmp = strrchr(dir, '\\');
-    if(strlen(dir) - strlen(DirTmp) > 0)
+    if (strlen(dir) - strlen(DirTmp) > 0)
     {
         dir[strlen(dir) - strlen(DirTmp)] = '\0';
     }
@@ -199,9 +205,9 @@ char* computeSCI()
     {
         _makepath(SciPathName, drive, dir, NULL, NULL);
 
-        for(int i = 0 ; i < static_cast<int>(strlen(SciPathName)) ; i++)
+        for (int i = 0 ; i < static_cast<int>(strlen(SciPathName)) ; i++)
         {
-            if(SciPathName[i] == '\\')
+            if (SciPathName[i] == '\\')
             {
                 SciPathName[i] = '/';
             }
@@ -217,11 +223,11 @@ char* computeSCI()
     int lbuf = PATH_MAX;
     char *SciPathName = new char[PATH_MAX];
 
-    if(SciPathName)
+    if (SciPathName)
     {
         getenvc(&ierr, "SCI", SciPathName, &lbuf, &iflag);
 
-        if(ierr == 1)
+        if (ierr == 1)
         {
             cerr << "SCI environment variable not defined." << endl;
             exit(1);

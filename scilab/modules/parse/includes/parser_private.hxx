@@ -15,9 +15,11 @@
 
 #include "parser.hxx"
 
-class ParserSingleInstance {
+class ParserSingleInstance
+{
 public :
-    static Parser::ControlStatus getControlStatus(void) {
+    static Parser::ControlStatus getControlStatus(void)
+    {
         if (!_control_status->empty())
         {
             return _control_status->front();
@@ -25,13 +27,15 @@ public :
         return Parser::AllControlClosed;
     }
 
-    static void pushControlStatus(Parser::ControlStatus control_status) {
+    static void pushControlStatus(Parser::ControlStatus control_status)
+    {
         //std::cout << "Push front : " << control_status << std::endl;
         _control_status->push_front(control_status);
     }
 
-    static void popControlStatus(void) {
-        if(!_control_status->empty())
+    static void popControlStatus(void)
+    {
+        if (!_control_status->empty())
         {
             //std::cout << "Pop front" << std::endl;
             //std::cout << "size = " << _control_status->size() << std::endl;
@@ -39,15 +43,28 @@ public :
         }
     }
 
-    static void resetControlStatus(void) {
+    static void resetControlStatus(void)
+    {
         _control_status->clear();
     }
 
-    static Parser::ParserStatus getExitStatus(void) { return _exit_status; }
-    static void setExitStatus(Parser::ParserStatus exit_status) { _exit_status = exit_status; }
+    static Parser::ParserStatus getExitStatus(void)
+    {
+        return _exit_status;
+    }
+    static void setExitStatus(Parser::ParserStatus exit_status)
+    {
+        _exit_status = exit_status;
+    }
 
-    static ast::Exp* getTree(void) { return _the_program; }
-    static void setTree(ast::Exp* theProgram) { _the_program = theProgram; }
+    static ast::Exp* getTree(void)
+    {
+        return _the_program;
+    }
+    static void setTree(ast::Exp* theProgram)
+    {
+        _the_program = theProgram;
+    }
 
     /*
     ** Parsing functions
@@ -58,16 +75,34 @@ public :
     /*
     ** Manage strict Mode
     */
-    static bool isStrictMode(void) { return _strict_mode; }
-    static void enableStrictMode(void) { _strict_mode = true; }
-    static void disableStrictMode(void) { _strict_mode = false; }
+    static bool isStrictMode(void)
+    {
+        return _strict_mode;
+    }
+    static void enableStrictMode(void)
+    {
+        _strict_mode = true;
+    }
+    static void disableStrictMode(void)
+    {
+        _strict_mode = false;
+    }
 
     /*
     ** Manage error recovery mode
     */
-    static bool stopOnFirstError(void) { return _stop_on_first_error; }
-    static void enableStopOnFirstError(void) { _stop_on_first_error = true; }
-    static void disableStopOnFirstError(void) { _stop_on_first_error = false; }
+    static bool stopOnFirstError(void)
+    {
+        return _stop_on_first_error;
+    }
+    static void enableStopOnFirstError(void)
+    {
+        _stop_on_first_error = true;
+    }
+    static void disableStopOnFirstError(void)
+    {
+        _stop_on_first_error = false;
+    }
 
     /*
     ** Bison Debug management
@@ -78,21 +113,36 @@ public :
     /*
     ** File name management
     */
-    static const wstring* getFileName(void) { return _file_name; }
-    static void setFileName(const wstring& fileName) { _file_name = &fileName; }
+    static const wstring getFileName(void)
+    {
+        return _file_name;
+    }
+    static void setFileName(const wstring& fileName)
+    {
+        _file_name = fileName;
+    }
 
     /*
     ** Program Name Management
     */
-    static const wstring* getProgName(void) { return new wstring(L"Scilab6"); }
-    static void setProgName(const wstring& progName) { _prog_name = &progName; }
+    static const wstring getProgName(void)
+    {
+        return L"Scilab6";
+    }
+    static void setProgName(const wstring& progName)
+    {
+        _prog_name = progName;
+    }
 
     /*
     ** Error Message management
     */
     static wstring* getErrorMessage(void);
     static void appendErrorMessage(wstring ostr);
-    static void resetErrorMessage(void) { _error_message->clear(); }
+    static void resetErrorMessage(void)
+    {
+        _error_message->clear();
+    }
 
     /*
     ** \brief This funnction returns the parsed code written
@@ -106,8 +156,8 @@ public :
     static void PrintError(std::wstring msg);
 
 private :
-    static const wstring* _file_name;
-    static const wstring* _prog_name;
+    static wstring _file_name;
+    static wstring _prog_name;
     static wstring* _error_message;
     static bool _strict_mode;
     static bool _stop_on_first_error;
