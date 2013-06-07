@@ -347,6 +347,7 @@ char *getCmdLine(void)
     }
 
     multiByteString = wide_string_to_UTF8(&commandLine[nextLineLocationInWideString]);
+    FREE(commandLine);
 
     nextLineLocationInWideString = cursorLocation + 1;
 
