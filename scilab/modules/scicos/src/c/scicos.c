@@ -6128,7 +6128,7 @@ static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
     }
 
     /* "residual" already contains the current residual,
-    so the first call to Jdoit can be remoevd*/
+    so the first call to Jdoit can be removed */
 
     for (i = 0; i < m; i++)
         for (j = 0; j < ni; j++)
