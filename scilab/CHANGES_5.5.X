@@ -355,4 +355,7 @@ Bug fixes
 
 * Bug #12641 fixed - graypolarplot() was slow and has been fully vectorized.
 
-* Bug #12678 fixed - nthroot() now accepts vector/matrix as second argument
+* Bug #12657 fixed - Computation of v1.^v2 is now done in place,
+                     when v1 and v2 are real arrays, v1 >= 0 and v2 integer.
+
+* Bug #12678 fixed - nthroot() now accepts vector/matrix as second argument.
