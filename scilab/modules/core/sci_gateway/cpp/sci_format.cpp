@@ -260,13 +260,13 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
 
                 if (dType != (double)iType)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "format", 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "format", 2);
                     return types::Function::Error;
                 }
 
                 if (iType != 0 && iType != 1)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "format", 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "format", 2);
                     return types::Function::Error;
                 }
             }
@@ -333,7 +333,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
         //iType == 0
         if (iLen < format_e_MIN || iLen > format_MAX)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), "format", 2, format_e_MIN, format_MAX);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), "format", 1, format_e_MIN, format_MAX);
             return types::Function::Error;
         }
 
