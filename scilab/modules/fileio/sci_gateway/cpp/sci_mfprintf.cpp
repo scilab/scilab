@@ -216,7 +216,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
     else
     {
-        iRet = mputl(iFile, wcsStringToWrite, nbrOfLines, FALSE); // FALSE = don't add the "\n" at the end.
+        iRet = mputl(iFile, wcsStringToWrite, nbrOfLines, (BOOL)iNewLine); // FALSE = don't add the "\n" at the end.
     }
 
     for (int i = 0; i < nbrOfLines; i++)
