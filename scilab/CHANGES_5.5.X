@@ -355,3 +355,4 @@ Bug fixes
 
 * Bug #12641 fixed - graypolarplot() was slow and has been fully vectorized.
 
+* Bug #12678 fixed - nthroot() now accepts vector/matrix as second argument
