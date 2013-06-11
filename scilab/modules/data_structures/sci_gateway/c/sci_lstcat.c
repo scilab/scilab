@@ -15,9 +15,9 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlstcat)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int sci_lstcat(char *fname,unsigned long fname_len)
+int sci_lstcat(char *fname, unsigned long fname_len)
 {
     C2F(intlstcat)();
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -215,7 +215,7 @@ static fpsoldf fpsoldfonc ;
 
 /** function call **/
 
-void C2F(fpsold)(int*neq,double*t,double*y,double*ydot,double*savr,double*wk,double*cj,double*wght,double*wp,int*iwp,double*b,double*eplin,int*ier,double*rpar,int*ipar)
+void C2F(fpsold)(int*neq, double*t, double*y, double*ydot, double*savr, double*wk, double*cj, double*wght, double*wp, int*iwp, double*b, double*eplin, int*ier, double*rpar, int*ipar)
 {
     (*fpsoldfonc)(neq, t, y, ydot, savr, wk, cj, wght, wp, iwp, b, eplin, ier, rpar, ipar);
 }
@@ -234,7 +234,7 @@ static fpjacdf fpjacdfonc ;
 
 /** function call **/
 
-void C2F(fpjacd)(double*res,int*ires,int*neq,double*t,double*y,double*ydot,double*rewt,double*savr,double*wk,double*h,double*cj,double*wp,int*iwp,int*ier,double*rpar,int*ipar)
+void C2F(fpjacd)(double*res, int*ires, int*neq, double*t, double*y, double*ydot, double*rewt, double*savr, double*wk, double*h, double*cj, double*wp, int*iwp, int*ier, double*rpar, int*ipar)
 {
     (*fpjacdfonc)(res, ires, neq, t, y, ydot, rewt, savr, wk, h, cj, wp, iwp, ier, rpar, ipar);
 }

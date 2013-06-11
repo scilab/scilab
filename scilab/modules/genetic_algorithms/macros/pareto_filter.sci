@@ -10,7 +10,7 @@
 
 function [F_out, X_out, Ind_out] = pareto_filter(F_in, X_in)
     [nargout,nargin] = argn();
-    if ~isdef('F_in','local') then
+    if ~isdef("F_in","local") then
         error(sprintf(gettext("%s: F_in is mandatory"),"pareto_filter"));
     end
     x_defined   = (nargout>=2);
@@ -20,7 +20,7 @@ function [F_out, X_out, Ind_out] = pareto_filter(F_in, X_in)
     Dominating(n)=%f;
     for i=2:n
         j=find(~Dominating(1:i-1))
-        df=ones(size(j,'*'),1)*F_in(i,:)-F_in(j,:);
+        df=ones(size(j,"*"),1)*F_in(i,:)-F_in(j,:);
         kd=find(and(df<=0,2) & or(df<0,2));
         if kd<>[] then
             Dominating(j(kd))=%t
@@ -33,7 +33,7 @@ function [F_out, X_out, Ind_out] = pareto_filter(F_in, X_in)
     F_out = F_in(Ind_out,:);
 
     if x_defined & (nargin==2) then
-        if typeof(X_in)=='list' then
+        if typeof(X_in)=="list" then
             X_out = list(X_in(Ind_out));
         else
             X_out = X_in(Ind_out,:);

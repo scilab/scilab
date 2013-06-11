@@ -16,10 +16,10 @@
 class MatPlotDecomposer
 {
 public:
-  static int getTextureWidth(char* id);
-  static int getTextureHeight(char* id);
-  static int fillTextureData(char* id, unsigned char* buffer, int bufferLength);
-  static int fillTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height);
+    static int getTextureWidth(char* id);
+    static int getTextureHeight(char* id);
+    static int fillTextureData(char* id, unsigned char* buffer, int bufferLength);
+    static int fillTextureData(char* id, unsigned char* buffer, int bufferLength, int x, int y, int width, int height);
 };
 
 #endif

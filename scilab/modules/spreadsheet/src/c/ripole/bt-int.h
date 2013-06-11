@@ -1,9 +1,10 @@
 #ifndef __BT_INT__
 #define __BT_INT__
 
-struct bti_node {
-	int data;
-	struct bti_node *l,*r;
+struct bti_node
+{
+    int data;
+    struct bti_node *l, *r;
 };
 
 int BTI_init( struct bti_node **n );

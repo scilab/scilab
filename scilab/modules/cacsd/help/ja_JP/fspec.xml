@@ -85,7 +85,7 @@ g = gtild(gm)*gm
             gtild(gm) は gm(-s)'の状態空間表現を返します.
             
         </para>
-         
+        
         
         <para>
             

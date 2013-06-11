@@ -1,85 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="stringbox">
-    <refnamediv>
-        <refname>stringbox</refname>
-        <refpurpose>Calcule le rectangle englobant d'un
-            texte ou d'un label.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
-            rect = stringbox( handle )
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>rect</term>
-                <listitem>
-                    <para>matrice 2x4 contenant les coordonées des 4 sommets du
-                        rectangle englobant.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>string</term>
-                <listitem>
-                    <para>matrice de chaine de caractère à  entourer.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x,y</term>
-                <listitem>
-                    <para>scalaires réels, coordonnées du point en bas à  gauche des
-                        chaînes de caractères.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>angle</term>
-                <listitem>
-                    <para>Angle de rotation de la chaîne en degrés autour du point
-                        <literal>(x,y)</literal> dans le sens des aiguilles d'une montre.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fonStyle</term>
-                <listitem>
-                    <para>un entier specifiant le type de la fonte.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fontSize</term>
-                <listitem>
-                    <para>un entier specifiant la taille de la fonte.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>handle</term>
-                <listitem>
-                    <para>un handle de type Text ou Label.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>stringbox</literal> renvoie les positions des quatres sommets du
-            rectangle englobant d'un objet Text ou Label ou d'une chaine de caractère
-            que l'on souhaite afficher. Les coordonnées sont données dans l'échelle
-            graphique courante. Le premier sommet correspond à  la coordonnées du
-            texte, le point en bas à  gauche sans rotations, les suivants sont donnés
-            dans le sens des aiguilles d'une montre.
-        </para>
-        <para>Le résultat est approximatif avec le pilote PostScript.</para>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="stringbox">
+        <refnamediv>
+            <refname>stringbox</refname>
+            <refpurpose>Calcule le rectangle englobant d'un
+                texte ou d'un label.
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
+                rect = stringbox( handle )
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Paramètres</title>
+            <variablelist>
+                <varlistentry>
+                    <term>rect</term>
+                    <listitem>
+                        <para>matrice 2x4 contenant les coordonées des 4 sommets du
+                            rectangle englobant.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>string</term>
+                    <listitem>
+                        <para>matrice de chaine de caractère à  entourer.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x,y</term>
+                    <listitem>
+                        <para>scalaires réels, coordonnées du point en bas à  gauche des
+                            chaînes de caractères.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>angle</term>
+                    <listitem>
+                        <para>Angle de rotation de la chaîne en degrés autour du point
+                            <literal>(x,y)</literal> dans le sens des aiguilles d'une montre.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fonStyle</term>
+                    <listitem>
+                        <para>un entier specifiant le type de la fonte.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fontSize</term>
+                    <listitem>
+                        <para>un entier specifiant la taille de la fonte.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>handle</term>
+                    <listitem>
+                        <para>un handle de type Text ou Label.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>stringbox</literal> renvoie les positions des quatres sommets du
+                rectangle englobant d'un objet Text ou Label ou d'une chaine de caractère
+                que l'on souhaite afficher. Les coordonnées sont données dans l'échelle
+                graphique courante. Le premier sommet correspond à  la coordonnées du
+                texte, le point en bas à  gauche sans rotations, les suivants sont donnés
+                dans le sens des aiguilles d'une montre.
+            </para>
+            <para>Le résultat est approximatif avec le pilote PostScript.</para>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[ 
 // show axes
 axes = gca() ;
 axes.axes_visible = 'on' ;
@@ -117,28 +117,28 @@ else
   disp('You missed it.')
 end;
  ]]></programlisting>
-        <scilab:image>
-            axes = gca() ;
-            axes.axes_visible = 'on' ;
-            axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
-            xtitle( 'stringbox', 'X', 'Y' )  ;
-            stringbox( axes.x_label )
-            str = [ "Scilab", "is" , "not", "Skylab" ] ;
-            xstring( 4, 9, str ) ;
-        </scilab:image>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="xstring">xstring</link>
-            </member>
-            <member>
-                <link linkend="xstringl">xstringl</link>
-            </member>
-            <member>
-                <link linkend="xstringb">xstringb</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            <scilab:image>
+                axes = gca() ;
+                axes.axes_visible = 'on' ;
+                axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
+                xtitle( 'stringbox', 'X', 'Y' )  ;
+                stringbox( axes.x_label )
+                str = [ "Scilab", "is" , "not", "Skylab" ] ;
+                xstring( 4, 9, str ) ;
+            </scilab:image>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="xstring">xstring</link>
+                </member>
+                <member>
+                    <link linkend="xstringl">xstringl</link>
+                </member>
+                <member>
+                    <link linkend="xstringb">xstringb</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

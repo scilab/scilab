@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -11,175 +11,175 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xpolys">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xpolys">
         
-        <refname>xpolys</refname>
-        
-        <refpurpose>一連のポリラインまたはポリゴンを描画</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>xpolys(xpols,ypols,[draw])</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+        <refnamediv>
             
-            <varlistentry>
+            <refname>xpolys</refname>
+            
+            <refpurpose>一連のポリラインまたはポリゴンを描画</refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>xpolys(xpols,ypols,[draw])</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
                 
-                <term>xpols,ypols</term>
+                <varlistentry>
+                    
+                    <term>xpols,ypols</term>
+                    
+                    <listitem>
+                        
+                        <para>同じ大きさの行列 (p,n) (ポリラインの点).</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>draw</term>
+                    
+                    <listitem>
+                        
+                        <para>大きさnのベクトル.</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
+                
+                <literal>xpolys</literal> はマーカまたは破線を用いて
+                
+                一連のポリラインを描画します.
+                
+                各ポリラインの座標は
+                
+                <literal>xpols</literal> および <literal>ypols</literal>の列に保存されます.
+                
+            </para>
+            
+            <para>
+                
+                ポリライン iの形式は  <literal>draw(i)</literal>により以下のように指定されます:
+                
+            </para>
+            
+            <itemizedlist>
                 
                 <listitem>
                     
-                    <para>同じ大きさの行列 (p,n) (ポリラインの点).</para>
+                    <para>
+                        
+                        <literal>draw(i)</literal> が負の場合, ID <literal>-draw(i)</literal>を
+                        
+                        有するマーカがポリライン i　を描画する際に使用されます
+                        
+                        (マーカはカレントのパターンにより描画されます).
+                        
+                        このIDの意味を参照するには<literal>xset()</literal>を参照してください.
+                        
+                    </para>
                     
                 </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>draw</term>
                 
                 <listitem>
                     
-                    <para>大きさnのベクトル.</para>
+                    <para>
+                        
+                        <literal>draw(i)</literal> が厳密に正の場合,ID <literal>draw(i)</literal>の
+                        
+                        線の種類(または色)がポリライン i　に使用されます.
+                        
+                        IDの意味を参照するには, <literal>xset()</literal> を使用してください.
+                        
+                    </para>
                     
                 </listitem>
                 
-            </varlistentry>
+            </itemizedlist>
             
-        </variablelist>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
+        <refsection>
             
-            <literal>xpolys</literal> はマーカまたは破線を用いて
+            <title>例</title>
             
-            一連のポリラインを描画します.
-            
-            各ポリラインの座標は
-            
-            <literal>xpols</literal> および <literal>ypols</literal>の列に保存されます.
-            
-        </para>
-        
-        <para>
-            
-            ポリライン iの形式は  <literal>draw(i)</literal>により以下のように指定されます:
-            
-        </para>
-        
-        <itemizedlist>
-            
-            <listitem>
+            <scilab:image>
                 
-                <para>
-                    
-                    <literal>draw(i)</literal> が負の場合, ID <literal>-draw(i)</literal>を
-                    
-                    有するマーカがポリライン i　を描画する際に使用されます
-                    
-                    (マーカはカレントのパターンにより描画されます).
-                    
-                    このIDの意味を参照するには<literal>xset()</literal>を参照してください.
-                    
-                </para>
+                plot2d(0,0,-1,"012"," ",[0,0,1,1])
                 
-            </listitem>
-            
-            <listitem>
+                rand("uniform")
                 
-                <para>
-                    
-                    <literal>draw(i)</literal> が厳密に正の場合,ID <literal>draw(i)</literal>の
-                    
-                    線の種類(または色)がポリライン i　に使用されます.
-                    
-                    IDの意味を参照するには, <literal>xset()</literal> を使用してください.
-                    
-                </para>
+                xset("color",3)
                 
-            </listitem>
+                xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
+                
+            </scilab:image>
             
-        </itemizedlist>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <scilab:image>
+        <refsection>
             
-            plot2d(0,0,-1,"012"," ",[0,0,1,1])
+            <title>例</title>
             
-            rand("uniform")
-            
-            xset("color",3)
-            
-            xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
-            
-        </scilab:image>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+            <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"012"," ",[0,0,1,1])
 rand("uniform")
 xset("color",3)
 xpolys(rand(3,5),rand(3,5),[-1,-2,0,1,2])
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="xfpoly">xfpoly</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="xfpolys">xfpolys</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="xpoly">xpoly</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="xfpoly">xfpoly</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="xfpolys">xfpolys</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="xpoly">xpoly</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-</refentry>
-

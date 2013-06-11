@@ -13,7 +13,7 @@
 #ifndef __GET_UICONTROL_FONTNAME_HXX__
 #define __GET_UICONTROL_FONTNAME_HXX__
 
-extern "C"{
+extern "C" {
 #include "localization.h"
 #include "GetUicontrolFontName.h"
 #include "Scierror.h"

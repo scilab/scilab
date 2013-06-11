@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Michaël Baudin
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,12 +27,12 @@ extern int C2F(zheev) ();
 //   Possible uses :
 //   * With 1 LHS :
 //       eigenvalues=spec(A)
-//     where 
+//     where
 //       A : symmetric, square matrix of size NxN
 //       eigenvalues : matrix of size Nx1, type real
 //   * With 2 LHS :
 //       [eigenvectors,eigenvalues]=spec(A)
-//     where 
+//     where
 //       A : square matrix of size NxN
 //       eigenvalues : matrix of size NxN with eigenvalues as diagonal terms, type real
 //       eigenvectors : matrix of size NxN, type complex
@@ -126,8 +126,8 @@ int sci_zheev(char *fname, unsigned long fname_len)
     }
     UPLO = 'U';
     C2F(zheev) (&JOBZ, &UPLO, &iCols, pdblData, &iCols, pdblEigenValues, pdblWork, &iWorkSize, pdblRWork, &INFO);
-//      SUBROUTINE ZHEEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK, RWORK,
-//     $                  INFO )
+    //      SUBROUTINE ZHEEV( JOBZ, UPLO, N, A, LDA, W, WORK, LWORK, RWORK,
+    //     $                  INFO )
     FREE(pdblWork);
     FREE(pdblRWork);
     if (INFO != 0)

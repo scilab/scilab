@@ -8,27 +8,27 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y = nthroot(x,n)
-    
+
     rhs = argn(2);
-    
+
     // if the number of input arguments is wrong
     if rhs <> 2 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "nthroot", 2));
     end
-    
+
     // if x or n are not real
     if ((typeof(x) <> "constant" | ~isreal(x)) | (typeof(n) <> "constant" | ~isreal(n))) then
         error(msprintf(gettext("%s: Wrong type for input argument(s) %d: real arguments expected.\n"),"nthroot",2));
     end
-    
+
     // if n is not scalar
     if (size(n,"*")~=1) then
         error(msprintf(gettext("%s: Wrong type for input argument(s) %d: n must be a scalar.\n"),"nthroot",1));
     end
-        
+
     reste = modulo(n,2);
     y = x;
-    
+
     // if n = %nan and x is positive then y = %nan
     if (isnan(n) & or(x >= 0)) then
         y(find(x>=0)) = %nan;
@@ -54,11 +54,10 @@ function y = nthroot(x,n)
         y(find(x>0)) = x(find(x>0)).^(1 ./n);
         // if x is negative
         y(find(x<0)) = sign(x(find(x<0))).*(abs(x(find(x<0)))).^(1 ./n);
-    end    
-    
-     
+    end
+
+
 endfunction
 
 
 
-    

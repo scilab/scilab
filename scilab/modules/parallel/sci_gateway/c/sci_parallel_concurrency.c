@@ -19,7 +19,7 @@
 * returns non zero when called from a concurrent execution context
 */
 
-int sci_parallel_concurrency(char *fname,unsigned long fname_len)
+int sci_parallel_concurrency(char *fname, unsigned long fname_len)
 {
     CheckRhs(0, 0);
     CheckLhs(1, 1);

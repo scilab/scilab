@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+        <?xml version="1.0" encoding="utf-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,54 +11,54 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="freeAllocatedMatrixOfPoly" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="freeAllocatedMatrixOfPoly" xml:lang="ja">
         
-        <refname>freeAllocatedSinglePoly</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            getAllocatedSinglePoly関数で確保されたメモリを解放.
+            <refname>freeAllocatedSinglePoly</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>void freeAllocatedSinglePoly(double* _pdblReal)</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>Arguments</title>
-        
-        <variablelist>
-            
-            <varlistentry>
+            <refpurpose>
                 
-                <term>_pdblReal</term>
+                getAllocatedSinglePoly関数で確保されたメモリを解放.
                 
-                <listitem>
+            </refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>void freeAllocatedSinglePoly(double* _pdblReal)</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>Arguments</title>
+            
+            <variablelist>
+                
+                <varlistentry>
                     
-                    <para>
-                        
-                        getAllocatedSinglePolyで確保されたポインタ"_pdblReal".
-                        
-                    </para>
+                    <term>_pdblReal</term>
                     
-                </listitem>
+                    <listitem>
+                        
+                        <para>
+                            
+                            getAllocatedSinglePolyで確保されたポインタ"_pdblReal".
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
                 
-            </varlistentry>
+            </variablelist>
             
-        </variablelist>
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

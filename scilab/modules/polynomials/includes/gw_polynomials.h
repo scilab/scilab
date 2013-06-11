@@ -18,22 +18,22 @@
 /*--------------------------------------------------------------------------*/
 POLYNOMIALS_IMPEXP int gw_polynomials(void);
 /*--------------------------------------------------------------------------*/
-POLYNOMIALS_IMPEXP int sci_poly_primitive(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_roots(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_degree(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_coeff(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_pppdiv(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_simp(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_psum(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_pprod(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_pdiag(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_ptriu(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_ptril(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_bezout(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_sfact(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_simp_mode(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_varn(char *fname,unsigned long fname_len);
-POLYNOMIALS_IMPEXP int sci_cleanp(char *fname,unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_poly_primitive(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_roots(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_degree(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_coeff(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_pppdiv(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_simp(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_psum(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_pprod(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_pdiag(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_ptriu(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_ptril(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_bezout(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_sfact(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_simp_mode(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_varn(char *fname, unsigned long fname_len);
+POLYNOMIALS_IMPEXP int sci_cleanp(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_POLYNOMIALS__ */
 /*--------------------------------------------------------------------------*/

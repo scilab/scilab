@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,81 +10,81 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linspace" xml:lang="en">
-    <refnamediv>
-        <refname>linspace</refname>
-        <refpurpose>linearly spaced vector</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x1,x2</term>
-                <listitem>
-                    <para>real or complex scalars or column vectors</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>n</term>
-                <listitem>
-                    <para>integer: number of requested values. It must be greater or equal to 2 (default value = 100)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>v</term>
-                <listitem>
-                    <para>real or complex row vector</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Linearly spaced vector. <literal>linspace(x1, x2)</literal>
-            generates a row vector of n (default value=100) linearly equally spaced
-            points between <literal>x1</literal> and <literal>x2</literal>. If
-            <literal>x1</literal> or <literal>x2</literal> are complex then
-            <literal>linspace(x1,x2)</literal> returns a row vector of n complexes,
-            the real (resp. imaginary) parts of the n complexes are linearly equally
-            spaced between the real (resp. imaginary) parts of <literal>x1</literal>
-            and <literal>x2.</literal>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linspace" xml:lang="en">
+        <refnamediv>
+            <refname>linspace</refname>
+            <refpurpose>linearly spaced vector</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x1,x2</term>
+                    <listitem>
+                        <para>real or complex scalars or column vectors</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>n</term>
+                    <listitem>
+                        <para>integer: number of requested values. It must be greater or equal to 2 (default value = 100)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>v</term>
+                    <listitem>
+                        <para>real or complex row vector</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Linearly spaced vector. <literal>linspace(x1, x2)</literal>
+                generates a row vector of n (default value=100) linearly equally spaced
+                points between <literal>x1</literal> and <literal>x2</literal>. If
+                <literal>x1</literal> or <literal>x2</literal> are complex then
+                <literal>linspace(x1,x2)</literal> returns a row vector of n complexes,
+                the real (resp. imaginary) parts of the n complexes are linearly equally
+                spaced between the real (resp. imaginary) parts of <literal>x1</literal>
+                and <literal>x2.</literal>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 linspace(1,2,10)
 linspace([1:4]',[5:8]',10)
 linspace(1+%i,2+2*%i,10)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="logspace">logspace</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>
-                    <itemizedlist>
-                        <listitem>The linspace function accepts column vectors as input argument for the two first input arguments. Thanks to Guillaume AZEMA for the implementation.
-                        </listitem>
-                        <listitem>The third input argument (n) must be an integer value.
-                        </listitem>
-                    </itemizedlist>
-                </revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="logspace">logspace</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.0</revnumber>
+                    <revremark>
+                        <itemizedlist>
+                            <listitem>The linspace function accepts column vectors as input argument for the two first input arguments. Thanks to Guillaume AZEMA for the implementation.
+                            </listitem>
+                            <listitem>The third input argument (n) must be an integer value.
+                            </listitem>
+                        </itemizedlist>
+                    </revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

@@ -20,21 +20,21 @@
 //
 
 function hilite_path(path,mess,with_intermediates)
-//hilite a block included in a superblock hierarchy and displays a
-//message.   If required all the intermediate superblocs are displayed
-//first entry of the path must be a bloc of currently opened diagram  
+    //hilite a block included in a superblock hierarchy and displays a
+    //message.   If required all the intermediate superblocs are displayed
+    //first entry of the path must be a bloc of currently opened diagram
 
     if argn(2)<2 then mess=" ",end
 
     // retrieve the root diagram
-    if isdef('scs_m_s') then
+    if isdef("scs_m_s") then
         diagram = scs_m_s;
-    elseif isdef('scs_m') then
+    elseif isdef("scs_m") then
         diagram = scs_m;
     else
         error("scs_m variable does not exist");
     end
-    
+
     uid = []; // empty uid path
 
     // construct the uid path from the index path
@@ -42,18 +42,18 @@ function hilite_path(path,mess,with_intermediates)
         index = path(i);
         if typeof(diagram.objs(index)) == "Block" then
             o = diagram.objs(index);
-            
+
             // masked superblock case
             if isempty(o.doc) then
                 // we abort because blocks do not have uuid inside
                 // masked superblocks
                 break;
             end
-            
+
             // normal case
             uid($+1) = diagram.objs(index).doc(1) + "";
 
-            if diagram.objs(index).model.sim == 'super' then
+            if diagram.objs(index).model.sim == "super" then
                 diagram = diagram.objs(index).model.rpar;
             else
                 break;
@@ -62,7 +62,7 @@ function hilite_path(path,mess,with_intermediates)
     end
 
     if uid <> [] then
-      warnBlockByUID(uid, strcat(mess, " "));
+        warnBlockByUID(uid, strcat(mess, " "));
     end
 endfunction
 

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+        <?xml version="1.0" encoding="utf-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -10,25 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="booleanSparseExample" xml:lang="en">
-    <refnamediv>
-        <refname>boolean sparse example</refname>
-        <refpurpose>
-            Boolean sparse use case.
-        </refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This example shows how to get a boolean sparse variable and return it to Scilab.</para>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/booleanSparseExample.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/booleanSparseExample.tst-->
-        <!--Lib_name: booleanSparseExample-->
-        <!--Func_list: booleanSparseExample-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="booleanSparseExample" xml:lang="en">
+        <refnamediv>
+            <refname>boolean sparse example</refname>
+            <refpurpose>
+                Boolean sparse use case.
+            </refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Description</title>
+            <para>This example shows how to get a boolean sparse variable and return it to Scilab.</para>
+        </refsection>
+        <refsection>
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/booleanSparseExample.c-->
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/booleanSparseExample.tst-->
+            <!--Lib_name: booleanSparseExample-->
+            <!--Func_list: booleanSparseExample-->
+            <title>Gateway Source</title>
+            <programlisting role="code_gateway">
+                <![CDATA[ 
 #include "api_scilab.h"
 
 int booleanSparseExample(char *fname,unsigned long fname_len)
@@ -77,13 +77,13 @@ int booleanSparseExample(char *fname,unsigned long fname_len)
 	return 0;
 }
  ]]>
-        </programlisting>
-    </refsection>
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+            </programlisting>
+        </refsection>
+        <refsection>
+            <title>Scilab test script</title>
+            <programlisting role="code_scilab"><![CDATA[ 
 bsp = sparse([1,1;2,2;3,3],[%t,%t,%t]);
 or(booleanSparseExample(bsp) == bsp)
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

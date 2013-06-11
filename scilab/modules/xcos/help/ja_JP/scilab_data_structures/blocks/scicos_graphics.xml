@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,247 +21,247 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_graphics">
-    <refnamediv>
-        <refname>scicos_graphics</refname>
-        <refpurpose>graphics構造体を定義</refpurpose>
-    </refnamediv>
-    <refsection id="Module_scicos_graphics">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="graphics_scicos_graphics">
-        <title>graphics</title>
-        <para>
-            ブロックの機能に関するグラフィック情報を有するScilabオブジェクト.
-        </para>
-        <para>
-        </para>
-        <para>
-        </para>
-        <para>
-            大きさ : 14.
-        </para>
-        <para>
-            型 : scilabリスト.
-        </para>
-        <para>
-            
-        </para>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">orig</emphasis>
-                </para>
-                <para> ベクトル [xo,yo], ただし, xo はブロック原点のx座標,
-                    yoはブロック原点のy座標です.
-                </para>
-                <para> 
-                    [xo,yo] はブロック外形の左下の点の座標です.
-                </para>
-                <para>
-                </para>
-                <para> 
-                    大きさ : 2.
-                </para>
-                <para>
-                    型 : 実数行ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">sz</emphasis>
-                </para>
-                <para> ベクトル [w,h], ただし, w はブロックの幅,hはブロックの高さです.
-                </para>
-                <para> 
-                    大きさ : 2.
-                </para>
-                <para>
-                    型 : 実数行ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">flip</emphasis>
-                </para>
-                <para> ブロックの向きを設定します. trueの場合,
-                    入力ポートがボックスの左側,出力ポートが右側となります.
-                </para>
-                <para> 
-                    trueの場合,
-                    入力ポートがボックスの左側,出力ポートが右側となります.
-                    falseの場合,
-                    入力ポートがボックスの右側,出力ポートが左側となります.
-                </para>
-                <para> 
-                    大きさ : 1.
-                </para>
-                <para>
-                    型 : 論理値.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">theta</emphasis>
-                </para>
-                <para> Scicosオブジェクトの角度を設定します.</para>
-                <para> この値の単位は度で,[-360,360]の範囲です.</para>
-                <para> 
-                    大きさ : 1.
-                </para>
-                <para>
-                    型 : real.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">exprs</emphasis>
-                </para>
-                <para> ブロックのダイアログボックスで使用されるformal式を有する文字列.</para>
-                <para> 
-                    大きさ : formal式の数.
-                </para>
-                <para>
-                    型 : 文字列の列ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">pin</emphasis>
-                </para>
-                <para> ベクトル. pin(i) はi番目の標準入力ポートに接続された
-                    リンクの数(1から開始)です. このポートに接続されていない場合, 0となります.
-                </para>
-                <para> 
-                    大きさ : 標準入力ポートの数.
-                </para>
-                <para>
-                    型 : 整数列ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">pout</emphasis>
-                </para>
-                <para> ベクトル. pout(i) はi番目の標準出力ポートに接続された
-                    リンクの数(1から開始)です. このポートに接続されていない場合, 0となります.
-                </para>
-                <para> 
-                    大きさ : 標準出力ポートの数.
-                </para>
-                <para>
-                    型 : 整数列ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">pein</emphasis>
-                </para>
-                <para> ベクトル. pein(i) はi番目のイベント入力ポートに接続された
-                    リンクの数(1から開始)です. このポートに接続されていない場合, 0となります.
-                </para>
-                <para> 
-                    大きさ : イベント入力ポートの数.
-                </para>
-                <para>
-                    型 : 整数列ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">peout</emphasis>
-                </para>
-                <para> ベクトル. peout(i) はi番目のイベント出力ポートに接続された
-                    リンクの数(1から開始)です. このポートに接続されていない場合, 0となります.
-                </para>
-                <para> 
-                    大きさ : イベント出力ポートの数.
-                </para>
-                <para>
-                    型 : 整数列ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">gr_i</emphasis>
-                </para>
-                <para> 
-                    ブロックのグラフィック表現をカスタマイズするScilabグラフィック式を
-                    有する文字列.このフィールドはIcon sub_menuで設定できます.
-                </para>
-                <para> 
-                    大きさ : -.
-                </para>
-                <para>
-                    型 : 文字列の列ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">id</emphasis>
-                </para>
-                <para> ブロックのIDを有する文字列. この文字列はダイアグラムの
-                    ブロックの下に表示されます.
-                </para>
-                <para> 
-                    大きさ : 1.
-                </para>
-                <para>
-                    型 : 文字列.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">in_implicit</emphasis>
-                </para>
-                <para>'E'または'I'を要素とする文字列ベクトル.
-                </para>
-                <para> 'E' および 'I' はそれぞれ
-                    陽的(explicit),陰的(implicit)を意味し,このベクトルは
-                    各入力ポートの特性を示します.
-                    (陰的でない)標準ブロックの場合,このブロックは
-                    空または"E"のみとなります.
-                </para>
-                <para> 
-                    大きさ : NULLまたは標準入力ポートの数.
-                </para>
-                <para>
-                    型 : 文字列の列ベクトル.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">out_implicit</emphasis>
-                </para>
-                <para>'E'または'I'を要素とする文字列ベクトル.</para>
-                <para>'E' および 'I' はそれぞれ
-                    陽的(explicit),陰的(implicit)を意味し,このベクトルは
-                    各出力ポートの特性を示します.
-                    (陰的でない)標準ブロックの場合,このブロックは
-                    空または"E"のみとなります.
-                </para>
-                <para> 
-                    大きさ : NULLまたは標準出力ポートの数.
-                </para>
-                <para>
-                    型 : 文字列の列ベクトル.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Filecontent_scicos_graphics">
-        <title>ファイルの実体</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos/macros/scicos_scicos/scicos_graphics.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_graphics">
+        <refnamediv>
+            <refname>scicos_graphics</refname>
+            <refpurpose>graphics構造体を定義</refpurpose>
+        </refnamediv>
+        <refsection id="Module_scicos_graphics">
+            <title>Module</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="xcos">xcos</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="graphics_scicos_graphics">
+            <title>graphics</title>
+            <para>
+                ブロックの機能に関するグラフィック情報を有するScilabオブジェクト.
+            </para>
+            <para>
+            </para>
+            <para>
+            </para>
+            <para>
+                大きさ : 14.
+            </para>
+            <para>
+                型 : scilabリスト.
+            </para>
+            <para>
+                
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">orig</emphasis>
+                    </para>
+                    <para> ベクトル [xo,yo], ただし, xo はブロック原点のx座標,
+                        yoはブロック原点のy座標です.
+                    </para>
+                    <para> 
+                        [xo,yo] はブロック外形の左下の点の座標です.
+                    </para>
+                    <para>
+                    </para>
+                    <para> 
+                        大きさ : 2.
+                    </para>
+                    <para>
+                        型 : 実数行ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">sz</emphasis>
+                    </para>
+                    <para> ベクトル [w,h], ただし, w はブロックの幅,hはブロックの高さです.
+                    </para>
+                    <para> 
+                        大きさ : 2.
+                    </para>
+                    <para>
+                        型 : 実数行ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">flip</emphasis>
+                    </para>
+                    <para> ブロックの向きを設定します. trueの場合,
+                        入力ポートがボックスの左側,出力ポートが右側となります.
+                    </para>
+                    <para> 
+                        trueの場合,
+                        入力ポートがボックスの左側,出力ポートが右側となります.
+                        falseの場合,
+                        入力ポートがボックスの右側,出力ポートが左側となります.
+                    </para>
+                    <para> 
+                        大きさ : 1.
+                    </para>
+                    <para>
+                        型 : 論理値.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">theta</emphasis>
+                    </para>
+                    <para> Scicosオブジェクトの角度を設定します.</para>
+                    <para> この値の単位は度で,[-360,360]の範囲です.</para>
+                    <para> 
+                        大きさ : 1.
+                    </para>
+                    <para>
+                        型 : real.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">exprs</emphasis>
+                    </para>
+                    <para> ブロックのダイアログボックスで使用されるformal式を有する文字列.</para>
+                    <para> 
+                        大きさ : formal式の数.
+                    </para>
+                    <para>
+                        型 : 文字列の列ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">pin</emphasis>
+                    </para>
+                    <para> ベクトル. pin(i) はi番目の標準入力ポートに接続された
+                        リンクの数(1から開始)です. このポートに接続されていない場合, 0となります.
+                    </para>
+                    <para> 
+                        大きさ : 標準入力ポートの数.
+                    </para>
+                    <para>
+                        型 : 整数列ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">pout</emphasis>
+                    </para>
+                    <para> ベクトル. pout(i) はi番目の標準出力ポートに接続された
+                        リンクの数(1から開始)です. このポートに接続されていない場合, 0となります.
+                    </para>
+                    <para> 
+                        大きさ : 標準出力ポートの数.
+                    </para>
+                    <para>
+                        型 : 整数列ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">pein</emphasis>
+                    </para>
+                    <para> ベクトル. pein(i) はi番目のイベント入力ポートに接続された
+                        リンクの数(1から開始)です. このポートに接続されていない場合, 0となります.
+                    </para>
+                    <para> 
+                        大きさ : イベント入力ポートの数.
+                    </para>
+                    <para>
+                        型 : 整数列ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">peout</emphasis>
+                    </para>
+                    <para> ベクトル. peout(i) はi番目のイベント出力ポートに接続された
+                        リンクの数(1から開始)です. このポートに接続されていない場合, 0となります.
+                    </para>
+                    <para> 
+                        大きさ : イベント出力ポートの数.
+                    </para>
+                    <para>
+                        型 : 整数列ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">gr_i</emphasis>
+                    </para>
+                    <para> 
+                        ブロックのグラフィック表現をカスタマイズするScilabグラフィック式を
+                        有する文字列.このフィールドはIcon sub_menuで設定できます.
+                    </para>
+                    <para> 
+                        大きさ : -.
+                    </para>
+                    <para>
+                        型 : 文字列の列ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">id</emphasis>
+                    </para>
+                    <para> ブロックのIDを有する文字列. この文字列はダイアグラムの
+                        ブロックの下に表示されます.
+                    </para>
+                    <para> 
+                        大きさ : 1.
+                    </para>
+                    <para>
+                        型 : 文字列.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">in_implicit</emphasis>
+                    </para>
+                    <para>'E'または'I'を要素とする文字列ベクトル.
+                    </para>
+                    <para> 'E' および 'I' はそれぞれ
+                        陽的(explicit),陰的(implicit)を意味し,このベクトルは
+                        各入力ポートの特性を示します.
+                        (陰的でない)標準ブロックの場合,このブロックは
+                        空または"E"のみとなります.
+                    </para>
+                    <para> 
+                        大きさ : NULLまたは標準入力ポートの数.
+                    </para>
+                    <para>
+                        型 : 文字列の列ベクトル.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">out_implicit</emphasis>
+                    </para>
+                    <para>'E'または'I'を要素とする文字列ベクトル.</para>
+                    <para>'E' および 'I' はそれぞれ
+                        陽的(explicit),陰的(implicit)を意味し,このベクトルは
+                        各出力ポートの特性を示します.
+                        (陰的でない)標準ブロックの場合,このブロックは
+                        空または"E"のみとなります.
+                    </para>
+                    <para> 
+                        大きさ : NULLまたは標準出力ポートの数.
+                    </para>
+                    <para>
+                        型 : 文字列の列ベクトル.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Filecontent_scicos_graphics">
+            <title>ファイルの実体</title>
+            <itemizedlist>
+                <listitem>
+                    <para> SCI/modules/scicos/macros/scicos_scicos/scicos_graphics.sci</para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refentry>

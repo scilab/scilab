@@ -125,27 +125,27 @@ public class DebugLevelDialog extends JDialog {
         add(buttonPane, gbc);
 
         cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
         okButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
-                    try {
-                        parameters.setDebugLevel(value);
-                        ScilabInterpreterManagement.synchronousScilabExec("scicos_debug", value);
-                        dispose();
-                    } catch (InterpreterException e1) {
-                        Logger.getLogger(DebugLevelAction.class.getName()).severe(e1.toString());
-                    } catch (PropertyVetoException e2) {
-                        Logger.getLogger(DebugLevelAction.class.getName()).severe(e2.toString());
-                    }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int value = ((DebugLevel) debugList.getSelectedValue()).getValue();
+                try {
+                    parameters.setDebugLevel(value);
+                    ScilabInterpreterManagement.synchronousScilabExec("scicos_debug", value);
+                    dispose();
+                } catch (InterpreterException e1) {
+                    Logger.getLogger(DebugLevelAction.class.getName()).severe(e1.toString());
+                } catch (PropertyVetoException e2) {
+                    Logger.getLogger(DebugLevelAction.class.getName()).severe(e2.toString());
                 }
-            });
+            }
+        });
     }
 }
 // CSON: ClassDataAbstractionCoupling

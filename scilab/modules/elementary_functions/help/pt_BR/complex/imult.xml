@@ -1,48 +1,48 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imult" xml:lang="en">
-    <refnamediv>
-        <refname>imult</refname>
-        <refpurpose>multiplicação pela parte imaginária i</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>y = imult(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>escalar real ou complexo, vetor ou matriz de reais ou
-                        complexos 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>escalar complexo, vetor ou matriz de complexos </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            <code>imult(x)</code> é um modo mais eficiente de se
-            multiplicar <varname>x</varname> por <literal>i</literal>
-            que <code>y = %i*x</code>, sem os problemas que ocorrem
-            quando <varname>x</varname> inclui números "especiais"
-            em ponto flutuante como <constant>%inf</constant> e
-            <constant>%nan</constant>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imult" xml:lang="en">
+        <refnamediv>
+            <refname>imult</refname>
+            <refpurpose>multiplicação pela parte imaginária i</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>y = imult(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>escalar real ou complexo, vetor ou matriz de reais ou
+                            complexos 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>y</term>
+                    <listitem>
+                        <para>escalar complexo, vetor ou matriz de complexos </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                <code>imult(x)</code> é um modo mais eficiente de se
+                multiplicar <varname>x</varname> por <literal>i</literal>
+                que <code>y = %i*x</code>, sem os problemas que ocorrem
+                quando <varname>x</varname> inclui números "especiais"
+                em ponto flutuante como <constant>%inf</constant> e
+                <constant>%nan</constant>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 z1 = imult(%inf)
 z2 = %i * %inf
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

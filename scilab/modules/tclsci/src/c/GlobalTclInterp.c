@@ -27,64 +27,74 @@ static int initialized = 0;
 /*
 ** Initialize the global interpreter.
 */
-void initTclInterp(void) {
-  __InitLock(&singleInterpAccess);
-  __Lock(&singleInterpAccess);
-  __globalTclInterp = Tcl_CreateInterp();
-  __UnLock(&singleInterpAccess);
+void initTclInterp(void)
+{
+    __InitLock(&singleInterpAccess);
+    __Lock(&singleInterpAccess);
+    __globalTclInterp = Tcl_CreateInterp();
+    __UnLock(&singleInterpAccess);
 
-  /* indicate that we have in fact initialized our mutex */
-  initialized = 1;
+    /* indicate that we have in fact initialized our mutex */
+    initialized = 1;
 }
 
 /*
 ** Delete the global interpreter.
 */
-void deleteTclInterp(void) {
-  __globalTclInterp = NULL;
+void deleteTclInterp(void)
+{
+    __globalTclInterp = NULL;
 
 }
 
 /*
 ** Get the Global Interpreter
 */
-Tcl_Interp *getTclInterp(void) {
-	if (! initialized ) {
-		return NULL;
-	}
-  __Lock(&singleInterpAccess);
-  return __globalTclInterp;
+Tcl_Interp *getTclInterp(void)
+{
+    if (! initialized )
+    {
+        return NULL;
+    }
+    __Lock(&singleInterpAccess);
+    return __globalTclInterp;
 }
 
 /*
 ** Release Tcl Interp after use.
 */
-void releaseTclInterp(void) {
-	/* only try to unlock if we have already initialized our threading system */
-	if ( initialized ) {
-		__UnLock(&singleInterpAccess);
-	}
+void releaseTclInterp(void)
+{
+    /* only try to unlock if we have already initialized our threading system */
+    if ( initialized )
+    {
+        __UnLock(&singleInterpAccess);
+    }
 }
 
 /*
 ** Check if global interp exists.
 */
-BOOL existsGlobalInterp(void) {
-  if(__globalTclInterp != NULL) {
-    return TRUE;
-  }
-  return FALSE;
+BOOL existsGlobalInterp(void)
+{
+    if (__globalTclInterp != NULL)
+    {
+        return TRUE;
+    }
+    return FALSE;
 }
 /*
 ** Check if slave interp exists.
 */
-BOOL existsSlaveInterp(char *name) {
-  if (Tcl_GetSlave(getTclInterp(), name) != NULL) {
-	  releaseTclInterp();
-    return TRUE;
-  }
-  releaseTclInterp();
-  return FALSE;
+BOOL existsSlaveInterp(char *name)
+{
+    if (Tcl_GetSlave(getTclInterp(), name) != NULL)
+    {
+        releaseTclInterp();
+        return TRUE;
+    }
+    releaseTclInterp();
+    return FALSE;
 }
 
 /*
@@ -94,6 +104,7 @@ BOOL existsSlaveInterp(char *name) {
 ** should not be used ouside of the main
 ** TCL loop (the one containing update)
 */
-Tcl_Interp *requestTclInterp(void) {
-  return __globalTclInterp;
+Tcl_Interp *requestTclInterp(void)
+{
+    return __globalTclInterp;
 }

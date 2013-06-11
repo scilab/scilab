@@ -31,7 +31,7 @@ function cbAtomsGui()
         selected = getSelected(UItag);
 
 
-       if selected(1)=="module" then
+        if selected(1)=="module" then
 
             // Save the module name
             set(DescFrame,"userdata",selected(2));
@@ -42,7 +42,7 @@ function cbAtomsGui()
             // Show the description frame
             showDesc();
 
-       elseif selected(1)=="category" then
+        elseif selected(1)=="category" then
 
             LeftListbox             = findobj("tag","LeftListbox");
             LeftElements            = atomsGetLeftListboxElts(selected(2));
@@ -56,7 +56,7 @@ function cbAtomsGui()
             atomsfig                = findobj("tag","atomsFigure");
             atomsfig("figure_name") = LeftElements("title")+" - ATOMS";
 
-       end
+        end
 
     end
 
@@ -86,8 +86,8 @@ function cbAtomsGui()
             updateStatusBar("success",gettext("Installation done! Please restart Scilab to take changes into account."));
         end
 
-    // Remove selected module
-    // =========================================================================
+        // Remove selected module
+        // =========================================================================
 
     elseif UItag == "removeButton" then // Remove selected module
         updateStatusBar("info",gettext("Removing")+" &hellip;");
@@ -100,8 +100,8 @@ function cbAtomsGui()
             updateStatusBar("success",gettext("Remove done! Please restart Scilab to take changes into account. "));
         end
 
-    // Update selected module
-    // =========================================================================
+        // Update selected module
+        // =========================================================================
 
     elseif UItag == "updateButton" then // Update selected module
 
@@ -135,11 +135,11 @@ function cbAtomsGui()
     if UItag == "homeMenu" then
         showHome();
 
-    // File:Close
+        // File:Close
     elseif UItag == "closeMenu" then
         delete(findobj("Tag", "atomsFigure"));
 
-    // ?:Help
+        // ?:Help
     elseif UItag == "helpMenu" then
         help("atoms")
 
@@ -251,9 +251,9 @@ function updateDescFrame()
 
     if isfield(thisModuleDetails,OSNAME+ARCH+"Size") then
         sizeHTML = txt2title(gettext("Download size")) ..
-                   + "<div>" ..
-                   + atomsSize2human(thisModuleDetails(OSNAME+ARCH+"Size")) ..
-                   + "</div>";
+        + "<div>" ..
+        + atomsSize2human(thisModuleDetails(OSNAME+ARCH+"Size")) ..
+        + "</div>";
     end
 
     // Authors
@@ -267,9 +267,9 @@ function updateDescFrame()
     end
 
     authorHTML = txt2title(gettext("Author(s)")) ..
-                 + "<div>" ..
-                 + authorHTML
-                 + "</div>";
+    + "<div>" ..
+    + authorHTML
+    + "</div>";
 
     // URLs (See also)
     // =========================================================================
@@ -292,9 +292,9 @@ function updateDescFrame()
         end
 
         seeAlsoHTML = txt2title(gettext("See also"))..
-                      + "<div>" ..
-                      + seeAlsoHTML ..
-                      + "</div>";
+        + "<div>" ..
+        + seeAlsoHTML ..
+        + "</div>";
     end
 
     // Release date
@@ -303,12 +303,12 @@ function updateDescFrame()
     dateHTML = "";
 
     if isfield(thisModuleDetails,"Date") ..
-       & ~isempty(regexp(thisModuleDetails.Date,"/^[0-9]{4}-[0-1][0-9]-[0-3][0-9]\s/")) then
+        & ~isempty(regexp(thisModuleDetails.Date,"/^[0-9]{4}-[0-1][0-9]-[0-3][0-9]\s/")) then
 
         dateHTML = txt2title(gettext("Release date")) ..
-                   + "<div>" ..
-                   + part(thisModuleDetails.Date,1:10) ..
-                   + "</div>";
+        + "<div>" ..
+        + part(thisModuleDetails.Date,1:10) ..
+        + "</div>";
     end
 
     // Build and Set the HTML code
@@ -316,19 +316,19 @@ function updateDescFrame()
 
 
     htmlcode = "<html>" + ..
-               "<body>" + ..
-               txt2title(gettext("Version")) + ..
-               "<div>" + thisModuleDetails.Version  + "</div>" + ..
-               authorHTML + ..
-               txt2title(gettext("Description")) + ..
-               "<div>" + ..
-               strcat(thisModuleDetails.Description,"<br>")  + ..
-               "</div>" + ..
-               seeAlsoHTML + ..
-               dateHTML + ..
-               sizeHTML + ..
-               "</body>" + ..
-               "</html>";
+    "<body>" + ..
+    txt2title(gettext("Version")) + ..
+    "<div>" + thisModuleDetails.Version  + "</div>" + ..
+    authorHTML + ..
+    txt2title(gettext("Description")) + ..
+    "<div>" + ..
+    strcat(thisModuleDetails.Description,"<br>")  + ..
+    "</div>" + ..
+    seeAlsoHTML + ..
+    dateHTML + ..
+    sizeHTML + ..
+    "</body>" + ..
+    "</html>";
 
     // Process URLs and Emails
     htmlcode = processHTMLLinks(htmlcode);
@@ -500,15 +500,15 @@ function updateStatusBar(status,msg)
     end
 
     select status
-        case "warning" then
-            fontcolor = "#ff0000"; // red
-            icon      = "status/software-update-available.png";
-        case "success" then
-            fontcolor = "#009a1b"; // dark green
-            icon      = "emblems/emblem-default.png";
-        case "info" then
-            fontcolor = "#7d7d7d"; // dark green
-            icon      = "status/dialog-information.png";
+    case "warning" then
+        fontcolor = "#ff0000"; // red
+        icon      = "status/software-update-available.png";
+    case "success" then
+        fontcolor = "#009a1b"; // dark green
+        icon      = "emblems/emblem-default.png";
+    case "info" then
+        fontcolor = "#7d7d7d"; // dark green
+        icon      = "status/dialog-information.png";
     end
 
     str =       "<html>";
@@ -539,9 +539,9 @@ function txtout = processHTMLLinks(txtin)
         mat_end = [ 0 mat_end ];
         for i=1:size(mat_match,"*")
             txtout = txtout + part(txtin,[mat_end(i)+1:mat_start(i)-1]) ..
-                            + "<a href="""+mat_match(i)+""" target=""_blank"">" ..
-                            + mat_match(i) ..
-                            + "</a>";
+            + "<a href="""+mat_match(i)+""" target=""_blank"">" ..
+            + mat_match(i) ..
+            + "</a>";
         end
         txtout = txtout + part(txtin,mat_end(size(mat_end,"*"))+1:length(txtin));
     else
@@ -557,8 +557,8 @@ endfunction
 function txtout = txt2title(txtin)
 
     txtout = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:3px;"">" + ..
-             txtin + ..
-             "</div>";
+    txtin + ..
+    "</div>";
 
 endfunction
 

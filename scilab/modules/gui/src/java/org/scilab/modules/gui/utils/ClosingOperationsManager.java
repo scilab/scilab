@@ -79,7 +79,7 @@ public class ClosingOperationsManager {
      *            the closing operation
      */
     public static void registerClosingOperation(SwingScilabTab tab,
-                                                ClosingOperation op) {
+            ClosingOperation op) {
         if (tab != null) {
             closingOps.put(tab, op);
         }
@@ -690,10 +690,10 @@ public class ClosingOperationsManager {
             String question = makeQuestion(list);
             final boolean[] checked = new boolean[1];
             final Action action = new AbstractAction() {
-                    public void actionPerformed(ActionEvent e) {
-                        checked[0] = ((JCheckBox) e.getSource()).isSelected();
-                    }
-                };
+                public void actionPerformed(ActionEvent e) {
+                    checked[0] = ((JCheckBox) e.getSource()).isSelected();
+                }
+            };
 
             if (question != null) {
                 if (ScilabModalDialog.show(window, new String[] { question }, EXIT, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION) {
@@ -757,10 +757,10 @@ public class ClosingOperationsManager {
             }
         }
         switch (apps.size()) {
-        case 0:
-            return null;
-        case 1:
-            return String.format(EXIT_CONFIRM, apps.get(0));
+            case 0:
+                return null;
+            case 1:
+                return String.format(EXIT_CONFIRM, apps.get(0));
         }
 
         String str = apps.remove(0);
@@ -781,7 +781,7 @@ public class ClosingOperationsManager {
      *            the list
      */
     private static final void collectTabsToClose(SwingScilabTab tab,
-                                                 List<SwingScilabTab> list) {
+            List<SwingScilabTab> list) {
         List<SwingScilabTab> children = deps.get(tab);
         if (children != null) {
             for (SwingScilabTab t : children) {
@@ -843,7 +843,7 @@ public class ClosingOperationsManager {
      * @return the corresponding window
      */
     private static final SwingScilabWindow getWindow(SwingScilabTab tab) {
-	return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tab);
+        return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tab);
     }
 
     /**

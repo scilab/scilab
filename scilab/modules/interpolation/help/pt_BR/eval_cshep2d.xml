@@ -1,69 +1,69 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eval_cshep2d" xml:lang="en">
-    <refnamediv>
-        <refname>eval_cshep2d</refname>
-        <refpurpose>avaliação por interpolação cúbica bidimensional de
-            Shepard
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>xp, yp</term>
-                <listitem>
-                    <para>dois vetores (ou matrizes) de mesmo tamanho </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>tl_coef</term>
-                <listitem>
-                    <para>uma estrutura Scilab tlist (de tipo cshep2d) definindo uma
-                        função de interpolação cúbica de Shepard (chamada
-                        <literal>S</literal> a partir daqui) 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>zp</term>
-                <listitem>
-                    <para>
-                        vetor (ou matrizes) de mesmo tamanho que <literal>xp</literal>
-                        e <literal>yp</literal>, avaliação do interpolante
-                        <literal>S</literal> nesses pontos 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dzpdx,dzpdy</term>
-                <listitem>
-                    <para>vetores (ou matrizes) de mesmo tamanho que
-                        <literal>xp</literal> e <literal>yp</literal>, avaliação das
-                        derivadas primeiras de <literal>S</literal> nestes pontos
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>d2zpdxx,d2zpdxy,d2zpdyy</term>
-                <listitem>
-                    <para>vetores (ou matrizes) de mesmo tamanho que
-                        <literal>xp</literal> e <literal>yp</literal>, avaliação das
-                        derivadas segundas de <literal>S</literal> nestes pontos 
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>Esta é a rotina de avaliação para a função de interpolação cúbica de
-            Shepard obtida com <link linkend="cshep2d">cshep2d</link>, isto é :
-        </para>
-        <programlisting role=""><![CDATA[ 
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eval_cshep2d" xml:lang="en">
+        <refnamediv>
+            <refname>eval_cshep2d</refname>
+            <refpurpose>avaliação por interpolação cúbica bidimensional de
+                Shepard
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>xp, yp</term>
+                    <listitem>
+                        <para>dois vetores (ou matrizes) de mesmo tamanho </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>tl_coef</term>
+                    <listitem>
+                        <para>uma estrutura Scilab tlist (de tipo cshep2d) definindo uma
+                            função de interpolação cúbica de Shepard (chamada
+                            <literal>S</literal> a partir daqui) 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>zp</term>
+                    <listitem>
+                        <para>
+                            vetor (ou matrizes) de mesmo tamanho que <literal>xp</literal>
+                            e <literal>yp</literal>, avaliação do interpolante
+                            <literal>S</literal> nesses pontos 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>dzpdx,dzpdy</term>
+                    <listitem>
+                        <para>vetores (ou matrizes) de mesmo tamanho que
+                            <literal>xp</literal> e <literal>yp</literal>, avaliação das
+                            derivadas primeiras de <literal>S</literal> nestes pontos
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>d2zpdxx,d2zpdxy,d2zpdyy</term>
+                    <listitem>
+                        <para>vetores (ou matrizes) de mesmo tamanho que
+                            <literal>xp</literal> e <literal>yp</literal>, avaliação das
+                            derivadas segundas de <literal>S</literal> nestes pontos 
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>Esta é a rotina de avaliação para a função de interpolação cúbica de
+                Shepard obtida com <link linkend="cshep2d">cshep2d</link>, isto é :
+            </para>
+            <programlisting role=""><![CDATA[ 
 zp(i) = S(xp(i),yp(i))   
 dzpdx(i) = dS/dx(xp(i),yp(i))
 dzpdy(i) = dS/dy(xp(i),yp(i))  
@@ -71,21 +71,21 @@ d2zpdxx(i) = d2S/dx2(xp(i),yp(i))
 d2zpdxy(i) = d2S/dxdy(xp(i),yp(i))  
 d2zpdyy(i) = d2S/dy2(xp(i),yp(i))
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Observação </title>
-        <para>O interpolante S é C2 (duas vezes continuamente diferenciável) mas
-            também é estendido por zero para <emphasis>(x,y)</emphasis>
-            suficientemente longe dos pontos de interpolação. Isto leva a uma
-            descontinuidade em regiões exteriores muito longe dos pontos de
-            interpolação e, assim, a avaliação não se torna incoveniente na prática
-            (de um modo geral, avaliação fora dos pontos de interpolação (i.e.
-            extrapolação) leva a resultados muito inacurados).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+        </refsection>
+        <refsection>
+            <title>Observação </title>
+            <para>O interpolante S é C2 (duas vezes continuamente diferenciável) mas
+                também é estendido por zero para <emphasis>(x,y)</emphasis>
+                suficientemente longe dos pontos de interpolação. Isto leva a uma
+                descontinuidade em regiões exteriores muito longe dos pontos de
+                interpolação e, assim, a avaliação não se torna incoveniente na prática
+                (de um modo geral, avaliação fora dos pontos de interpolação (i.e.
+                extrapolação) leva a resultados muito inacurados).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos </title>
+            <programlisting role="example"><![CDATA[ 
 // ver seção de exemplos em cshep2d
 
 // este exemplo mostra o comportamento longe dos pontos de interpolação...
@@ -111,20 +111,20 @@ plot3d(xf,yf,list(zf,color), flag=[2 6 4])
 legends(["região de extrapolação","região de interpolação"],[2 3],1)
 show_window()
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="cshep2d">cshep2d</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Autores</title>
-        <simplelist type="vert">
-            <member>Robert J. Renka</member>
-            <member>B. Pincon (interface Scilab)</member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="cshep2d">cshep2d</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Autores</title>
+            <simplelist type="vert">
+                <member>Robert J. Renka</member>
+                <member>B. Pincon (interface Scilab)</member>
+            </simplelist>
+        </refsection>
+    </refentry>

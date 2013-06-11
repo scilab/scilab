@@ -63,11 +63,17 @@ int gw_graphics(void)
         int lw = 1 + Top - Rhs;
 
         if (Fin == DELETE_INDEX)
+        {
             C2F(overload) (&lw, "delete", 6);
+        }
         if (Fin == GET_INDEX)
+        {
             C2F(overload) (&lw, "get", 3);
+        }
         if (Fin == SET_INDEX)
+        {
             C2F(overload) (&lw, "set", 3);
+        }
     }
     else
     {

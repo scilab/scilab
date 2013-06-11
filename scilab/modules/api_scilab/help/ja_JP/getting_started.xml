@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Sylvestre LEDRU
 *
@@ -11,540 +11,540 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab_getting_started" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_scilab_getting_started" xml:lang="ja">
         
-        <refname>API_Scilab入門</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            C, C++ またはfortranコードを新しい関数としてScilabエンジンに読み込む方法
+            <refname>API_Scilab入門</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
-            
-            <link linkend="api_scilab">api_scilabプレゼンテーション</link>
-            
-            で説明されたように,
-            
-            ScilabはC, C++またはFortranコード(ソースまたはライブラリ)で言語を
-            
-            拡張するためのAPIを提供します.
-            
-        </para>
-        
-        <para>
-            
-            Scilabエンジンとアプリケーションコードの間のリンクは
-            
-            <literal>gateway</literal>と呼ばれます.
-            
-        </para>
-        
-        <para>
-            
-            多くの場合, 処理は常に同じで,以下のようになります:
-            
-            <orderedlist>
+            <refpurpose>
                 
-                <listitem>
-                    
-                    <para>
-                        
-                        ユーザに指定された(入力及び出力)引数の数を調べます.
-                        
-                    </para>
-                    
-                    <para>
-                        
-                        例えば,関数<literal>foo(x)</literal>が <literal>foo()</literal> または <literal>foo(2,3)</literal>のようにコールされ, ユーザが答を得ます.
-                        
-                    </para>
-                    
-                    <para>
-                        
-                        詳細: <link linkend="CheckInputArgument">CheckInputArgument</link> および <link linkend="CheckOutputArgument">CheckOutputArgument</link>
-                        
-                    </para>
-                    
-                </listitem>
+                C, C++ またはfortranコードを新しい関数としてScilabエンジンに読み込む方法
                 
-                <listitem>
-                    
-                    <para>入力引数の管理</para>
-                    
-                    <para>
-                        
-                        複数の処理を行います:
-                        
-                        <orderedlist inheritnum="inherit">
-                            
-                            <listitem>
-                                
-                                <para>入力引数Xの変数アドレスを取得します</para>
-                                
-                                <para>
-                                    
-                                    関数
-                                    
-                                    <literal>
-                                        
-                                        SciErr <link linkend="Common_getvaraddr_API">getVarAddressFromPosition</link>(void* context, int positionOfTheVariable, int** address)
-                                        
-                                    </literal>
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                            <listitem>
-                                
-                                <para>変数の型を調べます: doubleの行列 (複素数または複素数以外), 文字列
-                                    
-                                    , 等
-                                </para>
-                                
-                                <para>
-                                    
-                                    <literal>
-                                        
-                                        SciErr <link linkend="Common_getvartype_API">getVarType</link>(void* context, int* positionOfTheVariable, int* Type)
-                                        
-                                    </literal>
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    他の関数も提供されています:
-                                    
-                                    <itemizedlist>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isBooleanType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isBooleanSparseType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isDoubleType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isIntegerType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isPointerType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isPolyType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isSparseType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isStringType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isListType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isTListType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                        <listitem>
-                                            
-                                            <para>
-                                                
-                                                <literal>int isMListType(void* context, int* address)</literal>
-                                                
-                                            </para>
-                                            
-                                        </listitem>
-                                        
-                                    </itemizedlist>
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    関連する場合, 入力引数かどうかを確認します.
-                                </para>
-                                
-                                <para>
-                                    
-                                    <literal>
-                                        
-                                        int <link linkend="Common_iscomplex_API">isVarComplex</link>(void* context, int* address)
-                                        
-                                    </literal>
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    整数を処理する場合,さらに整数の精度も確認します
-                                </para>
-                                
-                                <para>
-                                    
-                                    <literal>
-                                        
-                                        SciErr <link linkend="int_getmatrixofintegerprecision_API">getMatrixOfIntegerPrecision</link>(void* context, int* address, int* precision)
-                                        
-                                    </literal>
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                            <listitem>
-                                
-                                <para>変数の大きさを確認します: 正方行列, スカラー, 等</para>
-                                
-                                <para>
-                                    
-                                    大きさに関する情報を取得する際にも
-                                    
-                                    実際のデータを取得する際に使用するものと同じ関数を使用します.
-                                    
-                                    例えば, double の行列の場合 関数コール
-                                    
-                                    <literal>
-                                        
-                                        SciErr <link linkend="Double_management_reading_API">getMatrixOfDouble</link>(void* context, int* address, int* nbRows, int* nbCols, double** theActualData)
-                                        
-                                    </literal>
-                                    
-                                    により行列の次元を取得できます.
-                                    
-                                </para>
-                                
-                                <para>ほぼ全てのScilabデータ型にはこのような処理を行うための
-                                    
-                                    同様なC関数があります.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    その他, 特定の値かどうかを調べたり, 最初と2番目の入力引数の間の整合性を
-                                    
-                                    確認したりすること等も可能です.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                            <listitem>
-                                
-                                <para>データ変換 (オプション).</para>
-                                
-                                <para>
-                                    
-                                    使用するコードまたはライブラリによっては,
-                                    
-                                    いくつかの変換をデータに適用することができます.
-                                    
-                                    古典的な例は行列の記録を列形式から線形式に変換するものです.
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    通常,このようにすると性能が低下することに注意してください.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </orderedlist>
-                        
-                    </para>
-                    
-                </listitem>
+            </refpurpose>
+            
+        </refnamediv>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
                 
-                <listitem>
-                    
-                    <para>アプリケーションコード</para>
-                    
-                    <para>
-                        
-                        確認とデータ取得を行った後,実際の主コードをコールできます.
-                        
-                        実際の情報処理(処理, データ変換, 等)をここで実行します.
-                        
-                    </para>
-                    
-                    <para>
-                        
-                        これは,
-                        
-                        <literal>src/c</literal>, <literal>src/cpp</literal> または
-                        
-                        <literal>src/fortran</literal>に保存,構築した
-                        
-                        サードパーティのコードにより行いますが,
-                        
-                        ライブラリ形式とすることも可能です.
-                        
-                        あらゆるライブラリをScilabにリンクすることができます.
-                        
-                    </para>
-                    
-                </listitem>
+                <link linkend="api_scilab">api_scilabプレゼンテーション</link>
                 
-                <listitem>
+                で説明されたように,
+                
+                ScilabはC, C++またはFortranコード(ソースまたはライブラリ)で言語を
+                
+                拡張するためのAPIを提供します.
+                
+            </para>
+            
+            <para>
+                
+                Scilabエンジンとアプリケーションコードの間のリンクは
+                
+                <literal>gateway</literal>と呼ばれます.
+                
+            </para>
+            
+            <para>
+                
+                多くの場合, 処理は常に同じで,以下のようになります:
+                
+                <orderedlist>
                     
-                    <para>Scilabエンジンの出力引数を作成する</para>
-                    
-                    <para>通常,アプリケーションコードの実行後,
+                    <listitem>
                         
-                        何らかのデータをScilabインタプリタから戻します.
-                        
-                    </para>
-                    
-                    <para>
-                        
-                        例えば, doubleの行列をScilabエンジンに保存する場合,C関数
-                        
-                        <literal>
+                        <para>
                             
-                            SciErr <link linkend="Double_management_writing_API">createMatrixOfDouble</link>(void* context, int position, int nbRows, int nbCols, const double* matrixOfDouble)
+                            ユーザに指定された(入力及び出力)引数の数を調べます.
                             
-                        </literal>
+                        </para>
                         
-                        をコールします.
+                        <para>
+                            
+                            例えば,関数<literal>foo(x)</literal>が <literal>foo()</literal> または <literal>foo(2,3)</literal>のようにコールされ, ユーザが答を得ます.
+                            
+                        </para>
                         
-                    </para>
+                        <para>
+                            
+                            詳細: <link linkend="CheckInputArgument">CheckInputArgument</link> および <link linkend="CheckOutputArgument">CheckOutputArgument</link>
+                            
+                        </para>
+                        
+                    </listitem>
                     
-                    <para>
+                    <listitem>
                         
-                        通常,位置は
+                        <para>入力引数の管理</para>
                         
-                        <literal>nbInputArgument(pvApiCtx) + X</literal>により取得できます. 
+                        <para>
+                            
+                            複数の処理を行います:
+                            
+                            <orderedlist inheritnum="inherit">
+                                
+                                <listitem>
+                                    
+                                    <para>入力引数Xの変数アドレスを取得します</para>
+                                    
+                                    <para>
+                                        
+                                        関数
+                                        
+                                        <literal>
+                                            
+                                            SciErr <link linkend="Common_getvaraddr_API">getVarAddressFromPosition</link>(void* context, int positionOfTheVariable, int** address)
+                                            
+                                        </literal>
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    <para>変数の型を調べます: doubleの行列 (複素数または複素数以外), 文字列
+                                        
+                                        , 等
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        <literal>
+                                            
+                                            SciErr <link linkend="Common_getvartype_API">getVarType</link>(void* context, int* positionOfTheVariable, int* Type)
+                                            
+                                        </literal>
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        他の関数も提供されています:
+                                        
+                                        <itemizedlist>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isBooleanType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isBooleanSparseType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isDoubleType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isIntegerType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isPointerType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isPolyType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isSparseType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isStringType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isListType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isTListType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                            <listitem>
+                                                
+                                                <para>
+                                                    
+                                                    <literal>int isMListType(void* context, int* address)</literal>
+                                                    
+                                                </para>
+                                                
+                                            </listitem>
+                                            
+                                        </itemizedlist>
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        関連する場合, 入力引数かどうかを確認します.
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        <literal>
+                                            
+                                            int <link linkend="Common_iscomplex_API">isVarComplex</link>(void* context, int* address)
+                                            
+                                        </literal>
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        整数を処理する場合,さらに整数の精度も確認します
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        <literal>
+                                            
+                                            SciErr <link linkend="int_getmatrixofintegerprecision_API">getMatrixOfIntegerPrecision</link>(void* context, int* address, int* precision)
+                                            
+                                        </literal>
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    <para>変数の大きさを確認します: 正方行列, スカラー, 等</para>
+                                    
+                                    <para>
+                                        
+                                        大きさに関する情報を取得する際にも
+                                        
+                                        実際のデータを取得する際に使用するものと同じ関数を使用します.
+                                        
+                                        例えば, double の行列の場合 関数コール
+                                        
+                                        <literal>
+                                            
+                                            SciErr <link linkend="Double_management_reading_API">getMatrixOfDouble</link>(void* context, int* address, int* nbRows, int* nbCols, double** theActualData)
+                                            
+                                        </literal>
+                                        
+                                        により行列の次元を取得できます.
+                                        
+                                    </para>
+                                    
+                                    <para>ほぼ全てのScilabデータ型にはこのような処理を行うための
+                                        
+                                        同様なC関数があります.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        その他, 特定の値かどうかを調べたり, 最初と2番目の入力引数の間の整合性を
+                                        
+                                        確認したりすること等も可能です.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    <para>データ変換 (オプション).</para>
+                                    
+                                    <para>
+                                        
+                                        使用するコードまたはライブラリによっては,
+                                        
+                                        いくつかの変換をデータに適用することができます.
+                                        
+                                        古典的な例は行列の記録を列形式から線形式に変換するものです.
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        通常,このようにすると性能が低下することに注意してください.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </orderedlist>
+                            
+                        </para>
                         
-                        <literal>X</literal> が返す出力引数の位置となります.
-                        
-                        例えば, 関数プロファイル
-                        
-                        <literal>[a, b, c] = foo();</literal> 
-                        
-                        <literal>nbInputArgument(pvApiCtx) + 3</literal> は
-                        
-                        変数<literal>c</literal>となります.
-                        
-                    </para>
+                    </listitem>
                     
-                    <para>
+                    <listitem>
                         
-                        作成できる次元はゲートウェイの制約を受けることに注意してください.
+                        <para>アプリケーションコード</para>
                         
-                    </para>
+                        <para>
+                            
+                            確認とデータ取得を行った後,実際の主コードをコールできます.
+                            
+                            実際の情報処理(処理, データ変換, 等)をここで実行します.
+                            
+                        </para>
+                        
+                        <para>
+                            
+                            これは,
+                            
+                            <literal>src/c</literal>, <literal>src/cpp</literal> または
+                            
+                            <literal>src/fortran</literal>に保存,構築した
+                            
+                            サードパーティのコードにより行いますが,
+                            
+                            ライブラリ形式とすることも可能です.
+                            
+                            あらゆるライブラリをScilabにリンクすることができます.
+                            
+                        </para>
+                        
+                    </listitem>
                     
-                    <para>
+                    <listitem>
                         
-                        ほぼ全てのScilabデータ型はこのような処理を行う同様なC関数を有します.
+                        <para>Scilabエンジンの出力引数を作成する</para>
                         
-                    </para>
+                        <para>通常,アプリケーションコードの実行後,
+                            
+                            何らかのデータをScilabインタプリタから戻します.
+                            
+                        </para>
+                        
+                        <para>
+                            
+                            例えば, doubleの行列をScilabエンジンに保存する場合,C関数
+                            
+                            <literal>
+                                
+                                SciErr <link linkend="Double_management_writing_API">createMatrixOfDouble</link>(void* context, int position, int nbRows, int nbCols, const double* matrixOfDouble)
+                                
+                            </literal>
+                            
+                            をコールします.
+                            
+                        </para>
+                        
+                        <para>
+                            
+                            通常,位置は
+                            
+                            <literal>nbInputArgument(pvApiCtx) + X</literal>により取得できます. 
+                            
+                            <literal>X</literal> が返す出力引数の位置となります.
+                            
+                            例えば, 関数プロファイル
+                            
+                            <literal>[a, b, c] = foo();</literal> 
+                            
+                            <literal>nbInputArgument(pvApiCtx) + 3</literal> は
+                            
+                            変数<literal>c</literal>となります.
+                            
+                        </para>
+                        
+                        <para>
+                            
+                            作成できる次元はゲートウェイの制約を受けることに注意してください.
+                            
+                        </para>
+                        
+                        <para>
+                            
+                            ほぼ全てのScilabデータ型はこのような処理を行う同様なC関数を有します.
+                            
+                        </para>
+                        
+                    </listitem>
                     
-                </listitem>
+                    <listitem>
+                        
+                        <para>Scilabエンジンに出力引数を返す</para>
+                        
+                        <para>以下, タスク4で, 作成した変数を返します.</para>
+                        
+                        <para>
+                            
+                            <literal>a</literal>を返す
+                            
+                            前の例 <literal>[a, b, c] = foo();</literal>の場合,
+                            
+                            以下の宣言を行います: <literal>AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;</literal>
+                            
+                        </para>
+                        
+                        <para>
+                            
+                            Scilabエンジンに新しい変数をコミットするには,
+                            
+                            関数
+                            
+                            <link linkend="ReturnArguments">ReturnArguments(pvApiCtx)</link> をコールします.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </orderedlist>
                 
-                <listitem>
-                    
-                    <para>Scilabエンジンに出力引数を返す</para>
-                    
-                    <para>以下, タスク4で, 作成した変数を返します.</para>
-                    
-                    <para>
-                        
-                        <literal>a</literal>を返す
-                        
-                        前の例 <literal>[a, b, c] = foo();</literal>の場合,
-                        
-                        以下の宣言を行います: <literal>AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;</literal>
-                        
-                    </para>
-                    
-                    <para>
-                        
-                        Scilabエンジンに新しい変数をコミットするには,
-                        
-                        関数
-                        
-                        <link linkend="ReturnArguments">ReturnArguments(pvApiCtx)</link> をコールします.
-                        
-                    </para>
-                    
-                </listitem>
                 
-            </orderedlist>
+                
+            </para>
             
+            <para>
+                
+                API_Scilab関数
+                
+                
+                
+                Note that almost all the API_Scilab functions returns a C structure called SciErr which contains many information about the error.
+            </para>
             
+            <para>
+                
+                By default, Scilab numerical values are stored with the C type <literal>double</literal>.
+                
+            </para>
             
-        </para>
+            <para>
+                
+                As convention, gateways are stored in <literal>sci_gateway/c/</literal> (or <literal>/cpp/</literal>) and are called <literal>sci_functionName.c</literal>.
+                
+            </para>
+            
+            <para>
+                
+                <literal>pvApiCtx</literal> is the global context variable. Useless in the 5 family, it has been introduced to manage multithread aspects coming with the version 6 of Scilab.
+                
+            </para>
+            
+        </refsection>
         
-        <para>
+        <refsection>
             
-            API_Scilab関数
+            <title>現実的な例</title>
             
+            <para>以下のScilab関数を例として示します:</para>
             
+            <para>
+                
+                <literal>[c,d] = foo(a,b)</literal>
+                
+            </para>
             
-            Note that almost all the API_Scilab functions returns a C structure called SciErr which contains many information about the error.
-        </para>
-        
-        <para>
+            <para>
+                
+                <literal>a</literal>はdouble行列,<literal>a</literal>と同じ大きさの
+                
+                <literal>b</literal>は論理値行列,
+                
+                foo は<literal>a</literal>の各要素に2を乗じて,
+                
+                <literal>c</literal>として返します.
+                
+                また,bを要素毎に逆の論理値に変換して返します.
+                
+            </para>
             
-            By default, Scilab numerical values are stored with the C type <literal>double</literal>.
+            <para>
+                
+                Scilabバイナリに含まれるツールボックススケルトンでサンプルを取得できます.
+                
+                パスは
+                
+                <literal>contrib/toolbox_skeleton/sci_gateway/c/sci_foo.c</literal>です.
+                
+            </para>
             
-        </para>
-        
-        <para>
+            <para>詳細な説明は以下の例のCコメント形式で提供されています.
+                
+            </para>
             
-            As convention, gateways are stored in <literal>sci_gateway/c/</literal> (or <literal>/cpp/</literal>) and are called <literal>sci_functionName.c</literal>.
-            
-        </para>
-        
-        <para>
-            
-            <literal>pvApiCtx</literal> is the global context variable. Useless in the 5 family, it has been introduced to manage multithread aspects coming with the version 6 of Scilab.
-            
-        </para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>現実的な例</title>
-        
-        <para>以下のScilab関数を例として示します:</para>
-        
-        <para>
-            
-            <literal>[c,d] = foo(a,b)</literal>
-            
-        </para>
-        
-        <para>
-            
-            <literal>a</literal>はdouble行列,<literal>a</literal>と同じ大きさの
-            
-            <literal>b</literal>は論理値行列,
-            
-            foo は<literal>a</literal>の各要素に2を乗じて,
-            
-            <literal>c</literal>として返します.
-            
-            また,bを要素毎に逆の論理値に変換して返します.
-            
-        </para>
-        
-        <para>
-            
-            Scilabバイナリに含まれるツールボックススケルトンでサンプルを取得できます.
-            
-            パスは
-            
-            <literal>contrib/toolbox_skeleton/sci_gateway/c/sci_foo.c</literal>です.
-            
-        </para>
-        
-        <para>詳細な説明は以下の例のCコメント形式で提供されています.
-            
-        </para>
-        
-        <programlisting role="code_gateway">
-            
-            <![CDATA[ 
+            <programlisting role="code_gateway">
+                
+                <![CDATA[ 
 // 完全なソースはtoolboxスケルトンのsci_gateway/c/ ディレクトリにあります
 
 // 標準ヘッダ
@@ -682,22 +682,22 @@ int sci_foo(char *fname, unsigned long fname_len)
     return 0;
 }
       ]]>
-            
-        </programlisting>
-        
-        <para>
-            
-            このコードを構築,Scilabにロードする際,
-            
-            Scilabの動的リンク機能を使用します.
-            
-            この組み込み処理はScilabに委任するため,
-            
-            以下のコードはマルチプラットフォームです.
-            
-            <programlisting role="scilab">
                 
-                <![CDATA[
+            </programlisting>
+            
+            <para>
+                
+                このコードを構築,Scilabにロードする際,
+                
+                Scilabの動的リンク機能を使用します.
+                
+                この組み込み処理はScilabに委任するため,
+                
+                以下のコードはマルチプラットフォームです.
+                
+                <programlisting role="scilab">
+                    
+                    <![CDATA[
       files=["sci_foo.c"];
       // TODO: WTF ?
       WITHOUT_AUTO_PUTLHSVAR = %t;
@@ -705,48 +705,48 @@ int sci_foo(char *fname, unsigned long fname_len)
       exec loader.sce
       [c, d] = foo([2,%pi], [%t, %f])
       ]]>
+                    
+                </programlisting>
                 
-            </programlisting>
+            </para>
             
-        </para>
-        
-        <para>
-            
-            種々の確認が行われます:
-            
-            <programlisting role="no-scilab-exec">
+            <para>
                 
-                <![CDATA[
+                種々の確認が行われます:
+                
+                <programlisting role="no-scilab-exec">
+                    
+                    <![CDATA[
 -->[c, d] = foo(2, 2)
                    !--error 999
 foo: Wrong type for input argument #2: A boolean matrix expected.
       ]]>
+                    
+                </programlisting>
                 
-            </programlisting>
-            
-            <programlisting role="no-scilab-exec">
-                
-                <![CDATA[
+                <programlisting role="no-scilab-exec">
+                    
+                    <![CDATA[
 -->[c, d] = foo([2,2], %t)
                         !--error 999
 foo: Wrong size for input arguments: Same size expected.
       ]]>
+                    
+                </programlisting>
                 
-            </programlisting>
-            
-            <programlisting role="no-scilab-exec">
-                
-                <![CDATA[
+                <programlisting role="no-scilab-exec">
+                    
+                    <![CDATA[
 -->[a,b]=foo(2+%i,%t)
                    !--error 999
 foo: Wrong type for input argument #1: A real matrix expected.
       ]]>
+                    
+                </programlisting>
                 
-            </programlisting>
-            
-            <programlisting role="no-scilab-exec">
-                
-                <![CDATA[
+                <programlisting role="no-scilab-exec">
+                    
+                    <![CDATA[
 -->[c, d] = foo([2,%pi], [%t, %f])
  d  =
 
@@ -755,12 +755,12 @@ foo: Wrong type for input argument #1: A real matrix expected.
 
     4.    6.2831853
       ]]>
+                    
+                </programlisting>
                 
-            </programlisting>
+            </para>
             
-        </para>
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

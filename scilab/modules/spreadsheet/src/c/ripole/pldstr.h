@@ -7,22 +7,22 @@
 
 struct PLD_strtok
 {
-	char *start;
-	char delimeter;
+    char *start;
+    char delimeter;
 };
 
 struct PLD_strreplace
 {
-	char *source;
-	char *searchfor;
-	char *replacewith;
+    char *source;
+    char *searchfor;
+    char *replacewith;
 
-	char *preexist;
-	char *postexist;
+    char *preexist;
+    char *postexist;
 
-	int replacenumber;
+    int replacenumber;
 
-	int insensitive;
+    int insensitive;
 };
 
 char *PLD_strstr(char *haystack, char *needle, int insensitive);

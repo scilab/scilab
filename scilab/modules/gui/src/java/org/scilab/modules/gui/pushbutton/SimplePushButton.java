@@ -22,23 +22,23 @@ import org.scilab.modules.gui.widget.Widget;
  */
 public interface SimplePushButton extends Widget {
 
-        /**
-         * Sets the icon of a PushButton
-         * @param filename the path to the icon image to set to the PushButton
-         */
-        void setIcon(String filename);
+    /**
+     * Sets the icon of a PushButton
+     * @param filename the path to the icon image to set to the PushButton
+     */
+    void setIcon(String filename);
 
-        /**
-         * Set the string to be displayed when the mouse cursor is over the PushButton
-         * TODO move this method in Widget or UIElement
-         *
-         * @param toolTipText the string to set
-         */
-        void setToolTipText(String toolTipText);
+    /**
+     * Set the string to be displayed when the mouse cursor is over the PushButton
+     * TODO move this method in Widget or UIElement
+     *
+     * @param toolTipText the string to set
+     */
+    void setToolTipText(String toolTipText);
 
-        /**
-         * Get the base text used for the Menu
-         * @return the text
-         */
-        String getBaseText();
+    /**
+     * Get the base text used for the Menu
+     * @return the text
+     */
+    String getBaseText();
 }

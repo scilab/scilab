@@ -99,7 +99,7 @@ function res = atomsGetInstalledPath(packages,section)
         if ~ isempty(strindex(packages(i,2),"-")) then
             packages_filtered = packages_filtered( find(packages_filtered(:,2) == packages(i,2)) , : );
 
-        //  + The packaging version is not mentioned
+            //  + The packaging version is not mentioned
         else
 
             candidates        = packages_filtered;

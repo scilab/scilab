@@ -21,14 +21,14 @@ import org.scilab.modules.graphic_objects.graphicObject.Visitor;
  * @author Manuel JULIACHS
  */
 public class Plot3d extends Surface {
-	// TBD Data -> Data Model
-	/* TBD: properties relative to the data model */
+    // TBD Data -> Data Model
+    /* TBD: properties relative to the data model */
 
-	/** Constructor */
-	public Plot3d() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /** Constructor */
+    public Plot3d() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
     public void accept(Visitor visitor) throws ObjectRemovedException {
@@ -36,10 +36,10 @@ public class Plot3d extends Surface {
     }
 
     /**
-	 * @return Type as String
-	 */
-	public Integer getType() {
-		return GraphicObjectProperties.__GO_PLOT3D__;
-	}
+     * @return Type as String
+     */
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_PLOT3D__;
+    }
 
 }

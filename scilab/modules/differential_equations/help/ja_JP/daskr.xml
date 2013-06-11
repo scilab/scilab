@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
  *
@@ -11,1146 +11,1146 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="daskr" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="daskr" xml:lang="ja">
         
-        <refname>daskr</refname>
-        
-        <refpurpose>ゼロ交差を有するDAEソルバー</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>[r, nn [, hd]] = daskr(x0, t0, t [, atol [, rtol]], res [, jac], ng, surf [, info [, psol] [, pjac]] [, hd])</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+        <refnamediv>
             
-            <varlistentry>
+            <refname>daskr</refname>
+            
+            <refpurpose>ゼロ交差を有するDAEソルバー</refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>[r, nn [, hd]] = daskr(x0, t0, t [, atol [, rtol]], res [, jac], ng, surf [, info [, psol] [, pjac]] [, hd])</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
                 
-                <term>x0</term>
-                
-                <listitem>
+                <varlistentry>
                     
-                    <para>
-                        
-                        は <literal>y0</literal> (<literal>ydot0</literal> は
-                        
-                        ゼロを初期推定値として <literal>dassl</literal> により推定)
-                        
-                        または行列 <literal>[y0 ydot0]</literal>のどちらかです.
-                        
-                        <literal>g(t,y0,ydot0)</literal> はゼロに等しい必要があります.
-                        
-                        <literal>ydot0</literal> の推定値のみ既知の場合, 
-                        
-                        <literal>info(7)=1</literal> を指定してください.
-                        
-                    </para>
+                    <term>x0</term>
                     
-                    <variablelist>
+                    <listitem>
                         
-                        <varlistentry>
+                        <para>
                             
-                            <term>y0</term>
+                            は <literal>y0</literal> (<literal>ydot0</literal> は
                             
-                            <listitem>
-                                
-                                <para>初期条件の実数列ベクトル.</para>
-                                
-                            </listitem>
+                            ゼロを初期推定値として <literal>dassl</literal> により推定)
                             
-                        </varlistentry>
+                            または行列 <literal>[y0 ydot0]</literal>のどちらかです.
+                            
+                            <literal>g(t,y0,ydot0)</literal> はゼロに等しい必要があります.
+                            
+                            <literal>ydot0</literal> の推定値のみ既知の場合, 
+                            
+                            <literal>info(7)=1</literal> を指定してください.
+                            
+                        </para>
                         
-                        <varlistentry>
+                        <variablelist>
                             
-                            <term>ydot0</term>
-                            
-                            <listitem>
+                            <varlistentry>
                                 
-                                <para>
+                                <term>y0</term>
+                                
+                                <listitem>
                                     
-                                    <literal>y</literal> at <literal>t0</literal> (推定値でも可)における<literal>y</literal>の時間微分の実数列ベクトル.
+                                    <para>初期条件の実数列ベクトル.</para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>ydot0</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        <literal>y</literal> at <literal>t0</literal> (推定値でも可)における<literal>y</literal>の時間微分の実数列ベクトル.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                        </variablelist>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>t0</term>
+                    
+                    <listitem>
+                        
+                        <para>実数, 初期時間.</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>t</term>
+                    
+                    <listitem>
+                        
+                        <para>実数スカラーまたはベクトル. 
+                            
+                            解を得る時刻を指定します. 
+                            
+                            <literal>info(2)=1</literal>と指定することにより,
+                            
+                            dasslの各ステップ点で解を得ることができます.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>nn</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            2個のエントリ <literal>[times num]</literal>を有するベクトル.
+                            
+                            <literal>times</literal> は面が交差する点における時間の値,
+                            
+                            <literal>num</literal> は交差する面の数です.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>atol, rtol</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <literal>y</literal>と同じ大きさの実数スカラーまたは列ベクトル. 
+                            
+                            <literal>atol, rtol</literal> はそれぞれ解の絶対及び相対許容誤差を
+                            
+                            表します. この許容誤差は
+                            
+                            <literal>y</literal>の各要素について指定されます.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>res</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <link linkend="external">external</link> (関数またはリストまたは文字列). 
+                            
+                            <literal>g(t,y,ydot)</literal>の値を計算します. 以下のようになります :
+                            
+                        </para>
+                        
+                        <itemizedlist>
+                            
+                            <listitem>
+                                
+                                <para>Scilab関数.</para>
+                                
+                                <para>呼び出し手順は以下とします
+                                    
+                                    <literal>[r,ires]=res(t,y,ydot)</literal> かつ
+                                    
+                                    <literal>res</literal> は残差
+                                    
+                                    <literal>r=g(t,y,ydot)</literal> かつ エラーフラグ
+                                    
+                                    <literal>ires</literal>を返すこと.
+                                    
+                                    <literal>res</literal> は, <literal>r</literal>の計算に成功した場合は<literal>ires = 0</literal>,
+                                    
+                                    残差が<literal>(t,y,ydot)</literal> において局所的に定義されないには
+                                    
+                                    <literal>=-1</literal>, パラメータが許容範囲を逸脱している場合には <literal>=-2</literal>
+                                    
+                                    となります.
                                     
                                 </para>
                                 
                             </listitem>
                             
-                        </varlistentry>
-                        
-                    </variablelist>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>t0</term>
-                
-                <listitem>
-                    
-                    <para>実数, 初期時間.</para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>t</term>
-                
-                <listitem>
-                    
-                    <para>実数スカラーまたはベクトル. 
-                        
-                        解を得る時刻を指定します. 
-                        
-                        <literal>info(2)=1</literal>と指定することにより,
-                        
-                        dasslの各ステップ点で解を得ることができます.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>nn</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        2個のエントリ <literal>[times num]</literal>を有するベクトル.
-                        
-                        <literal>times</literal> は面が交差する点における時間の値,
-                        
-                        <literal>num</literal> は交差する面の数です.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>atol, rtol</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        <literal>y</literal>と同じ大きさの実数スカラーまたは列ベクトル. 
-                        
-                        <literal>atol, rtol</literal> はそれぞれ解の絶対及び相対許容誤差を
-                        
-                        表します. この許容誤差は
-                        
-                        <literal>y</literal>の各要素について指定されます.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>res</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        <link linkend="external">external</link> (関数またはリストまたは文字列). 
-                        
-                        <literal>g(t,y,ydot)</literal>の値を計算します. 以下のようになります :
-                        
-                    </para>
-                    
-                    <itemizedlist>
-                        
-                        <listitem>
-                            
-                            <para>Scilab関数.</para>
-                            
-                            <para>呼び出し手順は以下とします
+                            <listitem>
                                 
-                                <literal>[r,ires]=res(t,y,ydot)</literal> かつ
+                                <para>リスト.</para>
                                 
-                                <literal>res</literal> は残差
+                                <para>この形式により, t, y, ydot 以外のパラメータを関数に指定出来ます.
+                                    
+                                    以下のような形式とする必要があります:
+                                    
+                                </para>
                                 
-                                <literal>r=g(t,y,ydot)</literal> かつ エラーフラグ
-                                
-                                <literal>ires</literal>を返すこと.
-                                
-                                <literal>res</literal> は, <literal>r</literal>の計算に成功した場合は<literal>ires = 0</literal>,
-                                
-                                残差が<literal>(t,y,ydot)</literal> において局所的に定義されないには
-                                
-                                <literal>=-1</literal>, パラメータが許容範囲を逸脱している場合には <literal>=-2</literal>
-                                
-                                となります.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>リスト.</para>
-                            
-                            <para>この形式により, t, y, ydot 以外のパラメータを関数に指定出来ます.
-                                
-                                以下のような形式とする必要があります:
-                                
-                            </para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <programlisting role="no-scilab-exec"><![CDATA[
 list(res,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>ただし関数
                                 
-                                <literal>res</literal> の呼び出し形式は以下とします
+                                <para>ただし関数
+                                    
+                                    <literal>res</literal> の呼び出し形式は以下とします
+                                    
+                                </para>
                                 
-                            </para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <programlisting role="no-scilab-exec"><![CDATA[
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>
                                 
-                                <literal>res</literal> は
+                                <para>
+                                    
+                                    <literal>res</literal> は
+                                    
+                                    <literal>(t,y,ydot,x1,x2,...)</literal>の関数として<literal>r=g(t,y,ydot)</literal>を返します.
+                                    
+                                </para>
                                 
-                                <literal>(t,y,ydot,x1,x2,...)</literal>の関数として<literal>r=g(t,y,ydot)</literal>を返します.
+                                <para>
+                                    警告: この形式は<literal>関数</literal>に渡す別の引数が存在しない場合には
+                                    
+                                    使用するべきではありません.
+                                    
+                                </para>
                                 
-                            </para>
+                            </listitem>
                             
-                            <para>
-                                警告: この形式は<literal>関数</literal>に渡す別の引数が存在しない場合には
+                            <listitem>
                                 
-                                使用するべきではありません.
+                                <para>文字列.</para>
                                 
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>文字列.</para>
-                            
-                            <para>ScilabにリンクされたCまたはFortranサブルーチンの名前を指定します.
+                                <para>ScilabにリンクされたCまたはFortranサブルーチンの名前を指定します.
+                                    
+                                </para>
                                 
-                            </para>
-                            
-                            <para>Cの場合, 呼び出し手順は次のようにします:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <para>Cの場合, 呼び出し手順は次のようにします:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
-                            
-                            <para>Fortranの場合, 以下としま:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                
+                                <para>Fortranの場合, 以下としま:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
  ]]></programlisting>
-                            
-                            <para>
                                 
-                                <literal>rpar</literal> および <literal>ipar</literal> 配列は存在する必要がありますが使用できません.
+                                <para>
+                                    
+                                    <literal>rpar</literal> および <literal>ipar</literal> 配列は存在する必要がありますが使用できません.
+                                    
+                                </para>
                                 
-                            </para>
+                            </listitem>
                             
-                        </listitem>
+                        </itemizedlist>
                         
-                    </itemizedlist>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>jac</term>
-                
-                <listitem>
+                <varlistentry>
                     
-                    <para>
-                        
-                        <link linkend="external">external</link> (関数またはリストまたは文字列). 指定した<literal>cj</literal>
-                        
-                        の値について, <literal>dg/dy + cj*dg/dydot</literal> の値を計算します.
-                        
-                    </para>
+                    <term>jac</term>
                     
-                    <itemizedlist>
+                    <listitem>
                         
-                        <listitem>
+                        <para>
                             
-                            <para>Scilab関数.</para>
+                            <link linkend="external">external</link> (関数またはリストまたは文字列). 指定した<literal>cj</literal>
                             
-                            <para>
-                                呼び出し手順は <literal>r=jac(t,y,ydot,cj)</literal> で,
-                                
-                                <literal>jac</literal> 関数は
-                                
-                                <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal>を返す必要があります.
-                                
-                                ただし,  
-                                
-                                <literal>cj</literal> は実数スカラーです.
-                                
-                            </para>
+                            の値について, <literal>dg/dy + cj*dg/dydot</literal> の値を計算します.
                             
-                        </listitem>
+                        </para>
                         
-                        <listitem>
+                        <itemizedlist>
                             
-                            <para>リスト.</para>
+                            <listitem>
+                                
+                                <para>Scilab関数.</para>
+                                
+                                <para>
+                                    呼び出し手順は <literal>r=jac(t,y,ydot,cj)</literal> で,
+                                    
+                                    <literal>jac</literal> 関数は
+                                    
+                                    <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal>を返す必要があります.
+                                    
+                                    ただし,  
+                                    
+                                    <literal>cj</literal> は実数スカラーです.
+                                    
+                                </para>
+                                
+                            </listitem>
                             
-                            <para>以下のように指定します</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <listitem>
+                                
+                                <para>リスト.</para>
+                                
+                                <para>以下のように指定します</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 list(jac,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>ただし関数
                                 
-                                <literal>jac</literal> の呼び出し手順は以下のようになります
+                                <para>ただし関数
+                                    
+                                    <literal>jac</literal> の呼び出し手順は以下のようになります
+                                    
+                                </para>
                                 
-                            </para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <programlisting role="no-scilab-exec"><![CDATA[
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>
                                 
-                                さらに<literal>jac</literal> は
+                                <para>
+                                    
+                                    さらに<literal>jac</literal> は
+                                    
+                                    <literal>(t,y,ydot,cj,x1,x2,...)</literal>の関数として<literal>dg/dy + cj*dg/dydot</literal> を返します.
+                                    
+                                </para>
                                 
-                                <literal>(t,y,ydot,cj,x1,x2,...)</literal>の関数として<literal>dg/dy + cj*dg/dydot</literal> を返します.
+                            </listitem>
+                            
+                            <listitem>
                                 
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>文字列.</para>
-                            
-                            <para>scilabにリンクされたCまたはFortran サブルーチンの名前を指定します
+                                <para>文字列.</para>
                                 
-                            </para>
-                            
-                            <para>Cの場合, 呼び出し手順は以下となります:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <para>scilabにリンクされたCまたはFortran サブルーチンの名前を指定します
+                                    
+                                </para>
+                                
+                                <para>Cの場合, 呼び出し手順は以下となります:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
-                            
-                            <para>Fortranの場合は以下となります:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                
+                                <para>Fortranの場合は以下となります:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
  ]]></programlisting>
-                            
-                        </listitem>
-                        
-                    </itemizedlist>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>surf</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        <link linkend="external">external</link> (関数またはリストまたは文字列). 
-                        
-                        <literal>ng</literal>個の要素を有する列ベクトル <literal>surf(t,y)</literal> の値を計算します.
-                        
-                        各要素は局面を定義します.
-                        
-                        これは以下のように定義できます:
-                        
-                    </para>
-                    
-                    <itemizedlist>
-                        
-                        <listitem>
-                            
-                            <para>Scilab関数.</para>
-                            
-                            <para>呼び出し手順は
                                 
-                                <literal>surf(t,y)</literal>とします
-                                
-                            </para>
+                            </listitem>
                             
-                        </listitem>
+                        </itemizedlist>
                         
-                        <listitem>
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>surf</term>
+                    
+                    <listitem>
+                        
+                        <para>
                             
-                            <para>リスト.</para>
+                            <link linkend="external">external</link> (関数またはリストまたは文字列). 
                             
-                            <para>以下のように定義します</para>
+                            <literal>ng</literal>個の要素を有する列ベクトル <literal>surf(t,y)</literal> の値を計算します.
                             
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            各要素は局面を定義します.
+                            
+                            これは以下のように定義できます:
+                            
+                        </para>
+                        
+                        <itemizedlist>
+                            
+                            <listitem>
+                                
+                                <para>Scilab関数.</para>
+                                
+                                <para>呼び出し手順は
+                                    
+                                    <literal>surf(t,y)</literal>とします
+                                    
+                                </para>
+                                
+                            </listitem>
+                            
+                            <listitem>
+                                
+                                <para>リスト.</para>
+                                
+                                <para>以下のように定義します</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 list(surf,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>ただし関数
                                 
-                                <literal>surf</literal>の呼び出し手順は以下とします
+                                <para>ただし関数
+                                    
+                                    <literal>surf</literal>の呼び出し手順は以下とします
+                                    
+                                </para>
                                 
-                            </para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <programlisting role="no-scilab-exec"><![CDATA[
 r=surf(t,y,x1,x2,...)
  ]]></programlisting>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>文字列.</para>
-                            
-                            <para>ScilabにリンクされたC または Fortran サブルーチンの名前を指定します.
                                 
-                            </para>
+                            </listitem>
                             
-                            <para>Cの場合, 呼び出し手順は以下とします:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <listitem>
+                                
+                                <para>文字列.</para>
+                                
+                                <para>ScilabにリンクされたC または Fortran サブルーチンの名前を指定します.
+                                    
+                                </para>
+                                
+                                <para>Cの場合, 呼び出し手順は以下とします:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
  ]]></programlisting>
-                            
-                            <para>Fortranの場合,  以下とします:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                
+                                <para>Fortranの場合,  以下とします:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 subroutine surf(ny,t,y,ng,gout)
 double precision t, y(*),gout(*)
 integer ny,ng
  ]]></programlisting>
-                            
-                        </listitem>
-                        
-                    </itemizedlist>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>info</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        <literal>14</literal> 個の要素を有するリスト. デフォルト値は
-                        
-                        <literal>list([],0,[],[],[],0,[],0,[],0,[],[],[],1)</literal>です.
-                        
-                    </para>
-                    
-                    <variablelist>
-                        
-                        <varlistentry>
-                            
-                            <term>info(1)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    <literal>g</literal> を評価できる時刻の最大値を実数スカラーで指定します.
-                                    
-                                    時間を制限しない場合は空の行列<literal>[]</literal>を指定します.
-                                    
-                                </para>
                                 
                             </listitem>
                             
-                        </varlistentry>
+                        </itemizedlist>
                         
-                        <varlistentry>
-                            
-                            <term>info(2)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    <literal>dassl</literal> が中間計算値を返すか(<literal>flag=1</literal>)
-                                    
-                                    またはユーザが指定した時刻のみを返すか
-                                    
-                                    (<literal>flag=0</literal>)を指定するフラグ.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>info</term>
+                    
+                    <listitem>
                         
-                        <varlistentry>
+                        <para>
                             
-                            <term>info(3)</term>
+                            <literal>14</literal> 個の要素を有するリスト. デフォルト値は
                             
-                            <listitem>
+                            <literal>list([],0,[],[],[],0,[],0,[],0,[],[],[],1)</literal>です.
+                            
+                        </para>
+                        
+                        <variablelist>
+                            
+                            <varlistentry>
                                 
-                                <para>
+                                <term>info(1)</term>
+                                
+                                <listitem>
                                     
-                                    <literal>2</literal> 要素のベクトルで,
-                                    
-                                    <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
+                                    <para>
                                         
-                                        "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
+                                        <literal>g</literal> を評価できる時刻の最大値を実数スカラーで指定します.
                                         
-                                    </literal>
-                                    で計算するバンド行列の定義域<literal>[ml,mu]</literal>を指定します.
+                                        時間を制限しない場合は空の行列<literal>[]</literal>を指定します.
+                                        
+                                    </para>
                                     
-                                    <literal>info(3)=[]</literal>の場合, <literal>jac</literal> は通常の行列
-                                    
-                                    を返します.
-                                    
-                                    <literal>info(8)=1</literal>の場合, ダミーとして扱われます.
-                                    
-                                </para>
+                                </listitem>
                                 
-                            </listitem>
+                            </varlistentry>
                             
-                        </varlistentry>
+                            <varlistentry>
+                                
+                                <term>info(2)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        <literal>dassl</literal> が中間計算値を返すか(<literal>flag=1</literal>)
+                                        
+                                        またはユーザが指定した時刻のみを返すか
+                                        
+                                        (<literal>flag=0</literal>)を指定するフラグ.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(3)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        <literal>2</literal> 要素のベクトルで,
+                                        
+                                        <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
+                                            
+                                            "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
+                                            
+                                        </literal>
+                                        で計算するバンド行列の定義域<literal>[ml,mu]</literal>を指定します.
+                                        
+                                        <literal>info(3)=[]</literal>の場合, <literal>jac</literal> は通常の行列
+                                        
+                                        を返します.
+                                        
+                                        <literal>info(8)=1</literal>の場合, ダミーとして扱われます.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(4)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>最大ステップサイズを指定する実数スカラー値.
+                                        
+                                        制限しない場合は <literal>info(4)=[]</literal>を指定します.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(5)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>初期ステップサイズを指定する実数スカラー値.
+                                        
+                                        指定しない場合は <literal>info(5)=[]</literal>を指定します.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(6)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        解が非負であることが既知な場合は <literal>info(6)=1</literal>,
+                                        
+                                        それ以外は <literal>info(6)=0</literal> を指定します.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(7)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        ydot0 が<literal>g(t0,y0,ydot0)=0</literal>のように指定された場合,
+                                        
+                                        <literal>info(7)=[]</literal> と指定します.
+                                        
+                                        それ以外の場合は <literal>info(7)=[+-1, ..., +-1]</literal>とします.
+                                        
+                                        ここで,y(i)が微分変数の場合は<literal>info(7)(i)=1</literal>,
+                                        
+                                        y(i)が代数変数(関数g(t,y,ydot)に微分値が陽に現れない)の場合は
+                                        
+                                        <literal>info(7)(i)=-1</literal>とします.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(8)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        直接法 / Krylov. 
+                                        
+                                        ソルバーでKrylov反復法を使用したい場合,<literal>info(8)=1</literal>と指定し,
+                                        
+                                        <literal>psol</literal>にルーチンを指定します.
+                                        
+                                        それ以外の場合(dasslの直接法)は<literal>info(8)=0</literal>を指定します.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(9)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        Krylovパラメータ. 
+                                        
+                                        <literal>info(8)=0</literal>とした場合はダミー引数として処理されます. 
+                                        
+                                        それ以外の場合は
+                                        
+                                        <literal>info(9)=[maxl kmp nrmax epli]</literal>を指定します, ただし:
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - maxl = mSPIGMRアルゴリズムの最大反復回数 (デフォルト
+                                        
+                                        <literal>min(5,neq)</literal>),
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - kmp = SPIGMRアルゴリズムで直交化を行うベクトルの数
+                                        
+                                        (デフォルト maxl),
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - nrmax = 各非線形反復におけるSPIGMRアルゴリズムのリスタート最大数
+                                        
+                                        (デフォルト <literal>5</literal>),
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - epli = SPIGMRアルゴリズムの収束安定定数 (デフォルト <literal>0.05</literal>).
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(10)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        初期条件.
+                                        
+                                        <literal>info(7)=[]</literal>の場合はダミーとして処理されます. 
+                                        
+                                        初期条件の計算直後にソルバーを停止させる場合は
+                                        
+                                        <literal>info(10)=1</literal>と指定し,それ以外は
+                                        
+                                        <literal>info(10)=0</literal>と指定します.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(11)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        <literal>psol</literal>用のプリコンディショナ計算およびLU分解ルーチン.
+                                        
+                                        <literal>info(8)=0</literal>の場合はダミーとして扱われます. 
+                                        
+                                        <link linkend="external">external</link> <literal>psol</literal>が特定の
+                                        
+                                        ルーチンを使用する必要がある場合は,<literal>info(11)=1</literal>を指定し,
+                                        
+                                        <literal>pjac</literal>ルーチンを指定します.
+                                        
+                                        それ以外は<literal>info(11)=0</literal>とします.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(12)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        全変数についてエラー制御をローカルに行いたい場合,
+                                        
+                                        <literal>info(12)=[]</literal>を指定します. それ以外は,
+                                        
+                                        <literal>info(12)=[+-1, ..., +-1]</literal>を指定します.
+                                        
+                                        ただし, y(i)が微分変数の場合は  <literal>info(12)(i)=1</literal>,
+                                        
+                                        y(i)が代数変数(微係数が関数g(t,y,ydot)に陽に現れない) の場合は
+                                        
+                                        <literal>info(12)(i)=-1</literal>とします.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(13)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        経験的なパラメータ.
+                                        
+                                        <literal>info(7)=[]</literal>の場合はダミーとして扱われます. 
+                                        
+                                        それ以外の場合,
+                                        
+                                        <literal>info(13)=[mxnit mxnj mxnh lsoff stptol epinit]</literal>を指定します, 
+                                        
+                                        ただし:
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - mxnit = ヤコビアンまたはプリコンディショナ評価毎のニュートン反復の最大回数
+                                        
+                                        (デフォルト:<literal>info(8)=0</literal>の場合は <literal>5</literal>,
+                                        
+                                        それ以外は <literal>15</literal>),
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - mxnj = ヤコビアンまたはプリコンディショナ評価の最大回数
+                                        
+                                        (デフォルト:<literal>info(8)=0</literal>の場合は <literal>6</literal>,
+                                        
+                                        それ以外は <literal>2</literal>),
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - mxnh = info(7) &#8800; []　の場合に試行する人工的なステップサイズ
+                                        
+                                        パラメータHの最大値
+                                        
+                                        (デフォルト <literal>5</literal>),
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - lsoff = ライン探索アルゴリズムをオフにするフラグ 
+                                        
+                                        (lsoff = 0 はライン探索有効を意味します, lsoff = 1 はオフを意味します)
+                                        
+                                        (デフォルト: <literal>0</literal>),
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - stptol = ライン探索アルゴリズムの最小スケール刻み (デフォルト: <literal>(丸め誤差単位)^(2/3)</literal>),
+                                        
+                                    </para>
+                                    
+                                    <para>
+                                        
+                                        - epinit = ニュートン反復収束判定の振幅係数 (デフォルト <literal>0.01</literal>).
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                            <varlistentry>
+                                
+                                <term>info(14)</term>
+                                
+                                <listitem>
+                                    
+                                    <para>
+                                        
+                                        冗長性.
+                                        
+                                        出力を最小化する場合は <literal>info(14)=1</literal>,
+                                        
+                                        最大化する場合は <literal>info(14)=2</literal>, それ以外は
+                                        
+                                        <literal>info(14)=0</literal>を指定します.
+                                        
+                                    </para>
+                                    
+                                </listitem>
+                                
+                            </varlistentry>
+                            
+                        </variablelist>
                         
-                        <varlistentry>
-                            
-                            <term>info(4)</term>
-                            
-                            <listitem>
-                                
-                                <para>最大ステップサイズを指定する実数スカラー値.
-                                    
-                                    制限しない場合は <literal>info(4)=[]</literal>を指定します.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(5)</term>
-                            
-                            <listitem>
-                                
-                                <para>初期ステップサイズを指定する実数スカラー値.
-                                    
-                                    指定しない場合は <literal>info(5)=[]</literal>を指定します.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(6)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    解が非負であることが既知な場合は <literal>info(6)=1</literal>,
-                                    
-                                    それ以外は <literal>info(6)=0</literal> を指定します.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(7)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    ydot0 が<literal>g(t0,y0,ydot0)=0</literal>のように指定された場合,
-                                    
-                                    <literal>info(7)=[]</literal> と指定します.
-                                    
-                                    それ以外の場合は <literal>info(7)=[+-1, ..., +-1]</literal>とします.
-                                    
-                                    ここで,y(i)が微分変数の場合は<literal>info(7)(i)=1</literal>,
-                                    
-                                    y(i)が代数変数(関数g(t,y,ydot)に微分値が陽に現れない)の場合は
-                                    
-                                    <literal>info(7)(i)=-1</literal>とします.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(8)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    直接法 / Krylov. 
-                                    
-                                    ソルバーでKrylov反復法を使用したい場合,<literal>info(8)=1</literal>と指定し,
-                                    
-                                    <literal>psol</literal>にルーチンを指定します.
-                                    
-                                    それ以外の場合(dasslの直接法)は<literal>info(8)=0</literal>を指定します.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(9)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    Krylovパラメータ. 
-                                    
-                                    <literal>info(8)=0</literal>とした場合はダミー引数として処理されます. 
-                                    
-                                    それ以外の場合は
-                                    
-                                    <literal>info(9)=[maxl kmp nrmax epli]</literal>を指定します, ただし:
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - maxl = mSPIGMRアルゴリズムの最大反復回数 (デフォルト
-                                    
-                                    <literal>min(5,neq)</literal>),
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - kmp = SPIGMRアルゴリズムで直交化を行うベクトルの数
-                                    
-                                    (デフォルト maxl),
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - nrmax = 各非線形反復におけるSPIGMRアルゴリズムのリスタート最大数
-                                    
-                                    (デフォルト <literal>5</literal>),
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - epli = SPIGMRアルゴリズムの収束安定定数 (デフォルト <literal>0.05</literal>).
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(10)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    初期条件.
-                                    
-                                    <literal>info(7)=[]</literal>の場合はダミーとして処理されます. 
-                                    
-                                    初期条件の計算直後にソルバーを停止させる場合は
-                                    
-                                    <literal>info(10)=1</literal>と指定し,それ以外は
-                                    
-                                    <literal>info(10)=0</literal>と指定します.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(11)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    <literal>psol</literal>用のプリコンディショナ計算およびLU分解ルーチン.
-                                    
-                                    <literal>info(8)=0</literal>の場合はダミーとして扱われます. 
-                                    
-                                    <link linkend="external">external</link> <literal>psol</literal>が特定の
-                                    
-                                    ルーチンを使用する必要がある場合は,<literal>info(11)=1</literal>を指定し,
-                                    
-                                    <literal>pjac</literal>ルーチンを指定します.
-                                    
-                                    それ以外は<literal>info(11)=0</literal>とします.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(12)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    全変数についてエラー制御をローカルに行いたい場合,
-                                    
-                                    <literal>info(12)=[]</literal>を指定します. それ以外は,
-                                    
-                                    <literal>info(12)=[+-1, ..., +-1]</literal>を指定します.
-                                    
-                                    ただし, y(i)が微分変数の場合は  <literal>info(12)(i)=1</literal>,
-                                    
-                                    y(i)が代数変数(微係数が関数g(t,y,ydot)に陽に現れない) の場合は
-                                    
-                                    <literal>info(12)(i)=-1</literal>とします.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(13)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    経験的なパラメータ.
-                                    
-                                    <literal>info(7)=[]</literal>の場合はダミーとして扱われます. 
-                                    
-                                    それ以外の場合,
-                                    
-                                    <literal>info(13)=[mxnit mxnj mxnh lsoff stptol epinit]</literal>を指定します, 
-                                    
-                                    ただし:
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - mxnit = ヤコビアンまたはプリコンディショナ評価毎のニュートン反復の最大回数
-                                    
-                                    (デフォルト:<literal>info(8)=0</literal>の場合は <literal>5</literal>,
-                                    
-                                    それ以外は <literal>15</literal>),
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - mxnj = ヤコビアンまたはプリコンディショナ評価の最大回数
-                                    
-                                    (デフォルト:<literal>info(8)=0</literal>の場合は <literal>6</literal>,
-                                    
-                                    それ以外は <literal>2</literal>),
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - mxnh = info(7) &#8800; []　の場合に試行する人工的なステップサイズ
-                                    
-                                    パラメータHの最大値
-                                    
-                                    (デフォルト <literal>5</literal>),
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - lsoff = ライン探索アルゴリズムをオフにするフラグ 
-                                    
-                                    (lsoff = 0 はライン探索有効を意味します, lsoff = 1 はオフを意味します)
-                                    
-                                    (デフォルト: <literal>0</literal>),
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - stptol = ライン探索アルゴリズムの最小スケール刻み (デフォルト: <literal>(丸め誤差単位)^(2/3)</literal>),
-                                    
-                                </para>
-                                
-                                <para>
-                                    
-                                    - epinit = ニュートン反復収束判定の振幅係数 (デフォルト <literal>0.01</literal>).
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                        <varlistentry>
-                            
-                            <term>info(14)</term>
-                            
-                            <listitem>
-                                
-                                <para>
-                                    
-                                    冗長性.
-                                    
-                                    出力を最小化する場合は <literal>info(14)=1</literal>,
-                                    
-                                    最大化する場合は <literal>info(14)=2</literal>, それ以外は
-                                    
-                                    <literal>info(14)=0</literal>を指定します.
-                                    
-                                </para>
-                                
-                            </listitem>
-                            
-                        </varlistentry>
-                        
-                    </variablelist>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>psol</term>
-                
-                <listitem>
+                <varlistentry>
                     
-                    <para>
-                        
-                        <link linkend="external">external</link> (関数またはリストまたは文字列). 
-                        
-                        線形システム<literal>P*x = b</literal>を解きます.
-                        
-                        ただし, P はプリコンディショナで, ルーチン <literal>pjac</literal> 
-                        
-                        が事前に計算して, wp 及び iwpに保存します.
-                        
-                    </para>
+                    <term>psol</term>
                     
-                    <itemizedlist>
+                    <listitem>
                         
-                        <listitem>
+                        <para>
                             
-                            <para>Scilab関数.</para>
+                            <link linkend="external">external</link> (関数またはリストまたは文字列). 
                             
-                            <para>呼び出し手順は
-                                
-                                <literal>[r, ier] = psol(wp, iwp, b)</literal> とします.
-                                
-                                <literal>psol</literal> 関数はシステムの解<literal>r</literal>と
-                                
-                                エラーフラグ<literal>ier</literal>を返す必要があります.
-                                
-                            </para>
+                            線形システム<literal>P*x = b</literal>を解きます.
                             
-                        </listitem>
+                            ただし, P はプリコンディショナで, ルーチン <literal>pjac</literal> 
+                            
+                            が事前に計算して, wp 及び iwpに保存します.
+                            
+                        </para>
                         
-                        <listitem>
+                        <itemizedlist>
                             
-                            <para>リスト.</para>
+                            <listitem>
+                                
+                                <para>Scilab関数.</para>
+                                
+                                <para>呼び出し手順は
+                                    
+                                    <literal>[r, ier] = psol(wp, iwp, b)</literal> とします.
+                                    
+                                    <literal>psol</literal> 関数はシステムの解<literal>r</literal>と
+                                    
+                                    エラーフラグ<literal>ier</literal>を返す必要があります.
+                                    
+                                </para>
+                                
+                            </listitem>
                             
-                            <para>以下のような形式とします</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <listitem>
+                                
+                                <para>リスト.</para>
+                                
+                                <para>以下のような形式とします</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 list(psol,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>ただし, 関数
                                 
-                                <literal>psol</literal>の呼び出し手順は以下とします
+                                <para>ただし, 関数
+                                    
+                                    <literal>psol</literal>の呼び出し手順は以下とします
+                                    
+                                </para>
                                 
-                            </para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <programlisting role="no-scilab-exec"><![CDATA[
 psol(wp,iwp,b,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>
                                 
-                                <literal>psol</literal> は <literal>r</literal>の解を返します.
+                                <para>
+                                    
+                                    <literal>psol</literal> は <literal>r</literal>の解を返します.
+                                    
+                                </para>
                                 
-                            </para>
+                            </listitem>
                             
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>文字列.</para>
-                            
-                            <para>ScilabにリンクされたCまたはFortranサブルーチンの名前を指定します
+                            <listitem>
                                 
-                            </para>
-                            
-                            <para>Cの場合,呼び出し手順は以下とします:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <para>文字列.</para>
+                                
+                                <para>ScilabにリンクされたCまたはFortranサブルーチンの名前を指定します
+                                    
+                                </para>
+                                
+                                <para>Cの場合,呼び出し手順は以下とします:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 void psol (int*neq, double*t, double*y, double*ydot, double*savr,
   double*wk, double*cj, double*wght, double*wp, int*iwp, double*b, double*eplin, int*ier, double*rpar, int*ipar)
  ]]></programlisting>
-                            
-                            ただし,配列 <literal>wp</literal> および <literal>iwp</literal> はプリコンディショナ
-                            
-                            <literal>P</literal>の行列要素を行圧縮形式で有します.
-                            
-                            <para>Fortranの場合は以下とします:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                
+                                ただし,配列 <literal>wp</literal> および <literal>iwp</literal> はプリコンディショナ
+                                
+                                <literal>P</literal>の行列要素を行圧縮形式で有します.
+                                
+                                <para>Fortranの場合は以下とします:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 subroutine psol (neq, t, y, ydot, savr, wk, cj, wght,
   wp, iwp, b, eplin, ier, rpar, ipar)
 double precision t,y(*),ydot(*),savr(*),wk(*),cj,wght(*),wp(*),
   b(*),eplin,rpar(*)
 integer neq,iwp(*),ier,ipar(*)
  ]]></programlisting>
+                                
+                            </listitem>
                             
-                        </listitem>
+                        </itemizedlist>
                         
-                    </itemizedlist>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>pjac</term>
-                
-                <listitem>
+                <varlistentry>
                     
-                    <para>
-                        
-                        <link linkend="external">external</link> (関数またはリストまたは文字列). 
-                        
-                        指定したパラメータ<literal>cj</literal>について
-                        
-                        <literal>dg/dy + cj*dg/dydot</literal>を計算し,
-                        
-                        doubleおよびint配列にLU分解を行います.
-                        
-                    </para>
+                    <term>pjac</term>
                     
-                    <itemizedlist>
+                    <listitem>
                         
-                        <listitem>
+                        <para>
                             
-                            <para>Scilab関数.</para>
+                            <link linkend="external">external</link> (関数またはリストまたは文字列). 
                             
-                            <para>呼び出し手順は
-                                
-                                <literal>[wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)</literal>
-                                
-                                となり, 結果として,
-                                
-                                配列 wp および iwp には全てのプリコンディショナ情報が
-                                
-                                圧縮スパース行形式で返されます.
-                                
-                            </para>
+                            指定したパラメータ<literal>cj</literal>について
                             
-                        </listitem>
+                            <literal>dg/dy + cj*dg/dydot</literal>を計算し,
+                            
+                            doubleおよびint配列にLU分解を行います.
+                            
+                        </para>
                         
-                        <listitem>
+                        <itemizedlist>
                             
-                            <para>リスト.</para>
+                            <listitem>
+                                
+                                <para>Scilab関数.</para>
+                                
+                                <para>呼び出し手順は
+                                    
+                                    <literal>[wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)</literal>
+                                    
+                                    となり, 結果として,
+                                    
+                                    配列 wp および iwp には全てのプリコンディショナ情報が
+                                    
+                                    圧縮スパース行形式で返されます.
+                                    
+                                </para>
+                                
+                            </listitem>
                             
-                            <para>以下の形式とします</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                            <listitem>
+                                
+                                <para>リスト.</para>
+                                
+                                <para>以下の形式とします</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 list(pjac,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>ただし,関数
                                 
-                                <literal>pjac</literal>の呼び出し手順は以下とします
+                                <para>ただし,関数
+                                    
+                                    <literal>pjac</literal>の呼び出し手順は以下とします
+                                    
+                                </para>
                                 
-                            </para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <programlisting role="no-scilab-exec"><![CDATA[
 pjac(neq,t,y,ydot,h,cj,rewt,savr,x1,x2,...)
  ]]></programlisting>
-                            
-                            <para>
                                 
-                                <literal>pjac</literal> は,
+                                <para>
+                                    
+                                    <literal>pjac</literal> は,
+                                    
+                                    <literal>(neq,t,y,ydot,h,cj,rewt,savr,x1,x2,...)</literal>の関数として
+                                    
+                                    分解した <literal>dg/dy + cj*dg/dydot</literal> を返します.
+                                    
+                                </para>
                                 
-                                <literal>(neq,t,y,ydot,h,cj,rewt,savr,x1,x2,...)</literal>の関数として
+                            </listitem>
+                            
+                            <listitem>
                                 
-                                分解した <literal>dg/dy + cj*dg/dydot</literal> を返します.
+                                <para>文字列.</para>
                                 
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>文字列.</para>
-                            
-                            <para>ScilabにリンクされたCまたはFortran形式のサブルーチン名を指定します
+                                <para>ScilabにリンクされたCまたはFortran形式のサブルーチン名を指定します
+                                    
+                                </para>
                                 
-                            </para>
-                            
-                            <para>Cの場合,呼び出し手順は以下とします:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                <para>Cの場合,呼び出し手順は以下とします:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 void pjac (double*res, int*ires, int*neq, double*t, double*y, double*ydot, double*rewt, double*savr,
 double*wk, double*h, double*cj, double*wp, int*iwp, int*ier, double*rpar, int*ipar)
  ]]></programlisting>
-                            
-                            <para>Fortranの場合, 以下のとします:</para>
-                            
-                            <programlisting role="no-scilab-exec"><![CDATA[
+                                
+                                <para>Fortranの場合, 以下のとします:</para>
+                                
+                                <programlisting role="no-scilab-exec"><![CDATA[
 subroutine pjac (res, ires, neq, t, y, ydot, rewt, savr,
   wk, h, cj, wp, iwp, ier, rpar, ipar)
 double precision res(*), t, y(*), ydot(*), rewt(*), savr(*),
   wk(*), h, cj, wp(*), rpar(*)
 integer ires, neq, iwp(*), ier, ipar(*)
  ]]></programlisting>
+                                
+                            </listitem>
                             
-                        </listitem>
+                        </itemizedlist>
                         
-                    </itemizedlist>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
+                <varlistentry>
+                    
+                    <term>hd</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <literal>dassl</literal>コンテキストを保存し,積分を再開できるようにする実数ベクトル.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>r</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            実数行列 .
+                            
+                            各列はベクトル<literal>[t;x(t);xdot(t)]</literal>で,
+                            
+                            <literal>t</literal> は解が計算される添字の時刻です.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
             
-            <varlistentry>
-                
-                <term>hd</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        <literal>dassl</literal>コンテキストを保存し,積分を再開できるようにする実数ベクトル.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+        </refsection>
+        
+        <refsection>
             
-            <varlistentry>
-                
-                <term>r</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        実数行列 .
-                        
-                        各列はベクトル<literal>[t;x(t);xdot(t)]</literal>で,
-                        
-                        <literal>t</literal> は解が計算される添字の時刻です.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <title>説明</title>
             
-        </variablelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>陰的微分方程式の解.</para>
-        
-        <programlisting role="no-scilab-exec"><![CDATA[
+            <para>陰的微分方程式の解.</para>
+            
+            <programlisting role="no-scilab-exec"><![CDATA[
 g(t,y,ydot) = 0
 y(t0) = y0  and   ydot(t0) = ydot0
  ]]></programlisting>
-        
-        <para>
             
-            局面交差した時刻と面交差した数を<literal>nn</literal>に返します.
+            <para>
+                
+                局面交差した時刻と面交差した数を<literal>nn</literal>に返します.
+                
+            </para>
             
-        </para>
+            <para>詳細な例は SCI/modules/differential_equations/tests/unit_tests/daskr.tst にあります.</para>
+            
+        </refsection>
         
-        <para>詳細な例は SCI/modules/differential_equations/tests/unit_tests/daskr.tst にあります.</para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example"><![CDATA[
+        <refsection>
+            
+            <title>例</title>
+            
+            <programlisting role="example"><![CDATA[
 // dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1 <= t <=6
 // g1 = ((2*log(y)+8)/t - 5)*y
 // g2 = log(y) - 2.2491
@@ -1165,78 +1165,78 @@ nn
 
 // nn = [2.4698972 2] を返します
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="ode">ode</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="dasrt">dasrt</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="dassl">dassl</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="impl">impl</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="fort">fort</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="link">link</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="external">external</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>履歴</title>
+            
+            <revhistory>
+                
+                <revision>
+                    
+                    <revnumber>5.5.0</revnumber>
+                    
+                    <revdescription>daskr ソルバーが追加されました</revdescription>
+                    
+                </revision>
+                
+            </revhistory>
+            
+        </refsection>
+        
+    </refentry>
     
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="ode">ode</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="dasrt">dasrt</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="dassl">dassl</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="impl">impl</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="fort">fort</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="link">link</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="external">external</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>履歴</title>
-        
-        <revhistory>
-            
-            <revision>
-                
-                <revnumber>5.5.0</revnumber>
-                
-                <revdescription>daskr ソルバーが追加されました</revdescription>
-                
-            </revision>
-            
-        </revhistory>
-        
-    </refsection>
-    
-</refentry>
-

@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -47,19 +47,19 @@ int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
 int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirectory)
 {
     /* remove last file separator if it does not exists */
-    if ( (SourceDirectory[wcslen(SourceDirectory) - 1] == L'\\') || 
-        (SourceDirectory[wcslen(SourceDirectory) - 1] == L'/') )
+    if ( (SourceDirectory[wcslen(SourceDirectory) - 1] == L'\\') ||
+            (SourceDirectory[wcslen(SourceDirectory) - 1] == L'/') )
     {
         SourceDirectory[wcslen(SourceDirectory) - 1] = L'\0';
     }
-    
+
     /* remove last file separator if it does not exists */
-    if ( (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'\\') || 
-        (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'/') )
+    if ( (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'\\') ||
+            (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'/') )
     {
         DestinationDirectory[wcslen(DestinationDirectory) - 1] = L'\0';
     }
-        
+
     return CopyDirectoryFunction_others(DestinationDirectory, SourceDirectory);
 
 }
@@ -70,13 +70,13 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
     char *pStrDest = wide_string_to_UTF8(DestinationFilename);
     char *pStrSrc = wide_string_to_UTF8(SourceFilename);
 
-    char strDestFullPath[PATH_MAX * 2 + 1]; 
-    char strSrcFullPath[PATH_MAX * 2 + 1]; 
+    char strDestFullPath[PATH_MAX * 2 + 1];
+    char strSrcFullPath[PATH_MAX * 2 + 1];
 
     int sfd = -1;
     int dfd = -1;
     struct stat st;
-    char buf[1024*32];
+    char buf[1024 * 32];
     char *ptr = NULL;
     int nread = 0, nwritten = 0;
     int status = 0;
@@ -90,31 +90,31 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
         goto err;
     }
 
-    if ((sfd = open (pStrSrc, O_RDONLY, 0)) < 0) 
+    if ((sfd = open (pStrSrc, O_RDONLY, 0)) < 0)
     {
         status = errno;
         goto err;
     }
 
-    if (fstat (sfd, &st) < 0) 
+    if (fstat (sfd, &st) < 0)
     {
         status = errno;
         goto err;
     }
 
-    if ((dfd = open (pStrDest, O_WRONLY|O_CREAT|O_TRUNC, st.st_mode & 0777)) < 0) 
+    if ((dfd = open (pStrDest, O_WRONLY | O_CREAT | O_TRUNC, st.st_mode & 0777)) < 0)
     {
         status = errno;
         goto err;
     }
 
-    while ((nread = read (sfd, buf, sizeof (buf))) > 0) 
+    while ((nread = read (sfd, buf, sizeof (buf))) > 0)
     {
         ptr = buf;
-        while (nread > 0) 
+        while (nread > 0)
         {
             nwritten = write (dfd, ptr, nread);
-            if (nwritten <= 0) 
+            if (nwritten <= 0)
             {
                 status = errno;
                 goto err;
@@ -124,13 +124,13 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
         }
     }
 
-    if (nread < 0) 
+    if (nread < 0)
     {
         status = errno;
         goto err;
     }
 
-    if (close (dfd) < 0) 
+    if (close (dfd) < 0)
     {
         status = errno;
         goto err;
@@ -138,20 +138,39 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
 
     fchmod (dfd, st.st_mode & 0777);
     close (sfd);
-    if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
-    if (pStrSrc) {FREE(pStrSrc); pStrSrc = NULL;}
+    if (pStrDest)
+    {
+        FREE(pStrDest);
+        pStrDest = NULL;
+    }
+    if (pStrSrc)
+    {
+        FREE(pStrSrc);
+        pStrSrc = NULL;
+    }
     return 0;
 
 err:
-    if (sfd >= 0) close (sfd);
-    if (dfd >= 0) 
+    if (sfd >= 0)
+    {
+        close (sfd);
+    }
+    if (dfd >= 0)
     {
         close (dfd);
         unlink (pStrDest);
     }
 
-    if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
-    if (pStrSrc) {FREE(pStrSrc); pStrSrc = NULL;}
+    if (pStrDest)
+    {
+        FREE(pStrDest);
+        pStrDest = NULL;
+    }
+    if (pStrSrc)
+    {
+        FREE(pStrSrc);
+        pStrSrc = NULL;
+    }
     return status;
 }
 /*--------------------------------------------------------------------------*/
@@ -165,8 +184,16 @@ static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *
     /* we check directory source exists */
     if (!isdir(pStrSrc))
     {
-        if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
-        if (pStrSrc) {FREE(pStrSrc); pStrSrc = NULL;}
+        if (pStrDest)
+        {
+            FREE(pStrDest);
+            pStrDest = NULL;
+        }
+        if (pStrSrc)
+        {
+            FREE(pStrSrc);
+            pStrSrc = NULL;
+        }
         return ENOTDIR;
     }
 
@@ -175,14 +202,22 @@ static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *
     {
         if (FileExistW(DestinationDirectory))
         {
-            if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
+            if (pStrDest)
+            {
+                FREE(pStrDest);
+                pStrDest = NULL;
+            }
             return ENOTDIR;
         }
         else
         {
             if (!createdirectoryW(DestinationDirectory))
             {
-                if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
+                if (pStrDest)
+                {
+                    FREE(pStrDest);
+                    pStrDest = NULL;
+                }
                 return ENOTDIR;
             }
         }
@@ -191,12 +226,28 @@ static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *
     ierr = RecursiveCopyDirectory(pStrDest, pStrSrc);
     if (ierr)
     {
-        if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
-        if (pStrSrc) {FREE(pStrSrc); pStrSrc = NULL;}
+        if (pStrDest)
+        {
+            FREE(pStrDest);
+            pStrDest = NULL;
+        }
+        if (pStrSrc)
+        {
+            FREE(pStrSrc);
+            pStrSrc = NULL;
+        }
         return errno;
     }
-    if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
-    if (pStrSrc) {FREE(pStrSrc); pStrSrc = NULL;}
+    if (pStrDest)
+    {
+        FREE(pStrDest);
+        pStrDest = NULL;
+    }
+    if (pStrSrc)
+    {
+        FREE(pStrSrc);
+        pStrSrc = NULL;
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -212,19 +263,22 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
         return errno;
     }
 
-    while((ent = readdir(dir)) != NULL)
+    while ((ent = readdir(dir)) != NULL)
     {
         char *filenameSRC = NULL;
         char *filenameDST = NULL;
-        
-        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) continue ;
-            
-        filenameSRC = (char*)MALLOC(sizeof(char)*(strlen(SourceDir) + 1 + strlen(ent->d_name) + 1 + 1)) ;
-        filenameDST = (char*)MALLOC(sizeof(char)*(strlen(DestinationDir) + 1 + strlen(ent->d_name) + 1 + 1)) ;
-        
+
+        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0)
+        {
+            continue ;
+        }
+
+        filenameSRC = (char*)MALLOC(sizeof(char) * (strlen(SourceDir) + 1 + strlen(ent->d_name) + 1 + 1)) ;
+        filenameDST = (char*)MALLOC(sizeof(char) * (strlen(DestinationDir) + 1 + strlen(ent->d_name) + 1 + 1)) ;
+
         sprintf(filenameSRC, "%s/%s", SourceDir, ent->d_name);
-        
-        if (DestinationDir[strlen(DestinationDir)-1] == '/')
+
+        if (DestinationDir[strlen(DestinationDir) - 1] == '/')
         {
             sprintf(filenameDST, "%s%s", DestinationDir, ent->d_name);
         }
@@ -232,24 +286,46 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
         {
             sprintf(filenameDST, "%s/%s", DestinationDir, ent->d_name);
         }
-        
-        if (isdir(filenameSRC)) 
-        {     
+
+        if (isdir(filenameSRC))
+        {
             int ierr = 0;
             BOOL bOK = createdirectory(filenameDST);
             if (!bOK)
             {
-                if (filenameDST) {FREE(filenameDST); filenameDST = NULL;}
-                if (filenameSRC) {FREE(filenameSRC); filenameSRC = NULL;}
-                if (dir) closedir(dir);
+                if (filenameDST)
+                {
+                    FREE(filenameDST);
+                    filenameDST = NULL;
+                }
+                if (filenameSRC)
+                {
+                    FREE(filenameSRC);
+                    filenameSRC = NULL;
+                }
+                if (dir)
+                {
+                    closedir(dir);
+                }
                 return EACCES;
             }
             ierr = RecursiveCopyDirectory(filenameDST, filenameSRC);
-            if (ierr)  
+            if (ierr)
             {
-                if (filenameDST) {FREE(filenameDST); filenameDST = NULL;}
-                if (filenameSRC) {FREE(filenameSRC); filenameSRC = NULL;}
-                if (dir) closedir(dir);
+                if (filenameDST)
+                {
+                    FREE(filenameDST);
+                    filenameDST = NULL;
+                }
+                if (filenameSRC)
+                {
+                    FREE(filenameSRC);
+                    filenameSRC = NULL;
+                }
+                if (dir)
+                {
+                    closedir(dir);
+                }
                 return ierr;
             }
         }
@@ -257,25 +333,55 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir)
         {
             wchar_t* wcfileDest = to_wide_string(filenameDST);
             wchar_t* wcfileSrc = to_wide_string(filenameSRC);
-            
+
             int ierr = CopyFileFunction_others(wcfileDest,  wcfileSrc);
-            if (wcfileDest) {FREE(wcfileDest); wcfileDest = NULL;}
-            if (wcfileSrc) {FREE(wcfileSrc); wcfileSrc = NULL;}
-                
-            if (ierr)  
+            if (wcfileDest)
             {
-                if (filenameDST) {FREE(filenameDST); filenameDST = NULL;}
-                if (filenameSRC) {FREE(filenameSRC); filenameSRC = NULL;}
-                if (dir) closedir(dir);
+                FREE(wcfileDest);
+                wcfileDest = NULL;
+            }
+            if (wcfileSrc)
+            {
+                FREE(wcfileSrc);
+                wcfileSrc = NULL;
+            }
+
+            if (ierr)
+            {
+                if (filenameDST)
+                {
+                    FREE(filenameDST);
+                    filenameDST = NULL;
+                }
+                if (filenameSRC)
+                {
+                    FREE(filenameSRC);
+                    filenameSRC = NULL;
+                }
+                if (dir)
+                {
+                    closedir(dir);
+                }
                 return ierr;
             }
-            
+
         }
-        if (filenameDST) {FREE(filenameDST); filenameDST = NULL;}
-        if (filenameSRC) {FREE(filenameSRC); filenameSRC = NULL;}
+        if (filenameDST)
+        {
+            FREE(filenameDST);
+            filenameDST = NULL;
+        }
+        if (filenameSRC)
+        {
+            FREE(filenameSRC);
+            filenameSRC = NULL;
+        }
     }
 
-    if (dir) closedir(dir);
+    if (dir)
+    {
+        closedir(dir);
+    }
 
     return 0;
 }

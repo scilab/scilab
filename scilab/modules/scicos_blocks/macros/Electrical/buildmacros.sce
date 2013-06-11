@@ -19,27 +19,27 @@
 // See the file ../license.txt
 //
 //------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-genlib('Electricallib','SCI/modules/scicos_blocks/macros/Electrical',%f,%t);
+genlib("Electricallib","SCI/modules/scicos_blocks/macros/Electrical",%f,%t);
 //------------------------------------
-if with_modelica_compiler() then 
+if with_modelica_compiler() then
 
-  // create models file in current directory
-  models = findfiles(pwd(),'*.mo');
-  // Exception, we don't build 'Maths.mo' :(
-  // TO DO : modify this (Simoné or Laurent) move files
-  models = [models(1:find(models == 'Maths.mo')-1) ; models(find(models == 'Maths.mo')+1:size(models,'*'))];
-  
-  fd = mopen('models','wt');
-  for i=1:size(models,'*')
-    mputstr(models(i) + ascii(13),fd);
-  end
-  mclose(fd);
-    
-  // generate moc files
-  //exec("../../src/scripts/genmoc.sce");
+    // create models file in current directory
+    models = findfiles(pwd(),"*.mo");
+    // Exception, we don't build 'Maths.mo' :(
+    // TO DO : modify this (SimonÃ© or Laurent) move files
+    models = [models(1:find(models == "Maths.mo")-1) ; models(find(models == "Maths.mo")+1:size(models,"*"))];
+
+    fd = mopen("models","wt");
+    for i=1:size(models,"*")
+        mputstr(models(i) + ascii(13),fd);
+    end
+    mclose(fd);
+
+    // generate moc files
+    //exec("../../src/scripts/genmoc.sce");
 end;
 //------------------------------------

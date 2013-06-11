@@ -7,13 +7,13 @@
 //
 
 function demo_tclsci_rolodex()
-  tkpath = SCI + "/modules/tclsci/demos/tk/";
-  TCL_EvalFile(tkpath+'rolodex')
-  while %t //wait for toplevel to disapear
-    TCL_EvalStr('set h [winfo exists .top]');
-    if TCL_GetVar("h")=='0' then break,end
-    sleep(1);
-  end
+    tkpath = SCI + "/modules/tclsci/demos/tk/";
+    TCL_EvalFile(tkpath+"rolodex")
+    while %t //wait for toplevel to disapear
+        TCL_EvalStr("set h [winfo exists .top]");
+        if TCL_GetVar("h")=="0" then break,end
+        sleep(1);
+    end
 endfunction
 
 demo_tclsci_rolodex()

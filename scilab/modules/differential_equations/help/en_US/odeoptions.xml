@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
@@ -10,129 +10,129 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odeoptions" xml:lang="en">
-    <refnamediv>
-        <refname>odeoptions</refname>
-        <refpurpose>set options for ode solvers</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>odeoptions()</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>This function interactively displays a command which should be
-            executed to set various options of ode solvers. The context variable
-            <literal>%ODEOPTIONS</literal> sets the options.
-        </para>
-        <para>
-            <caution>
-                The <literal>ode</literal> function checks if this variable
-                exists and in this case it uses it. For using default values you should
-                clear this variable. To create it you must execute the instruction 
-                <literal>%ODEOPTIONS=odeoptions()</literal>.
-            </caution>
-        </para>
-        <para>
-            The variable <literal>%ODEOPTIONS</literal> is a vector with the
-            following elements:
-        </para>
-        <para>
-            <literal>[itask, tcrit, h0, hmax, hmin, jactyp, mxstep, maxordn, maxords, ixpr, ml, mu]</literal>.
-        </para>
-        <para>
-            The default value is: <literal>[1,0,0,%inf,0,2,500,12,5,0,-1,-1].</literal>
-        </para>
-        <para>The meaning of the elements is described below.</para>
-        <para>
-            <itemizedlist>
-                <listitem>
-                    <literal>itask</literal> sets the integration mode:
-                    <itemizedlist>
-                        <listitem>1: normal computation at specified times </listitem><listitem>2 : computation at mesh points (given in first row of output of
-                            <literal>ode</literal>)
-                        </listitem>
-                        <listitem>3 : one step at one internal mesh point and return</listitem><listitem>
-                            4 : normal computation without overshooting <literal>tcrit</literal>
-                        </listitem>
-                        <listitem>
-                            5 :    one step, without passing <literal>tcrit</literal>, and return
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-                <listitem>
-                    <literal>tcrit</literal> critical time used only if  <literal>itask</literal> equals 4
-                    or 5 as described above
-                </listitem>
-                <listitem>
-                    <literal>h0</literal> first step tried
-                </listitem>
-                <listitem>
-                    <literal>hmax</literal> max step size
-                </listitem>
-                <listitem>
-                    <literal>hmin</literal> min step size
-                </listitem>
-                <listitem>
-                    <literal>jactype</literal> set jacobian properties:
-                    <itemizedlist>
-                        <listitem>0: functional iterations, no jacobian used
-                            (<literal>"adams"</literal> or <literal>"stiff"</literal>
-                            only) 
-                        </listitem>
-                        <listitem>1 : user-supplied full jacobian </listitem><listitem>2 : internally generated full jacobian </listitem><listitem>3: internally generated diagonal jacobian
-                            (<literal>"adams"</literal> or <literal>"stiff"</literal>
-                            only) 
-                        </listitem>
-                        <listitem>4 : user-supplied banded jacobian (see
-                            <literal>ml</literal> and <literal>mu</literal> below)
-                        </listitem>
-                        <listitem>5 : internally generated banded jacobian
-                            (see <literal>ml</literal> and <literal>mu</literal>
-                            below)
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-                <listitem>
-                    <literal>maxordn</literal> maximum non-stiff order
-                    allowed, at most 12
-                </listitem>
-                <listitem>
-                    <literal>maxords</literal> maximum stiff order allowed,
-                    at most 5
-                </listitem>
-                <listitem>
-                    <literal>ixpr</literal> print level, 0 or 1
-                </listitem>
-                <listitem>
-                    <literal>ml</literal>,<literal>mu</literal><para> If
-                        <literal>jactype</literal> equals 4 or 5, <literal>ml</literal>
-                        and <literal>mu</literal> are the lower and upper
-                        half-bandwidths of the banded jacobian: the band is the <literal>i,j</literal>'s
-                        with <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>. 
-                    </para>
-                    <para>
-                        If <literal>jactype</literal> equals 4 the jacobian
-                        function must return a matrix <literal>J</literal> which is <literal>ml+mu+1 x ny</literal> 
-                        (where <literal>ny=dim</literal> of <literal>y</literal> in <literal>ydot=f(t,y))</literal> 
-                        such that column 1 of <literal>J</literal> is made of <literal>mu</literal> zeros followed 
-                        by <literal>df1/dy1</literal>, <literal>df2/dy1</literal>, <literal>df3/dy1</literal>, ... 
-                        (<literal>1+ml</literal> possibly non-zero entries), column 2 is made of 
-                        <literal>mu-1</literal> zeros followed by <literal>df1/dx2</literal>, 
-                        <literal>df2/dx2</literal>, etc. 
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <para>
-            In the following example, we solve the Ordinary Differential Equation
-            <literal>dy/dt=y^2-y sin(t)+cos(t)</literal> with the initial
-            condition <literal>y(0)=0</literal> claiming the solution be stored at each mesh value.
-        </para>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odeoptions" xml:lang="en">
+        <refnamediv>
+            <refname>odeoptions</refname>
+            <refpurpose>set options for ode solvers</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>odeoptions()</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>This function interactively displays a command which should be
+                executed to set various options of ode solvers. The context variable
+                <literal>%ODEOPTIONS</literal> sets the options.
+            </para>
+            <para>
+                <caution>
+                    The <literal>ode</literal> function checks if this variable
+                    exists and in this case it uses it. For using default values you should
+                    clear this variable. To create it you must execute the instruction 
+                    <literal>%ODEOPTIONS=odeoptions()</literal>.
+                </caution>
+            </para>
+            <para>
+                The variable <literal>%ODEOPTIONS</literal> is a vector with the
+                following elements:
+            </para>
+            <para>
+                <literal>[itask, tcrit, h0, hmax, hmin, jactyp, mxstep, maxordn, maxords, ixpr, ml, mu]</literal>.
+            </para>
+            <para>
+                The default value is: <literal>[1,0,0,%inf,0,2,500,12,5,0,-1,-1].</literal>
+            </para>
+            <para>The meaning of the elements is described below.</para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <literal>itask</literal> sets the integration mode:
+                        <itemizedlist>
+                            <listitem>1: normal computation at specified times </listitem><listitem>2 : computation at mesh points (given in first row of output of
+                                <literal>ode</literal>)
+                            </listitem>
+                            <listitem>3 : one step at one internal mesh point and return</listitem><listitem>
+                                4 : normal computation without overshooting <literal>tcrit</literal>
+                            </listitem>
+                            <listitem>
+                                5 :    one step, without passing <literal>tcrit</literal>, and return
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                    <listitem>
+                        <literal>tcrit</literal> critical time used only if  <literal>itask</literal> equals 4
+                        or 5 as described above
+                    </listitem>
+                    <listitem>
+                        <literal>h0</literal> first step tried
+                    </listitem>
+                    <listitem>
+                        <literal>hmax</literal> max step size
+                    </listitem>
+                    <listitem>
+                        <literal>hmin</literal> min step size
+                    </listitem>
+                    <listitem>
+                        <literal>jactype</literal> set jacobian properties:
+                        <itemizedlist>
+                            <listitem>0: functional iterations, no jacobian used
+                                (<literal>"adams"</literal> or <literal>"stiff"</literal>
+                                only) 
+                            </listitem>
+                            <listitem>1 : user-supplied full jacobian </listitem><listitem>2 : internally generated full jacobian </listitem><listitem>3: internally generated diagonal jacobian
+                                (<literal>"adams"</literal> or <literal>"stiff"</literal>
+                                only) 
+                            </listitem>
+                            <listitem>4 : user-supplied banded jacobian (see
+                                <literal>ml</literal> and <literal>mu</literal> below)
+                            </listitem>
+                            <listitem>5 : internally generated banded jacobian
+                                (see <literal>ml</literal> and <literal>mu</literal>
+                                below)
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                    <listitem>
+                        <literal>maxordn</literal> maximum non-stiff order
+                        allowed, at most 12
+                    </listitem>
+                    <listitem>
+                        <literal>maxords</literal> maximum stiff order allowed,
+                        at most 5
+                    </listitem>
+                    <listitem>
+                        <literal>ixpr</literal> print level, 0 or 1
+                    </listitem>
+                    <listitem>
+                        <literal>ml</literal>,<literal>mu</literal><para> If
+                            <literal>jactype</literal> equals 4 or 5, <literal>ml</literal>
+                            and <literal>mu</literal> are the lower and upper
+                            half-bandwidths of the banded jacobian: the band is the <literal>i,j</literal>'s
+                            with <literal>i-ml</literal> &lt;= <literal>j</literal> &lt;= <literal>ny-1</literal>. 
+                        </para>
+                        <para>
+                            If <literal>jactype</literal> equals 4 the jacobian
+                            function must return a matrix <literal>J</literal> which is <literal>ml+mu+1 x ny</literal> 
+                            (where <literal>ny=dim</literal> of <literal>y</literal> in <literal>ydot=f(t,y))</literal> 
+                            such that column 1 of <literal>J</literal> is made of <literal>mu</literal> zeros followed 
+                            by <literal>df1/dy1</literal>, <literal>df2/dy1</literal>, <literal>df3/dy1</literal>, ... 
+                            (<literal>1+ml</literal> possibly non-zero entries), column 2 is made of 
+                            <literal>mu-1</literal> zeros followed by <literal>df1/dx2</literal>, 
+                            <literal>df2/dx2</literal>, etc. 
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <para>
+                In the following example, we solve the Ordinary Differential Equation
+                <literal>dy/dt=y^2-y sin(t)+cos(t)</literal> with the initial
+                condition <literal>y(0)=0</literal> claiming the solution be stored at each mesh value.
+            </para>
+            <programlisting role="example"><![CDATA[
 function ydot=f(t,y)
     ydot=y^2-y*sin(t)+cos(t)
 endfunction
@@ -141,22 +141,22 @@ y=ode(0,0,%pi,f);
 plot(y(1,:),y(2,:))
 clear %ODEOPTIONS
  ]]></programlisting>
-        <scilab:image>
-            function ydot=f(t,y)
-            ydot=y^2-y*sin(t)+cos(t)
-            endfunction
-            %ODEOPTIONS=[2,0,0,%inf,0,2,500,12,5,0,-1,-1];
-            y=ode(0,0,%pi,f);
-            plot(y(1,:),y(2,:))
-            clear %ODEOPTIONS
-        </scilab:image>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="ode">ode</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            <scilab:image>
+                function ydot=f(t,y)
+                ydot=y^2-y*sin(t)+cos(t)
+                endfunction
+                %ODEOPTIONS=[2,0,0,%inf,0,2,500,12,5,0,-1,-1];
+                y=ode(0,0,%pi,f);
+                plot(y(1,:),y(2,:))
+                clear %ODEOPTIONS
+            </scilab:image>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="ode">ode</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

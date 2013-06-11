@@ -61,21 +61,21 @@ public abstract class CommonCallBack extends AbstractAction {
     public static CommonCallBack createCallback(String command, int callbackType) {
         CommonCallBack callback = null;
         switch (callbackType) {
-        case CallBack.JAVA :
-            callback = JavaCallBack.create(command);
-            break;
-        case CallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE :
-            callback = JavaCallBack.createOutOfXclickAndXgetmouse(command);
-            break;
-        case CallBack.SCILAB_INSTRUCTION_WITHOUT_GCBO :
-            callback = ScilabCallBack.create(command);
-            break;
-        case CallBack.SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :
-            callback = ScilabCallBack.createOutOfXclickAndXgetmouse(command);
-            break;
-        default:
-            callback = ScilabCallBack.create(command);
-            break;
+            case CallBack.JAVA :
+                callback = JavaCallBack.create(command);
+                break;
+            case CallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE :
+                callback = JavaCallBack.createOutOfXclickAndXgetmouse(command);
+                break;
+            case CallBack.SCILAB_INSTRUCTION_WITHOUT_GCBO :
+                callback = ScilabCallBack.create(command);
+                break;
+            case CallBack.SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :
+                callback = ScilabCallBack.createOutOfXclickAndXgetmouse(command);
+                break;
+            default:
+                callback = ScilabCallBack.create(command);
+                break;
         }
         return callback;
     }
@@ -90,24 +90,24 @@ public abstract class CommonCallBack extends AbstractAction {
     public static CommonCallBack createCallback(String command, int callbackType, String objectUID) {
         CommonCallBack callback = null;
         switch (callbackType) {
-        case CallBack.JAVA :
-            callback = JavaCallBack.create(command);
-            break;
-        case CallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE :
-            callback = JavaCallBack.createOutOfXclickAndXgetmouse(command);
-            break;
-        case CallBack.SCILAB_INSTRUCTION_WITHOUT_GCBO :
-            callback = ScilabCallBack.create(command);
-            break;
-        case CallBack.SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :
-            callback = ScilabCallBack.createOutOfXclickAndXgetmouse(command);
-            break;
-        default:
-            callback = ScilabCallBack.create("if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                    + "gcbo = getcallbackobject(\"" + objectUID + "\");"
-                    + command
-                    + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;");
-            break;
+            case CallBack.JAVA :
+                callback = JavaCallBack.create(command);
+                break;
+            case CallBack.JAVA_OUT_OF_XCLICK_AND_XGETMOUSE :
+                callback = JavaCallBack.createOutOfXclickAndXgetmouse(command);
+                break;
+            case CallBack.SCILAB_INSTRUCTION_WITHOUT_GCBO :
+                callback = ScilabCallBack.create(command);
+                break;
+            case CallBack.SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :
+                callback = ScilabCallBack.createOutOfXclickAndXgetmouse(command);
+                break;
+            default:
+                callback = ScilabCallBack.create("if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+                                                 + "gcbo = getcallbackobject(\"" + objectUID + "\");"
+                                                 + command
+                                                 + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;");
+                break;
         }
         return callback;
     }

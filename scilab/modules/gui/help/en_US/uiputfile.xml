@@ -1,89 +1,89 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiputfile">
-    <refnamediv>
-        <refname>uiputfile</refname>
-        <refpurpose>Open standard dialog box for selecting and saving file.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[FileName[,PathName[,FilterIndex]]]=uiputfile([file_mask[,dir[,boxTitle]]])
-            PathFileName=uiputfile([file_mask[,dir[,boxTitle]]])
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Input parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>file_mask</term>
-                <listitem>
-                    <para>
-                        a string matrix which gives the file masks to use for file selection. <literal>file_mask</literal> is written with Unix convention. The default value is '*'.
-                    </para>
-                    <para>we can also add descriptions for masks, for example ["*.x*","X files";"*.bin","BIN files"].</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dir</term>
-                <listitem>
-                    <para>a character string which gives the initial directory used for file search. By default uiputfile uses the previously selected directory.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>boxTitle</term>
-                <listitem>
-                    <para>a character string which gives the title of the uiputfile window. By default uiputfile's title is 'uiputfile'.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Output parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>FileName</term>
-                <listitem>
-                    <para>string which give the user selected file (path + file name) if user answers "Ok" or the " " string if user answers "Cancel".</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>PathName</term>
-                <listitem>
-                    <para>is the user selected file path if user answers "Ok" or the " " string if user answers "Cancel".</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>FilterIndex</term>
-                <listitem>
-                    <para>is the user selected filter index on the list box if user answers "Ok" or '0' string if user answers "Cancel"</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Creates a dialog window for file saving.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiputfile">
+        <refnamediv>
+            <refname>uiputfile</refname>
+            <refpurpose>Open standard dialog box for selecting and saving file.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[FileName[,PathName[,FilterIndex]]]=uiputfile([file_mask[,dir[,boxTitle]]])
+                PathFileName=uiputfile([file_mask[,dir[,boxTitle]]])
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Input parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term>file_mask</term>
+                    <listitem>
+                        <para>
+                            a string matrix which gives the file masks to use for file selection. <literal>file_mask</literal> is written with Unix convention. The default value is '*'.
+                        </para>
+                        <para>we can also add descriptions for masks, for example ["*.x*","X files";"*.bin","BIN files"].</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>dir</term>
+                    <listitem>
+                        <para>a character string which gives the initial directory used for file search. By default uiputfile uses the previously selected directory.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>boxTitle</term>
+                    <listitem>
+                        <para>a character string which gives the title of the uiputfile window. By default uiputfile's title is 'uiputfile'.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Output parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term>FileName</term>
+                    <listitem>
+                        <para>string which give the user selected file (path + file name) if user answers "Ok" or the " " string if user answers "Cancel".</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>PathName</term>
+                    <listitem>
+                        <para>is the user selected file path if user answers "Ok" or the " " string if user answers "Cancel".</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>FilterIndex</term>
+                    <listitem>
+                        <para>is the user selected filter index on the list box if user answers "Ok" or '0' string if user answers "Cancel"</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Creates a dialog window for file saving.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 uiputfile(["*.bin";"*.sce";"*.cos*"])
 uiputfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
 uiputfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
 uiputfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
 uiputfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"); 
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="uigetfile">uigetfile</link>
-            </member>
-            <member>
-                <link linkend="uigetdir">uigetdir</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="uigetfile">uigetfile</link>
+                </member>
+                <member>
+                    <link linkend="uigetdir">uigetdir</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

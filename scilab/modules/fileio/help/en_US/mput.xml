@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,83 +11,83 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mput">
-    <refnamediv>
-        <refname>mput</refname>
-        <refpurpose>writes  byte or word in a given binary format</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>mput(x [, type, fd])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>a vector of floating point or integer type numbers</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fd</term>
-                <listitem>
-                    <para>
-                        a scalar: a file descriptor returned by the function <function>mopen</function>. <literal>-1</literal> 
-                        stands for last opened file. Default value is 
-                        <literal>-1</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>type</term>
-                <listitem>
-                    <para>
-                        a string: the binary format used to write all the entries of <varname>x</varname>.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <function>mput</function> function writes data to the output specified by the
-            stream parameter <varname>fd</varname>. Data is written at the
-            position at which the file pointer is currently pointing and 
-            advances the indicator appropriately. 
-        </para>
-        <para>
-            The <varname>type</varname> parameter is a conversion specifier which may be set to any of the
-            following flag characters (with default value <literal>"l"</literal>):
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>"l", "i", "s", "ul", "ui", "us", "d", "f", "c", "uc"</term>
-                <listitem>
-                    <para>
-                        for  writing respectively a long long, an int (long
-                        int), a short, an unsigned long long int, an unsigned int (long int), an unsigned short, a double, a float, a char and an unsigned char. The bytes which are wrote are automatically swapped if necessary (by checking little-endian status) in order to produce machine independent binary files (in little-endian mode). This default swapping mode can be suppressed by adding a flag <code>swap = 0</code> in the <function>mopen</function> function.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"..l" or "..b"</term>
-                <listitem>
-                    <para>
-                        It is also possible to write in little-endian or big-endian 
-                        mode  by adding a <literal>"l"</literal> or 
-                        <literal>"b"</literal> character at the end of a 
-                        <varname>type</varname> specification. For example 
-                        <literal>"db"</literal> will write a double in big-endian mode.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mput">
+        <refnamediv>
+            <refname>mput</refname>
+            <refpurpose>writes  byte or word in a given binary format</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>mput(x [, type, fd])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>a vector of floating point or integer type numbers</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fd</term>
+                    <listitem>
+                        <para>
+                            a scalar: a file descriptor returned by the function <function>mopen</function>. <literal>-1</literal> 
+                            stands for last opened file. Default value is 
+                            <literal>-1</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>type</term>
+                    <listitem>
+                        <para>
+                            a string: the binary format used to write all the entries of <varname>x</varname>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <function>mput</function> function writes data to the output specified by the
+                stream parameter <varname>fd</varname>. Data is written at the
+                position at which the file pointer is currently pointing and 
+                advances the indicator appropriately. 
+            </para>
+            <para>
+                The <varname>type</varname> parameter is a conversion specifier which may be set to any of the
+                following flag characters (with default value <literal>"l"</literal>):
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>"l", "i", "s", "ul", "ui", "us", "d", "f", "c", "uc"</term>
+                    <listitem>
+                        <para>
+                            for  writing respectively a long long, an int (long
+                            int), a short, an unsigned long long int, an unsigned int (long int), an unsigned short, a double, a float, a char and an unsigned char. The bytes which are wrote are automatically swapped if necessary (by checking little-endian status) in order to produce machine independent binary files (in little-endian mode). This default swapping mode can be suppressed by adding a flag <code>swap = 0</code> in the <function>mopen</function> function.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"..l" or "..b"</term>
+                    <listitem>
+                        <para>
+                            It is also possible to write in little-endian or big-endian 
+                            mode  by adding a <literal>"l"</literal> or 
+                            <literal>"b"</literal> character at the end of a 
+                            <varname>type</varname> specification. For example 
+                            <literal>"db"</literal> will write a double in big-endian mode.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 filen = 'test.bin';
 mopen(filen,'wb');
 mput(1996,'l');mput(1996,'i');mput(1996,'s');mput(98,'c');
@@ -119,58 +119,58 @@ if   98<>mget(1,'cb') then pause,end
 
 mclose();
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="mclose">mclose</link>
-            </member>
-            <member>
-                <link linkend="meof">meof</link>
-            </member>
-            <member>
-                <link linkend="mfprintf">mfprintf</link>
-            </member>
-            <member>
-                <link linkend="fprintfMat">fprintfMat</link>
-            </member>
-            <member>
-                <link linkend="mfscanf">mfscanf</link>
-            </member>
-            <member>
-                <link linkend="fscanfMat">fscanfMat</link>
-            </member>
-            <member>
-                <link linkend="mget">mget</link>
-            </member>
-            <member>
-                <link linkend="mgetl">mgetl</link>
-            </member>
-            <member>
-                <link linkend="mgetstr">mgetstr</link>
-            </member>
-            <member>
-                <link linkend="mopen">mopen</link>
-            </member>
-            <member>
-                <link linkend="mprintf">mprintf</link>
-            </member>
-            <member>
-                <link linkend="mputl">mputl</link>
-            </member>
-            <member>
-                <link linkend="mputstr">mputstr</link>
-            </member>
-            <member>
-                <link linkend="mseek">mseek</link>
-            </member>
-            <member>
-                <link linkend="mtell">mtell</link>
-            </member>
-            <member>
-                <link linkend="mdelete">mdelete</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="mclose">mclose</link>
+                </member>
+                <member>
+                    <link linkend="meof">meof</link>
+                </member>
+                <member>
+                    <link linkend="mfprintf">mfprintf</link>
+                </member>
+                <member>
+                    <link linkend="fprintfMat">fprintfMat</link>
+                </member>
+                <member>
+                    <link linkend="mfscanf">mfscanf</link>
+                </member>
+                <member>
+                    <link linkend="fscanfMat">fscanfMat</link>
+                </member>
+                <member>
+                    <link linkend="mget">mget</link>
+                </member>
+                <member>
+                    <link linkend="mgetl">mgetl</link>
+                </member>
+                <member>
+                    <link linkend="mgetstr">mgetstr</link>
+                </member>
+                <member>
+                    <link linkend="mopen">mopen</link>
+                </member>
+                <member>
+                    <link linkend="mprintf">mprintf</link>
+                </member>
+                <member>
+                    <link linkend="mputl">mputl</link>
+                </member>
+                <member>
+                    <link linkend="mputstr">mputstr</link>
+                </member>
+                <member>
+                    <link linkend="mseek">mseek</link>
+                </member>
+                <member>
+                    <link linkend="mtell">mtell</link>
+                </member>
+                <member>
+                    <link linkend="mdelete">mdelete</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -3,15 +3,15 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
 function  barhomogenize(varargin)
     // barhomogenize(a,style,width)
-    // This function homogenizes the style and the widh of all the bars contained in the axes handle a (default is the handle of the current axes)  
-    // 
-    // Input : 
+    // This function homogenizes the style and the widh of all the bars contained in the axes handle a (default is the handle of the current axes)
+    //
+    // Input :
     // a :  the handle of the axe containing the bares (default: a=gca())
     // style : a string, 'grouped' or 'stacked' (default: style='grouped')
     // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8).
@@ -25,17 +25,17 @@ function  barhomogenize(varargin)
     STYLE="grouped"
     WIDTH=0.8
     varlist=varargin
-    pos='v'
+    pos="v"
 
     if size(varargin)<>0 then
-        if or(varlist($)==['h';'v']) then 
+        if or(varlist($)==["h";"v"]) then
             pos=varlist($)
             varlist($)=null()
         end
     end
     // detect and set the handle axes, the style and the width
-    if size(varlist) == 1 
-        if type(varlist(1))==9 
+    if size(varlist) == 1
+        if type(varlist(1))==9
             var1=varlist(1)
             if var1.type == "Axes"
                 a=var1
@@ -51,8 +51,8 @@ function  barhomogenize(varargin)
         else
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A handle, a string or a scalar expected.\n"),"barhomogenize", 1));
         end
-    elseif size(varlist) == 2 then  
-        if type(varlist(1))==9  then 
+    elseif size(varlist) == 2 then
+        if type(varlist(1))==9  then
             var1=varlist(1)
             if (var1.type == "Axes") & or(varlist(2)==["grouped","stacked"]) then
                 a=var1
@@ -60,22 +60,22 @@ function  barhomogenize(varargin)
             elseif var1.type == "Axes" & type(varlist(2)) == 1 then
                 a=var1
                 WIDTH=varlist(2)
-            else 
+            else
                 error(msprintf(gettext("%s: Wrong type for input argument #%d: A string or a scalar expected.\n"),"barhomogenize", 2));
             end
         elseif or(varlist(1) == ["grouped","stacked"]) & (type(varlist(2)) == 1)
             STYLE=varlist(1)
-            WIDTH=varlist(2)  
-        else 
+            WIDTH=varlist(2)
+        else
             error(msprintf(gettext("%s:Wrong type for input arguments #%d and #%d: If argument #%d is a handle or a string, argument #%d must be a string or a scalar.\n"),"barhomogenize", 1, 2, 1, 2));
         end
     elseif size(varlist) == 3
         if type(varlist(1))==9  then
             var1 = varlist(1)
-            if var1.type == "Axes" & or(varlist(2)==["grouped","stacked"]) & (type(varlist(3)) == 1) 
+            if var1.type == "Axes" & or(varlist(2)==["grouped","stacked"]) & (type(varlist(3)) == 1)
                 a=var1
                 STYLE=varlist(2)
-                WIDTH=varlist(3) 
+                WIDTH=varlist(3)
             end
         end
     end
@@ -91,7 +91,7 @@ function  barhomogenize(varargin)
     end
 
 
-    nbarhandle=size(hbarlist,'*')
+    nbarhandle=size(hbarlist,"*")
     if hbarlist<>[] then
         X=hbarlist(1).data(:,1)
 
@@ -106,7 +106,7 @@ function  barhomogenize(varargin)
 
     // Determinate the max width
     if size(X,"*")>1 then
-        Xtemp=gsort(X,'r','i')
+        Xtemp=gsort(X,"r","i")
         inter=Xtemp(2)-Xtemp(1)
         for i=2:size(Xtemp,"*")-1
             inter=min(Xtemp(i+1)-Xtemp(i),inter)
@@ -123,9 +123,9 @@ function  barhomogenize(varargin)
 
 
     for i=1:nbarhandle
-        if modulo(nbarhandle,2)==0 then  
+        if modulo(nbarhandle,2)==0 then
             x_shift=(i-1-nbarhandle/2)*wmax+wmax/2
-        elseif modulo(nbarhandle,2)==1 then  
+        elseif modulo(nbarhandle,2)==1 then
             x_shift=(i-1-floor(nbarhandle/2))*wmax
         end
 
@@ -136,8 +136,8 @@ function  barhomogenize(varargin)
             y_shift=hbarlist(i-1).data(:,2)+y_shift
         end
 
-        // Update axes data bounds 
-        if pos=='v'
+        // Update axes data bounds
+        if pos=="v"
 
             if STYLE=="grouped"
                 a.data_bounds=[min(a.data_bounds(1,1),min(X)+x_shift-wmax/2) min(a.data_bounds(1,2),0,min(hbarlist(i).data(:,2))); max(a.data_bounds(2,1),max(X)+x_shift+wmax/2) max(a.data_bounds(2,2),0,max(hbarlist(i).data(:,2)))]
@@ -149,10 +149,10 @@ function  barhomogenize(varargin)
                 hbarlist(i).x_shift=zeros(size(X,"*"),1)
                 hbarlist(i).y_shift=y_shift
             end
-            a.auto_ticks(2) = 'on';
+            a.auto_ticks(2) = "on";
             a.x_ticks=tlist("ticks",Xtemp,string(Xtemp))
             hbarlist(i).polyline_style=6;
-        elseif pos=='h' then
+        elseif pos=="h" then
             if STYLE=="grouped"
                 a.data_bounds=[min(a.data_bounds(1,2),min(X)+x_shift-wmax/2) min(a.data_bounds(1,1),0,min(hbarlist(i).data(:,2))); max(a.data_bounds(2,2),max(X)+x_shift+wmax/2) max(a.data_bounds(2,1),0,max(hbarlist(i).data(:,2)))]
                 hbarlist(i).x_shift=x_shift*ones(size(X,"*"),1)
@@ -163,10 +163,10 @@ function  barhomogenize(varargin)
                 hbarlist(i).x_shift=zeros(size(X,"*"),1)
                 hbarlist(i).y_shift=y_shift
             end
-            a.auto_ticks(1) = 'on';
+            a.auto_ticks(1) = "on";
             a.sub_ticks(2) = 0;
             a.y_ticks=tlist("ticks",Xtemp,string(Xtemp))
-            hbarlist(i).polyline_style=7; 
+            hbarlist(i).polyline_style=7;
         end
 
         w=WIDTH*wmax
@@ -174,14 +174,14 @@ function  barhomogenize(varargin)
             hbarlist(i).background=hbarlist(i).foreground
         end
         hbarlist(i).bar_width=w
-        hbarlist(i).line_mode='off';
+        hbarlist(i).line_mode="off";
     end
 endfunction
 
 function  hbarlist=searchbarhandle(h,hbarlist)
-    // This function searches all the bares contained in an axes handle 
-    // output : 
-    // hbarlist: a list which contains the bars handles 
+    // This function searches all the bares contained in an axes handle
+    // output :
+    // hbarlist: a list which contains the bars handles
     if h.type=="Compound" then
         for j=1:size(h.children,"*")
             hbarlist=searchbarhandle(h.children(j),hbarlist)
@@ -191,4 +191,4 @@ function  hbarlist=searchbarhandle(h,hbarlist)
             hbarlist = [hbarlist h];
         end
     end
-endfunction 
+endfunction

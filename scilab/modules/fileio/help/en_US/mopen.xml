@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
@@ -11,195 +11,195 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mopen" xml:lang="en">
-    <refnamediv>
-        <refname>mopen</refname>
-        <refpurpose>opens a file in Scilab</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[fd, err] = mopen(file [, mode, swap ])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>file</term>
-                <listitem>
-                    <para>a character string containing the path of the file to open.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>mode</term>
-                <listitem>
-                    <para>a character string specifying the access mode requested for the file.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>swap</term>
-                <listitem>
-                    <para>
-                        a scalar. If <varname>swap</varname> is present and
-                        <code>swap = 0</code> then automatic bytes swap is
-                        disabled.
-                    </para>
-                    <para>The default value is 1.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>err</term>
-                <listitem>
-                    <para>a scalar. Error indicator.</para>
-                    <informaltable border="1">
-                        <tr>
-                            <td>error value:</td>
-                            <td>error message:</td>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>No error</td>
-                        </tr>
-                        <tr>
-                            <td>-1</td>
-                            <td>no more logical units</td>
-                        </tr>
-                        <tr>
-                            <td>-2</td>
-                            <td>cannot open file</td>
-                        </tr>
-                        <tr>
-                            <td>-3</td>
-                            <td>no more memory</td>
-                        </tr>
-                        <tr>
-                            <td>-4</td>
-                            <td>invalid name</td>
-                        </tr>
-                        <tr>
-                            <td>-5</td>
-                            <td>invalid status</td>
-                        </tr>
-                    </informaltable>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fd</term>
-                <listitem>
-                    <para>
-                        a scalar: a file descriptor (it's a positive integer).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <function>mopen</function> may be used to open a <varname>file</varname> in a way
-            compatible with the C <function>fopen</function> procedure. Without
-            <varname>swap</varname> argument the <varname>file</varname> is supposed to be coded in "little endian IEEE
-            format" and data are swapped if necessary to match the IEEE format of
-            the processor.
-        </para>
-        <para>
-            The <varname>mode</varname> parameter controls the access type requested for
-            the stream. The parameter can have one of the following values:
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mopen" xml:lang="en">
+        <refnamediv>
+            <refname>mopen</refname>
+            <refpurpose>opens a file in Scilab</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[fd, err] = mopen(file [, mode, swap ])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
             <variablelist>
                 <varlistentry>
-                    <term>r</term>
+                    <term>file</term>
                     <listitem>
-                        <para>opens for reading (default). The file must exist, otherwise it fails.</para>
+                        <para>a character string containing the path of the file to open.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>w</term>
+                    <term>mode</term>
                     <listitem>
-                        <para>opens for writing. If the file exists, its contents are destroyed.</para>
+                        <para>a character string specifying the access mode requested for the file.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>a</term>
+                    <term>swap</term>
                     <listitem>
-                        <para>opens for appending. It creates the file if it does not exist.</para>
+                        <para>
+                            a scalar. If <varname>swap</varname> is present and
+                            <code>swap = 0</code> then automatic bytes swap is
+                            disabled.
+                        </para>
+                        <para>The default value is 1.</para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>r+</term>
+                    <term>err</term>
                     <listitem>
-                        <para>opens for both reading and writing. The file must exist, otherwise it fails.</para>
+                        <para>a scalar. Error indicator.</para>
+                        <informaltable border="1">
+                            <tr>
+                                <td>error value:</td>
+                                <td>error message:</td>
+                            </tr>
+                            <tr>
+                                <td>0</td>
+                                <td>No error</td>
+                            </tr>
+                            <tr>
+                                <td>-1</td>
+                                <td>no more logical units</td>
+                            </tr>
+                            <tr>
+                                <td>-2</td>
+                                <td>cannot open file</td>
+                            </tr>
+                            <tr>
+                                <td>-3</td>
+                                <td>no more memory</td>
+                            </tr>
+                            <tr>
+                                <td>-4</td>
+                                <td>invalid name</td>
+                            </tr>
+                            <tr>
+                                <td>-5</td>
+                                <td>invalid status</td>
+                            </tr>
+                        </informaltable>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>w+</term>
+                    <term>fd</term>
                     <listitem>
-                        <para>opens for both reading and writing. If the file exists, its contents are destroyed.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>a+</term>
-                    <listitem>
-                        <para>opens for both reading and appending. It creates the file if it does not exist.</para>
+                        <para>
+                            a scalar: a file descriptor (it's a positive integer).
+                        </para>
                     </listitem>
                 </varlistentry>
             </variablelist>
-        </para>
-        <para>
-            In addition, the following characters can be used to specify the type of file:
-            <variablelist>
-                <varlistentry>
-                    <term>t</term>
-                    <listitem>
-                        <para>text file.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>b</term>
-                    <listitem>
-                        <para>binary file (default).</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </para>
-        <para>
-            The default access mode is <literal>'rb'</literal> (binary
-            file reading).
-        </para>
-        <para>
-            <note>
-                Note: on Windows, in text file mode, CR (carriage
-                return) - LF (linefeed) combinations are translated into
-                LF on reading, and LF are translated to CR-LF
-                combinations on writing.
-            </note>
-        </para>
-        <para>
-            When you open a file for update, you can perform both input and output
-            operations on the resulting stream. However, an output operation cannot
-            be directly followed by an input operation without a file-positioning
-            operation (<function>mseek</function> function). Also, an input
-            operation cannot be directly followed by an output operation without an
-            intervening file positioning operation, unless the input operation
-            encounters the end of the file.
-        </para>
-        <para>
-            When you open a file for append (that is, when the
-            <varname>mode</varname> parameter is <literal>a</literal> or
-            <literal>a+</literal>), it is impossible to overwrite information
-            already in the file. You can use the <function>mseek</function>
-            function to reposition the file pointer to any position in the file,
-            but when output is written to the file, the current file pointer is
-            ignored. All output is written at the end of the file and the file
-            pointer is repositioned to the end of the output.
-        </para>
-        <para>
-            To open files in a way compatible with Fortran-like functions use function <function>file</function>.
-        </para>
-    </refsection>
-    <refsection>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <function>mopen</function> may be used to open a <varname>file</varname> in a way
+                compatible with the C <function>fopen</function> procedure. Without
+                <varname>swap</varname> argument the <varname>file</varname> is supposed to be coded in "little endian IEEE
+                format" and data are swapped if necessary to match the IEEE format of
+                the processor.
+            </para>
+            <para>
+                The <varname>mode</varname> parameter controls the access type requested for
+                the stream. The parameter can have one of the following values:
+                <variablelist>
+                    <varlistentry>
+                        <term>r</term>
+                        <listitem>
+                            <para>opens for reading (default). The file must exist, otherwise it fails.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>w</term>
+                        <listitem>
+                            <para>opens for writing. If the file exists, its contents are destroyed.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>a</term>
+                        <listitem>
+                            <para>opens for appending. It creates the file if it does not exist.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>r+</term>
+                        <listitem>
+                            <para>opens for both reading and writing. The file must exist, otherwise it fails.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>w+</term>
+                        <listitem>
+                            <para>opens for both reading and writing. If the file exists, its contents are destroyed.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>a+</term>
+                        <listitem>
+                            <para>opens for both reading and appending. It creates the file if it does not exist.</para>
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+            </para>
+            <para>
+                In addition, the following characters can be used to specify the type of file:
+                <variablelist>
+                    <varlistentry>
+                        <term>t</term>
+                        <listitem>
+                            <para>text file.</para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>b</term>
+                        <listitem>
+                            <para>binary file (default).</para>
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+            </para>
+            <para>
+                The default access mode is <literal>'rb'</literal> (binary
+                file reading).
+            </para>
+            <para>
+                <note>
+                    Note: on Windows, in text file mode, CR (carriage
+                    return) - LF (linefeed) combinations are translated into
+                    LF on reading, and LF are translated to CR-LF
+                    combinations on writing.
+                </note>
+            </para>
+            <para>
+                When you open a file for update, you can perform both input and output
+                operations on the resulting stream. However, an output operation cannot
+                be directly followed by an input operation without a file-positioning
+                operation (<function>mseek</function> function). Also, an input
+                operation cannot be directly followed by an output operation without an
+                intervening file positioning operation, unless the input operation
+                encounters the end of the file.
+            </para>
+            <para>
+                When you open a file for append (that is, when the
+                <varname>mode</varname> parameter is <literal>a</literal> or
+                <literal>a+</literal>), it is impossible to overwrite information
+                already in the file. You can use the <function>mseek</function>
+                function to reposition the file pointer to any position in the file,
+                but when output is written to the file, the current file pointer is
+                ignored. All output is written at the end of the file and the file
+                pointer is repositioned to the end of the output.
+            </para>
+            <para>
+                To open files in a way compatible with Fortran-like functions use function <function>file</function>.
+            </para>
+        </refsection>
+        <refsection>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 // open a SCI+'/ACKNOWLEDGEMENTS' as text and read only
 fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS', 'rt')
 
@@ -213,11 +213,11 @@ mfscanf(5, fd_r, '%s')
 // close file descriptor associated to SCI+'/ACKNOWLEDGEMENTS' as text and read only
 mclose(fd_r);
     ]]></programlisting>
-    </refsection>
-    <refsection>
-    </refsection>
-    <refsection>
-        <programlisting role="example"><![CDATA[
+        </refsection>
+        <refsection>
+        </refsection>
+        <refsection>
+            <programlisting role="example"><![CDATA[
 // open a file as text with write property
 fd_w = mopen(TMPDIR+'/write.txt', 'wt');
 
@@ -230,11 +230,11 @@ fd_r2 = mopen(TMPDIR+'/write.txt', 'rt');
 mgetl(fd_r2)
 mclose(fd_r2);
     ]]></programlisting>
-    </refsection>
-    <refsection>
-    </refsection>
-    <refsection>
-        <programlisting role="example"><![CDATA[
+        </refsection>
+        <refsection>
+        </refsection>
+        <refsection>
+            <programlisting role="example"><![CDATA[
 // read/write a file as binary
 
 // first we write file
@@ -259,66 +259,66 @@ mget(fd_rb, 'c')
 
 mclose(fd_rb)
     ]]></programlisting>
-    </refsection>
-    <refsection>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="file">file</link>
-            </member>
-            <member>
-                <link linkend="mclose">mclose</link>
-            </member>
-            <member>
-                <link linkend="merror">merror</link>
-            </member>
-            <member>
-                <link linkend="meof">meof</link>
-            </member>
-            <member>
-                <link linkend="mfprintf">mfprintf</link>
-            </member>
-            <member>
-                <link linkend="fprintfMat">fprintfMat</link>
-            </member>
-            <member>
-                <link linkend="mfscanf">mfscanf</link>
-            </member>
-            <member>
-                <link linkend="fscanfMat">fscanfMat</link>
-            </member>
-            <member>
-                <link linkend="mget">mget</link>
-            </member>
-            <member>
-                <link linkend="mgetl">mgetl</link>
-            </member>
-            <member>
-                <link linkend="mgetstr">mgetstr</link>
-            </member>
-            <member>
-                <link linkend="mprintf">mprintf</link>
-            </member>
-            <member>
-                <link linkend="mput">mput</link>
-            </member>
-            <member>
-                <link linkend="mputl">mputl</link>
-            </member>
-            <member>
-                <link linkend="mputstr">mputstr</link>
-            </member>
-            <member>
-                <link linkend="mseek">mseek</link>
-            </member>
-            <member>
-                <link linkend="mtell">mtell</link>
-            </member>
-            <member>
-                <link linkend="mdelete">mdelete</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="file">file</link>
+                </member>
+                <member>
+                    <link linkend="mclose">mclose</link>
+                </member>
+                <member>
+                    <link linkend="merror">merror</link>
+                </member>
+                <member>
+                    <link linkend="meof">meof</link>
+                </member>
+                <member>
+                    <link linkend="mfprintf">mfprintf</link>
+                </member>
+                <member>
+                    <link linkend="fprintfMat">fprintfMat</link>
+                </member>
+                <member>
+                    <link linkend="mfscanf">mfscanf</link>
+                </member>
+                <member>
+                    <link linkend="fscanfMat">fscanfMat</link>
+                </member>
+                <member>
+                    <link linkend="mget">mget</link>
+                </member>
+                <member>
+                    <link linkend="mgetl">mgetl</link>
+                </member>
+                <member>
+                    <link linkend="mgetstr">mgetstr</link>
+                </member>
+                <member>
+                    <link linkend="mprintf">mprintf</link>
+                </member>
+                <member>
+                    <link linkend="mput">mput</link>
+                </member>
+                <member>
+                    <link linkend="mputl">mputl</link>
+                </member>
+                <member>
+                    <link linkend="mputstr">mputstr</link>
+                </member>
+                <member>
+                    <link linkend="mseek">mseek</link>
+                </member>
+                <member>
+                    <link linkend="mtell">mtell</link>
+                </member>
+                <member>
+                    <link linkend="mdelete">mdelete</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

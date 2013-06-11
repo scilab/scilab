@@ -5,6 +5,6 @@
 //
 //
 function s = scilab_sum(valA,valB)
-  s = valA + valB;
+    s = valA + valB;
 endfunction
 // ====================================================================

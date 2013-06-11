@@ -1,107 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lasterror" xml:lang="ru">
-    <refnamediv>
-        <refname>lasterror</refname>
-        <refpurpose>получение последнего записанного сообщения об ошибке</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>
-            str=lasterror( [opt] )
-            [str,n]=lasterror([opt])
-            [str,n,line,func]=lasterror([opt])
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>str</term>
-                <listitem>
-                    <para>
-                        вектор символьных строк или пустая матрица. Последнее записанное сообщение 
-                        об ошибке.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>n</term>
-                <listitem>
-                    <para>целое число, 0 или номер последней записанной ошибки.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>line</term>
-                <listitem>
-                    <para>целое число, 0 или последний записанный номер строки функции.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>func</term>
-                <listitem>
-                    <para>строка, имя последней записанной функции.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>opt</term>
-                <listitem>
-                    <para>логическое значение, если %t, то записанное сообщение очищено. По умолчанию %t.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Каждый раз, когда возникает ошибка, регулятор ошибок Scilab записывает её во 
-            внутреннюю таблицу (удерживается только последняя). Функция
-            <literal>lasterror</literal> позволяет получить сообщение, номер ошибки, 
-            текущую функцию (если есть) и номер текущей строки в текущей функции  из этой таблицы.
-        </para>
-        <para>
-            Указанный номер строки является номером <emphasis>физической</emphasis> строки, в 
-            которой произошла последняя ошибка. Заметьте, что версии Scilab до 5.0
-            использовали для указания <emphasis>логический</emphasis> номер строки последней ошибки. 
-            Разница имеется только если функция, в которой произошла ошибка, содержит
-            <emphasis>продолженные строки</emphasis> (смотрите <link linkend="dot">dot</link>)
-            перед местом возникновения ошибки.
-        </para>
-        <para>
-            Эта функция особенно полезна при использовании <link linkend="errcatch">errcatch</link> или <link linkend="execstr">execstr</link>.
-        </para>
-        <para>
-            Записанное сообщение об ошибке может удерживаться для дальнейшего вызова <literal>lasterror</literal>, с помощью
-            <literal>lasterror(%f)</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lasterror" xml:lang="ru">
+        <refnamediv>
+            <refname>lasterror</refname>
+            <refpurpose>получение последнего записанного сообщения об ошибке</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>
+                str=lasterror( [opt] )
+                [str,n]=lasterror([opt])
+                [str,n,line,func]=lasterror([opt])
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>str</term>
+                    <listitem>
+                        <para>
+                            вектор символьных строк или пустая матрица. Последнее записанное сообщение 
+                            об ошибке.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>n</term>
+                    <listitem>
+                        <para>целое число, 0 или номер последней записанной ошибки.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>line</term>
+                    <listitem>
+                        <para>целое число, 0 или последний записанный номер строки функции.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>func</term>
+                    <listitem>
+                        <para>строка, имя последней записанной функции.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>opt</term>
+                    <listitem>
+                        <para>логическое значение, если %t, то записанное сообщение очищено. По умолчанию %t.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Каждый раз, когда возникает ошибка, регулятор ошибок Scilab записывает её во 
+                внутреннюю таблицу (удерживается только последняя). Функция
+                <literal>lasterror</literal> позволяет получить сообщение, номер ошибки, 
+                текущую функцию (если есть) и номер текущей строки в текущей функции  из этой таблицы.
+            </para>
+            <para>
+                Указанный номер строки является номером <emphasis>физической</emphasis> строки, в 
+                которой произошла последняя ошибка. Заметьте, что версии Scilab до 5.0
+                использовали для указания <emphasis>логический</emphasis> номер строки последней ошибки. 
+                Разница имеется только если функция, в которой произошла ошибка, содержит
+                <emphasis>продолженные строки</emphasis> (смотрите <link linkend="dot">dot</link>)
+                перед местом возникновения ошибки.
+            </para>
+            <para>
+                Эта функция особенно полезна при использовании <link linkend="errcatch">errcatch</link> или <link linkend="execstr">execstr</link>.
+            </para>
+            <para>
+                Записанное сообщение об ошибке может удерживаться для дальнейшего вызова <literal>lasterror</literal>, с помощью
+                <literal>lasterror(%f)</literal>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 ierr=execstr('a=zzzzzzz','errcatch')
 if ierr>0 then 
   disp(lasterror())
 end
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
-            <member>
-                <link linkend="execstr">execstr</link>
-            </member>
-            <member>
-                <link linkend="error">error</link>
-            </member>
-            <member>
-                <link linkend="errclear">errclear</link>
-            </member>
-            <member>
-                <link linkend="edit_error">edit_error</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="errcatch">errcatch</link>
+                </member>
+                <member>
+                    <link linkend="execstr">execstr</link>
+                </member>
+                <member>
+                    <link linkend="error">error</link>
+                </member>
+                <member>
+                    <link linkend="errclear">errclear</link>
+                </member>
+                <member>
+                    <link linkend="edit_error">edit_error</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

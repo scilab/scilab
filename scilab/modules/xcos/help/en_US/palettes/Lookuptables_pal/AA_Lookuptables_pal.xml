@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,65 +21,65 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Lookuptables_pal">
-    <refnamediv>
-        <refname>Lookuptables_pal</refname>
-        <refpurpose>Lookup tables palette</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="INTRP2BLK_f" fileref="../../../../images/palettes/INTRP2BLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="INTRPLBLK_f" fileref="../../../../images/palettes/INTRPLBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="LOOKUP_f" fileref="../../../../images/palettes/LOOKUP_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
-    <refsection id="Module_Lookuptables_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_Lookuptables_pal">
-        <title>Description</title>
-        <para>The lookup tables palette includes blocks that compute output
-            approximations from inputs.
-        </para>
-    </refsection>
-    <refsection id="Blocks_Lookuptables_pal">
-        <title>Blocks</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="INTRP2BLK_f">INTRP2BLK_f — 2D interpolation</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="INTRPLBLK_f">INTRPLBLK_f — Linear interpolation</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="LOOKUP_f">LOOKUP_f — Lookup table</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Lookuptables_pal">
+        <refnamediv>
+            <refname>Lookuptables_pal</refname>
+            <refpurpose>Lookup tables palette</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Block Screenshot</title>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="INTRP2BLK_f" fileref="../../../../images/palettes/INTRP2BLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="INTRPLBLK_f" fileref="../../../../images/palettes/INTRPLBLK_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="LOOKUP_f" fileref="../../../../images/palettes/LOOKUP_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+        </refsection>
+        <refsection id="Module_Lookuptables_pal">
+            <title>Module</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="xcos">xcos</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Description_Lookuptables_pal">
+            <title>Description</title>
+            <para>The lookup tables palette includes blocks that compute output
+                approximations from inputs.
+            </para>
+        </refsection>
+        <refsection id="Blocks_Lookuptables_pal">
+            <title>Blocks</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="INTRP2BLK_f">INTRP2BLK_f — 2D interpolation</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="INTRPLBLK_f">INTRPLBLK_f — Linear interpolation</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="LOOKUP_f">LOOKUP_f — Lookup table</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refentry>

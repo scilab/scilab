@@ -9,21 +9,21 @@
 
 //=============================================================================
 function vcPath = dlwGetVc70Path()
-  vcPath = [];
-  try
-    vcPath = winqueryreg('HKEY_LOCAL_MACHINE', ..
-                       'SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VC', ..
-                       'ProductDir');
-  catch
-    // remove last error on 'winqueryreg' fails
-    lasterror();
-    return;
-  end
+    vcPath = [];
+    try
+        vcPath = winqueryreg("HKEY_LOCAL_MACHINE", ..
+        "SOFTWARE\Microsoft\VisualStudio\7.0\Setup\VC", ..
+        "ProductDir");
+    catch
+        // remove last error on 'winqueryreg' fails
+        lasterror();
+        return;
+    end
 
-  // remove last file separator if it exists
-  if vcPath <> [] then
-    vcPath = pathconvert(vcPath, %f, %t);
-  end
+    // remove last file separator if it exists
+    if vcPath <> [] then
+        vcPath = pathconvert(vcPath, %f, %t);
+    end
 
 endfunction
 //=============================================================================

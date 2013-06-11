@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,75 +10,75 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="NDcost" xml:lang="en">
-    <refnamediv>
-        <refname>NDcost</refname>
-        <refpurpose>generic external for optim computing gradient using finite
-            differences
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[f,g,ind]=NDcost(x,ind,fun,varargin)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>real vector or matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ind</term>
-                <listitem>
-                    <para>integer parameter (see optim)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fun</term>
-                <listitem>
-                    <para>Scilab function with calling sequence
-                        <literal>F=fun(x,varargin)</literal> varargin may be use to pass
-                        parameters <literal>p1,...pn</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>f</term>
-                <listitem>
-                    <para>
-                        criterion value at point <literal>x</literal> (see
-                        optim)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>g</term>
-                <listitem>
-                    <para>
-                        gradient value at point <literal>x</literal> (see
-                        optim)
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>This function can be used as an external for
-            <literal>optim</literal> to minimize problem where gradient is too
-            complicated to be programmed. only the function <literal>fun</literal>
-            which computes the criterion is required.
-        </para>
-        <para>This function should be used as follow:
-            <literal>[f,xopt,gopt]=optim(list(NDcost,fun,p1,...pn),x0,...)</literal>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="NDcost" xml:lang="en">
+        <refnamediv>
+            <refname>NDcost</refname>
+            <refpurpose>generic external for optim computing gradient using finite
+                differences
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[f,g,ind]=NDcost(x,ind,fun,varargin)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>real vector or matrix</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ind</term>
+                    <listitem>
+                        <para>integer parameter (see optim)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fun</term>
+                    <listitem>
+                        <para>Scilab function with calling sequence
+                            <literal>F=fun(x,varargin)</literal> varargin may be use to pass
+                            parameters <literal>p1,...pn</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>f</term>
+                    <listitem>
+                        <para>
+                            criterion value at point <literal>x</literal> (see
+                            optim)
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>g</term>
+                    <listitem>
+                        <para>
+                            gradient value at point <literal>x</literal> (see
+                            optim)
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>This function can be used as an external for
+                <literal>optim</literal> to minimize problem where gradient is too
+                complicated to be programmed. only the function <literal>fun</literal>
+                which computes the criterion is required.
+            </para>
+            <para>This function should be used as follow:
+                <literal>[f,xopt,gopt]=optim(list(NDcost,fun,p1,...pn),x0,...)</literal>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // example #1 (a simple one)
 //function to minimize
 function f=rosenbrock(x,varargin)
@@ -170,19 +170,19 @@ plot2d(t_obs',x_obs(1,:)',style=-5)
 legend(["model","measurements"]);
 xtitle("Least square fit to identify ode parameters")
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="optim">optim</link>
-            </member>
-            <member>
-                <link linkend="external">external</link>
-            </member>
-            <member>
-                <link linkend="derivative">derivative</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="optim">optim</link>
+                </member>
+                <member>
+                    <link linkend="external">external</link>
+                </member>
+                <member>
+                    <link linkend="derivative">derivative</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

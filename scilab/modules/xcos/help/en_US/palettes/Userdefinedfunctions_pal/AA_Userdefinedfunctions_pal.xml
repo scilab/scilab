@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,140 +21,140 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Userdefinedfunctions_pal">
-    <refnamediv>
-        <refname>Userdefinedfunctions_pal</refname>
-        <refpurpose>User defined functions palette</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="CBLOCK" fileref="../../../../../../modules/xcos/images/palettes/CBLOCK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="DEBUG_SCICOS" fileref="../../../../../../modules/xcos/images/palettes/DEBUG_SCICOS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="EXPRESSION" fileref="../../../../../../modules/xcos/images/palettes/EXPRESSION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="MBLOCK" fileref="../../../../../../modules/xcos/images/palettes/MBLOCK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="PDE" fileref="../../../../../../modules/xcos/images/palettes/PDE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="SUPER_f" fileref="../../../../../../modules/xcos/images/palettes/SUPER_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="c_block" fileref="../../../../../../modules/xcos/images/palettes/c_block.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="fortran_block" fileref="../../../../../../modules/xcos/images/palettes/fortran_block.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="generic_block3" fileref="../../../../../../modules/xcos/images/palettes/generic_block3.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="scifunc_block_m" fileref="../../../../../../modules/xcos/images/palettes/scifunc_block_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
-    <refsection id="Module_Userdefinedfunctions_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_Userdefinedfunctions_pal">
-        <title>Description</title>
-        <para>The user defined function contains blocks that allow you to model
-            the component behaviour. The output is expressed as a function of the
-            input.
-        </para>
-    </refsection>
-    <refsection id="Blocks_Userdefinedfunctions_pal">
-        <title>Blocks</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="c_block">c_block — C file function</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="CBLOCK">CBLOCK — New C</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="EXPRESSION">EXPRESSION — Mathematical
-                        expression
-                    </link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="fortran_block">fortran_block — Fortran</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="generic_block3">generic_block3 — Generic block</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="MBLOCK">MBLOCK — Modelica generic block</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="PDE">PDE — 1D PDE block</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scifunc_block_m">scifunc_block_m — Scilab function
-                        block
-                    </link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="SUPER_f">SUPER_f — Super block</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="TEXT_f">TEXT_f — Text</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Userdefinedfunctions_pal">
+        <refnamediv>
+            <refname>Userdefinedfunctions_pal</refname>
+            <refpurpose>User defined functions palette</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Block Screenshot</title>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="CBLOCK" fileref="../../../../../../modules/xcos/images/palettes/CBLOCK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="DEBUG_SCICOS" fileref="../../../../../../modules/xcos/images/palettes/DEBUG_SCICOS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="EXPRESSION" fileref="../../../../../../modules/xcos/images/palettes/EXPRESSION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="MBLOCK" fileref="../../../../../../modules/xcos/images/palettes/MBLOCK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="PDE" fileref="../../../../../../modules/xcos/images/palettes/PDE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="SUPER_f" fileref="../../../../../../modules/xcos/images/palettes/SUPER_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="c_block" fileref="../../../../../../modules/xcos/images/palettes/c_block.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="fortran_block" fileref="../../../../../../modules/xcos/images/palettes/fortran_block.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="generic_block3" fileref="../../../../../../modules/xcos/images/palettes/generic_block3.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata linkend="scifunc_block_m" fileref="../../../../../../modules/xcos/images/palettes/scifunc_block_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+        </refsection>
+        <refsection id="Module_Userdefinedfunctions_pal">
+            <title>Module</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="xcos">xcos</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Description_Userdefinedfunctions_pal">
+            <title>Description</title>
+            <para>The user defined function contains blocks that allow you to model
+                the component behaviour. The output is expressed as a function of the
+                input.
+            </para>
+        </refsection>
+        <refsection id="Blocks_Userdefinedfunctions_pal">
+            <title>Blocks</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="c_block">c_block — C file function</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="CBLOCK">CBLOCK — New C</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="EXPRESSION">EXPRESSION — Mathematical
+                            expression
+                        </link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="fortran_block">fortran_block — Fortran</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="generic_block3">generic_block3 — Generic block</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="MBLOCK">MBLOCK — Modelica generic block</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="PDE">PDE — 1D PDE block</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="scifunc_block_m">scifunc_block_m — Scilab function
+                            block
+                        </link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="SUPER_f">SUPER_f — Super block</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="TEXT_f">TEXT_f — Text</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refentry>

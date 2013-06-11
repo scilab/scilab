@@ -29,7 +29,8 @@
                 <term>win_num</term>
                 <listitem>
                     <para>целое число, идентификатор графического 
-                        окна для экспорта.</para>
+                        окна для экспорта.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

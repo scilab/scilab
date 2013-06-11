@@ -6,15 +6,15 @@
 
 function subdemolist = demo_gateway()
 
-  demopath = get_absolute_file_path("tclsci.dem.gateway.sce");
-  add_demo(gettext('Tcl/Tk'), demopath + "tclsci.dem.gateway.sce");
+    demopath = get_absolute_file_path("tclsci.dem.gateway.sce");
+    add_demo(gettext("Tcl/Tk"), demopath + "tclsci.dem.gateway.sce");
 
-  subdemolist = [_("Color")  ,"color.dem.sce"      ; ..
-                 _("Puzzle") ,"puzzle.dem.sce"     ; ..
-                 _("Scroll") ,"scroll.dem.sce"     ; ..
-                 _("Scale")  ,"scale.dem.sce"      ]
+    subdemolist = [_("Color")  ,"color.dem.sce"      ; ..
+    _("Puzzle") ,"puzzle.dem.sce"     ; ..
+    _("Scroll") ,"scroll.dem.sce"     ; ..
+    _("Scale")  ,"scale.dem.sce"      ]
 
-  subdemolist(:,2) = demopath + '/tk/' + subdemolist(:,2);
+    subdemolist(:,2) = demopath + "/tk/" + subdemolist(:,2);
 endfunction
 
 subdemolist = demo_gateway();

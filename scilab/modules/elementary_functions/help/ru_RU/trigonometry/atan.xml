@@ -1,69 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atan" xml:lang="ru">
-    <refnamediv>
-        <refname>atan</refname>
-        <refpurpose>2-х и 4-х квадрантный арктангенс</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>phi=atan(x)
-            phi=atan(y,x)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>вещественный или комплексный скаляр, вектор или матрица</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>phi</term>
-                <listitem>
-                    <para>вещественный или комплексный скаляр, вектор или матрица</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x, y</term>
-                <listitem>
-                    <para>вещественные скаляры, векторы или матрицы одинаковых размеров</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>phi</term>
-                <listitem>
-                    <para>вещественный скаляр, вектор или матрица</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Первая форма вычисляет 2-х квадрантный арктангенс, который является обратным значением от
-            <code>tan(phi)</code>. Для вещественного <varname>x</varname>,
-            <varname>phi</varname> лежит на интервале  <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>.
-            Для комплексного <varname>x</varname>, <function>atan</function> имеет две неопределённые точки, точки перехода  <code>+%i</code>, <code>-%i</code> и выбираемые переходы  являются двумя мнимыми полупрямыми линиями <latex>[i, i*\infty)</latex> и <latex>(-i*\infty, -i]</latex>.
-        </para>
-        <para>
-            Вторая форма вычисляет 4-х квадрантный арктангенс (в Фортране <function>atan2</function>), то есть она возвращает аргумент (угол) комплексного числа <literal>x+i*y</literal>.
-            Диапазон <code>atan(y, x)</code> равен <latex>(-\pi, \pi]</latex>.
-        </para>
-        <para>
-            Для вещественных аргументов обе формы дают идентичные значения, если 
-            <literal>x&gt;0</literal>.
-        </para>
-        <para>
-            Если аргумент является вектором или матрицей, то вычисление выполняется поэлементно, так что  <varname>phi</varname> является вектором или матрицей того же размера, при этом
-            <code>phi(i, j) = atan(x(i, j))</code> или
-            <code>phi(i, j) = atan(y(i, j), x(i, j))</code>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atan" xml:lang="ru">
+        <refnamediv>
+            <refname>atan</refname>
+            <refpurpose>2-х и 4-х квадрантный арктангенс</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>phi=atan(x)
+                phi=atan(y,x)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>вещественный или комплексный скаляр, вектор или матрица</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>phi</term>
+                    <listitem>
+                        <para>вещественный или комплексный скаляр, вектор или матрица</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x, y</term>
+                    <listitem>
+                        <para>вещественные скаляры, векторы или матрицы одинаковых размеров</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>phi</term>
+                    <listitem>
+                        <para>вещественный скаляр, вектор или матрица</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Первая форма вычисляет 2-х квадрантный арктангенс, который является обратным значением от
+                <code>tan(phi)</code>. Для вещественного <varname>x</varname>,
+                <varname>phi</varname> лежит на интервале  <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>.
+                Для комплексного <varname>x</varname>, <function>atan</function> имеет две неопределённые точки, точки перехода  <code>+%i</code>, <code>-%i</code> и выбираемые переходы  являются двумя мнимыми полупрямыми линиями <latex>[i, i*\infty)</latex> и <latex>(-i*\infty, -i]</latex>.
+            </para>
+            <para>
+                Вторая форма вычисляет 4-х квадрантный арктангенс (в Фортране <function>atan2</function>), то есть она возвращает аргумент (угол) комплексного числа <literal>x+i*y</literal>.
+                Диапазон <code>atan(y, x)</code> равен <latex>(-\pi, \pi]</latex>.
+            </para>
+            <para>
+                Для вещественных аргументов обе формы дают идентичные значения, если 
+                <literal>x&gt;0</literal>.
+            </para>
+            <para>
+                Если аргумент является вектором или матрицей, то вычисление выполняется поэлементно, так что  <varname>phi</varname> является вектором или матрицей того же размера, при этом
+                <code>phi(i, j) = atan(x(i, j))</code> или
+                <code>phi(i, j) = atan(y(i, j), x(i, j))</code>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 // примеры со второй формой
 x=[1,%i,-1,%i]
 phase_x = atan(imag(x),real(x))
@@ -81,16 +81,16 @@ ieee(2)
 atan(%i)
 atan(-%i)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="tan">tan</link>
-            </member>
-            <member>
-                <link linkend="ieee">ieee</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="tan">tan</link>
+                </member>
+                <member>
+                    <link linkend="ieee">ieee</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

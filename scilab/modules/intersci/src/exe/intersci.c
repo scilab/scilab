@@ -166,7 +166,9 @@ char *file;
         fprintf(fout, "//Scilab functions\n");
         fprintf(fout, "%s_funs=[...\n", file);
         for (i = 0; i < nFun - 1; i++)
+        {
             fprintf(fout, "  '%s';\n", funNames[i]);
+        }
         fprintf(fout, "  '%s']\n", funNames[nFun - 1]);
         fprintf(fout, "// interface file to link: ifile='%s.o'\n", file);
         fprintf(fout, "// user's files to link: ufiles=['file1.o','file2.o',....]\n");
@@ -175,7 +177,9 @@ char *file;
         fclose(fout);
     }
     else
+    {
         fprintf(stderr, "Can't open file %s\n", file);
+    }
 }
 
 void Copyright()
@@ -210,12 +214,18 @@ FILE *f;
     {
         /* analysis of one line */
         if (line1 != 1)
+        {
             nwords = ParseLine(s, words);
+        }
         else
+        {
             nwords = ParseScilabLine(s, words);
+        }
         /* end of description */
         if (words[0][0] == '*')
+        {
             return (1);
+        }
         if (line1 == 1)
         {
             /* SCILAB function description */
@@ -270,7 +280,9 @@ FILE *f;
                     strcpy(variables[ivar - 1]->opt_name, optwords[1]);
                 }
                 else
+                {
                     basfun->in[i] = GetVar(words[i + 1], 1);
+                }
             }
             line1 = 0;
             inbas = 1;
@@ -490,7 +502,9 @@ FILE *f;
                         exit(1);
                     }
                     for (j = 0; j < l; j++)
+                    {
                         variables[i]->el[j] = GetExistVar(words[j + 2]);
+                    }
                     variables[i]->length = l;
                     break;
                 case EMPTY:
@@ -533,11 +547,17 @@ int ParseScilabLine(char *s, char *words[])
     int i = 0;
 
     if (*s == ' ' || *s == '\t')
+    {
         inword = 0;
+    }
     if (*s == '{')
+    {
         inopt1 = 1;
+    }
     if (*s == '[')
+    {
         inopt2 = 1;
+    }
     while (*s)
     {
         if (inopt1)
@@ -599,9 +619,13 @@ int ParseScilabLine(char *s, char *words[])
                 i = 0;
                 inword = 1;
                 if (*s == '{')
+                {
                     inopt1 = 1;
+                }
                 if (*s == '[')
+                {
                     inopt2 = 1;
+                }
             }
         }
     }
@@ -618,7 +642,9 @@ int ParseLine(char *s, char *words[])
     int i = 0;
 
     if (*s == ' ' || *s == '\t')
+    {
         inword = 0;
+    }
     while (*s)
     {
         if (inword)
@@ -951,7 +977,9 @@ IVAR GetExistVar(char *name)
     }
     i = CreatePredefVar(name);
     if (i != -1)
+    {
         return (i);
+    }
     printf("variable \"%s\" must exist\n", name);
     exit(1);
 }
@@ -1031,7 +1059,9 @@ IVAR GetExistOutVar()
     for (i = 0; i < nVariable; i++)
     {
         if (strcmp(variables[i]->name, str) == 0)
+        {
             return (i + 1);
+        }
     }
     printf("variable \"out\" must exist\n");
     exit(1);
@@ -1114,7 +1144,9 @@ char *name;
     strcpy(var->for_name[0], name);
     /* useful ??? */
     if (l == 0)
+    {
         var->nfor_name = 1;
+    }
 }
 
 /***********************************************************
@@ -1222,9 +1254,13 @@ char *sname;
         else
         {
             if (j <= 0)
+            {
                 break;
+            }
             else
+            {
                 i++;
+            }
         }
     }
     printf("the type of variable \"%s\" is unknown\n", sname);
@@ -1241,9 +1277,13 @@ int type;
     while (SType[i].code != -1)
     {
         if (SType[i].code == type)
+        {
             return (SType[i].sname);
+        }
         else
+        {
             i++;
+        }
     }
     return ("unknown");
 }
@@ -1317,9 +1357,13 @@ int GetForType(char *type)
         else
         {
             if (j <= 0)
+            {
                 break;
+            }
             else
+            {
                 i++;
+            }
         }
     }
     return (EXTERNAL);
@@ -1334,9 +1378,13 @@ char *SGetForType(int type)
     while (FType[i].code != -1)
     {
         if (FType[i].code == type)
+        {
             return (FType[i].fname);
+        }
         else
+        {
             i++;
+        }
     }
     return ("External");
 }
@@ -1469,9 +1517,13 @@ FILE *f;
                 var = variables[ivar - 1];
                 printf("%s", var->name);
                 if (i != vout->length - 1)
+                {
                     printf(",");
+                }
                 else
+                {
                     printf(")");
+                }
             }
             break;
         case SEQUENCE:
@@ -1483,9 +1535,13 @@ FILE *f;
                 var = variables[ivar - 1];
                 printf("%s", var->name);
                 if (i != vout->length - 1)
+                {
                     printf(",");
+                }
                 else
+                {
                     printf("]");
+                }
             }
             break;
         case EMPTY:
@@ -1498,7 +1554,9 @@ FILE *f;
     {
         printf("%s(%s)", variables[i]->name, SGetSciType(variables[i]->type));
         if (i != basfun->nin - 1)
+        {
             printf(",");
+        }
     }
     printf(")\n");
 
@@ -1628,7 +1686,9 @@ int i;
             Check(f, str, var, i1, 1);
             sprintf(str, "it%d", i1);
             if (var->type == IMATRIX)
+            {
                 AddForName1(var->el[2], str);
+            }
             break;
         case SPARSE:
             AddDeclare(DEC_LOGICAL, "getsparse");
@@ -1738,12 +1798,18 @@ char *optvar, *size, *data;
             break;
         }
         if (ok == 1)
+        {
             size[j++] = optvar[i];
+        }
         if (optvar[i] == '(')
+        {
             ok = 1;
+        }
     }
     if (i < (int)strlen(optvar))
+    {
         strcpy(data, optvar + i + 1);
+    }
 }
 
 /*
@@ -1874,9 +1940,13 @@ FILE *f;
         }
     }
     if (forsub->narg == 0)
+    {
         strcat(call, ")");
+    }
     else
+    {
         call[strlen(call) - 1] = ')';
+    }
     Fprintf(f, indent, call);
     Fprintf(f, indent, "\n");
     /*
@@ -1960,7 +2030,9 @@ char *call;
                             sprintf(str, "it%s,m%s,n%s,nel%s,istk(mnel%s),istk(icol%s),istk(iadr(lr%s)),istk(iadr(lc%s))", barg, barg, barg, barg, barg, barg,
                                     barg, barg);
                         else
+                        {
                             sprintf(str, "istk(iadr(lr%s)),istk(iadr(lc%s)),it%s", barg, barg, barg);
+                        }
                         ChangeForName(ivar, str);
                         strcat(call, str);
                         strcat(call, ",");
@@ -1981,9 +2053,13 @@ char *call;
                         Fprintf(f, indent, "call simple(%s,stk(lc%s),stk(lc%s))\n", str1, barg, barg);
                         Fprintf(f, --indent, "endif\n");
                         if (var->type == SPARSE)
+                        {
                             sprintf(str, "it%s,m%s,n%s,nel%s,istk(mnel%s),istk(icol%s),stk(lr%s),stk(lc%s),", barg, barg, barg, barg, barg, barg, barg, barg);
+                        }
                         else
+                        {
                             sprintf(str, "stk(lr%s),stk(lc%s),it%s,", barg, barg, barg);
+                        }
                         strcat(call, str);
                     }
                     else
@@ -2144,9 +2220,13 @@ char *call;
             {
                 case PREDEF:
                     if (strcmp(var->name, "rhs") == 0)
+                    {
                         sprintf(str, "rhsk");
+                    }
                     else
+                    {
                         sprintf(str, "%s", var->name);
+                    }
                     strcat(call, str);
                     strcat(call, ",");
                     break;
@@ -2196,9 +2276,13 @@ char *call;
         case VECTOR:
             WriteCallRestCheck(f, var, farg, "nn", 0, 0);
             if (var->for_type == EXTERNAL)
+            {
                 strcpy(str1, "1");
+            }
             else
+            {
                 strcpy(str1, Forname2Int(variables[var->el[0] - 1]->for_name[0]));
+            }
             AddDeclare(DEC_LOGICAL, "cremat");
             Fprintf(f, indent, "if(.not.cremat(fname,top+%d,0,%s,1,lw%d,loc%d)) return\n", icre++, str1, farg, farg);
             sprintf(str, "stk(lw%d),", farg);
@@ -3294,7 +3378,9 @@ char *str;
         return p;
     }
     else
+    {
         return str;
+    }
 }
 
 void GenFundef(file, interf)
@@ -3315,7 +3401,9 @@ int interf;
         {
             fprintf(fout, "{\"%s\",", funNames[i]);
             for (j = 0; j < 25 - (int)strlen(funNames[i]); j++)
+            {
                 fprintf(fout, " ");
+            }
             fprintf(fout, "\t\tIN_%s,\t%d,\t3},\n", file, i + 1);
         }
         printf("\nfile \"%s\" has been created\n", filout);
@@ -3382,7 +3470,9 @@ void ResetDeclare()
             int i;
 
             for (i = 0; i < Init[j].ndecls; i++)
+            {
                 free((char *)Init[j].decls[i]);
+            }
             free((char *)Init[j].decls);
         }
         Init[j].decls = (char **)0;
@@ -3406,7 +3496,9 @@ char *declaration;
             for (i = 0; i < Init[j].ndecls; i++)
             {
                 if (strcmp(declaration, Init[j].decls[i]) == 0)
+                {
                     return (1);
+                }
             }
             return (0);
         }
@@ -3422,7 +3514,9 @@ char *declaration;
     int j = 0;
 
     if (CheckDeclare(type, declaration) == 1)
+    {
         return;
+    }
     while (Init[j].type != -1)
     {
         if (Init[j].type == type)
@@ -3463,14 +3557,20 @@ FILE *f;
     while (Init[j].type != -1)
     {
         if (Init[j].ndecls != 0)
+        {
             Fprintf(f, indent, "%s ", Init[j].name);
+        }
         for (i = 0; i < Init[j].ndecls; i++)
         {
             Fprintf(f, indent, "%s", Init[j].decls[i]);
             if (i != Init[j].ndecls - 1)
+            {
                 Fprintf(f, indent, ",");
+            }
             else
+            {
                 Fprintf(f, indent, "\n");
+            }
         }
         j++;
     }
@@ -3507,7 +3607,9 @@ void Fprintf(FILE * f, int indent, char *format, ...)
             count = 7;
         }
         if (sbuf[i] == '\n')
+        {
             count = -1;
+        }
         fprintf(f, "%c", sbuf[i]);
         count++;
     }
@@ -3521,7 +3623,9 @@ int ind;
     int i;
 
     for (i = 0; i < ind; i++)
+    {
         fprintf(f, " ");
+    }
 }
 
 void FCprintf(FILE * f, char *format, ...)
@@ -3547,9 +3651,13 @@ static void SciEnv()
     char env[PATH_MAX + 1 + 10];
 
     if (!GetModuleFileName(NULL, modname + 1, PATH_MAX))
+    {
         return;
+    }
     if ((p = strrchr(modname + 1, '\\')) == NULL)
+    {
         return;
+    }
     *p = 0;
 
     /* Set SCI variable */
@@ -3559,7 +3667,9 @@ static void SciEnv()
         for (p = modname + 1; *p; p++)
         {
             if (*p == '\\')
+            {
                 *p = '/';
+            }
         }
         p = modname + 1;
 

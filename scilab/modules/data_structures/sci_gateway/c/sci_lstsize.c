@@ -15,9 +15,9 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlstsize)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int sci_lstsize(char *fname,unsigned long fname_len)
+int sci_lstsize(char *fname, unsigned long fname_len)
 {
     C2F(intlstsize)();
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -1,132 +1,132 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dsearch" xml:lang="ja">
-    <refnamediv>
-        <refname>dsearch</refname>
-        <refpurpose>二分探索法</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>X</term>
-                <listitem>
-                    <para>実数ベクトルまたは行列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>val</term>
-                <listitem>
-                    <para>
-                        厳密に昇順(val(1) &lt; val(2) &lt; ... &lt; val(n))のn個の要素を有する
-                        実数 (行または列) ベクトル
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ch</term>
-                <listitem>
-                    <para>(オプションの) 文字 "c" または "d" (デフォルト値 "c")</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ind</term>
-                <listitem>
-                    <para>Xと同じ次元の実数ベクトルまたは行列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>occ</term>
-                <listitem>
-                    <para>
-                        val と同じ形式の実数のベクトル
-                        (しかし, ch="c"の場合には n-1 個の要素となります)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>info</term>
-                <listitem>
-                    <para>整数</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>この関数は,
-            ソートされたテーブルを探索したり,
-            いくつかのクラス(間隔または値のクラス)に散らばっている
-            ベクトルの要素の数を数える際に有用です.
-        </para>
-        <para>
-            デフォルトで,または <literal>ch="c"</literal>の時,
-            これは区間の場合で, n-1 個の間隔で
-            各 X(i) の探索が行われます.
-            区間は次のように定義されます: 
-        </para>
-        <programlisting role=""><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dsearch" xml:lang="ja">
+        <refnamediv>
+            <refname>dsearch</refname>
+            <refpurpose>二分探索法</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータ</title>
+            <variablelist>
+                <varlistentry>
+                    <term>X</term>
+                    <listitem>
+                        <para>実数ベクトルまたは行列</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>val</term>
+                    <listitem>
+                        <para>
+                            厳密に昇順(val(1) &lt; val(2) &lt; ... &lt; val(n))のn個の要素を有する
+                            実数 (行または列) ベクトル
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ch</term>
+                    <listitem>
+                        <para>(オプションの) 文字 "c" または "d" (デフォルト値 "c")</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ind</term>
+                    <listitem>
+                        <para>Xと同じ次元の実数ベクトルまたは行列</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>occ</term>
+                    <listitem>
+                        <para>
+                            val と同じ形式の実数のベクトル
+                            (しかし, ch="c"の場合には n-1 個の要素となります)
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>info</term>
+                    <listitem>
+                        <para>整数</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>この関数は,
+                ソートされたテーブルを探索したり,
+                いくつかのクラス(間隔または値のクラス)に散らばっている
+                ベクトルの要素の数を数える際に有用です.
+            </para>
+            <para>
+                デフォルトで,または <literal>ch="c"</literal>の時,
+                これは区間の場合で, n-1 個の間隔で
+                各 X(i) の探索が行われます.
+                区間は次のように定義されます: 
+            </para>
+            <programlisting role=""><![CDATA[ 
 I1 = [val(1), val(2)]
 Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; 
  ]]></programlisting>
-        <para>そして:</para>
-        <variablelist>
-            <varlistentry>
-                <term>ind(i)</term>
-                <listitem>
-                    <para>はX(i)の区間番号です.
-                        (X(i)が　[val(1),val(n)] の範囲にない場合は 0)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>occ(k)</term>
-                <listitem>
-                    <para>はIkの中にあるXの要素の数です.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>info</term>
-                <listitem>
-                    <para>[val(1),val(n)]の範囲にないXの要素の数</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>
-            <literal>ch="d"</literal> の場合, これは離散値の時で,
-            各 X(i) に関して val(k) と等しいかどうかの検索となります :
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>ind(i)</term>
-                <listitem>
-                    <para>は,値がX(i) (X(i)=val(k)の場合, ind(i) = k) に一致する要素の添字と等しくなります.
-                        X(i) が val に含まれない場合は 0 となります.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>occ(k)</term>
-                <listitem>
-                    <para>val(k)に等しい X の要素の数</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>info</term>
-                <listitem>
-                    <para>
-                        集合{val(1),...,val(n)}の中にない X の要素の数
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+            <para>そして:</para>
+            <variablelist>
+                <varlistentry>
+                    <term>ind(i)</term>
+                    <listitem>
+                        <para>はX(i)の区間番号です.
+                            (X(i)が　[val(1),val(n)] の範囲にない場合は 0)
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>occ(k)</term>
+                    <listitem>
+                        <para>はIkの中にあるXの要素の数です.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>info</term>
+                    <listitem>
+                        <para>[val(1),val(n)]の範囲にないXの要素の数</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>
+                <literal>ch="d"</literal> の場合, これは離散値の時で,
+                各 X(i) に関して val(k) と等しいかどうかの検索となります :
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>ind(i)</term>
+                    <listitem>
+                        <para>は,値がX(i) (X(i)=val(k)の場合, ind(i) = k) に一致する要素の添字と等しくなります.
+                            X(i) が val に含まれない場合は 0 となります.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>occ(k)</term>
+                    <listitem>
+                        <para>val(k)に等しい X の要素の数</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>info</term>
+                    <listitem>
+                        <para>
+                            集合{val(1),...,val(n)}の中にない X の要素の数
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 // 例 #1 (elementary stat for U(0,1))
 m = 50000 ; n = 10;
 X = grand(m,1,"def");
@@ -169,16 +169,16 @@ xtitle("an Hermite piecewise polynomial")
 // NOTE : you can verify by adding these ones : 
 // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="find">find</link>
-            </member>
-            <member>
-                <link linkend="tabul">tabul</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="find">find</link>
+                </member>
+                <member>
+                    <link linkend="tabul">tabul</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

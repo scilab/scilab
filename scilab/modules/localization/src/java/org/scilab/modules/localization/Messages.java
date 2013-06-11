@@ -9,20 +9,20 @@
 package org.scilab.modules.localization;
 
 
- /** 
-   * @author Sylvestre Ledru
-   * @copyright DIGITEO 2008
-   */
+/**
+  * @author Sylvestre Ledru
+  * @copyright DIGITEO 2008
+  */
 public class Messages {
 
- /**
-   * Constructor
-   */
- protected Messages() {
-    throw new UnsupportedOperationException();
- }
-  public static String gettext(String key) {
-    return MessagesJNI.gettext(key);
-  }
+    /**
+      * Constructor
+      */
+    protected Messages() {
+        throw new UnsupportedOperationException();
+    }
+    public static String gettext(String key) {
+        return MessagesJNI.gettext(key);
+    }
 
 }

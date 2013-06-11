@@ -42,10 +42,10 @@ function tbx_build_blocks(module, names, macros_path)
     end
 
     // checking optional macros_path argument
-    if ~exists("macros_path", 'l') then
+    if ~exists("macros_path", "l") then
         macros_path = module + "/macros/";
     end
-        if type(macros_path) <> 10 then
+    if type(macros_path) <> 10 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
     end
     if size(macros_path,"*") <> 1 then
@@ -59,7 +59,7 @@ function tbx_build_blocks(module, names, macros_path)
 
     // load Xcos libraries when not already loaded.
     if ~exists("scicos_diagram") then loadXcosLibs(); end
-    
+
     // create directories
     if ~isdir(module + "/images") then
         createdir(module + "/images");

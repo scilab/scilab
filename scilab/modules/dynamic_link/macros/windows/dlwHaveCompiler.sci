@@ -9,13 +9,13 @@
 
 //=============================================================================
 function bOK = dlwHaveCompiler()
-  bOK = (findmsvccompiler() <> 'unknown');
-  if win64() then
-    if bOK & detectmsvc64tools() then
-      bOK = %T;
-    else
-      bOK = %F;
+    bOK = (findmsvccompiler() <> "unknown");
+    if win64() then
+        if bOK & detectmsvc64tools() then
+            bOK = %T;
+        else
+            bOK = %F;
+        end
     end
-  end
 endfunction
 //=============================================================================

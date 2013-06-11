@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,39 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="erfc" xml:lang="en">
-    <refnamediv>
-        <refname>erfc</refname>
-        <refpurpose>função de erro complementar </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>y = erfc(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>real vector or matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>real vector or matrix (of same size than x)</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            <literal>erfc</literal> computa a função de erro
-            complementar:
-        </para>
-        <programlisting role=""><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="erfc" xml:lang="en">
+        <refnamediv>
+            <refname>erfc</refname>
+            <refpurpose>função de erro complementar </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>y = erfc(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>real vector or matrix</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>y</term>
+                    <listitem>
+                        <para>real vector or matrix (of same size than x)</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                <literal>erfc</literal> computa a função de erro
+                complementar:
+            </para>
+            <programlisting role=""><![CDATA[ 
                    /+oo    2
             2      |     -t
      y = -------   |    e    dt
@@ -51,25 +51,25 @@
 
      y = 1 - erf(x)
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 erf([0.5,0.2])+erfc([0.5,0.2])
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="erf">erf</link>
-            </member>
-            <member>
-                <link linkend="erfcx">erfcx</link>
-            </member>
-            <member>
-                <link linkend="calerf">calerf</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="erf">erf</link>
+                </member>
+                <member>
+                    <link linkend="erfcx">erfcx</link>
+                </member>
+                <member>
+                    <link linkend="calerf">calerf</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

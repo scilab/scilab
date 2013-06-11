@@ -118,7 +118,7 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
 
         if (!mainJar.exists()) {
             String message = "'SCI/modules/helptools/jar/scilab_" + defaultLanguage + jarExtension + "' has not been found on the system.\n"
-                + "" + "Are you sure you built it?\nThe help will not be available.";
+                             + "" + "Are you sure you built it?\nThe help will not be available.";
             if (ScilabConsole.isExistingConsole()) {
                 MessageBox messageBox = ScilabMessageBox.createMessageBox();
                 messageBox.setMessage(message);
@@ -141,19 +141,19 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
 
                 /* Find all Jars */
                 String[] all = toolboxJarPath.list(new FilenameFilter() {
-                        public boolean accept(File pathname, String filename) {
-                            return filename.endsWith(jarExtension);
-                        }
-                    });
+                    public boolean accept(File pathname, String filename) {
+                        return filename.endsWith(jarExtension);
+                    }
+                });
 
                 // For toolboxes JAR files are stored in jar directory
                 if (all == null || all.length == 0) {
                     toolboxJarPath = new File(helps[k] + "/../../jar");
                     all = toolboxJarPath.list(new FilenameFilter() {
-                            public boolean accept(File pathname, String filename) {
-                                return filename.endsWith(jarExtension);
-                            }
-                        });
+                        public boolean accept(File pathname, String filename) {
+                            return filename.endsWith(jarExtension);
+                        }
+                    });
                 }
 
                 /* Get the default language help and the current language help */
@@ -287,14 +287,14 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
      */
     public void setCurrentID(final String id) {
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    try {
-                        jhelp.setCurrentID(id);
-                    } catch (BadIDException e) {
-                        jhelp.setCurrentURL(homePageURL);
-                    }
+            public void run() {
+                try {
+                    jhelp.setCurrentID(id);
+                } catch (BadIDException e) {
+                    jhelp.setCurrentURL(homePageURL);
                 }
-            });
+            }
+        });
     }
 
     /**
@@ -349,10 +349,10 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
     public void setCurrentURL(final URL url) {
         SwingUtilities.invokeLater(new Runnable() {
 
-                public void run() {
-                    jhelp.setCurrentURL(url);
-                }
-            });
+            public void run() {
+                jhelp.setCurrentURL(url);
+            }
+        });
     }
 
     /**
@@ -397,14 +397,14 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
         }
         final String kw = keyword;
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    try {
-                        jhelp.setCurrentID(kw);
-                    } catch (BadIDException e) {
-                        fullTextSearch(kw);
-                    }
+            public void run() {
+                try {
+                    jhelp.setCurrentID(kw);
+                } catch (BadIDException e) {
+                    fullTextSearch(kw);
                 }
-            });
+            }
+        });
     }
 
     /**

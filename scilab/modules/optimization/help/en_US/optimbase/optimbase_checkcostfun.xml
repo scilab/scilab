@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,49 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_checkcostfun" xml:lang="en">
-    <refnamediv>
-        <refname>optimbase_checkcostfun</refname>
-        <refpurpose>Checks the cost function.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            opt = optimbase_checkcostfun(opt)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Argument</title>
-        <variablelist>
-            <varlistentry>
-                <term>opt </term>
-                <listitem>
-                    <para>The object of TOPTIM type (tlist).</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <literal>optimbase_checkcostfun</literal> function checks that the cost function 
-            is correctly connected. This function generates an error if the cost function is not 
-            connected. 
-        </para>
-        <para>
-            This function takes into account for the cost function at the initial guess x0 only. 
-            She checks that all values of the index argument are valid. If there are non-linear 
-            constraints, <literal>optimbase_checkcostfun</literal> checks that the matrix has the 
-            correct shape.
-        </para>
-        <para>
-            This function requires at least one call to the cost function to make the necessary checks.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Example</title>
-        <programlisting role="example">
-            <![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_checkcostfun" xml:lang="en">
+        <refnamediv>
+            <refname>optimbase_checkcostfun</refname>
+            <refpurpose>Checks the cost function.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                opt = optimbase_checkcostfun(opt)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Argument</title>
+            <variablelist>
+                <varlistentry>
+                    <term>opt </term>
+                    <listitem>
+                        <para>The object of TOPTIM type (tlist).</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <literal>optimbase_checkcostfun</literal> function checks that the cost function 
+                is correctly connected. This function generates an error if the cost function is not 
+                connected. 
+            </para>
+            <para>
+                This function takes into account for the cost function at the initial guess x0 only. 
+                She checks that all values of the index argument are valid. If there are non-linear 
+                constraints, <literal>optimbase_checkcostfun</literal> checks that the matrix has the 
+                correct shape.
+            </para>
+            <para>
+                This function requires at least one call to the cost function to make the necessary checks.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Example</title>
+            <programlisting role="example">
+                <![CDATA[ 
     function [ y , index ] = rosenbrock ( x , index )
         y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
     endfunction
@@ -65,20 +65,20 @@
     opt = optimbase_destroy(opt);
 
  ]]>
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="optimbase_function">optimbase_function</link>
-            </member>
-            <member>
-                <link linkend="optimbase_configure">optimbase_configure</link>
-            </member>
-            <member>
-                <link linkend="optimbase_new">optimbase_new </link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="optimbase_function">optimbase_function</link>
+                </member>
+                <member>
+                    <link linkend="optimbase_configure">optimbase_configure</link>
+                </member>
+                <member>
+                    <link linkend="optimbase_new">optimbase_new </link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

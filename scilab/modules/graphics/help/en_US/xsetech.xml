@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -10,104 +10,104 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xsetech">
-    <refnamediv>
-        <refname>xsetech</refname>
-        <refpurpose>
-            set the sub-window of a graphics window for plotting
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            xsetech(wrect, [frect, logflag])
-            xsetech(wrect=[...], frect=[..], logflag="..", arect=[...])
-            xsetech()
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>wrect</term>
-                <listitem>
-                    <para>
-                        a vector of size 4, defining the sub-window to use.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>frect</term>
-                <listitem>
-                    <para>
-                        a vector of size 4.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>logflag</term>
-                <listitem>
-                    <para>
-                        a string of size 2 <literal>"xy"</literal>, where
-                        <literal>x</literal> and <literal>y</literal> can be
-                        <literal>"n"</literal> or <literal>"l"</literal>.
-                        <literal>"n"</literal> stands for  normal and "l" stands
-                        for logscale. <literal>x</literal> stands for the x-axis
-                        and <literal>y</literal> stands for the y-axis.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>arect</term>
-                <listitem>
-                    <para>a vector of size 4.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <function>xsetech</function> is mainly used to set the sub-window of
-            the graphics window which will be used for plotting. The sub-window
-            is specified with the parameter <literal>wrect=[x,y,w,h]</literal>
-            (upper-left point, width, height). The values in
-            <varname>wrect</varname> are specified using proportion of
-            the width or height of the current graphic window. For instance
-            <literal>wrect=[0, 0, 1, 1]</literal> means that the whole graphics
-            window will be used, and <literal>wrect=[0.5, 0, 0.5, 1]</literal>
-            means that the graphics region will be the right half of the
-            graphics window.
-        </para>
-        <para>
-            <function>xsetech</function> also set the current graphics scales
-            for 2D plotting and can be used in conjunction with graphics
-            routines which request the current graphics scale (for instance
-            <literal>strf="x0z"</literal> or <literal>frameflag=0</literal> in
-            <function>plot2d</function>).
-        </para>
-        <para>
-            <literal>frect=[xmin, ymin, xmax, ymax]</literal> is used to set the
-            graphics scale and is just like the <varname>rect</varname> argument
-            of <function>plot2d</function>. If <varname>frect</varname> is not
-            given the current value of the graphic scale remains unchanged. the
-            default value of <varname>rect</varname> is <literal>[0,0,1,1]</literal>
-            (at window creation, when switching back to default value with
-            <code>xset('default')</code> or when clearing graphic recorded
-            events <code>clf()</code>).
-        </para>
-        <para>
-            <literal>arect=[x_left, x_right,y_up,y_down]</literal> is used to
-            set the graphic frame inside the sub-window. The graphic frame is
-            specified (like <varname>wrect</varname>) using proportion of the
-            width or height of the current graphic sub-window.  Default value is
-            <literal>1/8*[1,1,1,1]</literal>. If <varname>arect</varname> is not
-            given, current value remains unchanged.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xsetech">
+        <refnamediv>
+            <refname>xsetech</refname>
+            <refpurpose>
+                set the sub-window of a graphics window for plotting
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                xsetech(wrect, [frect, logflag])
+                xsetech(wrect=[...], frect=[..], logflag="..", arect=[...])
+                xsetech()
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>wrect</term>
+                    <listitem>
+                        <para>
+                            a vector of size 4, defining the sub-window to use.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>frect</term>
+                    <listitem>
+                        <para>
+                            a vector of size 4.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>logflag</term>
+                    <listitem>
+                        <para>
+                            a string of size 2 <literal>"xy"</literal>, where
+                            <literal>x</literal> and <literal>y</literal> can be
+                            <literal>"n"</literal> or <literal>"l"</literal>.
+                            <literal>"n"</literal> stands for  normal and "l" stands
+                            for logscale. <literal>x</literal> stands for the x-axis
+                            and <literal>y</literal> stands for the y-axis.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>arect</term>
+                    <listitem>
+                        <para>a vector of size 4.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <function>xsetech</function> is mainly used to set the sub-window of
+                the graphics window which will be used for plotting. The sub-window
+                is specified with the parameter <literal>wrect=[x,y,w,h]</literal>
+                (upper-left point, width, height). The values in
+                <varname>wrect</varname> are specified using proportion of
+                the width or height of the current graphic window. For instance
+                <literal>wrect=[0, 0, 1, 1]</literal> means that the whole graphics
+                window will be used, and <literal>wrect=[0.5, 0, 0.5, 1]</literal>
+                means that the graphics region will be the right half of the
+                graphics window.
+            </para>
+            <para>
+                <function>xsetech</function> also set the current graphics scales
+                for 2D plotting and can be used in conjunction with graphics
+                routines which request the current graphics scale (for instance
+                <literal>strf="x0z"</literal> or <literal>frameflag=0</literal> in
+                <function>plot2d</function>).
+            </para>
+            <para>
+                <literal>frect=[xmin, ymin, xmax, ymax]</literal> is used to set the
+                graphics scale and is just like the <varname>rect</varname> argument
+                of <function>plot2d</function>. If <varname>frect</varname> is not
+                given the current value of the graphic scale remains unchanged. the
+                default value of <varname>rect</varname> is <literal>[0,0,1,1]</literal>
+                (at window creation, when switching back to default value with
+                <code>xset('default')</code> or when clearing graphic recorded
+                events <code>clf()</code>).
+            </para>
+            <para>
+                <literal>arect=[x_left, x_right,y_up,y_down]</literal> is used to
+                set the graphic frame inside the sub-window. The graphic frame is
+                specified (like <varname>wrect</varname>) using proportion of the
+                width or height of the current graphic sub-window.  Default value is
+                <literal>1/8*[1,1,1,1]</literal>. If <varname>arect</varname> is not
+                given, current value remains unchanged.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // To get a graphical explanation of xsetech parameters enter:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
 
@@ -124,7 +124,7 @@ xsetech([0,0.5,1.0,0.5])
 // and we change it with the use of the rect argument in plot2d 
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+            <programlisting role="example"><![CDATA[ 
 // Four plots on a single graphics window 
 clf()
 xset("font",2,0)
@@ -139,55 +139,55 @@ histplot()
 // back to default values for the sub-window
 xsetech([0,0,1,1])
  ]]></programlisting>
-        <scilab:image>
-            xset("font",2,0)
-            xsetech([0,0,0.5,0.5]);
-            plot3d()
-            xsetech([0.5,0,0.5,0.5]);
-            plot2d()
-            xsetech([0.5,0.5,0.5,0.5]);
-            grayplot()
-            xsetech([0,0.5,0.5,0.5]);
-            histplot()
-            xsetech([0,0,1,1])
-        </scilab:image>
-        
-        <programlisting role="example"><![CDATA[ 
+            <scilab:image>
+                xset("font",2,0)
+                xsetech([0,0,0.5,0.5]);
+                plot3d()
+                xsetech([0.5,0,0.5,0.5]);
+                plot2d()
+                xsetech([0.5,0.5,0.5,0.5]);
+                grayplot()
+                xsetech([0,0.5,0.5,0.5]);
+                histplot()
+                xsetech([0,0,1,1])
+            </scilab:image>
+            
+            <programlisting role="example"><![CDATA[ 
 // One plot with changed arect 
 clf()
 xsetech(arect=[0,0,0,0]) 
 x=1:0.1:10;plot2d(x',sin(x)')
  ]]></programlisting>
-        <scilab:image>
-            xsetech(arect=[0,0,0,0]) 
-            x=1:0.1:10;plot2d(x',sin(x)')
-        </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+            <scilab:image>
+                xsetech(arect=[0,0,0,0]) 
+                x=1:0.1:10;plot2d(x',sin(x)')
+            </scilab:image>
+            <programlisting role="example"><![CDATA[ 
 clf()
 xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')
 clf()
  ]]></programlisting>
-        <scilab:image>
-            xsetech(arect=[1/8,1/8,1/16,1/4])
-            x=1:0.1:10;plot2d(x',sin(x)')
-        </scilab:image>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="xgetech">xgetech</link>
-            </member>
-            <member>
-                <link linkend="subplot">subplot</link>
-            </member>
-            <member>
-                <link linkend="isoview">isoview</link>
-            </member>
-            <member>
-                <link linkend="square">square</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            <scilab:image>
+                xsetech(arect=[1/8,1/8,1/16,1/4])
+                x=1:0.1:10;plot2d(x',sin(x)')
+            </scilab:image>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="xgetech">xgetech</link>
+                </member>
+                <member>
+                    <link linkend="subplot">subplot</link>
+                </member>
+                <member>
+                    <link linkend="isoview">isoview</link>
+                </member>
+                <member>
+                    <link linkend="square">square</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

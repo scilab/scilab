@@ -69,9 +69,13 @@ SCICOS_BLOCKS_IMPEXP void sum(int *flag, int *nevprt, double *t, double xd[],
             double gain;
 
             if (k < *nrpar)
+            {
                 gain = rpar[k];
+            }
             else
+            {
                 gain = 1.0;
+            }
 
             y[i] = y[i] + u[i] * gain;
         }

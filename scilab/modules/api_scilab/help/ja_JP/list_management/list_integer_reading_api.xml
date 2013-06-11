@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+        <?xml version="1.0" encoding="utf-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,222 +11,222 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_integer_reading_API" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_integer_reading_API" xml:lang="ja">
         
-        <refname>整数の読み込み (Scilab ゲートウェイ)</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            リスト中の整数行列を読み込む方法.
+            <refname>整数の読み込み (Scilab ゲートウェイ)</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <para>入力引数プロファイル:</para>
-        
-        <para>符号あり整数 :</para>
-        
-        <synopsis>SciErr getMatrixOfInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)</synopsis>
-        
-        <synopsis>SciErr getMatrixOfInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)</synopsis>
-        
-        <synopsis>SciErr getMatrixOfInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)</synopsis>
-        
-        <para>符号無し整数 :</para>
-        
-        <synopsis>SciErr getMatrixOfUnsignedInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)</synopsis>
-        
-        <synopsis>SciErr getMatrixOfUnsignedInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)</synopsis>
-        
-        <synopsis>SciErr getMatrixOfUnsignedInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)</synopsis>
-        
-        <para>名前指定変数プロファイル:</para>
-        
-        <para>符号あり整数 :</para>
-        
-        <synopsis>SciErr readMatrixOfIntger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData)</synopsis>
-        
-        <synopsis>SciErr readMatrixOfIntger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData)</synopsis>
-        
-        <synopsis>SciErr readMatrixOfIntger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData)</synopsis>
-        
-        <para>符号無し整数 :</para>
-        
-        <synopsis>SciErr readMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData)</synopsis>
-        
-        <synopsis>SciErr readMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData)</synopsis>
-        
-        <synopsis>SciErr readMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData)</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+            <refpurpose>
+                
+                リスト中の整数行列を読み込む方法.
+                
+            </refpurpose>
             
-            <varlistentry>
-                
-                <term>_pvCtx</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        Scilab環境ポインタ, api_scilab.hで定義された"pvApiCtx"で指定.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+        </refnamediv>
+        
+        <refsynopsisdiv>
             
-            <varlistentry>
-                
-                <term>_piParent</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        新規要素の親のアドレス.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <title>呼び出し手順</title>
             
-            <varlistentry>
-                
-                <term>_pstName</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        "名前指定" 関数の変数名.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <para>入力引数プロファイル:</para>
             
-            <varlistentry>
-                
-                <term>_iItemPos</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        リストにおける新規要素の位置.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <para>符号あり整数 :</para>
             
-            <varlistentry>
-                
-                <term>_piRows</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        返される変数の行数.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <synopsis>SciErr getMatrixOfInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)</synopsis>
             
-            <varlistentry>
-                
-                <term>_piCols</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        返される変数の列数.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <synopsis>SciErr getMatrixOfInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)</synopsis>
             
-            <varlistentry>
-                
-                <term>_pcData, _pucData, _psData, _pusData, _piData, _puiData</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        返されるデータ配列 (大きさ: _iRows * _iCols)のアドレス.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <synopsis>SciErr getMatrixOfInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)</synopsis>
             
-            <varlistentry>
-                
-                <term>SciErr</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        エラーメッセージの履歴と最初のエラー番号が保存されるエラー構造体.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <para>符号無し整数 :</para>
             
-        </variablelist>
+            <synopsis>SciErr getMatrixOfUnsignedInteger8InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)</synopsis>
+            
+            <synopsis>SciErr getMatrixOfUnsignedInteger16InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)</synopsis>
+            
+            <synopsis>SciErr getMatrixOfUnsignedInteger32InList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)</synopsis>
+            
+            <para>名前指定変数プロファイル:</para>
+            
+            <para>符号あり整数 :</para>
+            
+            <synopsis>SciErr readMatrixOfIntger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData)</synopsis>
+            
+            <synopsis>SciErr readMatrixOfIntger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData)</synopsis>
+            
+            <synopsis>SciErr readMatrixOfIntger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData)</synopsis>
+            
+            <para>符号無し整数 :</para>
+            
+            <synopsis>SciErr readMatrixOfUnsignedInteger8InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char* _pucData)</synopsis>
+            
+            <synopsis>SciErr readMatrixOfUnsignedInteger16InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short* _pusData)</synopsis>
+            
+            <synopsis>SciErr readMatrixOfUnsignedInteger32InNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int* _puiData)</synopsis>
+            
+        </refsynopsisdiv>
         
-    </refsection>
-    
-    <refsection>
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
+                    
+                    <term>_pvCtx</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            Scilab環境ポインタ, api_scilab.hで定義された"pvApiCtx"で指定.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>_piParent</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            新規要素の親のアドレス.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>_pstName</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            "名前指定" 関数の変数名.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>_iItemPos</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            リストにおける新規要素の位置.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>_piRows</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            返される変数の行数.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>_piCols</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            返される変数の列数.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>_pcData, _pucData, _psData, _pusData, _piData, _puiData</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            返されるデータ配列 (大きさ: _iRows * _iCols)のアドレス.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>SciErr</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            エラーメッセージの履歴と最初のエラー番号が保存されるエラー構造体.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
+            
+        </refsection>
         
-        <title>説明</title>
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>このヘルプはリスト中の整数行列を読み込む方法を説明します.</para>
+            
+        </refsection>
         
-        <para>このヘルプはリスト中の整数行列を読み込む方法を説明します.</para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
-        
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
-        
-        <!--Lib_name: common_read-->
-        
-        <!--Func_list: common_read-->
-        
-        <title>ゲートウェイソース</title>
-        
-        <programlisting role="code_gateway"><![CDATA[ 
+        <refsection>
+            
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
+            
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
+            
+            <!--Lib_name: common_read-->
+            
+            <!--Func_list: common_read-->
+            
+            <title>ゲートウェイソース</title>
+            
+            <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 static int iTab = 0;
@@ -818,14 +818,14 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	return 0;
 }
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>Scilab テストスクリプト</title>
-        
-        <programlisting role="code_scilab"><![CDATA[ 
+        <refsection>
+            
+            <title>Scilab テストスクリプト</title>
+            
+            <programlisting role="code_scilab"><![CDATA[ 
 function read_all()
 d = [1,2,3;4,5,6;7,8,9];common_read(d);
 s=poly(0,"x");p=1+s+2*s^2;p = [(p * 2),(p * s + 3);(p * 2 * s ** 2 - 6),(12 - 4 * p * (- s) ** 2)];common_read(p);
@@ -845,8 +845,8 @@ common_read(l)
 endfunction
 read_all;
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

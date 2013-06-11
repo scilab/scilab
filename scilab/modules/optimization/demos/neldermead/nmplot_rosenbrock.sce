@@ -12,7 +12,7 @@
 
 function demo_nmplot_rosenvar()
 
-    filename = 'nmplot_rosenbrock.sce';
+    filename = "nmplot_rosenbrock.sce";
     dname = get_absolute_file_path(filename);
     mprintf("Illustrates the Nelder-Mead algorithm on Rosenbrock test case.\n");
     mprintf("Defining Rosenbrock function...\n");
@@ -50,11 +50,11 @@ function demo_nmplot_rosenvar()
     //
     // Plot the contours of the cost function and the simplex history
     mprintf("Plotting contour (please wait)...\n");
-    xmin = -2.0; 
-    xmax = 2.0 ; 
-    ymin = -1.0 ; 
-    ymax = 2.5 ; 
-    nx = 50 ; 
+    xmin = -2.0;
+    xmax = 2.0 ;
+    ymin = -1.0 ;
+    ymax = 2.5 ;
+    nx = 50 ;
     ny = 50;
     xdata=linspace(xmin,xmax,nx);
     ydata=linspace(ymin,ymax,ny);
@@ -75,4 +75,5 @@ demo_nmplot_rosenvar()
 clear demo_nmplot_rosenvar;
 
 
-
+
+

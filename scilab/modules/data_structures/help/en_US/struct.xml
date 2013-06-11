@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,45 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="struct">
-    <refnamediv>
-        <refname>struct</refname>
-        <refpurpose>create a struct</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>field1, field2, ...</term>
-                <listitem>
-                    <para>strings representing the fields names.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>value1, value2, ...</term>
-                <listitem>
-                    <para>
-                        all data type (<literal>double</literal>, <literal>char</literal>, <literal>int</literal>, ...), representing the fields values.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            This function returns a struct with the fields names
-            <varname>fields1</varname>, <varname>field2</varname>, ..., and the fields values
-            corresponding <varname>value1</varname>, <varname>value2</varname>, ...
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="struct">
+        <refnamediv>
+            <refname>struct</refname>
+            <refpurpose>create a struct</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>st = struct(field1, value1, field2, value2, ...)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>field1, field2, ...</term>
+                    <listitem>
+                        <para>strings representing the fields names.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>value1, value2, ...</term>
+                    <listitem>
+                        <para>
+                            all data type (<literal>double</literal>, <literal>char</literal>, <literal>int</literal>, ...), representing the fields values.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                This function returns a struct with the fields names
+                <varname>fields1</varname>, <varname>field2</varname>, ..., and the fields values
+                corresponding <varname>value1</varname>, <varname>value2</varname>, ...
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 //create a struct date
 date_st=struct('day',25,'month' ,'DEC','year',2006)
  
@@ -64,13 +64,13 @@ date_st.day=19;
 //add a new field
 date_st.semaine=32
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="cell">cell</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="cell">cell</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

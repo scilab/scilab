@@ -60,26 +60,26 @@ int NgonPolylineData::getPropertyFromName(int propertyName)
 {
     switch (propertyName)
     {
-    case __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ :
-        return NUM_ELEMENTS_ARRAY;
-    case __GO_DATA_MODEL_X_COORDINATES_SHIFT__ :
-        return X_COORDINATES_SHIFT;
-    case __GO_DATA_MODEL_Y_COORDINATES_SHIFT__ :
-        return Y_COORDINATES_SHIFT;
-    case __GO_DATA_MODEL_Z_COORDINATES_SHIFT__ :
-        return Z_COORDINATES_SHIFT;
-    case __GO_DATA_MODEL_NUM_ELEMENTS__ :
-        return NUM_ELEMENTS;
-    case __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__ :
-        return X_COORDINATES_SHIFT_SET;
-    case __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__ :
-        return Y_COORDINATES_SHIFT_SET;
-    case __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__ :
-        return Z_COORDINATES_SHIFT_SET;
-    case __GO_DATA_MODEL_Z_COORDINATES_SET__ :
-        return Z_COORDINATES_SET;
-    default :
-        return NgonGeneralData::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__ :
+            return NUM_ELEMENTS_ARRAY;
+        case __GO_DATA_MODEL_X_COORDINATES_SHIFT__ :
+            return X_COORDINATES_SHIFT;
+        case __GO_DATA_MODEL_Y_COORDINATES_SHIFT__ :
+            return Y_COORDINATES_SHIFT;
+        case __GO_DATA_MODEL_Z_COORDINATES_SHIFT__ :
+            return Z_COORDINATES_SHIFT;
+        case __GO_DATA_MODEL_NUM_ELEMENTS__ :
+            return NUM_ELEMENTS;
+        case __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__ :
+            return X_COORDINATES_SHIFT_SET;
+        case __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__ :
+            return Y_COORDINATES_SHIFT_SET;
+        case __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__ :
+            return Z_COORDINATES_SHIFT_SET;
+        case __GO_DATA_MODEL_Z_COORDINATES_SET__ :
+            return Z_COORDINATES_SET;
+        default :
+            return NgonGeneralData::getPropertyFromName(propertyName);
     }
 
 }

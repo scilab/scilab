@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Calixte Denizet
  * 
@@ -11,88 +11,88 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="closeEditvar">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="closeEditvar">
         
-        <refname>closeEditvar</refname>
-        
-        <refpurpose>変数エディタを閉じる</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>closeEditvar</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
+        <refnamediv>
             
-            <literal>closeEditvar</literal> は変数エディタを閉じます.
+            <refname>closeEditvar</refname>
             
-        </para>
+            <refpurpose>変数エディタを閉じる</refpurpose>
+            
+        </refnamediv>
         
-    </refsection>
-    
-    <refsection>
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>closeEditvar</synopsis>
+            
+        </refsynopsisdiv>
         
-        <title>例</title>
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
+                
+                <literal>closeEditvar</literal> は変数エディタを閉じます.
+                
+            </para>
+            
+        </refsection>
         
-        <programlisting role="example"><![CDATA[ 
+        <refsection>
+            
+            <title>例</title>
+            
+            <programlisting role="example"><![CDATA[ 
 a=rand(10,10);
 editvar a;
 closeEditvar();
  ]]></programlisting>
-        
-    </refsection>
-    
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
             
-            <member>
-                
-                <link linkend="editvar">editvar</link>
-                
-            </member>
+        </refsection>
+        
+        <refsection role="see also">
             
-        </simplelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>履歴</title>
-        
-        <revhistory>
+            <title>参照</title>
             
-            <revision>
+            <simplelist type="inline">
                 
-                <revnumber>5.4.1</revnumber>
-                
-                <revremark>
+                <member>
                     
-                    関数 <literal>closeEditvar()</literal>が導入されました.
+                    <link linkend="editvar">editvar</link>
                     
-                </revremark>
+                </member>
                 
-            </revision>
+            </simplelist>
             
-        </revhistory>
+        </refsection>
         
-    </refsection>
+        <refsection>
+            
+            <title>履歴</title>
+            
+            <revhistory>
+                
+                <revision>
+                    
+                    <revnumber>5.4.1</revnumber>
+                    
+                    <revremark>
+                        
+                        関数 <literal>closeEditvar()</literal>が導入されました.
+                        
+                    </revremark>
+                    
+                </revision>
+                
+            </revhistory>
+            
+        </refsection>
+        
+        
+        
+    </refentry>
     
-    
-    
-</refentry>
-

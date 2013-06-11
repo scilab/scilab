@@ -25,7 +25,7 @@ public abstract class SuperBlockSelectedAction extends DefaultAction {
 
     /**
      * Default constructor
-     * 
+     *
      * @param scilabGraph
      *            The associated graph
      */
@@ -33,7 +33,7 @@ public abstract class SuperBlockSelectedAction extends DefaultAction {
         super(scilabGraph);
 
         SpecificCellSelectedConstraint c = new SpecificCellSelectedConstraint(
-                SuperBlock.class);
+            SuperBlock.class);
         c.install(this, scilabGraph);
     }
 }

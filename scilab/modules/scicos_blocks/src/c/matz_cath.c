@@ -18,39 +18,39 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matz_cath(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matz_cath(scicos_block *block, int flag)
 {
-	if ((flag==1) || (flag==6))
-	{
-		int mu =GetInPortRows(block,1);
-		double *yr=GetRealOutPortPtrs(block,1);
-		double *yi=GetImagOutPortPtrs(block,1);
+    if ((flag == 1) || (flag == 6))
+    {
+        int mu = GetInPortRows(block, 1);
+        double *yr = GetRealOutPortPtrs(block, 1);
+        double *yi = GetImagOutPortPtrs(block, 1);
 
-		int j = 0;
-		for(j=0;j<mu;j++)
-		{
-			int k=j;
-			int bk = 0;
-			for (bk=1;bk<GetNin(block)+1;bk++) 
-			{
-				double *ur=GetRealInPortPtrs(block,bk);
-				double *ui=GetImagInPortPtrs(block,bk);
-				int nu = GetInPortCols(block,bk);
-				int i = 0;
-				for(i=0;i<nu;i++)
-				{
-					int ij=j+i*mu;
-					yr[k]=ur[ij];
-					yi[k]=ui[ij];
-					k+= mu;
-				}
-			}
-		}
-	}
+        int j = 0;
+        for (j = 0; j < mu; j++)
+        {
+            int k = j;
+            int bk = 0;
+            for (bk = 1; bk < GetNin(block) + 1; bk++)
+            {
+                double *ur = GetRealInPortPtrs(block, bk);
+                double *ui = GetImagInPortPtrs(block, bk);
+                int nu = GetInPortCols(block, bk);
+                int i = 0;
+                for (i = 0; i < nu; i++)
+                {
+                    int ij = j + i * mu;
+                    yr[k] = ur[ij];
+                    yi[k] = ui[ij];
+                    k += mu;
+                }
+            }
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

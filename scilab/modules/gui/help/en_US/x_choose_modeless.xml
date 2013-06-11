@@ -1,73 +1,73 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="x_choose_modeless">
-    <refnamediv>
-        <refname>x_choose_modeless</refname>
-        <refpurpose>interactive window choice (not modal dialog)</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[num]=x_choose_modeless(items,title [,button])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>items</term>
-                <listitem>
-                    <para>column vector of string,  items to choose</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>title</term>
-                <listitem>
-                    <para>column vector of string, comment for the dialog</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>button</term>
-                <listitem>
-                    <para> string, text to appear in the button. Default value is 'Cancel'</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>num</term>
-                <listitem>
-                    <para>integer, chosen item number or 0 if dialog resumed with "Cancel" button</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Returns in <literal>num</literal> the number of the chosen item.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="x_choose_modeless">
+        <refnamediv>
+            <refname>x_choose_modeless</refname>
+            <refpurpose>interactive window choice (not modal dialog)</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[num]=x_choose_modeless(items,title [,button])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>items</term>
+                    <listitem>
+                        <para>column vector of string,  items to choose</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>title</term>
+                    <listitem>
+                        <para>column vector of string, comment for the dialog</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>button</term>
+                    <listitem>
+                        <para> string, text to appear in the button. Default value is 'Cancel'</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>num</term>
+                    <listitem>
+                        <para>integer, chosen item number or 0 if dialog resumed with "Cancel" button</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Returns in <literal>num</literal> the number of the chosen item.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 n = x_choose_modeless(['item1';'item2';'item3'],['that is a comment';'for the dialog'])
 n = x_choose_modeless(['item1';'item2';'item3'],['that is a comment'],'Return')
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="x_choose">x_choose</link>
-            </member>
-            <member>
-                <link linkend="x_choices">x_choices</link>
-            </member>
-            <member>
-                <link linkend="x_mdialog">x_mdialog</link>
-            </member>
-            <member>
-                <link linkend="getvalue">getvalue</link>
-            </member>
-            <member>
-                <link linkend="unix_g">unix_g</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="x_choose">x_choose</link>
+                </member>
+                <member>
+                    <link linkend="x_choices">x_choices</link>
+                </member>
+                <member>
+                    <link linkend="x_mdialog">x_mdialog</link>
+                </member>
+                <member>
+                    <link linkend="getvalue">getvalue</link>
+                </member>
+                <member>
+                    <link linkend="unix_g">unix_g</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

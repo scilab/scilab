@@ -50,7 +50,7 @@ public class XCosPreview extends JLabel implements XComponent {
         Node root = peer.getFirstChild().getFirstChild();
         NodeList nodeList = root.getChildNodes();
         String portSize = "[";
-        
+
         for (int i = 0 ; i < nodeList.getLength() ; ++i) {
             Node cur = nodeList.item(i);
             portSize = portSize + cur.getNodeName();

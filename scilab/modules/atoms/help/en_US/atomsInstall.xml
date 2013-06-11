@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
  * 
@@ -10,208 +10,208 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsInstall">
-    <refnamediv>
-        <refname>atomsInstall</refname>
-        <refpurpose>Install one or several external modules</refpurpose>
-    </refnamediv>
-    <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
-    <!-- ===================================================================== -->
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            result = atomsInstall(modules[,section])
-            result = atomsInstall(file)
-        </synopsis>
-    </refsynopsisdiv>
-    <!-- ===================================================================== -->
-    <!-- Parameters -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>modules</term>
-                <listitem>
-                    <para>
-                        mx1, mx2 Matrix of strings:
-                    </para>
-                    <informaltable border="1">
-                        <!-- Technical name -->
-                        <tr>
-                            <td>
-                                <emphasis>1st Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Technical name</emphasis>
-                            </td>
-                            <td>
-                                Mandatory
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <!-- Version -->
-                        <tr>
-                            <td>
-                                <emphasis>2nd Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Version</emphasis>
-                            </td>
-                            <td>
-                                Optional
-                            </td>
-                            <td>
-                                If this field is empty or is not present,
-                                the most recent	version is used
-                            </td>
-                        </tr>
-                    </informaltable>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>file</term>
-                <listitem>
-                    <para>
-                        mx1 Matrix of strings:
-                    </para>
-                    <informaltable border="1">
-                        <!-- File-system path -->
-                        <tr>
-                            <td>
-                                <emphasis>1st Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">File-system path</emphasis>
-                            </td>
-                            <td>
-                                Mandatory
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                    </informaltable>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>section</term>
-                <listitem>
-                    <para>
-                        This argument controls where the external module is installed.
-                    </para>
-                    <para>
-                        <literal>section</literal> is a single-string and its value should be :
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <literal>"allusers"</literal>: the external module
-                                is installed for all users of the computer and is located in
-                                SCI/contrib ("allusers zone").
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>"user"</literal>: the external module is only
-                                installed for the current user and is located in SCIHOME/atoms
-                                ("user zone").
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                    <para>
-                        If SCI/contrib is write accessible, "allusers" is the default value.
-                        Otherwise, the default value is "user".
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>result</term>
-                <listitem>
-                    <para>5xn character string matrix:</para>
-                    <informaltable border="1">
-                        <!-- Technical name -->
-                        <tr>
-                            <td>
-                                <emphasis>1st Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Technical name</emphasis>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <!-- Version -->
-                        <tr>
-                            <td>
-                                <emphasis>2nd Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Version</emphasis>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <!-- Section -->
-                        <tr>
-                            <td>
-                                <emphasis>3rd Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Installation section</emphasis>
-                            </td>
-                            <td>
-                                this parameter determines whether the module has been installed
-                                for all users or only for the	current user.
-                            </td>
-                        </tr>
-                        <!-- Installation path -->
-                        <tr>
-                            <td>
-                                <emphasis>4th Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Installation path</emphasis>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <!-- Status -->
-                        <tr>
-                            <td>
-                                <emphasis>5th Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Status</emphasis>
-                            </td>
-                            <td>
-                                "I" stands for "Intentionnaly", "A" stands for "Automatically"
-                            </td>
-                        </tr>
-                    </informaltable>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Description -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>atomsInstall</literal> install one or more external modules.
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Examples -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Examples</title>
-        <para>
-            <emphasis role="strong">Example 1</emphasis>: Installing a module from a repository
-        </para>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsInstall">
+        <refnamediv>
+            <refname>atomsInstall</refname>
+            <refpurpose>Install one or several external modules</refpurpose>
+        </refnamediv>
+        <!-- ===================================================================== -->
+        <!-- Calling Sequence -->
+        <!-- ===================================================================== -->
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                result = atomsInstall(modules[,section])
+                result = atomsInstall(file)
+            </synopsis>
+        </refsynopsisdiv>
+        <!-- ===================================================================== -->
+        <!-- Parameters -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>modules</term>
+                    <listitem>
+                        <para>
+                            mx1, mx2 Matrix of strings:
+                        </para>
+                        <informaltable border="1">
+                            <!-- Technical name -->
+                            <tr>
+                                <td>
+                                    <emphasis>1st Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Technical name</emphasis>
+                                </td>
+                                <td>
+                                    Mandatory
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <!-- Version -->
+                            <tr>
+                                <td>
+                                    <emphasis>2nd Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Version</emphasis>
+                                </td>
+                                <td>
+                                    Optional
+                                </td>
+                                <td>
+                                    If this field is empty or is not present,
+                                    the most recent	version is used
+                                </td>
+                            </tr>
+                        </informaltable>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>file</term>
+                    <listitem>
+                        <para>
+                            mx1 Matrix of strings:
+                        </para>
+                        <informaltable border="1">
+                            <!-- File-system path -->
+                            <tr>
+                                <td>
+                                    <emphasis>1st Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">File-system path</emphasis>
+                                </td>
+                                <td>
+                                    Mandatory
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </informaltable>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>section</term>
+                    <listitem>
+                        <para>
+                            This argument controls where the external module is installed.
+                        </para>
+                        <para>
+                            <literal>section</literal> is a single-string and its value should be :
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>"allusers"</literal>: the external module
+                                    is installed for all users of the computer and is located in
+                                    SCI/contrib ("allusers zone").
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"user"</literal>: the external module is only
+                                    installed for the current user and is located in SCIHOME/atoms
+                                    ("user zone").
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                        <para>
+                            If SCI/contrib is write accessible, "allusers" is the default value.
+                            Otherwise, the default value is "user".
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>result</term>
+                    <listitem>
+                        <para>5xn character string matrix:</para>
+                        <informaltable border="1">
+                            <!-- Technical name -->
+                            <tr>
+                                <td>
+                                    <emphasis>1st Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Technical name</emphasis>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <!-- Version -->
+                            <tr>
+                                <td>
+                                    <emphasis>2nd Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Version</emphasis>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <!-- Section -->
+                            <tr>
+                                <td>
+                                    <emphasis>3rd Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Installation section</emphasis>
+                                </td>
+                                <td>
+                                    this parameter determines whether the module has been installed
+                                    for all users or only for the	current user.
+                                </td>
+                            </tr>
+                            <!-- Installation path -->
+                            <tr>
+                                <td>
+                                    <emphasis>4th Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Installation path</emphasis>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <!-- Status -->
+                            <tr>
+                                <td>
+                                    <emphasis>5th Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Status</emphasis>
+                                </td>
+                                <td>
+                                    "I" stands for "Intentionnaly", "A" stands for "Automatically"
+                                </td>
+                            </tr>
+                        </informaltable>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Description -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>atomsInstall</literal> install one or more external modules.
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Examples -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Examples</title>
+            <para>
+                <emphasis role="strong">Example 1</emphasis>: Installing a module from a repository
+            </para>
+            <programlisting role="example"><![CDATA[
 // Display some additionnal information
 atomsSetConfig("Verbose","True");
 
@@ -247,12 +247,12 @@ atomsRemove(["toolbox_1"; ..
              "toolbox_6"]);
 
 ]]></programlisting>
-        <para>
-            <emphasis role="strong">Example 2</emphasis>: Installing a local module.  As well as
-            installing modules from the central repository, you can also install
-            modules directly from your own machine.
-        </para>
-        <programlisting role="example"><![CDATA[
+            <para>
+                <emphasis role="strong">Example 2</emphasis>: Installing a local module.  As well as
+                installing modules from the central repository, you can also install
+                modules directly from your own machine.
+            </para>
+            <programlisting role="example"><![CDATA[
 // Display some additionnal information
 atomsSetConfig("Verbose","True");
 
@@ -265,25 +265,25 @@ disp( atomsGetInstalled() );
 // Cleaning :)
 atomsRemove("toolbox_7");
 ]]></programlisting>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- See also -->
-    <!-- ===================================================================== -->
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="atomsIsInstalled">atomsIsInstalled</link>
-            </member>
-            <member>
-                <link linkend="atomsGetInstalled">atomsGetInstalled</link>
-            </member>
-            <member>
-                <link linkend="atomsRemove">atomsRemove</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Authors -->
-    <!-- ===================================================================== -->
-</refentry>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- See also -->
+        <!-- ===================================================================== -->
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="atomsIsInstalled">atomsIsInstalled</link>
+                </member>
+                <member>
+                    <link linkend="atomsGetInstalled">atomsGetInstalled</link>
+                </member>
+                <member>
+                    <link linkend="atomsRemove">atomsRemove</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Authors -->
+        <!-- ===================================================================== -->
+    </refentry>

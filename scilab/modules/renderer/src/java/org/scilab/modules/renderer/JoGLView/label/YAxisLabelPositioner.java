@@ -24,26 +24,26 @@ import org.scilab.modules.graphic_objects.axes.Camera;
  */
 public class YAxisLabelPositioner extends AxisLabelPositioner {
 
-        /**
-         * Constructor.
-         */
-        public YAxisLabelPositioner() {
-                super();
-        }
+    /**
+     * Constructor.
+     */
+    public YAxisLabelPositioner() {
+        super();
+    }
 
-        /**
-         * Returns the automatically computed rotation angle.
-         * It is equal to 270 when the parent axes' view mode is set to 2D, 0
-         * in any other case.
-         * @return the rotation angle.
-         */
-        protected double getAutoRotationAngle() {
-                if (parentAxes != null && parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
-                        return 0.0;
-                } else {
-                        return 270.0;
-                }
+    /**
+     * Returns the automatically computed rotation angle.
+     * It is equal to 270 when the parent axes' view mode is set to 2D, 0
+     * in any other case.
+     * @return the rotation angle.
+     */
+    protected double getAutoRotationAngle() {
+        if (parentAxes != null && parentAxes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
+            return 0.0;
+        } else {
+            return 270.0;
         }
+    }
 
 }
 

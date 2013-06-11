@@ -46,7 +46,7 @@ void splashScreen(void)
 
     if (!haveConsoleWindow() && !haveInnosetupMutex())
     {
-        HANDLE hThreadSplashScreen = CreateThread(NULL,0, ThreadSplashScreen, &dwThrdParam, 0, &dwThreadId);
+        HANDLE hThreadSplashScreen = CreateThread(NULL, 0, ThreadSplashScreen, &dwThrdParam, 0, &dwThreadId);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -54,7 +54,7 @@ LRESULT CALLBACK SplashWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPara
 {
     switch (uMsg)
     {
-    case WM_PAINT:
+        case WM_PAINT:
         {
             if (pImage)
             {
@@ -65,7 +65,7 @@ LRESULT CALLBACK SplashWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPara
             return 0;
         }
         break;
-    case WM_DESTROY:
+        case WM_DESTROY:
         {
             if (pImage)
             {
@@ -93,11 +93,17 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
     HINSTANCE hInstanceThisDll = (HINSTANCE)GetModuleHandle("scilab_windows");
 
     ScilabDirectory = getScilabDirectory(TRUE);
-    if (ScilabDirectory == NULL) return 0;
+    if (ScilabDirectory == NULL)
+    {
+        return 0;
+    }
 
     len = strlen(FORMAT_FULLPATH_SPLASH_IMAGE) + strlen(ScilabDirectory) + 1;
     ImageFilename = (char*)MALLOC(sizeof(char) * len);
-    if (ImageFilename == NULL) return 0;
+    if (ImageFilename == NULL)
+    {
+        return 0;
+    }
 
     sprintf(ImageFilename, FORMAT_FULLPATH_SPLASH_IMAGE, ScilabDirectory);
     FREE(ScilabDirectory);
@@ -106,12 +112,18 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
     wImageFilename = to_wide_string(ImageFilename);
     FREE(ImageFilename);
     ImageFilename = NULL;
-    if (wImageFilename == NULL) return 0;
+    if (wImageFilename == NULL)
+    {
+        return 0;
+    }
 
     pImage = Gdiplus::Image::FromFile((const WCHAR *)wImageFilename);
     FREE(wImageFilename);
     wImageFilename = NULL;
-    if (pImage == NULL) return 0;
+    if (pImage == NULL)
+    {
+        return 0;
+    }
 
     WNDCLASS wndcls = {0};
 
@@ -141,34 +153,37 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
     hMonitor = ::MonitorFromPoint(point, MONITOR_DEFAULTTONEAREST);
     if (::GetMonitorInfo(hMonitor, &mi))
     {
-        rcArea.left = (mi.rcMonitor.right + mi.rcMonitor.left - pImage->GetWidth())/2;
-        rcArea.top = (mi.rcMonitor.top + mi.rcMonitor.bottom - pImage->GetHeight())/2;
+        rcArea.left = (mi.rcMonitor.right + mi.rcMonitor.left - pImage->GetWidth()) / 2;
+        rcArea.top = (mi.rcMonitor.top + mi.rcMonitor.bottom - pImage->GetHeight()) / 2;
     }
     else
     {
         SystemParametersInfo(SPI_GETWORKAREA, NULL, &rcArea, NULL);
-        rcArea.left = (rcArea.right + rcArea.left - pImage->GetWidth())/2;
-        rcArea.top = (rcArea.top + rcArea.bottom - pImage->GetHeight())/2;
+        rcArea.left = (rcArea.right + rcArea.left - pImage->GetWidth()) / 2;
+        rcArea.top = (rcArea.top + rcArea.bottom - pImage->GetHeight()) / 2;
     }
 
     HWND hdlg = CreateWindowEx(WS_EX_TOOLWINDOW,
-        SPLASH_WINDOW_CLASSNAME,
-        SPLASH_WINDOW_CLASSNAME,
-        WS_CLIPCHILDREN|WS_POPUP,
-        rcArea.left,
-        rcArea.top,
-        pImage->GetWidth(),
-        pImage->GetHeight(),
-        NULL,
-        NULL,
-        wndcls.hInstance,
-        NULL);
+                               SPLASH_WINDOW_CLASSNAME,
+                               SPLASH_WINDOW_CLASSNAME,
+                               WS_CLIPCHILDREN | WS_POPUP,
+                               rcArea.left,
+                               rcArea.top,
+                               pImage->GetWidth(),
+                               pImage->GetHeight(),
+                               NULL,
+                               NULL,
+                               wndcls.hInstance,
+                               NULL);
 
-    if (hdlg == NULL) return 0;
+    if (hdlg == NULL)
+    {
+        return 0;
+    }
 
     ShowWindow(hdlg, SW_SHOWNORMAL);
     UpdateWindow(hdlg);
-    SetWindowPos(hdlg, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE);
+    SetWindowPos(hdlg, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
 
     while (!stopSplashScreen(20, 1000))
     {
@@ -201,7 +216,7 @@ static BOOL haveConsoleWindow(void)
     char titleMainWindow[MAX_PATH];
     int id = getCurrentScilabId();
 
-    wsprintf(titleMainWindow,"%s (%d)", SCI_VERSION_STRING, id);
+    wsprintf(titleMainWindow, "%s (%d)", SCI_VERSION_STRING, id);
     hWndMainScilab = FindWindow(NULL, titleMainWindow);
 
     if (hWndMainScilab == NULL)
@@ -210,6 +225,6 @@ static BOOL haveConsoleWindow(void)
         hWndMainScilab = FindWindow(NULL, titleMainWindow);
     }
 
-    return (hWndMainScilab == NULL) ? FALSE:TRUE;
+    return (hWndMainScilab == NULL) ? FALSE : TRUE;
 }
 /*--------------------------------------------------------------------------*/

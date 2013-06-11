@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * Compare two diagrams per kind.
- * 
+ *
  * Is used to sort diagram list per distance to the root diagram.
  */
 public final class DiagramComparator implements Comparator<XcosDiagram> {

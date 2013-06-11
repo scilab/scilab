@@ -31,16 +31,16 @@ public class SciNotesAutosave implements ActionListener {
 
     static {
         Scilab.registerFinalHook(new Runnable() {
-                public void run() {
-                    for (File f : toRemove) {
-                        if (f.exists()) {
-                            try {
-                                f.delete();
-                            } catch (Exception e) { }
-                        }
+            public void run() {
+                for (File f : toRemove) {
+                    if (f.exists()) {
+                        try {
+                            f.delete();
+                        } catch (Exception e) { }
                     }
                 }
-            });
+            }
+        });
     }
 
     private Timer timer;

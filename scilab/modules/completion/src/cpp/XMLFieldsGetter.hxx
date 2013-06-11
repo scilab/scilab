@@ -28,60 +28,63 @@ extern "C"
 namespace org_modules_completion
 {
 
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Class to manage the retrievment of the fields name of a XML object
+ */
+class XMLFieldsGetter : FieldsGetter
+{
+
+public :
+
+    virtual const char ** getFieldsName(const std::string & typeName, int * mlist) const;
+
     /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Class to manage the retrievment of the fields name of a XML object
+     * Initialization
      */
-    class XMLFieldsGetter : FieldsGetter
+    static void initializeXML()
     {
+        XMLFieldsGetter * getter = new XMLFieldsGetter();
+        FieldsManager::addFieldsGetter(std::string("XMLDoc"), getter);
+        FieldsManager::addFieldsGetter(std::string("XMLElem"), getter);
+        FieldsManager::addFieldsGetter(std::string("XMLNs"), getter);
+        FieldsManager::addFieldsGetter(std::string("XMLAttr"), getter);
+        FieldsManager::addFieldsGetter(std::string("XMLList"), getter);
+        FieldsManager::addFieldsGetter(std::string("XMLSet"), getter);
+    }
 
-    public :
+private :
 
-        virtual const char ** getFieldsName(const std::string & typeName, int * mlist) const;
+    XMLFieldsGetter() { }
 
-        /**
-         * Initialization
-         */
-        static void initializeXML()
-            {
-                XMLFieldsGetter * getter = new XMLFieldsGetter();
-                FieldsManager::addFieldsGetter(std::string("XMLDoc"), getter);
-                FieldsManager::addFieldsGetter(std::string("XMLElem"), getter);
-                FieldsManager::addFieldsGetter(std::string("XMLNs"), getter);
-                FieldsManager::addFieldsGetter(std::string("XMLAttr"), getter);
-                FieldsManager::addFieldsGetter(std::string("XMLList"), getter);
-                FieldsManager::addFieldsGetter(std::string("XMLSet"), getter);
-            }
+    ~XMLFieldsGetter() { }
 
-    private :
+    /**
+     * Copy a char * array and prepend typeName
+     * @param typeName the type name
+     * @param arr the arry to copy
+     * @return the copy
+     */
+    static inline const char ** copy(const char * typeName, const char ** arr)
+    {
+        int size = 0;
+        for (; arr[size]; size++)
+        {
+            ;
+        }
+        char ** cpy = (char **)MALLOC(sizeof(char *) * (size + 2));
+        for (int i = 0; i < size; i++)
+        {
+            cpy[i + 1] = strdup(arr[i]);
+        }
+        cpy[0] = strdup(typeName);
+        cpy[size + 1] = 0;
 
-        XMLFieldsGetter() { }
-
-        ~XMLFieldsGetter() { }
-
-        /**
-         * Copy a char * array and prepend typeName
-         * @param typeName the type name
-         * @param arr the arry to copy
-         * @return the copy
-         */
-        static inline const char ** copy(const char * typeName, const char ** arr)
-            {
-                int size = 0;
-                for (; arr[size]; size++);
-                char ** cpy = (char **)MALLOC(sizeof(char *) * (size + 2));
-                for (int i = 0; i < size; i++)
-                {
-                    cpy[i + 1] = strdup(arr[i]);
-                }
-                cpy[0] = strdup(typeName);
-                cpy[size + 1] = 0;
-
-                return const_cast<const char **>(cpy);
-            }
-    };
+        return const_cast<const char **>(cpy);
+    }
+};
 }
 
 #endif

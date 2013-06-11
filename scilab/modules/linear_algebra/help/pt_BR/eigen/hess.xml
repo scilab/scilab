@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,82 +10,82 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hess" xml:lang="en">
-    <refnamediv>
-        <refname>hess</refname>
-        <refpurpose>forma de Hessenberg</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
-        <synopsis>H = hess(A)
-            [U,H] = hess(A)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>A</term>
-                <listitem>
-                    <para>matriz quadrada de reais ou complexos </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>H</term>
-                <listitem>
-                    <para>matriz quadrada de reais ou complexos </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>U</term>
-                <listitem>
-                    <para>matriz quadrada ortogonal ou unitária</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            <literal>[U,H] = hess(A)</literal> produz uma matriz unitária
-            <literal>U</literal> e uma matriz de Hessenberg <literal>H</literal> tais
-            que <literal>A = U*H*U'</literal> e <literal>U'*U</literal> = Identidade.
-            Por si só, <literal>hess(A) </literal>retorna <literal>H</literal>.
-        </para>
-        <para>A forma de Hessenberg de uma matriz é zero abaixo da primeira
-            subdiagonal. Se a matriz é simetrica ou Hermitiana, a forma é
-            tridiagonal.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Referências</title>
-        <para>A função hess é baseada nas rotinas Lapack DGEHRD, DORGHR para
-            matrizes de e ZGEHRD, ZORGHR para matrizes de complexos.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hess" xml:lang="en">
+        <refnamediv>
+            <refname>hess</refname>
+            <refpurpose>forma de Hessenberg</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title> Seqüência de Chamamento </title>
+            <synopsis>H = hess(A)
+                [U,H] = hess(A)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>A</term>
+                    <listitem>
+                        <para>matriz quadrada de reais ou complexos </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>H</term>
+                    <listitem>
+                        <para>matriz quadrada de reais ou complexos </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>U</term>
+                    <listitem>
+                        <para>matriz quadrada ortogonal ou unitária</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                <literal>[U,H] = hess(A)</literal> produz uma matriz unitária
+                <literal>U</literal> e uma matriz de Hessenberg <literal>H</literal> tais
+                que <literal>A = U*H*U'</literal> e <literal>U'*U</literal> = Identidade.
+                Por si só, <literal>hess(A) </literal>retorna <literal>H</literal>.
+            </para>
+            <para>A forma de Hessenberg de uma matriz é zero abaixo da primeira
+                subdiagonal. Se a matriz é simetrica ou Hermitiana, a forma é
+                tridiagonal.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Referências</title>
+            <para>A função hess é baseada nas rotinas Lapack DGEHRD, DORGHR para
+                matrizes de e ZGEHRD, ZORGHR para matrizes de complexos.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 A=rand(3,3);[U,H]=hess(A);
 and( abs(U*H*U'-A)<1.d-10 )
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title> Ver Também </title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="qr">qr</link>
-            </member>
-            <member>
-                <link linkend="contr">contr</link>
-            </member>
-            <member>
-                <link linkend="schur">schur</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title/>
-        <para/>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title> Ver Também </title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="qr">qr</link>
+                </member>
+                <member>
+                    <link linkend="contr">contr</link>
+                </member>
+                <member>
+                    <link linkend="schur">schur</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title/>
+            <para/>
+        </refsection>
+    </refentry>

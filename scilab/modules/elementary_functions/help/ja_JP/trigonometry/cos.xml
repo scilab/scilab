@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,56 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="cos" xml:lang="ja">
-    <refnamediv>
-        <refname>cos</refname>
-        <refpurpose>余弦関数</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>[y]=cos(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>引数</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>実数または複素数のベクトル/行列</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            ベクトルまたは行列の場合, <literal>cos(x)</literal> はその要素の
-            余弦です.行列の余弦の場合は<literal>cosm(X)</literal>関数を使用してください.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <scilab:image>
-            x = -%pi*2:.05:%pi*2;
-            plot(x,cos(x))
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="cos" xml:lang="ja">
+        <refnamediv>
+            <refname>cos</refname>
+            <refpurpose>余弦関数</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>[y]=cos(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>引数</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>実数または複素数のベクトル/行列</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                ベクトルまたは行列の場合, <literal>cos(x)</literal> はその要素の
+                余弦です.行列の余弦の場合は<literal>cosm(X)</literal>関数を使用してください.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <scilab:image>
+                x = -%pi*2:.05:%pi*2;
+                plot(x,cos(x))
+            </scilab:image>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 x=[0,1,%i]
 acos(cos(x))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="cosm">cosm</link>
-            </member>
-            <member>
-                <link linkend="acos">acos</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="cosm">cosm</link>
+                </member>
+                <member>
+                    <link linkend="acos">acos</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

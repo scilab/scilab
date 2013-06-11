@@ -291,7 +291,7 @@
                 <term>gamma</term>
                 <listitem>
                     <para>
-                      <literal>Y = grand(m, n, "gam", shape, rate)</literal> génère des nombres aléatoires suivant la loi
+                        <literal>Y = grand(m, n, "gam", shape, rate)</literal> génère des nombres aléatoires suivant la loi
                         gamma de paramètres <literal>shape</literal> (réel &gt; 0) et <literal>scale</literal>
                         (réel &gt; 0). La densité est :
                     </para>

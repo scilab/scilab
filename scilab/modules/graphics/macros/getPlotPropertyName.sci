@@ -3,7 +3,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -18,12 +18,12 @@ function [PName] = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode
         return;
     end
 
-    Table    = ['clipping' 'color'      'foreground' 'linestyle' 'linewidth' 'thickness' 'marker' ..
-    'markstyle' 'markeredgecolor' 'markforeground' 'markerfacecolor'  'markbackground' ..
-    'markersize' 'marksize' 'visible' 'xdata' 'ydata' 'zdata'];
-    TableEQ =  ['clipping' 'foreground' 'foreground' 'linestyle' 'thickness' 'thickness' 'markstyle'..
-    'markstyle'  'markforeground' 'markforeground' 'markbackground' 'markbackground' .. 
-    'marksize'   'marksize' 'visible' 'xdata' 'ydata' 'zdata']; // equivalent Table
+    Table    = ["clipping" "color"      "foreground" "linestyle" "linewidth" "thickness" "marker" ..
+    "markstyle" "markeredgecolor" "markforeground" "markerfacecolor"  "markbackground" ..
+    "markersize" "marksize" "visible" "xdata" "ydata" "zdata"];
+    TableEQ =  ["clipping" "foreground" "foreground" "linestyle" "thickness" "thickness" "markstyle"..
+    "markstyle"  "markforeground" "markforeground" "markbackground" "markbackground" ..
+    "marksize"   "marksize" "visible" "xdata" "ydata" "zdata"]; // equivalent Table
 
     opt1=[];
 
@@ -34,7 +34,7 @@ function [PName] = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode
         PName=[];
         ResetFigureDDM(current_figure, cur_draw_mode);
         return;
-    elseif ( size(k,'*') > 1)
+    elseif ( size(k,"*") > 1)
         if or(find(k==7)) // case PropertyName == 'marker'
             k=7; // set to PropertyName == 'marker' only
         else
@@ -56,7 +56,7 @@ function [PName] = getPlotPropertyName(PropertyName,current_figure,cur_draw_mode
 
     str = part(str,i:length(str));
 
-    if (size(opt1,'*') > 1)
+    if (size(opt1,"*") > 1)
         warning(msprintf(gettext("%s: Wrong size for input argument #%d: Only one property expected.\n"),"getPlotPropertyName",1));
         ResetFigureDDM(current_figure, cur_draw_mode);
         return;

@@ -1,138 +1,138 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="en">
-    <refnamediv>
-        <refname>linear_interpn</refname>
-        <refpurpose>interpolação linear n-dimensional</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>xp1, xp2, .., xpn</term>
-                <listitem>
-                    <para>vetores de reais (ou matrizes) de mesmo tamanho </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x1 ,x2, ..., xn</term>
-                <listitem>
-                    <para> vetores linhas estritamente crescentes (com pelo menos 2
-                        elementos) definindo o grid de interpolação n-dimensional 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>v</term>
-                <listitem>
-                    <para>vetor (caso n=1), matriz (caso n=2) ou hipermatriz (caso n
-                        &gt; 2) com valores da função subjacente interpolada nos pontos do
-                        grid. 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>out_mode</term>
-                <listitem>
-                    <para>(opcional) string definindo a avaliação fora do grid
-                        (extrapolação)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>vp</term>
-                <listitem>
-                    <para>
-                        vetor ou matriz de mesmo tamanho que <literal>xp1, ...,
-                            xpn
-                        </literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            Dado um grid n-dimensional definido pelos n vetores <literal>x1 ,x2,
-                ..., xn
-            </literal>
-            eos valores <literal>v</literal> de uma função (aqui
-            nomeada <emphasis>f</emphasis>) nos pontos do grid : 
-        </para>
-        <programlisting role=""><![CDATA[ 
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="en">
+        <refnamediv>
+            <refname>linear_interpn</refname>
+            <refpurpose>interpolação linear n-dimensional</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>xp1, xp2, .., xpn</term>
+                    <listitem>
+                        <para>vetores de reais (ou matrizes) de mesmo tamanho </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x1 ,x2, ..., xn</term>
+                    <listitem>
+                        <para> vetores linhas estritamente crescentes (com pelo menos 2
+                            elementos) definindo o grid de interpolação n-dimensional 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>v</term>
+                    <listitem>
+                        <para>vetor (caso n=1), matriz (caso n=2) ou hipermatriz (caso n
+                            &gt; 2) com valores da função subjacente interpolada nos pontos do
+                            grid. 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>out_mode</term>
+                    <listitem>
+                        <para>(opcional) string definindo a avaliação fora do grid
+                            (extrapolação)
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>vp</term>
+                    <listitem>
+                        <para>
+                            vetor ou matriz de mesmo tamanho que <literal>xp1, ...,
+                                xpn
+                            </literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                Dado um grid n-dimensional definido pelos n vetores <literal>x1 ,x2,
+                    ..., xn
+                </literal>
+                eos valores <literal>v</literal> de uma função (aqui
+                nomeada <emphasis>f</emphasis>) nos pontos do grid : 
+            </para>
+            <programlisting role=""><![CDATA[ 
 v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
  ]]></programlisting>
-        <para>
-            esta função computa o interpolante linear de <emphasis>f</emphasis>
-            do grid (chamado de s a partir daqui) nos pontos nos quais as coordenadas
-            são definidas pelos vetores (ou matrizes) <literal>xp1, xp2, ...,
-                xpn
-            </literal>
-            :
-        </para>
-        <programlisting role=""><![CDATA[ 
+            <para>
+                esta função computa o interpolante linear de <emphasis>f</emphasis>
+                do grid (chamado de s a partir daqui) nos pontos nos quais as coordenadas
+                são definidas pelos vetores (ou matrizes) <literal>xp1, xp2, ...,
+                    xpn
+                </literal>
+                :
+            </para>
+            <programlisting role=""><![CDATA[ 
 vp(i) = s(xp1(i),xp2(i), ..., xpn(i))
 
 or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) caso xpk sejam matrizes
  ]]></programlisting>
-        <para>
-            O parâmetro <literal>out_mode</literal> ajusta a regra para
-            extrapolação: se notarmos
-            <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> , então
-            <literal>out_mode</literal> define a regra de avaliação quando: 
-        </para>
-        <programlisting role=""><![CDATA[ 
+            <para>
+                O parâmetro <literal>out_mode</literal> ajusta a regra para
+                extrapolação: se notarmos
+                <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> , então
+                <literal>out_mode</literal> define a regra de avaliação quando: 
+            </para>
+            <programlisting role=""><![CDATA[ 
 P(i) está fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
  ]]></programlisting>
-        <para>As escolhas são: </para>
-        <variablelist>
-            <varlistentry>
-                <term>"by_zero"</term>
-                <listitem>
-                    <para>uma extrapolação por zero é feita </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"by_nan"</term>
-                <listitem>
-                    <para>uma extrapolação por NaN </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"C0"</term>
-                <listitem>
-                    <para>a extrapolação é definida como segue: </para>
-                    <programlisting role=""><![CDATA[ 
+            <para>As escolhas são: </para>
+            <variablelist>
+                <varlistentry>
+                    <term>"by_zero"</term>
+                    <listitem>
+                        <para>uma extrapolação por zero é feita </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"by_nan"</term>
+                    <listitem>
+                        <para>uma extrapolação por NaN </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"C0"</term>
+                    <listitem>
+                        <para>a extrapolação é definida como segue: </para>
+                        <programlisting role=""><![CDATA[ 
 s(P) = s(proj(P)) onde  proj(P) é o ponto mais próximo de P 
                   localizado na fronteira do grid.
  ]]></programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"natural"</term>
-                <listitem>
-                    <para>a extrapolação é feita usando o remendo n-linear mais próximo
-                        do ponto.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"periodic"</term>
-                <listitem>
-                    <para>
-                        <literal>s</literal> é estendido por periodicidade.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"natural"</term>
+                    <listitem>
+                        <para>a extrapolação é feita usando o remendo n-linear mais próximo
+                            do ponto.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"periodic"</term>
+                    <listitem>
+                        <para>
+                            <literal>s</literal> é estendido por periodicidade.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Exemplos </title>
+            <programlisting role="example"><![CDATA[ 
 // exemplo 1 : interpolação linear 1d
 x = linspace(0,2*%pi,11);
 y = sin(x);
@@ -232,22 +232,22 @@ plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("Interpolação trilinear de"+func)
 show_window()
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="interpln">interpln</link>
-            </member>
-            <member>
-                <link linkend="splin">splin</link>
-            </member>
-            <member>
-                <link linkend="splin2d">splin2d</link>
-            </member>
-            <member>
-                <link linkend="splin3d">splin3d</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="interpln">interpln</link>
+                </member>
+                <member>
+                    <link linkend="splin">splin</link>
+                </member>
+                <member>
+                    <link linkend="splin2d">splin2d</link>
+                </member>
+                <member>
+                    <link linkend="splin3d">splin3d</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

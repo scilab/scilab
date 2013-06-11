@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,104 +11,104 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="en">
-    <refnamediv>
-        <refname>intg</refname>
-        <refpurpose>definite integral</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>a, b</term>
-                <listitem>
-                    <para>real numbers.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>f</term>
-                <listitem>
-                    <para>external (function or list or string).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ea, er</term>
-                <listitem>
-                    <para>real numbers.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ea</term>
-                <listitem>
-                    <para>absolute error required on the result. Default value:
-                        1.d-14.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>er</term>
-                <listitem>
-                    <para>relative error required on the result. Default value:
-                        1.d-8.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>err</term>
-                <listitem>
-                    <para>estimated absolute error on the result.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>intg(a,b,f)</literal> evaluates the definite integral from
-            <literal>a</literal> to <literal>b</literal> of <literal>f(t)dt</literal>.
-            The function <literal>f(t)</literal> should be continuous.
-        </para>
-        <para>The evaluation hopefully satisfies following claim for accuracy:
-            <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> where
-            <literal>I</literal> stands for the exact value of the integral.
-        </para>
-        <para>
-            <literal>f</literal> is an external :
-        </para>
-        <para>
-            If <literal>f</literal> is function its definition must be as
-            follows <literal> y = f(t) </literal>
-        </para>
-        <para>
-            If <literal>f</literal> is a list the list must be as follows:
-            <literal> list(f,x1,x2,...)</literal> where <literal>f</literal> is a
-            function with calling sequence <literal>f(t,x1,x2,...)</literal>.
-        </para>
-        <para>
-            If <literal>f</literal> is a string it refers to the name of a
-            Fortran function or a C prodedure with a given calling sequence:
-        </para>
-        <para>
-            In the fortran case the calling sequence should be <literal>double
-                precision function f(x)
-            </literal>
-            where <literal>x</literal> is also a
-            double precision number.
-        </para>
-        <para>
-            In the C case the calling sequence should be <literal>double
-                f(double *x)
-            </literal>
-            .
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="en">
+        <refnamediv>
+            <refname>intg</refname>
+            <refpurpose>definite integral</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>a, b</term>
+                    <listitem>
+                        <para>real numbers.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>f</term>
+                    <listitem>
+                        <para>external (function or list or string).</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ea, er</term>
+                    <listitem>
+                        <para>real numbers.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ea</term>
+                    <listitem>
+                        <para>absolute error required on the result. Default value:
+                            1.d-14.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>er</term>
+                    <listitem>
+                        <para>relative error required on the result. Default value:
+                            1.d-8.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>err</term>
+                    <listitem>
+                        <para>estimated absolute error on the result.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>intg(a,b,f)</literal> evaluates the definite integral from
+                <literal>a</literal> to <literal>b</literal> of <literal>f(t)dt</literal>.
+                The function <literal>f(t)</literal> should be continuous.
+            </para>
+            <para>The evaluation hopefully satisfies following claim for accuracy:
+                <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> where
+                <literal>I</literal> stands for the exact value of the integral.
+            </para>
+            <para>
+                <literal>f</literal> is an external :
+            </para>
+            <para>
+                If <literal>f</literal> is function its definition must be as
+                follows <literal> y = f(t) </literal>
+            </para>
+            <para>
+                If <literal>f</literal> is a list the list must be as follows:
+                <literal> list(f,x1,x2,...)</literal> where <literal>f</literal> is a
+                function with calling sequence <literal>f(t,x1,x2,...)</literal>.
+            </para>
+            <para>
+                If <literal>f</literal> is a string it refers to the name of a
+                Fortran function or a C prodedure with a given calling sequence:
+            </para>
+            <para>
+                In the fortran case the calling sequence should be <literal>double
+                    precision function f(x)
+                </literal>
+                where <literal>x</literal> is also a
+                double precision number.
+            </para>
+            <para>
+                In the C case the calling sequence should be <literal>double
+                    f(double *x)
+                </literal>
+                .
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // Function written in the Scilab language
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
@@ -163,32 +163,32 @@ link(l,'cfun','c')
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="intc">intc</link>
-            </member>
-            <member>
-                <link linkend="intl">intl</link>
-            </member>
-            <member>
-                <link linkend="inttrap">inttrap</link>
-            </member>
-            <member>
-                <link linkend="intsplin">intsplin</link>
-            </member>
-            <member>
-                <link linkend="ode">ode</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Used Functions</title>
-        <para>The associated routines can be found in SCI/modules/differential_equations/src/fortran directory
-            :
-        </para>
-        <para>dqag0.f and dqags.f from quadpack</para>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="intc">intc</link>
+                </member>
+                <member>
+                    <link linkend="intl">intl</link>
+                </member>
+                <member>
+                    <link linkend="inttrap">inttrap</link>
+                </member>
+                <member>
+                    <link linkend="intsplin">intsplin</link>
+                </member>
+                <member>
+                    <link linkend="ode">ode</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Used Functions</title>
+            <para>The associated routines can be found in SCI/modules/differential_equations/src/fortran directory
+                :
+            </para>
+            <para>dqag0.f and dqags.f from quadpack</para>
+        </refsection>
+    </refentry>

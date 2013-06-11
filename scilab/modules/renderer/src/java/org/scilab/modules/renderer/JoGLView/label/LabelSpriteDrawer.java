@@ -30,11 +30,11 @@ import org.scilab.modules.renderer.JoGLView.util.TextObjectSpriteDrawer;
  */
 public class LabelSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
 
-     /**
-     * Default constructor.
-     * @param colorMap the color map to use.
-     * @param label the scilab {@see Label} to draw.
-     */
+    /**
+    * Default constructor.
+    * @param colorMap the color map to use.
+    * @param label the scilab {@see Label} to draw.
+    */
     public LabelSpriteDrawer(final ColorMap colorMap, final Label label) {
         super(colorMap, label);
         /* Alignment factor set to left */

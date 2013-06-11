@@ -1,70 +1,70 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getversion" xml:lang="en">
-    <refnamediv>
-        <refname>getversion</refname>
-        <refpurpose>get scilab and modules version information</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>version = getversion()
-            [version, opts] = getversion()
-            version_numbers = getversion('scilab')
-            versioninfo = getversion('scilab', 'string_info')
-            version_numbers = getversion('&lt;module&gt;')
-            versioninfo = getversion('&lt;module&gt;','string_info')
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>version</term>
-                <listitem>
-                    <para>a string</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>versioninfo</term>
-                <listitem>
-                    <para>a string about version</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>version_numbers</term>
-                <listitem>
-                    <para>an integer vector</para>
-                    <para>ver(1) Major version</para>
-                    <para>ver(2) Minor version</para>
-                    <para>ver(3) Maintenance version</para>
-                    <para>ver(4) GIT timestamp</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>opts</term>
-                <listitem>
-                    <para>
-                        a vector of string: <literal>[compiler, architecture,[tk, modelicac, ] release_mode, release_date, release_time]</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>[version, opts] = getversion()</literal> returns in <literal>version</literal> the Scilab version name and in
-            <literal>opts</literal> build options which can be used to determine if
-            scilab has been build with tk or modelicac and gives release date and time.
-        </para>
-        <para> [tk, modelicac, atlas,] are optional. </para>
-        <para> compiler: returns compiler used to build scilab ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)</para>
-        <para> architecture: 'x86' or 'x64'.</para>
-        <para> tk: 'tk' if tcl/tk is enabled.</para>
-        <para> modelicac: 'modelicac' if modelica compiler is distributed with scilab/xcos.</para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getversion" xml:lang="en">
+        <refnamediv>
+            <refname>getversion</refname>
+            <refpurpose>get scilab and modules version information</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>version = getversion()
+                [version, opts] = getversion()
+                version_numbers = getversion('scilab')
+                versioninfo = getversion('scilab', 'string_info')
+                version_numbers = getversion('&lt;module&gt;')
+                versioninfo = getversion('&lt;module&gt;','string_info')
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>version</term>
+                    <listitem>
+                        <para>a string</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>versioninfo</term>
+                    <listitem>
+                        <para>a string about version</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>version_numbers</term>
+                    <listitem>
+                        <para>an integer vector</para>
+                        <para>ver(1) Major version</para>
+                        <para>ver(2) Minor version</para>
+                        <para>ver(3) Maintenance version</para>
+                        <para>ver(4) GIT timestamp</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>opts</term>
+                    <listitem>
+                        <para>
+                            a vector of string: <literal>[compiler, architecture,[tk, modelicac, ] release_mode, release_date, release_time]</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>[version, opts] = getversion()</literal> returns in <literal>version</literal> the Scilab version name and in
+                <literal>opts</literal> build options which can be used to determine if
+                scilab has been build with tk or modelicac and gives release date and time.
+            </para>
+            <para> [tk, modelicac, atlas,] are optional. </para>
+            <para> compiler: returns compiler used to build scilab ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)</para>
+            <para> architecture: 'x86' or 'x64'.</para>
+            <para> tk: 'tk' if tcl/tk is enabled.</para>
+            <para> modelicac: 'modelicac' if modelica compiler is distributed with scilab/xcos.</para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 getversion()
 
 [version, opts] = getversion()
@@ -82,13 +82,13 @@ version = getversion('overloading')
 versionstr = getversion('overloading','string_info')
 
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="getmodules">getmodules</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="getmodules">getmodules</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

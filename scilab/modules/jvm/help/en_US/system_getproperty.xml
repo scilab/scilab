@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,155 +10,155 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="system_getproperty">
-    <refnamediv>
-        <refname>system_getproperty</refname>
-        <refpurpose>gets the system property
-            indicated by a specified key.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>res=system_getproperty(key)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>res</term>
-                <listitem>
-                    <para>a string value</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>key</term>
-                <listitem>
-                    <para>a string</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>gets the system property indicated by a specified key.</para>
-        <informaltable border="1">
-            <tr>
-                <td>java.version</td>
-                <td>Java Runtime Environment version</td>
-            </tr>
-            <tr>
-                <td>java.vendor</td>
-                <td>Java Runtime Environment vendor</td>
-            </tr>
-            <tr>
-                <td>java.vendor.url</td>
-                <td>Java vendor URL</td>
-            </tr>
-            <tr>
-                <td>java.home</td>
-                <td>Java installation directory</td>
-            </tr>
-            <tr>
-                <td>java.vm.specification.version</td>
-                <td>Java Virtual Machine specification version</td>
-            </tr>
-            <tr>
-                <td>java.vm.specification.vendor</td>
-                <td>Java Virtual Machine specification vendor</td>
-            </tr>
-            <tr>
-                <td>java.vm.specification.name</td>
-                <td>Java Virtual Machine specification name</td>
-            </tr>
-            <tr>
-                <td>java.vm.version</td>
-                <td>Java Virtual Machine implementation version</td>
-            </tr>
-            <tr>
-                <td>java.vm.vendor</td>
-                <td>Java Virtual Machine implementation vendor</td>
-            </tr>
-            <tr>
-                <td>java.vm.name</td>
-                <td>Java Virtual Machine implementation name</td>
-            </tr>
-            <tr>
-                <td>java.specification.version</td>
-                <td>Java Runtime Environment specification version</td>
-            </tr>
-            <tr>
-                <td>java.specification.vendor</td>
-                <td>Java Runtime Environment specification vendor</td>
-            </tr>
-            <tr>
-                <td>java.specification.name</td>
-                <td>Java Runtime Environment specification name</td>
-            </tr>
-            <tr>
-                <td>java.class.version</td>
-                <td>Java class format version number</td>
-            </tr>
-            <tr>
-                <td>java.class.path</td>
-                <td>Java class path</td>
-            </tr>
-            <tr>
-                <td>java.library.path</td>
-                <td>List of paths to search when loading libraries</td>
-            </tr>
-            <tr>
-                <td>java.io.tmpdir</td>
-                <td>Default temp file path</td>
-            </tr>
-            <tr>
-                <td>java.compiler</td>
-                <td>Name of JIT compiler to use</td>
-            </tr>
-            <tr>
-                <td>java.ext.dirs</td>
-                <td>Path of extension directory or directories</td>
-            </tr>
-            <tr>
-                <td>os.name</td>
-                <td>Operating system name</td>
-            </tr>
-            <tr>
-                <td>os.arch</td>
-                <td>Operating system architecture</td>
-            </tr>
-            <tr>
-                <td>os.version</td>
-                <td>Operating system version</td>
-            </tr>
-            <tr>
-                <td>file.separator</td>
-                <td>File separator ("/" on UNIX)</td>
-            </tr>
-            <tr>
-                <td>path.separator</td>
-                <td>Path separator (":" on UNIX)</td>
-            </tr>
-            <tr>
-                <td>line.separator Line separator</td>
-                <td>("\n" on UNIX)</td>
-            </tr>
-            <tr>
-                <td>user.name</td>
-                <td>User's account name</td>
-            </tr>
-            <tr>
-                <td>user.home</td>
-                <td>User's home directory</td>
-            </tr>
-            <tr>
-                <td>user.dir</td>
-                <td>User's current working directory</td>
-            </tr>
-        </informaltable>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="system_getproperty">
+        <refnamediv>
+            <refname>system_getproperty</refname>
+            <refpurpose>gets the system property
+                indicated by a specified key.
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>res=system_getproperty(key)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>res</term>
+                    <listitem>
+                        <para>a string value</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>key</term>
+                    <listitem>
+                        <para>a string</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>gets the system property indicated by a specified key.</para>
+            <informaltable border="1">
+                <tr>
+                    <td>java.version</td>
+                    <td>Java Runtime Environment version</td>
+                </tr>
+                <tr>
+                    <td>java.vendor</td>
+                    <td>Java Runtime Environment vendor</td>
+                </tr>
+                <tr>
+                    <td>java.vendor.url</td>
+                    <td>Java vendor URL</td>
+                </tr>
+                <tr>
+                    <td>java.home</td>
+                    <td>Java installation directory</td>
+                </tr>
+                <tr>
+                    <td>java.vm.specification.version</td>
+                    <td>Java Virtual Machine specification version</td>
+                </tr>
+                <tr>
+                    <td>java.vm.specification.vendor</td>
+                    <td>Java Virtual Machine specification vendor</td>
+                </tr>
+                <tr>
+                    <td>java.vm.specification.name</td>
+                    <td>Java Virtual Machine specification name</td>
+                </tr>
+                <tr>
+                    <td>java.vm.version</td>
+                    <td>Java Virtual Machine implementation version</td>
+                </tr>
+                <tr>
+                    <td>java.vm.vendor</td>
+                    <td>Java Virtual Machine implementation vendor</td>
+                </tr>
+                <tr>
+                    <td>java.vm.name</td>
+                    <td>Java Virtual Machine implementation name</td>
+                </tr>
+                <tr>
+                    <td>java.specification.version</td>
+                    <td>Java Runtime Environment specification version</td>
+                </tr>
+                <tr>
+                    <td>java.specification.vendor</td>
+                    <td>Java Runtime Environment specification vendor</td>
+                </tr>
+                <tr>
+                    <td>java.specification.name</td>
+                    <td>Java Runtime Environment specification name</td>
+                </tr>
+                <tr>
+                    <td>java.class.version</td>
+                    <td>Java class format version number</td>
+                </tr>
+                <tr>
+                    <td>java.class.path</td>
+                    <td>Java class path</td>
+                </tr>
+                <tr>
+                    <td>java.library.path</td>
+                    <td>List of paths to search when loading libraries</td>
+                </tr>
+                <tr>
+                    <td>java.io.tmpdir</td>
+                    <td>Default temp file path</td>
+                </tr>
+                <tr>
+                    <td>java.compiler</td>
+                    <td>Name of JIT compiler to use</td>
+                </tr>
+                <tr>
+                    <td>java.ext.dirs</td>
+                    <td>Path of extension directory or directories</td>
+                </tr>
+                <tr>
+                    <td>os.name</td>
+                    <td>Operating system name</td>
+                </tr>
+                <tr>
+                    <td>os.arch</td>
+                    <td>Operating system architecture</td>
+                </tr>
+                <tr>
+                    <td>os.version</td>
+                    <td>Operating system version</td>
+                </tr>
+                <tr>
+                    <td>file.separator</td>
+                    <td>File separator ("/" on UNIX)</td>
+                </tr>
+                <tr>
+                    <td>path.separator</td>
+                    <td>Path separator (":" on UNIX)</td>
+                </tr>
+                <tr>
+                    <td>line.separator Line separator</td>
+                    <td>("\n" on UNIX)</td>
+                </tr>
+                <tr>
+                    <td>user.name</td>
+                    <td>User's account name</td>
+                </tr>
+                <tr>
+                    <td>user.home</td>
+                    <td>User's home directory</td>
+                </tr>
+                <tr>
+                    <td>user.dir</td>
+                    <td>User's current working directory</td>
+                </tr>
+            </informaltable>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 system_getproperty('awt.toolkit')
 system_getproperty('file.encoding')
 system_getproperty('file.encoding.pkg')
@@ -210,5 +210,5 @@ system_getproperty('user.name')
 system_getproperty('user.timezone')
 system_getproperty('user.variant')
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

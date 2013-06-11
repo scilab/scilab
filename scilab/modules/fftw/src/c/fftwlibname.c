@@ -21,22 +21,26 @@ char *fftwlibname = NULL;
 /*--------------------------------------------------------------------------*/
 void setfftwlibname(char *libname)
 {
-  if (libname)
+    if (libname)
     {
-      if (fftwlibname) {FREE(fftwlibname);fftwlibname = NULL;}
-      fftwlibname = strdup(libname);
+        if (fftwlibname)
+        {
+            FREE(fftwlibname);
+            fftwlibname = NULL;
+        }
+        fftwlibname = strdup(libname);
     }
 }
 /*--------------------------------------------------------------------------*/
 char *getfftwlibname(void)
 {
-  char *name = NULL;
+    char *name = NULL;
 
-  if (fftwlibname)
+    if (fftwlibname)
     {
-      name = strdup(fftwlibname);
+        name = strdup(fftwlibname);
     }
 
-  return name;
+    return name;
 }
 /*--------------------------------------------------------------------------*/

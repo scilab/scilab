@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -11,159 +11,159 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="numdiff" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="numdiff" xml:lang="ja">
         
-        <refname>numdiff</refname>
-        
-        <refpurpose>数値的な傾きの推定</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>g=numdiff(fun,x [,dx])</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+        <refnamediv>
             
-            <varlistentry>
+            <refname>numdiff</refname>
+            
+            <refpurpose>数値的な傾きの推定</refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>g=numdiff(fun,x [,dx])</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
                 
-                <term>fun</term>
-                
-                <listitem>
+                <varlistentry>
                     
-                    <para>外部, Scilab 関数またはリスト. 呼び出し手順については,
+                    <term>fun</term>
+                    
+                    <listitem>
                         
-                        以下を参照ください. また,外部関数に関する詳細については,
+                        <para>外部, Scilab 関数またはリスト. 呼び出し手順については,
+                            
+                            以下を参照ください. また,外部関数に関する詳細については,
+                            
+                            <link linkend="external">external</link>を参照ください.
+                            
+                        </para>
                         
-                        <link linkend="external">external</link>を参照ください.
-                        
-                    </para>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
+                <varlistentry>
+                    
+                    <term>x</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            ベクトル, 関数<literal>fun</literal>の引数
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>dx</term>
+                    
+                    <listitem>
+                        
+                        <para>ベクトル, 有限差分ステップ. デフォルト値は
+                            
+                            <literal>dx=sqrt(%eps)*(1+1d-3*abs(x))</literal>です.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>g</term>
+                    
+                    <listitem>
+                        
+                        <para>ベクトル, 傾きの推定値</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
             
-            <varlistentry>
-                
-                <term>x</term>
-                
-                <listitem>
-                    
-                    <para>
-                        ベクトル, 関数<literal>fun</literal>の引数
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>dx</term>
-                
-                <listitem>
-                    
-                    <para>ベクトル, 有限差分ステップ. デフォルト値は
-                        
-                        <literal>dx=sqrt(%eps)*(1+1d-3*abs(x))</literal>です.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>g</term>
-                
-                <listitem>
-                    
-                    <para>ベクトル, 傾きの推定値</para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-        </variablelist>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
+        <refsection>
             
-            指定した関数 <literal>fun(x)</literal> 
+            <title>説明</title>
             
-            from
+            <para>
+                
+                指定した関数 <literal>fun(x)</literal> 
+                
+                from
+                
+                <literal>R^n</literal> to <literal>R^p</literal> は
+                
+                以下のように有限差分法により行列<literal>g</literal>を計算します.
+                
+            </para>
             
-            <literal>R^n</literal> to <literal>R^p</literal> は
-            
-            以下のように有限差分法により行列<literal>g</literal>を計算します.
-            
-        </para>
-        
-        <programlisting role=""><![CDATA[ 
+            <programlisting role=""><![CDATA[ 
 g(i,j) = (df_i)/(dx_j)
  ]]></programlisting>
+            
+            <para>
+                
+                1次の式を使用します.
+                
+            </para>
+            
+            <para>
+                
+                パラメータがない場合, 関数funの呼び出し手順は
+                
+                <literal>y=fun(x)</literal>となり, numdiff は
+                
+                <literal>g=numdiff(fun,x)</literal>のようにコールすることがでできます.
+                
+                これ以外の場合,関数funの呼び出し手順は,
+                
+                <literal>y=fun(x,param_1,pararm_2,..,param_q)</literal>
+                
+                とする必要があります.
+                
+                パラメータ<literal>param_1,param_2,..param_q</literal>が存在する場合,
+                
+                <literal>numdiff</literal> は以下のようにコールすることができます
+                
+                <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.
+                
+            </para>
+            
+            <para>
+                
+                数値精度,2つのアルゴリズムの比較については,
+                
+                <link linkend="derivative">微分</link>を参照ください.
+                
+            </para>
+            
+        </refsection>
         
-        <para>
+        <refsection>
             
-            1次の式を使用します.
+            <title>例</title>
             
-        </para>
-        
-        <para>
-            
-            パラメータがない場合, 関数funの呼び出し手順は
-            
-            <literal>y=fun(x)</literal>となり, numdiff は
-            
-            <literal>g=numdiff(fun,x)</literal>のようにコールすることがでできます.
-            
-            これ以外の場合,関数funの呼び出し手順は,
-            
-            <literal>y=fun(x,param_1,pararm_2,..,param_q)</literal>
-            
-            とする必要があります.
-            
-            パラメータ<literal>param_1,param_2,..param_q</literal>が存在する場合,
-            
-            <literal>numdiff</literal> は以下のようにコールすることができます
-            
-            <literal>g=numdiff(list(fun,param_1,param_2,..param_q),x)</literal>.
-            
-        </para>
-        
-        <para>
-            
-            数値精度,2つのアルゴリズムの比較については,
-            
-            <link linkend="derivative">微分</link>を参照ください.
-            
-        </para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+            <programlisting role="example"><![CDATA[ 
 // 例1 (パラメータなし)
 // myfun は R^2 から R への関数:   (x(1),x(2)) |--> myfun(x) 
 function f=myfun(x)
@@ -191,36 +191,36 @@ g2=numdiff(list(myfun,a,b,c),x)
 // 正しい傾き, すなわち,x(1)に関する微分は以下のようになります :
 exact2=c*(x+a)^(c-1)
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="optim">optim</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="derivative">derivative</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="external">external</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="optim">optim</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="derivative">derivative</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="external">external</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-</refentry>
-

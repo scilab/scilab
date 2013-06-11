@@ -42,9 +42,9 @@ public final class Struct {
 
     /**
      * Gets the value of the name property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getName() {
         return name;
@@ -52,10 +52,10 @@ public final class Struct {
 
     /**
      * Sets the value of the name property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setName(String value) {
         name = value;
@@ -63,9 +63,9 @@ public final class Struct {
 
     /**
      * Gets the value of the subnodes property.
-     * 
+     *
      * @return possible object is {@link Struct.Subnodes }
-     * 
+     *
      */
     public Struct.Subnodes getSubnodes() {
         return subnodes;
@@ -73,10 +73,10 @@ public final class Struct {
 
     /**
      * Sets the value of the subnodes property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Struct.Subnodes }
-     * 
+     *
      */
     public void setSubnodes(Struct.Subnodes value) {
         subnodes = value;
@@ -89,8 +89,9 @@ public final class Struct {
     @XmlType(name = "", propOrder = { "terminalOrStruct" })
     public static class Subnodes {
 
-        @XmlElements({ @XmlElement(name = "struct", type = Struct.class),
-                @XmlElement(name = "terminal", type = Terminal.class) })
+        @XmlElements( { @XmlElement(name = "struct", type = Struct.class),
+                        @XmlElement(name = "terminal", type = Terminal.class)
+                      })
         private List<Object> terminalOrStruct;
 
         /**
@@ -101,25 +102,25 @@ public final class Struct {
 
         /**
          * Gets the value of the terminalOrStruct property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the terminalOrStruct property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getTerminalOrStruct().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link Struct } {@link Terminal }
-         * 
+         *
          * @return the value of the terminalOrStruct property.
          */
         public List<Object> getTerminalOrStruct() {

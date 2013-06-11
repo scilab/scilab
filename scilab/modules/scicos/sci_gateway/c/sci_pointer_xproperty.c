@@ -34,30 +34,30 @@
 /* variable defined in scicos.c */
 extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
-int sci_pointer_xproperty(char *fname,unsigned long fname_len)
+int sci_pointer_xproperty(char *fname, unsigned long fname_len)
 {
-	int isrun = C2F(cosim).isrun;
+    int isrun = C2F(cosim).isrun;
 
-	if (!isrun) 
-	{
-		Scierror(999,_("%s: scicosim is not running.\n"),fname);
-	}
-	else 
-	{
-		int one = 1;
-		int* pointer_xproperty = NULL;
-		int n_pointer_xproperty = 0;
+    if (!isrun)
+    {
+        Scierror(999, _("%s: scicosim is not running.\n"), fname);
+    }
+    else
+    {
+        int one = 1;
+        int* pointer_xproperty = NULL;
+        int n_pointer_xproperty = 0;
 
-		CheckRhs(-1,0);
-		CheckLhs(1,1);
+        CheckRhs(-1, 0);
+        CheckLhs(1, 1);
 
-		pointer_xproperty = get_pointer_xproperty();
-		n_pointer_xproperty = get_npointer_xproperty();
+        pointer_xproperty = get_pointer_xproperty();
+        n_pointer_xproperty = get_npointer_xproperty();
 
-		CreateVarFromPtr(1,MATRIX_OF_INTEGER_DATATYPE,&n_pointer_xproperty,&one,&pointer_xproperty);
-		LhsVar(1) = 1;
-		PutLhsVar();
-	}
-	return 0;
+        CreateVarFromPtr(1, MATRIX_OF_INTEGER_DATATYPE, &n_pointer_xproperty, &one, &pointer_xproperty);
+        LhsVar(1) = 1;
+        PutLhsVar();
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

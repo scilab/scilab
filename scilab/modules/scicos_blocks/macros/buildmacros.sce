@@ -26,31 +26,31 @@ end
 
 lines(0);
 
-if getos() == 'Windows' then
-  // Add SCI/bin to current PATH env
-  // not defined by default used to find modelica
-  addPathToEnv('PATH', SCI + '/bin');
+if getos() == "Windows" then
+    // Add SCI/bin to current PATH env
+    // not defined by default used to find modelica
+    addPathToEnv("PATH", SCI + "/bin");
 end
 
 CurrentDirScicosBlocks=pwd();
- SubDirsScicosBlocks=["Branching",
-		    "Events",
-		    "Linear",
-		    "Misc",
-		    "NonLinear",
-		    "Sinks",
-		    "Sources",
-		    "MatrixOp",
-		    "Threshold",
-		    "Hydraulics",
-		    "Electrical",
-		    "PDE",
-		    "IntegerOp"];
+SubDirsScicosBlocks=["Branching",
+"Events",
+"Linear",
+"Misc",
+"NonLinear",
+"Sinks",
+"Sources",
+"MatrixOp",
+"Threshold",
+"Hydraulics",
+"Electrical",
+"PDE",
+"IntegerOp"];
 
 Dim=size(SubDirsScicosBlocks);
 for i=1:Dim(1) do
-  chdir(SubDirsScicosBlocks(i));
-  exec('buildmacros.sce');
-  chdir(CurrentDirScicosBlocks);
+    chdir(SubDirsScicosBlocks(i));
+    exec("buildmacros.sce");
+    chdir(CurrentDirScicosBlocks);
 end
 clear Dim CurrentDirScicosBlocks SubDirsScicosBlocks addPathToEnv

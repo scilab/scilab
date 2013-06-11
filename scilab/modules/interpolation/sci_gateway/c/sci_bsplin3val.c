@@ -19,8 +19,8 @@
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern double C2F(db3val)(double *xval, double *yval, double *zval, int *idx, int *idy, int *idz,
-    double *tx, double *ty, double *tz, int *nx, int *ny, int *nz,
-    int *kx, int *ky, int *kz, double *bcoef, double *work);
+                          double *tx, double *ty, double *tz, int *nx, int *ny, int *nz,
+                          int *kx, int *ky, int *kz, double *bcoef, double *work);
 /*--------------------------------------------------------------------------*/
 int intbsplin3val(char *fname, unsigned long fname_len)
 {
@@ -119,9 +119,9 @@ int intbsplin3val(char *fname, unsigned long fname_len)
     GetRhsVar(5, MATRIX_OF_DOUBLE_DATATYPE, &mder, &nder, &lder);
     der = stk(lder);
     if (   mder*nder != 3
-        || der[0] != floor(der[0]) || der[0] < 0.0
-        || der[1] != floor(der[1]) || der[1] < 0.0
-        || der[2] != floor(der[2]) || der[2] < 0.0 )
+            || der[0] != floor(der[0]) || der[0] < 0.0
+            || der[1] != floor(der[1]) || der[1] < 0.0
+            || der[2] != floor(der[2]) || der[2] < 0.0 )
     {
         Scierror(999, _("%s: Wrong values for input argument #%d.\n"), fname, 5);
         return 0;
@@ -147,8 +147,8 @@ int intbsplin3val(char *fname, unsigned long fname_len)
     for (i = 0; i < np; i++)
     {
         fp[i] = C2F(db3val)(&(xp[i]), &(yp[i]), &(zp[i]), &ox, &oy, &oz,
-            stk(ltx), stk(lty), stk(lty), &nx, &ny, &nz,
-            &kx, &ky, &kz, stk(lbcoef), stk(lwork));
+                            stk(ltx), stk(lty), stk(lty), &nx, &ny, &nz,
+                            &kx, &ky, &kz, stk(lbcoef), stk(lwork));
     }
 
     LhsVar(1) = Rhs + 1;

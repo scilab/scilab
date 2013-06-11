@@ -73,7 +73,7 @@ function demo_outputcmd()
     //
     m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
     if(m == 1)
-        filename = 'neldermead_outputcmd.sce';
+        filename = "neldermead_outputcmd.sce";
         dname = get_absolute_file_path(filename);
         editor ( dname + filename, "readonly" );
     end
@@ -86,4 +86,5 @@ clear demo_outputcmd;
 
 
 
-
+
+

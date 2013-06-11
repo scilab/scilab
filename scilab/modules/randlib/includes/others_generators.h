@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 #ifndef SCI_OTHER_GEN
 #define SCI_OTHER_GEN
 
@@ -40,7 +40,7 @@ RANDLIB_IMPEXP void get_state_urand(double g[]);
 /* header for scilab fsultra */
 RANDLIB_IMPEXP unsigned long int fsultra(void);
 RANDLIB_IMPEXP int set_state_fsultra(double g[]);
-RANDLIB_IMPEXP int set_state_fsultra_simple(double g1,double g2);
+RANDLIB_IMPEXP int set_state_fsultra_simple(double g1, double g2);
 RANDLIB_IMPEXP void get_state_fsultra(double g[]);
 
 #endif /** SCI_OTHER_GEN   **/

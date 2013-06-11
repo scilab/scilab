@@ -117,9 +117,9 @@ char **getRangeAsString(const char **pStrsValues,
 }
 // =============================================================================
 complexArray *getRangeAsComplexArray(const complexArray *pComplex,
-        int nbRows, int nbCols,
-        const int *iRange,
-        int *returnedNbRows, int *returnedNbCols)
+                                     int nbRows, int nbCols,
+                                     const int *iRange,
+                                     int *returnedNbRows, int *returnedNbCols)
 {
     if (isValidRange(iRange, SIZE_ARRAY_RANGE))
     {

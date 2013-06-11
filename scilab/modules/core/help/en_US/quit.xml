@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="quit">
-    <refnamediv>
-        <refname>quit</refname>
-        <refpurpose>Terminates Scilab or  decreases the pause level </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>quit</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <literal>quit</literal> command has two different meanings depending on the calling context:
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>
-                    If there is no <literal>pause</literal> active,
-                </term>
-                <listitem>
-                    <para>
-                        then the <literal>quit</literal> command makes Scilab terminate, even
-                        if the command is called inside a function.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    If there is a <literal>pause</literal> active,
-                </term>
-                <listitem>
-                    <para>
-                        then the <literal>quit</literal> command makes abort of the instructions
-                        started at this pause level and terminates the current pause level.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="quit">
+        <refnamediv>
+            <refname>quit</refname>
+            <refpurpose>Terminates Scilab or  decreases the pause level </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>quit</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <literal>quit</literal> command has two different meanings depending on the calling context:
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>
+                        If there is no <literal>pause</literal> active,
+                    </term>
+                    <listitem>
+                        <para>
+                            then the <literal>quit</literal> command makes Scilab terminate, even
+                            if the command is called inside a function.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>
+                        If there is a <literal>pause</literal> active,
+                    </term>
+                    <listitem>
+                        <para>
+                            then the <literal>quit</literal> command makes abort of the instructions
+                            started at this pause level and terminates the current pause level.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // quit Scilab
 function foo(x)
 if x then 
@@ -69,25 +69,25 @@ endfunction
      
 foo1(%t) //enter quit at the following prompt
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="pause">pause</link>
-            </member>
-            <member>
-                <link linkend="break">break</link>
-            </member>
-            <member>
-                <link linkend="abort">abort</link>
-            </member>
-            <member>
-                <link linkend="exit">exit</link>
-            </member>
-            <member>
-                <link linkend="resume">resume</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="pause">pause</link>
+                </member>
+                <member>
+                    <link linkend="break">break</link>
+                </member>
+                <member>
+                    <link linkend="abort">abort</link>
+                </member>
+                <member>
+                    <link linkend="exit">exit</link>
+                </member>
+                <member>
+                    <link linkend="resume">resume</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

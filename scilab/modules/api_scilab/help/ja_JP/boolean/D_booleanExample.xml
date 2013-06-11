@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+        <?xml version="1.0" encoding="utf-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,47 +11,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="booleanExample" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="booleanExample" xml:lang="ja">
         
-        <refname>論理値の例</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            論理値の使用例.
+            <refname>論理値の例</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>この例は論理値を取得し,
+            <refpurpose>
+                
+                論理値の使用例.
+                
+            </refpurpose>
             
-            Scilabに返す手順を示します.
-        </para>
+        </refnamediv>
         
-    </refsection>
-    
-    <refsection>
-        
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/booleanExample.c-->
-        
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/booleanExample.tst-->
-        
-        <!--Lib_name: booleanExample-->
-        
-        <!--Func_list: booleanExample-->
-        
-        <title>ゲートウェイのソース</title>
-        
-        <programlisting role="code_gateway">
+        <refsection>
             
-            <![CDATA[ 
+            <title>説明</title>
+            
+            <para>この例は論理値を取得し,
+                
+                Scilabに返す手順を示します.
+            </para>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/booleanExample.c-->
+            
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/booleanExample.tst-->
+            
+            <!--Lib_name: booleanExample-->
+            
+            <!--Func_list: booleanExample-->
+            
+            <title>ゲートウェイのソース</title>
+            
+            <programlisting role="code_gateway">
+                
+                <![CDATA[ 
 #include "api_scilab.h"
 
 int booleanExample(char *fname,unsigned long fname_len)
@@ -115,16 +115,16 @@ int booleanExample(char *fname,unsigned long fname_len)
     return 0;
 }
  ]]>
+                
+            </programlisting>
             
-        </programlisting>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>Scilabテストスクリプト</title>
-        
-        <programlisting role="code_scilab"><![CDATA[ 
+        <refsection>
+            
+            <title>Scilabテストスクリプト</title>
+            
+            <programlisting role="code_scilab"><![CDATA[ 
 a = %t;
 b = %f;
 c = [a,b;b,a;a,b;b,a];
@@ -135,8 +135,8 @@ booleanExample(b) == b
 booleanExample(c) == c
 booleanExample(d) == d
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

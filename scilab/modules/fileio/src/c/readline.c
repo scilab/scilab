@@ -34,9 +34,9 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
     memset(buf, 0, n);
     strcpy(buf, EMPTYSTR);
 
-    switch(mgetIerr)
+    switch (mgetIerr)
     {
-    case MGETL_NO_ERROR:
+        case MGETL_NO_ERROR:
         {
             if ((lines[0]) && (lines) && (nbLinesReaded == 1))
             {
@@ -59,7 +59,7 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
         }
         break;
 
-    case MGETL_EOF:
+        case MGETL_EOF:
         {
             if (lines)
             {
@@ -89,9 +89,9 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
         }
         break;
 
-    case MGETL_MEMORY_ALLOCATION_ERROR:
-    case MGETL_ERROR:
-    default:
+        case MGETL_MEMORY_ALLOCATION_ERROR:
+        case MGETL_ERROR:
+        default:
         {
             returnedInfo = READNEXTLINE_ERROR_ERROR_UNMANAGED;
         }
@@ -103,8 +103,8 @@ int LineRead(int fd, char buf[], int n, int *cnt, int *nr)
 
     if (lines)
     {
-            freeArrayOfString(lines, nbLinesReaded);
-            lines = NULL;
+        freeArrayOfString(lines, nbLinesReaded);
+        lines = NULL;
     }
 
     return returnedInfo;

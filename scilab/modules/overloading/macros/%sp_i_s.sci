@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function M=%sp_i_s(varargin)
@@ -25,7 +25,7 @@ function M=%sp_i_s(varargin)
             f=getfield(1,M);f(1)="ce"
             setfield(1,f,M)
         end
-    elseif rhs>4 then //more than 2 indices: 
+    elseif rhs>4 then //more than 2 indices:
 
         //insertion of a sparse matrix in a matrix of numbers
         error(msprintf(_("%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"),"sp_i_s"));

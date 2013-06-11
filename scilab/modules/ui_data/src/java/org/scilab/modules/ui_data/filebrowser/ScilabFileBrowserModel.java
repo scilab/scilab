@@ -31,12 +31,14 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
     private static final String[] names = {UiDataMessages.NAME_COLUMN,
                                            UiDataMessages.SIZE_COLUMN,
                                            UiDataMessages.TYPE_COLUMN,
-                                           UiDataMessages.LASTMODIF_COLUMN};
+                                           UiDataMessages.LASTMODIF_COLUMN
+                                          };
 
     private static final Class[] types = {ScilabTreeTableModel.class,
                                           FileSize.class,
                                           String.class,
-                                          Date.class};
+                                          Date.class
+                                         };
 
     private static final FileSize MINUSONE = new FileSize(-1);
 
@@ -190,27 +192,26 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
     public Object getValueAt(Object node, int column) {
         File file = getFile(node);
         try {
-            switch(column) {
-            case 0:
-                return file.getName();
-            case 1:
-                return file.isFile() ? new FileSize((int) file.length()) : MINUSONE;
-            case 2:
-                if (file.isFile()) {
-                    String ext = FileUtils.getFileExtension(file);
-                    if (ext.isEmpty()) {
-                        return UiDataMessages.FILE;
+            switch (column) {
+                case 0:
+                    return file.getName();
+                case 1:
+                    return file.isFile() ? new FileSize((int) file.length()) : MINUSONE;
+                case 2:
+                    if (file.isFile()) {
+                        String ext = FileUtils.getFileExtension(file);
+                        if (ext.isEmpty()) {
+                            return UiDataMessages.FILE;
+                        } else {
+                            return String.format(UiDataMessages.FILETYPE, FileUtils.getFileExtension(file));
+                        }
                     } else {
-                        return String.format(UiDataMessages.FILETYPE, FileUtils.getFileExtension(file));
+                        return UiDataMessages.DIRECTORY;
                     }
-                } else {
-                    return UiDataMessages.DIRECTORY;
-                }
-            case 3:
-                return new Date(file.lastModified());
+                case 3:
+                    return new Date(file.lastModified());
             }
-        }
-        catch (SecurityException se) { }
+        } catch (SecurityException se) { }
 
         return null;
     }

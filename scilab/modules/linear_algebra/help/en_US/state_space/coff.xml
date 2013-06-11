@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,88 +10,88 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="coff">
-    <refnamediv>
-        <refname>coff</refname>
-        <refpurpose>resolvent (cofactor method)  </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[N,d]=coff(M [,var])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>M</term>
-                <listitem>
-                    <para>square real matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>var</term>
-                <listitem>
-                    <para>character string</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>N</term>
-                <listitem>
-                    <para>
-                        polynomial matrix (same size as <literal>M</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>d</term>
-                <listitem>
-                    <para>
-                        polynomial (characteristic polynomial <literal>poly(A,'s')</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>coff</literal> computes R=<literal>(s*eye()-M)^-1</literal> for <literal>M</literal> a real matrix. 
-            R is given by <literal>N/d</literal>.
-        </para>
-        <para>
-            <literal>N</literal> = numerator polynomial matrix.
-        </para>
-        <para>
-            <literal>d</literal> = common denominator.
-        </para>
-        <para>
-            <literal>var</literal> character string ('<literal>s</literal>' if omitted)
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="coff">
+        <refnamediv>
+            <refname>coff</refname>
+            <refpurpose>resolvent (cofactor method)  </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[N,d]=coff(M [,var])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>M</term>
+                    <listitem>
+                        <para>square real matrix</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>var</term>
+                    <listitem>
+                        <para>character string</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>N</term>
+                    <listitem>
+                        <para>
+                            polynomial matrix (same size as <literal>M</literal>)
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>d</term>
+                    <listitem>
+                        <para>
+                            polynomial (characteristic polynomial <literal>poly(A,'s')</literal>)
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>coff</literal> computes R=<literal>(s*eye()-M)^-1</literal> for <literal>M</literal> a real matrix. 
+                R is given by <literal>N/d</literal>.
+            </para>
+            <para>
+                <literal>N</literal> = numerator polynomial matrix.
+            </para>
+            <para>
+                <literal>d</literal> = common denominator.
+            </para>
+            <para>
+                <literal>var</literal> character string ('<literal>s</literal>' if omitted)
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 M=[1,2;0,3];
 [N,d]=coff(M)
 N/d
 inv(%s*eye()-M)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="coffg">coffg</link>
-            </member>
-            <member>
-                <link linkend="ss2tf">ss2tf</link>
-            </member>
-            <member>
-                <link linkend="nlev">nlev</link>
-            </member>
-            <member>
-                <link linkend="poly">poly</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="coffg">coffg</link>
+                </member>
+                <member>
+                    <link linkend="ss2tf">ss2tf</link>
+                </member>
+                <member>
+                    <link linkend="nlev">nlev</link>
+                </member>
+                <member>
+                    <link linkend="poly">poly</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

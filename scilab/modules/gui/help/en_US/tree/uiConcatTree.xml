@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiConcatTree">
-    <refnamediv>
-        <refname>uiConcatTree</refname>
-        <refpurpose>Concatenation of Trees </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>concatenatedTree = uiConcatTree(tree1, tree2)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Input parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>tree1, tree2</term>
-                <listitem>
-                    <para>are of type Tree</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Output parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>concatenatedTree</term>
-                <listitem>
-                    <para>a Tree, which is the concatenation of tree1 and tree2</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Concatenation will return a tree which is the concatenation of the first tree with the second one.
-            The concatenation will took place at the parent level of the first tree.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiConcatTree">
+        <refnamediv>
+            <refname>uiConcatTree</refname>
+            <refpurpose>Concatenation of Trees </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>concatenatedTree = uiConcatTree(tree1, tree2)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Input parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term>tree1, tree2</term>
+                    <listitem>
+                        <para>are of type Tree</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Output parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term>concatenatedTree</term>
+                    <listitem>
+                        <para>a Tree, which is the concatenation of tree1 and tree2</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Concatenation will return a tree which is the concatenation of the first tree with the second one.
+                The concatenation will took place at the parent level of the first tree.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // We should create nodes(subTrees) before creating trees	
 leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')
 leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')
@@ -57,43 +57,43 @@ concatTree = uiConcatTree(myTree1, myTree2)
 
 uiDisplayTree(concatTree)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="uiCreateNode">uiCreateNode</link>
-            </member>
-            <member>
-                <link linkend="uiCreateTree">uiCreateTree</link>
-            </member>
-            <member>
-                <link linkend="uiDisplayTree">uiDisplayTree</link>
-            </member>
-            <member>
-                <link linkend="uiDumpTree">uiDumpTree</link>
-            </member>
-            <member>
-                <link linkend="uiInsertNode">uiInsertNode</link>
-            </member>
-            <member>
-                <link linkend="uiDeleteNode">uiDeleteNode</link>
-            </member>
-            <member>
-                <link linkend="uiEqualsTree">uiEqualsTree</link>
-            </member>
-            <member>
-                <link linkend="uiFindNode">uiFindNode</link>
-            </member>
-            <member>
-                <link linkend="uiGetParentNode">uiGetParentNode</link>
-            </member>
-            <member>
-                <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>
-            </member>
-            <member>
-                <link linkend="uiGetNodePosition">uiGetNodePosition</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="uiCreateNode">uiCreateNode</link>
+                </member>
+                <member>
+                    <link linkend="uiCreateTree">uiCreateTree</link>
+                </member>
+                <member>
+                    <link linkend="uiDisplayTree">uiDisplayTree</link>
+                </member>
+                <member>
+                    <link linkend="uiDumpTree">uiDumpTree</link>
+                </member>
+                <member>
+                    <link linkend="uiInsertNode">uiInsertNode</link>
+                </member>
+                <member>
+                    <link linkend="uiDeleteNode">uiDeleteNode</link>
+                </member>
+                <member>
+                    <link linkend="uiEqualsTree">uiEqualsTree</link>
+                </member>
+                <member>
+                    <link linkend="uiFindNode">uiFindNode</link>
+                </member>
+                <member>
+                    <link linkend="uiGetParentNode">uiGetParentNode</link>
+                </member>
+                <member>
+                    <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>
+                </member>
+                <member>
+                    <link linkend="uiGetNodePosition">uiGetNodePosition</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

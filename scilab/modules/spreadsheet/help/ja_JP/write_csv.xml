@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
  *
@@ -10,98 +10,98 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="write_csv" xml:lang="ja">
-    <refnamediv>
-        <refname>write_csv</refname>
-        <refpurpose>カンマ区切り形式でファイルに書き込む</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>write_csv(M, filename [,sep, dec])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>filename</term>
-                <listitem>
-                    <para>文字列. ファイルパス.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>M</term>
-                <listitem>
-                    <para>文字列の行列.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>sep</term>
-                <listitem>
-                    <para>
-                        列セパレータ記号, デフォルトはタブ文字:<literal> ascii(9)</literal>または<literal>"\t"</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dec</term>
-                <listitem>
-                    <para>
-                        小数点記号  <literal>'.'</literal> または <literal>','</literal>. デフォルトは <literal>','</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>write_csv(M, filename)</literal> は,行列<literal>M</literal>を
-            <literal>filename</literal>にカンマ区切り形式で書き込みます.
-            <literal>filename</literal>入力は文字列です .
-        </para>
-        <para>
-            ファイル <literal>'filename'</literal> がすでに存在する場合, 上書きされます.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example">// 行列をCSVファイル形式で保存
-            A = [1:10] * 0.1;
-            write_csv(A, TMPDIR + '/data.tsv');
-            
-            // テキストとして読み込む
-            mgetl(TMPDIR + '/data.tsv')
-            
-            r = read_csv(TMPDIR + '/data.tsv', ascii(9));
-            r = strsubst(r, ',' , '.');
-            evstr(r)
-            
-            A = [1:10] * 0.1; 
-            write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
-            mgetl(TMPDIR+'/foo.csv')
-            
-            // tab-separated values
-            write_csv(A, TMPDIR + '/datas.tsv');
-            
-            //coma-separated values
-            write_csv(A, TMPDIR + '/data.csv', ';');
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="read_csv">read_csv</link>
-            </member>
-            <member>
-                <link linkend="evstr">evstr</link>
-            </member>
-            <member>
-                <link linkend="mgetl">mgetl</link>
-            </member>
-            <member>
-                <link linkend="format">format</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="write_csv" xml:lang="ja">
+        <refnamediv>
+            <refname>write_csv</refname>
+            <refpurpose>カンマ区切り形式でファイルに書き込む</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>write_csv(M, filename [,sep, dec])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータ</title>
+            <variablelist>
+                <varlistentry>
+                    <term>filename</term>
+                    <listitem>
+                        <para>文字列. ファイルパス.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>M</term>
+                    <listitem>
+                        <para>文字列の行列.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>sep</term>
+                    <listitem>
+                        <para>
+                            列セパレータ記号, デフォルトはタブ文字:<literal> ascii(9)</literal>または<literal>"\t"</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>dec</term>
+                    <listitem>
+                        <para>
+                            小数点記号  <literal>'.'</literal> または <literal>','</literal>. デフォルトは <literal>','</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>write_csv(M, filename)</literal> は,行列<literal>M</literal>を
+                <literal>filename</literal>にカンマ区切り形式で書き込みます.
+                <literal>filename</literal>入力は文字列です .
+            </para>
+            <para>
+                ファイル <literal>'filename'</literal> がすでに存在する場合, 上書きされます.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example">// 行列をCSVファイル形式で保存
+                A = [1:10] * 0.1;
+                write_csv(A, TMPDIR + '/data.tsv');
+                
+                // テキストとして読み込む
+                mgetl(TMPDIR + '/data.tsv')
+                
+                r = read_csv(TMPDIR + '/data.tsv', ascii(9));
+                r = strsubst(r, ',' , '.');
+                evstr(r)
+                
+                A = [1:10] * 0.1; 
+                write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
+                mgetl(TMPDIR+'/foo.csv')
+                
+                // tab-separated values
+                write_csv(A, TMPDIR + '/datas.tsv');
+                
+                //coma-separated values
+                write_csv(A, TMPDIR + '/data.csv', ';');
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="read_csv">read_csv</link>
+                </member>
+                <member>
+                    <link linkend="evstr">evstr</link>
+                </member>
+                <member>
+                    <link linkend="mgetl">mgetl</link>
+                </member>
+                <member>
+                    <link linkend="format">format</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

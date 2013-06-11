@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA -
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -69,110 +69,114 @@ Type j;\
    *res = i;\
 }
 
-int C2F(genimpl2)(int *typ,int *first,int *last,int *res)
+int C2F(genimpl2)(int *typ, int *first, int *last, int *res)
 {
-  static int i;
+    static int i;
 
-  switch (*typ) {
-  case 1:
-    IMPL2(integer1);
-    break;
-  case 2:
-    IMPL2(integer2);
-    break;
-  case 4:
-    IMPL2(int) ;
-    break;
-  case 11:
-    IMPL2(unsigned char);
-    break;
-  case 12:
-    IMPL2(unsigned short);
-    break;
-  case 14:
-    IMPL2(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            IMPL2(integer1);
+            break;
+        case 2:
+            IMPL2(integer2);
+            break;
+        case 4:
+            IMPL2(int) ;
+            break;
+        case 11:
+            IMPL2(unsigned char);
+            break;
+        case 12:
+            IMPL2(unsigned short);
+            break;
+        case 14:
+            IMPL2(unsigned int);
+            break;
+    }
+    return 0;
 }
 
-int C2F(genimpl3)(int *typ,int *first,int *step,int *last,int *res)
+int C2F(genimpl3)(int *typ, int *first, int *step, int *last, int *res)
 {
-  static int i;
+    static int i;
 
-  switch (*typ) {
-  case 1:
-    IMPL3(integer1);
-    break;
-  case 2:
-    IMPL3(integer2);
-    break;
-  case 4:
-    IMPL3(int) ;
-    break;
-  case 11:
-    IMPL3(unsigned char);
-    break;
-  case 12:
-    IMPL3(unsigned short);
-    break;
-  case 14:
-    IMPL3(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            IMPL3(integer1);
+            break;
+        case 2:
+            IMPL3(integer2);
+            break;
+        case 4:
+            IMPL3(int) ;
+            break;
+        case 11:
+            IMPL3(unsigned char);
+            break;
+        case 12:
+            IMPL3(unsigned short);
+            break;
+        case 14:
+            IMPL3(unsigned int);
+            break;
+    }
+    return 0;
 }
 
-int C2F(genimpl2dim)(int *typ,int *first,int *last,int *res)
+int C2F(genimpl2dim)(int *typ, int *first, int *last, int *res)
 {
 
-  switch (*typ) {
-  case 1:
-    IMPL2DIM(integer1);
-    break;
-  case 2:
-    IMPL2DIM(integer2);
-    break;
-  case 4:
-    IMPL2DIM(int) ;
-    break;
-  case 11:
-    IMPL2DIM(unsigned char);
-    break;
-  case 12:
-    IMPL2DIM(unsigned short);
-    break;
-  case 14:
-    IMPL2DIM(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            IMPL2DIM(integer1);
+            break;
+        case 2:
+            IMPL2DIM(integer2);
+            break;
+        case 4:
+            IMPL2DIM(int) ;
+            break;
+        case 11:
+            IMPL2DIM(unsigned char);
+            break;
+        case 12:
+            IMPL2DIM(unsigned short);
+            break;
+        case 14:
+            IMPL2DIM(unsigned int);
+            break;
+    }
+    return 0;
 }
-int C2F(genimpl3dim)(int * typ,int * first,int * step,int * last,int * res)
+int C2F(genimpl3dim)(int * typ, int * first, int * step, int * last, int * res)
 {
-  static int i;
+    static int i;
 
-  switch (*typ) {
-  case 1:
-    IMPL3DIM(integer1);
-    break;
-  case 2:
-    IMPL3DIM(integer2);
-    break;
-  case 4:
-    IMPL3DIM(int) ;
-    break;
-  case 11:
-    IMPL3DIM(unsigned char);
-    break;
-  case 12:
-    IMPL3DIM(unsigned short);
-    break;
-  case 14:
-    IMPL3DIM(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            IMPL3DIM(integer1);
+            break;
+        case 2:
+            IMPL3DIM(integer2);
+            break;
+        case 4:
+            IMPL3DIM(int) ;
+            break;
+        case 11:
+            IMPL3DIM(unsigned char);
+            break;
+        case 12:
+            IMPL3DIM(unsigned short);
+            break;
+        case 14:
+            IMPL3DIM(unsigned int);
+            break;
+    }
+    return 0;
 }
 
 

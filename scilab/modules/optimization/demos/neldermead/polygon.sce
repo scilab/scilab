@@ -18,8 +18,8 @@ function [ f , c , index ] = largesmallpolygon ( x , index )
     //   "Biggest Little Polygon"
     //   http://mathworld.wolfram.com/BiggestLittlePolygon.html
     //
-    //   Audet, C. "Optimisation globale structurée: propriétés, équivalences et résolution." 
-    //   Thèse de Doctorat. Montréal, Canada: École Polytechnique de Montréal, 1997. 
+    //   Audet, C. "Optimisation globale structurée: propriétés, équivalences et résolution."
+    //   Thèse de Doctorat. Montréal, Canada: École Polytechnique de Montréal, 1997.
     //   http://www.gerad.ca/Charles.Audet.
     //
     // Known optimal values are
@@ -30,11 +30,11 @@ function [ f , c , index ] = largesmallpolygon ( x , index )
     // A75 = 0.784769 (Dolan & Moré - SNOPT)
     // A100 = 0.785040 (Dolan & Moré - SNOPT)
     //
-	nv = size(x,"*")/2
+    nv = size(x,"*")/2
     f = []
     c = []
     // nv: number of vertices
-    // x : a (2*nv)-by-1 matrix of doubles, where 
+    // x : a (2*nv)-by-1 matrix of doubles, where
     // r is in [0,1]
     // t is in [0,pi]
     r = x(1:nv)
@@ -87,7 +87,7 @@ function polygon_update(h,r ,t , nv)
 endfunction
 
 function [r,t] = polygon_regular (nv)
-    // Returns a regular polygon with nv vertices 
+    // Returns a regular polygon with nv vertices
     // and unit radius, centered at origin.
     // r : a nv-by-1 matrix of doubles, the radius
     // t : a nv-by-1 matrix of doubles, the angles
@@ -252,9 +252,9 @@ mprintf("Minimum diameter=%f (expected=%f)\n",dmin,radius);
 close(h);
 
 ////////////////////////////////////////////////////////
-// 
+//
 // Solve problem
-// 
+//
 nv = 6;
 rand("seed" , 0);
 [A,r,t] = findlargestpolygon (nv);

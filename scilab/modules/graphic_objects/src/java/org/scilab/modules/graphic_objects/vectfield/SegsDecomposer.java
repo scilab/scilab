@@ -40,7 +40,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 2 vertices per segment plus 3 vertices for the arrow tip */
-        return 5*numberArrows;
+        return 5 * numberArrows;
     }
 
     /**
@@ -71,7 +71,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
         for (int i = 0; i < numberArrows; i++) {
             float[] color = colorMap.getScilabColor(segmentColors[i]);
 
-            bufferOffset = 2*elementsSize*i;
+            bufferOffset = 2 * elementsSize * i;
 
             writeSegmentColors(buffer, elementsSize, bufferOffset, color);
         }
@@ -80,7 +80,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
         for (int i = 0; i < numberArrows; i++) {
             float[] color = colorMap.getScilabColor(segmentColors[i]);
 
-            bufferOffset = 2*elementsSize*numberArrows + 3*elementsSize*i;
+            bufferOffset = 2 * elementsSize * numberArrows + 3 * elementsSize * i;
 
             writeArrowColors(buffer, elementsSize, bufferOffset, color);
         }
@@ -96,7 +96,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 3 indices per arrow */
-        return 3*numberArrows;
+        return 3 * numberArrows;
     }
 
     /**
@@ -118,7 +118,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
             return 0;
         }
 
-        segmentOffset = 2*numberArrows;
+        segmentOffset = 2 * numberArrows;
 
         Double[] xBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_X__);
         Double[] yBase = (Double[]) GraphicController.getController().getProperty(id, __GO_BASE_Y__);
@@ -132,9 +132,9 @@ public class SegsDecomposer extends VectFieldDecomposer {
         double[] direction = new double[3];
 
         for (int i = 0; i < numberArrows; i++) {
-            int tipIndex = segmentOffset + 3*i;
-            int leftIndex = tipIndex +1;
-            int rightIndex = tipIndex +2;
+            int tipIndex = segmentOffset + 3 * i;
+            int leftIndex = tipIndex + 1;
+            int rightIndex = tipIndex + 2;
 
             base[0] = xBase[i];
             base[1] = yBase[i];
@@ -145,7 +145,7 @@ public class SegsDecomposer extends VectFieldDecomposer {
             direction[2] = zDirection[i];
 
             if (Utils.isValid(base[0], base[1], base[2])
-                && Utils.isValid(direction[0], direction[1], direction[2])) {
+                    && Utils.isValid(direction[0], direction[1], direction[2])) {
                 valid = true;
             } else {
                 valid = false;
@@ -158,8 +158,8 @@ public class SegsDecomposer extends VectFieldDecomposer {
 
             if (valid) {
                 buffer.put(bufferOffset, tipIndex);
-                buffer.put(bufferOffset+1, leftIndex);
-                buffer.put(bufferOffset+2, rightIndex);
+                buffer.put(bufferOffset + 1, leftIndex);
+                buffer.put(bufferOffset + 2, rightIndex);
 
                 bufferOffset += 3;
             }

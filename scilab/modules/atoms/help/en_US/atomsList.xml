@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
  * 
@@ -10,77 +10,77 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsList">
-    <refnamediv>
-        <refname>atomsList</refname>
-        <refpurpose>List available external modules</refpurpose>
-    </refnamediv>
-    <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
-    <!-- ===================================================================== -->
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            atomsList([category])
-        </synopsis>
-    </refsynopsisdiv>
-    <!-- ===================================================================== -->
-    <!-- Parameters -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>category</term>
-                <listitem>
-                    <para>
-                        This argument limits the list of modules to a category.
-                    </para>
-                    <para>
-                        <literal>category</literal> is a single-string and its value should
-                        be a valid category (See <link linkend="atomsCategoryList">atomsCategoryList</link>).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Description -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Description</title>
-        <para>
-            List available external modules
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Examples -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsList">
+        <refnamediv>
+            <refname>atomsList</refname>
+            <refpurpose>List available external modules</refpurpose>
+        </refnamediv>
+        <!-- ===================================================================== -->
+        <!-- Calling Sequence -->
+        <!-- ===================================================================== -->
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                atomsList([category])
+            </synopsis>
+        </refsynopsisdiv>
+        <!-- ===================================================================== -->
+        <!-- Parameters -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>category</term>
+                    <listitem>
+                        <para>
+                            This argument limits the list of modules to a category.
+                        </para>
+                        <para>
+                            <literal>category</literal> is a single-string and its value should
+                            be a valid category (See <link linkend="atomsCategoryList">atomsCategoryList</link>).
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Description -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Description</title>
+            <para>
+                List available external modules
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Examples -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 atomsList();
 atomsList("Data Analysis And Statistics");
  ]]></programlisting>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- See also -->
-    <!-- ===================================================================== -->
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="atomsShow">atomsShow</link>
-            </member>
-            <member>
-                <link linkend="atomsDepTreeShow">atomsDepTreeShow</link>
-            </member>
-            <member>
-                <link linkend="atomsCategoryList">atomsCategoryList</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Authors -->
-    <!-- ===================================================================== -->
-</refentry>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- See also -->
+        <!-- ===================================================================== -->
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="atomsShow">atomsShow</link>
+                </member>
+                <member>
+                    <link linkend="atomsDepTreeShow">atomsDepTreeShow</link>
+                </member>
+                <member>
+                    <link linkend="atomsCategoryList">atomsCategoryList</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Authors -->
+        <!-- ===================================================================== -->
+    </refentry>

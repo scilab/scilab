@@ -13,31 +13,31 @@
 
 function demo_xcos()
 
-  bResumeSomeVariables = %t;
-  // check if some variables used by demo_gui already exist
-  if isdef("demo_gui_update") & isdef("resize_gui") & isdef("create_frame") then
-    bResumeSomeVariables = %f;
-  end
+    bResumeSomeVariables = %t;
+    // check if some variables used by demo_gui already exist
+    if isdef("demo_gui_update") & isdef("resize_gui") & isdef("create_frame") then
+        bResumeSomeVariables = %f;
+    end
 
-  // Launch Scilab standard demo GUI
-  demo_gui();
+    // Launch Scilab standard demo GUI
+    demo_gui();
 
-  // Get main list
-  frame1 = findobj("tag", "listbox_1");
+    // Get main list
+    frame1 = findobj("tag", "listbox_1");
 
-  // Select Xcos
-  allitems = frame1.string;
-  xcosItem = find(allitems == gettext("Xcos"));
-  frame1.value = xcosItem;
+    // Select Xcos
+    allitems = frame1.string;
+    xcosItem = find(allitems == gettext("Xcos"));
+    frame1.value = xcosItem;
 
-  // Exec callback to display Xcos demos list
-  gcbo = frame1;
-  execstr(frame1.callback, "errcatch");
+    // Exec callback to display Xcos demos list
+    gcbo = frame1;
+    execstr(frame1.callback, "errcatch");
 
-  // resume some variables 
-  if bResumeSomeVariables then
-    [demo_gui_update, resize_gui, create_frame] = resume(demo_gui_update, resize_gui, create_frame);
-  end
+    // resume some variables
+    if bResumeSomeVariables then
+        [demo_gui_update, resize_gui, create_frame] = resume(demo_gui_update, resize_gui, create_frame);
+    end
 
 endfunction
 

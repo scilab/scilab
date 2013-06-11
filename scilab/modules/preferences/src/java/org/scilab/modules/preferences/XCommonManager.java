@@ -142,34 +142,34 @@ public abstract class XCommonManager {
     static {
         factory = ScilabTransformerFactory.newInstance();
         factory.setURIResolver(new URIResolver() {
-                public Source resolve(String href, String base) throws TransformerException {
-                    if (href.startsWith("$SCI")) {
-                        href = href.replace("$SCI", SCI);
-                        base = null;
-                    }
-
-                    try {
-                        File baseDir = null;
-                        if (base != null && !base.isEmpty()) {
-                            baseDir = new File(new URI(base)).getParentFile();
-                        }
-                        File f;
-                        if (baseDir != null) {
-                            f = new File(baseDir, href);
-                        } else {
-                            f = new File(href);
-                        }
-
-                        if (f.exists() && f.canRead()) {
-                            return new StreamSource(f);
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
-
-                    throw new TransformerException("Cannot find the file " + href + "::" + base);
+            public Source resolve(String href, String base) throws TransformerException {
+                if (href.startsWith("$SCI")) {
+                    href = href.replace("$SCI", SCI);
+                    base = null;
                 }
-            });
+
+                try {
+                    File baseDir = null;
+                    if (base != null && !base.isEmpty()) {
+                        baseDir = new File(new URI(base)).getParentFile();
+                    }
+                    File f;
+                    if (baseDir != null) {
+                        f = new File(baseDir, href);
+                    } else {
+                        f = new File(href);
+                    }
+
+                    if (f.exists() && f.canRead()) {
+                        return new StreamSource(f);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+
+                throw new TransformerException("Cannot find the file " + href + "::" + base);
+            }
+        });
     }
 
     /**
@@ -200,9 +200,9 @@ public abstract class XCommonManager {
         visitor = new XUpdateVisitor(correspondance);
         visitor.visit(topSwing, topDOM);
         boolean changed = setDimension(dialog, topDOM);
-	if (changed) {
-	    dialog.pack();
-	}
+        if (changed) {
+            dialog.pack();
+        }
 
         return true;
     }
@@ -278,10 +278,10 @@ public abstract class XCommonManager {
         List<File> list = new ArrayList<File>();
         File modulesDir = new File(SCI + "/modules/");
         File[] modules = modulesDir.listFiles(new FileFilter() {
-                public boolean accept(File f) {
-                    return f.isDirectory();
-                }
-            });
+            public boolean accept(File f) {
+                return f.isDirectory();
+            }
+        });
 
         for (File module : modules) {
             File etc = new File(module, "/etc/");
@@ -308,10 +308,10 @@ public abstract class XCommonManager {
             buffer.append("<xsl:import href=\"").append(SCI).append("/modules/preferences/src/xslt/XConfiguration.xsl").append("\"/>\n");
 
             FilenameFilter filter = new FilenameFilter() {
-                    public boolean accept(File dir, String name) {
-                        return name.endsWith(".xsl") && name.startsWith("XConfiguration");
-                    }
-                };
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".xsl") && name.startsWith("XConfiguration");
+                }
+            };
 
             // Include standard Scilab xsl files
             for (File etc : etcs) {
@@ -328,10 +328,10 @@ public abstract class XCommonManager {
             // Include toolboxes xsl files
             List<ScilabPreferences.ToolboxInfos> infos = ScilabPreferences.getToolboxesInfos();
             filter = new FilenameFilter() {
-                    public boolean accept(File dir, String name) {
-                        return name.endsWith(".xsl");
-                    }
-                };
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".xsl");
+                }
+            };
             for (ScilabPreferences.ToolboxInfos i : infos) {
                 File etc = new File(i.getPrefFile()).getParentFile();
                 File[] xsls = etc.listFiles(filter);
@@ -824,14 +824,14 @@ public abstract class XCommonManager {
         int height = XConfigManager.getInt(peer, "height", 0);
         int width = XConfigManager.getInt(peer, "width",  0);
         if (height > 0 && width > 0) {
-	    Dimension old = component.getPreferredSize();
-	    if (old.width != width || old.height != height) {
-		component.setPreferredSize(new Dimension(width, height));
-		return true;
-	    }
-	}
-	
-	return false;
+            Dimension old = component.getPreferredSize();
+            if (old.width != width || old.height != height) {
+                component.setPreferredSize(new Dimension(width, height));
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

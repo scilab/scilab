@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Xcos
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -22,7 +22,7 @@
  * 
  * See the file ./license.txt
  -->
-<refentry
+    <refentry
   xmlns:scilab="http://www.scilab.org" xml:id="WRITEC_f" xml:lang="en_US"
   xmlns="http://docbook.org/ns/docbook"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -31,317 +31,317 @@
   xmlns:mml="http://www.w3.org/1998/Math/MathML"
   xmlns:db="http://docbook.org/ns/docbook"
 >
-    <refnamediv>
-        <refname>WRITEC_f</refname>
-        <refpurpose>Write to C binary file</refpurpose>
-    </refnamediv>
-    
-    <refsection>
-        <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/WRITEC_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
-    
-    <refsection id="Contents_WRITEC_f">
-        <title>Contents</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="WRITEC_f">Write to C binary file</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_WRITEC_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_WRITEC_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatype_WRITEC_f">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_WRITEC_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_WRITEC_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_WRITEC_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_WRITEC_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_WRITEC_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    
-    <refsection id="Palette_WRITEC_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    
-    <refsection id="Description_WRITEC_f">
-        <title>Description</title>
-        <para>
-            This block allows to user to write data in a C binary file with the name defined by the string <emphasis role="bold">Output File Name</emphasis>.
-            The file is a sequence of records. Each record has the length fixed by the parameter <emphasis role="bold">Input Size</emphasis> and the structure shown
-            below:
-        </para>
-        <para />
-        <mediaobject><imageobject>
-                <imagedata fileref="../../../images/sinks_pal/en_US/writec_f_record_en_US.png" align="center" />
-            </imageobject>
-        </mediaobject>
-        <para>where the block inputs are numbered from top to bottom.</para>
-        <para>
-            The record fields must contains data of the same type defined by the parameter <emphasis role="bold">Output Format</emphasis>.
-        </para>
-        <para>
-            Each event on the activation input of the bloc writes a record in the file. Note that contrary in <link linkend="WFILE_f">WFILE_f</link>, the event dates are not recorded.
-        </para>
-    </refsection>
-    
-    <refsection id="Datatype_WRITEC_f">
-        <title>Data types</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    Input: a scalar or a column vector of size <emphasis role="bold">Input Size</emphasis>.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    
-    <refsection id="Dialogbox_WRITEC_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/sinks_pal/en_US/WRITEC_f_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para />
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Input Size</emphasis>
-                </para>
-                <para>A scalar, the size of the input column vector.</para>
-                <para>Properties : Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Output File Name</emphasis>
-                </para>
-                <para>
-                    A character string defining the path and the file name of the file to be write. The block support file name expansion and you can use environment variables like
-                    <emphasis>HOME</emphasis> in the path, by example <emphasis>"HOME/my_data/foo.data"</emphasis>. Without file path, the file is wrote in the directory defined by the
-                    <emphasis>PWD</emphasis> variable.
-                </para>
-                <para>The file path must exist, otherwise you will be prompted by an error message.</para>
-                <para> Properties : Type 'str' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Output Format</emphasis>
-                </para>
-                <para>
-                    A character string defining the format to use. The following string "l", "i", "s", "ul", "ui", "us", "d", "f", "c", "uc"
-                    are used respectively to write int32, int16, int8, uint32, uint16, uint8, double, float, char or unsigned char data type.
-                </para>
-                <para>
-                    You must use the same format when you read the file with  <link linkend="READC_f">READC_f</link>.
-                </para>
-                <para> Properties : Type 'str' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Buffer size</emphasis>
-                </para>
-                <para>
-                    To improve efficiency it is possible to buffer the input data. Data writing on the file is only done
-                    when the buffer is full.
-                </para>
-                <para> Properties : Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Swap Mode (0:No, 1:Yes)</emphasis>
-                </para>
-                <para>Endian IEEE format</para>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <emphasis role="bold">0</emphasis>: automatic bytes swap is disabled.
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <emphasis role="bold">1</emphasis>: the file is supposed to be coded in "little endian IEEE format" and data are
-                            swapped if necessary to match the IEEE format of the processor.
-                        </para>
-                    </listitem>
-                </itemizedlist>
-                <para> Properties : Type 'vec' of size 1 </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    
-    <refsection id="Defaultproperties_WRITEC_f">
-        <title>Default properties</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">always active:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">zero-crossing:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">mode:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">regular inputs:</emphasis>
-                </para>
-                <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">continuous-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">discrete-time state:</emphasis> yes
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">name of computational function:</emphasis>
-                    <emphasis role="italic">writec</emphasis>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    
-    <refsection id="Example_WRITEC_f">
-        <title>Example</title>
-        <para>
-            In this example the block is used to record the output of the sine wave generator. To record at the same time, the time
-            events, we use a TIME_f block and a multiplexer to form the input vector of the WRITEC_f block which record the data in
-            the file <emphasis>"TMPDIR/writec_f.data"</emphasis>. Then you can read these data with the block
-            <link linkend="READC_f">READC_f</link>.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.zcos">
-                Open this example in Xcos
-            </link>
-            .
-        </para>
-        <para/>
-        <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.zcos">
+        <refnamediv>
+            <refname>WRITEC_f</refname>
+            <refpurpose>Write to C binary file</refpurpose>
+        </refnamediv>
+        
+        <refsection>
+            <title>Block Screenshot</title>
+            <para>
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/sinks_pal/en_US/writec_f_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../images/palettes/WRITEC_f.png" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </link>
-        </para>
-    </refsection>
-    
-    <refsection id="Interfacingfunction_WRITEC_f">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/WRITEC_f.sci">SCI/modules/scicos_blocks/macros/Sinks/WRITEC_f.sci</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    
-    <refsection id="Computationalfunction_WRITEC_f">
-        <title>Computational function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/writec.c (Type 2)</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    
-    <refsection role="see also" id="Seealso_WRITEC_f">
-        <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <link linkend="READC_f">READC_f</link>
-            </listitem>
-            <listitem>
-                <link linkend="RFILE_f">RFILE_f</link>
-            </listitem>
-            <listitem>
-                <link linkend="WFILE_f">WFILE_f</link>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-</refentry>
+            </para>
+        </refsection>
+        
+        <refsection id="Contents_WRITEC_f">
+            <title>Contents</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="WRITEC_f">Write to C binary file</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <xref linkend="Palette_WRITEC_f">Palette</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Description_WRITEC_f">Description</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Datatype_WRITEC_f">Data types</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Dialogbox_WRITEC_f">Dialog box</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Defaultproperties_WRITEC_f">Default properties</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Interfacingfunction_WRITEC_f">Interfacing function</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Computationalfunction_WRITEC_f">Computational function</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Seealso_WRITEC_f">See also</xref>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        
+        <refsection id="Palette_WRITEC_f">
+            <title>Palette</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="Sinks_pal">Sinks palette</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        
+        <refsection id="Description_WRITEC_f">
+            <title>Description</title>
+            <para>
+                This block allows to user to write data in a C binary file with the name defined by the string <emphasis role="bold">Output File Name</emphasis>.
+                The file is a sequence of records. Each record has the length fixed by the parameter <emphasis role="bold">Input Size</emphasis> and the structure shown
+                below:
+            </para>
+            <para />
+            <mediaobject><imageobject>
+                    <imagedata fileref="../../../images/sinks_pal/en_US/writec_f_record_en_US.png" align="center" />
+                </imageobject>
+            </mediaobject>
+            <para>where the block inputs are numbered from top to bottom.</para>
+            <para>
+                The record fields must contains data of the same type defined by the parameter <emphasis role="bold">Output Format</emphasis>.
+            </para>
+            <para>
+                Each event on the activation input of the bloc writes a record in the file. Note that contrary in <link linkend="WFILE_f">WFILE_f</link>, the event dates are not recorded.
+            </para>
+        </refsection>
+        
+        <refsection id="Datatype_WRITEC_f">
+            <title>Data types</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Input: a scalar or a column vector of size <emphasis role="bold">Input Size</emphasis>.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        
+        <refsection id="Dialogbox_WRITEC_f">
+            <title>Dialog box</title>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../gui/sinks_pal/en_US/WRITEC_f_gui.png" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+            <para />
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Input Size</emphasis>
+                    </para>
+                    <para>A scalar, the size of the input column vector.</para>
+                    <para>Properties : Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Output File Name</emphasis>
+                    </para>
+                    <para>
+                        A character string defining the path and the file name of the file to be write. The block support file name expansion and you can use environment variables like
+                        <emphasis>HOME</emphasis> in the path, by example <emphasis>"HOME/my_data/foo.data"</emphasis>. Without file path, the file is wrote in the directory defined by the
+                        <emphasis>PWD</emphasis> variable.
+                    </para>
+                    <para>The file path must exist, otherwise you will be prompted by an error message.</para>
+                    <para> Properties : Type 'str' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Output Format</emphasis>
+                    </para>
+                    <para>
+                        A character string defining the format to use. The following string "l", "i", "s", "ul", "ui", "us", "d", "f", "c", "uc"
+                        are used respectively to write int32, int16, int8, uint32, uint16, uint8, double, float, char or unsigned char data type.
+                    </para>
+                    <para>
+                        You must use the same format when you read the file with  <link linkend="READC_f">READC_f</link>.
+                    </para>
+                    <para> Properties : Type 'str' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Buffer size</emphasis>
+                    </para>
+                    <para>
+                        To improve efficiency it is possible to buffer the input data. Data writing on the file is only done
+                        when the buffer is full.
+                    </para>
+                    <para> Properties : Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Swap Mode (0:No, 1:Yes)</emphasis>
+                    </para>
+                    <para>Endian IEEE format</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis role="bold">0</emphasis>: automatic bytes swap is disabled.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis role="bold">1</emphasis>: the file is supposed to be coded in "little endian IEEE format" and data are
+                                swapped if necessary to match the IEEE format of the processor.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para> Properties : Type 'vec' of size 1 </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        
+        <refsection id="Defaultproperties_WRITEC_f">
+            <title>Default properties</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">always active:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">zero-crossing:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">mode:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">regular inputs:</emphasis>
+                    </para>
+                    <para>
+                        <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">continuous-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">discrete-time state:</emphasis> yes
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">object discrete-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name of computational function:</emphasis>
+                        <emphasis role="italic">writec</emphasis>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        
+        <refsection id="Example_WRITEC_f">
+            <title>Example</title>
+            <para>
+                In this example the block is used to record the output of the sine wave generator. To record at the same time, the time
+                events, we use a TIME_f block and a multiplexer to form the input vector of the WRITEC_f block which record the data in
+                the file <emphasis>"TMPDIR/writec_f.data"</emphasis>. Then you can read these data with the block
+                <link linkend="READC_f">READC_f</link>.
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.zcos">
+                    Open this example in Xcos
+                </link>
+                .
+            </para>
+            <para/>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../../../../examples/sinks_pal/en_US/writec_f_en_US.zcos" align="center" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+            </para>
+        </refsection>
+        
+        <refsection id="Interfacingfunction_WRITEC_f">
+            <title>Interfacing function</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/WRITEC_f.sci">SCI/modules/scicos_blocks/macros/Sinks/WRITEC_f.sci</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        
+        <refsection id="Computationalfunction_WRITEC_f">
+            <title>Computational function</title>
+            <itemizedlist>
+                <listitem>
+                    <para> SCI/modules/scicos_blocks/src/c/writec.c (Type 2)</para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        
+        <refsection role="see also" id="Seealso_WRITEC_f">
+            <title>See also</title>
+            <itemizedlist>
+                <listitem>
+                    <link linkend="READC_f">READC_f</link>
+                </listitem>
+                <listitem>
+                    <link linkend="RFILE_f">RFILE_f</link>
+                </listitem>
+                <listitem>
+                    <link linkend="WFILE_f">WFILE_f</link>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refentry>

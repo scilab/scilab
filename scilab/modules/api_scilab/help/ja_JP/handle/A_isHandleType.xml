@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+        <?xml version="1.0" encoding="utf-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,92 +11,92 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isHandleType" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isHandleType" xml:lang="ja">
         
-        <refname>isHandleType</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            ハンドル変数かどうかを調べる.
+            <refname>isHandleType</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>int isHandleType(void* _pvCtx, int* _piAddress)</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
-            
-            <varlistentry>
+            <refpurpose>
                 
-                <term>_pvCtx</term>
+                ハンドル変数かどうかを調べる.
                 
-                <listitem>
+            </refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>int isHandleType(void* _pvCtx, int* _piAddress)</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
                     
-                    <para>
-                        
-                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
-                        
-                    </para>
+                    <term>_pvCtx</term>
                     
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>_piAddress</term>
-                
-                <listitem>
-                    
-                    <para>
+                    <listitem>
                         
-                        変数を保存するScilabメモリの位置.
+                        <para>
+                            
+                            Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                            
+                        </para>
                         
-                    </para>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
+                <varlistentry>
+                    
+                    <term>_piAddress</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            変数を保存するScilabメモリの位置.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
             
-        </variablelist>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>戻り値</title>
-        
-        <para>変数がハンドル型の場合は1, それ以外は 0</para>
-        
-    </refsection>
-    
-    <title>History</title>
-    
-    <revhistory>
-        
-        <revision>
+        <refsection>
             
-            <revnumber>5.5.0</revnumber>
+            <title>戻り値</title>
             
-            <revremark>この関数はScilab 5.5.0で追加されました</revremark>
+            <para>変数がハンドル型の場合は1, それ以外は 0</para>
             
-        </revision>
+        </refsection>
         
-    </revhistory>
+        <title>History</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>この関数はScilab 5.5.0で追加されました</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refentry>
     
-</refentry>
-

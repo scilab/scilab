@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,59 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="gammaln" xml:lang="en">
-    <refnamediv>
-        <refname>gammaln</refname>
-        <refpurpose>o logaritmo (natural) da função gama </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>y = gammaln(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>vetor de reais </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>vetor de reais com o mesmo tamanho</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>gammaln(x)</literal> avalia o logaritmo (natural) da função
-            gama em todos os elementos de <literal>x</literal>, evitando underflow e
-            overflow. <literal>x</literal> deve ser de reais.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos </title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="gammaln" xml:lang="en">
+        <refnamediv>
+            <refname>gammaln</refname>
+            <refpurpose>o logaritmo (natural) da função gama </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>y = gammaln(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>vetor de reais </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>y</term>
+                    <listitem>
+                        <para>vetor de reais com o mesmo tamanho</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>gammaln(x)</literal> avalia o logaritmo (natural) da função
+                gama em todos os elementos de <literal>x</literal>, evitando underflow e
+                overflow. <literal>x</literal> deve ser de reais.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos </title>
+            <programlisting role="example"><![CDATA[ 
 gammaln(0.5)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="gamma">gamma</link>
-            </member>
-            <member>
-                <link linkend="dlgamma">dlgamma</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Autores</title>
-        <para>W. J. Cody e L. Stoltz (código de Netlib (specfun))</para>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="gamma">gamma</link>
+                </member>
+                <member>
+                    <link linkend="dlgamma">dlgamma</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Autores</title>
+            <para>W. J. Cody e L. Stoltz (código de Netlib (specfun))</para>
+        </refsection>
+    </refentry>

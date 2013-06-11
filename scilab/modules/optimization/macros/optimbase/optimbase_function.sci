@@ -11,9 +11,9 @@
 //
 // optimbase_function --
 //   Call the cost function and return the value.
-//   If a cost function argument is defined in current object, 
+//   If a cost function argument is defined in current object,
 //   pass it to the function.
-//   If an index is defined as input argument, pass it to the 
+//   If an index is defined as input argument, pass it to the
 //   function, always as second argument.
 // Arguments
 //   x : the point where the function is to be evaluated.
@@ -31,9 +31,9 @@
 //      c : the nonlinear, positive constraints
 //      gc : the gradient of the nonlinear, positive constraints
 //    Other values of index might be used in the future,
-//    for example, when an derivative-based optimizer with 
+//    for example, when an derivative-based optimizer with
 //    non linear constraints is required.
-//   index, output : 
+//   index, output :
 //     if index > 0, everything went find
 //     if index == 0, interrupts the optimization
 //     if index < 0, f cannot be evaluated
@@ -105,9 +105,9 @@ function varargout = optimbase_function ( this , x , index )
     funtype = typeof(this.fun)
     if ( funtype == "function" ) then
         __optimbase_f__ = this.fun
-		//
-		// Backward-compatibility: process the costfargument field
-		//
+        //
+        // Backward-compatibility: process the costfargument field
+        //
         if ( typeof(this.costfargument) == "string" ) then
             __optimbase_args__ = list()
         else
@@ -117,7 +117,7 @@ function varargout = optimbase_function ( this , x , index )
         __optimbase_f__ = this.fun(1)
         __optimbase_args__ = list(this.fun(2:$))
     end
-    if ( this.withderivatives ) then 
+    if ( this.withderivatives ) then
         if ( this.nbineqconst == 0 ) then
             // [ f , g , index ] = costf ( x , index )
             // [ f , g , index ] = costf ( x , index , a1, a2, ... )

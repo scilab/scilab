@@ -18,34 +18,33 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 
 public class FlattenTreeView extends TreeView {
     private static FlattenTreeView me;
-    
+
     private FlattenTreeView() {
         super();
     }
-    
+
     public static FlattenTreeView create() {
         if (me == null) {
             me = new FlattenTreeView();
         }
         return me;
     }
-    
+
     public void createObject(String id) {
         try {
             GraphicObject graphiObject = GraphicController.getController().getObjectFromId(id);
             //if (!(graphiObject instanceof Uimenu)) {
-                DefaultMutableTreeNode node = new DefaultMutableTreeNode(new GraphicObjectNode(graphiObject));
+            DefaultMutableTreeNode node = new DefaultMutableTreeNode(new GraphicObjectNode(graphiObject));
 
-                allObjects.put(id, node);
-                top.add(node);
-                topModel.nodeStructureChanged(top);
+            allObjects.put(id, node);
+            top.add(node);
+            topModel.nodeStructureChanged(top);
             //}
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }       
+        }
     }
-    
+
     public void deleteObject(String id) {
         try {
             DefaultMutableTreeNode objectNode = allObjects.get(id);
@@ -55,13 +54,12 @@ public class FlattenTreeView extends TreeView {
                 allObjects.remove(id);
                 topModel.nodeStructureChanged(parentNode);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }        
+        }
     }
-    
+
     public void updateObject(String id, int property) {
-        
+
     }
 }

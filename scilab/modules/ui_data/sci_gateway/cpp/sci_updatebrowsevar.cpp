@@ -21,7 +21,7 @@ extern "C"
 #include "Scierror.h"
 }
 /*--------------------------------------------------------------------------*/
-int sci_updatebrowsevar(char *fname,unsigned long fname_len)
+int sci_updatebrowsevar(char *fname, unsigned long fname_len)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);

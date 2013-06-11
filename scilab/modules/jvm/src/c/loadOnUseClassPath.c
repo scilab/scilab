@@ -115,8 +115,14 @@ BOOL loadOnUseClassPath(char const* tag)
         {
             fprintf(stderr, _("Wrong format for %s.\n"), classpathfile);
         }
-        if (xpathObj) xmlXPathFreeObject(xpathObj);
-        if (xpathCtxt) xmlXPathFreeContext(xpathCtxt);
+        if (xpathObj)
+        {
+            xmlXPathFreeObject(xpathObj);
+        }
+        if (xpathCtxt)
+        {
+            xmlXPathFreeContext(xpathCtxt);
+        }
         if (XPath)
         {
             FREE(XPath);

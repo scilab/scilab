@@ -23,59 +23,59 @@
 // @return status %T if the operation has been sucessfull, %F otherwise.
 function status = generateBlockImage(block, path, filename, imageType, withPort)
     status = %f;
-    
+
     // call loadXcosLibs if not loaded
-    if exists("scicos_diagram", 'a') == 0 then loadXcosLibs(); end
+    if exists("scicos_diagram", "a") == 0 then loadXcosLibs(); end
 
     [lhs,rhs] = argn(0)
     if rhs < 2 | rhs > 6 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "generateBlockImage", 2, 4));
     end
-    
+
     if typeof(block) <> "Block" then
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": Block type expected.\n"), "generateBlockImage", "block"));
     end
-    
+
     if typeof(path) <> "string" | ~isdir(path) then
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": directory path string expected.\n"), "generateBlockImage", "path"));
     end
-    
+
     // generate a default graphic or clear the existing one
-    if exists("imageType", 'l') == 0 then
+    if exists("imageType", "l") == 0 then
         imageType = "gif";
     else
         if typeof(imageType) <> "string" | and(imageType <> ["svg", "gif", "jpg"]) then
             error(msprintf(gettext("%s: Wrong input argument ""%s"": ""svg"", ""gif"" or ""jpg"" expected.\n"), "generateBlockImage", "imageType"));
         end
     end
-    
-    if exists("withPort", 'l') == 0 then
+
+    if exists("withPort", "l") == 0 then
         withPort = %t;
     end
 
     // set the default outFile
-    if exists("filename", 'l') == 0 then
+    if exists("filename", "l") == 0 then
         outFile = path + "/" + block.gui + "." + imageType;
     else
-        if typeof(filename) <> "string" | size(filename, '*') <> 1 then
+        if typeof(filename) <> "string" | size(filename, "*") <> 1 then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": string expected.\n"), "generateBlockImage", "filename"));
         end
         outFile = path + "/" + filename + "." + imageType;
     end
-    
+
     // if the gr_i value of a bloc is empty, return
     if (block.graphics.gr_i(1) == []) then
-      mputl("<svg/>", outFile);
-      status = %t;
-      return
+        mputl("<svg/>", outFile);
+        status = %t;
+        return
     end
 
     // set export properties before creating any graphic object (including any figure)
     previous_driver = driver(imageType);
     xinit(outFile);
-    
+
     handle = gcf();
-    
+
     if ~withPort then
         prot = funcprot();
         function standard_draw_port(varargin)
@@ -87,13 +87,13 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
     // constants
     diagram = scicos_diagram();
     options = diagram.props.options;
-    options('3D')(1) = %f;
+    options("3D")(1) = %f;
     sz = block.graphics.sz;
     orig = block.graphics.orig;
-    
+
     gh_axes = gca();
     gh_curwin = handle;
-    
+
     // draw settings
     // note that the gh_axes variable have to be known on the "plot" call
     gh_axes.fractional_font = "off";
@@ -104,7 +104,7 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
     gh_axes.margins = 0.01 * ones(1, 4);
     gh_axes.box ="off";
     handle.axes_size = [max(20, 20 * sz(1)), max(20, 20 * sz(2))];
-    
+
     // Create variable o because needed inside "plot"
     o = block;
     ierr = execstr("block  = " + o.gui + "(""plot"",o)", "errcatch");
@@ -119,7 +119,7 @@ function status = generateBlockImage(block, path, filename, imageType, withPort)
     catch
         status = %f;
     end
-    
+
     // post operations
     driver(previous_driver);
 endfunction

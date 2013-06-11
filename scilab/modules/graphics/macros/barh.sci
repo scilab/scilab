@@ -114,10 +114,10 @@ function  barh(varargin)
                     end
                 elseif size(Y,1)>1 then
                     error(msprintf(gettext("%s: Wrong size for input arguments #%d: A scalar or a column vector expected.\n"),"bar",2));
-                end 
-            else 
+                end
+            else
                 error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"),"barh",1));
-            end 
+            end
         end
     end
 
@@ -128,8 +128,8 @@ function  barh(varargin)
         WIDTH=ListArg(3)
         if size(WIDTH,"*")<>1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"),"barh",3));
-        elseif or(size(X)==1) then  
-            if size(X,"*")<>1 then // X is a vector  
+        elseif or(size(X)==1) then
+            if size(X,"*")<>1 then // X is a vector
                 if or(size(Y)==1) then // Y is a vector
                     Y=Y(:)
                 end
@@ -138,8 +138,8 @@ function  barh(varargin)
                 end
             elseif size(Y,1)>1 then
                 error(msprintf(gettext("%s: Wrong size for input arguments #%d: A scalar or a column vector expected.\n"),"bar",2));
-            end 
-        else 
+            end
+        else
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"),"barh",1));
         end
     end

@@ -18,29 +18,33 @@
 #include "stricmp.h"
 
 /*--------------------------------------------------------------------------*/
-char **completion_generic(char **dictionary,int sizedictionary,
+char **completion_generic(char **dictionary, int sizedictionary,
                           char *somechars, int *sizeArrayReturned)
 {
     char **results = NULL;
     int nbElements = 0;
     int i = 0;
 
-    for (i = 0;i < sizedictionary;i++)
+    for (i = 0; i < sizedictionary; i++)
     {
         if (dictionary[i])
         {
-            if ( strnicmp(dictionary[i],somechars,strlen(somechars)) == 0)
+            if ( strnicmp(dictionary[i], somechars, strlen(somechars)) == 0)
             {
                 nbElements++;
                 /* +1 in MALLOC because a NULL element is inserted at the end of the array */
                 /* This NULL element is used in Java wrapper to know the size of the array */
                 if (results)
-                   results = (char**)REALLOC(results,sizeof(char*)*(nbElements+1));
+                {
+                    results = (char**)REALLOC(results, sizeof(char*) * (nbElements + 1));
+                }
                 else
-                   results = (char**)MALLOC(sizeof(char*)*(nbElements+1));
+                {
+                    results = (char**)MALLOC(sizeof(char*) * (nbElements + 1));
+                }
 
                 results[nbElements] = NULL; /* Last element set to NULL */
-                results[nbElements-1] = strdup(dictionary[i]);
+                results[nbElements - 1] = strdup(dictionary[i]);
             }
         }
     }

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
  * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
@@ -11,89 +11,89 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bloc2ss" xml:lang="ru">
-    <refnamediv>
-        <refname>bloc2ss</refname>
-        <refpurpose>преобразование блок-схемы в пространство состояний</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>[sl]=bloc2ss(blocd)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>blocd</term>
-                <listitem>
-                    <para>список</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>sl</term>
-                <listitem>
-                    <para>список</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Заданную линейную систему в виде блок-схемы <literal>bloc2ss</literal> преобразует в линейную систему пространство состояний. Первый элемент списка  <literal>blocd</literal> должен быть строкой <literal>'blocd'</literal>. Остальные элементы этого списка должны сами по себе быть списками одного из следующего типа:
-        </para>
-        <programlisting><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bloc2ss" xml:lang="ru">
+        <refnamediv>
+            <refname>bloc2ss</refname>
+            <refpurpose>преобразование блок-схемы в пространство состояний</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>[sl]=bloc2ss(blocd)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>blocd</term>
+                    <listitem>
+                        <para>список</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>sl</term>
+                    <listitem>
+                        <para>список</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Заданную линейную систему в виде блок-схемы <literal>bloc2ss</literal> преобразует в линейную систему пространство состояний. Первый элемент списка  <literal>blocd</literal> должен быть строкой <literal>'blocd'</literal>. Остальные элементы этого списка должны сами по себе быть списками одного из следующего типа:
+            </para>
+            <programlisting><![CDATA[ 
 list('transfer','name_of_linear_system')
  ]]></programlisting>
-        <programlisting><![CDATA[  
+            <programlisting><![CDATA[  
 list('link','name_of_link',
              [number_of_upstream_box,upstream_box_port],
              [downstream_box_1,downstream_box_1_portnumber],
              [downstream_box_2,downstream_box_2_portnumber],
              ...)
  ]]></programlisting>
-        <para>
-            Строки <literal>'transfer'</literal> и <literal>'link'</literal> являются ключевыми
-            словами, которые указывают тип элемента в блок-схеме.
-        </para>
-        <para>
-            Случай 1: второй параметр списка является символьной строкой, которая может ссылаться (для возможного дальнейшего вычисления) на Scilab-имя линейной системы,
-            заданной в виде пространства состояний  (список <literal>syslin</literal>) или в
-            передаточной форме (матрица или рациональные дроби).
-        </para>
-        <para>
-            Каждому передаточному блоку присваивается целое число. Каждому входу и выходу
-            передаточного блока также присваивается свой номер, целое число (см. примеры).
-        </para>
-        <para>
-            Случай 2: второй вид элемента в представлении блок-схемы - это связь (link). Связь связывает один выход блока, представленного парой <literal>[number_of_upstream_box,upstream_box_port]</literal> (то есть <literal>[номер_предшествующего_блока,порт_предшествующего_блока]</literal>), с различными входами других блоков. Каждый такой вход предсталяется парой
-            <literal>[downstream_box_i,downstream_box_i_portnumber]</literal> (то есть <literal>[последующий_блок_i,номер_порта_последующего_блока_i]</literal>).
-        </para>
-        <para>
-            Различные элементы блок-схемы могут определяться в произвольном порядке.
-        </para>
-        <para>Например</para>
-        <para>
-            [1] <literal>S1*S2</literal> с обратной связью блока.
-        </para>
-        <para>
-            Есть три передаточных звена <literal>S1</literal> (число
-            <literal>n_s1=2</literal>) , <literal>S2</literal> (число
-            <literal>n_s2=3</literal>) и сумматор (число <literal>n_add=4</literal>) с символической передаточной функцией  <literal>['1','1']</literal>.
-        </para>
-        <para>
-            Есть 4 связи. Первая (с именем <literal>'U'</literal>) связывает вход (порт 0
-            условного блока -1 не рассматривается) с портом 1 сумматора. Вторая и третья связи 
-            соответственно (выходной) порт 1 сумматора с (входным) портом 1 системы 
-            <literal>S1</literal>, а (выходной) порт 1  <literal>S1</literal> с (входным) портом 
-            1 <literal>S2</literal>. Четвёртая связь (названная <literal>'Y'</literal>) 
-            связывает (выходной) порт 1 <literal>S2</literal> с выходом (порт 0 условного блока 
-            -1 не рассматривается) и с (входным) портом 2 сумматора.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+            <para>
+                Строки <literal>'transfer'</literal> и <literal>'link'</literal> являются ключевыми
+                словами, которые указывают тип элемента в блок-схеме.
+            </para>
+            <para>
+                Случай 1: второй параметр списка является символьной строкой, которая может ссылаться (для возможного дальнейшего вычисления) на Scilab-имя линейной системы,
+                заданной в виде пространства состояний  (список <literal>syslin</literal>) или в
+                передаточной форме (матрица или рациональные дроби).
+            </para>
+            <para>
+                Каждому передаточному блоку присваивается целое число. Каждому входу и выходу
+                передаточного блока также присваивается свой номер, целое число (см. примеры).
+            </para>
+            <para>
+                Случай 2: второй вид элемента в представлении блок-схемы - это связь (link). Связь связывает один выход блока, представленного парой <literal>[number_of_upstream_box,upstream_box_port]</literal> (то есть <literal>[номер_предшествующего_блока,порт_предшествующего_блока]</literal>), с различными входами других блоков. Каждый такой вход предсталяется парой
+                <literal>[downstream_box_i,downstream_box_i_portnumber]</literal> (то есть <literal>[последующий_блок_i,номер_порта_последующего_блока_i]</literal>).
+            </para>
+            <para>
+                Различные элементы блок-схемы могут определяться в произвольном порядке.
+            </para>
+            <para>Например</para>
+            <para>
+                [1] <literal>S1*S2</literal> с обратной связью блока.
+            </para>
+            <para>
+                Есть три передаточных звена <literal>S1</literal> (число
+                <literal>n_s1=2</literal>) , <literal>S2</literal> (число
+                <literal>n_s2=3</literal>) и сумматор (число <literal>n_add=4</literal>) с символической передаточной функцией  <literal>['1','1']</literal>.
+            </para>
+            <para>
+                Есть 4 связи. Первая (с именем <literal>'U'</literal>) связывает вход (порт 0
+                условного блока -1 не рассматривается) с портом 1 сумматора. Вторая и третья связи 
+                соответственно (выходной) порт 1 сумматора с (входным) портом 1 системы 
+                <literal>S1</literal>, а (выходной) порт 1  <literal>S1</literal> с (входным) портом 
+                1 <literal>S2</literal>. Четвёртая связь (названная <literal>'Y'</literal>) 
+                связывает (выходной) порт 1 <literal>S2</literal> с выходом (порт 0 условного блока 
+                -1 не рассматривается) и с (входным) портом 2 сумматора.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 //Инициализация
 syst=list('blocd'); l=1;
  
@@ -113,11 +113,11 @@ l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
 // Выходы // -1 -> output 1
 l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
  ]]></programlisting>
-        <para>
-            Для <literal>s=poly(0,'s');S1=1/(s+1);S2=1/s;</literal> результатом вызова исполнения <literal>sl=bloc2ss(syst);</literal> является представление в пространстве состояний для <literal>1/(s^2+s-1)</literal>.
-        </para>
-        <para>[2] Пример LFT</para>
-        <programlisting role="example"><![CDATA[ 
+            <para>
+                Для <literal>s=poly(0,'s');S1=1/(s+1);S2=1/s;</literal> результатом вызова исполнения <literal>sl=bloc2ss(syst);</literal> является представление в пространстве состояний для <literal>1/(s^2+s-1)</literal>.
+            </para>
+            <para>[2] Пример LFT</para>
+            <programlisting role="example"><![CDATA[ 
 // Инициализация
 syst=list('blocd'); l=1;
  
@@ -133,24 +133,24 @@ l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
 l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
 l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
  ]]></programlisting>
-        <para>С</para>
-        <programlisting role="example"><![CDATA[ 
+            <para>С</para>
+            <programlisting role="example"><![CDATA[ 
 A=[0,1;0,0];
 B=[1;1];
 C=[1,1];
 D=poly(0,'s');
 P=syslin('c',A,B,C,D);
  ]]></programlisting>
-        <para>
-            <literal>bloc2exp(syst)</literal> возвращает lft <literal>P</literal> и <literal>K</literal>.
-        </para>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="bloc2exp">bloc2exp</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            <para>
+                <literal>bloc2exp(syst)</literal> возвращает lft <literal>P</literal> и <literal>K</literal>.
+            </para>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="bloc2exp">bloc2exp</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

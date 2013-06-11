@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,84 +11,84 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dirname">
-    <refnamediv>
-        <refname>dirname</refname>
-        <refpurpose>gets directory from filenames</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>dirs = dirname(files[, flag [,flagexpand]])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>files</term>
-                <listitem>
-                    <para>a string matrix containing file paths</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flag</term>
-                <listitem>
-                    <para>
-                        optional boolean, used to convert the given
-                        path(s) for the current operating system.
-                        Default value is true (<constant>%t</constant>).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flagexpand</term>
-                <listitem>
-                    <para>
-                        optional boolean, used to expand leading
-                        variables in paths. Only used with
-                        <varname>flag</varname> argument. Default value
-                        is true (<constant>%t</constant>).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dirs</term>
-                <listitem>
-                    <para>string matrices</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <function>dirname</function> returns the directory paths of the file entries
-            given in <varname>files</varname>.
-        </para>
-        <para>
-            If <varname>flag</varname> is true the paths are first
-            converted for the current operating system (for example,
-            <code>C:/Tmp/folder'</code> will be converted on Windows to
-            <code>'C:\Tmp\folder'</code>).
-        </para>
-        <para>
-            If <varname>flagexpand</varname> is true, leading path
-            variables (<literal>home</literal>,
-            <constant>SCI</constant>, <constant>SCIHOME</constant>,
-            ...) are expanded for the current operating system (for
-            example, <code>'home\tmp'</code> will be converted on
-            GNU/Linux to <literal>'home/&lt;user&gt;/tmp'</literal>,
-            where <literal>&lt;user&gt;</literal> is the current user
-            logged on).
-        </para>
-        <para>
-            See more details on <varname>flag</varname> and
-            <varname>flagexpand</varname>
-            in <link linkend="pathconvert">pathconvert</link> section.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dirname">
+        <refnamediv>
+            <refname>dirname</refname>
+            <refpurpose>gets directory from filenames</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>dirs = dirname(files[, flag [,flagexpand]])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>files</term>
+                    <listitem>
+                        <para>a string matrix containing file paths</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>flag</term>
+                    <listitem>
+                        <para>
+                            optional boolean, used to convert the given
+                            path(s) for the current operating system.
+                            Default value is true (<constant>%t</constant>).
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>flagexpand</term>
+                    <listitem>
+                        <para>
+                            optional boolean, used to expand leading
+                            variables in paths. Only used with
+                            <varname>flag</varname> argument. Default value
+                            is true (<constant>%t</constant>).
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>dirs</term>
+                    <listitem>
+                        <para>string matrices</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <function>dirname</function> returns the directory paths of the file entries
+                given in <varname>files</varname>.
+            </para>
+            <para>
+                If <varname>flag</varname> is true the paths are first
+                converted for the current operating system (for example,
+                <code>C:/Tmp/folder'</code> will be converted on Windows to
+                <code>'C:\Tmp\folder'</code>).
+            </para>
+            <para>
+                If <varname>flagexpand</varname> is true, leading path
+                variables (<literal>home</literal>,
+                <constant>SCI</constant>, <constant>SCIHOME</constant>,
+                ...) are expanded for the current operating system (for
+                example, <code>'home\tmp'</code> will be converted on
+                GNU/Linux to <literal>'home/&lt;user&gt;/tmp'</literal>,
+                where <literal>&lt;user&gt;</literal> is the current user
+                logged on).
+            </para>
+            <para>
+                See more details on <varname>flag</varname> and
+                <varname>flagexpand</varname>
+                in <link linkend="pathconvert">pathconvert</link> section.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 dirs=dirname('/tmp/folder/poo')
 dirs=dirname('/tmp/folder/')
 dirs=dirname('/')
@@ -99,19 +99,19 @@ dirs=dirname('C:\')
 
 dirs=dirname(['SCI/etc/scilab.start', 'SCI/etc/scilab.quit'])
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="basename">basename</link>
-            </member>
-            <member>
-                <link linkend="listfiles">listfiles</link>
-            </member>
-            <member>
-                <link linkend="pathconvert">pathconvert</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="basename">basename</link>
+                </member>
+                <member>
+                    <link linkend="listfiles">listfiles</link>
+                </member>
+                <member>
+                    <link linkend="pathconvert">pathconvert</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

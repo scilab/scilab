@@ -1,66 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="exists" xml:lang="ja">
-    <refnamediv>
-        <refname>exists</refname>
-        <refpurpose>変数の存在を確認する</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼出し手順</title>
-        <synopsis>exists(name [,where])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>name</term>
-                <listitem>
-                    <para>文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>where</term>
-                <listitem>
-                    <para>オプションの文字で,以下の値を指定します:
-                        <literal>'l'</literal> (local), <literal>'n'</literal>
-                        (nolocal) および <literal>'a'</literal> (all). 
-                        デフォルト値は<literal>'all'</literal>です.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>exists(name)</literal> は,
-            <literal>name</literal>という名前の変数が存在する場合に
-            <literal>1</literal>,それ以外の場合に<literal>0</literal>を返します.
-            　　
-        </para>
-        <para>
-            注意: <literal>exists</literal> を使用する関数は,
-            環境に依存する結果を返す可能性があります!
-        </para>
-        <para>
-            <literal>exists(name,'local')</literal> は,
-            <literal>name</literal>という名前の変数がカレントの関数の
-            環境に存在する場合に <literal>1</literal>,
-            それ以外の場合に <literal>0</literal> を返します.
-        </para>
-        <para>
-            <literal>exists(name,'nolocal')</literal> は,
-            <literal>name</literal>という名前の変数が関数の呼び出し元の
-            環境(Scilabシェルメインレベルを含む)に存在する場合に <literal>1</literal>,
-            それ以外の場合に <literal>0</literal> を返します.
-        </para>
-        <para>
-            警告: exists関数は,ある変数が<link linkend="global">グローバル</link>
-            名前空間に存在するかどうかを確認しません.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="exists" xml:lang="ja">
+        <refnamediv>
+            <refname>exists</refname>
+            <refpurpose>変数の存在を確認する</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼出し手順</title>
+            <synopsis>exists(name [,where])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータ</title>
+            <variablelist>
+                <varlistentry>
+                    <term>name</term>
+                    <listitem>
+                        <para>文字列</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>where</term>
+                    <listitem>
+                        <para>オプションの文字で,以下の値を指定します:
+                            <literal>'l'</literal> (local), <literal>'n'</literal>
+                            (nolocal) および <literal>'a'</literal> (all). 
+                            デフォルト値は<literal>'all'</literal>です.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>exists(name)</literal> は,
+                <literal>name</literal>という名前の変数が存在する場合に
+                <literal>1</literal>,それ以外の場合に<literal>0</literal>を返します.
+                　　
+            </para>
+            <para>
+                注意: <literal>exists</literal> を使用する関数は,
+                環境に依存する結果を返す可能性があります!
+            </para>
+            <para>
+                <literal>exists(name,'local')</literal> は,
+                <literal>name</literal>という名前の変数がカレントの関数の
+                環境に存在する場合に <literal>1</literal>,
+                それ以外の場合に <literal>0</literal> を返します.
+            </para>
+            <para>
+                <literal>exists(name,'nolocal')</literal> は,
+                <literal>name</literal>という名前の変数が関数の呼び出し元の
+                環境(Scilabシェルメインレベルを含む)に存在する場合に <literal>1</literal>,
+                それ以外の場合に <literal>0</literal> を返します.
+            </para>
+            <para>
+                警告: exists関数は,ある変数が<link linkend="global">グローバル</link>
+                名前空間に存在するかどうかを確認しません.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''local'')])'
  'disp([exists(''x''),exists(''x'',''local'')])'])
@@ -81,28 +81,28 @@ function go()
 endfunction
 go()
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="isdef">isdef</link>
-            </member>
-            <member>
-                <link linkend="isglobal">isglobal</link>
-            </member>
-            <member>
-                <link linkend="whereis">whereis</link>
-            </member>
-            <member>
-                <link linkend="type">type</link>
-            </member>
-            <member>
-                <link linkend="typeof">typeof</link>
-            </member>
-            <member>
-                <link linkend="macrovar">macrovar</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="isdef">isdef</link>
+                </member>
+                <member>
+                    <link linkend="isglobal">isglobal</link>
+                </member>
+                <member>
+                    <link linkend="whereis">whereis</link>
+                </member>
+                <member>
+                    <link linkend="type">type</link>
+                </member>
+                <member>
+                    <link linkend="typeof">typeof</link>
+                </member>
+                <member>
+                    <link linkend="macrovar">macrovar</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

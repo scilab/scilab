@@ -41,10 +41,10 @@ public class ScilabPreferences {
      */
     public static void openPreferences(final String initialPath) {
         SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    XConfigManager.openPreferences(initialPath);
-                }
-            });
+            public void run() {
+                XConfigManager.openPreferences(initialPath);
+            }
+        });
     }
 
     /**

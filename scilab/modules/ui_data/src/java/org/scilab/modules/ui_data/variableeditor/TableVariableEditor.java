@@ -77,114 +77,114 @@ public class TableVariableEditor extends JTable {
         scrollPane = new JScrollPane(this);
         /* Modify the table size when the knob is at the bottom of the vertical scrollbar */
         scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-                public void adjustmentValueChanged(AdjustmentEvent e) {
-                    BoundedRangeModel brm = scrollPane.getVerticalScrollBar().getModel();
-                    if (brm.getMaximum() - brm.getExtent() - e.getValue() <= 1) {
-                        addTenRows();
-                    }
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                BoundedRangeModel brm = scrollPane.getVerticalScrollBar().getModel();
+                if (brm.getMaximum() - brm.getExtent() - e.getValue() <= 1) {
+                    addTenRows();
                 }
-            });
+            }
+        });
 
         /* Modify the table size when the knob is at the right of the horizontal scrollbar */
         scrollPane.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-                public void adjustmentValueChanged(AdjustmentEvent e) {
-                    BoundedRangeModel brm = scrollPane.getHorizontalScrollBar().getModel();
-                    if (brm.getMaximum() - brm.getExtent() - e.getValue() <= 1) {
-                        addTenCols();
-                    }
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                BoundedRangeModel brm = scrollPane.getHorizontalScrollBar().getModel();
+                if (brm.getMaximum() - brm.getExtent() - e.getValue() <= 1) {
+                    addTenCols();
                 }
-            });
+            }
+        });
 
         /* Modify the table size when the scrollpane is resized */
         scrollPane.getViewport().addComponentListener(new ComponentAdapter() {
-                public void componentResized(ComponentEvent e) {
-                    if (((SwingEditvarTableModel) getModel()).enlarge(getMinimalRowNumber() + 1, getMinimalColumnNumber() + 1)) {
-                        ((SwingEditvarTableModel) getModel()).fireTableChanged(new TableModelEvent(getModel()));
-                    }
+            public void componentResized(ComponentEvent e) {
+                if (((SwingEditvarTableModel) getModel()).enlarge(getMinimalRowNumber() + 1, getMinimalColumnNumber() + 1)) {
+                    ((SwingEditvarTableModel) getModel()).fireTableChanged(new TableModelEvent(getModel()));
                 }
-            });
+            }
+        });
 
         getTableHeader().setDefaultRenderer(new HeaderRenderer(this, false));
 
         /* Handle left click on the column header */
         getTableHeader().addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    if (getTableHeader().getCursor().getType() == Cursor.DEFAULT_CURSOR && SwingUtilities.isLeftMouseButton(e)) {
-                        JTable table = TableVariableEditor.this;
-                        int column = table.getColumnModel().getColumnIndexAtX(e.getX());
-                        ListSelectionModel csm = table.getColumnModel().getSelectionModel();
+            public void mousePressed(MouseEvent e) {
+                if (getTableHeader().getCursor().getType() == Cursor.DEFAULT_CURSOR && SwingUtilities.isLeftMouseButton(e)) {
+                    JTable table = TableVariableEditor.this;
+                    int column = table.getColumnModel().getColumnIndexAtX(e.getX());
+                    ListSelectionModel csm = table.getColumnModel().getSelectionModel();
+                    int rowC = ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount();
+                    if (rowC == 0) {
+                        rowC = 1;
+                    }
+
+                    if (e.isShiftDown()) {
+                        csm.setSelectionInterval(column, clickedColumn);
+                        table.setRowSelectionInterval(0, rowC - 1);
+                    } else {
+                        if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
+                            if (table.isColumnSelected(column)) {
+                                csm.removeSelectionInterval(column, column);
+                            } else {
+                                csm.addSelectionInterval(column, column);
+                                table.setRowSelectionInterval(0, rowC - 1);
+                            }
+                        } else {
+                            csm.setSelectionInterval(column, column);
+                            table.setRowSelectionInterval(0, rowC - 1);
+                        }
+                        clickedColumn = column;
+                    }
+                    table.requestFocus();
+                }
+            }
+        });
+
+        /* Handle left-click drag on the column header */
+        getTableHeader().addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                if (getTableHeader().getCursor().getType() == Cursor.DEFAULT_CURSOR && SwingUtilities.isLeftMouseButton(e)) {
+                    JTable table = TableVariableEditor.this;
+                    Point p =  e.getPoint();
+                    int column;
+                    if (p.x >= table.getTableHeader().getHeaderRect(table.getColumnCount() - 1).x) {
+                        column = table.getColumnCount() - 1;
+                    } else {
+                        column = table.getColumnModel().getColumnIndexAtX(p.x);
+                    }
+
+                    ListSelectionModel csm = table.getColumnModel().getSelectionModel();
+                    int lead = csm.getLeadSelectionIndex();
+                    if (lead != column) {
+                        if (column == getColumnCount() - 1) {
+                            ((TableVariableEditor) table).addTenCols();
+                        }
+                        table.scrollRectToVisible(table.getTableHeader().getHeaderRect(column));
+                        if (e.isShiftDown()) {
+                            csm.setSelectionInterval(clickedColumn, column);
+                        } else {
+                            if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
+                                if (csm.isSelectedIndex(column)) {
+                                    csm.removeSelectionInterval(lead, column);
+                                    csm.addSelectionInterval(clickedColumn, column);
+                                } else {
+                                    csm.addSelectionInterval(clickedColumn, column);
+                                }
+                            } else {
+                                csm.setSelectionInterval(clickedColumn, column);
+                            }
+                        }
                         int rowC = ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount();
                         if (rowC == 0) {
                             rowC = 1;
                         }
 
-                        if (e.isShiftDown()) {
-                            csm.setSelectionInterval(column, clickedColumn);
-                            table.setRowSelectionInterval(0, rowC - 1);
-                        } else {
-                            if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
-                                if (table.isColumnSelected(column)) {
-                                    csm.removeSelectionInterval(column, column);
-                                } else {
-                                    csm.addSelectionInterval(column, column);
-                                    table.setRowSelectionInterval(0, rowC - 1);
-                                }
-                            } else {
-                                csm.setSelectionInterval(column, column);
-                                table.setRowSelectionInterval(0, rowC - 1);
-                            }
-                            clickedColumn = column;
-                        }
+                        table.setRowSelectionInterval(0, rowC - 1);
                         table.requestFocus();
                     }
                 }
-            });
-
-        /* Handle left-click drag on the column header */
-        getTableHeader().addMouseMotionListener(new MouseMotionAdapter() {
-                public void mouseDragged(MouseEvent e) {
-                    if (getTableHeader().getCursor().getType() == Cursor.DEFAULT_CURSOR && SwingUtilities.isLeftMouseButton(e)) {
-                        JTable table = TableVariableEditor.this;
-                        Point p =  e.getPoint();
-                        int column;
-                        if (p.x >= table.getTableHeader().getHeaderRect(table.getColumnCount() - 1).x) {
-                            column = table.getColumnCount() - 1;
-                        } else {
-                            column = table.getColumnModel().getColumnIndexAtX(p.x);
-                        }
-
-                        ListSelectionModel csm = table.getColumnModel().getSelectionModel();
-                        int lead = csm.getLeadSelectionIndex();
-                        if (lead != column) {
-                            if (column == getColumnCount() - 1) {
-                                ((TableVariableEditor) table).addTenCols();
-                            }
-                            table.scrollRectToVisible(table.getTableHeader().getHeaderRect(column));
-                            if (e.isShiftDown()) {
-                                csm.setSelectionInterval(clickedColumn, column);
-                            } else {
-                                if ((e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0) {
-                                    if (csm.isSelectedIndex(column)) {
-                                        csm.removeSelectionInterval(lead, column);
-                                        csm.addSelectionInterval(clickedColumn, column);
-                                    } else {
-                                        csm.addSelectionInterval(clickedColumn, column);
-                                    }
-                                } else {
-                                    csm.setSelectionInterval(clickedColumn, column);
-                                }
-                            }
-                            int rowC = ((SwingEditvarTableModel) getModel()).getScilabMatrixRowCount();
-                            if (rowC == 0) {
-                                rowC = 1;
-                            }
-
-                            table.setRowSelectionInterval(0, rowC - 1);
-                            table.requestFocus();
-                        }
-                    }
-                }
-            });
+            }
+        });
 
         getTableHeader().setReorderingAllowed(false);
         getTableHeader().setComponentPopupMenu(createPopupMenu());
@@ -192,18 +192,18 @@ public class TableVariableEditor extends JTable {
         /* Click on the upper left corner selects all */
         scrollPane.setCorner(JScrollPane.UPPER_LEFT_CORNER, new JPanel());
         scrollPane.getCorner(JScrollPane.UPPER_LEFT_CORNER).addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    selectAll();
-                }
-            });
+            public void mousePressed(MouseEvent e) {
+                selectAll();
+            }
+        });
 
         /* Click on the lower left corner clear the selection */
         scrollPane.setCorner(JScrollPane.LOWER_LEFT_CORNER, new JPanel());
         scrollPane.getCorner(JScrollPane.LOWER_LEFT_CORNER).addMouseListener(new MouseAdapter() {
-                public void mousePressed(MouseEvent e) {
-                    clearSelection();
-                }
-            });
+            public void mousePressed(MouseEvent e) {
+                clearSelection();
+            }
+        });
 
         setFillsViewportHeight(true);
         setRowHeight(18);
@@ -294,11 +294,11 @@ public class TableVariableEditor extends JTable {
      */
     public JPopupMenu createPopupMenu() {
         JPopupMenu popup = new JPopupMenu() {
-                public void show(Component invoker, int x, int y) {
-                    setPopupColumn(getColumnModel().getColumnIndexAtX(x));
-                    super.show(invoker, x, y);
-                }
-            };
+            public void show(Component invoker, int x, int y) {
+                setPopupColumn(getColumnModel().getColumnIndexAtX(x));
+                super.show(invoker, x, y);
+            }
+        };
         popup.setBorderPainted(true);
         popup.add(InsertColumnAction.createMenuItem(this, UiDataMessages.INSERTC));
         popup.add(RemoveColumnAction.createMenuItem(this, UiDataMessages.REMOVEC));

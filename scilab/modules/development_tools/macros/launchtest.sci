@@ -12,31 +12,31 @@
 // Which will call the target check-local in the file Makefile.incl.am
 
 function launchtest(myPath,myTests)
-	chdir(myPath)
-	maketests(myTests,'clean')
-	maketests(myTests,'test')
+    chdir(myPath)
+    maketests(myTests,"clean")
+    maketests(myTests,"test")
 endfunction
 
 function maketests(myTests,job)
-	lines(0) // to disable line control
-	if argn(2)<1 then job='tests',end
-	if job=='clean' then //remove .dia files
-		cleantests(myTests)
-	else
-		for k1=1:size(myTests,'*')  // loop on .tst files
-			scitest(myTests(k1))
-		end
-	end
+    lines(0) // to disable line control
+    if argn(2)<1 then job="tests",end
+    if job=="clean" then //remove .dia files
+        cleantests(myTests)
+    else
+        for k1=1:size(myTests,"*")  // loop on .tst files
+            scitest(myTests(k1))
+        end
+    end
 endfunction
 
 function cleantests(myTests)
-	if getos() == 'Windows' then
-		path=SCI+'\tests\basic_tests'
-		file_to_clean=path+strsubst(myTests,'.tst','.dia')
-		unix_s('del '+'""'+strcat(file_to_clean,'"" ""')+'""')
-	else
-		path='./'
-		file_to_clean=path+strsubst(myTests,'.tst','.dia')
-		unix_s('rm -f '+strcat(file_to_clean,' '))
-	end
+    if getos() == "Windows" then
+        path=SCI+"\tests\basic_tests"
+        file_to_clean=path+strsubst(myTests,".tst",".dia")
+        unix_s("del "+""""+strcat(file_to_clean,""" """)+"""")
+    else
+        path="./"
+        file_to_clean=path+strsubst(myTests,".tst",".dia")
+        unix_s("rm -f "+strcat(file_to_clean," "))
+    end
 endfunction

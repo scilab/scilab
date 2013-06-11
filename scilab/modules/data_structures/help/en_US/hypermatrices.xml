@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
  *
@@ -10,41 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="hypermatrices">
-    <refnamediv>
-        <refname>hypermatrices</refname>
-        <refpurpose>a Scilab object, N dimensional matrix in Scilab</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Hypermatrix type allows to manipulate multidimensional arrays.
-        </para>
-        <para>
-            They can be defined by extension of 2D matrices as follows
-            <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> or directly using <function>hypermat</function> function.
-        </para>
-        <para>
-            Entries can be real or complex numbers, polynomials,
-            rationals, strings, booleans.
-        </para>
-        <para>
-            Hypermatrices are <literal>mlists</literal>:
-            <code>mlist(['hm','dims','entries'],sz,v)</code> where <literal>sz</literal> is the row
-            vector of dimensions and <literal>v</literal> the column vector of entries (first
-            dimension are stored first).
-        </para>
-        <para>
-            <note>
-                The number of dimension of hypermatrices with right-most sizes equal to
-                1 are automatically reduced. An hypermatrix with only two dimensions is
-                automatically changed to a regular matrix (type 1).
-            </note>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="hypermatrices">
+        <refnamediv>
+            <refname>hypermatrices</refname>
+            <refpurpose>a Scilab object, N dimensional matrix in Scilab</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Hypermatrix type allows to manipulate multidimensional arrays.
+            </para>
+            <para>
+                They can be defined by extension of 2D matrices as follows
+                <code>a=[1 2;3 4];a(:,:,2)=rand(2,2)</code> or directly using <function>hypermat</function> function.
+            </para>
+            <para>
+                Entries can be real or complex numbers, polynomials,
+                rationals, strings, booleans.
+            </para>
+            <para>
+                Hypermatrices are <literal>mlists</literal>:
+                <code>mlist(['hm','dims','entries'],sz,v)</code> where <literal>sz</literal> is the row
+                vector of dimensions and <literal>v</literal> the column vector of entries (first
+                dimension are stored first).
+            </para>
+            <para>
+                <note>
+                    The number of dimension of hypermatrices with right-most sizes equal to
+                    1 are automatically reduced. An hypermatrix with only two dimensions is
+                    automatically changed to a regular matrix (type 1).
+                </note>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
@@ -56,25 +56,25 @@ type(a(:,:,1))
  
 [a a]
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="hypermat">hypermat</link>
-            </member>
-            <member>
-                <link linkend="zeros">zeros</link>
-            </member>
-            <member>
-                <link linkend="ones">ones</link>
-            </member>
-            <member>
-                <link linkend="grand">grand</link>
-            </member>
-            <member>
-                <link linkend="matrix">matrix</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="hypermat">hypermat</link>
+                </member>
+                <member>
+                    <link linkend="zeros">zeros</link>
+                </member>
+                <member>
+                    <link linkend="ones">ones</link>
+                </member>
+                <member>
+                    <link linkend="grand">grand</link>
+                </member>
+                <member>
+                    <link linkend="matrix">matrix</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * Copyright (C) 2013 - Scilab Enterprises - Vincent COUVERT
@@ -11,59 +11,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SCIHOME" xml:lang="en">
-    <refnamediv>
-        <refname>SCIHOME</refname>
-        <refpurpose>contains the path to preferences, history files of your Scilab
-            session.
-        </refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <literal>SCIHOME</literal> contains the path to preferences, history files
-            of your Scilab session.
-        </para>
-        <para>
-            <literal>SCIHOME</literal> definition:
-        </para>
-        <para>
-            On Windows XP: "%USERPROFILE%\Application Data\Scilab\&lt;Scilab-Version&gt;" with %USERPROFILE% similar to "C:\Documents and Settings\&lt;User&gt;".
-        </para>
-        <para>
-            On Windows Vista, 7 and 8: "%USERPROFILE%\AppData\Roaming\Scilab\&lt;Scilab-Version&gt;" with %USERPROFILE% similar to "C:\Users\&lt;User&gt;".
-        </para>
-        <para>
-            On GNU/Linux or Unix: /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
-        </para>
-        <para>
-            On Mac OS X: /Users/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
-        </para>
-        <para>
-            &lt;User&gt; is your current login name
-        </para>
-        <para>
-            &lt;Scilab-Version&gt; is current version of Scilab used.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SCIHOME" xml:lang="en">
+        <refnamediv>
+            <refname>SCIHOME</refname>
+            <refpurpose>contains the path to preferences, history files of your Scilab
+                session.
+            </refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <literal>SCIHOME</literal> contains the path to preferences, history files
+                of your Scilab session.
+            </para>
+            <para>
+                <literal>SCIHOME</literal> definition:
+            </para>
+            <para>
+                On Windows XP: "%USERPROFILE%\Application Data\Scilab\&lt;Scilab-Version&gt;" with %USERPROFILE% similar to "C:\Documents and Settings\&lt;User&gt;".
+            </para>
+            <para>
+                On Windows Vista, 7 and 8: "%USERPROFILE%\AppData\Roaming\Scilab\&lt;Scilab-Version&gt;" with %USERPROFILE% similar to "C:\Users\&lt;User&gt;".
+            </para>
+            <para>
+                On GNU/Linux or Unix: /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+            </para>
+            <para>
+                On Mac OS X: /Users/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
+            </para>
+            <para>
+                &lt;User&gt; is your current login name
+            </para>
+            <para>
+                &lt;Scilab-Version&gt; is current version of Scilab used.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 disp(SCIHOME);
 isdir(SCIHOME)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="SCI">SCI</link>
-            </member>
-        </simplelist>
-        <simplelist type="inline">
-            <member>
-                <link linkend="TMPDIR">TMPDIR</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="SCI">SCI</link>
+                </member>
+            </simplelist>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="TMPDIR">TMPDIR</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

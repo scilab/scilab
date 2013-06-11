@@ -18,20 +18,20 @@
 //   xdata , ydata , zdata : vectors of data, as required by the contour command
 //
 function [ this , xdata , ydata , zdata ] = nmplot_contour ( this , xmin , xmax , ymin , ymax , nx , ny )
-  // Check that there are only 2 parameters
-  n = neldermead_cget ( this.nmbase , "-numberofvariables" );
-  if n <> 2 then
-    errmsg = msprintf(gettext("%s: Unexpected number of variables %d. Cannot draw contour plot for functions which do not have two parameters."),"nmplot_contour",n)
-    error(errmsg)
-  end
-  xdata = linspace(xmin,xmax,nx);
-  ydata = linspace(ymin,ymax,ny);
-  for ix = 1:length(xdata)
-    for iy = 1:length(ydata)
-      experiment = [xdata(ix) ydata(iy)]';
-      [ this.nmbase , fiexp ] = neldermead_function ( this.nmbase , experiment );
-      zdata ( ix , iy ) = fiexp;
+    // Check that there are only 2 parameters
+    n = neldermead_cget ( this.nmbase , "-numberofvariables" );
+    if n <> 2 then
+        errmsg = msprintf(gettext("%s: Unexpected number of variables %d. Cannot draw contour plot for functions which do not have two parameters."),"nmplot_contour",n)
+        error(errmsg)
     end
-  end
+    xdata = linspace(xmin,xmax,nx);
+    ydata = linspace(ymin,ymax,ny);
+    for ix = 1:length(xdata)
+        for iy = 1:length(ydata)
+            experiment = [xdata(ix) ydata(iy)]';
+            [ this.nmbase , fiexp ] = neldermead_function ( this.nmbase , experiment );
+            zdata ( ix , iy ) = fiexp;
+        end
+    end
 endfunction
 

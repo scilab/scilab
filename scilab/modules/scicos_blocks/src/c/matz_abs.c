@@ -18,26 +18,26 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matz_abs(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matz_abs(scicos_block *block, int flag)
 {
-	int i = 0;
-	int mu = GetOutPortRows(block,1);
-	int nu = GetOutPortCols(block,1);
+    int i = 0;
+    int mu = GetOutPortRows(block, 1);
+    int nu = GetOutPortCols(block, 1);
 
-	double *u1r=GetRealInPortPtrs(block,1);
-	double *u1i=GetImagInPortPtrs(block,1);
-	double *y1=GetRealOutPortPtrs(block,1);
-	double *y2=GetRealOutPortPtrs(block,2);
+    double *u1r = GetRealInPortPtrs(block, 1);
+    double *u1i = GetImagInPortPtrs(block, 1);
+    double *y1 = GetRealOutPortPtrs(block, 1);
+    double *y2 = GetRealOutPortPtrs(block, 2);
 
-	for (i=0;i<mu*nu;i++) 
-	{
-		*(y1+i)=pow((pow(*(u1r+i),2)+pow(*(u1i+i),2)),0.5);
-		*(y2+i)=atan2(*(u1i+i),*(u1r+i));
-	}
+    for (i = 0; i < mu * nu; i++)
+    {
+        *(y1 + i) = pow((pow(*(u1r + i), 2) + pow(*(u1i + i), 2)), 0.5);
+        *(y2 + i) = atan2(*(u1i + i), *(u1r + i));
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

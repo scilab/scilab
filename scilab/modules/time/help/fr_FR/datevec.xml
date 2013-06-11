@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,32 +10,32 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="datevec">
-    <refnamediv>
-        <refname>datevec</refname>
-        <refpurpose>Reconstruction d'un vecteur contenant une Date</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>V=datevec(DT)
-            [Y,M,D,H,MI,S]=datevec(DT)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            V = datevec(DT) convertie un nombre (défini par datenum) en un vecteur
-            contenant une date dont les éléments sont [year, month, day, hour, minute,
-            second]. DT peut être une matrice.
-        </para>
-        <para>
-            [Y, M, D, H, MI, S] = datevec(DT) retourne les composants de la date dans 6 variables.
-            DT peut être une matrice.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="datevec">
+        <refnamediv>
+            <refname>datevec</refname>
+            <refpurpose>Reconstruction d'un vecteur contenant une Date</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>V=datevec(DT)
+                [Y,M,D,H,MI,S]=datevec(DT)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                V = datevec(DT) convertie un nombre (défini par datenum) en un vecteur
+                contenant une date dont les éléments sont [year, month, day, hour, minute,
+                second]. DT peut être une matrice.
+            </para>
+            <para>
+                [Y, M, D, H, MI, S] = datevec(DT) retourne les composants de la date dans 6 variables.
+                DT peut être une matrice.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[ 
 // Premier exemple
 datevec(720840)
 
@@ -50,16 +50,16 @@ datevec(A)
 A = grand(10,12,'unf',1,1000000)
 datevec(A)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="datenum">datenum</link>
-            </member>
-            <member>
-                <link linkend="calendar">calendar</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="datenum">datenum</link>
+                </member>
+                <member>
+                    <link linkend="calendar">calendar</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

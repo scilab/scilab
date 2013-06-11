@@ -9,16 +9,16 @@
 
 function r=isinf(x)
 
-  rhs = argn(2);
+    rhs = argn(2);
 
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"isinf",1));
-  end
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"isinf",1));
+    end
 
-	if x==[] then
-		r=[];
-	else
-		r=abs(x)==%inf;
-	end
+    if x==[] then
+        r=[];
+    else
+        r=abs(x)==%inf;
+    end
 
 endfunction

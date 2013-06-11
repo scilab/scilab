@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - Allan Layec - INRIA
  * Copyright (C) 2012 - Serge Steer - INRIA
@@ -11,51 +11,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" 
+    <refentry xmlns="http://docbook.org/ns/docbook" 
           xmlns:xlink="http://www.w3.org/1999/xlink" 
           xmlns:svg="http://www.w3.org/2000/svg" 
           xmlns:mml="http://www.w3.org/1998/Math/MathML" 
           xmlns:db="http://docbook.org/ns/docbook" 
           xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="set_fftw_wisdom">
-    <refnamediv>
-        <refname>set_fftw_wisdom</refname>
-        <refpurpose>set fftw wisdom</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>set_fftw_wisdom(txt)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>txt</term>
-                <listitem>
-                    <para>String matrix that contains fftw wisdom.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Caveat</title>
-        <para> 
-            This function is not implemented in Scilab versions which use
-            the MKL intel library (Scilab official versions for windows in particular).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            This function set the fftw wisdom with a string matrix.Using
-            <literal>get_fftw_wisdom</literal> and
-            <literal>set_fftw_wisdom</literal> allows to optimize fft
-            efficiency if many calls have to be done on with same data sizes
-            and same options for the <link linkend="fft">fft</link> function.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <refnamediv>
+            <refname>set_fftw_wisdom</refname>
+            <refpurpose>set fftw wisdom</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>set_fftw_wisdom(txt)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>txt</term>
+                    <listitem>
+                        <para>String matrix that contains fftw wisdom.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Caveat</title>
+            <para> 
+                This function is not implemented in Scilab versions which use
+                the MKL intel library (Scilab official versions for windows in particular).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                This function set the fftw wisdom with a string matrix.Using
+                <literal>get_fftw_wisdom</literal> and
+                <literal>set_fftw_wisdom</literal> allows to optimize fft
+                efficiency if many calls have to be done on with same data sizes
+                and same options for the <link linkend="fft">fft</link> function.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 sample_rate=1000;
 t = 0:1/sample_rate:40;
 N=size(t,'*'); //number of samples
@@ -77,16 +77,16 @@ set_fftw_wisdom(wisdom1);
 timer();y=fft(s);t3=timer()
 t3/t2
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
-            </member>
-            <member>
-                <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+                </member>
+                <member>
+                    <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2012 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_debug)(char *fname,unsigned long fname_len)
+int C2F(sci_debug)(char *fname, unsigned long fname_len)
 {
     double dPreviousDebugLevel = 0.;
 
@@ -34,7 +34,7 @@ int C2F(sci_debug)(char *fname,unsigned long fname_len)
         double dNewDebugLevel = 0.;
         int iNewDebugLevel = 0;
         SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -84,10 +84,10 @@ int C2F(sci_debug)(char *fname,unsigned long fname_len)
 
     if (createScalarDouble(pvApiCtx, Rhs + 1, dPreviousDebugLevel) != 0)
     {
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
-    LhsVar(1) = Rhs + 1; 
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
     return 0;
 }

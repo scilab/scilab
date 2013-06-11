@@ -5,14 +5,14 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
-    // 
+    //
     // PURPOSE
-    //    Like grayplot but the function fec is used to smooth the 
-    //    result assuming that the underlying function is linear on 
+    //    Like grayplot but the function fec is used to smooth the
+    //    result assuming that the underlying function is linear on
     //    a set of triangles built from the grid (here with n1=5, n2=3):
     //             _____________
     //             | /| /| /| /|
@@ -45,7 +45,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     end
 
     // some checks
-    if ~(type(x)==1 & isreal(x) & type(y)==1 & isreal(y) & type(z)==1 & isreal(z)) then 
+    if ~(type(x)==1 & isreal(x) & type(y)==1 & isreal(y) & type(z)==1 & isreal(z)) then
         error(msprintf(gettext("%s: Wrong type for input argument(s): Arguments #%d, #%d and #%d must be real.\n"), "Sgrayplot",1,2,3));
     end
     nx = length(x); ny = length(y); [p,q] = size(z)

@@ -1,44 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imult" xml:lang="en">
-    <refnamediv>
-        <refname>imult</refname>
-        <refpurpose>multiplication by i the imaginary unitary</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>y = imult(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>real or complex scalar, vector or matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>complex scalar, vector or matrix</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <code>imult(x)</code> is a more efficient way to multiply <varname>x</varname> by
-            <literal>i</literal> than <code>y = %i*x</code>, without the problems occurring
-            when <varname>x</varname> comprises "special" floating point numbers as
-            <constant>%inf</constant> and <constant>%nan</constant>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="imult" xml:lang="en">
+        <refnamediv>
+            <refname>imult</refname>
+            <refpurpose>multiplication by i the imaginary unitary</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>y = imult(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>real or complex scalar, vector or matrix</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>y</term>
+                    <listitem>
+                        <para>complex scalar, vector or matrix</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <code>imult(x)</code> is a more efficient way to multiply <varname>x</varname> by
+                <literal>i</literal> than <code>y = %i*x</code>, without the problems occurring
+                when <varname>x</varname> comprises "special" floating point numbers as
+                <constant>%inf</constant> and <constant>%nan</constant>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 z1 = imult(%inf)
 z2 = %i * %inf
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -11,83 +11,83 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percentt" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percentt" xml:lang="ja">
         
-        <refname>%t or %T</refname>
-        
-        <refpurpose>true (真)を表す論理値変数.</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>%t または %T</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
+        <refnamediv>
             
-            <literal>%t</literal> または <literal>%T</literal> は
+            <refname>%t or %T</refname>
             
-            <literal>true</literal>を返す論理値変数です.
+            <refpurpose>true (真)を表す論理値変数.</refpurpose>
             
-        </para>
+        </refnamediv>
         
-        <para>
+        <refsynopsisdiv>
             
-            条件が満たされる場合, 結果としてs <literal>true</literal>を返します.
+            <title>呼び出し手順</title>
             
-        </para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example">
+            <synopsis>%t または %T</synopsis>
             
-            <![CDATA[ 
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
+                
+                <literal>%t</literal> または <literal>%T</literal> は
+                
+                <literal>true</literal>を返す論理値変数です.
+                
+            </para>
+            
+            <para>
+                
+                条件が満たされる場合, 結果としてs <literal>true</literal>を返します.
+                
+            </para>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>例</title>
+            
+            <programlisting role="example">
+                
+                <![CDATA[ 
         a = 4 < 5
         b = 0 <> 1
         c = %t | %f
         d = (1:5) == 3
         ]]>
+                
+            </programlisting>
             
-        </programlisting>
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="percentf">%f または %F</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="comparison">比較</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="percentf">%f または %F</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="comparison">比較</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-</refentry>
-

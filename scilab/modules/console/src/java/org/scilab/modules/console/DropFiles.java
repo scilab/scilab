@@ -9,26 +9,26 @@
 package org.scilab.modules.console;
 
 
- /** 
-   * @author Allan CORNET
-   * @copyright INRIA 2007
-   */
+/**
+  * @author Allan CORNET
+  * @copyright INRIA 2007
+  */
 public class DropFiles {
 
- /**
-   * Constructor
-   */
- protected DropFiles() {
-    throw new UnsupportedOperationException();
- }
-  
-/**
-* drop function on all types for scilab
-* @param files list of files
-* @return true or false
-*/
-public static boolean dropFiles(String[] files) {
-    return DropFilesJNI.dropFiles(files);
-  }
+    /**
+      * Constructor
+      */
+    protected DropFiles() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+    * drop function on all types for scilab
+    * @param files list of files
+    * @return true or false
+    */
+    public static boolean dropFiles(String[] files) {
+        return DropFilesJNI.dropFiles(files);
+    }
 
 }

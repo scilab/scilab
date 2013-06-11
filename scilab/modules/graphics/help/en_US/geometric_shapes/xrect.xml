@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -10,59 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xrect">
-    <refnamediv>
-        <refname>xrect</refname>
-        <refpurpose>draw a rectangle</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>xrect(x,y,w,h)
-            xrect(rect) // with rect =[x,y,w,h]
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x,y,w,h</term>
-                <listitem>
-                    <para>four real values defining the rectangle.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>xrect</literal> draws a rectangle defined by <literal>[x,y,w,h]</literal> 
-            (upper-left point, width, height) in user coordinates.
-        </para>
-        <para>WARNING: please note that height is positive downwards.</para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xrect">
+        <refnamediv>
+            <refname>xrect</refname>
+            <refpurpose>draw a rectangle</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>xrect(x,y,w,h)
+                xrect(rect) // with rect =[x,y,w,h]
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x,y,w,h</term>
+                    <listitem>
+                        <para>four real values defining the rectangle.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>xrect</literal> draws a rectangle defined by <literal>[x,y,w,h]</literal> 
+                (upper-left point, width, height) in user coordinates.
+            </para>
+            <para>WARNING: please note that height is positive downwards.</para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xrect(-1,1,2,2)
  ]]></programlisting>
-        <scilab:image>
-            plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
-            xset("color",5)
-            xrect(-1,1,2,2)
-        </scilab:image>
-        
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="xfrect">xfrect</link>
-            </member>
-            <member>
-                <link linkend="xrects">xrects</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            <scilab:image>
+                plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+                xset("color",5)
+                xrect(-1,1,2,2)
+            </scilab:image>
+            
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="xfrect">xfrect</link>
+                </member>
+                <member>
+                    <link linkend="xrects">xrects</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

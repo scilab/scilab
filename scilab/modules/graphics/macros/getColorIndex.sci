@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function opt1 = getColorIndex(ColorString)
@@ -25,8 +25,8 @@ function opt1 = getColorIndex(ColorString)
     // 1) COLORS
 
     //Colors
-    Table      = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' ..
-    'k' 'white'     'none' 'auto' 'flat' 'interp']
+    Table      = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" ..
+    "k" "white"     "none" "auto" "flat" "interp"]
     //ColorVal = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' ..
     //      'black' 'white' 'none' 'auto' 'flat' 'interp']
     //                                      |       |
@@ -42,18 +42,18 @@ function opt1 = getColorIndex(ColorString)
 
     c1 = part(str,1); // We get the first character
 
-    if (k == [] | (size(k,'*') > 1 & c1 <> 'b'))
+    if (k == [] | (size(k,"*") > 1 & c1 <> "b"))
         warning(msprintf(gettext("%s: Wrong value for input argument #%d: A color of the colormap expected.\n"),"getColorIndex", 1));
         return;
     end
 
-    if c1=='b' // special case here : we have to distinguish between black and blue colors
+    if c1=="b" // special case here : we have to distinguish between black and blue colors
         c2 = part(str,2);
-        if (c2 == 'l')
+        if (c2 == "l")
             c3 = part(str,3);
-            if (c3 == 'a')
+            if (c3 == "a")
                 k=7; // k is set to black color
-            else  
+            else
                 k=3; // k is set to blue color
             end
         else
@@ -72,7 +72,7 @@ function opt1 = getColorIndex(ColorString)
 
     str = part(str,i:length(str));
 
-    if (size(opt1,'*') > 1)  // unreachable case normally
+    if (size(opt1,"*") > 1)  // unreachable case normally
         warning(msprintf(gettext("%s:  Wrong number of input argument: %d expected.\n"),"getColorIndex",1));
         return;
     end

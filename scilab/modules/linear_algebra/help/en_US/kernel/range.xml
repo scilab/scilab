@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,55 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="range">
-    <refnamediv>
-        <refname>range</refname>
-        <refpurpose>range (span) of A^k</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[X,dim]=range(A,k)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>A</term>
-                <listitem>
-                    <para>real square matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>k</term>
-                <listitem>
-                    <para>integer</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>X</term>
-                <listitem>
-                    <para>orthonormal real matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dim</term>
-                <listitem>
-                    <para>integer (dimension of subspace)</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Computation of Range <literal>A^k</literal> ; the first dim rows of <literal>X</literal> span the
-            range of <literal>A^k</literal>. The last rows of <literal>X</literal> span the
-            orthogonal complement of the range. <literal>X*X'</literal> is the Identity matrix
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="range">
+        <refnamediv>
+            <refname>range</refname>
+            <refpurpose>range (span) of A^k</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[X,dim]=range(A,k)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>A</term>
+                    <listitem>
+                        <para>real square matrix</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>k</term>
+                    <listitem>
+                        <para>integer</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>X</term>
+                    <listitem>
+                        <para>orthonormal real matrix</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>dim</term>
+                    <listitem>
+                        <para>integer (dimension of subspace)</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Computation of Range <literal>A^k</literal> ; the first dim rows of <literal>X</literal> span the
+                range of <literal>A^k</literal>. The last rows of <literal>X</literal> span the
+                orthogonal complement of the range. <literal>X*X'</literal> is the Identity matrix
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 A=rand(4,2)*rand(2,4);   // 4 column vectors, 2 independent.
 [X,dim]=range(A,1);dim   // compute the range
 
@@ -72,23 +72,23 @@ coeffs=X(1:dim,:)*y1     // components of y1 relative to the I basis
 
 norm(I*coeffs-y1)        //check
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="fullrfk">fullrfk</link>
-            </member>
-            <member>
-                <link linkend="rowcomp">rowcomp</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Used Functions</title>
-        <para>
-            The <literal>range</literal> function is based on the <link linkend="rowcomp">rowcomp</link> function
-            which uses the <link linkend="svd">svd</link> decomposition.
-        </para>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="fullrfk">fullrfk</link>
+                </member>
+                <member>
+                    <link linkend="rowcomp">rowcomp</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Used Functions</title>
+            <para>
+                The <literal>range</literal> function is based on the <link linkend="rowcomp">rowcomp</link> function
+                which uses the <link linkend="svd">svd</link> decomposition.
+            </para>
+        </refsection>
+    </refentry>

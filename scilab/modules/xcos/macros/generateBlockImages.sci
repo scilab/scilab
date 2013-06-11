@@ -24,52 +24,52 @@ function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
     if rhs < 3 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "generateBlockImages", 3));
     end
-    
+
     if typeof(iconsOutPath) <> "string" | ~isdir(iconsOutPath) then
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": directory path string expected.\n"), "generateBlockImages", "iconsOutPath"));
     end
-    
+
     if typeof(imagesOutPath) <> "string" | ~isdir(imagesOutPath) then
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": directory path string expected.\n"), "generateBlockImages", "imagesOutPath"));
     end
-    
-    if exists("traceEnable", 'l') == 0 then
+
+    if exists("traceEnable", "l") == 0 then
         traceEnable = %f;
     else
         if typeof(traceEnable) <> "boolean" then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": boolean expected.\n"), "generateBlockImage", "traceEnable"));
         end
     end
-    
+
     // call loadXcosLibs if not loaded
-    if exists("scicos_diagram", 'a') == 0 then loadXcosLibs(); end
-    
+    if exists("scicos_diagram", "a") == 0 then loadXcosLibs(); end
+
     if traceEnable then
-        ncl = lines(), lines(0);        
+        ncl = lines(), lines(0);
     end
-    
+
     // iterator on all blocks
     for fIndex = 1:size(palFiles, "*")
-    
+
         if ~isfile(palFiles(fIndex)) then
             if traceEnable then
                 mprintf(gettext("%s: File ''%s'' does not exist.\n"), "generateBlockImages", palFiles(fIndex));
             end
             continue;
         end
-        
+
         exec(palFiles(fIndex), -1);
-        
+
         if isempty("scs_m") then
             if traceEnable then
                 mprintf(gettext("%s: File ''%s'' is not a valid palette file.\n"), "generateBlockImages", palFiles(fIndex));
             end
             continue;
         end
-        
+
         for iBlock = 1:size(scs_m.objs)
             block = scs_m.objs(iBlock);
-            
+
             if typeof(block)=="Block" & block.gui == "PAL_f" then
                 // Add PAL_f children blocks
                 children = block.model.rpar.objs;
@@ -87,10 +87,10 @@ function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
                 continue;
             end
         end
-        
+
         clear scs_m;
     end
-  
+
     varsToLoad = gsort(varsToLoad, "r", "i");
     for kBlock = 1 : size(varsToLoad, "*")
         ierr = execstr("scs_m  = " + varsToLoad(kBlock) + "(""define"")", "errcatch");
@@ -105,10 +105,10 @@ function generateBlockImages(palFiles, iconsOutPath, imagesOutPath, traceEnable)
                 mprintf(" FAILED\n");
             end
         elseif traceEnable then
-            mprintf(" FAILED\n");     
+            mprintf(" FAILED\n");
         end
     end
-  
+
     if traceEnable then
         lines(ncl);
     end

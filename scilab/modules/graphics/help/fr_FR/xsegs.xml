@@ -1,94 +1,94 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xsegs">
-    <refnamediv>
-        <refname>xsegs</refname>
-        <refpurpose>dessine des segments non
-            connectés
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>
-            xsegs(xv,yv,[style])
-            xsegs(xv,yv,zv,[style])
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>xv,yv,zv</term>
-                <listitem>
-                    <para>
-                        matrices de la même taille. Si <literal>zv</literal> n'est pas spécifié, un vecteur de 0 est utilisé.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>style</term>
-                <listitem>
-                    <para>
-                        vecteur ou scalaire. Si <literal>style</literal> est un scalaire
-                        positif, il donne la couleur pour tous les segments. Si
-                        <literal>style</literal> est négatif la couleur courante est utilisé. Si
-                        <literal>style</literal> est un vecteur, alors <literal>style(i)</literal> donne
-                        la couleur du segment <literal>i</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>xsegs</literal> dessine un ensemble de segments déconnectés donnés
-            par <literal>xv</literal>,<literal>yv</literal> et <literal>zv</literal>. Si <literal>xv</literal>, <literal>yv</literal> et
-            <literal>zv</literal> sont des matrices elles sont considérées comme des
-            vecteurs (par concaténation de leurs colonnes). Les coordonnées des deux
-            points définissant un segment sont données par les valeurs consécutives
-            des termes de <literal>xv</literal>, <literal>yv</literal> et <literal>zv</literal>:
-        </para>
-        <para>
-            <literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.
-        </para>
-        <para>Par exemple, en utilisant des matrices de taille (2,n) :</para>
-        <programlisting><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xsegs">
+        <refnamediv>
+            <refname>xsegs</refname>
+            <refpurpose>dessine des segments non
+                connectés
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>
+                xsegs(xv,yv,[style])
+                xsegs(xv,yv,zv,[style])
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Paramètres</title>
+            <variablelist>
+                <varlistentry>
+                    <term>xv,yv,zv</term>
+                    <listitem>
+                        <para>
+                            matrices de la même taille. Si <literal>zv</literal> n'est pas spécifié, un vecteur de 0 est utilisé.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>style</term>
+                    <listitem>
+                        <para>
+                            vecteur ou scalaire. Si <literal>style</literal> est un scalaire
+                            positif, il donne la couleur pour tous les segments. Si
+                            <literal>style</literal> est négatif la couleur courante est utilisé. Si
+                            <literal>style</literal> est un vecteur, alors <literal>style(i)</literal> donne
+                            la couleur du segment <literal>i</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>xsegs</literal> dessine un ensemble de segments déconnectés donnés
+                par <literal>xv</literal>,<literal>yv</literal> et <literal>zv</literal>. Si <literal>xv</literal>, <literal>yv</literal> et
+                <literal>zv</literal> sont des matrices elles sont considérées comme des
+                vecteurs (par concaténation de leurs colonnes). Les coordonnées des deux
+                points définissant un segment sont données par les valeurs consécutives
+                des termes de <literal>xv</literal>, <literal>yv</literal> et <literal>zv</literal>:
+            </para>
+            <para>
+                <literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.
+            </para>
+            <para>Par exemple, en utilisant des matrices de taille (2,n) :</para>
+            <programlisting><![CDATA[ 
 xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] 
 yv=[yi_1 yi_2 ...; yf_1 yf_2 ...]
 zv=[zi_1 zi_2 ...; zf_1 zf_2 ...]
  ]]></programlisting>
-        <para>le segment numéro k est défini par :
-            <literal>(xi_k,yi_k,zi_k)--&gt;(xf_k,yf_k,zf_k)</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+            <para>le segment numéro k est défini par :
+                <literal>(xi_k,yi_k,zi_k)--&gt;(xf_k,yf_k,zf_k)</literal>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[ 
 x=2*%pi*(0:9)/10;
 xv=[sin(x);9*sin(x)];
 yv=[cos(x);9*cos(x)];
 plot2d([-10,10],[-10,10],[-1,-1],"022")
 xsegs(xv,yv,1:10)
  ]]></programlisting>
-        <scilab:image>
-            x=2*%pi*(0:9)/10;
-            xv=[sin(x);9*sin(x)];
-            yv=[cos(x);9*cos(x)];
-            plot2d([-10,10],[-10,10],[-1,-1],"022")
-            xsegs(xv,yv,1:10)
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
+            <scilab:image>
+                x=2*%pi*(0:9)/10;
+                xv=[sin(x);9*sin(x)];
+                yv=[cos(x);9*cos(x)];
+                plot2d([-10,10],[-10,10],[-1,-1],"022")
+                xsegs(xv,yv,1:10)
+            </scilab:image>
+            <programlisting role="example"><![CDATA[
 // 2D exemple
 plot2d([-10,10],[-10,10],[-1,-1],"022")
 xsegs([9, -9],[9 , -9]) // Dessine une ligne de X(9,9) à Y(-9, -9)
 xsegs([5, -2],[4 , -1]) // Dessine une ligne de X(5,4) à Y(-2, -1)
  ]]></programlisting>
-        <scilab:image>
-            plot2d([-10,10],[-10,10],[-1,-1],"022")
-            xsegs([9, -9],[9 , -9]) // Draw the line from X(9,9) to Y(-9, -9)
-            xsegs([5, -2],[4 , -1]) // Draw the line from X(5,4) to Y(-2, -1)
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
+            <scilab:image>
+                plot2d([-10,10],[-10,10],[-1,-1],"022")
+                xsegs([9, -9],[9 , -9]) // Draw the line from X(9,9) to Y(-9, -9)
+                xsegs([5, -2],[4 , -1]) // Draw the line from X(5,4) to Y(-2, -1)
+            </scilab:image>
+            <programlisting role="example"><![CDATA[
 
 // 3D exemple
 clf();
@@ -109,20 +109,20 @@ e = gce();
 e.arrow_size = 0.4;
 
  ]]></programlisting>
-        <scilab:image>
-            a=gca();
-            a.view="3d";
-            f=gcf();
-            f.color_map=rainbowcolormap(120);
-            alpha=2*%pi*(0:119)/40;
-            xv=[sin(alpha)/2;sin(alpha)/3];
-            yv=[cos(alpha)/2;cos(alpha)/3];
-            zv=[alpha/8;alpha/8];
-            xsegs(xv,yv,zv,1:120);
-            a.data_bounds = [min(xv) min(yv) min(zv); ...
-            max(xv) max(yv) max(zv)];
-            e = gce();
-            e.arrow_size = 0.4;
-        </scilab:image>
-    </refsection>
-</refentry>
+            <scilab:image>
+                a=gca();
+                a.view="3d";
+                f=gcf();
+                f.color_map=rainbowcolormap(120);
+                alpha=2*%pi*(0:119)/40;
+                xv=[sin(alpha)/2;sin(alpha)/3];
+                yv=[cos(alpha)/2;cos(alpha)/3];
+                zv=[alpha/8;alpha/8];
+                xsegs(xv,yv,zv,1:120);
+                a.data_bounds = [min(xv) min(yv) min(zv); ...
+                max(xv) max(yv) max(zv)];
+                e = gce();
+                e.arrow_size = 0.4;
+            </scilab:image>
+        </refsection>
+    </refentry>

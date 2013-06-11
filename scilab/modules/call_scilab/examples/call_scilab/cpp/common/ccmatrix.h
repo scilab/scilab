@@ -5,19 +5,19 @@
 #define _cc_matrix_H_
 
 
-class CMatrix 
+class CMatrix
 {
- private: 
-  int m,n;
-  char *name;
-  double *v;
+private:
+    int m, n;
+    char *name;
+    double *v;
 
- public:
-  CMatrix(char *name1,char *job);
-  void scijob(char *jobname);
-  CMatrix& plus(CMatrix &B);
-  void print();
-  void inv();
+public:
+    CMatrix(char *name1, char *job);
+    void scijob(char *jobname);
+    CMatrix& plus(CMatrix &B);
+    void print();
+    void inv();
 
 };
 

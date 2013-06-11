@@ -24,7 +24,7 @@ public interface KeywordListener extends EventListener {
      * ONMOUSECLICKED
      */
     int ONMOUSECLICKED = 1;
-    
+
     /**
      * ONMOUSEOVER
      */
@@ -35,7 +35,7 @@ public interface KeywordListener extends EventListener {
      * @param e a KeywordEvent
      */
     void caughtKeyword(KeywordEvent e);
-    
+
     /**
      * @return the type of the listener
      */

@@ -24,7 +24,7 @@
 * @param[out] nb_columns is 1 if TCL Array is an Hastable
 * @return index_size number of indexes
 */
-char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter,char *VarName,int *nb_lines, int* nb_columns);
+char **TCL_ArrayDim(Tcl_Interp *TCLinterpreter, char *VarName, int *nb_lines, int* nb_columns);
 
 #endif /* __TCL_ARRAYDIM_H__ */
 /*--------------------------------------------------------------------------*/

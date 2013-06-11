@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 DIGITEO - Simon GARESTE <simon.gareste@scilab.org>
  *
@@ -10,99 +10,99 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsGetLoadedPath" xml:lang="en">
-    <refnamediv>
-        <refname>atomsGetLoadedPath</refname>
-        <refpurpose>Returns the path of the installation directory of loaded external modules.</refpurpose>
-    </refnamediv>
-    <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
-    <!-- ===================================================================== -->
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            path = atomsGetLoadedPath(module)
-        </synopsis>
-    </refsynopsisdiv>
-    <!-- ===================================================================== -->
-    <!-- Parameters -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>module</term>
-                <listitem>
-                    <para>mx1, mx2, mx3 Matrix of strings :</para>
-                    <informaltable border="1">
-                        <!-- Technical name -->
-                        <tr>
-                            <td>
-                                <emphasis>1st Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Technical name</emphasis>
-                            </td>
-                            <td>
-                                Mandatory
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                        <!-- Version -->
-                        <tr>
-                            <td>
-                                <emphasis>2nd Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Version</emphasis>
-                            </td>
-                            <td>
-                                Optional
-                            </td>
-                            <td>
-                                If this field is empty or is not present,
-                                the most recent version is used
-                            </td>
-                        </tr>
-                        <!-- Section -->
-                        <tr>
-                            <td>
-                                <emphasis>3nd Col.</emphasis>
-                            </td>
-                            <td>
-                                <emphasis role="strong">Section</emphasis>
-                            </td>
-                            <td>
-                                Optional
-                            </td>
-                            <td>
-                                If this field is empty or is not present,
-                                "allusers" is used
-                            </td>
-                        </tr>
-                    </informaltable>
-                </listitem>
-                <term>path</term>
-                <para>The path of the given module</para>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Description -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>atomsGetLoadedPath</literal> returns the path of the module given
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Examples -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsGetLoadedPath" xml:lang="en">
+        <refnamediv>
+            <refname>atomsGetLoadedPath</refname>
+            <refpurpose>Returns the path of the installation directory of loaded external modules.</refpurpose>
+        </refnamediv>
+        <!-- ===================================================================== -->
+        <!-- Calling Sequence -->
+        <!-- ===================================================================== -->
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                path = atomsGetLoadedPath(module)
+            </synopsis>
+        </refsynopsisdiv>
+        <!-- ===================================================================== -->
+        <!-- Parameters -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>module</term>
+                    <listitem>
+                        <para>mx1, mx2, mx3 Matrix of strings :</para>
+                        <informaltable border="1">
+                            <!-- Technical name -->
+                            <tr>
+                                <td>
+                                    <emphasis>1st Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Technical name</emphasis>
+                                </td>
+                                <td>
+                                    Mandatory
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <!-- Version -->
+                            <tr>
+                                <td>
+                                    <emphasis>2nd Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Version</emphasis>
+                                </td>
+                                <td>
+                                    Optional
+                                </td>
+                                <td>
+                                    If this field is empty or is not present,
+                                    the most recent version is used
+                                </td>
+                            </tr>
+                            <!-- Section -->
+                            <tr>
+                                <td>
+                                    <emphasis>3nd Col.</emphasis>
+                                </td>
+                                <td>
+                                    <emphasis role="strong">Section</emphasis>
+                                </td>
+                                <td>
+                                    Optional
+                                </td>
+                                <td>
+                                    If this field is empty or is not present,
+                                    "allusers" is used
+                                </td>
+                            </tr>
+                        </informaltable>
+                    </listitem>
+                    <term>path</term>
+                    <para>The path of the given module</para>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Description -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>atomsGetLoadedPath</literal> returns the path of the module given
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Examples -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsInstall("toolbox_5");
@@ -112,25 +112,25 @@ path = atomsGetLoadedPath("toolbox_5");
 
 atomsRemove("toolbox_5");
  ]]></programlisting>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- See also -->
-    <!-- ===================================================================== -->
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="atomsLoad">atomsLoad</link>
-            </member>
-            <member>
-                <link linkend="atomsLoad">atomsGetLoaded</link>
-            </member>
-            <member>
-                <link linkend="atomsIsLoaded">atomsIsLoaded</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Authors -->
-    <!-- ===================================================================== -->
-</refentry>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- See also -->
+        <!-- ===================================================================== -->
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="atomsLoad">atomsLoad</link>
+                </member>
+                <member>
+                    <link linkend="atomsLoad">atomsGetLoaded</link>
+                </member>
+                <member>
+                    <link linkend="atomsIsLoaded">atomsIsLoaded</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Authors -->
+        <!-- ===================================================================== -->
+    </refentry>

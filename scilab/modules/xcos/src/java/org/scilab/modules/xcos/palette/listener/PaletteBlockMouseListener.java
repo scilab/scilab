@@ -45,7 +45,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
     /**
      * Load and perform display update on mouse click
-     * 
+     *
      * @param e
      *            The associated event
      */
@@ -57,9 +57,9 @@ public final class PaletteBlockMouseListener implements MouseListener {
             ContextMenu menu = ScilabContextMenu.createContextMenu();
 
             final List<XcosDiagram> allDiagrams = Xcos.getInstance()
-                    .openedDiagrams();
+                                                  .openedDiagrams();
             final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource())
-                    .getController();
+                                             .getController();
 
             // No diagram opened: should never happen as Xcos opens an empty
             // diagram when it is launched
@@ -70,7 +70,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
                 MenuItem addTo = ScilabMenuItem.createMenuItem();
 
                 addTo.setText(XcosMessages.ADDTO + " "
-                        + XcosTab.get(allDiagrams.get(0)).getName());
+                              + XcosTab.get(allDiagrams.get(0)).getName());
                 final XcosDiagram theDiagram = allDiagrams.get(0);
                 addTo.setCallback(new CommonCallBack(e.toString()) {
                     @Override
@@ -114,7 +114,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
                 public void callBack() {
                     try {
                         ScilabInterpreterManagement.asynchronousScilabExec(
-                                null, "help", control.getModel().getName());
+                            null, "help", control.getModel().getName());
                     } catch (InterpreterException e) {
                         e.printStackTrace();
                     }
@@ -125,14 +125,14 @@ public final class PaletteBlockMouseListener implements MouseListener {
             menu.setVisible(true);
 
             ((SwingScilabContextMenu) menu.getAsSimpleContextMenu())
-                    .setLocation(MouseInfo.getPointerInfo().getLocation().x,
-                            MouseInfo.getPointerInfo().getLocation().y);
+            .setLocation(MouseInfo.getPointerInfo().getLocation().x,
+                         MouseInfo.getPointerInfo().getLocation().y);
         }
     }
 
     /**
      * Not used
-     * 
+     *
      * @param e
      *            Not used
      */
@@ -142,7 +142,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
     /**
      * Not used
-     * 
+     *
      * @param e
      *            Not used
      */
@@ -152,7 +152,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
     /**
      * Select on mouse press
-     * 
+     *
      * @param e
      *            The associated event
      */
@@ -164,7 +164,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
     /**
      * Not used
-     * 
+     *
      * @param e
      *            Not used
      */

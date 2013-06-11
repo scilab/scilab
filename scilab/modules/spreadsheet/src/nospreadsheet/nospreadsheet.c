@@ -14,10 +14,10 @@
 #include "gw_spreadsheet.h"
 #include "Scierror.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 int gw_spreadsheet(void)
 {
-	Scierror(999,_("Scilab spreadsheet module not installed.\n"));
-	return 0;
+    Scierror(999, _("Scilab spreadsheet module not installed.\n"));
+    return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

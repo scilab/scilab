@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
  *
@@ -10,44 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="saveconsecutivecommands">
-    <refnamediv>
-        <refname>saveconsecutivecommands</refname>
-        <refpurpose>Save consecutive duplicate commands.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>saveconsecutivecommands(boolean_in)
-            boolean_out = saveconsecutivecommands()
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>boolean_in</term>
-                <listitem>
-                    <para>a boolean (%t or %f)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>boolean_out</term>
-                <listitem>
-                    <para>current value</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>Save consecutive duplicate commands.</para>
-        <para>saveconsecutivecommands(%t) if you want consecutive executions of the
-            same statement to be saved to the history file.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="saveconsecutivecommands">
+        <refnamediv>
+            <refname>saveconsecutivecommands</refname>
+            <refpurpose>Save consecutive duplicate commands.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>saveconsecutivecommands(boolean_in)
+                boolean_out = saveconsecutivecommands()
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>boolean_in</term>
+                    <listitem>
+                        <para>a boolean (%t or %f)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>boolean_out</term>
+                    <listitem>
+                        <para>current value</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>Save consecutive duplicate commands.</para>
+            <para>saveconsecutivecommands(%t) if you want consecutive executions of the
+                same statement to be saved to the history file.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 saveconsecutivecommands()
 saveconsecutivecommands(%t)
 1
@@ -58,5 +58,5 @@ saveconsecutivecommands(%f)
 1
 2
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

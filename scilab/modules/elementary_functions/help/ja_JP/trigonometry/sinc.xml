@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,66 +10,66 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sinc" xml:lang="ja">
-    <refnamediv>
-        <refname>sinc</refname>
-        <refpurpose>sinc関数</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>t=sinc(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>引数</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>実数または複素数のベクトルまたは行列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>実数または複素数のベクトルまたは行列</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>x</literal> がベクトルまたは行列の場合,
-            <literal>t=sinc(x)</literal> は,
-            <literal>x(i)~=0</literal>の場合に
-            <literal>t(i)=sin(x(i))/x(i)</literal>,
-            <literal>x(i)==0</literal>の場合に<literal>t(i)=1</literal>
-            となるようなベクトルまたは行列となります.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <scilab:image>
-            x=linspace(-10,10,3000);
-            plot2d(x,sinc(x))
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sinc" xml:lang="ja">
+        <refnamediv>
+            <refname>sinc</refname>
+            <refpurpose>sinc関数</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>t=sinc(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>引数</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>実数または複素数のベクトルまたは行列</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>実数または複素数のベクトルまたは行列</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>x</literal> がベクトルまたは行列の場合,
+                <literal>t=sinc(x)</literal> は,
+                <literal>x(i)~=0</literal>の場合に
+                <literal>t(i)=sin(x(i))/x(i)</literal>,
+                <literal>x(i)==0</literal>の場合に<literal>t(i)=1</literal>
+                となるようなベクトルまたは行列となります.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <scilab:image>
+                x=linspace(-10,10,3000);
+                plot2d(x,sinc(x))
+            </scilab:image>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 x=linspace(-10,10,3000);
 plot2d(x,sinc(x))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="sin">sin</link>
-            </member>
-            <member>
-                <link linkend="cos">cos</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="sin">sin</link>
+                </member>
+                <member>
+                    <link linkend="cos">cos</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

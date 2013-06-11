@@ -22,23 +22,23 @@ int sci_bug_11538(char* fname, int length)
     wchar_t* pwstData = NULL;
     char* pstData = NULL;
 
-    CheckRhs(1,1);
-    CheckLhs(1,1);
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 1;
     }
 
-    if(getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
+    if (getAllocatedSingleString(pvApiCtx, piAddr, &pstData))
     {
         Scierror(999, "Failed to get data as ascii string");
         return 1;
     }
 
-    if(getAllocatedSingleWideString(pvApiCtx, piAddr, &pwstData))
+    if (getAllocatedSingleWideString(pvApiCtx, piAddr, &pwstData))
     {
         Scierror(999, "Failed to get data as wide string");
         return 1;

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
  * 
@@ -10,44 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isrow" xml:lang="en">
-    <refnamediv>
-        <refname>isrow</refname>
-        <refpurpose>check if a variable is a row</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>t=isrow(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>scalar,vector, matrix, hypermatrix, list, array of structures or cells</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>a boolean</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>isrow(<varname>x</varname>)</literal> returns true if <varname>x</varname>
-            is a row. Scalars are considered as rows, and hypermatrix can be considered as rows only if
-            all of its dimensions, except the last one, are equal to 1. Note that <literal>isrow([])</literal>
-            returns false.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isrow" xml:lang="en">
+        <refnamediv>
+            <refname>isrow</refname>
+            <refpurpose>check if a variable is a row</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>t=isrow(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>scalar,vector, matrix, hypermatrix, list, array of structures or cells</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>a boolean</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>
+                    isrow(<varname>x</varname>)
+                </literal>
+                returns true if <varname>x</varname>
+                is a row. Scalars are considered as rows, and hypermatrix can be considered as rows only if
+                all of its dimensions, except the last one, are equal to 1. Note that <literal>isrow([])</literal>
+                returns false.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 isrow(ones(1,10))
 isrow(1)
 isrow(["s" "t" "u"])
@@ -72,34 +75,34 @@ s(1,1,2).a = 3;
 s(1,1,3).b = "test";
 isrow(s) // 3D array of structures (with 2 singleton dims)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="isscalar">isscalar</link>
-            </member>
-            <member>
-                <link linkend="iscolumn">iscolumn</link>
-            </member>
-            <member>
-                <link linkend="ismatrix">ismatrix</link>
-            </member>
-            <member>
-                <link linkend="issquare">issquare</link>
-            </member>
-            <member>
-                <link linkend="isempty">isempty</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.5.0</revnumber>
-                <revremark>Function isrow introduced.</revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="isscalar">isscalar</link>
+                </member>
+                <member>
+                    <link linkend="iscolumn">iscolumn</link>
+                </member>
+                <member>
+                    <link linkend="ismatrix">ismatrix</link>
+                </member>
+                <member>
+                    <link linkend="issquare">issquare</link>
+                </member>
+                <member>
+                    <link linkend="isempty">isempty</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.5.0</revnumber>
+                    <revremark>Function isrow introduced.</revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

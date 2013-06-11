@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,65 +10,65 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="fr">
-    <refnamediv>
-        <refname>string</refname>
-        <refpurpose>conversion en chaîne de caractères</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>string(x)
-            [out, in, text] = string(x)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>Booléen, complexe, réel, entier, polynôme matrice,
-                        bibliotheque ou fonction
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>Convertit une matrice en matrice de chaînes de caractères.</para>
-        <para>
-            Si <literal>x</literal> est une fonction <literal>[out, in, text] =
-                string(x)
-            </literal>
-            retourne 3 vecteurs de chaînes de caractères :
-            <literal>out</literal> est le vecteur des variables de sortie,
-            <literal>in</literal> est le vecteur des variables d'entrée, et
-            <literal>text</literal> est le vecteur colonne du code source de la
-            fonction.
-        </para>
-        <para>
-            Si <literal>x</literal> est une variable bibliotheque
-            <literal>lib</literal>, text est un vecteur colonne de chaînes de
-            caractères. Le premier élément contient le chemin de la bibliothèque et
-            l'autre élément le nom des fonctions qui sont définies dans cette
-            bibliothèque.
-        </para>
-        <para>Les chaînes de caractères sont définies de la façon suivant,
-            <literal>'string'</literal> (entre quotes) ou <literal>"string"</literal>
-            (entre double quotes); les matrices de chaînes de caractères sont définies
-            comme des matrices constantes normales.
-        </para>
-        <para>La concaténation des chaînes de caractères est effectuée par
-            l'opérateur <literal>+</literal>.
-        </para>
-        <para>
-            pour les types Booléen, complexe, réel, entier, polynôme matrice le texte issu de <literal>string</literal> est dependant de la fonction <link linkend="format">format</link> (voir exemples).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="fr">
+        <refnamediv>
+            <refname>string</refname>
+            <refpurpose>conversion en chaîne de caractères</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>string(x)
+                [out, in, text] = string(x)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Paramètres</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>Booléen, complexe, réel, entier, polynôme matrice,
+                            bibliotheque ou fonction
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>Convertit une matrice en matrice de chaînes de caractères.</para>
+            <para>
+                Si <literal>x</literal> est une fonction <literal>[out, in, text] =
+                    string(x)
+                </literal>
+                retourne 3 vecteurs de chaînes de caractères :
+                <literal>out</literal> est le vecteur des variables de sortie,
+                <literal>in</literal> est le vecteur des variables d'entrée, et
+                <literal>text</literal> est le vecteur colonne du code source de la
+                fonction.
+            </para>
+            <para>
+                Si <literal>x</literal> est une variable bibliotheque
+                <literal>lib</literal>, text est un vecteur colonne de chaînes de
+                caractères. Le premier élément contient le chemin de la bibliothèque et
+                l'autre élément le nom des fonctions qui sont définies dans cette
+                bibliothèque.
+            </para>
+            <para>Les chaînes de caractères sont définies de la façon suivant,
+                <literal>'string'</literal> (entre quotes) ou <literal>"string"</literal>
+                (entre double quotes); les matrices de chaînes de caractères sont définies
+                comme des matrices constantes normales.
+            </para>
+            <para>La concaténation des chaînes de caractères est effectuée par
+                l'opérateur <literal>+</literal>.
+            </para>
+            <para>
+                pour les types Booléen, complexe, réel, entier, polynôme matrice le texte issu de <literal>string</literal> est dependant de la fonction <link linkend="format">format</link> (voir exemples).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[ 
 string(rand(2, 2))
             
 deff("y = mymacro(x)", "y = x + 1")
@@ -89,37 +89,37 @@ format(24);
 disp(string(%pi))
 format(v(2))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="part">part</link>
-            </member>
-            <member>
-                <link linkend="length">length</link>
-            </member>
-            <member>
-                <link linkend="quote">quote</link>
-            </member>
-            <member>
-                <link linkend="evstr">evstr</link>
-            </member>
-            <member>
-                <link linkend="execstr">execstr</link>
-            </member>
-            <member>
-                <link linkend="strsubst">strsubst</link>
-            </member>
-            <member>
-                <link linkend="strcat">strcat</link>
-            </member>
-            <member>
-                <link linkend="strindex">strindex</link>
-            </member>
-            <member>
-                <link linkend="sci2exp">sci2exp</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="part">part</link>
+                </member>
+                <member>
+                    <link linkend="length">length</link>
+                </member>
+                <member>
+                    <link linkend="quote">quote</link>
+                </member>
+                <member>
+                    <link linkend="evstr">evstr</link>
+                </member>
+                <member>
+                    <link linkend="execstr">execstr</link>
+                </member>
+                <member>
+                    <link linkend="strsubst">strsubst</link>
+                </member>
+                <member>
+                    <link linkend="strcat">strcat</link>
+                </member>
+                <member>
+                    <link linkend="strindex">strindex</link>
+                </member>
+                <member>
+                    <link linkend="sci2exp">sci2exp</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

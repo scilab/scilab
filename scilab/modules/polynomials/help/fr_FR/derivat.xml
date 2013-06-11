@@ -1,57 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="derivat">
-    <refnamediv>
-        <refname>derivat</refname>
-        <refpurpose>dérivée d'une matrice de polynômes  </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>pd=derivat(p)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>p  </term>
-                <listitem>
-                    <para>polynôme, matrice de polynômes ou de fractions rationnelles
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Calcule la dérivée des polynômes ou fractions rationnelles contenus dans les termes de
-            la matrice p.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="derivat">
+        <refnamediv>
+            <refname>derivat</refname>
+            <refpurpose>dérivée d'une matrice de polynômes  </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>pd=derivat(p)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Paramètres</title>
+            <variablelist>
+                <varlistentry>
+                    <term>p  </term>
+                    <listitem>
+                        <para>polynôme, matrice de polynômes ou de fractions rationnelles
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Calcule la dérivée des polynômes ou fractions rationnelles contenus dans les termes de
+                la matrice p.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 derivat(1/s)  // -1/s^2;
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 p1 = poly([1 -2 1], 'x', 'coeff')
 derivat(p1)
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 p2 = poly([1 -4 2], 'y', 'coeff')
 derivat(p2)
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 p3 = poly(ones(1, 10), 'z', 'coeff')
 derivat(p3)
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 p4 = poly([-1 1], 't', 'roots')
 derivat(p4)
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 s = %s; p5 = s^{-1} + 2 + 3*s
 derivat(p5)
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

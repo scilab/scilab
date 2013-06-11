@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,46 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percente" xml:lang="en">
-    <refnamediv>
-        <refname>%e</refname>
-        <refpurpose>Euler number.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>%e</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>%e</literal> is the Euler number, solution of the equation <latex>\[ln(x) = 1\]</latex>.
-        </para>
-        <para>
-            This number can be found with 
-            <latex>
-                \sum_{n=0}^{\infty} \frac1{n!} = e
-            </latex>
-            .
-        </para>
-    </refsection>
-    <refsection>
-        <title>Example</title>
-        <programlisting role="example">
-            <![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percente" xml:lang="en">
+        <refnamediv>
+            <refname>%e</refname>
+            <refpurpose>Euler number.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>%e</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>%e</literal> is the Euler number, solution of the equation <latex>\[ln(x) = 1\]</latex>.
+            </para>
+            <para>
+                This number can be found with 
+                <latex>
+                    \sum_{n=0}^{\infty} \frac1{n!} = e
+                </latex>
+                .
+            </para>
+        </refsection>
+        <refsection>
+            <title>Example</title>
+            <programlisting role="example">
+                <![CDATA[ 
         %e
         log(%e)
         ]]>
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="log">log</link>
-            </member>
-            <member>
-                <link linkend="exp">exp</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="log">log</link>
+                </member>
+                <member>
+                    <link linkend="exp">exp</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

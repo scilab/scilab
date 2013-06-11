@@ -245,7 +245,8 @@
 
 /* Begin `spTemplate'. */
 struct  spTemplate
-{   spREAL    *Element1       ;
+{
+    spREAL    *Element1       ;
     spREAL    *Element2       ;
     spREAL    *Element3Negated;
     spREAL    *Element4Negated;
@@ -308,9 +309,9 @@ extern  void     spDeterminant ( char*, int*, spREAL* );
 #if spCOMPLEX && spSEPARATED_COMPLEX_VECTORS
 extern  int      spFileVector( char*, char* , spREAL[], spREAL[]);
 extern  void     spMultiply( char*, spREAL[], spREAL[], spREAL[], spREAL[] );
-extern  void     spMultTransposed(char*,spREAL[],spREAL[],spREAL[],spREAL[]);
+extern  void     spMultTransposed(char*, spREAL[], spREAL[], spREAL[], spREAL[]);
 extern  void     spSolve( char*, spREAL[], spREAL[], spREAL[], spREAL[] );
-extern  void     spSolveTransposed(char*,spREAL[],spREAL[],spREAL[],spREAL[]);
+extern  void     spSolveTransposed(char*, spREAL[], spREAL[], spREAL[], spREAL[]);
 #else /* NOT (spCOMPLEX && spSEPARATED_COMPLEX_VECTORS) */
 extern  int      spFileVector( char*, char* , spREAL[] );
 extern  void     spMultiply( char*, spREAL[], spREAL[] );

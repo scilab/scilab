@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,68 +10,68 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="projspec" xml:lang="en">
-    <refnamediv>
-        <refname>projspec</refname>
-        <refpurpose>operadores espectrais</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title> Seqüência de Chamamento</title>
-        <synopsis>[S,P,D,i]=projspec(A)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title> Parâmetros </title>
-        <variablelist>
-            <varlistentry>
-                <term>A</term>
-                <listitem>
-                    <para>matriz quadrada</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>S, P, D</term>
-                <listitem>
-                    <para>matrizes quadradas </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>i</term>
-                <listitem>
-                    <para>inteiro (índice do autovalor zero de
-                        <literal>A</literal>).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            Características espectrais de <literal>A</literal> em 0.
-        </para>
-        <para>
-            <literal>S</literal> = resolvente reduzido em 0
-            (<literal>S</literal> = -Inverso_de_Drazin(<literal>A</literal>)).
-        </para>
-        <para>
-            <literal>P</literal> = projeção espectral em 0.
-        </para>
-        <para>
-            <literal>D</literal> = operador nilpotente em 0.
-        </para>
-        <para>
-            <literal>index</literal> = índice do autovalor 0.
-        </para>
-        <para>
-            Tem-se <literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s -
-                S - s*S^2 -...
-            </literal>
-            ao redor da singularidade s=0.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="projspec" xml:lang="en">
+        <refnamediv>
+            <refname>projspec</refname>
+            <refpurpose>operadores espectrais</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title> Seqüência de Chamamento</title>
+            <synopsis>[S,P,D,i]=projspec(A)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title> Parâmetros </title>
+            <variablelist>
+                <varlistentry>
+                    <term>A</term>
+                    <listitem>
+                        <para>matriz quadrada</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>S, P, D</term>
+                    <listitem>
+                        <para>matrizes quadradas </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>i</term>
+                    <listitem>
+                        <para>inteiro (índice do autovalor zero de
+                            <literal>A</literal>).
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                Características espectrais de <literal>A</literal> em 0.
+            </para>
+            <para>
+                <literal>S</literal> = resolvente reduzido em 0
+                (<literal>S</literal> = -Inverso_de_Drazin(<literal>A</literal>)).
+            </para>
+            <para>
+                <literal>P</literal> = projeção espectral em 0.
+            </para>
+            <para>
+                <literal>D</literal> = operador nilpotente em 0.
+            </para>
+            <para>
+                <literal>index</literal> = índice do autovalor 0.
+            </para>
+            <para>
+                Tem-se <literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s -
+                    S - s*S^2 -...
+                </literal>
+                ao redor da singularidade s=0.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 deff('j=jdrn(n)','j=zeros(n,n);for k=1:n-1;j(k,k+1)=1;end')
 A=sysdiag(jdrn(3),jdrn(2),rand(2,2));X=rand(7,7);
 A=X*A*inv(X);
@@ -81,13 +81,13 @@ trace(P)  //soma das dimensões dos blocos J
 A*S-(eye()-P)
 norm(D^index,1)
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title> Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="coff">coff</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title> Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="coff">coff</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

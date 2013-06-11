@@ -19,26 +19,26 @@ CommandLine::CommandLine(void)
 /*------------------------------------------------------------------------*/
 CommandLine::CommandLine(std::string line_)
 {
-	this->Command = line_ ;
+    this->Command = line_ ;
 }
 /*------------------------------------------------------------------------*/
 CommandLine::~CommandLine()
 {
-	Command.erase();
+    Command.erase();
 }
 /*------------------------------------------------------------------------*/
 std::string CommandLine::get(void)
 {
-	return Command ;
+    return Command ;
 }
 /*------------------------------------------------------------------------*/
 BOOL CommandLine::set(std::string line_)
 {
-	if (!line_.empty())
-	{
-		this->Command = line_ ;
-		return TRUE;
-	}
-	return FALSE;
+    if (!line_.empty())
+    {
+        this->Command = line_ ;
+        return TRUE;
+    }
+    return FALSE;
 }
 /*------------------------------------------------------------------------*/

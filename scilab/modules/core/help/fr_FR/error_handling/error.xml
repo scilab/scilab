@@ -1,107 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="error">
-    <refnamediv>
-        <refname>error</refname>
-        <refpurpose>Affichage d'un message d'erreur</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>error(message)
-            error(message, n)
-            error(n)
-            error(n, message)
-            error(n, pos)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>message</term>
-                <listitem>
-                    <para>Une chaîne de caractères ou un vecteur de chaines de caractères. Le message à afficher.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>n</term>
-                <listitem>
-                    <para>Un entier, le nombre associé à l'erreur.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>pos</term>
-                <listitem>
-                    <para>
-                        Un entier, paramétrant le message (voir <literal>error_table</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            La fonction <literal>error</literal> permet d'envoyer à l'utilisateur un
-            message d'erreur et de gérer cette erreur. Par défaut <literal>error</literal>
-            termine l'éxecution courante et revient au niveau du prompt. Ce défaut
-            peut être changé en utilisant les fonctions <literal>errcatch</literal> et
-            <literal>execstr(...,'errcatch')</literal>.
-        </para>
-        <para>
-            <literal>error(message)</literal> envoie à l'utilisateur le message d'erreur
-            donné par la chaîne de caractères <literal>message</literal>. Le nombre associé
-            à l'erreur est assigné à 10000.
-        </para>
-        <para>
-            <literal>error(message,n)</literal> envoie à l'utilisateur le message
-            d'erreur donné par la chaîne de caractères <literal>message</literal>. Le nombre
-            associé à l'erreur est donné par <literal>n</literal>.
-        </para>
-        <para>Certains messages d'erreur prédéfinis requièrent un paramètre entier,
-            (position de l'argument dans la liste d'appel de la fonction,...) (voir
-            <literal>error_table</literal>). Dans ce cas l'argument <literal>pos</literal> doit
-            contenir ce nombre entier : <literal>error(n,pos)</literal>. Dans les autres cas
-            l'argument <literal>pos</literal> est ignoré.
-        </para>
-        <para>
-            Voir la table des erreurs dans <link linkend="error_table">error_table</link> .
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[error('my error message')
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="error">
+        <refnamediv>
+            <refname>error</refname>
+            <refpurpose>Affichage d'un message d'erreur</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>error(message)
+                error(message, n)
+                error(n)
+                error(n, message)
+                error(n, pos)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Paramètres</title>
+            <variablelist>
+                <varlistentry>
+                    <term>message</term>
+                    <listitem>
+                        <para>Une chaîne de caractères ou un vecteur de chaines de caractères. Le message à afficher.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>n</term>
+                    <listitem>
+                        <para>Un entier, le nombre associé à l'erreur.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>pos</term>
+                    <listitem>
+                        <para>
+                            Un entier, paramétrant le message (voir <literal>error_table</literal>)
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                La fonction <literal>error</literal> permet d'envoyer à l'utilisateur un
+                message d'erreur et de gérer cette erreur. Par défaut <literal>error</literal>
+                termine l'éxecution courante et revient au niveau du prompt. Ce défaut
+                peut être changé en utilisant les fonctions <literal>errcatch</literal> et
+                <literal>execstr(...,'errcatch')</literal>.
+            </para>
+            <para>
+                <literal>error(message)</literal> envoie à l'utilisateur le message d'erreur
+                donné par la chaîne de caractères <literal>message</literal>. Le nombre associé
+                à l'erreur est assigné à 10000.
+            </para>
+            <para>
+                <literal>error(message,n)</literal> envoie à l'utilisateur le message
+                d'erreur donné par la chaîne de caractères <literal>message</literal>. Le nombre
+                associé à l'erreur est donné par <literal>n</literal>.
+            </para>
+            <para>Certains messages d'erreur prédéfinis requièrent un paramètre entier,
+                (position de l'argument dans la liste d'appel de la fonction,...) (voir
+                <literal>error_table</literal>). Dans ce cas l'argument <literal>pos</literal> doit
+                contenir ce nombre entier : <literal>error(n,pos)</literal>. Dans les autres cas
+                l'argument <literal>pos</literal> est ignoré.
+            </para>
+            <para>
+                Voir la table des erreurs dans <link linkend="error_table">error_table</link> .
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[error('my error message')
 error(43)
 error(52, 3)
 error(10001, ['A'; 'multi';'line';'error';'message'])
 lasterror()]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="warning">warning</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
-            <member>
-                <link linkend="execstr">execstr</link>
-            </member>
-            <member>
-                <link linkend="lasterror">lasterror</link>
-            </member>
-            <member>
-                <link linkend="messagebox">messagebox</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>La fonction error peut prendre un vecteur de chaines de caractères comme argument d'entrée.</revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="warning">warning</link>
+                </member>
+                <member>
+                    <link linkend="errcatch">errcatch</link>
+                </member>
+                <member>
+                    <link linkend="execstr">execstr</link>
+                </member>
+                <member>
+                    <link linkend="lasterror">lasterror</link>
+                </member>
+                <member>
+                    <link linkend="messagebox">messagebox</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.0</revnumber>
+                    <revremark>La fonction error peut prendre un vecteur de chaines de caractères comme argument d'entrée.</revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

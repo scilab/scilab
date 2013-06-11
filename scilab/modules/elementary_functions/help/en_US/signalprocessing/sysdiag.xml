@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,56 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sysdiag" xml:lang="en">
-    <refnamediv>
-        <refname>sysdiag</refname>
-        <refpurpose>block diagonal system connection</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>Returns the block-diagonal system made with subsystems put in the
-            main diagonal
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>ai</term>
-                <listitem>
-                    <para>subsystems (i.e. gains, or linear systems in state-space or
-                        transfer form)
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>Used in particular for system interconnections.</para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>At most 17 arguments.</para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sysdiag" xml:lang="en">
+        <refnamediv>
+            <refname>sysdiag</refname>
+            <refpurpose>block diagonal system connection</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>Returns the block-diagonal system made with subsystems put in the
+                main diagonal
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>ai</term>
+                    <listitem>
+                        <para>subsystems (i.e. gains, or linear systems in state-space or
+                            transfer form)
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>Used in particular for system interconnections.</para>
+        </refsection>
+        <refsection>
+            <title>Remark</title>
+            <para>At most 17 arguments.</para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
 sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
 sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="brackets">brackets</link>
-            </member>
-            <member>
-                <link linkend="insertion">insertion</link>
-            </member>
-            <member>
-                <link linkend="feedback">feedback</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="brackets">brackets</link>
+                </member>
+                <member>
+                    <link linkend="insertion">insertion</link>
+                </member>
+                <member>
+                    <link linkend="feedback">feedback</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

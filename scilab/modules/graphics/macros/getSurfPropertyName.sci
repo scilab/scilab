@@ -3,7 +3,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [PName] = getSurfPropertyName(PropertyName,current_figure,cur_draw_mode)
@@ -18,17 +18,17 @@ function [PName] = getSurfPropertyName(PropertyName,current_figure,cur_draw_mode
     // WARNING: if you add/remove a property from these tables,
     // please update the value of k in lines marked with the following comment:
     // UPDATE K HERE IF TABLES MODIFIED
-    Table    = ['cdata' 'colordata' 'cdata_mapping' 'cdatamapping' 'colordatamapping' ..
-    'cdatamode'     'colordatamode' 'clipping' 'edgecolor'   'foreground' 'facecolor' ..
-    'linestyle' 'linewidth' 'thickness' 'marker' .. 
-    'markstyle' 'markeredgecolor' 'markforeground' 'markerfacecolor'  'markbackground' ..
-    'markersize' 'marksize' 'visible' 'xdata' 'ydata' 'zdata'];
+    Table    = ["cdata" "colordata" "cdata_mapping" "cdatamapping" "colordatamapping" ..
+    "cdatamode"     "colordatamode" "clipping" "edgecolor"   "foreground" "facecolor" ..
+    "linestyle" "linewidth" "thickness" "marker" ..
+    "markstyle" "markeredgecolor" "markforeground" "markerfacecolor"  "markbackground" ..
+    "markersize" "marksize" "visible" "xdata" "ydata" "zdata"];
 
-    TableEQ =  ['colordata' 'colordata' 'colordatamapping' 'colordatamapping' 'colordatamapping' ..
-    'colordatamode' 'colordatamode' 'clipping' 'foreground'  'foreground' 'facecolor' ..
-    'linestyle' 'thickness' 'thickness' 'markstyle' ..
-    'markstyle'  'markforeground' 'markforeground' 'markbackground' 'markbackground' .. 
-    'marksize'   'marksize' 'visible' 'xdata' 'ydata' 'zdata']; // equivalent Table
+    TableEQ =  ["colordata" "colordata" "colordatamapping" "colordatamapping" "colordatamapping" ..
+    "colordatamode" "colordatamode" "clipping" "foreground"  "foreground" "facecolor" ..
+    "linestyle" "thickness" "thickness" "markstyle" ..
+    "markstyle"  "markforeground" "markforeground" "markbackground" "markbackground" ..
+    "marksize"   "marksize" "visible" "xdata" "ydata" "zdata"]; // equivalent Table
 
     opt1=[];
 
@@ -39,7 +39,7 @@ function [PName] = getSurfPropertyName(PropertyName,current_figure,cur_draw_mode
         PName=[];
         ResetFigureDDM(current_figure, cur_draw_mode);
         return;
-    elseif ( size(k,'*') > 1)
+    elseif ( size(k,"*") > 1)
         if or(find(k==15)) // case PropertyName == 'marker' // UPDATE K HERE IF TABLES MODIFIED
             k=15; // set to PropertyName == 'marker' only // UPDATE K HERE IF TABLES MODIFIED
         elseif or(find(k==2)) // case PropertyName == 'colordata' // UPDATE K HERE IF TABLES MODIFIED
@@ -63,7 +63,7 @@ function [PName] = getSurfPropertyName(PropertyName,current_figure,cur_draw_mode
 
     str = part(str,i:length(str));
 
-    if (size(opt1,'*') > 1)
+    if (size(opt1,"*") > 1)
         warning(msprintf(gettext("%s: Wrong size for input argument #%d: Only one property expected.\n"),"getSurfPropertyName",1));
         ResetFigureDDM(current_figure, cur_draw_mode);
         return;

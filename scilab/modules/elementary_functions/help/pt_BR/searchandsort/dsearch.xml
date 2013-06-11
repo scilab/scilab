@@ -1,134 +1,134 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dsearch" xml:lang="en">
-    <refnamediv>
-        <refname>dsearch</refname>
-        <refpurpose>Busca binária (também conhecida como busca dicótoma em
-            francês)
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>X</term>
-                <listitem>
-                    <para>um vetor ou matriz de reais </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>val</term>
-                <listitem>
-                    <para>um vetor (linha ou coluna) de reais com n componentes em ordem
-                        estritamente crescente val(1) &lt; val(2) &lt; ... &lt; val(n)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ch</term>
-                <listitem>
-                    <para>(opcional) um caractere "c" ou "d" (valor padrão "c") </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ind</term>
-                <listitem>
-                    <para>um vetor ou matriz de reais com as mesmas dimensões que X
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>occ</term>
-                <listitem>
-                    <para>um vetor de reais com o mesmo formato que val (mas com n-1
-                        componentes no caso em que ch="c") 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>info</term>
-                <listitem>
-                    <para>inteiro</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>Esta função é útil para encontrar em uma tabela ("table") ordenada
-            e/ou contar o número de componentes de um vetor caindo em algumas classes
-            (sendo uma classe um intervalo ou um valor). 
-        </para>
-        <para>
-            Por padrão ou quando <literal>ch="c"</literal>, temos o caso de
-            intervalos, isto é, para cada X(i), busca em qual dos n-1 intervalos o
-            componente do vetor cai, sendo os intervalos definidos por: 
-        </para>
-        <programlisting role=""><![CDATA[ 
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dsearch" xml:lang="en">
+        <refnamediv>
+            <refname>dsearch</refname>
+            <refpurpose>Busca binária (também conhecida como busca dicótoma em
+                francês)
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>X</term>
+                    <listitem>
+                        <para>um vetor ou matriz de reais </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>val</term>
+                    <listitem>
+                        <para>um vetor (linha ou coluna) de reais com n componentes em ordem
+                            estritamente crescente val(1) &lt; val(2) &lt; ... &lt; val(n)
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ch</term>
+                    <listitem>
+                        <para>(opcional) um caractere "c" ou "d" (valor padrão "c") </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ind</term>
+                    <listitem>
+                        <para>um vetor ou matriz de reais com as mesmas dimensões que X
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>occ</term>
+                    <listitem>
+                        <para>um vetor de reais com o mesmo formato que val (mas com n-1
+                            componentes no caso em que ch="c") 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>info</term>
+                    <listitem>
+                        <para>inteiro</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>Esta função é útil para encontrar em uma tabela ("table") ordenada
+                e/ou contar o número de componentes de um vetor caindo em algumas classes
+                (sendo uma classe um intervalo ou um valor). 
+            </para>
+            <para>
+                Por padrão ou quando <literal>ch="c"</literal>, temos o caso de
+                intervalos, isto é, para cada X(i), busca em qual dos n-1 intervalos o
+                componente do vetor cai, sendo os intervalos definidos por: 
+            </para>
+            <programlisting role=""><![CDATA[ 
             I1 = [val(1), val(2)]
             Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; 
 
  ]]></programlisting>
-        <para>e:</para>
-        <variablelist>
-            <varlistentry>
-                <term>ind(i)</term>
-                <listitem>
-                    <para>é o número do intervalo de X(i) (0 se X(i) não está em
-                        [val(1),val(n)]) 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>occ(k)</term>
-                <listitem>
-                    <para>é o número de componentes de X que estão em Ik </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>info</term>
-                <listitem>
-                    <para>é o número de componentes de X que não estão em
-                        [val(1),val(n)] 
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>
-            Quando <literal>ch="d"</literal>, temos o caso discreto, isto é,
-            para cada X(i) busca se é igual a um valor val(k) e:
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>ind(i)</term>
-                <listitem>
-                    <para>é igual ao índice do componente de val que corresponde a X(i)
-                        (ind(i) = k se X(i)=val(k)) ou 0 se X(i) não está em val. 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>occ(k)</term>
-                <listitem>
-                    <para>é igual ao número de componentes de X iguais a val(k) </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>info</term>
-                <listitem>
-                    <para>é o número de componentes de X que não estão no conjunto
-                        {val(1),...,val(n)} 
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+            <para>e:</para>
+            <variablelist>
+                <varlistentry>
+                    <term>ind(i)</term>
+                    <listitem>
+                        <para>é o número do intervalo de X(i) (0 se X(i) não está em
+                            [val(1),val(n)]) 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>occ(k)</term>
+                    <listitem>
+                        <para>é o número de componentes de X que estão em Ik </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>info</term>
+                    <listitem>
+                        <para>é o número de componentes de X que não estão em
+                            [val(1),val(n)] 
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>
+                Quando <literal>ch="d"</literal>, temos o caso discreto, isto é,
+                para cada X(i) busca se é igual a um valor val(k) e:
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>ind(i)</term>
+                    <listitem>
+                        <para>é igual ao índice do componente de val que corresponde a X(i)
+                            (ind(i) = k se X(i)=val(k)) ou 0 se X(i) não está em val. 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>occ(k)</term>
+                    <listitem>
+                        <para>é igual ao número de componentes de X iguais a val(k) </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>info</term>
+                    <listitem>
+                        <para>é o número de componentes de X que não estão no conjunto
+                            {val(1),...,val(n)} 
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 // exemplo #1 (estatística elementar para U(0,1))
 m = 50000 ; n = 10;
 X = grand(m,1,"def");
@@ -167,16 +167,16 @@ xtitle("Um polinômio seccionado de hermite")
 // NOTE : a verificação pode ser feita adicionando-se : 
 // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="find">find</link>
-            </member>
-            <member>
-                <link linkend="tabul">tabul</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="find">find</link>
+                </member>
+                <member>
+                    <link linkend="tabul">tabul</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

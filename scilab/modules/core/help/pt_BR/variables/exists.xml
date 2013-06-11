@@ -1,64 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="exists" xml:lang="en">
-    <refnamediv>
-        <refname>exists</refname>
-        <refpurpose>verifica existência de variáveis</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>exists(name [,where])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>name</term>
-                <listitem>
-                    <para>string</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>where</term>
-                <listitem>
-                    <para>um caractere opcional com possíveis valores:
-                        <literal>'l'</literal> (local), <literal>'n'</literal> (nolocal) and
-                        <literal>'a'</literal> (all). O valor padrão é
-                        <literal>'all'.</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            <literal>exists(name)</literal> retorna <literal>1</literal> se a
-            variável chamada <literal>name</literal> existe e <literal>0</literal>, em
-            caso contrário.
-        </para>
-        <para>
-            Aviso: uma função que utiliza <literal>exists</literal> pode
-            retornar um resultado que depende do ambiente!
-        </para>
-        <para>
-            <literal>exists(name,'local')</literal> retorna <literal>1</literal>
-            se a variável chamada <literal>name</literal> existe no ambiente local da
-            função corrente e <literal>0</literal> , em caso contrário.
-        </para>
-        <para>
-            <literal>exists(name,'nolocal')</literal> retorna
-            <literal>1</literal> se a variável chamada <literal>name</literal> existe
-            em qualquer nível do ambiente de chamamento (incluindo o nível principal
-            do shell do Scilab) da função corrente e <literal>0</literal> , em caso
-            contrário.
-        </para>
-        <para>Aviso: a função exists não verifica se a variável existe no espaço
-            de nomes <link linkend="global">global</link>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="exists" xml:lang="en">
+        <refnamediv>
+            <refname>exists</refname>
+            <refpurpose>verifica existência de variáveis</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>exists(name [,where])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>name</term>
+                    <listitem>
+                        <para>string</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>where</term>
+                    <listitem>
+                        <para>um caractere opcional com possíveis valores:
+                            <literal>'l'</literal> (local), <literal>'n'</literal> (nolocal) and
+                            <literal>'a'</literal> (all). O valor padrão é
+                            <literal>'all'.</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                <literal>exists(name)</literal> retorna <literal>1</literal> se a
+                variável chamada <literal>name</literal> existe e <literal>0</literal>, em
+                caso contrário.
+            </para>
+            <para>
+                Aviso: uma função que utiliza <literal>exists</literal> pode
+                retornar um resultado que depende do ambiente!
+            </para>
+            <para>
+                <literal>exists(name,'local')</literal> retorna <literal>1</literal>
+                se a variável chamada <literal>name</literal> existe no ambiente local da
+                função corrente e <literal>0</literal> , em caso contrário.
+            </para>
+            <para>
+                <literal>exists(name,'nolocal')</literal> retorna
+                <literal>1</literal> se a variável chamada <literal>name</literal> existe
+                em qualquer nível do ambiente de chamamento (incluindo o nível principal
+                do shell do Scilab) da função corrente e <literal>0</literal> , em caso
+                contrário.
+            </para>
+            <para>Aviso: a função exists não verifica se a variável existe no espaço
+                de nomes <link linkend="global">global</link>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''local'')])'
  'disp([exists(''x''),exists(''x'',''local'')])'])
@@ -79,28 +79,28 @@ function go()
 endfunction
 go()
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="isdef">isdef</link>
-            </member>
-            <member>
-                <link linkend="isglobal">isglobal</link>
-            </member>
-            <member>
-                <link linkend="whereis">whereis</link>
-            </member>
-            <member>
-                <link linkend="type">type</link>
-            </member>
-            <member>
-                <link linkend="typeof">typeof</link>
-            </member>
-            <member>
-                <link linkend="macrovar">macrovar</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="isdef">isdef</link>
+                </member>
+                <member>
+                    <link linkend="isglobal">isglobal</link>
+                </member>
+                <member>
+                    <link linkend="whereis">whereis</link>
+                </member>
+                <member>
+                    <link linkend="type">type</link>
+                </member>
+                <member>
+                    <link linkend="typeof">typeof</link>
+                </member>
+                <member>
+                    <link linkend="macrovar">macrovar</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -25,32 +25,33 @@ Type *OUT;                            \
 }
 
 
-int C2F(gencuprod)(int *typ,int *n, void *in, void *out, int *iw)
+int C2F(gencuprod)(int *typ, int *n, void *in, void *out, int *iw)
 {
-  int k, kk,t;
-  t=1;
+    int k, kk, t;
+    t = 1;
 
-  switch (*typ) {
-  case 1:
-    CUPROD(integer1);
-    break;
-  case 2:
-    CUPROD(integer2);
-    break;
-  case 4:
-    CUPROD(int) ;
-    break;
-  case 11:
-    CUPROD(unsigned char);
-    break;
-  case 12:
-    CUPROD(unsigned short);
-    break;
-  case 14:
-    CUPROD(unsigned int);
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            CUPROD(integer1);
+            break;
+        case 2:
+            CUPROD(integer2);
+            break;
+        case 4:
+            CUPROD(int) ;
+            break;
+        case 11:
+            CUPROD(unsigned char);
+            break;
+        case 12:
+            CUPROD(unsigned short);
+            break;
+        case 14:
+            CUPROD(unsigned int);
+            break;
+    }
+    return 0;
 }
 
 #define CUPROD_DOUBLE(Type) {         \
@@ -65,31 +66,32 @@ Type *IN;                              \
 
 
 
-int C2F(gencuprodasdouble)(int *typ,int *n, void *in, double *out, int *iw)
+int C2F(gencuprodasdouble)(int *typ, int *n, void *in, double *out, int *iw)
 {
-  int k, kk;
-  double t;
-  t=1.0;
-  switch (*typ) {
-  case 1:
-    CUPROD_DOUBLE(integer1);
-    break;
-  case 2:
-    CUPROD_DOUBLE(integer2);
-    break;
-  case 4:
-    CUPROD_DOUBLE(int) ;
-    break;
-  case 11:
-    CUPROD_DOUBLE(unsigned char);
-    break;
-  case 12:
-    CUPROD_DOUBLE(unsigned short);
-    break;
-  case 14:
-    CUPROD_DOUBLE(unsigned int);
-    break;
-  }
-  return 0;
+    int k, kk;
+    double t;
+    t = 1.0;
+    switch (*typ)
+    {
+        case 1:
+            CUPROD_DOUBLE(integer1);
+            break;
+        case 2:
+            CUPROD_DOUBLE(integer2);
+            break;
+        case 4:
+            CUPROD_DOUBLE(int) ;
+            break;
+        case 11:
+            CUPROD_DOUBLE(unsigned char);
+            break;
+        case 12:
+            CUPROD_DOUBLE(unsigned short);
+            break;
+        case 14:
+            CUPROD_DOUBLE(unsigned int);
+            break;
+    }
+    return 0;
 }
 

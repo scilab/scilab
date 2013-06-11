@@ -11,7 +11,7 @@
 //
 function demo_bubbleSort()
     function res=bubbleSort(in, polyline)
-        for (i = 1:size(in, '*'))
+        for (i = 1:size(in, "*"))
             for (j = 1:i)
                 if (in(i) < in(j))
                     tmp = in(j);

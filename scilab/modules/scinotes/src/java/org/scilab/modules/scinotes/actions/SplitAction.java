@@ -56,14 +56,14 @@ public final class SplitAction extends DefaultAction {
      */
     public void doAction() {
         switch (state) {
-        case 0 :
-            getEditor().removeSplit();
-            return;
-        case 1 :
-            getEditor().splitTab(false);
-            return;
-        default :
-            getEditor().splitTab(true);
+            case 0 :
+                getEditor().removeSplit();
+                return;
+            case 1 :
+                getEditor().splitTab(false);
+                return;
+            default :
+                getEditor().splitTab(true);
         }
     }
 
@@ -88,7 +88,7 @@ public final class SplitAction extends DefaultAction {
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem radio;
         final JRadioButtonMenuItem[] arr = new JRadioButtonMenuItem[3];
-        String[] labels = new String[]{labelOff, labelH, labelV};
+        String[] labels = new String[] {labelOff, labelH, labelV};
 
         for (int i = 0; i < 3; i++) {
             radio = createRadioButtonMenuItem(ln, labels[i], i);
@@ -100,22 +100,22 @@ public final class SplitAction extends DefaultAction {
         arr[0].setSelected(true);
 
         ((JMenu) menu.getAsSimpleMenu()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    if (editor.getTextPane() != null) {
-                        EditorComponent c = editor.getTextPane().getEditorComponent();
-                        int state = 0;
-                        if (c.isSplited()) {
-                            JSplitPane split = c.getSplitPane();
-                            if (split.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
-                                state = 1;
-                            } else {
-                                state = 2;
-                            }
+            public void propertyChange(PropertyChangeEvent e) {
+                if (editor.getTextPane() != null) {
+                    EditorComponent c = editor.getTextPane().getEditorComponent();
+                    int state = 0;
+                    if (c.isSplited()) {
+                        JSplitPane split = c.getSplitPane();
+                        if (split.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+                            state = 1;
+                        } else {
+                            state = 2;
                         }
-                        arr[state].setSelected(true);
                     }
+                    arr[state].setSelected(true);
                 }
-            });
+            }
+        });
 
         return menu;
     }
@@ -130,11 +130,11 @@ public final class SplitAction extends DefaultAction {
     private static JRadioButtonMenuItem createRadioButtonMenuItem(final SplitAction split, String title, final int state) {
         JRadioButtonMenuItem radio = new JRadioButtonMenuItem(title);
         radio.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent arg0) {
-                    split.state = state;
-                    split.doAction();
-                }
-            });
+            public void actionPerformed(ActionEvent arg0) {
+                split.state = state;
+                split.doAction();
+            }
+        });
 
         return radio;
     }

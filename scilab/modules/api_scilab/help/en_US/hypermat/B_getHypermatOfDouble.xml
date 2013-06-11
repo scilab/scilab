@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+        <?xml version="1.0" encoding="utf-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013  - Scilab Enterprises - Calixte DENIZET
  * 
@@ -10,70 +10,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getHypermatOfDouble" xml:lang="en">
-    <refnamediv>
-        <refname>getHypermatOfDouble</refname>
-        <refpurpose>
-            Get a hypermatrix of double variable.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>SciErr getHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, double* _pdblReal)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>_pvCtx</term>
-                <listitem>
-                    <para>
-                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piAddress</term>
-                <listitem>
-                    <para>
-                        Address of the Scilab variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_dims</term>
-                <listitem>
-                    <para>
-                        the hypermatrix dimensions.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_ndims</term>
-                <listitem>
-                    <para>
-                        the number of dimensions.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pdblReal</term>
-                <listitem>
-                    <para>
-                        Double values.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Return value</title>
-        <para>A SciErr struct, the field iErr would contain the error number (0 if no error).</para>
-    </refsection>
-    <refsection>
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getHypermatOfDouble" xml:lang="en">
+        <refnamediv>
+            <refname>getHypermatOfDouble</refname>
+            <refpurpose>
+                Get a hypermatrix of double variable.
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>SciErr getHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, double* _pdblReal)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>_pvCtx</term>
+                    <listitem>
+                        <para>
+                            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_piAddress</term>
+                    <listitem>
+                        <para>
+                            Address of the Scilab variable.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_dims</term>
+                    <listitem>
+                        <para>
+                            the hypermatrix dimensions.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_ndims</term>
+                    <listitem>
+                        <para>
+                            the number of dimensions.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_pdblReal</term>
+                    <listitem>
+                        <para>
+                            Double values.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Return value</title>
+            <para>A SciErr struct, the field iErr would contain the error number (0 if no error).</para>
+        </refsection>
+        <refsection>
+            <title>Gateway Source</title>
+            <programlisting role="code_gateway">
+                <![CDATA[ 
 #include "api_scilab.h"
 
 int hypermatExample(char *fname,unsigned long fname_len)
@@ -148,16 +148,16 @@ int hypermatExample(char *fname,unsigned long fname_len)
 
     return 0;
 }]]>
-        </programlisting>
-    </refsection>
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+            </programlisting>
+        </refsection>
+        <refsection>
+            <title>Scilab test script</title>
+            <programlisting role="code_scilab"><![CDATA[ 
 a = hypermat([1 2 3], ones(1,6));
 b = a + %i*hypermat([1 2 3], 1:6);
 
 hypermatExample(a) == a
 hypermatExample(b) == b
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

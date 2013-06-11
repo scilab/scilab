@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,73 +10,73 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="asind" xml:lang="ja">
-    <refnamediv>
-        <refname>asind</refname>
-        <refpurpose>逆正弦 (結果の単位: 度)</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>t=asind(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>引数</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>
-                        実数の配列/行列. 要素は, <literal>[-1 1]</literal>の範囲となります.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>
-                        <literal>x</literal>と同じ次元の実数の配列/行列
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>t</literal> のエントリは, 対応する
-            <literal>x</literal>のエントリの逆正弦となります.
-            定義域は, [-1,1], 結果は[-90 90]の範囲となります;
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <scilab:image>
-            x=-0.99:0.1:0.99; 
-            plot(x,asind(x))
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="asind" xml:lang="ja">
+        <refnamediv>
+            <refname>asind</refname>
+            <refpurpose>逆正弦 (結果の単位: 度)</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>t=asind(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>引数</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>
+                            実数の配列/行列. 要素は, <literal>[-1 1]</literal>の範囲となります.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>
+                            <literal>x</literal>と同じ次元の実数の配列/行列
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>t</literal> のエントリは, 対応する
+                <literal>x</literal>のエントリの逆正弦となります.
+                定義域は, [-1,1], 結果は[-90 90]の範囲となります;
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <scilab:image>
+                x=-0.99:0.1:0.99; 
+                plot(x,asind(x))
+            </scilab:image>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 x=[-1 0 1 sqrt(2)/2 -sqrt(2)/2 sqrt(3)/2 -sqrt(3)/2];
 asind(x)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="sin">sin</link>
-            </member>
-            <member>
-                <link linkend="sind">sind</link>
-            </member>
-            <member>
-                <link linkend="sinm">sinm</link>
-            </member>
-            <member>
-                <link linkend="asinm">asinm</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="sin">sin</link>
+                </member>
+                <member>
+                    <link linkend="sind">sind</link>
+                </member>
+                <member>
+                    <link linkend="sinm">sinm</link>
+                </member>
+                <member>
+                    <link linkend="asinm">asinm</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

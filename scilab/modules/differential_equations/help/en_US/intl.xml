@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
  * 
@@ -10,73 +10,73 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intl" xml:lang="en">
-    <refnamediv>
-        <refname>intl</refname>
-        <refpurpose>Cauchy integral</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[y]=intl(a,b,z0,r,f)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>z0</term>
-                <listitem>
-                    <para>a complex number</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>a, b</term>
-                <listitem>
-                    <para>two real numbers</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>r</term>
-                <listitem>
-                    <para>positive real number</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>f</term>
-                <listitem>
-                    <para>"external" function</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            If <literal>f</literal> is a complex-valued function,
-            <literal>intl(a,b,z0,r,f)</literal> computes the integral of
-            <literal>f(z)dz</literal> along the curve in the complex plane defined by
-            <literal>z0 + r.*exp(%i*t)</literal> for <literal>a&lt;=t&lt;=b</literal>
-            .(part of the circle with center <literal>z0</literal> and radius
-            <literal>r</literal> with phase between <literal>a</literal> and
-            <literal>b</literal>).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intl" xml:lang="en">
+        <refnamediv>
+            <refname>intl</refname>
+            <refpurpose>Cauchy integral</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[y]=intl(a,b,z0,r,f)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>z0</term>
+                    <listitem>
+                        <para>a complex number</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>a, b</term>
+                    <listitem>
+                        <para>two real numbers</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>r</term>
+                    <listitem>
+                        <para>positive real number</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>f</term>
+                    <listitem>
+                        <para>"external" function</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                If <literal>f</literal> is a complex-valued function,
+                <literal>intl(a,b,z0,r,f)</literal> computes the integral of
+                <literal>f(z)dz</literal> along the curve in the complex plane defined by
+                <literal>z0 + r.*exp(%i*t)</literal> for <literal>a&lt;=t&lt;=b</literal>
+                .(part of the circle with center <literal>z0</literal> and radius
+                <literal>r</literal> with phase between <literal>a</literal> and
+                <literal>b</literal>).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 function y=f(z)
   y = z^(3 + %pi * %i)
 endfunction
 
 intl(1,2,1+%i, 3, f)
  ]]></programlisting>
-    </refsection>
-    
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="intc">intc</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="intc">intc</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

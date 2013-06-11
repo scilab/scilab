@@ -102,30 +102,30 @@ public class FileNode {
     public void setOrder(int order) {
         this.order = order;
         switch (order) {
-        case NAMEORDER:
-            comparator = FileComparators.ASCENDING_ALPHA;
-            break;
-        case -NAMEORDER:
-            comparator = FileComparators.DESCENDING_ALPHA;
-            break;
-        case TYPEORDER:
-            comparator = FileComparators.ASCENDING_TYPE;
-            break;
-        case -TYPEORDER:
-            comparator = FileComparators.DESCENDING_TYPE;
-            break;
-        case DATEORDER:
-            comparator = FileComparators.ASCENDING_DATE;
-            break;
-        case -DATEORDER:
-            comparator = FileComparators.DESCENDING_DATE;
-            break;
-        case SIZEORDER:
-            comparator = FileComparators.ASCENDING_SIZE;
-            break;
-        case -SIZEORDER:
-            comparator = FileComparators.DESCENDING_SIZE;
-            break;
+            case NAMEORDER:
+                comparator = FileComparators.ASCENDING_ALPHA;
+                break;
+            case -NAMEORDER:
+                comparator = FileComparators.DESCENDING_ALPHA;
+                break;
+            case TYPEORDER:
+                comparator = FileComparators.ASCENDING_TYPE;
+                break;
+            case -TYPEORDER:
+                comparator = FileComparators.DESCENDING_TYPE;
+                break;
+            case DATEORDER:
+                comparator = FileComparators.ASCENDING_DATE;
+                break;
+            case -DATEORDER:
+                comparator = FileComparators.DESCENDING_DATE;
+                break;
+            case SIZEORDER:
+                comparator = FileComparators.ASCENDING_SIZE;
+                break;
+            case -SIZEORDER:
+                comparator = FileComparators.DESCENDING_SIZE;
+                break;
         }
     }
 
@@ -259,7 +259,7 @@ public class FileNode {
      */
     public int getChildrenCount() {
         if (children == null && !isEmpty) {
-            synchronized(file) {
+            synchronized (file) {
                 if (children == null) {
                     children = listFiles();
                 }

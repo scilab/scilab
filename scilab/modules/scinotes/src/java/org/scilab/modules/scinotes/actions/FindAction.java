@@ -286,11 +286,11 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         frame.setAlwaysOnTop(true);
         frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         frame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    closeFindReplaceWindow();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeFindReplaceWindow();
+            }
+        });
 
         frame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -435,347 +435,347 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         ((JTextField) comboReplace.getEditor().getEditorComponent()).getDocument().putProperty(FILTERNEWLINES, Boolean.FALSE);
         ((JTextField) comboFind.getEditor().getEditorComponent()).getDocument().putProperty(FILTERNEWLINES, Boolean.FALSE);
         checkCase.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveCaseSensitive(checkCase.isSelected());
-                    updateFindReplaceButtonStatus();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveCaseSensitive(checkCase.isSelected());
+                updateFindReplaceButtonStatus();
+            }
+        });
 
         checkWhole.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveWholeWord(checkWhole.isSelected());
-                    updateFindReplaceButtonStatus();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveWholeWord(checkWhole.isSelected());
+                updateFindReplaceButtonStatus();
+            }
+        });
 
         checkCircular.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveCircularSearch(checkCircular.isSelected());
-                    updateFindReplaceButtonStatus();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveCircularSearch(checkCircular.isSelected());
+                updateFindReplaceButtonStatus();
+            }
+        });
 
         checkRegular.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ConfigSciNotesManager.saveRegularExpression(checkRegular.isSelected());
-                    updateFindReplaceButtonStatus();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigSciNotesManager.saveRegularExpression(checkRegular.isSelected());
+                updateFindReplaceButtonStatus();
+            }
+        });
 
         /*behaviour of buttons*/
         radioSelection.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JEditorPane scinotesTextPane = getEditor().getTextPane();
-                    Element root = scinotesTextPane.getDocument().getDefaultRootElement();
-                    int startPos = scinotesTextPane.getSelectionStart();
-                    int endPos = scinotesTextPane.getSelectionEnd();
-                    int startLine = root.getElementIndex(startPos);
-                    int endLine = root.getElementIndex(endPos);
-                    startSelectedLines = root.getElement(startLine).getStartOffset();
-                    endSelectedLines = root.getElement(endLine).getEndOffset() - 1;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JEditorPane scinotesTextPane = getEditor().getTextPane();
+                Element root = scinotesTextPane.getDocument().getDefaultRootElement();
+                int startPos = scinotesTextPane.getSelectionStart();
+                int endPos = scinotesTextPane.getSelectionEnd();
+                int startLine = root.getElementIndex(startPos);
+                int endLine = root.getElementIndex(endPos);
+                startSelectedLines = root.getElement(startLine).getStartOffset();
+                endSelectedLines = root.getElement(endLine).getEndOffset() - 1;
 
-                    scinotesTextPane.setCaretPosition(startSelectedLines);
+                scinotesTextPane.setCaretPosition(startSelectedLines);
 
-                    removeAllHighlights();
-                    setSelectedHighlight();
+                removeAllHighlights();
+                setSelectedHighlight();
 
-                    scinotesTextPane.addFocusListener(new FocusListener() {
-                            @Override
-                            public void focusGained(FocusEvent e) {
-                                removeAllHighlights();
-                                previousRegexp = "";
-                                radioAll.setSelected(true);
-                                getEditor().getTextPane().removeFocusListener(this);
-                            }
+                scinotesTextPane.addFocusListener(new FocusListener() {
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        removeAllHighlights();
+                        previousRegexp = "";
+                        radioAll.setSelected(true);
+                        getEditor().getTextPane().removeFocusListener(this);
+                    }
 
-                            @Override
-                            public void focusLost(FocusEvent e) { }
-                        });
+                    @Override
+                    public void focusLost(FocusEvent e) { }
+                });
 
-                    updateFindReplaceButtonStatus();
-                }
-            });
+                updateFindReplaceButtonStatus();
+            }
+        });
 
         radioAll.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    removeAllHighlights();
-                    previousRegexp = "";
-                    updateFindReplaceButtonStatus();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeAllHighlights();
+                previousRegexp = "";
+                updateFindReplaceButtonStatus();
+            }
+        });
 
         radioBackward.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    updateFindReplaceButtonStatus();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateFindReplaceButtonStatus();
+            }
+        });
 
         buttonFind.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    updateRecentSearch();
-                    findText();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateRecentSearch();
+                findText();
+            }
+        });
 
         buttonReplace.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    updateRecentSearch();
-                    updateRecentReplace();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateRecentSearch();
+                updateRecentReplace();
 
-                    JEditorPane scinotesTextPane = getEditor().getTextPane();
-                    ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
+                JEditorPane scinotesTextPane = getEditor().getTextPane();
+                ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
 
-                    doc.mergeEditsBegin();
-                    replaceOnlyText();
-                    doc.mergeEditsEnd();
-                }
+                doc.mergeEditsBegin();
+                replaceOnlyText();
+                doc.mergeEditsEnd();
+            }
 
-            });
+        });
 
         buttonReplaceFind.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    updateRecentSearch();
-                    updateRecentReplace();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateRecentSearch();
+                updateRecentReplace();
 
-                    JEditorPane scinotesTextPane = getEditor().getTextPane();
-                    ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
+                JEditorPane scinotesTextPane = getEditor().getTextPane();
+                ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
 
-                    doc.mergeEditsBegin();
-                    if (buttonReplace.isEnabled()) {
-                        replaceText();
-                    }
-                    doc.mergeEditsEnd();
-                    findText();
+                doc.mergeEditsBegin();
+                if (buttonReplace.isEnabled()) {
+                    replaceText();
                 }
-            });
+                doc.mergeEditsEnd();
+                findText();
+            }
+        });
 
         buttonReplaceAll.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    updateRecentSearch();
-                    updateRecentReplace();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateRecentSearch();
+                updateRecentReplace();
 
-                    JEditorPane scinotesTextPane = getEditor().getTextPane();
-                    ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
-                    int start = 0;
-                    int end = doc.getLength();
-                    String text = "";
+                JEditorPane scinotesTextPane = getEditor().getTextPane();
+                ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
+                int start = 0;
+                int end = doc.getLength();
+                String text = "";
 
-                    boolean wholeWordSelected = checkWhole.isSelected() && checkWhole.isEnabled();
-                    boolean regexpSelected = checkRegular.isSelected();
-                    boolean caseSelected = checkCase.isSelected();
+                boolean wholeWordSelected = checkWhole.isSelected() && checkWhole.isEnabled();
+                boolean regexpSelected = checkRegular.isSelected();
+                boolean caseSelected = checkCase.isSelected();
 
-                    // save current caret position to restore it at the end
-                    int currentCaretPos = scinotesTextPane.getCaretPosition();
+                // save current caret position to restore it at the end
+                int currentCaretPos = scinotesTextPane.getCaretPosition();
 
-                    if (radioSelection.isSelected()) {
-                        start = startSelectedLines;
-                        end = endSelectedLines;
-                        try {
-                            text = doc.getText(startSelectedLines, endSelectedLines - startSelectedLines);
-                        } catch (BadLocationException ex) { }
-                    } else {
-                        text = doc.getText();
-                    }
+                if (radioSelection.isSelected()) {
+                    start = startSelectedLines;
+                    end = endSelectedLines;
+                    try {
+                        text = doc.getText(startSelectedLines, endSelectedLines - startSelectedLines);
+                    } catch (BadLocationException ex) { }
+                } else {
+                    text = doc.getText();
+                }
 
-                    oldWord = (String) comboFind.getEditor().getItem();
-                    newWord = (String) comboReplace.getEditor().getItem();
-                    setPreviousSearch(oldWord);
+                oldWord = (String) comboFind.getEditor().getItem();
+                newWord = (String) comboReplace.getEditor().getItem();
+                setPreviousSearch(oldWord);
 
-                    Pattern pattern = SearchManager.generatePattern(oldWord, caseSelected, wholeWordSelected, regexpSelected);
-                    Matcher matcher = pattern.matcher(text);
-                    String replacedText;
-                    if (regexpSelected) {
-                        newWord = newWord.replaceAll("\\\\r\\\\n|\\\\n", "\n").replaceAll("\\\\t", "\t");
-                        replacedText = matcher.replaceAll(newWord);
-                    } else {
-                        replacedText = matcher.replaceAll(Matcher.quoteReplacement(newWord));
-                    }
-                    if (replacedText.compareTo(text) != 0 && text.length() > 0) {
-                        // only touch document if any replacement took place
-                        try {
-                            List<ScilabDocument.Anchor> anchors = doc.getAnchorsBetween(start, end);
-                            doc.mergeEditsBegin();
-                            doc.setFocused(true);
-                            doc.replace(start, text.length(), replacedText, null);
-                            doc.mergeEditsEnd();
-                            Element root = doc.getDefaultRootElement();
-                            for (ScilabDocument.Anchor anchor : anchors) {
-                                ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(anchor.getLine());
-                                line.setAnchor(anchor.toString());
-                            }
-                            if (getEditor().getNavigator() != null) {
-                                getEditor().getNavigator().update();
-                            }
-                            previousRegexp = "";
-                            previousIndex = -1;
-                            buttonReplace.setEnabled(false);
-                            buttonReplaceFind.setEnabled(false);
-                            buttonReplaceAll.setEnabled(false);
-                            scinotesTextPane.setCaretPosition(Math.min(currentCaretPos, doc.getLength()));
-                        } catch (BadLocationException e1) {
-                            e1.printStackTrace();
+                Pattern pattern = SearchManager.generatePattern(oldWord, caseSelected, wholeWordSelected, regexpSelected);
+                Matcher matcher = pattern.matcher(text);
+                String replacedText;
+                if (regexpSelected) {
+                    newWord = newWord.replaceAll("\\\\r\\\\n|\\\\n", "\n").replaceAll("\\\\t", "\t");
+                    replacedText = matcher.replaceAll(newWord);
+                } else {
+                    replacedText = matcher.replaceAll(Matcher.quoteReplacement(newWord));
+                }
+                if (replacedText.compareTo(text) != 0 && text.length() > 0) {
+                    // only touch document if any replacement took place
+                    try {
+                        List<ScilabDocument.Anchor> anchors = doc.getAnchorsBetween(start, end);
+                        doc.mergeEditsBegin();
+                        doc.setFocused(true);
+                        doc.replace(start, text.length(), replacedText, null);
+                        doc.mergeEditsEnd();
+                        Element root = doc.getDefaultRootElement();
+                        for (ScilabDocument.Anchor anchor : anchors) {
+                            ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(anchor.getLine());
+                            line.setAnchor(anchor.toString());
                         }
-                    }
-                    if (radioSelection.isSelected()) {
-                        removeAllHighlights();
-                        endSelectedLines = startSelectedLines + replacedText.length();
-                        setSelectedHighlight();
+                        if (getEditor().getNavigator() != null) {
+                            getEditor().getNavigator().update();
+                        }
+                        previousRegexp = "";
+                        previousIndex = -1;
+                        buttonReplace.setEnabled(false);
+                        buttonReplaceFind.setEnabled(false);
+                        buttonReplaceAll.setEnabled(false);
+                        scinotesTextPane.setCaretPosition(Math.min(currentCaretPos, doc.getLength()));
+                    } catch (BadLocationException e1) {
+                        e1.printStackTrace();
                     }
                 }
-            });
+                if (radioSelection.isSelected()) {
+                    removeAllHighlights();
+                    endSelectedLines = startSelectedLines + replacedText.length();
+                    setSelectedHighlight();
+                }
+            }
+        });
 
         buttonClose.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    closeFindReplaceWindow();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeFindReplaceWindow();
+            }
+        });
 
         comboReplace.addPopupMenuListener(new PopupMenuListener() {
-                @Override
-                public void popupMenuCanceled(PopupMenuEvent e) {
-                    comboReplaceCanceled = true;
-                }
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+                comboReplaceCanceled = true;
+            }
 
-                @Override
-                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
-                @Override
-                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
-            });
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+        });
 
         comboReplace.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
-                @Override
-                public void mouseReleased(MouseEvent e) { }
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    closeComboPopUp();
-                    updateFindReplaceButtonStatus();
-                }
-                @Override
-                public void mouseExited(MouseEvent e) { }
-                @Override
-                public void mouseEntered(MouseEvent e) { }
-                @Override
-                public void mouseClicked(MouseEvent e) { }
-            });
+            @Override
+            public void mouseReleased(MouseEvent e) { }
+            @Override
+            public void mousePressed(MouseEvent e) {
+                closeComboPopUp();
+                updateFindReplaceButtonStatus();
+            }
+            @Override
+            public void mouseExited(MouseEvent e) { }
+            @Override
+            public void mouseEntered(MouseEvent e) { }
+            @Override
+            public void mouseClicked(MouseEvent e) { }
+        });
 
         comboReplace.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent e) { }
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        if (comboReplaceCanceled) {
-                            comboReplaceCanceled = false;
-                        } else {
-                            closeFindReplaceWindow();
-                        }
+            @Override
+            public void keyTyped(KeyEvent e) { }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (comboReplaceCanceled) {
+                        comboReplaceCanceled = false;
+                    } else {
+                        closeFindReplaceWindow();
                     }
-
-                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        replaceText();
-                        findText();
-                        buttonReplaceFind.requestFocus();
-                    }
-
-                    updateFindReplaceButtonStatus();
                 }
-                @Override
-                public void keyPressed(KeyEvent e) { }
-            });
+
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    replaceText();
+                    findText();
+                    buttonReplaceFind.requestFocus();
+                }
+
+                updateFindReplaceButtonStatus();
+            }
+            @Override
+            public void keyPressed(KeyEvent e) { }
+        });
 
         comboFind.addPopupMenuListener(new PopupMenuListener() {
-                @Override
-                public void popupMenuCanceled(PopupMenuEvent e) {
-                    comboFindCanceled = true;
-                }
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+                comboFindCanceled = true;
+            }
 
-                @Override
-                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
 
-                @Override
-                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
-            });
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+        });
 
         comboFind.getEditor().getEditorComponent().addMouseListener(new MouseListener() {
-                @Override
-                public void mouseReleased(MouseEvent arg0) { }
-                @Override
-                public void mousePressed(MouseEvent arg0) {
-                    closeComboPopUp();
-                }
-                @Override
-                public void mouseExited(MouseEvent arg0) { }
-                @Override
-                public void mouseEntered(MouseEvent arg0) { }
-                @Override
-                public void mouseClicked(MouseEvent arg0) { }
-            });
+            @Override
+            public void mouseReleased(MouseEvent arg0) { }
+            @Override
+            public void mousePressed(MouseEvent arg0) {
+                closeComboPopUp();
+            }
+            @Override
+            public void mouseExited(MouseEvent arg0) { }
+            @Override
+            public void mouseEntered(MouseEvent arg0) { }
+            @Override
+            public void mouseClicked(MouseEvent arg0) { }
+        });
 
         comboFind.addItemListener(new ItemListener() {
-                @Override
-                public void itemStateChanged(ItemEvent e) {
-                    updateFindReplaceButtonStatus();
-                }
-            });
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                updateFindReplaceButtonStatus();
+            }
+        });
 
         comboFind.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent e) { }
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                        if (comboFindCanceled) {
-                            comboFindCanceled = false;
-                        } else {
-                            closeFindReplaceWindow();
-                        }
+            @Override
+            public void keyTyped(KeyEvent e) { }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    if (comboFindCanceled) {
+                        comboFindCanceled = false;
+                    } else {
+                        closeFindReplaceWindow();
                     }
-
-                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        buttonFind.requestFocus();
-                        findText();
-                    }
-
-                    updateFindReplaceButtonStatus();
                 }
 
-                @Override
-                public void keyPressed(KeyEvent e) { }
-            });
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    buttonFind.requestFocus();
+                    findText();
+                }
+
+                updateFindReplaceButtonStatus();
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) { }
+        });
 
         frame.addWindowListener(new WindowListener() {
-                @Override
-                public void windowClosed(WindowEvent e) { }
-                @Override
-                public void windowDeiconified(WindowEvent e) { }
-                @Override
-                public void windowActivated(WindowEvent e) { }
+            @Override
+            public void windowClosed(WindowEvent e) { }
+            @Override
+            public void windowDeiconified(WindowEvent e) { }
+            @Override
+            public void windowActivated(WindowEvent e) { }
 
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    closeFindReplaceWindow();
-                }
+            @Override
+            public void windowClosing(WindowEvent e) {
+                closeFindReplaceWindow();
+            }
 
-                @Override
-                public void windowDeactivated(WindowEvent e) { }
-                @Override
-                public void windowIconified(WindowEvent e) { }
-                @Override
-                public void windowOpened(WindowEvent e) { }
-            });
+            @Override
+            public void windowDeactivated(WindowEvent e) { }
+            @Override
+            public void windowIconified(WindowEvent e) { }
+            @Override
+            public void windowOpened(WindowEvent e) { }
+        });
     }
 
     /**

@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="names">
-    <refnamediv>
-        <refname>имена</refname>
-        <refpurpose>синтаксис имён в Scilab</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Имена переменных и функций должны начинаться с буквы, либо с одного из следующих специальных 
-            символов: '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', 
-            '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
-        </para>
-        <para>
-            Последующие символы имени могут быть буквами, цифрами или любыми другими специальными 
-            символами из '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', 
-            '<literal>$</literal>', '<literal>?</literal>'.
-        </para>
-        <para>
-            Буквы верхнего и нижнего регистра различаются.
-        </para>
-        <para>
-            Имена могут быть как угодно длинными, но учитываются лишь первые 24 символа. В случае 
-            превышения этого предела будет в консоли будет выведено предупреждение. Это ограничение будет 
-            исправлено в Scilab версии 6.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="names">
+        <refnamediv>
+            <refname>имена</refname>
+            <refpurpose>синтаксис имён в Scilab</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Имена переменных и функций должны начинаться с буквы, либо с одного из следующих специальных 
+                символов: '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', 
+                '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
+            </para>
+            <para>
+                Последующие символы имени могут быть буквами, цифрами или любыми другими специальными 
+                символами из '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', 
+                '<literal>$</literal>', '<literal>?</literal>'.
+            </para>
+            <para>
+                Буквы верхнего и нижнего регистра различаются.
+            </para>
+            <para>
+                Имена могут быть как угодно длинными, но учитываются лишь первые 24 символа. В случае 
+                превышения этого предела будет в консоли будет выведено предупреждение. Это ограничение будет 
+                исправлено в Scilab версии 6.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 // Корректные имена
 %eps
 A1=123
@@ -49,5 +49,5 @@ disp(Try_to_use_a_too_long_name)
 // Ограничение длины имени переменной 24-мя символами
 // будет исправлено в Scilab версии 6.
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

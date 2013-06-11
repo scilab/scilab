@@ -23,10 +23,10 @@ function blk = xcosBlockEval(interfaceAlias, blk, context)
     scicos_getvalue = setvalue;
     function message(txt)
         messagebox(..
-            ['In block ' + o.gui + ': ' ; txt ; 'current parameter value kept'],..
-            'error','modal');
+        ["In block " + o.gui + ": " ; txt ; "current parameter value kept"],..
+        "error","modal");
         [str,n,line,func]=lasterror();
-        printf('do_eval: error %d - %s in %s at line %d\n', n, str, func, line); 
+        printf("do_eval: error %d - %s in %s at line %d\n", n, str, func, line);
     endfunction
     funcprot(%mprt)
 
@@ -43,7 +43,7 @@ function blk = xcosBlockEval(interfaceAlias, blk, context)
     // Every parameter settings is done, perform block update
 
     //create a structure with the new context
-    [new_blk, y, typ] = interfaceAlias('set', blk, []);
+    [new_blk, y, typ] = interfaceAlias("set", blk, []);
     blk = new_blk;
 endfunction
 

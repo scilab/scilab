@@ -30,32 +30,32 @@ class Geometries {
 
     private final ElementsBuffer boxBorderVertices;
     private static final float[] boxBorderVerticesData = new float[] {
-            -1, -1, +1, +1,
-            -1, +1, +1, +1,
-            -1, +1, -1, +1,
-            +1, +1, -1, +1,
-            +1, -1, -1, +1,
-            +1, -1, +1, +1
+        -1, -1, +1, +1,
+        -1, +1, +1, +1,
+        -1, +1, -1, +1,
+        +1, +1, -1, +1,
+        +1, -1, -1, +1,
+        +1, -1, +1, +1
     };
 
     private final ElementsBuffer hiddenBoxBorderVertices;
     private static final float[] hiddenBoxBorderVerticesData = new float[] {
-            -1, -1, -1, +1,
-            +1, -1, -1, +1,
-            -1, -1, -1, +1,
-            -1, +1, -1, +1,
-            -1, -1, -1, +1,
-            -1, -1, +1, +1
+        -1, -1, -1, +1,
+        +1, -1, -1, +1,
+        -1, -1, -1, +1,
+        -1, +1, -1, +1,
+        -1, -1, -1, +1,
+        -1, -1, +1, +1
     };
 
     private final ElementsBuffer frontBoxBorderVertices;
     private static final float[] frontBoxBorderVerticesData = new float[] {
-            +1, +1, +1, +1,
-            -1, +1, +1, +1,
-            +1, +1, +1, +1,
-            +1, -1, +1, +1,
-            +1, +1, +1, +1,
-            +1, +1, -1, +1
+        +1, +1, +1, +1,
+        -1, +1, +1, +1,
+        +1, +1, +1, +1,
+        +1, -1, +1, +1,
+        +1, +1, +1, +1,
+        +1, +1, -1, +1
     };
 
     public Geometries(Canvas canvas) {

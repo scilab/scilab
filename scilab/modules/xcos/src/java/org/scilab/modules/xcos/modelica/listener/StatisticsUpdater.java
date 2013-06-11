@@ -29,7 +29,7 @@ public final class StatisticsUpdater implements TableModelListener {
 
     /**
      * Default constructor
-     * 
+     *
      * @param statistics
      *            the statistic instance
      */
@@ -39,7 +39,7 @@ public final class StatisticsUpdater implements TableModelListener {
 
     /**
      * Update the statistics on table change.
-     * 
+     *
      * @param e
      *            the model event
      * @see javax.swing.event.TableModelListener#tableChanged(javax.swing.event.TableModelEvent)
@@ -54,7 +54,7 @@ public final class StatisticsUpdater implements TableModelListener {
             // update the statistics on weight change
             if (TerminalAccessor.values()[columnIndex] == TerminalAccessor.WEIGHT) {
                 final TerminalTableModel model = (TerminalTableModel) e
-                        .getSource();
+                                                 .getSource();
                 final Terminal terminal = model.getTerminals().get(rowIndex);
 
                 final int increment;
@@ -66,9 +66,9 @@ public final class StatisticsUpdater implements TableModelListener {
                 }
 
                 final String kind = TerminalAccessor.getData(
-                        TerminalAccessor.KIND, terminal);
+                                        TerminalAccessor.KIND, terminal);
                 final Double weight = TerminalAccessor.getData(
-                        TerminalAccessor.WEIGHT, terminal);
+                                          TerminalAccessor.WEIGHT, terminal);
                 if ("fixed_parameter".equals(kind)) {
                     if (weight.doubleValue() == 1) {
                         statistics.incFixedParameters(increment);

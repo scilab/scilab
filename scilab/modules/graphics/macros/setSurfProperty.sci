@@ -3,7 +3,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,current_figure,cur_draw_mode)
@@ -27,7 +27,7 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
     select PName
 
         /////////////////////////
-    case 'colordata'
+    case "colordata"
         /////////////////////////
 
         if (type(PropertyValue)<>1 | or(size(PropertyValue)==1))
@@ -40,14 +40,14 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
             [tmp1,tmp2,tmp3,CC] = CreateFacetsFromXYZColor(X,Y,Z,PropertyValue);
             Surface.data.color = CC;
         else
-            str='surf : incompatible dimensions in input arguments';
+            str="surf : incompatible dimensions in input arguments";
             warning(str);
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end
 
         /////////////////////////
-    case 'colordatamapping'
+    case "colordatamapping"
         /////////////////////////
 
         if (type(PropertyValue)<>10)
@@ -56,10 +56,10 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
             return;
         end
 
-        if (PropertyValue=='scaled')
-            Surface.cdata_mapping = 'scaled';
-        elseif (PropertyValue=='direct')
-            Surface.cdata_mapping = 'direct';
+        if (PropertyValue=="scaled")
+            Surface.cdata_mapping = "scaled";
+        elseif (PropertyValue=="direct")
+            Surface.cdata_mapping = "direct";
         else
             warning(msprintf(gettext("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"setSurfProperty",2, "scaled", "direct"));
             ResetFigureDDM(current_figure, cur_draw_mode);
@@ -67,7 +67,7 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
         end
 
         /////////////////////////
-    case 'cdatamode'
+    case "cdatamode"
         /////////////////////////
 
         //  /////////////////////////
@@ -82,21 +82,21 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
 
 
         /////////////////////////
-    case 'foreground'         // <=> EdgeColor
+    case "foreground"         // <=> EdgeColor
         /////////////////////////
 
         if (type(PropertyValue) == 10)
 
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white"]
 
             if index < 10
-                Surface.surface_mode='on';
+                Surface.surface_mode="on";
                 Surface.foreground = color(ColorVal(index));
                 Surface.mark_foreground = color(ColorVal(index));
             elseif index == 10  // 'none' selected
-                Surface.surface_mode='on';
+                Surface.surface_mode="on";
                 Surface.color_mode = 0; // <=> - colormap(1) and not black at all!!
                 Surface.mark_foreground = -1; // <=> black
             else
@@ -106,8 +106,8 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
             end
         elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
 
-            if (size(PropertyValue,'*')==3)
-                Surface.surface_mode='on';
+            if (size(PropertyValue,"*")==3)
+                Surface.surface_mode="on";
                 Surface.foreground = addcolor(PropertyValue);
                 Surface.mark_foreground = addcolor(PropertyValue);
             else
@@ -124,30 +124,30 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
 
 
         /////////////////////////
-    case 'facecolor'          // FaceColor
+    case "facecolor"          // FaceColor
         /////////////////////////
 
         if (type(PropertyValue) == 10)
 
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white"]
 
             if index < 10
-                Surface.surface_mode='on';
+                Surface.surface_mode="on";
                 Surface.color_mode = color(ColorVal(index));
                 //Surface.mark_foreground = color(ColorVal(index));
                 Surface.color_flag = 0;
             elseif index == 10  // 'none' selected
-                Surface.surface_mode='on';
+                Surface.surface_mode="on";
                 Surface.color_mode = 0;
                 //Surface.mark_foreground = color(ColorVal(index));
                 Surface.color_flag = 0;
             elseif index == 12  // 'flat' selected
-                Surface.surface_mode='on';
+                Surface.surface_mode="on";
                 Surface.color_flag = 4;
             elseif index == 13  // 'interp' selected
-                Surface.surface_mode='on';
+                Surface.surface_mode="on";
                 Surface.color_flag = 3;
             else
                 warning(msprintf(gettext("%s: Wrong value for input argument #%d: A color of the colormap expected.\n"),"setSurfProperty",2));
@@ -156,8 +156,8 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
             end
         elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
 
-            if (size(PropertyValue,'*')==3)
-                Surface.surface_mode='on';
+            if (size(PropertyValue,"*")==3)
+                Surface.surface_mode="on";
                 Surface.foreground = addcolor(PropertyValue);
                 Surface.mark_foreground = addcolor(PropertyValue);
             else
@@ -174,23 +174,23 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
 
 
         /////////////////////////
-    case 'linestyle'          // LineStyle
+    case "linestyle"          // LineStyle
         /////////////////////////
         if (type(PropertyValue)==10)
-            if (PropertyValue=='--')
+            if (PropertyValue=="--")
                 Surface.line_style=2;
-                Surface.surface_mode = 'on';
-            elseif (PropertyValue=='-.')
+                Surface.surface_mode = "on";
+            elseif (PropertyValue=="-.")
                 Surface.line_style=4;
-                Surface.surface_mode = 'on';
-            elseif (PropertyValue==':')
+                Surface.surface_mode = "on";
+            elseif (PropertyValue==":")
                 Surface.line_style=5;
-                Surface.surface_mode = 'on';
-            elseif (PropertyValue=='-')
+                Surface.surface_mode = "on";
+            elseif (PropertyValue=="-")
                 Surface.line_style=1;
-                Surface.surface_mode = 'on';
-            elseif (PropertyValue=='none')
-                Surface.surface_mode = 'off';
+                Surface.surface_mode = "on";
+            elseif (PropertyValue=="none")
+                Surface.surface_mode = "off";
             end
         else
             warning(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"setSurfProperty",2));
@@ -199,7 +199,7 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
         end
 
         /////////////////////////
-    case 'thickness'        // <=> LineWidth
+    case "thickness"        // <=> LineWidth
         /////////////////////////
         if (type(PropertyValue)==1)
             Surface.thickness=PropertyValue;
@@ -210,13 +210,13 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
         end
 
         /////////////////////////
-    case 'markstyle'        // <=> Marker
+    case "markstyle"        // <=> Marker
         /////////////////////////
         if (type(PropertyValue)==10)
 
             str = convstr(PropertyValue);
             //Marks
-            Table = [ '+' 'o' '*' '.' 'x' 'square' 'diamond' '^' 'v' '>' '<' 'pentagram' 'none'];
+            Table = [ "+" "o" "*" "." "x" "square" "diamond" "^" "v" ">" "<" "pentagram" "none"];
             MarksStyleVal=[1 9 10 0 2 11 5 6 7 12 13 14 -99];
             //    MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3 -99];
 
@@ -229,7 +229,7 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
                 PName=[];
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 return;
-            elseif ( size(k,'*') > 1)
+            elseif ( size(k,"*") > 1)
                 warning(msprintf(gettext("%s: Ambiguous MarkStyle value.\n"),"setSurfProperty")); //unreachable case normally
                 PName=[];
                 ResetFigureDDM(current_figure, cur_draw_mode);
@@ -247,7 +247,7 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
 
             str = part(str,i:length(str));
 
-            if (size(opt1,'*') > 1)
+            if (size(opt1,"*") > 1)
                 warning(msprintf(gettext("%s: Wrong value for input argument #%d: A marker style expected.\n"),"setSurfproperty", 2));
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 return;
@@ -259,7 +259,7 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
                 //MarksSizeVal(opt1);
             else
                 // 'none' is selected
-                Surface.mark_mode='off'
+                Surface.mark_mode="off"
             end
 
         else
@@ -270,15 +270,15 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
 
 
         /////////////////////////
-    case 'markforeground'        // <=> MarkerEdgeColor
+    case "markforeground"        // <=> MarkerEdgeColor
         /////////////////////////
         if (type(PropertyValue)==10)
 
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white' 'none']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white" "none"]
 
-            markmodeON = find(Surface.mark_mode=='on');
+            markmodeON = find(Surface.mark_mode=="on");
 
             if index == 10
                 // 'none' specified
@@ -303,9 +303,9 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
                 end
             end
         elseif (type(PropertyValue)==1)
-            if (size(PropertyValue,'*')==3)
+            if (size(PropertyValue,"*")==3)
 
-                markmodeON = find(Surface.mark_mode=='on');
+                markmodeON = find(Surface.mark_mode=="on");
                 if markmodeON <> []
                     Surface(markmodeON).mark_foreground = addcolor(PropertyValue);
                 end
@@ -323,15 +323,15 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
 
 
         /////////////////////////
-    case 'markbackground'        // <=> MarkerFaceColor
+    case "markbackground"        // <=> MarkerFaceColor
         /////////////////////////
         if (type(PropertyValue)==10)
 
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white' 'none']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white" "none"]
 
-            markmodeON = find(Surface.mark_mode=='on');
+            markmodeON = find(Surface.mark_mode=="on");
 
             if index == 10
                 // 'none' specified
@@ -358,9 +358,9 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
             end
         elseif (type(PropertyValue)==1)
 
-            if (size(PropertyValue,'*')==3)
+            if (size(PropertyValue,"*")==3)
 
-                markmodeON = find(Surface.mark_mode=='on');
+                markmodeON = find(Surface.mark_mode=="on");
                 if markmodeON <> []
                     Surface(markmodeON).mark_background = addcolor(PropertyValue);
                 end
@@ -378,11 +378,11 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
 
 
         /////////////////////////
-    case 'marksize'        // <=> MarkerSize
+    case "marksize"        // <=> MarkerSize
         /////////////////////////
-        if (type(PropertyValue)==1 & size(PropertyValue,'*')==1)
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
 
-            markmodeON = find(Surface.mark_mode=='on');
+            markmodeON = find(Surface.mark_mode=="on");
 
             if markmodeON <> []
                 Surface(markmodeON).mark_size = PropertyValue;
@@ -394,9 +394,9 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
         end
 
         /////////////////////////
-    case 'visible'        // <=> Visible
+    case "visible"        // <=> Visible
         /////////////////////////
-        if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
+        if (type(PropertyValue)==10 & (PropertyValue=="on" | PropertyValue=="off"))
             Surface.visible = PropertyValue;
         else
             warning(msprintf(gettext("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"setSurfProperty",2,"on","off"));
@@ -406,19 +406,19 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
 
 
         /////////////////////////
-    case 'xdata'
+    case "xdata"
         /////////////////////////
 
         // Already done at the beginning of surf execution.
 
         /////////////////////////
-    case 'ydata'
+    case "ydata"
         /////////////////////////
 
         // Already done at the beginning of surf execution.
 
         /////////////////////////
-    case 'zdata'
+    case "zdata"
         /////////////////////////
 
         // Already done at the beginning of surf execution.

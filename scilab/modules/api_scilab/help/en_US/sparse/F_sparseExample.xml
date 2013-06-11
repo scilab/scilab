@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+        <?xml version="1.0" encoding="utf-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -10,24 +10,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sparseExample" xml:lang="en">
-    <refnamediv>
-        <refname>sparse example</refname>
-        <refpurpose>
-            Sparse use case.
-        </refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This example shows how to get a sparse variable and return it to Scilab.</para>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/sparseExample.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/sparseExample.tst-->
-        <!--Lib_name: sparseExample-->
-        <!--Func_list: sparseExample-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sparseExample" xml:lang="en">
+        <refnamediv>
+            <refname>sparse example</refname>
+            <refpurpose>
+                Sparse use case.
+            </refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Description</title>
+            <para>This example shows how to get a sparse variable and return it to Scilab.</para>
+        </refsection>
+        <refsection>
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/sparseExample.c-->
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/sparseExample.tst-->
+            <!--Lib_name: sparseExample-->
+            <!--Func_list: sparseExample-->
+            <title>Gateway Source</title>
+            <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int sparseExample(char *fname,unsigned long fname_len)
 {
@@ -103,14 +103,14 @@ int sparseExample(char *fname,unsigned long fname_len)
 	return 0;
 }
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        </refsection>
+        <refsection>
+            <title>Scilab test script</title>
+            <programlisting role="code_scilab"><![CDATA[ 
 a = sparse([1,1;2,2;3,3], [1, 2, 3]);
 b = sparse([1,1;2,2;3,3], [1 + 2 * %i, 3 , -4 * %i]);
 if sparseExample(a) <> a then pause;end
 if sparseExample(b) <> b then pause;end
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

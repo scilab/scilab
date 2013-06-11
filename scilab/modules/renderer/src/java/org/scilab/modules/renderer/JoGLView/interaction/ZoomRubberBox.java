@@ -36,35 +36,35 @@ public class ZoomRubberBox extends RubberBox {
         mouseButton = e.getButton();
         if (e.getButton() == MouseEvent.BUTTON1) {
             switch (status) {
-            case WAIT_POINT_A:
-                if (setPointA(e.getPoint())) {
-                    status = Status.WAIT_POINT_B;
-                } else {
-                    setEnable(false);
-                    fireRubberBoxEnd();
-                }
-                break;
-            case WAIT_POINT_B:
-                setPointB(e.getPoint());
-                if (pointBComputer.is2D()) {
+                case WAIT_POINT_A:
+                    if (setPointA(e.getPoint())) {
+                        status = Status.WAIT_POINT_B;
+                    } else {
+                        setEnable(false);
+                        fireRubberBoxEnd();
+                    }
+                    break;
+                case WAIT_POINT_B:
+                    setPointB(e.getPoint());
+                    if (pointBComputer.is2D()) {
+                        process();
+                        setEnable(false);
+                        fireRubberBoxEnd();
+                    } else {
+                        status = Status.WAIT_POINT_C;
+                    }
+                    break;
+                case WAIT_POINT_C:
+                    setPointC(e.getPoint());
+                    status = Status.WAIT_POINT_D;
+                    break;
+                case WAIT_POINT_D:
+                    setPointD(e.getPoint());
                     process();
                     setEnable(false);
                     fireRubberBoxEnd();
-                } else {
-                    status = Status.WAIT_POINT_C;
-                }
-                break;
-            case WAIT_POINT_C:
-                setPointC(e.getPoint());
-                status = Status.WAIT_POINT_D;
-                break;
-            case WAIT_POINT_D:
-                setPointD(e.getPoint());
-                process();
-                setEnable(false);
-                fireRubberBoxEnd();
-                break;
-            default:
+                    break;
+                default:
             }
             updateInfoMessage();
         }
@@ -81,9 +81,9 @@ public class ZoomRubberBox extends RubberBox {
     @Override
     protected void process() {
         Double[] bounds = {
-                Math.min(firstPoint.getX(), secondPoint.getX()), Math.max(firstPoint.getX(), secondPoint.getX()),
-                Math.min(firstPoint.getY(), secondPoint.getY()), Math.max(firstPoint.getY(), secondPoint.getY()),
-                Math.min(firstPoint.getZ(), secondPoint.getZ()), Math.max(firstPoint.getZ(), secondPoint.getZ()),
+            Math.min(firstPoint.getX(), secondPoint.getX()), Math.max(firstPoint.getX(), secondPoint.getX()),
+            Math.min(firstPoint.getY(), secondPoint.getY()), Math.max(firstPoint.getY(), secondPoint.getY()),
+            Math.min(firstPoint.getZ(), secondPoint.getZ()), Math.max(firstPoint.getZ(), secondPoint.getZ()),
         };
 
         if (bounds[0].compareTo(bounds[1]) != 0 && bounds[2].compareTo(bounds[3]) != 0 && bounds[4].compareTo(bounds[5]) != 0) {

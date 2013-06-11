@@ -128,7 +128,7 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
     if (iLhs == 2)
     {
-        OutputStrings = (char **)MALLOC(sizeof(char*)*iRowsiCols);
+        OutputStrings = (char **)MALLOC(sizeof(char*) * iRowsiCols);
         if (OutputStrings == NULL)
         {
             freeAllocatedMatrixOfString(iRows, iCols, Input_StringMatrix_1);

@@ -9,63 +9,63 @@
 
 //=============================================================================
 function bOK = dlwSetEnvVc70()
-  bOK = %F;
-
-  MSVCDir = dlwGetVc70Path();
-  if (MSVCDir == []) then
-    return
-  end
-
-  err = setenv('MSVCDir', MSVCDir);
-  if (err == %F) then
     bOK = %F;
-    return
-  end
 
-  err = setenv('DevEnvDir', MSVCDir + filesep() + '..\Common7\Tools');
-  if (err == %F) then
-    bOK = %F;
-    return
-  end
+    MSVCDir = dlwGetVc70Path();
+    if (MSVCDir == []) then
+        return
+    end
 
-  DevEnvDir = getenv('DevEnvDir', 'ndef');
-  if (DevEnvDir == 'ndef') then
-    bOK = %F;
-    return
-  end
+    err = setenv("MSVCDir", MSVCDir);
+    if (err == %F) then
+        bOK = %F;
+        return
+    end
 
-  PATH = getenv('PATH', 'ndef');
-  if (PATH == 'ndef') then
-    bOK = %F;
-    return
-  end
+    err = setenv("DevEnvDir", MSVCDir + filesep() + "..\Common7\Tools");
+    if (err == %F) then
+        bOK = %F;
+        return
+    end
 
-  err = addPathToEnv('PATH', MSVCDir + '\bin' + pathsep() + ..
-               DevEnvDir + pathsep() + ..
-               DevEnvDir + '\bin' + pathsep() + ..
-               MSVCDir + '\..\Common7\IDE');
-  if (err == %F) then
-    bOK = %F;
-    return
-  end
+    DevEnvDir = getenv("DevEnvDir", "ndef");
+    if (DevEnvDir == "ndef") then
+        bOK = %F;
+        return
+    end
 
-  err = addPathToEnv('include', MSVCDir + '\atlmfc\include' + pathsep() + ..
-               MSVCDir + '\include' + pathsep() +..
-               MSVCDir + '\PlatformSDK\include');
-  if (err == %F) then
-    bOK = %F;
-    return
-  end
+    PATH = getenv("PATH", "ndef");
+    if (PATH == "ndef") then
+        bOK = %F;
+        return
+    end
 
-  err = setenv('lib', MSVCDir + '\atlmfc\lib' + pathsep() + ..
-               MSVCDir + '\lib'+ pathsep() +..
-               MSVCDir + '\PlatformSDK\lib');
-  if (err == %F) then
-    bOK = %F;
-    return
-  end
+    err = addPathToEnv("PATH", MSVCDir + "\bin" + pathsep() + ..
+    DevEnvDir + pathsep() + ..
+    DevEnvDir + "\bin" + pathsep() + ..
+    MSVCDir + "\..\Common7\IDE");
+    if (err == %F) then
+        bOK = %F;
+        return
+    end
 
-  bOK = %T;
+    err = addPathToEnv("include", MSVCDir + "\atlmfc\include" + pathsep() + ..
+    MSVCDir + "\include" + pathsep() +..
+    MSVCDir + "\PlatformSDK\include");
+    if (err == %F) then
+        bOK = %F;
+        return
+    end
+
+    err = setenv("lib", MSVCDir + "\atlmfc\lib" + pathsep() + ..
+    MSVCDir + "\lib"+ pathsep() +..
+    MSVCDir + "\PlatformSDK\lib");
+    if (err == %F) then
+        bOK = %F;
+        return
+    end
+
+    bOK = %T;
 
 endfunction
 //=============================================================================

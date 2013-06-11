@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
@@ -11,48 +11,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="factorial" xml:lang="en">
-    <refnamediv>
-        <refname>factorial</refname>
-        <refpurpose>The factorial function</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            f = factorial ( n )
-            
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>n :</term>
-                <listitem>
-                    <para> a matrix of doubles. Must contain positive integers.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>f :</term>
-                <listitem>
-                    <para> a matrix of doubles.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Returns the factorial of n, that is, the product of all
-            integers 1 * 2 * ... * n.
-        </para>
-        <para>
-            This function overflows as soon as n&gt;170.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="factorial" xml:lang="en">
+        <refnamediv>
+            <refname>factorial</refname>
+            <refpurpose>The factorial function</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                f = factorial ( n )
+                
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term>n :</term>
+                    <listitem>
+                        <para> a matrix of doubles. Must contain positive integers.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>f :</term>
+                    <listitem>
+                        <para> a matrix of doubles.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Returns the factorial of n, that is, the product of all
+                integers 1 * 2 * ... * n.
+            </para>
+            <para>
+                This function overflows as soon as n&gt;170.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 // Make a table of factorial
 n = (0:30)';
 [n factorial(n)]
@@ -68,11 +68,11 @@ h = gcf();
 h.children.log_flags="nln";
 
    ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Bibliography</title>
-        <para>
-            <ulink url="http://www.scilab.org/en/support/documentation/tutorials">Introduction to discrete probabilities</ulink>, Michael Baudin
-        </para>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title>Bibliography</title>
+            <para>
+                <ulink url="http://www.scilab.org/en/support/documentation/tutorials">Introduction to discrete probabilities</ulink>, Michael Baudin
+            </para>
+        </refsection>
+    </refentry>

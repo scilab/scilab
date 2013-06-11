@@ -17,10 +17,10 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intcoeff)(int *id);
 /*--------------------------------------------------------------------------*/
-int sci_coeff(char *fname,unsigned long fname_len)
+int sci_coeff(char *fname, unsigned long fname_len)
 {
-	static int id[6];
-	C2F(intcoeff)(id);
-	return 0;
+    static int id[6];
+    C2F(intcoeff)(id);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -18,7 +18,7 @@
 function [ this , data ] = optimsimplex_computefv ( varargin )
     function argin = argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
-        // If this argument was not provided, or was equal to the 
+        // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
         if ( rhs < ivar ) then
             argin = default

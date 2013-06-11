@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
  * 
@@ -10,29 +10,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="StringManagement_callscilab" xml:lang="en">
-    <refnamediv>
-        <refname>String management</refname>
-        <refpurpose>How to manage Scilab's String read and write process using
-            call_scilab and api_scilab
-        </refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how strings and matrix of strings can be handle
-            through the <link linkend="call_scilab">Call Scilab API</link> and <link linkend="api_scilab">api Scilab</link>.
-        </para>
-        <para>There are several functions which can be used to read / write from
-            the memory of Scilab. These functions are described in dedicated
-            pages.
-        </para>
-        <para>
-            Note: Access to variables is done through <link linkend="api_scilab">api Scilab</link> (named variable).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="StringManagement_callscilab" xml:lang="en">
+        <refnamediv>
+            <refname>String management</refname>
+            <refpurpose>How to manage Scilab's String read and write process using
+                call_scilab and api_scilab
+            </refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Description</title>
+            <para>This help describes how strings and matrix of strings can be handle
+                through the <link linkend="call_scilab">Call Scilab API</link> and <link linkend="api_scilab">api Scilab</link>.
+            </para>
+            <para>There are several functions which can be used to read / write from
+                the memory of Scilab. These functions are described in dedicated
+                pages.
+            </para>
+            <para>
+                Note: Access to variables is done through <link linkend="api_scilab">api Scilab</link> (named variable).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // This example shows how to write a Scilab string in Scilab engine
 // It is the equivalent to A="my Message"; in Scilab interpretor
 // See: modules/call_scilab/examples/basicExamples/readwritestring.c
@@ -60,7 +60,7 @@ if(sciErr.iErr)
 printf("Display from Scilab of A:\n");
 SendScilabJob("disp(A);"); /* Display A */
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[ 
+            <programlisting role="example"><![CDATA[ 
 /* Load the previously set variable A */
 // See: modules/call_scilab/examples/basicExamples/readwritestring.c
 
@@ -121,43 +121,43 @@ for(i = 0 ; i < iRows * iCols ; i++)
 free(pstData);
 
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="call_scilab">Call_Scilab</link>
-            </member>
-            <member>
-                <link linkend="api_scilab">api Scilab</link>
-            </member>
-            <member>
-                <link linkend="SendScilabJob">SendScilabJob</link>
-            </member>
-            <member>
-                <link linkend="StartScilab">StartScilab</link>
-            </member>
-            <member>
-                <link linkend="BooleanManagement_callscilab">Call_Scilab: Boolean Management</link>
-            </member>
-            <member>
-                <link linkend="DoubleManagement_callscilab">Call_Scilab: Double Management</link>
-            </member>
-            <member>
-                <link linkend="boolean_reading_API">API_Scilab: Boolean Reading</link>
-            </member>
-            <member>
-                <link linkend="boolean_writing_API">API_Scilab: Boolean Writing</link>
-            </member>
-            <member>
-                <link linkend="Double_management_reading_API">API_Scilab: Double Reading</link>
-            </member>
-            <member>
-                <link linkend="Double_management_writing_API">API_Scilab: Double Writing</link>
-            </member>
-            <member>
-                <link linkend="ComplexManagement_callscilab">Complex Management</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="call_scilab">Call_Scilab</link>
+                </member>
+                <member>
+                    <link linkend="api_scilab">api Scilab</link>
+                </member>
+                <member>
+                    <link linkend="SendScilabJob">SendScilabJob</link>
+                </member>
+                <member>
+                    <link linkend="StartScilab">StartScilab</link>
+                </member>
+                <member>
+                    <link linkend="BooleanManagement_callscilab">Call_Scilab: Boolean Management</link>
+                </member>
+                <member>
+                    <link linkend="DoubleManagement_callscilab">Call_Scilab: Double Management</link>
+                </member>
+                <member>
+                    <link linkend="boolean_reading_API">API_Scilab: Boolean Reading</link>
+                </member>
+                <member>
+                    <link linkend="boolean_writing_API">API_Scilab: Boolean Writing</link>
+                </member>
+                <member>
+                    <link linkend="Double_management_reading_API">API_Scilab: Double Reading</link>
+                </member>
+                <member>
+                    <link linkend="Double_management_writing_API">API_Scilab: Double Writing</link>
+                </member>
+                <member>
+                    <link linkend="ComplexManagement_callscilab">Complex Management</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

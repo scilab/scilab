@@ -1,148 +1,148 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CheckOutputArgument" xml:lang="ja">
+        <?xml version="1.0" encoding="UTF-8"?>
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CheckOutputArgument" xml:lang="ja">
         
-        <refname>CheckOutputArgument</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            Scilab関数コール時の出力引数の数を確認するC関数.
+            <refname>CheckOutputArgument</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>CheckOutputArgument(void* _pvCtx, int iMin, int iMax)</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
-            
-            <varlistentry>
+            <refpurpose>
                 
-                <term>pvApiCtx</term>
+                Scilab関数コール時の出力引数の数を確認するC関数.
                 
-                <listitem>
+            </refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>CheckOutputArgument(void* _pvCtx, int iMin, int iMax)</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
                     
-                    <para>
-                        
-                        Scilab環境ポインタ, api_scilab.hで定義される "pvApiCtx" を指定
-                        
-                    </para>
+                    <term>pvApiCtx</term>
                     
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>iMin</term>
-                
-                <listitem>
-                    
-                    <para>
+                    <listitem>
                         
-                        Scilab関数コール時に必要な出力引数の最小値
+                        <para>
+                            
+                            Scilab環境ポインタ, api_scilab.hで定義される "pvApiCtx" を指定
+                            
+                        </para>
                         
-                    </para>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>iMax</term>
-                
-                <listitem>
+                <varlistentry>
                     
-                    <para>
+                    <term>iMin</term>
+                    
+                    <listitem>
                         
-                        Scilab関数コール時に必要な出力引数の最大値
+                        <para>
+                            
+                            Scilab関数コール時に必要な出力引数の最小値
+                            
+                        </para>
                         
-                    </para>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
-            
-        </variablelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
-            
-            Scilab関数コール時の出力引数を確認するC関数.
-            
-            この関数を使用するには api_scilab.h をインクルードする必要があります.
-            
-        </para>
-        
-        <para>
-            
-            引数の数が_iMin および _iMax の間でない場合, 
-            
-            Cインターフェイスを終了(<literal>return 0;</literal>)し,
-            
-            Scilabコンソールにエラーが返されます.
-            
-        </para>
-        
-        <para>
-            
-            <literal>CheckOutputArgument</literal> は <literal>
+                <varlistentry>
+                    
+                    <term>iMax</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            Scilab関数コール時に必要な出力引数の最大値
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
                 
-                return
+            </variablelist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
                 
-                0;
+                Scilab関数コール時の出力引数を確認するC関数.
                 
-            </literal>
+                この関数を使用するには api_scilab.h をインクルードする必要があります.
+                
+            </para>
             
-            をゲートウェイ関数内で行うため,
+            <para>
+                
+                引数の数が_iMin および _iMax の間でない場合, 
+                
+                Cインターフェイスを終了(<literal>return 0;</literal>)し,
+                
+                Scilabコンソールにエラーが返されます.
+                
+            </para>
             
-            メモリリークを避けるために
+            <para>
+                
+                <literal>CheckOutputArgument</literal> は <literal>
+                    
+                    return
+                    
+                    0;
+                    
+                </literal>
+                
+                をゲートウェイ関数内で行うため,
+                
+                メモリリークを避けるために
+                
+                この関数をメモリ確保処理の前にコールすることが必要です.
+                
+            </para>
             
-            この関数をメモリ確保処理の前にコールすることが必要です.
+            <para>
+                
+                この関数は廃止予定の <literal>CheckLhs</literal> 関数
+                
+                を置き換えるものです.
+                
+            </para>
             
-        </para>
+        </refsection>
         
-        <para>
+        <refsection>
             
-            この関数は廃止予定の <literal>CheckLhs</literal> 関数
+            <title>例</title>
             
-            を置き換えるものです.
+            <para>
+                
+                この例では, Cゲートウェイ関数は
+                
+                出力引数の数が 2と3の間であることを確認します.
+                
+            </para>
             
-        </para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <para>
-            
-            この例では, Cゲートウェイ関数は
-            
-            出力引数の数が 2と3の間であることを確認します.
-            
-        </para>
-        
-        <programlisting role="example"><![CDATA[ 
+            <programlisting role="example"><![CDATA[ 
 #include <api_scilab.h>
 
 int sci_mychecklhs(char * fname)
@@ -157,32 +157,32 @@ int sci_mychecklhs(char * fname)
   return 0;
 }
  ]]></programlisting>
-        
-        <para>ここで, このインターフェイスをテストするために関数を実行します:</para>
-        
-        <programlisting role="example"><![CDATA[ 
+            
+            <para>ここで, このインターフェイスをテストするために関数を実行します:</para>
+            
+            <programlisting role="example"><![CDATA[ 
 [A,B] = mychecklhs(); // OK, 出力引数2個
 [A,B,C] = mychecklhs(); // OK, 出力引数3個
 [A] = mychecklhs(); // エラー, 出力引数1個
 [A,B,C,D] = mychecklhs(); // エラー, 出力引数4個]]></programlisting>
-        
-    </refsection>
-    
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
             
-            <member>
-                
-                <link linkend="CheckInputArgument">CheckInputArgument</link>
-                
-            </member>
-            
-        </simplelist>
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="CheckInputArgument">CheckInputArgument</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-</refentry>
-

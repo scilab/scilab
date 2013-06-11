@@ -102,7 +102,7 @@ const char *sci_backtrace_address(sci_backtrace_t * bt, int depth);
 /*
  * Demangle a function name
  *
- * Have a look at the documentation of abi::__cxa_demangle 
+ * Have a look at the documentation of abi::__cxa_demangle
  */
 char * sci_demangle(const char * __mangled_name, char * __output_buffer, size_t * __length, int * __status);
 

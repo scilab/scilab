@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,245 +10,245 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_terminate" xml:lang="en">
-    <refnamediv>
-        <refname>optimbase_terminate</refname>
-        <refpurpose>Checks if the algorithm is terminated.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            [opt, terminate, status] = optimbase_terminate(opt, previousfopt, currentfopt, previousxopt, currentxopt)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Argument</title>
-        <variablelist>
-            <varlistentry>
-                <term>opt </term>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_terminate" xml:lang="en">
+        <refnamediv>
+            <refname>optimbase_terminate</refname>
+            <refpurpose>Checks if the algorithm is terminated.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                [opt, terminate, status] = optimbase_terminate(opt, previousfopt, currentfopt, previousxopt, currentxopt)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Argument</title>
+            <variablelist>
+                <varlistentry>
+                    <term>opt </term>
+                    <listitem>
+                        <para>The object of TOPTIM type (tlist).</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>previousfopt </term>
+                    <listitem>
+                        <para>A vector of doubles, the previous value of the cost function.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>currentfopt </term>
+                    <listitem>
+                        <para>A vector of doubles, the current value of the cost function.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>previousxopt </term>
+                    <listitem>
+                        <para>A vector of doubles, the previous x optimum.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>currentxopt </term>
+                    <listitem>
+                        <para>A vector of doubles, the current x optimum.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>terminate </term>
+                    <listitem>
+                        <para>A boolean.</para>
+                        <para>terminate = %t if the algorithm must terminate.</para>
+                        <para>terminate = %f if the algorithme must continue.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>status </term>
+                    <listitem>
+                        <para>A string.</para>
+                        <para>
+                            If <literal>terminate</literal> = %t, the detailed status of the termination 
+                            corresponds to :
+                        </para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>"maxiter"</term>
+                                <listitem>
+                                    The maximum number of iterations, provided by the 
+                                    <literal>-maxiter</literal> option, is reached.
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>"maxfuneval"</term>
+                                <listitem>
+                                    The maximum number of function evaluations, provided by the 
+                                    <literal>-maxfunevals</literal> option, is reached.
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>"tolf"</term>
+                                <listitem>
+                                    The tolerance on the function value is reached. This status is associated 
+                                    with the <literal>-tolfunmethod</literal>, <literal>-tolfunabsolute</literal> 
+                                    and <literal>-tolfunrelative</literal> options.
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>"tolx"</term>
+                                <listitem>
+                                    The tolerance on x is reached. This status is associated with the 
+                                    <literal>-tolxmethod</literal>, <literal>-tolxabsolute</literal> and 
+                                    <literal>-tolxrelative</literal> options.
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <literal>optimbase_terminate</literal> function returns a boolean: 
+            </para>
+            <itemizedlist>
                 <listitem>
-                    <para>The object of TOPTIM type (tlist).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>previousfopt </term>
-                <listitem>
-                    <para>A vector of doubles, the previous value of the cost function.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>currentfopt </term>
-                <listitem>
-                    <para>A vector of doubles, the current value of the cost function.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>previousxopt </term>
-                <listitem>
-                    <para>A vector of doubles, the previous x optimum.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>currentxopt </term>
-                <listitem>
-                    <para>A vector of doubles, the current x optimum.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>terminate </term>
-                <listitem>
-                    <para>A boolean.</para>
-                    <para>terminate = %t if the algorithm must terminate.</para>
-                    <para>terminate = %f if the algorithme must continue.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>status </term>
-                <listitem>
-                    <para>A string.</para>
                     <para>
-                        If <literal>terminate</literal> = %t, the detailed status of the termination 
-                        corresponds to :
+                        %t if the algorithm is terminated,
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        %f if the algorithm must continue.
+                    </para>
+                </listitem>
+            </itemizedlist>
+            <para>
+                If the <literal>-verbosetermination</literal> option is enabled, messages are printed 
+                detailing the termination intermediate steps. 
+            </para>
+            <para>
+                The <literal>optimbase_terminate</literal> function uses a set of rules to compute if 
+                the termination occurs, which leads to an optimization status which is equal to one of 
+                the following: "continue", "maxiter", "maxfunevals", "tolf", "tolx". The set of rules 
+                is the following.
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        By default, the status is "continue", and the terminate flag is %f.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The number of iterations is examined and compared to the <literal>-maxiter</literal> 
+                        option. If the following condition 
+                    </para>
+                    <programlisting role="no-scilab-exec">
+                        <![CDATA[ 
+                   iterations &gt;= maxiter
+                ]]>
+                    </programlisting>
+                    <para>
+                        is true, then the status is set to "maxiter" and terminate is set to %t.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The number of function evaluations and compared to the <literal>-maxfunevals</literal> 
+                        option is examined. I the following condition
+                    </para>
+                    <programlisting role="no-scilab-exec">
+                        <![CDATA[ 
+                   funevals &gt;= maxfunevals
+                ]]>
+                    </programlisting>
+                    <para>
+                        is true, then the status is set to "maxfunevals" and terminate is set to %t.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        The tolerance on function value is examined depending on the value of the 
+                        <literal>-tolfunmethod</literal> option.
                     </para>
                     <variablelist>
                         <varlistentry>
-                            <term>"maxiter"</term>
+                            <term>"disabled" </term>
                             <listitem>
-                                The maximum number of iterations, provided by the 
-                                <literal>-maxiter</literal> option, is reached.
+                                <para>then the tolerance on f is just skipped.</para>
                             </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"maxfuneval"</term>
+                            <term>"enabled" </term>
                             <listitem>
-                                The maximum number of function evaluations, provided by the 
-                                <literal>-maxfunevals</literal> option, is reached.
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"tolf"</term>
-                            <listitem>
-                                The tolerance on the function value is reached. This status is associated 
-                                with the <literal>-tolfunmethod</literal>, <literal>-tolfunabsolute</literal> 
-                                and <literal>-tolfunrelative</literal> options.
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"tolx"</term>
-                            <listitem>
-                                The tolerance on x is reached. This status is associated with the 
-                                <literal>-tolxmethod</literal>, <literal>-tolxabsolute</literal> and 
-                                <literal>-tolxrelative</literal> options.
+                                <para>if the following condition</para>
+                                <programlisting role="no-scilab-exec">
+                                    <![CDATA[ 
+                   abs(currentfopt) &lg; tolfunrelative * abs(previousfopt) + tolfunabsolute
+                ]]>
+                                </programlisting>
+                                <para>
+                                    is true, then the status is set to "tolf" and terminate is set to %t.
+                                </para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
+                    <para>
+                        The relative termination criteria on the function value works well if the function 
+                        value at optimum is near zero. In that case, the function value at initial guess 
+                        <literal>fx0</literal> may be used as previousfopt.
+                    </para>
+                    <para>
+                        The absolute termination criteria on the function value works if the user has an 
+                        accurate idea of the optimum function value.
+                    </para>
                 </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <literal>optimbase_terminate</literal> function returns a boolean: 
-        </para>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    %t if the algorithm is terminated,
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    %f if the algorithm must continue.
-                </para>
-            </listitem>
-        </itemizedlist>
-        <para>
-            If the <literal>-verbosetermination</literal> option is enabled, messages are printed 
-            detailing the termination intermediate steps. 
-        </para>
-        <para>
-            The <literal>optimbase_terminate</literal> function uses a set of rules to compute if 
-            the termination occurs, which leads to an optimization status which is equal to one of 
-            the following: "continue", "maxiter", "maxfunevals", "tolf", "tolx". The set of rules 
-            is the following.
-        </para>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    By default, the status is "continue", and the terminate flag is %f.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    The number of iterations is examined and compared to the <literal>-maxiter</literal> 
-                    option. If the following condition 
-                </para>
-                <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
-                   iterations &gt;= maxiter
-                ]]>
-                </programlisting>
-                <para>
-                    is true, then the status is set to "maxiter" and terminate is set to %t.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    The number of function evaluations and compared to the <literal>-maxfunevals</literal> 
-                    option is examined. I the following condition
-                </para>
-                <programlisting role="no-scilab-exec">
-                    <![CDATA[ 
-                   funevals &gt;= maxfunevals
-                ]]>
-                </programlisting>
-                <para>
-                    is true, then the status is set to "maxfunevals" and terminate is set to %t.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    The tolerance on function value is examined depending on the value of the 
-                    <literal>-tolfunmethod</literal> option.
-                </para>
-                <variablelist>
-                    <varlistentry>
-                        <term>"disabled" </term>
-                        <listitem>
-                            <para>then the tolerance on f is just skipped.</para>
-                        </listitem>
-                        <term>"enabled" </term>
-                        <listitem>
-                            <para>if the following condition</para>
-                            <programlisting role="no-scilab-exec">
-                                <![CDATA[ 
-                   abs(currentfopt) &lg; tolfunrelative * abs(previousfopt) + tolfunabsolute
-                ]]>
-                            </programlisting>
-                            <para>
-                                is true, then the status is set to "tolf" and terminate is set to %t.
-                            </para>
-                        </listitem>
-                    </varlistentry>
-                </variablelist>
-                <para>
-                    The relative termination criteria on the function value works well if the function 
-                    value at optimum is near zero. In that case, the function value at initial guess 
-                    <literal>fx0</literal> may be used as previousfopt.
-                </para>
-                <para>
-                    The absolute termination criteria on the function value works if the user has an 
-                    accurate idea of the optimum function value.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    The tolerance on <literal>x</literal> is examined depending on the value of the 
-                    <literal>-tolxmethod</literal> otpion.
-                </para>
-                <variablelist>
-                    <varlistentry>
-                        <term>%f </term>
-                        <listitem>
-                            <para>then the tolerance on x is just skipped.</para>
-                        </listitem>
-                        <term>%t </term>
-                        <listitem>
-                            <para>if the following condition</para>
-                            <programlisting role="no-scilab-exec">
-                                <![CDATA[ 
+                <listitem>
+                    <para>
+                        The tolerance on <literal>x</literal> is examined depending on the value of the 
+                        <literal>-tolxmethod</literal> otpion.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>%f </term>
+                            <listitem>
+                                <para>then the tolerance on x is just skipped.</para>
+                            </listitem>
+                            <term>%t </term>
+                            <listitem>
+                                <para>if the following condition</para>
+                                <programlisting role="no-scilab-exec">
+                                    <![CDATA[ 
                    norm(currentxopt - previousxopt) &lg; tolxrelative * norm(currentxopt) + tolxabsolute
                 ]]>
-                            </programlisting>
-                            <para>
-                                is true, then the status is set to "tolx" and terminate is set to %t.
-                            </para>
-                        </listitem>
-                    </varlistentry>
-                </variablelist>
-                <para>
-                    The relative termination criteria on x works well if x at optimum is different 
-                    form zero. In that case, the condition measures the distance between two iterates.
-                </para>
-                <para>
-                    The absolute termination criteria on x works if the user has an accurate idea of 
-                    the scale of the optimum x. If the optimum x is nea 0, the relative tolerance 
-                    will not work and the absolute tolerance is more appropriate.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>Example</title>
-        <para>
-            In the following example, ones searches to solve f(x) = 0 thanks dichotomy method.
-            An optimization object is created and configured (number of variables, initial point, 
-            maximum number of iterations, ...). The <literal>-verbose</literal> option is enabled so that 
-            messages are generated during the algorithm, are printed.
-        </para>
-        <programlisting role="example">
-            <![CDATA[ 
+                                </programlisting>
+                                <para>
+                                    is true, then the status is set to "tolx" and terminate is set to %t.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                    <para>
+                        The relative termination criteria on x works well if x at optimum is different 
+                        form zero. In that case, the condition measures the distance between two iterates.
+                    </para>
+                    <para>
+                        The absolute termination criteria on x works if the user has an accurate idea of 
+                        the scale of the optimum x. If the optimum x is nea 0, the relative tolerance 
+                        will not work and the absolute tolerance is more appropriate.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection>
+            <title>Example</title>
+            <para>
+                In the following example, ones searches to solve f(x) = 0 thanks dichotomy method.
+                An optimization object is created and configured (number of variables, initial point, 
+                maximum number of iterations, ...). The <literal>-verbose</literal> option is enabled so that 
+                messages are generated during the algorithm, are printed.
+            </para>
+            <programlisting role="example">
+                <![CDATA[ 
     function [f, index] = fun(x, index)
         f = 2*x - 4;
     endfunction
@@ -294,14 +294,14 @@ endfunction
 
 x = Dicho(opt,a,b)
  ]]>
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="optimbase_function">optimbase_function</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="optimbase_function">optimbase_function</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -1,17 +1,17 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include <windows.h> 
+#include <windows.h>
 #include "mmapWindows.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _WIN64
@@ -22,7 +22,7 @@ typedef LONG LOCKLONG;
 static LOCKLONG g_sl = 0;
 /*--------------------------------------------------------------------------*/
 /* Wait for spin lock */
-static int slwait (LOCKLONG *sl) 
+static int slwait (LOCKLONG *sl)
 {
 
     LOCKLONG Destination = *sl;
@@ -42,17 +42,17 @@ static int slwait (LOCKLONG *sl)
 }
 /*--------------------------------------------------------------------------*/
 /* Release spin lock */
-static int slrelease (LOCKLONG *sl) 
+static int slrelease (LOCKLONG *sl)
 {
     InterlockedExchange ((volatile LONG*)sl, 0);
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 /* getpagesize for windows */
-static long getpagesize (void) 
+static long getpagesize (void)
 {
     static long g_pagesize = 0;
-    if (!g_pagesize) 
+    if (!g_pagesize)
     {
         SYSTEM_INFO system_info;
         GetSystemInfo (&system_info);
@@ -61,10 +61,10 @@ static long getpagesize (void)
     return g_pagesize;
 }
 /*--------------------------------------------------------------------------*/
-static long getregionsize (void) 
+static long getregionsize (void)
 {
     static long g_regionsize = 0;
-    if (! g_regionsize) 
+    if (! g_regionsize)
     {
         SYSTEM_INFO system_info;
         GetSystemInfo (&system_info);
@@ -74,7 +74,7 @@ static long getregionsize (void)
 }
 /*--------------------------------------------------------------------------*/
 void *mmap (void *ptr, long size, long prot, long type, long handle, long arg)
-{ 
+{
     static long g_pagesize;
     static long g_regionsize;
 
@@ -87,7 +87,7 @@ void *mmap (void *ptr, long size, long prot, long type, long handle, long arg)
         g_pagesize = getpagesize ();
     }
 
-    if (! g_regionsize) 
+    if (! g_regionsize)
     {
         g_regionsize = getregionsize ();
     }
@@ -114,7 +114,7 @@ long munmap (void *ptr, long size)
         g_pagesize = getpagesize ();
     }
 
-    if (! g_regionsize) 
+    if (! g_regionsize)
     {
         g_regionsize = getregionsize ();
     }

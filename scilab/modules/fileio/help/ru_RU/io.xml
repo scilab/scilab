@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
@@ -10,58 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percentio" xml:lang="ru">
-    <refnamediv>
-        <refname>%io</refname>
-        <refpurpose>
-            переменная, которая хранит стандартный ввод и стандартный вывод 
-            (дескриптор файла)
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>%io(1)
-            %io(2)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            <function>%io(1)</function> возвращает стандартное устройство ввода (дескриптор файла 5).
-        </para>
-        <para>
-            <function>%io(2)</function> возвращает стандартное устройство вывода (дескриптор файла 6).
-        </para>
-        <para>
-            Дескриптор файла 0 является стандартным устройством вывода сообщений об ошибке.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percentio" xml:lang="ru">
+        <refnamediv>
+            <refname>%io</refname>
+            <refpurpose>
+                переменная, которая хранит стандартный ввод и стандартный вывод 
+                (дескриптор файла)
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>%io(1)
+                %io(2)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                <function>%io(1)</function> возвращает стандартное устройство ввода (дескриптор файла 5).
+            </para>
+            <para>
+                <function>%io(2)</function> возвращает стандартное устройство вывода (дескриптор файла 6).
+            </para>
+            <para>
+                Дескриптор файла 0 является стандартным устройством вывода сообщений об ошибке.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 mfprintf(%io(2),'Scilab stdout (C)');
 mfprintf(0,'Scilab stderr (C)');
 write(%io(2),'Scilab stdout (Fortran)');
 write(0,'Scilab stderr (Fortran)');
 [units,typ,names]=file()
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="write">write</link>
-            </member>
-            <member>
-                <link linkend="mfprintf">mfprintf</link>
-            </member>
-            <member>
-                <link linkend="file">file</link>
-            </member>
-            <member>
-                <link linkend="dispfiles">dispfiles</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
-
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="write">write</link>
+                </member>
+                <member>
+                    <link linkend="mfprintf">mfprintf</link>
+                </member>
+                <member>
+                    <link linkend="file">file</link>
+                </member>
+                <member>
+                    <link linkend="dispfiles">dispfiles</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>
+    

@@ -67,7 +67,9 @@ int sci_fileparts(char *fname, unsigned long fname_len)
     }
 
     if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &pStVarOne))
+    {
         return 0;
+    }
 
     if (pStVarOne == NULL)
     {

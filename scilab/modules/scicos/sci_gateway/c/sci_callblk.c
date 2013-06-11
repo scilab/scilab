@@ -134,28 +134,43 @@ int sci_callblk(char *fname, unsigned long fname_len)
         FREE(Block.z);
         FREE(Block.ozsz);
         FREE(Block.oztyp);
-        for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+        for (j = 0; j < Block.noz; j++)
+        {
+            FREE(Block.ozptr[j]);
+        }
         FREE(Block.ozptr);
         FREE(Block.x);
         FREE(Block.xd);
         FREE(Block.xprop);
         FREE(Block.res);
         FREE(Block.insz);
-        for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+        for (j = 0; j < Block.nin; j++)
+        {
+            FREE(Block.inptr[j]);
+        }
         FREE(Block.inptr);
         FREE(Block.outsz);
-        for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+        for (j = 0; j < Block.nout; j++)
+        {
+            FREE(Block.outptr[j]);
+        }
         FREE(Block.outptr);
         FREE(Block.evout);
         FREE(Block.rpar);
         FREE(Block.ipar);
         FREE(Block.oparsz);
         FREE(Block.opartyp);
-        for (j = 0; j < Block.nopar; j++) FREE(Block.oparptr[j]);
+        for (j = 0; j < Block.nopar; j++)
+        {
+            FREE(Block.oparptr[j]);
+        }
         FREE(Block.oparptr);
         FREE(Block.g);
         FREE(Block.jroot);
-        if (strlen(Block.label) != 0) FREE(Block.label);
+        if (strlen(Block.label) != 0)
+        {
+            FREE(Block.label);
+        }
         FREE(Block.mode);
         return 0;
     }
@@ -194,27 +209,42 @@ int sci_callblk(char *fname, unsigned long fname_len)
     FREE(Block.z);
     FREE(Block.ozsz);
     FREE(Block.oztyp);
-    for (j = 0; j < Block.noz; j++) FREE(Block.ozptr[j]);
+    for (j = 0; j < Block.noz; j++)
+    {
+        FREE(Block.ozptr[j]);
+    }
     FREE(Block.ozptr);
     FREE(Block.x);
     FREE(Block.xd);
     FREE(Block.res);
     FREE(Block.insz);
-    for (j = 0; j < Block.nin; j++) FREE(Block.inptr[j]);
+    for (j = 0; j < Block.nin; j++)
+    {
+        FREE(Block.inptr[j]);
+    }
     FREE(Block.inptr);
     FREE(Block.outsz);
-    for (j = 0; j < Block.nout; j++) FREE(Block.outptr[j]);
+    for (j = 0; j < Block.nout; j++)
+    {
+        FREE(Block.outptr[j]);
+    }
     FREE(Block.outptr);
     FREE(Block.evout);
     FREE(Block.rpar);
     FREE(Block.ipar);
     FREE(Block.oparsz);
     FREE(Block.opartyp);
-    for (j = 0; j < Block.nopar; j++) FREE(Block.oparptr[j]);
+    for (j = 0; j < Block.nopar; j++)
+    {
+        FREE(Block.oparptr[j]);
+    }
     FREE(Block.oparptr);
     FREE(Block.g);
     FREE(Block.jroot);
-    if (strlen(Block.label) != 0) FREE(Block.label);
+    if (strlen(Block.label) != 0)
+    {
+        FREE(Block.label);
+    }
     FREE(Block.mode);
 
     Top = TopSave;

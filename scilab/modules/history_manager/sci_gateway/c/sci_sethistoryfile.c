@@ -16,27 +16,27 @@
 #include "stack-c.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/
-int sci_sethistoryfile(char *fname,unsigned long fname_len)
+int sci_sethistoryfile(char *fname, unsigned long fname_len)
 {
-	CheckRhs(0,1) ;
-	CheckLhs(0,1) ;
+    CheckRhs(0, 1) ;
+    CheckLhs(0, 1) ;
 
-	if (Rhs == 0)
-	{
-		setDefaultFilenameScilabHistory();
-	}
-	else
-	{
-		int l1 = 0, m1 = 0, n1 = 0;
-		char  *filename = NULL;
+    if (Rhs == 0)
+    {
+        setDefaultFilenameScilabHistory();
+    }
+    else
+    {
+        int l1 = 0, m1 = 0, n1 = 0;
+        char  *filename = NULL;
 
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		filename=cstk(l1);
-		setFilenameScilabHistory(filename);
-	}
-	LhsVar(1) = 0;
-	PutLhsVar();
+        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+        filename = cstk(l1);
+        setFilenameScilabHistory(filename);
+    }
+    LhsVar(1) = 0;
+    PutLhsVar();
 
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

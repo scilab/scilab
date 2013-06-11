@@ -104,7 +104,7 @@ public class SetContextDialog extends JDialog {
         }
 
         JScrollPane contextAreaScroll = new JScrollPane(contextArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                                                        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         JButton cancelButton = new JButton(XcosMessages.CANCEL);
         JButton okButton = new JButton(XcosMessages.OK);
@@ -163,11 +163,11 @@ public class SetContextDialog extends JDialog {
          * The cancel button just exit without doing anything
          */
         cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
         /*
          * The ok button parse the contextArea, reconstruct the real context and
@@ -175,40 +175,40 @@ public class SetContextDialog extends JDialog {
          */
         okButton.addActionListener(new ActionListener() {
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        final String[] context = contextArea.getText().split(SHARED_NEW_LINE);
-                        parameters.setContext(context);
-
-                        /*
-                         * Validate the context
-                         */
-                        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-                        if (handler == null) {
-                            return;
-                        }
-                        try {
-                            handler.writeContext(context);
-                            ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
-                        } finally {
-                            handler.release();
-                        }
-
-                        dispose();
-                    } catch (PropertyVetoException e2) {
-                        Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
-                    }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    final String[] context = contextArea.getText().split(SHARED_NEW_LINE);
+                    parameters.setContext(context);
 
                     /*
-                     * if superblock is concerned, then regenerate child diagram.
+                     * Validate the context
                      */
-                    if (rootGraph instanceof SuperBlockDiagram) {
-                        SuperBlockDiagram superBlockDiagram = (SuperBlockDiagram) rootGraph;
-                        superBlockDiagram.getContainer().invalidateRpar();
+                    final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+                    if (handler == null) {
+                        return;
                     }
+                    try {
+                        handler.writeContext(context);
+                        ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
+                    } finally {
+                        handler.release();
+                    }
+
+                    dispose();
+                } catch (PropertyVetoException e2) {
+                    Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
                 }
-            });
+
+                /*
+                 * if superblock is concerned, then regenerate child diagram.
+                 */
+                if (rootGraph instanceof SuperBlockDiagram) {
+                    SuperBlockDiagram superBlockDiagram = (SuperBlockDiagram) rootGraph;
+                    superBlockDiagram.getContainer().invalidateRpar();
+                }
+            }
+        });
     }
 }
 // CSON: ClassDataAbstractionCoupling

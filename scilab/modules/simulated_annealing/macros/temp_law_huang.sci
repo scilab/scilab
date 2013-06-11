@@ -8,11 +8,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function T = temp_law_huang(T, step_mean, step_var, temp_stage, n,param)
-if (~isdef('param','local')) then
-  param = []; // First create the empty param var
-end
+    if (~isdef("param","local")) then
+        param = []; // First create the empty param var
+    end
 
-[lambda,err] = get_param(param,'lambda',0.01);
+    [lambda,err] = get_param(param,"lambda",0.01);
 
-T = T * exp(-lambda*T/step_var);
+    T = T * exp(-lambda*T/step_var);
 endfunction

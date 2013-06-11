@@ -95,7 +95,7 @@ function demo_dimension()
 
     m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
     if(m == 1)
-        filename = 'neldermead_dimension.sce';
+        filename = "neldermead_dimension.sce";
         dname = get_absolute_file_path(filename);
         editor ( dname + filename, "readonly" );
     end
@@ -109,4 +109,5 @@ clear demo_dimension;
 
 
 
-
+
+

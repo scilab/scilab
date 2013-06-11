@@ -89,7 +89,7 @@ public abstract class ImageEncoder implements ImageConsumer {
     // @param producer The ImageProducer to encode.
     // @param out The stream to write the bytes to.
     public ImageEncoder(ImageProducer producer, DataOutput dos)
-            throws IOException {
+    throws IOException {
         this.producer = producer;
         this.out = dos;
     }
@@ -104,7 +104,7 @@ public abstract class ImageEncoder implements ImageConsumer {
     // One int per pixel, index is row * scansize + off + col,
     // RGBdefault (AARRGGBB) color model.
     protected abstract void encodePixels(int x, int y, int w, int h,
-            int[] rgbPixels, int off, int scansize) throws IOException;
+                                         int[] rgbPixels, int off, int scansize) throws IOException;
 
     // / Subclasses implement this to finish an encoding.
     protected abstract void encodeDone() throws IOException;
@@ -121,8 +121,9 @@ public abstract class ImageEncoder implements ImageConsumer {
                 wait();
             } catch (InterruptedException e) {
             }
-        if (iox != null)
+        if (iox != null) {
             throw iox;
+        }
     }
 
     private boolean accumulate = false;
@@ -130,7 +131,7 @@ public abstract class ImageEncoder implements ImageConsumer {
     private int[] accumulator;
 
     private void encodePixelsWrapper(int x, int y, int w, int h,
-            int[] rgbPixels, int off, int scansize) throws IOException {
+                                     int[] rgbPixels, int off, int scansize) throws IOException {
         if (!started) {
             started = true;
             encodeStart(width, height);
@@ -142,9 +143,10 @@ public abstract class ImageEncoder implements ImageConsumer {
         if (accumulate)
             for (int row = 0; row < h; ++row)
                 System.arraycopy(rgbPixels, row * scansize + off, accumulator,
-                        (y + row) * width + x, w);
-        else
+                                 (y + row) * width + x, w);
+        else {
             encodePixels(x, y, w, h, rgbPixels, off, scansize);
+        }
     }
 
     private void encodeFinish() throws IOException {
@@ -180,12 +182,13 @@ public abstract class ImageEncoder implements ImageConsumer {
     }
 
     public void setPixels(int x, int y, int w, int h, ColorModel model,
-            byte[] pixels, int off, int scansize) {
+                          byte[] pixels, int off, int scansize) {
         int[] rgbPixels = new int[w];
         for (int row = 0; row < h; ++row) {
             int rowOff = off + row * scansize;
-            for (int col = 0; col < w; ++col)
+            for (int col = 0; col < w; ++col) {
                 rgbPixels[col] = model.getRGB(pixels[rowOff + col] & 0xff);
+            }
             try {
                 encodePixelsWrapper(x, y + row, w, 1, rgbPixels, 0, w);
             } catch (IOException e) {
@@ -197,7 +200,7 @@ public abstract class ImageEncoder implements ImageConsumer {
     }
 
     public void setPixels(int x, int y, int w, int h, ColorModel model,
-            int[] pixels, int off, int scansize) {
+                          int[] pixels, int off, int scansize) {
         if (model == rgbModel) {
             try {
                 encodePixelsWrapper(x, y, w, h, pixels, off, scansize);
@@ -210,8 +213,9 @@ public abstract class ImageEncoder implements ImageConsumer {
             int[] rgbPixels = new int[w];
             for (int row = 0; row < h; ++row) {
                 int rowOff = off + row * scansize;
-                for (int col = 0; col < w; ++col)
+                for (int col = 0; col < w; ++col) {
                     rgbPixels[col] = model.getRGB(pixels[rowOff + col]);
+                }
                 try {
                     encodePixelsWrapper(x, y + row, w, 1, rgbPixels, 0, w);
                 } catch (IOException e) {
@@ -225,9 +229,9 @@ public abstract class ImageEncoder implements ImageConsumer {
 
     public void imageComplete(int status) {
         producer.removeConsumer(this);
-        if (status == ImageConsumer.IMAGEABORTED)
+        if (status == ImageConsumer.IMAGEABORTED) {
             iox = new IOException("image aborted");
-        else {
+        } else {
             try {
                 encodeFinish();
                 encodeDone();

@@ -3,7 +3,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure,cur_draw_mode)
@@ -29,17 +29,17 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
     select PName
 
         /////////////////////////
-    case 'foreground'         // <=> Color
+    case "foreground"         // <=> Color
         /////////////////////////
 
         if (type(PropertyValue) == 10)
 
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white'];
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white"];
 
             if (index < 10)
-                Curves.line_mode='on';
+                Curves.line_mode="on";
                 Curves.foreground = color(ColorVal(index));
                 Curves.mark_foreground = color(ColorVal(index));
             else  // 'none' selected
@@ -49,8 +49,8 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
             end
         elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
 
-            if (size(PropertyValue,'*')==3)
-                Curves.line_mode='on';
+            if (size(PropertyValue,"*")==3)
+                Curves.line_mode="on";
                 Curves.foreground = addcolor(PropertyValue);
                 Curves.mark_foreground = addcolor(PropertyValue);
             else
@@ -67,9 +67,9 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
 
 
         /////////////////////////
-    case 'clipping'           // Clipping
+    case "clipping"           // Clipping
         /////////////////////////
-        if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
+        if (type(PropertyValue)==10 & (PropertyValue=="on" | PropertyValue=="off"))
             Curves.clip_state=PropertyValue;
         else
             warning(msprintf(gettext("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"setPlotProperty",2,"on","off"));
@@ -79,23 +79,23 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
 
 
         /////////////////////////
-    case 'linestyle'          // LineStyle
+    case "linestyle"          // LineStyle
         /////////////////////////
         if (type(PropertyValue)==10)
-            if (PropertyValue=='--')
+            if (PropertyValue=="--")
                 Curves.line_style=2;
-                Curves.line_mode = 'on';
-            elseif (PropertyValue=='-.')
+                Curves.line_mode = "on";
+            elseif (PropertyValue=="-.")
                 Curves.line_style=4;
-                Curves.line_mode = 'on';
-            elseif (PropertyValue==':')
+                Curves.line_mode = "on";
+            elseif (PropertyValue==":")
                 Curves.line_style=5;
-                Curves.line_mode = 'on';
-            elseif (PropertyValue=='-')
+                Curves.line_mode = "on";
+            elseif (PropertyValue=="-")
                 Curves.line_style=1;
-                Curves.line_mode = 'on';
-            elseif (PropertyValue=='none')
-                Curves.line_mode = 'off';
+                Curves.line_mode = "on";
+            elseif (PropertyValue=="none")
+                Curves.line_mode = "off";
             end
         else
             warning(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"setPlotProperty",2));
@@ -104,7 +104,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
         end
 
         /////////////////////////
-    case 'thickness'        // <=> LineWidth
+    case "thickness"        // <=> LineWidth
         /////////////////////////
         if (type(PropertyValue)==1)
             Curves.thickness=PropertyValue;
@@ -115,13 +115,13 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
         end
 
         /////////////////////////
-    case 'markstyle'        // <=> Marker
+    case "markstyle"        // <=> Marker
         /////////////////////////
         if (type(PropertyValue)==10)
 
             str = convstr(PropertyValue);
             //Marks
-            Table = [ '+' 'o' '*' '.' 'x' 'square' 'diamond' '^' 'v' '>' '<' 'pentagram' 'none'];
+            Table = [ "+" "o" "*" "." "x" "square" "diamond" "^" "v" ">" "<" "pentagram" "none"];
             MarksStyleVal=[1 9 10 0 2 11 5 6 7 12 13 14 -99];
             //    MarksSizeVal =[4 3 7  1 3  3 4 3 3  3  3  3 -99];
 
@@ -134,7 +134,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
                 PName=[];
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 return;
-            elseif ( size(k,'*') > 1)
+            elseif ( size(k,"*") > 1)
                 warning(msprintf(gettext("%s: Wrong value for input argument #%d: A marker style expected.\n"),"setPlotProperty", 2)); //unreachable case normally
                 PName=[];
                 ResetFigureDDM(current_figure, cur_draw_mode);
@@ -152,7 +152,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
 
             str = part(str,i:length(str));
 
-            if (size(opt1,'*') > 1)
+            if (size(opt1,"*") > 1)
                 warning(msprintf(gettext("%s: Wrong value for input argument #%d: A marker style expected.\n"),"setPlotproperty",2));
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 return;
@@ -164,7 +164,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
                 //MarksSizeVal(opt1);
             else
                 // 'none' is selected
-                Curves.mark_mode='off'
+                Curves.mark_mode="off"
             end
 
         else
@@ -175,15 +175,15 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
 
 
         /////////////////////////
-    case 'markforeground'        // <=> MarkerEdgeColor
+    case "markforeground"        // <=> MarkerEdgeColor
         /////////////////////////
         if (type(PropertyValue)==10)
 
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white' 'none']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white" "none"]
 
-            markmodeON = find(Curves.mark_mode=='on');
+            markmodeON = find(Curves.mark_mode=="on");
 
             if index == 10
                 // 'none' specified
@@ -208,9 +208,9 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
                 end
             end
         elseif (type(PropertyValue)==1)
-            if (size(PropertyValue,'*')==3)
+            if (size(PropertyValue,"*")==3)
 
-                markmodeON = find(Curves.mark_mode=='on');
+                markmodeON = find(Curves.mark_mode=="on");
                 if markmodeON <> []
                     Curves(markmodeON).mark_foreground = addcolor(PropertyValue);
                 end
@@ -228,15 +228,15 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
 
 
         /////////////////////////
-    case 'markbackground'        // <=> MarkerFaceColor
+    case "markbackground"        // <=> MarkerFaceColor
         /////////////////////////
         if (type(PropertyValue)==10)
 
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white' 'none']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white" "none"]
 
-            markmodeON = find(Curves.mark_mode=='on');
+            markmodeON = find(Curves.mark_mode=="on");
 
             if index == 10
                 // 'none' specified
@@ -263,9 +263,9 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
             end
         elseif (type(PropertyValue)==1)
 
-            if (size(PropertyValue,'*')==3)
+            if (size(PropertyValue,"*")==3)
 
-                markmodeON = find(Curves.mark_mode=='on');
+                markmodeON = find(Curves.mark_mode=="on");
                 if markmodeON <> []
                     Curves(markmodeON).mark_background = addcolor(PropertyValue);
                 end
@@ -283,11 +283,11 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
 
 
         /////////////////////////
-    case 'marksize'        // <=> MarkerSize
+    case "marksize"        // <=> MarkerSize
         /////////////////////////
-        if (type(PropertyValue)==1 & size(PropertyValue,'*')==1)
+        if (type(PropertyValue)==1 & size(PropertyValue,"*")==1)
 
-            markmodeON = find(Curves.mark_mode=='on');
+            markmodeON = find(Curves.mark_mode=="on");
 
             if markmodeON <> []
                 Curves(markmodeON).mark_size = PropertyValue;
@@ -299,9 +299,9 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
         end
 
         /////////////////////////
-    case 'visible'        // <=> Visible
+    case "visible"        // <=> Visible
         /////////////////////////
-        if (type(PropertyValue)==10 & (PropertyValue=='on' | PropertyValue=='off'))
+        if (type(PropertyValue)==10 & (PropertyValue=="on" | PropertyValue=="off"))
             Curves.visible = PropertyValue;
         else
             warning(msprintf(gettext("%s: Wrong value for input argument #%d: %s or %s expected.\n"),"setPlotProperty",2,"on","off"));
@@ -311,19 +311,19 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
 
 
         /////////////////////////
-    case 'xdata'
+    case "xdata"
         /////////////////////////
 
         // Already done at the beginning of plot execution.
 
         /////////////////////////
-    case 'ydata'
+    case "ydata"
         /////////////////////////
 
         // Already done at the beginning of plot execution.
 
         /////////////////////////
-    case 'zdata'        // <=> Zdata is treated after the curve was created
+    case "zdata"        // <=> Zdata is treated after the curve was created
         /////////////////////////
 
         if (type(PropertyValue)<>1 | and(size(PropertyValue)<>1))
@@ -333,20 +333,20 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
         else
             PropertyValue = PropertyValue(:); // force
 
-            for j=1:size(Curves,'*')
-                if size(Curves(i).data,1) <> size(PropertyValue,'*')
-                    str='plot : incompatible dimensions in input arguments';
+            for j=1:size(Curves,"*")
+                if size(Curves(i).data,1) <> size(PropertyValue,"*")
+                    str="plot : incompatible dimensions in input arguments";
                     warning(str);
                     ResetFigureDDM(current_figure, cur_draw_mode);
                     return;
                 else
-                    for jj=1:size(PropertyValue,'*')
+                    for jj=1:size(PropertyValue,"*")
                         Curves(j).data(jj,3) = PropertyValue(jj);
                     end
                     a=gca();
-                    a.view='3d';
+                    a.view="3d";
                     a.data_bounds=[a.data_bounds(1,1) a.data_bounds(1,2) min(PropertyValue) ;  a.data_bounds(2,1) a.data_bounds(2,2) max(PropertyValue)];
-                    a.view='2d';
+                    a.view="2d";
                 end
             end
         end

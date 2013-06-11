@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+        <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,90 +10,90 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spzeros" xml:lang="en">
-    <refnamediv>
-        <refname>spzeros</refname>
-        <refpurpose>matriz nula esparsa</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>sp=spzeros(nrows,ncols)
-            sp=spzeros(A)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>nrows</term>
-                <listitem>
-                    <para>inteiro (número de linhas) </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ncols</term>
-                <listitem>
-                    <para>inteiro (número de colunas) </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>A</term>
-                <listitem>
-                    <para>matriz esparsa </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>sp</term>
-                <listitem>
-                    <para>matriz nula esparsa </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            <literal>sp=spzeros(nrows,ncols)</literal> retorna uma matriz nula
-            esparsa <literal>sp</literal> com <literal>nrows</literal> linhas e,
-            <literal>ncols</literal> colunas. (Equivalente a
-            <literal>sparse([],[],[nrow,ncols])</literal>)
-        </para>
-        <para>
-            <literal>sp=spzeros(A)</literal> retorna uma matriz nula esparsa com
-            as mesmas dimensões que <literal>A</literal>. Se
-            <literal>[m,n]=size(A)</literal>, <literal>spzeros(m,n)</literal> e
-            <literal>spzeros(A)</literal> são equivalentes. Em particular
-            <literal>spzeros(3)</literal> não é equivalente a
-            <literal>spzeros(3,3)</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spzeros" xml:lang="en">
+        <refnamediv>
+            <refname>spzeros</refname>
+            <refpurpose>matriz nula esparsa</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>sp=spzeros(nrows,ncols)
+                sp=spzeros(A)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>nrows</term>
+                    <listitem>
+                        <para>inteiro (número de linhas) </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ncols</term>
+                    <listitem>
+                        <para>inteiro (número de colunas) </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>A</term>
+                    <listitem>
+                        <para>matriz esparsa </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>sp</term>
+                    <listitem>
+                        <para>matriz nula esparsa </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                <literal>sp=spzeros(nrows,ncols)</literal> retorna uma matriz nula
+                esparsa <literal>sp</literal> com <literal>nrows</literal> linhas e,
+                <literal>ncols</literal> colunas. (Equivalente a
+                <literal>sparse([],[],[nrow,ncols])</literal>)
+            </para>
+            <para>
+                <literal>sp=spzeros(A)</literal> retorna uma matriz nula esparsa com
+                as mesmas dimensões que <literal>A</literal>. Se
+                <literal>[m,n]=size(A)</literal>, <literal>spzeros(m,n)</literal> e
+                <literal>spzeros(A)</literal> são equivalentes. Em particular
+                <literal>spzeros(3)</literal> não é equivalente a
+                <literal>spzeros(3,3)</literal>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[
 m=spzeros(2,2)
 a=rand(10,12);
 m=spzeros(a)
 sum(spzeros(1000,1000))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="sparse">sparse</link>
-            </member>
-            <member>
-                <link linkend="full">full</link>
-            </member>
-            <member>
-                <link linkend="eye">eye</link>
-            </member>
-            <member>
-                <link linkend="speye">speye</link>
-            </member>
-            <member>
-                <link linkend="spones">spones</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="sparse">sparse</link>
+                </member>
+                <member>
+                    <link linkend="full">full</link>
+                </member>
+                <member>
+                    <link linkend="eye">eye</link>
+                </member>
+                <member>
+                    <link linkend="speye">speye</link>
+                </member>
+                <member>
+                    <link linkend="spones">spones</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

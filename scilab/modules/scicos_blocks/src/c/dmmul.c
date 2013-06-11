@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <stdio.h> /* printf */
 #include <string.h>
 #include "machine.h"
@@ -29,15 +29,15 @@
 #include <math.h>
 #include <stdlib.h>
 #include "dmmul.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /* Table of constant values */
 static double c_b4 = 1.;
 static double c_b5 = 0.;
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(dgemm)(); /* blas routine */
-/*--------------------------------------------------------------------------*/ 
-int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
-                               int *nc, int *l, int *m, int *n)
+/*--------------------------------------------------------------------------*/
+int dmmul(double *a, int *na, double *b, int *nb, double *c__,
+          int *nc, int *l, int *m, int *n)
 {
     int a_dim1 = 0, a_offset = 0, b_dim1 = 0, b_offset = 0, c_dim1 = 0, c_offset = 0;
 
@@ -74,7 +74,7 @@ int dmmul(double *a, int *na, double *b, int *nb, double *c__,
 
     /* Function Body */
     C2F(dgemm)("n", "n", l, n, m, &c_b4, &a[a_offset], na, &b[b_offset], nb, &
-        c_b5, &c__[c_offset], nc);
+               c_b5, &c__[c_offset], nc);
     return 0;
 } /* dmmul */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

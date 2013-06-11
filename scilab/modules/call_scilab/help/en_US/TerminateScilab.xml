@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
  * 
@@ -10,90 +10,90 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TerminateScilab" xml:lang="en">
-    <refnamediv>
-        <refname>TerminateScilab</refname>
-        <refpurpose>Stops and terminates Scilab engine in Call Scilab</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <synopsis>BOOL TerminateScilab(char *ScilabQuit);</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>This fonction stops the Scilab engine. It is strongly recommended to
-            call this function at the end when using Call Scilab .
-        </para>
-        <para>
-            BOOL is just a simple typedef on int (<literal>typedef int
-                BOOL
-            </literal>
-            ). TRUE is defined on 1 (<literal>#define TRUE 1</literal>)
-            and FALSE is defined on 0 (<literal>#define FALSE 0</literal>).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>ScilabQuit</term>
-                <listitem>
-                    <para>a standard C char* containing the path to Scilab quit script
-                        (scilab.quit)
-                    </para>
-                    <para>If ScilabStartup is NULL, Scilab will use the default path
-                        (detected from SCIpath).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>returns</term>
-                <listitem>
-                    <para>1 (TRUE) if the operation is successfull.</para>
-                    <para>0 (FALSE) if an error during initialization occurred.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TerminateScilab" xml:lang="en">
+        <refnamediv>
+            <refname>TerminateScilab</refname>
+            <refpurpose>Stops and terminates Scilab engine in Call Scilab</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <synopsis>BOOL TerminateScilab(char *ScilabQuit);</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>This fonction stops the Scilab engine. It is strongly recommended to
+                call this function at the end when using Call Scilab .
+            </para>
+            <para>
+                BOOL is just a simple typedef on int (<literal>typedef int
+                    BOOL
+                </literal>
+                ). TRUE is defined on 1 (<literal>#define TRUE 1</literal>)
+                and FALSE is defined on 0 (<literal>#define FALSE 0</literal>).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>ScilabQuit</term>
+                    <listitem>
+                        <para>a standard C char* containing the path to Scilab quit script
+                            (scilab.quit)
+                        </para>
+                        <para>If ScilabStartup is NULL, Scilab will use the default path
+                            (detected from SCIpath).
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>returns</term>
+                    <listitem>
+                        <para>1 (TRUE) if the operation is successfull.</para>
+                        <para>0 (FALSE) if an error during initialization occurred.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // A simple TerminateScilab example
 if ( TerminateScilab(NULL) == FALSE ) {
  fprintf(stderr,"Error while calling TerminateScilab\n");
  return -2;
 }
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="call_scilab">Call_Scilab</link>
-            </member>
-            <member>
-                <link linkend="api_scilab">api Scilab</link>
-            </member>
-            <member>
-                <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
-            </member>
-            <member>
-                <link linkend="StartScilab">StartScilab</link>
-            </member>
-            <member>
-                <link linkend="SendScilabJob">SendScilabJob</link>
-            </member>
-            <member>
-                <link linkend="DoubleManagement_callscilab">Double Management</link>
-            </member>
-            <member>
-                <link linkend="BooleanManagement_callscilab">Boolean Management</link>
-            </member>
-            <member>
-                <link linkend="ComplexManagement_callscilab">Complex Management</link>
-            </member>
-            <member>
-                <link linkend="StringManagement_callscilab">String Management</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="call_scilab">Call_Scilab</link>
+                </member>
+                <member>
+                    <link linkend="api_scilab">api Scilab</link>
+                </member>
+                <member>
+                    <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
+                </member>
+                <member>
+                    <link linkend="StartScilab">StartScilab</link>
+                </member>
+                <member>
+                    <link linkend="SendScilabJob">SendScilabJob</link>
+                </member>
+                <member>
+                    <link linkend="DoubleManagement_callscilab">Double Management</link>
+                </member>
+                <member>
+                    <link linkend="BooleanManagement_callscilab">Boolean Management</link>
+                </member>
+                <member>
+                    <link linkend="ComplexManagement_callscilab">Complex Management</link>
+                </member>
+                <member>
+                    <link linkend="StringManagement_callscilab">String Management</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

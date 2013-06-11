@@ -17,40 +17,40 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{ 
-	{sci_print, "print"},
-	{sci_mprintf, "mprintf"},
-	{sci_msprintf, "msprintf"},
-	{sci_disp, "disp"},
-	{sci_diary, "diary"}
+static gw_generic_table Tab[] =
+{
+    {sci_print, "print"},
+    {sci_mprintf, "mprintf"},
+    {sci_msprintf, "msprintf"},
+    {sci_disp, "disp"},
+    {sci_diary, "diary"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_output_stream(void)
 {
-	Rhs = Max(0, Rhs);
+    Rhs = Max(0, Rhs);
 
-	if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	/* Recursion from disp */
-	if ( isRecursionCallToFunction() )
-	{
-		if ( getRecursionFunctionToCall() == RECURSION_CALL_DISP)
-		{
-			#define disp_fname "disp"
-			pvApiCtx->pstName = disp_fname;
-			sci_disp(disp_fname,(unsigned long)strlen(disp_fname));
-			return 0;
-		}
-	}
-	else
-	{
-		pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	}
-	return 0;
+    /* Recursion from disp */
+    if ( isRecursionCallToFunction() )
+    {
+        if ( getRecursionFunctionToCall() == RECURSION_CALL_DISP)
+        {
+#define disp_fname "disp"
+            pvApiCtx->pstName = disp_fname;
+            sci_disp(disp_fname, (unsigned long)strlen(disp_fname));
+            return 0;
+        }
+    }
+    else
+    {
+        pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+        callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

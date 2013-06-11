@@ -11,37 +11,37 @@ package org.scilab.modules.console;
 
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
-   * @author Allan CORNET
-   * @copyright INRIA 2007
-   */
+/**
+  * @author Allan CORNET
+  * @copyright INRIA 2007
+  */
 public class DropFilesJNI {
 
-  /**
-    * Constructor
-    */
-  protected DropFilesJNI() {
-    throw new UnsupportedOperationException();
-  }
+    /**
+      * Constructor
+      */
+    protected DropFilesJNI() {
+        throw new UnsupportedOperationException();
+    }
 
-  static {
-    try {
-        System.loadLibrary("sciconsole");
-    } catch (SecurityException e) {
-        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
-        System.err.println(e.getLocalizedMessage());
-        System.exit(-1);
-    } catch (UnsatisfiedLinkError e) {
-           System.err.println("The native library sciconsole does not exist or cannot be found.");
-        if (System.getenv("CONTINUE_ON_JNI_ERROR") == null) {
-           System.err.println(e.getLocalizedMessage());
-           System.err.println("Current java.library.path is : "+System.getProperty("java.library.path"));
-           System.exit(-1);
-        }else{
-           System.err.println("Continuing anyway because of CONTINUE_ON_JNI_ERROR");
+    static {
+        try {
+            System.loadLibrary("sciconsole");
+        } catch (SecurityException e) {
+            System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+            System.err.println(e.getLocalizedMessage());
+            System.exit(-1);
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("The native library sciconsole does not exist or cannot be found.");
+            if (System.getenv("CONTINUE_ON_JNI_ERROR") == null) {
+                System.err.println(e.getLocalizedMessage());
+                System.err.println("Current java.library.path is : " + System.getProperty("java.library.path"));
+                System.exit(-1);
+            } else {
+                System.err.println("Continuing anyway because of CONTINUE_ON_JNI_ERROR");
+            }
         }
     }
-  }
 
-  public final static native boolean dropFiles(String[] jarg1);
+    public final static native boolean dropFiles(String[] jarg1);
 }

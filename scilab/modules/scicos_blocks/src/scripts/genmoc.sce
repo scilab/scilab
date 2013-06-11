@@ -21,8 +21,8 @@
 mode(-1)
 //this script is used to compile Modelica models of scicos implicit
 //blocks
-if ~isdef('genmoc_verbose') then 
-  genmoc_verbose=%f
+if ~isdef("genmoc_verbose") then
+    genmoc_verbose=%f
 end
 
 if ~with_modelica_compiler() then quit,end
@@ -33,20 +33,20 @@ models=stripblanks(models);
 compilername = getmodelicacpath() + "modelicac";
 
 for k=1:size(models,1)
-  M=models(k)
-  n=newest(M,M+'c',compilername)
-  if n<>2 then
-    write(%io(2),'Processing file '+M)
-    if genmoc_verbose then 
-      ierr=unix(compilername+' -c '+M+' -o '+M+'c')
-      if ierr<>0 then 
-	mprintf('------------------------- '+M+..
-		' Compilation error detected')
-	break,
-      end
-    else
-      // error will stop unix_s in case of error
-      unix_s(compilername+' -c '+M+' -o '+M+'c')
+    M=models(k)
+    n=newest(M,M+"c",compilername)
+    if n<>2 then
+        write(%io(2),"Processing file "+M)
+        if genmoc_verbose then
+            ierr=unix(compilername+" -c "+M+" -o "+M+"c")
+            if ierr<>0 then
+                mprintf("------------------------- "+M+..
+                " Compilation error detected")
+                break,
+            end
+        else
+            // error will stop unix_s in case of error
+            unix_s(compilername+" -c "+M+" -o "+M+"c")
+        end
     end
-  end
 end

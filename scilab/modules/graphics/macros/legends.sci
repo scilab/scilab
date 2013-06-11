@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -24,18 +24,18 @@ function legends(leg, style, opt, with_box, font_size )
     if type(leg) ~= 10 then,
         error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "legends", 1));
     end
-    nleg=size(leg,'*')
+    nleg=size(leg,"*")
     if type(style) ~= 1 & type(style) ~= 9 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real array or graphic handle array expected.\n"), "legends", 2));
-    end 
+    end
     if ~exists("opt","local") then
         opt=5
     elseif typeof(opt)=="string" then
         select opt
         case "ur" then, opt=1,
         case "ul" then, opt=2,
-        case "ll" then, opt=3,       
-        case "lr" then, opt=4,             
+        case "ll" then, opt=3,
+        case "lr" then, opt=4,
         case "?"  then, opt=5,
         case "below" then, opt=6,
         else
@@ -65,7 +65,7 @@ function legends(leg, style, opt, with_box, font_size )
     xmin=arect(1);xmax=1-arect(2);ymin=-1+arect(4);ymax=-arect(3);
 
     cur_ax=gca(),
-    cur_ax.clip_state='off';
+    cur_ax.clip_state="off";
 
     dy = ymax-ymin ;
     yOffset = dy / 60 ;
@@ -83,7 +83,7 @@ function legends(leg, style, opt, with_box, font_size )
     width  = max(bbx(:,1)) + drx * 1.6 ; // 1.6 * drx = 1.2 * drx + 2 * drx / 5 ;
 
     //upper left coordinates
-    if size(opt,'*')>1 then
+    if size(opt,"*")>1 then
         // fix for bug 1237 (Bruno 9 march 2005)
         if old_ax.tight_limits == "on" then  // data_bounds' corresponds to the old frec
             r2 = old_ax.data_bounds'
@@ -96,7 +96,7 @@ function legends(leg, style, opt, with_box, font_size )
         // end bugfix
         opt=0 ;
     elseif opt<1 | opt>6 then
-        error(msprintf(gettext('%s: Wrong value for input argument %s: Must be in the interval [%d, %d]."),"legends", "opt", 1, 6)); // if opt is entered by a string by the user it is in the range
+        error(msprintf(gettext("%s: Wrong value for input argument %s: Must be in the interval [%d, %d]."),"legends", "opt", 1, 6)); // if opt is entered by a string by the user it is in the range
     end
     select opt
     case 1 then
@@ -131,7 +131,7 @@ function legends(leg, style, opt, with_box, font_size )
     R=[]
     if with_box then
         xpol = [pos(1), pos(1)+width, pos(1)+width, pos(1)];
-        ypol = [pos(2), pos(2), pos(2)-height, pos(2)-height];     
+        ypol = [pos(2), pos(2), pos(2)-height, pos(2)-height];
         xfpoly(xpol, ypol,1)
         R = gce();
         R.foreground=a.foreground;
@@ -152,8 +152,8 @@ function legends(leg, style, opt, with_box, font_size )
                         r.polyline_style=h.polyline_style;
                         r.line_style=h.line_style;
                     else
-                        if stripblanks(h.mark_mode)=='off'
-                            xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines');r=gce();
+                        if stripblanks(h.mark_mode)=="off"
+                            xpoly([x;x+drx],[y;y]-bbx(k,2)/2,"lines");r=gce();
                             r.foreground=h.foreground;
                             r.thickness=h.thickness;
                             r.polyline_style=h.polyline_style;
@@ -173,11 +173,11 @@ function legends(leg, style, opt, with_box, font_size )
                 if style(1,k)<= 0 then
                     xpoly(x+drx/2,y-bbx(k,2)/2)
                     r=gce(),
-                    r.mark_mode='on'
+                    r.mark_mode="on"
                     r.mark_style=-style(1,k)
                     if size(style,1)==2 then r.foreground=style(2,k);end
                 else
-                    xpoly([x;x+drx],[y;y]-bbx(k,2)/2,'lines')
+                    xpoly([x;x+drx],[y;y]-bbx(k,2)/2,"lines")
                     r=gce(),
                     r.foreground=style(1,k)
                     if size(style,1)==2 then r.line_style=style(2,k);end
@@ -196,7 +196,7 @@ function legends(leg, style, opt, with_box, font_size )
     end
     glue(R)
 
-    set('current_axes',old_ax),
+    set("current_axes",old_ax),
 
     // if immediate_drawing was "on", then the figure will redraw itself.
     f.immediate_drawing = vis;

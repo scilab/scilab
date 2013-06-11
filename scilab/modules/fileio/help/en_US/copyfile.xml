@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
  * ...
@@ -11,80 +11,80 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="copyfile" xml:lang="en">
-    <refnamediv>
-        <refname>copyfile</refname>
-        <refpurpose>copies a file</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>copyfile(source, destination)
-            [status, message] = copyfile(source, destination)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>source</term>
-                <listitem>
-                    <para>
-                        a character string: a filename or a directory name.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>destination</term>
-                <listitem>
-                    <para>a character string: a directory name.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <code>copyfile(source,destination)</code> copies the file or 
-            directory <varname>source</varname> (and subdirectories) to the file or
-            directory <varname>destination</varname>.
-        </para>
-        <para>
-            If <varname>source</varname> is a directory, <varname>destination</varname> can not be a file. 
-            <warning>
-                <code>copyfile</code> replaces existing files without warning.
-            </warning>
-        </para>
-        <para>
-            <code>[status, message] = copyfile(source, destination)</code>
-            copies <varname>source</varname> to <varname>destination</varname>, returning the <varname>status</varname> and a <varname>message</varname>. 
-        </para>
-        <para>
-            Whatever the operating system, if the copy succeeds, the <varname>status</varname> is 1
-            and the <varname>message</varname> is empty; if the copy fails, the <varname>status</varname> is 0 and the
-            <varname>message</varname> is not empty.
-        </para>
-        <para>
-            The timestamp given to the destination file is identical to that
-            taken from source file.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"> 
-            copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
-            [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="movefile">movefile</link>
-            </member>
-            <member>
-                <link linkend="mdelete">mdelete</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="copyfile" xml:lang="en">
+        <refnamediv>
+            <refname>copyfile</refname>
+            <refpurpose>copies a file</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>copyfile(source, destination)
+                [status, message] = copyfile(source, destination)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>source</term>
+                    <listitem>
+                        <para>
+                            a character string: a filename or a directory name.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>destination</term>
+                    <listitem>
+                        <para>a character string: a directory name.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <code>copyfile(source,destination)</code> copies the file or 
+                directory <varname>source</varname> (and subdirectories) to the file or
+                directory <varname>destination</varname>.
+            </para>
+            <para>
+                If <varname>source</varname> is a directory, <varname>destination</varname> can not be a file. 
+                <warning>
+                    <code>copyfile</code> replaces existing files without warning.
+                </warning>
+            </para>
+            <para>
+                <code>[status, message] = copyfile(source, destination)</code>
+                copies <varname>source</varname> to <varname>destination</varname>, returning the <varname>status</varname> and a <varname>message</varname>. 
+            </para>
+            <para>
+                Whatever the operating system, if the copy succeeds, the <varname>status</varname> is 1
+                and the <varname>message</varname> is empty; if the copy fails, the <varname>status</varname> is 0 and the
+                <varname>message</varname> is not empty.
+            </para>
+            <para>
+                The timestamp given to the destination file is identical to that
+                taken from source file.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"> 
+                copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
+                [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="movefile">movefile</link>
+                </member>
+                <member>
+                    <link linkend="mdelete">mdelete</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

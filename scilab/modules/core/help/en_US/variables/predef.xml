@@ -1,62 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="predef">
-    <refnamediv>
-        <refname>predef</refname>
-        <refpurpose>variable protection</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>n = predef()
-            oldnew = predef(n)
-            oldnew = predef('all')
-            oldnew = predef('clear')
-            variables_name = predef('names')
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Utility function used for defining "oldest" variables as "protected".
-            Protected variables cannot be killed. They are not saved 
-            by the <function>save</function> command. The "oldest" are those appearing last in
-            the <code>who('get')</code>.
-        </para>
-        <para>
-            <code>predef()</code> gets the number of protected variables.
-        </para>
-        <para>
-            <code>predef('a[ll]')</code> sets all the variables protected, it also return
-            the old and new value of protected variables number.
-        </para>
-        <para>
-            <code>predef('c[lear]')</code> unprotect all but the last 7 variables, it also return
-            the old and new value of protected variables number.
-        </para>
-        <para>
-            <code>predef(n)</code> sets the <code>max(n,7)</code> last defined variables as protected, it also return
-            the old and new value of protected variables number.
-        </para>
-        <para>
-            <code>predef('names')</code> returns a vector of strings with the name of protected variables.
-        </para>
-        <para>
-            <code>predef('clear')</code> removes the predefined variables from the list.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remarks</title>
-        <para>
-            Variable <literal>ans</literal> created automatically when expressions are not assigned is never protected by <code>predef('all')</code>.
-        </para>
-        <para>
-            A number of protected variables are set in the start-up file <literal>SCI/etc/scilab.start</literal>.
-            User may in particular set its own predefined variables in user's startup files 
-            <literal>SCIHOME/.scilab</literal> or <literal>SCIHOME/scilab.ini</literal>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="predef">
+        <refnamediv>
+            <refname>predef</refname>
+            <refpurpose>variable protection</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>n = predef()
+                oldnew = predef(n)
+                oldnew = predef('all')
+                oldnew = predef('clear')
+                variables_name = predef('names')
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Utility function used for defining "oldest" variables as "protected".
+                Protected variables cannot be killed. They are not saved 
+                by the <function>save</function> command. The "oldest" are those appearing last in
+                the <code>who('get')</code>.
+            </para>
+            <para>
+                <code>predef()</code> gets the number of protected variables.
+            </para>
+            <para>
+                <code>predef('a[ll]')</code> sets all the variables protected, it also return
+                the old and new value of protected variables number.
+            </para>
+            <para>
+                <code>predef('c[lear]')</code> unprotect all but the last 7 variables, it also return
+                the old and new value of protected variables number.
+            </para>
+            <para>
+                <code>predef(n)</code> sets the <code>max(n,7)</code> last defined variables as protected, it also return
+                the old and new value of protected variables number.
+            </para>
+            <para>
+                <code>predef('names')</code> returns a vector of strings with the name of protected variables.
+            </para>
+            <para>
+                <code>predef('clear')</code> removes the predefined variables from the list.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Remarks</title>
+            <para>
+                Variable <literal>ans</literal> created automatically when expressions are not assigned is never protected by <code>predef('all')</code>.
+            </para>
+            <para>
+                A number of protected variables are set in the start-up file <literal>SCI/etc/scilab.start</literal>.
+                User may in particular set its own predefined variables in user's startup files 
+                <literal>SCIHOME/.scilab</literal> or <literal>SCIHOME/scilab.ini</literal>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 errcatch(13, "continue") // Make sure we continue even when "clear a" will fail
 a = 1;
 predef("all");
@@ -64,23 +64,23 @@ clear a // fails
 predef("clear")
 clear a // works
  ]]></programlisting>
-    </refsection>
-    
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="clear">clear</link>
-            </member>
-            <member>
-                <link linkend="save">save</link>
-            </member>
-            <member>
-                <link linkend="ans">ans</link>
-            </member>
-            <member>
-                <link linkend="startup">startup</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="clear">clear</link>
+                </member>
+                <member>
+                    <link linkend="save">save</link>
+                </member>
+                <member>
+                    <link linkend="ans">ans</link>
+                </member>
+                <member>
+                    <link linkend="startup">startup</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

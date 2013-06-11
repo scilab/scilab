@@ -10,23 +10,23 @@ mode(7)
 //               LINEAR ALGEBRA
 //                 PRIMITIVES
 H=[1.    1.    1.    0.;
-   2.   -1.    0.    1;
-   1.    0.    1.    1.;
-   0.    1.    2.   -1];
+2.   -1.    0.    1;
+1.    0.    1.    1.;
+0.    1.    2.   -1];
 
 ww=spec(H)
 
 //             STABLE SUBSPACES
-[X,d]=schur(H,'cont');
+[X,d]=schur(H,"cont");
 X'*H*X
 
-[X,d]=schur(H,'disc');
+[X,d]=schur(H,"disc");
 X'*H*X
 
 //Selection of user-defined eigenvalues (# 3 and 4 here);
 function [flg]=sel(x)
-  flg=%f
-  if abs(x-ww(3))<0.0001|abs(x-ww(4))<0.00001 then flg=%t,end 
+    flg=%f
+    if abs(x-ww(3))<0.0001|abs(x-ww(4))<0.00001 then flg=%t,end
 endfunction
 
 [X,d]=schur(H,sel)
@@ -36,8 +36,8 @@ clear sel
 
 //               With matrix pencil
 function [flg]=sel(x,y)
-  flg=%f
-  if abs(x/y-ww(3))<0.0001|abs(x/y-ww(4))<0.00001 then flg=%t,end 
+    flg=%f
+    if abs(x/y-ww(3))<0.0001|abs(x/y-ww(4))<0.00001 then flg=%t,end
 endfunction
 
 [X,d]=schur(H,eye(H),sel)
@@ -51,7 +51,7 @@ inv(x)*H*x
 //                     Matrix pencils
 E=rand(3,2)*rand(2,3);
 A=rand(3,2)*rand(2,3);
-s=poly(0,'s');
+s=poly(0,"s");
 
 w=det(s*E-A)   //determinant
 [al,be]=spec(A,E);

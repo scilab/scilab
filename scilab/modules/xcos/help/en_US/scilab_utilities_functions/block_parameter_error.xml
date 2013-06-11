@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>
  *
@@ -10,78 +10,78 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="block_parameter_error" xml:lang="en">
-    <refnamediv>
-        <refname>block_parameter_error</refname>
-        <refpurpose>
-            Displays a parameter input error box for a Xcos block
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            block_parameter_error(inform, expected)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>inform:</term>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="block_parameter_error" xml:lang="en">
+        <refnamediv>
+            <refname>block_parameter_error</refname>
+            <refpurpose>
+                Displays a parameter input error box for a Xcos block
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                block_parameter_error(inform, expected)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>inform:</term>
+                    <listitem>
+                        <para> a string, type of error</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>expected:</term>
+                    <listitem>
+                        <para> a string, the expected value or the range of expected values.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The goal of this function is to give a precise information to an user on his error when he inputs a block parameter. The user information is displayed on two lines provided respectively by the parameters:
+            </para>
+            <itemizedlist>
                 <listitem>
-                    <para> a string, type of error</para>
+                    <para>
+                        <emphasis role="bold">inform</emphasis>: it is reserved to the information for the
+                        user on his mistake. The better way to do this is to do a recall of the parameter name and of
+                        the wrong value provided by the user.
+                    </para>
+                    <para/>
                 </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>expected:</term>
                 <listitem>
-                    <para> a string, the expected value or the range of expected values.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The goal of this function is to give a precise information to an user on his error when he inputs a block parameter. The user information is displayed on two lines provided respectively by the parameters:
-        </para>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">inform</emphasis>: it is reserved to the information for the
-                    user on his mistake. The better way to do this is to do a recall of the parameter name and of
-                    the wrong value provided by the user.
-                </para>
-                <para/>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">expected</emphasis>: a positive information to guide the user
-                    to be in the way of the error correction. By example, if the parameter is an integer, the
-                    message may be "Must be an integer", for a range of values we can use a message like that:
-                </para>
-                <para/>
-                <programlisting role="example"><![CDATA[
+                    <para>
+                        <emphasis role="bold">expected</emphasis>: a positive information to guide the user
+                        to be in the way of the error correction. By example, if the parameter is an integer, the
+                        message may be "Must be an integer", for a range of values we can use a message like that:
+                    </para>
+                    <para/>
+                    <programlisting role="example"><![CDATA[
         msprintf(gettext("Must be in the interval %s."), "[3, 8]")
         ]]></programlisting>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <para>
-            The example below is a simple use case for the function. The user inputs a value
-            in the parameter dialog box. If the value is not valid, the example displays
-            this error box:
-        </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata align="center" fileref="../../examples/scilab_utilities_functions/en_US/block_parameter_error_en_US.png"/>
-            </imageobject>
-        </mediaobject>
-        <para/>
-        <programlisting role="example"><![CDATA[
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <para>
+                The example below is a simple use case for the function. The user inputs a value
+                in the parameter dialog box. If the value is not valid, the example displays
+                this error box:
+            </para>
+            <para/>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../examples/scilab_utilities_functions/en_US/block_parameter_error_en_US.png"/>
+                </imageobject>
+            </mediaobject>
+            <para/>
+            <programlisting role="example"><![CDATA[
   loadXcosLibs // Useless in Xcos block programming context
 
   ok = %f;
@@ -115,13 +115,13 @@
       end
   end
     ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <link linkend="x_mdialog">x_mdialog</link>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See also</title>
+            <itemizedlist>
+                <listitem>
+                    <link linkend="x_mdialog">x_mdialog</link>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refentry>

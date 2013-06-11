@@ -12,7 +12,7 @@
 
 #include "realmain.h"
 
-/* 
+/*
  * Specific wrapper for mac os X which is going to call realmin in a specific
  * thread.
  * Takes the same args as realmain
@@ -21,6 +21,6 @@
  * @param initial_script_type Kind of script (file or code)
  * @param memory
  * @return 1 if OK or 0 if KO
- */ 
+ */
 
 int initMacOSXEnv(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory);

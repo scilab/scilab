@@ -18,31 +18,35 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void extract(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void extract(scicos_block *block, int flag)
 {
-  double *u = NULL;
-  double *y = NULL;
-  int *r = NULL;
-  int nu = 0,mu = 0,nr = 0,i = 0,j = 0,ij = 0,k = 0,nc = 0,nl = 0;
+    double *u = NULL;
+    double *y = NULL;
+    int *r = NULL;
+    int nu = 0, mu = 0, nr = 0, i = 0, j = 0, ij = 0, k = 0, nc = 0, nl = 0;
 
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
-  nr=GetNipar(block);
-  r=GetIparPtrs(block);
-  u=GetRealInPortPtrs(block,1);
-  y=GetRealOutPortPtrs(block,1);
-  nc=r[nr-1];
-  nl=r[nr-2];
-  k=0;
-  for (j=0;j<nc;j++)
-	{for (i=0;i<nl;i++)
-		{ij=r[i]-1+(r[nl+j]-1)*mu;
-		 *(y+k)=*(u+ij);
-		 k++;}}
+    mu = GetInPortRows(block, 1);
+    nu = GetInPortCols(block, 1);
+    nr = GetNipar(block);
+    r = GetIparPtrs(block);
+    u = GetRealInPortPtrs(block, 1);
+    y = GetRealOutPortPtrs(block, 1);
+    nc = r[nr - 1];
+    nl = r[nr - 2];
+    k = 0;
+    for (j = 0; j < nc; j++)
+    {
+        for (i = 0; i < nl; i++)
+        {
+            ij = r[i] - 1 + (r[nl + j] - 1) * mu;
+            *(y + k) = *(u + ij);
+            k++;
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

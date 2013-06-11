@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,314 +11,314 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dassl" xml:lang="en">
-    <refnamediv>
-        <refname>dassl</refname>
-        <refpurpose>differential algebraic equation</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x0</term>
-                <listitem>
-                    <para>
-                        is either <literal>y0</literal> (<literal>ydot0</literal> is
-                        estimated by <literal>dassl</literal> with zero as first estimate)
-                        or the matrix <literal>[y0 ydot0]</literal>.
-                        <literal>g(t,y0,ydot0)</literal> must be equal to zero. If you only
-                        know an estimate of <literal>ydot0</literal> set
-                        <literal>info(7)=1</literal>.
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>y0</term>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dassl" xml:lang="en">
+        <refnamediv>
+            <refname>dassl</refname>
+            <refpurpose>differential algebraic equation</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x0</term>
+                    <listitem>
+                        <para>
+                            is either <literal>y0</literal> (<literal>ydot0</literal> is
+                            estimated by <literal>dassl</literal> with zero as first estimate)
+                            or the matrix <literal>[y0 ydot0]</literal>.
+                            <literal>g(t,y0,ydot0)</literal> must be equal to zero. If you only
+                            know an estimate of <literal>ydot0</literal> set
+                            <literal>info(7)=1</literal>.
+                        </para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>y0</term>
+                                <listitem>
+                                    <para>a real column vector of initial conditions.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>ydot0</term>
+                                <listitem>
+                                    <para>a real column vector of the time derivative of
+                                        <literal>y</literal> at <literal>t0</literal> (may be an
+                                        estimate).
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t0</term>
+                    <listitem>
+                        <para>a real number is the initial instant.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>a real scalar or vector. Gives instants for which you want the
+                            solution. Note that you can get solution at each dassl's step point
+                            by setting <literal>info(2)=1</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>atol, rtol</term>
+                    <listitem>
+                        <para>a real scalars or column vectors of same size as
+                            <literal>y</literal>. <literal>atol, rtol</literal> give respectively
+                            absolute and relative error tolerances of solution. If vectors the
+                            tolerances are specified for each component of
+                            <literal>y</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>res</term>
+                    <listitem>
+                        <para>
+                            an <link linkend="external">external</link> (function or list or string). Computes the value of
+                            <literal>g(t,y,ydot)</literal>. It may be :
+                        </para>
+                        <itemizedlist>
                             <listitem>
-                                <para>a real column vector of initial conditions.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>ydot0</term>
-                            <listitem>
-                                <para>a real column vector of the time derivative of
-                                    <literal>y</literal> at <literal>t0</literal> (may be an
-                                    estimate).
+                                <para>A Scilab function.</para>
+                                <para>Its calling sequence must be
+                                    <literal>[r,ires]=res(t,y,ydot)</literal> and
+                                    <literal>res</literal> must return the residue
+                                    <literal>r=g(t,y,ydot)</literal> and error flag
+                                    <literal>ires</literal>. <literal>ires = 0</literal> if
+                                    <literal>res</literal> succeeds to compute <literal>r</literal>,
+                                    <literal>=-1</literal> if residue is locally not defined for
+                                    <literal>(t,y,ydot)</literal>, <literal>=-2</literal> if
+                                    parameters are out of admissible range.
                                 </para>
                             </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t0</term>
-                <listitem>
-                    <para>a real number is the initial instant.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>a real scalar or vector. Gives instants for which you want the
-                        solution. Note that you can get solution at each dassl's step point
-                        by setting <literal>info(2)=1</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>atol, rtol</term>
-                <listitem>
-                    <para>a real scalars or column vectors of same size as
-                        <literal>y</literal>. <literal>atol, rtol</literal> give respectively
-                        absolute and relative error tolerances of solution. If vectors the
-                        tolerances are specified for each component of
-                        <literal>y</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>res</term>
-                <listitem>
-                    <para>
-                        an <link linkend="external">external</link> (function or list or string). Computes the value of
-                        <literal>g(t,y,ydot)</literal>. It may be :
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
-                                <literal>[r,ires]=res(t,y,ydot)</literal> and
-                                <literal>res</literal> must return the residue
-                                <literal>r=g(t,y,ydot)</literal> and error flag
-                                <literal>ires</literal>. <literal>ires = 0</literal> if
-                                <literal>res</literal> succeeds to compute <literal>r</literal>,
-                                <literal>=-1</literal> if residue is locally not defined for
-                                <literal>(t,y,ydot)</literal>, <literal>=-2</literal> if
-                                parameters are out of admissible range.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>A list.</para>
-                            <para>
-                                This form allows to pass parameters other than <literal>t</literal>, 
-                                <literal>y</literal>, <literal>ydot</literal> to
-                                the function. It must be as follows:
-                            </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            <listitem>
+                                <para>A list.</para>
+                                <para>
+                                    This form allows to pass parameters other than <literal>t</literal>, 
+                                    <literal>y</literal>, <literal>ydot</literal> to
+                                    the function. It must be as follows:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 list(res,x1,x2,...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
-                                <literal>res</literal> is now
-                            </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>where the calling sequence of the function
+                                    <literal>res</literal> is now
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
-                            <para>
-                                <literal>res</literal> still returns
-                                <literal>r=g(t,y,ydot)</literal> as a function of
-                                <literal>(t,y,ydot,x1,x2,...)</literal>.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>A string.</para>
-                            <para>It must refer to the name of a C or Fortran subroutine
-                                linked with Scilab.
-                            </para>
-                            <para>In C the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>
+                                    <literal>res</literal> still returns
+                                    <literal>r=g(t,y,ydot)</literal> as a function of
+                                    <literal>(t,y,ydot,x1,x2,...)</literal>.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>A string.</para>
+                                <para>It must refer to the name of a C or Fortran subroutine
+                                    linked with Scilab.
+                                </para>
+                                <para>In C the calling sequence must be:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
-                            <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>In Fortran it must be:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)  
  ]]></programlisting>
-                            <para>
-                                The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
-                                used.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>jac</term>
-                <listitem>
-                    <para>
-                        an <link linkend="external">external</link> (function or list or string). 
-                        Computes the value of <literal>dg/dy+cj*dg/dydot</literal> for a given 
-                        value of parameter <literal>cj</literal>.
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>A Scilab function.</para>
-                            <para>Its calling sequence must be
-                                <literal>r=jac(t,y,ydot,cj)</literal> and the
-                                <literal>jac</literal> function must return
-                                <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal> where
-                                <literal>cj</literal> is a real scalar.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>A list.</para>
-                            <para>It must be as follows</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>
+                                    The <literal>rpar</literal> and <literal>ipar</literal> arrays must be present but cannot be
+                                    used.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>jac</term>
+                    <listitem>
+                        <para>
+                            an <link linkend="external">external</link> (function or list or string). 
+                            Computes the value of <literal>dg/dy+cj*dg/dydot</literal> for a given 
+                            value of parameter <literal>cj</literal>.
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>A Scilab function.</para>
+                                <para>Its calling sequence must be
+                                    <literal>r=jac(t,y,ydot,cj)</literal> and the
+                                    <literal>jac</literal> function must return
+                                    <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal> where
+                                    <literal>cj</literal> is a real scalar.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>A list.</para>
+                                <para>It must be as follows</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 list(jac,x1,x2,...)
  ]]></programlisting>
-                            <para>where the calling sequence of the function
-                                <literal>jac</literal> is now
-                            </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>where the calling sequence of the function
+                                    <literal>jac</literal> is now
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
-                            <para>
-                                <literal>jac</literal> still returns
-                                <literal>dg/dy+cj*dg/dydot</literal> as a function of
-                                <literal>(t,y,ydot,cj,x1,x2,...)</literal>.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>A character string.</para>
-                            <para>It must refer to the name of a C or Fortran subroutine linked
-                                with Scilab.
-                            </para>
-                            <para>In C the calling sequence must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>
+                                    <literal>jac</literal> still returns
+                                    <literal>dg/dy+cj*dg/dydot</literal> as a function of
+                                    <literal>(t,y,ydot,cj,x1,x2,...)</literal>.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>A character string.</para>
+                                <para>It must refer to the name of a C or Fortran subroutine linked
+                                    with Scilab.
+                                </para>
+                                <para>In C the calling sequence must be:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
-                            <para>In Fortran it must be:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>In Fortran it must be:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
  ]]></programlisting>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>info</term>
-                <listitem>
-                    <para>
-                        optional list which contains <literal>7</literal> elements.
-                        Default value is  <literal>list([],0,[],[],[],0,0)</literal>.
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>info(1)</term>
-                            <listitem>
-                                <para>a real scalar which gives the maximum time for which
-                                    <literal>g</literal> is allowed to be evaluated or an empty
-                                    matrix <literal>[]</literal> if no limits imposed for
-                                    time.
-                                </para>
                             </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(2)</term>
-                            <listitem>
-                                <para>
-                                    a flag which indicates if <literal>dassl</literal> returns
-                                    its intermediate computed values (<literal>flag=1</literal>)
-                                    or only the user specified time point values
-                                    (<literal>flag=0</literal>).
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(3)</term>
-                            <listitem>
-                                <para>
-                                    a <literal>2</literal> components vector which give the
-                                    definition <literal>[ml,mu]</literal> of band matrix computed
-                                    by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
-                                        "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
-                                    </literal>
-                                    .If
-                                    <literal>jac</literal> returns a full matrix set
-                                    <literal>info(3)=[]</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(4)</term>
-                            <listitem>
-                                <para>a real scalar which gives the maximum step size. Set
-                                    <literal>info(4)=[]</literal> if no limitation.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(5)</term>
-                            <listitem>
-                                <para>a real scalar which gives the initial step size. Set
-                                    <literal>info(5)=[]</literal> if not specified.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(6)</term>
-                            <listitem>
-                                <para>
-                                    set <literal>info(6)=1</literal> if the solution is
-                                    known to be non negative, else set <literal>info(6)=0</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(7)</term>
-                            <listitem>
-                                <para>
-                                    set <literal>info(7)=1</literal> if
-                                    <literal>ydot0</literal> is just an estimation,
-                                    <literal>info(7)=0</literal> if
-                                    <literal>g(t0,y0,ydot0)=0</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>hd</term>
-                <listitem>
-                    <para>
-                        a real vector which allows to store the <literal>dassl</literal>
-                        context and to resume integration.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>r</term>
-                <listitem>
-                    <para>
-                        a real matrix. Each column is the vector <literal>[t;x(t);xdot(t)]</literal> where
-                        <literal>t</literal> is time index for which the solution had been computed.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <literal>dassl</literal> function integrate the differential algebraic equation and
-            returns the evolution of <literal>y</literal> a given time points
-        </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>info</term>
+                    <listitem>
+                        <para>
+                            optional list which contains <literal>7</literal> elements.
+                            Default value is  <literal>list([],0,[],[],[],0,0)</literal>.
+                        </para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>info(1)</term>
+                                <listitem>
+                                    <para>a real scalar which gives the maximum time for which
+                                        <literal>g</literal> is allowed to be evaluated or an empty
+                                        matrix <literal>[]</literal> if no limits imposed for
+                                        time.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(2)</term>
+                                <listitem>
+                                    <para>
+                                        a flag which indicates if <literal>dassl</literal> returns
+                                        its intermediate computed values (<literal>flag=1</literal>)
+                                        or only the user specified time point values
+                                        (<literal>flag=0</literal>).
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(3)</term>
+                                <listitem>
+                                    <para>
+                                        a <literal>2</literal> components vector which give the
+                                        definition <literal>[ml,mu]</literal> of band matrix computed
+                                        by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
+                                            "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
+                                        </literal>
+                                        .If
+                                        <literal>jac</literal> returns a full matrix set
+                                        <literal>info(3)=[]</literal>.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(4)</term>
+                                <listitem>
+                                    <para>a real scalar which gives the maximum step size. Set
+                                        <literal>info(4)=[]</literal> if no limitation.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(5)</term>
+                                <listitem>
+                                    <para>a real scalar which gives the initial step size. Set
+                                        <literal>info(5)=[]</literal> if not specified.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(6)</term>
+                                <listitem>
+                                    <para>
+                                        set <literal>info(6)=1</literal> if the solution is
+                                        known to be non negative, else set <literal>info(6)=0</literal>.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(7)</term>
+                                <listitem>
+                                    <para>
+                                        set <literal>info(7)=1</literal> if
+                                        <literal>ydot0</literal> is just an estimation,
+                                        <literal>info(7)=0</literal> if
+                                        <literal>g(t0,y0,ydot0)=0</literal>.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>hd</term>
+                    <listitem>
+                        <para>
+                            a real vector which allows to store the <literal>dassl</literal>
+                            context and to resume integration.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>r</term>
+                    <listitem>
+                        <para>
+                            a real matrix. Each column is the vector <literal>[t;x(t);xdot(t)]</literal> where
+                            <literal>t</literal> is time index for which the solution had been computed.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <literal>dassl</literal> function integrate the differential algebraic equation and
+                returns the evolution of <literal>y</literal> a given time points
+            </para>
+            <programlisting role="no-scilab-exec"><![CDATA[ 
 g(t,y,ydot)=0
 y(t0)=y0  and   ydot(t0)=ydot0
   ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 function [r,ires]=chemres(t,y,yd)
    r=[-0.04*y(1)+1d4*y(2)*y(3)-yd(1)
        0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
@@ -397,31 +397,31 @@ exec(fullfile(TMPDIR,'loader.sce')) //incremental linking
 // - call dassl
 y4=dassl([y0,yd0],0,t,'chemres','chemjac');
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="ode">ode</link>
-            </member>
-            <member>
-                <link linkend="dasrt">dasrt</link>
-            </member>
-            <member>
-                <link linkend="daskr">daskr</link>
-            </member>
-            <member>
-                <link linkend="impl">impl</link>
-            </member>
-            <member>
-                <link linkend="fort">fort</link>
-            </member>
-            <member>
-                <link linkend="link">link</link>
-            </member>
-            <member>
-                <link linkend="external">external</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="ode">ode</link>
+                </member>
+                <member>
+                    <link linkend="dasrt">dasrt</link>
+                </member>
+                <member>
+                    <link linkend="daskr">daskr</link>
+                </member>
+                <member>
+                    <link linkend="impl">impl</link>
+                </member>
+                <member>
+                    <link linkend="fort">fort</link>
+                </member>
+                <member>
+                    <link linkend="link">link</link>
+                </member>
+                <member>
+                    <link linkend="external">external</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

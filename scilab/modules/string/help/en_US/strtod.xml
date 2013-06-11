@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,89 +10,92 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="en">
-    <refnamediv>
-        <refname>strtod</refname>
-        <refpurpose>convert string to double</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            d =  strtod(str)
-            [d, endstr] = strtod(str)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>str</term>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="en">
+        <refnamediv>
+            <refname>strtod</refname>
+            <refpurpose>convert string to double</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                d =  strtod(str)
+                [d, endstr] = strtod(str)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>str</term>
+                    <listitem>
+                        <para>
+                            a character string or matrix of character strings.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>d</term>
+                    <listitem>
+                        <para>
+                            a real or matrix of reals.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>endstr</term>
+                    <listitem>
+                        <para>
+                            a character string or matrix of character strings (next
+                            character in <varname>str</varname> after the numerical
+                            value).
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <code>[d, endstr] = strtod(str)</code> parses strings
+                <varname>str</varname> interpreting its content as a floating point
+                number and returns its value as a real. If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Remarks</title>
+            <itemizedlist>
                 <listitem>
                     <para>
-                        a character string or matrix of character strings.
+                        This function is based on the strtod C function which causes different behaviors on Windows and Linux. In fact, on Windows, it is possible to use
+                        d or D for exponents, but it is not possible to use hexadecimal numbers.
                     </para>
                 </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>d</term>
                 <listitem>
                     <para>
-                        a real or matrix of reals.
+                        Note that <literal>strtod("%inf")</literal> returns <literal>Nan</literal>.
                     </para>
                 </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>endstr</term>
-                <listitem>
-                    <para>
-                        a character string or matrix of character strings (next
-                        character in <varname>str</varname> after the numerical
-                        value).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <code>[d, endstr] = strtod(str)</code> parses strings
-            <varname>str</varname> interpreting its content as a floating point
-            number and returns its value as a real. If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remarks</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    This function is based on the strtod C function which causes different behaviors on Windows and Linux. In fact, on Windows, it is possible to use
-                    d or D for exponents, but it is not possible to use hexadecimal numbers.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    Note that <literal>strtod("%inf")</literal> returns <literal>Nan</literal>.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection> 
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+            </itemizedlist>
+        </refsection>
+        
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 strtod('123.556This is a sample real')
 [d,endstr] = strtod('123.556This is a sample real')
 strtod(['123.556This is a sample real','888.666 here'])
 [d,endstr] =strtod(['123.556This is a sample real','888.666 here'])
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.1</revnumber>
-                <revremark>If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal> instead of <literal>0</literal> in previous versions.</revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.1</revnumber>
+                    <revremark>
+                        If <varname>str</varname> does not contain any numerical value then <varname>d</varname> equals <literal>Nan</literal> instead of <literal>0</literal> in previous versions.
+                    </revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

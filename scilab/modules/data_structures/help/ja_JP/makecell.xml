@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+        <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
     * 
@@ -11,128 +11,128 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
 -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="makecell">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="makecell">
         
-        <refname>makecell</refname>
-        
-        <refpurpose>セル配列を作成. </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>s = makecell(dims,a1,a2,...an)</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+        <refnamediv>
             
-            <varlistentry>
+            <refname>makecell</refname>
+            
+            <refpurpose>セル配列を作成. </refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>s = makecell(dims,a1,a2,...an)</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
                 
-                <term>dims</term>
-                
-                <listitem>
+                <varlistentry>
                     
-                    <para>
-                        
-                        正の整数要素を有するベクトル, セル配列の次元
-                        
-                    </para>
+                    <term>dims</term>
                     
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>a1,a2,...,an</term>
-                
-                <listitem>
+                    <listitem>
+                        
+                        <para>
+                            
+                            正の整数要素を有するベクトル, セル配列の次元
+                            
+                        </para>
+                        
+                    </listitem>
                     
-                    <para>
-                        
-                        一連のScilab変数, <literal>n</literal> は <literal>prod(dims)</literal>
-                        
-                        に等しい必要があります
-                        
-                    </para>
+                </varlistentry>
+                
+                <varlistentry>
                     
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>s</term>
-                
-                <listitem>
+                    <term>a1,a2,...,an</term>
                     
-                    <para>
+                    <listitem>
                         
-                        返されるセル配列
+                        <para>
+                            
+                            一連のScilab変数, <literal>n</literal> は <literal>prod(dims)</literal>
+                            
+                            に等しい必要があります
+                            
+                        </para>
                         
-                    </para>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
+                <varlistentry>
+                    
+                    <term>s</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            返されるセル配列
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
             
-        </variablelist>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
+        <refsection>
             
-            <literal>s= makecell(dims,a1,a2,...an)</literal> は
+            <title>説明</title>
             
-            指定した入力引数において<literal>dims</literal>で指定された次元の
+            <para>
+                
+                <literal>s= makecell(dims,a1,a2,...an)</literal> は
+                
+                指定した入力引数において<literal>dims</literal>で指定された次元の
+                
+                配列です.
+                
+                <literal>ai</literal> には,最後の次元が最初に保存されます.
+                
+            </para>
             
-            配列です.
-            
-            <literal>ai</literal> には,最後の次元が最初に保存されます.
-            
-        </para>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+        <refsection>
+            
+            <title>例</title>
+            
+            <programlisting role="example"><![CDATA[ 
 makecell([2,3],1,2,3,'x','y','z')
  ]]></programlisting>
-        
-    </refsection>
-    
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
             
-            <member>
-                
-                <link linkend="cell">cell</link>
-                
-            </member>
-            
-        </simplelist>
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="cell">cell</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-</refentry>
-

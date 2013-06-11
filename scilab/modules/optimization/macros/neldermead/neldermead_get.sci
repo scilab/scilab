@@ -15,24 +15,24 @@
 //   If the key is unknown, generates an error.
 //
 function value = neldermead_get ( this , key )
-  select key
-  case "-historysimplex" then
-    storehistory = optimbase_cget ( this.optbase , "-storehistory" );
-    if ( ~storehistory ) then
-      errmsg = msprintf(gettext("%s: History disabled ; turn on -storehistory option."), "neldermead_get")
-      error(errmsg)
+    select key
+    case "-historysimplex" then
+        storehistory = optimbase_cget ( this.optbase , "-storehistory" );
+        if ( ~storehistory ) then
+            errmsg = msprintf(gettext("%s: History disabled ; turn on -storehistory option."), "neldermead_get")
+            error(errmsg)
+        else
+            value = this.historysimplex;
+        end
+    case "-simplexopt" then
+        value = this.simplexopt;
+    case "-simplex0" then
+        value = this.simplex0;
+    case "-restartnb" then
+        value = this.restartnb;
     else
-      value = this.historysimplex;
+        // Delegate to optbase
+        value = optimbase_get ( this.optbase , key );
     end
-  case "-simplexopt" then
-    value = this.simplexopt;
-  case "-simplex0" then
-    value = this.simplex0;
-  case "-restartnb" then
-    value = this.restartnb;
-  else
-    // Delegate to optbase
-    value = optimbase_get ( this.optbase , key );
-  end
 endfunction
 

@@ -77,7 +77,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
     /**
      * @return true if the console is existing
      */
-    public static boolean isExistingConsole(){
+    public static boolean isExistingConsole() {
         if (instance == null) {
             return false;
         } else {

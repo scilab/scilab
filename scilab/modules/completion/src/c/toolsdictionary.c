@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,7 +17,7 @@
 /**
 * merge two strings array
 * append array2 to array1
-* @param[in] array1 
+* @param[in] array1
 * @param[in] pos
 * @param[in] array2
 * @param[in] sizearray2
@@ -89,7 +89,9 @@ char **RemoveDuplicateDictionary(char **Strings, int *SizeStrings)
         for (i = j = 0; i < *SizeStrings - 1; i++)
         {
             if (strcmp(Strings[i], Strings[i + 1]))
+            {
                 Strings[j++] = Strings[i];
+            }
             else
             {
                 FREE(Strings[i]);
@@ -101,7 +103,9 @@ char **RemoveDuplicateDictionary(char **Strings, int *SizeStrings)
 
         returnedArray = Strings;
         if (returnedArray)
+        {
             *SizeStrings = newsize;
+        }
     }
     return returnedArray;
 }

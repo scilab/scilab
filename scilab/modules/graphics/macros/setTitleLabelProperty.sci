@@ -4,13 +4,13 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,current_figure,cur_draw_mode)
     // SETTITLELABELPROPERTY function
     // is used by the functions title, xlabel, ylabel, zlabel
-    // This function sets the title (or x_, y_, z_label) properties 
+    // This function sets the title (or x_, y_, z_label) properties
 
     fail=0;
 
@@ -29,7 +29,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
     select PName
 
         /////////////////////////
-    case 'font_size'       // <=> fontsize 
+    case "font_size"       // <=> fontsize
         /////////////////////////
 
         if (type(PropertyValue)<>1 | size(PropertyValue,"*")<>1)
@@ -43,7 +43,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
 
 
         /////////////////////////
-    case 'font_angle'  // <=> rotation
+    case "font_angle"  // <=> rotation
         /////////////////////////
         if (type(PropertyValue)<>1 | size(PropertyValue,"*")<>1)
             warning(msprintf(gettext("%s: Wrong type for input argument #%d: A real matrix expected.\n"),"setTitleLabelProperty",2));
@@ -51,20 +51,20 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
             return;
         end
 
-        titlelabel.auto_rotation = 'off'
+        titlelabel.auto_rotation = "off"
         newPropertyValue = modulo(PropertyValue,360)
         titlelabel.font_angle = 360 - newPropertyValue
         return
 
 
         /////////////////////////
-    case 'font_foreground'         // <=> color or edgecolor
+    case "font_foreground"         // <=> color or edgecolor
         /////////////////////////
 
         if (type(PropertyValue) == 10)
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white"]
 
             if index < 10
                 titlelabel.font_foreground = color(ColorVal(index));
@@ -77,7 +77,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
             end
         elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
 
-            if (size(PropertyValue,'*')==3)
+            if (size(PropertyValue,"*")==3)
                 titlelabel.font_foreground = addcolor(PropertyValue);
             else
                 warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setTitleLabelProperty",2));
@@ -93,16 +93,16 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
 
 
         /////////////////////////
-    case 'foreground'        // <=> foregroundcolor
+    case "foreground"        // <=> foregroundcolor
         /////////////////////////
 
         if (type(PropertyValue) == 10)
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white"]
 
             if index < 10
-                titlelabel.fill_mode = 'on'
+                titlelabel.fill_mode = "on"
                 titlelabel.foreground = color(ColorVal(index));
             elseif index == 10  // 'none' selected
                 titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
@@ -113,8 +113,8 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
             end
         elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
 
-            if (size(PropertyValue,'*')==3) 
-                titlelabel.fill_mode = 'on'
+            if (size(PropertyValue,"*")==3)
+                titlelabel.fill_mode = "on"
                 titlelabel.foreground = addcolor(PropertyValue);
             else
                 warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setTitleLabelProperty",2));
@@ -129,17 +129,17 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
 
 
         /////////////////////////
-    case 'background'        // <=> backgroundcolor
+    case "background"        // <=> backgroundcolor
         /////////////////////////
 
         if (type(PropertyValue) == 10)
 
             index = getColorIndex(PropertyValue);
 
-            ColorVal   = ['red' 'green' 'blue' 'cyan' 'magenta' 'yellow' 'black' 'black' 'white']
+            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white"]
 
             if index < 10
-                titlelabel.fill_mode = 'on'
+                titlelabel.fill_mode = "on"
                 titlelabel.background = color(ColorVal(index));
             elseif index == 10  // 'none' selected
                 titlelabel.color_mode = 0; // <=> - colormap(1) and not black at all!!
@@ -150,8 +150,8 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
             end
         elseif (type(PropertyValue) == 1) // we entered plot(x,y,'Color',[R,G,B])
 
-            if (size(PropertyValue,'*')==3) 
-                titlelabel.fill_mode = 'on'
+            if (size(PropertyValue,"*")==3)
+                titlelabel.fill_mode = "on"
                 titlelabel.background = addcolor(PropertyValue);
             else
                 warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setTitleLabelProperty",2));
@@ -166,9 +166,9 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
 
 
         /////////////////////////
-    case 'text'        // <=> string
+    case "text"        // <=> string
         /////////////////////////
-        if (type(PropertyValue) == 10)   
+        if (type(PropertyValue) == 10)
             titlelabel.text = PropertyValue;
             return
         else
@@ -179,11 +179,11 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
 
 
         /////////////////////////
-    case 'position'        // <=> position, à completer: la position par rapport à z n'est pas pris en compte, de plus le vecteur position doit contenir des coordonnées utilisateur (coordonnées selon l'axe)
+    case "position"        // <=> position, à completer: la position par rapport à z n'est pas pris en compte, de plus le vecteur position doit contenir des coordonnées utilisateur (coordonnées selon l'axe)
         /////////////////////////
 
-        if type(PropertyValue) == 1 & size(PropertyValue,"*")<=3    
-            titlelabel.auto_position = 'off';
+        if type(PropertyValue) == 1 & size(PropertyValue,"*")<=3
+            titlelabel.auto_position = "off";
             titlelabel.position = PropertyValue ;
             return
         else
@@ -194,16 +194,16 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
 
 
 
-        /////////////////////////  
-    case 'visible'           // <=> visible
+        /////////////////////////
+    case "visible"           // <=> visible
         /////////////////////////
 
         if type(PropertyValue) == 10
-            if or(PropertyValue == ['off' 'of'])
-                titlelabel.visible = 'off';
+            if or(PropertyValue == ["off" "of"])
+                titlelabel.visible = "off";
                 return
-            elseif PropertyValue == 'on'
-                titlelabel.visible = 'on'; 
+            elseif PropertyValue == "on"
+                titlelabel.visible = "on";
                 return
             else
                 warning(_("Incorrect input: ..."));
@@ -213,21 +213,21 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
         else
             warning(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"setTitleLabelProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
-            return;    
+            return;
         end
 
 
-        /////////////////////////  
-    case 'font_style'     // <=> fontangle
+        /////////////////////////
+    case "font_style"     // <=> fontangle
         /////////////////////////
         fonts = ["courrier" "symbol" "times" "times italic" "times bold" ..
         "times bold italic" "helvetica" "helvetica italic" "helvetica bold"..
-        "helvetica bold italic" ] 
+        "helvetica bold italic" ]
         if typeof(PropertyValue) == "string"
             PropertyValue = convstr(PropertyValue,"l")
             if or(PropertyValue == fonts)
                 titlelabel.font_style = find(fonts==PropertyValue)-1;
-            else 
+            else
                 warning(msprintf(_("%s: Wrong value for input argument #%d: At least one ""%s"" expected.\n"),"setTitleLabelProperty",2, "font"));
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 return;
@@ -237,7 +237,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
         else
             warning(msprintf(_("%s: Wrong type for input argument #%d: A real matrix or a string matrix expected.\n"),"setTitleLabelProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
-            return;    
+            return;
         end
 
     end
