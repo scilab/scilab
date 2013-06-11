@@ -1,5 +1,5 @@
-    <?xml version="1.0"?>
-    <?xml-stylesheet href="cml.css" type="text/css"?>
+<?xml version="1.0"?>
+<?xml-stylesheet href="cml.css" type="text/css"?>
     <!-- original source: http://www.xml-cml.org/ -->
     <cmldoc>
         <molecule convention="MDLMol" id="diazepam">

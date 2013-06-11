@@ -1,4 +1,4 @@
-    <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
     <toolbar title="Toolbar">
         <body>
             <toolbars select="scilab">

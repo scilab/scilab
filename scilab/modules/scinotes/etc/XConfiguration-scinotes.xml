@@ -1,4 +1,4 @@
-    <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
     <scinotes title="Scinotes">
         <body>
             <scinotes-preferences restart-reopen="true" add-line-termination="true" number-of-recently-open="5" encoding="utf-8" eol="" scinotes="true" cmd="" macro="" external-cmd="true"/>

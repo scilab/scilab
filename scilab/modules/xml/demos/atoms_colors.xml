@@ -1,4 +1,4 @@
-    <?xml version="1.0"?>
+<?xml version="1.0"?>
     <!-- jmol colors, see http://jmol.sourceforge.net/jscolors/ -->
     <atoms>
         <atom name="H" R="255" G="255" B="255"/>

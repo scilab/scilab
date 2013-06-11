@@ -1,4 +1,4 @@
-    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <category enable="true" name="Config">
         <node xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Category" enable="true" name="Palettes">
             <node xsi:type="PreLoaded" enable="true" name="Commonly Used Blocks">

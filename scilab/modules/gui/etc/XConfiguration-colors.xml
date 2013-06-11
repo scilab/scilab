@@ -1,4 +1,4 @@
-    <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
     <colors title="_(Colors)">
         <body>
             <desktop-colors use-system-color="true" text="#000000" background="#ffffff" cursor="#000000"/>

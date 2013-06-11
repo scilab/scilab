@@ -1,4 +1,4 @@
-    <?xml version="1.0"?>
+<?xml version="1.0"?>
     <menubar>
         <!-- All "main" menus are disabled when created and then enabled in scilab.start file after all macros are loaded -->
         <!-- The accelerator can be "control shift A" or "control A" or "meta A" or "OSSCKEY A" where oskey means "OS ShortCut key"

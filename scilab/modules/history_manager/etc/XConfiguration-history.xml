@@ -1,4 +1,4 @@
-    <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
     <command-history title="_(Command history)">
         <body>
             <history-settings history-file="SCIHOME/history" history-lines="20000" enable="true"/>

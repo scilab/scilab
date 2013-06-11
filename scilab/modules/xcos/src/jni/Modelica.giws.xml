@@ -1,4 +1,4 @@
-    <?xml version="1.0"?>
+<?xml version="1.0"?>
     <package name="org.scilab.modules.zcos.modelica">
         <object name="Modelica">
             <method name="load" returnType="void" modifier="static">
