@@ -5,11 +5,11 @@ function gammatest (N)
     if rhs < 1 ;N=[10,20,50,100];end
     x=linspace(0,1,100);
     plot2d(cos(2*%pi*x)',sin(2*%pi*x)',1,"151"," ",[-2,-2,2,2]);
-    xtitle('Bezier curve approximating a circle');
+    xtitle("Bezier curve approximating a circle");
     current_axe = gca();
     current_axe.title.font_size = 3;
     icol=2;
-    for n=N ; 
+    for n=N ;
         t=sqrt(linspace(0,1,n));
         p=[cos(2*%pi*t);sin(2*%pi*t)];
         y=bezier(p,x);
@@ -20,12 +20,12 @@ endfunction
 
 
 function beziertest
-    // a random polygon and a bezier curve 
+    // a random polygon and a bezier curve
     // Copyright INRIA
     plot2d(-0.2,-0.2,0,"011"," ",[-0.2,-0.2,1.2,1.2]);
-    xtitle('Bezier Test : random polygon and bezier curve');
+    xtitle("Bezier Test : random polygon and bezier curve");
     current_axe = gca();current_axe.title.font_size = 3;
-    rand('uniform');
+    rand("uniform");
     p=rand(2,5);
     t=linspace(0,1,300);
     s=bezier(p,t);
@@ -52,11 +52,11 @@ function beziersurftest
     subplot(2,1,1);
     drawlater();
     plot3d3(x,y,z);
-    xtitle('A first surface');
+    xtitle("A first surface");
     current_axe = gca();current_axe.title.font_size = 3;
     subplot(2,1,2);
     plot3d2(xb,yb,zb,-1,35,45," ",[4,2,3]);
-    xtitle('The bezier interpolated surface (n=10)');
+    xtitle("The bezier interpolated surface (n=10)");
     current_axe = gca();current_axe.title.font_size = 3;
     drawnow();
 endfunction
@@ -64,20 +64,20 @@ endfunction
 function c1test
     // Show how two bezier surfaces can be joined.
     // Copyright INRIA
- 
+
     // first surface
     x1=dup(-0.5:0.25:0.5,5);
     y1=dup([0,0,0,0,1],5);
     z1=dup(2:0.25:3,5)';
     [xb1,yb1,zb1]=beziersurface(x1,y1,z1,10);
- 
-    // second surface 
+
+    // second surface
     x2=dup(-0.5:0.25:0.5,5);
     y2=[(ones(4,5));[0,0,0,0,0]];
     z2=-dup(-1:0.25:0,5)';
     [xb2,yb2,zb2]=beziersurface(x2,y2,z2,10);
- 
-    // a surface to link the two previous ones 
+
+    // a surface to link the two previous ones
     x=zeros(5,5); y=x; z=x;
     x(1,:)=x1(1,:); x(2,:)=x(1,:)-(x1(2,:)-x1(1,:));
     x(5,:)=x2(1,:); x(4,:)=x(5,:)-(x2(2,:)-x2(1,:));
@@ -90,14 +90,14 @@ function c1test
     z(3,:)=(z(4,:)+z(2,:))/2;
     A=35,T=50,L=" ",EB=[4,2,0]
     [xb,yb,zb]=beziersurface(x,y,z,10);
- 
+
     //drawing
     drawlater();
     subplot(2,1,1);
-    xtitle('how two bezier surfaces can be joined');
+    xtitle("how two bezier surfaces can be joined");
     current_axe = gca();current_axe.title.font_size = 3;
     subplot(2,2,1);
-    plot3d2(xb1,yb1,zb1,-1,A,T,L,EB); 
+    plot3d2(xb1,yb1,zb1,-1,A,T,L,EB);
     subplot(2,2,3);
     plot3d2(xb2,yb2,zb2,-1,A,T,L,EB);
     subplot(1,2,2);

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="windows_tools">
-    <!-- =================== -->
-    <!--
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    
+    <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+    <GATEWAY name="windows_tools">
+        <!-- =================== -->
+        <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -19,9 +19,9 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-    
-    
-    <!--
+        
+        
+        <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * 
@@ -32,16 +32,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
 -->
-    <!-- =================== -->
-    
-    <PRIMITIVE gatewayId="47" primitiveId="1" primitiveName="winopen" />
-    <PRIMITIVE gatewayId="47" primitiveId="2" primitiveName="winqueryreg" />
-    <PRIMITIVE gatewayId="47" primitiveId="3" primitiveName="findfileassociation" />
-    <PRIMITIVE gatewayId="47" primitiveId="4" primitiveName="dos" />
-    <PRIMITIVE gatewayId="47" primitiveId="5" primitiveName="mcisendstring" />
-    <PRIMITIVE gatewayId="47" primitiveId="6" primitiveName="consolebox" />
-    <PRIMITIVE gatewayId="47" primitiveId="7" primitiveName="win64" />
-    <PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="istssession" />
-    <PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="getsystemmetrics" />
-    <PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="createGUID" />
-</GATEWAY>
+        <!-- =================== -->
+        
+        <PRIMITIVE gatewayId="47" primitiveId="1" primitiveName="winopen" />
+        <PRIMITIVE gatewayId="47" primitiveId="2" primitiveName="winqueryreg" />
+        <PRIMITIVE gatewayId="47" primitiveId="3" primitiveName="findfileassociation" />
+        <PRIMITIVE gatewayId="47" primitiveId="4" primitiveName="dos" />
+        <PRIMITIVE gatewayId="47" primitiveId="5" primitiveName="mcisendstring" />
+        <PRIMITIVE gatewayId="47" primitiveId="6" primitiveName="consolebox" />
+        <PRIMITIVE gatewayId="47" primitiveId="7" primitiveName="win64" />
+        <PRIMITIVE gatewayId="47" primitiveId="8" primitiveName="istssession" />
+        <PRIMITIVE gatewayId="47" primitiveId="9" primitiveName="getsystemmetrics" />
+        <PRIMITIVE gatewayId="47" primitiveId="10" primitiveName="createGUID" />
+    </GATEWAY>

@@ -27,15 +27,15 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "with_module", 1);
         return types::Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "with_module", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "with_module", 1);
         return types::Function::Error;
     }
 
@@ -44,9 +44,9 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
     types::Bool* pOut = new types::Bool(0);
     list<wstring> sModuleList = ConfigVariable::getModuleList();
     list<wstring>::iterator it;
-    for(it = sModuleList.begin() ; it != sModuleList.end() ; it++)
+    for (it = sModuleList.begin() ; it != sModuleList.end() ; it++)
     {
-        if(*it == pwstModuleName)
+        if (*it == pwstModuleName)
         {
             pOut->get()[0] = 1;
             break;
@@ -55,37 +55,37 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
 
     out.push_back(pOut);
     return types::Function::OK;
-	//static int l1,n1,m1;
-	//int *Status=NULL;
+    //static int l1,n1,m1;
+    //int *Status=NULL;
 
-	//CheckRhs(1,1);
-	//CheckLhs(1,1);
+    //CheckRhs(1,1);
+    //CheckLhs(1,1);
 
-	//if (GetType(1) == sci_strings)
-	//{
-	//	char *VarName=NULL;
+    //if (GetType(1) == sci_strings)
+    //{
+    //	char *VarName=NULL;
 
-	//	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-	//	VarName=cstk(l1);
+    //	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+    //	VarName=cstk(l1);
 
-	//	Status=(int*)MALLOC(sizeof(int));
-	//	*Status=with_module(VarName);
+    //	Status=(int*)MALLOC(sizeof(int));
+    //	*Status=with_module(VarName);
 
-	//	m1=1;n1=1;
-	//	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
-	//	LhsVar(1)=Rhs+1;
+    //	m1=1;n1=1;
+    //	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
+    //	LhsVar(1)=Rhs+1;
 
-	//	C2F(putlhsvar)();
+    //	C2F(putlhsvar)();
 
-	//	if (Status) {FREE(Status);Status=NULL;}
-	//}
-	//else
-	//{
-	//	Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname,1);
-	//	return 0;
-	//}
+    //	if (Status) {FREE(Status);Status=NULL;}
+    //}
+    //else
+    //{
+    //	Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname,1);
+    //	return 0;
+    //}
 
-	//return 0;
+    //return 0;
 }
 /*--------------------------------------------------------------------------*/
 

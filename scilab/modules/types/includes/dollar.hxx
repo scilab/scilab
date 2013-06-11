@@ -19,38 +19,38 @@
 
 namespace types
 {
-    class TYPES_IMPEXP Dollar : public Polynom
+class TYPES_IMPEXP Dollar : public Polynom
+{
+public :
+
+    Dollar()
     {
-    public :
+        int piDims[2]   = {1, 1};
+        m_szVarName	    = L"$";
+        m_bComplex	    = false;
+        SinglePoly** pPoly    = NULL;
+        create(piDims, 2, &pPoly, NULL);
 
-        Dollar()
-        {
-            int piDims[2]   = {1, 1};
-            m_szVarName	    = L"$";
-            m_bComplex	    = false;
-            SinglePoly** pPoly    = NULL;
-            create(piDims, 2, &pPoly, NULL);
+        Double dblCoef(1, 2);
+        dblCoef.set(0, 0, 0);
+        dblCoef.set(0, 1, 1.0);
+        setCoef(0, &dblCoef);
+    }
 
-            Double dblCoef(1,2);
-            dblCoef.set(0, 0, 0);
-            dblCoef.set(0, 1, 1.0);
-            setCoef(0, &dblCoef);
-        }
+    Dollar* clone()
+    {
+        return new Dollar();
+    }
 
-        Dollar* clone()
-        {
-            return new Dollar();
-        }
+    InternalType::RealType getType()
+    {
+        return RealDollar;
+    }
 
-        InternalType::RealType getType()
-        {
-            return RealDollar;
-        }
-
-        bool isDollar()
-        {
-            return true;
-        }
-    };
+    bool isDollar()
+    {
+        return true;
+    }
+};
 }
 #endif /* !__DOLLAR_HXX__ */

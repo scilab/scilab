@@ -2,7 +2,7 @@
 // Copyright INRIA
 // Scilab Project - Pierre MARECHAL
 // Copyright INRIA 2005
-// Date : 28 décembre 2005
+// Date : 28 dÃ©cembre 2005
 
 mode(-1);
 clear
@@ -22,9 +22,9 @@ one_hour_ref = 1/24;
 test3  = (abs( (one_hour - one_hour_ref) / one_hour ) < 1e-8);
 
 if ( test1 & test2 & test3 ) then
-	affich_result(%T,1506);
+    affich_result(%T,1506);
 else
-	affich_result(%F,1506);
+    affich_result(%F,1506);
 end
 
 clear

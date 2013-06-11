@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * 
@@ -10,35 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="gca" xml:lang="en">
-    <refnamediv>
-        <refname>gca</refname>
-        <refpurpose>Retorna o manipulador da entidade Axes corrente </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>a = gca()</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>manipulador, o manipulador da entidade Axes corrente.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>Esta rotina retorna o manipulador da entidade Axes da figura
-            corrente 
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exmplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="gca" xml:lang="en">
+        <refnamediv>
+            <refname>gca</refname>
+            <refpurpose>Retorna o manipulador da entidade Axes corrente </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>a = gca()</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>a</term>
+                    <listitem>
+                        <para>manipulador, o manipulador da entidade Axes corrente.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>Esta rotina retorna o manipulador da entidade Axes da figura
+                corrente 
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exmplos</title>
+            <programlisting role="example"><![CDATA[ 
 subplot(211)
 a=gca() //obtendo os eixos correntes
 a.box="off";
@@ -52,25 +52,25 @@ a.parent.background=4;
 delete(gca()) // deletando os eixos correntes
 xdel(0) //deletando uma janela de gráficos
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="gda">gda</link>
-            </member>
-            <member>
-                <link linkend="gcf">gcf</link>
-            </member>
-            <member>
-                <link linkend="gce">gce</link>
-            </member>
-            <member>
-                <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="gda">gda</link>
+                </member>
+                <member>
+                    <link linkend="gcf">gcf</link>
+                </member>
+                <member>
+                    <link linkend="gce">gce</link>
+                </member>
+                <member>
+                    <link linkend="get">get</link>
+                </member>
+                <member>
+                    <link linkend="graphics_entities">graphics_entities</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

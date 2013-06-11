@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,375 +11,375 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dasrt" xml:lang="ru">
-    <refnamediv>
-        <refname>dasrt</refname>
-        <refpurpose>программа решения дифференциально-алгебраических уравнений (ДАУ) с пересечением нуля</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>[r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf [,info] [,hd])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>x0</term>
-                <listitem>
-                    <para>
-                        представляет собой либо <literal>y0</literal> (<literal>ydot0</literal>
-                        оценён с помощью <literal>dassl</literal> с нулём в качестве первой оценки),
-                        либо матрицу <literal>[y0 ydot0]</literal>. <literal>g(t,y0,ydot0)</literal> 
-                        должна быть равной нулю. Если оценка <literal>ydot0</literal> известна,
-                        то установите <literal>info(7)=1</literal>.
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>y0</term>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dasrt" xml:lang="ru">
+        <refnamediv>
+            <refname>dasrt</refname>
+            <refpurpose>программа решения дифференциально-алгебраических уравнений (ДАУ) с пересечением нуля</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>[r,nn,[,hd]]=dasrt(x0,t0,t [,atol,[rtol]],res [,jac],ng, surf [,info] [,hd])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x0</term>
+                    <listitem>
+                        <para>
+                            представляет собой либо <literal>y0</literal> (<literal>ydot0</literal>
+                            оценён с помощью <literal>dassl</literal> с нулём в качестве первой оценки),
+                            либо матрицу <literal>[y0 ydot0]</literal>. <literal>g(t,y0,ydot0)</literal> 
+                            должна быть равной нулю. Если оценка <literal>ydot0</literal> известна,
+                            то установите <literal>info(7)=1</literal>.
+                        </para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>y0</term>
+                                <listitem>
+                                    <para>вещественный вектор-столбец исходных условий.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>ydot0</term>
+                                <listitem>
+                                    <para>
+                                        вещественный вектор-столбец производной <literal>y</literal> по 
+                                        времени в момент <literal>t0</literal> (может быть оценкой).
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t0</term>
+                    <listitem>
+                        <para>вещественное число, начальный момент времени.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>
+                            вещественный скаляр или вектор. Указывает моменты времени для которых 
+                            необходимо найти решение. Заметьте, что вы можете получить решение в 
+                            каждой точке шага <literal>dassl</literal> установкой <literal>info(2)=1</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>nn</term>
+                    <listitem>
+                        <para>
+                            вектор с двумя элементами <literal>[times num]</literal>, где
+                            <literal>times</literal> - значение момента времени, когда поверхность пересекается,
+                            <literal>num</literal> - номер пересечённой поверхности.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>atol, rtol</term>
+                    <listitem>
+                        <para>
+                            вещественный скаляры или вектор-столбцы того же размера, что и 
+                            <literal>y</literal>. <literal>atol, rtol</literal> дают, соответственно, допуски абсолютной и относительной ошибки решения. Если это векторы, то допуски определены для каждого элемента <literal>y</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>res</term>
+                    <listitem>
+                        <para>
+                            <link linkend="external">внешняя</link> функция, список или строка.
+                            Вычисляет значение <literal>g(t,y,ydot)</literal>. Это может быть:
+                        </para>
+                        <itemizedlist>
                             <listitem>
-                                <para>вещественный вектор-столбец исходных условий.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>ydot0</term>
-                            <listitem>
+                                <para>Функция Scilab.</para>
                                 <para>
-                                    вещественный вектор-столбец производной <literal>y</literal> по 
-                                    времени в момент <literal>t0</literal> (может быть оценкой).
+                                    Её последовательность вызова должна быть
+                                    <literal>[r,ires]=res(t,y,ydot)</literal> и
+                                    <literal>res</literal> должна возвращать остаток
+                                    <literal>r=g(t,y,ydot)</literal> и флаг ошибки
+                                    <literal>ires</literal>. <literal>ires = 0</literal>, если
+                                    <literal>res</literal> удалось вычислить <literal>r</literal>;
+                                    <literal>=-1</literal>, если остаток локально не определён для
+                                    <literal>(t,y,ydot)</literal>; <literal>=-2</literal>, если
+                                    параметры находятся вне допустимого диапазона.
                                 </para>
                             </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t0</term>
-                <listitem>
-                    <para>вещественное число, начальный момент времени.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>
-                        вещественный скаляр или вектор. Указывает моменты времени для которых 
-                        необходимо найти решение. Заметьте, что вы можете получить решение в 
-                        каждой точке шага <literal>dassl</literal> установкой <literal>info(2)=1</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>nn</term>
-                <listitem>
-                    <para>
-                        вектор с двумя элементами <literal>[times num]</literal>, где
-                        <literal>times</literal> - значение момента времени, когда поверхность пересекается,
-                        <literal>num</literal> - номер пересечённой поверхности.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>atol, rtol</term>
-                <listitem>
-                    <para>
-                        вещественный скаляры или вектор-столбцы того же размера, что и 
-                        <literal>y</literal>. <literal>atol, rtol</literal> дают, соответственно, допуски абсолютной и относительной ошибки решения. Если это векторы, то допуски определены для каждого элемента <literal>y</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>res</term>
-                <listitem>
-                    <para>
-                        <link linkend="external">внешняя</link> функция, список или строка.
-                        Вычисляет значение <literal>g(t,y,ydot)</literal>. Это может быть:
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>Функция Scilab.</para>
-                            <para>
-                                Её последовательность вызова должна быть
-                                <literal>[r,ires]=res(t,y,ydot)</literal> и
-                                <literal>res</literal> должна возвращать остаток
-                                <literal>r=g(t,y,ydot)</literal> и флаг ошибки
-                                <literal>ires</literal>. <literal>ires = 0</literal>, если
-                                <literal>res</literal> удалось вычислить <literal>r</literal>;
-                                <literal>=-1</literal>, если остаток локально не определён для
-                                <literal>(t,y,ydot)</literal>; <literal>=-2</literal>, если
-                                параметры находятся вне допустимого диапазона.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>Список.</para>
-                            <para>
-                                Эта форма позволяет передавать функции параметры, отличные от <literal>t</literal>, 
-                                <literal>y</literal>, <literal>ydot</literal>. Это выполняется следующим способом:
-                            </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[  
+                            <listitem>
+                                <para>Список.</para>
+                                <para>
+                                    Эта форма позволяет передавать функции параметры, отличные от <literal>t</literal>, 
+                                    <literal>y</literal>, <literal>ydot</literal>. Это выполняется следующим способом:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[  
 list(res,x1,x2,...)
  ]]></programlisting>
-                            <para>
-                                где последовательность вызова функции <literal>res</literal> 
-                                теперь имеет вид:
-                            </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>
+                                    где последовательность вызова функции <literal>res</literal> 
+                                    теперь имеет вид:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 r=res(t,y,ydot,x1,x2,...)
  ]]></programlisting>
-                            <para>
-                                <literal>res</literal> по-прежнему возвращает 
-                                <literal>r=g(t,y,ydot</literal> как функцию от 
-                                <literal>(t,y,ydot,x1,x2,...)</literal>.
-                            </para>
-                            <para>
-                                <warning>
-                                    Внимание:
-                                    эта форма не должна использоваться, если нет дополнительного аргумента для передачи в функцию.
-                                </warning>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>Строка.</para>
-                            <para>
-                                Она должна ссылаться на имя подпрограммы на языке C или Fortran, связанной с Scilab'ом.
-                            </para>
-                            <para>Последовательность вызова на языке C должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>
+                                    <literal>res</literal> по-прежнему возвращает 
+                                    <literal>r=g(t,y,ydot</literal> как функцию от 
+                                    <literal>(t,y,ydot,x1,x2,...)</literal>.
+                                </para>
+                                <para>
+                                    <warning>
+                                        Внимание:
+                                        эта форма не должна использоваться, если нет дополнительного аргумента для передачи в функцию.
+                                    </warning>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>Строка.</para>
+                                <para>
+                                    Она должна ссылаться на имя подпрограммы на языке C или Fortran, связанной с Scilab'ом.
+                                </para>
+                                <para>Последовательность вызова на языке C должна быть:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[]) 
  ]]></programlisting>
-                            <para>На языке Fortran она должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>На языке Fortran она должна быть:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
  ]]></programlisting>
-                            <para>
-                                Массивы <literal>rpar</literal> и <literal>ipar</literal> должны быть,
-                                но не должны использоваться.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>jac</term>
-                <listitem>
-                    <para>
-                        <link linkend="external">внешняя</link> функция, список или строка.
-                        Вычисляет значение <literal>dg/dy+cj*dg/dydot</literal> для заданной
-                        величины параметра <literal>cj</literal>.
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>Функция Scilab.</para>
-                            <para>
-                                Её последовательность вызова должна быть
-                                <literal>r=jac(t,y,ydot,cj)</literal> и
-                                <literal>jac</literal> должна возвращать 
-                                <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal>, где
-                                <literal>cj</literal> - вещественный скаляр.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>Список.</para>
-                            <para>Он должен иметь следующий вид:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>
+                                    Массивы <literal>rpar</literal> и <literal>ipar</literal> должны быть,
+                                    но не должны использоваться.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>jac</term>
+                    <listitem>
+                        <para>
+                            <link linkend="external">внешняя</link> функция, список или строка.
+                            Вычисляет значение <literal>dg/dy+cj*dg/dydot</literal> для заданной
+                            величины параметра <literal>cj</literal>.
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>Функция Scilab.</para>
+                                <para>
+                                    Её последовательность вызова должна быть
+                                    <literal>r=jac(t,y,ydot,cj)</literal> и
+                                    <literal>jac</literal> должна возвращать 
+                                    <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal>, где
+                                    <literal>cj</literal> - вещественный скаляр.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>Список.</para>
+                                <para>Он должен иметь следующий вид:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 list(jac,x1,x2,...)
  ]]></programlisting>
-                            <para>где последовательность вызова функции 
-                                <literal>jac</literal> теперь имеет вид:
-                            </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>где последовательность вызова функции 
+                                    <literal>jac</literal> теперь имеет вид:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 r=jac(t,y,ydot,cj,x1,x2,...)
  ]]></programlisting>
-                            <para>
-                                <literal>jac</literal> по-прежнему возвращает
-                                <literal>dg/dy+cj*dg/dydot</literal> в виде функции от
-                                <literal>(t,y,ydot,cj,x1,x2,...)</literal>.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>Символьная строка.</para>
-                            <para>Она должна ссылаться на имя подпрограммы на языке C или Fortran, связанной с Scilab.
-                            </para>
-                            <para>В C последовательность вызова должна быть следующего вида:</para>
-                            <programlisting role=""><![CDATA[ 
+                                <para>
+                                    <literal>jac</literal> по-прежнему возвращает
+                                    <literal>dg/dy+cj*dg/dydot</literal> в виде функции от
+                                    <literal>(t,y,ydot,cj,x1,x2,...)</literal>.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>Символьная строка.</para>
+                                <para>Она должна ссылаться на имя подпрограммы на языке C или Fortran, связанной с Scilab.
+                                </para>
+                                <para>В C последовательность вызова должна быть следующего вида:</para>
+                                <programlisting role=""><![CDATA[ 
 void jac(double *t, double y[], double yd[], double pd[],
          double *cj, double rpar[], int ipar[])
  ]]></programlisting>
-                            <para>В Fortran она должна быть::</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>В Fortran она должна быть::</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine jac(t,y,yd,pd,cj,rpar,ipar)
 double precision t, y(*),yd(*),pd(*),cj,rpar(*)
 integer ipar(*)
  ]]></programlisting>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>surf</term>
-                <listitem>
-                    <para>
-                        <link linkend="external">внешняя</link> функция, список или строка. Вычисляет 
-                        значение вектор-столбца <literal>surf(t,y)</literal> с
-                        <literal>ng</literal> элементами. Каждый элемент определяет поверхность.
-                        Она может быть определена как:
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>Функция Scilab.</para>
-                            <para>Её последовательность вызова должна быть
-                                <literal>surf(t,y)</literal>.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>Список.</para>
-                            <para>Он должен быть следующего вида:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>surf</term>
+                    <listitem>
+                        <para>
+                            <link linkend="external">внешняя</link> функция, список или строка. Вычисляет 
+                            значение вектор-столбца <literal>surf(t,y)</literal> с
+                            <literal>ng</literal> элементами. Каждый элемент определяет поверхность.
+                            Она может быть определена как:
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>Функция Scilab.</para>
+                                <para>Её последовательность вызова должна быть
+                                    <literal>surf(t,y)</literal>.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>Список.</para>
+                                <para>Он должен быть следующего вида:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 list(surf,x1,x2,...)
  ]]></programlisting>
-                            <para>где последовательность вызова функции 
-                                <literal>surf</literal>теперь имеет вид:
-                            </para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>где последовательность вызова функции 
+                                    <literal>surf</literal>теперь имеет вид:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 r=surf(t,y,x1,x2,...)
  ]]></programlisting>
-                        </listitem>
-                        <listitem>
-                            <para>Символьная строка.</para>
-                            <para>Она должна ссылаться на имя процедуры Fortran, связанной с Scilab'ом.
-                            </para>
-                            <para>В C последовательность вызова должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                            </listitem>
+                            <listitem>
+                                <para>Символьная строка.</para>
+                                <para>Она должна ссылаться на имя процедуры Fortran, связанной с Scilab'ом.
+                                </para>
+                                <para>В C последовательность вызова должна быть:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 void surf(int *ny, double *t, double y[], int *ng, double gout[])
  ]]></programlisting>
-                            <para>В Fortran она должна быть:</para>
-                            <programlisting role="no-scilab-exec"><![CDATA[ 
+                                <para>В Fortran она должна быть:</para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
 subroutine surf(ny,t,y,ng,gout)
 double precision t, y(*),gout(*)
 integer ny,ng
  ]]></programlisting>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>info</term>
-                <listitem>
-                    <para>
-                        список, содержащий <literal>7</literal> элементов.
-                        Значение по умолчанию равно <literal>list([],0,[],[],[],0,0)</literal>.
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>info(1)</term>
-                            <listitem>
-                                <para>
-                                    вещественный скаляр, который указывает максимальное время, для которого
-                                    <literal>g</literal> может выполняться, либо пустая матрица 
-                                    <literal>[]</literal>, если время не ограничено.
-                                </para>
                             </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(2)</term>
-                            <listitem>
-                                <para>
-                                    флаг, который указывает возвращать ли <literal>dassl</literal> её
-                                    вычисленные промежуточные  значения (<literal>flag=1</literal>) или только
-                                    пользователь определяет значения моментов времени
-                                    (<literal>flag=0</literal>).
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(3)</term>
-                            <listitem>
-                                <para>
-                                    двухэлементный вектор, который указывает определение <literal>[ml,mu]</literal>
-                                    матрицы пределов, вычисленной с помощью <literal>jac</literal>; 
-                                    <literal>r(i - j + ml + mu + 1,j) =  "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>.
-                                    Если <literal>jac</literal> возвращает полную матрицу, то 
-                                    <literal>info(3)=[]</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(4)</term>
-                            <listitem>
-                                <para>
-                                    вещественный скаляр, который указывает максимальный размер шага. Установите
-                                    <literal>info(4)=[]</literal>, если ограничений нет.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(5)</term>
-                            <listitem>
-                                <para>
-                                    вещественный скаляр, который указывает исходный размер шага.
-                                    Установите <literal>info(5)=[]</literal>, если он не определён.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(6)</term>
-                            <listitem>
-                                <para>
-                                    <literal>info(6)=1</literal>, если известно, что решение отрицательное, в 
-                                    противном случае установите <literal>info(6)=0</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>info(7)</term>
-                            <listitem>
-                                <para>
-                                    <literal>info(7)=1</literal>, если <literal>ydot0</literal> является
-                                    просто оценкой; <literal>info(7)=0</literal>, если
-                                    <literal>g(t0,y0,ydot0)=0</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>hd</term>
-                <listitem>
-                    <para>
-                        вещественный вектор, который позволяет хранить контекст
-                        <literal>dassl</literal> и продолжать интегрирование.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>r</term>
-                <listitem>
-                    <para>
-                        вещественная матрица. Каждый столбец является вектором <literal>[t;x(t);xdot(t)]</literal>,
-                        где <literal>t</literal> - индекс времени для которого требуется найти решение.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>Решение дифференциального уравнения в неявном виде.</para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>info</term>
+                    <listitem>
+                        <para>
+                            список, содержащий <literal>7</literal> элементов.
+                            Значение по умолчанию равно <literal>list([],0,[],[],[],0,0)</literal>.
+                        </para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>info(1)</term>
+                                <listitem>
+                                    <para>
+                                        вещественный скаляр, который указывает максимальное время, для которого
+                                        <literal>g</literal> может выполняться, либо пустая матрица 
+                                        <literal>[]</literal>, если время не ограничено.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(2)</term>
+                                <listitem>
+                                    <para>
+                                        флаг, который указывает возвращать ли <literal>dassl</literal> её
+                                        вычисленные промежуточные  значения (<literal>flag=1</literal>) или только
+                                        пользователь определяет значения моментов времени
+                                        (<literal>flag=0</literal>).
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(3)</term>
+                                <listitem>
+                                    <para>
+                                        двухэлементный вектор, который указывает определение <literal>[ml,mu]</literal>
+                                        матрицы пределов, вычисленной с помощью <literal>jac</literal>; 
+                                        <literal>r(i - j + ml + mu + 1,j) =  "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>.
+                                        Если <literal>jac</literal> возвращает полную матрицу, то 
+                                        <literal>info(3)=[]</literal>.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(4)</term>
+                                <listitem>
+                                    <para>
+                                        вещественный скаляр, который указывает максимальный размер шага. Установите
+                                        <literal>info(4)=[]</literal>, если ограничений нет.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(5)</term>
+                                <listitem>
+                                    <para>
+                                        вещественный скаляр, который указывает исходный размер шага.
+                                        Установите <literal>info(5)=[]</literal>, если он не определён.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(6)</term>
+                                <listitem>
+                                    <para>
+                                        <literal>info(6)=1</literal>, если известно, что решение отрицательное, в 
+                                        противном случае установите <literal>info(6)=0</literal>.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>info(7)</term>
+                                <listitem>
+                                    <para>
+                                        <literal>info(7)=1</literal>, если <literal>ydot0</literal> является
+                                        просто оценкой; <literal>info(7)=0</literal>, если
+                                        <literal>g(t0,y0,ydot0)=0</literal>.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>hd</term>
+                    <listitem>
+                        <para>
+                            вещественный вектор, который позволяет хранить контекст
+                            <literal>dassl</literal> и продолжать интегрирование.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>r</term>
+                    <listitem>
+                        <para>
+                            вещественная матрица. Каждый столбец является вектором <literal>[t;x(t);xdot(t)]</literal>,
+                            где <literal>t</literal> - индекс времени для которого требуется найти решение.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>Решение дифференциального уравнения в неявном виде.</para>
+            <programlisting role="no-scilab-exec"><![CDATA[ 
 g(t,y,ydot)=0
 y(t0)=y0  and   ydot(t0)=ydot0
  ]]></programlisting>
-        <para>
-            Возвращает моменты времени пересечения поверхности и номер поверхности в <literal>nn</literal>.
-        </para>
-        <para>Подробные примеры можно найти в  SCIDIR/tests/unit_tests/dassldasrt.tst</para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+            <para>
+                Возвращает моменты времени пересечения поверхности и номер поверхности в <literal>nn</literal>.
+            </para>
+            <para>Подробные примеры можно найти в  SCIDIR/tests/unit_tests/dassldasrt.tst</para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 //dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1<=t<=6
 //g1 = ((2*log(y)+8)/t - 5)*y 
 //g2 = log(y) - 2.2491 
@@ -392,28 +392,28 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
 //(Should return nn=[2.4698972 2])
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="ode">ode</link>
-            </member>
-            <member>
-                <link linkend="dassl">dassl</link>
-            </member>
-            <member>
-                <link linkend="impl">impl</link>
-            </member>
-            <member>
-                <link linkend="fort">fort</link>
-            </member>
-            <member>
-                <link linkend="link">link</link>
-            </member>
-            <member>
-                <link linkend="external">внешняя функция</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="ode">ode</link>
+                </member>
+                <member>
+                    <link linkend="dassl">dassl</link>
+                </member>
+                <member>
+                    <link linkend="impl">impl</link>
+                </member>
+                <member>
+                    <link linkend="fort">fort</link>
+                </member>
+                <member>
+                    <link linkend="link">link</link>
+                </member>
+                <member>
+                    <link linkend="external">внешняя функция</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

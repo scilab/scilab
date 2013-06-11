@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 #ifndef H_CLCG4_H
 #define H_CLCG4_H
 

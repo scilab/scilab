@@ -21,52 +21,52 @@
 
 function [ox,oy,w,h,ok] = get_rectangle(xc,yc)
 
-//** 18 Mar 2008 : update to "scicos_rubberbox()" for Scilab 5:
-//**               the rubberduck solution :)
+    //** 18 Mar 2008 : update to "scicos_rubberbox()" for Scilab 5:
+    //**               the rubberduck solution :)
 
-ox = xc
-oy = yc
-w=0 ; h=0
-ok = %t
-first = %t
+    ox = xc
+    oy = yc
+    w=0 ; h=0
+    ok = %t
+    first = %t
 
-[x_topleft, y_topleft] = (xc , yc )
+    [x_topleft, y_topleft] = (xc , yc )
 
-rub_width  = 0 ;
-rub_height = 0 ;
+    rub_width  = 0 ;
+    rub_height = 0 ;
 
-//** [x_left, y_top, width, height]
+    //** [x_left, y_top, width, height]
 
-[final_rect, button] = scicos_rubberbox([xc; yc; rub_width; rub_height], %t) ;
+    [final_rect, button] = scicos_rubberbox([xc; yc; rub_width; rub_height], %t) ;
 
-if button == [2 5 12 -1000] then //** right button exit OR active window has been closed
-    ok = %f ;
-    return ; //** ---> Exit point 
-end
-
-
-//** final_rect: a rectangle defined by [x_left, y_top, width, height] 
-x_left = final_rect(1) ; 
-y_top  = final_rect(2) ; 
-wid    = final_rect(3) ; 
-hei    = final_rect(4) ; 
+    if button == [2 5 12 -1000] then //** right button exit OR active window has been closed
+        ok = %f ;
+        return ; //** ---> Exit point
+    end
 
 
-  xc1 = xc + wid ;
-  yc1 = yc - hei ;
+    //** final_rect: a rectangle defined by [x_left, y_top, width, height]
+    x_left = final_rect(1) ;
+    y_top  = final_rect(2) ;
+    wid    = final_rect(3) ;
+    hei    = final_rect(4) ;
 
-  ox = min(xc, xc1) ; 
-  oy = max(yc, yc1) ;
-  w  = abs(xc - xc1) ;
-  h  = abs(yc - yc1) ;
-  ok = %t            ;
 
-// disp("take a look here :) [get_rectangle]") ; pause
-// 
-// normal return parameters:  ox
-//                            oy
-//			      w
-//			      h
-//			      ok
+    xc1 = xc + wid ;
+    yc1 = yc - hei ;
+
+    ox = min(xc, xc1) ;
+    oy = max(yc, yc1) ;
+    w  = abs(xc - xc1) ;
+    h  = abs(yc - yc1) ;
+    ok = %t            ;
+
+    // disp("take a look here :) [get_rectangle]") ; pause
+    //
+    // normal return parameters:  ox
+    //                            oy
+    //			      w
+    //			      h
+    //			      ok
 
 endfunction

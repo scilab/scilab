@@ -85,9 +85,9 @@ void SciEnvForWindows(void)
             cout << "Please modify ""ComSpec"" environment variable." << endl << "cmd.exe on W2K and more." << endl;
         }
     }
-    
+
     SetScilabEnvironmentVariables(SCIPathName);
-    if (SCIPathName) 
+    if (SCIPathName)
     {
         FREE(SCIPathName);
         SCIPathName = NULL;
@@ -99,19 +99,22 @@ void SciEnvForWindows(void)
 /*--------------------------------------------------------------------------*/
 bool IsTheGoodShell(void)
 {
-    bool bOK=false;
+    bool bOK = false;
     char shellCmd[PATH_MAX];
     char drive[_MAX_DRIVE];
     char dir[_MAX_DIR];
     char fname[_MAX_FNAME];
     char ext[_MAX_EXT];
 
-    strcpy(shellCmd,"");
-    strcpy(fname,"");
+    strcpy(shellCmd, "");
+    strcpy(fname, "");
     GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
-    _splitpath(shellCmd,drive,dir,fname,ext);
+    _splitpath(shellCmd, drive, dir, fname, ext);
 
-    if (_stricmp(fname,"cmd")==0) bOK=true;
+    if (_stricmp(fname, "cmd") == 0)
+    {
+        bOK = true;
+    }
 
     return bOK;
 }
@@ -119,23 +122,23 @@ bool IsTheGoodShell(void)
 /*--------------------------------------------------------------------------*/
 bool Set_Shell(void)
 {
-    bool bOK=false;
-    char env[_MAX_DRIVE+_MAX_DIR+_MAX_FNAME+_MAX_EXT+10];
-    char *WINDIRPATH=NULL;
+    bool bOK = false;
+    char env[_MAX_DRIVE + _MAX_DIR + _MAX_FNAME + _MAX_EXT + 10];
+    char *WINDIRPATH = NULL;
 
-    WINDIRPATH=getenv ("SystemRoot");
-    sprintf(env,"ComSpec=%s\\system32\\cmd.exe",WINDIRPATH);
+    WINDIRPATH = getenv ("SystemRoot");
+    sprintf(env, "ComSpec=%s\\system32\\cmd.exe", WINDIRPATH);
 
     if (putenv (env))
     {
-        bOK=false;
+        bOK = false;
     }
     else
     {
-        bOK=true;
+        bOK = true;
     }
 
-    if(WINDIRPATH)
+    if (WINDIRPATH)
     {
         delete[] WINDIRPATH;
         WINDIRPATH = NULL;
@@ -145,7 +148,7 @@ bool Set_Shell(void)
 
 static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath)
 {
-    #define PATH_FORMAT "PATH=%s/bin;%s"
+#define PATH_FORMAT "PATH=%s/bin;%s"
 
     BOOL bOK = FALSE;
     char *PATH = NULL;
@@ -153,8 +156,8 @@ static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath)
 
     PATH = getenv("PATH");
 
-    env = (char*) MALLOC(sizeof(char)* (strlen(PATH_FORMAT) + strlen(PATH) +
-                        strlen(DefaultPath) + 1));
+    env = (char*) MALLOC(sizeof(char) * (strlen(PATH_FORMAT) + strlen(PATH) +
+                                         strlen(DefaultPath) + 1));
     if (env)
     {
         sprintf(env, PATH_FORMAT, DefaultPath, PATH);
@@ -162,8 +165,12 @@ static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath)
         {
             bOK = FALSE;
         }
-        else bOK = TRUE;
-        FREE(env); env = NULL;
+        else
+        {
+            bOK = TRUE;
+        }
+        FREE(env);
+        env = NULL;
     }
     return bOK;
 }
@@ -184,7 +191,7 @@ void Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
     _putenv ("WIN64=OK");
 #endif
 
-    if ( GetSystemMetrics(SM_REMOTESESSION) ) 
+    if ( GetSystemMetrics(SM_REMOTESESSION) )
     {
         _putenv ("SCILAB_MSTS_SESSION=OK");
     }
@@ -207,9 +214,9 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 #endif
 
 /*--------------------------------------------------------------------------*/
-bool AntislashToSlash(const char *pathwindows,char *pathunix)
+bool AntislashToSlash(const char *pathwindows, char *pathunix)
 {
-    return convertSlash(pathwindows,pathunix,false);
+    return convertSlash(pathwindows, pathunix, false);
 }
 /*--------------------------------------------------------------------------*/
 bool SlashToAntislash(const char *pathunix, char *pathwindows)
@@ -217,14 +224,14 @@ bool SlashToAntislash(const char *pathunix, char *pathwindows)
     return convertSlash(pathunix, pathwindows, true);
 }
 /*--------------------------------------------------------------------------*/
-bool convertSlash(const char *path_in,char *path_out,bool slashToAntislash)
+bool convertSlash(const char *path_in, char *path_out, bool slashToAntislash)
 {
     bool bOK = false;
     if ( (path_in) && (path_out) )
     {
-        int i=0;
-        strcpy(path_out,path_in);
-        for (i=0;i<(int)strlen(path_out);i++)
+        int i = 0;
+        strcpy(path_out, path_in);
+        for (i = 0; i < (int)strlen(path_out); i++)
         {
             if ( slashToAntislash )
             {
@@ -244,13 +251,16 @@ bool convertSlash(const char *path_in,char *path_out,bool slashToAntislash)
             }
         }
     }
-    else bOK = false;
+    else
+    {
+        bOK = false;
+    }
 
     return bOK;
 }
 
 /*--------------------------------------------------------------------------*/
-char *getshortpathname(const char *longpathname,bool *convertok)
+char *getshortpathname(const char *longpathname, bool *convertok)
 {
     char *ShortName = NULL;
 
@@ -260,7 +270,10 @@ char *getshortpathname(const char *longpathname,bool *convertok)
         /* first we try to call to know path length */
         int length = GetShortPathName(longpathname, NULL, 0);
 
-        if (length <= 0 ) length = MAX_PATH_SHORT;
+        if (length <= 0 )
+        {
+            length = MAX_PATH_SHORT;
+        }
 
         ShortName = new char[length];
 
@@ -287,7 +300,7 @@ char *getshortpathname(const char *longpathname,bool *convertok)
         /* Linux */
         int length = (int)strlen(longpathname) + 1;
         ShortName = new char[length];
-        if(ShortName) 
+        if (ShortName)
         {
             strcpy(ShortName, longpathname);
         }
@@ -308,10 +321,19 @@ bool isdir(const char * path)
     bool bOK = false;
 #ifndef _MSC_VER
     struct stat buf;
-    if (path == NULL) return false;
-    if (stat(path, &buf) == 0 && S_ISDIR(buf.st_mode)) bOK=true;
+    if (path == NULL)
+    {
+        return false;
+    }
+    if (stat(path, &buf) == 0 && S_ISDIR(buf.st_mode))
+    {
+        bOK = true;
+    }
 #else
-    if (isDrive(path)) return true;
+    if (isDrive(path))
+    {
+        return true;
+    }
     else
     {
         char *pathTmp = NULL;
@@ -319,15 +341,18 @@ bool isdir(const char * path)
         if (pathTmp)
         {
             DWORD attr = 0;
-            strcpy(pathTmp,path);
-            if ( (pathTmp[strlen(pathTmp)-1]=='\\') || (pathTmp[strlen(pathTmp)-1]=='/') )
+            strcpy(pathTmp, path);
+            if ( (pathTmp[strlen(pathTmp) - 1] == '\\') || (pathTmp[strlen(pathTmp) - 1] == '/') )
             {
-                pathTmp[strlen(pathTmp)-1]='\0';
+                pathTmp[strlen(pathTmp) - 1] = '\0';
             }
             attr = GetFileAttributes(pathTmp);
             delete[] pathTmp;
             pathTmp = NULL;
-            if (attr == INVALID_FILE_ATTRIBUTES) return false;
+            if (attr == INVALID_FILE_ATTRIBUTES)
+            {
+                return false;
+            }
             return ((attr & FILE_ATTRIBUTE_DIRECTORY) != 0) ? true : false;
         }
     }
@@ -337,14 +362,20 @@ bool isdir(const char * path)
 
 bool createdirectory(const char *path)
 {
-    bool bOK=false;
+    bool bOK = false;
 #ifndef _MSC_VER
     if  (!isdir(path))
     {
-        if (mkdir(path, DIRMODE) == 0) bOK=true;
+        if (mkdir(path, DIRMODE) == 0)
+        {
+            bOK = true;
+        }
     }
 #else
-    if (CreateDirectory(path,NULL)) bOK=true;
+    if (CreateDirectory(path, NULL))
+    {
+        bOK = true;
+    }
 #endif
     return bOK;
 }
@@ -354,11 +385,11 @@ bool isDrive(const char *strname)
 #ifdef _MSC_VER
     if (strname)
     {
-        if ( ((strlen(strname) == 2) || (strlen(strname) == 3)) && (strname[1]== ':') )
+        if ( ((strlen(strname) == 2) || (strlen(strname) == 3)) && (strname[1] == ':') )
         {
             if (strlen(strname) == 3)
             {
-                if ( (strname[2]!= '\\') && (strname[2]!= '/') )
+                if ( (strname[2] != '\\') && (strname[2] != '/') )
                 {
                     return false;
                 }

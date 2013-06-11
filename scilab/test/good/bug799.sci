@@ -10,14 +10,14 @@ clear
 stacksize(19e6);
 m=10593;
 n=696;
-a=rand(m,n,'u');
-fprintfMat(TMPDIR+'/Mat',a,'%5.2f');
-a1=fscanfMat(TMPDIR+'/Mat');
+a=rand(m,n,"u");
+fprintfMat(TMPDIR+"/Mat",a,"%5.2f");
+a1=fscanfMat(TMPDIR+"/Mat");
 
 if( a1(1,1) == 0.21 ) then
-	affich_result(%T,799);
+    affich_result(%T,799);
 else
-	affich_result(%F,799);
+    affich_result(%F,799);
 end
 
 clear

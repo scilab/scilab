@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,141 +11,141 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="impl" xml:lang="ru">
-    <refnamediv>
-        <refname>impl</refname>
-        <refpurpose>дифференциальное алгебраическое уравнение</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>y0, ydot0</term>
-                <listitem>
-                    <para>вещественные векторы или матрицы (начальные условия)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t0</term>
-                <listitem>
-                    <para>вещественный скаляр (начальное время)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>вещественный вектор (моменты времени, в которые вычисляется решение)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>res, adda</term>
-                <listitem>
-                    <para>внешние (функция или символьная строка или спискок)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>type</term>
-                <listitem>
-                    <para>
-                        строка <literal>'adams'</literal> или <literal>'stiff'</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>atol, rtol</term>
-                <listitem>
-                    <para>
-                        вещественный скаляр или вещественный вектор того же размера что и <literal>y</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>jac</term>
-                <listitem>
-                    <para>внешние (функция или символьная строка или спискок)</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Решение линейного неявного дифференциального уравнения
-        </para>
-        <para>A(t,y) dy/dt=g(t,y), y(t0)=y0</para>
-        <para>
-            <literal>t0</literal> -- начальный момент времени, <literal>y0</literal> -- 
-            вектор исходных условий. Должен быть задан вектор <literal>ydot0</literal> -- производная <literal>y</literal> по времени 
-            в момент времени <literal>t0</literal>. Входное значение <literal>res</literal> является <link linkend="external">внешним</link>,
-            т.е. функцией с особым синтаксисом или именем процедуры Fortran или функцией C (символьная строка) с определённой 
-            последовательностью вызова или списком.
-        </para>
-        <para>
-            Если <literal>res</literal> является функцией, у неё должен быть следующий синтаксис:
-        </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="impl" xml:lang="ru">
+        <refnamediv>
+            <refname>impl</refname>
+            <refpurpose>дифференциальное алгебраическое уравнение</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>y0, ydot0</term>
+                    <listitem>
+                        <para>вещественные векторы или матрицы (начальные условия)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t0</term>
+                    <listitem>
+                        <para>вещественный скаляр (начальное время)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>вещественный вектор (моменты времени, в которые вычисляется решение)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>res, adda</term>
+                    <listitem>
+                        <para>внешние (функция или символьная строка или спискок)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>type</term>
+                    <listitem>
+                        <para>
+                            строка <literal>'adams'</literal> или <literal>'stiff'</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>atol, rtol</term>
+                    <listitem>
+                        <para>
+                            вещественный скаляр или вещественный вектор того же размера что и <literal>y</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>jac</term>
+                    <listitem>
+                        <para>внешние (функция или символьная строка или спискок)</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Решение линейного неявного дифференциального уравнения
+            </para>
+            <para>A(t,y) dy/dt=g(t,y), y(t0)=y0</para>
+            <para>
+                <literal>t0</literal> -- начальный момент времени, <literal>y0</literal> -- 
+                вектор исходных условий. Должен быть задан вектор <literal>ydot0</literal> -- производная <literal>y</literal> по времени 
+                в момент времени <literal>t0</literal>. Входное значение <literal>res</literal> является <link linkend="external">внешним</link>,
+                т.е. функцией с особым синтаксисом или именем процедуры Fortran или функцией C (символьная строка) с определённой 
+                последовательностью вызова или списком.
+            </para>
+            <para>
+                Если <literal>res</literal> является функцией, у неё должен быть следующий синтаксис:
+            </para>
+            <programlisting role="no-scilab-exec"><![CDATA[ 
 r = res(t,y,ydot)
  ]]></programlisting>
-        <para>
-            где <literal>t</literal> -- вещественный скаляр (время), а  <literal>y</literal> и <literal>ydot</literal> 
-            являются вещественными векторами (состояние и производная состояния). Эта функция должна возвращать
-            <literal>r=g(t,y)-A(t,y)*ydot</literal>.
-        </para>
-        <para>
-            Если <literal>res</literal> -- символьная строка, то она ссылается на имя процедуры Fortran или функции C. 
-            В качестве примера как это сделать смотрите <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>.
-        </para>
-        <para>
-            <literal>res</literal> может быть также списком: см. помощь по <link linkend="ode">ode</link>.
-        </para>
-        <para>
-            Входное значение <literal>adda</literal> также является внешним.
-        </para>
-        <para>
-            Если <literal>adda</literal> -- функция, то у неё должен быть следующий синтаксис:
-        </para>
-        <programlisting role="no-scilab-exec"><![CDATA[ 
+            <para>
+                где <literal>t</literal> -- вещественный скаляр (время), а  <literal>y</literal> и <literal>ydot</literal> 
+                являются вещественными векторами (состояние и производная состояния). Эта функция должна возвращать
+                <literal>r=g(t,y)-A(t,y)*ydot</literal>.
+            </para>
+            <para>
+                Если <literal>res</literal> -- символьная строка, то она ссылается на имя процедуры Fortran или функции C. 
+                В качестве примера как это сделать смотрите <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>.
+            </para>
+            <para>
+                <literal>res</literal> может быть также списком: см. помощь по <link linkend="ode">ode</link>.
+            </para>
+            <para>
+                Входное значение <literal>adda</literal> также является внешним.
+            </para>
+            <para>
+                Если <literal>adda</literal> -- функция, то у неё должен быть следующий синтаксис:
+            </para>
+            <programlisting role="no-scilab-exec"><![CDATA[ 
 r = adda(t,y,p)
  ]]></programlisting>
-        <para>
-            и она должна возвращать <literal>r=A(t,y)+p</literal>, где <literal>p</literal> -- матрица, которую прибавляют к
-            <literal>A(t,y)</literal>.
-        </para>
-        <para>
-            Если <literal>adda</literal> является символьной строкой, то она ссылается на имя процедуры Fortran или функции C. 
-            В качестве примера как это сделать смотрите <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>.
-        </para>
-        <para>
-            <literal>adda</literal> может также быть списком: см. помощь по <link linkend="ode">ode</link>.
-        </para>
-        <para>
-            Входное значение <literal>jac</literal> также является внешним.
-        </para>
-        <para>
-            Если <literal>jac</literal> -- функция, то у неё должен быть следующий синтаксис:
-        </para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+            <para>
+                и она должна возвращать <literal>r=A(t,y)+p</literal>, где <literal>p</literal> -- матрица, которую прибавляют к
+                <literal>A(t,y)</literal>.
+            </para>
+            <para>
+                Если <literal>adda</literal> является символьной строкой, то она ссылается на имя процедуры Fortran или функции C. 
+                В качестве примера как это сделать смотрите <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>.
+            </para>
+            <para>
+                <literal>adda</literal> может также быть списком: см. помощь по <link linkend="ode">ode</link>.
+            </para>
+            <para>
+                Входное значение <literal>jac</literal> также является внешним.
+            </para>
+            <para>
+                Если <literal>jac</literal> -- функция, то у неё должен быть следующий синтаксис:
+            </para>
+            <programlisting role="no-scilab-exec"><![CDATA[  
 j = jac(t,y,ydot)
  ]]></programlisting>
-        <para>
-            и она должна возвращать якобиан <literal>r=g(t,y)-A(t,y)*ydot</literal> относительно 
-            <literal>y</literal>.
-        </para>
-        <para>
-            Если <literal>jac</literal> -- символьная строка, то она ссылается на процедуру Fortran или функцию C.
-            В качестве примера как это сделать смотрите <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>.
-        </para>
-        <para>
-            <literal>jac</literal> может быть также списком: см. помощь по <link linkend="ode">ode</link>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+            <para>
+                и она должна возвращать якобиан <literal>r=g(t,y)-A(t,y)*ydot</literal> относительно 
+                <literal>y</literal>.
+            </para>
+            <para>
+                Если <literal>jac</literal> -- символьная строка, то она ссылается на процедуру Fortran или функцию C.
+                В качестве примера как это сделать смотрите <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>.
+            </para>
+            <para>
+                <literal>jac</literal> может быть также списком: см. помощь по <link linkend="ode">ode</link>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 // Используем перезапуск налету
 //[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
@@ -153,19 +153,19 @@ y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 //[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
 //max(abs(x1-x))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="dassl">dassl</link>
-            </member>
-            <member>
-                <link linkend="ode">ode</link>
-            </member>
-            <member>
-                <link linkend="external">внешняя функция</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="dassl">dassl</link>
+                </member>
+                <member>
+                    <link linkend="ode">ode</link>
+                </member>
+                <member>
+                    <link linkend="external">внешняя функция</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

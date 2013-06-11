@@ -9,5 +9,5 @@
 
 //=============================================================================
 function makefilename = dlwGetDefltMakefileName(makename)
-  makefilename = 'Makelib';
+    makefilename = "Makelib";
 endfunction

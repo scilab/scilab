@@ -14,7 +14,7 @@
 //   Display a Nelder-Mead engine
 //
 function neldermead_display ( this )
-  warnobsolete("disp", "neldermead_display")
-  disp(this)
+    warnobsolete("disp", "neldermead_display")
+    disp(this)
 endfunction
 

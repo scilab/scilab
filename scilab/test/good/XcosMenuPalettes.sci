@@ -21,17 +21,17 @@
 
 function XcosMenuPalettes()
 
- Cmenu = [] ;
- %pt = []   ; 
+    Cmenu = [] ;
+    %pt = []   ;
 
- if super_block then
-    //** if the user ask for palette inside from a superblock the defaul level is changed  
-    Scicos_commands = ['%diagram_path_objective=[];%scicos_navig=1';
-		       'Cmenu='"XcosMenuPalettes'";%scicos_navig=[]';
-		       '%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1']
- else
-    //** from the main Scicos window 
-    [palettes, windows] = do_palettes(palettes, windows)
+    if super_block then
+        //** if the user ask for palette inside from a superblock the defaul level is changed
+        Scicos_commands = ["%diagram_path_objective=[];%scicos_navig=1";
+        "Cmenu='"XcosMenuPalettes'";%scicos_navig=[]";
+        "%diagram_path_objective="+sci2exp(super_path)+";%scicos_navig=1"]
+    else
+        //** from the main Scicos window
+        [palettes, windows] = do_palettes(palettes, windows)
 
- end
+    end
 endfunction

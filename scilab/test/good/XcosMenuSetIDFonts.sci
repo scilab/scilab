@@ -23,20 +23,20 @@ function XcosMenuSetIDFonts()
 
     Cmenu = [] ;
 
-    [edited, options] = do_options(scs_m.props.options,'ID') ;
+    [edited, options] = do_options(scs_m.props.options,"ID") ;
 
     scs_m.props.options = options ;
 
     if edited then //** if modified force a Replot :)
-      // Acquire the current clicked window 
-      gh_curwin = scf(%win) ;
-      gh_axes = gca(); 
+        // Acquire the current clicked window
+        gh_curwin = scf(%win) ;
+        gh_axes = gca();
 
-      //** Clear the graphic window WITHOUT changing his parameters ! :)
-      drawlater() ;
-      delete(gh_axes.children) ; //** wipe out all the temp graphics object
-      drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
-				     
-   Cmenu = [] ; %pt = [];
+        //** Clear the graphic window WITHOUT changing his parameters ! :)
+        drawlater() ;
+        delete(gh_axes.children) ; //** wipe out all the temp graphics object
+        drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
+
+        Cmenu = [] ; %pt = [];
     end
 endfunction

@@ -15,13 +15,13 @@
 //   If the loggin is started up, if there is a log file, close it.
 //
 function this = optimbase_logshutdown ( this )
-  if ~this.logstartup then
-    error ( gettext ( "%s: Logging not started." , "optimbase_logshutdown" ) )
-  else
-    this.logstartup = %f;
-    if ( this.logfile <> "" ) then
-      mclose( this.logfilehandle );
+    if ~this.logstartup then
+        error ( gettext ( "%s: Logging not started." , "optimbase_logshutdown" ) )
+    else
+        this.logstartup = %f;
+        if ( this.logfile <> "" ) then
+            mclose( this.logfilehandle );
+        end
     end
-  end
 endfunction
 

@@ -9,6 +9,6 @@ affich_result(getdate(-1) == [0 0 0 0 0 0 0 0 0 0], 793)
 //dt=getdate(x) x must be >0.
 // ans  =
 //
-//!   0.    0.    0.    0.    0.    0.    0.    0.    0. !  
+//!   0.    0.    0.    0.    0.    0.    0.    0.    0. !
 clear
 

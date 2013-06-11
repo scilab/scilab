@@ -40,23 +40,23 @@ types::Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, typ
     // in[0] Should be a scalar double value.
     if (!in.front()->isDouble())
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), "exit", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "exit", 1);
         return types::Function::Error;
     }
 
     if (in.front()->getAs<types::Double>()->getSize() != 1)
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"), "exit", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "exit", 1);
         return types::Function::Error;
     }
 
-    double dExit = in.front()->getAs<types::Double>()->getReal(0,0);
-    int iExit = (int) in.front()->getAs<types::Double>()->getReal(0,0);
+    double dExit = in.front()->getAs<types::Double>()->getReal(0, 0);
+    int iExit = (int) in.front()->getAs<types::Double>()->getReal(0, 0);
 
     if (dExit != (double) iExit)
     {
-      Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"), "exit", 1);
-      return types::Function::Error;
+        Scierror(999, _("%s: Wrong value for input argument #%d: A integer expected.\n"), "exit", 1);
+        return types::Function::Error;
     }
 
     ConfigVariable::setExitStatus(iExit);

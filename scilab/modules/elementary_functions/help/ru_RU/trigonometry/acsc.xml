@@ -1,83 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="acsc" xml:lang="ru">
-    <refnamediv>
-        <refname>acsc</refname>
-        <refpurpose>вычисляет поэлементно арккосеканс аргумента.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>y = acsc(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>вещественный или комплексный массив.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>вещественный или комплексный массив.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Вычисляет поэлементно арккосеканс аргумента. Для вещественного аргумента с абсолютным значением больше 1 результат вещественный.
-        </para>
-        <para>
-            Используются следующие равенства: 
-            <code>acsc(z) == -acsc(-z) == asin(1/z) == %pi/2-asec(z) == %i*acsch(%i*z)</code>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Образец</title>
-        <scilab:image>
-            x=linspace(1,20,200);
-            x=[-x($:-1:1) %nan x];
-            plot(x,acsc(x))
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="acsc" xml:lang="ru">
+        <refnamediv>
+            <refname>acsc</refname>
+            <refpurpose>вычисляет поэлементно арккосеканс аргумента.
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>y = acsc(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>вещественный или комплексный массив.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>y</term>
+                    <listitem>
+                        <para>вещественный или комплексный массив.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Вычисляет поэлементно арккосеканс аргумента. Для вещественного аргумента с абсолютным значением больше 1 результат вещественный.
+            </para>
+            <para>
+                Используются следующие равенства: 
+                <code>acsc(z) == -acsc(-z) == asin(1/z) == %pi/2-asec(z) == %i*acsch(%i*z)</code>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Образец</title>
+            <scilab:image>
+                x=linspace(1,20,200);
+                x=[-x($:-1:1) %nan x];
+                plot(x,acsc(x))
+            </scilab:image>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 x=linspace(1,20,200);
 x=[-x($:-1:1) %nan x];
 plot(x,acsc(x))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="csc">csc</link>
-            </member>
-            <member>
-                <link linkend="acscd">acscd</link>
-            </member>
-            <!--<member>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="csc">csc</link>
+                </member>
+                <member>
+                    <link linkend="acscd">acscd</link>
+                </member>
+                <!--<member>
         <link linkend="csgn">csgn</link>
       </member>-->
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Сcылки</title>
-        <simplelist type="vert">
-            <member>Kahan, W., "Branch cuts for complex elementary functions, or,
-                Much ado about nothing's sign bit", Proceedings of the joing IMA/SIAM
-                conference on The State of the Art in Numerical Analysis, University of
-                Birmingham, A. Iserles and M.J.D. Powell, eds, Clarendon Press, Oxford,
-                1987, 165-210.
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Сcылки</title>
+            <simplelist type="vert">
+                <member>Kahan, W., "Branch cuts for complex elementary functions, or,
+                    Much ado about nothing's sign bit", Proceedings of the joing IMA/SIAM
+                    conference on The State of the Art in Numerical Analysis, University of
+                    Birmingham, A. Iserles and M.J.D. Powell, eds, Clarendon Press, Oxford,
+                    1987, 165-210.
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

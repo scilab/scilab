@@ -1,9 +1,9 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
-// 
+//
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
-// 
+//
 
 //
 // A example to call some lapack routines
@@ -14,10 +14,10 @@
 
 
 ilib_verbose(0);
-setenv('__USE_DEPRECATED_STACK_FUNCTIONS__','YES');
+setenv("__USE_DEPRECATED_STACK_FUNCTIONS__","YES");
 
 curdir = pwd();
-file_path = get_file_path('lapackscilab.sce');
+file_path = get_file_path("lapackscilab.sce");
 chdir(file_path);
 
 files_functions = ["intdgemm.c";
@@ -28,7 +28,7 @@ table_functions = ["dgemm", "intdgemm";
 "zgemm", "intzgemm";
 "dsyev", "intdsyev"];
 
-ilib_build('lapackexample', table_functions, files_functions, []);
+ilib_build("lapackexample", table_functions, files_functions, []);
 exec loader.sce;
 
 Alfa = 2;
@@ -48,7 +48,7 @@ if norm(max(real(dsyev(A))) - max(real(spec(A))) ) > %eps * 1e15 then pause,end
 
 alfa = 1 + %i;
 betha = alfa;
-A = rand(2,2) + %i * rand(2,2); 
+A = rand(2,2) + %i * rand(2,2);
 B = A;
 C = A;
 C = zgemm(alfa, A, B, betha, C)

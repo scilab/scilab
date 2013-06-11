@@ -39,13 +39,13 @@ Function::ReturnValue sci_isfield(typed_list &in, int _iRetCount, typed_list &ou
         return Function::Error;
     }
 
-    if(in[0]->isStruct() == false)
+    if (in[0]->isStruct() == false)
     {
         Scierror(999, _("%s:  Wrong type for input argument #%d: struct array expected.\n"), "isfield", 1);
         return Function::Error;
     }
 
-    if(in[1]->isString() == false)
+    if (in[1]->isString() == false)
     {
         Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected.\n"), "isfield", 2);
         return Function::Error;
@@ -58,9 +58,9 @@ Function::ReturnValue sci_isfield(typed_list &in, int _iRetCount, typed_list &ou
 
     for (int i = 0 ; i < pInString->getRows() ; ++i)
     {
-        for(int j = 0 ; j < pInString->getCols() ; ++j)
+        for (int j = 0 ; j < pInString->getCols() ; ++j)
         {
-            pOutBool->set(i, j, pInStruct->exists(std::wstring(pInString->get(i,j))));
+            pOutBool->set(i, j, pInStruct->exists(std::wstring(pInString->get(i, j))));
         }
     }
 

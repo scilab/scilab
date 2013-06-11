@@ -20,35 +20,35 @@ import javax.swing.RowFilter;
 import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.types.ScilabTypeEnum;
 
-public class VariableBrowserRowTypeFilter extends RowFilter<Object, Object>{
+public class VariableBrowserRowTypeFilter extends RowFilter<Object, Object> {
 
-	private HashSet<ScilabTypeEnum> filteredValues;
-	
-	public VariableBrowserRowTypeFilter() {
-		super();
-		filteredValues = new HashSet<ScilabTypeEnum>();
-	}
-	
-	public VariableBrowserRowTypeFilter(HashSet<ScilabTypeEnum> filteredValues) {
-		this.filteredValues = filteredValues;
-	}
-	
-	@Override
-	public boolean include(Entry< ? extends Object, ? extends Object> entry) {
-		Integer currentRowVariableTypeNumber =  (Integer) entry.getValue(BrowseVar.TYPE_COLUMN_INDEX);
-		
-		try {
-			if (filteredValues.contains(ScilabTypeEnum.swigToEnum(currentRowVariableTypeNumber))) {
-				return false;
-			}
-		} catch (IllegalArgumentException e) {
-			// This case should never occur
-			// But there is a bug in Scilab global variables type detection
-			// So we show these "unknown type" variables by default (See bug #7333)
-			return true;
-		}
-		
-		return true;
-	}
+    private HashSet<ScilabTypeEnum> filteredValues;
+
+    public VariableBrowserRowTypeFilter() {
+        super();
+        filteredValues = new HashSet<ScilabTypeEnum>();
+    }
+
+    public VariableBrowserRowTypeFilter(HashSet<ScilabTypeEnum> filteredValues) {
+        this.filteredValues = filteredValues;
+    }
+
+    @Override
+    public boolean include(Entry < ? extends Object, ? extends Object > entry) {
+        Integer currentRowVariableTypeNumber =  (Integer) entry.getValue(BrowseVar.TYPE_COLUMN_INDEX);
+
+        try {
+            if (filteredValues.contains(ScilabTypeEnum.swigToEnum(currentRowVariableTypeNumber))) {
+                return false;
+            }
+        } catch (IllegalArgumentException e) {
+            // This case should never occur
+            // But there is a bug in Scilab global variables type detection
+            // So we show these "unknown type" variables by default (See bug #7333)
+            return true;
+        }
+
+        return true;
+    }
 
 }

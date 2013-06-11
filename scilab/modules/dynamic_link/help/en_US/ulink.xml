@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  *
@@ -10,55 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ulink">
-    <refnamediv>
-        <refname>ulink</refname>
-        <refpurpose>unlink/unload a dynamically linked shared object</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>ulink(x)
-            ulink()
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ulink">
+        <refnamediv>
+            <refname>ulink</refname>
+            <refpurpose>unlink/unload a dynamically linked shared object</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>ulink(x)
+                ulink()
+            </synopsis>
+        </refsynopsisdiv>
         <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>
-                            a ID returned by <literal>link</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <title>Description</title>
-        <para>
-            see <literal>link</literal>
-        </para>
-        <para>
-            If you plan to use <literal>valgrind</literal> to profile
-            your module, you must first set the environment
-            variable <literal>PROFILE_SCILAB_DYNAMIC_LINK</literal> before
-            starting scilab:
-        </para>
-        <programlisting role="example"><![CDATA[
+            <refsection>
+                <title>Arguments</title>
+                <variablelist>
+                    <varlistentry>
+                        <term>x</term>
+                        <listitem>
+                            <para>
+                                a ID returned by <literal>link</literal>
+                            </para>
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+            </refsection>
+            <title>Description</title>
+            <para>
+                see <literal>link</literal>
+            </para>
+            <para>
+                If you plan to use <literal>valgrind</literal> to profile
+                your module, you must first set the environment
+                variable <literal>PROFILE_SCILAB_DYNAMIC_LINK</literal> before
+                starting scilab:
+            </para>
+            <programlisting role="example"><![CDATA[
 # under bash shell:
 export PROFILE_SCILAB_DYNAMIC_LINK=1
 export SCILAB_VALGRIND_OPT="--db-attach=no --show-below-main=yes  --log-fd=2 --log-file=scilab.txt --num-callers=50 -v --trace-redir=yes --read-var-info=yes --trace-children=yes --show-reachable=yes --smc-check=all --child-silent-after-fork=no --leak-check=full --track-origins=yes"
 scilab -nwni -profile
  ]]></programlisting>
-        <para>This environment variable force Scilab not to release the
-            loaded dynamic libraries. This will
-            allow <literal>valgrind</literal> to perform its sum-up analysis.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+            <para>This environment variable force Scilab not to release the
+                loaded dynamic libraries. This will
+                allow <literal>valgrind</literal> to perform its sum-up analysis.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 cd TMPDIR
 f1=['#include <math.h>'
     'void fooc(double c[],double a[],double *b,int *m,int *n)'
@@ -77,14 +77,14 @@ link("show") // Will should the value 0
 
 ulink(0) // ulink fooc
  ]]></programlisting>
-    </refsection>
-    
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="link">link</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="link">link</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

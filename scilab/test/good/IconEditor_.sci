@@ -5,5 +5,5 @@ function IconEditor_()
     Cmenu=[]
     %pt=[]
     enablemenus()
-    edited=%t  
+    edited=%t
 endfunction

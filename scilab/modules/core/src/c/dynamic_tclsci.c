@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -42,15 +42,18 @@ int gw_dynamic_tclsci(void)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int dynamic_setenvtcl(char *string,char *value)
+int dynamic_setenvtcl(char *string, char *value)
 {
     if (hTclsciLib)
     {
         if (ptr_setenvtcl == NULL)
         {
-            ptr_setenvtcl = (PROC_SETENVTCL) GetDynLibFuncPtr(hTclsciLib, 
-                SETENVTCL_NAME);
-            if (ptr_setenvtcl == NULL) return 0;
+            ptr_setenvtcl = (PROC_SETENVTCL) GetDynLibFuncPtr(hTclsciLib,
+                            SETENVTCL_NAME);
+            if (ptr_setenvtcl == NULL)
+            {
+                return 0;
+            }
         }
         return (ptr_setenvtcl)(string , value);
     }
@@ -64,9 +67,12 @@ BOOL dynamic_TerminateTclTk(void)
         BOOL bResult = FALSE;
         if (ptr_TerminatTclTk == NULL)
         {
-            ptr_TerminatTclTk = (PROC_TERMINATETCLTK) GetDynLibFuncPtr(hTclsciLib, 
-                TERMINATETCLTK_NAME);
-            if (ptr_TerminatTclTk == NULL) return FALSE;
+            ptr_TerminatTclTk = (PROC_TERMINATETCLTK) GetDynLibFuncPtr(hTclsciLib,
+                                TERMINATETCLTK_NAME);
+            if (ptr_TerminatTclTk == NULL)
+            {
+                return FALSE;
+            }
         }
         bResult = (ptr_TerminatTclTk)();
 

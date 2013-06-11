@@ -30,19 +30,19 @@ extern "C"
 
 Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int dimsArray[2]                = {1,1};
+    int dimsArray[2]                = {1, 1};
     wchar_t* wcsFileName            = NULL;
     wchar_t** wcsFilesOpened        = NULL;
     wchar_t* wcsTemp                = NULL;
     wchar_t* wcsPath                = NULL;
-    
-    if(in.size() != 1)
+
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "get_absolute_file_path", 1);
         return types::Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "get_absolute_file_path", 1);
         return types::Function::Error;
@@ -51,16 +51,16 @@ Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRe
     wcsFileName = in[0]->getAs<types::String>()->get(0);
     wcsFilesOpened = FileManager::getFilenames();
 
-    for(int i = FileManager::getOpenedCount()-1; i >= 0; i--)
+    for (int i = FileManager::getOpenedCount() - 1; i >= 0; i--)
     {
         wcsTemp = wcsstr(wcsFilesOpened[i], wcsFileName);
-        if(wcsTemp)
+        if (wcsTemp)
         {
             int iSize = (int)(wcsTemp - wcsFilesOpened[i]);
             wcsPath = (wchar_t*)MALLOC((iSize + 1) * sizeof(wchar_t));
             memcpy(wcsPath, wcsFilesOpened[i], iSize * sizeof(wchar_t));
             wcsPath[iSize] = L'\0';
-            if(wcslen(wcsFilesOpened[i]) == wcslen(wcsFileName) + iSize)
+            if (wcslen(wcsFilesOpened[i]) == wcslen(wcsFileName) + iSize)
             {
                 types::String* pStringOut = new types::String(2, dimsArray);
                 pStringOut->set(0, wcsPath);
@@ -73,8 +73,8 @@ Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRe
             }
         }
     }
-    
-    if(wcsTemp == NULL)
+
+    if (wcsTemp == NULL)
     {
         char* pstFile = wide_string_to_UTF8(wcsFileName);
         Scierror(999, _("%s: The file %s is not opened in scilab.\n"), "get_absolute_file_path", pstFile);

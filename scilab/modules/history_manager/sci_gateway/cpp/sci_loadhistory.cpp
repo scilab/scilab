@@ -28,13 +28,13 @@ extern "C"
 
 types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
-		char* pstFilename = HistoryManager::getInstance()->getFilename();
-        if(pstFilename)
+        char* pstFilename = HistoryManager::getInstance()->getFilename();
+        if (pstFilename)
         {
             BOOL bOK = HistoryManager::getInstance()->loadFromFile(pstFilename);
-            if(!bOK)
+            if (!bOK)
             {
                 Scierror(999, _("%s: loadScilabHistoryFromFile failed.\n"), "loadhistory");
                 return types::Function::Error;
@@ -47,24 +47,24 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
             return types::Function::Error;
         }
     }
-    else if(in.size() == 1)
+    else if (in.size() == 1)
     {
         wchar_t* pwstFilename = NULL;
 
-        if((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
+        if ((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "loadhistory", 1);
             return types::Function::Error;
         }
 
         pwstFilename = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
-        if(pwstFilename)
+        if (pwstFilename)
         {
             char* pstFilename = wide_string_to_UTF8(pwstFilename);
-            if(pstFilename)
+            if (pstFilename)
             {
                 BOOL bOK = HistoryManager::getInstance()->loadFromFile(pstFilename);
-                if(!bOK)
+                if (!bOK)
                 {
                     Scierror(999, _("%s: Load Scilab history from file failed.\n"), "loadhistory");
                     return types::Function::Error;

@@ -592,7 +592,7 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
         {
             deleteGraphicObject(pobjUID);
             deleteDataObject(pobjUID);
-	    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
+            releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
             return NULL;
         }
 
@@ -602,7 +602,7 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
         {
             deleteGraphicObject(pobjUID);
             deleteDataObject(pobjUID);
-	    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
+            releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
             return NULL;
         }
 
@@ -663,7 +663,7 @@ char * allocatePolyline(char * pparentsubwinUID, double *pvecx, double *pvecy, d
         {
             deleteGraphicObject(pobjUID);
             deleteDataObject(pobjUID);
-	    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
+            releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
             return NULL;
         }
     }
@@ -1399,7 +1399,7 @@ char *ConstructAxis(char *pparentsubwinUID, char dir, char tics, double *vx,
         if (tics_labels == NULL)
         {
             deleteGraphicObject(pobjUID);
-	    releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
+            releaseGraphicObjectProperty(__GO_PARENT__, pobjUID, jni_string, 1);
             return (char *)NULL;
         }
 
@@ -1664,7 +1664,7 @@ char *ConstructSegs(char *pparentsubwinUID, int type,
     if (arrowCoords == NULL)
     {
         deleteGraphicObject(pobjUID);
-	releaseGraphicObjectProperty(__GO_SEGS__, pobjUID, jni_string, 1);
+        releaseGraphicObjectProperty(__GO_SEGS__, pobjUID, jni_string, 1);
         return (char *)NULL;
     }
 

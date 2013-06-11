@@ -31,26 +31,26 @@ extern int *listentry(int *header, int i);
 /*--------------------------------------------------------------------------*/
 int MlistGetFieldNumber(int *ptr, const char *string)
 {
-	int nf = 0, longueur = 0, istart = 0, k = 0, ilocal = 0, retval = 0;
-	int *headerstr = NULL;
-	static char str[nlgh];
+    int nf = 0, longueur = 0, istart = 0, k = 0, ilocal = 0, retval = 0;
+    int *headerstr = NULL;
+    static char str[nlgh];
 
-	headerstr = listentry(ptr ,1);
-	nf = headerstr[1] * headerstr[2] - 1;  /* number of fields */
-	retval = -1;
-	for (k=0; k<nf; k++) 
-	{
-		longueur = Min( headerstr[6+k] - headerstr[5+k] , nlgh);  /* size of kth fieldname */
-		istart = 5 + nf + headerstr[5+k];    /* start of kth fieldname code */
+    headerstr = listentry(ptr , 1);
+    nf = headerstr[1] * headerstr[2] - 1;  /* number of fields */
+    retval = -1;
+    for (k = 0; k < nf; k++)
+    {
+        longueur = Min( headerstr[6 + k] - headerstr[5 + k] , nlgh); /* size of kth fieldname */
+        istart = 5 + nf + headerstr[5 + k];  /* start of kth fieldname code */
 
-		C2F(cvstr)(&longueur, &headerstr[istart], str, (ilocal=1, &ilocal),longueur);
-		str[longueur] = '\0';
-		if (strcmp(string, str) == 0) 
-		{
-			retval = k + 2;
-			break;
-		}
-	}
-	return retval;
+        C2F(cvstr)(&longueur, &headerstr[istart], str, (ilocal = 1, &ilocal), longueur);
+        str[longueur] = '\0';
+        if (strcmp(string, str) == 0)
+        {
+            retval = k + 2;
+            break;
+        }
+    }
+    return retval;
 }
 /*--------------------------------------------------------------------------*/

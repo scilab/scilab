@@ -12,9 +12,9 @@ fprintfMat(TMPDIR+"/bug1620.txt",a);
 b=fscanfMat(TMPDIR+"/bug1620.txt");
 
 if or(size(b)<>[500 148]) then
-	affich_result(%F,1620);
+    affich_result(%F,1620);
 else
-	affich_result(%T,1620);
+    affich_result(%T,1620);
 end
 
 clear

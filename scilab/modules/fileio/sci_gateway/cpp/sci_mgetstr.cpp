@@ -31,20 +31,20 @@ extern "C"
 Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iDims                   = 2;
-    int iDimsArray[2]           = {1,1};
+    int iDimsArray[2]           = {1, 1};
     int iFile                   = -1; //default file : last opened file
     types::String* pOutString   = NULL;
     int iSizeToRead             = 0;
     wchar_t* pwstOut            = NULL;
 
 
-    if(in.size() < 1 || in.size() > 2)
+    if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mgetstr", 1, 2);
         return types::Function::Error;
     }
 
-    if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
+    if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mgetstr", 1);
         return types::Function::Error;
@@ -52,9 +52,9 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
 
     iSizeToRead = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
 
-    if(in.size() == 2)
+    if (in.size() == 2)
     {
-        if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
+        if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mgetstr", 2);
             return types::Function::Error;
@@ -63,22 +63,22 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
     }
     switch (iFile)
     {
-    case 0: // stderr
-    case 6: // stdout
-        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mgetstr", iFile);
-        return types::Function::Error;
-    default :
-        pwstOut = mgetstr(iFile, iSizeToRead);
+        case 0: // stderr
+        case 6: // stdout
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mgetstr", iFile);
+            return types::Function::Error;
+        default :
+            pwstOut = mgetstr(iFile, iSizeToRead);
     }
 
-    if(pwstOut == NULL)
+    if (pwstOut == NULL)
     {
         Scierror(999, _("%s: Unable to read file %d.\n"), "mgetstr", iFile);
         return types::Function::Error;
     }
     else
     {
-        pOutString = new types::String(iDims,iDimsArray);
+        pOutString = new types::String(iDims, iDimsArray);
         pOutString->set(0, pwstOut);
     }
 

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -79,30 +79,31 @@ X=(Type *)x;\
 
 int C2F(genmdsp)(int *typ, int *x, int *nx, int *mm, int *nn, int *ll, int *lunit, char cw[], int *iw, int cw_len)
 {
-  static int k, l, m, n, s, lbloc, nbloc, k1, l1, k2, ib;
-  static char dl;
-  static int fl, io, lp;
-  extern  int C2F(blktit)(), C2F(basout)();
+    static int k, l, m, n, s, lbloc, nbloc, k1, l1, k2, ib;
+    static char dl;
+    static int fl, io, lp;
+    extern  int C2F(blktit)(), C2F(basout)();
 
-  switch (*typ) {
-  case 1:
-    DSP(integer1,"%*i ");
-    break;
-  case 2:
-    DSP(integer2,"%*i ");
-    break;
-  case 4:
-    DSP(integer,"%*i ");
-    break;
-  case 11:
-    DSP(unsigned char,"%*u ");
-    break;
-  case 12:
-    DSP(unsigned short,"%*u ");
-    break;
-  case 14:
-    DSP(unsigned int,"%*u ");
-    break;
-  }
-  return 0;
+    switch (*typ)
+    {
+        case 1:
+            DSP(integer1, "%*i ");
+            break;
+        case 2:
+            DSP(integer2, "%*i ");
+            break;
+        case 4:
+            DSP(integer, "%*i ");
+            break;
+        case 11:
+            DSP(unsigned char, "%*u ");
+            break;
+        case 12:
+            DSP(unsigned short, "%*u ");
+            break;
+        case 14:
+            DSP(unsigned int, "%*u ");
+            break;
+    }
+    return 0;
 }

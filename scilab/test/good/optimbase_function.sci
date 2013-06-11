@@ -11,9 +11,9 @@
 //
 // optimbase_function --
 //   Call the cost function and return the value.
-//   If a cost function argument is defined in current object, 
+//   If a cost function argument is defined in current object,
 //   pass it to the function.
-//   If an index is defined as input argument, pass it to the 
+//   If an index is defined as input argument, pass it to the
 //   function, always as second argument.
 // Arguments
 //   x : the point where the function is to be evaluated.
@@ -31,9 +31,9 @@
 //      c : the nonlinear, positive constraints
 //      gc : the gradient of the nonlinear, positive constraints
 //    Other values of index might be used in the future,
-//    for example, when an derivative-based optimizer with 
+//    for example, when an derivative-based optimizer with
 //    non linear constraints is required.
-//   index, output : 
+//   index, output :
 //     if index > 0, everything went find
 //     if index == 0, interrupts the optimization
 //     if index < 0, f cannot be evaluated
@@ -80,82 +80,82 @@
 //   [ f , c , data ] = costf ( this , x , index , data )
 //
 function varargout = optimbase_function ( this , x , index )
-  [lhs,rhs]=argn();
-  if ( rhs <> 3 ) then
-    errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 are expected."), "optimbase_function", rhs);
-    error(errmsg)
-  end
-  if ( ( lhs < 3 ) | ( lhs > 5 ) ) then
-    errmsg = msprintf(gettext("%s: Unexpected number of output arguments : %d provided while 3 to 5 are expected."), "optimbase_function", lhs);
-    error(errmsg)
-  end
-  if this.fun == "" then
-    errmsg = msprintf(gettext("%s: Empty function (use -function option)."), "optimbase_function")
-    error(errmsg)
-  end
-  this.funevals = this.funevals + 1;
-  if this.verbose == 1 then
-    msg = sprintf ( "Function Evaluation #%d at [%s]" , ...
-      this.funevals , strcat(string(x)," ") )
-    this = optimbase_log ( this , msg )
-  end
-    if ( this.withderivatives ) then 
-      if ( this.nbineqconst == 0 ) then
-        // [ f , g , index ] = costf ( x , index )
-        // [ f , g , index , data ] = costf ( x , index , data )
-        // [ this , f , g , index ] = optimbase_function ( this , x , index )
-        if ( typeof(this.costfargument) == "string" ) then
-          [ f , g , index ] = this.fun ( x , index );
+    [lhs,rhs]=argn();
+    if ( rhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 are expected."), "optimbase_function", rhs);
+        error(errmsg)
+    end
+    if ( ( lhs < 3 ) | ( lhs > 5 ) ) then
+        errmsg = msprintf(gettext("%s: Unexpected number of output arguments : %d provided while 3 to 5 are expected."), "optimbase_function", lhs);
+        error(errmsg)
+    end
+    if this.fun == "" then
+        errmsg = msprintf(gettext("%s: Empty function (use -function option)."), "optimbase_function")
+        error(errmsg)
+    end
+    this.funevals = this.funevals + 1;
+    if this.verbose == 1 then
+        msg = sprintf ( "Function Evaluation #%d at [%s]" , ...
+        this.funevals , strcat(string(x)," ") )
+        this = optimbase_log ( this , msg )
+    end
+    if ( this.withderivatives ) then
+        if ( this.nbineqconst == 0 ) then
+            // [ f , g , index ] = costf ( x , index )
+            // [ f , g , index , data ] = costf ( x , index , data )
+            // [ this , f , g , index ] = optimbase_function ( this , x , index )
+            if ( typeof(this.costfargument) == "string" ) then
+                [ f , g , index ] = this.fun ( x , index );
+            else
+                [ f , g , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            end
+            varargout(1) = this
+            varargout(2) = f
+            varargout(3) = g
+            varargout(4) = index
         else
-          [ f , g , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            // [ f , g , c , gc , index ] = costf ( x , index )
+            // [ f , g , c , gc , index , data ] = costf ( x , index , data )
+            // [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
+            if ( typeof(this.costfargument) == "string" ) then
+                [ f , g , c , gc , index ] = this.fun ( x , index );
+            else
+                [ f , g , c , gc , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            end
+            varargout(1) = this
+            varargout(2) = f
+            varargout(3) = g
+            varargout(4) = c
+            varargout(5) = gc
+            varargout(6) = index
         end
-        varargout(1) = this
-        varargout(2) = f
-        varargout(3) = g
-        varargout(4) = index
-      else
-        // [ f , g , c , gc , index ] = costf ( x , index )
-        // [ f , g , c , gc , index , data ] = costf ( x , index , data )
-        // [ this , f , g , c , gc , index ] = optimbase_function ( this , x , index )
-        if ( typeof(this.costfargument) == "string" ) then
-          [ f , g , c , gc , index ] = this.fun ( x , index );
-        else
-          [ f , g , c , gc , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
-        end
-        varargout(1) = this
-        varargout(2) = f
-        varargout(3) = g
-        varargout(4) = c
-        varargout(5) = gc
-        varargout(6) = index
-      end
     else
-      if ( this.nbineqconst == 0 ) then
-        // [ f , index ] = costf ( x , index )
-        // [ f , index , data ] = costf ( x , index , data )
-        // [ this , f , index ] = optimbase_function ( this , x , index )
-        if ( typeof(this.costfargument) == "string" ) then
-          [ f , index ] = this.fun ( x , index );
+        if ( this.nbineqconst == 0 ) then
+            // [ f , index ] = costf ( x , index )
+            // [ f , index , data ] = costf ( x , index , data )
+            // [ this , f , index ] = optimbase_function ( this , x , index )
+            if ( typeof(this.costfargument) == "string" ) then
+                [ f , index ] = this.fun ( x , index );
+            else
+                [ f , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            end
+            varargout(1) = this
+            varargout(2) = f
+            varargout(3) = index
         else
-          [ f , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            // [ f , c , index ] = costf ( x , index )
+            // [ f , c , index , data ] = costf ( x , index , data )
+            // [ this , f , c , index ] = optimbase_function ( this , x , index )
+            if ( typeof(this.costfargument) == "string" ) then
+                [ f , c , index ] = this.fun ( x , index );
+            else
+                [ f , c , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
+            end
+            varargout(1) = this
+            varargout(2) = f
+            varargout(3) = c
+            varargout(4) = index
         end
-        varargout(1) = this
-        varargout(2) = f
-        varargout(3) = index
-      else
-        // [ f , c , index ] = costf ( x , index )
-        // [ f , c , index , data ] = costf ( x , index , data )
-        // [ this , f , c , index ] = optimbase_function ( this , x , index )
-        if ( typeof(this.costfargument) == "string" ) then
-          [ f , c , index ] = this.fun ( x , index );
-        else
-          [ f , c , index , this.costfargument ] = this.fun ( x , index , this.costfargument );
-        end
-        varargout(1) = this
-        varargout(2) = f
-        varargout(3) = c
-        varargout(4) = index
-      end
     end
 endfunction
 

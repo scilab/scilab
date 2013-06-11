@@ -1,134 +1,134 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp" xml:lang="en">
-    <refnamediv>
-        <refname>interp</refname>
-        <refpurpose>cubic spline evaluation function</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[ yp [,yp1 [,yp2 [,yp3]]]] = interp(xp, x, y, d [, out_mode])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x,y</term>
-                <listitem>
-                    <para>
-                        real vectors of same size <literal>n</literal>: Coordinates of data points on which the interpolation and the related cubic spline (called <literal>s(X)</literal> in the following) or sub-spline function is based and built.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>d</term>
-                <listitem>
-                    <para>real vector of size(x): The derivative s'(x). Most often, s'(x) will be priorly estimated through the function splin(x, y,..)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>out_mode</term>
-                <listitem>
-                    <para>
-                        (optional) string defining <literal>s(X)</literal> for <literal>X</literal>  outside <latex>[x_1,\ x_n]</latex>. 
-                        Possible values: "by_zero" | "by_nan" | "C0" | "natural" | "linear" | "periodic"
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xp</term>
-                <listitem>
-                    <para>
-                        real vector or matrix: abscissae at which <literal>Y</literal> is unknown and must be estimated with <literal>s(xp)</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>yp</term>
-                <listitem>
-                    <para>
-                        vector or matrix of size(xp): <literal>yp(i) = s(xp(i))</literal> or <literal>yp(i,j) = s(xp(i,j))</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>yp1, yp2, yp3</term>
-                <listitem>
-                    <para>
-                        vectors (or matrices) of size(x): elementwise evaluation of the derivatives <literal>s'(xp)</literal>, <literal>s''(xp)</literal> and <literal>s'''(xp)</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The cubic spline function <literal>s(X)</literal> interpolating the <literal>(x,y)</literal> set of given points is a continuous and derivable piece-wise function defined over <latex>[x_1,\ x_n]</latex>. It consists of a set of cubic polynomials, each one <latex>p_k(X)</latex> being defined on <latex>[x_k,\ x_{k+1}]</latex> and connected in values and slopes to both its neighbours. Thus, we can state that for each <latex>X\ \in\ [x_k,\ x_{k+1}],\ s(X) = p_k(X)</latex>, such that
-            <latex>s(x_i) = y_i,\quad \mbox{and}\quad s'(x_i) = d_i</latex>.  Then, interp() evaluates <literal>s(X)</literal> (and <literal>s'(X), s''(X), s'''(X)</literal> if needed) at <literal>xp(i)</literal>, such that
-        </para>
-        <latex style="display" align="center"><![CDATA[ yp_i = s(xp_i) \quad or \quad yp_{i,j} = s(xp_{i,j})  ]]></latex>
-        <latex style="display" align="center"><![CDATA[ yp1_i = s'(xp_i) \quad or \quad yp1_{i,j} = s'(xp_{i,j})  ]]></latex>
-        <latex style="display" align="center"><![CDATA[ yp2_i = s''(xp_i) \quad or \quad yp2_{i,j} = s''(xp_{i,j})  ]]></latex>
-        <latex style="display" align="center"><![CDATA[ yp3_i = s'''(xp_i) \quad or \quad yp3_{i,j} = s'''(xp_{i,j})  ]]></latex>
-        <para>
-            The <literal>out_mode</literal> parameter set the evaluation rule
-            for extrapolation, i.e. for <literal>xp(i)</literal> outside <latex>[x_1,\ x_n]</latex> :
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>"by_zero"</term>
-                <listitem>
-                    <para>an extrapolation by zero is done</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"by_nan"</term>
-                <listitem>
-                    <para>extrapolation by Nan (%nan)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"C0"</term>
-                <listitem>
-                    <para>the extrapolation is defined as follows :</para>
-                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 ]]></latex>
-                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n ]]></latex>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"natural"</term>
-                <listitem>
-                    <para>
-                        the extrapolation is defined as follows (<latex>p_i(x)</latex> being the polynomial defining 
-                        <literal>s(X)</literal> on <latex>[x_i,\ x_{i+1}]</latex>)
-                    </para>
-                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = p_1(xp_i) ]]></latex>
-                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = p_{n-1}(xp_i) ]]></latex>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"linear"</term>
-                <listitem>
-                    <para>the extrapolation is defined as follows :</para>
-                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 + d_1.(xp_i - x_1) ]]></latex>
-                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n + d_n.(xp_i - x_n) ]]></latex>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"periodic"</term>
-                <listitem>
-                    <para>
-                        <literal>s(X)</literal> is extended by periodicity: 
-                    </para>
-                    <latex style="display" align="center"><![CDATA[ yp_i = s( x_1 + ( (xp_i-x_1)\ \mbox{modulo}\ [x_n-x_1] ) ) ]]></latex>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp" xml:lang="en">
+        <refnamediv>
+            <refname>interp</refname>
+            <refpurpose>cubic spline evaluation function</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[ yp [,yp1 [,yp2 [,yp3]]]] = interp(xp, x, y, d [, out_mode])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x,y</term>
+                    <listitem>
+                        <para>
+                            real vectors of same size <literal>n</literal>: Coordinates of data points on which the interpolation and the related cubic spline (called <literal>s(X)</literal> in the following) or sub-spline function is based and built.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>d</term>
+                    <listitem>
+                        <para>real vector of size(x): The derivative s'(x). Most often, s'(x) will be priorly estimated through the function splin(x, y,..)
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>out_mode</term>
+                    <listitem>
+                        <para>
+                            (optional) string defining <literal>s(X)</literal> for <literal>X</literal>  outside <latex>[x_1,\ x_n]</latex>. 
+                            Possible values: "by_zero" | "by_nan" | "C0" | "natural" | "linear" | "periodic"
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>xp</term>
+                    <listitem>
+                        <para>
+                            real vector or matrix: abscissae at which <literal>Y</literal> is unknown and must be estimated with <literal>s(xp)</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>yp</term>
+                    <listitem>
+                        <para>
+                            vector or matrix of size(xp): <literal>yp(i) = s(xp(i))</literal> or <literal>yp(i,j) = s(xp(i,j))</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>yp1, yp2, yp3</term>
+                    <listitem>
+                        <para>
+                            vectors (or matrices) of size(x): elementwise evaluation of the derivatives <literal>s'(xp)</literal>, <literal>s''(xp)</literal> and <literal>s'''(xp)</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The cubic spline function <literal>s(X)</literal> interpolating the <literal>(x,y)</literal> set of given points is a continuous and derivable piece-wise function defined over <latex>[x_1,\ x_n]</latex>. It consists of a set of cubic polynomials, each one <latex>p_k(X)</latex> being defined on <latex>[x_k,\ x_{k+1}]</latex> and connected in values and slopes to both its neighbours. Thus, we can state that for each <latex>X\ \in\ [x_k,\ x_{k+1}],\ s(X) = p_k(X)</latex>, such that
+                <latex>s(x_i) = y_i,\quad \mbox{and}\quad s'(x_i) = d_i</latex>.  Then, interp() evaluates <literal>s(X)</literal> (and <literal>s'(X), s''(X), s'''(X)</literal> if needed) at <literal>xp(i)</literal>, such that
+            </para>
+            <latex style="display" align="center"><![CDATA[ yp_i = s(xp_i) \quad or \quad yp_{i,j} = s(xp_{i,j})  ]]></latex>
+            <latex style="display" align="center"><![CDATA[ yp1_i = s'(xp_i) \quad or \quad yp1_{i,j} = s'(xp_{i,j})  ]]></latex>
+            <latex style="display" align="center"><![CDATA[ yp2_i = s''(xp_i) \quad or \quad yp2_{i,j} = s''(xp_{i,j})  ]]></latex>
+            <latex style="display" align="center"><![CDATA[ yp3_i = s'''(xp_i) \quad or \quad yp3_{i,j} = s'''(xp_{i,j})  ]]></latex>
+            <para>
+                The <literal>out_mode</literal> parameter set the evaluation rule
+                for extrapolation, i.e. for <literal>xp(i)</literal> outside <latex>[x_1,\ x_n]</latex> :
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>"by_zero"</term>
+                    <listitem>
+                        <para>an extrapolation by zero is done</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"by_nan"</term>
+                    <listitem>
+                        <para>extrapolation by Nan (%nan)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"C0"</term>
+                    <listitem>
+                        <para>the extrapolation is defined as follows :</para>
+                        <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 ]]></latex>
+                        <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n ]]></latex>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"natural"</term>
+                    <listitem>
+                        <para>
+                            the extrapolation is defined as follows (<latex>p_i(x)</latex> being the polynomial defining 
+                            <literal>s(X)</literal> on <latex>[x_i,\ x_{i+1}]</latex>)
+                        </para>
+                        <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = p_1(xp_i) ]]></latex>
+                        <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = p_{n-1}(xp_i) ]]></latex>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"linear"</term>
+                    <listitem>
+                        <para>the extrapolation is defined as follows :</para>
+                        <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 + d_1.(xp_i - x_1) ]]></latex>
+                        <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n + d_n.(xp_i - x_n) ]]></latex>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>"periodic"</term>
+                    <listitem>
+                        <para>
+                            <literal>s(X)</literal> is extended by periodicity: 
+                        </para>
+                        <latex style="display" align="center"><![CDATA[ yp_i = s( x_1 + ( (xp_i-x_1)\ \mbox{modulo}\ [x_n-x_1] ) ) ]]></latex>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // see the examples of splin and lsq_splin
 
 // an example showing C2 and C1 continuity of spline and subspline
@@ -156,32 +156,32 @@ plot2d(xx, [yy2k yy2f])
 legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
 xtitle("spline interpolation (second derivatives)")
  ]]></programlisting>
-        <scilab:image>
-            a = -8; b = 8;
-            x = linspace(a,b,20)';
-            y = sinc(x);
-            dk = splin(x,y);  // not_a_knot
-            df = splin(x,y, "fast");
-            xx = linspace(a,b,800)';
-            [yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
-            [yyf, yy1f, yy2f] = interp(xx, x, y, df); 
-            clf()
-            subplot(3,1,1)
-            plot2d(xx, [yyk yyf])
-            plot2d(x, y, style=-9)
-            legends(["not_a_knot spline","fast sub-spline","interpolation points"],...
-            [1 2 -9], "ur",%f)
-            xtitle("spline interpolation")
-            subplot(3,1,2)
-            plot2d(xx, [yy1k yy1f])
-            legends(["not_a_knot spline","fast sub-spline"], [1 2], "ur",%f)
-            xtitle("spline interpolation (derivatives)")
-            subplot(3,1,3)
-            plot2d(xx, [yy2k yy2f])
-            legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
-            xtitle("spline interpolation (second derivatives)")
-        </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+            <scilab:image>
+                a = -8; b = 8;
+                x = linspace(a,b,20)';
+                y = sinc(x);
+                dk = splin(x,y);  // not_a_knot
+                df = splin(x,y, "fast");
+                xx = linspace(a,b,800)';
+                [yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
+                [yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+                clf()
+                subplot(3,1,1)
+                plot2d(xx, [yyk yyf])
+                plot2d(x, y, style=-9)
+                legends(["not_a_knot spline","fast sub-spline","interpolation points"],...
+                [1 2 -9], "ur",%f)
+                xtitle("spline interpolation")
+                subplot(3,1,2)
+                plot2d(xx, [yy1k yy1f])
+                legends(["not_a_knot spline","fast sub-spline"], [1 2], "ur",%f)
+                xtitle("spline interpolation (derivatives)")
+                subplot(3,1,3)
+                plot2d(xx, [yy2k yy2f])
+                legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
+                xtitle("spline interpolation (second derivatives)")
+            </scilab:image>
+            <programlisting role="example"><![CDATA[ 
 // here is an example showing the different extrapolation possibilities
 x = linspace(0,1,11)';
 y = cosh(x-0.5);
@@ -195,38 +195,38 @@ clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
  ]]></programlisting>
-        <scilab:image>
-            x = linspace(0,1,11)';
-            y = cosh(x-0.5);
-            d = splin(x,y);
-            xx = linspace(-0.5,1.5,401)';
-            yy0 = interp(xx,x,y,d,"C0");
-            yy1 = interp(xx,x,y,d,"linear");
-            yy2 = interp(xx,x,y,d,"natural");
-            yy3 = interp(xx,x,y,d,"periodic");  
-            clf()
-            plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
-            xtitle(" different way to evaluate a spline outside its domain")
-        </scilab:image>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="splin">splin</link>
-            </member>
-            <member>
-                <link linkend="lsq_splin">lsq_splin</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+            <scilab:image>
+                x = linspace(0,1,11)';
+                y = cosh(x-0.5);
+                d = splin(x,y);
+                xx = linspace(-0.5,1.5,401)';
+                yy0 = interp(xx,x,y,d,"C0");
+                yy1 = interp(xx,x,y,d,"linear");
+                yy2 = interp(xx,x,y,d,"natural");
+                yy3 = interp(xx,x,y,d,"periodic");  
+                clf()
+                plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
+                xtitle(" different way to evaluate a spline outside its domain")
+            </scilab:image>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="splin">splin</link>
+                </member>
+                <member>
+                    <link linkend="lsq_splin">lsq_splin</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.0</revnumber>
+                    <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

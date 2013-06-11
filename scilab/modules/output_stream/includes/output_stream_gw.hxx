@@ -23,11 +23,11 @@ extern "C"
 class OutputStreamModule
 {
 private :
-  OutputStreamModule() {};
-  ~OutputStreamModule() {};
+    OutputStreamModule() {};
+    ~OutputStreamModule() {};
 
 public :
-  OUTPUT_STREAM_IMPEXP_GW static int Load();
+    OUTPUT_STREAM_IMPEXP_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_disp);

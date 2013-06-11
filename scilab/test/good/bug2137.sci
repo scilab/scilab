@@ -34,7 +34,7 @@ SCIFILECONTENTSREF=["";
 
 correct=%T
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
+    correct=%F
 end
 
 affich_result(correct,2137);

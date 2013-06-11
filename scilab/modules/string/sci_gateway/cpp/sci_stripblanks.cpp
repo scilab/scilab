@@ -24,65 +24,65 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    #define FUNCNAME "stripblanks"
+#define FUNCNAME "stripblanks"
     bool bRemoveTab = false;
 
     // check input parameters
-    if(in.size() < 1 || in.size() > 2)
+    if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: %d or %d expected.\n"), FUNCNAME, 1, 2);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), FUNCNAME, 1, 2);
         return Function::Error;
     }
 
     // check output parameters
-    if(_iRetCount != 1 && _iRetCount != -1)
+    if (_iRetCount != 1 && _iRetCount != -1)
     {
-        Scierror(999,_("%s: Wrong number of output arguments: %d expected.\n"), FUNCNAME, 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), FUNCNAME, 1);
         return Function::Error;
     }
 
     if (in.size() == 2)
     {
-        if(in[1]->isBool() == false || in[1]->getAs<types::Bool>()->getSize() != 1)
+        if (in[1]->isBool() == false || in[1]->getAs<types::Bool>()->getSize() != 1)
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: A boolean expected.\n"), FUNCNAME, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), FUNCNAME, 2);
             return Function::Error;
         }
 
-        if(in[1]->getAs<types::Bool>()->get()[0] == 1)
+        if (in[1]->getAs<types::Bool>()->get()[0] == 1)
         {
             bRemoveTab = true;
         }
     }
 
-    switch(in[0]->getType())
+    switch (in[0]->getType())
     {
-    case InternalType::RealString:
+        case InternalType::RealString:
         {
             String *pS = stripblanks(in[0]->getAs<types::String>(), bRemoveTab);
             if (pS == NULL)
             {
-                Scierror(999,_("%s : No more memory.\n"), FUNCNAME);
+                Scierror(999, _("%s : No more memory.\n"), FUNCNAME);
                 return Function::Error;
             }
 
             out.push_back(pS);
         }
         break;
-    case InternalType::RealDouble://manage []
+        case InternalType::RealDouble://manage []
         {
             if (in[0]->getAs<Double>()->getSize() != 0)
             {
-                Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), FUNCNAME, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), FUNCNAME, 1);
                 return Function::Error;
             }
 
             out.push_back(Double::Empty());
         }
         break;
-    default:
-        Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), FUNCNAME, 1);
-        return Function::Error;
+        default:
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), FUNCNAME, 1);
+            return Function::Error;
     }
 
     return Function::OK;

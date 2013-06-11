@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="who">
-    <refnamediv>
-        <refname>who</refname>
-        <refpurpose>список переменных</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>
-            who
-            who()
-            names = who('local')
-            [names, mem] = who('local')
-            names = who('global')
-            [names, mem] = who('global')
-            who('sorted')
-            names = who('local','sorted')
-            [names, mem] = who('local','sorted')
-            names = who('global','sorted')
-            [names, mem] = who('global','sorted')
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            <code>who()</code> выводит на экран имена текущих переменных.
-        </para>
-        <para>
-            <code>who('local')</code> или <code>who('get')</code> возвращает имена
-            текущих переменных и величину используемой памяти в количестве слов удвоенной точности.
-        </para>
-        <para>
-            <code>who('global')</code> возвращает имена глобальных переменных и величину
-            используемой памяти в количестве слов удвоенной точности.
-        </para>
-        <para>
-            <code>who('sorted')</code> выводит на экран все переменные в алфавитном
-            порядке.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="who">
+        <refnamediv>
+            <refname>who</refname>
+            <refpurpose>список переменных</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>
+                who
+                who()
+                names = who('local')
+                [names, mem] = who('local')
+                names = who('global')
+                [names, mem] = who('global')
+                who('sorted')
+                names = who('local','sorted')
+                [names, mem] = who('local','sorted')
+                names = who('global','sorted')
+                [names, mem] = who('global','sorted')
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                <code>who()</code> выводит на экран имена текущих переменных.
+            </para>
+            <para>
+                <code>who('local')</code> или <code>who('get')</code> возвращает имена
+                текущих переменных и величину используемой памяти в количестве слов удвоенной точности.
+            </para>
+            <para>
+                <code>who('global')</code> возвращает имена глобальных переменных и величину
+                используемой памяти в количестве слов удвоенной точности.
+            </para>
+            <para>
+                <code>who('sorted')</code> выводит на экран все переменные в алфавитном
+                порядке.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[
 a=1;
 b=2;
 [name, mem]=who("local");
@@ -48,16 +48,16 @@ position=find(name=="a")
 mem(position) // Размер, используемый a
 position=find(name=="d") // []
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="whos">whos</link>
-            </member>
-            <member>
-                <link linkend="who_user">who_user</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="whos">whos</link>
+                </member>
+                <member>
+                    <link linkend="who_user">who_user</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

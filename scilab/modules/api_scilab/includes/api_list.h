@@ -24,7 +24,7 @@ extern "C" {
 #include "doublecomplex.h"
 
 #if SCI_VERSION_MAJOR > 5
-	#define __SCILAB_INT64__
+#define __SCILAB_INT64__
 #endif
 
     /**********************/

@@ -34,11 +34,11 @@ public final class ScilabKeyStroke {
             mask = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
         } else {
             switch (OS.get()) {
-            case MAC:
-                mask = KeyEvent.META_MASK;
-                break;
-            default:
-                mask = KeyEvent.CTRL_MASK;
+                case MAC:
+                    mask = KeyEvent.META_MASK;
+                    break;
+                default:
+                    mask = KeyEvent.CTRL_MASK;
             }
         }
 

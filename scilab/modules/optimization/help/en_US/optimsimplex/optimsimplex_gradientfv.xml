@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,100 +10,100 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_gradientfv" xml:lang="en">
-    <refnamediv>
-        <refname>optimsimplex_gradientfv</refname>
-        <refpurpose>Returns the simplex gradient of the function.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            g = optimsimplex_gradientfv(opt, [fun, [method]])
-            [g, data] = optimsimplex_gradientfv(opt, fun, method, data)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Argument</title>
-        <variablelist>
-            <varlistentry>
-                <term>opt </term>
-                <listitem>
-                    <para>The current simplex object of TSIMPLEX type (tlist).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fun </term>
-                <listitem>
-                    <para>The function to compute at vertices (optional).</para>
-                    <para>
-                        The <literal>fun</literal> function is expected to have the following 
-                        input and output arguments: 
-                    </para>
-                    <programlisting role="no-scilab-exec">
-                        y = myfunction (x)
-                    </programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>methods </term>
-                <listitem>
-                    <para>The method to use to compute the simplex gradient (optional).</para>
-                    <para>Two methodes are available: </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                The "forward" method used the current simplex to compute the 
-                                simplex gradient.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                The "centered" method creates an intermediate reflected simplex 
-                                and computes the average.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                    <para>If not provided, the default method is "forward".</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>data </term>
-                <listitem>
-                    <para>User-defined data passed to the function (optional).</para>
-                    <para>
-                        If <literal>data</literal> is provided, it is passed to the callback function
-                        both as an input and output argument. In that case, the function must have the 
-                        following header :
-                    </para>
-                    <programlisting role="no-scilab-exec">
-                        [y, data] = myfunction (x, data)
-                    </programlisting>
-                    <para>The data input parameter may be used if the function uses some additional 
-                        parameters. It is returned as an output parameter because the function may 
-                        modify the data while computing the function value. This feature may be used, 
-                        for example, to count the number of times that the function has been called.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>g </term>
-                <listitem>
-                    <para>A column vector of doubles.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <literal>optimsimplex_gradientfv</literal> function returns the simplex gradient of the
-            function.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Example</title>
-        <programlisting role="example">
-            <![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_gradientfv" xml:lang="en">
+        <refnamediv>
+            <refname>optimsimplex_gradientfv</refname>
+            <refpurpose>Returns the simplex gradient of the function.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                g = optimsimplex_gradientfv(opt, [fun, [method]])
+                [g, data] = optimsimplex_gradientfv(opt, fun, method, data)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Argument</title>
+            <variablelist>
+                <varlistentry>
+                    <term>opt </term>
+                    <listitem>
+                        <para>The current simplex object of TSIMPLEX type (tlist).</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fun </term>
+                    <listitem>
+                        <para>The function to compute at vertices (optional).</para>
+                        <para>
+                            The <literal>fun</literal> function is expected to have the following 
+                            input and output arguments: 
+                        </para>
+                        <programlisting role="no-scilab-exec">
+                            y = myfunction (x)
+                        </programlisting>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>methods </term>
+                    <listitem>
+                        <para>The method to use to compute the simplex gradient (optional).</para>
+                        <para>Two methodes are available: </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    The "forward" method used the current simplex to compute the 
+                                    simplex gradient.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    The "centered" method creates an intermediate reflected simplex 
+                                    and computes the average.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                        <para>If not provided, the default method is "forward".</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>data </term>
+                    <listitem>
+                        <para>User-defined data passed to the function (optional).</para>
+                        <para>
+                            If <literal>data</literal> is provided, it is passed to the callback function
+                            both as an input and output argument. In that case, the function must have the 
+                            following header :
+                        </para>
+                        <programlisting role="no-scilab-exec">
+                            [y, data] = myfunction (x, data)
+                        </programlisting>
+                        <para>The data input parameter may be used if the function uses some additional 
+                            parameters. It is returned as an output parameter because the function may 
+                            modify the data while computing the function value. This feature may be used, 
+                            for example, to count the number of times that the function has been called.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>g </term>
+                    <listitem>
+                        <para>A column vector of doubles.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <literal>optimsimplex_gradientfv</literal> function returns the simplex gradient of the
+                function.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Example</title>
+            <programlisting role="example">
+                <![CDATA[ 
 s1 = optimsimplex_new ();
 simplex = [
 3.  0.  0.
@@ -116,20 +116,20 @@ disp(g)
 
 s1 = optimsimplex_destroy(s1);
  ]]>
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="optimsimplex_new">optimsimplex_new</link>
-            </member>
-            <member>
-                <link linkend="optimsimplex_getallfv">optimsimplex_getallfv</link>
-            </member>
-            <member>
-                <link linkend="optimsimplex_setallfv">optimsimplex_setallfv</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="optimsimplex_new">optimsimplex_new</link>
+                </member>
+                <member>
+                    <link linkend="optimsimplex_getallfv">optimsimplex_getallfv</link>
+                </member>
+                <member>
+                    <link linkend="optimsimplex_setallfv">optimsimplex_setallfv</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

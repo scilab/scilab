@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,18 +19,18 @@
 /**
  * @TODO : comment
  *
- * @param n 
- * @param ierr  
+ * @param n
+ * @param ierr
  * @return <ReturnValue>
  */
 OUTPUT_STREAM_IMPEXP int C2F(msgs)(int *n, int *ierr);
 /*
  * print a message
- * @param n int message number see modules/output_stream/src/c/msgs.c 
- * for the list of messages 
+ * @param n int message number see modules/output_stream/src/c/msgs.c
+ * for the list of messages
  * some message append a buffer to the message (@see printToBuffer)
  */
-OUTPUT_STREAM_IMPEXP void Msgs(int n,int ierr);
+OUTPUT_STREAM_IMPEXP void Msgs(int n, int ierr);
 
 
 /*
@@ -40,6 +40,6 @@ OUTPUT_STREAM_IMPEXP void Msgs(int n,int ierr);
  * @param same as sprintf
  * @return same as sprintf
  */
-int printToBuffer(const char* format,...);
+int printToBuffer(const char* format, ...);
 
 #endif /* __MSGS_H__ */

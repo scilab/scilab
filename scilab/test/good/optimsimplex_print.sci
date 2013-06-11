@@ -16,7 +16,7 @@
 //   <no arg>
 //
 function optimsimplex_print ( this )
-  warnobsolete("disp", "optimsimplex_print")
-  disp(this)
+    warnobsolete("disp", "optimsimplex_print")
+    disp(this)
 endfunction
 

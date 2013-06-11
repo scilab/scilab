@@ -45,7 +45,7 @@ int SendScilabJob(char *job)
         return retCode;
     }
 
-	command = os_strdup(job);
+    command = os_strdup(job);
 
     if (command)
     {

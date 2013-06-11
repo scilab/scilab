@@ -4,7 +4,7 @@
 
 mode(-1);
 clear;
- 
+
 MFILECONTENTS=[
 "load([rep,''alpha'']);";
 "load([rep,''beta'']);";
@@ -40,7 +40,7 @@ SCIFILECONTENTSREF=["";
 
 correct=%T
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
+    correct=%F
 end
 
 affich_result(correct,1124);

@@ -19,19 +19,19 @@
 // See the file ../license.txt
 //
 function XcosMenuRegionToPalette()
-// Copyright INRIA
-  Cmenu=[]
-  if Select==[] then
-    if (%win <> curwin) then
-      return
+    // Copyright INRIA
+    Cmenu=[]
+    if Select==[] then
+        if (%win <> curwin) then
+            return
+        end
+        [%pt, scs_m] = do_region2pal(%pt,scs_m);
+    else
+        if Select(1,2)<>curwin then
+            return;
+        end
+        [%pt, scs_m] = do_select2pal(%pt, scs_m);
     end
-    [%pt, scs_m] = do_region2pal(%pt,scs_m);
-  else
-    if Select(1,2)<>curwin then
-      return;
-    end
-    [%pt, scs_m] = do_select2pal(%pt, scs_m);
-  end
-  Cmenu='XcosMenuReplot';
-  %pt=[];
+    Cmenu="XcosMenuReplot";
+    %pt=[];
 endfunction

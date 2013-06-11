@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -10,74 +10,74 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="poly_getpolyvariablename_API" xml:lang="en">
-    <refnamediv>
-        <refname>Polynomial Symbolic Variable (Scilab gateway)</refname>
-        <refpurpose>
-            How to get the symbolic variable name.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <para>Input argument profile:</para>
-        <synopsis>SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>_pvCtx</term>
-                <listitem>
-                    <para>
-                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piAddress</term>
-                <listitem>
-                    <para>
-                        Address of the variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pstVarName</term>
-                <listitem>
-                    <para>
-                        Return the symbolic varaible name
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piVarNameLen</term>
-                <listitem>
-                    <para>
-                        Return the length of _pstVarName
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>SciErr</term>
-                <listitem>
-                    <para>
-                        Error structure where is stored errors messages history and first error number.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to get the symbolic variable name.</para>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/poly_reading_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/poly_reading_api.tst-->
-        <!--Lib_name: poly_reading-->
-        <!--Func_list: read_poly-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="poly_getpolyvariablename_API" xml:lang="en">
+        <refnamediv>
+            <refname>Polynomial Symbolic Variable (Scilab gateway)</refname>
+            <refpurpose>
+                How to get the symbolic variable name.
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <para>Input argument profile:</para>
+            <synopsis>SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>_pvCtx</term>
+                    <listitem>
+                        <para>
+                            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_piAddress</term>
+                    <listitem>
+                        <para>
+                            Address of the variable.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_pstVarName</term>
+                    <listitem>
+                        <para>
+                            Return the symbolic varaible name
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_piVarNameLen</term>
+                    <listitem>
+                        <para>
+                            Return the length of _pstVarName
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SciErr</term>
+                    <listitem>
+                        <para>
+                            Error structure where is stored errors messages history and first error number.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>This help describes how to get the symbolic variable name.</para>
+        </refsection>
+        <refsection>
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/poly_reading_api.c-->
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/poly_reading_api.tst-->
+            <!--Lib_name: poly_reading-->
+            <!--Func_list: read_poly-->
+            <title>Gateway Source</title>
+            <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int read_poly(char *fname,unsigned long fname_len)
 {
@@ -223,10 +223,10 @@ int read_poly(char *fname,unsigned long fname_len)
 	return 0;
 }
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        </refsection>
+        <refsection>
+            <title>Scilab test script</title>
+            <programlisting role="code_scilab"><![CDATA[ 
 coeff1 = [ ..
 29*%i,22*%i,16*%i,11*%i,7*%i,30,23,17,12,8,-31*%i,-24*%i,-18*%i,-13*%i,-9*%i,32,25,19,14,10,-33*%i,-26*%i,-20*%i,-15*%i,0,34,27,21,0,0,0,-28*%i,0,0,0,36-35*%i,0,0,0,0; ..
 4*%i,2*%i,%i,22,16,5,-3,0,-23*%i,-17*%i,-6*%i,0,0,24,18,0,0,0,-25*%i,-19*%i,0,0,0,26,20,0,0,0,-27*%i,-21*%i,0,0,0,28,0,0,0,0,0,0; ..
@@ -254,5 +254,5 @@ p1 = read_poly(p);
 coeff2 = coeff(p1);
 if or(coeff2 <> coeff1) then error("failed"), end
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

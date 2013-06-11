@@ -19,13 +19,13 @@ public class Debug {
      */
     public static void DEBUG(String callingClass, String msg) {
         if (enableDebug) {
-            System.err.println("[DEBUG] <"+callingClass+">: "+msg);
+            System.err.println("[DEBUG] <" + callingClass + ">: " + msg);
         }
     }
 
     public static void DEBUG(String msg) {
         if (enableDebug) {
-            System.err.println("[DEBUG] __unknown_class__ "+Thread.currentThread().toString()+" : "+msg);
+            System.err.println("[DEBUG] __unknown_class__ " + Thread.currentThread().toString() + " : " + msg);
         }
     }
 

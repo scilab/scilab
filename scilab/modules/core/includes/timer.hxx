@@ -92,7 +92,10 @@ public:
     inline void start(const char* msg = 0)
     {
         // Print an optional message, something like "Starting timer t";
-        if (msg) std::cerr << msg << std::endl;
+        if (msg)
+        {
+            std::cerr << msg << std::endl;
+        }
 #ifndef _MSC_VER
         // FIXME : Tonio
 
@@ -121,7 +124,10 @@ public:
     {
         // Print an optional message, something like "Checking timer t";
         double t = elapsed_time();
-        if (msg) std::cerr << "[" << msg << "]" << " : ";
+        if (msg)
+        {
+            std::cerr << "[" << msg << "]" << " : ";
+        }
         std::cerr << "Elapsed time ["
                   << std::setiosflags(std::ios::fixed)
                   << std::setprecision(3)

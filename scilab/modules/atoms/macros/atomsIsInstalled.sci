@@ -124,7 +124,7 @@ function res = atomsIsInstalled(packages,section)
             if ~ isempty(strindex(version,"-")) then
                 res(i) = or(packages_filtered == version);
 
-            //  + The packaging version is not mentioned
+                //  + The packaging version is not mentioned
             else
                 // Loop on installed versions
                 for j=1:size(packages_filtered,"*")
@@ -155,7 +155,7 @@ function res = atomsIsInstalled(packages,section)
             if ~ isempty(strindex(version,"-")) then
                 res(i) = or(packages_filtered == version);
 
-            //  + The packaging version is not mentioned
+                //  + The packaging version is not mentioned
             else
                 // Loop on installed versions
                 for j=1:size(packages_filtered,"*")

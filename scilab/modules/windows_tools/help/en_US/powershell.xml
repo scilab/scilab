@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Allan CORNET
  * 
@@ -10,41 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="powershell">
-    <refnamediv>
-        <refname>powershell</refname>
-        <refpurpose>shell (powershell) command execution (Windows
-            only)
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>output=powershell(command-name)
-            [output,bOK]=powershell(command-name)    
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>Sends a string command-name to Windows for execution by the powershell.
-            Standard output and standard errors of the shell command are written in
-            the calling shell. bOK returns if command has been executed.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="powershell">
+        <refnamediv>
+            <refname>powershell</refname>
+            <refpurpose>shell (powershell) command execution (Windows
+                only)
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>output=powershell(command-name)
+                [output,bOK]=powershell(command-name)    
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>Sends a string command-name to Windows for execution by the powershell.
+                Standard output and standard errors of the shell command are written in
+                the calling shell. bOK returns if command has been executed.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 [s,w] = powershell('ls');
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="unix">unix</link>
-            </member>
-            <member>
-                <link linkend="dos">dos</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="unix">unix</link>
+                </member>
+                <member>
+                    <link linkend="dos">dos</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

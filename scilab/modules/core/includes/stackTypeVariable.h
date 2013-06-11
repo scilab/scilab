@@ -1,21 +1,21 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 #ifndef __STACKTYPEVARIABLE_H__
 #define __STACKTYPEVARIABLE_H__
 
-/** @def STRING_DATATYPE 
+/** @def STRING_DATATYPE
  * The string/char * datatype in the Scilab stack
  */
-#define STRING_DATATYPE "c" 
+#define STRING_DATATYPE "c"
 
 /** @def MATRIX_OF_STRING_DATATYPE
  * The string/char ** datatype in the Scilab stack
@@ -24,7 +24,7 @@
 
 
 /** @def MATRIX_OF_DOUBLE_DATATYPE
- * A matrix of double 
+ * A matrix of double
  * if the size of the matrix is 1,1, it is a single value
  */
 #define MATRIX_OF_DOUBLE_DATATYPE "d"
@@ -83,11 +83,11 @@
 #define TYPED_LIST_DATATYPE "t"
 
 /** @def MATRIX_ORIENTED_TYPED_LIST_DATATYPE
- * A Matrix oriented typed list 
+ * A Matrix oriented typed list
  * mlist object are very similar to tlist objects. But
- * if M is an mlist, for any index i which is not a field name, 
+ * if M is an mlist, for any index i which is not a field name,
  * M(i) is not the i th field of the list but is interpreted as
- * the i th entry of M seen as a vector. 
+ * the i th entry of M seen as a vector.
  * This is the only difference between mlist and tlist .
  * @see Scilab documentation at mlist for more information
  */

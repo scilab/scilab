@@ -8,12 +8,12 @@ mode(-1);
 clear;
 
 A = mad([1:10;2:11],2);
-B = mad([1:10;2:11],'c');
+B = mad([1:10;2:11],"c");
 
 if and(A == B) then
-	affich_result(%T,2092);
+    affich_result(%T,2092);
 else
-	affich_result(%F,2092);
+    affich_result(%F,2092);
 end
 
 clear

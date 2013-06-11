@@ -32,7 +32,7 @@ static void searchenv_others(const char *filename, const char *varname,
                              char *pathname);
 #endif
 /*--------------------------------------------------------------------------*/
-void getenvc(int *ierr,char *var,char *buf,int *buflen,int *iflag)
+void getenvc(int *ierr, char *var, char *buf, int *buflen, int *iflag)
 {
 #ifdef _MSC_VER
     wchar_t* wbuf = NULL;
@@ -231,24 +231,24 @@ wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv)
 
         if (wcslen(pwstFullpath) > 0)
         {
-			pwstRet = os_wcsdup(pwstFullpath);
-		}
-	}
+            pwstRet = os_wcsdup(pwstFullpath);
+        }
+    }
 #else
     char* pstName   = wide_string_to_UTF8(_pwstName);
     char* pstEnv    = wide_string_to_UTF8(_pwstEnv);
-	char pstFullpath[PATH_MAX];
+    char pstFullpath[PATH_MAX];
 
-	searchenv_others(pstName, pstEnv, pstFullpath);
-	if (strlen(pstFullpath) > 0)
-	{
-		pwstRet = to_wide_string(pstFullpath);
-	}
+    searchenv_others(pstName, pstEnv, pstFullpath);
+    if (strlen(pstFullpath) > 0)
+    {
+        pwstRet = to_wide_string(pstFullpath);
+    }
 
     FREE(pstName);
     FREE(pstEnv);
 #endif
-	return pwstRet;
+    return pwstRet;
 }
 /*--------------------------------------------------------------------------*/
 

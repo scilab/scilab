@@ -11,7 +11,7 @@ A=diag([-inf,inf]);
 B = A*A*A;
 
 if isnan(B) then
-	affich_result(%T,1224);
+    affich_result(%T,1224);
 else
-	affich_result(%F,1224);
+    affich_result(%F,1224);
 end

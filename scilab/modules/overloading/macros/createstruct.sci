@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - S. Steer, F. Delebecque, V. Couvert
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function  M=createstruct(index,N)
@@ -36,11 +36,11 @@ function  M=createstruct(index,N)
                         //initialize the structure with empty fields
                         Li=list();for kl=1:nmax, Li(kl)=[];end
                         //set fields pointed to by index(1) to N
-                        for kl=1:size(I,'*'), Li(I(kl))=N;end
+                        for kl=1:size(I,"*"), Li(I(kl))=N;end
                         setfield(3,Li,M);
                     end
                     return;
-                    // First index is a list of numerical values	
+                    // First index is a list of numerical values
                 elseif type(index(1))==15
                     // X(p,q[,...]).f=z -> index=list(list(p,q[,...]),f)
                     I=index(1)
@@ -54,11 +54,11 @@ function  M=createstruct(index,N)
 
                     //set fields pointed to by I to N
                     I1=sub2ind(Dims,I(:)) // build one dimensional index equivalent to I
-                    for kl=1:size(I1,'*'), Li(I1(kl))=N;end
+                    for kl=1:size(I1,"*"), Li(I1(kl))=N;end
 
                     M=mlist(["st","dims",index(2)],int32(Dims),Li);
                     return;
-                    // First index is also a fieldname	
+                    // First index is also a fieldname
                 else
                     // X.f.g=y -> index=list(f,g)
                     M=mlist(["st","dims",index(1)],int32([1,1]),...
@@ -66,12 +66,12 @@ function  M=createstruct(index,N)
                     return;
                 end
 
-                // Second index is a fieldname  
+                // Second index is a fieldname
             else
-                // X.f(p[,q,...])=y : index=list(f,list(p[,q,...]))  
+                // X.f(p[,q,...])=y : index=list(f,list(p[,q,...]))
 
                 if typeof(N)=="st" then // When recursive call of createstruct
-                    if type(index(2))==15 then // index=list(f,list(p,q[,...])) 
+                    if type(index(2))==15 then // index=list(f,list(p,q[,...]))
                         Dims=list2vec(index(2))'
                     else // index=list(f,p)
                         if mtlb_mode() then
@@ -95,13 +95,13 @@ function  M=createstruct(index,N)
                 return;
             end
 
-            // Any number of indexes <> 2  
+            // Any number of indexes <> 2
         else
             // Last index is a fieldname -> init struct
             if type(index($))==10 then
                 M=mlist(["st","dims",index($)],int32([1,1]),N);
                 index($)=null();
-                // Last index is a numerical value or a list of numerical values  
+                // Last index is a numerical value or a list of numerical values
             elseif type(index($))==1 | type(index($))==15 then
 
                 // If only one index value (happens when recursive calls to createstruct)
@@ -131,7 +131,7 @@ function  M=createstruct(index,N)
                         M(index($)(:))=N;
                     end
                     index($)=null()
-                    // More than one index value	
+                    // More than one index value
                 else
                     if typeof(N)=="st" then
                         if type(index($))==15 then

@@ -11,11 +11,11 @@
 */
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	#if ELEM_FUNC_GW_EXPORTS
-		#define EXTERN_EF_GW __declspec (dllexport)
-	#else
-		#define EXTERN_EF_GW __declspec (dllimport)
-	#endif
+#if ELEM_FUNC_GW_EXPORTS
+#define EXTERN_EF_GW __declspec (dllexport)
 #else
-	#define EXTERN_EF_GW
+#define EXTERN_EF_GW __declspec (dllimport)
+#endif
+#else
+#define EXTERN_EF_GW
 #endif

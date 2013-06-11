@@ -16,6 +16,6 @@
 //
 
 function [] = %_param3d()
-  t=0:0.1:5*%pi;
-  param3d(sin(t),cos(t),t/10,35,45,'X@Y@Z',[2,4]);
+    t=0:0.1:5*%pi;
+    param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,4]);
 endfunction

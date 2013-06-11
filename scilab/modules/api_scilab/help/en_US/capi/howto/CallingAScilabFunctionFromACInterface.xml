@@ -1,51 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CallingAScilabFunctionFromACInterface" xml:lang="en">
-    <refnamediv>
-        <refname>Calling a scilab function (macros) from a C gateway</refname>
-        <refpurpose>Calling a scilab function (macros) from a C interface</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Calling a scilab function (macros) from a C interface</title>
-        <para>
-            WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).
-        </para>
-        <para>When you write a interface with scilab, you can need to call another
-            function directly from your function. You can pass a pointer on scilab
-            function to your function.
-        </para>
-        <para>The source files of this example are stored in the directory
-            examples/call_scifunction.
-        </para>
-        <para>How to use this example:</para>
-        <programlisting role=""><![CDATA[ 
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CallingAScilabFunctionFromACInterface" xml:lang="en">
+        <refnamediv>
+            <refname>Calling a scilab function (macros) from a C gateway</refname>
+            <refpurpose>Calling a scilab function (macros) from a C interface</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Calling a scilab function (macros) from a C interface</title>
+            <para>
+                WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).
+            </para>
+            <para>When you write a interface with scilab, you can need to call another
+                function directly from your function. You can pass a pointer on scilab
+                function to your function.
+            </para>
+            <para>The source files of this example are stored in the directory
+                examples/call_scifunction.
+            </para>
+            <para>How to use this example:</para>
+            <programlisting role=""><![CDATA[ 
 exec call_scifunction.sce; // launch scilab 
 v = call_scifunc(30,12,scilabfoo);
  ]]></programlisting>
-        <para>you pass a pointer on a scilab function (scilabfoo macro) to your
-            function 'call_scifunc'.
-        </para>
-        <para>C2F(scifunction) calls another scilab function (here
-            scilabfoo).
-        </para>
-        <para>You need to indicate :</para>
-        <itemizedlist>
-            <listitem>
-                <para>position of the first element (Rhs) in the Scilab memory</para>
-            </listitem>
-            <listitem>
-                <para>pointer on scilab function</para>
-            </listitem>
-            <listitem>
-                <para>number of Lhs (output of scilab function called)</para>
-            </listitem>
-            <listitem>
-                <para>number of Rhs (input of scilab function called)</para>
-            </listitem>
-        </itemizedlist>
-        <para>The script call_scifunction.sce used to build and load the C
-            interface into Scilab is the following:
-        </para>
-        <programlisting role=""><![CDATA[ 
+            <para>you pass a pointer on a scilab function (scilabfoo macro) to your
+                function 'call_scifunc'.
+            </para>
+            <para>C2F(scifunction) calls another scilab function (here
+                scilabfoo).
+            </para>
+            <para>You need to indicate :</para>
+            <itemizedlist>
+                <listitem>
+                    <para>position of the first element (Rhs) in the Scilab memory</para>
+                </listitem>
+                <listitem>
+                    <para>pointer on scilab function</para>
+                </listitem>
+                <listitem>
+                    <para>number of Lhs (output of scilab function called)</para>
+                </listitem>
+                <listitem>
+                    <para>number of Rhs (input of scilab function called)</para>
+                </listitem>
+            </itemizedlist>
+            <para>The script call_scifunction.sce used to build and load the C
+                interface into Scilab is the following:
+            </para>
+            <programlisting role=""><![CDATA[ 
 files=['sci_call_scifunc.c']; // Defines the list of file
 ilib_build('callscifunc',['call_scifunc','sci_call_scifunc'],files,[]); // Build the files and creates the loader
 
@@ -63,8 +63,8 @@ disp('result : ' + string(v));
 
 ulink(); // unload the dynamic library
  ]]></programlisting>
-        <para>The file sci_call_scifunc.c is the following:</para>
-        <programlisting role="code_gateway"><![CDATA[  
+            <para>The file sci_call_scifunc.c is the following:</para>
+            <programlisting role="code_gateway"><![CDATA[  
 
 #include "stack-c.h"
 #include "Scierror.h"
@@ -167,20 +167,20 @@ int sci_call_scifunc(char *fname)
   return 0;
 }
  ]]></programlisting>
-        <para>The main function in this C file is Scifunction. It allows to call a
-            Scilab function inside a C interface.
-        </para>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="Scierror">Scierror</link>
-            </member>
-            <!--<member><link linkend="Scifunction">Scifunction</link></member>-->
-            <member>
-                <link linkend="sci_types">sci_types</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            <para>The main function in this C file is Scifunction. It allows to call a
+                Scilab function inside a C interface.
+            </para>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="Scierror">Scierror</link>
+                </member>
+                <!--<member><link linkend="Scifunction">Scifunction</link></member>-->
+                <member>
+                    <link linkend="sci_types">sci_types</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -35,25 +35,25 @@ types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, ty
 {
     types::Bool* pOutBool   = NULL;
     types::String* pString  = NULL;
-	BOOL *values            = NULL;
+    BOOL *values            = NULL;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "isnum", 1);
         return types::Function::Error;
     }
 
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isnum", 1);
         return types::Function::Error;
     }
 
-	if(in[0]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "isnum", 1);
-		return types::Function::Error;
-	}
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "isnum", 1);
+        return types::Function::Error;
+    }
 
     pString = in[0]->getAs<types::String>();
 

@@ -14,9 +14,9 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intdeff)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_deff)(char *fname,unsigned long fname_len)
+int C2F(sci_deff)(char *fname, unsigned long fname_len)
 {
-	//C2F(intdeff)();
-	return 0;
+    //C2F(intdeff)();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

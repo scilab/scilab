@@ -24,10 +24,10 @@ function xcosBlockEval(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, hdf5Conte
     scicos_getvalue = setvalue;
     function message(txt)
         messagebox(..
-            ['In block ' + o.gui + ': ' ; txt ; 'current parameter value kept'],..
-            'error','modal');
+        ["In block " + o.gui + ": " ; txt ; "current parameter value kept"],..
+        "error","modal");
         [str,n,line,func]=lasterror();
-        printf('do_eval: error %d - %s in %s at line %d\n', n, str, func, line); 
+        printf("do_eval: error %d - %s in %s at line %d\n", n, str, func, line);
     endfunction
     %scicos_prob = %f
     funcprot(%mprt)
@@ -42,7 +42,7 @@ function xcosBlockEval(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, hdf5Conte
     import_from_hdf5(hdf5FileToLoad);
 
     //create a structure with the new context
-    [new_scs_m, y, typ] = interfaceAlias('set', scs_m, []);
+    [new_scs_m, y, typ] = interfaceAlias("set", scs_m, []);
 
     export_to_hdf5(hdf5FileToSave, "new_scs_m");
 endfunction

@@ -19,7 +19,10 @@
 * r real part
 * i imag part
 */
-typedef struct { double r, i; } doublecomplex;
+typedef struct
+{
+    double r, i;
+} doublecomplex;
 
 /*Tools to convert memory matrix storage from C to Z and Z to C*/
 // vGetPointerFromDoubleComplex : set the real and imaginary part of an target array from a source doublecomplex array

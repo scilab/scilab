@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,115 +10,116 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:lang="en" xml:id="sci2exp">
-    <refnamediv>
-        <refname>sci2exp</refname>
-        <refpurpose> converts an expression to a string</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>t = sci2exp(a [,nam] [,lmax])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>a scilab expression, may be:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a constant;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a polynomial;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a string matrix;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a list;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a boolean matrix;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a handle (only figure and uicontrol).</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>nam</term>
-                <listitem>
-                    <para>a character string.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:lang="en" xml:id="sci2exp">
+        <refnamediv>
+            <refname>sci2exp</refname>
+            <refpurpose> converts an expression to a string</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>t = sci2exp(a [,nam] [,lmax])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>a</term>
+                    <listitem>
+                        <para>a scilab expression, may be:</para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>-    </term>
+                                <listitem>
+                                    <para>a constant;</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>-    </term>
+                                <listitem>
+                                    <para>a polynomial;</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>-    </term>
+                                <listitem>
+                                    <para>a string matrix;</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>-    </term>
+                                <listitem>
+                                    <para>a list;</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>-    </term>
+                                <listitem>
+                                    <para>a boolean matrix;</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>-    </term>
+                                <listitem>
+                                    <para>a handle (only figure and uicontrol).</para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>nam</term>
+                    <listitem>
+                        <para>a character string.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>
+                            a vector of strings, contains the expression or the affectation instruction.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>lmax</term>
+                    <listitem>
+                        <para>
+                            an integer, contains the maximum line length. Default
+                            value is <literal>0</literal>,
+                            which indicates no line length
+                            control; a single string is returned.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <function>sci2exp</function> converts expression to an instruction string if <varname>nam</varname> is
+                given or to an expression string.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Remarks</title>
+            <itemizedlist>
                 <listitem>
                     <para>
-                        a vector of strings, contains the expression or the affectation instruction.
+                        If <varname>a</varname> is a handle, <function>sci2exp</function> gives a result which has no hierarchical links,
+                        that is, with empty fields for parent and children.
                     </para>
                 </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>lmax</term>
                 <listitem>
                     <para>
-                        an integer, contains the maximum line length. Default
-                        value is <literal>0</literal>,
-                        which indicates no line length
-                        control; a single string is returned.
+                        <varname>t</varname> can be impacted by <link linkend="format">format</link>. 
                     </para>
                 </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <function>sci2exp</function> converts expression to an instruction string if <varname>nam</varname> is
-            given or to an expression string.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remarks</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    If <varname>a</varname> is a handle, <function>sci2exp</function> gives a result which has no hierarchical links,
-                    that is, with empty fields for parent and children.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <varname>t</varname> can be impacted by <link linkend="format">format</link>. 
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>  
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+            </itemizedlist>
+        </refsection>
+         
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 a=[1 2;3 4]
 sci2exp(a,'aa')
 sci2exp(a,'aa',10)
@@ -131,16 +132,16 @@ c=sci2exp(b)
 format(10);
 d=sci2exp(b)
     ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="prettyprint">prettyprint</link>
-            </member>
-            <member>
-                <link linkend="format">format</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="prettyprint">prettyprint</link>
+                </member>
+                <member>
+                    <link linkend="format">format</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

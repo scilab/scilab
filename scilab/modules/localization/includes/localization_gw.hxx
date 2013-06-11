@@ -24,11 +24,11 @@ extern "C"
 class LocalizationModule
 {
 private :
-  LocalizationModule() {};
-  ~LocalizationModule() {};
+    LocalizationModule() {};
+    ~LocalizationModule() {};
 
 public :
-  LOCALIZATION_GW_IMPEXP static int Load();
+    LOCALIZATION_GW_IMPEXP static int Load();
 };
 CPP_GATEWAY_PROTOTYPE(sci_gettext);
 CPP_GATEWAY_PROTOTYPE(sci_setdefaultlanguage);

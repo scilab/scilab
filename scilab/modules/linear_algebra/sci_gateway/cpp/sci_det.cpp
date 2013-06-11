@@ -32,19 +32,19 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
     types::Double* pDblExponent     = NULL;
     double* pData                   = NULL;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
         return types::Function::Error;
     }
 
-    if(_iRetCount > 2)
+    if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "det", 1, 2);
         return types::Function::Error;
     }
 
-    if((in[0]->isDouble() == false))
+    if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_det";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
@@ -52,10 +52,10 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
 
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
-        if(!pData)
+        if (!pData)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), "det");
             return types::Function::Error;
@@ -66,13 +66,13 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
         pData = pDbl->getReal();
     }
 
-    if(pDbl->getRows() != pDbl->getCols())
+    if (pDbl->getRows() != pDbl->getCols())
     {
         Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "det", 1);
         return types::Function::Error;
     }
 
-    if((pDbl->getRows() == -1)) // manage eye case
+    if ((pDbl->getRows() == -1)) // manage eye case
     {
         Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "det", 1);
         return types::Function::Error;
@@ -80,30 +80,30 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
 
     pDblMantissa = new types::Double(1, 1, pDbl->isComplex());
 
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
-        pDblExponent = new types::Double(1,1);
+        pDblExponent = new types::Double(1, 1);
     }
 
     int iExponent = 0;
-    int iRet= iDetM(pData, pDbl->getCols(), pDblMantissa->getReal(), pDbl->isComplex() ? pDblMantissa->getImg() : NULL, pDblExponent ? &iExponent : NULL);
-    if(iRet != 0)
+    int iRet = iDetM(pData, pDbl->getCols(), pDblMantissa->getReal(), pDbl->isComplex() ? pDblMantissa->getImg() : NULL, pDblExponent ? &iExponent : NULL);
+    if (iRet != 0)
     {
-	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "det",iRet);
+        Scierror(999, _("%s: LAPACK error n°%d.\n"), "det", iRet);
         return types::Function::Error;
     }
 
-    if(pDblExponent)
+    if (pDblExponent)
     {
         pDblExponent->set(0, iExponent);
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
 
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
         out.push_back(pDblExponent);
     }

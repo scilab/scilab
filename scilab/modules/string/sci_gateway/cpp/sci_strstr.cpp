@@ -33,43 +33,43 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
     types::String* pString      = NULL;
     types::String* pStrSample   = NULL;
 
-    if(in.size() != 2)
+    if (in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strstr", 2);
         return types::Function::Error;
     }
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strstr", 1);
         return types::Function::Error;
     }
-	if(in[0]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strstr", 1);
-		return types::Function::Error;
-	}
-	if(in[1]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strstr", 2);
-		return types::Function::Error;
-	}
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strstr", 1);
+        return types::Function::Error;
+    }
+    if (in[1]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strstr", 2);
+        return types::Function::Error;
+    }
 
     pString     = in[0]->getAs<types::String>();
     pStrSample  = in[1]->getAs<types::String>();
 
-    if(pString->getSize() == 0)
+    if (pString->getSize() == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strstr",1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strstr", 1);
         return types::Function::Error;
     }
 
-    if(pStrSample->getSize() == 0)
+    if (pStrSample->getSize() == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strstr",2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strstr", 2);
         return types::Function::Error;
     }
 
-    if(pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
+    if (pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "strstr", 2);
         return types::Function::Error;
@@ -78,24 +78,24 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
     pOutString  = new types::String(pString->getDims(), pString->getDimsArray());
 
     int j = 0; /* Input parameter two is dimension one */
-    for(int i=0 ; i < pString->getSize() ; i++)
+    for (int i = 0 ; i < pString->getSize() ; i++)
     {
-        if(pStrSample->isScalar() == false)
+        if (pStrSample->isScalar() == false)
         {
             j = i; /* Input parameter One & two have same dimension */
         }
 
-        if(wcslen(pString->get(i)) < wcslen(pStrSample->get(j)))
+        if (wcslen(pString->get(i)) < wcslen(pStrSample->get(j)))
         {
-            pOutString->set(i,os_wcsdup(L""));
+            pOutString->set(i, os_wcsdup(L""));
         }
         else
         {
-    		wchar_t* ptrwstrstr = wcsstr(pString->get(i),pStrSample->get(j));
+            wchar_t* ptrwstrstr = wcsstr(pString->get(i), pStrSample->get(j));
 
             if (ptrwstrstr)
             {
-                pOutString->set(i,os_wcsdup(ptrwstrstr));
+                pOutString->set(i, os_wcsdup(ptrwstrstr));
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
@@ -106,7 +106,7 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
             }
             else
             {
-                pOutString->set(i,os_wcsdup(L""));
+                pOutString->set(i, os_wcsdup(L""));
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;

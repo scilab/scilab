@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,118 +11,118 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="pathconvert">
-    <refnamediv>
-        <refname>pathconvert</refname>
-        <refpurpose>преобразование имён путей между POSIX и Windows.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>paths = pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>paths</term>
-                <listitem>
-                    <para>
-                        матрица строк, указывающая набор путей к файлам.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flagtrail</term>
-                <listitem>
-                    <para>
-                        необязательное логическое значение, используемое для
-                        добавления завершающего разделителя к путям (<literal>\</literal>
-                        или <literal>/</literal> в зависимости от целевого формата пути).
-                        Его значение по умолчанию равно <constant>%t</constant>.
-                    </para>
-                 </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flagexpand</term>
-                <listitem>
-                    <para>
-                        необязательное логическое значение, используемое для составления
-                        пути из переменных, идущих впереди. Его значение по умолчанию
-                        ИСТИНА (<constant>%t</constant>).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>type</term>
-                <listitem>
-                    <para>
-                        необязательное строковое значение, используемое для определения
-                        целевого формата пути: <literal>'u'</literal> для формата пути
-                        POSIX (GNU/Linux, ...) и <literal>'w'</literal> формата пути Windows.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Функция <function>pathconvert</function> используется для преобразования
-            набора имён путей в формат, совместимый с операционной системой. Например,
-            стиль путей в Windows использует <literal>/</literal> для разделителей
-            файлов, в то время как в других операционных системах это <literal>\</literal>.
-        </para>
-        <para>
-            По умолчанию пути преобразуются в формат путей текущей операционной
-            системы (но можно определить и другой формат путей с помощью
-            аргумента <varname>type</varname>).
-        </para>
-        <para>
-            <note>
-                Заметьте: пути в Windows, начинающиеся с префикса буквы диска,
-                преобразуются в пути POSIX, используя соглашение cygwin (с
-                <literal>/cygdrive</literal>). Например: <literal>C:\tmp</literal>
-                будет преобразовано в <literal>/cygdrive/C/tmp</literal>.
-            </note>
-        </para>
-        <para>
-            <varname>flagtrail</varname> используется для добавления или удаления
-            разделителя файлов (в зависимости от целевого формата пути) к концу
-            путей. Когда этот параметр установлен в ИСТИНУ, то заключительный
-            разделитель файлов добавляется. В противном случае заключительный
-            разделитель удаляется.
-        </para>
-        <para>
-            <varname>flagexpand</varname> используется для развёртывания
-            переменных окружения Scilab'а, стоящих в путях впереди.
-            Принимаются следующие переменные:
-            <itemizedlist>
-                <listitem>
-                    <constant>SCI</constant>
-                </listitem>
-                <listitem>
-                    <constant>WSCI</constant>
-                </listitem>
-                <listitem>
-                    <constant>SCIHOME</constant>
-                </listitem>
-                <listitem>
-                    <constant>TMPDIR</constant>
-                </listitem>
-                <listitem>
-                    <literal>home</literal> (или <literal>~</literal>)
-                </listitem>
-            </itemizedlist>
-            <caution>
-                <constant>WSCI</constant> не известна в GNU/Linux, а
-                <literal>~</literal> в значении "путь" неизвестна в
-                Windows.
-            </caution>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="pathconvert">
+        <refnamediv>
+            <refname>pathconvert</refname>
+            <refpurpose>преобразование имён путей между POSIX и Windows.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>paths = pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>paths</term>
+                    <listitem>
+                        <para>
+                            матрица строк, указывающая набор путей к файлам.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>flagtrail</term>
+                    <listitem>
+                        <para>
+                            необязательное логическое значение, используемое для
+                            добавления завершающего разделителя к путям (<literal>\</literal>
+                            или <literal>/</literal> в зависимости от целевого формата пути).
+                            Его значение по умолчанию равно <constant>%t</constant>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>flagexpand</term>
+                    <listitem>
+                        <para>
+                            необязательное логическое значение, используемое для составления
+                            пути из переменных, идущих впереди. Его значение по умолчанию
+                            ИСТИНА (<constant>%t</constant>).
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>type</term>
+                    <listitem>
+                        <para>
+                            необязательное строковое значение, используемое для определения
+                            целевого формата пути: <literal>'u'</literal> для формата пути
+                            POSIX (GNU/Linux, ...) и <literal>'w'</literal> формата пути Windows.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Функция <function>pathconvert</function> используется для преобразования
+                набора имён путей в формат, совместимый с операционной системой. Например,
+                стиль путей в Windows использует <literal>/</literal> для разделителей
+                файлов, в то время как в других операционных системах это <literal>\</literal>.
+            </para>
+            <para>
+                По умолчанию пути преобразуются в формат путей текущей операционной
+                системы (но можно определить и другой формат путей с помощью
+                аргумента <varname>type</varname>).
+            </para>
+            <para>
+                <note>
+                    Заметьте: пути в Windows, начинающиеся с префикса буквы диска,
+                    преобразуются в пути POSIX, используя соглашение cygwin (с
+                    <literal>/cygdrive</literal>). Например: <literal>C:\tmp</literal>
+                    будет преобразовано в <literal>/cygdrive/C/tmp</literal>.
+                </note>
+            </para>
+            <para>
+                <varname>flagtrail</varname> используется для добавления или удаления
+                разделителя файлов (в зависимости от целевого формата пути) к концу
+                путей. Когда этот параметр установлен в ИСТИНУ, то заключительный
+                разделитель файлов добавляется. В противном случае заключительный
+                разделитель удаляется.
+            </para>
+            <para>
+                <varname>flagexpand</varname> используется для развёртывания
+                переменных окружения Scilab'а, стоящих в путях впереди.
+                Принимаются следующие переменные:
+                <itemizedlist>
+                    <listitem>
+                        <constant>SCI</constant>
+                    </listitem>
+                    <listitem>
+                        <constant>WSCI</constant>
+                    </listitem>
+                    <listitem>
+                        <constant>SCIHOME</constant>
+                    </listitem>
+                    <listitem>
+                        <constant>TMPDIR</constant>
+                    </listitem>
+                    <listitem>
+                        <literal>home</literal> (или <literal>~</literal>)
+                    </listitem>
+                </itemizedlist>
+                <caution>
+                    <constant>WSCI</constant> не известна в GNU/Linux, а
+                    <literal>~</literal> в значении "путь" неизвестна в
+                    Windows.
+                </caution>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[
 pathconvert("SCI/modules/foo", %f, %t, "w")
 pathconvert("SCI\modules\foo", %f, %t, "u")
 pathconvert("SCI\modules\foo", %t, %t, "u")
@@ -131,20 +131,20 @@ pathconvert("SCI/modules/foo", %t, %f, "w")
 pathconvert("C:/tmp", %f, %f, "u")
 pathconvert("/cygdrive/c/tmp", %f, %f, "w")
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="basename">basename</link>
-            </member>
-            <member>
-                <link linkend="listfiles">listfiles</link>
-            </member>
-            <member>
-                <link linkend="dirname">dirname</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
-
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="basename">basename</link>
+                </member>
+                <member>
+                    <link linkend="listfiles">listfiles</link>
+                </member>
+                <member>
+                    <link linkend="dirname">dirname</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>
+    

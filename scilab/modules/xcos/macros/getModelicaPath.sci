@@ -11,18 +11,18 @@
 //
 
 function [modelica_path, modelica_directory] = getModelicaPath()
-// Return the Modelica directory path used by Xcos diagram containing Modelica blocks
-//
-// Calling Sequence
-//  [modelica_path, modelica_directory] = getModelicaPath()
-//
-// Parameters
-//  modelica_path:          Indicates path for generic modelica blocks, user
-//                          can add paths with %MODELICA_USER_LIBS for his own
-//                          blocks.
-//  modelica_directory:     output directory for generated modelica files
-//  %MODELICA_USER_LIBS:    string path global variable used by the user to
-//                          modify modelica_path. All paths should exist.
+    // Return the Modelica directory path used by Xcos diagram containing Modelica blocks
+    //
+    // Calling Sequence
+    //  [modelica_path, modelica_directory] = getModelicaPath()
+    //
+    // Parameters
+    //  modelica_path:          Indicates path for generic modelica blocks, user
+    //                          can add paths with %MODELICA_USER_LIBS for his own
+    //                          blocks.
+    //  modelica_directory:     output directory for generated modelica files
+    //  %MODELICA_USER_LIBS:    string path global variable used by the user to
+    //                          modify modelica_path. All paths should exist.
 
     // Init
     modelica_path      = "SCI/modules/scicos_blocks/macros/" + ["Electrical","Hydraulics"];

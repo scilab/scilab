@@ -7,6 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = csc(x)
-//Cosecant 
-  y = ones(x)./sin(x);
+    //Cosecant
+    y = ones(x)./sin(x);
 endfunction

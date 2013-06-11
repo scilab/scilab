@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * 
@@ -10,81 +10,81 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="root_properties">
-    <refnamediv>
-        <refname>root_properties</refname>
-        <refpurpose>Description des propriétés de l'objet root.</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            L'objet root est un objet virtuel utilisé pour obtenir les propriétés de l'écran de l'ordinateur. Utilisez la fonction <literal>get</literal> avec <emphasis>0</emphasis> comme premier paramétre pour accéder à ses propriétés.
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>Propriétés de l'objet root</term>
-                <listitem>
-                    <variablelist>
-                        <varlistentry>
-                            <term>screensize_px : </term>
-                            <listitem>
-                                <para>La taille de l'écran en pixels.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_pt : </term>
-                            <listitem>
-                                <para>La taille de l'écran en points.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_mm : </term>
-                            <listitem>
-                                <para>La taille de l'écran en millimétres.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_cm : </term>
-                            <listitem>
-                                <para>La taille de l'écran en centimétres.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_in : </term>
-                            <listitem>
-                                <para>La taille de l'écran en pouces.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screensize_norm : </term>
-                            <listitem>
-                                <para>La taille normalisée de l'écran.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>screendepth : </term>
-                            <listitem>
-                                <para>Le nombre de bits utilisés pour coder les couleurs.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="root_properties">
+        <refnamediv>
+            <refname>root_properties</refname>
+            <refpurpose>Description des propriétés de l'objet root.</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                L'objet root est un objet virtuel utilisé pour obtenir les propriétés de l'écran de l'ordinateur. Utilisez la fonction <literal>get</literal> avec <emphasis>0</emphasis> comme premier paramétre pour accéder à ses propriétés.
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>Propriétés de l'objet root</term>
+                    <listitem>
+                        <variablelist>
+                            <varlistentry>
+                                <term>screensize_px : </term>
+                                <listitem>
+                                    <para>La taille de l'écran en pixels.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>screensize_pt : </term>
+                                <listitem>
+                                    <para>La taille de l'écran en points.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>screensize_mm : </term>
+                                <listitem>
+                                    <para>La taille de l'écran en millimétres.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>screensize_cm : </term>
+                                <listitem>
+                                    <para>La taille de l'écran en centimétres.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>screensize_in : </term>
+                                <listitem>
+                                    <para>La taille de l'écran en pouces.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>screensize_norm : </term>
+                                <listitem>
+                                    <para>La taille normalisée de l'écran.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>screendepth : </term>
+                                <listitem>
+                                    <para>Le nombre de bits utilisés pour coder les couleurs.</para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[ 
 get(0, "screensize_px")
 get(0, "screendepth")
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="get">get</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="get">get</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

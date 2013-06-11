@@ -61,9 +61,9 @@ static BOOL is_unit_imaginaryW (const wchar_t* src, double *im);
 static double returnNAN(void);
 /* ========================================================================== */
 complexArray *stringsToComplexArray(const char **pSTRs, int nbElements,
-        const char *decimal,
-        BOOL bConvertByNAN,
-        stringToComplexError *ierr)
+                                    const char *decimal,
+                                    BOOL bConvertByNAN,
+                                    stringToComplexError *ierr)
 {
     complexArray *pComplexArray = NULL;
 

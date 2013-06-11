@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getmemory">
-    <refnamediv>
-        <refname>getmemory</refname>
-        <refpurpose>возвращает свободную и общую память системы</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>[free, total]=getmemory()</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            <code>getmemory()</code> возвращает свободную память системы (килобайты).
-        </para>
-        <para>
-            <code>[free, total] = getmemory()</code> возвращает свободную и общую системную память
-            (килобайты).
-        </para>
-        <para>
-            <note>
-                Не слишком полагайтесь на эту функцию. Из-за различных уровней кэширования
-                обнаружение свободной памяти является непростой вещью в большинстве
-                современных операционных систем.
-            </note>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getmemory">
+        <refnamediv>
+            <refname>getmemory</refname>
+            <refpurpose>возвращает свободную и общую память системы</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>[free, total]=getmemory()</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                <code>getmemory()</code> возвращает свободную память системы (килобайты).
+            </para>
+            <para>
+                <code>[free, total] = getmemory()</code> возвращает свободную и общую системную память
+                (килобайты).
+            </para>
+            <para>
+                <note>
+                    Не слишком полагайтесь на эту функцию. Из-за различных уровней кэширования
+                    обнаружение свободной памяти является непростой вещью в большинстве
+                    современных операционных систем.
+                </note>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[
 [a,b]=getmemory()
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

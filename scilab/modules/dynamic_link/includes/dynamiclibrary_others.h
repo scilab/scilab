@@ -52,17 +52,17 @@ DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, char *funcName);
 typedef int (*PROC_GATEWAY) (void);
 
 typedef enum { DYN_GW_NO_ERROR = 0,
-DYN_GW_LOAD_LIBRARY_ERROR = 1,
-DYN_GW_PTR_FUNCTION_ERROR = 2,
-DYN_GW_CALL_FUNCTION_ERROR =3
+               DYN_GW_LOAD_LIBRARY_ERROR = 1,
+               DYN_GW_PTR_FUNCTION_ERROR = 2,
+               DYN_GW_CALL_FUNCTION_ERROR = 3
 
-} dynamic_gateway_error_code;
+             } dynamic_gateway_error_code;
 
-typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0, 
-DYNLIB_NAME_FORMAT_1 = 1,
-DYNLIB_NAME_FORMAT_2 = 2,
-DYNLIB_NAME_FORMAT_3 = 3
-} dynlib_name_format;
+typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0,
+               DYNLIB_NAME_FORMAT_1 = 1,
+               DYNLIB_NAME_FORMAT_2 = 2,
+               DYNLIB_NAME_FORMAT_3 = 3
+             } dynlib_name_format;
 
 #define FORMATGATEWAYLIBNAME_1 L"%ls%ls"
 #define FORMATGATEWAYLIBNAME_2 L"sci%ls%ls"

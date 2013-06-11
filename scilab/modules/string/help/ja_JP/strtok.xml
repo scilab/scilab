@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,50 +10,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="strtok">
-    <refnamediv>
-        <refname>strtok</refname>
-        <refpurpose>文字列をトークンに分割</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>res = strtok(str,delimiters)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>str</term>
-                <listitem>
-                    <para>文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>delimiters</term>
-                <listitem>
-                    <para>文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>res</term>
-                <listitem>
-                    <para>文字列</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>res = strtok(str,delimiters)</literal>
-            この関数を連続してコールすることにより,
-            strをトークンに分割します.
-            トークンはデリミタの文字のどれかで区切られた連続する一連の文字です.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="strtok">
+        <refnamediv>
+            <refname>strtok</refname>
+            <refpurpose>文字列をトークンに分割</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>res = strtok(str,delimiters)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータ</title>
+            <variablelist>
+                <varlistentry>
+                    <term>str</term>
+                    <listitem>
+                        <para>文字列</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>delimiters</term>
+                    <listitem>
+                        <para>文字列</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>res</term>
+                    <listitem>
+                        <para>文字列</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>res = strtok(str,delimiters)</literal>
+                この関数を連続してコールすることにより,
+                strをトークンに分割します.
+                トークンはデリミタの文字のどれかで区切られた連続する一連の文字です.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 TOKENS = [];
 token = strtok("A string of ,,tokens and some  more tokens"," ,");
 TOKENS = [TOKENS,token];
@@ -63,16 +63,16 @@ while( token <> '' )
 end
 disp(TOKENS);
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>参照o</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="strrchr">strrchr</link>
-            </member>
-            <member>
-                <link linkend="strchr">strchr</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title>参照o</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="strrchr">strrchr</link>
+                </member>
+                <member>
+                    <link linkend="strchr">strchr</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

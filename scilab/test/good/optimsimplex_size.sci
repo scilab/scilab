@@ -26,39 +26,39 @@
 //   Chapter 6., section 6.2
 //
 function ssize = optimsimplex_size ( this , method )
-  n = this.n;
-  nv = this.nbve;
-  if (~isdef('method','local')) then
-    method = "sigmaplus";
-  end
-  select method
-  case "Nash" then
-    v1 = this.x(1,:) .*. ones(nv-1,1);
-    edges = this.x(2:nv,:) - v1;
-    abedges = abs(edges);
-    n1 = sum(abedges,"c");
-    ssize = sum ( n1 );
-  case "diameter" then
-    ssize = 0.0;
-    for i = 1:nv
-      vi = this.x(i,:) .*. ones(nv,1);
-      edges = vi - this.x(1:nv,:);
-      n2 = sqrt ( sum ( edges.^2 , "c" ) );
-      ssize = max ( max( n2 ) , ssize );
+    n = this.n;
+    nv = this.nbve;
+    if (~isdef("method","local")) then
+        method = "sigmaplus";
     end
-  case "sigmaplus" then
-    v1 = this.x(1,:) .*. ones(nv-1,1);
-    edges = this.x(2:nv,:) - v1;
-    n2 = sqrt ( sum ( edges.^2 , "c" ) );
-    ssize = max ( n2 );
-  case "sigmaminus" then
-    v1 = this.x(1,:) .*. ones(nv-1,1);
-    edges = this.x(2:nv,:) - v1;
-    n2 = sqrt ( sum ( edges.^2 , "c" ) );
-    ssize = min ( n2 );
-  else
-    errmsg = msprintf(gettext ( "%s: Unknown simplex size method %s") , "optimsimplex_size",method)
-    error(errmsg)
-  end
+    select method
+    case "Nash" then
+        v1 = this.x(1,:) .*. ones(nv-1,1);
+        edges = this.x(2:nv,:) - v1;
+        abedges = abs(edges);
+        n1 = sum(abedges,"c");
+        ssize = sum ( n1 );
+    case "diameter" then
+        ssize = 0.0;
+        for i = 1:nv
+            vi = this.x(i,:) .*. ones(nv,1);
+            edges = vi - this.x(1:nv,:);
+            n2 = sqrt ( sum ( edges.^2 , "c" ) );
+            ssize = max ( max( n2 ) , ssize );
+        end
+    case "sigmaplus" then
+        v1 = this.x(1,:) .*. ones(nv-1,1);
+        edges = this.x(2:nv,:) - v1;
+        n2 = sqrt ( sum ( edges.^2 , "c" ) );
+        ssize = max ( n2 );
+    case "sigmaminus" then
+        v1 = this.x(1,:) .*. ones(nv-1,1);
+        edges = this.x(2:nv,:) - v1;
+        n2 = sqrt ( sum ( edges.^2 , "c" ) );
+        ssize = min ( n2 );
+    else
+        errmsg = msprintf(gettext ( "%s: Unknown simplex size method %s") , "optimsimplex_size",method)
+        error(errmsg)
+    end
 endfunction
 

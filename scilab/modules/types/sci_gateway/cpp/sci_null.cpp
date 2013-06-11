@@ -18,6 +18,6 @@ using namespace types;
 
 Function::ReturnValue sci_null(typed_list &in, int _piRetCount, typed_list &out)
 {
-  out.push_back(new ListDelete());
-  return Function::OK;
+    out.push_back(new ListDelete());
+    return Function::OK;
 }

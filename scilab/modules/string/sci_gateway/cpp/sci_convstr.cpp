@@ -55,11 +55,11 @@ Function::ReturnValue sci_convstr(typed_list &in, int _iRetCount, typed_list &ou
         }
 
         wchar_t wcConvertMode = pInConvertMode->get(0)[0];
-        if (wcConvertMode == L'l' ||wcConvertMode == L'L' )
+        if (wcConvertMode == L'l' || wcConvertMode == L'L' )
         {
             iConvertMode = -1;
         }
-        else if(wcConvertMode == L'u' || wcConvertMode == L'U')
+        else if (wcConvertMode == L'u' || wcConvertMode == L'U')
         {
             iConvertMode = 1;
         }
@@ -71,7 +71,7 @@ Function::ReturnValue sci_convstr(typed_list &in, int _iRetCount, typed_list &ou
     }
 
     // Special case convstr([], *) == []
-    if(in[0]->isDouble())
+    if (in[0]->isDouble())
     {
         out.push_back(Double::Empty());
         return Function::OK;
@@ -83,9 +83,9 @@ Function::ReturnValue sci_convstr(typed_list &in, int _iRetCount, typed_list &ou
     for (int i = 0 ; i < pstConvertMe->getSize() ; ++i)
     {
         wchar_t *pwcsCurrent = pstConvertMe->get(i);
-        for(int j = 0 ; j < wcslen(pwcsCurrent) ; ++j)
+        for (int j = 0 ; j < wcslen(pwcsCurrent) ; ++j)
         {
-            if(iConvertMode == 1)
+            if (iConvertMode == 1)
             {
                 pwcsCurrent[j] = towupper(pwcsCurrent[j]);
             }

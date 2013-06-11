@@ -26,47 +26,47 @@
 /*--------------------------------------------------------------------------*/
 int sci_getdebuginfo(char *fname, void* pvApiCtx)
 {
-	SciErr sciErr;
-	char **outputDynamicList = NULL;
-	char **outputStaticList = NULL;
-	static int n1=1,m1=0;
-	static int n2=1,m2=0;
+    SciErr sciErr;
+    char **outputDynamicList = NULL;
+    char **outputStaticList = NULL;
+    static int n1 = 1, m1 = 0;
+    static int n2 = 1, m2 = 0;
 
-	CheckRhs(0,0);
-	CheckLhs(0,2);
+    CheckRhs(0, 0);
+    CheckLhs(0, 2);
 
 #ifdef _MSC_VER
-	outputDynamicList = getDynamicDebugInfo_Windows(&m1);
-	outputStaticList = getStaticDebugInfo_Windows(&m2);
+    outputDynamicList = getDynamicDebugInfo_Windows(&m1);
+    outputStaticList = getStaticDebugInfo_Windows(&m2);
 #else
-	outputDynamicList = getDynamicDebugInfo(&m1, pvApiCtx);
-	outputStaticList = getStaticDebugInfo(&m2);
+    outputDynamicList = getDynamicDebugInfo(&m1, pvApiCtx);
+    outputStaticList = getStaticDebugInfo(&m2);
 #endif
 
-	sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m1, n1, outputDynamicList);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m1, n1, outputDynamicList);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	LhsVar(1) = Rhs + 1;
+    LhsVar(1) = Rhs + 1;
 
-	if (Lhs == 2)
-	{
-		sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m2, n2, outputStaticList);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+    if (Lhs == 2)
+    {
+        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m2, n2, outputStaticList);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-		LhsVar(2) = Rhs+2;
-	}
-	freeArrayOfString(outputDynamicList,m1);
-	freeArrayOfString(outputStaticList,m2);
+        LhsVar(2) = Rhs + 2;
+    }
+    freeArrayOfString(outputDynamicList, m1);
+    freeArrayOfString(outputStaticList, m2);
 
     PutLhsVar();
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

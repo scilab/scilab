@@ -20,34 +20,34 @@
 //
 
 function scicos_pal=update_scicos_pal(path,name,fname)
-  scicos_pal;
+    scicos_pal;
 
-  inde=find(scicos_pal(:,1)==name);
-  if size(inde,'*')>=2 then 
-    messagebox(['More than one palette named '+name;
-	     'This is not allowed, do an Pal Editor to correct'],'modal')
-    return
-  end
-  if inde<>[] then
-    if messagebox(['The palette '+name+' already exists';
-		   'Do you want to replace it?'],'modal',['Yes','No'])==2 then 
-      return;
-    else
-      scicos_pal(inde,2)=fname
-      if getos() == 'Windows' then 
-	instr='del '+TMPDIR+'\'+name+'.pal'
-      else
-	instr='\rm -f '+TMPDIR+'/'+name+'.pal'
-      end
-      if execstr('unix_s(instr)','errcatch')<>0 then
-	messagebox(['I was not able to delete '+name+'.pal';
-		   'in '+TMPDIR+'. You must do it now!'],"modal","error");
-      end
+    inde=find(scicos_pal(:,1)==name);
+    if size(inde,"*")>=2 then
+        messagebox(["More than one palette named "+name;
+        "This is not allowed, do an Pal Editor to correct"],"modal")
+        return
     end
-  else
-    scicos_pal=[scicos_pal;[name,fname]]
-  end
-  if execstr('save(''.scicos_pal'',scicos_pal)','errcatch')<>0 then
-    messagebox(['I was not able to write in .scicos_pal:';lasterror()],"modal","error");
-  end
+    if inde<>[] then
+        if messagebox(["The palette "+name+" already exists";
+            "Do you want to replace it?"],"modal",["Yes","No"])==2 then
+            return;
+        else
+            scicos_pal(inde,2)=fname
+            if getos() == "Windows" then
+                instr="del "+TMPDIR+"\"+name+".pal"
+            else
+                instr="\rm -f "+TMPDIR+"/"+name+".pal"
+            end
+            if execstr("unix_s(instr)","errcatch")<>0 then
+                messagebox(["I was not able to delete "+name+".pal";
+                "in "+TMPDIR+". You must do it now!"],"modal","error");
+            end
+        end
+    else
+        scicos_pal=[scicos_pal;[name,fname]]
+    end
+    if execstr("save(''.scicos_pal'',scicos_pal)","errcatch")<>0 then
+        messagebox(["I was not able to write in .scicos_pal:";lasterror()],"modal","error");
+    end
 endfunction

@@ -57,12 +57,12 @@ public final class Jxclick {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
-        
+
         /*
          *  Force xclick not to catch/disable callback execution.
          */
         GlobalEventWatcher.enableCatchingCallback();
-        
+
         synchronized (ClickInfos.getInstance()) {
             try {
                 ClickInfos.getInstance().init();
@@ -125,7 +125,7 @@ public final class Jxclick {
             }
         } else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
             if (keyEvent.getSource() != null
-            		&& keyEvent.getSource() instanceof SwingScilabCanvas) {
+                    && keyEvent.getSource() instanceof SwingScilabCanvas) {
                 if (GlobalEventWatcher.isActivated()) {
                     GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), keyEvent.isControlDown());
                 }

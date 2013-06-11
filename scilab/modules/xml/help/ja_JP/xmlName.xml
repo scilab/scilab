@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
@@ -11,82 +11,82 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlName" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlName" xml:lang="ja">
         
-        <refname>xmlName</refname>
-        
-        <refpurpose>要素名を取得する.</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼出し手順</title>
-        
-        <synopsis>
+        <refnamediv>
             
-            names = xmlName(obj)
+            <refname>xmlName</refname>
             
-        </synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+            <refpurpose>要素名を取得する.</refpurpose>
             
-            <varlistentry>
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼出し手順</title>
+            
+            <synopsis>
                 
-                <term>obj</term>
+                names = xmlName(obj)
                 
-                <listitem>
+            </synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
                     
-                    <para>obj, XMLSet,XMLList,XMLElemまたはXMLAttr型の
+                    <term>obj</term>
+                    
+                    <listitem>
                         
-                        XML mlist
-                    </para>
+                        <para>obj, XMLSet,XMLList,XMLElemまたはXMLAttr型の
+                            
+                            XML mlist
+                        </para>
+                        
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>name</term>
-                
-                <listitem>
+                <varlistentry>
                     
-                    <para>名前, 1行分の文字列</para>
+                    <term>name</term>
                     
-                </listitem>
+                    <listitem>
+                        
+                        <para>名前, 1行分の文字列</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
                 
-            </varlistentry>
+            </variablelist>
             
-        </variablelist>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
+        <refsection>
             
-            XMLObjectを構成する要素の名前を取得します.
-        </para>
+            <title>説明</title>
+            
+            <para>
+                
+                XMLObjectを構成する要素の名前を取得します.
+            </para>
+            
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example"><![CDATA[
+        <refsection>
+            
+            <title>例</title>
+            
+            <programlisting role="example"><![CDATA[
 doc = xmlReadStr("<root><foo a=""123"" b=""456"" c=""789""/></root>")
 
 // 単一の要素の名前を取得
@@ -100,54 +100,54 @@ xmlName(xmlXPath(doc,"//foo/@*"))
 
 xmlDelete(doc);
     ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="xmlXPath">xmlXPath</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="xmlAsText">xmlAsText</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="xmlAsNumber">xmlAsNumber</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>履歴</title>
+            
+            <revhistory>
+                
+                <revision>
+                    
+                    <revnumber>5.4.1</revnumber>
+                    
+                    <revremark>xmlName関数が導入されました.</revremark>
+                    
+                </revision>
+                
+            </revhistory>
+            
+        </refsection>
+        
+    </refentry>
     
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="xmlXPath">xmlXPath</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="xmlAsText">xmlAsText</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="xmlAsNumber">xmlAsNumber</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>履歴</title>
-        
-        <revhistory>
-            
-            <revision>
-                
-                <revnumber>5.4.1</revnumber>
-                
-                <revremark>xmlName関数が導入されました.</revremark>
-                
-            </revision>
-            
-        </revhistory>
-        
-    </refsection>
-    
-</refentry>
-

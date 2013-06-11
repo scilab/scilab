@@ -28,35 +28,39 @@ using namespace types;
 
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iType = 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    int iType = 0;
 
-	if(	_piAddress == NULL)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getPointer");
-		return sciErr;
-	}
+    if (	_piAddress == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getPointer");
+        return sciErr;
+    }
 
-	sciErr = getVarType(_pvCtx, _piAddress, &iType);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_GET_POINTER, _("%s: Unable to get argument #%d"), "getPointer", getRhsFromAddress(_pvCtx, _piAddress));
-		return sciErr;
-	}
+    sciErr = getVarType(_pvCtx, _piAddress, &iType);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_GET_POINTER, _("%s: Unable to get argument #%d"), "getPointer", getRhsFromAddress(_pvCtx, _piAddress));
+        return sciErr;
+    }
 
-	if(iType != sci_pointer)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPointer", _("pointer"));
-		return sciErr;
-	}
+    if (iType != sci_pointer)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPointer", _("pointer"));
+        return sciErr;
+    }
 
-	*_pvPtr = ((InternalType*)_piAddress)->getAs<Pointer>()->get();
-	return sciErr;
+    *_pvPtr = ((InternalType*)_piAddress)->getAs<Pointer>()->get();
+    return sciErr;
 }
 
 SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
 
     if (_pvCtx == NULL)
     {
@@ -87,54 +91,58 @@ SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
     int rhs = _iVar - *getNbInputArgument(_pvCtx);
     out[rhs - 1] = pP;
 
-	return sciErr;
+    return sciErr;
 }
 
 SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     wchar_t* pwstName = to_wide_string(_pstName);
 
     Pointer* pP = new Pointer(_pvPtr);
     symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pP);
     FREE(pwstName);
 
-	return sciErr;
+    return sciErr;
 }
 
 SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int* piAddr				= NULL;
-	void *pvPtr				= NULL;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    int* piAddr				= NULL;
+    void *pvPtr				= NULL;
 
-	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_READ_POINTER, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
-		return sciErr;
-	}
+    sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_READ_POINTER, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
+        return sciErr;
+    }
 
-	sciErr = getPointer(_pvCtx, piAddr, &pvPtr);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_READ_POINTER, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
-		return sciErr;
-	}
+    sciErr = getPointer(_pvCtx, piAddr, &pvPtr);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_READ_POINTER, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
+        return sciErr;
+    }
 
-	*_pvPtr = pvPtr;
+    *_pvPtr = pvPtr;
 
-	return sciErr;
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 int isPointerType(void* _pvCtx, int* _piAddress)
 {
-	return checkVarType(_pvCtx, _piAddress, sci_pointer);
+    return checkVarType(_pvCtx, _piAddress, sci_pointer);
 }
 /*--------------------------------------------------------------------------*/
 int isNamedPointerType(void* _pvCtx, const char* _pstName)
 {
-	return checkNamedVarType(_pvCtx, _pstName, sci_pointer);
+    return checkNamedVarType(_pvCtx, _pstName, sci_pointer);
 }
 /*--------------------------------------------------------------------------*/
 

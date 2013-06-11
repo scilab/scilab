@@ -1,72 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="atan" xml:lang="en">
-    <refnamediv>
-        <refname>atan</refname>
-        <refpurpose>2-quadrant and 4-quadrant inverse tangent</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>phi = atan(x)
-            phi = atan(y, x)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>a real or complex scalar, vector or matrix.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>phi</term>
-                <listitem>
-                    <para>a real or complex scalar, vector or matrix.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x, y</term>
-                <listitem>
-                    <para>a real scalars, vectors or matrices of the same size.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>phi</term>
-                <listitem>
-                    <para>a real scalar, vector or matrix.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The first form computes the 2-quadrant inverse tangent, which is the
-            inverse of <code>tan(phi)</code>. For real <varname>x</varname>,
-            <varname>phi</varname> is in the interval <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>. For complex
-            <varname>x</varname>, <function>atan</function> has two singular, branching
-            points <code>+%i</code>, <code>-%i</code> and the chosen branch
-            cuts are the two imaginary half-straight lines <latex>[i, i*\infty)</latex> and <latex>(-i*\infty, -i]</latex>.
-        </para>
-        <para>
-            The second form computes the 4-quadrant arctangent (<function>atan2</function> in
-            Fortran), this is, it returns the argument (angle) of the complex number
-            <literal>x+i*y</literal>. The range of <code>atan(y, x)</code> is
-            <latex>(-\pi, \pi]</latex>.
-        </para>
-        <para>For real arguments, both forms yield identical values if
-            <literal>x&gt;0</literal>.
-        </para>
-        <para>In case of vector or matrix arguments, the evaluation is done
-            element-wise, so that <varname>phi</varname> is a vector or matrix of the
-            same size with <code>phi(i, j) = atan(x(i, j))</code> or
-            <code>phi(i,j) = atan(y(i, j), x(i, j))</code>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="atan" xml:lang="en">
+        <refnamediv>
+            <refname>atan</refname>
+            <refpurpose>2-quadrant and 4-quadrant inverse tangent</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>phi = atan(x)
+                phi = atan(y, x)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>a real or complex scalar, vector or matrix.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>phi</term>
+                    <listitem>
+                        <para>a real or complex scalar, vector or matrix.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x, y</term>
+                    <listitem>
+                        <para>a real scalars, vectors or matrices of the same size.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>phi</term>
+                    <listitem>
+                        <para>a real scalar, vector or matrix.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The first form computes the 2-quadrant inverse tangent, which is the
+                inverse of <code>tan(phi)</code>. For real <varname>x</varname>,
+                <varname>phi</varname> is in the interval <latex>\left(\dfrac{-\pi}{2}, \dfrac{\pi}{2}\right)</latex>. For complex
+                <varname>x</varname>, <function>atan</function> has two singular, branching
+                points <code>+%i</code>, <code>-%i</code> and the chosen branch
+                cuts are the two imaginary half-straight lines <latex>[i, i*\infty)</latex> and <latex>(-i*\infty, -i]</latex>.
+            </para>
+            <para>
+                The second form computes the 4-quadrant arctangent (<function>atan2</function> in
+                Fortran), this is, it returns the argument (angle) of the complex number
+                <literal>x+i*y</literal>. The range of <code>atan(y, x)</code> is
+                <latex>(-\pi, \pi]</latex>.
+            </para>
+            <para>For real arguments, both forms yield identical values if
+                <literal>x&gt;0</literal>.
+            </para>
+            <para>In case of vector or matrix arguments, the evaluation is done
+                element-wise, so that <varname>phi</varname> is a vector or matrix of the
+                same size with <code>phi(i, j) = atan(x(i, j))</code> or
+                <code>phi(i,j) = atan(y(i, j), x(i, j))</code>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // examples with the second form
 x=[1,%i,-1,%i]
 phase_x=atan(imag(x),real(x))
@@ -84,16 +84,16 @@ ieee(2)
 atan(%i)
 atan(-%i)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="tan">tan</link>
-            </member>
-            <member>
-                <link linkend="ieee">ieee</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="tan">tan</link>
+                </member>
+                <member>
+                    <link linkend="ieee">ieee</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

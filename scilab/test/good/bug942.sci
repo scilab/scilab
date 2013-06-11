@@ -19,25 +19,25 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["function [a] = bug942(x) // bug942";
-		"";
-		"// Ouput variables initialisation (not found in input variables)";
-		"a=[];";
-		"";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"// help line";
-		"// help line";
-		"a = x;";
-		"endfunction"]
+"";
+"// Ouput variables initialisation (not found in input variables)";
+"a=[];";
+"";
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"// help line";
+"// help line";
+"a = x;";
+"endfunction"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,942);
+    affich_result(%F,942);
 else
-	affich_result(%T,942);
+    affich_result(%T,942);
 end
 
 clear

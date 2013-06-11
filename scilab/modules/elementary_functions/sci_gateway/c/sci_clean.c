@@ -17,8 +17,8 @@
 #include "Scierror.h"
 
 /*Some call to other module ( polynomial et sparse*/
-extern int sci_cleanp(char *fname,unsigned long fname_len);
-extern int sci_spclean (char *fname,unsigned long fname_len);
+extern int sci_cleanp(char *fname, unsigned long fname_len);
+extern int sci_spclean (char *fname, unsigned long fname_len);
 extern int C2F(ref2val) (void);
 extern double C2F(dasum)();
 
@@ -28,195 +28,195 @@ int clean_sparse(void* pvApiCtx, int* _piAddress);
 
 int sci_clean(char *fname, void* pvApiCtx)
 {
-	SciErr sciErr;
+    SciErr sciErr;
 
-	int* piAddr1		= NULL;
-	int iType				= 0;
+    int* piAddr1		= NULL;
+    int iType				= 0;
 
-	CheckRhs(1,3);
-	CheckLhs(1,1);
+    CheckRhs(1, 3);
+    CheckLhs(1, 1);
 
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	sciErr = getVarType(pvApiCtx, piAddr1, &iType);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarType(pvApiCtx, piAddr1, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	switch(iType)
-	{
-	case sci_matrix :
-		sciErr = clean_double(pvApiCtx, piAddr1);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+    switch (iType)
+    {
+        case sci_matrix :
+            sciErr = clean_double(pvApiCtx, piAddr1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
 
-		PutLhsVar();
-		break;
-	case sci_poly :
-		clean_poly(pvApiCtx, piAddr1);
-		break;
-	case sci_sparse :
-		clean_sparse(pvApiCtx, piAddr1);
-		break;
-	default :
-		OverLoad(1);
-		return 0;
-	}
+            PutLhsVar();
+            break;
+        case sci_poly :
+            clean_poly(pvApiCtx, piAddr1);
+            break;
+        case sci_sparse :
+            clean_sparse(pvApiCtx, piAddr1);
+            break;
+        default :
+            OverLoad(1);
+            return 0;
+    }
 
-	return 0;
+    return 0;
 }
 
 int clean_poly(void* pvApiCtx, int* _piAddress)
 {
-	sci_cleanp("clean", 5);
-	return 0;
+    sci_cleanp("clean", 5);
+    return 0;
 }
 
 int clean_sparse(void* pvApiCtx, int* _piAddress)
 {
-	C2F(ref2val)();
-	sci_spclean("clean", 5);
-	return 0;
+    C2F(ref2val)();
+    sci_spclean("clean", 5);
+    return 0;
 }
 
 SciErr clean_double(void* pvApiCtx, int* _piAddress)
 {
-	SciErr sciErr;
-	int i;
+    SciErr sciErr;
+    int i;
 
-	int iRows1						= 0;
-	int iCols1						= 0;
-	double *pdblReal1			= NULL;
-	double *pdblImg1			= NULL;
+    int iRows1						= 0;
+    int iCols1						= 0;
+    double *pdblReal1			= NULL;
+    double *pdblImg1			= NULL;
 
-	int iRows2						= 0;
-	int iCols2						= 0;
-	double *pdblReal2			= NULL;
+    int iRows2						= 0;
+    int iCols2						= 0;
+    double *pdblReal2			= NULL;
 
-	int iRows3						= 0;
-	int iCols3						= 0;
-	double *pdblReal3			= NULL;
+    int iRows3						= 0;
+    int iCols3						= 0;
+    double *pdblReal3			= NULL;
 
-	double	*pdblRealRet	= NULL;
-	double	*pdblImgRet		= NULL;
+    double	*pdblRealRet	= NULL;
+    double	*pdblImgRet		= NULL;
 
-	double dblEpsR				= 1E-10;
-	double dblEpsA				= 1E-10;
-	double dblEps					= 0;
-	double dblNorm				= 0;
+    double dblEpsR				= 1E-10;
+    double dblEpsA				= 1E-10;
+    double dblEps					= 0;
+    double dblNorm				= 0;
 
-	int* piAddr2					= NULL;
-	int* piAddr3					= NULL;
+    int* piAddr2					= NULL;
+    int* piAddr3					= NULL;
 
-	if(Rhs == 3)
-	{
-		sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
+    if (Rhs == 3)
+    {
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
-		sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, &pdblReal3);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &iRows3, &iCols3, &pdblReal3);
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
-		if(iRows3 != 1 || iCols3 != 1)
-		{
-			SciError(60);
-			return sciErr;
-		}
-		dblEpsR = pdblReal3[0];
-	}
+        if (iRows3 != 1 || iCols3 != 1)
+        {
+            SciError(60);
+            return sciErr;
+        }
+        dblEpsR = pdblReal3[0];
+    }
 
-	if(Rhs >= 2)
-	{
-		sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
+    if (Rhs >= 2)
+    {
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
-		sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal2);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, &pdblReal2);
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
-		if(iRows2 != 1 || iCols2 != 1)
-		{
-			SciError(60);
-			return sciErr;
-		}
-		dblEpsA = pdblReal2[0];
-	}
+        if (iRows2 != 1 || iCols2 != 1)
+        {
+            SciError(60);
+            return sciErr;
+        }
+        dblEpsA = pdblReal2[0];
+    }
 
-	if(isVarComplex(pvApiCtx, _piAddress))
-	{
-		sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
-
-
-		dblNorm = wasums(iRows1 * iCols1, pdblReal1, pdblImg1);
-
-		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
+    if (isVarComplex(pvApiCtx, _piAddress))
+    {
+        sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
 
-		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
-		for(i = 0 ; i < iRows1 * iCols1 ; i++)
-		{
-			pdblRealRet[i]	= dabss(pdblReal1[i]) <= dblEps ? 0 : pdblReal1[i];
-			pdblImgRet[i]		= dabss(pdblImg1[i]) <= dblEps ? 0 : pdblImg1[i];
-		}
-	}
-	else
-	{
-		int iOne	= 1;
-		int iSize1	= 0;
+        dblNorm = wasums(iRows1 * iCols1, pdblReal1, pdblImg1);
 
-		sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows1, &iCols1, &pdblReal1);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
+        sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
 
-		iSize1			= iRows1 * iCols1;
-		dblNorm			= C2F(dasum)(&iSize1, pdblReal1, &iOne);
+        dblEps = Max(dblEpsA, dblEpsR * dblNorm);
+        for (i = 0 ; i < iRows1 * iCols1 ; i++)
+        {
+            pdblRealRet[i]	= dabss(pdblReal1[i]) <= dblEps ? 0 : pdblReal1[i];
+            pdblImgRet[i]		= dabss(pdblImg1[i]) <= dblEps ? 0 : pdblImg1[i];
+        }
+    }
+    else
+    {
+        int iOne	= 1;
+        int iSize1	= 0;
 
-		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
-		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet);
-		if(sciErr.iErr)
-		{
-			return sciErr;
-		}
+        sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows1, &iCols1, &pdblReal1);
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
 
 
-		for(i = 0 ; i < iRows1 * iCols1 ; i++)
-		{
-			pdblRealRet[i] = dabss(pdblReal1[i]) <= dblEps ? 0 : pdblReal1[i];
-		}
-	}
+        iSize1			= iRows1 * iCols1;
+        dblNorm			= C2F(dasum)(&iSize1, pdblReal1, &iOne);
 
-	LhsVar(1) = Rhs + 1;
-	return sciErr;
+        dblEps = Max(dblEpsA, dblEpsR * dblNorm);
+        sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, &pdblRealRet);
+        if (sciErr.iErr)
+        {
+            return sciErr;
+        }
+
+
+        for (i = 0 ; i < iRows1 * iCols1 ; i++)
+        {
+            pdblRealRet[i] = dabss(pdblReal1[i]) <= dblEps ? 0 : pdblReal1[i];
+        }
+    }
+
+    LhsVar(1) = Rhs + 1;
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/

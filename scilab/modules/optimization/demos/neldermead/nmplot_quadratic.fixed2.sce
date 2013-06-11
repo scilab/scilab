@@ -12,7 +12,7 @@
 
 function demo_nmplot_qfixed2()
 
-    filename = 'nmplot_quadratic.fixed2.sce';
+    filename = "nmplot_quadratic.fixed2.sce";
     dname = get_absolute_file_path(filename);
 
     mprintf(_("Illustrates that the fixed-shape Spendley et al. algorithm performs badly on a badly quadratic test case.\n"));
@@ -58,11 +58,11 @@ function demo_nmplot_qfixed2()
     // Plot the contours of the cost function and the simplex history
     mprintf(_("Plotting contour (please wait) ...\n"));
     nm = nmplot_configure(nm, "-verbose", 0);
-    xmin = -5.0 ; 
-    xmax = 12.0 ; 
-    ymin = -2.0 ; 
-    ymax = 12.0 ; 
-    nx = 50 ; 
+    xmin = -5.0 ;
+    xmax = 12.0 ;
+    ymin = -2.0 ;
+    ymax = 12.0 ;
+    nx = 50 ;
     ny = 50;
     scf()
     drawlater();
@@ -83,4 +83,5 @@ demo_nmplot_qfixed2();
 clear demo_nmplot_qfixed2;
 
 
-
+
+

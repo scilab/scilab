@@ -24,15 +24,15 @@
 
 function d = hex2dec(h)
 
-  rhs = argn(2);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"hex2dec", 1));
-  end
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"hex2dec", 1));
+    end
 
-  if type(h)<> 10 then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"hex2dec",1));
-  end
+    if type(h)<> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"hex2dec",1));
+    end
 
-  d = base2dec(h, 16);
+    d = base2dec(h, 16);
 
 endfunction

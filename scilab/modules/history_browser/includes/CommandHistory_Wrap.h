@@ -21,7 +21,7 @@ extern "C"
 
 #include "dynlib_history_browser.h"
 
-HISTORY_BROWSER_IMPEXP void CommandHistoryAppendLine (char* _pstLine);
+    HISTORY_BROWSER_IMPEXP void CommandHistoryAppendLine (char* _pstLine);
 
     HISTORY_BROWSER_IMPEXP void CommandHistoryLoadFromFile (void);
 

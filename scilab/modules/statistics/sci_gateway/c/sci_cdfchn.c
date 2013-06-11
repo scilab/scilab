@@ -13,20 +13,22 @@
 #include "gw_statistics.h"
 #include "CdfBase.h"
 
-extern int C2F(cdfchn)(int *,double *,double *,double*,double *,double *, int *,double *);
+extern int C2F(cdfchn)(int *, double *, double *, double*, double *, double *, int *, double *);
 
 /**
  * Interface to dcdflib's cdfchn
  * SUBROUTINE CDFCHN( WHICH, P, Q, X, DF, PNONC, STATUS, BOUND )
- * Cumulative Distribution Function, CHi-square Non-central 
+ * Cumulative Distribution Function, CHi-square Non-central
  */
-int sci_cdfchn(char* fname, void* pvApiCtx) 
-{ 
-  struct cdf_item items[] =
-    {{"PQ"   , 3, 2, 2},
-     {"X"    , 4, 1, 3},
-     {"Df"   , 4, 1, 4},
-     {"Pnonc", 4, 1, 0}};
-  struct cdf_descriptor cdf = mkcdf(cdfchn, 4, 5, 1, 2, items);
-  return cdf_generic(fname, pvApiCtx, &cdf);
-} 
+int sci_cdfchn(char* fname, void* pvApiCtx)
+{
+    struct cdf_item items[] =
+    {
+        {"PQ"   , 3, 2, 2},
+        {"X"    , 4, 1, 3},
+        {"Df"   , 4, 1, 4},
+        {"Pnonc", 4, 1, 0}
+    };
+    struct cdf_descriptor cdf = mkcdf(cdfchn, 4, 5, 1, 2, items);
+    return cdf_generic(fname, pvApiCtx, &cdf);
+}

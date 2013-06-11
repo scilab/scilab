@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,36 +10,36 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="demo_run">
-    <refnamediv>
-        <refname>demo_run</refname>
-        <refpurpose>script file execution </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>demo_run(fil)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The  function demo_run executes a script in the file 'fil' given in argument.
-        </para>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="exec">exec</link>
-            </member>
-            <member>
-                <link linkend="demo_message">demo_message</link>
-            </member>
-            <member>
-                <link linkend="demo_begin">demo_begin</link>
-            </member>
-            <member>
-                <link linkend="demo_end">demo_end</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="demo_run">
+        <refnamediv>
+            <refname>demo_run</refname>
+            <refpurpose>script file execution </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>demo_run(fil)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The  function demo_run executes a script in the file 'fil' given in argument.
+            </para>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="exec">exec</link>
+                </member>
+                <member>
+                    <link linkend="demo_message">demo_message</link>
+                </member>
+                <member>
+                    <link linkend="demo_begin">demo_begin</link>
+                </member>
+                <member>
+                    <link linkend="demo_end">demo_end</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

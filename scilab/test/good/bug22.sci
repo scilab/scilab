@@ -11,18 +11,18 @@ affich_result(pascorrect, 22)
 
 clear all
 
-// La matrice triangulaire supérieure renvoyée par cette fonction contient 
+// La matrice triangulaire supÃ©rieure renvoyÃ©e par cette fonction contient
 // des valeurs non nulles en dessous de la diagonale :
-// 
+//
 // -->[Q,R]=qr([1,2,3]')
 //  R  =
 // ! - 3.7416574 !
 // !   4.881-313 ! // !!!!!
 // !   6.154-313 ! // !!!!!
-// 
-// 
+//
+//
 //  Q  =
 // ! - 0.2672612  - 0.5345225  - 0.8017837 !
 // ! - 0.5345225    0.7745419  - 0.3381871 !
 // ! - 0.8017837  - 0.3381871    0.4927193 !
-// 
+//

@@ -1,232 +1,232 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="BARXY">
-    <refnamediv>
-        <refname>BARXY</refname>
-        <refpurpose>y=f(x) animated viewer</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/BARXY.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
-    <refsection id="Contents_BARXY">
-        <title>Contents</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="BARXY">y=f(x) animated viewer</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_BARXY">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_BARXY">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_BARXY">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_BARXY">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_BARXY">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_BARXY">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_BARXY">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_BARXY">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_BARXY">
-        <title>Description</title>
-        <para>
-            This block realizes the visualization of the evolution of the two regular input signals by drawing solid bars between two consecutive inputs representing x and y coordinates.
-        </para>
-        <para>
-        </para>
-    </refsection>
-    <refsection id="Dialogbox_BARXY">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/BARXY_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-            
-        </para>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Xmin</emphasis>
-                </para>
-                <para>Minimum value of the first input; used to set up the X-axis of the plot in the graphics window.</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Xmax</emphasis>
-                </para>
-                <para>Maximum value of the first input; used to set up the X-axis of the plot in the graphics window.</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Ymin</emphasis>
-                </para>
-                <para>Minimum value of the second input; used to set up the Y-axis of the plot in the graphics window.</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Ymax</emphasis>
-                </para>
-                <para>Maximum value of the second input; used to set up the Y-axis of the plot in the graphics window.</para>
-                <para>Properties : Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Segs Thickness</emphasis>
-                </para>
-                <para>Thickness of segs that will be displayed.</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Defaultproperties_BARXY">
-        <title>Default properties</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">always active:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">direct-feedthrough:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">zero-crossing:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">mode:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">regular inputs:</emphasis>
-                </para>
-                <para>
-                    <emphasis role="bold">- port 1 : size [-1, -1] / type 1 (must have at least a par sized vector of inputs).</emphasis>
-                </para>
-                <para>
-                    <emphasis role="bold">- port 2 : size [-1, -1] / type 1 (must have at least a par sized vector of inputs).</emphasis>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">continuous-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">discrete-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">name of computational function:</emphasis>
-                    <emphasis role="italic">BARXY_sim</emphasis>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Interfacingfunction_BARXY">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Sinks/BARXY.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Computationalfunction_BARXY">
-        <title>Computational function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Sinks/BARXY_sim.sci (Type 5)</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Example_BARXY">
-        <title>Animated bar viewer example</title>
-        <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/BARXY_Example.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/sinks_pal/BARXY_Example.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
-    </refsection>
-    <refsection id="Seealso_BARXY">
-        <title>See also</title>
-        <itemizedlist>
-        </itemizedlist>
-    </refsection>
-</refentry>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="BARXY">
+        <refnamediv>
+            <refname>BARXY</refname>
+            <refpurpose>y=f(x) animated viewer</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Block Screenshot</title>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../images/palettes/BARXY.png" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+        </refsection>
+        <refsection id="Contents_BARXY">
+            <title>Contents</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="BARXY">y=f(x) animated viewer</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <xref linkend="Palette_BARXY">Palette</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Description_BARXY">Description</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Dialogbox_BARXY">Dialog box</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Defaultproperties_BARXY">Default properties</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Interfacingfunction_BARXY">Interfacing function</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Computationalfunction_BARXY">Computational function</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Seealso_BARXY">See also</xref>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Palette_BARXY">
+            <title>Palette</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="Sinks_pal">Sinks palette</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Description_BARXY">
+            <title>Description</title>
+            <para>
+                This block realizes the visualization of the evolution of the two regular input signals by drawing solid bars between two consecutive inputs representing x and y coordinates.
+            </para>
+            <para>
+            </para>
+        </refsection>
+        <refsection id="Dialogbox_BARXY">
+            <title>Dialog box</title>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../images/gui/BARXY_gui.gif" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+            <para>
+                
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Xmin</emphasis>
+                    </para>
+                    <para>Minimum value of the first input; used to set up the X-axis of the plot in the graphics window.</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Xmax</emphasis>
+                    </para>
+                    <para>Maximum value of the first input; used to set up the X-axis of the plot in the graphics window.</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Ymin</emphasis>
+                    </para>
+                    <para>Minimum value of the second input; used to set up the Y-axis of the plot in the graphics window.</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Ymax</emphasis>
+                    </para>
+                    <para>Maximum value of the second input; used to set up the Y-axis of the plot in the graphics window.</para>
+                    <para>Properties : Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Segs Thickness</emphasis>
+                    </para>
+                    <para>Thickness of segs that will be displayed.</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Defaultproperties_BARXY">
+            <title>Default properties</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">always active:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">direct-feedthrough:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">zero-crossing:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">mode:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">regular inputs:</emphasis>
+                    </para>
+                    <para>
+                        <emphasis role="bold">- port 1 : size [-1, -1] / type 1 (must have at least a par sized vector of inputs).</emphasis>
+                    </para>
+                    <para>
+                        <emphasis role="bold">- port 2 : size [-1, -1] / type 1 (must have at least a par sized vector of inputs).</emphasis>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">continuous-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">discrete-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">object discrete-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name of computational function:</emphasis>
+                        <emphasis role="italic">BARXY_sim</emphasis>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Interfacingfunction_BARXY">
+            <title>Interfacing function</title>
+            <itemizedlist>
+                <listitem>
+                    <para> SCI/modules/scicos_blocks/macros/Sinks/BARXY.sci</para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Computationalfunction_BARXY">
+            <title>Computational function</title>
+            <itemizedlist>
+                <listitem>
+                    <para> SCI/modules/scicos_blocks/macros/Sinks/BARXY_sim.sci (Type 5)</para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Example_BARXY">
+            <title>Animated bar viewer example</title>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/BARXY_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sinks_pal/BARXY_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </refsection>
+        <refsection id="Seealso_BARXY">
+            <title>See also</title>
+            <itemizedlist>
+            </itemizedlist>
+        </refsection>
+    </refentry>

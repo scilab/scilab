@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
  * Copyright (C) 2013 - Samuel GOUGEON : traduction et extension aux tlist et mlist
@@ -11,49 +11,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="isfield">
-    <refnamediv>
-        <refname>isfield</refname>
-        <refpurpose>teste l'existence d'un ou plusieurs champs pour une structure, une tlist ou une mlist</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>bool = isfield(s, fieldname)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>s</term>
-                <listitem>
-                    <para>un tableau de structures, ou une liste typée tlist ou mlist</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fieldname</term>
-                <listitem>
-                    <para>matrice de textes : noms des champs à détecter</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>bool</term>
-                <listitem>
-                    <para>
-                        matrice booléenne (même format que <varname>fieldname</varname>)
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            bool(i,j) vaut <constant>%t</constant> si le champ nommé <varname>fieldname(i,j)</varname> existe pour le tableau de structure ou tlist ou mlist <varname>s</varname>(indépendamment de la valeur éventuellement affectée à ce champ). Si <varname>s</varname> est une structure, son champ caché <code class="literal">dims</code> est ignoré.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="isfield">
+        <refnamediv>
+            <refname>isfield</refname>
+            <refpurpose>teste l'existence d'un ou plusieurs champs pour une structure, une tlist ou une mlist</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>bool = isfield(s, fieldname)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Paramètres</title>
+            <variablelist>
+                <varlistentry>
+                    <term>s</term>
+                    <listitem>
+                        <para>un tableau de structures, ou une liste typée tlist ou mlist</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fieldname</term>
+                    <listitem>
+                        <para>matrice de textes : noms des champs à détecter</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>bool</term>
+                    <listitem>
+                        <para>
+                            matrice booléenne (même format que <varname>fieldname</varname>)
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                bool(i,j) vaut <constant>%t</constant> si le champ nommé <varname>fieldname(i,j)</varname> existe pour le tableau de structure ou tlist ou mlist <varname>s</varname>(indépendamment de la valeur éventuellement affectée à ce champ). Si <varname>s</varname> est une structure, son champ caché <code class="literal">dims</code> est ignoré.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[ 
 s = struct("field_1",123,"field_2",456,"field_4",789)
  
 // Test pour un nom de champ unique :
@@ -68,36 +68,36 @@ isfield( s, ["b" "t" ""])
    // =>  F  T  T  (la présence de champs anonymes peut être détectée)
 
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="struct">struct</link>
-            </member>
-            <member>
-                <link linkend="tlist">tlist</link>
-            </member>
-            <member>
-                <link linkend="mlist">mlist</link>
-            </member>
-            <member>
-                <link linkend="getfield">getfield</link>
-            </member>
-            <member>
-                <link linkend="definedfields">definedfields</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Historique</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.5</revnumber>
-                <revremark>
-                    Extension aux mlist et tlist
-                </revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="struct">struct</link>
+                </member>
+                <member>
+                    <link linkend="tlist">tlist</link>
+                </member>
+                <member>
+                    <link linkend="mlist">mlist</link>
+                </member>
+                <member>
+                    <link linkend="getfield">getfield</link>
+                </member>
+                <member>
+                    <link linkend="definedfields">definedfields</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Historique</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.5</revnumber>
+                    <revremark>
+                        Extension aux mlist et tlist
+                    </revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

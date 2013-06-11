@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
     *
@@ -11,106 +11,106 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="asciimat">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="asciimat">
         
-        <refname>asciimat</refname>
-        
-        <refpurpose>文字列行列アスキー変換</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>
+        <refnamediv>
             
-            a = asciimat(txt)
+            <refname>asciimat</refname>
             
-            txt = asciimat(a)
+            <refpurpose>文字列行列アスキー変換</refpurpose>
             
-        </synopsis>
+        </refnamediv>
         
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+        <refsynopsisdiv>
             
-            <varlistentry>
+            <title>呼び出し手順</title>
+            
+            <synopsis>
                 
-                <term>txt</term>
+                a = asciimat(txt)
                 
-                <listitem>
+                txt = asciimat(a)
+                
+            </synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
                     
-                    <para>
-                        
-                        文字列または文字列の行列.
-                        
-                    </para>
+                    <term>txt</term>
                     
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>a</term>
-                
-                <listitem>
-                    
-                    <para>
+                    <listitem>
                         
-                        整数アスキーコードのベクトルまたは行列.
+                        <para>
+                            
+                            文字列または文字列の行列.
+                            
+                        </para>
                         
-                    </para>
+                    </listitem>
                     
-                </listitem>
+                </varlistentry>
                 
-            </varlistentry>
-            
-        </variablelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
-            
-            この関数は,Scilab文字列をアスキーコードに変換または
-            
-            アスキーコードの行列をScilab文字列に変換します.
-            
-            出力は,<function>ascii</function>の場合と異なり,
-            
-            入力と同じ行数を有する行列です.
-            
-        </para>
-        
-    </refsection>
-    
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
+                <varlistentry>
+                    
+                    <term>a</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            整数アスキーコードのベクトルまたは行列.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
                 
-                <link linkend="ascii">ascii</link>
-                
-            </member>
+            </variablelist>
             
-        </simplelist>
+        </refsection>
         
-    </refsection>
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
+                
+                この関数は,Scilab文字列をアスキーコードに変換または
+                
+                アスキーコードの行列をScilab文字列に変換します.
+                
+                出力は,<function>ascii</function>の場合と異なり,
+                
+                入力と同じ行数を有する行列です.
+                
+            </para>
+            
+        </refsection>
+        
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="ascii">ascii</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-</refentry>
-

@@ -18,34 +18,34 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int sci_timer(char *fname,void* pvApiCtx)
+int sci_timer(char *fname, void* pvApiCtx)
 {
-  double timerval = 0;
+    double timerval = 0;
 
-  Rhs = Max(0, Rhs);
-  CheckLhs(0,1);
-  CheckRhs(0,0);
+    Rhs = Max(0, Rhs);
+    CheckLhs(0, 1);
+    CheckRhs(0, 0);
 
-  timerval = scilab_timer();
+    timerval = scilab_timer();
 
-  if (timerval >= 0.)
+    if (timerval >= 0.)
     {
-    	SciErr sciErr;
-      int n1 = 1;
-      double * pDblReal = NULL;
+        SciErr sciErr;
+        int n1 = 1;
+        double * pDblReal = NULL;
 
-      sciErr = allocMatrixOfDouble(pvApiCtx, Rhs+1, n1, n1, &pDblReal);
+        sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, n1, n1, &pDblReal);
 
-      *pDblReal = (double)timerval;
+        *pDblReal = (double)timerval;
 
-		LhsVar(1) = Rhs+1;
-		PutLhsVar();
-	}
-	else
-	{
-		Scierror(999,_("%s: An error occurred.\n"), fname);
-	}
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+    }
+    else
+    {
+        Scierror(999, _("%s: An error occurred.\n"), fname);
+    }
 
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

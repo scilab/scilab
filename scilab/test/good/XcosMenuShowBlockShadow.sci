@@ -20,21 +20,21 @@
 //
 
 function XcosMenuShowBlockShadow()
-//
-//
-  Cmenu=[] ;
-  [edited,options] = do_options(scs_m.props.options,'3D')
-  scs_m.props.options = options ;
+    //
+    //
+    Cmenu=[] ;
+    [edited,options] = do_options(scs_m.props.options,"3D")
+    scs_m.props.options = options ;
 
-  if edited then
-    //** Acquire the current clicked window 
-    gh_curwin = scf(%win) ;
-    gh_axes = gca()       ; 
-    //** Clear the graphic window WITHOUT changing his pamaters ! :)
-    drawlater() ;
-    delete(gh_axes.children) ; //** wipe out all the temp graphics object
-    drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
-    Cmenu = [] ; %pt = [];
-  end
+    if edited then
+        //** Acquire the current clicked window
+        gh_curwin = scf(%win) ;
+        gh_axes = gca()       ;
+        //** Clear the graphic window WITHOUT changing his pamaters ! :)
+        drawlater() ;
+        delete(gh_axes.children) ; //** wipe out all the temp graphics object
+        drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
+        Cmenu = [] ; %pt = [];
+    end
 
 endfunction

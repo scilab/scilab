@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
-<!--
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+    <!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
@@ -18,12 +18,12 @@
 
  Don't touch if you do not know what you are doing
 -->
-<module name="optimization">
-    <gateway name="sci_optim"       function="optim"        type="0" />
-    <gateway name="sci_semidef"     function="semidef"      type="0" />
-    <gateway name="sci_fsolve"      function="fsolve"       type="0" />
-    <gateway name="sci_lsqrsolve"   function="lsqrsolve"    type="0" />
-    <gateway name="sci_qld"         function="qld"          type="0" />
-    <gateway name="sci_qp_solve"    function="qp_solve"     type="0" />
-    <gateway name="sci_readmps"     function="readmps"      type="0" />
-</module>
+    <module name="optimization">
+        <gateway name="sci_optim"       function="optim"        type="0" />
+        <gateway name="sci_semidef"     function="semidef"      type="0" />
+        <gateway name="sci_fsolve"      function="fsolve"       type="0" />
+        <gateway name="sci_lsqrsolve"   function="lsqrsolve"    type="0" />
+        <gateway name="sci_qld"         function="qld"          type="0" />
+        <gateway name="sci_qp_solve"    function="qp_solve"     type="0" />
+        <gateway name="sci_readmps"     function="readmps"      type="0" />
+    </module>

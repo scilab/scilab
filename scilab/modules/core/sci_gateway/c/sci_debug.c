@@ -34,7 +34,7 @@ int C2F(sci_debug)(char *fname, void *pvApiCtx)
         double dNewDebugLevel = 0.;
         int iNewDebugLevel = 0;
         SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -84,7 +84,7 @@ int C2F(sci_debug)(char *fname, void *pvApiCtx)
 
     if (createScalarDouble(pvApiCtx, Rhs + 1, dPreviousDebugLevel) != 0)
     {
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
     LhsVar(1) = Rhs + 1;

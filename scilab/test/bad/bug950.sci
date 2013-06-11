@@ -8,15 +8,15 @@ mode(-1);
 clear
 
 try
-  function [] = Select (Type)
-  select Type, n
-    case 1 then
-        disp ("1")        
-    case 2 then 
-        disp ("2")        
-  end;
-  endfunction;
+    function [] = Select (Type)
+        select Type, n
+        case 1 then
+            disp ("1")
+        case 2 then
+            disp ("2")
+        end;
+    endfunction;
 catch
-  ok=%t
+    ok=%t
 end
 affich_result(ok,950);

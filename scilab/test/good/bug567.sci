@@ -3,7 +3,7 @@
 
 disp("start scilab");
 
- 
+
 disp("start scipad");
 disp("write something in scipad");
 disp("don''t save!");

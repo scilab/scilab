@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,57 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="isalphanum">
-    <refnamediv>
-        <refname>isalphanum</refname>
-        <refpurpose>文字列の文字がアルファベットまたは数字であるかどうかを調べる</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>res = isalphanum(str)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>str</term>
-                <listitem>
-                    <para>文字列.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>res</term>
-                <listitem>
-                    <para>論理値行列.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>res = isalphanum(str)</literal> は str を同じ大きさの
-            配列を返します.
-            この配列の要素は,対応する str の要素がアルファベットまたは数字である
-            場合に論理値 %t (true), そうでない場合は %f (false) を返します.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="isalphanum">
+        <refnamediv>
+            <refname>isalphanum</refname>
+            <refpurpose>文字列の文字がアルファベットまたは数字であるかどうかを調べる</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>res = isalphanum(str)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータ</title>
+            <variablelist>
+                <varlistentry>
+                    <term>str</term>
+                    <listitem>
+                        <para>文字列.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>res</term>
+                    <listitem>
+                        <para>論理値行列.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>res = isalphanum(str)</literal> は str を同じ大きさの
+                配列を返します.
+                この配列の要素は,対応する str の要素がアルファベットまたは数字である
+                場合に論理値 %t (true), そうでない場合は %f (false) を返します.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 s = 'A1,B2,C3';
 isalphanum(s)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="isletter">isletter</link>
-            </member>
-            <member>
-                <link linkend="isdigit">isdigit</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="isletter">isletter</link>
+                </member>
+                <member>
+                    <link linkend="isdigit">isdigit</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

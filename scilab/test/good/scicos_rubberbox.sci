@@ -21,16 +21,16 @@
 
 function [rect,btn] = scicos_rubberbox(rect, edit_mode)
 
-//** 18 Mar 2008 : this function has been renomed "scicos_rubberbox" in order to 
-//**               avoid confusion with the Scilab 5 internal "C" primitive
-//**               "rubberbox" 
+    //** 18 Mar 2008 : this function has been renomed "scicos_rubberbox" in order to
+    //**               avoid confusion with the Scilab 5 internal "C" primitive
+    //**               "rubberbox"
 
-//** 24 Nov 2008 : Scilab 5 "graphics" update with the new "rubberbox" primitive
+    //** 24 Nov 2008 : Scilab 5 "graphics" update with the new "rubberbox" primitive
 
-edition_mode = %t ; 
-[final_rect, final_btn] = rubberbox(rect, edition_mode); 
+    edition_mode = %t ;
+    [final_rect, final_btn] = rubberbox(rect, edition_mode);
 
-rect = final_rect ;
-btn  = final_btn  ; 
+    rect = final_rect ;
+    btn  = final_btn  ;
 
 endfunction

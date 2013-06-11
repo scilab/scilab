@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -11,87 +11,87 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percente" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percente" xml:lang="ja">
         
-        <refname>%e</refname>
-        
-        <refpurpose>オイラー数.</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>%e</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
+        <refnamediv>
             
-            <literal>%e</literal> はオイラー数, つまり, 方程式 <latex>\[ln(x) = 1\]</latex>の解です.
+            <refname>%e</refname>
             
-        </para>
+            <refpurpose>オイラー数.</refpurpose>
+            
+        </refnamediv>
         
-        <para>
+        <refsynopsisdiv>
             
-            この数は以下の式により得られます 
+            <title>呼び出し手順</title>
             
-            <latex>
+            <synopsis>%e</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
                 
-                \sum_{n=0}^{\infty} \frac1{n!} = e
+                <literal>%e</literal> はオイラー数, つまり, 方程式 <latex>\[ln(x) = 1\]</latex>の解です.
                 
-            </latex>
+            </para>
             
-            .
+            <para>
+                
+                この数は以下の式により得られます 
+                
+                <latex>
+                    
+                    \sum_{n=0}^{\infty} \frac1{n!} = e
+                    
+                </latex>
+                
+                .
+                
+            </para>
             
-        </para>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example">
+        <refsection>
             
-            <![CDATA[ 
+            <title>例</title>
+            
+            <programlisting role="example">
+                
+                <![CDATA[ 
         %e
         log(%e)
         ]]>
+                
+            </programlisting>
             
-        </programlisting>
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="log">log</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="exp">exp</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="log">log</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="exp">exp</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-</refentry>
-

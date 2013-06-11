@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  * 
@@ -10,169 +10,169 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fileinfo" xml:lang="en">
-    <refnamediv>
-        <refname>fileinfo</refname>
-        <refpurpose>provides information about a file</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[x, ierr] = fileinfo(files)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>files</term>
-                <listitem>
-                    <para>a character string or a string column vector, file
-                        pathname.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>an integer vector of size 13 containing information or an
-                        empty matrix if file does not exist.
-                    </para>
-                    <para>
-                        If <varname>files</varname> is a string column vector, <varname>x</varname> will be a matrix of
-                        size <literal>m x 13</literal>.
-                    </para>
-                    <para>
-                        If a filename does not exist, it will return as output
-                        information a line of size 13 with <constant>Nan</constant>
-                        in each element of this line.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ierr</term>
-                <listitem>
-                    <para>error indicator, 0, if no error has occurred.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <code>x = fileinfo(file)</code> returns:
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>x(1)</term>
-                <listitem>
-                    <para>The file size</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(2)</term>
-                <listitem>
-                    <para>The file mode (decimal value)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(3)</term>
-                <listitem>
-                    <para>The user id</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(4)</term>
-                <listitem>
-                    <para>The group id</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(5)</term>
-                <listitem>
-                    <para>The device number</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(6)</term>
-                <listitem>
-                    <para>The date of last data modification</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(7)</term>
-                <listitem>
-                    <para>The date of last file status change</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(8)</term>
-                <listitem>
-                    <para>The date of last access</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(9)</term>
-                <listitem>
-                    <para>The device type (if inode device)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(10)</term>
-                <listitem>
-                    <para>The blocksize for filesystem I/O (always 0 on Windows)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(11)</term>
-                <listitem>
-                    <para>The number of blocks allocated (always 0 on Windows)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(12)</term>
-                <listitem>
-                    <para>The inode</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x(13)</term>
-                <listitem>
-                    <para>The number of hard links</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>References</title>
-        <para>
-            This function is an interface to the C function <function>stat</function>.
-        </para>
-        <para>
-            Permissions are typically specified as octal numbers: <code>dec2oct(x(2))</code> to convert.
-        </para>
-        <para>Numeric mode is from one to four octal digits (0-7), derived by
-            adding up the bits with values 4, 2, and 1. Any omitted digits are assumed
-            to be leading zeros. The first digit selects the set user ID (4) and set
-            group ID (2) and sticky (1) attributes. The second digit selects
-            permissions for the user who owns the file: read (4), write (2), and
-            execute (1); the third selects permissions for other users in the file's
-            group, with the same values; and the fourth for other users not in the
-            file's group, with the same values. 
-        </para>
-        <para>
-            So, to check permissions, it is necessary to use masks. Let us take an example:
-            In octal, x(2)=1664, so first digit corresponds to sticky attributes. The second
-            indicates that file owner has permission of writing and reading. It is the same
-            for other users in the file's group. Finally, others users has just right to read.
-            To apply a mask, it is simpler to look at this octal in binary. 
-            So: <varname>x</varname>(2)= 1 110 110 100.
-            To check if the owner has write permission, we must take a look at the second triplet: 110 
-            and compare it with write permission 010. So, the operation is: 110 000 000 &amp; 010 000 000.
-            If result is not null (it is the case here), owner has write permission.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fileinfo" xml:lang="en">
+        <refnamediv>
+            <refname>fileinfo</refname>
+            <refpurpose>provides information about a file</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[x, ierr] = fileinfo(files)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>files</term>
+                    <listitem>
+                        <para>a character string or a string column vector, file
+                            pathname.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>an integer vector of size 13 containing information or an
+                            empty matrix if file does not exist.
+                        </para>
+                        <para>
+                            If <varname>files</varname> is a string column vector, <varname>x</varname> will be a matrix of
+                            size <literal>m x 13</literal>.
+                        </para>
+                        <para>
+                            If a filename does not exist, it will return as output
+                            information a line of size 13 with <constant>Nan</constant>
+                            in each element of this line.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>ierr</term>
+                    <listitem>
+                        <para>error indicator, 0, if no error has occurred.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <code>x = fileinfo(file)</code> returns:
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>x(1)</term>
+                    <listitem>
+                        <para>The file size</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(2)</term>
+                    <listitem>
+                        <para>The file mode (decimal value)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(3)</term>
+                    <listitem>
+                        <para>The user id</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(4)</term>
+                    <listitem>
+                        <para>The group id</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(5)</term>
+                    <listitem>
+                        <para>The device number</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(6)</term>
+                    <listitem>
+                        <para>The date of last data modification</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(7)</term>
+                    <listitem>
+                        <para>The date of last file status change</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(8)</term>
+                    <listitem>
+                        <para>The date of last access</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(9)</term>
+                    <listitem>
+                        <para>The device type (if inode device)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(10)</term>
+                    <listitem>
+                        <para>The blocksize for filesystem I/O (always 0 on Windows)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(11)</term>
+                    <listitem>
+                        <para>The number of blocks allocated (always 0 on Windows)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(12)</term>
+                    <listitem>
+                        <para>The inode</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x(13)</term>
+                    <listitem>
+                        <para>The number of hard links</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>References</title>
+            <para>
+                This function is an interface to the C function <function>stat</function>.
+            </para>
+            <para>
+                Permissions are typically specified as octal numbers: <code>dec2oct(x(2))</code> to convert.
+            </para>
+            <para>Numeric mode is from one to four octal digits (0-7), derived by
+                adding up the bits with values 4, 2, and 1. Any omitted digits are assumed
+                to be leading zeros. The first digit selects the set user ID (4) and set
+                group ID (2) and sticky (1) attributes. The second digit selects
+                permissions for the user who owns the file: read (4), write (2), and
+                execute (1); the third selects permissions for other users in the file's
+                group, with the same values; and the fourth for other users not in the
+                file's group, with the same values. 
+            </para>
+            <para>
+                So, to check permissions, it is necessary to use masks. Let us take an example:
+                In octal, x(2)=1664, so first digit corresponds to sticky attributes. The second
+                indicates that file owner has permission of writing and reading. It is the same
+                for other users in the file's group. Finally, others users has just right to read.
+                To apply a mask, it is simpler to look at this octal in binary. 
+                So: <varname>x</varname>(2)= 1 110 110 100.
+                To check if the owner has write permission, we must take a look at the second triplet: 110 
+                and compare it with write permission 010. So, the operation is: 110 000 000 &amp; 010 000 000.
+                If result is not null (it is the case here), owner has write permission.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 w = fileinfo(SCI+'/etc/scilab.start')
 // file permission
 dec2oct(w(2))
@@ -201,25 +201,25 @@ end
 FILES = [SCI;SCIHOME;'not_exist_file';TMPDIR]
 [X,ERRS] = fileinfo(FILES)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="getdate">getdate</link>
-            </member>
-            <member>
-                <link linkend="file">file</link>
-            </member>
-            <member>
-                <link linkend="dispfiles">dispfiles</link>
-            </member>
-            <member>
-                <link linkend="newest">newest</link>
-            </member>
-            <member>
-                <link linkend="isdir">isdir</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="getdate">getdate</link>
+                </member>
+                <member>
+                    <link linkend="file">file</link>
+                </member>
+                <member>
+                    <link linkend="dispfiles">dispfiles</link>
+                </member>
+                <member>
+                    <link linkend="newest">newest</link>
+                </member>
+                <member>
+                    <link linkend="isdir">isdir</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

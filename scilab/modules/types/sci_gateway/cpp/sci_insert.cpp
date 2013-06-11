@@ -19,7 +19,7 @@ using namespace types;
 
 Function::ReturnValue sci_insert(typed_list &in, int _piRetCount, typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         out.push_back(new ListInsert(new ListUndefined()));
     }

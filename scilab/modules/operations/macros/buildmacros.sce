@@ -7,4 +7,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-genlib('operationslib','SCI/modules/operations/macros',%f,%t);
+genlib("operationslib","SCI/modules/operations/macros",%f,%t);

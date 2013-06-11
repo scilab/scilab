@@ -58,10 +58,10 @@ public final class ActivateHelpOnTypingForOpenersAction extends DefaultCheckActi
         final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingForOpenersAction(label, editor), key);
         cb.setChecked(HelpOnTypingManager.isOpenersActive());
         ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
-                public void propertyChange(PropertyChangeEvent e) {
-                    cb.setChecked(HelpOnTypingManager.isOpenersActive());
-                }
-            });
+            public void propertyChange(PropertyChangeEvent e) {
+                cb.setChecked(HelpOnTypingManager.isOpenersActive());
+            }
+        });
 
         return cb;
     }

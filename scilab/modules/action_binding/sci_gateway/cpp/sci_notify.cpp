@@ -31,19 +31,19 @@ types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, t
     types::String* pString  = NULL;
     wchar_t* wcsInput       = NULL;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "notify" , 1);
         return types::Function::Error;
     }
-    if(in[0]->isString() == false)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "notify", 1);
         return types::Function::Error;
     }
     pString = in[0]->getAs<types::String>();
 
-    if(pString->isScalar() == FALSE)
+    if (pString->isScalar() == FALSE)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "notify" , 1);
         return types::Function::Error;
@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, t
     {
         org_scilab_modules_action_binding_utils::Signal::notify(getScilabJavaVM(), strInput);
     }
-    catch(const GiwsException::JniException & e)
+    catch (const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), "notify", e.whatStr().c_str());
         FREE(strInput);

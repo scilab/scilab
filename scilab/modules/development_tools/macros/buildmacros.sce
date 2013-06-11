@@ -9,6 +9,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-genlib('development_toolslib','SCI/modules/development_tools/macros',%f,%t);
-genlib('assertlib','SCI/modules/development_tools/macros/assert',%f,%t);
+genlib("development_toolslib","SCI/modules/development_tools/macros",%f,%t);
+genlib("assertlib","SCI/modules/development_tools/macros/assert",%f,%t);
 

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Xcos
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -22,281 +22,281 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="RAMP" xml:lang="en_US">
-    <refnamediv>
-        <refname>RAMP</refname>
-        <refpurpose>Ramp</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/RAMP.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
-    <refsection id="Contents_RAMP">
-        <title>Contents</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="RAMP">Ramp</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_RAMP">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_RAMP">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatype_RAMP">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_RAMP">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_RAMP">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_RAMP">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_RAMP">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_RAMP">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_RAMP">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_RAMP">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_RAMP">
-        <title>Description</title>
-        <para>
-            The Ramp block generates a signal that starts at a specified <emphasis role="bold">Start Time</emphasis> and <emphasis role="bold">Initial Value</emphasis> and increases by a specified rate (<emphasis role="bold">Slope</emphasis> parameter).
-            The output signal is defined by the following equation:
-        </para>
-        <para/>
-        <para>
-            <latex><![CDATA[s\left(t\right)=\begin{cases}s_{0} & \textrm{ for }t<t_{0}\\s_{0}+k.t & \textrm{ for }t>t_{0}\end{cases}
-      ]]></latex>
-        </para>
-        <para>
-            where 
-            <emphasis><literal>
-                    t<subscript>0</subscript>
-                </literal>
-            </emphasis>
-            is the <emphasis role="bold">Start Time</emphasis>, 
-            <emphasis><literal>
-                    s<subscript>0</subscript>
-                </literal>
-            </emphasis>
-            the <emphasis role="bold">Initial Value</emphasis> and 
-            <emphasis>
-                <literal>k</literal>
-            </emphasis>
-            the <emphasis role="bold">Slope</emphasis>.
-        </para>
-    </refsection>
-    <refsection id="Datatype_RAMP">
-        <title>Data types</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    Output: scalar double.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Dialogbox_RAMP">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/sources_pal/en_US/RAMP_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Slope</emphasis>
-                </para>
-                <para> Scalar. The rate of change of the generated signal.</para>
-                <para> Properties : Type 'vec' of size 1. </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Start Time</emphasis>
-                </para>
-                <para> Scalar. The time at which the signal begins to increase.</para>
-                <para> Properties : Type 'vec' of size 1. </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Initial Value</emphasis>
-                </para>
-                <para> Scalar. The initial value of the signal.</para>
-                <para> Properties : Type 'vec' of size 1. </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Defaultproperties_RAMP">
-        <title>Default properties</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">always active:</emphasis> yes
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">direct-feedthrough:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">zero-crossing:</emphasis> yes
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">mode:</emphasis> yes
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">regular outputs:</emphasis>
-                </para>
-                <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">continuous-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">discrete-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">name of computational function:</emphasis>
-                    <emphasis role="italic">ramp</emphasis>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Example_RAMP">
-        <title>Example</title>
-        <para>
-            This diagram shows the use of RAMP block to obtain the response to a ramp signal of a first order's system defined by a transfer function.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/ramp_en_US.zcos">
-                Open this example in Xcos
-            </link>
-            .
-        </para>
-        <para/>
-        <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/ramp_en_US.zcos">
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="RAMP" xml:lang="en_US">
+        <refnamediv>
+            <refname>RAMP</refname>
+            <refpurpose>Ramp</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Block Screenshot</title>
+            <para>
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/sources_pal/en_US/ramp_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../images/palettes/RAMP.png" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </link>
-            <scilab:image><![CDATA[
+            </para>
+        </refsection>
+        <refsection id="Contents_RAMP">
+            <title>Contents</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="RAMP">Ramp</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <xref linkend="Palette_RAMP">Palette</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Description_RAMP">Description</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Datatype_RAMP">Data types</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Dialogbox_RAMP">Dialog box</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Defaultproperties_RAMP">Default properties</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Example_RAMP">Example</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Interfacingfunction_RAMP">Interfacing function</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Computationalfunction_RAMP">Computational function</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Seealso_RAMP">See also</xref>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Palette_RAMP">
+            <title>Palette</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="Sources_pal">Sources palette</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Description_RAMP">
+            <title>Description</title>
+            <para>
+                The Ramp block generates a signal that starts at a specified <emphasis role="bold">Start Time</emphasis> and <emphasis role="bold">Initial Value</emphasis> and increases by a specified rate (<emphasis role="bold">Slope</emphasis> parameter).
+                The output signal is defined by the following equation:
+            </para>
+            <para/>
+            <para>
+                <latex><![CDATA[s\left(t\right)=\begin{cases}s_{0} & \textrm{ for }t<t_{0}\\s_{0}+k.t & \textrm{ for }t>t_{0}\end{cases}
+      ]]></latex>
+            </para>
+            <para>
+                where 
+                <emphasis><literal>
+                        t<subscript>0</subscript>
+                    </literal>
+                </emphasis>
+                is the <emphasis role="bold">Start Time</emphasis>, 
+                <emphasis><literal>
+                        s<subscript>0</subscript>
+                    </literal>
+                </emphasis>
+                the <emphasis role="bold">Initial Value</emphasis> and 
+                <emphasis>
+                    <literal>k</literal>
+                </emphasis>
+                the <emphasis role="bold">Slope</emphasis>.
+            </para>
+        </refsection>
+        <refsection id="Datatype_RAMP">
+            <title>Data types</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Output: scalar double.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Dialogbox_RAMP">
+            <title>Dialog box</title>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../gui/sources_pal/en_US/RAMP_gui.png" align="center"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+            <para/>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Slope</emphasis>
+                    </para>
+                    <para> Scalar. The rate of change of the generated signal.</para>
+                    <para> Properties : Type 'vec' of size 1. </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Start Time</emphasis>
+                    </para>
+                    <para> Scalar. The time at which the signal begins to increase.</para>
+                    <para> Properties : Type 'vec' of size 1. </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Initial Value</emphasis>
+                    </para>
+                    <para> Scalar. The initial value of the signal.</para>
+                    <para> Properties : Type 'vec' of size 1. </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Defaultproperties_RAMP">
+            <title>Default properties</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">always active:</emphasis> yes
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">direct-feedthrough:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">zero-crossing:</emphasis> yes
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">mode:</emphasis> yes
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">regular outputs:</emphasis>
+                    </para>
+                    <para>
+                        <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">continuous-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">discrete-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">object discrete-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name of computational function:</emphasis>
+                        <emphasis role="italic">ramp</emphasis>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Example_RAMP">
+            <title>Example</title>
+            <para>
+                This diagram shows the use of RAMP block to obtain the response to a ramp signal of a first order's system defined by a transfer function.
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/ramp_en_US.zcos">
+                    Open this example in Xcos
+                </link>
+                .
+            </para>
+            <para/>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/ramp_en_US.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../../../../examples/sources_pal/en_US/ramp_en_US.zcos" align="center" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/ramp_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
-    </refsection>
-    <refsection id="Interfacingfunction_RAMP">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RAMP.sci">SCI/modules/scicos_blocks/macros/Sources/RAMP.sci</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Computationalfunction_RAMP">
-        <title>Computational function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/ramp.c (Type 4)</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Seealso_RAMP">
-        <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <link linkend="STEP_FUNCTION">STEP_FUNCTION</link>
-            </listitem>
-            <listitem>
-                <link linkend="CURV_f">CURV_f</link>
-            </listitem>
-            <listitem>
-                <link linkend="Sigbuilder">Sigbuilder</link>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-</refentry>
+            </para>
+        </refsection>
+        <refsection id="Interfacingfunction_RAMP">
+            <title>Interfacing function</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RAMP.sci">SCI/modules/scicos_blocks/macros/Sources/RAMP.sci</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Computationalfunction_RAMP">
+            <title>Computational function</title>
+            <itemizedlist>
+                <listitem>
+                    <para> SCI/modules/scicos_blocks/src/c/ramp.c (Type 4)</para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Seealso_RAMP">
+            <title>See also</title>
+            <itemizedlist>
+                <listitem>
+                    <link linkend="STEP_FUNCTION">STEP_FUNCTION</link>
+                </listitem>
+                <listitem>
+                    <link linkend="CURV_f">CURV_f</link>
+                </listitem>
+                <listitem>
+                    <link linkend="Sigbuilder">Sigbuilder</link>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refentry>

@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="getos">
-    <refnamediv>
-        <refname>getos</refname>
-        <refpurpose>オペレーティングシステムの名前をバージョンを返す</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼出し手順</title>
-        <synopsis>OS=getos()
-            [OS,Version]=getos()
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>getos </literal>は, オペレーティングシステムの名前をバージョンを返します.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="getos">
+        <refnamediv>
+            <refname>getos</refname>
+            <refpurpose>オペレーティングシステムの名前をバージョンを返す</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼出し手順</title>
+            <synopsis>OS=getos()
+                [OS,Version]=getos()
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>getos </literal>は, オペレーティングシステムの名前をバージョンを返します.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 OS=getos()
 [OS,version]=getos()
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

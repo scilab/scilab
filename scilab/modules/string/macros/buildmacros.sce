@@ -1,5 +1,5 @@
 //------------------------------------
 // Allan CORNET INRIA 2005
 //------------------------------------
-genlib('stringlib','SCI/modules/string/macros',%f,%t);
+genlib("stringlib","SCI/modules/string/macros",%f,%t);
 //------------------------------------

@@ -10,7 +10,7 @@
 function demo_tanh()
 
     exec("SCI/modules/graphics/demos/cmplxfunc/MacCmplx.sci", -1);
-    
+
     R     = %pi/2-0.2;
     e     = 0;
     theta = -130;

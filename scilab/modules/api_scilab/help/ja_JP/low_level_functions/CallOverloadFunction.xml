@@ -1,104 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CallOverloadFunction" xml:lang="ja">
+    <?xml version="1.0" encoding="UTF-8"?>
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CallOverloadFunction" xml:lang="ja">
         
-        <refname>CallOverloadFunction</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            オーバーロードされた関数またはマクロをコールする際に使用するCゲートウェイ関数
+            <refname>CallOverloadFunction</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>CallOverloadFunction(_iVar)</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
-            
-            <varlistentry>
+            <refpurpose>
                 
-                <term>iVar</term>
+                オーバーロードされた関数またはマクロをコールする際に使用するCゲートウェイ関数
+                
+            </refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>CallOverloadFunction(_iVar)</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
+                    
+                    <term>iVar</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            オーバーロードされた関数/マクロの名前を作成する際に使用される
+                            
+                            入力引数を指定します
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
+                
+                オーバーロードされた関数またはマクロをコールすする際に使用するCゲートウェイ関数
+                
+            </para>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>例</title>
+            
+            <para>この例は以下の大きさを返します:</para>
+            
+            <itemizedlist>
                 
                 <listitem>
                     
-                    <para>
-                        
-                        オーバーロードされた関数/マクロの名前を作成する際に使用される
-                        
-                        入力引数を指定します
-                        
-                    </para>
+                    <para>入力引数の大きさを返します</para>
                     
                 </listitem>
                 
-            </varlistentry>
-            
-        </variablelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
-            
-            オーバーロードされた関数またはマクロをコールすする際に使用するCゲートウェイ関数
-            
-        </para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <para>この例は以下の大きさを返します:</para>
-        
-        <itemizedlist>
-            
-            <listitem>
+                <listitem>
+                    
+                    <para>入力引数が文字列の場合, 長さを返します</para>
+                    
+                </listitem>
                 
-                <para>入力引数の大きさを返します</para>
-                
-            </listitem>
+            </itemizedlist>
             
-            <listitem>
-                
-                <para>入力引数が文字列の場合, 長さを返します</para>
-                
-            </listitem>
+        </refsection>
+        
+        <refsection>
             
-        </itemizedlist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/calloverloadfunction_api.c-->
-        
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/calloverloadfunction_api.tst-->
-        
-        <!--Lib_name: calloverloadfunction-->
-        
-        <!--Func_list: callOverload-->
-        
-        <title>ゲートウェイのソース</title>
-        
-        <programlisting role="code_gateway"><![CDATA[ 
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/calloverloadfunction_api.c-->
+            
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/calloverloadfunction_api.tst-->
+            
+            <!--Lib_name: calloverloadfunction-->
+            
+            <!--Func_list: callOverload-->
+            
+            <title>ゲートウェイのソース</title>
+            
+            <programlisting role="code_gateway"><![CDATA[ 
 int callOverload(char *fname,unsigned long fname_len)
 {
     CheckRhs(1, 1);
@@ -108,14 +108,14 @@ int callOverload(char *fname,unsigned long fname_len)
     return 0;
 }
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>Scilabテストスクリプト</title>
-        
-        <programlisting role="code_scilab"><![CDATA[ 
+        <refsection>
+            
+            <title>Scilabテストスクリプト</title>
+            
+            <programlisting role="code_scilab"><![CDATA[ 
 function x = %c_getSize(a)
     x = lenght(a);
 endfunction
@@ -134,8 +134,8 @@ b_ref = [3,3,6;2,4,3];
 assert_checkequal(getSize(b) == b_ref);
 
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

@@ -18,28 +18,28 @@
 
 namespace types
 {
-	ListDelete::~ListDelete()
-	{
-	}
+ListDelete::~ListDelete()
+{
+}
 
-	void ListDelete::whoAmI()
-	{
-		std::cout << "types::ListDelete";
-	}
+void ListDelete::whoAmI()
+{
+    std::cout << "types::ListDelete";
+}
 
-	InternalType* ListDelete::clone(void)
-	{
-		return new ListDelete();
-	}
+InternalType* ListDelete::clone(void)
+{
+    return new ListDelete();
+}
 
-	InternalType::RealType ListDelete::getType(void)
-	{
-		return RealListDeleteOperation;
-	}
+InternalType::RealType ListDelete::getType(void)
+{
+    return RealListDeleteOperation;
+}
 
-    bool ListDelete::toString(std::wostringstream& ostr)
-    {
-        ostr << L"FIXME : Implement ListDelete::toString" << std::endl;
-        return true;
-    }
+bool ListDelete::toString(std::wostringstream& ostr)
+{
+    ostr << L"FIXME : Implement ListDelete::toString" << std::endl;
+    return true;
+}
 }

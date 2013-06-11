@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
  *
@@ -10,79 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_param" xml:lang="en">
-    <refnamediv>
-        <refname>list_param</refname>
-        <refpurpose>List all the parameters name in a list of
-            parameters
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[string_list,err] = list_param(list_name)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>list_name</term>
-                <listitem>
-                    <para>the list of parameters. This list must have been initialize by
-                        a call to init_param.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>string_list</term>
-                <listitem>
-                    <para>the list of parameters name.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>err</term>
-                <listitem>
-                    <para>an error flag which is set to %T if list_name is not of type
-                        plist (this list has not been initialized by a call to
-                        init_param).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>List all the parameters name in a list of parameters. If the err
-            output parameter is not present, when an error occurs, a message is
-            printed in the console.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_param" xml:lang="en">
+        <refnamediv>
+            <refname>list_param</refname>
+            <refpurpose>List all the parameters name in a list of
+                parameters
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[string_list,err] = list_param(list_name)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>list_name</term>
+                    <listitem>
+                        <para>the list of parameters. This list must have been initialize by
+                            a call to init_param.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>string_list</term>
+                    <listitem>
+                        <para>the list of parameters name.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>err</term>
+                    <listitem>
+                        <para>an error flag which is set to %T if list_name is not of type
+                            plist (this list has not been initialized by a call to
+                            init_param).
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>List all the parameters name in a list of parameters. If the err
+                output parameter is not present, when an error occurs, a message is
+                printed in the console.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
 mylist = add_param(mylist,'maxbound',[1 1 1]);
 disp(list_param(mylist));
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="init_param">init_param</link>
-            </member>
-            <member>
-                <link linkend="set_param">set_param</link>
-            </member>
-            <member>
-                <link linkend="get_param">get_param</link>
-            </member>
-            <member>
-                <link linkend="remove_param">remove_param</link>
-            </member>
-            <member>
-                <link linkend="is_param">is_param</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="init_param">init_param</link>
+                </member>
+                <member>
+                    <link linkend="set_param">set_param</link>
+                </member>
+                <member>
+                    <link linkend="get_param">get_param</link>
+                </member>
+                <member>
+                    <link linkend="remove_param">remove_param</link>
+                </member>
+                <member>
+                    <link linkend="is_param">is_param</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

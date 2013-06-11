@@ -36,19 +36,19 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
     double* pData           = NULL;
     int iMinRowsCols        = 0;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "lu", 1);
         return types::Function::Error;
     }
 
-    if(_iRetCount < 2 || _iRetCount > 3)
+    if (_iRetCount < 2 || _iRetCount > 3)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "lu", 2, 3);
         return types::Function::Error;
     }
 
-    if((in[0]->isDouble() == false))
+    if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_lu";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
@@ -56,10 +56,10 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
 
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
-        if(!pData)
+        if (!pData)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), "lu");
             return types::Function::Error;
@@ -70,28 +70,29 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         pData = pDbl->getReal();
     }
 
-    if((pDbl->getCols() == 0) || (pDbl->getRows() == 0))
+    if ((pDbl->getCols() == 0) || (pDbl->getRows() == 0))
     {
         out.push_back(types::Double::Empty());
         out.push_back(types::Double::Empty());
-        if(_iRetCount == 3)
+        if (_iRetCount == 3)
         {
             out.push_back(types::Double::Empty());
         }
         return types::Function::OK;
     }
 
-    if((pDbl->getRows() == -1) || (pDbl->getCols() == -1))  // Rhs(1)=k*eye() => Lhs(1)=eye()
-    {                                                       // Lhs(2)=k*eye(), Lhs(3)=eye()
+    if ((pDbl->getRows() == -1) || (pDbl->getCols() == -1)) // Rhs(1)=k*eye() => Lhs(1)=eye()
+    {
+        // Lhs(2)=k*eye(), Lhs(3)=eye()
         pDblL = new types::Double(-1, -1, pDbl->isComplex());
-        pDblL->set(0,1);
+        pDblL->set(0, 1);
         out.push_back(pDblL);
         out.push_back(pDbl);
-        if(_iRetCount == 3)
+        if (_iRetCount == 3)
         {
             pDblE = new types::Double(-1, -1, pDbl->isComplex());
-            pDblE->set(0,1);
-            out.push_back(pDblE);            
+            pDblE->set(0, 1);
+            out.push_back(pDblE);
         }
         return types::Function::OK;
     }
@@ -100,10 +101,10 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
     pDblL = new types::Double(pDbl->getRows(), iMinRowsCols, pDbl->isComplex());
     pDblU = new types::Double(iMinRowsCols, pDbl->getCols(), pDbl->isComplex());
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
-	    pdL = (double*) MALLOC(pDblL->getSize() * sizeof(doublecomplex));
-	    pdU = (double*) MALLOC(pDblU->getSize() * sizeof(doublecomplex));
+        pdL = (double*) MALLOC(pDblL->getSize() * sizeof(doublecomplex));
+        pdU = (double*) MALLOC(pDblU->getSize() * sizeof(doublecomplex));
     }
     else
     {
@@ -111,20 +112,20 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         pdU = pDblU->get();
     }
 
-    if(_iRetCount == 3)
+    if (_iRetCount == 3)
     {
         pDblE = new types::Double(pDbl->getRows(), pDbl->getRows());
     }
 
     int iRet = iLuM(pData, pDbl->getRows(), pDbl->getCols(), pDbl->isComplex(), pdL, pdU, (pDblE ? pDblE->get() : NULL));
 
-    if(iRet != 0)
+    if (iRet != 0)
     {
-	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "lu",iRet);
+        Scierror(999, _("%s: LAPACK error n°%d.\n"), "lu", iRet);
         return types::Function::Error;
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         vGetPointerFromDoubleComplex((doublecomplex*)pdL, pDblL->getSize(), pDblL->getReal(), pDblL->getImg());
         FREE((doublecomplex*)pdL);
@@ -132,14 +133,14 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         FREE((doublecomplex*)pdU);
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
 
     out.push_back(pDblL);
-    out.push_back(pDblU);    
-    if(_iRetCount == 3)
+    out.push_back(pDblU);
+    if (_iRetCount == 3)
     {
         out.push_back(pDblE);
     }

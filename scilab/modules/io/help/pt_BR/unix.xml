@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  * 
@@ -10,45 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unix" xml:lang="en">
-    <refnamediv>
-        <refname>unix</refname>
-        <refpurpose>execução de comando shell (sh)</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>stat=unix(command-name)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>command-name</term>
-                <listitem>
-                    <para>string contendo uma instrução Unix sh</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>stat</term>
-                <listitem>
-                    <para>flag inteiro</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            Envia um string <literal>command-name</literal> ao Unix para
-            execução com o shell sh. Saída e erros padrões do shell de comando são
-            escritos no shell chamado. <literal>stat</literal> retorna -1 se o Unix
-            não pode ser chamado (memória do sistema disponível insuficiente) ou o
-            código de retorno sh.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unix" xml:lang="en">
+        <refnamediv>
+            <refname>unix</refname>
+            <refpurpose>execução de comando shell (sh)</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>stat=unix(command-name)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>command-name</term>
+                    <listitem>
+                        <para>string contendo uma instrução Unix sh</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>stat</term>
+                    <listitem>
+                        <para>flag inteiro</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                Envia um string <literal>command-name</literal> ao Unix para
+                execução com o shell sh. Saída e erros padrões do shell de comando são
+                escritos no shell chamado. <literal>stat</literal> retorna -1 se o Unix
+                não pode ser chamado (memória do sistema disponível insuficiente) ou o
+                código de retorno sh.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 if getos() <> 'Windows' then
   unix("ls $SCI/demos");
 end
@@ -64,31 +64,31 @@ endfunction
 
 wd=directory()
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="edit">edit</link>
-            </member>
-            <member>
-                <link linkend="manedit">manedit</link>
-            </member>
-            <member>
-                <link linkend="unix_g">unix_g</link>
-            </member>
-            <member>
-                <link linkend="unix_s">unix_s</link>
-            </member>
-            <member>
-                <link linkend="unix_w">unix_w</link>
-            </member>
-            <member>
-                <link linkend="unix_x">unix_x</link>
-            </member>
-            <member>
-                <link linkend="host">host</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="edit">edit</link>
+                </member>
+                <member>
+                    <link linkend="manedit">manedit</link>
+                </member>
+                <member>
+                    <link linkend="unix_g">unix_g</link>
+                </member>
+                <member>
+                    <link linkend="unix_s">unix_s</link>
+                </member>
+                <member>
+                    <link linkend="unix_w">unix_w</link>
+                </member>
+                <member>
+                    <link linkend="unix_x">unix_x</link>
+                </member>
+                <member>
+                    <link linkend="host">host</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

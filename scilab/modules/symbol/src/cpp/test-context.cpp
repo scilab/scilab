@@ -18,10 +18,11 @@ using symbol::Heap;
 
 static int context_test()
 {
-  return 0;
+    return 0;
 }
 
-int main(void) {
-  context_test();
-  return 0;
+int main(void)
+{
+    context_test();
+    return 0;
 }

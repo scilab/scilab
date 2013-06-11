@@ -9,15 +9,15 @@ disp("------------------------------{ DEBUT TEST SUITE NON REGRESSION Version 2.
 disp("")
 disp("")
 
-// dans la variable num_test mettre tous les numéros de bugs devant être corrigés dans la version 2.7.1
+// dans la variable num_test mettre tous les numÃ©ros de bugs devant Ãªtre corrigÃ©s dans la version 2.7.1
 num_test = [1,6,21,22,24,25]
 
 for k = num_test
-   exec('bug' + string(k) + '.sci')
+    exec("bug" + string(k) + ".sci")
 end
 
 disp("")
-disp("") 
+disp("")
 disp("------------------------------{ FIN TEST SUITE NON REGRESSION Version 2.7.1 FIN }");
 disp("")
 disp("")

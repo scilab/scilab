@@ -11,20 +11,20 @@
 //=============================================================================
 function MSCompiler = findmsvccompiler()
 
-  MSCompiler = 'unknown'; // unknown
+    MSCompiler = "unknown"; // unknown
 
-  if getos() == 'Windows' then
+    if getos() == "Windows" then
 
-    // Load dynamic_link Internal lib if it's not already loaded
-    if ~ exists("dynamic_linkwindowslib") then
-      load("SCI/modules/dynamic_link/macros/windows/lib");
+        // Load dynamic_link Internal lib if it's not already loaded
+        if ~ exists("dynamic_linkwindowslib") then
+            load("SCI/modules/dynamic_link/macros/windows/lib");
+        end
+
+        MSCompiler = dlwFindMsVcCompiler();
+
+    else // NOT WINDOWS
+        MSCompiler = "unknown"; // unknown
     end
-
-    MSCompiler = dlwFindMsVcCompiler();
-
-  else // NOT WINDOWS
-    MSCompiler = 'unknown'; // unknown
-  end
 
 endfunction
 //=============================================================================

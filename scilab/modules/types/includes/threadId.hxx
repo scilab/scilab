@@ -23,54 +23,64 @@ extern "C"
 
 namespace types
 {
-    class TYPES_IMPEXP ThreadId : public InternalType
+class TYPES_IMPEXP ThreadId : public InternalType
+{
+public :
+    ThreadId(__threadId _id, __threadKey _key);
+    virtual                 ~ThreadId();
+
+    bool                    isThreadId()
     {
-    public :
-                                ThreadId(__threadId _id, __threadKey _key);
-        virtual                 ~ThreadId();
+        return true;
+    }
+    bool                    toString(std::wostringstream& ostr);
 
-        bool                    isThreadId() { return true; }
-        bool                    toString(std::wostringstream& ostr);
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring    getTypeStr()
+    {
+        return L"ThreadId";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring    getShortTypeStr()
+    {
+        return L"tid";
+    }
+    InternalType*           clone();
 
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring    getTypeStr() {return L"ThreadId";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring    getShortTypeStr() {return L"tid";}
-        InternalType*           clone();
+    __threadId              getId();
+    void                    setId(__threadId _id);
+    __threadKey             getKey();
+    void                    setKey(__threadKey _key);
 
-        __threadId              getId();
-        void                    setId(__threadId _id);
-        __threadKey             getKey();
-        void                    setKey(__threadKey _key);
-
-        /*
-        ** Status
-        */
-        enum Status {
-            Running,
-            Paused,
-            Aborted,
-            Done
-        };
-
-        Status                  getStatus();
-        void                    setStatus(Status _status);
-
-        void                    suspend();
-        void                    resume();
-        void                    abort();
-    private :
-        std::wstring            StatusToString(Status _status);
-
-    protected :
-        RealType                getType();
-
-    private :
-        __threadId              m_threadId;
-        __threadKey             m_threadKey;
-        __threadLock            m_threadLock;
-        Status                  m_threadStatus;
-
+    /*
+    ** Status
+    */
+    enum Status
+    {
+        Running,
+        Paused,
+        Aborted,
+        Done
     };
+
+    Status                  getStatus();
+    void                    setStatus(Status _status);
+
+    void                    suspend();
+    void                    resume();
+    void                    abort();
+private :
+    std::wstring            StatusToString(Status _status);
+
+protected :
+    RealType                getType();
+
+private :
+    __threadId              m_threadId;
+    __threadKey             m_threadKey;
+    __threadLock            m_threadLock;
+    Status                  m_threadStatus;
+
+};
 }
 #endif /* !__THREADID_HH__ */

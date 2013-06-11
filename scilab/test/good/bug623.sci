@@ -15,7 +15,7 @@ test4 = (execstr("int16(1) & %t","errcatch") ==  144)&(execstr("%t&int16(1)","er
 test5 = (execstr("int8(1) & %f ","errcatch") ==  144)&(execstr("%t&int8(1)","errcatch") ==  144);
 
 if test1 & test2 & test3 & test4 & test5 then
-	affich_result(%T,623);
+    affich_result(%T,623);
 else
-	affich_result(%F,623);
+    affich_result(%F,623);
 end

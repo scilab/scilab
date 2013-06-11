@@ -17,43 +17,55 @@
 
 namespace types
 {
-    class TYPES_IMPEXP GraphicHandle : public ArrayOf<long long>
+class TYPES_IMPEXP GraphicHandle : public ArrayOf<long long>
+{
+public :
+    GraphicHandle(long long _handle);
+    GraphicHandle(int _iRows, int _iCols);
+    GraphicHandle(int _iDims, int* _piDims);
+
+    virtual                 ~GraphicHandle();
+
+    InternalType*           clone();
+
+    void                    whoAmI();
+
+    bool                    isHandle()
     {
-    public :
-                                GraphicHandle(long long _handle);
-                                GraphicHandle(int _iRows, int _iCols);
-                                GraphicHandle(int _iDims, int* _piDims);
+        return true;
+    }
 
-        virtual                 ~GraphicHandle();
+    bool                    operator==(const InternalType& it);
+    bool                    operator!=(const InternalType& it);
 
-        InternalType*           clone();
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring     getTypeStr()
+    {
+        return L"handle";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring     getShortTypeStr()
+    {
+        return L"h";
+    }
 
-        void                    whoAmI();
+    bool                    hasToString()
+    {
+        return false;
+    }
+protected :
+    RealType				getType(void);
 
-        bool                    isHandle() { return true; }
+private :
+    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
-        bool                    operator==(const InternalType& it);
-        bool                    operator!=(const InternalType& it);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring     getTypeStr() {return L"handle";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring     getShortTypeStr() {return L"h";}
-
-        bool                    hasToString() { return false; }
-    protected :
-        RealType				getType(void);
-
-    private :
-        virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-
-        virtual long long       getNullValue();
-        virtual GraphicHandle*  createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual long long       copyValue(long long _handle);
-        virtual void            deleteAll();
-        virtual void            deleteImg();
-        virtual long long*      allocData(int _iSize);
-    };
+    virtual long long       getNullValue();
+    virtual GraphicHandle*  createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual long long       copyValue(long long _handle);
+    virtual void            deleteAll();
+    virtual void            deleteImg();
+    virtual long long*      allocData(int _iSize);
+};
 }
 
 #ifdef _MSC_VER

@@ -29,103 +29,105 @@ extern int C2F(complexify)(int const *num);
 /*--------------------------------------------------------------------------*/
 int sci_balanc(char *fname, int* _piKey)
 {
-  int ret=0;
-  int* arg[2]= {NULL, NULL};
-  int type;
+    int ret = 0;
+    int* arg[2] = {NULL, NULL};
+    int type;
 
-  doublecomplex* pData[2]= {NULL, NULL};
-  double* pDataReal[2]= {NULL, NULL};
-  double* pDataImg[2]= {NULL, NULL};
-  int iCols[2], iRows[2];
+    doublecomplex* pData[2] = {NULL, NULL};
+    double* pDataReal[2] = {NULL, NULL};
+    double* pDataImg[2] = {NULL, NULL};
+    int iCols[2], iRows[2];
 
-  CheckRhs(1,2);
-  CheckLhs(2*Rhs, 2*Rhs);
+    CheckRhs(1, 2);
+    CheckLhs(2 * Rhs, 2 * Rhs);
 
-  if(Rhs >=1)
+    if (Rhs >= 1)
     {
-      getVarAddressFromPosition(_piKey, 1, &arg[0]);
-      getVarType(_piKey, arg[0], &type);
-      if(type !=sci_matrix)
-	{
-	  OverLoad(1);
-	  return 0;
-	}
-      { /* Getting Rhs, either in pDataReal[] or pData[] in 'z' format */
-	int i;
-	int complexArgs= isVarComplex(_piKey, arg[0]);
-	if(Rhs==2)
-	  {
-	    getVarAddressFromPosition(_piKey, 2, &arg[1]);
-	    getVarType(_piKey, arg[1], &type);
-	    if (type != sci_matrix)
-	      {
-		OverLoad(2);
-		return 0;
-	      }
-	    complexArgs = complexArgs || isVarComplex(_piKey, arg[1]);
-	  }
-	for( i =0; i!=Rhs; ++i)
-	  {
-	    int const iPlus1=i+1;
-	    if(complexArgs)
-	      {
-		C2F(complexify)(&iPlus1);
-		getComplexMatrixOfDouble(_piKey, arg[i], &iRows[i], &iCols[i], &pDataReal[i], &pDataImg[i]);
-		if( !(pData[i]= oGetDoubleComplexFromPointer( pDataReal[i], pDataImg[i], iRows[i] * iCols[i])) )
-		  {
-		    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
-		    ret = 1;
-		  }
-	      }
-	    else
-	      {
-	    	getMatrixOfDouble(_piKey, arg[i],  &iRows[i], &iCols[i], &pDataReal[i]);
-	      }
-	    if(iCols[i] != iRows[i])
-	      {
-		Scierror(999,_("%s: Wrong size for input argument #%d: A square matrix expected.\n"), fname, i+1);
-		ret=-1;
-	      }
-	  }
-	if( (Rhs==2) && (iCols[0] != iCols[1]) )
-	  {/* /!\ reusing existing error msg, but it could be more explicit :"%s: arguments %d and %d must have equal dimensions.\n" */
-	    Scierror(999,_("%s and %s must have equal dimensions.\n"),"A","B");
-	    ret= -1;
-	  }
-	if(!ret)
-	  {
-	    /* Allocating variables for lhs   */
-	    {
-	      double* lhsData[2]= {NULL, NULL};
-	      for(i=0; i!=Rhs; ++i)
-		{
-		  allocMatrixOfDouble(_piKey, Rhs+i+1, iCols[0], iCols[0], &lhsData[i]) ;
-		}
-	      if(iCols[0] != 0)
-		{
-		  /* calling function and converting result to 'c' format if needed */
-		  if( complexArgs )
-		    {
-		      ret= iBalancM((double*)(pData[0]), (double*)(pData[1]), iCols[0], complexArgs, lhsData[0], lhsData[1]);
-		      for(i=0; i!=Rhs; ++i)
-			{
-			  vGetPointerFromDoubleComplex(pData[i], iCols[0]* iCols[0], pDataReal[i], pDataImg[i]);
-			  vFreeDoubleComplexFromPointer(pData[i]);
-			}
-		    }
-		  else
-		    {
-		      iBalancM(pDataReal[0], pDataReal[1], iCols[0], complexArgs, lhsData[0], lhsData[1]) ;
-		    }
-		}
-	    }
-	  }
-	/* putting Lhs back on stack */
-	for(i=1; i <= Lhs; ++i)
-	  {
-	    LhsVar(i)= i;
-	  }
-      }
+        getVarAddressFromPosition(_piKey, 1, &arg[0]);
+        getVarType(_piKey, arg[0], &type);
+        if (type != sci_matrix)
+        {
+            OverLoad(1);
+            return 0;
+        }
+        {
+            /* Getting Rhs, either in pDataReal[] or pData[] in 'z' format */
+            int i;
+            int complexArgs = isVarComplex(_piKey, arg[0]);
+            if (Rhs == 2)
+            {
+                getVarAddressFromPosition(_piKey, 2, &arg[1]);
+                getVarType(_piKey, arg[1], &type);
+                if (type != sci_matrix)
+                {
+                    OverLoad(2);
+                    return 0;
+                }
+                complexArgs = complexArgs || isVarComplex(_piKey, arg[1]);
+            }
+            for ( i = 0; i != Rhs; ++i)
+            {
+                int const iPlus1 = i + 1;
+                if (complexArgs)
+                {
+                    C2F(complexify)(&iPlus1);
+                    getComplexMatrixOfDouble(_piKey, arg[i], &iRows[i], &iCols[i], &pDataReal[i], &pDataImg[i]);
+                    if ( !(pData[i] = oGetDoubleComplexFromPointer( pDataReal[i], pDataImg[i], iRows[i] * iCols[i])) )
+                    {
+                        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+                        ret = 1;
+                    }
+                }
+                else
+                {
+                    getMatrixOfDouble(_piKey, arg[i],  &iRows[i], &iCols[i], &pDataReal[i]);
+                }
+                if (iCols[i] != iRows[i])
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), fname, i + 1);
+                    ret = -1;
+                }
+            }
+            if ( (Rhs == 2) && (iCols[0] != iCols[1]) )
+            {
+                /* /!\ reusing existing error msg, but it could be more explicit :"%s: arguments %d and %d must have equal dimensions.\n" */
+                Scierror(999, _("%s and %s must have equal dimensions.\n"), "A", "B");
+                ret = -1;
+            }
+            if (!ret)
+            {
+                /* Allocating variables for lhs   */
+                {
+                    double* lhsData[2] = {NULL, NULL};
+                    for (i = 0; i != Rhs; ++i)
+                    {
+                        allocMatrixOfDouble(_piKey, Rhs + i + 1, iCols[0], iCols[0], &lhsData[i]) ;
+                    }
+                    if (iCols[0] != 0)
+                    {
+                        /* calling function and converting result to 'c' format if needed */
+                        if ( complexArgs )
+                        {
+                            ret = iBalancM((double*)(pData[0]), (double*)(pData[1]), iCols[0], complexArgs, lhsData[0], lhsData[1]);
+                            for (i = 0; i != Rhs; ++i)
+                            {
+                                vGetPointerFromDoubleComplex(pData[i], iCols[0]* iCols[0], pDataReal[i], pDataImg[i]);
+                                vFreeDoubleComplexFromPointer(pData[i]);
+                            }
+                        }
+                        else
+                        {
+                            iBalancM(pDataReal[0], pDataReal[1], iCols[0], complexArgs, lhsData[0], lhsData[1]) ;
+                        }
+                    }
+                }
+            }
+            /* putting Lhs back on stack */
+            for (i = 1; i <= Lhs; ++i)
+            {
+                LhsVar(i) = i;
+            }
+        }
     }
-  return ret;
+    return ret;
 }

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+    <?xml version="1.0" encoding="utf-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,119 +11,119 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Common_isvarmatrixtype_API" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Common_isvarmatrixtype_API" xml:lang="ja">
         
-        <refname>行列型 (Scilab ゲートウェイ)</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            引数または変数が行列として保存されているかを調べる方法.
+            <refname>行列型 (Scilab ゲートウェイ)</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <para>入力引数プロファイル:</para>
-        
-        <synopsis>int isVarMatrixType(void* _pvCtx, int* _piAddress)</synopsis>
-        
-        <para>名前指定変数プロファイル:</para>
-        
-        <synopsis>int isNamedVarMatrixType(void* _pvCtx, const char *_pstName)</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
-            
-            <varlistentry>
+            <refpurpose>
                 
-                <term>_pvCtx</term>
+                引数または変数が行列として保存されているかを調べる方法.
                 
-                <listitem>
+            </refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <para>入力引数プロファイル:</para>
+            
+            <synopsis>int isVarMatrixType(void* _pvCtx, int* _piAddress)</synopsis>
+            
+            <para>名前指定変数プロファイル:</para>
+            
+            <synopsis>int isNamedVarMatrixType(void* _pvCtx, const char *_pstName)</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
                     
-                    <para>
-                        
-                        Scilab環境ポインタ, api_scilab.hで定義される "pvApiCtx" を指定
-                        
-                    </para>
+                    <term>_pvCtx</term>
                     
-                </listitem>
+                    <listitem>
+                        
+                        <para>
+                            
+                            Scilab環境ポインタ, api_scilab.hで定義される "pvApiCtx" を指定
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
                 
-            </varlistentry>
+                <varlistentry>
+                    
+                    <term>_piAddress</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            変数のアドレス
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>戻り値</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            行列として保存されている場合は 1, それ以外は 0.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
             
-            <varlistentry>
-                
-                <term>_piAddress</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        変数のアドレス
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+        </refsection>
+        
+        <refsection>
             
-            <varlistentry>
-                
-                <term>戻り値</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        行列として保存されている場合は 1, それ以外は 0.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <title>説明</title>
             
-        </variablelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>このヘルプは変数が行列として保存されているかを調べる方法を示します.</para>
-        
-        <para>いくつかのケース(例: リスト)では, 変数は標準的なScilab行列に保存されません. 
+            <para>このヘルプは変数が行列として保存されているかを調べる方法を示します.</para>
             
-            この関数は両方のケースを処理すつ手段を提供します.
-        </para>
+            <para>いくつかのケース(例: リスト)では, 変数は標準的なScilab行列に保存されません. 
+                
+                この関数は両方のケースを処理すつ手段を提供します.
+            </para>
+            
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
-        
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
-        
-        <!--Lib_name: common_function-->
-        
-        <!--Func_list: common_function-->
-        
-        <title>ゲートウェイのソース</title>
-        
-        <programlisting role="code_gateway"><![CDATA[ 
+        <refsection>
+            
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
+            
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
+            
+            <!--Lib_name: common_function-->
+            
+            <!--Func_list: common_function-->
+            
+            <title>ゲートウェイのソース</title>
+            
+            <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 SciErr printf_info(int _iVar);
 
@@ -268,14 +268,14 @@ SciErr printf_info(int _iVar)
     return sciErr;
 }
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>Scilabテストスクリプト</title>
-        
-        <programlisting role="code_scilab"><![CDATA[ 
+        <refsection>
+            
+            <title>Scilabテストスクリプト</title>
+            
+            <programlisting role="code_scilab"><![CDATA[ 
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -284,8 +284,8 @@ l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
 common_function(l(1:$))
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

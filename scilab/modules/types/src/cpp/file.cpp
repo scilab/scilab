@@ -15,96 +15,96 @@
 namespace types
 {
 
-    File::File()
-    {
-        m_fileDesc = NULL;
-        m_iSwap = 0;
-        m_pstMode = L"";
-        m_iType = 0;
-        m_stFilename = L"";
-    }
+File::File()
+{
+    m_fileDesc = NULL;
+    m_iSwap = 0;
+    m_pstMode = L"";
+    m_iType = 0;
+    m_stFilename = L"";
+}
 
-    File::~File()
-    {
-    }
+File::~File()
+{
+}
 
-    void File::setFileDesc(FILE* _fileDesc)
-    {
-        m_fileDesc = _fileDesc;
-    }
+void File::setFileDesc(FILE* _fileDesc)
+{
+    m_fileDesc = _fileDesc;
+}
 
-    FILE* File::getFiledesc()
-    {
-        return m_fileDesc;
-    }
+FILE* File::getFiledesc()
+{
+    return m_fileDesc;
+}
 
-    void File::setFileMode(std::wstring _pstMode)
-    {
-        m_pstMode = _pstMode;
-    }
+void File::setFileMode(std::wstring _pstMode)
+{
+    m_pstMode = _pstMode;
+}
 
-    std::wstring& File::getFileMode()
-    {
-        return m_pstMode;
-    }
+std::wstring& File::getFileMode()
+{
+    return m_pstMode;
+}
 
-    double File::getFileModeAsDouble()
-    {
-        double dblMode  = 0;
-        double dblPlus  = 0;
-        double dblBin   = 0;
+double File::getFileModeAsDouble()
+{
+    double dblMode  = 0;
+    double dblPlus  = 0;
+    double dblBin   = 0;
 
-        for(int i = 0 ; i < wcslen(m_pstMode.c_str()) ; i++)
+    for (int i = 0 ; i < wcslen(m_pstMode.c_str()) ; i++)
+    {
+        if (m_pstMode[i] == L'r')
         {
-            if(m_pstMode[i] == L'r')
-            {
-                dblMode = 1;
-            }
-            else if(m_pstMode[i] == L'w')
-            {
-                dblMode = 2;
-            }
-            else if(m_pstMode[i] == L'a')
-            {
-                dblMode = 3;
-            }
-            else if(m_pstMode[i] == L'+')
-            {
-                dblPlus = 1;
-            }
-            else if(m_pstMode[i] == L'b')
-            {
-                dblBin = 1;
-            }
+            dblMode = 1;
         }
-
-        return 100 * dblMode + 10 * dblPlus + dblBin;
-    }
-
-    void File::setFileSwap(int _iSwap)
-    {
-        m_iSwap = _iSwap;
-    }
-
-    int File::getFileSwap()
-    {
-        return m_iSwap;
-    }
-
-    void File::setFileType(int _iType)
-    {
-        m_iType = _iType;
-    }
-
-    int File::getFileType()
-    {
-        return m_iType;
-    }
-
-    std::wstring File::getFileTypeAsString()
-    {
-        switch(getFileType())
+        else if (m_pstMode[i] == L'w')
         {
+            dblMode = 2;
+        }
+        else if (m_pstMode[i] == L'a')
+        {
+            dblMode = 3;
+        }
+        else if (m_pstMode[i] == L'+')
+        {
+            dblPlus = 1;
+        }
+        else if (m_pstMode[i] == L'b')
+        {
+            dblBin = 1;
+        }
+    }
+
+    return 100 * dblMode + 10 * dblPlus + dblBin;
+}
+
+void File::setFileSwap(int _iSwap)
+{
+    m_iSwap = _iSwap;
+}
+
+int File::getFileSwap()
+{
+    return m_iSwap;
+}
+
+void File::setFileType(int _iType)
+{
+    m_iType = _iType;
+}
+
+int File::getFileType()
+{
+    return m_iType;
+}
+
+std::wstring File::getFileTypeAsString()
+{
+    switch (getFileType())
+    {
         case 1 :
             return L"F";
             break;
@@ -114,16 +114,16 @@ namespace types
         default :
             return L"Error";
             break;
-        }
     }
+}
 
-    void File::setFilename(std::wstring _stFilename)
-    {
-        m_stFilename = _stFilename;
-    }
+void File::setFilename(std::wstring _stFilename)
+{
+    m_stFilename = _stFilename;
+}
 
-    std::wstring File::getFilename()
-    {
-        return m_stFilename;
-    }
+std::wstring File::getFilename()
+{
+    return m_stFilename;
+}
 }

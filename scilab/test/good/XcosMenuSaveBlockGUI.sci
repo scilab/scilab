@@ -20,30 +20,30 @@
 //
 
 function XcosMenuSaveBlockGUI()
-//** 25/06/2009 : Serge Steer, 
-//   -fix a bug un case there are selected objects in other windows  
-  K=find(Select(:,2)==curwin)
-  if size(K,'*')<>1 then
-     messagebox('Select one and only one block in the current window.','modal')
-     Cmenu=[]
-     return
-  else
-    if size(scs_m.objs)<Select(K,1) | typeof(scs_m.objs(Select(K,1)))<>"Block" then
-       Select=[]
-       return
+    //** 25/06/2009 : Serge Steer,
+    //   -fix a bug un case there are selected objects in other windows
+    K=find(Select(:,2)==curwin)
+    if size(K,"*")<>1 then
+        messagebox("Select one and only one block in the current window.","modal")
+        Cmenu=[]
+        return
     else
-       Cmenu=[]
-       if scs_m.objs(Select(K,1)).gui<>'DSUPER' then
-          messagebox('Only Masked blocks can be saved.','modal')
-       else
-       	  fname=do_saveblockgui(scs_m.objs(Select(K,1)))
-          if fname<>emptystr() then
-            Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
-                             'exec('+sci2exp(fname)+');%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
-		            ]
-          end
-       end
+        if size(scs_m.objs)<Select(K,1) | typeof(scs_m.objs(Select(K,1)))<>"Block" then
+            Select=[]
+            return
+        else
+            Cmenu=[]
+            if scs_m.objs(Select(K,1)).gui<>"DSUPER" then
+                messagebox("Only Masked blocks can be saved.","modal")
+            else
+                fname=do_saveblockgui(scs_m.objs(Select(K,1)))
+                if fname<>emptystr() then
+                    Scicos_commands=["%diagram_path_objective=[];%scicos_navig=1";
+                    "exec("+sci2exp(fname)+");%diagram_path_objective="+sci2exp(super_path)+";%scicos_navig=1";
+                    ]
+                end
+            end
+        end
     end
-  end
 endfunction
 

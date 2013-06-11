@@ -14,7 +14,7 @@ int GetSize(int* _piDims, int _iDims)
 {
     int iSize = 1;
     int i = 0;
-    for(i = 0 ; i < _iDims ; i++)
+    for (i = 0 ; i < _iDims ; i++)
     {
         iSize *= _piDims[i];
     }

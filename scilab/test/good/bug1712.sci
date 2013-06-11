@@ -8,13 +8,13 @@ mode(-1);
 clear
 
 hm=hypermat([2 2 2],1:8);
-test1 = execstr('hm>min(hm) & hm<max(hm)','errcatch');
-test2 = execstr('hm==min(hm) | hm==max(hm)','errcatch');
+test1 = execstr("hm>min(hm) & hm<max(hm)","errcatch");
+test2 = execstr("hm==min(hm) | hm==max(hm)","errcatch");
 
 if( (test1 == 0) & (test2 == 0) ) then
-	affich_result(%T,1712);
+    affich_result(%T,1712);
 else
-	affich_result(%F,1712);
+    affich_result(%F,1712);
 end
 
 clear

@@ -21,34 +21,34 @@
 //
 
 function XcosMenuFitToFigure()
-//** Alan-21/12/06 : Fit diagram to figure (Based on new graphics)
-//compute the zoom factor, to fit the diagram with the current viewport size
-   Cmenu = [];
+    //** Alan-21/12/06 : Fit diagram to figure (Based on new graphics)
+    //compute the zoom factor, to fit the diagram with the current viewport size
+    Cmenu = [];
 
-   gh_curwin = scf(%win) ; //** get the handle of the current graphics window
-   gh_axes = gca(); 
+    gh_curwin = scf(%win) ; //** get the handle of the current graphics window
+    gh_axes = gca();
 
-   r = gh_curwin.figure_size;     //** acquire the current figure physical size
-   rect = dig_bound(scs_m);       //** Scicos diagram size
+    r = gh_curwin.figure_size;     //** acquire the current figure physical size
+    rect = dig_bound(scs_m);       //** Scicos diagram size
 
-   if rect==[] then //** the diagram is empty
-     return;                     
-   end
-   w = (rect(3)-rect(1))*%zoom;
-   h = (rect(4)-rect(2))*%zoom;
+    if rect==[] then //** the diagram is empty
+        return;
+    end
+    w = (rect(3)-rect(1))*%zoom;
+    h = (rect(4)-rect(2))*%zoom;
 
-   margins = [0.02 0.02 0.02 0.02]
-   %zoom_w=r(1)/(w*(1+margins(1)+margins(2)))
-   %zoom_h=r(2)/(h*(1+margins(3)+margins(4)))
+    margins = [0.02 0.02 0.02 0.02]
+    %zoom_w=r(1)/(w*(1+margins(1)+margins(2)))
+    %zoom_h=r(2)/(h*(1+margins(3)+margins(4)))
 
-   %zoom = min(%zoom_w,%zoom_h);
-   gh_window = gcf();             //* get handle of current window
+    %zoom = min(%zoom_w,%zoom_h);
+    gh_window = gcf();             //* get handle of current window
 
-   window_set_size(gh_window);
+    window_set_size(gh_window);
 
-   if %scicos_with_grid then
-     drawgrid();
-   end
-   drawnow();
+    if %scicos_with_grid then
+        drawgrid();
+    end
+    drawnow();
 
 endfunction

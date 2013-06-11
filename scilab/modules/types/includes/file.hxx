@@ -18,38 +18,41 @@
 
 namespace types
 {
-    class TYPES_IMPEXP File
+class TYPES_IMPEXP File
+{
+public :
+    File();
+    ~File();
+
+    void                        setFileMode(std::wstring _pstMode);
+    std::wstring&               getFileMode();
+    double                      getFileModeAsDouble();
+
+    void                        setFileDesc(FILE* _fileDesc);
+    FILE*                       getFiledesc();
+
+    void                        setFileSwap(int _iSwap);
+    int                         getFileSwap();
+
+    void                        setFileType(int _iType);
+    int                         getFileType();
+    std::wstring                getFileTypeAsString();
+
+    void                        setFilename(std::wstring _stFilename);
+    std::wstring                getFilename();
+
+    bool                        isFile()
     {
-    public :
-                                    File();
-                                    ~File();
+        return true;
+    }
+private :
+    FILE*                       m_fileDesc;
+    int                         m_iSwap; /* swap status for each file */
+    std::wstring                m_pstMode; /* mode for each file */
+    int                         m_iType; /* type (Fortran,C) for each file must be zero initialized */
+    std::wstring                m_stFilename; /* name for each file */
 
-        void                        setFileMode(std::wstring _pstMode);
-        std::wstring&               getFileMode();
-        double                      getFileModeAsDouble();
-
-        void                        setFileDesc(FILE* _fileDesc);
-        FILE*                       getFiledesc();
-
-        void                        setFileSwap(int _iSwap);
-        int                         getFileSwap();
-
-        void                        setFileType(int _iType);
-        int                         getFileType();
-        std::wstring                getFileTypeAsString();
-
-        void                        setFilename(std::wstring _stFilename);
-        std::wstring                getFilename();
-
-        bool                        isFile() { return true; }
-    private :
-        FILE*                       m_fileDesc;
-        int                         m_iSwap; /* swap status for each file */
-        std::wstring                m_pstMode; /* mode for each file */
-        int                         m_iType; /* type (Fortran,C) for each file must be zero initialized */
-        std::wstring                m_stFilename; /* name for each file */
-
-    };
+};
 }
 
 #endif /* __FILE_HH__ */

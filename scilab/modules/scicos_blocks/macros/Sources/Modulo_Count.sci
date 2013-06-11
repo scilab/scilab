@@ -21,57 +21,57 @@
 //
 
 function [x,y,typ]=Modulo_Count(job,arg1,arg2)
-x=[];y=[];typ=[];
-select job
- case 'plot' then
-  graphics=arg1.graphics;base=evstr(graphics.exprs(2))
-  standard_draw(arg1)
-case 'getinputs' then
-  [x,y,typ]=standard_inputs(arg1)
-case 'getoutputs' then
-  [x,y,typ]=standard_outputs(arg1)
-case 'getorigin' then
-  [x,y]=standard_origin(arg1)
-case 'set' then
-  x=arg1;
-  graphics=arg1.graphics;exprs=graphics.exprs
-  model=arg1.model;
-  while %t do
-      [ok,ini_c,base,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "Modulo_Count");" "; gettext("Modulo counter (0 to N counter)");" "], ..
-          [gettext("Initial State (zero or positive number)"); gettext("Upper Limit (positive number)")], ..
-          list("vec",1,"vec",1), exprs);
+    x=[];y=[];typ=[];
+    select job
+    case "plot" then
+        graphics=arg1.graphics;base=evstr(graphics.exprs(2))
+        standard_draw(arg1)
+    case "getinputs" then
+        [x,y,typ]=standard_inputs(arg1)
+    case "getoutputs" then
+        [x,y,typ]=standard_outputs(arg1)
+    case "getorigin" then
+        [x,y]=standard_origin(arg1)
+    case "set" then
+        x=arg1;
+        graphics=arg1.graphics;exprs=graphics.exprs
+        model=arg1.model;
+        while %t do
+            [ok,ini_c,base,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "Modulo_Count");" "; gettext("Modulo counter (0 to N counter)");" "], ..
+            [gettext("Initial State (zero or positive number)"); gettext("Upper Limit (positive number)")], ..
+            list("vec",1,"vec",1), exprs);
 
-      ini_c = int(ini_c);
-      base = int(base);
-      if ~ok then break,end
-      if ini_c <0 then
-          block_parameter_error(msprintf(gettext("Wrong value for ''Initial State'' parameter: %d."), ini_c), ..
-              gettext("Null or positive integer expected."));
-      elseif base <= 0 then
-          block_parameter_error(msprintf(gettext("Wrong values for ''Upper Limit'' parameter: %d."), base),..
-              gettext("Strictly positive integer expected."));
-      else
-          graphics.exprs=exprs
-          model.ipar=base;
-          model.dstate=ini_c;
-          x.graphics=graphics;x.model=model
-          break
-      end
-  end
-case 'define' then
-  ini_c=0
-  base=3
-  model=scicos_model()
-  model.sim=list('modulo_count',4)
-  model.evtin=1
-  model.out=1
-  model.dstate=ini_c
-  model.ipar=base
-  model.blocktype='c'
-  model.dep_ut=[%f %f]
+            ini_c = int(ini_c);
+            base = int(base);
+            if ~ok then break,end
+            if ini_c <0 then
+                block_parameter_error(msprintf(gettext("Wrong value for ''Initial State'' parameter: %d."), ini_c), ..
+                gettext("Null or positive integer expected."));
+            elseif base <= 0 then
+                block_parameter_error(msprintf(gettext("Wrong values for ''Upper Limit'' parameter: %d."), base),..
+                gettext("Strictly positive integer expected."));
+            else
+                graphics.exprs=exprs
+                model.ipar=base;
+                model.dstate=ini_c;
+                x.graphics=graphics;x.model=model
+                break
+            end
+        end
+    case "define" then
+        ini_c=0
+        base=3
+        model=scicos_model()
+        model.sim=list("modulo_count",4)
+        model.evtin=1
+        model.out=1
+        model.dstate=ini_c
+        model.ipar=base
+        model.blocktype="c"
+        model.dep_ut=[%f %f]
 
-  exprs=[string(ini_c);string(base)]
-  gr_i=['xstringb(orig(1),orig(2),[''  Counter'';''Modulo ''+string(base)],sz(1),sz(2),''fill'');']
-  x=standard_define([3 2],model,exprs,gr_i)
-end
+        exprs=[string(ini_c);string(base)]
+        gr_i=["xstringb(orig(1),orig(2),[''  Counter'';''Modulo ''+string(base)],sz(1),sz(2),''fill'');"]
+        x=standard_define([3 2],model,exprs,gr_i)
+    end
 endfunction

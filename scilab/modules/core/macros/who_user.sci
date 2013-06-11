@@ -1,23 +1,23 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //2012/08/06 add return value with variable list.
 
 function ret = who_user(%__bPrint__)
     //get user variables
-    [nams,mem]=who('get'); //get all variables
+    [nams,mem]=who("get"); //get all variables
     p=predef(); //number of system variable
     st=stacksize()
     nams=nams(1:$-p+1);mem=mem(1:$-p+1);
     //modifiable system variables
-    excluded=['demolist','%helps','%helps_modules','home','who_user', "%__bPrint__"];
+    excluded=["demolist","%helps","%helps_modules","home","who_user", "%__bPrint__"];
     ke=grep(nams,excluded)
     nams(ke)=[];mem(ke)=[];
     ret = nams
@@ -33,8 +33,8 @@ function ret = who_user(%__bPrint__)
     end
 
     n=size(nams,1);
-    
-    if n==0 then 
+
+    if n==0 then
         return
     end
 
@@ -60,9 +60,9 @@ function ret = who_user(%__bPrint__)
     end
 
     txt=[gettext("User variables are:");
-        '';
-        txt;
-        '';
-        msprintf(gettext("Using %s elements out of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
-    write(%io(2),txt,'(1x,a)')
+    "";
+    txt;
+    "";
+    msprintf(gettext("Using %s elements out of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
+    write(%io(2),txt,"(1x,a)")
 endfunction

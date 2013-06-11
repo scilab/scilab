@@ -1,41 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getscilabmode">
-    <refnamediv>
-        <refname>getscilabmode</refname>
-        <refpurpose>возвращает режим работы Scilab</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>m = getscilabmode()</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Описание</title>
-        <para>Возвращает режим работы Scilab. Возможны 4 режима работы: STD, API, NW, NWNI.</para>
-        <para>
-            <literal>API</literal>: Scilab запускается как интерфейс программирования приложений.
-        </para>
-        <para>
-            <literal>STD</literal>: Стандартный режим работы (графический интерфейс, графики ...) 
-        </para>
-        <para>
-            <literal>NW</literal>: Scilab в командной строке с графиками.
-        </para>
-        <para>
-            <literal>NWNI</literal>: Scilab в командной строке без каких-либо графиков.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getscilabmode">
+        <refnamediv>
+            <refname>getscilabmode</refname>
+            <refpurpose>возвращает режим работы Scilab</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>m = getscilabmode()</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Описание</title>
+            <para>Возвращает режим работы Scilab. Возможны 4 режима работы: STD, API, NW, NWNI.</para>
+            <para>
+                <literal>API</literal>: Scilab запускается как интерфейс программирования приложений.
+            </para>
+            <para>
+                <literal>STD</literal>: Стандартный режим работы (графический интерфейс, графики ...) 
+            </para>
+            <para>
+                <literal>NW</literal>: Scilab в командной строке с графиками.
+            </para>
+            <para>
+                <literal>NWNI</literal>: Scilab в командной строке без каких-либо графиков.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 getscilabmode()
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="scilab">scilab</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="scilab">scilab</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

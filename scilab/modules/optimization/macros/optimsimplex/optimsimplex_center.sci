@@ -15,6 +15,6 @@
 //   <no arg>
 //
 function sicenter = optimsimplex_center ( this )
-  sicenter = mean(this.x,'r');
+    sicenter = mean(this.x,"r");
 endfunction
 

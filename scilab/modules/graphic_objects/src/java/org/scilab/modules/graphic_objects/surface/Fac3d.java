@@ -23,37 +23,37 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  * @author Manuel JULIACHS
  */
 public class Fac3d extends Surface {
-	/** Fac3d properties names */
-	private enum Fac3dProperty { DATAMAPPING };
-	
-	/** Data mapping type */
-	private enum DataMapping { SCALED, DIRECT;
+    /** Fac3d properties names */
+    private enum Fac3dProperty { DATAMAPPING };
 
-		/**
-		 * Converts an integer to the corresponding enum
-		 * @param intValue the integer value
-		 * @return the data mapping enum
-		 */
-		public static DataMapping intToEnum(Integer intValue) {
-			switch (intValue) {
-				case 0:
-					return DataMapping.SCALED;
-				case 1:
-					return DataMapping.DIRECT;
-				default:
-					return null;
-			}
-		}
-	}
+    /** Data mapping type */
+    private enum DataMapping { SCALED, DIRECT;
 
-	/** Specifies how colors are mapped to scalar values */
-	private DataMapping dataMapping;
+                               /**
+                                * Converts an integer to the corresponding enum
+                                * @param intValue the integer value
+                                * @return the data mapping enum
+                                */
+    public static DataMapping intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return DataMapping.SCALED;
+            case 1:
+                return DataMapping.DIRECT;
+            default:
+                return null;
+        }
+    }
+                             }
 
-	/** Constructor */
-	public Fac3d() {
-		super();
-		dataMapping = DataMapping.DIRECT;
-	}
+    /** Specifies how colors are mapped to scalar values */
+    private DataMapping dataMapping;
+
+    /** Constructor */
+    public Fac3d() {
+        super();
+        dataMapping = DataMapping.DIRECT;
+    }
 
     @Override
     public void accept(Visitor visitor) throws ObjectRemovedException {
@@ -61,80 +61,80 @@ public class Fac3d extends Surface {
     }
 
     /**
-	 * Returns the enum associated to a property name
-	 * @param propertyName the property name
-	 * @return the property enum
-	 */
-	public Object getPropertyFromName(int propertyName) {
-		if (propertyName == __GO_DATA_MAPPING__) {
-			return Fac3dProperty.DATAMAPPING;
-		} else {
-			return super.getPropertyFromName(propertyName);
-		}
-	}
+     * Returns the enum associated to a property name
+     * @param propertyName the property name
+     * @return the property enum
+     */
+    public Object getPropertyFromName(int propertyName) {
+        if (propertyName == __GO_DATA_MAPPING__) {
+            return Fac3dProperty.DATAMAPPING;
+        } else {
+            return super.getPropertyFromName(propertyName);
+        }
+    }
 
-	/**
-	 * Fast property get method
-	 * @param property the property to get
-	 * @return the property value
-	 */
-	public Object getProperty(Object property) {
-		if (property == Fac3dProperty.DATAMAPPING) {
-			return getDataMapping();
-		} else {
-			return super.getProperty(property);	
-		}
-	}
+    /**
+     * Fast property get method
+     * @param property the property to get
+     * @return the property value
+     */
+    public Object getProperty(Object property) {
+        if (property == Fac3dProperty.DATAMAPPING) {
+            return getDataMapping();
+        } else {
+            return super.getProperty(property);
+        }
+    }
 
-	/**
-	 * Fast property set method
-	 * @param property the property to set
-	 * @param value the property value
-	 * @return true if the property has been set, false otherwise
-	 */
-	public UpdateStatus setProperty(Object property, Object value) {
-		if (property == Fac3dProperty.DATAMAPPING) {
-			setDataMapping((Integer) value);
-		} else {
-			return super.setProperty(property, value);
-		}
+    /**
+     * Fast property set method
+     * @param property the property to set
+     * @param value the property value
+     * @return true if the property has been set, false otherwise
+     */
+    public UpdateStatus setProperty(Object property, Object value) {
+        if (property == Fac3dProperty.DATAMAPPING) {
+            setDataMapping((Integer) value);
+        } else {
+            return super.setProperty(property, value);
+        }
 
-		return UpdateStatus.Success;
-	}
+        return UpdateStatus.Success;
+    }
 
-	/**
-	 * @return the dataMapping
-	 */
-	public Integer getDataMapping() {
-		return getDataMappingAsEnum().ordinal();
-	}
+    /**
+     * @return the dataMapping
+     */
+    public Integer getDataMapping() {
+        return getDataMappingAsEnum().ordinal();
+    }
 
-	/**
-	 * @return the dataMapping
-	 */
-	public DataMapping getDataMappingAsEnum() {
-		return dataMapping;
-	}
+    /**
+     * @return the dataMapping
+     */
+    public DataMapping getDataMappingAsEnum() {
+        return dataMapping;
+    }
 
-	/**
-	 * @param dataMapping the dataMapping to set
-	 */
-	public void setDataMapping(Integer dataMapping) {
-		setDataMappingAsEnum(DataMapping.intToEnum(dataMapping));
-	}
+    /**
+     * @param dataMapping the dataMapping to set
+     */
+    public void setDataMapping(Integer dataMapping) {
+        setDataMappingAsEnum(DataMapping.intToEnum(dataMapping));
+    }
 
-	/**
-	 * @param dataMapping the dataMapping to set
-	 */
-	public void setDataMappingAsEnum(DataMapping dataMapping) {
-		this.dataMapping = dataMapping;
-	}
+    /**
+     * @param dataMapping the dataMapping to set
+     */
+    public void setDataMappingAsEnum(DataMapping dataMapping) {
+        this.dataMapping = dataMapping;
+    }
 
-	/**
-	 * @return Type as String
-	 */
-	public Integer getType() {
-		return GraphicObjectProperties.__GO_FAC3D__;
-	}
+    /**
+     * @return Type as String
+     */
+    public Integer getType() {
+        return GraphicObjectProperties.__GO_FAC3D__;
+    }
 
 }

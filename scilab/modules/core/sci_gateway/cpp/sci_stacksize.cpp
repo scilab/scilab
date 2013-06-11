@@ -31,7 +31,7 @@ Function::ReturnValue sci_stacksize(types::typed_list &in, int _iRetCount, types
         return types::Function::Error;
     }
 
-    if(_iRetCount > 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "stacksize", 0, 1);
         return types::Function::Error;
@@ -39,9 +39,9 @@ Function::ReturnValue sci_stacksize(types::typed_list &in, int _iRetCount, types
 
     scilabWriteW(_W("[WARNING]: stakcsize: No more need to change Scilab stack size. Function will be remove in version 6.1.\n"));
 
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
-        Double *pDbl = new Double(1,2);
+        Double *pDbl = new Double(1, 2);
         double dbl1 = 1.0;
         double dbl0 = dbl1 - dbl1;
         pDbl->set(0, dbl1 / dbl0);

@@ -28,7 +28,7 @@ types::Function::ReturnValue sci_winsid(types::typed_list &in, int _iRetCount, t
 {
     void* status = NULL;
 
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
         //Error
         return types::Function::Error;

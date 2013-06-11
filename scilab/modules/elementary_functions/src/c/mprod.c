@@ -37,35 +37,35 @@ parameters
 */
 void vDmProd(int _iMode, double* _pdblIn, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut, int _iInc)
 {
-	int iIndex = 0;
-	int iLoop = 0;
-	switch(_iMode)
-	{
-	case 0 :
-		_pdblOut[0] = 1;
-		vDvmul(_iRows * _iCols, _pdblIn, _pdblOut, 1, 0, _pdblOut);
-		break;
-	case 1 :
-	{
-		for(iLoop = 0 ; iLoop < _iCols ; iLoop++)
-		{
-			_pdblOut[iIndex] = 1;
-			vDvmul(_iRows, _pdblIn + _iRows * iLoop, _pdblOut + iIndex, 1, 0, _pdblOut + iIndex);
-			iIndex += _iInc;
-		}
-	}
-		break;
-	case 2 :
-	{
-		for(iLoop = 0 ; iLoop < _iRows ; iLoop++)
-		{
-			_pdblOut[iIndex] = 1;
-			vDvmul(_iCols, _pdblIn + iLoop, _pdblOut + iIndex, _iRows, 0, _pdblOut + iIndex);
-			iIndex += _iInc;
-		}
-	}
-		break;
-	}
+    int iIndex = 0;
+    int iLoop = 0;
+    switch (_iMode)
+    {
+        case 0 :
+            _pdblOut[0] = 1;
+            vDvmul(_iRows * _iCols, _pdblIn, _pdblOut, 1, 0, _pdblOut);
+            break;
+        case 1 :
+        {
+            for (iLoop = 0 ; iLoop < _iCols ; iLoop++)
+            {
+                _pdblOut[iIndex] = 1;
+                vDvmul(_iRows, _pdblIn + _iRows * iLoop, _pdblOut + iIndex, 1, 0, _pdblOut + iIndex);
+                iIndex += _iInc;
+            }
+        }
+        break;
+        case 2 :
+        {
+            for (iLoop = 0 ; iLoop < _iRows ; iLoop++)
+            {
+                _pdblOut[iIndex] = 1;
+                vDvmul(_iCols, _pdblIn + iLoop, _pdblOut + iIndex, _iRows, 0, _pdblOut + iIndex);
+                iIndex += _iInc;
+            }
+        }
+        break;
+    }
 }
 
 /*
@@ -95,33 +95,35 @@ parameters
 */
 void vWDmProd(int _iMode, double* _pdblIn1, double* _pdblIn2, int _iLeadDim, int _iRows, int _iCols, double* _pdblOut1, double* _pdblOut2, int _iInc)
 {
-	int iIndex = 0;
-	int iLoop = 0;
-	switch(_iMode)
-	{
-	case 0 :
-		_pdblOut1[iIndex] = 1;
-		_pdblOut2[iIndex] = 0;
-		for(iLoop = 0 ; iLoop < _iCols ; iLoop++)
-			vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
-		break;
-	case 1 :
-		for(iLoop = 0 ; iLoop < _iCols ; iLoop++)
-		{
-			_pdblOut1[iIndex] = 1;
-			_pdblOut2[iIndex] = 0;
-			vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
-			iIndex += _iInc;
-		}
-		break;
-	case 2 :
-		for(iLoop = 0 ; iLoop < _iRows ; iLoop++)
-		{
-			_pdblOut1[iIndex] = 1;
-			_pdblOut2[iIndex] = 0;
-			vWvmul(_iCols, _pdblIn1 + iLoop, _pdblIn2 + iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, _iRows, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
-			iIndex += _iInc;
-		}
-		break;
-	}
+    int iIndex = 0;
+    int iLoop = 0;
+    switch (_iMode)
+    {
+        case 0 :
+            _pdblOut1[iIndex] = 1;
+            _pdblOut2[iIndex] = 0;
+            for (iLoop = 0 ; iLoop < _iCols ; iLoop++)
+            {
+                vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
+            }
+            break;
+        case 1 :
+            for (iLoop = 0 ; iLoop < _iCols ; iLoop++)
+            {
+                _pdblOut1[iIndex] = 1;
+                _pdblOut2[iIndex] = 0;
+                vWvmul(_iRows, _pdblIn1 + _iRows * iLoop, _pdblIn2 + _iRows * iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, 1, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
+                iIndex += _iInc;
+            }
+            break;
+        case 2 :
+            for (iLoop = 0 ; iLoop < _iRows ; iLoop++)
+            {
+                _pdblOut1[iIndex] = 1;
+                _pdblOut2[iIndex] = 0;
+                vWvmul(_iCols, _pdblIn1 + iLoop, _pdblIn2 + iLoop, _pdblOut1 + iIndex, _pdblOut2 + iIndex, _iRows, 0, _pdblOut1 + iIndex, _pdblOut2 + iIndex);
+                iIndex += _iInc;
+            }
+            break;
+    }
 }

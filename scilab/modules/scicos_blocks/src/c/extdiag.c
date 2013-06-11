@@ -18,26 +18,31 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "core_math.h"
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void extdiag(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void extdiag(scicos_block *block, int flag)
 {
-  double *u1 = NULL;
-  double *y = NULL;
+    double *u1 = NULL;
+    double *y = NULL;
 
-  int mu = 0,nu = 0,i = 0,ii = 0;
+    int mu = 0, nu = 0, i = 0, ii = 0;
 
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
-  u1=GetRealInPortPtrs(block,1);
-  y=GetRealOutPortPtrs(block,1);
-  for (i=0;i<mu*nu;i++) *(y+i)=0;
-  for (i=0;i<Min(mu,nu);i++)     
-	{ii=i+i*mu;
-	 *(y+ii)=*(u1+ii);}
+    mu = GetInPortRows(block, 1);
+    nu = GetInPortCols(block, 1);
+    u1 = GetRealInPortPtrs(block, 1);
+    y = GetRealOutPortPtrs(block, 1);
+    for (i = 0; i < mu * nu; i++)
+    {
+        *(y + i) = 0;
+    }
+    for (i = 0; i < Min(mu, nu); i++)
+    {
+        ii = i + i * mu;
+        *(y + ii) = *(u1 + ii);
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

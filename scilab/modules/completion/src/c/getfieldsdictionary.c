@@ -58,7 +58,10 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
     }
 
     lineBeforePoint = (char*)MALLOC(sizeof(char) * (pos + 1));
-    if (lineBeforePoint == NULL) return NULL;
+    if (lineBeforePoint == NULL)
+    {
+        return NULL;
+    }
     memcpy(lineBeforePoint, lineBeforeCaret, pos);
     lineBeforePoint[pos] = '\0';
     var = getPartLevel(lineBeforePoint);
@@ -111,7 +114,7 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         }
 
 
-        #pragma message("!! WARNING !! : getfielddictionnary may crash YaSp.")
+#pragma message("!! WARNING !! : getfielddictionnary may crash YaSp.")
         sciErr = getMatrixOfStringInList(NULL, piAddr, 1, &rows, &cols, piLen, pstData);
         if (sciErr.iErr)
         {
@@ -122,13 +125,16 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         }
         FREE(piLen);
 
-	fields = (char**)getFieldsForType(pstData[0], piAddr);
-	if (fields)
-	{
-	    freeArrayOfString(pstData, rc);
-	    pstData = fields;
-	    for (rc = 0; fields[rc]; rc++);
-	}
+        fields = (char**)getFieldsForType(pstData[0], piAddr);
+        if (fields)
+        {
+            freeArrayOfString(pstData, rc);
+            pstData = fields;
+            for (rc = 0; fields[rc]; rc++)
+            {
+                ;
+            }
+        }
 
         // We remove all the entries which don't begin with fieldpart
         // and the first entry (and the second if it is a struct)

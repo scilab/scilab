@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipSetStruct(curve,t)
-  set(curve,'user_data',t)
+    set(curve,"user_data",t)
 endfunction

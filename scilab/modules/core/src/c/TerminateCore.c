@@ -28,7 +28,7 @@
 BOOL TerminateCorePart1(void)
 {
 
-// Call scilab.quit before exit.
+    // Call scilab.quit before exit.
 #if 0
     if ( Get_no_startup_flag() == 0)
     {
@@ -73,8 +73,8 @@ BOOL TerminateCorePart2(void)
     */
     xmlCleanupParser();
 
-	/** clean tmpfiles **/
-	clearTMPDIR();
+    /** clean tmpfiles **/
+    clearTMPDIR();
 
     /* free dynamic gateways and dynamic libraries */
     freeAllDynamicGateways();

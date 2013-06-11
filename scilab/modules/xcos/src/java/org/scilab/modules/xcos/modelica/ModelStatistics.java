@@ -43,7 +43,7 @@ public final class ModelStatistics {
 
     /**
      * @return the diffStates
-     * 
+     *
      */
     public long getDerivativeStates() {
         return derivativeStates;
@@ -121,7 +121,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the diffStates
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -138,7 +138,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the discreteStates
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -155,7 +155,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the equations
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -172,7 +172,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the fixedParameters
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -189,7 +189,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the fixedVariables
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -206,7 +206,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the inputs
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -223,7 +223,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the outputs
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -240,7 +240,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the relaxedParameters
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -257,7 +257,7 @@ public final class ModelStatistics {
 
     /**
      * Increment the relaxedVariables
-     * 
+     *
      * @param increment
      *            the increment
      */
@@ -291,9 +291,9 @@ public final class ModelStatistics {
     // CSOFF: BooleanExpressionComplexity
     public boolean isEmpty() {
         return equations == 0 && fixedParameters == 0 && relaxedParameters == 0
-                && fixedVariables == 0 && relaxedVariables == 0
-                && discreteStates == 0 && inputs == 0 && outputs == 0
-                && derivativeStates == 0;
+               && fixedVariables == 0 && relaxedVariables == 0
+               && discreteStates == 0 && inputs == 0 && outputs == 0
+               && derivativeStates == 0;
     }
 
     // CSON: BooleanExpressionComplexity
@@ -319,7 +319,7 @@ public final class ModelStatistics {
 
     /**
      * Add a listener
-     * 
+     *
      * @param l
      *            the listener
      */
@@ -329,7 +329,7 @@ public final class ModelStatistics {
 
     /**
      * Remove a listener
-     * 
+     *
      * @param l
      *            the listener
      */

@@ -24,72 +24,72 @@
 
 int sci_rcond(char *fname, int* _piKey)
 {
-  int ret= 0;
-  /*   rcond(A)  */
-  int* adr1;
-  int type;
-  if(Rhs >=1)
+    int ret = 0;
+    /*   rcond(A)  */
+    int* adr1;
+    int type;
+    if (Rhs >= 1)
     {
-      getVarAddressFromPosition(_piKey, 1, &adr1);
-      getVarType(_piKey, adr1, &type);
-      if(type != sci_matrix)
-	{
-	  OverLoad(1);
-	  return 0;
-	}
-      else
-	{
+        getVarAddressFromPosition(_piKey, 1, &adr1);
+        getVarType(_piKey, adr1, &type);
+        if (type != sci_matrix)
+        {
+            OverLoad(1);
+            return 0;
+        }
+        else
+        {
 
-	  CheckRhs(1,1);
-	  CheckLhs(1,1);
-	  {
-	    double* pData;
-	    int iRows, iCols;
-	    int complexArg;
+            CheckRhs(1, 1);
+            CheckLhs(1, 1);
+            {
+                double* pData;
+                int iRows, iCols;
+                int complexArg;
 
-	    if( (complexArg= isVarComplex(_piKey, adr1)) )
-	      {
+                if ( (complexArg = isVarComplex(_piKey, adr1)) )
+                {
 
-		getComplexZMatrixOfDouble(_piKey, adr1, &iRows, &iCols, ((doublecomplex**)&pData));
-		if(!pData)
-		  {
-		    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
-		    ret = 1;
-		  }
-	      }
-	    else
-	      {
-		getMatrixOfDouble(_piKey, adr1, &iRows, &iCols, &pData);
-	      }
-	    if( iRows != iCols)
-	      {
-		Scierror(20,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
-		ret= 1;
-	      }
-	    else
-	      {
-		double* pRcond;
-		int dim= iRows ? 1 : 0 ;
-		allocMatrixOfDouble(_piKey, 2, dim, dim, &pRcond);
-		if(iRows)
-		  {
-		    if( iRows == -1 )
-		      {
-			*pRcond= 1.;
-		      }
-		    else
-		      {
-			ret= iRcondM(pData, iCols, complexArg, pRcond);
-		      }
-		  }
-		LhsVar(1)= 2;
-	      }
-	    if(complexArg)
-	      {
-		vFreeDoubleComplexFromPointer((doublecomplex*)pData); /* /!\ TODO check correct free */
-	      }
-	  }
-	}
+                    getComplexZMatrixOfDouble(_piKey, adr1, &iRows, &iCols, ((doublecomplex**)&pData));
+                    if (!pData)
+                    {
+                        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+                        ret = 1;
+                    }
+                }
+                else
+                {
+                    getMatrixOfDouble(_piKey, adr1, &iRows, &iCols, &pData);
+                }
+                if ( iRows != iCols)
+                {
+                    Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
+                    ret = 1;
+                }
+                else
+                {
+                    double* pRcond;
+                    int dim = iRows ? 1 : 0 ;
+                    allocMatrixOfDouble(_piKey, 2, dim, dim, &pRcond);
+                    if (iRows)
+                    {
+                        if ( iRows == -1 )
+                        {
+                            *pRcond = 1.;
+                        }
+                        else
+                        {
+                            ret = iRcondM(pData, iCols, complexArg, pRcond);
+                        }
+                    }
+                    LhsVar(1) = 2;
+                }
+                if (complexArg)
+                {
+                    vFreeDoubleComplexFromPointer((doublecomplex*)pData); /* /!\ TODO check correct free */
+                }
+            }
+        }
     }
-  return ret;
+    return ret;
 }

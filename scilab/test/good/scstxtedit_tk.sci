@@ -28,24 +28,24 @@
 //##          winId : the Id number of the block editor
 //##
 function Mopen(InFile,winId)
-  //## get the input buffer
-  str_in=mgetl(InFile)
+    //## get the input buffer
+    str_in=mgetl(InFile)
 
-  //## compute max_l/max_h
-  max_h = size(str_in,1)
-  max_l = max(length(str_in))
-  if max_h<15 then max_h=15, end
-  if max_h>45 then max_h=45, end
-  max_h=max_h+2
-  if max_l<30 then max_l=30, end
-  if max_l>80 then max_l=80, end
-  max_l=max_l+5
+    //## compute max_l/max_h
+    max_h = size(str_in,1)
+    max_l = max(length(str_in))
+    if max_h<15 then max_h=15, end
+    if max_h>45 then max_h=45, end
+    max_h=max_h+2
+    if max_l<30 then max_l=30, end
+    if max_l>80 then max_l=80, end
+    max_l=max_l+5
 
-  //## configure $w.text widget size from new max_l/max_h
-  TCL_EvalStr('set w [sciGUIName '+string(winId)+']')
-  TCL_EvalStr('wm geometry $w {}')
-  TCL_EvalStr('$w.text configure -height '+string(max_h)+...
-                 ' -width '+string(max_l))
+    //## configure $w.text widget size from new max_l/max_h
+    TCL_EvalStr("set w [sciGUIName "+string(winId)+"]")
+    TCL_EvalStr("wm geometry $w {}")
+    TCL_EvalStr("$w.text configure -height "+string(max_h)+...
+    " -width "+string(max_l))
 endfunction
 
 //## ToCos return the text of the output buffer
@@ -56,8 +56,8 @@ endfunction
 //##          winId : the Id number of the block editor
 //##
 function txt=ToCos(InFile,OutFile,winId)
-  txt=mgetl(OutFile+winId);
-  //mputl(txt,InFile+winId);
+    txt=mgetl(OutFile+winId);
+    //mputl(txt,InFile+winId);
 endfunction
 
 //## Quit exit from the block editor
@@ -67,26 +67,26 @@ endfunction
 //##          winId : the Id number of the block editor
 //##
 function Quit=Mquit(InFile,OutFile,winId)
- //## get input/output text of the buffer
- txt_out = mgetl(OutFile+winId);
- txt_in  = mgetl(InFile+winId);
- Quit    = 0;
+    //## get input/output text of the buffer
+    txt_out = mgetl(OutFile+winId);
+    txt_in  = mgetl(InFile+winId);
+    Quit    = 0;
 
- //## compare input/output buffer
- if ~and(txt_in==txt_out)
-   num=tk_message([" Buffer has not been committed.";...
-                   "Do you really want to close the editor ?"],...
-                   ['Yes','No']);
-   if num==1 then
-     TCL_EvalStr('sciGUIDestroy '+winId);
-     Quit = 1;
-     return
-   end
- else
-   TCL_EvalStr('sciGUIDestroy '+winId);
-   Quit = 1;
-   return
- end
+    //## compare input/output buffer
+    if ~and(txt_in==txt_out)
+        num=tk_message([" Buffer has not been committed.";...
+        "Do you really want to close the editor ?"],...
+        ["Yes","No"]);
+        if num==1 then
+            TCL_EvalStr("sciGUIDestroy "+winId);
+            Quit = 1;
+            return
+        end
+    else
+        TCL_EvalStr("sciGUIDestroy "+winId);
+        Quit = 1;
+        return
+    end
 endfunction
 
 //## scstxtedit : Input function of the text editor
@@ -106,154 +106,154 @@ endfunction
 //##                 1 : Quit
 //##
 function [str_out,Quit] = scstxtedit_tk (str_in,ptxtedit)
-  //** check lhs/rhs arg
-  [lhs,rhs]=argn(0)
+    //** check lhs/rhs arg
+    [lhs,rhs]=argn(0)
 
-  //## param from ptxtedit
-  clos = ptxtedit.clos
-  typ  = ptxtedit.typ
-  head = ptxtedit.head
+    //## param from ptxtedit
+    clos = ptxtedit.clos
+    typ  = ptxtedit.typ
+    head = ptxtedit.head
 
-  //## input param of editor
-  if getos() == 'Windows' then
-    InFile = strsubst(TMPDIR,'/','\')+'\TTMPin';
-    InFile = strsubst(InFile,'\','\\\\')';
-    OutFile = strsubst(TMPDIR,'/','\')+'\TTMPout';
-    OutFile = strsubst(OutFile,'\','\\\\')';
-    HelpFile = strsubst(TMPDIR,'/','\')+'\TTMPHelp';
-    HelpFile = strsubst(HelpFile,'\','\\\\')';
-  else
-    InFile = TMPDIR+'/TTMPin';
-    OutFile = TMPDIR+'/TTMPout';
-    HelpFile = TMPDIR+'/TTMPHelp';
-  end
- 
-  str_out = [];
-  Quit = 0;
+    //## input param of editor
+    if getos() == "Windows" then
+        InFile = strsubst(TMPDIR,"/","\")+"\TTMPin";
+        InFile = strsubst(InFile,"\","\\\\")';
+        OutFile = strsubst(TMPDIR,"/","\")+"\TTMPout";
+        OutFile = strsubst(OutFile,"\","\\\\")';
+        HelpFile = strsubst(TMPDIR,"/","\")+"\TTMPHelp";
+        HelpFile = strsubst(HelpFile,"\","\\\\")';
+    else
+        InFile = TMPDIR+"/TTMPin";
+        OutFile = TMPDIR+"/TTMPout";
+        HelpFile = TMPDIR+"/TTMPHelp";
+    end
 
-  //## compute max_l/max_h
-  max_h = size(str_in,1)
-  max_l = max(length(str_in))
+    str_out = [];
+    Quit = 0;
 
-  if max_h<15 then max_h=15, end
-  if max_h>45 then max_h=45, end
-  max_h=max_h+2
-  if max_l<30 then max_l=30, end
-  if max_l>80 then max_l=80, end
-  max_l=max_l+5
+    //## compute max_l/max_h
+    max_h = size(str_in,1)
+    max_l = max(length(str_in))
 
-  //## store input txt in file buffer
-  mputl(str_in,InFile);
+    if max_h<15 then max_h=15, end
+    if max_h>45 then max_h=45, end
+    max_h=max_h+2
+    if max_l<30 then max_l=30, end
+    if max_l>80 then max_l=80, end
+    max_l=max_l+5
 
-  //## store txt of help in file buffer
-  max_hh = size(head,1)
-  max_ll = max(length(head))
-  mputl(head,HelpFile);
+    //## store input txt in file buffer
+    mputl(str_in,InFile);
 
-  //## Init TCL/TK sciGUI interf
-  sciGUI_init();
-  TCL_EvalFile(SCI+'/macros/scicos/scstxtedit.tcl');
+    //## store txt of help in file buffer
+    max_hh = size(head,1)
+    max_ll = max(length(head))
+    mputl(head,HelpFile);
 
-  //** retrieve current postion of the last dialog box
-  //** potential TCL global variables numx/numy
-  //** potential TCL global variables numxctxt/numyctxt
+    //## Init TCL/TK sciGUI interf
+    sciGUI_init();
+    TCL_EvalFile(SCI+"/macros/scicos/scstxtedit.tcl");
 
-  //## Get position and dim of the editor
-  numx=-1
-  numy=-1
-  ledtx=-1
-  ledty=-1
-  //## context
-  if typ=="context" then
-    if TCL_ExistVar('numxctxt') then
-      numx=TCL_GetVar('numxctxt')
-    end
-    if TCL_ExistVar('numyctxt') then
-      numy=TCL_GetVar('numyctxt')
-    end
-    if TCL_ExistVar('ledtxctxt') then
-      ledtx=TCL_GetVar('ledtxctxt')
-    end
-    if TCL_ExistVar('ledtyctxt') then
-      ledty=TCL_GetVar('ledtyctxt')
-    end
-  //## icon
-  elseif typ=="icon" then
-    if TCL_ExistVar('numxicon') then
-      numx=TCL_GetVar('numxicon')
-    end
-    if TCL_ExistVar('numyicon') then
-      numy=TCL_GetVar('numyicon')
-    end
-  //## palette
-  elseif typ=="palette" then
-    if TCL_ExistVar('numxpal') then
-      numx=TCL_GetVar('numxpal')
-    end
-    if TCL_ExistVar('numypal') then
-      numy=TCL_GetVar('numypal')
-    end
-  //## Diagram Info
-  elseif typ=="scsminfo" then
-    if TCL_ExistVar('numxscsmi') then
-      numx=TCL_GetVar('numxscsmi')
-    end
-    if TCL_ExistVar('numyscsmi') then
-      numy=TCL_GetVar('numyscsmi')
-    end
-  //## Standard block doc
-  elseif typ=="standarddoc" then
-    if TCL_ExistVar('numxstddoc') then
-      numx=TCL_GetVar('numxstddoc')
-    end
-    if TCL_ExistVar('numystddoc') then
-      numy=TCL_GetVar('numystddoc')
-    end
-  //## debug block
-  elseif typ=="debugblock" then
-    if TCL_ExistVar('numxdgblk') then
-      numx=TCL_GetVar('numxdgblk')
-    end
-    if TCL_ExistVar('numydgblk') then
-      numy=TCL_GetVar('numydgblk')
-    end
-  //## default pos and dim
-  else
-    if TCL_ExistVar('numx') then
-      numx=TCL_GetVar('numx')
-    end
-    if TCL_ExistVar('numy') then
-      numy=TCL_GetVar('numy')
-    end
-    if TCL_ExistVar('ledtx') then
-      ledtx=TCL_GetVar('ledtx')
-    end
-    if TCL_ExistVar('ledty') then
-      ledty=TCL_GetVar('ledty')
-    end
-  end
+    //** retrieve current postion of the last dialog box
+    //** potential TCL global variables numx/numy
+    //** potential TCL global variables numxctxt/numyctxt
 
-  //## run tk text editor
-  TCL_EvalStr('ScsTxtEdit '+InFile+' '+OutFile+' '+...
-              string(max_l)+' '+string(max_h)+' '+...
-              HelpFile+' '+...
-              string(max_ll)+' '+string(max_hh)+' '+...
-              string(ledtx)+' '+string(ledty)+' '+...
-              string(numx)+' '+string(numy)+' '+...
-              typ+' '+string(clos));
-
-  //## little loop to wait for a commint
-  //## or a quit
-  while 1==1
-    if str_out<>[]|Quit==1|clos==1 then
-      break;
+    //## Get position and dim of the editor
+    numx=-1
+    numy=-1
+    ledtx=-1
+    ledty=-1
+    //## context
+    if typ=="context" then
+        if TCL_ExistVar("numxctxt") then
+            numx=TCL_GetVar("numxctxt")
+        end
+        if TCL_ExistVar("numyctxt") then
+            numy=TCL_GetVar("numyctxt")
+        end
+        if TCL_ExistVar("ledtxctxt") then
+            ledtx=TCL_GetVar("ledtxctxt")
+        end
+        if TCL_ExistVar("ledtyctxt") then
+            ledty=TCL_GetVar("ledtyctxt")
+        end
+        //## icon
+    elseif typ=="icon" then
+        if TCL_ExistVar("numxicon") then
+            numx=TCL_GetVar("numxicon")
+        end
+        if TCL_ExistVar("numyicon") then
+            numy=TCL_GetVar("numyicon")
+        end
+        //## palette
+    elseif typ=="palette" then
+        if TCL_ExistVar("numxpal") then
+            numx=TCL_GetVar("numxpal")
+        end
+        if TCL_ExistVar("numypal") then
+            numy=TCL_GetVar("numypal")
+        end
+        //## Diagram Info
+    elseif typ=="scsminfo" then
+        if TCL_ExistVar("numxscsmi") then
+            numx=TCL_GetVar("numxscsmi")
+        end
+        if TCL_ExistVar("numyscsmi") then
+            numy=TCL_GetVar("numyscsmi")
+        end
+        //## Standard block doc
+    elseif typ=="standarddoc" then
+        if TCL_ExistVar("numxstddoc") then
+            numx=TCL_GetVar("numxstddoc")
+        end
+        if TCL_ExistVar("numystddoc") then
+            numy=TCL_GetVar("numystddoc")
+        end
+        //## debug block
+    elseif typ=="debugblock" then
+        if TCL_ExistVar("numxdgblk") then
+            numx=TCL_GetVar("numxdgblk")
+        end
+        if TCL_ExistVar("numydgblk") then
+            numy=TCL_GetVar("numydgblk")
+        end
+        //## default pos and dim
+    else
+        if TCL_ExistVar("numx") then
+            numx=TCL_GetVar("numx")
+        end
+        if TCL_ExistVar("numy") then
+            numy=TCL_GetVar("numy")
+        end
+        if TCL_ExistVar("ledtx") then
+            ledtx=TCL_GetVar("ledtx")
+        end
+        if TCL_ExistVar("ledty") then
+            ledty=TCL_GetVar("ledty")
+        end
     end
-  end
+
+    //## run tk text editor
+    TCL_EvalStr("ScsTxtEdit "+InFile+" "+OutFile+" "+...
+    string(max_l)+" "+string(max_h)+" "+...
+    HelpFile+" "+...
+    string(max_ll)+" "+string(max_hh)+" "+...
+    string(ledtx)+" "+string(ledty)+" "+...
+    string(numx)+" "+string(numy)+" "+...
+    typ+" "+string(clos));
+
+    //## little loop to wait for a commint
+    //## or a quit
+    while 1==1
+        if str_out<>[]|Quit==1|clos==1 then
+            break;
+        end
+    end
 endfunction
 
 //## close_scstxtedit_tk : force closing of a scstxtedit_tk
 //##                       windows. Used for Cmenu="XcosMenuQuit"
 //##
 function [] = close_scstxtedit_tk ()
-  TCL_EvalStr('ClosScsTxtEdit');
+    TCL_EvalStr("ClosScsTxtEdit");
 endfunction

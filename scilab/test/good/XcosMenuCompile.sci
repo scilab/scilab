@@ -22,15 +22,15 @@
 function XcosMenuCompile()
     nc_save = 4  ;
     Cmenu   = [] ;
-    needcompile = 4; 
-    
+    needcompile = 4;
+
     [%cpr, ok] = do_compile(scs_m)
-    
+
     if ok then
-      newparameters = list(); 
-      %tcur = 0; //** current simulation time
-      alreadyran = %f ; 
-      %state0    = %cpr.state;
-      needcompile= 0  ;
+        newparameters = list();
+        %tcur = 0; //** current simulation time
+        alreadyran = %f ;
+        %state0    = %cpr.state;
+        needcompile= 0  ;
     end
 endfunction

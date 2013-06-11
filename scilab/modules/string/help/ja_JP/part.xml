@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,51 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="part" xml:lang="ja">
-    <refnamediv>
-        <refname>part</refname>
-        <refpurpose>文字列の展開</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>[strings_out] = part(strings_in, v)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータs</title>
-        <variablelist>
-            <varlistentry>
-                <term>strings_in, strings_out</term>
-                <listitem>
-                    <para>文字列の行列.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>v</term>
-                <listitem>
-                    <para>整数行ベクトル.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>s[k]</literal>が文字列<literal>s</literal>の
-            <literal>k</literal>文字目
-            (または<literal>k &gt;length(s)</literal>の場合は空白文字)
-            を意味するとします.
-        </para>
-        <para>
-            <literal>part</literal> は,
-            <literal>strings_out(i,j)</literal>が
-            文字列<literal>"s[v(1)]...s[v(n)]"</literal>(
-            <literal>s=strings_in(i,j)</literal> )となるような
-            文字列の行列<literal>strings_out</literal>を返します,
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="part" xml:lang="ja">
+        <refnamediv>
+            <refname>part</refname>
+            <refpurpose>文字列の展開</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>[strings_out] = part(strings_in, v)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータs</title>
+            <variablelist>
+                <varlistentry>
+                    <term>strings_in, strings_out</term>
+                    <listitem>
+                        <para>文字列の行列.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>v</term>
+                    <listitem>
+                        <para>整数行ベクトル.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>s[k]</literal>が文字列<literal>s</literal>の
+                <literal>k</literal>文字目
+                (または<literal>k &gt;length(s)</literal>の場合は空白文字)
+                を意味するとします.
+            </para>
+            <para>
+                <literal>part</literal> は,
+                <literal>strings_out(i,j)</literal>が
+                文字列<literal>"s[v(1)]...s[v(n)]"</literal>(
+                <literal>s=strings_in(i,j)</literal> )となるような
+                文字列の行列<literal>strings_out</literal>を返します,
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 // 位置 8 から 11 の文字を返します
 part("How to use ""part"" ?",8:11)
 
@@ -80,16 +80,16 @@ part(['a','abc','abcd'],[1,1])
 // aa aab aab 
 part(['a','abc','abcd'],[1,1,2])
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="string">string</link>
-            </member>
-            <member>
-                <link linkend="length">length</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="string">string</link>
+                </member>
+                <member>
+                    <link linkend="length">length</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

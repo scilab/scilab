@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  * 
@@ -10,65 +10,65 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lusolve" xml:lang="en">
-    <refnamediv>
-        <refname>lusolve</refname>
-        <refpurpose>solucionador de sistemas lineares esparsos</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>x=lusolve(hand,b)
-            x=lusolve(A,b)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>matriz de reais completa </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>A</term>
-                <listitem>
-                    <para>matriz quadrada de reais esparsa e invertível </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>hand</term>
-                <listitem>
-                    <para>manipulador para fatores de lu esparsos previamente computados
-                        (saída de lufact)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>matriz de reais completa </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            <literal>x=lusolve(hand,b)</literal> resolve o sistema linear
-            esparso <literal>A*x = b</literal>.
-        </para>
-        <para>
-            <literal>[hand,rk]=lufact(A)</literal> é a saída de lufact.
-        </para>
-        <para>
-            <literal>x=lusolve(A,b)</literal> resolve o sistema linear esparso
-            <literal>A*x = b</literal>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lusolve" xml:lang="en">
+        <refnamediv>
+            <refname>lusolve</refname>
+            <refpurpose>solucionador de sistemas lineares esparsos</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>x=lusolve(hand,b)
+                x=lusolve(A,b)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>b</term>
+                    <listitem>
+                        <para>matriz de reais completa </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>A</term>
+                    <listitem>
+                        <para>matriz quadrada de reais esparsa e invertível </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>hand</term>
+                    <listitem>
+                        <para>manipulador para fatores de lu esparsos previamente computados
+                            (saída de lufact)
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>matriz de reais completa </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                <literal>x=lusolve(hand,b)</literal> resolve o sistema linear
+                esparso <literal>A*x = b</literal>.
+            </para>
+            <para>
+                <literal>[hand,rk]=lufact(A)</literal> é a saída de lufact.
+            </para>
+            <para>
+                <literal>x=lusolve(A,b)</literal> resolve o sistema linear esparso
+                <literal>A*x = b</literal>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 non_zeros=[1,2,3,4];rows_cols=[1,1;2,2;3,3;4,4];
 sp=sparse(rows_cols,non_zeros);
 [h,rk]=lufact(sp);x=lusolve(h,[1;1;1;1]);ludel(h)
@@ -79,22 +79,22 @@ sp=sparse(rows_cols,non_zeros);
 x=lusolve(sp,-ones(4,1));
 sp*x
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="sparse">sparse</link>
-            </member>
-            <member>
-                <link linkend="lufact">lufact</link>
-            </member>
-            <member>
-                <link linkend="slash">slash</link>
-            </member>
-            <member>
-                <link linkend="backslash">backslash</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="sparse">sparse</link>
+                </member>
+                <member>
+                    <link linkend="lufact">lufact</link>
+                </member>
+                <member>
+                    <link linkend="slash">slash</link>
+                </member>
+                <member>
+                    <link linkend="backslash">backslash</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -7,29 +7,29 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function cmap = springcolormap(varargin)
-	
-	//springcolormap : Magenta to yellow.
-	
-  // Check number of input argument
-  if size(varargin)<>1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "springcolormap", 1));
-  end
-  n=varargin(1);
 
-  // Check size of input argument
-	if size(n,'*')<>1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"springcolormap",1));
-	end
+    //springcolormap : Magenta to yellow.
 
-  // Check value of input argument
-	if n<3 then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"springcolormap",1,3));
-	end
-	
-	red    = ones(n,1);
-	green  = (0:n-1)'/max(n-1,1);
-	blue   = 1 - green;
-	
-	cmap = [red green blue];
-	
+    // Check number of input argument
+    if size(varargin)<>1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "springcolormap", 1));
+    end
+    n=varargin(1);
+
+    // Check size of input argument
+    if size(n,"*")<>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"springcolormap",1));
+    end
+
+    // Check value of input argument
+    if n<3 then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"springcolormap",1,3));
+    end
+
+    red    = ones(n,1);
+    green  = (0:n-1)'/max(n-1,1);
+    blue   = 1 - green;
+
+    cmap = [red green blue];
+
 endfunction

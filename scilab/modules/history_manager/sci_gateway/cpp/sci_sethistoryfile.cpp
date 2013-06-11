@@ -26,20 +26,20 @@ extern "C"
 
 types::Function::ReturnValue sci_sethistoryfile(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         HistoryManager::getInstance()->setDefaultFilename();
     }
-    else if(in.size() == 1)
+    else if (in.size() == 1)
     {
-        if((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
+        if ((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "sethistoryfile", 1);
             return types::Function::Error;
         }
         wchar_t* pwcsFilename = in[0]->getAs<types::String>()->get(0);
         char* pstFilename = wide_string_to_UTF8(pwcsFilename);
-        if(pstFilename)
+        if (pstFilename)
         {
             HistoryManager::getInstance()->setFilename(pstFilename);
             FREE(pstFilename);

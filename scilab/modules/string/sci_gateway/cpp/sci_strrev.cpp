@@ -27,34 +27,34 @@ extern "C"
 
 types::Function::ReturnValue sci_strrev(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::String* pString      = NULL; 
-    types::String* pOutString   = NULL; 
+    types::String* pString      = NULL;
+    types::String* pOutString   = NULL;
     wchar_t **OutputStrings     = NULL;
-    
-    if(in.size() != 1)
+
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strrev", 1);
         return types::Function::Error;
-    }    
-    if(_iRetCount != 1)
+    }
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strrev", 1);
         return types::Function::Error;
     }
-	if(in[0]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"), "strrev", 1);
-		return types::Function::Error;
-	}
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"), "strrev", 1);
+        return types::Function::Error;
+    }
 
     pString = in[0]->getAs<types::String>();
-   // wchar_t* pwstStr = in[0]->getAs<types::String>()->get(0);
-   
-    OutputStrings = strings_strrev(pString->get(),pString->getSize());
-    
-    pOutString = new types::String(pString->getDims(),pString->getDimsArray());
+    // wchar_t* pwstStr = in[0]->getAs<types::String>()->get(0);
+
+    OutputStrings = strings_strrev(pString->get(), pString->getSize());
+
+    pOutString = new types::String(pString->getDims(), pString->getDimsArray());
     pOutString->set(OutputStrings);
-    
+
     out.push_back(pOutString);
     return types::Function::OK;
 }

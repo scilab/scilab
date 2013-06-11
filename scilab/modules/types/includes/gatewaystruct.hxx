@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,21 +18,21 @@
 
 namespace types
 {
-    class GatewayStruct
-    {
-    public :
-        types::typed_list*      m_pIn;
-        optional_list*          m_pOpt;
-        types::InternalType**   m_pOut;
-        int                     m_iIn;
-        int                     m_iOut;
-        int*                    m_piRetCount;
-        char*                   m_pstName;
-        int*                    m_pOutOrder;
-        ast::ConstVisitor*      m_pVisitor;
+class GatewayStruct
+{
+public :
+    types::typed_list*      m_pIn;
+    optional_list*          m_pOpt;
+    types::InternalType**   m_pOut;
+    int                     m_iIn;
+    int                     m_iOut;
+    int*                    m_piRetCount;
+    char*                   m_pstName;
+    int*                    m_pOutOrder;
+    ast::ConstVisitor*      m_pVisitor;
 
-        GatewayStruct(){};
-        ~GatewayStruct(){};
-    };
+    GatewayStruct() {};
+    ~GatewayStruct() {};
+};
 }
 #endif /* !__GATEWAYSTRUCT_HXX__ */

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,137 +21,137 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="VirtualCLK0">
-    <refnamediv>
-        <refname>VirtualCLK0</refname>
-        <refpurpose>Triggered Always Active Blocks</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/VirtualCLK0.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
-    <refsection id="Contents_VirtualCLK0">
-        <title>Contents</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="VirtualCLK0">Triggered Always Active Blocks</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_VirtualCLK0">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_VirtualCLK0">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_VirtualCLK0">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_VirtualCLK0">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_VirtualCLK0">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_VirtualCLK0">
-        <title>Description</title>
-        <para>
-            This block is considered a virtual block by the compilor. It is used in a SuperBlock (subsystem) to trigger the always active blocks (ex: the sinus generator) in the SuperBlock and in the level below. The blocks will be virtually connected to the input of the VirtualCLK0.
-        </para>
-        <para>
-        </para>
-    </refsection>
-    <refsection id="Defaultproperties_VirtualCLK0">
-        <title>Default properties</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">always active:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">direct-feedthrough:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">zero-crossing:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">mode:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">continuous-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">discrete-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis> no
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">name of computational function:</emphasis>
-                    <emphasis role="italic">vrtclk0</emphasis>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Interfacingfunction_VirtualCLK0">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Events/VirtualCLK0.sci">SCI/modules/scicos_blocks/macros/Events/VirtualCLK0.sci</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="VirtualCLK0">
+        <refnamediv>
+            <refname>VirtualCLK0</refname>
+            <refpurpose>Triggered Always Active Blocks</refpurpose>
+        </refnamediv>
+        <refsection>
+            <title>Block Screenshot</title>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../images/palettes/VirtualCLK0.png" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+        </refsection>
+        <refsection id="Contents_VirtualCLK0">
+            <title>Contents</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="VirtualCLK0">Triggered Always Active Blocks</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <xref linkend="Palette_VirtualCLK0">Palette</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Description_VirtualCLK0">Description</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Defaultproperties_VirtualCLK0">Default properties</xref>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <xref linkend="Interfacingfunction_VirtualCLK0">Interfacing function</xref>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Palette_VirtualCLK0">
+            <title>Palette</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="Events_pal">Event handling palette</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Description_VirtualCLK0">
+            <title>Description</title>
+            <para>
+                This block is considered a virtual block by the compilor. It is used in a SuperBlock (subsystem) to trigger the always active blocks (ex: the sinus generator) in the SuperBlock and in the level below. The blocks will be virtually connected to the input of the VirtualCLK0.
+            </para>
+            <para>
+            </para>
+        </refsection>
+        <refsection id="Defaultproperties_VirtualCLK0">
+            <title>Default properties</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">always active:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">direct-feedthrough:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">zero-crossing:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">mode:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">continuous-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">discrete-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">object discrete-time state:</emphasis> no
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">name of computational function:</emphasis>
+                        <emphasis role="italic">vrtclk0</emphasis>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Interfacingfunction_VirtualCLK0">
+            <title>Interfacing function</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Events/VirtualCLK0.sci">SCI/modules/scicos_blocks/macros/Events/VirtualCLK0.sci</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refentry>

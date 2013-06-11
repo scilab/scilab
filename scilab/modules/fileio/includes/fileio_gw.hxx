@@ -16,13 +16,13 @@
 #include "cpp_gateway_prototype.hxx"
 
 #ifdef _MSC_VER
-	#if FILEIO_GW_EXPORTS
-		#define EXTERN_FILEIO_GW __declspec (dllexport)
-	#else
-		#define EXTERN_FILEIO_GW __declspec (dllimport)
-	#endif
+#if FILEIO_GW_EXPORTS
+#define EXTERN_FILEIO_GW __declspec (dllexport)
 #else
-	#define EXTERN_FILEIO_GW
+#define EXTERN_FILEIO_GW __declspec (dllimport)
+#endif
+#else
+#define EXTERN_FILEIO_GW
 #endif
 
 class FileioModule
@@ -32,7 +32,7 @@ private :
     ~FileioModule() {};
 
 public :
-	EXTERN_FILEIO_GW static int Load();
+    EXTERN_FILEIO_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_mopen);

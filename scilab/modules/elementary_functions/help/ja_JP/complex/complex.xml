@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
@@ -10,136 +10,136 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="complex" xml:lang="ja">
-    <refnamediv>
-        <refname>complex</refname>
-        <refpurpose>複素数を計算する.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>
-            c=complex(a)
-            c=complex(a,b)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>引数</title>
-        <variablelist>
-            <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>
-                        1行1列またはn行m列の倍精度実数行列, 実部.
-                        <literal>a</literal> が虚部を有する場合,
-                        エラーが発生します.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>
-                        1行1列またはn行m列の倍精度実数行列, 虚部 (デフォルト b=0).
-                        <literal>b</literal> が虚部を有する場合,
-                        エラーが発生します.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c</term>
-                <listitem>
-                    <para>n行m列の倍精度複素行列, 複素数.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            c=complex(a) は, <literal>a</literal>を実部,
-            0 を虚部とする複素数を作成します.
-        </para>
-        <para>
-            c=complex(a,b) は実部<literal>a</literal> ,
-            虚部<literal>b</literal>の複素数を作成します.
-        </para>
-        <para>
-            この関数は,
-            特に複素数演算が<literal>%inf</literal> または<literal>%nan</literal>
-            のような特定の浮動小数点数と競合する場合に,
-            <literal>a+%i*b</literal>のような式の代替手段となります.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <para>
-            以下の例では,実部と虚部から複素数を生成します.
-        </para>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="complex" xml:lang="ja">
+        <refnamediv>
+            <refname>complex</refname>
+            <refpurpose>複素数を計算する.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>
+                c=complex(a)
+                c=complex(a,b)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>引数</title>
+            <variablelist>
+                <varlistentry>
+                    <term>a</term>
+                    <listitem>
+                        <para>
+                            1行1列またはn行m列の倍精度実数行列, 実部.
+                            <literal>a</literal> が虚部を有する場合,
+                            エラーが発生します.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>b</term>
+                    <listitem>
+                        <para>
+                            1行1列またはn行m列の倍精度実数行列, 虚部 (デフォルト b=0).
+                            <literal>b</literal> が虚部を有する場合,
+                            エラーが発生します.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>c</term>
+                    <listitem>
+                        <para>n行m列の倍精度複素行列, 複素数.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                c=complex(a) は, <literal>a</literal>を実部,
+                0 を虚部とする複素数を作成します.
+            </para>
+            <para>
+                c=complex(a,b) は実部<literal>a</literal> ,
+                虚部<literal>b</literal>の複素数を作成します.
+            </para>
+            <para>
+                この関数は,
+                特に複素数演算が<literal>%inf</literal> または<literal>%nan</literal>
+                のような特定の浮動小数点数と競合する場合に,
+                <literal>a+%i*b</literal>のような式の代替手段となります.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <para>
+                以下の例では,実部と虚部から複素数を生成します.
+            </para>
+            <programlisting role="example"><![CDATA[ 
 complex(1,2)
 complex([1 2],[3 4])
  ]]></programlisting>
-        <para>
-            <literal>a</literal> のみが指定された場合, 虚部は0に設定されます.
-        </para>
-        <programlisting role="example"><![CDATA[ 
+            <para>
+                <literal>a</literal> のみが指定された場合, 虚部は0に設定されます.
+            </para>
+            <programlisting role="example"><![CDATA[ 
 complex([1 2 3])
  ]]></programlisting>
-        <para>
-            <literal>a</literal> がスカラーで <literal>b</literal> が
-            行列の場合, 結果 <literal>c</literal> は,
-            <literal>b</literal>と同じ大きさとなります.
-            同様に, <literal>b</literal> がスカラーで <literal>a</literal> 
-            が行列の場合, 結果 <literal>c</literal> は
-            <literal>a</literal>と同じ大きさになります.
-        </para>
-        <programlisting role="example"><![CDATA[ 
+            <para>
+                <literal>a</literal> がスカラーで <literal>b</literal> が
+                行列の場合, 結果 <literal>c</literal> は,
+                <literal>b</literal>と同じ大きさとなります.
+                同様に, <literal>b</literal> がスカラーで <literal>a</literal> 
+                が行列の場合, 結果 <literal>c</literal> は
+                <literal>a</literal>と同じ大きさになります.
+            </para>
+            <programlisting role="example"><![CDATA[ 
 c = complex([1 2 3], 4)
 c = complex(1, [2 3 4])
  ]]></programlisting>
-        <para>
-            <literal>a</literal> と <literal>b</literal> が
-            異なる大きさの行列の場合,以下のセッションのような
-            エラーが発生します.
-        </para>
-        <screen><![CDATA[ 
+            <para>
+                <literal>a</literal> と <literal>b</literal> が
+                異なる大きさの行列の場合,以下のセッションのような
+                エラーが発生します.
+            </para>
+            <screen><![CDATA[ 
 -->complex(ones(2,3),ones(4,5))
  !--error 10000 
 complex: Incompatible input arguments #1 and #2: Same sizes expected.
 at line      33 of function complex called by :  
 complex(ones(2,3),ones(4,5))
  ]]></screen>
-        <para>
-            <literal>complex</literal> 関数の目的は,NaNや無限大のような
-            IEEE 浮動小数点数を管理することです.
-            以下の例では,複素数演算を使用する場合,
-            実部と虚部が複合体となる複素数を作成するのは
-            容易ではないことを示します.
-            これは,<literal>%i</literal> と <literal>%inf</literal>の積が
-            <literal>(0+%i) * (%inf+%i*0)</literal>と評価されるためです.
-            この結果は,中間式<literal>0*%inf</literal>,つまり,
-            <literal>%nan</literal>となります.
-        </para>
-        <screen><![CDATA[ 
+            <para>
+                <literal>complex</literal> 関数の目的は,NaNや無限大のような
+                IEEE 浮動小数点数を管理することです.
+                以下の例では,複素数演算を使用する場合,
+                実部と虚部が複合体となる複素数を作成するのは
+                容易ではないことを示します.
+                これは,<literal>%i</literal> と <literal>%inf</literal>の積が
+                <literal>(0+%i) * (%inf+%i*0)</literal>と評価されるためです.
+                この結果は,中間式<literal>0*%inf</literal>,つまり,
+                <literal>%nan</literal>となります.
+            </para>
+            <screen><![CDATA[ 
 -->%inf+%i*%inf
  ans  =
     Nan + Inf 
  ]]></screen>
-        <para>
-            この問題の解決策は <literal>complex</literal>関数を使用することです.
-        </para>
-        <screen><![CDATA[ 
+            <para>
+                この問題の解決策は <literal>complex</literal>関数を使用することです.
+            </para>
+            <screen><![CDATA[ 
 -->complex(%inf,%inf)
  ans  =
     Inf + Inf 
  ]]></screen>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="imult">imult</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="imult">imult</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

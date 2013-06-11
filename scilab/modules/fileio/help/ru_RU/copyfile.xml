@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * ...
  * 
@@ -10,86 +10,86 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="copyfile" xml:lang="ru">
-    <info>
-        <pubdate>$LastChangedDate$
-        </pubdate>
-    </info>
-    <refnamediv>
-        <refname>copyfile</refname>
-        <refpurpose>копирование файла</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>
-            copyfile(source, destination)
-            [status, message] = copyfile(source, destination)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>source</term>
-                <listitem>
-                    <para>
-                        символьная строка: имя файла или директории (источник).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>destination</term>
-                <listitem>
-                    <para>
-                        символьная строка: имя директории (назначение).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            <code>copyfile(source, destination)</code> копирует файл или
-            директорию <varname>source</varname> в файл или директорию
-            <varname>destination</varname> (и поддиректории).
-        </para>
-        <para>
-            Если источник является директорией, то назначение не может быть файлом.
-            <warning>
-                <code>copyfile</code> замещает существующие файлы без предупреждения.
-            </warning>
-        </para>
-        <para>
-            <code>[status, message] = copyfile(source,destination)</code>
-            копирует из источника <varname>source</varname> в назначение <varname>destination</varname>,
-            возвращая статус <varname>status</varname> и сообщение <varname>message</varname>. 
-        </para>
-        <para>
-            Для любой операционной системы, если копирование завершилось успешно, то
-            статус <varname>status</varname> равен 1, а сообщение <varname>message</varname> пустое; если же копирование завершилось неудачно, то статус <varname>status</varname> равен 0 и сообщение <varname>message</varname> не пустое.
-        </para>
-        <para>
-            Временная отметка у файла назначения такая же, как временная отметка исходного файла.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"> 
-            copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
-            [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="movefile">movefile</link>
-            </member>
-            <member>
-                <link linkend="mdelete">mdelete</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
-
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="copyfile" xml:lang="ru">
+        <info>
+            <pubdate>$LastChangedDate$
+            </pubdate>
+        </info>
+        <refnamediv>
+            <refname>copyfile</refname>
+            <refpurpose>копирование файла</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>
+                copyfile(source, destination)
+                [status, message] = copyfile(source, destination)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>source</term>
+                    <listitem>
+                        <para>
+                            символьная строка: имя файла или директории (источник).
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>destination</term>
+                    <listitem>
+                        <para>
+                            символьная строка: имя директории (назначение).
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                <code>copyfile(source, destination)</code> копирует файл или
+                директорию <varname>source</varname> в файл или директорию
+                <varname>destination</varname> (и поддиректории).
+            </para>
+            <para>
+                Если источник является директорией, то назначение не может быть файлом.
+                <warning>
+                    <code>copyfile</code> замещает существующие файлы без предупреждения.
+                </warning>
+            </para>
+            <para>
+                <code>[status, message] = copyfile(source,destination)</code>
+                копирует из источника <varname>source</varname> в назначение <varname>destination</varname>,
+                возвращая статус <varname>status</varname> и сообщение <varname>message</varname>. 
+            </para>
+            <para>
+                Для любой операционной системы, если копирование завершилось успешно, то
+                статус <varname>status</varname> равен 1, а сообщение <varname>message</varname> пустое; если же копирование завершилось неудачно, то статус <varname>status</varname> равен 0 и сообщение <varname>message</varname> не пустое.
+            </para>
+            <para>
+                Временная отметка у файла назначения такая же, как временная отметка исходного файла.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"> 
+                copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
+                [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="movefile">movefile</link>
+                </member>
+                <member>
+                    <link linkend="mdelete">mdelete</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>
+    

@@ -22,11 +22,12 @@
  * Describe a way of calling a particular cdf function.
  * @see cdf_descriptor
  */
-struct cdf_item {
-  const char *option;
-  const int inarg; /* number of inputs taken */
-  const int oarg;  /* number of outputs expected */
-  const int shift; /* how much arglist has to be shifted in DCDFLIB funcall @see CdfBase */
+struct cdf_item
+{
+    const char *option;
+    const int inarg; /* number of inputs taken */
+    const int oarg;  /* number of outputs expected */
+    const int shift; /* how much arglist has to be shifted in DCDFLIB funcall @see CdfBase */
 };
 
 /**
@@ -39,14 +40,15 @@ typedef int (*const cdf_fptr)(int *, ...);
  * @warning "items" element order is used in cdf_generic to infer "which" value
  * @note use mkcdf macro to instanciate cdf_descriptors
  */
-struct cdf_descriptor {
-  const int minrhs;
-  const int maxrhs;
-  const int minlhs;
-  const int maxlhs;
-  cdf_fptr fun;				 /* actual DCDFLIB's function */
-  const struct cdf_item *items;	 /* ways of calling this function */
-  const struct cdf_item *end_item; /* last item, 1 passed */
+struct cdf_descriptor
+{
+    const int minrhs;
+    const int maxrhs;
+    const int minlhs;
+    const int maxlhs;
+    cdf_fptr fun;				 /* actual DCDFLIB's function */
+    const struct cdf_item *items;	 /* ways of calling this function */
+    const struct cdf_item *end_item; /* last item, 1 passed */
 };
 
 /**

@@ -21,15 +21,15 @@
 
 function XcosMenuActivateScilab()
 
-  Cmenu = [] ;
-  %pt = []   ;
+    Cmenu = [] ;
+    %pt = []   ;
 
 
 
-  if super_block then
-    Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
-		     'Cmenu='"XcosMenuActivateScilabWindow'";%scicos_navig=[]']
-  else
-    Cmenu = 'XcosMenuLeave'
-  end
+    if super_block then
+        Scicos_commands=["%diagram_path_objective=[];%scicos_navig=1";
+        "Cmenu='"XcosMenuActivateScilabWindow'";%scicos_navig=[]"]
+    else
+        Cmenu = "XcosMenuLeave"
+    end
 endfunction

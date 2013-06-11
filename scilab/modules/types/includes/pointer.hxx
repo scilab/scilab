@@ -17,25 +17,49 @@
 
 namespace types
 {
-    class Pointer : public User<Pointer>
+class Pointer : public User<Pointer>
+{
+public :
+    Pointer()
     {
-    public :
-                                Pointer() { m_pvData = NULL; }
-                                Pointer(void* _pvData) { m_pvData = _pvData; }
-        virtual	                ~Pointer() {}
-        Pointer*                getAsPointer() { return this; }
-        bool                    isPointer(void) { return true; }
+        m_pvData = NULL;
+    }
+    Pointer(void* _pvData)
+    {
+        m_pvData = _pvData;
+    }
+    virtual	                ~Pointer() {}
+    Pointer*                getAsPointer()
+    {
+        return this;
+    }
+    bool                    isPointer(void)
+    {
+        return true;
+    }
 
 
-        bool                    toString(std::wostringstream& ostr) { return true; }
-        InternalType*           clone() { return new Pointer(get()); }
+    bool                    toString(std::wostringstream& ostr)
+    {
+        return true;
+    }
+    InternalType*           clone()
+    {
+        return new Pointer(get());
+    }
 
-        void*                   get() { return m_pvData; }
-        void                    set(void* _pvData) { m_pvData = _pvData; }
-    protected :
+    void*                   get()
+    {
+        return m_pvData;
+    }
+    void                    set(void* _pvData)
+    {
+        m_pvData = _pvData;
+    }
+protected :
 
-        void*                  m_pvData;
-    };
+    void*                  m_pvData;
+};
 }
 
 #endif /* !__USER_HXX__ */

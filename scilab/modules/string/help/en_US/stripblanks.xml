@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,48 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="stripblanks">
-    <refnamediv>
-        <refname>stripblanks</refname>
-        <refpurpose>
-            strips / trims leading and trailing
-            blanks (and tabs) of strings
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>txt = stripblanks(txt[,tabs])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>txt</term>
-                <listitem>
-                    <para>
-                        a character string or matrix of character strings.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>tabs</term>
-                <listitem>
-                    <para>
-                        a boolean, if <constant>%t</constant> then tabs are also stripped (default value is <constant>%f</constant>).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <function>stripblanks</function> function strips / trims leading and trailing blanks (and tabs) of strings.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="stripblanks">
+        <refnamediv>
+            <refname>stripblanks</refname>
+            <refpurpose>
+                strips / trims leading and trailing
+                blanks (and tabs) of strings
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>txt = stripblanks(txt[,tabs])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>txt</term>
+                    <listitem>
+                        <para>
+                            a character string or matrix of character strings.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>tabs</term>
+                    <listitem>
+                        <para>
+                            a boolean, if <constant>%t</constant> then tabs are also stripped (default value is <constant>%f</constant>).
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <function>stripblanks</function> function strips / trims leading and trailing blanks (and tabs) of strings.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 a='  123   ';
 '!'+a+'!'
 '!'+stripblanks(a)+'!'
@@ -62,5 +62,5 @@ a = msprintf("\t  \tHello world!\t\t")
 strcat(stripblanks(a,%f)+'?')
 strcat(stripblanks(a,%t)+'?')
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

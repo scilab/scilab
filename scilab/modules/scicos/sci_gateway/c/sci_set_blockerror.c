@@ -29,25 +29,25 @@
 /*--------------------------------------------------------------------------*/
 extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
-int sci_set_blockerror(char *fname,unsigned long fname_len)
+int sci_set_blockerror(char *fname, unsigned long fname_len)
 {
-	int one = 1, l1 = 0;
-	int isrun = C2F(cosim).isrun;
+    int one = 1, l1 = 0;
+    int isrun = C2F(cosim).isrun;
 
-	CheckRhs(1,1);
+    CheckRhs(1, 1);
 
-	if (!isrun) 
-	{
-		Scierror(999, _("%s: scicosim is not running.\n"),fname);
-	}
-	else 
-	{
-		GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE,(one=1,&one),(one=1,&one),&l1);
-		set_block_error(*istk(l1));
+    if (!isrun)
+    {
+        Scierror(999, _("%s: scicosim is not running.\n"), fname);
+    }
+    else
+    {
+        GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, (one = 1, &one), (one = 1, &one), &l1);
+        set_block_error(*istk(l1));
 
-		LhsVar(1) = 0;
-		PutLhsVar();
-	}
-	return 0;
+        LhsVar(1) = 0;
+        PutLhsVar();
+    }
+    return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

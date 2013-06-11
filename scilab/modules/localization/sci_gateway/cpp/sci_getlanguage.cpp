@@ -27,13 +27,13 @@ using namespace types;
 
 Function::ReturnValue sci_getlanguage(typed_list &in, int _piRetCount, typed_list &out)
 {
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getlanguage", 0);
         return Function::Error;
     }
 
-    if(_piRetCount != 1)
+    if (_piRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "getlanguage", 1);
         return Function::Error;

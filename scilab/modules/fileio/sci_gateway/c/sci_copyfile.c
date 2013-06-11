@@ -33,7 +33,7 @@
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t *getFilenameWithExtension(wchar_t* wcFullFilename);
-static int returnCopyFileResultOnStack(int ierr, char *fname ,void* pvApiCtx);
+static int returnCopyFileResultOnStack(int ierr, char *fname , void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 int sci_copyfile(char *fname, void* pvApiCtx)
 {
@@ -169,7 +169,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
                         }
 
                         destFullFilename = (wchar_t *) MALLOC(sizeof(wchar_t) * ((int)wcslen(pStVarTwoExpanded) +
-                            (int)wcslen(filename) + (int)wcslen(L"/") + 1));
+                                                              (int)wcslen(filename) + (int)wcslen(L"/") + 1));
                         wcscpy(destFullFilename, pStVarTwoExpanded);
                         wcscat(destFullFilename, L"/");
                         wcscat(destFullFilename, filename);
@@ -324,7 +324,7 @@ static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
         wchar_t buffer[BUFFER_SIZE];
 
         if (FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL,
-            dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buffer, BUFFER_SIZE, NULL) == 0)
+                           dw, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), buffer, BUFFER_SIZE, NULL) == 0)
         {
             wcscpy(buffer, L"Unknown Error");
         }

@@ -16,10 +16,10 @@ cd(TMPDIR + "/completion");
 
 ilib_name   = "completion_c";
 files       = [ "sci_completeline.c"    , ..
-                "sci_getpartlevel.c"    , ..
-                "sci_getfilepartlevel.c", ..
-                "sci_getcommonpart.c"   , ..
-                "sci_getfields.c" ];
+"sci_getpartlevel.c"    , ..
+"sci_getfilepartlevel.c", ..
+"sci_getcommonpart.c"   , ..
+"sci_getfields.c" ];
 
 for i = 1 : size(files, "*")
     copyfile(file_path + "/" + files(i), TMPDIR + "/completion");
@@ -44,10 +44,10 @@ end
 
 // name known in scilab , C function called
 table = ["completeline"    ,"sci_completeline"    ;
-         "getpartlevel"    ,"sci_getpartlevel"    ;
-         "getfilepartlevel","sci_getfilepartlevel";
-         "getcommonpart"   ,"sci_getcommonpart"   ;
-	 "getfields"       ,"sci_getfields" ];
+"getpartlevel"    ,"sci_getpartlevel"    ;
+"getfilepartlevel","sci_getfilepartlevel";
+"getcommonpart"   ,"sci_getcommonpart"   ;
+"getfields"       ,"sci_getfields" ];
 
 
 libname = ilib_build(ilib_name,table,files,libs,[],"",cflags);

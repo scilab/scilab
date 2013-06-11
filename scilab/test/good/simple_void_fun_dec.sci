@@ -1,4 +1,4 @@
 function toto=dummy(a,b,c)
-// comment
-// another comment
+    // comment
+    // another comment
 endfunction

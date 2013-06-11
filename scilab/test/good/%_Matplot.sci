@@ -16,6 +16,6 @@
 //
 
 function [] = %_Matplot()
-  m=[1,2;3,4];
-  Matplot(m);
+    m=[1,2;3,4];
+    Matplot(m);
 endfunction

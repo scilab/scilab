@@ -16,7 +16,8 @@
 #include "dynlib_fileio.h"
 #include "BOOL.h"
 
-typedef enum {
+typedef enum
+{
     MPUTL_NO_ERROR = 0,
     MPUTL_ERROR = 1,
     MPUTL_INVALID_FILE_DESCRIPTOR = 2,

@@ -25,23 +25,23 @@ extern "C"
 
 types::Function::ReturnValue sci_clc(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	BOOL res = FALSE;
-	int nblines = -1;
+    BOOL res = FALSE;
+    int nblines = -1;
 
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
-		/* Clear console full */
-		nblines = -1;
+        /* Clear console full */
+        nblines = -1;
     }
-    else if(in.size() == 1)
+    else if (in.size() == 1)
     {
-        if((in[0]->isDouble() == false) || !in[0]->getAs<types::Double>()->isScalar())
+        if ((in[0]->isDouble() == false) || !in[0]->getAs<types::Double>()->isScalar())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A double scalar expected.\n"), "clc", 1);
             return types::Function::Error;
         }
         nblines = (int)in[0]->getAs<types::Double>()->get(0);
-        if(nblines < 0)
+        if (nblines < 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: A positive double expected\n"), "clc", 1);
             return types::Function::Error;

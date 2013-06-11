@@ -37,7 +37,7 @@ int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)
     int Memory_used_for_variables = 0;
     int Total_Memory_available = 0;
 
-	//C2F(getstackinfo)(&Total_Memory_available,&Memory_used_for_variables);
+    //C2F(getstackinfo)(&Total_Memory_available,&Memory_used_for_variables);
 
 #ifdef _MSC_VER
     sprintf_s(pstMsg1, bsiz, "%s\n%s", _pstCaller, _("stack size exceeded!\n"));
@@ -46,7 +46,7 @@ int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)
     sprintf_s(pstMsg4, bsiz, _("Intermediate memory needed: %d\n"), _iNeeded);
     sprintf_s(pstMsg5, bsiz, _("Total memory available: %d\n"), Total_Memory_available);
 #else
-	sprintf(pstMsg1, "%s\n%s", _pstCaller, _("stack size exceeded!\n"));
+    sprintf(pstMsg1, "%s\n%s", _pstCaller, _("stack size exceeded!\n"));
     sprintf(pstMsg2, _("Use stacksize function to increase it.\n"));
     sprintf(pstMsg3, _("Memory used for variables: %d\n"), Memory_used_for_variables);
     sprintf(pstMsg4, _("Intermediate memory needed: %d\n"), _iNeeded);
@@ -58,7 +58,7 @@ int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)
     strcat(pstMsg1, pstMsg4);
     strcat(pstMsg1, pstMsg5);
 
-	return addErrorMessage(_psciErr, API_ERROR_NO_MORE_MEMORY, pstMsg1);
+    return addErrorMessage(_psciErr, API_ERROR_NO_MORE_MEMORY, pstMsg1);
 }
 
 int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)

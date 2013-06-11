@@ -19,58 +19,58 @@ symbol::Symbol::string_set_type symbol::Symbol::_set;
 
 namespace symbol
 {
-    // Constructor
-    Symbol::Symbol (const std::wstring &s):
-        _set_node (_set.insert(s).first)
+// Constructor
+Symbol::Symbol (const std::wstring &s):
+    _set_node (_set.insert(s).first)
+{
+}
+
+// Accessor
+const std::wstring& Symbol::name_get () const
+{
+    return (*_set_node);
+}
+
+// Return the size of the Symbol map.
+Symbol::size_type Symbol::map_size ()
+{
+    return _set.size();
+}
+
+// Operators for better performances.
+bool Symbol::operator== (const Symbol &rhs) const
+{
+    return &(*_set_node) == &(*rhs.get_node());
+}
+
+bool Symbol::operator!= (const Symbol &rhs) const
+{
+    return !(*this == rhs);
+}
+
+bool Symbol::operator<(const Symbol &rhs) const
+{
+    return (&(*_set_node) < & (*rhs.get_node()));
+}
+
+std::wostream& operator<< (std::wostream &ostr, const Symbol &the)
+{
+    return ostr << the.name_get();
+}
+
+wchar_t **Symbol::get_all()
+{
+    string_set_type::const_iterator it;
+    wchar_t **resultVector = new wchar_t*[map_size()];
+    int i = 0;
+
+    for (it = _set.begin() ; it != _set.end() ; ++it, ++i)
     {
+        resultVector[i] = const_cast<wchar_t*>(it->c_str());
     }
 
-    // Accessor
-    const std::wstring& Symbol::name_get () const
-    {
-        return (*_set_node);
-    }
-
-    // Return the size of the Symbol map.
-    Symbol::size_type Symbol::map_size ()
-    {
-        return _set.size();
-    }
-
-    // Operators for better performances.
-    bool Symbol::operator== (const Symbol &rhs) const
-    {
-        return &(*_set_node) == &(*rhs.get_node());
-    }
-
-    bool Symbol::operator!= (const Symbol &rhs) const
-    {
-        return !(*this == rhs);
-    }
-
-    bool Symbol::operator<(const Symbol &rhs) const
-    {
-        return (&(*_set_node) < &(*rhs.get_node()));
-    }
-
-    std::wostream& operator<< (std::wostream &ostr, const Symbol &the)
-    {
-        return ostr << the.name_get();
-    }
-
-    wchar_t **Symbol::get_all()
-    {
-        string_set_type::const_iterator it;
-        wchar_t **resultVector = new wchar_t*[map_size()];
-        int i = 0;
-
-        for(it = _set.begin() ; it != _set.end() ; ++it, ++i)
-        {
-            resultVector[i] = const_cast<wchar_t*>(it->c_str());
-        }
-
-        return resultVector;
-    }
+    return resultVector;
+}
 }
 
 #endif // !SYMBOL_SYMBOL_HXX

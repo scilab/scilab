@@ -24,27 +24,27 @@ function XcosMenuReplot()
     Cmenu = [] ;
     %pt   = [] ;
     Select= [] ;
-    
+
     //** BEWARE: this assignement can be erroneus because the user can destroy manually
     //**         the Scicos window.
-    //**         How to reproduce the error: 
+    //**         How to reproduce the error:
     //**         1) launch "scicos();"
     //**         2) use "Tools->Calc" ; look at the scilex window
     //**         3) close manually the Scicos window (click over [X])
-    //**         4) type "resume" on the scilex window  
-    
+    //**         4) type "resume" on the scilex window
+
     gh_curwin = scf(gh_current_window) ; //** get the handle of the current graphics window
-    gh_axes = gca();   
-    
+    gh_axes = gca();
+
     drawlater();
 
-       if gh_axes.children<>[] then   //** protection : you cannot delete "non existant" "empty" object ! 
-           delete(gh_axes.children) ; //** clear the current graphic window: OBJECTS ONLY ! NO Menus
-       end
+    if gh_axes.children<>[] then   //** protection : you cannot delete "non existant" "empty" object !
+        delete(gh_axes.children) ; //** clear the current graphic window: OBJECTS ONLY ! NO Menus
+    end
 
-       %wdm = scs_m.props.wpar    ; //** 
-       window_set_size(gh_curwin) ; //** OK
-       set_background(gh_curwin)  ; //** OK
-       drawobjs(scs_m,gh_curwin)  ;  //** Redraw all
-    
+    %wdm = scs_m.props.wpar    ; //**
+    window_set_size(gh_curwin) ; //** OK
+    set_background(gh_curwin)  ; //** OK
+    drawobjs(scs_m,gh_curwin)  ;  //** Redraw all
+
 endfunction

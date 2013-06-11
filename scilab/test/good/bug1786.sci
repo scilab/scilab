@@ -23,9 +23,9 @@ hlt.position = [0.5,0.5];
 test4 = (hlt.auto_position == "off");
 
 if( test1 & test2 & test3 & test4 ) then
-	affich_result(%T,1786);
+    affich_result(%T,1786);
 else
-	affich_result(%F,1786);
+    affich_result(%F,1786);
 end
 
 clear

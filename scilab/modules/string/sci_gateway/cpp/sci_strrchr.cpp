@@ -33,43 +33,43 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
     types::String* pString      = NULL;
     types::String* pCharSample  = NULL;
 
-    if(in.size() != 2)
+    if (in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strrchr", 2);
         return types::Function::Error;
     }
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strrchr", 1);
         return types::Function::Error;
     }
-	if(in[0]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strrchr", 1);
-		return types::Function::Error;
-	}
-	if(in[1]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strrchr", 2);
-		return types::Function::Error;
-	}
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strrchr", 1);
+        return types::Function::Error;
+    }
+    if (in[1]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strrchr", 2);
+        return types::Function::Error;
+    }
 
     pString      = in[0]->getAs<types::String>();
     pCharSample  = in[1]->getAs<types::String>();
 
-    if(pString->getSize() == 0)
+    if (pString->getSize() == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strrchr",1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strrchr", 1);
         return types::Function::Error;
     }
 
-    if(pCharSample->getSize() == 0)
+    if (pCharSample->getSize() == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strrchr",2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"), "strrchr", 2);
         return types::Function::Error;
     }
 
-    if(pString->getSize() != pCharSample->getSize() && pCharSample->isScalar() == false)
+    if (pString->getSize() != pCharSample->getSize() && pCharSample->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "strrchr", 2);
         return types::Function::Error;
@@ -78,31 +78,31 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
     pOutString  = new types::String(pString->getDims(), pString->getDimsArray());
 
     int j = 0; /* Input parameter two is dimension one */
-    for(int i=0 ; i < pString->getSize() ; i++)
+    for (int i = 0 ; i < pString->getSize() ; i++)
     {
-        if(pCharSample->isScalar() == false)
+        if (pCharSample->isScalar() == false)
         {
             j = i; /* Input parameter One & two have same dimension */
         }
         int iLen = (int)wcslen(pCharSample->get(j));
-        if(iLen != 1)
+        if (iLen != 1)
         {
-    		Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "strrchr", 2);
-    		delete pOutString;
+            Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "strrchr", 2);
+            delete pOutString;
             return types::Function::Error;
         }
 
-        if(wcslen(pString->get(i)) < wcslen(pCharSample->get(j)))
+        if (wcslen(pString->get(i)) < wcslen(pCharSample->get(j)))
         {
-            pOutString->set(i,os_wcsdup(L""));
+            pOutString->set(i, os_wcsdup(L""));
         }
         else
         {
-    		wchar_t* ptrwstrstr = wcsrchr(pString->get(i),pCharSample->get(j)[0]);
+            wchar_t* ptrwstrstr = wcsrchr(pString->get(i), pCharSample->get(j)[0]);
 
             if (ptrwstrstr)
             {
-                pOutString->set(i,os_wcsdup(ptrwstrstr));
+                pOutString->set(i, os_wcsdup(ptrwstrstr));
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
@@ -113,7 +113,7 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
             }
             else
             {
-                pOutString->set(i,os_wcsdup(L""));
+                pOutString->set(i, os_wcsdup(L""));
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;

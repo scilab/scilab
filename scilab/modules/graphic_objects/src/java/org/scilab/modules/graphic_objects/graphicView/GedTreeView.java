@@ -18,20 +18,20 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 public class GedTreeView extends TreeView {
-    
+
     private static GedTreeView me;
-    
+
     private GedTreeView() {
         super();
     }
-    
+
     public static GedTreeView create() {
         if (me == null) {
             me = new GedTreeView();
         }
         return me;
     }
-    
+
     public void createObject(String id) {
         try {
             GraphicObject graphiObject = GraphicController.getController().getObjectFromId(id);
@@ -40,8 +40,7 @@ public class GedTreeView extends TreeView {
             allObjects.put(id, node);
             top.add(node);
             topModel.nodeStructureChanged(top);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -55,27 +54,25 @@ public class GedTreeView extends TreeView {
                 allObjects.remove(id);
                 topModel.nodeStructureChanged(parentNode);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public void updateObject(String id, int property) {
-        
+
         DefaultMutableTreeNode objectNode = allObjects.get(id);
         /*
          * Update parent property
          */
-        if (objectNode != null && property == GraphicObjectProperties.__GO_PARENT__)
-        {
+        if (objectNode != null && property == GraphicObjectProperties.__GO_PARENT__) {
             DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) objectNode.getParent();
-            
+
             if (parentNode != null) {
                 // Remove from old parent
                 objectNode.removeFromParent();
                 topModel.nodeStructureChanged(parentNode);
-                
+
                 String parentUID = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
                 // Retrieve new Parent
                 DefaultMutableTreeNode newParentNode = allObjects.get(parentUID);
@@ -84,9 +81,9 @@ public class GedTreeView extends TreeView {
                 if (newParentNode == null) {
                     newParentNode = top;
                 }
-                
+
                 newParentNode.add(objectNode);
-                topModel.nodeStructureChanged(newParentNode);               
+                topModel.nodeStructureChanged(newParentNode);
             }
         }
     }

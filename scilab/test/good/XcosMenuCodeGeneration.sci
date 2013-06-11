@@ -5,7 +5,7 @@
 //                      - Ramine Nikoukhah <ramine.nikoukhah@inria.fr>
 //                      - Rachid Djenidi
 //
-//                      - Scilab 5 update by Simone Mannori 
+//                      - Scilab 5 update by Simone Mannori
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by

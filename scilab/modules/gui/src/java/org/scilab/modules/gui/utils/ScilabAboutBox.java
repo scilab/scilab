@@ -178,48 +178,48 @@ public class ScilabAboutBox {
 
             javax.swing.GroupLayout topPaneLayout = new javax.swing.GroupLayout(topPane);
             topPane.setLayout(topPaneLayout);
-            
+
             /*
             topPaneLayout.setHorizontalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                     javax.swing.GroupLayout.Alignment.TRAILING,
                     topPaneLayout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(close).addContainerGap()));
-        	topPaneLayout.setVerticalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+            topPaneLayout.setVerticalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                   javax.swing.GroupLayout.Alignment.TRAILING,
                   topPaneLayout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addGroup(
                       topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(close)
                       .addComponent(acknowledgements)).addContainerGap()));
-			*/
-            
-			topPaneLayout.setHorizontalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addGroup(
-			        topPaneLayout.createSequentialGroup()
-			        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				      .addGroup(
-				    		  	topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-				    		  		.addComponent(close)
-				    		  		.addComponent(acknowledgements)).addGap(5)));
-			
-			topPaneLayout.setVerticalGroup(topPaneLayout.createSequentialGroup().addGroup(
-					topPaneLayout.createSequentialGroup()
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(acknowledgements).addGap(5)
-						.addComponent(close).addGap(5)));
-/*            
-            javax.swing.GroupLayout.ParallelGroup horzGroup = topPaneLayout.createParallelGroup();          
-            javax.swing.GroupLayout.ParallelGroup vertGroup = topPaneLayout.createParallelGroup();
-            
-            horzGroup.addGroup(topPaneLayout.createSequentialGroup()
-            		.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
-            		.addComponent(close));
-            topPaneLayout.setHorizontalGroup(horzGroup);
-            
-        	vertGroup.addGroup(topPaneLayout.createSequentialGroup()
-            		.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
-        			.addComponent(acknowledgements)
-        			.addComponent(close));
-            topPaneLayout.setVerticalGroup(vertGroup);
-*/            
+            */
+
+            topPaneLayout.setHorizontalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addGroup(
+                                                 topPaneLayout.createSequentialGroup()
+                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                 .addGroup(
+                                                         topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                         .addComponent(close)
+                                                         .addComponent(acknowledgements)).addGap(5)));
+
+            topPaneLayout.setVerticalGroup(topPaneLayout.createSequentialGroup().addGroup(
+                                               topPaneLayout.createSequentialGroup()
+                                               .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                               .addComponent(acknowledgements).addGap(5)
+                                               .addComponent(close).addGap(5)));
+            /*
+                        javax.swing.GroupLayout.ParallelGroup horzGroup = topPaneLayout.createParallelGroup();
+                        javax.swing.GroupLayout.ParallelGroup vertGroup = topPaneLayout.createParallelGroup();
+
+                        horzGroup.addGroup(topPaneLayout.createSequentialGroup()
+                        		.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
+                        		.addComponent(close));
+                        topPaneLayout.setHorizontalGroup(horzGroup);
+
+                    	vertGroup.addGroup(topPaneLayout.createSequentialGroup()
+                        		.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
+                    			.addComponent(acknowledgements)
+                    			.addComponent(close));
+                        topPaneLayout.setVerticalGroup(vertGroup);
+            */
             add(topPane, java.awt.BorderLayout.PAGE_START);
 
             ackScrollPane.setViewportView(ackText);

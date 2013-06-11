@@ -46,11 +46,11 @@ char * constructRectangles(char * pparentsubwinUID, double x, double y, double h
 {
     try
     {
-	return GraphicObjectBuilder::constructRectangles(getScilabJavaVM(), pparentsubwinUID, x, y, height, width, foreground, background, isfilled, isline);
+        return GraphicObjectBuilder::constructRectangles(getScilabJavaVM(), pparentsubwinUID, x, y, height, width, foreground, background, isfilled, isline);
     }
     catch (std::exception & e)
     {
-	printf("exception: %s\n", e.what());
-	return NULL;
+        printf("exception: %s\n", e.what());
+        return NULL;
     }
 }

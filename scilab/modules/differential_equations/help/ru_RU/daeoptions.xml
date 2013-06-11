@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,119 +11,119 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="daeoptions" xml:lang="ru">
-    <refnamediv>
-        <refname>daeoptions</refname>
-        <refpurpose>установка опций для dae (программа решения дифференциальных алгоритмических уравнений)</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>daeoptions()</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Описание</title>
-        <para>If it exists in the dae function calling context the variable
-            <literal>%DAEOPTIONS</literal> the dae function use it to sets
-            options.
-        </para>
-        <para>This daeoptions function interactively displays a command which
-            should be executed to set various options of the <link linkend="dae">dae</link> solver.
-        </para>
-        <para>
-            <caution>
-                Функция <literal>dae</literal> проверяет существует ли данная переменная и, если да, то использует её.
-                Для использования значений по умолчанию вы должны очистить эту переменную. Заметьте, что 
-                <literal>daeoptions</literal> не создаёт этой переменной. Чтобы  её создать, вы должны выполнить 
-                командную строку распечатанную с помощью <literal>daeoptions</literal>.
-            </caution>
-        </para>
-        <para>
-            Переменная <literal>%DAEOPTIONS</literal> является <link linkend="list">списком</link> со следующими элементами:
-        </para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="daeoptions" xml:lang="ru">
+        <refnamediv>
+            <refname>daeoptions</refname>
+            <refpurpose>установка опций для dae (программа решения дифференциальных алгоритмических уравнений)</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>daeoptions()</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Описание</title>
+            <para>If it exists in the dae function calling context the variable
+                <literal>%DAEOPTIONS</literal> the dae function use it to sets
+                options.
+            </para>
+            <para>This daeoptions function interactively displays a command which
+                should be executed to set various options of the <link linkend="dae">dae</link> solver.
+            </para>
+            <para>
+                <caution>
+                    Функция <literal>dae</literal> проверяет существует ли данная переменная и, если да, то использует её.
+                    Для использования значений по умолчанию вы должны очистить эту переменную. Заметьте, что 
+                    <literal>daeoptions</literal> не создаёт этой переменной. Чтобы  её создать, вы должны выполнить 
+                    командную строку распечатанную с помощью <literal>daeoptions</literal>.
+                </caution>
+            </para>
+            <para>
+                Переменная <literal>%DAEOPTIONS</literal> является <link linkend="list">списком</link> со следующими элементами:
+            </para>
+            <programlisting role="no-scilab-exec"><![CDATA[  
 list(tstop,imode,band,maxstep,stepin,nonneg,isest)
  ]]></programlisting>
-        <para>The default value is:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[  
+            <para>The default value is:</para>
+            <programlisting role="no-scilab-exec"><![CDATA[  
 list([],0,[],[],[],0,0)
  ]]></programlisting>
-        <para>Значение этих элементов приведено ниже.</para>
-        <variablelist>
-            <varlistentry>
-                <term>tstop</term>
-                <listitem>
-                    <para>вещественный скаляр или пустая матрица, задаёт максимальное время, для которого 
-                        рассчитывается <literal>g</literal>. Пустая матрица означает "без ограничений по времени".
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>imode</term>
-                <listitem>
-                    <para>
-                        если оно равно 0, то <literal>dae</literal> возвращает только определённые пользователем 
-                        моменты времени, а если оно равно 1, то <literal>dae</literal> возвращает вычисленные промежуточные значения.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>band</term>
-                <listitem>
-                    <para>
-                        вектор из двух элементов, которые определяют <literal>[ml,mu]</literal> матрицы полосы,
-                        вычисленной с помощью <literal>jac</literal>;
-                    </para>
-                    <para>
-                        <literal>r(i - j + ml + mu + 1,j)</literal> =
-                        <literal>dg(i)/dy(j)+cj*dg(i)/dydot(j)</literal>. Если нужно, чтобы
-                        <literal>jac</literal> вернул полный набор матриц, то
-                        <literal>band=[]</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>maxstep</term>
-                <listitem>
-                    <para>
-                        скаляр или пустая матрица, максимальный размер шага. Пустая матрица означает "без ограничений".
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>stepin</term>
-                <listitem>
-                    <para>
-                        скаляр или пустая матрица, минимальный размер шага. Пустая матрица означает "не определено".
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>nonneg</term>
-                <listitem>
-                    <para>
-                        скаляр, должен быть установлен равным 0, если <emphasis>известно, что решение отрицательно</emphasis>.
-                        В противном случае, он должен быть установлен равным 1.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>isest</term>
-                <listitem>
-                    <para>
-                        скаляр, должен быть установлен равным 0, если заданное исходное условие 
-                        удовлетворяет <literal>g(t0,x0,xdot0)=0</literal>, и установлен равным 1,
-                        если <literal>xdot0</literal> является просто оценкой.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="dae">dae</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            <para>Значение этих элементов приведено ниже.</para>
+            <variablelist>
+                <varlistentry>
+                    <term>tstop</term>
+                    <listitem>
+                        <para>вещественный скаляр или пустая матрица, задаёт максимальное время, для которого 
+                            рассчитывается <literal>g</literal>. Пустая матрица означает "без ограничений по времени".
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>imode</term>
+                    <listitem>
+                        <para>
+                            если оно равно 0, то <literal>dae</literal> возвращает только определённые пользователем 
+                            моменты времени, а если оно равно 1, то <literal>dae</literal> возвращает вычисленные промежуточные значения.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>band</term>
+                    <listitem>
+                        <para>
+                            вектор из двух элементов, которые определяют <literal>[ml,mu]</literal> матрицы полосы,
+                            вычисленной с помощью <literal>jac</literal>;
+                        </para>
+                        <para>
+                            <literal>r(i - j + ml + mu + 1,j)</literal> =
+                            <literal>dg(i)/dy(j)+cj*dg(i)/dydot(j)</literal>. Если нужно, чтобы
+                            <literal>jac</literal> вернул полный набор матриц, то
+                            <literal>band=[]</literal>.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>maxstep</term>
+                    <listitem>
+                        <para>
+                            скаляр или пустая матрица, максимальный размер шага. Пустая матрица означает "без ограничений".
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>stepin</term>
+                    <listitem>
+                        <para>
+                            скаляр или пустая матрица, минимальный размер шага. Пустая матрица означает "не определено".
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>nonneg</term>
+                    <listitem>
+                        <para>
+                            скаляр, должен быть установлен равным 0, если <emphasis>известно, что решение отрицательно</emphasis>.
+                            В противном случае, он должен быть установлен равным 1.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>isest</term>
+                    <listitem>
+                        <para>
+                            скаляр, должен быть установлен равным 0, если заданное исходное условие 
+                            удовлетворяет <literal>g(t0,x0,xdot0)=0</literal>, и установлен равным 1,
+                            если <literal>xdot0</literal> является просто оценкой.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="dae">dae</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

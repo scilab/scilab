@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Simon GARESTE <simon.gareste@scilab.org>
  * 
@@ -10,67 +10,67 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsRestoreConfig">
-    <refnamediv>
-        <refname>atomsRestoreConfig</refname>
-        <refpurpose>Restore the configuration from the backup file</refpurpose>
-    </refnamediv>
-    <!-- ===================================================================== -->
-    <!-- Calling Sequence -->
-    <!-- ===================================================================== -->
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            atomsRestoreConfig()
-        </synopsis>
-    </refsynopsisdiv>
-    <!-- ===================================================================== -->
-    <!-- Description -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>atomsRestoreConfig</literal> checks that a config.bak file exists, and set it as the main confiuration file. The backup file is deleted in the process.
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Examples -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsRestoreConfig">
+        <refnamediv>
+            <refname>atomsRestoreConfig</refname>
+            <refpurpose>Restore the configuration from the backup file</refpurpose>
+        </refnamediv>
+        <!-- ===================================================================== -->
+        <!-- Calling Sequence -->
+        <!-- ===================================================================== -->
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                atomsRestoreConfig()
+            </synopsis>
+        </refsynopsisdiv>
+        <!-- ===================================================================== -->
+        <!-- Description -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>atomsRestoreConfig</literal> checks that a config.bak file exists, and set it as the main confiuration file. The backup file is deleted in the process.
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Examples -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 atomsSaveConfig(%T);
 deletefile(atomsPath("system","user")+"config");
 atomsRestoreConfig();
 ]]></programlisting>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- See also -->
-    <!-- ===================================================================== -->
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="atomsSaveConfig">atomsSaveConfig</link>
-            </member>
-            <member>
-                <link linkend="atomsSetConfig">atomsSetConfig</link>
-            </member>
-            <member>
-                <link linkend="atomsGetConfig">atomsGetConfig</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Authors -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revdescription>Function added</revdescription>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- See also -->
+        <!-- ===================================================================== -->
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="atomsSaveConfig">atomsSaveConfig</link>
+                </member>
+                <member>
+                    <link linkend="atomsSetConfig">atomsSetConfig</link>
+                </member>
+                <member>
+                    <link linkend="atomsGetConfig">atomsGetConfig</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Authors -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.0</revnumber>
+                    <revdescription>Function added</revdescription>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

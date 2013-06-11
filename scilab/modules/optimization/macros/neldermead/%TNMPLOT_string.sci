@@ -43,16 +43,16 @@ function str = _strvec ( x )
     str = strcat(string(x)," ")
 endfunction
 function s = _tostring ( x )
-  if ( x==[] ) then
-    s = "[]"
-  else
-    n = size ( x , "*" )
-    if ( n == 1 ) then
-      s = string(x)
+    if ( x==[] ) then
+        s = "[]"
     else
-      s = "["+strcat(string(x)," ")+"]"
+        n = size ( x , "*" )
+        if ( n == 1 ) then
+            s = string(x)
+        else
+            s = "["+strcat(string(x)," ")+"]"
+        end
     end
-  end
 endfunction
 
 

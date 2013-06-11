@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,47 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isempty" xml:lang="en">
-    <refnamediv>
-        <refname>isempty</refname>
-        <refpurpose>check if a variable is an empty matrix or an empty
-            list
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>t=isempty(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>vector, matrix or list</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>a boolean</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>isempty(x)</literal> returns true if <literal>x</literal> is an empty matrix
-            or an empty list.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isempty" xml:lang="en">
+        <refnamediv>
+            <refname>isempty</refname>
+            <refpurpose>check if a variable is an empty matrix or an empty
+                list
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>t=isempty(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>vector, matrix or list</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>a boolean</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>isempty(x)</literal> returns true if <literal>x</literal> is an empty matrix
+                or an empty list.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 a=1
 isempty(a(2:$))
 isempty(find(rand(1:10)==5))
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

@@ -13,6 +13,6 @@
 
 void deyes(double *_pdblOut, int _iRows, int _iCols)
 {
-	vDset(_iRows * _iCols, 0, _pdblOut, 1);
-	vDset(Min(_iRows, _iCols), 1, _pdblOut, _iRows + 1);
+    vDset(_iRows * _iCols, 0, _pdblOut, 1);
+    vDset(Min(_iRows, _iCols), 1, _pdblOut, _iRows + 1);
 }

@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - Scilab Enterprises - Adeline CARNIS
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [m, k] = %sp_max(varargin)
@@ -13,7 +13,7 @@ function [m, k] = %sp_max(varargin)
     elements = varargin;
     error_list = %f;
 
-    // If the first argument is a list, it retrieves the number of sparse 
+    // If the first argument is a list, it retrieves the number of sparse
     // matrices in list
     if type(varargin(1)) == 15 then
         if rhs <> 1 then
@@ -22,7 +22,7 @@ function [m, k] = %sp_max(varargin)
 
         rhs = length(varargin(1));
         elements = varargin(1);
-        error_list = %t; 
+        error_list = %t;
 
         // If the second argument of list is not a sparse -> ERROR
         if rhs == 2 & type(elements(2)) <> 5 then
@@ -139,7 +139,7 @@ function [m, k] = %sp_max(varargin)
         case 10
             opts = elements(2);
             // Opts can be : 'c' 'r' or 'm'
-            ind = find(opts == ['c','r','m']);
+            ind = find(opts == ["c","r","m"]);
             if (ind == []) then
                 error(msprintf(_("%s: Wrong value for input argument #%d: [''r'' ''c'' ''m''] expected.\n"),"%sp_max",2));
             end
@@ -149,7 +149,7 @@ function [m, k] = %sp_max(varargin)
             // If mn(1) = 1, A1 is a row vector
             if mn(1) == 1 then
                 // max(A1, 'r') = A1(1,:) because A1 is a row vector
-                if opts == 'r' then
+                if opts == "r" then
                     m = A1;
                     // max(A1, 'c') or max(A1, 'm') = max(A1)
                 else
@@ -162,7 +162,7 @@ function [m, k] = %sp_max(varargin)
 
             // If mn(2) = 1, A1 is a column vector
             if mn(2) == 1 then
-                if opts == 'c' then
+                if opts == "c" then
                     m = A1;
                 else
                     m = max(v, opts);
@@ -176,7 +176,7 @@ function [m, k] = %sp_max(varargin)
             if mn(1) <> 1 & mn(2) <> 1 then
 
                 // If opts = 'c', the result is returned in column vector
-                if opts == 'c' then
+                if opts == "c" then
                     m = spzeros(mn(1),1);
                     for i = 1:mn(1)
                         pos = length(find(ij(:,1)==i));
@@ -217,7 +217,7 @@ function [m, k] = %sp_max(varargin)
             ij2 = spget(A2);
 
             // A1 and A2 contain non zeros -> full
-            if size(ij1,'r') == m1*n1 & size(ij2,'r') == m2*n2 then
+            if size(ij1,"r") == m1*n1 & size(ij2,"r") == m2*n2 then
                 [m,k] = max(full(A1), full(A2));
                 m = sparse(m);
                 k = sparse(k);
@@ -266,7 +266,7 @@ function [m, k] = %sp_max(varargin)
             ij1 = spget(m);
             ij2 = spget(An);
 
-            if size(ij1,'r') == m1*n1 & size(ij2,'r') == m2*n2 then
+            if size(ij1,"r") == m1*n1 & size(ij2,"r") == m2*n2 then
                 [m,k] = max(full(m), full(An));
                 m = sparse(m);
                 k = sparse(k);

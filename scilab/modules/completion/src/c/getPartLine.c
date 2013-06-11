@@ -27,11 +27,11 @@ char *getPartLevel(char *line)
     int index = -1;
     int i = 0;
 
-    for (i = 0; i < MAX_SYMBS; i++) 
+    for (i = 0; i < MAX_SYMBS; i++)
     {
         int len = 0;
         char *pch = strrchr(line, symbs[i]);
-        if (pch) 
+        if (pch)
         {
             len = (int) (strlen(line) - strlen(pch));
             index = Max(index, len);
@@ -52,18 +52,24 @@ char *getFilePartLevel(char *line)
     char *lineWithoutSpaceAtBeginning = NULL;
     char *returnedLine = NULL;
 
-    if (line == NULL) return returnedLine;
+    if (line == NULL)
+    {
+        return returnedLine;
+    }
 
     lineWithoutSpaceAtBeginning = removeSpacesAtBeginning(line);
-    if (lineWithoutSpaceAtBeginning == NULL) return returnedLine;
+    if (lineWithoutSpaceAtBeginning == NULL)
+    {
+        return returnedLine;
+    }
 
     lenLine = (int)strlen(lineWithoutSpaceAtBeginning);
 
     /* search last character in ";,'\"" */
-    for (i = 0; i < MAX_SYMBS_F; i++) 
+    for (i = 0; i < MAX_SYMBS_F; i++)
     {
         char *prch = strrchr(lineWithoutSpaceAtBeginning, symbs[i]);
-        if (prch) 
+        if (prch)
         {
             int len = (int) (lenLine - strlen(prch));
             index = Max(index, len);

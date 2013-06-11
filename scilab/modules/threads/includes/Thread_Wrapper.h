@@ -77,9 +77,9 @@ THREADS_IMPEXP void __Signal(__threadSignal *signalName);
 
 THREADS_IMPEXP void __Wait(__threadSignal *signalName, __threadSignalLock *lockName);
 
-THREADS_IMPEXP void __CreateThread(__threadId *threadId, __threadKey *threadKey, void *(*functionName) (void *));
+THREADS_IMPEXP void __CreateThread(__threadId *threadId, __threadKey *threadKey, void * (*functionName) (void *));
 
-THREADS_IMPEXP void __CreateThreadWithParams(__threadId *threadId, __threadKey *threadKey, void *(*functionName) (void *), void *params);
+THREADS_IMPEXP void __CreateThreadWithParams(__threadId *threadId, __threadKey *threadKey, void * (*functionName) (void *), void *params);
 
 THREADS_IMPEXP void __WaitThreadDie(__threadId threadId);
 

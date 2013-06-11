@@ -22,68 +22,68 @@
 function [reg,rect] = get_region(xc,yc,win)
 
 
-//** alu = xget('alufunction')
-wins = curwin ;
+    //** alu = xget('alufunction')
+    wins = curwin ;
 
-// xset('window',win)
-scf(win);
+    // xset('window',win)
+    scf(win);
 
-//** xset('alufunction',6)
+    //** xset('alufunction',6)
 
-reg = list(); rect=[]
+    reg = list(); rect=[]
 
-kc = find(win==windows(:,2))
+    kc = find(win==windows(:,2))
 
-if kc==[] then
-  messagebox('This window is not an active palette','modal')
-  //** xset('window',wins)
-  scf(wins); 
-  //** xset('alufunction',alu)
-  return
-  
-elseif windows(kc,1)<0 then // click inside a palette window 
-  kpal  = -windows(kc,1)
-  scs_m = palettes(kpal)
+    if kc==[] then
+        messagebox("This window is not an active palette","modal")
+        //** xset('window',wins)
+        scf(wins);
+        //** xset('alufunction',alu)
+        return
 
-elseif win==curwin then //click dans la fenetre courante
-  scs_m = scs_m
+    elseif windows(kc,1)<0 then // click inside a palette window
+        kpal  = -windows(kc,1)
+        scs_m = palettes(kpal)
 
-elseif pal_mode&win==lastwin then 
-  scs_m=scs_m_s
+    elseif win==curwin then //click dans la fenetre courante
+        scs_m = scs_m
 
-elseif slevel>1 then
-  execstr('scs_m=scs_m_'+string(windows(kc,1)))
+    elseif pal_mode&win==lastwin then
+        scs_m=scs_m_s
 
-else
-  messagebox('This window is not an active palette','modal')
-  //** xset('window',wins)
-  scf(wins); 
-  //** xset('alufunction',alu)
-  return
-end
+    elseif slevel>1 then
+        execstr("scs_m=scs_m_"+string(windows(kc,1)))
 
-drawnow()
-[ox,oy,w,h,ok] = get_rectangle(xc,yc) ; //** use the brand new function with the 
-                                        //** "rubberbox" macro
+    else
+        messagebox("This window is not an active palette","modal")
+        //** xset('window',wins)
+        scf(wins);
+        //** xset('alufunction',alu)
+        return
+    end
 
-if ~ok then 
-  //** xset('window',wins)
-  scf(wins); 
-  //** xset('alufunction',alu)
-  return;
-end
+    drawnow()
+    [ox,oy,w,h,ok] = get_rectangle(xc,yc) ; //** use the brand new function with the
+    //** "rubberbox" macro
 
-[keep,del] = get_blocks_in_rect(scs_m,ox,oy,w,h) ; //** OK
+    if ~ok then
+        //** xset('window',wins)
+        scf(wins);
+        //** xset('alufunction',alu)
+        return;
+    end
 
-[reg,DEL,DELL] = do_delete1(scs_m,del,%f) ; //** OK 
+    [keep,del] = get_blocks_in_rect(scs_m,ox,oy,w,h) ; //** OK
 
-reg = do_purge(reg) ; //** 
+    [reg,DEL,DELL] = do_delete1(scs_m,del,%f) ; //** OK
 
-rect = [ox,oy-h,w,h] ; //** 
+    reg = do_purge(reg) ; //**
 
-//** xset('window',wins)
-scf(wins); 
+    rect = [ox,oy-h,w,h] ; //**
 
-//** xset('alufunction',alu)
+    //** xset('window',wins)
+    scf(wins);
+
+    //** xset('alufunction',alu)
 
 endfunction

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
  * 
@@ -10,317 +10,317 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atoms">
-    <refnamediv>
-        <refname>Functions Summary</refname>
-    </refnamediv>
-    <!-- ===================================================================== -->
-    <!-- Install/Remove/Update modules -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Install/Remove/Update modules ...</title>
-        <para>
-            <informaltable border="1">
-                <tr>
-                    <td>
-                        <link linkend="atomsInstall">atomsInstall</link>
-                    </td>
-                    <td>
-                        Install one or several modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsUpdate">atomsUpdate</link>
-                    </td>
-                    <td>
-                        Update one or several modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsRemove">atomsRemove</link>
-                    </td>
-                    <td>
-                        Remove one or several modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsGetInstalled">atomsGetInstalled</link>
-                    </td>
-                    <td>
-                        Get the list of installed external modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsIsInstalled">atomsIsInstalled</link>
-                    </td>
-                    <td>
-                        Determine whether the module is installed or not
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsIsInstalled">atomsTest</link>
-                    </td>
-                    <td>
-                        Execute the tests of an installed module
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsIsInstalled">atomsCheckModule</link>
-                    </td>
-                    <td>
-                        Install, load, test and remove one or several modules
-                    </td>
-                </tr>
-            </informaltable>
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Load modules -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Load modules ...</title>
-        <para>
-            <informaltable border="1">
-                <tr>
-                    <td>
-                        <link linkend="atomsLoad">atomsLoad</link>
-                    </td>
-                    <td>
-                        Load one or several modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsLoad">atomsAutoLoad</link>
-                    </td>
-                    <td>
-                        Load the modules marked as "autoload"
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsGetLoaded">atomsGetLoaded</link>
-                    </td>
-                    <td>
-                        Get the list of loaded modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsIsLoaded">atomsIsLoaded</link>
-                    </td>
-                    <td>
-                        Determines whether the module is loaded or not
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsAutoloadList">atomsAutoloadList</link>
-                    </td>
-                    <td>
-                        Get the list of modules registered to autoload at Scilab start.
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
-                    </td>
-                    <td>
-                        Add one or several modules to autoload system.
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsAutoloadDel">atomsAutoloadDel</link>
-                    </td>
-                    <td>
-                        Remove one or several modules from autoload system.
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsAutoloadDel">atomsQuit</link>
-                    </td>
-                    <td>
-                        Launch the .quit file of all loaded modules
-                    </td>
-                </tr>
-            </informaltable>
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Information -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Get information ...</title>
-        <para>
-            <informaltable border="1">
-                <tr>
-                    <td>
-                        <link linkend="atomsList">atomsList</link>
-                    </td>
-                    <td>
-                        List available modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsList">atomsCategoryList</link>
-                    </td>
-                    <td>
-                        List available categories
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsSearch">atomsSearch</link>
-                    </td>
-                    <td>
-                        Searches for modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsShow">atomsShow</link>
-                    </td>
-                    <td>
-                        Show the characteristics of a module
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsDepTreeShow">atomsDepTreeShow</link>
-                    </td>
-                    <td>
-                        Show the dependency tree of a module
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsDepTreeShow">atomsGetInstalledPath</link>
-                    </td>
-                    <td>
-                        Get the installation path of an module
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsDepTreeShow">atomsGetLoadedPath</link>
-                    </td>
-                    <td>
-                        Get the installation path of a loaded module
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsDepTreeShow">atomsVersion</link>
-                    </td>
-                    <td>
-                        Get the ATOMS's module version
-                    </td>
-                </tr>
-            </informaltable>
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Repository management -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Manage repositories ...</title>
-        <para>
-            <informaltable border="1">
-                <tr>
-                    <td>
-                        <link linkend="atomsRepositoryList">atomsRepositoryList</link>
-                    </td>
-                    <td>
-                        Get the list of managed repositories
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsRepositoryAdd">atomsRepositoryAdd</link>
-                    </td>
-                    <td>
-                        Add one or several URLs to the list of managed repositories
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsRepositoryDel">atomsRepositoryDel</link>
-                    </td>
-                    <td>
-                        Remove one or several URLs from the list of managed repositories
-                    </td>
-                </tr>
-            </informaltable>
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Atoms  -->
-    <!-- ===================================================================== -->
-    <refsection>
-        <title>Manage ATOMS system ...</title>
-        <para>
-            <informaltable border="1">
-                <tr>
-                    <td>
-                        <link linkend="atomsSystemUpdate">atomsSystemUpdate</link>
-                    </td>
-                    <td>
-                        Update the list of available modules
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsSetConfig">atomsSetConfig</link>
-                    </td>
-                    <td>
-                        Manage ATOMS parameters
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsSetConfig">atomsGetConfig</link>
-                    </td>
-                    <td>
-                        Get the list of ATOMS parameters
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsSetConfig">atomsRestoreConfig</link>
-                    </td>
-                    <td>
-                        Restore the configuration from the backup file
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsSetConfig">atomsSaveConfig</link>
-                    </td>
-                    <td>
-                        Make a backup of the configuration file
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <link linkend="atomsSetConfig">atomsSystemInit</link>
-                    </td>
-                    <td>
-                        Set the rightful write access for the ATOMS system
-                    </td>
-                </tr>
-            </informaltable>
-        </para>
-    </refsection>
-    <!-- ===================================================================== -->
-    <!-- Authors -->
-    <!-- ===================================================================== -->
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atoms">
+        <refnamediv>
+            <refname>Functions Summary</refname>
+        </refnamediv>
+        <!-- ===================================================================== -->
+        <!-- Install/Remove/Update modules -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Install/Remove/Update modules ...</title>
+            <para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <link linkend="atomsInstall">atomsInstall</link>
+                        </td>
+                        <td>
+                            Install one or several modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsUpdate">atomsUpdate</link>
+                        </td>
+                        <td>
+                            Update one or several modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsRemove">atomsRemove</link>
+                        </td>
+                        <td>
+                            Remove one or several modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsGetInstalled">atomsGetInstalled</link>
+                        </td>
+                        <td>
+                            Get the list of installed external modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsIsInstalled">atomsIsInstalled</link>
+                        </td>
+                        <td>
+                            Determine whether the module is installed or not
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsIsInstalled">atomsTest</link>
+                        </td>
+                        <td>
+                            Execute the tests of an installed module
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsIsInstalled">atomsCheckModule</link>
+                        </td>
+                        <td>
+                            Install, load, test and remove one or several modules
+                        </td>
+                    </tr>
+                </informaltable>
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Load modules -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Load modules ...</title>
+            <para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <link linkend="atomsLoad">atomsLoad</link>
+                        </td>
+                        <td>
+                            Load one or several modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsLoad">atomsAutoLoad</link>
+                        </td>
+                        <td>
+                            Load the modules marked as "autoload"
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsGetLoaded">atomsGetLoaded</link>
+                        </td>
+                        <td>
+                            Get the list of loaded modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsIsLoaded">atomsIsLoaded</link>
+                        </td>
+                        <td>
+                            Determines whether the module is loaded or not
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsAutoloadList">atomsAutoloadList</link>
+                        </td>
+                        <td>
+                            Get the list of modules registered to autoload at Scilab start.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsAutoloadAdd">atomsAutoloadAdd</link>
+                        </td>
+                        <td>
+                            Add one or several modules to autoload system.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsAutoloadDel">atomsAutoloadDel</link>
+                        </td>
+                        <td>
+                            Remove one or several modules from autoload system.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsAutoloadDel">atomsQuit</link>
+                        </td>
+                        <td>
+                            Launch the .quit file of all loaded modules
+                        </td>
+                    </tr>
+                </informaltable>
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Information -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Get information ...</title>
+            <para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <link linkend="atomsList">atomsList</link>
+                        </td>
+                        <td>
+                            List available modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsList">atomsCategoryList</link>
+                        </td>
+                        <td>
+                            List available categories
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsSearch">atomsSearch</link>
+                        </td>
+                        <td>
+                            Searches for modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsShow">atomsShow</link>
+                        </td>
+                        <td>
+                            Show the characteristics of a module
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsDepTreeShow">atomsDepTreeShow</link>
+                        </td>
+                        <td>
+                            Show the dependency tree of a module
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsDepTreeShow">atomsGetInstalledPath</link>
+                        </td>
+                        <td>
+                            Get the installation path of an module
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsDepTreeShow">atomsGetLoadedPath</link>
+                        </td>
+                        <td>
+                            Get the installation path of a loaded module
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsDepTreeShow">atomsVersion</link>
+                        </td>
+                        <td>
+                            Get the ATOMS's module version
+                        </td>
+                    </tr>
+                </informaltable>
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Repository management -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Manage repositories ...</title>
+            <para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <link linkend="atomsRepositoryList">atomsRepositoryList</link>
+                        </td>
+                        <td>
+                            Get the list of managed repositories
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsRepositoryAdd">atomsRepositoryAdd</link>
+                        </td>
+                        <td>
+                            Add one or several URLs to the list of managed repositories
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsRepositoryDel">atomsRepositoryDel</link>
+                        </td>
+                        <td>
+                            Remove one or several URLs from the list of managed repositories
+                        </td>
+                    </tr>
+                </informaltable>
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Atoms  -->
+        <!-- ===================================================================== -->
+        <refsection>
+            <title>Manage ATOMS system ...</title>
+            <para>
+                <informaltable border="1">
+                    <tr>
+                        <td>
+                            <link linkend="atomsSystemUpdate">atomsSystemUpdate</link>
+                        </td>
+                        <td>
+                            Update the list of available modules
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsSetConfig">atomsSetConfig</link>
+                        </td>
+                        <td>
+                            Manage ATOMS parameters
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsSetConfig">atomsGetConfig</link>
+                        </td>
+                        <td>
+                            Get the list of ATOMS parameters
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsSetConfig">atomsRestoreConfig</link>
+                        </td>
+                        <td>
+                            Restore the configuration from the backup file
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsSetConfig">atomsSaveConfig</link>
+                        </td>
+                        <td>
+                            Make a backup of the configuration file
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <link linkend="atomsSetConfig">atomsSystemInit</link>
+                        </td>
+                        <td>
+                            Set the rightful write access for the ATOMS system
+                        </td>
+                    </tr>
+                </informaltable>
+            </para>
+        </refsection>
+        <!-- ===================================================================== -->
+        <!-- Authors -->
+        <!-- ===================================================================== -->
+    </refentry>

@@ -77,14 +77,14 @@ extern "C"
             char* pstData = NULL;
             sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
                 return 0;
             }
 
-            if(!isStringType(pvApiCtx, piAddr))
+            if (!isStringType(pvApiCtx, piAddr))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 1);
                 return 0;
@@ -92,7 +92,7 @@ extern "C"
             }
 
             iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
-            if(iRet)
+            if (iRet)
             {
                 freeAllocatedSingleString(pstData);
                 return iRet;
@@ -112,28 +112,28 @@ extern "C"
             char* pstData = NULL;
             sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr);
 
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
                 return 0;
             }
 
-            if(!isStringType(pvApiCtx, piAddr))
+            if (!isStringType(pvApiCtx, piAddr))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 3);
                 return 0;
                 // Wrong type string
             }
 
-            if(!isScalar(pvApiCtx, piAddr))
+            if (!isScalar(pvApiCtx, piAddr))
             {
                 language = wide_string_to_UTF8(getlanguage());
             }
             else
             {
                 iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
-                if(iRet)
+                if (iRet)
                 {
                     freeAllocatedSingleString(pstData);
                     return iRet;
@@ -156,13 +156,13 @@ extern "C"
             char* pstData = NULL;
             sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
 
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
                 return 0;
             }
-            if(!isStringType(pvApiCtx, piAddr))
+            if (!isStringType(pvApiCtx, piAddr))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 2);
                 return 0;
@@ -171,7 +171,7 @@ extern "C"
 
 
             iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
-            if(iRet)
+            if (iRet)
             {
                 freeAllocatedSingleString(pstData);
                 return iRet;
@@ -185,13 +185,13 @@ extern "C"
             char* pstData = NULL;
             sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr);
 
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 4);
                 return 0;
             }
-            if(!isStringType(pvApiCtx, piAddr))
+            if (!isStringType(pvApiCtx, piAddr))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 4);
                 return 0;
@@ -199,7 +199,7 @@ extern "C"
             }
 
             iRet = getAllocatedSingleString(pvApiCtx, piAddr, &pstData);
-            if(iRet)
+            if (iRet)
             {
                 freeAllocatedSingleString(pstData);
                 return iRet;

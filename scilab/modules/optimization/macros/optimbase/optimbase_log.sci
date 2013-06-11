@@ -19,12 +19,12 @@ function this = optimbase_log (this,msg)
         errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_log", 2);
         error(errmsg)
     end
-  if ( this.verbose == 1 ) then
-    if ( this.logfile <> "" ) then
-      mfprintf ( this.logfilehandle , "%s\n" , msg );
-    else
-      mprintf("%s\n",msg);
+    if ( this.verbose == 1 ) then
+        if ( this.logfile <> "" ) then
+            mfprintf ( this.logfilehandle , "%s\n" , msg );
+        else
+            mprintf("%s\n",msg);
+        end
     end
-  end
 endfunction
 

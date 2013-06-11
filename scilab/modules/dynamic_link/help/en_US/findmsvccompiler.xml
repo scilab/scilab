@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * 
@@ -10,84 +10,84 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="findmsvccompiler">
-    <refnamediv>
-        <refname>findmsvccompiler</refname>
-        <refpurpose>detects Microsoft C Compiler</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>msvc = findmsvccompiler()</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>msvc</term>
-                <listitem>
-                    <para>returns a string to identify Visual studio version.</para>
-                    <informaltable border="1">
-                        <tr>
-                            <td>string</td>
-                            <td>Visual Studio version</td>
-                        </tr>
-                        <tr>
-                            <td>msvc70</td>
-                            <td>Microsoft Visual Studio 2002 Professional or above.</td>
-                        </tr>
-                        <tr>
-                            <td>msvc71</td>
-                            <td>Microsoft Visual Studio 2003 Professional or above.</td>
-                        </tr>
-                        <tr>
-                            <td>msvc80express</td>
-                            <td>Microsoft Visual Studio 2005 Express Edition.</td>
-                        </tr>
-                        <tr>
-                            <td>msvc80std</td>
-                            <td>Microsoft Visual Studio 2005 Standard Edition.</td>
-                        </tr>
-                        <tr>
-                            <td>msvc80pro</td>
-                            <td>Microsoft Visual Studio 2005 Professional or above.</td>
-                        </tr>
-                        <tr>
-                            <td>msvc90express</td>
-                            <td>Microsoft Visual Studio 2008 Express Edition.</td>
-                        </tr>
-                        <tr>
-                            <td>msvc90std</td>
-                            <td>Microsoft Visual Studio 2008 Standard Edition.</td>
-                        </tr>
-                        <tr>
-                            <td>msvc90pro</td>
-                            <td>Microsoft Visual Studio 2008 Professional or above.</td>
-                        </tr>
-                        <tr>
-                            <td>msvc100express</td>
-                            <td>Microsoft Visual Studio 2010 Express Edition</td>
-                        </tr>
-                        <tr>
-                            <td>msvc100pro</td>
-                            <td>Microsoft Visual Studio 2010 Professional or above.</td>
-                        </tr>
-                        <tr>
-                            <td>unknown</td>
-                            <td>not detected or unknown version.</td>
-                        </tr>
-                    </informaltable>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>detects Microsoft C Compiler.</para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="findmsvccompiler">
+        <refnamediv>
+            <refname>findmsvccompiler</refname>
+            <refpurpose>detects Microsoft C Compiler</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>msvc = findmsvccompiler()</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>msvc</term>
+                    <listitem>
+                        <para>returns a string to identify Visual studio version.</para>
+                        <informaltable border="1">
+                            <tr>
+                                <td>string</td>
+                                <td>Visual Studio version</td>
+                            </tr>
+                            <tr>
+                                <td>msvc70</td>
+                                <td>Microsoft Visual Studio 2002 Professional or above.</td>
+                            </tr>
+                            <tr>
+                                <td>msvc71</td>
+                                <td>Microsoft Visual Studio 2003 Professional or above.</td>
+                            </tr>
+                            <tr>
+                                <td>msvc80express</td>
+                                <td>Microsoft Visual Studio 2005 Express Edition.</td>
+                            </tr>
+                            <tr>
+                                <td>msvc80std</td>
+                                <td>Microsoft Visual Studio 2005 Standard Edition.</td>
+                            </tr>
+                            <tr>
+                                <td>msvc80pro</td>
+                                <td>Microsoft Visual Studio 2005 Professional or above.</td>
+                            </tr>
+                            <tr>
+                                <td>msvc90express</td>
+                                <td>Microsoft Visual Studio 2008 Express Edition.</td>
+                            </tr>
+                            <tr>
+                                <td>msvc90std</td>
+                                <td>Microsoft Visual Studio 2008 Standard Edition.</td>
+                            </tr>
+                            <tr>
+                                <td>msvc90pro</td>
+                                <td>Microsoft Visual Studio 2008 Professional or above.</td>
+                            </tr>
+                            <tr>
+                                <td>msvc100express</td>
+                                <td>Microsoft Visual Studio 2010 Express Edition</td>
+                            </tr>
+                            <tr>
+                                <td>msvc100pro</td>
+                                <td>Microsoft Visual Studio 2010 Professional or above.</td>
+                            </tr>
+                            <tr>
+                                <td>unknown</td>
+                                <td>not detected or unknown version.</td>
+                            </tr>
+                        </informaltable>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>detects Microsoft C Compiler.</para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 msvc = findmsvccompiler()
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

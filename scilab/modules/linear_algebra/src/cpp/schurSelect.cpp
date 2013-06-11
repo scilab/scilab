@@ -17,9 +17,9 @@
 
 extern "C"
 {
-    #include "scischur.h"
-    #include "schurSelect.h"
-    #include "sciprint.h"
+#include "scischur.h"
+#include "schurSelect.h"
+#include "sciprint.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -38,39 +38,40 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
     doublecomplex* pDataOutDoublecomplex[2]    = {NULL, NULL};
 
     pBwork = (int*)MALLOC((_pDblIn[1] ? 2 : 1) * iCols * sizeof(int));
-    if(pBwork == NULL)
+    if (pBwork == NULL)
     {
         return -1;
     }
 
-    const char* jobL = _pDblOut[0]  ? "V":"N";
-    const char* jobR = _pDblOut[1]  ? "V":"N";
-    const char* sort = (pStrFunction || pCall || _bIsDiscrete || _bIsContinu) ? "S":"N";
+    const char* jobL = _pDblOut[0]  ? "V" : "N";
+    const char* jobR = _pDblOut[1]  ? "V" : "N";
+    const char* sort = (pStrFunction || pCall || _bIsDiscrete || _bIsContinu) ? "S" : "N";
 
-    if(_pDblIn[1] == NULL && _bIsComplex == false)
-    {//dgees
+    if (_pDblIn[1] == NULL && _bIsComplex == false)
+    {
+        //dgees
         double* pWR = (double*)MALLOC(iCols * sizeof(double));
         double* pWI = (double*)MALLOC(iCols * sizeof(double));
         pRwork = allocDgeesWorkspace(iCols, &iWorksize);
 
-        if(pWR == NULL || pWI == NULL || pRwork == NULL)
+        if (pWR == NULL || pWI == NULL || pRwork == NULL)
         {
             return -1;
         }
 
-        if(_bIsDiscrete)
+        if (_bIsDiscrete)
         {
             C2F(dgees)(jobL, sort, schur_sb02mw, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
-        else if(_bIsContinu)
+        else if (_bIsContinu)
         {
             C2F(dgees)(jobL, sort, schur_sb02mv, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
-        else if(pCall)
+        else if (pCall)
         {
             C2F(dgees)(jobL, sort, schur_dgees, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
-        else if(pStrFunction)
+        else if (pStrFunction)
         {
             C2F(dgees)(jobL, sort, (schur_dgees_t)pStrFunction->functionPtr, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
@@ -79,40 +80,41 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
             C2F(dgees)(jobL, sort, NULL, &iCols, _pDblIn[0]->getReal(), &iCols, &iDim, pWR, pWI, _pDblOut[0]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
 
-        if(_pDblOut[2])
+        if (_pDblOut[2])
         {
             _pDblOut[2]->set(0, (double)iDim);
         }
 
-	    FREE(pWR);
-	    FREE(pWI);
+        FREE(pWR);
+        FREE(pWI);
         FREE(pRwork);
 
-        if(info < 0)
+        if (info < 0)
         {
-            sciprint(_("Argument %d in dgees had an illegal value.\n"),-info);
+            sciprint(_("Argument %d in dgees had an illegal value.\n"), -info);
         }
-        else if(info > 0 && info < iCols)
+        else if (info > 0 && info < iCols)
         {
             sciprint(_("The QR algorithm failed to compute all the eigenvalues.\n"));
         }
-        else if(info == iCols+1)
+        else if (info == iCols + 1)
         {
             sciprint(_("The eigenvalues could not be reordered because some eigenvalues were too close to separate (the problem is very ill-conditioned).\n"));
         }
-        else if(info == iCols+2)
+        else if (info == iCols + 2)
         {
             sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
         }
     }
-    else if(_pDblIn[1] == NULL && _bIsComplex)
-    {//zgees
+    else if (_pDblIn[1] == NULL && _bIsComplex)
+    {
+        //zgees
         doublecomplex* pW = NULL;
         pRwork      = (double*)MALLOC(iCols * sizeof(double));
         pW          = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
         pCplxWork   = allocZgeesWorkspace(iCols, &iWorksize);
 
-        if(pRwork == NULL || pW == NULL || pCplxWork == NULL)
+        if (pRwork == NULL || pW == NULL || pCplxWork == NULL)
         {
             return -1;
         }
@@ -120,19 +122,19 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         pDataInDoublecomplex[0] = oGetDoubleComplexFromPointer(_pDblIn[0]->getReal(), _pDblIn[0]->getImg(), _pDblIn[0]->getSize());
         pDataOutDoublecomplex[0] = oGetDoubleComplexFromPointer(_pDblOut[0]->getReal(), _pDblOut[0]->getImg(), _pDblOut[0]->getSize());
 
-        if(_bIsDiscrete)
+        if (_bIsDiscrete)
         {
             C2F(zgees)(jobL, sort, schur_zb02mw, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
-        else if(_bIsContinu)
+        else if (_bIsContinu)
         {
             C2F(zgees)(jobL, sort, schur_zb02mv, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
-        else if(pCall)
+        else if (pCall)
         {
             C2F(zgees)(jobL, sort, schur_zgees, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
-        else if(pStrFunction)
+        else if (pStrFunction)
         {
             C2F(zgees)(jobL, sort, (schur_zgees_t)pStrFunction->functionPtr, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
@@ -141,7 +143,7 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
             C2F(zgees)(jobL, sort, NULL, &iCols, pDataInDoublecomplex[0], &iCols, &iDim, pW, pDataOutDoublecomplex[0], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
 
-        if(_pDblOut[2])
+        if (_pDblOut[2])
         {
             _pDblOut[2]->set(0, (double)iDim);
         }
@@ -149,54 +151,55 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         vGetPointerFromDoubleComplex(pDataInDoublecomplex[0], _pDblIn[0]->getSize(), _pDblIn[0]->getReal(), _pDblIn[0]->getImg());
         vGetPointerFromDoubleComplex(pDataOutDoublecomplex[0], _pDblOut[0]->getSize(), _pDblOut[0]->getReal(), _pDblOut[0]->getImg());
 
-	    FREE(pW);
+        FREE(pW);
         FREE(pRwork);
         FREE(pCplxWork);
         vFreeDoubleComplexFromPointer(pDataInDoublecomplex[0]);
         vFreeDoubleComplexFromPointer(pDataOutDoublecomplex[0]);
 
-        if(info < 0)
+        if (info < 0)
         {
-            sciprint(_("Argument %d in zgees had an illegal value.\n"),-info);
+            sciprint(_("Argument %d in zgees had an illegal value.\n"), -info);
         }
-        else if(info > 0 && info < iCols)
+        else if (info > 0 && info < iCols)
         {
             sciprint(_("The QR algorithm failed to compute all the eigenvalues.\n"));
         }
-        else if(info == iCols+1)
+        else if (info == iCols + 1)
         {
             sciprint(_("The eigenvalues could not be reordered because some eigenvalues were too close to separate (the problem is very ill-conditioned).\n"));
         }
-        else if(info == iCols+2)
+        else if (info == iCols + 2)
         {
             sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
         }
     }
-    else if(_pDblIn[1] && _bIsComplex == false)
-    {//dgges
-	    double* pAlphaR = (double*)MALLOC(iCols * sizeof(double));
-	    double* pAlphaI = (double*)MALLOC(iCols * sizeof(double));
-	    double* pBeta   = (double*)MALLOC(iCols * sizeof(double));
+    else if (_pDblIn[1] && _bIsComplex == false)
+    {
+        //dgges
+        double* pAlphaR = (double*)MALLOC(iCols * sizeof(double));
+        double* pAlphaI = (double*)MALLOC(iCols * sizeof(double));
+        double* pBeta   = (double*)MALLOC(iCols * sizeof(double));
         pRwork = allocDggesWorkspace(iCols, &iWorksize);
 
-        if(pAlphaR == NULL || pAlphaI == NULL || pBeta == NULL || pRwork == NULL)
+        if (pAlphaR == NULL || pAlphaI == NULL || pBeta == NULL || pRwork == NULL)
         {
             return -1;
         }
 
-        if(_bIsDiscrete)
+        if (_bIsDiscrete)
         {
             C2F(dgges)(jobL, jobR, sort, schur_sb02ox, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
-        else if(_bIsContinu)
+        else if (_bIsContinu)
         {
             C2F(dgges)(jobL, jobR, sort, schur_sb02ow, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
-        else if(pCall)
+        else if (pCall)
         {
             C2F(dgges)(jobL, jobR, sort, schur_dgges, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
-        else if(pStrFunction)
+        else if (pStrFunction)
         {
             C2F(dgges)(jobL, jobR, sort, (schur_dgges_t)pStrFunction->functionPtr, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
@@ -205,45 +208,46 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
             C2F(dgges)(jobL, jobR, sort, NULL, &iCols, _pDblIn[0]->getReal(), &iCols, _pDblIn[1]->getReal(), &iCols, &iDim, pAlphaR, pAlphaI, pBeta, _pDblOut[0]->get(), &iCols, _pDblOut[1]->get(), &iCols, pRwork, &iWorksize, pBwork, &info);
         }
 
-        if(_pDblOut[2])
+        if (_pDblOut[2])
         {
             _pDblOut[2]->set(0, (double)iDim);
         }
 
-	    FREE(pAlphaR);
-	    FREE(pAlphaI);
-	    FREE(pBeta);
+        FREE(pAlphaR);
+        FREE(pAlphaI);
+        FREE(pBeta);
         FREE(pRwork);
 
-        if(info < 0)
+        if (info < 0)
         {
-            sciprint(_("Argument %d in dgges had an illegal value.\n"),-info);
+            sciprint(_("Argument %d in dgges had an illegal value.\n"), -info);
         }
-        else if(info > 0 && info < iCols)
+        else if (info > 0 && info < iCols)
         {
             sciprint(_("The QZ iteration failed. (A,E) are not in Schur form.\n"));
         }
-        else if(info == iCols+1)
+        else if (info == iCols + 1)
         {
             sciprint(_("Other than QZ iteration failed in DHGEQZ.\n"));
         }
-        else if(info == iCols+2)
+        else if (info == iCols + 2)
         {
             sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
         }
-        else if(info == iCols+3)
+        else if (info == iCols + 3)
         {
             sciprint(_("Reordering failed in DTGSEN.\n"));
         }
     }
-    else if(_pDblIn[1] && _bIsComplex)
-    {//zgges
-	    doublecomplex* pAlpha   = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
-	    doublecomplex* pBeta    = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
-        pRwork                  = (double*) MALLOC(8 * iCols * sizeof(double)); 
+    else if (_pDblIn[1] && _bIsComplex)
+    {
+        //zgges
+        doublecomplex* pAlpha   = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
+        doublecomplex* pBeta    = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
+        pRwork                  = (double*) MALLOC(8 * iCols * sizeof(double));
         pCplxWork               = allocZggesWorkspace(iCols, &iWorksize);
 
-        if(pRwork == NULL || pAlpha == NULL || pBeta == NULL || pCplxWork == NULL)
+        if (pRwork == NULL || pAlpha == NULL || pBeta == NULL || pCplxWork == NULL)
         {
             return -1;
         }
@@ -253,19 +257,19 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         pDataInDoublecomplex[1] = oGetDoubleComplexFromPointer(_pDblIn[1]->getReal(), _pDblIn[1]->getImg(), _pDblIn[1]->getSize());
         pDataOutDoublecomplex[1] = oGetDoubleComplexFromPointer(_pDblOut[1]->getReal(), _pDblOut[1]->getImg(), _pDblOut[1]->getSize());
 
-        if(_bIsDiscrete)
+        if (_bIsDiscrete)
         {
             C2F(zgges)(jobL, jobR, sort, schur_zb02ox, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
-        else if(_bIsContinu)
+        else if (_bIsContinu)
         {
             C2F(zgges)(jobL, jobR, sort, schur_zb02ow, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
-        else if(pCall)
+        else if (pCall)
         {
             C2F(zgges)(jobL, jobR, sort, schur_zgges, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
-        else if(pStrFunction)
+        else if (pStrFunction)
         {
             C2F(zgges)(jobL, jobR, sort, (schur_zgges_t)pStrFunction->functionPtr, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
@@ -274,7 +278,7 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
             C2F(zgges)(jobL, jobR, sort, NULL, &iCols, pDataInDoublecomplex[0], &iCols, pDataInDoublecomplex[1], &iCols, &iDim, pAlpha, pBeta, pDataOutDoublecomplex[0], &iCols, pDataOutDoublecomplex[1], &iCols, pCplxWork, &iWorksize, pRwork, pBwork, &info);
         }
 
-        if(_pDblOut[2])
+        if (_pDblOut[2])
         {
             _pDblOut[2]->set(0, (double)iDim);
         }
@@ -291,23 +295,23 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         vFreeDoubleComplexFromPointer(pDataInDoublecomplex[1]);
         vFreeDoubleComplexFromPointer(pDataOutDoublecomplex[1]);
 
-        if(info < 0)
+        if (info < 0)
         {
-            sciprint(_("Argument %d in zgges had an illegal value.\n"),-info);
+            sciprint(_("Argument %d in zgges had an illegal value.\n"), -info);
         }
-        else if(info > 0 && info < iCols)
+        else if (info > 0 && info < iCols)
         {
             sciprint(_("The QZ iteration failed. (A,E) are not in Schur form.\n"));
         }
-        else if(info == iCols+1)
+        else if (info == iCols + 1)
         {
             sciprint(_("Other than QZ iteration failed in ZHGEQZ.\n"));
         }
-        else if(info == iCols+2)
+        else if (info == iCols + 2)
         {
             sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
         }
-        else if(info == iCols+3)
+        else if (info == iCols + 3)
         {
             sciprint(_("Reordering failed in ZTGSEN.\n"));
         }
@@ -329,12 +333,12 @@ double* allocDgeesWorkspace(int iCols, int* allocated)
     *allocated = (int)optim;
     ret = (double*) MALLOC(*allocated * sizeof(double));
 
-    if(!ret)
+    if (!ret)
     {
         *allocated = 3 * iCols;
         ret = (double*) MALLOC(*allocated * sizeof(double));
 
-        if(!ret)
+        if (!ret)
         {
             *allocated = 0;
         }
@@ -354,11 +358,11 @@ doublecomplex* allocZgeesWorkspace(int iCols, int* allocated)
     *allocated = (int)optim.r;
     ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
 
-    if(!ret)
+    if (!ret)
     {
         *allocated = 2 * iCols;
         ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
-        if(!ret)
+        if (!ret)
         {
             *allocated = 0;
         }
@@ -378,12 +382,12 @@ double* allocDggesWorkspace(int iCols, int* allocated)
     *allocated = (int)optim;
     ret = (double*)MALLOC(*allocated * sizeof(double));
 
-    if(!ret)
+    if (!ret)
     {
         *allocated = 8 * iCols + 16;
         ret = (double*)MALLOC(*allocated * sizeof(double));
 
-        if(!ret)
+        if (!ret)
         {
             *allocated = 0;
         }
@@ -403,11 +407,11 @@ doublecomplex* allocZggesWorkspace(int iCols, int* allocated)
     *allocated = (int)optim.r;
     ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
 
-    if(!ret)
+    if (!ret)
     {
         *allocated = 2 * iCols;
         ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
-        if(!ret)
+        if (!ret)
         {
             *allocated = 0;
         }

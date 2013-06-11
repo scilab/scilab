@@ -16,9 +16,9 @@
 //
 
 function [] = %_Matplot1()
-  axes = gca();
-  axes.data_bounds = [0,0;10,10];
-  m = ones(50,50);
-  m = 3 * tril(m) + 2 * m;
-  Matplot1(m,[4,4,9,9]);
+    axes = gca();
+    axes.data_bounds = [0,0;10,10];
+    m = ones(50,50);
+    m = 3 * tril(m) + 2 * m;
+    Matplot1(m,[4,4,9,9]);
 endfunction

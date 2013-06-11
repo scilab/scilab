@@ -35,7 +35,7 @@ int sci_xcosPalDisable(char *fname, void* pvApiCtx)
     int nameLength = 0;
 
     /* name setup */
-    if (readVectorString(pvApiCtx,1, &name, &nameLength, fname))
+    if (readVectorString(pvApiCtx, 1, &name, &nameLength, fname))
     {
         return 0;
     }

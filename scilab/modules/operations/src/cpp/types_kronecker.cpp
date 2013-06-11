@@ -12,7 +12,7 @@
 
 #include "types_kronecker.hxx"
 
-extern "C"{
+extern "C" {
 #include "matrix_kronecker.h"
 }
 
@@ -23,13 +23,13 @@ types::InternalType *GenericKrontimes(types::InternalType *_pLeftOperand, types:
     types::GenericType::RealType TypeL = _pLeftOperand->getType();
     types::GenericType::RealType TypeR = _pRightOperand->getType();
 
-    if(TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
+    if (TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
     {
         types::Double *pL = _pLeftOperand->getAs<types::Double>();
         types::Double *pR = _pRightOperand->getAs<types::Double>();
 
         int iResult = KroneckerMultiplyDoubleByDouble(pL, pR, &pResult);
-        if(iResult)
+        if (iResult)
         {
             throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
@@ -53,37 +53,37 @@ int KroneckerMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pD
     bool bComplexOut = bComplex1 || bComplex2;
     (*_pDoubleOut)   = new types::Double(iRowResult, iColResult, bComplexOut);
 
-    if(bComplex1 && bComplex2) // Complex .*. Complex
+    if (bComplex1 && bComplex2) // Complex .*. Complex
     {
         vKronC( _pDouble1->getReal(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-            (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iRowResult);
+                _pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iRowResult);
     }
-    else if(bComplex1) // Complex .*. Real
+    else if (bComplex1) // Complex .*. Real
     {
         vKronR( _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-            (*_pDoubleOut)->getReal(), iRowResult);
+                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->getReal(), iRowResult);
 
         vKronR( _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-            (*_pDoubleOut)->getImg(), iRowResult);
+                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->getImg(), iRowResult);
     }
-    else if(bComplex2) // Real .*. Complex
+    else if (bComplex2) // Real .*. Complex
     {
         vKronR( _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-            (*_pDoubleOut)->getReal(), iRowResult);
+                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->getReal(), iRowResult);
 
         vKronR( _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-            (*_pDoubleOut)->getImg(), iRowResult);
+                _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->getImg(), iRowResult);
     }
     else // Real .*. Real
     {
         vKronR( _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getRows(), _pDouble1->getCols(),
-            _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
-            (*_pDoubleOut)->getReal(), iRowResult);
+                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getRows(), _pDouble2->getCols(),
+                (*_pDoubleOut)->getReal(), iRowResult);
     }
 
     return 0; //No Error;
@@ -96,21 +96,21 @@ types::InternalType *GenericKronrdivide(types::InternalType *_pLeftOperand, type
     types::GenericType::RealType TypeL = _pLeftOperand->getType();
     types::GenericType::RealType TypeR = _pRightOperand->getType();
 
-    if(TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
+    if (TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
     {
         types::Double *pL = _pLeftOperand->getAs<types::Double>();
         types::Double *pR = _pRightOperand->getAs<types::Double>();
 
         int iErr = KroneckerRDivideDoubleByDouble(pL, pR, &pResult);
-        if(iErr == 1)
+        if (iErr == 1)
         {
             throw ast::ScilabError(_W("Division by zero...\n"));
         }
-        else if(iErr == 2)
+        else if (iErr == 2)
         {
             throw ast::ScilabError(_W("Bad value in the left or right operand.\n"));
         }
-        else if(iErr == 3)
+        else if (iErr == 3)
         {
             throw ast::ScilabError(_W("Bad size for left or right operand.\n"));
         }
@@ -127,7 +127,7 @@ int KroneckerRDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
     int iErr = 0;
     types::Double* clone = _pDouble2->clone()->getAs<types::Double>();
 
-    if(_pDouble2->isComplex())
+    if (_pDouble2->isComplex())
     {
         iErr = conv_img_input(clone->getReal(), clone->getImg(), clone->getSize());
     }
@@ -136,7 +136,7 @@ int KroneckerRDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
         iErr = conv_real_input(clone->get(), clone->getSize());
     }
 
-    if(iErr)
+    if (iErr)
     {
         delete clone;
         return iErr;
@@ -155,17 +155,17 @@ types::InternalType *GenericKronldivide(types::InternalType *_pLeftOperand, type
     types::GenericType::RealType TypeL = _pLeftOperand->getType();
     types::GenericType::RealType TypeR = _pRightOperand->getType();
 
-    if(TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
+    if (TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
     {
         types::Double *pL = _pLeftOperand->getAs<types::Double>();
         types::Double *pR = _pRightOperand->getAs<types::Double>();
 
         int iErr = KroneckerLDivideDoubleByDouble(pL, pR, &pResult);
-        if(iErr == 1)
+        if (iErr == 1)
         {
             throw ast::ScilabError(_W("Division by zero...\n"));
         }
-        else if(iErr == 2)
+        else if (iErr == 2)
         {
             throw ast::ScilabError(_W("Bad value in the left operand.\n"));
         }
@@ -181,7 +181,7 @@ int KroneckerLDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
 {
     int iErr = 0;
     types::Double* clone = _pDouble1->clone()->getAs<types::Double>();
-    if(_pDouble1->isComplex())
+    if (_pDouble1->isComplex())
     {
         iErr = conv_img_input(clone->getReal(), clone->getImg(), clone->getSize());
     }
@@ -190,7 +190,7 @@ int KroneckerLDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
         iErr = conv_real_input(clone->get(), clone->getSize());
     }
 
-    if(iErr)
+    if (iErr)
     {
         delete clone;
         return iErr;

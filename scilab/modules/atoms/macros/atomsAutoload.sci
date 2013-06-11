@@ -90,24 +90,24 @@ function result = atomsAutoload()
         end
 
     end
-   
+
     if or(getscilabmode() == ["NW";"STD"]) then
-      global demolist; // Demos list is defined in scilab.start
-      global demolistlock;
-      if isempty(demolist) then
-        if isempty(demolistlock) then
-          demolistlock = %t;
-          // we load scilab demos only when it is required
-          modules = getmodules();
-          for i=1:size(modules,"*")
-            if isfile("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce") then
-              exec("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce",-1);
+        global demolist; // Demos list is defined in scilab.start
+        global demolistlock;
+        if isempty(demolist) then
+            if isempty(demolistlock) then
+                demolistlock = %t;
+                // we load scilab demos only when it is required
+                modules = getmodules();
+                for i=1:size(modules,"*")
+                    if isfile("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce") then
+                        exec("SCI/modules/"+modules(i)+"/demos/" + modules(i) + ".dem.gateway.sce",-1);
+                    end
+                end
+                clear demolistlock;
+                clearglobal demolistlock;
             end
-          end
-          clear demolistlock;
-          clearglobal demolistlock;
         end
-      end
     end
 
     // Load the wanted packages

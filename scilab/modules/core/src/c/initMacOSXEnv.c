@@ -24,7 +24,8 @@
 
 #if defined(__APPLE__) && !defined(WITHOUT_GUI)
 
-typedef struct {
+typedef struct
+{
     int   argc;
     char  **argv;
     int iFileIndex;
@@ -76,11 +77,12 @@ Some parts of the next three functions have been taken from simpleJavaLauncher.
  * Set the name of the application (the mac os x way)
  * @param name the name of the application
  */
-static void setAppName(const char * name) {
-  char a[32];
-  pid_t id = getpid();
-  sprintf(a,"APP_NAME_%ld",(long)id);
-  setenv(a, name, 1);
+static void setAppName(const char * name)
+{
+    char a[32];
+    pid_t id = getpid();
+    sprintf(a, "APP_NAME_%ld", (long)id);
+    setenv(a, name, 1);
 }
 
 /**
@@ -89,89 +91,112 @@ static void setAppName(const char * name) {
  * @param param The structure containing the missing argument mandatory for realmain
  * @return the result of the operation (0 if OK ...)
  */
-static int launchMacOSXEnv(thread_parm_t *param){
-  thread_parm_t *p = (thread_parm_t *)param;
-  int ret=-1;
-  {
-    CFStringRef targetJVM = CFSTR("1.5");
-    CFBundleRef JavaVMBundle;
-    CFURLRef    JavaVMBundleURL;
-    CFURLRef    JavaVMBundlerVersionsDirURL;
-    CFURLRef    TargetJavaVM;
-    UInt8 pathToTargetJVM [PATH_MAX] = "\0";
-    struct stat sbuf;
+static int launchMacOSXEnv(thread_parm_t *param)
+{
+    thread_parm_t *p = (thread_parm_t *)param;
+    int ret = -1;
+    {
+        CFStringRef targetJVM = CFSTR("1.5");
+        CFBundleRef JavaVMBundle;
+        CFURLRef    JavaVMBundleURL;
+        CFURLRef    JavaVMBundlerVersionsDirURL;
+        CFURLRef    TargetJavaVM;
+        UInt8 pathToTargetJVM [PATH_MAX] = "\0";
+        struct stat sbuf;
 
-    /*
-     * This piece of code is mandatory because Mac OS X implementation of Java has a bug here.
-     * Cocoa does not know how to handle the new window created this way.
-     * See: http://lists.apple.com/archives/Java-dev/2009/Jan/msg00062.html
-     * Or Mac Os X bug #6484319
-     * Thanks to Mike Swingler
-     */
-    ProcessSerialNumber psn;
-    GetCurrentProcess(&psn);
-    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-    /* End of the workaround */
+        /*
+         * This piece of code is mandatory because Mac OS X implementation of Java has a bug here.
+         * Cocoa does not know how to handle the new window created this way.
+         * See: http://lists.apple.com/archives/Java-dev/2009/Jan/msg00062.html
+         * Or Mac Os X bug #6484319
+         * Thanks to Mike Swingler
+         */
+        ProcessSerialNumber psn;
+        GetCurrentProcess(&psn);
+        TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+        /* End of the workaround */
 
-    // Look for the JavaVM bundle using its identifier
-    JavaVMBundle = CFBundleGetBundleWithIdentifier(CFSTR("com.apple.JavaVM") );
+        // Look for the JavaVM bundle using its identifier
+        JavaVMBundle = CFBundleGetBundleWithIdentifier(CFSTR("com.apple.JavaVM") );
 
-    if(JavaVMBundle != NULL) {
-      // Get a path for the JavaVM bundle
-      JavaVMBundleURL = CFBundleCopyBundleURL(JavaVMBundle);
-      CFRelease(JavaVMBundle);
+        if (JavaVMBundle != NULL)
+        {
+            // Get a path for the JavaVM bundle
+            JavaVMBundleURL = CFBundleCopyBundleURL(JavaVMBundle);
+            CFRelease(JavaVMBundle);
 
-      if(JavaVMBundleURL != NULL) {
-        // Append to the path the Versions Component
-        JavaVMBundlerVersionsDirURL = CFURLCreateCopyAppendingPathComponent(kCFAllocatorDefault,JavaVMBundleURL,CFSTR("Versions"),true);
-        CFRelease(JavaVMBundleURL);
+            if (JavaVMBundleURL != NULL)
+            {
+                // Append to the path the Versions Component
+                JavaVMBundlerVersionsDirURL = CFURLCreateCopyAppendingPathComponent(kCFAllocatorDefault, JavaVMBundleURL, CFSTR("Versions"), true);
+                CFRelease(JavaVMBundleURL);
 
-        if(JavaVMBundlerVersionsDirURL != NULL) {
-          // Append to the path the target JVM's Version
-          TargetJavaVM = CFURLCreateCopyAppendingPathComponent(kCFAllocatorDefault,JavaVMBundlerVersionsDirURL,targetJVM,true);
-          CFRelease(JavaVMBundlerVersionsDirURL);
-          if(TargetJavaVM != NULL) {
-            if(CFURLGetFileSystemRepresentation (TargetJavaVM,true,pathToTargetJVM,PATH_MAX )) {
-              // Check to see if the directory, or a sym link for the target JVM directory exists, and if so set the
-              // environment variable JAVA_JVM_VERSION to the target JVM.
-              if(stat((char*)pathToTargetJVM,&sbuf) == 0) {
-                // Ok, the directory exists, so now we need to set the environment var JAVA_JVM_VERSION to the CFSTR targetJVM
-                // We can reuse the pathToTargetJVM buffer to set the environement var.
-                if(CFStringGetCString(targetJVM,(char*)pathToTargetJVM,PATH_MAX,kCFStringEncodingUTF8)) {
-                  setenv("JAVA_JVM_VERSION", (char*)pathToTargetJVM,1);
-		  ret=0;
-		} else {
-		  fprintf(stderr, "Could not get the path to the target JVM.\n");
-		}
-	      } else {
-		fprintf(stderr, "Error checking symlink for the target jvm.\n");
-	      }
-	    } else {
-	      fprintf(stderr, "Error getting file system representation for bundle url.\n");
-	      CFRelease(TargetJavaVM);
-	    }
-	  } else {
-	    fprintf(stderr, "Error appending version component to bundle url.\n");
-	  }
-	} else {
-	  fprintf(stderr, "Error appending path component to bundle url.\n");
-	}
-      } else {
-	fprintf(stderr, "Error copying bundle url.\n");
-      }
-    } else {
-      fprintf(stderr, "Error: cant find bundle: com.apple.JavaVM.\n");
+                if (JavaVMBundlerVersionsDirURL != NULL)
+                {
+                    // Append to the path the target JVM's Version
+                    TargetJavaVM = CFURLCreateCopyAppendingPathComponent(kCFAllocatorDefault, JavaVMBundlerVersionsDirURL, targetJVM, true);
+                    CFRelease(JavaVMBundlerVersionsDirURL);
+                    if (TargetJavaVM != NULL)
+                    {
+                        if (CFURLGetFileSystemRepresentation (TargetJavaVM, true, pathToTargetJVM, PATH_MAX ))
+                        {
+                            // Check to see if the directory, or a sym link for the target JVM directory exists, and if so set the
+                            // environment variable JAVA_JVM_VERSION to the target JVM.
+                            if (stat((char*)pathToTargetJVM, &sbuf) == 0)
+                            {
+                                // Ok, the directory exists, so now we need to set the environment var JAVA_JVM_VERSION to the CFSTR targetJVM
+                                // We can reuse the pathToTargetJVM buffer to set the environement var.
+                                if (CFStringGetCString(targetJVM, (char*)pathToTargetJVM, PATH_MAX, kCFStringEncodingUTF8))
+                                {
+                                    setenv("JAVA_JVM_VERSION", (char*)pathToTargetJVM, 1);
+                                    ret = 0;
+                                }
+                                else
+                                {
+                                    fprintf(stderr, "Could not get the path to the target JVM.\n");
+                                }
+                            }
+                            else
+                            {
+                                fprintf(stderr, "Error checking symlink for the target jvm.\n");
+                            }
+                        }
+                        else
+                        {
+                            fprintf(stderr, "Error getting file system representation for bundle url.\n");
+                            CFRelease(TargetJavaVM);
+                        }
+                    }
+                    else
+                    {
+                        fprintf(stderr, "Error appending version component to bundle url.\n");
+                    }
+                }
+                else
+                {
+                    fprintf(stderr, "Error appending path component to bundle url.\n");
+                }
+            }
+            else
+            {
+                fprintf(stderr, "Error copying bundle url.\n");
+            }
+        }
+        else
+        {
+            fprintf(stderr, "Error: cant find bundle: com.apple.JavaVM.\n");
+        }
     }
-  }
 
-  if (ret==0) {
-    /* Call the actual startup script of Scilab */
-    ret=StartScilabEngine(p->argc, p->argv, p->iFileIndex, 0);
-	free(p);
-	exit(ret);
-  }
-  free(p);
-  return ret;
+    if (ret == 0)
+    {
+        /* Call the actual startup script of Scilab */
+        ret = StartScilabEngine(p->argc, p->argv, p->iFileIndex, 0);
+        free(p);
+        exit(ret);
+    }
+    free(p);
+    return ret;
 
 }
 
@@ -182,64 +207,68 @@ static void sourceCallBack (  void *info  ) {}
 /* Specific wrapper for mac os X which is going to call realmin in a specific thread.
  * Takes the same args as realmain
  */
-int initMacOSXEnv(int argc, char *argv[], int iFileIndex) {
+int initMacOSXEnv(int argc, char *argv[], int iFileIndex)
+{
 
-  CFRunLoopSourceContext sourceContext;
-  /* Start the thread that runs the VM. */
-  pthread_t vmthread;
-  setAppName("Scilab");
+    CFRunLoopSourceContext sourceContext;
+    /* Start the thread that runs the VM. */
+    pthread_t vmthread;
+    setAppName("Scilab");
 
-  /* Create the structure which is going to be giving to the function inside the thread */
-  thread_parm_t         *param=NULL;
-  param = malloc(sizeof(thread_parm_t));
-  param->argc = argc;
-  param->argv = argv;
-  param->iFileIndex = iFileIndex;
+    /* Create the structure which is going to be giving to the function inside the thread */
+    thread_parm_t         *param = NULL;
+    param = malloc(sizeof(thread_parm_t));
+    param->argc = argc;
+    param->argv = argv;
+    param->iFileIndex = iFileIndex;
 
-  /* create a new pthread copying the stack size of the primordial pthread */
-  struct rlimit limit;
-  size_t stack_size = 0;
-  int rc = getrlimit(RLIMIT_STACK, &limit);
-  if (rc == 0) {
-    if (limit.rlim_cur != 0LL) {
-      stack_size = (size_t)limit.rlim_cur;
+    /* create a new pthread copying the stack size of the primordial pthread */
+    struct rlimit limit;
+    size_t stack_size = 0;
+    int rc = getrlimit(RLIMIT_STACK, &limit);
+    if (rc == 0)
+    {
+        if (limit.rlim_cur != 0LL)
+        {
+            stack_size = (size_t)limit.rlim_cur;
+        }
     }
-  }
-  pthread_attr_t thread_attr;
-  pthread_attr_init(&thread_attr);
-  pthread_attr_setscope(&thread_attr, PTHREAD_SCOPE_SYSTEM);
-  pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED);
-  if (stack_size > 0) {
-    pthread_attr_setstacksize(&thread_attr, stack_size);
-  }
+    pthread_attr_t thread_attr;
+    pthread_attr_init(&thread_attr);
+    pthread_attr_setscope(&thread_attr, PTHREAD_SCOPE_SYSTEM);
+    pthread_attr_setdetachstate(&thread_attr, PTHREAD_CREATE_DETACHED);
+    if (stack_size > 0)
+    {
+        pthread_attr_setstacksize(&thread_attr, stack_size);
+    }
 
-  /* Start the thread that we will start the JVM on. */
-  pthread_create(&vmthread, &thread_attr,  launchMacOSXEnv, (void*)param);
-  pthread_attr_destroy(&thread_attr);
+    /* Start the thread that we will start the JVM on. */
+    pthread_create(&vmthread, &thread_attr,  launchMacOSXEnv, (void*)param);
+    pthread_attr_destroy(&thread_attr);
 
-  /* Create a a sourceContext to be used by our source that makes */
-  /* sure the CFRunLoop doesn't exit right away */
-  sourceContext.version = 0;
-  sourceContext.info = NULL;
-  sourceContext.retain = NULL;
-  sourceContext.release = NULL;
-  sourceContext.copyDescription = NULL;
-  sourceContext.equal = NULL;
-  sourceContext.hash = NULL;
-  sourceContext.schedule = NULL;
-  sourceContext.cancel = NULL;
-  sourceContext.perform = &sourceCallBack;
+    /* Create a a sourceContext to be used by our source that makes */
+    /* sure the CFRunLoop doesn't exit right away */
+    sourceContext.version = 0;
+    sourceContext.info = NULL;
+    sourceContext.retain = NULL;
+    sourceContext.release = NULL;
+    sourceContext.copyDescription = NULL;
+    sourceContext.equal = NULL;
+    sourceContext.hash = NULL;
+    sourceContext.schedule = NULL;
+    sourceContext.cancel = NULL;
+    sourceContext.perform = &sourceCallBack;
 
-  /* Create the Source from the sourceContext */
-  CFRunLoopSourceRef sourceRef = CFRunLoopSourceCreate (NULL, 0, &sourceContext);
+    /* Create the Source from the sourceContext */
+    CFRunLoopSourceRef sourceRef = CFRunLoopSourceCreate (NULL, 0, &sourceContext);
 
-  /* Use the constant kCFRunLoopCommonModes to add the source to the set of objects */
-  /* monitored by all the common modes */
-  CFRunLoopAddSource (CFRunLoopGetCurrent(),sourceRef,kCFRunLoopCommonModes);
+    /* Use the constant kCFRunLoopCommonModes to add the source to the set of objects */
+    /* monitored by all the common modes */
+    CFRunLoopAddSource (CFRunLoopGetCurrent(), sourceRef, kCFRunLoopCommonModes);
 
-  /* Park this thread in the runloop */
-  CFRunLoopRun();
+    /* Park this thread in the runloop */
+    CFRunLoopRun();
 
-  return 0;
+    return 0;
 }
 #endif

@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = asech(x)
-//Inverse hyperbolic secant
-//asech(x)=  arccosh(1 ./ x)= i*csgn(i*(1−1 ./ x))*asec(x)=csgn(i*(1 − 1 ./ x))*(%pi/2*(i+acsch(i*x)))
-  y = acosh(ones(x)./x);
+    //Inverse hyperbolic secant
+    //asech(x)=  arccosh(1 ./ x)= i*csgn(i*(1−1 ./ x))*asec(x)=csgn(i*(1 − 1 ./ x))*(%pi/2*(i+acsch(i*x)))
+    y = acosh(ones(x)./x);
 endfunction

@@ -30,7 +30,7 @@ hid_t DynHDF5::dynH5T_STD_REF_OBJ_g;
 
 int DynHDF5::dynOpenLib()
 {
-    if(m_hLib == NULL)
+    if (m_hLib == NULL)
     {
 #ifdef _MSC_VER
         m_hLib = LoadDynLibrary("hdf5dll.dll");
@@ -38,7 +38,7 @@ int DynHDF5::dynOpenLib()
         m_hLib = LoadDynLibrary("libhdf5.so");
 
 #endif
-        if(m_hLib == NULL)
+        if (m_hLib == NULL)
         {
             return 1;
         }
@@ -64,7 +64,7 @@ int DynHDF5::dynOpenLib()
 
 int DynHDF5::dynCLoseLib()
 {
-    if(m_hLib)
+    if (m_hLib)
     {
         FreeDynLibrary(m_hLib);
         m_hLib = NULL;
@@ -75,7 +75,7 @@ int DynHDF5::dynCLoseLib()
 herr_t DynHDF5::dynH5open(void)
 {
     typedef herr_t (*HDF5Func)(void);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -88,7 +88,7 @@ herr_t DynHDF5::dynH5open(void)
 hid_t DynHDF5::dynH5Pcreate(hid_t cls_id)
 {
     typedef hid_t (*HDF5Func)(hid_t cls_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -100,8 +100,8 @@ hid_t DynHDF5::dynH5Pcreate(hid_t cls_id)
 
 hid_t DynHDF5::dynH5Fcreate(const char *filename, unsigned flags, hid_t create_plist, hid_t access_plist)
 {
-    typedef hid_t (*HDF5Func)(const char *filename, unsigned flags, hid_t create_plist, hid_t access_plist);
-    if(dynOpenLib())
+    typedef hid_t (*HDF5Func)(const char * filename, unsigned flags, hid_t create_plist, hid_t access_plist);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -112,8 +112,8 @@ hid_t DynHDF5::dynH5Fcreate(const char *filename, unsigned flags, hid_t create_p
 
 hid_t DynHDF5::dynH5Fopen(const char *filename, unsigned flags, hid_t access_plist)
 {
-    typedef hid_t (*HDF5Func)(const char *filename, unsigned flags, hid_t access_plist);
-    if(dynOpenLib())
+    typedef hid_t (*HDF5Func)(const char * filename, unsigned flags, hid_t access_plist);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -125,7 +125,7 @@ hid_t DynHDF5::dynH5Fopen(const char *filename, unsigned flags, hid_t access_pli
 herr_t DynHDF5::dynH5Fclose(hid_t file_id)
 {
     typedef herr_t (*HDF5Func)(hid_t file_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -137,7 +137,7 @@ herr_t DynHDF5::dynH5Fclose(hid_t file_id)
 herr_t DynHDF5::dynH5check_version(unsigned majnum, unsigned minnum, unsigned relnum)
 {
     typedef herr_t (*HDF5Func)(unsigned majnum, unsigned minnum, unsigned relnum);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -148,8 +148,8 @@ herr_t DynHDF5::dynH5check_version(unsigned majnum, unsigned minnum, unsigned re
 
 hid_t DynHDF5::dynH5Aopen_name(hid_t loc_id, const char *name)
 {
-    typedef hid_t (*HDF5Func)(hid_t loc_id, const char *name);
-    if(dynOpenLib())
+    typedef hid_t (*HDF5Func)(hid_t loc_id, const char * name);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -160,8 +160,8 @@ hid_t DynHDF5::dynH5Aopen_name(hid_t loc_id, const char *name)
 
 herr_t DynHDF5::dynH5Aread(hid_t attr_id, hid_t type_id, void *buf)
 {
-    typedef herr_t (*HDF5Func)(hid_t attr_id, hid_t type_id, void *buf);
-    if(dynOpenLib())
+    typedef herr_t (*HDF5Func)(hid_t attr_id, hid_t type_id, void * buf);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -173,7 +173,7 @@ herr_t DynHDF5::dynH5Aread(hid_t attr_id, hid_t type_id, void *buf)
 herr_t DynHDF5::dynH5Aclose(hid_t attr_id)
 {
     typedef herr_t (*HDF5Func)(hid_t attr_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -184,8 +184,8 @@ herr_t DynHDF5::dynH5Aclose(hid_t attr_id)
 
 herr_t DynHDF5::dynH5Aiterate(hid_t loc_id, unsigned *attr_num, H5A_operator1_t op, void *op_data)
 {
-    typedef herr_t (*HDF5Func)(hid_t loc_id, unsigned *attr_num, H5A_operator1_t op, void *op_data);
-    if(dynOpenLib())
+    typedef herr_t (*HDF5Func)(hid_t loc_id, unsigned * attr_num, H5A_operator1_t op, void * op_data);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -197,7 +197,7 @@ herr_t DynHDF5::dynH5Aiterate(hid_t loc_id, unsigned *attr_num, H5A_operator1_t 
 hid_t DynHDF5::dynH5Aget_type(hid_t attr_id)
 {
     typedef hid_t (*HDF5Func)(hid_t attr_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -209,7 +209,7 @@ hid_t DynHDF5::dynH5Aget_type(hid_t attr_id)
 size_t DynHDF5::dynH5Tget_size(hid_t type_id)
 {
     typedef size_t (*HDF5Func)(hid_t type_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -221,7 +221,7 @@ size_t DynHDF5::dynH5Tget_size(hid_t type_id)
 hid_t DynHDF5::dynH5Aget_space(hid_t attr_id)
 {
     typedef hid_t (*HDF5Func)(hid_t attr_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -233,7 +233,7 @@ hid_t DynHDF5::dynH5Aget_space(hid_t attr_id)
 int DynHDF5::dynH5Sget_simple_extent_dims(hid_t space_id, hsize_t dims[], hsize_t maxdims[])
 {
     typedef int (*HDF5Func)(hid_t space_id, hsize_t dims[], hsize_t maxdims[]);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -245,7 +245,7 @@ int DynHDF5::dynH5Sget_simple_extent_dims(hid_t space_id, hsize_t dims[], hsize_
 hid_t DynHDF5::dynH5Tcopy(hid_t type_id)
 {
     typedef hid_t (*HDF5Func)(hid_t type_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -257,7 +257,7 @@ hid_t DynHDF5::dynH5Tcopy(hid_t type_id)
 herr_t DynHDF5::dynH5Tset_size(hid_t type_id, size_t size)
 {
     typedef herr_t (*HDF5Func)(hid_t type_id, size_t size);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -269,7 +269,7 @@ herr_t DynHDF5::dynH5Tset_size(hid_t type_id, size_t size)
 herr_t DynHDF5::dynH5Tclose(hid_t type_id)
 {
     typedef herr_t (*HDF5Func)(hid_t type_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -281,7 +281,7 @@ herr_t DynHDF5::dynH5Tclose(hid_t type_id)
 herr_t DynHDF5::dynH5Sclose(hid_t space_id)
 {
     typedef herr_t (*HDF5Func)(hid_t space_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -292,8 +292,8 @@ herr_t DynHDF5::dynH5Sclose(hid_t space_id)
 
 herr_t DynHDF5::dynH5Gget_num_objs(hid_t loc_id, hsize_t *num_objs)
 {
-    typedef herr_t (*HDF5Func)(hid_t loc_id, hsize_t *num_objs);
-    if(dynOpenLib())
+    typedef herr_t (*HDF5Func)(hid_t loc_id, hsize_t * num_objs);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -305,7 +305,7 @@ herr_t DynHDF5::dynH5Gget_num_objs(hid_t loc_id, hsize_t *num_objs)
 H5G_obj_t DynHDF5::dynH5Gget_objtype_by_idx(hid_t loc_id, hsize_t idx)
 {
     typedef H5G_obj_t (*HDF5Func)(hid_t loc_id, hsize_t idx);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return H5G_UNKNOWN;
     }
@@ -316,8 +316,8 @@ H5G_obj_t DynHDF5::dynH5Gget_objtype_by_idx(hid_t loc_id, hsize_t idx)
 
 ssize_t DynHDF5::dynH5Gget_objname_by_idx(hid_t loc_id, hsize_t idx, char* name, size_t size)
 {
-    typedef ssize_t (*HDF5Func)(hid_t loc_id, hsize_t idx, char* name, size_t size);
-    if(dynOpenLib())
+    typedef ssize_t (*HDF5Func)(hid_t loc_id, hsize_t idx, char * name, size_t size);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -328,8 +328,8 @@ ssize_t DynHDF5::dynH5Gget_objname_by_idx(hid_t loc_id, hsize_t idx, char* name,
 
 hid_t DynHDF5::dynH5Dopen(hid_t file_id, const char *name)
 {
-    typedef hid_t (*HDF5Func)(hid_t file_id, const char *name);
-    if(dynOpenLib())
+    typedef hid_t (*HDF5Func)(hid_t file_id, const char * name);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -341,7 +341,7 @@ hid_t DynHDF5::dynH5Dopen(hid_t file_id, const char *name)
 herr_t DynHDF5::dynH5Dclose(hid_t dset_id)
 {
     typedef herr_t (*HDF5Func)(hid_t dset_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -352,8 +352,8 @@ herr_t DynHDF5::dynH5Dclose(hid_t dset_id)
 
 hid_t DynHDF5::dynH5Rdereference(hid_t dataset, H5R_type_t ref_type, const void *ref)
 {
-    typedef hid_t (*HDF5Func)(hid_t dataset, H5R_type_t ref_type, const void *ref);
-    if(dynOpenLib())
+    typedef hid_t (*HDF5Func)(hid_t dataset, H5R_type_t ref_type, const void * ref);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -365,7 +365,7 @@ hid_t DynHDF5::dynH5Rdereference(hid_t dataset, H5R_type_t ref_type, const void 
 hid_t DynHDF5::dynH5Dget_type(hid_t dset_id)
 {
     typedef hid_t (*HDF5Func)(hid_t dset_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -377,7 +377,7 @@ hid_t DynHDF5::dynH5Dget_type(hid_t dset_id)
 hid_t DynHDF5::dynH5Dget_space(hid_t dset_id)
 {
     typedef hid_t (*HDF5Func)(hid_t dset_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -389,7 +389,7 @@ hid_t DynHDF5::dynH5Dget_space(hid_t dset_id)
 hid_t DynHDF5::dynH5Screate_simple(int rank, const hsize_t dims[], const hsize_t maxdims[])
 {
     typedef hid_t (*HDF5Func)(int rank, const hsize_t dims[], const hsize_t maxdims[]);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -401,7 +401,7 @@ hid_t DynHDF5::dynH5Screate_simple(int rank, const hsize_t dims[], const hsize_t
 herr_t DynHDF5::dynH5Sselect_hyperslab(hid_t space_id, H5S_seloper_t op, const hsize_t start[], const hsize_t _stride[], const hsize_t count[], const hsize_t _block[])
 {
     typedef herr_t (*HDF5Func)(hid_t space_id, H5S_seloper_t op, const hsize_t start[], const hsize_t _stride[], const hsize_t count[], const hsize_t _block[]);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -412,8 +412,8 @@ herr_t DynHDF5::dynH5Sselect_hyperslab(hid_t space_id, H5S_seloper_t op, const h
 
 herr_t DynHDF5::dynH5Dread(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id, hid_t file_space_id, hid_t plist_id, void *buf/*out*/)
 {
-    typedef herr_t (*HDF5Func)(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id, hid_t file_space_id, hid_t plist_id, void *buf);
-    if(dynOpenLib())
+    typedef herr_t (*HDF5Func)(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id, hid_t file_space_id, hid_t plist_id, void * buf);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -424,8 +424,8 @@ herr_t DynHDF5::dynH5Dread(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id,
 
 hid_t DynHDF5::dynH5Acreate/*H5Acreate1*/(hid_t loc_id, const char *name, hid_t type_id, hid_t space_id, hid_t acpl_id)
 {
-    typedef hid_t (*HDF5Func)(hid_t loc_id, const char *name, hid_t type_id, hid_t space_id, hid_t acpl_id);
-    if(dynOpenLib())
+    typedef hid_t (*HDF5Func)(hid_t loc_id, const char * name, hid_t type_id, hid_t space_id, hid_t acpl_id);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -436,8 +436,8 @@ hid_t DynHDF5::dynH5Acreate/*H5Acreate1*/(hid_t loc_id, const char *name, hid_t 
 
 herr_t  DynHDF5::dynH5Awrite(hid_t attr_id, hid_t type_id, const void *buf)
 {
-    typedef herr_t (*HDF5Func)(hid_t attr_id, hid_t type_id, const void *buf);
-    if(dynOpenLib())
+    typedef herr_t (*HDF5Func)(hid_t attr_id, hid_t type_id, const void * buf);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -448,8 +448,8 @@ herr_t  DynHDF5::dynH5Awrite(hid_t attr_id, hid_t type_id, const void *buf)
 
 hid_t DynHDF5::dynH5Dcreate/*H5Dcreate1*/(hid_t file_id, const char *name, hid_t type_id, hid_t space_id, hid_t dcpl_id)
 {
-    typedef hid_t (*HDF5Func)(hid_t file_id, const char *name, hid_t type_id, hid_t space_id, hid_t dcpl_id);
-    if(dynOpenLib())
+    typedef hid_t (*HDF5Func)(hid_t file_id, const char * name, hid_t type_id, hid_t space_id, hid_t dcpl_id);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -460,8 +460,8 @@ hid_t DynHDF5::dynH5Dcreate/*H5Dcreate1*/(hid_t file_id, const char *name, hid_t
 
 herr_t DynHDF5::dynH5Dwrite(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id, hid_t file_space_id, hid_t plist_id, const void *buf)
 {
-    typedef herr_t (*HDF5Func)(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id, hid_t file_space_id, hid_t plist_id, const void *buf);
-    if(dynOpenLib())
+    typedef herr_t (*HDF5Func)(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id, hid_t file_space_id, hid_t plist_id, const void * buf);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -472,8 +472,8 @@ herr_t DynHDF5::dynH5Dwrite(hid_t dset_id, hid_t mem_type_id, hid_t mem_space_id
 
 herr_t DynHDF5::dynH5Rcreate(void *ref, hid_t loc_id, const char *name, H5R_type_t ref_type, hid_t space_id)
 {
-    typedef herr_t (*HDF5Func)(void *ref, hid_t loc_id, const char *name, H5R_type_t ref_type, hid_t space_id);
-    if(dynOpenLib())
+    typedef herr_t (*HDF5Func)(void * ref, hid_t loc_id, const char * name, H5R_type_t ref_type, hid_t space_id);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -484,8 +484,8 @@ herr_t DynHDF5::dynH5Rcreate(void *ref, hid_t loc_id, const char *name, H5R_type
 
 hid_t DynHDF5::dynH5Gcreate/*H5Gcreate1*/(hid_t loc_id, const char *name, size_t size_hint)
 {
-    typedef hid_t (*HDF5Func)(hid_t loc_id, const char *name, size_t size_hint);
-    if(dynOpenLib())
+    typedef hid_t (*HDF5Func)(hid_t loc_id, const char * name, size_t size_hint);
+    if (dynOpenLib())
     {
         return 1;
     }
@@ -497,7 +497,7 @@ hid_t DynHDF5::dynH5Gcreate/*H5Gcreate1*/(hid_t loc_id, const char *name, size_t
 herr_t DynHDF5::dynH5Gclose(hid_t group_id)
 {
     typedef herr_t (*HDF5Func)(hid_t group_id);
-    if(dynOpenLib())
+    if (dynOpenLib())
     {
         return 1;
     }

@@ -13,21 +13,21 @@
 //   Creates a new Nelder - Mead plot object.
 //
 function newobj = nmplot_new ()
-  newobj = tlist(["TNMPLOT",...
+    newobj = tlist(["TNMPLOT",...
     "simplexfn","fbarfn","foptfn","sigmafn","nmbase",...
     "simplexhandle","fbarhandle","fopthandle","sigmahandle"]);
-  newobj.simplexfn = "";
-  newobj.fbarfn = "";
-  newobj.foptfn = "";
-  newobj.sigmafn = "";
-  newobj.simplexhandle = 0;
-  newobj.fbarhandle = 0;
-  newobj.fopthandle = 0;
-  newobj.sigmahandle = 0;
-  //
-  // Create and configure parent class
-  //
-  newobj.nmbase = neldermead_new();
-  newobj.nmbase = neldermead_configure ( newobj.nmbase , "-outputcommand" , nmplot_outputcmd );
+    newobj.simplexfn = "";
+    newobj.fbarfn = "";
+    newobj.foptfn = "";
+    newobj.sigmafn = "";
+    newobj.simplexhandle = 0;
+    newobj.fbarhandle = 0;
+    newobj.fopthandle = 0;
+    newobj.sigmahandle = 0;
+    //
+    // Create and configure parent class
+    //
+    newobj.nmbase = neldermead_new();
+    newobj.nmbase = neldermead_configure ( newobj.nmbase , "-outputcommand" , nmplot_outputcmd );
 endfunction
 

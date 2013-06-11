@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
-<!--
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+    <!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
@@ -18,7 +18,7 @@
 
  Don't touch if you do not know what you are doing
 -->
-<module name="sound">
-    <gateway name="sci_beep"        function="beep"            type="0" />
-    <gateway name="sci_PlaySound"   function="PlaySound"       type="0" />
-</module>
+    <module name="sound">
+        <gateway name="sci_beep"        function="beep"            type="0" />
+        <gateway name="sci_PlaySound"   function="PlaySound"       type="0" />
+    </module>

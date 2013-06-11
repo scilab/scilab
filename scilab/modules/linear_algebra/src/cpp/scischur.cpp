@@ -18,8 +18,8 @@
 
 extern "C"
 {
-    #include "scischur.h"
-    #include "elem_common.h"
+#include "scischur.h"
+#include "elem_common.h"
 }
 
 int schur_sb02mw(double* _real, double* _img)
@@ -27,7 +27,8 @@ int schur_sb02mw(double* _real, double* _img)
     return dpythags(*_real, *_img) < 1 ? 1 : 0;
 }
 int schur_sb02mv(double* _real, double* _img)
-{/* original Fortran code does not use _img aka IEIG (SB02MV = REIG.LT.ZERO) */
+{
+    /* original Fortran code does not use _img aka IEIG (SB02MV = REIG.LT.ZERO) */
     return *_real < 0 ? 1 : 0;
 }
 int schur_dgees(double* _real, double* _img)
@@ -35,7 +36,7 @@ int schur_dgees(double* _real, double* _img)
     types::Callable* pCall = ConfigVariable::getSchurFunction();
     int iRet = 0;
 
-    if(pCall)
+    if (pCall)
     {
         typed_list in;
         typed_list out;
@@ -52,17 +53,17 @@ int schur_dgees(double* _real, double* _img)
         delete pDbl;
         pDbl = NULL;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
 
-        if(out[0]->isDouble())
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
             iRet = pDblOut->get(0) == 0 ? 0 : 1;
@@ -71,7 +72,7 @@ int schur_dgees(double* _real, double* _img)
 
             return iRet;
         }
-        else if(out[0]->isBool())
+        else if (out[0]->isBool())
         {
             types::Bool* pBoolOut = out[0]->getAs<types::Bool>();
             iRet = pBoolOut->get(0) == 0 ? 0 : 1;
@@ -90,8 +91,8 @@ int schur_sb02ox(double* _real, double* _img, double* _beta) // discrete
 }
 int schur_sb02ow(double* _real, double* _img, double* _beta) // continu
 {
-    return  (*_real < 0 && *_beta > 0) || 
-            (*_real > 0 && *_beta < 0) && 
+    return  (*_real < 0 && *_beta > 0) ||
+            (*_real > 0 && *_beta < 0) &&
             (fabs(*_beta) > fabs(*_real) * C2F(dlamch)((char*)"p", 1L)) ? 1 : 0;
 }
 int schur_dgges(double* _real, double* _img, double* _beta)
@@ -99,7 +100,7 @@ int schur_dgges(double* _real, double* _img, double* _beta)
     types::Callable* pCall = ConfigVariable::getSchurFunction();
     int iRet = 0;
 
-    if(pCall)
+    if (pCall)
     {
         typed_list in;
         typed_list out;
@@ -122,17 +123,17 @@ int schur_dgges(double* _real, double* _img, double* _beta)
         delete pDblBeta;
         pDblBeta = NULL;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
-        
-        if(out[0]->isDouble())
+
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
             iRet = pDblOut->get(0) == 0 ? 0 : 1;
@@ -141,7 +142,7 @@ int schur_dgges(double* _real, double* _img, double* _beta)
 
             return iRet;
         }
-        else if(out[0]->isBool())
+        else if (out[0]->isBool())
         {
             types::Bool* pBoolOut = out[0]->getAs<types::Bool>();
             iRet = pBoolOut->get(0) == 0 ? 0 : 1;
@@ -168,7 +169,7 @@ int schur_zgees(doublecomplex* _complex)
     types::Callable* pCall = ConfigVariable::getSchurFunction();
     int iRet = 0;
 
-    if(pCall)
+    if (pCall)
     {
         typed_list in;
         typed_list out;
@@ -185,17 +186,17 @@ int schur_zgees(doublecomplex* _complex)
         delete pDbl;
         pDbl = NULL;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
-        
-        if(out[0]->isDouble())
+
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
             iRet = pDblOut->get(0) == 0 ? 0 : 1;
@@ -204,7 +205,7 @@ int schur_zgees(doublecomplex* _complex)
 
             return iRet;
         }
-        else if(out[0]->isBool())
+        else if (out[0]->isBool())
         {
             types::Bool* pBoolOut = out[0]->getAs<types::Bool>();
             iRet = pBoolOut->get(0) == 0 ? 0 : 1;
@@ -226,7 +227,7 @@ int schur_zb02ow(doublecomplex* _alpha, doublecomplex* _beta) // continu
     double absolute = dpythags(_beta->r, _beta->i);
     int res = 0;
 
-    if(absolute)
+    if (absolute)
     {
         res = ((_alpha->r * _beta->r + _alpha->i * _beta->i) / (_beta->r * _beta->r + _beta->i + _beta->i)) < 0 ? 1 : 0;
     }
@@ -238,7 +239,7 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
     types::Callable* pCall = ConfigVariable::getSchurFunction();
     int iRet = 0;
 
-    if(pCall)
+    if (pCall)
     {
         typed_list in;
         typed_list out;
@@ -261,17 +262,17 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
         delete pDblBeta;
         pDblBeta = NULL;
 
-        if(bOk == false)
+        if (bOk == false)
         {
             return 0;
         }
 
-        if(out.size() != 1)
+        if (out.size() != 1)
         {
             return 0;
         }
-        
-        if(out[0]->isDouble())
+
+        if (out[0]->isDouble())
         {
             types::Double* pDblOut = out[0]->getAs<types::Double>();
             iRet = pDblOut->get(0) == 0 ? 0 : 1;
@@ -280,7 +281,7 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
 
             return iRet;
         }
-        else if(out[0]->isBool())
+        else if (out[0]->isBool())
         {
             types::Bool* pBoolOut = out[0]->getAs<types::Bool>();
             iRet = pBoolOut->get(0) == 0 ? 0 : 1;

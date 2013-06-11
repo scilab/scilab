@@ -26,21 +26,21 @@ CurrentDirectory=pwd();
 modules=getmodules();
 index=size(modules);
 
-for i=1:index(1) do 
- Directories=[Directories;"SCI/modules/"+modules(i)+"/macros"];
-end  
+for i=1:index(1) do
+    Directories=[Directories;"SCI/modules/"+modules(i)+"/macros"];
+end
 clear modules index i
- 
+
 Dim=size(Directories);
 
 
-for i=1:Dim(1) do 
-  cd(Directories(i));
-  //if (fileinfo('buildmacros.sce')<>[]) then
+for i=1:Dim(1) do
+    cd(Directories(i));
+    //if (fileinfo('buildmacros.sce')<>[]) then
     //disp(Directories(i));
-    exec('buildmacros.sce', 0);
-  //end
-  cd(CurrentDirectory);
+    exec("buildmacros.sce", 0);
+    //end
+    cd(CurrentDirectory);
 end
 clear CurrentDirectory Dim Directories
 exit

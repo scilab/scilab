@@ -11,9 +11,9 @@
 // =============================================================================
 
 function Yd=traj(tt,Y,surface)
-  [p,q,r,s,t] = surface(Y(1),Y(3))
-  w           = -(r*Y(2)^2+2*s*Y(2)*Y(4)+t*Y(4)^2+gravity)/(1+p^2+q^2)
-  Yd          = [Y(2) ; p*w ; Y(4) ; q*w ];
+    [p,q,r,s,t] = surface(Y(1),Y(3))
+    w           = -(r*Y(2)^2+2*s*Y(2)*Y(4)+t*Y(4)^2+gravity)/(1+p^2+q^2)
+    Yd          = [Y(2) ; p*w ; Y(4) ; q*w ];
 endfunction
 
 
@@ -37,18 +37,18 @@ endfunction
 
 function Y = calculate_traj(g_x,g_y,g_V,g_Vdir,t,gravity,slope)
 
-function r=cyllim(t,y),
-  r=[y(1)-1
-     y(1)+1
-     y(3)
-     y(3)-14]
-endfunction
+    function r=cyllim(t,y),
+        r=[y(1)-1
+        y(1)+1
+        y(3)
+        y(3)-14]
+    endfunction
 
-Y0(1) = g_x;//x
-Y0(2) = g_V*cos(g_Vdir*%pi/180);//v_x
-Y0(3) = g_y;//y
-Y0(4) = g_V*sin(g_Vdir*%pi/180);//v_y
-Y     = ode('root',Y0,t(1),t,1d-10,1.D-10,list(traj,SlantedCylinder),4,cyllim);//traj d'ecoulement
+    Y0(1) = g_x;//x
+    Y0(2) = g_V*cos(g_Vdir*%pi/180);//v_x
+    Y0(3) = g_y;//y
+    Y0(4) = g_V*sin(g_Vdir*%pi/180);//v_y
+    Y     = ode("root",Y0,t(1),t,1d-10,1.D-10,list(traj,SlantedCylinder),4,cyllim);//traj d'ecoulement
 
 endfunction
 

@@ -20,7 +20,7 @@
 //
 
 function XcosMenuExitScicos()
-  Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
-			 'Cmenu='"XcosMenuQuit'";%scicos_navig=[]'
-	      	  ]
+    Scicos_commands=["%diagram_path_objective=[];%scicos_navig=1";
+    "Cmenu='"XcosMenuQuit'";%scicos_navig=[]"
+    ]
 endfunction

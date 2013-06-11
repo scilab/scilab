@@ -17,17 +17,17 @@
 /*--------------------------------------------------------------------------*/
 int gw_graphic_objects(void)
 {
-	Scierror(999,_("Scilab '%s' module not installed.\n"), "graphic_objects");
-	return 0;
+    Scierror(999, _("Scilab '%s' module not installed.\n"), "graphic_objects");
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 BOOL sciHasFigures(void)
 {
-  return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL sciIsExistingFigure(int figNum)
 {
-	return FALSE;
+    return FALSE;
 }
 /*--------------------------------------------------------------------------*/

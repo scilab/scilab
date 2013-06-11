@@ -11,22 +11,22 @@ titleStr  = "Scilab P0W3R" ;
 xLabelStr = "XXX" ;
 yLabelStr = "YYY" ;
 
-xtitle("Scilab P0W3R",'XXX','YYY',1) ;
+xtitle("Scilab P0W3R","XXX","YYY",1) ;
 a = gca() ;
 title  = a.title   ;
 xLabel = a.x_label ;
 yLabel = a.y_label ;
 
-resT = ( title.text  == titleStr  ) & ( title.fill_mode  == 'on' ) ;
-resX = ( xLabel.text == xLabelStr ) & ( xLabel.fill_mode == 'on' ) ;
-resY = ( yLabel.text == yLabelStr ) & ( yLabel.fill_mode == 'on' ) ;
+resT = ( title.text  == titleStr  ) & ( title.fill_mode  == "on" ) ;
+resX = ( xLabel.text == xLabelStr ) & ( xLabel.fill_mode == "on" ) ;
+resY = ( yLabel.text == yLabelStr ) & ( yLabel.fill_mode == "on" ) ;
 
 // check that a box is drawn around the labels
 // and that they have the rigth text
 if ( resT & resX & resY ) then
-  affich_result(%T,1787);
+    affich_result(%T,1787);
 else
-  affich_result(%F,1787);
+    affich_result(%F,1787);
 end
 
 clear ;

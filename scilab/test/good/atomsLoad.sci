@@ -276,13 +276,13 @@ function result = atomsLoad(packages)
                     if mandatory_packages(childs(j,1)+" - "+mandatory_packages_name(childs(j,1))) == "asked_by_user" then
                         mprintf(gettext("\t - You''ve asked ''%s - %s''\n"),childs(j,1),mandatory_packages_name(childs(j,1)));
 
-                    // The other version of the package is a need by another package
+                        // The other version of the package is a need by another package
                     else
                         mprintf(gettext("\t - ''%s - %s'' is needed by ''%s''\n"), ..
-                            childs(j,1), .. // name
-                            mandatory_packages_name(childs(j,1)), .. // version
-                            mandatory_packages(childs(j,1)+" - "+mandatory_packages_name(childs(j,1))) .. // name - version
-                            );
+                        childs(j,1), .. // name
+                        mandatory_packages_name(childs(j,1)), .. // version
+                        mandatory_packages(childs(j,1)+" - "+mandatory_packages_name(childs(j,1))) .. // name - version
+                        );
                     end
 
                     mprintf("\n");

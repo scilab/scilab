@@ -9,11 +9,11 @@
 
 function apropos(key)
 
-if argn(2)<>1 then
-  error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "apropos", 1));
-end
+    if argn(2)<>1 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "apropos", 1));
+    end
 
-global %helps
-helpbrowser(%helps(:,1), key, getlanguage(), %T);
-	
+    global %helps
+    helpbrowser(%helps(:,1), key, getlanguage(), %T);
+
 endfunction

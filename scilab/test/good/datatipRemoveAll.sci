@@ -9,17 +9,17 @@
 
 
 function datatipRemoveAll(curve_handles)
-//remove all the datatips for the given curves
-  drawlater()
+    //remove all the datatips for the given curves
+    drawlater()
 
-  for k=1:size(curve_handles,'*')
-    ck=curve_handles(k);
-    ud=datatipGetStruct(ck)// the curve datatips data structure
-    if typeof(ud)=='datatips' then
-      for i=1:size(ud.tips,'*'), delete(ud.tips(i));end
-      ud.tips=[]
-      datatipSetStruct(ck,ud)
+    for k=1:size(curve_handles,"*")
+        ck=curve_handles(k);
+        ud=datatipGetStruct(ck)// the curve datatips data structure
+        if typeof(ud)=="datatips" then
+            for i=1:size(ud.tips,"*"), delete(ud.tips(i));end
+            ud.tips=[]
+            datatipSetStruct(ck,ud)
+        end
     end
-  end
-  drawnow()
+    drawnow()
 endfunction

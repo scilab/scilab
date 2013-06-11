@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  *
@@ -10,61 +10,61 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="convstr" xml:lang="en">
-    <refnamediv>
-        <refname>convstr</refname>
-        <refpurpose>conversão maiúsculas-minúsculas,
-            minúsculas-maiúsculas
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>[y]=convstr(str, [flag])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>str, y</term>
-                <listitem>
-                    <para>uma matriz de strings</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>flag</term>
-                <listitem>
-                    <para>um caractere de opção com dois possíveis valores</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>'u'</term>
-                            <listitem>
-                                <para>para maiúsculas</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>'l'</term>
-                            <listitem>
-                                <para>para minúsculas</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            converts a matriz de strings <literal>str-matrix</literal> para
-            caracteres minúsculos (<literal>"l"</literal> ; valor padrão) ou para
-            maiúsculos (<literal>"u"</literal>).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="convstr" xml:lang="en">
+        <refnamediv>
+            <refname>convstr</refname>
+            <refpurpose>conversão maiúsculas-minúsculas,
+                minúsculas-maiúsculas
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>[y]=convstr(str, [flag])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>str, y</term>
+                    <listitem>
+                        <para>uma matriz de strings</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>flag</term>
+                    <listitem>
+                        <para>um caractere de opção com dois possíveis valores</para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>'u'</term>
+                                <listitem>
+                                    <para>para maiúsculas</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>'l'</term>
+                                <listitem>
+                                    <para>para minúsculas</para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                converts a matriz de strings <literal>str-matrix</literal> para
+                caracteres minúsculos (<literal>"l"</literal> ; valor padrão) ou para
+                maiúsculos (<literal>"u"</literal>).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 A=['esta','é';'a minha','matriz'];
 convstr(A,'u')
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

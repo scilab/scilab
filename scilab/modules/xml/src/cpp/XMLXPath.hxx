@@ -17,41 +17,41 @@
 
 namespace org_modules_xml
 {
-    class XMLDocument;
-    class XMLObject;
-    class XMLNodeSet;
+class XMLDocument;
+class XMLObject;
+class XMLNodeSet;
 
-    class XMLXPath:public XMLObject
-    {
-        const XMLDocument & doc;
-        xmlXPathObject *xpath;
+class XMLXPath: public XMLObject
+{
+    const XMLDocument & doc;
+    xmlXPathObject *xpath;
 
 public:
-          XMLXPath(const XMLDocument & doc, xmlXPathObject * xpath);
-         ~XMLXPath();
+    XMLXPath(const XMLDocument & doc, xmlXPathObject * xpath);
+    ~XMLXPath();
 
-        void *getRealXMLPointer() const;
+    void *getRealXMLPointer() const;
 
-        int getBooleanValue() const
-        {
-            return xpath->boolval;
-        }
-        double getFloatValue() const
-        {
-            return xpath->floatval;
-        }
-        const char *getStringValue() const
-        {
-            return (const char *)xpath->stringval;
-        }
-        int getResultType() const
-        {
-            return xpath->type;
-        }
-        const XMLNodeSet *getNodeSet() const;
-        const XMLObject *getXMLObjectParent() const;
+    int getBooleanValue() const
+    {
+        return xpath->boolval;
+    }
+    double getFloatValue() const
+    {
+        return xpath->floatval;
+    }
+    const char *getStringValue() const
+    {
+        return (const char *)xpath->stringval;
+    }
+    int getResultType() const
+    {
+        return xpath->type;
+    }
+    const XMLNodeSet *getNodeSet() const;
+    const XMLObject *getXMLObjectParent() const;
 
-    };
+};
 }
 
 #endif

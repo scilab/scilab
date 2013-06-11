@@ -36,13 +36,15 @@ double C2F(ranf)(void)
     int current_gen = ConfigVariable::getCurrentBaseGen();
 
     // the factors (1/(RngMaxInt+1)) to get reals in [0,1) :
-    double factor[NbGenInScilab] = {
-    2.3283064365386963e-10,  // mt
-    2.3283064365386963e-10,  // kiss
-    4.6566128752457969e-10,  // clcg4
-    4.6566130595601735e-10,  // clcg2
-    4.6566128730773926e-10,  // urand
-    2.3283064365386963e-10}; // fsultra
+    double factor[NbGenInScilab] =
+    {
+        2.3283064365386963e-10,  // mt
+        2.3283064365386963e-10,  // kiss
+        4.6566128752457969e-10,  // clcg4
+        4.6566130595601735e-10,  // clcg2
+        4.6566128730773926e-10,  // urand
+        2.3283064365386963e-10
+    }; // fsultra
 
     // random deviate from U[0,1)
     return ((double)gen[current_gen]() * factor[current_gen]);
@@ -82,19 +84,21 @@ double C2F(ignuin)(double *a, double *b)
     */
 
     // all the generators provided integers in [0, RngMaxInt] :
-    unsigned long RngMaxInt[NbGenInScilab] = {
-    4294967295ul,  // mt
-    4294967295ul,  // kiss
-    2147483646ul,  // clcg4
-    2147483561ul,  // clcg2
-    2147483647ul,  // urand
-    4294967295ul}; // fsultra
+    unsigned long RngMaxInt[NbGenInScilab] =
+    {
+        4294967295ul,  // mt
+        4294967295ul,  // kiss
+        2147483646ul,  // clcg4
+        2147483561ul,  // clcg2
+        2147483647ul,  // urand
+        4294967295ul
+    }; // fsultra
 
     int current_gen = ConfigVariable::getCurrentBaseGen();
 
-    unsigned long k, d = (unsigned long)((*b-*a)+1), qd;
+    unsigned long k, d = (unsigned long)((*b - *a) + 1), qd;
 
-    if(d == 1)
+    if (d == 1)
     {
         return(*a);
     }
@@ -105,7 +109,7 @@ double C2F(ignuin)(double *a, double *b)
     {
         k = (unsigned long)ignlgi();
     }
-    while(k >= qd);
+    while (k >= qd);
 
     return(*a + (double)(k % d));
 }

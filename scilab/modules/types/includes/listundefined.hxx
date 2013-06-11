@@ -19,27 +19,36 @@
 
 namespace types
 {
-    class TYPES_IMPEXP ListUndefined : public ListOperation
+class TYPES_IMPEXP ListUndefined : public ListOperation
+{
+public :
+    ListUndefined(): ListOperation() {};
+    virtual                 ~ListUndefined();
+
+    // FIXME : Should not return NULL;
+    InternalType*           clone();
+
+    RealType                getType(void);
+    bool                    isListUndefined()
     {
-    public :
-                                ListUndefined(): ListOperation(){};
-        virtual                 ~ListUndefined();
+        return true;
+    }
 
-        // FIXME : Should not return NULL;
-        InternalType*           clone();
+    void                    whoAmI();
 
-        RealType                getType(void);
-        bool                    isListUndefined() { return true; }
+    bool                    toString(std::wostringstream& ostr);
 
-        void                    whoAmI();
-
-        bool                    toString(std::wostringstream& ostr);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring    getTypeStr() {return L"listundefined";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring    getShortTypeStr() {return L"";}
-    };
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring    getTypeStr()
+    {
+        return L"listundefined";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring    getShortTypeStr()
+    {
+        return L"";
+    }
+};
 }
 
 

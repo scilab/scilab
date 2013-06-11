@@ -319,43 +319,43 @@ extern "C" {
      */
     int createNamedScalarComplexDouble(void* _pvCtx, const char* _pstName, double _dblReal, double _dblImg);
 
-/**
- * Create scalar double variable from integer value
- * @param[in] _iVar variable number
- * @param[in] _iReal real value
- * @return if the operation successed (0) or not ( !0 )
- */
-int createScalarDoubleFromInteger(void* _pvCtx, int _iVar, int _iReal);
+    /**
+     * Create scalar double variable from integer value
+     * @param[in] _iVar variable number
+     * @param[in] _iReal real value
+     * @return if the operation successed (0) or not ( !0 )
+     */
+    int createScalarDoubleFromInteger(void* _pvCtx, int _iVar, int _iReal);
 
-/**
- * Create scalar complex double variable from integer value
- * @param[in] _iVar variable number
- * @param[in] _iReal real value
- * @param[in] _iImg imaginary value
- * @return if the operation successed (0) or not ( !0 )
- */
-int createScalarComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iReal, int _iImg);
+    /**
+     * Create scalar complex double variable from integer value
+     * @param[in] _iVar variable number
+     * @param[in] _iReal real value
+     * @param[in] _iImg imaginary value
+     * @return if the operation successed (0) or not ( !0 )
+     */
+    int createScalarComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iReal, int _iImg);
 
-/**
- * Create matrix of double variable from integer value
- * @param[in] _iVar variable number
- * @param[in] _iRows Number of row
- * @param[in] _iCols Number of column
- * @param[in] _piReal real value
- * @return if the operation successed (0) or not ( !0 )
- */
-int createMatrixOfDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal);
+    /**
+     * Create matrix of double variable from integer value
+     * @param[in] _iVar variable number
+     * @param[in] _iRows Number of row
+     * @param[in] _iCols Number of column
+     * @param[in] _piReal real value
+     * @return if the operation successed (0) or not ( !0 )
+     */
+    int createMatrixOfDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal);
 
-/**
- * Create matrix of complex double variable from integer value
- * @param[in] _iVar variable number
- * @param[in] _iRows Number of row
- * @param[in] _iCols Number of column
- * @param[in] _piReal real value
- * @param[in] _piImg imaginary value
- * @return if the operation successed (0) or not ( !0 )
- */
-int createMatrixOfComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal, int* _piImg);
+    /**
+     * Create matrix of complex double variable from integer value
+     * @param[in] _iVar variable number
+     * @param[in] _iRows Number of row
+     * @param[in] _iCols Number of column
+     * @param[in] _piReal real value
+     * @param[in] _piImg imaginary value
+     * @return if the operation successed (0) or not ( !0 )
+     */
+    int createMatrixOfComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal, int* _piImg);
 
 #ifdef __cplusplus
 }

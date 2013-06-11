@@ -19,34 +19,33 @@
 // See the file ../license.txt
 //
 function [libss,ok,cancel]=get_dynamic_lib_dir(tt,funam,flag)
-// Copyright INRIA
-  cancel=%f
-  cur_wd = pwd();
-  chdir(TMPDIR);
-  mputl(tt,funam+'.'+flag);
-  libss='';
-  label='';
-  ok=%f
-  while ~ok then
-   [ok,libss,label]=scicos_getvalue('Linking the '+funam+' function','External libraries (if any)',list('str',1),label);
-   if ~ok then chdir(cur_wd);cancel=%t,return;end
-   // for multiple libraries
-   if strindex(libss,'''')<>[] | strindex(libss,'""')<>[] then
-     ierr=execstr('libss=evstr(libss)','errcatch')
-     if ierr<>0  then
-        messagebox(['Can''t solve other files to link'],"modal")
-	chdir(cur_wd);
-        ok=%f;
-      end
-    else
-      libss=tokens(libss,[' ',';'])
+    // Copyright INRIA
+    cancel=%f
+    cur_wd = pwd();
+    chdir(TMPDIR);
+    mputl(tt,funam+"."+flag);
+    libss="";
+    label="";
+    ok=%f
+    while ~ok then
+        [ok,libss,label]=scicos_getvalue("Linking the "+funam+" function","External libraries (if any)",list("str",1),label);
+        if ~ok then chdir(cur_wd);cancel=%t,return;end
+        // for multiple libraries
+        if strindex(libss,"''")<>[] | strindex(libss,"""")<>[] then
+            ierr=execstr("libss=evstr(libss)","errcatch")
+            if ierr<>0  then
+                messagebox(["Can''t solve other files to link"],"modal")
+                chdir(cur_wd);
+                ok=%f;
+            end
+        else
+            libss=tokens(libss,[" ",";"])
+        end
+        for i=1:size(libss,"*")
+            lib_dll=libss(i) + getdynlibext();
+            ifexst=fileinfo(lib_dll)
+            if ifexst==[] then messagebox ("the library "+lib_dll+" doesn''t exists","modal");ok=%f;end
+        end
     end
-    for i=1:size(libss,'*')
-       lib_dll=libss(i) + getdynlibext();
-       ifexst=fileinfo(lib_dll)
-       if ifexst==[] then messagebox ('the library '+lib_dll+' doesn''t exists','modal');ok=%f;end
-    end
-  end
-  chdir(cur_wd);
-endfunction 
- 
+    chdir(cur_wd);
+endfunction

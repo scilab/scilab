@@ -31,31 +31,31 @@ types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, ty
 {
     /* environment variable used (linux) to detect a PROFILING tools */
     /* in this case, we do not ulink external dynamic libraries */
-    if(getenv("PROFILE_SCILAB_DYNAMIC_LINK") != NULL)
+    if (getenv("PROFILE_SCILAB_DYNAMIC_LINK") != NULL)
     {
         return types::Function::OK;
     }
 
-    if(in.size() > 1)
+    if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "ulink", 0, 1);
         return types::Function::Error;
     }
 
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         unLinkAll();
     }
-    else if(in.size() == 1)
+    else if (in.size() == 1)
     {
         types::Double* pDIds = in[0]->getAs<types::Double>();
-        if(pDIds == NULL)
+        if (pDIds == NULL)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "ulink", 1);
             return types::Function::Error;
         }
 
-        for(int i = 0 ; i < pDIds->getSize() ; i++)
+        for (int i = 0 ; i < pDIds->getSize() ; i++)
         {
             unLink(pDIds->get(i));
         }
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, ty
 void unLinkAll()
 {
     std::vector<ConfigVariable::DynamicLibraryStr*>* pDLLIst =  ConfigVariable::getDynamicLibraryList();
-    for(int i = 0 ; i < pDLLIst->size() ; i++)
+    for (int i = 0 ; i < pDLLIst->size() ; i++)
     {
         unLink(i);
     }

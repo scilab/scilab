@@ -34,102 +34,102 @@
 
 namespace std
 {
-    /* std namespace does not implement complex ordering: we use the lexicographical order   */
-    typedef double (*cplxFun_t)(std::complex<double> const&);
+/* std namespace does not implement complex ordering: we use the lexicographical order   */
+typedef double (*cplxFun_t)(std::complex<double> const&);
 #ifndef SCI_CPLX_ORDER_SEP21
-    /* on abs() and arg() according to current practise */
-    cplxFun_t const mostSignificant (&std::abs);
-    cplxFun_t const leastSignificant(&std::arg);
+/* on abs() and arg() according to current practise */
+cplxFun_t const mostSignificant (&std::abs);
+cplxFun_t const leastSignificant(&std::arg);
 #else
-    /*  on real and imaginary parts as per SEP 21 recommandation.  */
-    cplxFun_t const mostSignificant (&std::real);
-    cplxFun_t const leastSignificant(&std::imag);
+/*  on real and imaginary parts as per SEP 21 recommandation.  */
+cplxFun_t const mostSignificant (&std::real);
+cplxFun_t const leastSignificant(&std::imag);
 #endif
 
-    template<> struct less<std::complex<double> >: std::binary_function<std::complex<double>,std::complex<double>, bool>
+template<> struct less<std::complex<double> >: std::binary_function<std::complex<double>, std::complex<double>, bool>
+{
+    bool operator()(std::complex<double> const& op1, std::complex<double> const& op2) const
     {
-        bool operator()(std::complex<double> const& op1, std::complex<double> const& op2) const
+        if (mostSignificant(op1) < mostSignificant(op2))
         {
-            if (mostSignificant(op1) < mostSignificant(op2))
-            {
-                return true;
-            }
-            if(mostSignificant(op2) < mostSignificant(op1))
-            {
-                return false;
-            }
-            return leastSignificant(op1) < leastSignificant(op2);
+            return true;
         }
-    };
-    template<> struct greater<std::complex<double> >: std::binary_function<std::complex<double>,std::complex<double>, bool>
+        if (mostSignificant(op2) < mostSignificant(op1))
+        {
+            return false;
+        }
+        return leastSignificant(op1) < leastSignificant(op2);
+    }
+};
+template<> struct greater<std::complex<double> >: std::binary_function<std::complex<double>, std::complex<double>, bool>
+{
+    bool operator()(std::complex<double> const& op1, std::complex<double> const& op2) const
     {
-        bool operator()(std::complex<double> const& op1, std::complex<double> const& op2) const
+        if (mostSignificant(op1) > mostSignificant(op2))
         {
-            if (mostSignificant(op1) > mostSignificant(op2))
-            {
-                return true;
-            }
-            if(mostSignificant(op2) > mostSignificant(op1))
-            {
-                return false;
-            }
-            return leastSignificant(op1) > leastSignificant(op2);
+            return true;
         }
-    };
+        if (mostSignificant(op2) > mostSignificant(op1))
+        {
+            return false;
+        }
+        return leastSignificant(op1) > leastSignificant(op2);
+    }
+};
 
-    template<> struct less_equal<std::complex<double> >: std::binary_function<std::complex<double>,std::complex<double>, bool>
+template<> struct less_equal<std::complex<double> >: std::binary_function<std::complex<double>, std::complex<double>, bool>
+{
+    bool operator()(std::complex<double> const& op1, std::complex<double> const& op2) const
     {
-        bool operator()(std::complex<double> const& op1, std::complex<double> const& op2) const
-        {
-            return !std::greater<std::complex<double> >()(op2, op1);
-        }
-    };
-    template<> struct greater_equal<std::complex<double> >: std::binary_function<std::complex<double>,std::complex<double>, bool>
+        return !std::greater<std::complex<double> >()(op2, op1);
+    }
+};
+template<> struct greater_equal<std::complex<double> >: std::binary_function<std::complex<double>, std::complex<double>, bool>
+{
+    bool operator()(std::complex<double> const& op1, std::complex<double> const& op2) const
     {
-        bool operator()(std::complex<double> const& op1, std::complex<double> const& op2) const
-        {
-            return !std::less<std::complex<double> >()(op2, op1);
-        }
-    };
+        return !std::less<std::complex<double> >()(op2, op1);
+    }
+};
 }
 
 namespace
 {
-    /*
-     * used by Eigen to prune sparse matrices.
-     * Scilab <6 keeps values <%eps, so we prune only 0. but it should really be a property of the sparse matrix.
-     */
-    template<typename T>
-    bool keepForSparse(std::size_t /* unused */, std::size_t /* unused */, T const& v)
-    {
-        static T const zero(0);
-        return v !=zero;
-    }
+/*
+ * used by Eigen to prune sparse matrices.
+ * Scilab <6 keeps values <%eps, so we prune only 0. but it should really be a property of the sparse matrix.
+ */
+template<typename T>
+bool keepForSparse(std::size_t /* unused */, std::size_t /* unused */, T const& v)
+{
+    static T const zero(0);
+    return v != zero;
+}
 
-    /*
-     * Operations on sparse matrices can require full traversal of the sparse args if the default (0 or false) value
-     * of one arg does not set the result to the default result value.
-     * For example, '==' does require full traversal because "0. == 0" is true (and the default SparseBool value is false)
-     * However, '!=' does not require it because "0. != 0." is false so the default value of the sparse result is good.
-     * we dispatch according the the operators thanks to the OperatorTraits struct (as is usually done for example to
-     * dispatch amongst std:: algorithms implementations according to the iterator_category in std::iterator_traits<>
-     */
-    struct FullTraversal {};
-    struct UnionTraversal {};
+/*
+ * Operations on sparse matrices can require full traversal of the sparse args if the default (0 or false) value
+ * of one arg does not set the result to the default result value.
+ * For example, '==' does require full traversal because "0. == 0" is true (and the default SparseBool value is false)
+ * However, '!=' does not require it because "0. != 0." is false so the default value of the sparse result is good.
+ * we dispatch according the the operators thanks to the OperatorTraits struct (as is usually done for example to
+ * dispatch amongst std:: algorithms implementations according to the iterator_category in std::iterator_traits<>
+ */
+struct FullTraversal {};
+struct UnionTraversal {};
 
-    struct WithFullTraversal
-    {
-        typedef FullTraversal traversal;
-    };
+struct WithFullTraversal
+{
+    typedef FullTraversal traversal;
+};
 
-    struct WithUnionTraversal
-    {
+struct WithUnionTraversal
+{
     typedef UnionTraversal traversal;
-    };
+};
 
-    template<typename T> struct OperatorTraits : WithFullTraversal
-    {
-    };
+template<typename T> struct OperatorTraits : WithFullTraversal
+{
+};
 
 
 template<typename Scalar> struct OperatorTraits<std::less<Scalar> > : WithUnionTraversal
@@ -174,17 +174,18 @@ Eigen::SparseMatrix<typename Op::result_type>* scalarOp(Eigen::EigenBase<Sp1> co
     typedef typename Op::result_type result_scalar;
     typedef Eigen::SparseMatrix<result_scalar> result_t;
     result_t* res;
-    if(op(Scalar1(), op2) == result_scalar())
+    if (op(Scalar1(), op2) == result_scalar())
     {
-        res= new result_t(op1.derived().unaryExpr(std::bind2nd(op, op2)));
+        res = new result_t(op1.derived().unaryExpr(std::bind2nd(op, op2)));
         res->prune(&keepForSparse<result_scalar>);
     }
     else
-    { /* it is not possible to  perform full traversal (including virtual 0 elts) of the sparse
-       matrix hence the need for a dense tmp :( */
+    {
+        /* it is not possible to  perform full traversal (including virtual 0 elts) of the sparse
+         matrix hence the need for a dense tmp :( */
         // TODO remove dense temp when Eigen provides sparse full traversal API
         Eigen::Matrix<Scalar1, Eigen::Dynamic, Eigen::Dynamic> tmp(op1);
-        res= new result_t(tmp.unaryExpr(std::bind2nd(op, op2)).sparseView());
+        res = new result_t(tmp.unaryExpr(std::bind2nd(op, op2)).sparseView());
     }
     return res;
 }
@@ -203,16 +204,16 @@ Eigen::SparseMatrix<typename Op::result_type>* scalarOp(Scalar1 op1, Eigen::Eige
     typedef typename Op::result_type result_scalar;
     typedef Eigen::SparseMatrix<result_scalar> result_t;
     result_t* res;
-    if(op(op1, Scalar2()) == result_scalar())
+    if (op(op1, Scalar2()) == result_scalar())
     {
-        res= new result_t(op2.derived().unaryExpr(std::bind1st(op, op1)));
+        res = new result_t(op2.derived().unaryExpr(std::bind1st(op, op1)));
         res->prune(&keepForSparse<result_scalar>);
     }
     else
     {
         // TODO remove dense temp when Eigen provides sparse full traversal API
         Eigen::Matrix<Scalar2, Eigen::Dynamic, Eigen::Dynamic> tmp(op2);
-        res= new result_t(tmp.unaryExpr(std::bind1st(op, op1)).sparseView());
+        res = new result_t(tmp.unaryExpr(std::bind1st(op, op1)).sparseView());
     }
     return res;
 }
@@ -228,11 +229,11 @@ Eigen::SparseMatrix<typename Op::result_type>* scalarOp(Scalar1 op1, Eigen::Eige
 template< typename Sp1, typename Sp2 , typename Op>
 Eigen::SparseMatrix<typename Op::result_type>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op)
 {
-    if (op1.rows()==1 && op1.cols()==1)
+    if (op1.rows() == 1 && op1.cols() == 1)
     {
         return scalarOp(op1.derived().coeff(0, 0), op2, op);
     }
-    if (op2.rows()==1 && op2.cols()==1)
+    if (op2.rows() == 1 && op2.cols() == 1)
     {
         return scalarOp(op1, op2.derived().coeff(0, 0), op);
     }
@@ -292,9 +293,9 @@ template<template <typename ElementType> class Op>
 types::SparseBool* cwiseOp(types::Sparse const& op1, types::Sparse const& op2)
 {
     types::SparseBool::BoolSparse_t* res(0);
-    if(op1.isComplex())
+    if (op1.isComplex())
     {
-        if(op2.isComplex())
+        if (op2.isComplex())
         {
             res = cwiseOp(*op1.matrixCplx, *op2.matrixCplx, Op<std::complex<double> >());
         }
@@ -308,7 +309,7 @@ types::SparseBool* cwiseOp(types::Sparse const& op1, types::Sparse const& op2)
     else
     {
 
-        if(op2.isComplex())
+        if (op2.isComplex())
         {
             Sparse* temp = new Sparse(op1);
             temp->toComplex();

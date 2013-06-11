@@ -5,7 +5,7 @@ clear
 
 //correct=%F
 a=matrix(1:9,3,3)
-[mia,kia]=min(a) 
+[mia,kia]=min(a)
 [maa,kaa]=max(a)
 
 b=int16(matrix(1:9,3,3))
@@ -21,7 +21,7 @@ clear
 
 //
 //The Error Messages are:
-//   kib and kab should be a 2 element vector!!    
+//   kib and kab should be a 2 element vector!!
 
 
 

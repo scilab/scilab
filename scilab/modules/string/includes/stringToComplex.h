@@ -40,9 +40,9 @@ extern "C" {
                                   stringToComplexError *ierr);
 
     doublecomplex stringToComplexW(const wchar_t *pSTR,
-                                  const wchar_t *decimal,
-                                  BOOL bConvertByNAN,
-                                  stringToComplexError *ierr);
+                                   const wchar_t *decimal,
+                                   BOOL bConvertByNAN,
+                                   stringToComplexError *ierr);
 
     STRING_IMPEXP  complexArray *stringsToComplexArray(const char **pSTRs, int nbElements,
             const char *decimal,

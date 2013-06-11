@@ -18,27 +18,27 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matz_sum(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matz_sum(scicos_block *block, int flag)
 {
-	int i = 0;
-	int mu = GetInPortRows(block,1);
-	int nu = GetInPortCols(block,1);
-	double *ur = GetRealInPortPtrs(block,1);
-	double *ui = GetImagInPortPtrs(block,1);
-	double *yr = GetRealOutPortPtrs(block,1);
-	double *yi = GetImagOutPortPtrs(block,1);
+    int i = 0;
+    int mu = GetInPortRows(block, 1);
+    int nu = GetInPortCols(block, 1);
+    double *ur = GetRealInPortPtrs(block, 1);
+    double *ui = GetImagInPortPtrs(block, 1);
+    double *yr = GetRealOutPortPtrs(block, 1);
+    double *yi = GetImagOutPortPtrs(block, 1);
 
-	yr[0]=0.0;
-	yi[0]=0.0;
+    yr[0] = 0.0;
+    yi[0] = 0.0;
 
-	for(i=0;i<nu*mu;i++)
-	{
-		yr[0] += ur[i];
-		yi[0] += ui[i];
-	}
+    for (i = 0; i < nu * mu; i++)
+    {
+        yr[0] += ur[i];
+        yi[0] += ui[i];
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

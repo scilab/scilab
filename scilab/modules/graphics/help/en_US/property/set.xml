@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * 
@@ -10,103 +10,103 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="set">
-    <refnamediv>
-        <refname>set</refname>
-        <refpurpose>set a property value of a graphic entity
-            object or of a User Interface object.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>set(prop,val)
-            set(h,prop)
-            set(h,prop,val)
-            h.prop=val
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>h</term>
-                <listitem>
-                    <para>graphic handle of the entity which to set the named
-                        property. <literal>h</literal> can be a vector of handles, in which case
-                        set modifies the property for all entities contained in h.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>prop</term>
-                <listitem>
-                    <para>character string, name of the property to set.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>val</term>
-                <listitem>
-                    <para>value to give to the property.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>This routine can be used to modify the value of a specified property from a
-            graphics entity or a GUI object. In this case it is equivalent to use the dot operator on a handle.
-            For exemple, <literal>set(h,"background",5)</literal> is equivalent to <literal>h.background = 5</literal>.
-        </para>
-        <para>Property names are character strings. The type of the set values depends on the handle type and property.
-        </para>
-        <para>To get the list of all existing properties
-            see <link linkend="graphics_entities">graphics_entities</link> or <link linkend="uicontrol">uicontrol</link>
-            for User Interface objects.
-        </para>
-        <para>
-            <literal>set</literal> function can be also called with only a property and a value as argument. In this case,
-            the property must be one of the following:
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>current_entity or hdl</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_entity',h)</literal> or <literal>set('hdl',h)</literal> sets a new entity as current.
-                        In this case, the value must be a graphic handle.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>current_figure</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_figure',fig)</literal> sets a new graphic figure as current.
-                        It is equivalent to <link linkend="scf">scf</link>. In this case, the value must be a Figure handle.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>current_axes</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_axes',axes)</literal> sets a new axes entity as current.
-                        It is equivalent to <link linkend="sca">sca</link>. In this case, the value must be an Axes handle.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>
-            <literal>set</literal> can also be called with a graphic handle and property as arguments.
-            The handle must be either a handle on the default figure or the default axes entities.
-            The property must be <literal>"default_values"</literal>. In this case, the default entity
-            is reset to the value it had at Scilab startup. <literal>set("default_values",h)</literal>
-            is equivalent to <link linkend="sda">sda</link> or <link linkend="sdf">sdf</link>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="set">
+        <refnamediv>
+            <refname>set</refname>
+            <refpurpose>set a property value of a graphic entity
+                object or of a User Interface object.
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>set(prop,val)
+                set(h,prop)
+                set(h,prop,val)
+                h.prop=val
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>h</term>
+                    <listitem>
+                        <para>graphic handle of the entity which to set the named
+                            property. <literal>h</literal> can be a vector of handles, in which case
+                            set modifies the property for all entities contained in h.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>prop</term>
+                    <listitem>
+                        <para>character string, name of the property to set.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>val</term>
+                    <listitem>
+                        <para>value to give to the property.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>This routine can be used to modify the value of a specified property from a
+                graphics entity or a GUI object. In this case it is equivalent to use the dot operator on a handle.
+                For exemple, <literal>set(h,"background",5)</literal> is equivalent to <literal>h.background = 5</literal>.
+            </para>
+            <para>Property names are character strings. The type of the set values depends on the handle type and property.
+            </para>
+            <para>To get the list of all existing properties
+                see <link linkend="graphics_entities">graphics_entities</link> or <link linkend="uicontrol">uicontrol</link>
+                for User Interface objects.
+            </para>
+            <para>
+                <literal>set</literal> function can be also called with only a property and a value as argument. In this case,
+                the property must be one of the following:
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>current_entity or hdl</term>
+                    <listitem>
+                        <para>
+                            <literal>set('current_entity',h)</literal> or <literal>set('hdl',h)</literal> sets a new entity as current.
+                            In this case, the value must be a graphic handle.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>current_figure</term>
+                    <listitem>
+                        <para>
+                            <literal>set('current_figure',fig)</literal> sets a new graphic figure as current.
+                            It is equivalent to <link linkend="scf">scf</link>. In this case, the value must be a Figure handle.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>current_axes</term>
+                    <listitem>
+                        <para>
+                            <literal>set('current_axes',axes)</literal> sets a new axes entity as current.
+                            It is equivalent to <link linkend="sca">sca</link>. In this case, the value must be an Axes handle.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>
+                <literal>set</literal> can also be called with a graphic handle and property as arguments.
+                The handle must be either a handle on the default figure or the default axes entities.
+                The property must be <literal>"default_values"</literal>. In this case, the default entity
+                is reset to the value it had at Scilab startup. <literal>set("default_values",h)</literal>
+                is equivalent to <link linkend="sda">sda</link> or <link linkend="sdf">sdf</link>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 clf()
 set("auto_clear","off") ;
 // Exemple of a Plot 2D
@@ -129,28 +129,28 @@ plot2d(x-2,x.^2/20);
 p3= a.children(1).children;
 set([a p1 p2 p3],"foreground",5)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
-            </member>
-            <member>
-                <link linkend="copy">copy</link>
-            </member>
-            <member>
-                <link linkend="move">move</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
-            </member>
-            <member>
-                <link linkend="uicontrol">uicontrol</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="get">get</link>
+                </member>
+                <member>
+                    <link linkend="delete">delete</link>
+                </member>
+                <member>
+                    <link linkend="copy">copy</link>
+                </member>
+                <member>
+                    <link linkend="move">move</link>
+                </member>
+                <member>
+                    <link linkend="graphics_entities">graphics_entities</link>
+                </member>
+                <member>
+                    <link linkend="uicontrol">uicontrol</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

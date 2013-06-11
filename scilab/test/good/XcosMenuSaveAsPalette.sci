@@ -20,16 +20,16 @@
 //
 
 function XcosMenuSaveAsPalette()
-// Copyright INRIA
+    // Copyright INRIA
 
     Cmenu = [] ;
     spmode = pal_mode
     pal_mode = %t
-    ierr=execstr('blk_tmp=PAL_f(''define'')','errcatch')
+    ierr=execstr("blk_tmp=PAL_f(''define'')","errcatch")
     if ierr<>0 then
-      messagebox('Block palette not found.','modal')
-      clear numk
-      return
+        messagebox("Block palette not found.","modal")
+        clear numk
+        return
     end
     blk_tmp.graphics.sz=20*blk_tmp.graphics.sz
     scs_m=do_purge(scs_m)

@@ -20,41 +20,41 @@
 //
 
 function XcosMenuCustomizeMask()
-  
-  K=find(Select(:,2)==%win)
-  if K==[] then
-    K = getblock(scs_m, %pt(:))
-  else
-    K=Select(K,1)
-  end
-  Cmenu=[];%pt=[];
-  if K==[] then
-    messagebox(_("No selected block in the current Scicos window."),'error','modal')
-    return
-  end  	
-  if size(K,'*')>1 then
-    messagebox(_("Only one block can be selected in current window for this operation."),'error','modal')
-    return
-  end 
-  
 
-  i=K
-  o=scs_m.objs(i)
-  if typeof(o)=='Block' then
-    if o.model.sim=='csuper' & o.model.ipar==1 then 
-      items=o.graphics.exprs(2)(1)
-      result=tk_mdialog([_("Customize block GUI:");_("Modify title and menu labels.")],..
-			[_("Title of the GUI");items],[o.graphics.exprs(2)(2);items])
-
-      if result<>[] & ~isequal(items,result) then
-	o.graphics.exprs(2)(2)=result;
-	scs_m.objs(i)=o;
-	edited=%t
-      end
+    K=find(Select(:,2)==%win)
+    if K==[] then
+        K = getblock(scs_m, %pt(:))
     else
-      messagebox(_("This block is not masked."),'modal')
+        K=Select(K,1)
     end
-  else
-    messagebox(_("Select a block."),'modal')
-  end
+    Cmenu=[];%pt=[];
+    if K==[] then
+        messagebox(_("No selected block in the current Scicos window."),"error","modal")
+        return
+    end
+    if size(K,"*")>1 then
+        messagebox(_("Only one block can be selected in current window for this operation."),"error","modal")
+        return
+    end
+
+
+    i=K
+    o=scs_m.objs(i)
+    if typeof(o)=="Block" then
+        if o.model.sim=="csuper" & o.model.ipar==1 then
+            items=o.graphics.exprs(2)(1)
+            result=tk_mdialog([_("Customize block GUI:");_("Modify title and menu labels.")],..
+            [_("Title of the GUI");items],[o.graphics.exprs(2)(2);items])
+
+            if result<>[] & ~isequal(items,result) then
+                o.graphics.exprs(2)(2)=result;
+                scs_m.objs(i)=o;
+                edited=%t
+            end
+        else
+            messagebox(_("This block is not masked."),"modal")
+        end
+    else
+        messagebox(_("Select a block."),"modal")
+    end
 endfunction

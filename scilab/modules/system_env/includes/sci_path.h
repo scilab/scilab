@@ -21,22 +21,22 @@ extern "C"
 {
 #endif
 
-EXTERN_SYSTEM_ENV wchar_t* getSCIW(void);
-EXTERN_SYSTEM_ENV char* getSCI(void);
+    EXTERN_SYSTEM_ENV wchar_t* getSCIW(void);
+    EXTERN_SYSTEM_ENV char* getSCI(void);
 
-EXTERN_SYSTEM_ENV void setSCIW(const wchar_t* _sci_path);
-EXTERN_SYSTEM_ENV void setSCI(const char* _sci_path);
+    EXTERN_SYSTEM_ENV void setSCIW(const wchar_t* _sci_path);
+    EXTERN_SYSTEM_ENV void setSCI(const char* _sci_path);
 
-EXTERN_SYSTEM_ENV wchar_t* computeSCIW();
-EXTERN_SYSTEM_ENV char* computeSCI();
+    EXTERN_SYSTEM_ENV wchar_t* computeSCIW();
+    EXTERN_SYSTEM_ENV char* computeSCI();
 
-EXTERN_SYSTEM_ENV wchar_t* getenvSCIW(void);
-EXTERN_SYSTEM_ENV char* getenvSCI(void);
+    EXTERN_SYSTEM_ENV wchar_t* getenvSCIW(void);
+    EXTERN_SYSTEM_ENV char* getenvSCI(void);
 
-EXTERN_SYSTEM_ENV void putenvSCIW(const wchar_t* _sci_path);
-EXTERN_SYSTEM_ENV void putenvSCI(const char* _sci_path);
+    EXTERN_SYSTEM_ENV void putenvSCIW(const wchar_t* _sci_path);
+    EXTERN_SYSTEM_ENV void putenvSCI(const char* _sci_path);
 
-EXTERN_SYSTEM_ENV void defineSCI();
+    EXTERN_SYSTEM_ENV void defineSCI();
 
 #ifdef __cplusplus
 }

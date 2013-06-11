@@ -31,17 +31,17 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
 {
     int iFile           = -1; //default file : last opened file
     int dims            = 2;
-    int dimsArray[2]    = {1,1};
+    int dimsArray[2]    = {1, 1};
     types::Double* pOut = NULL;
 
-    if(in.size() > 1)
+    if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mtell", 0, 1);
         return types::Function::Error;
     }
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
-        if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
+        if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mtell", 1);
             return types::Function::Error;
@@ -52,22 +52,22 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
 
     switch (iFile)
     {
-    case 0: // stderr
-    case 5: // stdin
-    case 6: // stdout
-        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mtell", iFile);
-        return types::Function::Error;
+        case 0: // stderr
+        case 5: // stdin
+        case 6: // stdout
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mtell", iFile);
+            return types::Function::Error;
     }
 
     long int offset = mtell(iFile);
-    if(offset < 0)
+    if (offset < 0)
     {
         Scierror(999, _("%s: Error while opening, reading or writing.\n"), "mtell");
         return types::Function::Error;
     }
 
-    pOut = new types::Double(dims,dimsArray);
-    pOut->set(0,offset);
+    pOut = new types::Double(dims, dimsArray);
+    pOut->set(0, offset);
 
     out.push_back(pOut);
     return Function::OK;

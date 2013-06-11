@@ -24,7 +24,7 @@ using namespace types;
 
 class FILEIO_IMPEXP FileManager
 {
-//static attributs instantiation
+    //static attributs instantiation
 public :
     /*commom attributs and function for all File*/
     static int                  getFileMaxID();

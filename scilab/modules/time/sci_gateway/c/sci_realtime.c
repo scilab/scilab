@@ -19,60 +19,60 @@
 /*--------------------------------------------------------------------------*/
 int sci_realtimeinit(char *fname, void* pvApiCtx)
 {
-  SciErr sciErr;
-  int m1 = 0,n1 = 0;
-  int * p1_in_address = NULL;
-  double * pDblReal = NULL;
-  double zer=0.0;
+    SciErr sciErr;
+    int m1 = 0, n1 = 0;
+    int * p1_in_address = NULL;
+    double * pDblReal = NULL;
+    double zer = 0.0;
 
-  CheckRhs(1,1);
-  CheckLhs(1,1);
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
 
-  /*  checking variable scale */
+    /*  checking variable scale */
 
-  if(isScalar(pvApiCtx, p1_in_address) == 0)
-  {
-      Scierror(999,_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
-      return 0;
-  }
+    if (isScalar(pvApiCtx, p1_in_address) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        return 0;
+    }
 
-  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
-  sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+    sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
 
-  /* cross variable size checking */
-  C2F(realtimeinit)(&zer,pDblReal);
+    /* cross variable size checking */
+    C2F(realtimeinit)(&zer, pDblReal);
 
-	LhsVar(1) = 0;
-	PutLhsVar();
-	return 0;
+    LhsVar(1) = 0;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int sci_realtime(char *fname, void* pvApiCtx)
 {
-  SciErr sciErr;
-  int m1 = 0,n1 = 0;
-  int * p1_in_address = NULL;
-  double * pDblReal = NULL;
+    SciErr sciErr;
+    int m1 = 0, n1 = 0;
+    int * p1_in_address = NULL;
+    double * pDblReal = NULL;
 
-  CheckRhs(1,1);
-  CheckLhs(1,1);
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
 
-  /*  checking variable t */
-  if(isScalar(pvApiCtx, p1_in_address) == 0)
-  {
-    Scierror(999,_("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+    /*  checking variable t */
+    if (isScalar(pvApiCtx, p1_in_address) == 0)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
+        return 0;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
+    sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
+
+    /* cross variable size checking */
+    C2F(realtime)(pDblReal);
+
+    LhsVar(1) = 0;
+    PutLhsVar();
+
     return 0;
-  }
-
-  sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
-  sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
-
-  /* cross variable size checking */
-  C2F(realtime)(pDblReal);
-
-  LhsVar(1) = 0;
-  PutLhsVar();
-
-  return 0;
 }
 /*--------------------------------------------------------------------------*/

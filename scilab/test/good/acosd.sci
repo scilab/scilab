@@ -7,6 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = acosd(x)
-//acosd  Inverse cosine, result in degrees.
-  y = 180/%pi*acos(x);
+    //acosd  Inverse cosine, result in degrees.
+    y = 180/%pi*acos(x);
 endfunction

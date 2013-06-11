@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 DIGITEO - Allan CORNET
  *
@@ -10,71 +10,71 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsCheckModule" xml:lang="en">
-    <refnamediv>
-        <refname>atomsCheckModule</refname>
-        <refpurpose>Check the given list of ATOMS modules</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            isok = atomsCheckModule(modulenames)
-            isok = atomsCheckModule(modulenames, bVerbose)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>modulenames</term>
-                <listitem>
-                    <para>mxn matrix of strings: the names of the modules to check</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>bVerbose</term>
-                <listitem>
-                    <para>a 1-by-1 matrix of booleans, set to true to display
-                        messages
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>atomsCheckModule</literal> Installs, loads, launches the tests
-            and removes all the modules listed in <literal>modulenames</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Example</title>
-        <programlisting role="example">  atomsCheckModule("scibench")
-            atomsCheckModule(["apifun" "scibench"],%t)
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="atomsTest">atomsTest</link>
-            </member>
-            <member>
-                <link linkend="test_run">test_run</link>
-            </member>
-            <member>
-                <link linkend="assert_overview">assert</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>This function was added in Scilab 5.4.0</revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsCheckModule" xml:lang="en">
+        <refnamediv>
+            <refname>atomsCheckModule</refname>
+            <refpurpose>Check the given list of ATOMS modules</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                isok = atomsCheckModule(modulenames)
+                isok = atomsCheckModule(modulenames, bVerbose)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>modulenames</term>
+                    <listitem>
+                        <para>mxn matrix of strings: the names of the modules to check</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>bVerbose</term>
+                    <listitem>
+                        <para>a 1-by-1 matrix of booleans, set to true to display
+                            messages
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>atomsCheckModule</literal> Installs, loads, launches the tests
+                and removes all the modules listed in <literal>modulenames</literal>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Example</title>
+            <programlisting role="example">  atomsCheckModule("scibench")
+                atomsCheckModule(["apifun" "scibench"],%t)
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="atomsTest">atomsTest</link>
+                </member>
+                <member>
+                    <link linkend="test_run">test_run</link>
+                </member>
+                <member>
+                    <link linkend="assert_overview">assert</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.0</revnumber>
+                    <revremark>This function was added in Scilab 5.4.0</revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

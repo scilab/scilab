@@ -7,6 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = acotd(x)
-//Inverse cotangeant.
-  y = 90-atand(x);
+    //Inverse cotangeant.
+    y = 90-atand(x);
 endfunction

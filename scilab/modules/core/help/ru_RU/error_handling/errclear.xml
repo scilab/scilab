@@ -1,55 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="errclear" xml:lang="ru">
-    <refnamediv>
-        <refname>errclear</refname>
-        <refpurpose>очистка ошибки</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>errclear([n])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Удаляет действие (реакцию на ошибку), связанную с ошибкой типа <literal>n</literal>.
-        </para>
-        <para>
-            Если <literal>n</literal> положительно (<literal>n</literal> &gt; 0), то оно обозначает номер 
-            очищаемой ошибки, если же <literal>n</literal> &lt;= 0, то очищаются все ошибки 
-            (поведение по умолчанию).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example">a = 1;
-            b = undefinedvariable + a;
-            lasterror()
-            
-            b = undefinedvariable + a;
-            errclear()
-            lasterror()
-            
-            b = undefinedvariable + a;
-            errclear(5)  // последней ошибкой является ошибка 4 
-            lasterror()
-            
-            b = undefinedvariable + a;
-            errclear(4)
-            lasterror()
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
-            <member>
-                <link linkend="iserror">iserror</link>
-            </member>
-            <member>
-                <link linkend="lasterror">lasterror</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="errclear" xml:lang="ru">
+        <refnamediv>
+            <refname>errclear</refname>
+            <refpurpose>очистка ошибки</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>errclear([n])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Удаляет действие (реакцию на ошибку), связанную с ошибкой типа <literal>n</literal>.
+            </para>
+            <para>
+                Если <literal>n</literal> положительно (<literal>n</literal> &gt; 0), то оно обозначает номер 
+                очищаемой ошибки, если же <literal>n</literal> &lt;= 0, то очищаются все ошибки 
+                (поведение по умолчанию).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example">a = 1;
+                b = undefinedvariable + a;
+                lasterror()
+                
+                b = undefinedvariable + a;
+                errclear()
+                lasterror()
+                
+                b = undefinedvariable + a;
+                errclear(5)  // последней ошибкой является ошибка 4 
+                lasterror()
+                
+                b = undefinedvariable + a;
+                errclear(4)
+                lasterror()
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="errcatch">errcatch</link>
+                </member>
+                <member>
+                    <link linkend="iserror">iserror</link>
+                </member>
+                <member>
+                    <link linkend="lasterror">lasterror</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

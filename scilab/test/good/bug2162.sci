@@ -17,9 +17,9 @@ plot3d( xf, yf, zf ) ;
 e = gce() ;
 
 if ( e.type == "Fac3d" ) then
-  affich_result(%T,2162);
+    affich_result(%T,2162);
 else
-  affich_result(%F,2162);
+    affich_result(%F,2162);
 end
 
 clear;

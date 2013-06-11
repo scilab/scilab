@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = asec(x)
-//Inverse secant.
-  y = acos(ones(x)./x);
+    //Inverse secant.
+    y = acos(ones(x)./x);
 endfunction
- 
+

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,79 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_reflect" xml:lang="en">
-    <refnamediv>
-        <refname>optimsimplex_reflect</refname>
-        <refpurpose>Returns the reflected simplex object.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            r = optimsimplex_reflect(opt, fun)
-            [r, data] = optimsimplex_reflect(opt, fun, data)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Argument</title>
-        <variablelist>
-            <varlistentry>
-                <term>opt </term>
-                <listitem>
-                    <para>The current simplex object of TSIMPLEX type (tlist).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fun </term>
-                <listitem>
-                    <para>The function to compute at vertices.</para>
-                    <para>
-                        The <literal>fun</literal> function is expected to have the following 
-                        input and output arguments: 
-                    </para>
-                    <programlisting role="no-scilab-exec">
-                        y = myfunction (x)
-                    </programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>data </term>
-                <listitem>
-                    <para>User-defined data passed to the function (optional).</para>
-                    <para>
-                        If <literal>data</literal> is provided, it is passed to the callback function
-                        both as an input and output argument. In that case, the function must have the 
-                        following header :
-                    </para>
-                    <programlisting role="no-scilab-exec">
-                        [y, data] = myfunction (x, data)
-                    </programlisting>
-                    <para>The data input parameter may be used if the function uses some additional 
-                        parameters. It is returned as an output parameter because the function may 
-                        modify the data while computing the function value. This feature may be used, 
-                        for example, to count the number of times that the function has been called.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>r </term>
-                <listitem>
-                    <para>The reflected simplex object.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <literal>optimsimplex_reflect</literal> function returns a new simplex by reflexion 
-            of current simplex, by reflection with respect to the first vertex in the simplex. 
-            This move is used in the centered simplex gradient.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Example</title>
-        <programlisting role="example">
-            <![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_reflect" xml:lang="en">
+        <refnamediv>
+            <refname>optimsimplex_reflect</refname>
+            <refpurpose>Returns the reflected simplex object.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                r = optimsimplex_reflect(opt, fun)
+                [r, data] = optimsimplex_reflect(opt, fun, data)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Argument</title>
+            <variablelist>
+                <varlistentry>
+                    <term>opt </term>
+                    <listitem>
+                        <para>The current simplex object of TSIMPLEX type (tlist).</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fun </term>
+                    <listitem>
+                        <para>The function to compute at vertices.</para>
+                        <para>
+                            The <literal>fun</literal> function is expected to have the following 
+                            input and output arguments: 
+                        </para>
+                        <programlisting role="no-scilab-exec">
+                            y = myfunction (x)
+                        </programlisting>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>data </term>
+                    <listitem>
+                        <para>User-defined data passed to the function (optional).</para>
+                        <para>
+                            If <literal>data</literal> is provided, it is passed to the callback function
+                            both as an input and output argument. In that case, the function must have the 
+                            following header :
+                        </para>
+                        <programlisting role="no-scilab-exec">
+                            [y, data] = myfunction (x, data)
+                        </programlisting>
+                        <para>The data input parameter may be used if the function uses some additional 
+                            parameters. It is returned as an output parameter because the function may 
+                            modify the data while computing the function value. This feature may be used, 
+                            for example, to count the number of times that the function has been called.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>r </term>
+                    <listitem>
+                        <para>The reflected simplex object.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <literal>optimsimplex_reflect</literal> function returns a new simplex by reflexion 
+                of current simplex, by reflection with respect to the first vertex in the simplex. 
+                This move is used in the centered simplex gradient.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Example</title>
+            <programlisting role="example">
+                <![CDATA[ 
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -101,14 +101,14 @@ computed = optimsimplex_getall ( r )
 s1 = optimsimplex_destroy(s1);
 r = optimsimplex_destroy(r);
  ]]>
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="optimsimplex_new">optimsimplex_new</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="optimsimplex_new">optimsimplex_new</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  *
@@ -10,82 +10,82 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mutation_ga_default" xml:lang="en">
-    <refnamediv>
-        <refname>mutation_ga_default</refname>
-        <refpurpose>A continuous variable mutation function</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>Mut_Indiv = mutation_ga_default(Indiv,param)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>Indiv</term>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mutation_ga_default" xml:lang="en">
+        <refnamediv>
+            <refname>mutation_ga_default</refname>
+            <refpurpose>A continuous variable mutation function</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>Mut_Indiv = mutation_ga_default(Indiv,param)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Indiv</term>
+                    <listitem>
+                        <para>The individual to be mutated.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>param</term>
+                    <listitem>
+                        <para>a list of parameters. </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para> 'delta': a random perturbation will be sampled via an
+                                    uniform distribution between -delta and + delta. 
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para> 'minbound': a vector of minimum bound for the variable X.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para> 'maxbound': a vector of maximum bound for the variable
+                                    X.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>Mut_Indiv</term>
+                    <listitem>
+                        <para>The resulting mutated individual.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <itemizedlist>
                 <listitem>
-                    <para>The individual to be mutated.</para>
+                    <para>This function performs the classical continuous variable
+                        mutation function.
+                    </para>
                 </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>param</term>
-                <listitem>
-                    <para>a list of parameters. </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para> 'delta': a random perturbation will be sampled via an
-                                uniform distribution between -delta and + delta. 
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para> 'minbound': a vector of minimum bound for the variable X.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para> 'maxbound': a vector of maximum bound for the variable
-                                X.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Mut_Indiv</term>
-                <listitem>
-                    <para>The resulting mutated individual.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <itemizedlist>
-            <listitem>
-                <para>This function performs the classical continuous variable
-                    mutation function.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="mutation_ga_binary"> mutation_ga_binary
-                </link>
-            </member>
-            <member>
-                <link linkend="crossover_ga_default"> crossover_ga_default
-                </link>
-            </member>
-            <member>
-                <link linkend="init_ga_default"> init_ga_default
-                </link>
-            </member>
-            <member>
-                <link linkend="optim_ga"> optim_ga </link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </itemizedlist>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="mutation_ga_binary"> mutation_ga_binary
+                    </link>
+                </member>
+                <member>
+                    <link linkend="crossover_ga_default"> crossover_ga_default
+                    </link>
+                </member>
+                <member>
+                    <link linkend="init_ga_default"> init_ga_default
+                    </link>
+                </member>
+                <member>
+                    <link linkend="optim_ga"> optim_ga </link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

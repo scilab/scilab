@@ -28,17 +28,17 @@ using namespace types;
 
 Function::ReturnValue sci_inspectorShowItem(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() > 1)
+    if (in.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "inspectorShowItem", 0, 1);    
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "inspectorShowItem", 0, 1);
         return Function::Error;
     }
 
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         int iCount = Inspector::getItemCount();
         String* pS = new String(iCount, 2);
-        for(int i = 0 ; i < iCount ; i++)
+        for (int i = 0 ; i < iCount ; i++)
         {
             wchar_t pstRef[10];
             pS->set(i, 0, Inspector::showItem(i).c_str());
@@ -50,14 +50,14 @@ Function::ReturnValue sci_inspectorShowItem(typed_list &in, int _iRetCount, type
     }
     else
     {
-        if(in[0]->isDouble() == false)
+        if (in[0]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "inspectorShowItem", 1);
             return Function::Error;
         }
 
         Double *pD = in[0]->getAs<Double>();
-        if(pD->isScalar() == false)
+        if (pD->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "inspectorShowItem", 1);
             Function::Error;

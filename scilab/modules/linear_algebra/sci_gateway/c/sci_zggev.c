@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2008 - INRIA - Michaël Baudin
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -32,7 +32,7 @@ static int intzggev_complex(char *fname);
 //
 // intzggev --
 //   Interface to LAPACK's zggev
-//   Computes the generalized eigenvalues and, if required, the generalized 
+//   Computes the generalized eigenvalues and, if required, the generalized
 //   eigenvectors of two real matrix.
 //   Possible uses :
 //   * With 1 LHS :
@@ -43,16 +43,16 @@ static int intzggev_complex(char *fname);
 //       eigenvalues : matrix of size Nx1 with right eigenvectors, type complex
 //   * With 2 LHS :
 //       [alpha,beta]=spec(A,B)
-//     where 
-//       alpha,beta : the coefficients such that the generalized eigenvalues 
+//     where
+//       alpha,beta : the coefficients such that the generalized eigenvalues
 //         are alpha(i)/beta(i), where alpha is of type complex, beta is real
 //   * With 3 LHS :
 //       [alpha,beta,R]=spec(A,B)
-//     where 
+//     where
 //       R : the matrix of generalized right eigenvectors, type complex
 //   * With 4 LHS :
 //       [alpha,beta,L,R]=spec(A,B)
-//     where 
+//     where
 //       L : the matrix of generalized left eigenvectors, type complex
 //
 int sci_zggev(char *fname, unsigned long fname_len)

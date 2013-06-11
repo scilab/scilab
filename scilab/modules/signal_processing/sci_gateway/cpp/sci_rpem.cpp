@@ -23,14 +23,14 @@ extern "C"
 #include "Scierror.h"
 
 
-extern void C2F(rpem)(double theta[], double p[],
-		      int *order,
-		      double *u, double *y, double *lambda, double *k, double *c,
-		      int *istab2,
-		      double *v, double *eps, double *eps1,
-		      int *dimension,
-		      double phi[], double psi[], double tstab[],
-		      double work[], double f[], double g[], double l[]);
+    extern void C2F(rpem)(double theta[], double p[],
+                          int *order,
+                          double *u, double *y, double *lambda, double *k, double *c,
+                          int *istab2,
+                          double *v, double *eps, double *eps1,
+                          int *dimension,
+                          double phi[], double psi[], double tstab[],
+                          double work[], double f[], double g[], double l[]);
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -66,40 +66,40 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     types::Double* dPsi     = NULL;
     types::Double* dL       = NULL;
 
-    if(in.size() < 3 || in.size() > 6)
+    if (in.size() < 3 || in.size() > 6)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "rpem", 3, 6);
         return types::Function::Error;
     }
 
     /* arg1: w0 = list(theta, p, l, phi, psi) */
-    if((in[0]->isList() == false) || in[0]->getAs<types::List>()->getSize() != 5)
+    if ((in[0]->isList() == false) || in[0]->getAs<types::List>()->getSize() != 5)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: %d-element list expected.\n"), "rpem", 1, 5);
         return types::Function::Error;
     }
 
     types::List* w0 = in[0]->getAs<types::List>();
-    for(int i=0; i<5; i++)
+    for (int i = 0; i < 5; i++)
     {
-        if(!w0->get(i)->isDouble() || w0->get(i)->getAs<types::Double>()->isComplex())
+        if (!w0->get(i)->isDouble() || w0->get(i)->getAs<types::Double>()->isComplex())
         {
-            Scierror(77, _("%s: Wrong type for element %d of input argument #%d: A matrix of real expected.\n"), "rpem", i+1, 1);
+            Scierror(77, _("%s: Wrong type for element %d of input argument #%d: A matrix of real expected.\n"), "rpem", i + 1, 1);
             return types::Function::Error;
         }
         types::Double* current = w0->get(i)->getAs<types::Double>();
-        switch(i)
+        switch (i)
         {
             case 0:  /* theta: 3n real ranged row vector */
             {
                 if (current->getRows() != 1)
                 {
-                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: A row vector expected.\n"), "rpem", i+1, 1);
+                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: A row vector expected.\n"), "rpem", i + 1, 1);
                     return types::Function::Error;
                 }
                 if (current->getCols() % 3 != 0)
                 {
-                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: Size must be multiple of %d.\n"), "rpem", i+1, 1, 3);
+                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: Size must be multiple of %d.\n"), "rpem", i + 1, 1, 3);
                     return types::Function::Error;
                 }
                 dimension = current->getCols();
@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
             {
                 if (current->getRows() != dimension || current->getCols() != dimension)
                 {
-                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: A square matrix expected.\n"), "rpem", i+1, 1);
+                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: A square matrix expected.\n"), "rpem", i + 1, 1);
                     return types::Function::Error;
                 }
                 dP = new types::Double(dimension, dimension);
@@ -125,7 +125,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
             {
                 if (current->getRows() != 1 || current->getCols() != dimension)
                 {
-                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: Same sizes of element %d expected.\n"), "rpem", i+1, 1, 1);
+                    Scierror(77, _("%s: Wrong size for element %d of input argument #%d: Same sizes of element %d expected.\n"), "rpem", i + 1, 1, 1);
                     return types::Function::Error;
                 }
             }
@@ -141,7 +141,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     dPsi->set(w0->get(4)->getAs<types::Double>()->get());
 
     /* arg2: u0: real ranged row vector */
-    if((in[1]->isDouble() == false) || in[1]->getAs<types::Double>()->getRows() != 1)
+    if ((in[1]->isDouble() == false) || in[1]->getAs<types::Double>()->getRows() != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A row vector expected.\n"), "rpem", 2);
         return types::Function::Error;
@@ -150,12 +150,12 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     u_length = in[1]->getAs<types::Double>()->getCols();
 
     /* arg3: y0: real ranged row vector of same length as u0 */
-    if((in[2]->isDouble() == false) || in[2]->getAs<types::Double>()->getRows() != 1)
+    if ((in[2]->isDouble() == false) || in[2]->getAs<types::Double>()->getRows() != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A row vector expected.\n"), "rpem", 3);
         return types::Function::Error;
     }
-    if(in[2]->getAs<types::Double>()->getCols() != u_length)
+    if (in[2]->getAs<types::Double>()->getCols() != u_length)
     {
         Scierror(999, _("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"), "rpem", 2, 3);
         return types::Function::Error;
@@ -163,11 +163,11 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
     y = in[2]->getAs<types::Double>()->get();
 
     /* optional arguments */
-    switch(in.size())
+    switch (in.size())
     {
         case 6: /* c */
         {
-            if((in[5]->isDouble() == false) || !in[5]->getAs<types::Double>()->isScalar())
+            if ((in[5]->isDouble() == false) || !in[5]->getAs<types::Double>()->isScalar())
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "rpem", 6);
                 return types::Function::Error;
@@ -176,7 +176,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
         }
         case 5: /* [kappa, mu, nu] */
         {
-            if((in[4]->isDouble() == false) || (in[4]->getAs<types::Double>()->getRows() != 1) || (in[4]->getAs<types::Double>()->getCols() != 3))
+            if ((in[4]->isDouble() == false) || (in[4]->getAs<types::Double>()->getRows() != 1) || (in[4]->getAs<types::Double>()->getCols() != 3))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"), "rpem", 5, 1, 3);
                 return types::Function::Error;
@@ -188,7 +188,7 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
         }
         case 4: /* [lambda, alpha, beta] */
         {
-            if((in[3]->isDouble() == false) || (in[3]->getAs<types::Double>()->getRows() != 1) || (in[3]->getAs<types::Double>()->getCols() != 3))
+            if ((in[3]->isDouble() == false) || (in[3]->getAs<types::Double>()->getRows() != 1) || (in[3]->getAs<types::Double>()->getCols() != 3))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"), "rpem", 4, 1, 3);
                 return types::Function::Error;
@@ -204,21 +204,21 @@ types::Function::ReturnValue sci_rpem(types::typed_list &in, int _iRetCount, typ
 
     /* references provided to justify allocation with code relying on it */
     f = (double *) MALLOC((dimension) * sizeof(double));        /* rpem.f l.168 */
-    memset(f,0x00,(dimension) * sizeof(double));
+    memset(f, 0x00, (dimension) * sizeof(double));
     g = (double *) MALLOC((dimension) * sizeof(double));        /* rpem.f l.169 */
-    memset(g,0x00,(dimension) * sizeof(double));
+    memset(g, 0x00, (dimension) * sizeof(double));
     tstab = (double *) MALLOC((order + 1) * sizeof(double));    /* rpem.f l.105 */
-    memset(tstab,0x00,(order + 1) * sizeof(double));
+    memset(tstab, 0x00, (order + 1) * sizeof(double));
     work = (double *) MALLOC((2 * order + 2) * sizeof(double)); /* nstabl.f */
-    memset(work,0x00,(2 * order + 2) * sizeof(double));
+    memset(work, 0x00, (2 * order + 2) * sizeof(double));
     /* (tip: bound variables to determine required memory: nk1 <= ordre + 1) */
 
     for (int i = 1 ; i < u_length ; ++i)
     {
-        C2F(rpem)(  dTheta->get(), dP->get(), &order, &(u[i-1]), &(y[i]), &lambda, &kappa, &c,
+        C2F(rpem)(  dTheta->get(), dP->get(), &order, &(u[i - 1]), &(y[i]), &lambda, &kappa, &c,
                     &istab2, &v, &eps, &eps1, //output
                     &dimension, dPhi->get(), dPsi->get(),
-                    tstab,work, //output
+                    tstab, work, //output
                     f, g, dL->get());
 
         lambda = alpha * lambda + beta;

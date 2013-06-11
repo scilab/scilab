@@ -18,26 +18,26 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <memory.h>
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void samphold4_m(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void samphold4_m(scicos_block *block, int flag)
 {
-	/* c     Copyright INRIA
+    /* c     Copyright INRIA
 
-	Scicos block simulator
-	returns sample and hold  of the input */
+    Scicos block simulator
+    returns sample and hold  of the input */
 
-	if ((flag ==1)) 
-	{
-		int m = GetInPortRows(block,1);
-		int n = GetInPortCols(block,1);
-		void *u = GetInPortPtrs(block,1);
-		void *y = GetOutPortPtrs(block,1);
-		int sz = GetSizeOfOut(block,1);
-		memcpy(y,u,m*n*sz);
-	}
+    if ((flag == 1))
+    {
+        int m = GetInPortRows(block, 1);
+        int n = GetInPortCols(block, 1);
+        void *u = GetInPortPtrs(block, 1);
+        void *y = GetOutPortPtrs(block, 1);
+        int sz = GetSizeOfOut(block, 1);
+        memcpy(y, u, m * n * sz);
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

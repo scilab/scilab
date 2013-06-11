@@ -29,34 +29,34 @@
 
 namespace types
 {
-    class TYPES_IMPEXP Colon : public ImplicitList
+class TYPES_IMPEXP Colon : public ImplicitList
+{
+public :
+
+    Colon() : ImplicitList()
     {
-    public :
+        setStart(new Double(1));
+        setStep(new Double(1));
+        setEnd(new Dollar());
+        compute();
+    }
 
-        Colon() : ImplicitList()
-        {
-            setStart(new Double(1));
-            setStep(new Double(1));
-            setEnd(new Dollar());
-            compute();
-        }
+    Colon* clone()
+    {
+        return new Colon();
+    }
 
-        Colon* clone()
-        {
-            return new Colon();
-        }
+    InternalType::RealType getType(void)
+    {
+        return RealColon;
+    }
 
-        InternalType::RealType getType(void)
-        {
-            return RealColon;
-        }
+    bool isColon()
+    {
+        return true;
+    }
 
-        bool isColon()
-        {
-            return true;
-        }
-
-    };
+};
 }
 
 #endif /* !__COLON_HXX__ */

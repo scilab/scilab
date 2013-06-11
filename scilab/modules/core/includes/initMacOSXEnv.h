@@ -14,15 +14,15 @@
 #ifndef __INITMACOSXENV_H__
 #define __INITMACOSXENV_H__
 
-/* 
+/*
  * Specific wrapper for mac os X which is going to call realmin in a specific
  * thread.
- * Takes the same args as StartScilabEngine 
+ * Takes the same args as StartScilabEngine
  * @param argc
  * @param argv initial_script the initial script given to Scilab
  * @param iFileIndex initial script index in argv : the initial script given to Scilab
  * @return 1 if OK or 0 if KO
- */ 
+ */
 
 int initMacOSXEnv(int argc, char *argv[], int iFileIndex);
 

@@ -7,10 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = acoth(x)
-  if isreal(x)&abs(x)>=1 then //the result is real
-    y = atanh(ones(x)./x)
-  else
-    y = atanh(x)+%i*%pi/2*csgn(%i*(x-1));
-  end
+    if isreal(x)&abs(x)>=1 then //the result is real
+        y = atanh(ones(x)./x)
+    else
+        y = atanh(x)+%i*%pi/2*csgn(%i*(x-1));
+    end
 
 endfunction

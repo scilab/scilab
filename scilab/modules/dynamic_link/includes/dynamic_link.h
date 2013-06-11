@@ -51,7 +51,7 @@ DYNAMIC_LINK_IMPEXP int Sci_dlsym(wchar_t* _pwstEntryPointName, int _iLibID, BOO
 * @param _piErr                 : Error Id
 * @return id                    : Dynamic Library ID
 */
-DYNAMIC_LINK_IMPEXP int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran ,int *_piErr);
+DYNAMIC_LINK_IMPEXP int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran , int *_piErr);
 
 #endif /* __DYNAMIC_LINK_H__ */
 /*-----------------------------------------------------------------------------------*/

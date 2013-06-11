@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
  *
@@ -10,62 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="loadhistory">
-    <refnamediv>
-        <refname>loadhistory</refname>
-        <refpurpose>charge un fichier contenant l'historique</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>loadhistory()
-            loadhistory(f)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>f</term>
-                <listitem>
-                    <para>chemin du fichier à charger</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>charge un fichier contenant l'historique</para>
-        <para>Par défaut, le nom du fichier contenant l'historique est SCIHOME/history</para>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="loadhistory">
+        <refnamediv>
+            <refname>loadhistory</refname>
+            <refpurpose>charge un fichier contenant l'historique</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>loadhistory()
+                loadhistory(f)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Paramètres</title>
+            <variablelist>
+                <varlistentry>
+                    <term>f</term>
+                    <listitem>
+                        <para>chemin du fichier à charger</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>charge un fichier contenant l'historique</para>
+            <para>Par défaut, le nom du fichier contenant l'historique est SCIHOME/history</para>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example"><![CDATA[
 loadhistory(SCI+'/session.scilab')
 ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="savehistory">savehistory</link>
-            </member>
-            <member>
-                <link linkend="resethistory">resethistory</link>
-            </member>
-            <member>
-                <link linkend="gethistory">gethistory</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.1</revnumber>
-                <revremark>
-                    Le fichier par défaut pour stocker l'historique est SCIHOME/history (au lieu de SCIHOME/.history.scilab).
-                </revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="savehistory">savehistory</link>
+                </member>
+                <member>
+                    <link linkend="resethistory">resethistory</link>
+                </member>
+                <member>
+                    <link linkend="gethistory">gethistory</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.1</revnumber>
+                    <revremark>
+                        Le fichier par défaut pour stocker l'historique est SCIHOME/history (au lieu de SCIHOME/.history.scilab).
+                    </revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

@@ -10,7 +10,7 @@
 function demo_exp()
 
     exec("SCI/modules/graphics/demos/cmplxfunc/MacCmplx.sci", -1);
-    
+
     R     = 2;
     theta = -130;
     alpha = 73;

@@ -87,7 +87,7 @@ BOOL setlanguage(wchar_t *lang)
                 {
                     if (pstLang == NULL || *pstLang == 0)
                     {
-                        if(pstLang)
+                        if (pstLang)
                         {
                             FREE(pstLang);
                         }

@@ -20,9 +20,9 @@ function [ this , isok ] = optimbase_checkx0 ( this )
     [ this , isfeasible ] = optimbase_isfeasible ( this , this.x0 )
     isok = ( isfeasible == 1 )
     if ( isok ) then
-      this = optimbase_log ( this , sprintf ( "... initial guess is feasible." ) )
+        this = optimbase_log ( this , sprintf ( "... initial guess is feasible." ) )
     else
-      this = optimbase_log ( this , sprintf ( "... initial guess is not feasible." ) )
+        this = optimbase_log ( this , sprintf ( "... initial guess is not feasible." ) )
     end
 endfunction
 

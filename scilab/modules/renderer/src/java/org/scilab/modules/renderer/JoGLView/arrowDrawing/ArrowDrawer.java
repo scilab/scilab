@@ -54,10 +54,10 @@ public class ArrowDrawer {
     private static final double APEX_ANGLE = 40.0;
 
     /** The cosine of the apex's half-angle. */
-    private static final double COS_HALF_ANGLE = Math.cos(Math.toRadians(0.5*APEX_ANGLE));
+    private static final double COS_HALF_ANGLE = Math.cos(Math.toRadians(0.5 * APEX_ANGLE));
 
     /** The sine of the apex's half-angle. */
-    private static final double SIN_HALF_ANGLE = Math.sin(Math.toRadians(0.5*APEX_ANGLE));
+    private static final double SIN_HALF_ANGLE = Math.sin(Math.toRadians(0.5 * APEX_ANGLE));
 
     /** The reduction ratio: the size of an arrow relative to the Axes size. */
     private static final double REDUCTION_RATIO = 0.02;
@@ -392,7 +392,7 @@ public class ArrowDrawer {
      * @param arrowSize the arrow size in pixels.
      */
     private void computeAndWriteSingleArrowVertexData(Transformation projection, FloatBuffer vertexData, FloatBuffer arrowVertexData,
-                                                      int[] segmentVertexOffsets, int[] arrowVertexOffsets, int offset, double arrowSize) {
+            int[] segmentVertexOffsets, int[] arrowVertexOffsets, int offset, double arrowSize) {
 
         /* Compute the arrow tip vertices in window coordinates from the object coordinate segment vertices */
         Vector3d v0 = new Vector3d(vertexData.get(segmentVertexOffsets[0]), vertexData.get(segmentVertexOffsets[0] + 1), vertexData.get(segmentVertexOffsets[0] + 2));
@@ -442,8 +442,8 @@ public class ArrowDrawer {
             i0 = indexData.get(2 * i);
             i1 = indexData.get(2 * i + 1);
 
-            Vector3d v0 = new Vector3d(vertexData.get(i0*offset), vertexData.get(i0 * offset + 1), vertexData.get(i0 * offset + 2));
-            Vector3d v1 = new Vector3d(vertexData.get(i1*offset), vertexData.get(i1 * offset + 1), vertexData.get(i1 * offset + 2));
+            Vector3d v0 = new Vector3d(vertexData.get(i0 * offset), vertexData.get(i0 * offset + 1), vertexData.get(i0 * offset + 2));
+            Vector3d v1 = new Vector3d(vertexData.get(i1 * offset), vertexData.get(i1 * offset + 1), vertexData.get(i1 * offset + 2));
 
             v0 = projection.project(v0);
             v1 = projection.project(v1);

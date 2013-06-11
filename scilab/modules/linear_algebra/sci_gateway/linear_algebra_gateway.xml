@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<!--
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -12,8 +12,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!--
+    
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -28,22 +28,22 @@
 
  Don't touch if you do not know what you are doing
 -->
-
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="linear_algebra">
-<PRIMITIVE gatewayId="2" primitiveId="4" primitiveName="bdiag" />
-<PRIMITIVE gatewayId="44" primitiveId="1" primitiveName="qr" />
-<PRIMITIVE gatewayId="44" primitiveId="2" primitiveName="svd" />
-<PRIMITIVE gatewayId="44" primitiveId="3" primitiveName="lsq" />
-<PRIMITIVE gatewayId="44" primitiveId="4" primitiveName="spec" />
-<PRIMITIVE gatewayId="44" primitiveId="5" primitiveName="inv" />
-<PRIMITIVE gatewayId="44" primitiveId="6" primitiveName="rcond" />
-<PRIMITIVE gatewayId="44" primitiveId="7" primitiveName="chol" />
-<PRIMITIVE gatewayId="44" primitiveId="8" primitiveName="lu" />
-<PRIMITIVE gatewayId="44" primitiveId="9" primitiveName="slash" />
-<PRIMITIVE gatewayId="44" primitiveId="10" primitiveName="backslash" />
-<PRIMITIVE gatewayId="44" primitiveId="11" primitiveName="schur" />
-<PRIMITIVE gatewayId="44" primitiveId="12" primitiveName="hess" />
-<PRIMITIVE gatewayId="44" primitiveId="13" primitiveName="det" />
-<PRIMITIVE gatewayId="44" primitiveId="14" primitiveName="balanc" />
-</GATEWAY>
+    
+    <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+    <GATEWAY name="linear_algebra">
+        <PRIMITIVE gatewayId="2" primitiveId="4" primitiveName="bdiag" />
+        <PRIMITIVE gatewayId="44" primitiveId="1" primitiveName="qr" />
+        <PRIMITIVE gatewayId="44" primitiveId="2" primitiveName="svd" />
+        <PRIMITIVE gatewayId="44" primitiveId="3" primitiveName="lsq" />
+        <PRIMITIVE gatewayId="44" primitiveId="4" primitiveName="spec" />
+        <PRIMITIVE gatewayId="44" primitiveId="5" primitiveName="inv" />
+        <PRIMITIVE gatewayId="44" primitiveId="6" primitiveName="rcond" />
+        <PRIMITIVE gatewayId="44" primitiveId="7" primitiveName="chol" />
+        <PRIMITIVE gatewayId="44" primitiveId="8" primitiveName="lu" />
+        <PRIMITIVE gatewayId="44" primitiveId="9" primitiveName="slash" />
+        <PRIMITIVE gatewayId="44" primitiveId="10" primitiveName="backslash" />
+        <PRIMITIVE gatewayId="44" primitiveId="11" primitiveName="schur" />
+        <PRIMITIVE gatewayId="44" primitiveId="12" primitiveName="hess" />
+        <PRIMITIVE gatewayId="44" primitiveId="13" primitiveName="det" />
+        <PRIMITIVE gatewayId="44" primitiveId="14" primitiveName="balanc" />
+    </GATEWAY>

@@ -67,18 +67,54 @@ void clearScilabPreferences()
 {
     if (isInit == 1)
     {
-        if (scilabPref.heapSize) FREE((void*)scilabPref.heapSize);
-        if (scilabPref.adaptToDisplay) FREE((void*)scilabPref.adaptToDisplay);
-        if (scilabPref.columnsToDisplay) FREE((void*)scilabPref.columnsToDisplay);
-        if (scilabPref.linesToDisplay) FREE((void*)scilabPref.linesToDisplay);
-        if (scilabPref.historySaveAfter) FREE((void*)scilabPref.historySaveAfter);
-        if (scilabPref.historyFile) FREE((void*)scilabPref.historyFile);
-        if (scilabPref.historyLines) FREE((void*)scilabPref.historyLines);
-        if (scilabPref.historyEnable) FREE((void*)scilabPref.historyEnable);
-        if (scilabPref.ieee) FREE((void*)scilabPref.ieee);
-        if (scilabPref.format) FREE((void*)scilabPref.format);
-        if (scilabPref.formatWidth) FREE((void*)scilabPref.formatWidth);
-        if (scilabPref.language) FREE((void*)scilabPref.language);
+        if (scilabPref.heapSize)
+        {
+            FREE((void*)scilabPref.heapSize);
+        }
+        if (scilabPref.adaptToDisplay)
+        {
+            FREE((void*)scilabPref.adaptToDisplay);
+        }
+        if (scilabPref.columnsToDisplay)
+        {
+            FREE((void*)scilabPref.columnsToDisplay);
+        }
+        if (scilabPref.linesToDisplay)
+        {
+            FREE((void*)scilabPref.linesToDisplay);
+        }
+        if (scilabPref.historySaveAfter)
+        {
+            FREE((void*)scilabPref.historySaveAfter);
+        }
+        if (scilabPref.historyFile)
+        {
+            FREE((void*)scilabPref.historyFile);
+        }
+        if (scilabPref.historyLines)
+        {
+            FREE((void*)scilabPref.historyLines);
+        }
+        if (scilabPref.historyEnable)
+        {
+            FREE((void*)scilabPref.historyEnable);
+        }
+        if (scilabPref.ieee)
+        {
+            FREE((void*)scilabPref.ieee);
+        }
+        if (scilabPref.format)
+        {
+            FREE((void*)scilabPref.format);
+        }
+        if (scilabPref.formatWidth)
+        {
+            FREE((void*)scilabPref.formatWidth);
+        }
+        if (scilabPref.language)
+        {
+            FREE((void*)scilabPref.language);
+        }
         initPrefs();
     }
     isInit = 0;
@@ -160,7 +196,10 @@ char * getAttribute(xmlDocPtr doc, xmlXPathContextPtr xpathCtxt, const char * xp
         value = (char *)((xmlAttrPtr)xpathObj->nodesetval->nodeTab[0])->children->content;
     }
 
-    if (xpathObj) xmlXPathFreeObject(xpathObj);
+    if (xpathObj)
+    {
+        xmlXPathFreeObject(xpathObj);
+    }
 
     return value;
 }

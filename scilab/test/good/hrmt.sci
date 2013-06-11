@@ -9,18 +9,18 @@
 
 
 function [pg,U]=hrmt(v)
-// Syntax: [pg,U]=hrmt(v)
-// Finds unimodular U and pg = gcd of a row of polynomials v
-// such that v*U = [pg,0]
-//!
-  [n,m]=size(v)
-  if n>1 then 
-    error(msprintf(gettext("%s: Wrong size for input argument #%d: A row vector expected.\n"),"hrmt",1))
-  end
-  pg=v(1)
-  U=eye(m,m)
-  for k=2:m
-    [pg,uk]=bezout(pg,v(k))
-    U(:,k-1:k)=U(:,k-1:k)*uk(:,[2 1])
-  end
+    // Syntax: [pg,U]=hrmt(v)
+    // Finds unimodular U and pg = gcd of a row of polynomials v
+    // such that v*U = [pg,0]
+    //!
+    [n,m]=size(v)
+    if n>1 then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A row vector expected.\n"),"hrmt",1))
+    end
+    pg=v(1)
+    U=eye(m,m)
+    for k=2:m
+        [pg,uk]=bezout(pg,v(k))
+        U(:,k-1:k)=U(:,k-1:k)*uk(:,[2 1])
+    end
 endfunction

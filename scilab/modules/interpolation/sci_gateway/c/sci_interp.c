@@ -19,16 +19,17 @@
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(evalpwhermite) (double *t, double *st, double *dst, double *ddst,
-    double *dddst,int *m, double *x, double *y, double *d, int *n, int *outmode);
+                               double *dddst, int *m, double *x, double *y, double *d, int *n, int *outmode);
 /*--------------------------------------------------------------------------*/
 #define NB_OUTMODE 6
-static TableType OutModeTable[NB_OUTMODE] = {
-	{ "C0"        , C0         },
-	{ "by_zero"   , BY_ZERO    },
-	{ "natural"   , NATURAL    },
-	{ "periodic"  , PERIODIC   },
-	{ "by_nan"    , BY_NAN     },
-	{ "linear"    , LINEAR     }
+static TableType OutModeTable[NB_OUTMODE] =
+{
+    { "C0"        , C0         },
+    { "by_zero"   , BY_ZERO    },
+    { "natural"   , NATURAL    },
+    { "periodic"  , PERIODIC   },
+    { "by_nan"    , BY_NAN     },
+    { "linear"    , LINEAR     }
 };
 /*--------------------------------------------------------------------------*/
 int intinterp1(char *fname, void *pvApiCtx)
@@ -48,9 +49,9 @@ int intinterp1(char *fname, void *pvApiCtx)
     GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &my, &ny, &ly);
     GetRhsVar(4, MATRIX_OF_DOUBLE_DATATYPE, &md, &nd, &ld);
 
-    if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || (mx != 1  &&  nx != 1) || mx*nx < 2)
+    if ( mx != my  ||  nx != ny  ||  md != mx || nd != nx || (mx != 1  &&  nx != 1) || mx * nx < 2)
     {
-        Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"),fname,2,3);
+        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"), fname, 2, 3);
         return 0;
     }
     n = mx * nx;    /* number of interpolation points */
@@ -61,7 +62,7 @@ int intinterp1(char *fname, void *pvApiCtx)
         SciErr sciErr;
         int *piAddressVar = NULL;
         sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddressVar);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i);
@@ -81,7 +82,7 @@ int intinterp1(char *fname, void *pvApiCtx)
         outmode = get_type(OutModeTable, NB_OUTMODE, str_outmode, ns);
         if ( outmode == UNDEFINED )
         {
-            Scierror(999,_("%s: Wrong values for input argument #%d: Unknown '%s' type.\n"),fname,5,"outmode");
+            Scierror(999, _("%s: Wrong values for input argument #%d: Unknown '%s' type.\n"), fname, 5, "outmode");
             return 0;
         };
     }
@@ -101,7 +102,7 @@ int intinterp1(char *fname, void *pvApiCtx)
     *      double precision t(m), st(m), dst(m), ddst(m), dddst(m), x(n), y(n), d(n)
     */
     C2F(evalpwhermite) (stk(lt), stk(lst), stk(ldst), stk(lddst), stk(ldddst),
-        &m, stk(lx), stk(ly), stk(ld), &n, &outmode);
+                        &m, stk(lx), stk(ly), stk(ld), &n, &outmode);
 
     LhsVar(1) = Rhs + 1;
     LhsVar(2) = Rhs + 2;

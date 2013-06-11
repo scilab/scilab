@@ -20,32 +20,32 @@
 //
 
 function scs_m = update_redraw_obj(scs_m, path, o)
-//** 02/12/06 : use of objects permutation in gh_curwin.children.children()
+    //** 02/12/06 : use of objects permutation in gh_curwin.children.children()
 
-if length(path)==2 then
-  //** --------- LINK   and -------- TEXT --------------
-  if typeof(o)=="Link" | typeof(o)=="Text" then
-    //** Link and Text are update immediately here 
-    scs_m(path) = o ; 
-    //** quick update for new graphics
-    drawlater() ;
-     gh_curwin = scf(gh_current_window);
-     gh_axes = gca(); 
-     o_size = size(gh_axes.children);
-     gr_k = get_gri(path(2), o_size(1)) ; //** semi empirical equation :)
-     update_gr(gr_k, o) //** update the graphics data structure only of the last object 
-     drawnow(); 
-  else
-    //** ---------------- BLOCK ------------------------
-    //** the BLOCK and connected links are updated here 
-    //** new graphics functions is now included in changeports
-    scs_m = changeports(scs_m, path, o)
-  end
-  
-else // change a block in a sub-level
+    if length(path)==2 then
+        //** --------- LINK   and -------- TEXT --------------
+        if typeof(o)=="Link" | typeof(o)=="Text" then
+            //** Link and Text are update immediately here
+            scs_m(path) = o ;
+            //** quick update for new graphics
+            drawlater() ;
+            gh_curwin = scf(gh_current_window);
+            gh_axes = gca();
+            o_size = size(gh_axes.children);
+            gr_k = get_gri(path(2), o_size(1)) ; //** semi empirical equation :)
+            update_gr(gr_k, o) //** update the graphics data structure only of the last object
+            drawnow();
+        else
+            //** ---------------- BLOCK ------------------------
+            //** the BLOCK and connected links are updated here
+            //** new graphics functions is now included in changeports
+            scs_m = changeports(scs_m, path, o)
+        end
 
-  scs_m(path) = o ;
+    else // change a block in a sub-level
 
-end
+        scs_m(path) = o ;
+
+    end
 
 endfunction

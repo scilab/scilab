@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
     * 
@@ -10,58 +10,58 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clc">
-    <refnamediv>
-        <refname>clc</refname>
-        <refpurpose>Clear Command Window</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>clc([nblines])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>nblines</term>
-                <listitem>
-                    <para>a double value</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <code>clc()</code> clears all input and output from the Console.
-        </para>
-        <para>
-            After using <code>clc()</code>, you cannot use the scroll bar to see the history of functions, but still can use the up arrow to recall statements from the command history.
-        </para>
-        <para>
-            <code>clc(nblines)</code> clears <varname>nblines</varname> above cursor current line and move cursor up to this line.
-        </para>
-        <para>
-            <note>
-                Note that <literal>clc([nblines])</literal> cannot be used under Unix/Linux platforms when Scilab used in <literal>cli</literal> or <literal>adv-cli</literal> (no window) modes.
-            </note>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clc">
+        <refnamediv>
+            <refname>clc</refname>
+            <refpurpose>Clear Command Window</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>clc([nblines])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>nblines</term>
+                    <listitem>
+                        <para>a double value</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <code>clc()</code> clears all input and output from the Console.
+            </para>
+            <para>
+                After using <code>clc()</code>, you cannot use the scroll bar to see the history of functions, but still can use the up arrow to recall statements from the command history.
+            </para>
+            <para>
+                <code>clc(nblines)</code> clears <varname>nblines</varname> above cursor current line and move cursor up to this line.
+            </para>
+            <para>
+                <note>
+                    Note that <literal>clc([nblines])</literal> cannot be used under Unix/Linux platforms when Scilab used in <literal>cli</literal> or <literal>adv-cli</literal> (no window) modes.
+                </note>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 rand(10,10)
 clc();
 rand(10,10)
 clc(5); // Delete the 5 previous lines
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="tohome">tohome</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="tohome">tohome</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

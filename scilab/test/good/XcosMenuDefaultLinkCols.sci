@@ -20,29 +20,29 @@
 //
 
 function XcosMenuDefaultLinkCols
-//
-  Cmenu = []
+    //
+    Cmenu = []
 
-  [edited, options]   = do_options(scs_m.props.options, "LinkColor")
-  scs_m.props.options = options
+    [edited, options]   = do_options(scs_m.props.options, "LinkColor")
+    scs_m.props.options = options
 
-  if edited then
+    if edited then
 
-    //** Acquire the current clicked window
-    gh_curwin = scf(%win)
-    gh_axes = gca()
+        //** Acquire the current clicked window
+        gh_curwin = scf(%win)
+        gh_axes = gca()
 
-    //** Clear the graphics window WITHOUT changing his parameters ! :)
-    drawlater()
+        //** Clear the graphics window WITHOUT changing his parameters ! :)
+        drawlater()
 
-    //** Clear any existing graphic objects inside the axes
-    if ~isempty(gh_axes.children)      
-      delete(gh_axes.children)
+        //** Clear any existing graphic objects inside the axes
+        if ~isempty(gh_axes.children)
+            delete(gh_axes.children)
+        end
+        drawobjs(scs_m, gh_curwin) //** Re-draw all the graphics object
+
+        Cmenu = [], %pt = []
     end
-    drawobjs(scs_m, gh_curwin) //** Re-draw all the graphics object
-
-    Cmenu = [], %pt = []
-  end
 
 endfunction
 

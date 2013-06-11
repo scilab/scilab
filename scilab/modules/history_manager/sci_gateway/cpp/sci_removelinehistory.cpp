@@ -25,9 +25,9 @@ extern "C"
 
 types::Function::ReturnValue sci_removelinehistory(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
-        if((in[0]->isDouble() ==false) || (in[0]->getAs<types::Double>()->isScalar() == false))
+        if ((in[0]->isDouble() == false) || (in[0]->getAs<types::Double>()->isScalar() == false))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A double expected.\n"), "removelinehistory", 1);
             return types::Function::Error;
@@ -36,9 +36,9 @@ types::Function::ReturnValue sci_removelinehistory(types::typed_list &in, int _i
         types::Double* pDbl = in[0]->getAs<types::Double>();
         int size = HistoryManager::getInstance()->getNumberOfLines() - 1;
 
-        if((pDbl->get(0) < 0) || (pDbl->get(0) > size))
+        if ((pDbl->get(0) < 0) || (pDbl->get(0) > size))
         {
-			Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), "removelinehistory", 1, 0, size);
+            Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"), "removelinehistory", 1, 0, size);
             return types::Function::Error;
         }
 

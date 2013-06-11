@@ -1,86 +1,86 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * 
  * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:scilab="http://www.scilab.org" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="c_sub" xml:lang="en">
-    <refnamediv>
-        <refname>c_sub</refname>
-        <refpurpose>calcule de la soustraction depuis du code C</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>a = c_sub(b,c)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>Premier argument d'entrée</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c</term>
-                <listitem>
-                    <para>Second argument d'entrée</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>Argument de sortie</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>calcule la soustraction.</para>
-        <para>Ajoutez ici plus d'informations sur cette fonction </para>
-        <para>
-            LaTeX peut etre utilisé pour afficher l'équation: Dans ce cas, le rendu pourrait être <latex>$x-y$</latex>
-        </para>
-        <para>Il est possible d'inclure une image en utilisant du code Scilab (il faut déclarer au préalable le namespace xmlns:scilab="http://www.scilab.org"):</para>
-        <programlisting role="xml">
-            <![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:scilab="http://www.scilab.org" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="c_sub" xml:lang="en">
+        <refnamediv>
+            <refname>c_sub</refname>
+            <refpurpose>calcule de la soustraction depuis du code C</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>a = c_sub(b,c)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>b</term>
+                    <listitem>
+                        <para>Premier argument d'entrée</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>c</term>
+                    <listitem>
+                        <para>Second argument d'entrée</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>a</term>
+                    <listitem>
+                        <para>Argument de sortie</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>calcule la soustraction.</para>
+            <para>Ajoutez ici plus d'informations sur cette fonction </para>
+            <para>
+                LaTeX peut etre utilisé pour afficher l'équation: Dans ce cas, le rendu pourrait être <latex>$x-y$</latex>
+            </para>
+            <para>Il est possible d'inclure une image en utilisant du code Scilab (il faut déclarer au préalable le namespace xmlns:scilab="http://www.scilab.org"):</para>
+            <programlisting role="xml">
+                <![CDATA[
 	  <scilab:image>
 	    plot3d();
 	  </scilab:image>
 	  ]]>
-        </programlisting>
-        <scilab:image>
-            plot3d();
-        </scilab:image>
-        <para>Si une image contient une chaîne de caractères localisées, il faut alors ajouter l'attribut scilab:localized="true":</para>
-        <programlisting role="xml">
-            <![CDATA[
+            </programlisting>
+            <scilab:image>
+                plot3d();
+            </scilab:image>
+            <para>Si une image contient une chaîne de caractères localisées, il faut alors ajouter l'attribut scilab:localized="true":</para>
+            <programlisting role="xml">
+                <![CDATA[
 	  <scilab:image localized="true">
 	    plot2d();
 	    xtitle("Mes jolis plots 2D");
 	  </scilab:image>
 	  ]]>
-        </programlisting>
-        <scilab:image localized="true">
-            plot2d();
-            xtitle("Mes jolis plots 2D");
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>Exemples</title>
-        <programlisting role="example">c_sub(3,4)</programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="c_sum">c_sum</link>
-            </member>
-            <member>
-                <link type="scilab" linkend="scilab.help/sum">Lien vers la page d'aide sum de Scilab</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </programlisting>
+            <scilab:image localized="true">
+                plot2d();
+                xtitle("Mes jolis plots 2D");
+            </scilab:image>
+        </refsection>
+        <refsection>
+            <title>Exemples</title>
+            <programlisting role="example">c_sub(3,4)</programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="c_sum">c_sum</link>
+                </member>
+                <member>
+                    <link type="scilab" linkend="scilab.help/sum">Lien vers la page d'aide sum de Scilab</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

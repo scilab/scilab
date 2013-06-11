@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
@@ -11,55 +11,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_generror" xml:lang="en">
-    <refnamediv>
-        <refname>assert_generror</refname>
-        <refpurpose>Generates an error.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            assert_generror ( errormsg )
-            assert_generror ( errormsg , errornb )
-            
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>expectedmsg :</term>
-                <listitem>
-                    <para> a 1-by-1 matrix of strings, the error message to be produced</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>expectederrnb :</term>
-                <listitem>
-                    <para> a 1-by-1 matrix of doubles, integer values,  the error number (default expectederrnb=[]).</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Calls the error function, with the given arguments.
-        </para>
-        <para>
-            This function is called by the assert_check* function each time an error
-            produced by the wrong match between expected and computed outputs is generated.
-            In the case where an assert_check* function receives a wrong number of input arguments,
-            a wrong number of output arguments, a wrong type of input argument or a wrong content
-            of input arguments, the regular error function is called.
-            This function can be customized to modify the behaviour of the assert_check* functions.
-        </para>
-        <para>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_generror" xml:lang="en">
+        <refnamediv>
+            <refname>assert_generror</refname>
+            <refpurpose>Generates an error.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                assert_generror ( errormsg )
+                assert_generror ( errormsg , errornb )
+                
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term>expectedmsg :</term>
+                    <listitem>
+                        <para> a 1-by-1 matrix of strings, the error message to be produced</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>expectederrnb :</term>
+                    <listitem>
+                        <para> a 1-by-1 matrix of doubles, integer values,  the error number (default expectederrnb=[]).</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Calls the error function, with the given arguments.
+            </para>
+            <para>
+                This function is called by the assert_check* function each time an error
+                produced by the wrong match between expected and computed outputs is generated.
+                In the case where an assert_check* function receives a wrong number of input arguments,
+                a wrong number of output arguments, a wrong type of input argument or a wrong content
+                of input arguments, the regular error function is called.
+                This function can be customized to modify the behaviour of the assert_check* functions.
+            </para>
+            <para>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 // Both these calls generate an error
 assert_generror ( "oups" );
 assert_generror ( "oups" , 123456789 );
@@ -96,15 +96,15 @@ assert_generror = olderrorfunction;
 funcprot(back);
 
    ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revdescription>Function introduced
-                </revdescription>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.0</revnumber>
+                    <revdescription>Function introduced
+                    </revdescription>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

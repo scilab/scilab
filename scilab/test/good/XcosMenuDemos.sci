@@ -20,11 +20,11 @@
 //
 
 function XcosMenuDemos()
-      
-      global %scicos_demo_mode ; 
-      
-      %scicos_demo_mode = 1    ; 
-      
-      Cmenu = "XcosMenuOpen" ; 
-    
+
+    global %scicos_demo_mode ;
+
+    %scicos_demo_mode = 1    ;
+
+    Cmenu = "XcosMenuOpen" ;
+
 endfunction

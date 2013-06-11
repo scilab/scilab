@@ -12,33 +12,33 @@
 //   Returns the string containing the Optim Simplex component.
 //
 function str = %TSIMPLEX_string ( this )
-  str = []
-  k = 1
-  str(k) = sprintf("Optim Simplex Object:\n")
-  k = k + 1
-  str(k) = sprintf("=====================")
-  if this.n == 0 then
+    str = []
+    k = 1
+    str(k) = sprintf("Optim Simplex Object:\n")
     k = k + 1
-    str(k) = sprintf("Empty simplex (zero dimension)\n");
-  elseif this.nbve == 0 then
-    k = k + 1
-    str(k) = sprintf("Empty simplex (zero vertices)\n");
-  elseif this.x == [] then
-    k = k + 1
-    str(k) = sprintf("Empty simplex (zero coordinates)\n");
-  elseif this.fv == [] then
-    k = k + 1
-    str(k) = sprintf("Empty simplex (zero function values)\n");
-  else
-    for ive = 1:this.nbve
-      // Compute a string for x
-      ss = sprintf("%e", this.x(ive,1));
-      for i = 2:this.n
-        ss = ss + " " + sprintf("%e", this.x(ive,i));
-      end
-      k = k + 1
-      str(k) = sprintf("Vertex #%d/%d : fv=%e, x=%s\n" , ive , this.nbve , this.fv(ive), ss );
+    str(k) = sprintf("=====================")
+    if this.n == 0 then
+        k = k + 1
+        str(k) = sprintf("Empty simplex (zero dimension)\n");
+    elseif this.nbve == 0 then
+        k = k + 1
+        str(k) = sprintf("Empty simplex (zero vertices)\n");
+    elseif this.x == [] then
+        k = k + 1
+        str(k) = sprintf("Empty simplex (zero coordinates)\n");
+    elseif this.fv == [] then
+        k = k + 1
+        str(k) = sprintf("Empty simplex (zero function values)\n");
+    else
+        for ive = 1:this.nbve
+            // Compute a string for x
+            ss = sprintf("%e", this.x(ive,1));
+            for i = 2:this.n
+                ss = ss + " " + sprintf("%e", this.x(ive,i));
+            end
+            k = k + 1
+            str(k) = sprintf("Vertex #%d/%d : fv=%e, x=%s\n" , ive , this.nbve , this.fv(ive), ss );
+        end
     end
-  end
 endfunction
 

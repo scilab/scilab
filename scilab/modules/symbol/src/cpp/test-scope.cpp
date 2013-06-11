@@ -21,50 +21,52 @@ using namespace types;
 using symbol::Symbol;
 using symbol::Scope;
 
-static int scope_test(void) {
+static int scope_test(void)
+{
 
-  Symbol scilab("scilab");
-  Symbol scicos("scicos");
+    Symbol scilab("scilab");
+    Symbol scicos("scicos");
 
-  Scope env;
-  Scope scicos_ns ("SCICOS");
+    Scope env;
+    Scope scicos_ns ("SCICOS");
 
-	int *piVal0		= NULL;
-	int *piJaune		= NULL;
+    int *piVal0		= NULL;
+    int *piJaune		= NULL;
 
-  Int zero(1, 1, &piVal0);
-	piVal0[0] = 0;
+    Int zero(1, 1, &piVal0);
+    piVal0[0] = 0;
 
-  Int jaune(1,1, &piJaune);
-	piJaune[0] = 51;
+    Int jaune(1, 1, &piJaune);
+    piJaune[0] = 51;
 
-  env.put(scicos, zero);
-  env.put(scilab, jaune);
-  scicos_ns.put(scicos, jaune);
-  scicos_ns.put(scilab, zero);
+    env.put(scicos, zero);
+    env.put(scilab, jaune);
+    scicos_ns.put(scicos, jaune);
+    scicos_ns.put(scilab, zero);
 
-  assert(env.get(scilab) == &jaune);
-  assert(env.get(scicos) == &zero);
-  assert(scicos_ns.get(scilab) == &zero);
-  assert(scicos_ns.get(scicos) == &jaune);
+    assert(env.get(scilab) == &jaune);
+    assert(env.get(scicos) == &zero);
+    assert(scicos_ns.get(scilab) == &zero);
+    assert(scicos_ns.get(scicos) == &jaune);
 
-  std::cout << "----------------" << std::endl;
-  std::cout << "Scope ENV Overview :" << std::endl;
-  std::cout << "----------------" << std::endl;
-  std::cout << env;
-  std::cout << "----------------" << std::endl;
-  std::cout << std::endl;
-  std::cout << "----------------" << std::endl;
-  std::cout << "Scope SCICOS Overview :" << std::endl;
-  std::cout << "----------------" << std::endl;
-  std::cout << scicos_ns;
-  std::cout << "----------------" << std::endl;
+    std::cout << "----------------" << std::endl;
+    std::cout << "Scope ENV Overview :" << std::endl;
+    std::cout << "----------------" << std::endl;
+    std::cout << env;
+    std::cout << "----------------" << std::endl;
+    std::cout << std::endl;
+    std::cout << "----------------" << std::endl;
+    std::cout << "Scope SCICOS Overview :" << std::endl;
+    std::cout << "----------------" << std::endl;
+    std::cout << scicos_ns;
+    std::cout << "----------------" << std::endl;
 
-  return 0;
+    return 0;
 }
 
 
-int main(void) {
-  scope_test();
-  return 0;
+int main(void)
+{
+    scope_test();
+    return 0;
 }

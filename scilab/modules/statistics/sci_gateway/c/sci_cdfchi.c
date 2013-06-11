@@ -22,10 +22,12 @@ extern int C2F(cdfchi)(int *, double *, double *, double *, double *, int *, dou
  */
 int sci_cdfchi(char *fname, void* pvApiCtx)
 {
-  struct cdf_item items[] = 
-    {{"PQ", 2, 2, 2},
-     {"X" , 3, 1, 3},
-     {"Df", 3, 1, 0}};
-  struct cdf_descriptor cdf = mkcdf(cdfchi, 3, 4, 1, 2, items);
-  return cdf_generic(fname, pvApiCtx, &cdf); 
+    struct cdf_item items[] =
+    {
+        {"PQ", 2, 2, 2},
+        {"X" , 3, 1, 3},
+        {"Df", 3, 1, 0}
+    };
+    struct cdf_descriptor cdf = mkcdf(cdfchi, 3, 4, 1, 2, items);
+    return cdf_generic(fname, pvApiCtx, &cdf);
 }

@@ -496,28 +496,28 @@ public class ScilabXMLUtilities {
             int last = 0;
             for (int i = 0; i < chars.length; i++) {
                 switch (chars[i]) {
-                case '\'' :
-                    buf.append(chars, last, i - last).append("&apos;");
-                    last = i + 1;
-                    break;
-                case '\"' :
-                    buf.append(chars, last, i - last).append("&quot;");
-                    last = i + 1;
-                    break;
-                case '<' :
-                    buf.append(chars, last, i - last).append("&lt;");
-                    last = i + 1;
-                    break;
-                case '>' :
-                    buf.append(chars, last, i - last).append("&gt;");
-                    last = i + 1;
-                    break;
-                case '&' :
-                    buf.append(chars, last, i - last).append("&amp;");
-                    last = i + 1;
-                    break;
-                default :
-                    break;
+                    case '\'' :
+                        buf.append(chars, last, i - last).append("&apos;");
+                        last = i + 1;
+                        break;
+                    case '\"' :
+                        buf.append(chars, last, i - last).append("&quot;");
+                        last = i + 1;
+                        break;
+                    case '<' :
+                        buf.append(chars, last, i - last).append("&lt;");
+                        last = i + 1;
+                        break;
+                    case '>' :
+                        buf.append(chars, last, i - last).append("&gt;");
+                        last = i + 1;
+                        break;
+                    case '&' :
+                        buf.append(chars, last, i - last).append("&amp;");
+                        last = i + 1;
+                        break;
+                    default :
+                        break;
                 }
             }
 

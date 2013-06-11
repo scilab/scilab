@@ -22,10 +22,10 @@ extern "C"
 class SignalProcessingModule
 {
 private :
-   SignalProcessingModule(){};
-   ~SignalProcessingModule(){};
+    SignalProcessingModule() {};
+    ~SignalProcessingModule() {};
 public :
-   EXTERN_SIGNAL_PROCESSING_GW static int Load();
+    EXTERN_SIGNAL_PROCESSING_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_rpem, EXTERN_SIGNAL_PROCESSING_GW);

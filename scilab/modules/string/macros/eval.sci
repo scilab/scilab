@@ -10,23 +10,23 @@
 
 
 function _h = eval(z)
-  // Syntax :  H = eval(Z)
-  // returns the evaluation of the matrix of character strings Z.
-  // Example: a=1; b=2; Z=['a','b'] ; eval(Z) returns the matrix [1,2];
-  //!
+    // Syntax :  H = eval(Z)
+    // returns the evaluation of the matrix of character strings Z.
+    // Example: a=1; b=2; Z=['a','b'] ; eval(Z) returns the matrix [1,2];
+    //!
 
-  _h = [];
-  [mz, nz] = size(z);
-  if mz * nz > 1 then
-    str = [];
-    for l = 1:mz, for k = 1:nz,
-        str = [str; "%_h(" + string(l) + ", " + string(k) + ")=" + z(l,k)];
-      end
+    _h = [];
+    [mz, nz] = size(z);
+    if mz * nz > 1 then
+        str = [];
+        for l = 1:mz, for k = 1:nz,
+                str = [str; "%_h(" + string(l) + ", " + string(k) + ")=" + z(l,k)];
+            end
+        end
+    else
+        str = "%_h = " + z;
     end
-  else
-    str = "%_h = " + z;
-  end
-  %_h = [];
-  deff("[%_h] = %eval();", str);
-  _h = %eval();
+    %_h = [];
+    deff("[%_h] = %eval();", str);
+    _h = %eval();
 endfunction

@@ -3,7 +3,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function TitleLabel(varargin)
@@ -39,7 +39,7 @@ function TitleLabel(varargin)
         st = ListArg(1);
         execstr("monaxe."+ titlelabel +".text"+"=st")
         ListArg(1) = null();
-        nv=nv-1 
+        nv=nv-1
     else
         error(msprintf(gettext("%s: Wrong size or type for input argument #%d: A string expected.\n"),"TitleLabel",1));
     end
@@ -69,7 +69,7 @@ function TitleLabel(varargin)
     // smart drawlater
     current_figure=gcf();
     cur_draw_mode = current_figure.immediate_drawing;
-    current_figure.immediate_drawing = 'off';
+    current_figure.immediate_drawing = "off";
 
     ///////////////////////////////////
     //Global Property treatment      //

@@ -39,334 +39,334 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
  */
 public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 
-	/** Needed */
-	private static final long serialVersionUID = 4270905996765800574L;
-	private static final int SMALL_DISPLACEMENT = 2;
-	private static final int LARGE_DISPLACEMENT = 20;
+    /** Needed */
+    private static final long serialVersionUID = 4270905996765800574L;
+    private static final int SMALL_DISPLACEMENT = 2;
+    private static final int LARGE_DISPLACEMENT = 20;
 
-	// definition of layers from bottom to top
-	//private static final Integer BACKGROUND_LAYER = 0;
-	private static final Integer CANVAS_LAYER = new Integer(1);
-	private static final Integer WIDGET_LAYER = new Integer(2);
+    // definition of layers from bottom to top
+    //private static final Integer BACKGROUND_LAYER = 0;
+    private static final Integer CANVAS_LAYER = new Integer(1);
+    private static final Integer WIDGET_LAYER = new Integer(2);
 
-	/** Use to put a component above any other object within its layer */
-	private static final int TOP_POSITION = 0;
-	/** Use to put a component below any other object within its layer */
-	private static final int BOTTOM_POSITION = -1;
+    /** Use to put a component above any other object within its layer */
+    private static final int TOP_POSITION = 0;
+    /** Use to put a component below any other object within its layer */
+    private static final int BOTTOM_POSITION = -1;
 
-	private boolean autoResizeMode;
+    private boolean autoResizeMode;
 
-	private ScilabEventListener eventHandler;
+    private ScilabEventListener eventHandler;
 
-	/** An axes may contain at most one canvas for now */
-	private SwingScilabCanvas graphicCanvas;
+    /** An axes may contain at most one canvas for now */
+    private SwingScilabCanvas graphicCanvas;
 
-	private int figureId;
-	
-	/**
-	 * Default constructor
-	 * @param figureId id of the displayed figure
-	 */
-	public SwingScilabAxes(int figureId) {
-		super();
-		// default behavior
-		autoResizeMode = true;
+    private int figureId;
 
-		eventHandler = null;
-		graphicCanvas = null;
-		this.figureId = figureId;
+    /**
+     * Default constructor
+     * @param figureId id of the displayed figure
+     */
+    public SwingScilabAxes(int figureId) {
+        super();
+        // default behavior
+        autoResizeMode = true;
 
-		// we use a null layout. It's needed for uicontrol so they don't resize when the canvas
-		// is resized. However, its imply to set the canvas size by hand.
-		setLayout(null);
+        eventHandler = null;
+        graphicCanvas = null;
+        this.figureId = figureId;
 
-		// for event handling
-		this.setFocusable(true);
-		// Enable mouse Events sensitivity...
-		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
+        // we use a null layout. It's needed for uicontrol so they don't resize when the canvas
+        // is resized. However, its imply to set the canvas size by hand.
+        setLayout(null);
 
-	}
+        // for event handling
+        this.setFocusable(true);
+        // Enable mouse Events sensitivity...
+        this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
 
-	/**
-	 * Override setSize to be sure that setPreferred size is called
-	 * @param newSize new size to apply
-	 */
-	public void setSize(Dimension newSize) {
+    }
 
-		// get the greatest size we can use
-		/*int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
+    /**
+     * Override setSize to be sure that setPreferred size is called
+     * @param newSize new size to apply
+     */
+    public void setSize(Dimension newSize) {
 
-		// make sure size is not greater than the max size
-		Dimension finalDim = new Dimension(Math.min(newSize.width, maxSize[0]),
-										   Math.min(newSize.height, maxSize[1]));
+        // get the greatest size we can use
+        /*int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
 
-		super.setSize(finalDim);
-		super.setPreferredSize(finalDim);
+        // make sure size is not greater than the max size
+        Dimension finalDim = new Dimension(Math.min(newSize.width, maxSize[0]),
+        								   Math.min(newSize.height, maxSize[1]));
 
-		// force resize of canvas also
-		// to be sure that the canvas has the same size as the axes
-		if (graphicCanvas != null) {
-			graphicCanvas.setSize(finalDim);
-			}*/
-	    Dimension finalDim = (Dimension) newSize.clone();//new Dimension((int) newSize.getWidth(), (int) newSize.getHeight());
-	    setSize(finalDim);
-	}
+        super.setSize(finalDim);
+        super.setPreferredSize(finalDim);
 
-	/**
-	 * Specify whether the canvas should fit the parent tab size
-	 * (and consequently the scrollpane size) or not
-	 * @param onOrOff true to enable autoresize mode
-	 */
-	public void setAutoResizeMode(boolean onOrOff) {
-		this.autoResizeMode = onOrOff;
-	}
+        // force resize of canvas also
+        // to be sure that the canvas has the same size as the axes
+        if (graphicCanvas != null) {
+        	graphicCanvas.setSize(finalDim);
+        	}*/
+        Dimension finalDim = (Dimension) newSize.clone();//new Dimension((int) newSize.getWidth(), (int) newSize.getHeight());
+        setSize(finalDim);
+    }
 
-	/**
-	 * @return whether the resize mode is on or off
-	 */
-	public boolean getAutoResizeMode() {
-		return autoResizeMode;
-	}
+    /**
+     * Specify whether the canvas should fit the parent tab size
+     * (and consequently the scrollpane size) or not
+     * @param onOrOff true to enable autoresize mode
+     */
+    public void setAutoResizeMode(boolean onOrOff) {
+        this.autoResizeMode = onOrOff;
+    }
 
-	/**
-	 * Get the size of the viewport viewing the canvas
-	 * @return wanted size
-	 */
-	public Dimension getPreferredScrollableViewportSize() {
-		return getPreferredSize();
-	}
+    /**
+     * @return whether the resize mode is on or off
+     */
+    public boolean getAutoResizeMode() {
+        return autoResizeMode;
+    }
 
-	/**
-	 * Get the displacement in pixels when user click on the scrollbar track
-	 * @param visibleRect The view area visible within the viewport
-	 * @param orientation Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
-	 * @param direction Less than zero to scroll up/left, greater than zero for down/right.
-	 * @return displacement in pixel
-	 */
-	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
-		return LARGE_DISPLACEMENT;
-	}
+    /**
+     * Get the size of the viewport viewing the canvas
+     * @return wanted size
+     */
+    public Dimension getPreferredScrollableViewportSize() {
+        return getPreferredSize();
+    }
 
-	/**
-	 * Specify whether the canvas height must match the viewport height
-	 * @return true if the canvas must match the viewport height
-	 */
-	public boolean getScrollableTracksViewportHeight() {
-		return autoResizeMode;
-	}
+    /**
+     * Get the displacement in pixels when user click on the scrollbar track
+     * @param visibleRect The view area visible within the viewport
+     * @param orientation Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
+     * @param direction Less than zero to scroll up/left, greater than zero for down/right.
+     * @return displacement in pixel
+     */
+    public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
+        return LARGE_DISPLACEMENT;
+    }
 
-	/**
-	 * Specify whether the canvas height must match the viewport width
-	 * @return true if the canvas must match the viewport width
-	 */
-	public boolean getScrollableTracksViewportWidth() {
-		return getScrollableTracksViewportHeight();
-	}
+    /**
+     * Specify whether the canvas height must match the viewport height
+     * @return true if the canvas must match the viewport height
+     */
+    public boolean getScrollableTracksViewportHeight() {
+        return autoResizeMode;
+    }
 
-	/**
-	 * Get the displacement in pixels when user click on the scrollbar buttons
-	 * @param visibleRect The view area visible within the viewport
-	 * @param orientation Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
-	 * @param direction Less than zero to scroll up/left, greater than zero for down/right.
-	 * @return displacement in pixel
-	 */
-	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
-		return SMALL_DISPLACEMENT;
-	}
+    /**
+     * Specify whether the canvas height must match the viewport width
+     * @return true if the canvas must match the viewport width
+     */
+    public boolean getScrollableTracksViewportWidth() {
+        return getScrollableTracksViewportHeight();
+    }
 
-	/**
-	 * Set the event handler of the Canvas
-	 * @param funName the name of the Scilab function to call
-	 */
-	public void setEventHandler(String funName) {
-		//disableEventHandler();
-		//eventHandler = new ScilabEventListener(funName, getFigureId());
-	}
+    /**
+     * Get the displacement in pixels when user click on the scrollbar buttons
+     * @param visibleRect The view area visible within the viewport
+     * @param orientation Either SwingConstants.VERTICAL or SwingConstants.HORIZONTAL.
+     * @param direction Less than zero to scroll up/left, greater than zero for down/right.
+     * @return displacement in pixel
+     */
+    public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+        return SMALL_DISPLACEMENT;
+    }
 
-
-	/**
-	 * Set the status of the event handler of the Canvas
-	 * @param status is true to set the event handler active
-	 */
-	public void setEventHandlerEnabled(boolean status) {
-		if (status) {
-			enableEventHandler();
-		} else {
-			disableEventHandler();
-		}
-	}
-
-	/**
-	 * Turn on event handling.
-	 */
-	private void enableEventHandler() {
-		addKeyListener(eventHandler);
-		addMouseListener(eventHandler);
-		addMouseMotionListener(eventHandler);
-	}
-
-	/**
-	 * Turn off event handling
-	 */
-	private void disableEventHandler() {
-		if (eventHandler != null) {
-			removeKeyListener(eventHandler);
-			removeMouseListener(eventHandler);
-			removeMouseMotionListener(eventHandler);
-		}
-	}
-
-	/**
-	 * Set the background color of the axes.
-	 * @param red red channel of the color
-	 * @param green green channel
-	 * @param blue blue channel
-	 */
-	public void setBackground(double red, double green, double blue) {
-		Color color = new Color((float) red, (float) green, (float) (blue));
-		setBackground(color);
-	}
-
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * This function is added here to remove direct dependencies from SwingScilab Tab
-	 * to GLJPanel via SwingScilabCanvas
-	 * @param member the member to add
-	 * @return index of member in ArrayList
-	 */
-	public int addMember(Canvas member) {
-		return this.addCanvas((SwingScilabCanvas) member.getAsSimpleCanvas());
-	}
-
-	/**
-	 * Add a member (dockable element) to container and returns its index
-	 * @param canvas the canvas to add
-	 * @return index of member in ArrayList
-	 */
-	public int addCanvas(SwingScilabCanvas canvas) {
+    /**
+     * Set the event handler of the Canvas
+     * @param funName the name of the Scilab function to call
+     */
+    public void setEventHandler(String funName) {
+        //disableEventHandler();
+        //eventHandler = new ScilabEventListener(funName, getFigureId());
+    }
 
 
-		return 0;
-	}
+    /**
+     * Set the status of the event handler of the Canvas
+     * @param status is true to set the event handler active
+     */
+    public void setEventHandlerEnabled(boolean status) {
+        if (status) {
+            enableEventHandler();
+        } else {
+            disableEventHandler();
+        }
+    }
 
-	/**
-	 * We want to be able to remove directly a Canvas from a Tab.
-	 * This function is added here to remove direct dependencies from SwingScilab Tab
-	 * to GLJPanel via SwingScilabCanvas
-	 * @param member canvas to remove
-	 */
-	public void removeMember(Canvas member) {
-		this.removeCanvas((SwingScilabCanvas) member.getAsSimpleCanvas());
-	}
+    /**
+     * Turn on event handling.
+     */
+    private void enableEventHandler() {
+        addKeyListener(eventHandler);
+        addMouseListener(eventHandler);
+        addMouseMotionListener(eventHandler);
+    }
 
-	/**
-	 * Remove a Canvas from the axes
-	 * @param canvas canvas to remove
-	 */
-	public void removeCanvas(SwingScilabCanvas canvas) {
+    /**
+     * Turn off event handling
+     */
+    private void disableEventHandler() {
+        if (eventHandler != null) {
+            removeKeyListener(eventHandler);
+            removeMouseListener(eventHandler);
+            removeMouseMotionListener(eventHandler);
+        }
+    }
 
-		if (canvas != graphicCanvas) {
-			// should not happen, no need for localization
-			throw new UnsupportedOperationException("Trying to remove an unknown canvas.");
-		}
+    /**
+     * Set the background color of the axes.
+     * @param red red channel of the color
+     * @param green green channel
+     * @param blue blue channel
+     */
+    public void setBackground(double red, double green, double blue) {
+        Color color = new Color((float) red, (float) green, (float) (blue));
+        setBackground(color);
+    }
 
-		//ScilabSwingUtilities.removeFromParent(canvas.getAsComponent());
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * This function is added here to remove direct dependencies from SwingScilab Tab
+     * to GLJPanel via SwingScilabCanvas
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    public int addMember(Canvas member) {
+        return this.addCanvas((SwingScilabCanvas) member.getAsSimpleCanvas());
+    }
 
-		graphicCanvas = null;
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param canvas the canvas to add
+     * @return index of member in ArrayList
+     */
+    public int addCanvas(SwingScilabCanvas canvas) {
 
-	}
 
-	/**
-	 * Add a widget into the axes
-	 * @param widget widget to add
-	 * @return index of member in ArrayList
-	 */
-	public int addWidget(JComponent widget) {
-		// put the newly added object above any other objects
-		//ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
-		this.add(widget, WIDGET_LAYER, TOP_POSITION);
-		return getComponentZOrder(widget);
-	}
+        return 0;
+    }
 
-	/**
-	 * Remove a widget from the axes
-	 * @param widget widget to remove
-	 */
-	public void removeWidget(JComponent widget) {
-		ScilabSwingUtilities.removeFromParent(widget);
-	}
+    /**
+     * We want to be able to remove directly a Canvas from a Tab.
+     * This function is added here to remove direct dependencies from SwingScilab Tab
+     * to GLJPanel via SwingScilabCanvas
+     * @param member canvas to remove
+     */
+    public void removeMember(Canvas member) {
+        this.removeCanvas((SwingScilabCanvas) member.getAsSimpleCanvas());
+    }
 
-	/**
-	 * Add a frame to the axis
-	 * @param frame frame to add
-	 * @return index of member in ArrayList
-	 */
-	public int addFrame(SwingScilabFrame frame) {
-		//ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
-		this.add(frame, WIDGET_LAYER, TOP_POSITION);
-		return getComponentZOrder(frame);
-	}
+    /**
+     * Remove a Canvas from the axes
+     * @param canvas canvas to remove
+     */
+    public void removeCanvas(SwingScilabCanvas canvas) {
 
-	/**
-	 * Remove a frame from an axes.
-	 * @param frame frame to remove
-	 */
-	public void removeFrame(SwingScilabFrame frame) {
-		ScilabSwingUtilities.removeFromParent(frame);
-	}
-	
-	/**
-	 * Add a Jtree to a scrolling pane
-	 * @param member a graphical tree
-	 * @return an integer
-	 */
-	public int addTree(SwingScilabTree member) {
-		// Add the jtree to a scrolling pane		
-		this.add(member.getAsComponent(), WIDGET_LAYER, TOP_POSITION);
-		//this.setAutoResizeMode(false);
-		return this.getComponentZOrder(member.getAsComponent());
-	}
+        if (canvas != graphicCanvas) {
+            // should not happen, no need for localization
+            throw new UnsupportedOperationException("Trying to remove an unknown canvas.");
+        }
 
-	/**
-	 * Remove a Jtree to a scrolling pane
-	 * @param member a graphical tree
-	 * @return an integer
-	 */
-	public int removeTree(SwingScilabTree member) {
-		// Add the jtree to a scrolling pane
-		this.remove(member.getAsComponent());
-		return this.getComponentZOrder(member.getAsComponent());
-	}
-	
-	/**
-	 * @return the figureId
-	 */
-	public int getFigureId() {
-		return figureId;
-	}
+        //ScilabSwingUtilities.removeFromParent(canvas.getAsComponent());
 
-	/**
-	 * BLOUNO
-	 */
-	public void repaint() {
-	    Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
-	    super.repaint();
-	}
+        graphicCanvas = null;
 
-	/**
-	 * Redefine paint children to be sure that AWT components are well painted.
-	 * @param g graphic pipeline
-	 */
-	public void paint(Graphics g) {
-		Component[] children = getComponents();
-		for (int i = 0; i < children.length; i++) {
-			// AWT children don't draw themselves automatically
-			// so force their draw
-			if (!children[i].isLightweight()) {
-				children[i].paint(g);
-			}
-		}
-		super.paint(g);
-	}
+    }
+
+    /**
+     * Add a widget into the axes
+     * @param widget widget to add
+     * @return index of member in ArrayList
+     */
+    public int addWidget(JComponent widget) {
+        // put the newly added object above any other objects
+        //ScilabSwingUtilities.addToParent(widget, this, WIDGET_LAYER, TOP_POSITION);
+        this.add(widget, WIDGET_LAYER, TOP_POSITION);
+        return getComponentZOrder(widget);
+    }
+
+    /**
+     * Remove a widget from the axes
+     * @param widget widget to remove
+     */
+    public void removeWidget(JComponent widget) {
+        ScilabSwingUtilities.removeFromParent(widget);
+    }
+
+    /**
+     * Add a frame to the axis
+     * @param frame frame to add
+     * @return index of member in ArrayList
+     */
+    public int addFrame(SwingScilabFrame frame) {
+        //ScilabSwingUtilities.addToParent(frame, this, WIDGET_LAYER, BOTTOM_POSITION);
+        this.add(frame, WIDGET_LAYER, TOP_POSITION);
+        return getComponentZOrder(frame);
+    }
+
+    /**
+     * Remove a frame from an axes.
+     * @param frame frame to remove
+     */
+    public void removeFrame(SwingScilabFrame frame) {
+        ScilabSwingUtilities.removeFromParent(frame);
+    }
+
+    /**
+     * Add a Jtree to a scrolling pane
+     * @param member a graphical tree
+     * @return an integer
+     */
+    public int addTree(SwingScilabTree member) {
+        // Add the jtree to a scrolling pane
+        this.add(member.getAsComponent(), WIDGET_LAYER, TOP_POSITION);
+        //this.setAutoResizeMode(false);
+        return this.getComponentZOrder(member.getAsComponent());
+    }
+
+    /**
+     * Remove a Jtree to a scrolling pane
+     * @param member a graphical tree
+     * @return an integer
+     */
+    public int removeTree(SwingScilabTree member) {
+        // Add the jtree to a scrolling pane
+        this.remove(member.getAsComponent());
+        return this.getComponentZOrder(member.getAsComponent());
+    }
+
+    /**
+     * @return the figureId
+     */
+    public int getFigureId() {
+        return figureId;
+    }
+
+    /**
+     * BLOUNO
+     */
+    public void repaint() {
+        Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
+        super.repaint();
+    }
+
+    /**
+     * Redefine paint children to be sure that AWT components are well painted.
+     * @param g graphic pipeline
+     */
+    public void paint(Graphics g) {
+        Component[] children = getComponents();
+        for (int i = 0; i < children.length; i++) {
+            // AWT children don't draw themselves automatically
+            // so force their draw
+            if (!children[i].isLightweight()) {
+                children[i].paint(g);
+            }
+        }
+        super.paint(g);
+    }
 
 }

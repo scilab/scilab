@@ -14,13 +14,13 @@
 #define __DYNLIB_SYSTEM_ENV_H__
 
 #ifdef _MSC_VER
-    #if SYSTEM_ENV_EXPORTS
-        #define EXTERN_SYSTEM_ENV __declspec (dllexport)
-    #else
-        #define EXTERN_SYSTEM_ENV __declspec (dllimport)
-    #endif
+#if SYSTEM_ENV_EXPORTS
+#define EXTERN_SYSTEM_ENV __declspec (dllexport)
 #else
-    #define EXTERN_SYSTEM_ENV 
+#define EXTERN_SYSTEM_ENV __declspec (dllimport)
+#endif
+#else
+#define EXTERN_SYSTEM_ENV
 #endif
 
 #endif // !__DYNLIB_SYSTEM_ENV_H__

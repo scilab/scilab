@@ -20,5 +20,5 @@
 //
 
 function [x,y,t]=getoutputs(o)
-  execstr('[x,y,t]='+o.gui+'(''getoutputs'',o)')
+    execstr("[x,y,t]="+o.gui+"(''getoutputs'',o)")
 endfunction

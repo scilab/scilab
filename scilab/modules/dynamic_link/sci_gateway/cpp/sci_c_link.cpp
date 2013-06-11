@@ -34,24 +34,24 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
     int iLib = -1;
     char* pstFunctionName = NULL;
 
-    if(in.size() < 1 || in.size() > 2)
+    if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "c_link", 1, 2);
         return types::Function::Error;
     }
 
-    if(_iRetCount > 2)
+    if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "c_link", 1, 2);
         return types::Function::Error;
     }
 
-    if(in.size() == 2)
+    if (in.size() == 2)
     {
         types::Double* pDId = in[1]->getAs<types::Double>();
-        if(pDId == NULL || pDId->isScalar() == false)
+        if (pDId == NULL || pDId->isScalar() == false)
         {
-            Scierror(999 ,_("%s : second argument must be a unique id of a shared library.\n"), "c_link");
+            Scierror(999 , _("%s : second argument must be a unique id of a shared library.\n"), "c_link");
             return types::Function::Error;
         }
 
@@ -59,9 +59,9 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
     }
 
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        Scierror(999 ,_("%s : Wrong type for input argument #%d: A string expected.\n"), "c_link", 1);
+        Scierror(999 , _("%s : Wrong type for input argument #%d: A string expected.\n"), "c_link", 1);
         return types::Function::Error;
     }
 
@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_c_link(types::typed_list &in, int _iRetCount, t
     bool bFind = isLink(pSLibName->get(0), &iLib);
 
     out.push_back(new types::Bool(bFind));
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
         out.push_back(new types::Double(iLib));
     }
@@ -81,7 +81,7 @@ bool isLink(wchar_t* _pwstEntryPoint, int* _piLib)
 {
     ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(_pwstEntryPoint, *_piLib);
 
-    if(pEP == NULL)
+    if (pEP == NULL)
     {
         return false;
     }

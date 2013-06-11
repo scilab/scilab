@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * 
@@ -10,100 +10,100 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dec2base" xml:lang="ru">
-    <refnamediv>
-        <refname>dec2base</refname>
-        <refpurpose>
-            преобразование десятичного числа в число системы счисления по основанию N в строке
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>str = dec2base(d, base)</synopsis>
-        <synopsis>str = dec2base(d, base, n)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>str</term>
-                <listitem>
-                    <para>матрица строк, соответствующая представлению в системе счисления по основанию "base"</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>base</term>
-                <listitem>
-                    <para>матрица размерами 1 на 1, положительное целое число, основание системы счисления</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>d</term>
-                <listitem>
-                    <para>матрица чисел типа double, положительные целые числа</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            <literal>str = dec2base(d, base)</literal> преобразует неотрицательное целое число 
-            <literal>d</literal> в число в системе счисления по указанному основанию 
-            <literal>base</literal>.
-        </para>
-        <para>
-            <literal>d</literal> должна иметь неотрицательные целые числа меньше, чем 2^52, а <literal>base</literal> должна быть целым числом между 2 и 36.
-        </para>
-        <para>
-            Возвращаемый аргумент <literal>str</literal> является матрицей строк.
-        </para>
-        <para>
-            <literal>str = dec2base(d, base, n)</literal> формирует представление в виде, по меньшей 
-            мере, <literal>n</literal> знаков.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dec2base" xml:lang="ru">
+        <refnamediv>
+            <refname>dec2base</refname>
+            <refpurpose>
+                преобразование десятичного числа в число системы счисления по основанию N в строке
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>str = dec2base(d, base)</synopsis>
+            <synopsis>str = dec2base(d, base, n)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>str</term>
+                    <listitem>
+                        <para>матрица строк, соответствующая представлению в системе счисления по основанию "base"</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>base</term>
+                    <listitem>
+                        <para>матрица размерами 1 на 1, положительное целое число, основание системы счисления</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>d</term>
+                    <listitem>
+                        <para>матрица чисел типа double, положительные целые числа</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                <literal>str = dec2base(d, base)</literal> преобразует неотрицательное целое число 
+                <literal>d</literal> в число в системе счисления по указанному основанию 
+                <literal>base</literal>.
+            </para>
+            <para>
+                <literal>d</literal> должна иметь неотрицательные целые числа меньше, чем 2^52, а <literal>base</literal> должна быть целым числом между 2 и 36.
+            </para>
+            <para>
+                Возвращаемый аргумент <literal>str</literal> является матрицей строк.
+            </para>
+            <para>
+                <literal>str = dec2base(d, base, n)</literal> формирует представление в виде, по меньшей 
+                мере, <literal>n</literal> знаков.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 for b = 2:36
  disp( dec2base(666, b) )
 end 
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="base2dec">base2dec</link>
-            </member>
-            <member>
-                <link linkend="bin2dec">bin2dec</link>
-            </member>
-            <member>
-                <link linkend="oct2dec">oct2dec</link>
-            </member>
-            <member>
-                <link linkend="hex2dec">hex2dec</link>
-            </member>
-            <member>
-                <link linkend="dec2bin">dec2bin</link>
-            </member>
-            <member>
-                <link linkend="dec2oct">dec2oct</link>
-            </member>
-            <member>
-                <link linkend="dec2hex">dec2hex</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>История</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>Эта функция была добавлена в Scilab 5.4.0</revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="base2dec">base2dec</link>
+                </member>
+                <member>
+                    <link linkend="bin2dec">bin2dec</link>
+                </member>
+                <member>
+                    <link linkend="oct2dec">oct2dec</link>
+                </member>
+                <member>
+                    <link linkend="hex2dec">hex2dec</link>
+                </member>
+                <member>
+                    <link linkend="dec2bin">dec2bin</link>
+                </member>
+                <member>
+                    <link linkend="dec2oct">dec2oct</link>
+                </member>
+                <member>
+                    <link linkend="dec2hex">dec2hex</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>История</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.0</revnumber>
+                    <revremark>Эта функция была добавлена в Scilab 5.4.0</revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

@@ -38,7 +38,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     }
 
     //no input parameter
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         out.push_back(new Struct());
         return Function::OK;
@@ -56,24 +56,24 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     }
 
     /* Second check if dimensions of data are good*/
-    for (itInput = in.begin() + 1; itInput != in.end() ; ((itInput+1) != in.end()) ? itInput += 2 : itInput += 1)
+    for (itInput = in.begin() + 1; itInput != in.end() ; ((itInput + 1) != in.end()) ? itInput += 2 : itInput += 1)
     {
-        if((*itInput)->getAs<Cell>() && (*itInput)->getAs<Cell>()->isScalar() == false)
+        if ((*itInput)->getAs<Cell>() && (*itInput)->getAs<Cell>()->isScalar() == false)
         {
             Cell* pCell = (*itInput)->getAs<Cell>();
-            if(piDimsRef == NULL)
+            if (piDimsRef == NULL)
             {
                 iDimsRef    = pCell->getDims();
                 piDimsRef   = pCell->getDimsArray();
             }
             else
             {
-                if(iDimsRef == pCell->getDims())
+                if (iDimsRef == pCell->getDims())
                 {
                     int* piDims = pCell->getDimsArray();
-                    for(int i = 0 ; i < iDimsRef ; i++)
+                    for (int i = 0 ; i < iDimsRef ; i++)
                     {
-                        if(piDims[i] != piDimsRef[i])
+                        if (piDims[i] != piDimsRef[i])
                         {
                             Scierror(999, _("%s: Arguments must be scalar or must have same dimensions.\n"), "struct");
                             return Function::Error;
@@ -91,45 +91,48 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
 
     Struct *pOut = NULL;
 
-    if(piDimsRef)
+    if (piDimsRef)
     {
         pOut = new Struct(iDimsRef, piDimsRef);
     }
     else
     {
-        pOut = new Struct(1,1);
+        pOut = new Struct(1, 1);
     }
 
     InternalType *pFieldValue = NULL;
     for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
-    {//for each field
+    {
+        //for each field
         std::wstring wstField((*itInput)->getAs<String>()->get(0));
         InternalType* pData = (*(itInput + 1));
 
         //add field in struct
         pOut->addField(wstField);
 
-        if(pData->isCell())
-        {//non scalar cell dispatch cell data in each SingleStruct
+        if (pData->isCell())
+        {
+            //non scalar cell dispatch cell data in each SingleStruct
             Cell* pCell = pData->getAs<Cell>();
-            if(pCell->isScalar())
+            if (pCell->isScalar())
             {
-                for(int i = 0 ; i < pOut->getSize() ; i++)
+                for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
                     pOut->get(i)->set(wstField, pCell->get(0));
                 }
             }
             else
             {
-                for(int i = 0 ; i < pOut->getSize() ; i++)
+                for (int i = 0 ; i < pOut->getSize() ; i++)
                 {
                     pOut->get(i)->set(wstField, pCell->get(i));
                 }
             }
         }
         else
-        {//others
-            for(int i = 0 ; i < pOut->getSize() ; i++)
+        {
+            //others
+            for (int i = 0 ; i < pOut->getSize() ; i++)
             {
                 pOut->get(i)->set(wstField, pData);
             }

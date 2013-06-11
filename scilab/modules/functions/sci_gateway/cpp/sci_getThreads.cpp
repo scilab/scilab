@@ -24,14 +24,14 @@ using namespace types;
 
 Function::ReturnValue sci_getThreads(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getThreads" , 0);
         return Function::Error;
-	}
+    }
 
-    if(_iRetCount != 1)
-	{
+    if (_iRetCount != 1)
+    {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "getThreads" , 1);
         return Function::Error;
     }

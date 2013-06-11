@@ -37,7 +37,7 @@ int sci_xcosPalCategoryAdd(char *fname, void* pvApiCtx)
     bool visible = false;
 
     /* name setup */
-    if (readVectorString(pvApiCtx,1, &name, &nameLength, fname))
+    if (readVectorString(pvApiCtx, 1, &name, &nameLength, fname))
     {
         return 0;
     }
@@ -45,7 +45,7 @@ int sci_xcosPalCategoryAdd(char *fname, void* pvApiCtx)
     /* visible setup */
     if (Rhs > 2)
     {
-        if (readSingleBoolean(pvApiCtx,2, &visible, fname))
+        if (readSingleBoolean(pvApiCtx, 2, &visible, fname))
         {
             return 0;
         }

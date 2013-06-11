@@ -155,7 +155,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
             code = convertCode(code);
             /* Provide a tooltip */
             return "<div rel='tooltip' title='" + code + "'>" + imageTag + "</div>";
-    } else {
+        } else {
             /* No tooltip in the javahelp browser ...
              * too limited html capabilities */
             return imageTag;

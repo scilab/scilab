@@ -8,23 +8,23 @@ mode(-1);
 clear
 
 function y=foo1(a,b)
-  y=a+b
+    y=a+b
 endfunction
-T=help_skeleton('foo1')
-mputl(strsubst(T,'<LINK> add a key here</LINK>','<LINK>abs</LINK>'), ...
-      TMPDIR+'/foo1.xml')
+T=help_skeleton("foo1")
+mputl(strsubst(T,"<LINK> add a key here</LINK>","<LINK>abs</LINK>"), ...
+TMPDIR+"/foo1.xml")
 ok=%t
 try
-  xmltohtml(TMPDIR)
+    xmltohtml(TMPDIR)
 catch
-  ok=%f
+    ok=%f
 end
 if ok
-  try
-    xmltohtml('SCI/modules/elementaries_functions/help/eng')
-  catch
-    ok=%f
-  end 
+    try
+        xmltohtml("SCI/modules/elementaries_functions/help/eng")
+    catch
+        ok=%f
+    end
 end
 affich_result(ok,1768);
 clear

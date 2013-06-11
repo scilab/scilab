@@ -33,19 +33,19 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
     double* pdH             = NULL;
     double* pData           = NULL;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "hess", 1);
         return types::Function::Error;
     }
 
-    if(_iRetCount > 2)
+    if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "hess", 1, 2);
         return types::Function::Error;
     }
 
-    if((in[0]->isDouble() == false))
+    if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_hess";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
@@ -53,33 +53,33 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
 
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
-    if(pDbl->getRows() != pDbl->getCols())
+    if (pDbl->getRows() != pDbl->getCols())
     {
         Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "hess", 1);
         return types::Function::Error;
     }
 
-    if((pDbl->getCols() == 0) || (pDbl->getRows() == 0))
+    if ((pDbl->getCols() == 0) || (pDbl->getRows() == 0))
     {
         out.push_back(types::Double::Empty());
-        if(_iRetCount == 2)
+        if (_iRetCount == 2)
         {
             out.push_back(types::Double::Empty());
         }
         return types::Function::OK;
     }
 
-    if(pDbl->getCols() == -1)
+    if (pDbl->getCols() == -1)
     {
         types::Double* pDblEyeMatrix = new types::Double(-1, -1);
         out.push_back(pDblEyeMatrix);
         return types::Function::Error;
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
-        if(!pData)
+        if (!pData)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), "hess");
             return types::Function::Error;
@@ -90,13 +90,13 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
         pData = pDbl->getReal();
     }
 
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
         pDblH = new types::Double(pDbl->getRows(), pDbl->getCols(), pDbl->isComplex());
-        if(pDbl->isComplex())
+        if (pDbl->isComplex())
         {
             pdH = (double*)MALLOC(pDblH->getSize() * sizeof(doublecomplex));
-            if(!pdH)
+            if (!pdH)
             {
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "hess");
                 return types::Function::Error;
@@ -109,25 +109,25 @@ types::Function::ReturnValue sci_hess(types::typed_list &in, int _iRetCount, typ
     }
 
     int iRet = iHessM(pData, pDbl->getCols(), pDbl->isComplex(), pdH);
-    if(iRet != 0)
+    if (iRet != 0)
     {
-	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "hess",iRet);
+        Scierror(999, _("%s: LAPACK error n°%d.\n"), "hess", iRet);
         return types::Function::Error;
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         vGetPointerFromDoubleComplex((doublecomplex*)(pData), pDbl->getSize(), pDbl->getReal(), pDbl->getImg());
-		vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+        vFreeDoubleComplexFromPointer((doublecomplex*)pData);
 
-        if(_iRetCount == 2)
+        if (_iRetCount == 2)
         {
             vGetPointerFromDoubleComplex((doublecomplex*)(pdH), pDblH->getSize(), pDblH->getReal(), pDblH->getImg());
-    		vFreeDoubleComplexFromPointer((doublecomplex*)pdH);
+            vFreeDoubleComplexFromPointer((doublecomplex*)pdH);
         }
     }
 
-    if(_iRetCount == 1)
+    if (_iRetCount == 1)
     {
         out.push_back(pDbl);
     }

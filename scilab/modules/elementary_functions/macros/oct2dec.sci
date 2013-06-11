@@ -24,15 +24,15 @@
 
 function d = oct2dec(o)
 
-  [lhs, rhs] = argn(0);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"oct2dec", 1));
-  end
+    [lhs, rhs] = argn(0);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"oct2dec", 1));
+    end
 
-  if type(o) <>  10 then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "oct2dec", 1));
-  end
+    if type(o) <>  10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "oct2dec", 1));
+    end
 
-  d = base2dec(o, 8);
+    d = base2dec(o, 8);
 
 endfunction

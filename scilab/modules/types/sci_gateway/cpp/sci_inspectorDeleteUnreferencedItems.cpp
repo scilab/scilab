@@ -24,13 +24,13 @@ using namespace types;
 
 Function::ReturnValue sci_inspectorDeleteUnreferencedItems(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorDeleteUnreferencedItems", 0);    
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorDeleteUnreferencedItems", 0);
         return Function::Error;
     }
 
-    while(Inspector::getUnreferencedItemCount() != 0)
+    while (Inspector::getUnreferencedItemCount() != 0)
     {
         delete Inspector::getUnreferencedItem(0);
     }

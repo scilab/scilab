@@ -43,7 +43,7 @@ int sci_xcosPalLoad(char *fname, void* pvApiCtx)
     }
 
     /* category setup */
-    if (Rhs == 2 && readVectorString(pvApiCtx,2, &category, &lenCategory, fname))
+    if (Rhs == 2 && readVectorString(pvApiCtx, 2, &category, &lenCategory, fname))
     {
         FREE(name);
         return 0;

@@ -32,19 +32,19 @@ using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "fileinfo", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getCols() != 1)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getCols() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument: Column vector expected.\n"), "fileinfo");
         return Function::Error;
     }
 
-    if(_iRetCount > 2)
+    if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "fileinfo", 1, 2);
         return Function::Error;
@@ -57,7 +57,7 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
 
     /* fileinfo returns [] for single non existing file to match the behavior
        of Scilab < 6 */
-    if(pS->getRows() == 1 && *piErr == -1)
+    if (pS->getRows() == 1 && *piErr == -1)
     {
         out.push_back(Double::Empty());
         return Function::OK;
@@ -67,7 +67,7 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
     pOut->set(pData);
     out.push_back(pOut);
 
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
         Double* pErr = new Double(pS->getRows(), 1);
         pErr->setInt(piErr);

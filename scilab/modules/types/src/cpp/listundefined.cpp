@@ -18,28 +18,28 @@
 
 namespace types
 {
-	ListUndefined::~ListUndefined()
-	{
-	}
+ListUndefined::~ListUndefined()
+{
+}
 
-	void ListUndefined::whoAmI()
-	{
-		std::cout << "types::ListUndefined";
-	}
+void ListUndefined::whoAmI()
+{
+    std::cout << "types::ListUndefined";
+}
 
-	InternalType* ListUndefined::clone(void)
-	{
-		return new ListUndefined();
-	}
+InternalType* ListUndefined::clone(void)
+{
+    return new ListUndefined();
+}
 
-	InternalType::RealType ListUndefined::getType(void)
-	{
-		return RealListUndefinedOperation;
-	}
+InternalType::RealType ListUndefined::getType(void)
+{
+    return RealListUndefinedOperation;
+}
 
-    bool ListUndefined::toString(std::wostringstream& ostr)
-    {
-        ostr << L"    Undefined" << std::endl;
-        return true;
-    }
+bool ListUndefined::toString(std::wostringstream& ostr)
+{
+    ostr << L"    Undefined" << std::endl;
+    return true;
+}
 }

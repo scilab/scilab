@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -10,108 +10,108 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_string_writing_API" xml:lang="en">
-    <refnamediv>
-        <refname>String writing (Scilab gateway)</refname>
-        <refpurpose>
-            How to add matrix of string in a list.
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <para>Input argument profile:</para>
-        <synopsis>SciErr createMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)</synopsis>
-        <para>Named variable profile:</para>
-        <synopsis>SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>_pvCtx</term>
-                <listitem>
-                    <para>
-                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_iVar</term>
-                <listitem>
-                    <para>
-                        Position in the Scilab memory where you want to put the variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pstName</term>
-                <listitem>
-                    <para>
-                        Name of the variable for "named" functions.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_piParent</term>
-                <listitem>
-                    <para>
-                        Address of the parent of the new item.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_iItemPos</term>
-                <listitem>
-                    <para>
-                        Position of the new item in the list.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_iRows</term>
-                <listitem>
-                    <para>
-                        Number of rows of the new variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_iCols</term>
-                <listitem>
-                    <para>
-                        Number of columns of the new variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pstStrings</term>
-                <listitem>
-                    <para>
-                        Address of array of char* (size: _iCols * _iRows).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>SciErr</term>
-                <listitem>
-                    <para>
-                        Error structure where is stored errors messages history and first error number.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to add matrix of string in a list.</para>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
-        <!--Lib_name: list_createlist-->
-        <!--Func_list: list_createlist-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_string_writing_API" xml:lang="en">
+        <refnamediv>
+            <refname>String writing (Scilab gateway)</refname>
+            <refpurpose>
+                How to add matrix of string in a list.
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <para>Input argument profile:</para>
+            <synopsis>SciErr createMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)</synopsis>
+            <para>Named variable profile:</para>
+            <synopsis>SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, const char* const* _pstStrings)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>_pvCtx</term>
+                    <listitem>
+                        <para>
+                            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_iVar</term>
+                    <listitem>
+                        <para>
+                            Position in the Scilab memory where you want to put the variable.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_pstName</term>
+                    <listitem>
+                        <para>
+                            Name of the variable for "named" functions.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_piParent</term>
+                    <listitem>
+                        <para>
+                            Address of the parent of the new item.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_iItemPos</term>
+                    <listitem>
+                        <para>
+                            Position of the new item in the list.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_iRows</term>
+                    <listitem>
+                        <para>
+                            Number of rows of the new variable.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_iCols</term>
+                    <listitem>
+                        <para>
+                            Number of columns of the new variable.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>_pstStrings</term>
+                    <listitem>
+                        <para>
+                            Address of array of char* (size: _iCols * _iRows).
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>SciErr</term>
+                    <listitem>
+                        <para>
+                            Error structure where is stored errors messages history and first error number.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>This help describes how to add matrix of string in a list.</para>
+        </refsection>
+        <refsection>
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
+            <!--Lib_name: list_createlist-->
+            <!--Func_list: list_createlist-->
+            <title>Gateway Source</title>
+            <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int list_createlist(char *fname,unsigned long fname_len)
 {
@@ -230,10 +230,10 @@ int list_createlist(char *fname,unsigned long fname_len)
 	return 0;
 }
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab"><![CDATA[ 
+        </refsection>
+        <refsection>
+            <title>Scilab test script</title>
+            <programlisting role="code_scilab"><![CDATA[ 
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
 dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
@@ -245,5 +245,5 @@ for i = 1 : size_ref
     if size(l(i)) <> dim_ref(i) then error("failed"), end
 end
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

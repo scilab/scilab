@@ -25,13 +25,13 @@ using namespace types;
 
 Function::ReturnValue sci_inspectorGetUnreferencedItem(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorGetItem", 1);    
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorGetItem", 1);
         return Function::Error;
     }
 
-    if(in[0]->isDouble() == false)
+    if (in[0]->isDouble() == false)
     {
 
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "inspectorGetItem", 1);
@@ -39,7 +39,7 @@ Function::ReturnValue sci_inspectorGetUnreferencedItem(typed_list &in, int _iRet
     }
 
     Double *pD = in[0]->getAs<Double>();
-    if(pD->isScalar() == false)
+    if (pD->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "inspectorGetItem", 1);
         Function::Error;

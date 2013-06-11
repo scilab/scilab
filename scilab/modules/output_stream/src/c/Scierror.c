@@ -21,29 +21,32 @@
 
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-  #define vsnprintf _vsnprintf
-    #define vsnwprintf _vsnwprintf
+#define vsnprintf _vsnprintf
+#define vsnwprintf _vsnwprintf
 #endif
 /*--------------------------------------------------------------------------*/
 /* Scilab Error at C level */
 /*--------------------------------------------------------------------------*/
-int  Scierror(int iv,const char *fmt,...)
+int  Scierror(int iv, const char *fmt, ...)
 {
-	int retval = 0;
+    int retval = 0;
     wchar_t* pwstError = NULL;
-	char s_buf[bsiz];
-	va_list ap;
-	
-	va_start(ap,fmt);
+    char s_buf[bsiz];
+    va_list ap;
+
+    va_start(ap, fmt);
 
 #if defined (vsnprintf) || defined (linux)
-	retval = vsnprintf(s_buf,bsiz-1, fmt, ap );
+    retval = vsnprintf(s_buf, bsiz - 1, fmt, ap );
 #else
-  retval = vsnprintf(s_buf, bsiz - 1, fmt, ap);
+    retval = vsnprintf(s_buf, bsiz - 1, fmt, ap);
 #endif
-  if (retval < 0) s_buf[bsiz-1]='\0';
+    if (retval < 0)
+    {
+        s_buf[bsiz - 1] = '\0';
+    }
 
-	va_end(ap);
+    va_end(ap);
 
     pwstError = to_wide_string(s_buf);
     setLastError(iv, pwstError, 0, NULL);
@@ -51,7 +54,7 @@ int  Scierror(int iv,const char *fmt,...)
     scilabErrorW(pwstError);
     scilabErrorW(L"\n");
     FREE(pwstError);
-  return retval;
+    return retval;
 }
 
 //int ScierrorW(int iv, const wchar_t *fmt,...)

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -11,160 +11,160 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xfpoly">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xfpoly">
         
-        <refname>xfpoly</refname>
-        
-        <refpurpose>ポリゴンを塗りつぶす</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>xfpoly(xv,yv,[fill])</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+        <refnamediv>
             
-            <varlistentry>
+            <refname>xfpoly</refname>
+            
+            <refpurpose>ポリゴンを塗りつぶす</refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>xfpoly(xv,yv,[fill])</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
                 
-                <term>xv,yv</term>
+                <varlistentry>
+                    
+                    <term>xv,yv</term>
+                    
+                    <listitem>
+                        
+                        <para>同じ大きさの2つのベクトル (ポリゴンの点).</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>fill</term>
+                    
+                    <listitem>
+                        
+                        <para>整数. ポリゴンを塗りつぶす際に使用される色.</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
+                
+                <literal>xfpoly</literal> はポリゴンをカレントの色または
+                
+                オプション引数<literal>fill</literal>で指定した色で塗りつぶします.
+                
+            </para>
+            
+            <para>
+                
+                <literal>fill</literal>が省略された場合,
+                
+                ポリゴンはカレントの色で塗りつぶされ,輪郭がカレントの色と線種で
+                
+                描画されます.
+                
+                <literal>fill</literal>が指定された場合,
+                
+                以下のようにポリゴンが塗りつぶされます:
+                
+            </para>
+            
+            <itemizedlist>
                 
                 <listitem>
                     
-                    <para>同じ大きさの2つのベクトル (ポリゴンの点).</para>
+                    <para>
+                        
+                        <literal>fill&lt;0</literal>の場合,ポリゴンはその色
+                        
+                        <literal>-fill</literal>で塗りつぶされ,輪郭は描画されません.
+                        
+                    </para>
                     
                 </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>fill</term>
                 
                 <listitem>
                     
-                    <para>整数. ポリゴンを塗りつぶす際に使用される色.</para>
+                    <para>
+                        
+                        <literal>fill=0</literal>の場合, 
+                        
+                        ポリゴンはカレントの色で塗りつぶされ,
+                        
+                        輪郭はカレントの色と線種で描画されます
+                        
+                        (<literal>fill</literal>省略時と同じ).
+                        
+                    </para>
                     
                 </listitem>
                 
-            </varlistentry>
-            
-        </variablelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
-            
-            <literal>xfpoly</literal> はポリゴンをカレントの色または
-            
-            オプション引数<literal>fill</literal>で指定した色で塗りつぶします.
-            
-        </para>
-        
-        <para>
-            
-            <literal>fill</literal>が省略された場合,
-            
-            ポリゴンはカレントの色で塗りつぶされ,輪郭がカレントの色と線種で
-            
-            描画されます.
-            
-            <literal>fill</literal>が指定された場合,
-            
-            以下のようにポリゴンが塗りつぶされます:
-            
-        </para>
-        
-        <itemizedlist>
-            
-            <listitem>
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>fill&gt;0</literal>の場合, 
+                        
+                        ポリゴンはその色
+                        
+                        <literal>fill</literal>で塗りつぶされ,輪郭はカレントの色と
+                        
+                        線種で描画されます.
+                        
+                    </para>
+                    
+                </listitem>
                 
-                <para>
-                    
-                    <literal>fill&lt;0</literal>の場合,ポリゴンはその色
-                    
-                    <literal>-fill</literal>で塗りつぶされ,輪郭は描画されません.
-                    
-                </para>
+            </itemizedlist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>例</title>
+            
+            <scilab:image>
                 
-            </listitem>
-            
-            <listitem>
+                x=sin(2*%pi*(0:4)/5);
                 
-                <para>
-                    
-                    <literal>fill=0</literal>の場合, 
-                    
-                    ポリゴンはカレントの色で塗りつぶされ,
-                    
-                    輪郭はカレントの色と線種で描画されます
-                    
-                    (<literal>fill</literal>省略時と同じ).
-                    
-                </para>
+                y=cos(2*%pi*(0:4)/5);
                 
-            </listitem>
-            
-            <listitem>
+                plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
                 
-                <para>
-                    
-                    <literal>fill&gt;0</literal>の場合, 
-                    
-                    ポリゴンはその色
-                    
-                    <literal>fill</literal>で塗りつぶされ,輪郭はカレントの色と
-                    
-                    線種で描画されます.
-                    
-                </para>
+                xset("color",5);
                 
-            </listitem>
+                xfpoly(x,y);
+                
+            </scilab:image>
             
-        </itemizedlist>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <scilab:image>
+        <refsection>
             
-            x=sin(2*%pi*(0:4)/5);
+            <title>例</title>
             
-            y=cos(2*%pi*(0:4)/5);
-            
-            plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
-            
-            xset("color",5);
-            
-            xfpoly(x,y);
-            
-        </scilab:image>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+            <programlisting role="example"><![CDATA[ 
 x=sin(2*%pi*(0:4)/5);
 y=cos(2*%pi*(0:4)/5);
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2]);
@@ -180,36 +180,36 @@ delete(e);
 // カレントの色で輪郭を描画する
 xfpoly(x,y,3);
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="xfpolys">xfpolys</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="xpoly">xpoly</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="xpolys">xpolys</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="xfpolys">xfpolys</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="xpoly">xpoly</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="xpolys">xpolys</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-</refentry>
-

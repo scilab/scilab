@@ -21,39 +21,39 @@
 //
 
 function ok = scicos_block_link(funam, txt, flag, libs)
-// Link a new funame block with txt implementation.
-// 
-// Parameters:
-//  funam: the name of the function
-//  txt: the code
-//  flag: language type ('c' or 'f')
-//  libs: the libs to link with
+    // Link a new funame block with txt implementation.
+    //
+    // Parameters:
+    //  funam: the name of the function
+    //  txt: the code
+    //  flag: language type ('c' or 'f')
+    //  libs: the libs to link with
 
-  // pre-condition
-  if flag <> 'c' & flag <> 'f' then
-    ok = %f;
-    messagebox(gettext("Sorry: Only C or FORTRAN languages are supported",'modal'));
-    return;
-  end
-  if stripblanks(funam)==emptystr() then 
-    ok = %f;
-    messagebox(gettext("Sorry file name not defined in "+flag+" block",'modal'));
-    return;
-  end
-  if ~exists("libs", 'l') then
-    libs = "";
-  end
+    // pre-condition
+    if flag <> "c" & flag <> "f" then
+        ok = %f;
+        messagebox(gettext("Sorry: Only C or FORTRAN languages are supported","modal"));
+        return;
+    end
+    if stripblanks(funam)==emptystr() then
+        ok = %f;
+        messagebox(gettext("Sorry file name not defined in "+flag+" block","modal"));
+        return;
+    end
+    if ~exists("libs", "l") then
+        libs = "";
+    end
 
-  // put the txt to a temp file
-  cur_wd = pwd();
-  chdir(TMPDIR);
-  mputl(txt, funam + '.' + flag);
+    // put the txt to a temp file
+    cur_wd = pwd();
+    chdir(TMPDIR);
+    mputl(txt, funam + "." + flag);
 
-  // call the standard block link function
-  ok = buildnewblock(funam, funam + '.' + flag, "", "", libs, TMPDIR, "", "");
+    // call the standard block link function
+    ok = buildnewblock(funam, funam + "." + flag, "", "", libs, TMPDIR, "", "");
 
-  // post
-  chdir(cur_wd);
-  ok = %t;
+    // post
+    chdir(cur_wd);
+    ok = %t;
 endfunction
 

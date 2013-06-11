@@ -102,7 +102,7 @@ int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
     if (isNamedVarExist(pvApiCtx, format))
     {
         //Call function directly in scilab 6 C++ api
-//        SciString(&iBegin, format, &mlhs, &mrhs);
+        //        SciString(&iBegin, format, &mlhs, &mrhs);
         FREE(format);
         err = getVarAddressFromPosition(pvApiCtx, iBegin, &retaddr);
         if (err.iErr)

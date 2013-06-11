@@ -22,9 +22,9 @@ int FileManager::m_iCurrentFile = -1;
 
 int FileManager::getFileID(wstring _stFilename)
 {
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
+        if (m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
         {
             return i;
         }
@@ -39,9 +39,9 @@ int FileManager::getFileMaxID()
 
 bool FileManager::isOpened(wstring _stFilename)
 {
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
+        if (m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
         {
             return true;
         }
@@ -51,13 +51,14 @@ bool FileManager::isOpened(wstring _stFilename)
 
 types::File* FileManager::getFile(int _iID)
 {
-    if(_iID == -1 && m_iCurrentFile != -1)
+    if (_iID == -1 && m_iCurrentFile != -1)
     {
         return m_fileList[m_iCurrentFile];
     }
 
-    if(_iID <= m_fileList.size())
-    {//1-indexed
+    if (_iID <= m_fileList.size())
+    {
+        //1-indexed
         return m_fileList[_iID];
     }
 
@@ -75,9 +76,9 @@ int FileManager::addFile(types::File* _file)
     //}
 
     //find first free space
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] == NULL)
+        if (m_fileList[i] == NULL)
         {
             m_fileList[i] = _file;
             m_iCurrentFile = i;
@@ -94,19 +95,20 @@ int FileManager::addFile(types::File* _file)
 
 void FileManager::deleteFile(int _iID)
 {
-    if(_iID <= m_fileList.size())
-    {//1-indexed
+    if (_iID <= m_fileList.size())
+    {
+        //1-indexed
         //do not delete File object !!!
         //delete m_fileList[_iID - 1];
         m_fileList[_iID] = NULL;
-        if(m_iCurrentFile == _iID)
+        if (m_iCurrentFile == _iID)
         {
             m_iCurrentFile = -1;
         }
     }
 
     //to clean end of list and remove empty spaces
-    while(m_fileList.size() != 0 && m_fileList.back() == NULL)
+    while (m_fileList.size() != 0 && m_fileList.back() == NULL)
     {
         m_fileList.pop_back();
     }
@@ -123,9 +125,9 @@ int* FileManager::getIDs()
     int* piIds       = NULL;
 
     piIds = new int[getOpenedCount()];
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] != NULL)
+        if (m_fileList[i] != NULL)
         {
             piIds[iFileIndex++] = i;
         }
@@ -137,9 +139,9 @@ int* FileManager::getIDs()
 int FileManager::getOpenedCount()
 {
     int iCount = 0;
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] != NULL)
+        if (m_fileList[i] != NULL)
         {
             iCount++;
         }
@@ -153,9 +155,9 @@ wchar_t** FileManager::getTypesAsString()
     wchar_t** pstTypes  = NULL;
 
     pstTypes = new wchar_t*[getOpenedCount()];
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] != NULL)
+        if (m_fileList[i] != NULL)
         {
             pstTypes[iFileIndex++] = os_wcsdup(m_fileList[i]->getFileTypeAsString().c_str());
         }
@@ -170,9 +172,9 @@ wchar_t** FileManager::getFilenames()
     wchar_t** pstFilenames  = NULL;
 
     pstFilenames = new wchar_t*[getOpenedCount()];
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] != NULL)
+        if (m_fileList[i] != NULL)
         {
             pstFilenames[iFileIndex++] = os_wcsdup(m_fileList[i]->getFilename().c_str());
         }
@@ -187,9 +189,9 @@ double* FileManager::getModes()
     double* pdblModes   = NULL;
 
     pdblModes = new double[getOpenedCount()];
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] != NULL)
+        if (m_fileList[i] != NULL)
         {
             pdblModes[iFileIndex++] = m_fileList[i]->getFileModeAsDouble();
         }
@@ -204,9 +206,9 @@ double* FileManager::getSwaps()
     double* pdblSwaps   = NULL;
 
     pdblSwaps = new double[getOpenedCount()];
-    for(int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < m_fileList.size() ; i++)
     {
-        if(m_fileList[i] != NULL)
+        if (m_fileList[i] != NULL)
         {
             pdblSwaps[iFileIndex++] = static_cast<double>(m_fileList[i]->getFileSwap());
         }

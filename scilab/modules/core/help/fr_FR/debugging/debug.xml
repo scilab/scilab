@@ -1,60 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="debug">
-    <refnamediv>
-        <refname>debug</refname>
-        <refpurpose>niveau de déboggage</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>debug(level_int)
-            level_int=debug()
-            previous_level_int = debug(level_int)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>level_int</term>
-                <listitem>
-                    <para>valeur entiere (entre -1 et 4)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>previous_level_int</term>
-                <listitem>
-                    <para>précédente valeur</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Pour les valeurs 0,1,2,3,4 de <literal>level-int</literal> ,
-            <literal>debug</literal> définit différents niveaux de déboggage. Ces niveaux
-            sont ciblés sur le déboggage de l'interpréteur et non des scripts Scilab,
-            et sont dédiés aux experts de Scilab.
-        </para>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="ScilabEval">ScilabEval</link>
-            </member>
-            <member>
-                <link linkend="editor">editor</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Historique</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>La valeur précédente est retournée comme argument de sortie lorsque vous définissez une nouvelle valeur.</revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="debug">
+        <refnamediv>
+            <refname>debug</refname>
+            <refpurpose>niveau de déboggage</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Séquence d'appel</title>
+            <synopsis>debug(level_int)
+                level_int=debug()
+                previous_level_int = debug(level_int)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Paramètres</title>
+            <variablelist>
+                <varlistentry>
+                    <term>level_int</term>
+                    <listitem>
+                        <para>valeur entiere (entre -1 et 4)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>previous_level_int</term>
+                    <listitem>
+                        <para>précédente valeur</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Pour les valeurs 0,1,2,3,4 de <literal>level-int</literal> ,
+                <literal>debug</literal> définit différents niveaux de déboggage. Ces niveaux
+                sont ciblés sur le déboggage de l'interpréteur et non des scripts Scilab,
+                et sont dédiés aux experts de Scilab.
+            </para>
+        </refsection>
+        <refsection role="see also">
+            <title>Voir aussi</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="ScilabEval">ScilabEval</link>
+                </member>
+                <member>
+                    <link linkend="editor">editor</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Historique</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.4.0</revnumber>
+                    <revremark>La valeur précédente est retournée comme argument de sortie lorsque vous définissez une nouvelle valeur.</revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

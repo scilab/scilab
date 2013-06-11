@@ -9,5 +9,5 @@
 
 
 function r=iscell(S)
-r=typeof(S)=='ce'
+    r=typeof(S)=="ce"
 endfunction

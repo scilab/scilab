@@ -6,7 +6,7 @@
 demopath = get_absolute_file_path("dae2.dem.gateway.sce");
 
 subdemolist = ["parabola"          , "pendg1.dem.sce"   ; ..
-               "Upside down camel" , "pendg2.dem.sce"  ]
+"Upside down camel" , "pendg2.dem.sce"  ]
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
 clear demopath;

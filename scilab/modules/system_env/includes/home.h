@@ -22,22 +22,22 @@ extern "C"
 {
 #endif
 
-EXTERN_SYSTEM_ENV wchar_t *getHOMEW(void);
-EXTERN_SYSTEM_ENV char *getHOME(void);
+    EXTERN_SYSTEM_ENV wchar_t *getHOMEW(void);
+    EXTERN_SYSTEM_ENV char *getHOME(void);
 
-EXTERN_SYSTEM_ENV void setHOMEW(const wchar_t* _sci_path);
-EXTERN_SYSTEM_ENV void setHOME(const char* _sci_path);
+    EXTERN_SYSTEM_ENV void setHOMEW(const wchar_t* _sci_path);
+    EXTERN_SYSTEM_ENV void setHOME(const char* _sci_path);
 
-EXTERN_SYSTEM_ENV wchar_t* computeHOMEW();
-EXTERN_SYSTEM_ENV char* computeHOME();
+    EXTERN_SYSTEM_ENV wchar_t* computeHOMEW();
+    EXTERN_SYSTEM_ENV char* computeHOME();
 
-EXTERN_SYSTEM_ENV wchar_t* getenvHOMEW(void);
-EXTERN_SYSTEM_ENV char* getenvHOME(void);
+    EXTERN_SYSTEM_ENV wchar_t* getenvHOMEW(void);
+    EXTERN_SYSTEM_ENV char* getenvHOME(void);
 
-EXTERN_SYSTEM_ENV void putenvHOMEW(const wchar_t* _sci_path);
-EXTERN_SYSTEM_ENV void putenvHOME(const char* _sci_path);
+    EXTERN_SYSTEM_ENV void putenvHOMEW(const wchar_t* _sci_path);
+    EXTERN_SYSTEM_ENV void putenvHOME(const char* _sci_path);
 
-EXTERN_SYSTEM_ENV void defineHOME();
+    EXTERN_SYSTEM_ENV void defineHOME();
 
 #ifdef __cplusplus
 }

@@ -20,9 +20,9 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 
-extern void C2F(delip)(int *length,
-		       double *output_real, double *output_imaginary,
-		       double *x, double *ck);
+    extern void C2F(delip)(int *length,
+                           double *output_real, double *output_imaginary,
+                           double *x, double *ck);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -30,14 +30,14 @@ types::Function::ReturnValue sci_delip(types::typed_list &in, int _iRetCount, ty
 {
     bool bBecomeComplex = false;
     //check input parameters
-    if(in.size() != 2)
+    if (in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "delip", 2);
         return types::Function::Error;
     }
 
     //check first input parameter : x
-    if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isComplex() == true)
+    if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isComplex() == true)
     {
         Scierror(999, _("%s: Wrong type for argument %d: Real matrix expected.\n"), "delip", 1);
         return types::Function::Error;
@@ -47,31 +47,31 @@ types::Function::ReturnValue sci_delip(types::typed_list &in, int _iRetCount, ty
     double* pdblIn1 = pIn1->get();
     int iSize = pIn1->getSize();
 
-    for(int i = 0 ; i < iSize ; i++)
+    for (int i = 0 ; i < iSize ; i++)
     {
-        if(pdblIn1[i] < 0)
+        if (pdblIn1[i] < 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "delip", 1, "0", "+INF");
             return types::Function::Error;
         }
-        else if(pdblIn1[i] > 1)
+        else if (pdblIn1[i] > 1)
         {
             bBecomeComplex = true;
         }
     }
 
     //check second input parameter : ck
-    if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex() == true)
+    if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex() == true)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "delip", 2);
         return types::Function::Error;
     }
 
     double pdblCK = in[1]->getAs<types::Double>()->get(0);
-    if(pdblCK < -1 || pdblCK > 1)
+    if (pdblCK < -1 || pdblCK > 1)
     {
-      Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "delip", 2, "-1", "1");
-      return types::Function::OK;
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "delip", 2, "-1", "1");
+        return types::Function::OK;
     }
 
     //alloc output parameter

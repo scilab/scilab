@@ -279,20 +279,20 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
         if (bComplex1 == false)
         {
             iRet = iPowerRealSquareMatrixByRealScalar(
-                _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->get(0),
-                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
+                       _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
+                       _pDouble2->get(0),
+                       (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
         }
         else if (bComplex1 == true)
         {
             iRet = iPowerComplexSquareMatrixByRealScalar(
-                _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->get(0),
-                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+                       _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
+                       _pDouble2->get(0),
+                       (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
         }
 
         // call overload
-        if(iRet == -1)
+        if (iRet == -1)
         {
             delete *_pDoubleOut;
             *_pDoubleOut = NULL;

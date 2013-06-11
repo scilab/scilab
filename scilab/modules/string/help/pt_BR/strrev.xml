@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,45 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strrev" xml:lang="en">
-    <refnamediv>
-        <refname>strrev</refname>
-        <refpurpose>retorna um string invertido</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>res = strrev(str1)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>str1</term>
-                <listitem>
-                    <para>um string ou uma matriz de strings</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>res</term>
-                <listitem>
-                    <para>um string ou uma matriz de strings</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>
-            <literal>res = strrev(str1)</literal> retorna o string em ordem
-            inversa
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strrev" xml:lang="en">
+        <refnamediv>
+            <refname>strrev</refname>
+            <refpurpose>retorna um string invertido</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>res = strrev(str1)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>str1</term>
+                    <listitem>
+                        <para>um string ou uma matriz de strings</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>res</term>
+                    <listitem>
+                        <para>um string ou uma matriz de strings</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>
+                <literal>res = strrev(str1)</literal> retorna o string em ordem
+                inversa
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 rev = strrev('This is a simple string')
 strrev(rev)
 strrev(['This is a simple string','scilab'])
  ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

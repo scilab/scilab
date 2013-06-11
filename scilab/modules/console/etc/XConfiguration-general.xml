@@ -1,79 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?>
-<general title="_(General)">
-    <body>
-        <environment fpe="0" printing-format="v" width="10">
-            <fpe code="0" floating-point-exception="_(Produces an error)"/>
-            <fpe code="1" floating-point-exception="_(Produces a warning)"/>
-            <fpe code="2" floating-point-exception="_(Produces Inf or NaN)"/>
-            <printing-format code="v" format="_(Variable format)"/>
-            <printing-format code="e" format="_(Scientific format)"/>
-        </environment>
-        <languages lang="en_US">
-            <language code="en_US" desc="_(English)"/>
-            <language code="fr_FR" desc="_(French)"/>
-            <language code="pt_BR" desc="_(Portugese (Brazil))"/>
-            <language code="ca_ES" desc="_(Catalan)"/>
-            <language code="cs_CZ" desc="_(Czech)"/>
-            <language code="es_ES" desc="_(Spanish)"/>
-            <language code="it_IT" desc="_(Italian)"/>
-            <language code="pl_PL" desc="_(Polish)"/>
-            <language code="ru_RU" desc="_(Russian)"/>
-            <language code="zh_CN" desc="_(Chinese (Simplified))"/>
-            <language code="zh_TW" desc="_(Chinese (Traditional))"/>
-            <language code="de_DE" desc="_(German)"/>
-            <language code="ja_JP" desc="_(Japanese)"/>
-            <language code="uk_UA" desc="_(Ukrainian)"/>
-        </languages>
-        <java-heap-memory heap-size="256"/>
-    </body>
-    <confirmation-dialogs title="_(Confirmation dialogs)"> 
+    <?xml version="1.0" encoding="utf-8"?>
+    <general title="_(General)">
         <body>
-            <tools>
-                <tool state="checked" id="console-exit" name="Console" description="_(Warn before exiting Scilab)"/>
-                <tool state="checked" id="delete-history-item" name="Command History" description="_(Warn before deleting Command History items)"/>
-                <tool state="checked" id="console-clear" name="Console" description="_(Warn before clearing the Console)"/>
-            </tools>
+            <environment fpe="0" printing-format="v" width="10">
+                <fpe code="0" floating-point-exception="_(Produces an error)"/>
+                <fpe code="1" floating-point-exception="_(Produces a warning)"/>
+                <fpe code="2" floating-point-exception="_(Produces Inf or NaN)"/>
+                <printing-format code="v" format="_(Variable format)"/>
+                <printing-format code="e" format="_(Scientific format)"/>
+            </environment>
+            <languages lang="en_US">
+                <language code="en_US" desc="_(English)"/>
+                <language code="fr_FR" desc="_(French)"/>
+                <language code="pt_BR" desc="_(Portugese (Brazil))"/>
+                <language code="ca_ES" desc="_(Catalan)"/>
+                <language code="cs_CZ" desc="_(Czech)"/>
+                <language code="es_ES" desc="_(Spanish)"/>
+                <language code="it_IT" desc="_(Italian)"/>
+                <language code="pl_PL" desc="_(Polish)"/>
+                <language code="ru_RU" desc="_(Russian)"/>
+                <language code="zh_CN" desc="_(Chinese (Simplified))"/>
+                <language code="zh_TW" desc="_(Chinese (Traditional))"/>
+                <language code="de_DE" desc="_(German)"/>
+                <language code="ja_JP" desc="_(Japanese)"/>
+                <language code="uk_UA" desc="_(Ukrainian)"/>
+            </languages>
+            <java-heap-memory heap-size="256"/>
         </body>
-    </confirmation-dialogs>
-    <desktop-layout title="_(Desktop layout)">
-        <body>
-            <layouts id="0">
-                <layout id="0" name="_(Integrated)" path="$SCI/modules/gui/etc/integratedConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/integrated.png"/>
-                <layout id="1" name="_(Simple)" path="$SCI/modules/gui/etc/simpleConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/simple.png"/>
-            </layouts>
-        </body>
-    </desktop-layout>
-    <shortcuts title="_(Shortcuts)">
-        <body>
-            <actions active="scilab" name="Console" item="1" browse="--choose a file --" filter="">
-                <action-folder name="Console" xconf-uid="console">
-                    <action key="OSSCKEY X" description="_(Cut or interrupt)" name="console-cut-or-interrupt"/>
-                    <action key="OSSCKEY C" description="_(Copy or interrupt)" name="console-copy-or-interrupt"/>
-                    <action key="OSSCKEY S" description="_(Select all)" name="console-select-all"/>
-                    <action key="OSSCKEY A" description="_(Line beginning)" name="console-line-begin"/>
-                    <action key="OSSCKEY E" description="_(Line end)" name="console-line-end"/>
-                    <action key="OSSCKEY B" description="_(Previous char)" name="console-prev-char"/>
-                    <action key="OSSCKEY D" description="_(Delete next char)" name="console-del-next-char"/>
-                    <action key="OSSCKEY H" description="_(Delete previous char)" name="console-del-prev-char"/>
-                    <action key="OSSCKEY K" description="_(Delete end of line)" name="console-del-end-line"/>
-                    <action key="OSSCKEY U" description="_(Delete whole line)" name="console-del-whole-line"/>
-                    <action key="OSSCKEY ESCAPE" description="_(Delete whole line)" name="console-del-whole-line"/>
-                    <action key="OSSCKEY W" description="_(Delete last word)" name="console-del-last-word"/>
-                    <action key="PAGE_UP" description="_(Previous console page)" name="console-prev-page"/>
-                    <action key="PAGE_DOWN" description="_(Next console page)" name="console-next-page"/>
-                    <action key="ENTER" description="_(Validate input)" name="console-enter"/>
-                    <action key="F2" description="_(Clear console)" name="console-clear"/>
-                    <action key="F12" description="_(Console box)" name="console-box"/>
-                    <action key="OSSCKEY SPACE" description="_(Completion)" name="console-completion"/>
-                    <action key="TAB" description="_(Completion)" name="console-completion"/>
-                    <action key="UP" description="_(Previous history line)" name="console-prev-history"/>
-                    <action key="DOWN" description="_(Next history line)" name="console-next-history"/>
-                    <action key="OSSCKEY N" description="_(Previous history line)" name="console-prev-history"/>
-                    <action key="OSSCKEY P" description="_(Next history line)" name="console-next-history"/>
-                    <action key="F1" description="_(Help Browser)" name="console-help-browser"/>
-                    <action key="F3" description="_(Console Search Field)" name="console-search-field"/>
-		    <action key="OSSCKEY F" description="_(Console Search Field)" name="console-search-field"/>
-                    <!--action key="OSSCKEY V" description="_(Paste)" name="console-paste"/>
+        <confirmation-dialogs title="_(Confirmation dialogs)"> 
+            <body>
+                <tools>
+                    <tool state="checked" id="console-exit" name="Console" description="_(Warn before exiting Scilab)"/>
+                    <tool state="checked" id="delete-history-item" name="Command History" description="_(Warn before deleting Command History items)"/>
+                    <tool state="checked" id="console-clear" name="Console" description="_(Warn before clearing the Console)"/>
+                </tools>
+            </body>
+        </confirmation-dialogs>
+        <desktop-layout title="_(Desktop layout)">
+            <body>
+                <layouts id="0">
+                    <layout id="0" name="_(Integrated)" path="$SCI/modules/gui/etc/integratedConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/integrated.png"/>
+                    <layout id="1" name="_(Simple)" path="$SCI/modules/gui/etc/simpleConfiguration.xml" image="file:///$SCI/modules/gui/images/preferences/simple.png"/>
+                </layouts>
+            </body>
+        </desktop-layout>
+        <shortcuts title="_(Shortcuts)">
+            <body>
+                <actions active="scilab" name="Console" item="1" browse="--choose a file --" filter="">
+                    <action-folder name="Console" xconf-uid="console">
+                        <action key="OSSCKEY X" description="_(Cut or interrupt)" name="console-cut-or-interrupt"/>
+                        <action key="OSSCKEY C" description="_(Copy or interrupt)" name="console-copy-or-interrupt"/>
+                        <action key="OSSCKEY S" description="_(Select all)" name="console-select-all"/>
+                        <action key="OSSCKEY A" description="_(Line beginning)" name="console-line-begin"/>
+                        <action key="OSSCKEY E" description="_(Line end)" name="console-line-end"/>
+                        <action key="OSSCKEY B" description="_(Previous char)" name="console-prev-char"/>
+                        <action key="OSSCKEY D" description="_(Delete next char)" name="console-del-next-char"/>
+                        <action key="OSSCKEY H" description="_(Delete previous char)" name="console-del-prev-char"/>
+                        <action key="OSSCKEY K" description="_(Delete end of line)" name="console-del-end-line"/>
+                        <action key="OSSCKEY U" description="_(Delete whole line)" name="console-del-whole-line"/>
+                        <action key="OSSCKEY ESCAPE" description="_(Delete whole line)" name="console-del-whole-line"/>
+                        <action key="OSSCKEY W" description="_(Delete last word)" name="console-del-last-word"/>
+                        <action key="PAGE_UP" description="_(Previous console page)" name="console-prev-page"/>
+                        <action key="PAGE_DOWN" description="_(Next console page)" name="console-next-page"/>
+                        <action key="ENTER" description="_(Validate input)" name="console-enter"/>
+                        <action key="F2" description="_(Clear console)" name="console-clear"/>
+                        <action key="F12" description="_(Console box)" name="console-box"/>
+                        <action key="OSSCKEY SPACE" description="_(Completion)" name="console-completion"/>
+                        <action key="TAB" description="_(Completion)" name="console-completion"/>
+                        <action key="UP" description="_(Previous history line)" name="console-prev-history"/>
+                        <action key="DOWN" description="_(Next history line)" name="console-next-history"/>
+                        <action key="OSSCKEY N" description="_(Previous history line)" name="console-prev-history"/>
+                        <action key="OSSCKEY P" description="_(Next history line)" name="console-next-history"/>
+                        <action key="F1" description="_(Help Browser)" name="console-help-browser"/>
+                        <action key="F3" description="_(Console Search Field)" name="console-search-field"/>
+                        <action key="OSSCKEY F" description="_(Console Search Field)" name="console-search-field"/>
+                        <!--action key="OSSCKEY V" description="_(Paste)" name="console-paste"/>
           <action key="OSSCKEY O" description="_(Open a file)" name="console-open"/>
           <action key="OSSCKEY L" description="_(Load environment)" name="console-load"/>
           <action key="OSSCKEY S" description="_(Save environment)" name="console-save"/>
@@ -107,143 +107,143 @@
           <action key="" description="_(Open Forge website)" name="console-forge-website"/>
           <action key="" description="_(Open Bugzilla)" name="console-bugzilla-website"/>
           <action key="Shift F1" description="_(About Scilab)" name="console-about"/-->
-                </action-folder>
-                <action-folder name="Scinotes" xconf-uid="scinotes">
-                    <action key="OSSCKEY H" description="_(Auto complete (, [,...)" name="scinotes-autocomplete-openers"/>
-                    <action key="OSSCKEY Shift H" description="_(Auto complete keyword)" name="scinotes-autocomplete-keyword"/>
-                    <action key="OSSCKEY Shift G" description="_(Generate Help prototype)" name="scinotes-help-prototype"/>
-                    <action key="TAB" description="_(Tabify)" name="scinotes-tabify"/>
-                    <action key="Shift TAB" description="_(Untabify)" name="scinotes-untabify"/>
-                    <action key="OSSCKEY I" description="_(Indent)" name="scinotes-indent"/>
-                    <action key="OSSCKEY D" description="_(Comment)" name="scinotes-comment"/>
-                    <action key="OSSCKEY Shift D" description="_(Uncomment)" name="scinotes-uncomment"/>
-                    <action key="OSSCKEY Shift W" description="_(Remove trailing whites)" name="scinotes-remove-whites"/>
-                    <action key="OSSCKEY A" description="_(Select all)" name="scinotes-select-all"/>
-                    <action key="OSSCKEY B" description="_(Select block)" name="scinotes-select-block"/>
-                    <action key="OSSCKEY Shift T" description="_(Open current tab in a new window)" name="scinotes-clone-current"/>
-                    <action key="OSSCKEY Shift X" description="_(Export current tab in a new window)" name="scinotes-export-current"/>
-                    <action key="OSSCKEY C" description="_(Copy)" name="scinotes-copy"/>
-                    <action key="OSSCKEY X" description="_(Cut)" name="scinotes-cut"/>
-                    <action key="OSSCKEY V" description="_(Paste)" name="scinotes-paste"/>
-                    <action key="OSSCKEY Shift V" description="_(Paste a column)" name="scinotes-paste-column"/>
-                    <action key="OSSCKEY Shift Z" description="_(Repeat selection on column)" name="scinotes-repeat-column"/>
-                    <action key="OSSCKEY Z" description="_(Undo)" name="scinotes-undo"/>
-                    <action key="OSSCKEY Y" description="_(Redo)" name="scinotes-redo"/>
-                    <action key="OSSCKEY Shift C" description="_(Copy as HTML with line number)" name="scinotes-copy-with-lines"/>
-                    <action key="OSSCKEY N" description="_(New)" name="scinotes-new"/>
-                    <action key="OSSCKEY O" description="_(Open)" name="scinotes-open"/>
-                    <action key="OSSCKEY U" description="_(Open URL)" name="scinotes-open-url"/>
-                    <action key="OSSCKEY Shift O" description="_(Open source)" name="scinotes-open-source"/>
-                    <action key="OSSCKEY S" description="_(Save)" name="scinotes-save"/>
-                    <action key="OSSCKEY Shift S" description="_(Save as)" name="scinotes-save-as"/>
-                    <action key="OSSCKEY Shift R" description="_(Reload)" name="scinotes-reload"/>
-                    <action key="OSSCKEY Shift P" description="_(Print preview)" name="scinotes-print-preview"/>
-                    <action key="OSSCKEY P" description="_(Print)" name="scinotes-print"/>
-                    <action key="OSSCKEY W" description="_(Close)" name="scinotes-close"/>
-                    <action key="OSSCKEY Q" description="_(Exit)" name="scinotes-exit"/>
-                    <action key="OSSCKEY J" description="_(To lower case)" name="scinotes-tolowercase"/>
-                    <action key="OSSCKEY Shift J" description="_(To upper case)" name="scinotes-touppercase"/>
-                    <action key="OSSCKEY Shift A" description="_(Capitalize)" name="scinotes-capitalize"/>
-                    <action key="OSSCKEY F1" description="_(Help on keyword)" name="scinotes-help-keyword"/>
-                    <action key="OSSCKEY L" description="_(Load in Scilab)" name="scinotes-load-scilab"/>
-                    <action key="OSSCKEY Shift E" description="_(Execute in Scilab)" name="scinotes-execute-scilab"/>
-                    <action key="OSSCKEY E" description="_(Evaluate selection)" name="scinotes-evaluate-selection"/>
-                    <action key="F5" description="_(Save and execute)" name="scinotes-save-execute"/>
-                    <action key="OSSCKEY F5" description="_(Save and execute all)" name="scinotes-save-execute-all"/>
-                    <action key="OSSCKEY F" description="_(Find)" name="scinotes-find"/>
-                    <action key="OSSCKEY K" description="_(Find next)" name="scinotes-find-next"/>
-                    <action key="OSSCKEY Shift K" description="_(Find previous)" name="scinotes-find-previous"/>
-                    <action key="F3" description="_(Incremental search)" name="scinotes-incremental-search"/>
-                    <action key="OSSCKEY M" description="_(Set anchor)" name="scinotes-set-anchor"/>
-                    <action key="OSSCKEY Shift M" description="_(Remove anchor)" name="scinotes-remove-anchor"/>
-                    <action key="OSSCKEY Shift LESS" description="_(Go to next anchor)" name="scinotes-next-anchor"/>
-                    <action key="OSSCKEY LESS" description="_(Go to previous anchor)" name="scinotes-previous-anchor"/>
-                    <action key="OSSCKEY G" description="_(Start Code Navigator)" name="scinotes-code-navigator"/>
-                    <action key="OSSCKEY Shift F" description="_(Search word in file)" name="scinotes-word-file"/>
-                    <action key="OSSCKEY Shift B" description="_(Search files)" name="scinotes-search-files"/>
-                    <action key="OSSCKEY SPACE" description="_(Keyword completion)" name="scinotes-completion"/>
-                    <action key="F1" description="_(Help)" name="scinotes-help"/>
-                    <action key="Shift F1" description="_(About)" name="scinotes-about"/>
-                    <action key="OSSCKEY PAGE_DOWN" description="_(Next tab)" name="scinotes-next-tab"/>
-                    <action key="OSSCKEY PAGE_UP" description="_(Previous tab)" name="scinotes-previous-tab"/>
-                    <action key="DELETE" description="_(Delete)" name="scinotes-delete"/>
-                    <action key="OSSCKEY DOWN" description="_(Next paragraph)" name="scinotes-next-paragraph"/>
-                    <action key="OSSCKEY UP" description="_(Previous paragraph)" name="scinotes-previous-paragraph"/>
-                    <action key="" description="_(Save all)" name="scinotes-save-all"/>
-                    <action key="" description="_(Overwrite)" name="scinotes-overwrite"/>
-                    <action key="" description="_(Page setup)" name="scinotes-page-setup"/>
-                    <action key="" description="_(Close all)" name="scinotes-close-all"/>
-                    <action key="" description="_(Close all but this)" name="scinotes-close-all-but"/>
-                    <action key="" description="_(Convert quote to double quote)" name="scinotes-double-quote"/>
-                    <action key="" description="_(Line numbering)" name="scinotes-line-numbering"/>
-                    <action key="" description="_(Set the SciNotes font)" name="scinotes-set-font"/>
-                    <action key="" description="_(Set the SciNotes colors)" name="scinotes-set-colors"/>
-                </action-folder>
-                <action-folder name="Xcos" xconf-uid="xcos">
-                    <!-- File -->
-                    <action key="OSSCKEY N" description="_(New diagram)" name="xcos-new" />
-                    <action key="OSSCKEY O" description="_(Open)" name="xcos-open" />
-                    <action key="" description="_(Open file in Scilab current directory)" name="xcos-open-in-sci" />
-                    <action key="OSSCKEY S" description="_(Save)" name="xcos-save" />
-                    <action key="OSSCKEY Shift S" description="_(Save as)" name="xcos-save-as" />
-                    <action key="OSSCKEY E" description="_(Export)" name="xcos-export" />
-                    <action key="OSSCKEY P" description="_(Print)" name="xcos-print" />
-                    <action key="OSSCKEY W" description="_(Close)" name="xcos-close" />
-                    <action key="OSSCKEY Q" description="_(Quit Xcos)" name="xcos-quit" />
-                    <!-- Edit -->
-                    <action key="OSSCKEY Z" description="_(Undo)" name="xcos-undo" />
-                    <action key="OSSCKEY Y" description="_(Redo)" name="xcos-redo" />
-                    <action key="OSSCKEY X" description="_(Cut)" name="xcos-cut" />
-                    <action key="OSSCKEY C" description="_(Copy)" name="xcos-copy" />
-                    <action key="OSSCKEY V" description="_(Paste)" name="xcos-paste" />
-                    <action key="OSSCKEY DELETE" description="_(Delete)" name="xcos-delete" />
-                    <action key="OSSCKEY A" description="_(Select all)" name="xcos-select-all" />
-                    <action key="" description="_(Invert selection)" name="xcos-invert-selection" />
-                    <action key="OSSCKEY B" description="_(Block Parameters)" name="xcos-block-parameters" />
-                    <action key="" description="_(Region to superblock)" name="xcos-region-to-superblock" />
-                    <!-- View -->
-                    <action key="OSSCKEY ADD" description="_(Zoom In)" name="xcos-zoom-in" />
-                    <action key="OSSCKEY SUBTRACT" description="_(Zoom Out)" name="xcos-zoom-out" />
-                    <action key="OSSCKEY SPACE" description="_(Fit diagram to view)" name="xcos-fit-diagram" />
-                    <action key="" description="_(Normal 100%)" name="xcos-zoom-normal" />
-                    <action key="" description="_(Palette browser)" name="xcos-view-palette" />
-                    <action key="" description="_(Diagram browser)" name="xcos-view-diagram" />
-                    <action key="" description="_(Viewport)" name="xcos-view-viewport" />
-                    <action key="" description="_(Details)" name="xcos-view-details" />
-                    <!-- Simulation -->
-                    <action key="" description="_(Setup)" name="xcos-setup" />
-                    <action key="" description="_(Execution trace and Debug)" name="xcos-debug-level" />
-                    <action key="" description="_(Set Context)" name="xcos-set-context" />
-                    <action key="" description="_(Compile)" name="xcos-compile" />
-                    <action key="" description="_(Start)" name="xcos-start" />
-                    <action key="" description="_(Stop)" name="xcos-stop" />
-                    <!-- Format -->
-                    <action key="OSSCKEY R" description="_(Rotate)" name="xcos-rotate" />
-                    <action key="OSSCKEY F" description="_(Flip)" name="xcos-flip" />
-                    <action key="OSSCKEY M" description="_(Mirror)" name="xcos-mirror" />
-                    <action key="" description="_(Show/Hide shadow)" name="xcos-shadow" />
-                    <action key="" description="_(Left)" name="xcos-align-left" />
-                    <action key="" description="_(Center)" name="xcos-align-center" />
-                    <action key="" description="_(Right)" name="xcos-align-right" />
-                    <action key="" description="_(Top)" name="xcos-align-top" />
-                    <action key="" description="_(Middle)" name="xcos-align-middle" />
-                    <action key="" description="_(Bottom)" name="xcos-align-bottom" />
-                    <action key="" description="_(Border Color)" name="xcos-border-color" />
-                    <action key="" description="_(Fill Color)" name="xcos-fill-color" />
-                    <action key="H" description="_(Horizontal)" name="xcos-link-horizontal" />
-                    <action key="S" description="_(Straight)" name="xcos-link-straight" />
-                    <action key="V" description="_(Vertical)" name="xcos-fill-vertical" />
-                    <action key="" description="_(Diagram background)" name="xcos-background" />
-                    <action key="" description="_(Grid)" name="xcos-grid" />
-                    <!-- Tools -->
-                    <action key="" description="_(Code generation)" name="xcos-code-generation" />
-                    <!-- Help -->
-                    <action key="F1" description="_(Xcos Help)" name="xcos-help" />
-                    <action key="OSSCKEY H" description="_(Block Help)" name="xcos-help-block" />
-                    <action key="" description="_(Xcos Demos)" name="xcos-demo" />
-                    <action key="" description="_(About Xcos)" name="xcos-about" />
-                </action-folder>
-                <!--action-folder name="Variable Browser" xconf-uid="browsevar">
+                    </action-folder>
+                    <action-folder name="Scinotes" xconf-uid="scinotes">
+                        <action key="OSSCKEY H" description="_(Auto complete (, [,...)" name="scinotes-autocomplete-openers"/>
+                        <action key="OSSCKEY Shift H" description="_(Auto complete keyword)" name="scinotes-autocomplete-keyword"/>
+                        <action key="OSSCKEY Shift G" description="_(Generate Help prototype)" name="scinotes-help-prototype"/>
+                        <action key="TAB" description="_(Tabify)" name="scinotes-tabify"/>
+                        <action key="Shift TAB" description="_(Untabify)" name="scinotes-untabify"/>
+                        <action key="OSSCKEY I" description="_(Indent)" name="scinotes-indent"/>
+                        <action key="OSSCKEY D" description="_(Comment)" name="scinotes-comment"/>
+                        <action key="OSSCKEY Shift D" description="_(Uncomment)" name="scinotes-uncomment"/>
+                        <action key="OSSCKEY Shift W" description="_(Remove trailing whites)" name="scinotes-remove-whites"/>
+                        <action key="OSSCKEY A" description="_(Select all)" name="scinotes-select-all"/>
+                        <action key="OSSCKEY B" description="_(Select block)" name="scinotes-select-block"/>
+                        <action key="OSSCKEY Shift T" description="_(Open current tab in a new window)" name="scinotes-clone-current"/>
+                        <action key="OSSCKEY Shift X" description="_(Export current tab in a new window)" name="scinotes-export-current"/>
+                        <action key="OSSCKEY C" description="_(Copy)" name="scinotes-copy"/>
+                        <action key="OSSCKEY X" description="_(Cut)" name="scinotes-cut"/>
+                        <action key="OSSCKEY V" description="_(Paste)" name="scinotes-paste"/>
+                        <action key="OSSCKEY Shift V" description="_(Paste a column)" name="scinotes-paste-column"/>
+                        <action key="OSSCKEY Shift Z" description="_(Repeat selection on column)" name="scinotes-repeat-column"/>
+                        <action key="OSSCKEY Z" description="_(Undo)" name="scinotes-undo"/>
+                        <action key="OSSCKEY Y" description="_(Redo)" name="scinotes-redo"/>
+                        <action key="OSSCKEY Shift C" description="_(Copy as HTML with line number)" name="scinotes-copy-with-lines"/>
+                        <action key="OSSCKEY N" description="_(New)" name="scinotes-new"/>
+                        <action key="OSSCKEY O" description="_(Open)" name="scinotes-open"/>
+                        <action key="OSSCKEY U" description="_(Open URL)" name="scinotes-open-url"/>
+                        <action key="OSSCKEY Shift O" description="_(Open source)" name="scinotes-open-source"/>
+                        <action key="OSSCKEY S" description="_(Save)" name="scinotes-save"/>
+                        <action key="OSSCKEY Shift S" description="_(Save as)" name="scinotes-save-as"/>
+                        <action key="OSSCKEY Shift R" description="_(Reload)" name="scinotes-reload"/>
+                        <action key="OSSCKEY Shift P" description="_(Print preview)" name="scinotes-print-preview"/>
+                        <action key="OSSCKEY P" description="_(Print)" name="scinotes-print"/>
+                        <action key="OSSCKEY W" description="_(Close)" name="scinotes-close"/>
+                        <action key="OSSCKEY Q" description="_(Exit)" name="scinotes-exit"/>
+                        <action key="OSSCKEY J" description="_(To lower case)" name="scinotes-tolowercase"/>
+                        <action key="OSSCKEY Shift J" description="_(To upper case)" name="scinotes-touppercase"/>
+                        <action key="OSSCKEY Shift A" description="_(Capitalize)" name="scinotes-capitalize"/>
+                        <action key="OSSCKEY F1" description="_(Help on keyword)" name="scinotes-help-keyword"/>
+                        <action key="OSSCKEY L" description="_(Load in Scilab)" name="scinotes-load-scilab"/>
+                        <action key="OSSCKEY Shift E" description="_(Execute in Scilab)" name="scinotes-execute-scilab"/>
+                        <action key="OSSCKEY E" description="_(Evaluate selection)" name="scinotes-evaluate-selection"/>
+                        <action key="F5" description="_(Save and execute)" name="scinotes-save-execute"/>
+                        <action key="OSSCKEY F5" description="_(Save and execute all)" name="scinotes-save-execute-all"/>
+                        <action key="OSSCKEY F" description="_(Find)" name="scinotes-find"/>
+                        <action key="OSSCKEY K" description="_(Find next)" name="scinotes-find-next"/>
+                        <action key="OSSCKEY Shift K" description="_(Find previous)" name="scinotes-find-previous"/>
+                        <action key="F3" description="_(Incremental search)" name="scinotes-incremental-search"/>
+                        <action key="OSSCKEY M" description="_(Set anchor)" name="scinotes-set-anchor"/>
+                        <action key="OSSCKEY Shift M" description="_(Remove anchor)" name="scinotes-remove-anchor"/>
+                        <action key="OSSCKEY Shift LESS" description="_(Go to next anchor)" name="scinotes-next-anchor"/>
+                        <action key="OSSCKEY LESS" description="_(Go to previous anchor)" name="scinotes-previous-anchor"/>
+                        <action key="OSSCKEY G" description="_(Start Code Navigator)" name="scinotes-code-navigator"/>
+                        <action key="OSSCKEY Shift F" description="_(Search word in file)" name="scinotes-word-file"/>
+                        <action key="OSSCKEY Shift B" description="_(Search files)" name="scinotes-search-files"/>
+                        <action key="OSSCKEY SPACE" description="_(Keyword completion)" name="scinotes-completion"/>
+                        <action key="F1" description="_(Help)" name="scinotes-help"/>
+                        <action key="Shift F1" description="_(About)" name="scinotes-about"/>
+                        <action key="OSSCKEY PAGE_DOWN" description="_(Next tab)" name="scinotes-next-tab"/>
+                        <action key="OSSCKEY PAGE_UP" description="_(Previous tab)" name="scinotes-previous-tab"/>
+                        <action key="DELETE" description="_(Delete)" name="scinotes-delete"/>
+                        <action key="OSSCKEY DOWN" description="_(Next paragraph)" name="scinotes-next-paragraph"/>
+                        <action key="OSSCKEY UP" description="_(Previous paragraph)" name="scinotes-previous-paragraph"/>
+                        <action key="" description="_(Save all)" name="scinotes-save-all"/>
+                        <action key="" description="_(Overwrite)" name="scinotes-overwrite"/>
+                        <action key="" description="_(Page setup)" name="scinotes-page-setup"/>
+                        <action key="" description="_(Close all)" name="scinotes-close-all"/>
+                        <action key="" description="_(Close all but this)" name="scinotes-close-all-but"/>
+                        <action key="" description="_(Convert quote to double quote)" name="scinotes-double-quote"/>
+                        <action key="" description="_(Line numbering)" name="scinotes-line-numbering"/>
+                        <action key="" description="_(Set the SciNotes font)" name="scinotes-set-font"/>
+                        <action key="" description="_(Set the SciNotes colors)" name="scinotes-set-colors"/>
+                    </action-folder>
+                    <action-folder name="Xcos" xconf-uid="xcos">
+                        <!-- File -->
+                        <action key="OSSCKEY N" description="_(New diagram)" name="xcos-new" />
+                        <action key="OSSCKEY O" description="_(Open)" name="xcos-open" />
+                        <action key="" description="_(Open file in Scilab current directory)" name="xcos-open-in-sci" />
+                        <action key="OSSCKEY S" description="_(Save)" name="xcos-save" />
+                        <action key="OSSCKEY Shift S" description="_(Save as)" name="xcos-save-as" />
+                        <action key="OSSCKEY E" description="_(Export)" name="xcos-export" />
+                        <action key="OSSCKEY P" description="_(Print)" name="xcos-print" />
+                        <action key="OSSCKEY W" description="_(Close)" name="xcos-close" />
+                        <action key="OSSCKEY Q" description="_(Quit Xcos)" name="xcos-quit" />
+                        <!-- Edit -->
+                        <action key="OSSCKEY Z" description="_(Undo)" name="xcos-undo" />
+                        <action key="OSSCKEY Y" description="_(Redo)" name="xcos-redo" />
+                        <action key="OSSCKEY X" description="_(Cut)" name="xcos-cut" />
+                        <action key="OSSCKEY C" description="_(Copy)" name="xcos-copy" />
+                        <action key="OSSCKEY V" description="_(Paste)" name="xcos-paste" />
+                        <action key="OSSCKEY DELETE" description="_(Delete)" name="xcos-delete" />
+                        <action key="OSSCKEY A" description="_(Select all)" name="xcos-select-all" />
+                        <action key="" description="_(Invert selection)" name="xcos-invert-selection" />
+                        <action key="OSSCKEY B" description="_(Block Parameters)" name="xcos-block-parameters" />
+                        <action key="" description="_(Region to superblock)" name="xcos-region-to-superblock" />
+                        <!-- View -->
+                        <action key="OSSCKEY ADD" description="_(Zoom In)" name="xcos-zoom-in" />
+                        <action key="OSSCKEY SUBTRACT" description="_(Zoom Out)" name="xcos-zoom-out" />
+                        <action key="OSSCKEY SPACE" description="_(Fit diagram to view)" name="xcos-fit-diagram" />
+                        <action key="" description="_(Normal 100%)" name="xcos-zoom-normal" />
+                        <action key="" description="_(Palette browser)" name="xcos-view-palette" />
+                        <action key="" description="_(Diagram browser)" name="xcos-view-diagram" />
+                        <action key="" description="_(Viewport)" name="xcos-view-viewport" />
+                        <action key="" description="_(Details)" name="xcos-view-details" />
+                        <!-- Simulation -->
+                        <action key="" description="_(Setup)" name="xcos-setup" />
+                        <action key="" description="_(Execution trace and Debug)" name="xcos-debug-level" />
+                        <action key="" description="_(Set Context)" name="xcos-set-context" />
+                        <action key="" description="_(Compile)" name="xcos-compile" />
+                        <action key="" description="_(Start)" name="xcos-start" />
+                        <action key="" description="_(Stop)" name="xcos-stop" />
+                        <!-- Format -->
+                        <action key="OSSCKEY R" description="_(Rotate)" name="xcos-rotate" />
+                        <action key="OSSCKEY F" description="_(Flip)" name="xcos-flip" />
+                        <action key="OSSCKEY M" description="_(Mirror)" name="xcos-mirror" />
+                        <action key="" description="_(Show/Hide shadow)" name="xcos-shadow" />
+                        <action key="" description="_(Left)" name="xcos-align-left" />
+                        <action key="" description="_(Center)" name="xcos-align-center" />
+                        <action key="" description="_(Right)" name="xcos-align-right" />
+                        <action key="" description="_(Top)" name="xcos-align-top" />
+                        <action key="" description="_(Middle)" name="xcos-align-middle" />
+                        <action key="" description="_(Bottom)" name="xcos-align-bottom" />
+                        <action key="" description="_(Border Color)" name="xcos-border-color" />
+                        <action key="" description="_(Fill Color)" name="xcos-fill-color" />
+                        <action key="H" description="_(Horizontal)" name="xcos-link-horizontal" />
+                        <action key="S" description="_(Straight)" name="xcos-link-straight" />
+                        <action key="V" description="_(Vertical)" name="xcos-fill-vertical" />
+                        <action key="" description="_(Diagram background)" name="xcos-background" />
+                        <action key="" description="_(Grid)" name="xcos-grid" />
+                        <!-- Tools -->
+                        <action key="" description="_(Code generation)" name="xcos-code-generation" />
+                        <!-- Help -->
+                        <action key="F1" description="_(Xcos Help)" name="xcos-help" />
+                        <action key="OSSCKEY H" description="_(Block Help)" name="xcos-help-block" />
+                        <action key="" description="_(Xcos Demos)" name="xcos-demo" />
+                        <action key="" description="_(About Xcos)" name="xcos-about" />
+                    </action-folder>
+                    <!--action-folder name="Variable Browser" xconf-uid="browsevar">
           <action key="OSSCKEY S" description="_(Save)" name="variablebrowser-save"/>
         </action-folder>
         <action-folder name="Variable Editor" xconf-uid="editvar">
@@ -255,7 +255,7 @@
         <action-folder name="File Browser" xconf-uid="filebrowser">
           <action key="OSSCKEY S" description="_(Save file)" name="filebrowser-save"/>
         </action-folder-->
-            </actions>
-        </body>
-    </shortcuts>
-</general>
+                </actions>
+            </body>
+        </shortcuts>
+    </general>

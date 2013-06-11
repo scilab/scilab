@@ -1,15 +1,15 @@
 function  Ids=ge_get_arcs_id(sel)
-//Copyright INRIA
-//Author : Serge Steer 2002
-  ArcId=EGdata.ArcId
-  Ids=[]
-  select ArcId
-    case 1 then 
-      if size(sel,1)==-1 then 
-	Ids=string(1:size(GraphList.tail(sel),'*'))
-      else
-	Ids=string(sel)
-      end
+    //Copyright INRIA
+    //Author : Serge Steer 2002
+    ArcId=EGdata.ArcId
+    Ids=[]
+    select ArcId
+    case 1 then
+        if size(sel,1)==-1 then
+            Ids=string(1:size(GraphList.tail(sel),"*"))
+        else
+            Ids=string(sel)
+        end
     case 2 then Ids=GraphList.edge_name(sel)
     case 3 then Ids=string(GraphList.edge_cost(sel))
     case 4 then Ids=string(GraphList.edge_min_cap(sel))
@@ -19,5 +19,5 @@ function  Ids=ge_get_arcs_id(sel)
     case 8 then Ids=string(GraphList.edge_q_orig(sel))
     case 9 then Ids=string(GraphList.edge_weight(sel))
     case 10 then Ids=string(GraphList.edge_label(sel))
-  end
+    end
 endfunction

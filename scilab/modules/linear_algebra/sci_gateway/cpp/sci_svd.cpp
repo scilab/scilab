@@ -56,61 +56,61 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
     int iRet                = 0;
     double tol              = 0.;
 
-    if(in.size() != 1 && in.size() != 2)
+    if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "svd", 1, 2);
         return types::Function::Error;
     }
 
-    if(_iRetCount > 4)
+    if (_iRetCount > 4)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): At least %d expected.\n"), "svd", 4);
         return types::Function::Error;
     }
 
-    if(in[0]->isDouble() == false)
+    if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_svd";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
-    if(in.size() == 2)
+    if (in.size() == 2)
     {
-        if(in[1]->isString() == true)
+        if (in[1]->isString() == true)
         {
-            if(_iRetCount == 4)
+            if (_iRetCount == 4)
             {
                 Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "svd", 1, 3);
                 return types::Function::Error;
             }
             types::String* pStr = in[1]->getAs<types::String>();
-            if((wcslen(pStr->get(0)) == 1) && (pStr->get(0)[0] == L'e'))
+            if ((wcslen(pStr->get(0)) == 1) && (pStr->get(0)[0] == L'e'))
             {
                 economy = 1;
             }
         }
-        if(in[1]->isDouble() == true)
+        if (in[1]->isDouble() == true)
         {
             /* no further testing for "old Economy size:  [U,S,V]=svd(A,0) " */
-            if(_iRetCount == 3)
+            if (_iRetCount == 3)
             {
                 economy = 1;
             }
         }
     }
 
-    if(pDbl->getRows() == 0) /* empty matrix */
+    if (pDbl->getRows() == 0) /* empty matrix */
     {
-        for(int i=0; i<_iRetCount-1; i++)
+        for (int i = 0; i < _iRetCount - 1; i++)
         {
             out.push_back(types::Double::Empty());
         }
 
-        if(_iRetCount == 4)
+        if (_iRetCount == 4)
         {
-            types::Double* pDZero = new types::Double(1,1);
-            pDZero->set(0,0);
+            types::Double* pDZero = new types::Double(1, 1);
+            pDZero->set(0, 0);
             out.push_back(pDZero);
         }
         else
@@ -120,13 +120,13 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         return types::Function::OK;
     }
 
-    if((pDbl->getRows() == -1) || (pDbl->getCols() == -1)) // manage eye case
+    if ((pDbl->getRows() == -1) || (pDbl->getCols() == -1)) // manage eye case
     {
         Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "svd", 1);
         return types::Function::Error;
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
     }
@@ -136,28 +136,28 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
     }
 
     totalsize = pDbl->getSize() * (pDbl->isComplex() ? 2 : 1);
-    if(C2F(vfinite)(&totalsize, pData) == false)
+    if (C2F(vfinite)(&totalsize, pData) == false)
     {
         Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "svd", 1);
         return types::Function::Error;
     }
 
-    switch(_iRetCount)
+    switch (_iRetCount)
     {
         case 0:
         case 1:
         {
-            pSV = new types::Double(Min(pDbl->getRows(),pDbl->getCols()), 1, false);
+            pSV = new types::Double(Min(pDbl->getRows(), pDbl->getCols()), 1, false);
             iRet = iSvdM(pData, pDbl->getRows(), pDbl->getCols(), pDbl->isComplex(), economy, tol, pSV->get(), NULL, NULL, NULL, NULL);
         }
         break;
         case 4:
         {
-            if((in.size() == 2) && (in[1]->isDouble()))
+            if ((in.size() == 2) && (in[1]->isDouble()))
             {
                 tol = in[1]->getAs<types::Double>()->get(0);
             }
-            pRk = new types::Double(1,1,false);
+            pRk = new types::Double(1, 1, false);
         }
         case 2:
         case 3:
@@ -169,10 +169,10 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
             ptrS  = new types::Double(economyRows, economyCols, false);
             ptrsV = new types::Double(pDbl->getCols(), economyCols, pDbl->isComplex());
 
-            if(pDbl->isComplex())
+            if (pDbl->isComplex())
             {
-                double* U = (double*)MALLOC(pDbl->getRows()* economyRows * sizeof(doublecomplex));
-                double* V = (double*)MALLOC(pDbl->getCols()* economyCols * sizeof(doublecomplex));
+                double* U = (double*)MALLOC(pDbl->getRows() * economyRows * sizeof(doublecomplex));
+                double* V = (double*)MALLOC(pDbl->getCols() * economyCols * sizeof(doublecomplex));
 
                 iRet = iSvdM(pData, pDbl->getRows(), pDbl->getCols(), true /*isComplex*/, economy, tol, NULL, U, ptrS->get(), V, (pRk ? pRk->get() : NULL));
 
@@ -187,12 +187,12 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
             }
         }
         break;
-       // default: // makes at the beginning of this gateway
+        // default: // makes at the beginning of this gateway
     }
 
-    if(iRet != 0)
+    if (iRet != 0)
     {
-        if(iRet == -1)
+        if (iRet == -1)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), "svd");
         }
@@ -203,12 +203,12 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         return types::Function::Error;
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
 
-    switch(_iRetCount)
+    switch (_iRetCount)
     {
         case 4:
         {
@@ -231,8 +231,9 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
             out.push_back(ptrS);
             break;
         }
-        case 1: out.push_back(pSV);
-       // default: // makes at the beginning of this gateway
+        case 1:
+            out.push_back(pSV);
+            // default: // makes at the beginning of this gateway
     }
 
     return types::Function::OK;

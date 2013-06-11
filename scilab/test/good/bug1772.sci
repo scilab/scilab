@@ -8,9 +8,9 @@ mode(-1);
 S.x=1;
 ok=%t
 try
-  S.y.z=list()	
+    S.y.z=list()
 catch
-  ok=%f
+    ok=%f
 end
 if ok then ok=S.y.z==list(),end
 affich_result(ok,1772);

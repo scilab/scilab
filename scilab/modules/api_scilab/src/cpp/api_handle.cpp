@@ -34,41 +34,45 @@ using namespace types;
 
 SciErr getMatrixOfHandle(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, long long** _pllHandle)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iType = 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    int iType = 0;
 
-	if(	_piAddress == NULL)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getMatrixOfHandle");
-		return sciErr;
-	}
+    if (	_piAddress == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getMatrixOfHandle");
+        return sciErr;
+    }
 
-	sciErr = getVarType(_pvCtx, _piAddress, &iType);
-	if(sciErr.iErr || iType != sci_handles)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfHandle", _("boolean matrix"));
-		return sciErr;
-	}
+    sciErr = getVarType(_pvCtx, _piAddress, &iType);
+    if (sciErr.iErr || iType != sci_handles)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getMatrixOfHandle", _("boolean matrix"));
+        return sciErr;
+    }
 
-	sciErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_GET_HANDLE, _("%s: Unable to get argument #%d"), "getMatrixOfHandle", getRhsFromAddress(_pvCtx, _piAddress));
-		return sciErr;
-	}
+    sciErr = getVarDimension(_pvCtx, _piAddress, _piRows, _piCols);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_GET_HANDLE, _("%s: Unable to get argument #%d"), "getMatrixOfHandle", getRhsFromAddress(_pvCtx, _piAddress));
+        return sciErr;
+    }
 
-	if(_pllHandle)
-	{
+    if (_pllHandle)
+    {
         *_pllHandle = ((InternalType*)_piAddress)->getAs<types::GraphicHandle>()->get();
-	}
-	return sciErr;
+    }
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long long** _pllHandle)
 {
-    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
 
-    if(_pvCtx == NULL)
+    if (_pvCtx == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "allocMatrixOfHandle");
         return sciErr;
@@ -79,7 +83,7 @@ SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long
     InternalType** out = pStr->m_pOut;
 
     GraphicHandle *pHandle = new GraphicHandle(_iRows, _iCols);
-    if(pHandle == NULL)
+    if (pHandle == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfHandle");
         return sciErr;
@@ -88,7 +92,7 @@ SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long
     int rhs = _iVar - *getNbInputArgument(_pvCtx);
     out[rhs - 1] = pHandle;
     *_pllHandle = pHandle->get();
-    if(*_pllHandle == NULL)
+    if (*_pllHandle == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfHandle");
         return sciErr;
@@ -99,10 +103,12 @@ SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long
 /*--------------------------------------------------------------------------*/
 SciErr createMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long long* _pllHandle)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	long long* pllHandle = NULL;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    long long* pllHandle = NULL;
 
-    if(_iRows == 0 && _iCols == 0)
+    if (_iRows == 0 && _iCols == 0)
     {
         double dblReal = 0;
         sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
@@ -114,14 +120,14 @@ SciErr createMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, lon
     }
 
     sciErr = allocMatrixOfHandle(_pvCtx, _iVar, _iRows, _iCols, &pllHandle);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfBoolean");
-		return sciErr;
-	}
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfBoolean");
+        return sciErr;
+    }
 
-	memcpy(pllHandle, _pllHandle, sizeof(long long) * _iRows * _iCols);
-	return sciErr;
+    memcpy(pllHandle, _pllHandle, sizeof(long long) * _iRows * _iCols);
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr fillMatrixOfHandle(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, long long** _pllHandle)
@@ -139,48 +145,52 @@ int isHandleType(void* _pvCtx, int* _piAddress)
 /*--------------------------------------------------------------------------*/
 int getScalarHandle(void* _pvCtx, int* _piAddress, long long* _pllHandle)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iRows	= 0;
-	int iCols	= 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    int iRows	= 0;
+    int iCols	= 0;
 
-	long long* pllHandle = NULL;
+    long long* pllHandle = NULL;
 
-	sciErr = getMatrixOfHandle(_pvCtx, _piAddress, &iRows, &iCols, &pllHandle);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_GET_SCALAR_HANDLE, _("%s: Unable to get argument #%d"), "getScalarHandle", getRhsFromAddress(_pvCtx, _piAddress));
-		printError(&sciErr, 0);
-		return sciErr.iErr;
-	}
+    sciErr = getMatrixOfHandle(_pvCtx, _piAddress, &iRows, &iCols, &pllHandle);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_GET_SCALAR_HANDLE, _("%s: Unable to get argument #%d"), "getScalarHandle", getRhsFromAddress(_pvCtx, _piAddress));
+        printError(&sciErr, 0);
+        return sciErr.iErr;
+    }
 
-	if(isScalar(_pvCtx, _piAddress) == 0)
-	{
-		addErrorMessage(&sciErr, API_ERROR_GET_SCALAR_HANDLE, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "getScalarHandle", getRhsFromAddress(_pvCtx, _piAddress));
-		printError(&sciErr, 0);
-		return sciErr.iErr;
-	}
+    if (isScalar(_pvCtx, _piAddress) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_GET_SCALAR_HANDLE, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "getScalarHandle", getRhsFromAddress(_pvCtx, _piAddress));
+        printError(&sciErr, 0);
+        return sciErr.iErr;
+    }
 
-	if(_pllHandle != NULL)
-	{
-		*_pllHandle = pllHandle[0];
-	}
+    if (_pllHandle != NULL)
+    {
+        *_pllHandle = pllHandle[0];
+    }
 
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int createScalarHandle(void* _pvCtx, int _iVar, long long _llHandle)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	long long* pllHandle = NULL;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    long long* pllHandle = NULL;
 
-	sciErr = allocMatrixOfHandle(_pvCtx, _iVar, 1, 1, &pllHandle);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_HANDLE, _("%s: Unable to create variable in Scilab memory"), "createScalarHandle");
-		printError(&sciErr, 0);
-		return sciErr.iErr;
-	}
+    sciErr = allocMatrixOfHandle(_pvCtx, _iVar, 1, 1, &pllHandle);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_HANDLE, _("%s: Unable to create variable in Scilab memory"), "createScalarHandle");
+        printError(&sciErr, 0);
+        return sciErr.iErr;
+    }
 
-	pllHandle[0] = _llHandle;
-	return 0;
+    pllHandle[0] = _llHandle;
+    return 0;
 }

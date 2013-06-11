@@ -20,11 +20,11 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>
  * A Custom palette is loaded as a diagram but in the palette tab.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within
  * this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Custom">
  *   &lt;complexContent>
@@ -36,8 +36,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Custom", propOrder = { "path" })
@@ -54,9 +54,9 @@ public class Custom extends Palette {
 
     /**
      * Gets the value of the path property.
-     * 
+     *
      * @return possible object is {@link VariablePath }
-     * 
+     *
      */
     public VariablePath getPath() {
         return path;
@@ -64,10 +64,10 @@ public class Custom extends Palette {
 
     /**
      * Sets the value of the path property.
-     * 
+     *
      * @param value
      *            allowed object is {@link VariablePath }
-     * 
+     *
      */
     public void setPath(VariablePath value) {
         this.path = value;

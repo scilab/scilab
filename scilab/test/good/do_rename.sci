@@ -20,21 +20,21 @@
 //
 
 function [scs_m,edited,ok]=do_rename(scs_m, pal_mode)
-  ok=%t
-  if argn(2)==1 then pal_mode=%f, end
+    ok=%t
+    if argn(2)==1 then pal_mode=%f, end
 
-  if pal_mode then
-    mess='Enter the new palette name'
-  else
-    mess='Enter the new diagram name'
-  end
-  
-  [ok,new]=scicos_getvalue(mess,"Name",list("str",[1,1]),scs_m.props.title(1))
-  
-  if new<>[] then
-    drawtitle(scs_m.props)     //erase title
-    scs_m.props.title(1) = new 
-    drawtitle(scs_m.props)     //draw title
-    edited = %t
-  end
+    if pal_mode then
+        mess="Enter the new palette name"
+    else
+        mess="Enter the new diagram name"
+    end
+
+    [ok,new]=scicos_getvalue(mess,"Name",list("str",[1,1]),scs_m.props.title(1))
+
+    if new<>[] then
+        drawtitle(scs_m.props)     //erase title
+        scs_m.props.title(1) = new
+        drawtitle(scs_m.props)     //draw title
+        edited = %t
+    end
 endfunction

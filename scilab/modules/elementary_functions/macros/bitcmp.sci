@@ -62,12 +62,12 @@ function y = bitcmp(x,n)
 
     // check n value
 
-        select inttype(x)
-        case 0  then nmax = 52;
-        case 11 then nmax = 8;
-        case 12 then nmax = 16;
-        case 14 then nmax = 32;
-        end
+    select inttype(x)
+    case 0  then nmax = 52;
+    case 11 then nmax = 8;
+    case 12 then nmax = 16;
+    case 14 then nmax = 32;
+    end
 
     if rhs>1 then
 

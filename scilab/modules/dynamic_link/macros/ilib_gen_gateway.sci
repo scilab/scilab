@@ -18,154 +18,154 @@
 
 function gateway_filename = ilib_gen_gateway(name,tables)
 
-  [lhs,rhs] = argn(0);
-  if rhs <> 2 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_gateway"));
-    return
-  end
+    [lhs,rhs] = argn(0);
+    if rhs <> 2 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_gateway"));
+        return
+    end
 
-  gateway_filename = '';
-  k = strindex(name,['/','\']);
-  if k~=[] then
-    path = part(name,1:k($));
-    name = part(name,k($)+1:length(name));
-  else
-     path='';
-  end
-
-  [path_name, file_name, ext_name] = fileparts(name);
-  if ext_name == '.c' then
-    name = path_name + file_name;
-  else
-    name = path_name + file_name + ext_name;
-  end
-
-  if typeof(tables)<>'list' then
-    tables = list(tables);
-  end
-
-  L = length(tables);
-
-  for itable = 1:L
-    // loop on a list of tables
-    if L <> 1 then
-      tname = name +string(itable);
+    gateway_filename = "";
+    k = strindex(name,["/","\"]);
+    if k~=[] then
+        path = part(name,1:k($));
+        name = part(name,k($)+1:length(name));
     else
-      tname = name ;
+        path="";
     end
 
-    table = tables(itable);
-    [mt,nt] = size(table);
-
-    if (nt == 2) then
-      col = "csci";
-      table = [table, col(ones(mt,1))];
-      nt = 3;
-    end
-
-    prototype = '(char* fname, int* _piKey);';
-    addGWFunction = "addGatewayInContext";
-    if isdef("ismex") & ismex == %t then
-        prototype = '(int nlhs, int* plhs[], int nrhs, int* prhs[]);';
-        addGWFunction = "addMexGatewayInContext";
-    end
-
-
-    if ( nt <> 3 ) then
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
-    end
-    [gate,names] = new_names(table);
-    t = [
-            '#ifdef __cpluplus';
-            'extern ""C"" {'
-            '#endif'
-            '#include <wchar.h> ';   
-            '#include ""mex.h"" ';
-            '#include ""sci_gateway.h""';
-            '#include ""api_scilab.h""';
-            '#include ""MALLOC.h""';
-            '#include ""addGatewayInContext.h""';
-            '';
-            '#define MODULE_NAME L""' + tname + '""';
-            '';
-            'extern int ' + names(:) + prototype;
-            '';
-            'int ' + tname + '(wchar_t* _pwstName)';
-            '{';
-            '   if(wcscmp(_pwstName, L""' + table(:,1) + '"") == 0){' + addGWFunction + '(L""' + table(:,1) + '"", &' + names(:) + ', MODULE_NAME);}';
-            '}';
-            '#ifdef __cplusplus';
-            '}';
-            '#endif'];
-        
-    gateway_filename = path + tname + '.c';
-    // first check if we have already a gateway
-    [fd, ierr] = mopen(gateway_filename, 'rt');
-    if ierr == 0 then
-      // file already exists
-      t1 = mgetl(fd);
-      mclose(fd);
-      if or(t1 <> t) then
-        mputl(t, gateway_filename);
-      end
+    [path_name, file_name, ext_name] = fileparts(name);
+    if ext_name == ".c" then
+        name = path_name + file_name;
     else
-       // file does not exist we create it
-       mputl(t, gateway_filename) ;
+        name = path_name + file_name + ext_name;
     end
 
-    if ilib_verbose() > 1 then
-      disp(t);
+    if typeof(tables)<>"list" then
+        tables = list(tables);
     end
-  end
+
+    L = length(tables);
+
+    for itable = 1:L
+        // loop on a list of tables
+        if L <> 1 then
+            tname = name +string(itable);
+        else
+            tname = name ;
+        end
+
+        table = tables(itable);
+        [mt,nt] = size(table);
+
+        if (nt == 2) then
+            col = "csci";
+            table = [table, col(ones(mt,1))];
+            nt = 3;
+        end
+
+        prototype = "(char* fname, int* _piKey);";
+        addGWFunction = "addGatewayInContext";
+        if isdef("ismex") & ismex == %t then
+            prototype = "(int nlhs, int* plhs[], int nrhs, int* prhs[]);";
+            addGWFunction = "addMexGatewayInContext";
+        end
+
+
+        if ( nt <> 3 ) then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
+        end
+        [gate,names] = new_names(table);
+        t = [
+        "#ifdef __cpluplus";
+        "extern ""C"" {"
+        "#endif"
+        "#include <wchar.h> ";
+        "#include ""mex.h"" ";
+        "#include ""sci_gateway.h""";
+        "#include ""api_scilab.h""";
+        "#include ""MALLOC.h""";
+        "#include ""addGatewayInContext.h""";
+        "";
+        "#define MODULE_NAME L""" + tname + """";
+        "";
+        "extern int " + names(:) + prototype;
+        "";
+        "int " + tname + "(wchar_t* _pwstName)";
+        "{";
+        "   if(wcscmp(_pwstName, L""" + table(:,1) + """) == 0){" + addGWFunction + "(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME);}";
+        "}";
+        "#ifdef __cplusplus";
+        "}";
+        "#endif"];
+
+        gateway_filename = path + tname + ".c";
+        // first check if we have already a gateway
+        [fd, ierr] = mopen(gateway_filename, "rt");
+        if ierr == 0 then
+            // file already exists
+            t1 = mgetl(fd);
+            mclose(fd);
+            if or(t1 <> t) then
+                mputl(t, gateway_filename);
+            end
+        else
+            // file does not exist we create it
+            mputl(t, gateway_filename) ;
+        end
+
+        if ilib_verbose() > 1 then
+            disp(t);
+        end
+    end
 endfunction
- //=============================================================================
+//=============================================================================
 // new_names only used by ilib_gen_gateway
 //=============================================================================
 function [gate,names] = new_names(table)
-  // change names according to types
-  [mt,nt] = size(table);
-  gate = "mex_gateway";
-  gate = gate(ones(mt,1));
-  names = " ";
-  names = names(ones(mt,1));
-  for i = 1:mt
-    select table(i,3)
-     case 'cmex' then
-       names(i) = "mex_" + table(i,2) ;
-     case 'fmex' then
-       gate(i) = "(Myinterfun)fortran_mex_gateway" ;
-       names(i) = "C2F(mex" + table(i,2) + ")" ;
-     case 'Fmex' then
-       gate(i) = "(Myinterfun)fortran_mex_gateway" ;
-       names(i) = "C2F(mex" + table(i,2) + ")" ;
-     case 'csci'  then
-       if isdef('WITHOUT_AUTO_PUTLHSVAR') then
-         if (WITHOUT_AUTO_PUTLHSVAR == %T) then
-           gate(i) = "(Myinterfun)sci_gateway_without_putlhsvar" ;
-         else
-           gate(i) = "(Myinterfun)sci_gateway" ;
-         end
-       else
-         gate(i) = "(Myinterfun)sci_gateway" ;
-       end
-       names(i) = table(i,2) ;
-     case 'fsci'  then
-       if isdef('WITHOUT_AUTO_PUTLHSVAR') then
-         if (WITHOUT_AUTO_PUTLHSVAR == %T) then
-           gate(i) = "(Myinterfun)sci_gateway_without_putlhsvar" ;
-         else
-           gate(i) = "(Myinterfun)sci_gateway" ;
-         end
-       else
-         gate(i) = "(Myinterfun)sci_gateway" ;
-       end
-       names(i) = "C2F(" + table(i,2) + ")" ;
-     case 'direct'  then
-       gate(i) = "(Myinterfun)direct_gateway" ;
-       names(i) = "C2F(" + table(i,2) + ")" ;
-    else
-      error(999,"Wrong interface type " + table(i,3));
+    // change names according to types
+    [mt,nt] = size(table);
+    gate = "mex_gateway";
+    gate = gate(ones(mt,1));
+    names = " ";
+    names = names(ones(mt,1));
+    for i = 1:mt
+        select table(i,3)
+        case "cmex" then
+            names(i) = "mex_" + table(i,2) ;
+        case "fmex" then
+            gate(i) = "(Myinterfun)fortran_mex_gateway" ;
+            names(i) = "C2F(mex" + table(i,2) + ")" ;
+        case "Fmex" then
+            gate(i) = "(Myinterfun)fortran_mex_gateway" ;
+            names(i) = "C2F(mex" + table(i,2) + ")" ;
+        case "csci"  then
+            if isdef("WITHOUT_AUTO_PUTLHSVAR") then
+                if (WITHOUT_AUTO_PUTLHSVAR == %T) then
+                    gate(i) = "(Myinterfun)sci_gateway_without_putlhsvar" ;
+                else
+                    gate(i) = "(Myinterfun)sci_gateway" ;
+                end
+            else
+                gate(i) = "(Myinterfun)sci_gateway" ;
+            end
+            names(i) = table(i,2) ;
+        case "fsci"  then
+            if isdef("WITHOUT_AUTO_PUTLHSVAR") then
+                if (WITHOUT_AUTO_PUTLHSVAR == %T) then
+                    gate(i) = "(Myinterfun)sci_gateway_without_putlhsvar" ;
+                else
+                    gate(i) = "(Myinterfun)sci_gateway" ;
+                end
+            else
+                gate(i) = "(Myinterfun)sci_gateway" ;
+            end
+            names(i) = "C2F(" + table(i,2) + ")" ;
+        case "direct"  then
+            gate(i) = "(Myinterfun)direct_gateway" ;
+            names(i) = "C2F(" + table(i,2) + ")" ;
+        else
+            error(999,"Wrong interface type " + table(i,3));
+        end
     end
-  end
 endfunction
 //=============================================================================

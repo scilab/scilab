@@ -43,7 +43,10 @@ public :
     static int dynOpenLib();
     static int dynCLoseLib();
 
-    static herr_t dynH5Check() { return dynH5check_version(H5_VERS_MAJOR,H5_VERS_MINOR, H5_VERS_RELEASE);}
+    static herr_t dynH5Check()
+    {
+        return dynH5check_version(H5_VERS_MAJOR, H5_VERS_MINOR, H5_VERS_RELEASE);
+    }
     static herr_t dynH5open(void);
 
     //File management

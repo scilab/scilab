@@ -12,26 +12,26 @@
 
 function A = squeeze(A)
 
-// PURPOSE: Remove singleton dimensions, that is any dimension
-// for which the size of the input hypermatrix is 1; if the
-// input is a matrix, it is unaffected
-// ------------------------------------------------------------
-// INPUT:
-// * A = a hypermatrix or a matrix 
-// ------------------------------------------------------------
+    // PURPOSE: Remove singleton dimensions, that is any dimension
+    // for which the size of the input hypermatrix is 1; if the
+    // input is a matrix, it is unaffected
+    // ------------------------------------------------------------
+    // INPUT:
+    // * A = a hypermatrix or a matrix
+    // ------------------------------------------------------------
 
-  if or(typeof(A)==['hypermat','ce','st']) then
-    Dims=size(A)
-    newDims = Dims(Dims <> 1) ;
-    if size(newDims,'*') <2  then
-      A=A(:)
+    if or(typeof(A)==["hypermat","ce","st"]) then
+        Dims=size(A)
+        newDims = Dims(Dims <> 1) ;
+        if size(newDims,"*") <2  then
+            A=A(:)
+        else
+            A=matrix(A,newDims)
+        end
+    elseif type(A)<=10 then
+        // it is a standard matrix nothing to do
     else
-      A=matrix(A,newDims)
+        error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"squeeze",1))
     end
-  elseif type(A)<=10 then
-    // it is a standard matrix nothing to do
-  else
-    error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),'squeeze',1))
-  end
 
 endfunction

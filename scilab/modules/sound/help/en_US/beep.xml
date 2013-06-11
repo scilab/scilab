@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ????-2006 - INRIA - Allan CORNET 
     * 
@@ -10,39 +10,39 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="beep">
-    <refnamediv>
-        <refname>beep</refname>
-        <refpurpose>Produce a beep sound</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>beep();
-            beep('on')
-            beep('off')
-            s=beep()
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>beep()</literal> produces your computer's default beep sound.
-        </para>
-        <para>
-            <literal>beep('on')</literal> turns the beep on
-        </para>
-        <para>
-            <literal>beep('off')</literal> turns the beep off
-        </para>
-        <para>
-            <literal>s=beep()</literal> returns the current beep mode (on or off).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="beep">
+        <refnamediv>
+            <refname>beep</refname>
+            <refpurpose>Produce a beep sound</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>beep();
+                beep('on')
+                beep('off')
+                s=beep()
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>beep()</literal> produces your computer's default beep sound.
+            </para>
+            <para>
+                <literal>beep('on')</literal> turns the beep on
+            </para>
+            <para>
+                <literal>beep('off')</literal> turns the beep off
+            </para>
+            <para>
+                <literal>s=beep()</literal> returns the current beep mode (on or off).
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 beep() // Make a sound
 beep("off") // disable the sound
 ]]></programlisting>
-    </refsection>
-</refentry>
+        </refsection>
+    </refentry>

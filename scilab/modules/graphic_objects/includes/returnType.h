@@ -13,7 +13,8 @@
 #ifndef __RETURNTYPE_H__
 #define __RETURNTYPE_H__
 
-enum _ReturnType_ {
+enum _ReturnType_
+{
     jni_string,
     jni_string_vector,
     jni_double,

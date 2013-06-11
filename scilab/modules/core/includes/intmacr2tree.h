@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004 - INRIA - Vincent COUVERT
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,21 +27,21 @@
 /**********************/
 
 /* Defined in SCI/modules/core/src/c/str2sci.c */
-extern void str2sci(char** x,int n,int m); /* Write a C-string in Scilab stack */
+extern void str2sci(char** x, int n, int m); /* Write a C-string in Scilab stack */
 
 /* Defined in SCI/modules/core/src/fortran/itosci.f */
-extern void C2F(itosci)(int *intptr,int *nbrows,int *nbcols); /* Write a int in Scilab stack */
+extern void C2F(itosci)(int *intptr, int *nbrows, int *nbcols); /* Write a int in Scilab stack */
 
 /* Defined in SCI/modules/core/src/fortran/dtosci.f */
-extern void C2F(dtosci)(double *dbleptr,int *nbrows,int *nbcols); /* Write a double in Scilab stack */
+extern void C2F(dtosci)(double *dbleptr, int *nbrows, int *nbcols); /* Write a double in Scilab stack */
 
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
-extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
+extern int C2F(cvnamel)(int *id, char *str, int *jobptr, int *str_len);
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
 
 /* Defined in SCI/modules/core/src/fortran/mklist.f */
-extern int C2F(mktlist)(int *nbitems); 
+extern int C2F(mktlist)(int *nbitems);
 
 /* Some useful definitions unexistant in stack-c.h */
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)

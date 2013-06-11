@@ -23,22 +23,22 @@ extern "C"
 #include "Scierror.h"
 #include "core_math.h"
 
-extern void C2F(syredi)(int *maxdeg, int *ityp, int *iapro,
-    double *om, double *adelp, double *adels,
-    /* outputs */
-    int *deg_count, int *zeros_count,
-    double *fact,
-    double *b2, double *b1, double *b0,
-    double *c1, double *c0,
-    double *zzr, double *zzi,
-    double *zpr, double *zpi,
-    int *ierr,
-    /* working buffers */
-    double *spr, double *spi,
-    double *pren, double *pimn,
-    double *zm, double *sm, double *rom,
-    /* v-- doutful types but whatever... */
-    double *nzero, double *nze);
+    extern void C2F(syredi)(int *maxdeg, int *ityp, int *iapro,
+                            double *om, double *adelp, double *adels,
+                            /* outputs */
+                            int *deg_count, int *zeros_count,
+                            double *fact,
+                            double *b2, double *b1, double *b0,
+                            double *c1, double *c0,
+                            double *zzr, double *zzi,
+                            double *zpr, double *zpi,
+                            int *ierr,
+                            /* working buffers */
+                            double *spr, double *spi,
+                            double *pren, double *pimn,
+                            double *zm, double *sm, double *rom,
+                            /* v-- doutful types but whatever... */
+                            double *nzero, double *nze);
 }
 
 enum filter_type
@@ -96,7 +96,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     types::Double* pOut                 = NULL;
 
     //check input parameters
-    if(in.size() != 5)
+    if (in.size() != 5)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "syredi", 5);
         return types::Function::Error;
@@ -104,7 +104,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 
     //check 1st input parameter : filter type ( 1 int )
     pDblType = in[0]->getAs<types::Double>();
-    if(in[0]->isDouble() == false || pDblType->isScalar() == false || pDblType->isComplex() == true)
+    if (in[0]->isDouble() == false || pDblType->isScalar() == false || pDblType->isComplex() == true)
     {
         Scierror(999, _("%s: Wrong type for argument %d: Real scalar expected.\n"), "syredi", 1);
         return types::Function::Error;
@@ -114,7 +114,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 
     //check 2nd input parameter : approximation type ( 1 int )
     pDblAppro = in[1]->getAs<types::Double>();
-    if(in[1]->isDouble() == false || pDblAppro->isScalar() == false || pDblAppro->isComplex() == true)
+    if (in[1]->isDouble() == false || pDblAppro->isScalar() == false || pDblAppro->isComplex() == true)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "syredi", 2);
         return types::Function::Error;
@@ -124,25 +124,25 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 
     //check 3rd input parameter : cuttof frequencies ( 4-row vector )
     pDblCutOff = in[2]->getAs<types::Double>();
-    if(in[2]->isDouble() == false || pDblCutOff->getSize() != 4 || pDblCutOff->getCols() != 4)
+    if (in[2]->isDouble() == false || pDblCutOff->getSize() != 4 || pDblCutOff->getCols() != 4)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A %d-by-%d array expected.\n"), "syredi", 3, 1, 4);
         return types::Function::Error;
     }
 
-    if(minimum(pDblCutOff->get(), pDblCutOff->getSize()) < 0 || minimum(pDblCutOff->get(), pDblCutOff->getSize()) > M_PI)
+    if (minimum(pDblCutOff->get(), pDblCutOff->getSize()) < 0 || minimum(pDblCutOff->get(), pDblCutOff->getSize()) > M_PI)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "syredi", 3, "0", "%pi");
         return types::Function::Error;
     }
 
-    if((iType == low_pass || iType == high_pass) && isSortedAscending(pDblCutOff->get(), 2) == false)
+    if ((iType == low_pass || iType == high_pass) && isSortedAscending(pDblCutOff->get(), 2) == false)
     {
         Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"), "syredi", 3);
         return types::Function::Error;
     }
 
-    if((iType == band_pass || iType == stop_band) && isSortedAscending(pDblCutOff->get(), 4) == false)
+    if ((iType == band_pass || iType == stop_band) && isSortedAscending(pDblCutOff->get(), 4) == false)
     {
         Scierror(999, _("%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"), "syredi", 3);
         return types::Function::Error;
@@ -150,7 +150,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 
     //check 4th input parameter : ripple in passband ( 0 < deltap < 1 )
     pDblDeltaP = in[3]->getAs<types::Double>();
-    if(in[3]->isDouble() == false || pDblAppro->isScalar() == false || pDblAppro->isComplex() == true)
+    if (in[3]->isDouble() == false || pDblAppro->isScalar() == false || pDblAppro->isComplex() == true)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "syredi", 4);
         return types::Function::Error;
@@ -160,7 +160,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 
     //check 5th input parameter : ripple in stopband ( 0 < deltas < 1 )
     pDblDeltaS = in[4]->getAs<types::Double>();
-    if(in[4]->isDouble() == false || pDblDeltaS->isScalar() == false || pDblDeltaS->isComplex() == true)
+    if (in[4]->isDouble() == false || pDblDeltaS->isScalar() == false || pDblDeltaS->isComplex() == true)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "syredi", 5);
         return types::Function::Error;
@@ -170,28 +170,28 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 
 
     //alloc temporary variables
-    for(int i = 0 ; i < OUT_COUNT ; i++)
+    for (int i = 0 ; i < OUT_COUNT ; i++)
     {
         pDblOut[i] = new types::Double(1, piOutSize[i]);
     }
 
     //call math function
     C2F(syredi)(&iMaxDeg, (int*)&iType, (int*)&iAppro, pDblCutOff->get(), &dblDeltaP,
-        &dblDeltaS, &iZeroCount, &iDegCount, &dblFact,
-        pDblOut[0]->get(), pDblOut[1]->get(), pDblOut[2]->get(), pDblOut[3]->get(),
-        pDblOut[4]->get(), pDblOut[5]->get(), pDblOut[6]->get(), pDblOut[7]->get(),
-        pDblOut[8]->get(), &iErr, pDblOut[9]->get(), pDblOut[10]->get(), pDblOut[11]->get(),
-        pDblOut[12]->get(), pDblOut[13]->get(), pDblOut[14]->get(), pDblOut[15]->get(),
-        pDblOut[16]->get(), pDblOut[17]->get());
+                &dblDeltaS, &iZeroCount, &iDegCount, &dblFact,
+                pDblOut[0]->get(), pDblOut[1]->get(), pDblOut[2]->get(), pDblOut[3]->get(),
+                pDblOut[4]->get(), pDblOut[5]->get(), pDblOut[6]->get(), pDblOut[7]->get(),
+                pDblOut[8]->get(), &iErr, pDblOut[9]->get(), pDblOut[10]->get(), pDblOut[11]->get(),
+                pDblOut[12]->get(), pDblOut[13]->get(), pDblOut[14]->get(), pDblOut[15]->get(),
+                pDblOut[16]->get(), pDblOut[17]->get());
 
-    if(iErr)
+    if (iErr)
     {
-        if(iErr == -7)
+        if (iErr == -7)
         {
             Scierror(999, _("%s: specs => invalid order filter.\n"), "syredi");
             return types::Function::Error;
         }
-        else if(iErr == -9)
+        else if (iErr == -9)
         {
             Scierror(999, _("%s: specs => too high order filter.\n"), "syredi");
             return types::Function::Error;
@@ -243,7 +243,7 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
     out.push_back(pOut);
 
     //clear temporary variables
-    for(int i = 0 ; i < OUT_COUNT ; i++)
+    for (int i = 0 ; i < OUT_COUNT ; i++)
     {
         delete pDblOut[i];
     }
@@ -255,13 +255,13 @@ types::Function::ReturnValue sci_syredi(types::typed_list &in, int _iRetCount, t
 double maximum(double* _pDblVal, int _iSize)
 {
     double dblMax = 0;
-    if(_iSize < 1)
+    if (_iSize < 1)
     {
         return dblMax;
     }
 
     dblMax = _pDblVal[0];
-    for(int i = 1 ; i < _iSize ; i++)
+    for (int i = 1 ; i < _iSize ; i++)
     {
         dblMax = Max(_pDblVal[i], dblMax);
     }
@@ -272,13 +272,13 @@ double maximum(double* _pDblVal, int _iSize)
 double minimum(double* _pDblVal, int _iSize)
 {
     double dblMin = 0;
-    if(_iSize < 1)
+    if (_iSize < 1)
     {
         return dblMin;
     }
 
     dblMin = _pDblVal[0];
-    for(int i = 1 ; i < _iSize ; i++)
+    for (int i = 1 ; i < _iSize ; i++)
     {
         dblMin = Min(_pDblVal[i], dblMin);
     }
@@ -287,9 +287,9 @@ double minimum(double* _pDblVal, int _iSize)
 
 bool isSortedAscending(double* _pdblVal, int _iSize)
 {
-    for(int i = 1 ; i < _iSize ; i++)
+    for (int i = 1 ; i < _iSize ; i++)
     {
-        if(_pdblVal[i - 1] > _pdblVal[i])
+        if (_pdblVal[i - 1] > _pdblVal[i])
         {
             return false;
         }
@@ -314,13 +314,16 @@ int syredi_buffered(/* inputs */
 #undef BUFFERS_COUNT
     int maxdeg = 64, error = 1, i;
 
-    for (i = 0 ; i < buffers_count ; ++i) {
+    for (i = 0 ; i < buffers_count ; ++i)
+    {
         buffers[i] = (double *)MALLOC(buffers_sizes[i] * sizeof(double));
-        if (buffers[i] == NULL) {
+        if (buffers[i] == NULL)
+        {
             break;
         }
     }
-    if (i == buffers_count) {
+    if (i == buffers_count)
+    {
         C2F(syredi)(/* inputs */
             &maxdeg, (int *) &filter, (int *) &design,
             cutoff_frequencies, &ripple_passband, &ripple_stopband,
@@ -335,7 +338,8 @@ int syredi_buffered(/* inputs */
             buffers[6],
             buffers[7], buffers[8]);
     }
-    for (i-- ; i >= 0 ; i--) {
+    for (i-- ; i >= 0 ; i--)
+    {
         FREE(buffers[i]);
         buffers[i] = NULL;
     }
@@ -350,9 +354,9 @@ void reshapeFilters(types::Double* _pDblInR, types::Double* _pDblInI, types::Dou
     double* pdblOutR    = _pDblOut->getReal();
     double* pdblOutI    = _pDblOut->getImg();
 
-    for(int i = 0, j = 0 ; j < iSize ; i++,j++)
+    for (int i = 0, j = 0 ; j < iSize ; i++, j++)
     {
-        if(pdblInI[i] == 0)
+        if (pdblInI[i] == 0)
         {
             pdblOutR[j] = pdblInR[i];
             pdblOutI[j] = 0;

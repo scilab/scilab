@@ -22,11 +22,13 @@ extern int C2F(cdfgam)(int *, double *, double *, double*, double *, double *, i
  */
 int sci_cdfgam(char* fname, void* pvApiCtx)
 {
-  struct cdf_item items[] =
-    {{"PQ",    3, 2, 2},
-     {"X",     4, 1, 3},
-     {"Shape", 4, 1, 4},
-     {"Rate", 4, 1, 0}};
-  struct cdf_descriptor cdf = mkcdf(cdfgam, 4, 5, 1, 2, items);
-  return cdf_generic(fname, pvApiCtx, &cdf);
+    struct cdf_item items[] =
+    {
+        {"PQ",    3, 2, 2},
+        {"X",     4, 1, 3},
+        {"Shape", 4, 1, 4},
+        {"Rate", 4, 1, 0}
+    };
+    struct cdf_descriptor cdf = mkcdf(cdfgam, 4, 5, 1, 2, items);
+    return cdf_generic(fname, pvApiCtx, &cdf);
 }

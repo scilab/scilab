@@ -7,19 +7,19 @@
 
 function demo_fec_example3()
 
-  mode(0);
+    mode(0);
 
-  curFig             = scf(100001);
-  clf(curFig,"reset");
+    curFig             = scf(100001);
+    clf(curFig,"reset");
 
-  Sfgrayplot();
-  a=gca();
-  a.title.font_size=3;
+    Sfgrayplot();
+    a=gca();
+    a.title.font_size=3;
 
-  mode(-1);
+    mode(-1);
 
-  demo_viewCode("fec.ex3.dem.sce");
-  
+    demo_viewCode("fec.ex3.dem.sce");
+
 endfunction
 
 demo_fec_example3();

@@ -26,13 +26,13 @@ extern "C"
 
 types::Function::ReturnValue sci_iswaitingforinput(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	BOOL res = FALSE;
+    BOOL res = FALSE;
 
-    if (getScilabMode() == SCILAB_STD) 
+    if (getScilabMode() == SCILAB_STD)
     {
         res = ConsoleIsWaitingForInput();
-    } 
-    else 
+    }
+    else
     {
         Scierror(999, _("%s: Not implemented in this mode.\n"), "iswaitingforinput");
         return types::Function::Error;

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
  * 
@@ -10,74 +10,74 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="barhomogenize" xml:lang="en">
-    <refnamediv>
-        <refname>barhomogenize</refname>
-        <refpurpose>Homogeniza todas as barras inclusas nos eixos
-            correntes
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>barhomogenize()
-            barhomogenize([h[,'style'[,'width']]])
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>h</term>
-                <listitem>
-                    <para>manipulador de eixos, (padrão: h=gca() ). </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>style</term>
-                <listitem>
-                    <para>string, 'grouped' ou 'stacked' (padrão: 'grouped'). </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>width</term>
-                <listitem>
-                    <para>(opcional) escalar real, define a largura (uma porcentagem do
-                        espaço disponível) para a barra (padrão: 0.8).
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>Se há várias chamadas a bar, a função
-            <literal>barhomogenize</literal> permite homogeneizar a largura e estilo
-            de todas as barras (i.e que têm <literal>polyline_style</literal> tipo 6)
-            inclusas nos eixos correntes. Estas barras devem ter os mesmos dados
-            x.
-        </para>
-        <para>
-            <literal>barhomogenize( ) :</literal> toma os valores padrões,
-            h=gca(), width=0.8, style='grouped'. 
-        </para>
-        <para>
-            <literal>barhomogenize(h,...) :</literal> define os eixos correntes
-            onde o desenho é realizado.
-        </para>
-        <para>
-            <literal>barhomogenize(...,width,...) :</literal> define a largura
-            da(s) barra(s) em porcentagem(geralmente: 0&lt;width&lt;=1).
-        </para>
-        <para>
-            <literal>barhomogenize(...,style,...) :</literal> define como as
-            barras são desenhadas. A opção 'grouped' permite centrar as M poligonais
-            versus cada componente de x, e a opção 'stacked' permite
-            empilhá-las.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="barhomogenize" xml:lang="en">
+        <refnamediv>
+            <refname>barhomogenize</refname>
+            <refpurpose>Homogeniza todas as barras inclusas nos eixos
+                correntes
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>barhomogenize()
+                barhomogenize([h[,'style'[,'width']]])
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>h</term>
+                    <listitem>
+                        <para>manipulador de eixos, (padrão: h=gca() ). </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>style</term>
+                    <listitem>
+                        <para>string, 'grouped' ou 'stacked' (padrão: 'grouped'). </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>width</term>
+                    <listitem>
+                        <para>(opcional) escalar real, define a largura (uma porcentagem do
+                            espaço disponível) para a barra (padrão: 0.8).
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>Se há várias chamadas a bar, a função
+                <literal>barhomogenize</literal> permite homogeneizar a largura e estilo
+                de todas as barras (i.e que têm <literal>polyline_style</literal> tipo 6)
+                inclusas nos eixos correntes. Estas barras devem ter os mesmos dados
+                x.
+            </para>
+            <para>
+                <literal>barhomogenize( ) :</literal> toma os valores padrões,
+                h=gca(), width=0.8, style='grouped'. 
+            </para>
+            <para>
+                <literal>barhomogenize(h,...) :</literal> define os eixos correntes
+                onde o desenho é realizado.
+            </para>
+            <para>
+                <literal>barhomogenize(...,width,...) :</literal> define a largura
+                da(s) barra(s) em porcentagem(geralmente: 0&lt;width&lt;=1).
+            </para>
+            <para>
+                <literal>barhomogenize(...,style,...) :</literal> define como as
+                barras são desenhadas. A opção 'grouped' permite centrar as M poligonais
+                versus cada componente de x, e a opção 'stacked' permite
+                empilhá-las.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 // Primeiro exemplo: criação de uma barra amarela (i.e uma poligonal com polyline_style=6) e  três barras (i.e três poligonais com polyline_style=6) 
 subplot(2,3,1)
 xtitle('ex1: criação de uma barra amarela e três barras')
@@ -125,16 +125,16 @@ barhomogenize();
 //barhomogenize('stacked',0.5);
 //barhomogenize('stacked',1);
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>Ver Também </title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="bar">bar</link>
-            </member>
-            <member>
-                <link linkend="polyline_properties">polyline_properties</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title>Ver Também </title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="bar">bar</link>
+                </member>
+                <member>
+                    <link linkend="polyline_properties">polyline_properties</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

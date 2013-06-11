@@ -11,30 +11,30 @@
 //=============================================================================
 function bOK = configure_msvc()
 
-  bOK = %F;
-  if getos() <> 'Windows' then
-    return
-  end
-
-  // Load dynamic_link Internal lib if it's not already loaded
-  if ~ exists("dynamic_linkwindowslib") then
-    load("SCI/modules/dynamic_link/macros/windows/lib");
-  end
-
-  // Load dynamic_link Internal lib if it's not already loaded
-  if ~ exists("dynamic_linkutilslib") then
-    load("SCI/modules/dynamic_link/macros/utils/lib");
-  end
-
-  msvc = findmsvccompiler();
-  if win64() & detectmsvc64tools() then
-    bOK = dlwConfigureVcx64();
-  else
-    bOK = dlwConfigureVcx86();
-    if ~bOK then
-      warning(msprintf(gettext('Microsoft Visual Studio C x86 Compiler not found.')));
+    bOK = %F;
+    if getos() <> "Windows" then
+        return
     end
-  end
+
+    // Load dynamic_link Internal lib if it's not already loaded
+    if ~ exists("dynamic_linkwindowslib") then
+        load("SCI/modules/dynamic_link/macros/windows/lib");
+    end
+
+    // Load dynamic_link Internal lib if it's not already loaded
+    if ~ exists("dynamic_linkutilslib") then
+        load("SCI/modules/dynamic_link/macros/utils/lib");
+    end
+
+    msvc = findmsvccompiler();
+    if win64() & detectmsvc64tools() then
+        bOK = dlwConfigureVcx64();
+    else
+        bOK = dlwConfigureVcx86();
+        if ~bOK then
+            warning(msprintf(gettext("Microsoft Visual Studio C x86 Compiler not found.")));
+        end
+    end
 
 
 endfunction

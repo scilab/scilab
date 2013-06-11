@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -10,113 +10,113 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="contour2di">
-    <refnamediv>
-        <refname>contour2di</refname>
-        <refpurpose>compute level curves of a surface on a 2D plot</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[xc, yc] = contour2di(x, y, z, nz)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>x, y</term>
-                <listitem>
-                    <para>
-                        two real row vectors of size <literal>n1</literal> and <literal>n2</literal>: the grid.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>z</term>
-                <listitem>
-                    <para>
-                        a real matrix of size <literal>(n1,n2)</literal>, the
-                        values of the function.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>nz</term>
-                <listitem>
-                    <para>
-                        the level values or the number of levels.
-                    </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>
-                                If <literal>nz</literal> is an integer
-                            </term>
-                            <listitem>
-                                <para>
-                                    its value gives the number of
-                                    level curves  equally spaced from <literal>zmin</literal> to <literal>zmax</literal> as follows:
-                                </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="contour2di">
+        <refnamediv>
+            <refname>contour2di</refname>
+            <refpurpose>compute level curves of a surface on a 2D plot</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[xc, yc] = contour2di(x, y, z, nz)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x, y</term>
+                    <listitem>
+                        <para>
+                            two real row vectors of size <literal>n1</literal> and <literal>n2</literal>: the grid.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>z</term>
+                    <listitem>
+                        <para>
+                            a real matrix of size <literal>(n1,n2)</literal>, the
+                            values of the function.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>nz</term>
+                    <listitem>
+                        <para>
+                            the level values or the number of levels.
+                        </para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>
+                                    If <literal>nz</literal> is an integer
+                                </term>
+                                <listitem>
+                                    <para>
+                                        its value gives the number of
+                                        level curves  equally spaced from <literal>zmin</literal> to <literal>zmax</literal> as follows:
+                                    </para>
+                                    <programlisting role="no-scilab-exec"><![CDATA[ 
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
-                                <para>
-                                    <note>
-                                    Note that the <literal>zmin</literal> and
-                                    <literal>zmax</literal> levels are not drawn
-                                    (generically they are reduced to points) but
-                                    they can be added  with
-                                    </note>
-                                </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[ 
+                                    <para>
+                                        <note>
+                                            Note that the <literal>zmin</literal> and
+                                            <literal>zmax</literal> levels are not drawn
+                                            (generically they are reduced to points) but
+                                            they can be added  with
+                                        </note>
+                                    </para>
+                                    <programlisting role="no-scilab-exec"><![CDATA[ 
 [im,jm] = find(z == zmin);     // or zmax 
 plot2d(x(im)',y(jm)',-9,"000")
  ]]></programlisting>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>
-                                If <literal>nz</literal> is a vector
-                            </term>
-                            <listitem>
-                                <para>
-                                    <literal>nz(i)</literal> gives the value of
-                                    the <literal>i</literal>-th level curve.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>xc, yc</term>
-                <listitem>
-                    <para>
-                        vectors of identical sizes containing the contours definitions. See below for details.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <function>contour2di</function> computes level curves of a surface
-            <literal>z = f(x, y)</literal> on a 2D plot.  The values of
-            <literal>f(x,y)</literal> are given by the matrix <varname>z</varname>
-            at the grid points defined by <varname>x</varname> and <varname>y</varname>.
-        </para>
-        <para>
-            <literal>xc(1)</literal> contains the level associated with first
-            contour path, <literal>yc(1)</literal> contains the number
-            <literal>N1</literal> of points defining this contour path and
-            (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> )
-            contain the coordinates of the paths points. The second path begin
-            at <literal>xc(2+N1)</literal> and <literal>yc(2+N1)</literal> and
-            so on.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>
+                                    If <literal>nz</literal> is a vector
+                                </term>
+                                <listitem>
+                                    <para>
+                                        <literal>nz(i)</literal> gives the value of
+                                        the <literal>i</literal>-th level curve.
+                                    </para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>xc, yc</term>
+                    <listitem>
+                        <para>
+                            vectors of identical sizes containing the contours definitions. See below for details.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <function>contour2di</function> computes level curves of a surface
+                <literal>z = f(x, y)</literal> on a 2D plot.  The values of
+                <literal>f(x,y)</literal> are given by the matrix <varname>z</varname>
+                at the grid points defined by <varname>x</varname> and <varname>y</varname>.
+            </para>
+            <para>
+                <literal>xc(1)</literal> contains the level associated with first
+                contour path, <literal>yc(1)</literal> contains the number
+                <literal>N1</literal> of points defining this contour path and
+                (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> )
+                contain the coordinates of the paths points. The second path begin
+                at <literal>xc(2+N1)</literal> and <literal>yc(2+N1)</literal> and
+                so on.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 [xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
 k=1;n=yc(k);c=1;
 while k+yc(k)<size(xc,'*')
@@ -126,19 +126,19 @@ while k+yc(k)<size(xc,'*')
   k=k+n+1;
 end
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="contour">contour</link>
-            </member>
-            <member>
-                <link linkend="contour2d">contour2d</link>
-            </member>
-            <member>
-                <link linkend="plot2d">plot2d</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="contour">contour</link>
+                </member>
+                <member>
+                    <link linkend="contour2d">contour2d</link>
+                </member>
+                <member>
+                    <link linkend="plot2d">plot2d</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

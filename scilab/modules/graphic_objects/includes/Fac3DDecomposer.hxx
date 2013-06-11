@@ -56,7 +56,7 @@ private :
      * @param[in] the number of vertices per N-gon.
      */
     static void fillNormalizedZColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
-        double* z, int numGons, int numVerticesPerGon);
+            double* z, int numGons, int numVerticesPerGon);
 
     /**
      * Fills a buffer with a single color.
@@ -70,7 +70,7 @@ private :
      * @param[in] the number of vertices per N-gon.
      */
     static void fillConstantColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
-        double colorValue, int numGons, int numVerticesPerGon);
+            double colorValue, int numGons, int numVerticesPerGon);
 
     /**
      * Fills a buffer with color data.
@@ -87,7 +87,7 @@ private :
      * @param[in] the number of vertices per N-gon.
      */
     static void fillDataColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
-        double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon);
+            double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon);
 
     /**
      * Computes the average value of an N-gon's vertex values.

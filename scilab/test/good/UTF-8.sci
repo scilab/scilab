@@ -1,2 +1,2 @@
-	// Vérification des paramètres
-    a = 2;
+// Vérification des paramètres
+a = 2;

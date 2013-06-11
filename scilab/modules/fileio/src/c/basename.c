@@ -18,31 +18,43 @@
 /*--------------------------------------------------------------------------*/
 wchar_t *basenameW(wchar_t *wcfullfilename, BOOL bExpand)
 {
-	wchar_t *basename_str = NULL;
-	if (wcfullfilename)
-	{
-		wchar_t *expandedPath = expandPathVariableW(wcfullfilename);
-		if (expandedPath)
-		{
-			wchar_t *wcdrv = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
-			wchar_t* wcdir = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
-			wchar_t* wcname = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
-			wchar_t* wcext = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
+    wchar_t *basename_str = NULL;
+    if (wcfullfilename)
+    {
+        wchar_t *expandedPath = expandPathVariableW(wcfullfilename);
+        if (expandedPath)
+        {
+            wchar_t *wcdrv = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
+            wchar_t* wcdir = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
+            wchar_t* wcname = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
+            wchar_t* wcext = MALLOC(sizeof(wchar_t*) * ((int)wcslen(expandedPath) + 1));
 
-			splitpathW(expandedPath, bExpand, wcdrv, wcdir, wcname, wcext);
+            splitpathW(expandedPath, bExpand, wcdrv, wcdir, wcname, wcext);
 
-			if (wcname)
-			{
-				basename_str = wcname;
-			}
+            if (wcname)
+            {
+                basename_str = wcname;
+            }
 
-			if (wcdrv) {FREE(wcdrv); wcdrv = NULL;}
-			if (wcdir) {FREE(wcdir); wcdir = NULL;}
-			if (wcext) {FREE(wcext); wcext = NULL;}
+            if (wcdrv)
+            {
+                FREE(wcdrv);
+                wcdrv = NULL;
+            }
+            if (wcdir)
+            {
+                FREE(wcdir);
+                wcdir = NULL;
+            }
+            if (wcext)
+            {
+                FREE(wcext);
+                wcext = NULL;
+            }
 
-			FREE(expandedPath);
-			expandedPath = NULL;
-		}
-	}
-	return basename_str;
+            FREE(expandedPath);
+            expandedPath = NULL;
+        }
+    }
+    return basename_str;
 }

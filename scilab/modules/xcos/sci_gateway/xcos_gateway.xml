@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="xcos">
-    <!-- =================== -->
-    <!--
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+    <GATEWAY name="xcos">
+        <!-- =================== -->
+        <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -20,21 +20,21 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-    <!-- =================== -->
-    <PRIMITIVE gatewayId="64" primitiveId="1" primitiveName="xcos"/>
-    <PRIMITIVE gatewayId="64" primitiveId="2" primitiveName="warnBlockByUID"/>
-    <PRIMITIVE gatewayId="64" primitiveId="3" primitiveName="closeXcos"/>
-    <PRIMITIVE gatewayId="64" primitiveId="4" primitiveName="xcosDiagramToScilab"/>
-    <PRIMITIVE gatewayId="64" primitiveId="5" primitiveName="xcosPalLoad"/>
-    <PRIMITIVE gatewayId="64" primitiveId="6" primitiveName="xcosPalCategoryAdd"/>
-    <PRIMITIVE gatewayId="64" primitiveId="7" primitiveName="xcosPalDelete"/>
-    <PRIMITIVE gatewayId="64" primitiveId="8" primitiveName="xcosPalMove"/>
-    <PRIMITIVE gatewayId="64" primitiveId="9" primitiveName="xcosPalEnable"/>
-    <PRIMITIVE gatewayId="64" primitiveId="10" primitiveName="xcosPalDisable"/>
-    <PRIMITIVE gatewayId="64" primitiveId="11" primitiveName="xcosPalGenerateIcon"/>
-    <PRIMITIVE gatewayId="64" primitiveId="12" primitiveName="xcosConfigureXmlFile"/>
-    <PRIMITIVE gatewayId="64" primitiveId="13" primitiveName="xcosAddToolsMenu"/>
-    <PRIMITIVE gatewayId="64" primitiveId="14" primitiveName="xcosUpdateBlock"/>
-    <PRIMITIVE gatewayId="64" primitiveId="15" primitiveName="loadXcos"/>
-    <PRIMITIVE gatewayId="64" primitiveId="16" primitiveName="xcosSimulationStarted"/>
-</GATEWAY>
+        <!-- =================== -->
+        <PRIMITIVE gatewayId="64" primitiveId="1" primitiveName="xcos"/>
+        <PRIMITIVE gatewayId="64" primitiveId="2" primitiveName="warnBlockByUID"/>
+        <PRIMITIVE gatewayId="64" primitiveId="3" primitiveName="closeXcos"/>
+        <PRIMITIVE gatewayId="64" primitiveId="4" primitiveName="xcosDiagramToScilab"/>
+        <PRIMITIVE gatewayId="64" primitiveId="5" primitiveName="xcosPalLoad"/>
+        <PRIMITIVE gatewayId="64" primitiveId="6" primitiveName="xcosPalCategoryAdd"/>
+        <PRIMITIVE gatewayId="64" primitiveId="7" primitiveName="xcosPalDelete"/>
+        <PRIMITIVE gatewayId="64" primitiveId="8" primitiveName="xcosPalMove"/>
+        <PRIMITIVE gatewayId="64" primitiveId="9" primitiveName="xcosPalEnable"/>
+        <PRIMITIVE gatewayId="64" primitiveId="10" primitiveName="xcosPalDisable"/>
+        <PRIMITIVE gatewayId="64" primitiveId="11" primitiveName="xcosPalGenerateIcon"/>
+        <PRIMITIVE gatewayId="64" primitiveId="12" primitiveName="xcosConfigureXmlFile"/>
+        <PRIMITIVE gatewayId="64" primitiveId="13" primitiveName="xcosAddToolsMenu"/>
+        <PRIMITIVE gatewayId="64" primitiveId="14" primitiveName="xcosUpdateBlock"/>
+        <PRIMITIVE gatewayId="64" primitiveId="15" primitiveName="loadXcos"/>
+        <PRIMITIVE gatewayId="64" primitiveId="16" primitiveName="xcosSimulationStarted"/>
+    </GATEWAY>

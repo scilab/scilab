@@ -132,8 +132,8 @@ function test_run(varargin)
     global MACOSX;
     global LINUX;
 
-    if getos() <> 'Windows' then
-        OSNAME = unix_g('uname');
+    if getos() <> "Windows" then
+        OSNAME = unix_g("uname");
         MACOSX = (strcmpi(OSNAME,"darwin") == 0);
         LINUX  = (strcmpi(OSNAME,"linux") == 0);
     else
@@ -176,8 +176,8 @@ function test_run(varargin)
     // =======================================================
 
     if (rhs == 0) ..
-                | ((rhs == 1) & (varargin(1)==[])) ..
-                | (((rhs == 2)|(rhs == 3)) & (varargin(1)==[]) & (varargin(2)==[])) then
+        | ((rhs == 1) & (varargin(1)==[])) ..
+        | (((rhs == 2)|(rhs == 3)) & (varargin(1)==[]) & (varargin(2)==[])) then
 
         // No input argument
         // test_run()
@@ -196,9 +196,9 @@ function test_run(varargin)
         end
 
     elseif (rhs == 1) ..
-                | ((rhs == 2) & (varargin(2)==[])) ..
-                | ((rhs == 3) & (varargin(2)==[])) ..
-                | ( ~ isempty(skip_mat)) then
+        | ((rhs == 2) & (varargin(2)==[])) ..
+        | ((rhs == 3) & (varargin(2)==[])) ..
+        | ( ~ isempty(skip_mat)) then
 
         // One input argument
         // test_run(<module_name>)
@@ -215,20 +215,20 @@ function test_run(varargin)
             module = module_new();
             module = module_set_name(module,module_mat(i))
 
-             // It's a scilab internal module
+            // It's a scilab internal module
             if with_module(module.items(i)) then
                 module = module_set_path(module,pathconvert(SCI+"/modules/"+module.items(i),%F));
 
-            // It's an ATOMS module
+                // It's an ATOMS module
             elseif or(librarieslist() == "atomslib") ..
-                    & atomsIsLoaded(module.items(i)) then
+                & atomsIsLoaded(module.items(i)) then
                 module = module_set_path(module,pathconvert(atomsGetLoadedPath(module.items(i)),%F,%T));
 
-            // It's an external module
+                // It's an external module
             elseif isdir(module.items(i)) then
                 module = module_set_path(module,pathconvert(module.items(i),%F));
 
-            // It's an error
+                // It's an error
             else
                 error(sprintf(gettext("%s is not an installed module or toolbox"),module_mat(i)));
             end
@@ -266,16 +266,16 @@ function test_run(varargin)
         if with_module(module.items(1)) then
             module = module_set_path(module,pathconvert(SCI+"/modules/"+module.items(1),%F));
 
-        // It's an ATOMS module
+            // It's an ATOMS module
         elseif or(librarieslist() == "atomslib") ..
-                & atomsIsLoaded(module.items(1)) then
+            & atomsIsLoaded(module.items(1)) then
             module = module_set_path(module,pathconvert(atomsGetLoadedPath(module.items(1)),%F,%T));
 
-        // It's an external module
+            // It's an external module
         elseif isdir(module.items(1)) then
             module = module_set_path(module,pathconvert(module.items(1),%F));
 
-        // It's an error
+            // It's an error
         else
             error(sprintf(gettext("%s is not an installed module or toolbox"),module.items(1)));
         end
@@ -339,7 +339,7 @@ function test_run(varargin)
         end
 
     else
-        error(msprintf(gettext('%s: Wrong number of input arguments.'),"test_run"));
+        error(msprintf(gettext("%s: Wrong number of input arguments."),"test_run"));
     end
 
     // =========================================================================
@@ -395,9 +395,9 @@ function test_run(varargin)
         clearglobal testsuite;
         return;
 
-    // =========================================================================
-    // Test launch
-    // =========================================================================
+        // =========================================================================
+        // Test launch
+        // =========================================================================
 
     else
         testsuite_run(testsuite);
@@ -630,34 +630,34 @@ endfunction
 function st = st_new()
 
     st = tlist([ "T_SINGLETEST"   ..
-                 "name"           ..
-                 "type"           ..
-                 "path"           ..
-                 "module"         ..
-                 "skip"           ..
-                 "content"        ..
-                 "interactive"    ..
-                 "notyetfixed"    ..
-                 "longtime"       ..    // needs long-time duration
-                 "reopened"       ..
-                 "platform"       ..
-                 "language"       ..
-                 "jvm_mandatory"  ..
-                 "graphic"        ..
-                 "mode"           ..    // NW, NWNI, GUI
-                 "reference"      ..    // check, create, skip
-                 "error_output"   ..    // check, skip
-                 "try_catch"      ..
-                 "path_dia"       ..    // diary file
-                 "path_dia_ref"   ..    // reference file
-                 "tmp_tst"        ..    // diary file
-                 "tmp_dia"        ..    // reference file
-                 "tmp_res"        ..    // diary file
-                 "tmp_err"        ..    // reference file
-                 "status"         ..    // status
-                 "xcos"           ..    // xcos test ?
-                 "cmd"            ..    // command to launch
-                 ] );
+    "name"           ..
+    "type"           ..
+    "path"           ..
+    "module"         ..
+    "skip"           ..
+    "content"        ..
+    "interactive"    ..
+    "notyetfixed"    ..
+    "longtime"       ..    // needs long-time duration
+    "reopened"       ..
+    "platform"       ..
+    "language"       ..
+    "jvm_mandatory"  ..
+    "graphic"        ..
+    "mode"           ..    // NW, NWNI, GUI
+    "reference"      ..    // check, create, skip
+    "error_output"   ..    // check, skip
+    "try_catch"      ..
+    "path_dia"       ..    // diary file
+    "path_dia_ref"   ..    // reference file
+    "tmp_tst"        ..    // diary file
+    "tmp_dia"        ..    // reference file
+    "tmp_res"        ..    // diary file
+    "tmp_err"        ..    // reference file
+    "status"         ..    // status
+    "xcos"           ..    // xcos test ?
+    "cmd"            ..    // command to launch
+    ] );
 
     // Default values
     st.skip          = %F;
@@ -717,7 +717,7 @@ function st = st_set_path(st,path)
     st.path_dia_ref = basepath + ".dia.ref";
 
     // Reference file management OS by OS
-    if getos() == 'Windows' then
+    if getos() == "Windows" then
         altreffile = [ basepath+".win.dia.ref" ];
     elseif MACOSX then
         altreffile = [ basepath+".unix.dia.ref" ; basepath+".macosx.dia.ref" ];
@@ -1027,13 +1027,13 @@ function st = st_run(st)
 
     // The test cannot be launched on this platform
 
-    if (st.platform=="windows") & (getos() <> 'Windows') then
+    if (st.platform=="windows") & (getos() <> "Windows") then
         st.status = status_set_id(st.status,10);
         st.status = status_set_message(st.status,"skipped : Windows only");
         return;
     end
 
-    if (st.platform=="unix") & getos() == 'Windows' then
+    if (st.platform=="unix") & getos() == "Windows" then
         st.status = status_set_id(st.status,10);
         st.status = status_set_message(st.status,"skipped : Unix only");
         return;
@@ -1075,16 +1075,16 @@ function st = st_run(st)
     // Test header
 
     head = [                                                                    ...
-        "// <-- HEADER START -->";                                              ...
-        "mode(3);" ;                                                            ...
-        "lines(28,72);";                                                        ...
-        "lines(0);" ;                                                           ...
-        "function %onprompt" ;                                                           ...
-        "quit;" ;                                                           ...
-        "endfunction" ;                                                           ...
-        "deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;      ...
-        "predef(''all'');" ;                                                    ...
-        "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"            ...
+    "// <-- HEADER START -->";                                              ...
+    "mode(3);" ;                                                            ...
+    "lines(28,72);";                                                        ...
+    "lines(0);" ;                                                           ...
+    "function %onprompt" ;                                                           ...
+    "quit;" ;                                                           ...
+    "endfunction" ;                                                           ...
+    "deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;      ...
+    "predef(''all'');" ;                                                    ...
+    "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"            ...
     ]
 
     if st.xcos then
@@ -1096,10 +1096,10 @@ function st = st_run(st)
     end
 
     head = [                                                                    ...
-        head ;                                                                  ...
-        "diary(''"+st.tmp_dia+"'');";                                          ...
-        "write(%io(2),tmpdirToPrint);";                                         ...
-        "// <-- HEADER END -->"                                                 ...
+    head ;                                                                  ...
+    "diary(''"+st.tmp_dia+"'');";                                          ...
+    "write(%io(2),tmpdirToPrint);";                                         ...
+    "// <-- HEADER END -->"                                                 ...
     ];
 
     // Test footer
@@ -1108,12 +1108,12 @@ function st = st_run(st)
 
     if st.try_catch then
         tail = [ tail;                                                          ...
-            "catch";                                                            ...
-            "   errmsg = ""<--""+""Error on the test script file""+""-->"";";   ...
-            "   printf(""%s\n"",errmsg);";                                      ...
-            "   lasterror()";                                                   ...
-            "end";                                                              ...
-            ];
+        "catch";                                                            ...
+        "   errmsg = ""<--""+""Error on the test script file""+""-->"";";   ...
+        "   printf(""%s\n"",errmsg);";                                      ...
+        "   lasterror()";                                                   ...
+        "end";                                                              ...
+        ];
     end
 
     tail = [ tail; "diary(0);" ];
@@ -1127,8 +1127,8 @@ function st = st_run(st)
     // Assembly
 
     txt = [head;
-        txt;
-        tail];
+    txt;
+    tail];
 
     // Build the command
     // =========================================================================
@@ -1136,8 +1136,8 @@ function st = st_run(st)
     // Gestion de l'emplacement de bin/scilab
     // -------------------------------------------------------------------------
 
-    if (getos() <> 'Windows') & (fileinfo(SCI+"/bin/scilab")==[]) then
-        SCI_BIN = strsubst(SCI,'share/scilab','');
+    if (getos() <> "Windows") & (fileinfo(SCI+"/bin/scilab")==[]) then
+        SCI_BIN = strsubst(SCI,"share/scilab","");
     else
         SCI_BIN = SCI;
     end
@@ -1166,7 +1166,7 @@ function st = st_run(st)
 
     if st.language == "any" then
         language_arg = "";
-    elseif getos() == 'Windows' then
+    elseif getos() == "Windows" then
         language_arg = "-l "+ st.language;
     else
         language_arg = "LANG=" + st.language + " ; ";
@@ -1175,7 +1175,7 @@ function st = st_run(st)
     // Assembly
     // -------------------------------------------------------------------------
 
-    if getos() == 'Windows' then
+    if getos() == "Windows" then
         test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+mode_arg+" "+language_arg+" -nb -f """+st.tmp_tst+""" > """+st.tmp_res+""" ) 2> """+st.tmp_err+"""";
     else
         test_cmd = "( "+language_arg+" "+SCI_BIN+"/bin/scilab "+mode_arg+" -nb -f "+st.tmp_tst+" > "+st.tmp_res+" ) 2> "+st.tmp_err;
@@ -1239,7 +1239,7 @@ function st = st_run(st)
     //Check for execution errors
     if st.try_catch & grep(dia,"<--Error on the test script file-->")<>[] then
         details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
-                    sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+        sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
         st.status = status_set_id(st.status,3);
         st.status = status_set_message(st.status,"failed  : premature end of the test script");
         st.status = status_set_details(st.status,details);
@@ -1255,7 +1255,7 @@ function st = st_run(st)
 
     if st.try_catch & grep(dia_tmp,"!--error")<>[] then
         details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
-                    sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+        sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
         st.status = status_set_id(st.status,1);
         st.status = status_set_message(st.status,"failed  : the string (!--error) has been detected");
         st.status = status_set_details(st.status,details);
@@ -1265,7 +1265,7 @@ function st = st_run(st)
 
     if grep(dia_tmp,"error on test")<>[] then
         details = [ sprintf("     Check the following file : \n     - %s",st.tmp_dia); ..
-                    sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
+        sprintf("     Or launch the following command : \n     - exec %s;",st.path) ];
         st.status = status_set_id(st.status,2);
         st.status = status_set_message(st.status, "failed  : one or several tests failed");
         st.status = status_set_details(st.status,details);
@@ -1307,7 +1307,7 @@ function st = st_run(st)
         dia = strsubst(dia,TMPDIR ,"TMPDIR");
         dia = strsubst(dia,TMPDIR1,"TMPDIR");
 
-        if getos() == 'Windows' then
+        if getos() == "Windows" then
             dia = strsubst(dia,strsubst(TMPDIR ,"\","/"),"TMPDIR");
             dia = strsubst(dia,strsubst(TMPDIR1,"\","/"),"TMPDIR");
             dia = strsubst(dia,strsubst(TMPDIR ,"/","\"),"TMPDIR");
@@ -1320,7 +1320,7 @@ function st = st_run(st)
 
         dia = strsubst(dia,SCI,"SCI");
 
-        if getos() == 'Windows' then
+        if getos() == "Windows" then
             dia = strsubst(dia,strsubst(SCI ,"\","/"),"SCI");
             dia = strsubst(dia,strsubst(SCI ,"/","\"),"SCI");
             dia = strsubst(dia,strsubst(getshortpathname(SCI) ,"\","/"),"SCI");
@@ -1370,14 +1370,14 @@ function st = st_run(st)
 
                 // suppress blank (diff -nw)
 
-                dia = strsubst(dia,' ','')
-                ref = strsubst(ref,' ','')
+                dia = strsubst(dia," ","")
+                ref = strsubst(ref," ","")
 
-                dia(find(dia=='')) = [];
-                ref(find(ref=='')) = [];
+                dia(find(dia=="")) = [];
+                ref(find(ref=="")) = [];
 
-                dia(find(dia=='')) = [];
-                ref(find(ref=='')) = [];
+                dia(find(dia=="")) = [];
+                ref(find(ref=="")) = [];
 
                 dia( find(part(dia,(1:2))=="//") ) = [];
                 ref( find(part(ref,(1:2))=="//") ) = [];
@@ -1423,9 +1423,9 @@ endfunction
 function md = module_new()
 
     md = tlist([  "T_MODULE" ..
-                  "name" ..
-                  "path" ..
-                  "items" ] );
+    "name" ..
+    "path" ..
+    "items" ] );
 
 endfunction
 
@@ -1449,11 +1449,11 @@ endfunction
 // -----------------------------------------------------------------------------
 
 function module_show(module)
-        mprintf("Module :\n");
-        mprintf("  name           = %s\n"   ,module.name);
-        mprintf("  path           = %s\n"   ,module.path);
-        mprintf("  items          = %s\n"   ,module.items);
-        mprintf("\n");
+    mprintf("Module :\n");
+    mprintf("  name           = %s\n"   ,module.name);
+    mprintf("  path           = %s\n"   ,module.path);
+    mprintf("  items          = %s\n"   ,module.items);
+    mprintf("\n");
 endfunction
 
 
@@ -1472,10 +1472,10 @@ endfunction
 function directory = directory_new()
 
     directory = tlist([  "T_DIRECTORY" ..
-                  "path"         ..
-                  "module"       ..
-                  "type"         ..
-                  ]);
+    "path"         ..
+    "module"       ..
+    "type"         ..
+    ]);
 
 endfunction
 
@@ -1523,13 +1523,13 @@ endfunction
 function testsuite = testsuite_new()
 
     testsuite = tlist([  "T_TESTSUITE" ..
-                 "items"           ..
-                 "current_mode"    ..    // NW, NWNI, GUI
-                 "wanted_mode"     ..    // NW, NWNI, GUI
-                 "reference"       ..    // check, create, skip
-                 "error_output"    ..    // check, skip
-                 "longtime"        ..    // enable, skip
-                 ]);
+    "items"           ..
+    "current_mode"    ..    // NW, NWNI, GUI
+    "wanted_mode"     ..    // NW, NWNI, GUI
+    "reference"       ..    // check, create, skip
+    "error_output"    ..    // check, skip
+    "longtime"        ..    // enable, skip
+    ]);
 
     testsuite.items = list();
 
@@ -1708,10 +1708,10 @@ endfunction
 
 function status = status_new()
     status = tlist([  "T_STATUS" ..
-                "id"             ..
-                "message"        ..
-                "details"        ..
-                ]);
+    "id"             ..
+    "message"        ..
+    "details"        ..
+    ]);
 
     status.id      = 0;
     status.message = "";

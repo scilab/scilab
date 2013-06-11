@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
@@ -10,62 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmltopdf" xml:lang="en">
-    <refnamediv>
-        <refname>xmltopdf</refname>
-        <refpurpose>converts xml Scilab help files to pdf format</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>xmltopdf(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>dirs</term>
-                <listitem>
-                    <para>vector of strings: a set of directory paths for which pdf
-                        manuals are to be generated or <literal>[] </literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>titles</term>
-                <listitem>
-                    <para>vector of strings: titles associated to directory paths or
-                        []
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>dir_language</term>
-                <listitem>
-                    <para>vector of strings: languages associated to directory paths or
-                        []
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>default_language</term>
-                <listitem>
-                    <para>vector of strings: default languages associated to directory
-                        paths or []. If a XML file is missing in the dir_language, it's
-                        copied from the default_language.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>converts xml Scilab help files contained in a set of directories
-            into pdf files.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmltopdf" xml:lang="en">
+        <refnamediv>
+            <refname>xmltopdf</refname>
+            <refpurpose>converts xml Scilab help files to pdf format</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>xmltopdf(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>dirs</term>
+                    <listitem>
+                        <para>vector of strings: a set of directory paths for which pdf
+                            manuals are to be generated or <literal>[] </literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>titles</term>
+                    <listitem>
+                        <para>vector of strings: titles associated to directory paths or
+                            []
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>dir_language</term>
+                    <listitem>
+                        <para>vector of strings: languages associated to directory paths or
+                            []
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>default_language</term>
+                    <listitem>
+                        <para>vector of strings: default languages associated to directory
+                            paths or []. If a XML file is missing in the dir_language, it's
+                            copied from the default_language.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>converts xml Scilab help files contained in a set of directories
+                into pdf files.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // example_1/
 // `-- help
 //     |-- en_US
@@ -101,16 +101,16 @@ my_chinese_help_dir   = my_module_path+'/help/zh_TW';
 my_chinese_help_title = 'Example 1 [zh_TW]';
 my_chinese_pdf        = xmltopdf(my_chinese_help_dir,my_chinese_help_title,'zh_TW')
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="help">help</link>
-            </member>
-            <member>
-                <link linkend="add_help_chapter">add_help_chapter</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="help">help</link>
+                </member>
+                <member>
+                    <link linkend="add_help_chapter">add_help_chapter</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

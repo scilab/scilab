@@ -30,8 +30,8 @@ int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
 
 extern "C"
 {
-/*declare extern fortran functions*/
-extern void C2F(dpmul1)(double* _pdbl1, int* _piRank1, double* _pdbl2, int* _piRank2, double* _pdblOut);
-extern void C2F(wpmul1)(double* _pdblR1, double* _pdblI1, int* _piRank1, double* _pdblR2, double* _pdblI2, int* _piRank2, double* _pdblOutR, double* _pdblOutI);
+    /*declare extern fortran functions*/
+    extern void C2F(dpmul1)(double* _pdbl1, int* _piRank1, double* _pdbl2, int* _piRank2, double* _pdblOut);
+    extern void C2F(wpmul1)(double* _pdblR1, double* _pdblI1, int* _piRank1, double* _pdblR2, double* _pdblI2, int* _piRank2, double* _pdblOutR, double* _pdblOutI);
 }
 #endif /* __TYPES_POWER_HXX__ */

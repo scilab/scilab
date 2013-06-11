@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
  * 
@@ -10,51 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SendScilabJob" xml:lang="en">
-    <refnamediv>
-        <refname>SendScilabJob</refname>
-        <refpurpose>Send a Scilab task from a C/C++ code
-            (call_scilab)
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <synopsis>int SendScilabJob(char *job);</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>This fonction is provided in call_scilab. This function send a task
-            which will be proccessed by the Scilab engine.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>job</term>
-                <listitem>
-                    <para>a standard C char* containing the Scilab instructions</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>returns</term>
-                <listitem>
-                    <para>0 is the operation is successfull.</para>
-                    <para>-1 if Call Scilab has not been able to write the job into
-                        Scilab.
-                    </para>
-                    <para>-2 or -3 if Call Scilab has not been able to read the error
-                        code from Scilab.
-                    </para>
-                    <para>-4 if Call Scilab has not been able to allocate the
-                        job.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SendScilabJob" xml:lang="en">
+        <refnamediv>
+            <refname>SendScilabJob</refname>
+            <refpurpose>Send a Scilab task from a C/C++ code
+                (call_scilab)
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <synopsis>int SendScilabJob(char *job);</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>This fonction is provided in call_scilab. This function send a task
+                which will be proccessed by the Scilab engine.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>job</term>
+                    <listitem>
+                        <para>a standard C char* containing the Scilab instructions</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>returns</term>
+                    <listitem>
+                        <para>0 is the operation is successfull.</para>
+                        <para>-1 if Call Scilab has not been able to write the job into
+                            Scilab.
+                        </para>
+                        <para>-2 or -3 if Call Scilab has not been able to read the error
+                            code from Scilab.
+                        </para>
+                        <para>-4 if Call Scilab has not been able to allocate the
+                            job.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 // A simple SendScilabJob example
 
 if (SendScilabJob("disp('unfinished quote)")!=0){ // This will fail
@@ -62,34 +62,34 @@ if (SendScilabJob("disp('unfinished quote)")!=0){ // This will fail
 }
 SendScilabJob("myMatrix=['sample','for the help']");
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="call_scilab">Call_Scilab</link>
-            </member>
-            <member>
-                <link linkend="api_scilab">api Scilab</link>
-            </member>
-            <member>
-                <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
-            </member>
-            <member>
-                <link linkend="SendScilabJob">SendScilabJob</link>
-            </member>
-            <member>
-                <link linkend="DoubleManagement_callscilab">Double Management</link>
-            </member>
-            <member>
-                <link linkend="BooleanManagement_callscilab">Boolean Management</link>
-            </member>
-            <member>
-                <link linkend="ComplexManagement_callscilab">Complex Management</link>
-            </member>
-            <member>
-                <link linkend="StringManagement_callscilab">String Management</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="call_scilab">Call_Scilab</link>
+                </member>
+                <member>
+                    <link linkend="api_scilab">api Scilab</link>
+                </member>
+                <member>
+                    <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
+                </member>
+                <member>
+                    <link linkend="SendScilabJob">SendScilabJob</link>
+                </member>
+                <member>
+                    <link linkend="DoubleManagement_callscilab">Double Management</link>
+                </member>
+                <member>
+                    <link linkend="BooleanManagement_callscilab">Boolean Management</link>
+                </member>
+                <member>
+                    <link linkend="ComplexManagement_callscilab">Complex Management</link>
+                </member>
+                <member>
+                    <link linkend="StringManagement_callscilab">String Management</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

@@ -116,37 +116,37 @@ public class SetAnchorAction extends DefaultAction {
         dialog.setContentPane(panelDialog);
 
         cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dialog.dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dialog.dispose();
+            }
+        });
 
         okButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    setAnchorName(textField.getText());
-                    dialog.dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setAnchorName(textField.getText());
+                dialog.dispose();
+            }
+        });
 
         textField.addKeyListener(new KeyListener() {
-                @Override
-                public void keyReleased(KeyEvent e) {
-                    int code = e.getKeyCode();
-                    if (code == KeyEvent.VK_ENTER) {
-                        okButton.doClick();
-                    } else if (code == KeyEvent.VK_ESCAPE) {
-                        cancelButton.doClick();
-                    }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int code = e.getKeyCode();
+                if (code == KeyEvent.VK_ENTER) {
+                    okButton.doClick();
+                } else if (code == KeyEvent.VK_ESCAPE) {
+                    cancelButton.doClick();
                 }
+            }
 
-                @Override
-                public void keyPressed(KeyEvent arg0) { }
+            @Override
+            public void keyPressed(KeyEvent arg0) { }
 
-                @Override
-                public void keyTyped(KeyEvent arg0) { }
-            });
+            @Override
+            public void keyTyped(KeyEvent arg0) { }
+        });
 
         dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         dialog.setTitle(SciNotesMessages.SET_ANCHOR);

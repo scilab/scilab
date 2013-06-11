@@ -9,19 +9,19 @@
 
 
 function [curve_index,tip_index]=datatipLookfor(curve_handles,pt)
-//curve_handles:  a vector of curves which are supposed to have datatips
-//pt           :  a 2D point in pixels
-//curve_index  :  the index of corresponding curve in curve_handles
-//tip_index    :  the datatip index for the curve;
-  for curve_index=1:size(curve_handles,'*')
-    ud=datatipGetStruct(curve_handles(curve_index))
-    if typeof(ud)=='datatips' then
-      tips=ud.tips
-      for tip_index=1:size(tips,'*')
-        d=pixDist(tips(tip_index).children(1).data,pt)
-        if d<10 then return, end
-      end
+    //curve_handles:  a vector of curves which are supposed to have datatips
+    //pt           :  a 2D point in pixels
+    //curve_index  :  the index of corresponding curve in curve_handles
+    //tip_index    :  the datatip index for the curve;
+    for curve_index=1:size(curve_handles,"*")
+        ud=datatipGetStruct(curve_handles(curve_index))
+        if typeof(ud)=="datatips" then
+            tips=ud.tips
+            for tip_index=1:size(tips,"*")
+                d=pixDist(tips(tip_index).children(1).data,pt)
+                if d<10 then return, end
+            end
+        end
     end
-  end
-  curve_index=[];tip_index=[];
+    curve_index=[];tip_index=[];
 endfunction

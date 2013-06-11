@@ -44,8 +44,14 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
         if (wcNameExt == NULL || wcPath == NULL)
         {
             FREE(pStwcFullFilename);
-            if (wcNameExt) FREE(wcNameExt);
-            if (wcPath) FREE(wcPath);
+            if (wcNameExt)
+            {
+                FREE(wcNameExt);
+            }
+            if (wcPath)
+            {
+                FREE(wcPath);
+            }
             return NULL;
         }
         splitpathW(FilenameInput, TRUE, wcDrv, wcDir,  wcName, wcExt);
@@ -93,9 +99,15 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
         for ( i = 0; i < lenPath; i++)
         {
 #ifdef _MSC_VER
-            if (wcPath[i] == L'/') wcPath[i] = L'\\';
+            if (wcPath[i] == L'/')
+            {
+                wcPath[i] = L'\\';
+            }
 #else
-            if (wcPath[i] == L'\\') wcPath[i] = L'/';
+            if (wcPath[i] == L'\\')
+            {
+                wcPath[i] = L'/';
+            }
 #endif
         }
 

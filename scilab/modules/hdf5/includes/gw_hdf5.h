@@ -16,7 +16,7 @@
 #include "dynlib_hdf5_scilab.h"
 /*--------------------------------------------------------------------------*/
 HDF5_SCILAB_IMPEXP int gw_hdf5(void);
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 HDF5_SCILAB_IMPEXP int sci_export_to_hdf5(char *fname, int* pvApiCtx);
 HDF5_SCILAB_IMPEXP int sci_import_from_hdf5(char *fname, int* pvApiCtx);
 HDF5_SCILAB_IMPEXP int sci_listvar_in_hdf5(char *fname, int* pvApiCtx);

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,9 +24,9 @@
 * Default max of files opened in scilab
 */
 #ifdef FOPEN_MAX
-	#define DEFAULT_MAX_FILES FOPEN_MAX 
+#define DEFAULT_MAX_FILES FOPEN_MAX
 #else
-	#define DEFAULT_MAX_FILES 20 
+#define DEFAULT_MAX_FILES 20
 #endif
 /**
 * Get max of files opened in scilab
@@ -46,7 +46,7 @@ FILEIO_IMPEXP FILE *GetFileOpenedInScilab(int Id);
 * @param FILE ptr
 * @param Id
 */
-FILEIO_IMPEXP void SetFileOpenedInScilab(int Id,FILE *fptr);
+FILEIO_IMPEXP void SetFileOpenedInScilab(int Id, FILE *fptr);
 
 /**
 * Get the current Id (current file)
@@ -78,7 +78,7 @@ FILEIO_IMPEXP int GetSwapStatus(int Id);
 * @param Id
 * @param new swap
 */
-FILEIO_IMPEXP void SetSwapStatus(int Id,int newswap);
+FILEIO_IMPEXP void SetSwapStatus(int Id, int newswap);
 
 /**
 * Get the mode of file Id
@@ -92,7 +92,7 @@ FILEIO_IMPEXP int GetFileModeOpenedInScilab(int Id);
 * @param Id
 * @param new mode
 */
-FILEIO_IMPEXP void SetFileModeOpenedInScilab(int Id,int mode);
+FILEIO_IMPEXP void SetFileModeOpenedInScilab(int Id, int mode);
 
 /**
 * Get the type of file Id
@@ -114,7 +114,7 @@ FILEIO_IMPEXP char *GetFileTypeOpenedInScilabAsString(int Id);
 * @param Id
 * @param new Type (Fortran,C)
 */
-FILEIO_IMPEXP void SetFileTypeOpenedInScilab(int Id,int Type);
+FILEIO_IMPEXP void SetFileTypeOpenedInScilab(int Id, int Type);
 
 /**
 * Get the name of file Id
@@ -129,7 +129,7 @@ FILEIO_IMPEXP char* GetFileNameOpenedInScilab(int Id);
 * @param new name
 * @return TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL SetFileNameOpenedInScilab(int Id,char *name);
+FILEIO_IMPEXP BOOL SetFileNameOpenedInScilab(int Id, char *name);
 
 /**
 * Free filename of file Id

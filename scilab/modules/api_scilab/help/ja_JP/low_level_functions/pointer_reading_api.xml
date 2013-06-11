@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+    <?xml version="1.0" encoding="utf-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,132 +11,132 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Pointer_reading_API" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Pointer_reading_API" xml:lang="ja">
         
-        <refname>ポインタの読み込み (Scilabゲートウェイ)</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            ゲートウェイでポインタを読み込む方法.
+            <refname>ポインタの読み込み (Scilabゲートウェイ)</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <para>入力引数プロファイル:</para>
-        
-        <synopsis>SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)</synopsis>
-        
-        <para>名前指定変数プロファイル:</para>
-        
-        <synopsis>SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+            <refpurpose>
+                
+                ゲートウェイでポインタを読み込む方法.
+                
+            </refpurpose>
             
-            <varlistentry>
-                
-                <term>_pvCtx</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+        </refnamediv>
+        
+        <refsynopsisdiv>
             
-            <varlistentry>
-                
-                <term>_piAddress</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        Scilab変数のアドレス.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <title>呼び出し手順</title>
             
-            <varlistentry>
-                
-                <term>_pvPtr</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        返されるポインタのアドレス.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <para>入力引数プロファイル:</para>
             
-            <varlistentry>
-                
-                <term>SciErr</term>
-                
-                <listitem>
-                    
-                    <para>
-                        
-                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を格納します.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
+            <synopsis>SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)</synopsis>
             
-        </variablelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>このヘルプはScilab APIによりポインタを処理する方法を示します.</para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.c-->
-        
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.tst-->
-        
-        <!--Lib_name: pointer_reading-->
-        
-        <!--Func_list: read_pointer-->
-        
-        <title>ゲートウェイのソース</title>
-        
-        <programlisting role="code_gateway">
+            <para>名前指定変数プロファイル:</para>
             
-            <![CDATA[ 
+            <synopsis>SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
+                    
+                    <term>_pvCtx</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>_piAddress</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            Scilab変数のアドレス.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>_pvPtr</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            返されるポインタのアドレス.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>SciErr</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            エラー構造体で,エラーメッセージ履歴と最初のエラー番号を格納します.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>このヘルプはScilab APIによりポインタを処理する方法を示します.</para>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.c-->
+            
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.tst-->
+            
+            <!--Lib_name: pointer_reading-->
+            
+            <!--Func_list: read_pointer-->
+            
+            <title>ゲートウェイのソース</title>
+            
+            <programlisting role="code_gateway">
+                
+                <![CDATA[ 
 #include "api_scilab.h"
 int read_pointer(char *fname,unsigned long fname_len)
 {
@@ -188,23 +188,23 @@ int read_pointer(char *fname,unsigned long fname_len)
 	return 0;
 }
  ]]>
+                
+            </programlisting>
             
-        </programlisting>
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>Scilabテストスクリプト</title>
-        
-        <programlisting role="code_scilab"><![CDATA[ 
+        <refsection>
+            
+            <title>Scilabテストスクリプト</title>
+            
+            <programlisting role="code_scilab"><![CDATA[ 
 b_ref = [1,2;3,4];
 a = read_pointer();
 b = read_pointer(a);
 if or(b <> b_ref) then error("failed"), end
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

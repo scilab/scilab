@@ -24,10 +24,10 @@ extern "C"
 
 types::Function::ReturnValue sci_resethistory(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         BOOL bOK = HistoryManager::getInstance()->reset();
-        if(!bOK)
+        if (!bOK)
         {
             Scierror(999, _("%s: Reset history failed.\n"), "resethistory");
             return types::Function::Error;

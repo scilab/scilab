@@ -10,14 +10,14 @@
 // Run the path/subdir/builder script, changing its working directory
 // to path/subdir
 function devtools_run_builder(path, subdir, builder)
-	oldpath = pwd();
-	
-	chdir(path);
-	
-	if(isdir(subdir)) then
-		chdir(subdir);
-		exec(builder, -1);
-	end
-	
-	chdir(oldpath);
+    oldpath = pwd();
+
+    chdir(path);
+
+    if(isdir(subdir)) then
+        chdir(subdir);
+        exec(builder, -1);
+    end
+
+    chdir(oldpath);
 endfunction

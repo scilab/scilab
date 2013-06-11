@@ -14,14 +14,14 @@ diary(0);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 REFCONTENTS=[" ";
-			"-->rand;";
-			" ";
-			"-->diary(0);"]
+"-->rand;";
+" ";
+"-->diary(0);"]
 
 correct=%T
 
 if or(REFCONTENTS<>SCIFILECONTENTS) then
-  correct=%F
+    correct=%F
 end
 
 affich_result(correct,871);

@@ -9,10 +9,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [ans]=demo_compiler()
-	if (~haveacompiler()) then
-		messagebox(['Scilab doesn''t find a C compiler','This demo is disabled'],"modal");
-		ans=%f;
-	else
-		ans=%t;
-	end
+    if (~haveacompiler()) then
+        messagebox(["Scilab doesn''t find a C compiler","This demo is disabled"],"modal");
+        ans=%f;
+    else
+        ans=%t;
+    end
 endfunction

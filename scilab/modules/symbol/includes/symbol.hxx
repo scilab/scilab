@@ -27,14 +27,14 @@
 namespace symbol
 {
 
-  /** \brief Define class Symbol.
-   **
-   ** Map any wstring to a unique reference.
-   ** This allows to avoid an "strcmp()" style comparison of strings:
-   ** reference comparison is much faster.
-   */
-  class EXTERN_SYMBOL Symbol
-  {
+/** \brief Define class Symbol.
+ **
+ ** Map any wstring to a unique reference.
+ ** This allows to avoid an "strcmp()" style comparison of strings:
+ ** reference comparison is much faster.
+ */
+class EXTERN_SYMBOL Symbol
+{
     /** \brief Define the type "set of wstring". */
     typedef std::set < std::wstring> string_set_type;
     /** \brief Define the type used for the size of wstring set. */
@@ -42,7 +42,7 @@ namespace symbol
 
     /** \name Ctor & Dtor.
      ** \{ */
-  public:
+public:
     /** \brief Construct a Symbol (explicit).
      ** \param s referenced wstring */
     explicit Symbol (const std::wstring &s);
@@ -51,7 +51,7 @@ namespace symbol
 
     /** \name Accessors.
      ** \{ */
-  public:
+public:
     /** \brief Return the wstring referenced by this Symbol. */
     const std::wstring& name_get () const;
     /** \brief Return the number of referenced strings. */
@@ -63,7 +63,7 @@ namespace symbol
 
     /** \name Operators.
      ** \{ */
-  public:
+public:
     /** \brief Compare two Symbol for equality.
      ** \param rhs Symbol to compare with. */
     bool operator== (const Symbol &rhs) const;
@@ -75,23 +75,26 @@ namespace symbol
     bool operator<  (const Symbol &rhs) const;
     /** \} */
 
-    const string_set_type::const_iterator get_node() const {return _set_node;}
+    const string_set_type::const_iterator get_node() const
+    {
+        return _set_node;
+    }
 
-  private:
+private:
     /** \brief Static (global to all instance of Symbol) strings container. */
     static string_set_type _set;
     /** \brief Pointer to the node containing the unique referenced wstring. */
     const string_set_type::const_iterator _set_node;
-  };
+};
 
-  /** \brief Intercept output stream redirection.
-   ** \param ostr the destination output stream
-   ** \param the a reference to the symbol to redirect
-   */
-  EXTERN_SYMBOL std::wostream& operator<< (std::wostream &ostr, const Symbol &the);
+/** \brief Intercept output stream redirection.
+ ** \param ostr the destination output stream
+ ** \param the a reference to the symbol to redirect
+ */
+EXTERN_SYMBOL std::wostream& operator<< (std::wostream &ostr, const Symbol &the);
 
-  /** Typedef for the list of Symbol */
-  typedef std::list<const Symbol*> symbols_t;
+/** Typedef for the list of Symbol */
+typedef std::list<const Symbol*> symbols_t;
 }
 
 #endif // !SYMBOL_HH

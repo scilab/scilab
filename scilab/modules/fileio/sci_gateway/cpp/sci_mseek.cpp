@@ -46,13 +46,13 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
     int iFlag           = 0;
     wchar_t* wcsFlag    = NULL;
 
-    if(in.size() < 1 || in.size() > 3)
+    if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mseek", 1, 3);
         return types::Function::Error;
     }
 
-    if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
+    if (in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mseek", 1);
         return types::Function::Error;
@@ -60,13 +60,13 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
 
     iWhere = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
 
-    if(in.size() == 2)
+    if (in.size() == 2)
     {
-        if(in[1]->isDouble() && in[1]->getAs<types::Double>()->isScalar() && in[1]->getAs<types::Double>()->isComplex() == false)
+        if (in[1]->isDouble() && in[1]->getAs<types::Double>()->isScalar() && in[1]->getAs<types::Double>()->isComplex() == false)
         {
             iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
         }
-        else if(in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
+        else if (in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
         {
             wcsFlag = in[1]->getAs<types::String>()->get(0);
         }
@@ -77,14 +77,14 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
         }
     }
 
-    if(in.size() == 3)
+    if (in.size() == 3)
     {
-        if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
+        if (in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "mseek", 2);
             return types::Function::Error;
         }
-        if(in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
+        if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mseek", 3);
             return types::Function::Error;
@@ -96,24 +96,24 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
 
     switch (iFile)
     {
-    case 0: // stderr
-    case 5: // stdin
-    case 6: // stdout
-        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mseek", iFile);
-        return types::Function::Error;
+        case 0: // stderr
+        case 5: // stdin
+        case 6: // stdout
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mseek", iFile);
+            return types::Function::Error;
     }
 
-    if(wcsFlag != NULL)
+    if (wcsFlag != NULL)
     {
-        if(wcsncmp(wcsFlag, L"set",3) == 0)
+        if (wcsncmp(wcsFlag, L"set", 3) == 0)
         {
             iFlag = SEEK_SET;
         }
-        else if(wcsncmp(wcsFlag, L"cur",3) == 0)
+        else if (wcsncmp(wcsFlag, L"cur", 3) == 0)
         {
             iFlag = SEEK_CUR;
         }
-        else if(wcsncmp(wcsFlag, L"end",3) == 0)
+        else if (wcsncmp(wcsFlag, L"end", 3) == 0)
         {
             iFlag = SEEK_END;
         }

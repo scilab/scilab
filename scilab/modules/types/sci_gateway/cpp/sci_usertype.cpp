@@ -18,8 +18,8 @@
 #include "string.hxx"
 
 extern "C" {
-    #include "Scierror.h"
-    #include "localization.h"
+#include "Scierror.h"
+#include "localization.h"
 }
 
 using namespace types;
@@ -40,10 +40,16 @@ public :
     }
 
     /* This will be used when calling typeof */
-    std::wstring getTypeStr()            { return m_longName; }
+    std::wstring getTypeStr()
+    {
+        return m_longName;
+    }
 
     /* This will be used to generate Overloading functions name. */
-    std::wstring getShortTypeStr()       { return m_shortName; }
+    std::wstring getShortTypeStr()
+    {
+        return m_shortName;
+    }
 
     /* This is Scilab standard display or in disp. */
     bool toString(std::wostringstream& ostr)
@@ -61,7 +67,7 @@ Function::ReturnValue sci_usertype(typed_list &in, int _piRetCount, typed_list &
 {
     /* First check if all fields are Strings */
     typed_list::iterator itInput;
-    if(in.size() != 2)
+    if (in.size() != 2)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "usertype", 2);
         return Function::Error;

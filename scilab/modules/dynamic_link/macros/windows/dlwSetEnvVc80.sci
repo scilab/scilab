@@ -9,85 +9,85 @@
 
 //=============================================================================
 function bOK = dlwSetEnvVc80(msCompiler)
-  bOK = %F;
-  MSVSDir = '';
-  select msCompiler
-    case 'msvc80pro'
-      MSVSDir = dlwGetVc80ProPath();
-    case 'msvc80std'
-      MSVSDir = dlwGetVc80StdPath();
-    case 'msvc80express'
-      MSVSDir = dlwGetVc80ExpressPath();
-  else
-    return
-  end
-
-  // MS compiler path is wrong
-  if MSVSDir == [] then
-    return
-  end
-
-  PATH = getenv('PATH','ndef');
-  if (PATH == 'ndef') then
     bOK = %F;
-    return
-  end
+    MSVSDir = "";
+    select msCompiler
+    case "msvc80pro"
+        MSVSDir = dlwGetVc80ProPath();
+    case "msvc80std"
+        MSVSDir = dlwGetVc80StdPath();
+    case "msvc80express"
+        MSVSDir = dlwGetVc80ExpressPath();
+    else
+        return
+    end
 
-  if ~setenv('VSINSTALLDIR', MSVSDir) then
-    bOK = %F;
-    return
-  end
+    // MS compiler path is wrong
+    if MSVSDir == [] then
+        return
+    end
 
-  MSVCDir = MSVSDir + '\VC';
-  if ~setenv('VCINSTALLDIR', MSVCDir) then
-    bOK = %F;
-    return
-  end
+    PATH = getenv("PATH","ndef");
+    if (PATH == "ndef") then
+        bOK = %F;
+        return
+    end
 
-  DevEnvDir = MSVSDir + '\Common7\IDE';
-  if ~setenv('DevEnvDir', DevEnvDir) then
-    bOK = %F;
-    return
-  end
+    if ~setenv("VSINSTALLDIR", MSVSDir) then
+        bOK = %F;
+        return
+    end
 
-  err = addPathToEnv('PATH', DevEnvDir + pathsep() + ..
-               MSVCDir + '\bin' + pathsep() + ..
-               MSVSDir + '\Common7\Tools' + pathsep() + ..
-               MSVSDir + '\SDK\v2.0\bin' + pathsep() + ..
-               MSVCDir + '\VCPackages');
-  if (err == %F) then
-    bOK = %F;
-    return
-  end
+    MSVCDir = MSVSDir + "\VC";
+    if ~setenv("VCINSTALLDIR", MSVCDir) then
+        bOK = %F;
+        return
+    end
 
-  if (msCompiler == 'msvc80express') then
-    windowsSdkPath = dlwGetSdkPath();
-    LIB = MSVCDir + '\lib' + pathsep() + ..
-        MSVSDir + '\SDK\v2.0\lib' + pathsep() + ..
-        windowsSdkPath + '\lib';
+    DevEnvDir = MSVSDir + "\Common7\IDE";
+    if ~setenv("DevEnvDir", DevEnvDir) then
+        bOK = %F;
+        return
+    end
 
-    include = MSVCDir + '\include' + pathsep() + ..
-              windowsSdkPath + '\include';
-  else
-    LIB = MSVCDir + '\lib' + pathsep() + ..
-        MSVSDir + '\SDK\v2.0\lib' + pathsep() + ..
-        MSVSDir + '\VC\PlatformSDK\lib';
+    err = addPathToEnv("PATH", DevEnvDir + pathsep() + ..
+    MSVCDir + "\bin" + pathsep() + ..
+    MSVSDir + "\Common7\Tools" + pathsep() + ..
+    MSVSDir + "\SDK\v2.0\bin" + pathsep() + ..
+    MSVCDir + "\VCPackages");
+    if (err == %F) then
+        bOK = %F;
+        return
+    end
 
-    include = MSVCDir + '\include' + pathsep() + ..
-              MSVCDir + '\PlatformSDK\include' + pathsep() + ..
-              MSVSDir + '\SDK\v2.0\include';
-  end
+    if (msCompiler == "msvc80express") then
+        windowsSdkPath = dlwGetSdkPath();
+        LIB = MSVCDir + "\lib" + pathsep() + ..
+        MSVSDir + "\SDK\v2.0\lib" + pathsep() + ..
+        windowsSdkPath + "\lib";
 
-  if ~addPathToEnv('LIB', LIB) then
-    bOK = %F;
-    return
-  end
+        include = MSVCDir + "\include" + pathsep() + ..
+        windowsSdkPath + "\include";
+    else
+        LIB = MSVCDir + "\lib" + pathsep() + ..
+        MSVSDir + "\SDK\v2.0\lib" + pathsep() + ..
+        MSVSDir + "\VC\PlatformSDK\lib";
 
-  if ~addPathToEnv('include', include) then
-    bOK = %F;
-    return
-  end
+        include = MSVCDir + "\include" + pathsep() + ..
+        MSVCDir + "\PlatformSDK\include" + pathsep() + ..
+        MSVSDir + "\SDK\v2.0\include";
+    end
 
-  bOK = %T;
+    if ~addPathToEnv("LIB", LIB) then
+        bOK = %F;
+        return
+    end
+
+    if ~addPathToEnv("include", include) then
+        bOK = %F;
+        return
+    end
+
+    bOK = %T;
 endfunction
 //=============================================================================

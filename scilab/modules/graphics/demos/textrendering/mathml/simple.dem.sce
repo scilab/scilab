@@ -11,8 +11,8 @@ demo_viewCode("simple.dem.sce");
 // DEMO START
 
 f="<mrow><mi>&#x3b8;</mi><mo lspace=""0.278em"" rspace=""0.278em"">=</m"+...
-    "o><mi>sin</mi><mspace width=""0.167em""/><mi>&#x3b1;</mi><mo"+...
-    " lspace=""0.222em"" rspace=""0.222em"">&#xd7;</mo><mi>cos</mi><mspace width=""0.167em""/><mi>&#x3b2;</mi></mrow>";
+"o><mi>sin</mi><mspace width=""0.167em""/><mi>&#x3b1;</mi><mo"+...
+" lspace=""0.222em"" rspace=""0.222em"">&#xd7;</mo><mi>cos</mi><mspace width=""0.167em""/><mi>&#x3b2;</mi></mrow>";
 
 a="<mi>&#x3b1;</mi>";
 b="<mi>&#x3b2;</mi>";

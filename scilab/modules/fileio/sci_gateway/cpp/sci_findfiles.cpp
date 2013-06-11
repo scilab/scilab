@@ -41,14 +41,15 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
     wchar_t* pwstSpec   = NULL;
     bool bAllocatedSpec = false;
 
-    if(in.size() < 0 || in.size() > 2)
+    if (in.size() < 0 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "findfiles", 0, 2);
         return Function::Error;
     }
 
-    if(in.size() == 0)
-    {//default path and default file spec
+    if (in.size() == 0)
+    {
+        //default path and default file spec
         int ierr        = 0;
 
         pwstPath        = scigetcwdW(&ierr);
@@ -56,8 +57,9 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
         bAllocatedSpec  = true;
     }
     else
-    {//user path
-        if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    {
+        //user path
+        if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "findfiles", 1);
             return Function::Error;
@@ -65,9 +67,10 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
 
         pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
 
-        if(in.size() == 2)
-        {//user file spec
-            if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
+        if (in.size() == 2)
+        {
+            //user file spec
+            if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "findfiles", 2);
                 return Function::Error;
@@ -76,7 +79,8 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
             pwstSpec = in[1]->getAs<types::String>()->get()[0];
         }
         else
-        {//default file spec
+        {
+            //default file spec
             pwstSpec        = os_wcsdup(DEFAULT_FILESPEC);
             bAllocatedSpec  = true;
         }
@@ -86,7 +90,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
     wchar_t** pwstFilesList = NULL;
 
     pwstFilesList = findfilesW(pwstPath, pwstSpec, &iSize, FALSE);
-    if(pwstFilesList)
+    if (pwstFilesList)
     {
         String* pS = new String(iSize, 1);
         pS->set(pwstFilesList);
@@ -99,7 +103,7 @@ Function::ReturnValue sci_findfiles(typed_list &in, int _iRetCount, typed_list &
     }
 
     FREE(pwstPath);
-    if(bAllocatedSpec)
+    if (bAllocatedSpec)
     {
         FREE(pwstSpec);
     }

@@ -159,12 +159,14 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
 /*--------------------------------------------------------------------------*/
 SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const char* const* _pstStrings)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
     //return empty matrix
-    if(_iRows == 0 && _iCols == 0)
+    if (_iRows == 0 && _iCols == 0)
     {
-        
-        if(createNamedEmptyMatrix(_pvCtx, _pstName))
+
+        if (createNamedEmptyMatrix(_pvCtx, _pstName))
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
             return sciErr;
@@ -173,43 +175,45 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
         return sciErr;
     }
 
-	String* pS = new String(_iRows, _iCols);
-	if(pS == NULL)
-	{
-		addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "createMatrixOfString");
-		return sciErr;
-	}
+    String* pS = new String(_iRows, _iCols);
+    if (pS == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "createMatrixOfString");
+        return sciErr;
+    }
 
-	for(int i = 0 ; i < pS->getSize() ; i++)
-	{
+    for (int i = 0 ; i < pS->getSize() ; i++)
+    {
         wchar_t* pstTemp = to_wide_string(_pstStrings[i]);
-		pS->set(i, pstTemp);
+        pS->set(i, pstTemp);
         FREE(pstTemp);
-	}
+    }
 
-	return sciErr;
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr readNamedMatrixOfString(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int* piAddr				= NULL;
+    SciErr sciErr;
+    sciErr.iErr = 0;
+    sciErr.iMsgCount = 0;
+    int* piAddr				= NULL;
 
-	sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_READ_NAMED_STRING, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfString", _pstName);
-		return sciErr;
-	}
+    sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_READ_NAMED_STRING, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfString", _pstName);
+        return sciErr;
+    }
 
-	sciErr = getMatrixOfString(_pvCtx, piAddr, _piRows, _piCols, _piLength, _pstStrings);
-	if(sciErr.iErr)
-	{
-		addErrorMessage(&sciErr, API_ERROR_READ_NAMED_STRING, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfString", _pstName);
-		return sciErr;
-	}
+    sciErr = getMatrixOfString(_pvCtx, piAddr, _piRows, _piCols, _piLength, _pstStrings);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_READ_NAMED_STRING, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfString", _pstName);
+        return sciErr;
+    }
 
-	return sciErr;
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)

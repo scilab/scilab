@@ -14,5 +14,5 @@ r=r&(a==int32(8));
 [a,b,c]=(3,(2),sin(5));
 r=r&a==3&b==2&c==sin(5);
 
-affich_result(r,1991); 
+affich_result(r,1991);
 clear

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,107 +10,107 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_outputcmd" xml:lang="en">
-    <refnamediv>
-        <refname>optimbase_outputcmd</refname>
-        <refpurpose>Calls back user's output command.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            stop = optimbase_outputcmd(opt, state, data)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Argument</title>
-        <variablelist>
-            <varlistentry>
-                <term>opt </term>
-                <listitem>
-                    <para>The object of TOPTIM type (tlist).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>state </term>
-                <listitem>
-                    <para>A 1-by-1 matrix of strings, the current state of the algorithm.</para>
-                    <para>Available values are "init, "iter", "done".</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>data </term>
-                <listitem>
-                    <para>A data structure with type T_OPTDATA containing at least the following fields.</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>x </term>
-                            <listitem>
-                                <para>The current optimum.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>fval </term>
-                            <listitem>
-                                <para>The current function value.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>iteration </term>
-                            <listitem>
-                                <para>The current iteration index.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>funccount</term>
-                            <listitem>
-                                <para>The number of function evaluations.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>stop </term>
-                <listitem>
-                    <para>A 1-by-1 matrix of booleans.</para>
-                    <para>
-                        <literal>stop</literal> is %t if the optimization algorithm must be stopped.
-                    </para>
-                    <para>
-                        <literal>stop</literal> is %f if the optimization algorithm must continue.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            The <literal>optimbase_outputcmd</literal> function calls back user's output command. 
-            The <literal>-outputcommand</literal> option allwos to configure a command which is 
-            called back at the start of the optimization, at each iteration and at the end of 
-            the optimization.
-        </para>
-        <para>
-            It might happen that the output function requires additional arguments to be evaluated. 
-            In this case, we can use the following feature. The <literal> outputcmd</literal> argument 
-            can also be the list <literal>(outf, a1, a2, ...)</literal>. In this case <literal>outf</literal>, 
-            the first element in the list, must be a function and must have the header :
-        </para>
-        <programlisting role="no-scilab-exec">
-            <![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_outputcmd" xml:lang="en">
+        <refnamediv>
+            <refname>optimbase_outputcmd</refname>
+            <refpurpose>Calls back user's output command.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                stop = optimbase_outputcmd(opt, state, data)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Argument</title>
+            <variablelist>
+                <varlistentry>
+                    <term>opt </term>
+                    <listitem>
+                        <para>The object of TOPTIM type (tlist).</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>state </term>
+                    <listitem>
+                        <para>A 1-by-1 matrix of strings, the current state of the algorithm.</para>
+                        <para>Available values are "init, "iter", "done".</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>data </term>
+                    <listitem>
+                        <para>A data structure with type T_OPTDATA containing at least the following fields.</para>
+                        <variablelist>
+                            <varlistentry>
+                                <term>x </term>
+                                <listitem>
+                                    <para>The current optimum.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>fval </term>
+                                <listitem>
+                                    <para>The current function value.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>iteration </term>
+                                <listitem>
+                                    <para>The current iteration index.</para>
+                                </listitem>
+                            </varlistentry>
+                            <varlistentry>
+                                <term>funccount</term>
+                                <listitem>
+                                    <para>The number of function evaluations.</para>
+                                </listitem>
+                            </varlistentry>
+                        </variablelist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>stop </term>
+                    <listitem>
+                        <para>A 1-by-1 matrix of booleans.</para>
+                        <para>
+                            <literal>stop</literal> is %t if the optimization algorithm must be stopped.
+                        </para>
+                        <para>
+                            <literal>stop</literal> is %f if the optimization algorithm must continue.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                The <literal>optimbase_outputcmd</literal> function calls back user's output command. 
+                The <literal>-outputcommand</literal> option allwos to configure a command which is 
+                called back at the start of the optimization, at each iteration and at the end of 
+                the optimization.
+            </para>
+            <para>
+                It might happen that the output function requires additional arguments to be evaluated. 
+                In this case, we can use the following feature. The <literal> outputcmd</literal> argument 
+                can also be the list <literal>(outf, a1, a2, ...)</literal>. In this case <literal>outf</literal>, 
+                the first element in the list, must be a function and must have the header :
+            </para>
+            <programlisting role="no-scilab-exec">
+                <![CDATA[ 
                  stop = outf(state, data, a1, a2, ....)
                 ]]>
-        </programlisting>
-        <para>
-            where the input arguments <literal>a1, a2, ...</literal> are automatically appended at 
-            the end of the calling sequence.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Example</title>
-        <programlisting role="example">
-            <![CDATA[ 
+            </programlisting>
+            <para>
+                where the input arguments <literal>a1, a2, ...</literal> are automatically appended at 
+                the end of the calling sequence.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Example</title>
+            <programlisting role="example">
+                <![CDATA[ 
 function [f,index] = fun(x, index)
     f = 2*x - 4;
 endfunction
@@ -207,17 +207,17 @@ function x = Dicho(opt,a,b)
 endfunction
 x = Dicho(opt,a,b)
 ]]>
-        </programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="optimbase_outstruct">optimbase_outstruct</link>
-            </member>
-            <member>
-                <link linkend="optimbase_function">optimbase_function</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+            </programlisting>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="optimbase_outstruct">optimbase_outstruct</link>
+                </member>
+                <member>
+                    <link linkend="optimbase_function">optimbase_function</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

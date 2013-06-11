@@ -11,7 +11,7 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "dynhdf5.hxx"
 
 extern "C"
@@ -26,11 +26,11 @@ extern "C"
 #include "MALLOC.h"
 #include "os_strdup.h"
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static char *getPathFilename(char *fullfilename);
 static char *getFilenameWithExtension(char *fullfilename);
-/*--------------------------------------------------------------------------*/ 
-int createHDF5File(char *name) 
+/*--------------------------------------------------------------------------*/
+int createHDF5File(char *name)
 {
     hid_t       file;
     hid_t fapl = DynHDF5::dynH5Pcreate(H5P_FILE_ACCESS);
@@ -76,14 +76,26 @@ int createHDF5File(char *name)
 
     scichdir(currentpath);
 
-    if (currentpath) {FREE(currentpath); currentpath = NULL;}
-    if (filename) {FREE(filename); filename = NULL;}
-    if (pathdest) {FREE(pathdest); pathdest = NULL;}
+    if (currentpath)
+    {
+        FREE(currentpath);
+        currentpath = NULL;
+    }
+    if (filename)
+    {
+        FREE(filename);
+        filename = NULL;
+    }
+    if (pathdest)
+    {
+        FREE(pathdest);
+        pathdest = NULL;
+    }
 
     return file;
 }
-/*--------------------------------------------------------------------------*/ 
-int openHDF5File(char *name) 
+/*--------------------------------------------------------------------------*/
+int openHDF5File(char *name)
 {
     hid_t           file;
     char *pathdest = getPathFilename(name);
@@ -100,7 +112,7 @@ int openHDF5File(char *name)
     currentpath = scigetcwd(&ierr);
 
     //prevent error msg to change directory to ""
-    if(strcmp(pathdest, "") != 0)
+    if (strcmp(pathdest, "") != 0)
     {
         scichdir(pathdest);
     }
@@ -109,9 +121,21 @@ int openHDF5File(char *name)
 
     scichdir(currentpath);
 
-    if (currentpath) {FREE(currentpath); currentpath = NULL;}
-    if (filename) {FREE(filename); filename = NULL;}
-    if (pathdest) {FREE(pathdest); pathdest = NULL;}
+    if (currentpath)
+    {
+        FREE(currentpath);
+        currentpath = NULL;
+    }
+    if (filename)
+    {
+        FREE(filename);
+        filename = NULL;
+    }
+    if (pathdest)
+    {
+        FREE(pathdest);
+        pathdest = NULL;
+    }
 
     return file;
 }
@@ -161,7 +185,7 @@ void closeHDF5File(int file)
     }
     DynHDF5::dynCLoseLib();
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static char *getPathFilename(char *fullfilename)
 {
     char *path = NULL;
@@ -189,14 +213,30 @@ static char *getPathFilename(char *fullfilename)
             }
         }
 
-        if (drv) {FREE(drv); drv = NULL;}
-        if (dir) {FREE(dir); dir = NULL;}
-        if (name) {FREE(name); name = NULL;}
-        if (ext) {FREE(ext); ext = NULL;}
+        if (drv)
+        {
+            FREE(drv);
+            drv = NULL;
+        }
+        if (dir)
+        {
+            FREE(dir);
+            dir = NULL;
+        }
+        if (name)
+        {
+            FREE(name);
+            name = NULL;
+        }
+        if (ext)
+        {
+            FREE(ext);
+            ext = NULL;
+        }
     }
     return path;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 static char *getFilenameWithExtension(char *fullfilename)
 {
     char *filename = NULL;
@@ -224,12 +264,28 @@ static char *getFilenameWithExtension(char *fullfilename)
             }
         }
 
-        if (drv) {FREE(drv); drv = NULL;}
-        if (dir) {FREE(dir); dir = NULL;}
-        if (name) {FREE(name); name = NULL;}
-        if (ext) {FREE(ext); ext = NULL;}
+        if (drv)
+        {
+            FREE(drv);
+            drv = NULL;
+        }
+        if (dir)
+        {
+            FREE(dir);
+            dir = NULL;
+        }
+        if (name)
+        {
+            FREE(name);
+            name = NULL;
+        }
+        if (ext)
+        {
+            FREE(ext);
+            ext = NULL;
+        }
     }
     return filename;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 

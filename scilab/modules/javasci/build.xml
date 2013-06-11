@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
@@ -11,30 +11,30 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<project name="javasci" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.javasci.name}"/>
-  <property name="library.title" value="Scilab Java API"/>
-  <property name="junit.forkMode" value="perTest"/>
-  
-  <description>
-    Build the Java/Scilab connecter (javasci) module
-  </description>
-  <!-- Compile sources -->
-  <target name="compile" description="Build sources of Javasci v2" depends="init">
-    <mkdir dir="${classes.dir}/v2"/>
-    <javac srcdir="src/java/" destdir="${classes.dir}/v2" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" includes="org/**/*.java" source="6" target="6"/>
-  </target>
-  
-  <!-- Create the jar -->
-  <target name="jar" description="Build the jar file" depends="compile">
-    <manifestclasspath property="manifest.classpath" jarfile="${build.jar.dir}/${library.name}">
-      <classpath location="${library.jvm.dir}/${library.jvm.name}"/>
-    </manifestclasspath>
-    <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}/v2/">
-      <manifest>
-        <attribute name="Class-Path" value="${manifest.classpath}"/>
-      </manifest>
-    </jar>
-  </target>
-</project>
+    <project name="javasci" default="jar">
+        <import file="../../build.incl.xml"/>
+        <property name="library.name" value="${library.javasci.name}"/>
+        <property name="library.title" value="Scilab Java API"/>
+        <property name="junit.forkMode" value="perTest"/>
+        
+        <description>
+            Build the Java/Scilab connecter (javasci) module
+        </description>
+        <!-- Compile sources -->
+        <target name="compile" description="Build sources of Javasci v2" depends="init">
+            <mkdir dir="${classes.dir}/v2"/>
+            <javac srcdir="src/java/" destdir="${classes.dir}/v2" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" includes="org/**/*.java" source="6" target="6"/>
+        </target>
+        
+        <!-- Create the jar -->
+        <target name="jar" description="Build the jar file" depends="compile">
+            <manifestclasspath property="manifest.classpath" jarfile="${build.jar.dir}/${library.name}">
+                <classpath location="${library.jvm.dir}/${library.jvm.name}"/>
+            </manifestclasspath>
+            <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}/v2/">
+                <manifest>
+                    <attribute name="Class-Path" value="${manifest.classpath}"/>
+                </manifest>
+            </jar>
+        </target>
+    </project>

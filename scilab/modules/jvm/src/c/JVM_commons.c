@@ -35,19 +35,28 @@ static JNI_GetCreatedJavaVMsPROC ptr_JNI_GetCreatedJavaVMs = NULL;
 /*--------------------------------------------------------------------------*/
 jint SciJNI_GetDefaultJavaVMInitArgs(JavaVMInitArgs *args)
 {
-    if (ptr_JNI_GetDefaultJavaVMInitArgs) return (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
+    if (ptr_JNI_GetDefaultJavaVMInitArgs)
+    {
+        return (ptr_JNI_GetDefaultJavaVMInitArgs)(args);
+    }
     return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/
 jint SciJNI_CreateJavaVM(JavaVM **jvm, JNIEnv **penv, JavaVMInitArgs *args)
 {
-    if (ptr_JNI_CreateJavaVM) return (ptr_JNI_CreateJavaVM)(jvm,penv,args);
+    if (ptr_JNI_CreateJavaVM)
+    {
+        return (ptr_JNI_CreateJavaVM)(jvm, penv, args);
+    }
     return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/
 jint SciJNI_GetCreatedJavaVMs(JavaVM **vmBuf, jsize BufLen, jsize *nVMs)
 {
-    if (ptr_JNI_GetCreatedJavaVMs) return (ptr_JNI_GetCreatedJavaVMs)(vmBuf,BufLen,nVMs);
+    if (ptr_JNI_GetCreatedJavaVMs)
+    {
+        return (ptr_JNI_GetCreatedJavaVMs)(vmBuf, BufLen, nVMs);
+    }
     return JNI_ERR;
 }
 /*--------------------------------------------------------------------------*/
@@ -86,13 +95,13 @@ BOOL LoadFunctionsJVM(char *filedynlib)
         }
     }
 #else
-    #ifdef __APPLE__
+#ifdef __APPLE__
     /*
     ** After MacOSX 10.6.8 manually load libjava.jnilib make JNI_* functions crash
     ** Rely on OS by using dlopen(NULL) to find correct symbol with dlsym
     */
     hLibJVM = LoadDynLibrary(NULL);
-    #else
+#else
     if (filedynlib == NULL)
     {
         hLibJVM = LoadDynLibrary(NULL);
@@ -101,7 +110,7 @@ BOOL LoadFunctionsJVM(char *filedynlib)
     {
         hLibJVM = LoadDynLibrary(filedynlib);
     }
-    #endif
+#endif
 #endif
 
     if (hLibJVM)
@@ -110,7 +119,7 @@ BOOL LoadFunctionsJVM(char *filedynlib)
         ptr_JNI_CreateJavaVM = (JNI_CreateJavaVMPROC) GetDynLibFuncPtr(hLibJVM, "JNI_CreateJavaVM" );
         ptr_JNI_GetCreatedJavaVMs = (JNI_GetCreatedJavaVMsPROC) GetDynLibFuncPtr(hLibJVM, "JNI_GetCreatedJavaVMs" );
 
-        if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs) 
+        if (ptr_JNI_GetDefaultJavaVMInitArgs && ptr_JNI_CreateJavaVM && ptr_JNI_GetCreatedJavaVMs)
         {
             bSymbolsLoaded = TRUE;
             return TRUE;
@@ -119,8 +128,10 @@ BOOL LoadFunctionsJVM(char *filedynlib)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-char *getJniErrorFromStatusCode(long status){
-    switch (status){
+char *getJniErrorFromStatusCode(long status)
+{
+    switch (status)
+    {
         case JNI_ERR:
             return _("Unknown JNI error");
             break;

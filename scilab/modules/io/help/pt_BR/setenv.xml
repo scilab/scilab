@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  * 
@@ -10,61 +10,61 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setenv" xml:lang="en">
-    <refnamediv>
-        <refname>setenv</refname>
-        <refpurpose>ajusta o valor de uma variável de ambiente</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>rep=setenv(name, value )</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>name</term>
-                <listitem>
-                    <para>aponta para o nome de uma variável de ambiente. (name é um
-                        string) 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>value</term>
-                <listitem>
-                    <para>aponta para o valor a ser atribuído à variável de ambiente
-                        (value é um string) 
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>rep</term>
-                <listitem>
-                    <para>Retorna %T, se estiver tudo correto ou %F, em caso
-                        contrário
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>Ajusta o valor de uma variável de ambiente.</para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setenv" xml:lang="en">
+        <refnamediv>
+            <refname>setenv</refname>
+            <refpurpose>ajusta o valor de uma variável de ambiente</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>rep=setenv(name, value )</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>name</term>
+                    <listitem>
+                        <para>aponta para o nome de uma variável de ambiente. (name é um
+                            string) 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>value</term>
+                    <listitem>
+                        <para>aponta para o valor a ser atribuído à variável de ambiente
+                            (value é um string) 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>rep</term>
+                    <listitem>
+                        <para>Retorna %T, se estiver tudo correto ou %F, em caso
+                            contrário
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>Ajusta o valor de uma variável de ambiente.</para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 setenv('toto','example')
 getenv('toto')
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="getenv">getenv</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="getenv">getenv</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

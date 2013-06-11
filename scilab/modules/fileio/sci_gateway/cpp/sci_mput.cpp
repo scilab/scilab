@@ -36,14 +36,14 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
     double* pData   = NULL;
     int iErr        = 0;
 
-    if(in.size() < 1 || in.size() > 3)
+    if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mput", 1, 3);
         return Function::Error;
     }
 
     //check parameter 1
-    if((in[0]->isDouble() == false) && (in[0]->isInt() == false))
+    if ((in[0]->isDouble() == false) && (in[0]->isInt() == false))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mput", 1);
         return Function::Error;
@@ -51,18 +51,20 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
 
     iSize = in[0]->getAs<GenericType>()->getSize();
 
-    if(in[0]->isDouble())
+    if (in[0]->isDouble())
     {
         pData = in[0]->getAs<Double>()->get();
     }
     else
-    {//ints
+    {
+        //ints
         //???
     }
 
-    if(in.size() >= 2)
-    {//export format
-        if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
+    if (in.size() >= 2)
+    {
+        //export format
+        if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mput", 2);
             return Function::Error;
@@ -71,9 +73,9 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
 
     }
 
-    if(in.size() == 3)
+    if (in.size() == 3)
     {
-        if(in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
+        if (in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mput", 3);
             return Function::Error;
@@ -84,9 +86,9 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
 
     switch (iFile)
     {
-    case 5: // stdin
-        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mput", iFile);
-        return types::Function::Error;
+        case 5: // stdin
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mput", iFile);
+            return types::Function::Error;
     }
 
     C2F(mput)(&iFile, pData, &iSize, pstType, &iErr);

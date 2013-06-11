@@ -16,28 +16,28 @@
 
 /*--------------------------------------------------------------------------*/
 
-#if _LCC_ & FORDLL 
-    #define IMPORT_STRUCT __declspec (dllimport)
+#if _LCC_ & FORDLL
+#define IMPORT_STRUCT __declspec (dllimport)
 #else
-    #ifdef FORDLL 
-        #define IMPORT_STRUCT extern  __declspec (dllimport)
-    #else 
-        #define IMPORT_STRUCT extern
-    #endif
+#ifdef FORDLL
+#define IMPORT_STRUCT extern  __declspec (dllimport)
+#else
+#define IMPORT_STRUCT extern
+#endif
 #endif
 
 /* csiz used for character coding */
-#define csiz 63  
+#define csiz 63
 
 /* bsiz size of internal chain buf */
-#define bsiz 4096  
+#define bsiz 4096
 
 typedef struct
 {
-	/* see SCI/modules/string/src/c/setScilabCharactersCodes.h */
-	char alfa[csiz]; /* Scilab Characters Codes 0 to 62 */
-	char alfb[csiz]; /* Scilab Characters Codes 63 to 124 */
-	char buf[bsiz]; /* buffer to exchange strings (fortran)*/
+    /* see SCI/modules/string/src/c/setScilabCharactersCodes.h */
+    char alfa[csiz]; /* Scilab Characters Codes 0 to 62 */
+    char alfb[csiz]; /* Scilab Characters Codes 63 to 124 */
+    char buf[bsiz]; /* buffer to exchange strings (fortran)*/
 } CHA1_struct;
 
 IMPORT_STRUCT CHA1_struct C2F(cha1);
@@ -45,7 +45,8 @@ IMPORT_STRUCT CHA1_struct C2F(cha1);
 #ifdef _MSC_VER
 /* BUG 3863 */
 /* forces to define C2F(dcoeff) only once */
-typedef struct {
+typedef struct
+{
     double c[41];
     int ndng;
 } DCOEFF_struct;
@@ -106,8 +107,8 @@ double dblGetMatrixInfiniteNorm(double *_pdblReal, double *_pdblImg, int _iRows,
 ELEMENTARY_FUNCTIONS_IMPEXP int dexpms2(double *_pdblReal, double *_pdblReturnReal, int _iLeadDim);
 
 ELEMENTARY_FUNCTIONS_IMPEXP int zexpms2(double *_pdblReal, double *_pdblImg,
-            double *_pdblReturnReal, double *_pdblReturnImg,
-            int _iLeadDim);
+                                        double *_pdblReturnReal, double *_pdblReturnImg,
+                                        int _iLeadDim);
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(split)();

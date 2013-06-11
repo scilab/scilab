@@ -15,46 +15,46 @@
 // =============================================================================
 
 function h=dec2hex(v)
-	
-	rhs = argn(2);
-	
-	// check the number of input arguments
-	if rhs<>1 then
-		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"dec2hex",1));
-	end
-	
-	[nr,nc] = size(v);
-	
-	if (find(v<0) <> []) | (norm(round(v)-v,1) > norm(round(v),1)*2*%eps) then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: Non-negative integer matrix expected.\n"),"dec2hex",1));
-	end
-	
-	v  = v(:);
-	kz = find(v<>0)
-	v  = v(kz);
-	n  = 1 + fix(log(v)/log(16));
-	s  = cumprod([1,16*ones(1,max(n)-1)]);
-	z  = "0";
-	h  = z(ones(nr*nc,1));
-	
-	for ii=1:size(v,'*')
-		
-		nn = n(ii);
-		d  = v(ii);
-		g  = s(1:nn);
-		
-		for i = 1:nn
-			x=s(nn-i+1)
-			g(i) = fix(d/x);
-			d = d-g(i)*x;
-		end
-		
-		k         = find(g>9);
-		g(k)      = -g(k);
-		h(kz(ii)) = code2str(g);
-		
-	end
-	
-	h=matrix(h,nr,nc);
-	
+
+    rhs = argn(2);
+
+    // check the number of input arguments
+    if rhs<>1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"dec2hex",1));
+    end
+
+    [nr,nc] = size(v);
+
+    if (find(v<0) <> []) | (norm(round(v)-v,1) > norm(round(v),1)*2*%eps) then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Non-negative integer matrix expected.\n"),"dec2hex",1));
+    end
+
+    v  = v(:);
+    kz = find(v<>0)
+    v  = v(kz);
+    n  = 1 + fix(log(v)/log(16));
+    s  = cumprod([1,16*ones(1,max(n)-1)]);
+    z  = "0";
+    h  = z(ones(nr*nc,1));
+
+    for ii=1:size(v,"*")
+
+        nn = n(ii);
+        d  = v(ii);
+        g  = s(1:nn);
+
+        for i = 1:nn
+            x=s(nn-i+1)
+            g(i) = fix(d/x);
+            d = d-g(i)*x;
+        end
+
+        k         = find(g>9);
+        g(k)      = -g(k);
+        h(kz(ii)) = code2str(g);
+
+    end
+
+    h=matrix(h,nr,nc);
+
 endfunction

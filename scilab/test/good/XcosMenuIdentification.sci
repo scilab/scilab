@@ -21,7 +21,7 @@
 
 function XcosMenuIdentification()
 
-  scs_m = do_ident(scs_m)
-  Cmenu = [] ; %pt = [];
+    scs_m = do_ident(scs_m)
+    Cmenu = [] ; %pt = [];
 
 endfunction

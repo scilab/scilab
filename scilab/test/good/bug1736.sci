@@ -7,7 +7,7 @@
 mode(-1);
 clear
 a = uint8(rand(10,10)*100);
-ok=(a<=50)==(50>=a) 
+ok=(a<=50)==(50>=a)
 affich_result(ok,1736);
 
 clear

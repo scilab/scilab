@@ -25,48 +25,48 @@ extern "C"
 
 namespace org_modules_xml
 {
-    class VariableScope;
+class VariableScope;
 
-    /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Base class for the XML objects.
-     */
-    class XML_SCILAB_IMPEXP XMLObject
-    {
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Base class for the XML objects.
+ */
+class XML_SCILAB_IMPEXP XMLObject
+{
 
 public:
-        /**
-         * Default constructor
-         */
-        XMLObject();
+    /**
+     * Default constructor
+     */
+    XMLObject();
 
-        /**
-         * Destructor
-         */
-        virtual ~ XMLObject()
-        {
-        }
+    /**
+     * Destructor
+     */
+    virtual ~ XMLObject()
+    {
+    }
 
-        /**
-         * Get the libxml2 pointer
-         * @return the pointer
-         */
-        virtual void *getRealXMLPointer() const
-        {
-            return 0;
-        }
+    /**
+     * Get the libxml2 pointer
+     * @return the pointer
+     */
+    virtual void *getRealXMLPointer() const
+    {
+        return 0;
+    }
 
-        /**
-         * Gets a XML parent object. A set of dependencies is created between the objects
-         * to be sure that all the XML objects will be freed when a document will be destroyed.
-         * @return the parent XMLObject
-         */
-        virtual const XMLObject *getXMLObjectParent() const
-        {
-            return 0;
-        }
+    /**
+     * Gets a XML parent object. A set of dependencies is created between the objects
+     * to be sure that all the XML objects will be freed when a document will be destroyed.
+     * @return the parent XMLObject
+     */
+    virtual const XMLObject *getXMLObjectParent() const
+    {
+        return 0;
+    }
 
     /**
          * Sets the attribute value.
@@ -74,10 +74,10 @@ public:
          * @param value the attribute values
          * @param size the number of names
          */
-        virtual void setAttributeValue(const char **name, const char **value, int size) const
-        {
-            return;
-        }
+    virtual void setAttributeValue(const char **name, const char **value, int size) const
+    {
+        return;
+    }
 
     /**
          * Sets the attribute value with a prefix namespace.
@@ -86,69 +86,70 @@ public:
          * @param value the attribute values
          * @param size the number of names
          */
-        virtual void setAttributeValue(const char **prefix, const char **name, const char **value, int size) const
-        {
-            return;
-        }
+    virtual void setAttributeValue(const char **prefix, const char **name, const char **value, int size) const
+    {
+        return;
+    }
 
-        /**
-         * @return the string representation of this object
-         */
-        virtual const std::string toString() const
-        {
-            return std::string("");
-        }
+    /**
+     * @return the string representation of this object
+     */
+    virtual const std::string toString() const
+    {
+        return std::string("");
+    }
 
-        /**
-         * @return a dump of this object
-         */
-        virtual const std::string dump(bool indent) const
-        {
-            return std::string("");
-        }
+    /**
+     * @return a dump of this object
+     */
+    virtual const std::string dump(bool indent) const
+    {
+        return std::string("");
+    }
 
-        /**
-         * @return the object id
-         */
-        int getId() const
-        {
-            return id;
-        }
+    /**
+     * @return the object id
+     */
+    int getId() const
+    {
+        return id;
+    }
 
-        /**
-         * Creates the Scilab's variable corresponding to this object
-         * @param pos the stack position
-         * @return 1 if all is ok, else 0
-         */
-        int createOnStack(int pos, void *pvApiCtx) const;
+    /**
+     * Creates the Scilab's variable corresponding to this object
+     * @param pos the stack position
+     * @return 1 if all is ok, else 0
+     */
+    int createOnStack(int pos, void *pvApiCtx) const;
 
-        /**
-         * @param id the object id
-         * @return the object which has the corresponding id or 0 if not found
-         */
-          template < class T > static T *getFromId(int id)
-        {
-            return static_cast < T * >(getVariableFromId(id));
-        }
+    /**
+     * @param id the object id
+     * @return the object which has the corresponding id or 0 if not found
+     */
+    template < class T > static T *getFromId(int id)
+    {
+        return static_cast < T * >(getVariableFromId(id));
+    }
 
-protected:int id;
-        int scilabType;
+protected:
+    int id;
+    int scilabType;
 
-        static VariableScope *scope;
+    static VariableScope *scope;
 
-        /**
-         * Reset the scope
-         */
-        static void resetScope();
+    /**
+     * Reset the scope
+     */
+    static void resetScope();
 
 private:
 
-        /**
-         * @param id the id
-         * @return XMLObject corresponding to the id or 0 if not found
-         */
-        static XMLObject *getVariableFromId(int id);
-    };
+    /**
+     * @param id the id
+     * @return XMLObject corresponding to the id or 0 if not found
+     */
+    static XMLObject *getVariableFromId(int id);
+};
 }
 
 #endif

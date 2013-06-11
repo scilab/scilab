@@ -36,14 +36,14 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     double* pData   = NULL;
     int iErr        = 0;
 
-    if(in.size() < 1 || in.size() > 3)
+    if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mget", 1, 3);
         return Function::Error;
     }
 
     //check parameter 1
-    if(in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
+    if (in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 1);
         return Function::Error;
@@ -51,9 +51,10 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
 
     iSize = static_cast<int>(in[0]->getAs<Double>()->get(0));
 
-    if(in.size() >= 2)
-    {//export format
-        if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
+    if (in.size() >= 2)
+    {
+        //export format
+        if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mget", 2);
             return Function::Error;
@@ -61,9 +62,9 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
         pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
     }
 
-    if(in.size() == 3)
+    if (in.size() == 3)
     {
-        if(in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
+        if (in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 3);
             return Function::Error;
@@ -84,19 +85,20 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
 
     C2F(mget)(&iFile, pData, &iSize, pstType, &iErr);
 
-    if(iErr > 0)
+    if (iErr > 0)
     {
         return Function::Error;
     }
 
-    if(iErr < 0) //no error
+    if (iErr < 0) //no error
     {
         int iNewSize = (-iErr) - 1;
-        if(iNewSize < iSize)
-        {//read data are smaller then excepted size
+        if (iNewSize < iSize)
+        {
+            //read data are smaller then excepted size
             Double* pNewD = new Double(1, iNewSize);
             double* pNewData = pNewD->getReal();
-            for(int i = 0 ; i < iNewSize ; i++)
+            for (int i = 0 ; i < iNewSize ; i++)
             {
                 pNewData[i] = pData[i];
             }

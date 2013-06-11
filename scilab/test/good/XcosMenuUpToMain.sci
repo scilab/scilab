@@ -20,16 +20,16 @@
 //
 
 function XcosMenuUpToMain()
-  Cmenu=[]
-  if super_block then
-    //each line of Scicos_commands are directive to be executed by scicos
-    //one after the other.
-    //%diagram_path_objective=[] stands for up to main
-      Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
-		       'Cmenu=[];%scicos_navig=[]';
-		       'show_window()'
-		      ]
-  else
-      messagebox('This is already the main diagram;','modal')
-  end
+    Cmenu=[]
+    if super_block then
+        //each line of Scicos_commands are directive to be executed by scicos
+        //one after the other.
+        //%diagram_path_objective=[] stands for up to main
+        Scicos_commands=["%diagram_path_objective=[];%scicos_navig=1";
+        "Cmenu=[];%scicos_navig=[]";
+        "show_window()"
+        ]
+    else
+        messagebox("This is already the main diagram;","modal")
+    end
 endfunction

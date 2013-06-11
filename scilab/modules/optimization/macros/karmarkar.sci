@@ -1,11 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 
@@ -35,7 +35,7 @@
 function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
     function argin = argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
-        // If this argument was not provided, or was equal to the 
+        // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
         if ( rhs < ivar ) then
             argin = default
@@ -138,30 +138,30 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
         error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",2));
     end
     if ( Aeq <> [] ) then
-    if ( or ( size(beq) <> [ne 1] ) ) then 
-        error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",2));
+        if ( or ( size(beq) <> [ne 1] ) ) then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",2));
+        end
     end
-    end
-    if ( or ( size(c) <> [p 1] ) ) then 
+    if ( or ( size(c) <> [p 1] ) ) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",3));
     end
     if ( x0 <> [] ) then
-        if ( or ( size(x0) <> [p 1] ) ) then 
+        if ( or ( size(x0) <> [p 1] ) ) then
             error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",4));
         end
     end
-    if ( or ( size(rtolf) <> [1 1] ) ) then 
+    if ( or ( size(rtolf) <> [1 1] ) ) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",5));
     end
     if ( or ( size(gam) <> [1 1] ) ) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",6));
     end
-    if ( or ( size(maxiter) <> [1 1] ) ) then 
+    if ( or ( size(maxiter) <> [1 1] ) ) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",7));
     end
     if ( A <> [] ) then
         if ( Aeq <> [] ) then
-            if ( pi <> pe ) then 
+            if ( pi <> pe ) then
                 error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",9));
             end
         end
@@ -170,17 +170,17 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
         error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",10));
     end
     if ( b <> [] ) then
-        if ( size(b) <> [ni 1] ) then 
+        if ( size(b) <> [ni 1] ) then
             error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",10));
         end
     end
     if ( lb <> [] ) then
-        if ( or ( size(lb) <> [p 1] ) ) then 
+        if ( or ( size(lb) <> [p 1] ) ) then
             error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",11));
         end
     end
     if ( ub <> [] ) then
-        if ( or ( size(ub) <> [p 1] ) ) then 
+        if ( or ( size(ub) <> [p 1] ) ) then
             error(msprintf(gettext("%s: Wrong size for input argument #%d."),"karmarkar",12));
         end
     end
@@ -193,33 +193,33 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
     if ( gam < 0 | gam > 1 ) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d. gam must be in [0,1]."),"karmarkar",6));
     end
-    if ( maxiter < 1 ) then 
+    if ( maxiter < 1 ) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d. maxiter must be greater than 1."),"karmarkar",7));
     end
-    if ( floor(maxiter) <> maxiter ) then 
+    if ( floor(maxiter) <> maxiter ) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d. maxiter must be a floating point integer."),"karmarkar",7));
     end
     if ( lb == [] & ub == [] ) then
-    if ( x0 <> [] ) then
-        if ( min(x0)<0 ) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d. x0 is not positive."),"karmarkar",4));
+        if ( x0 <> [] ) then
+            if ( min(x0)<0 ) then
+                error(msprintf(gettext("%s: Wrong value for input argument #%d. x0 is not positive."),"karmarkar",4));
+            end
         end
     end
-    end
-    if ( lb <> [] & ub <> [] ) then 
-    if ( or ( ub < lb ) ) then 
-        error(msprintf(gettext("%s: Wrong value for input argument #%d. One entry of the upper bound ub is lower than the lower bound lb."),"karmarkar",12));
-    end
+    if ( lb <> [] & ub <> [] ) then
+        if ( or ( ub < lb ) ) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d. One entry of the upper bound ub is lower than the lower bound lb."),"karmarkar",12));
+        end
     end
     if ( lb <> [] & x0 <> [] ) then
-    if ( or ( lb > x0 ) ) then 
-        error(msprintf(gettext("%s: Wrong value for input argument #%d. x0 lower than lower bound lb."),"karmarkar",12));
-    end
+        if ( or ( lb > x0 ) ) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d. x0 lower than lower bound lb."),"karmarkar",12));
+        end
     end
     if ( ub <> [] & x0 <> [] ) then
-    if ( or ( ub < x0 ) ) then 
-        error(msprintf(gettext("%s: Wrong value for input argument #%d. x0 greater than upper bound ub."),"karmarkar",12));
-    end
+        if ( or ( ub < x0 ) ) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d. x0 greater than upper bound ub."),"karmarkar",12));
+        end
     end
     //
     // Proceed
@@ -276,7 +276,7 @@ function [AAeq,bbeq,cc,xx0,pinit,newposvars] = karmarkar_preprocess ( Aeq , beq 
     //
     // An unrestricted variable xi is transformed into x = xp - xn, where xp,xn >= 0.
     // This turns the inequality constraint Ax <= b into [A -A][xp;xn] <= b.
-    // The inequality constraint is turned into an equality constraint by introducing 
+    // The inequality constraint is turned into an equality constraint by introducing
     // slack variables si.
     // This transforms the inequality into: [A -A][xp;xn] + s = b which can be written :
     //
@@ -284,7 +284,7 @@ function [AAeq,bbeq,cc,xx0,pinit,newposvars] = karmarkar_preprocess ( Aeq , beq 
     //
     // Therefore, the number of variables increases from pinit to 2*pinit + ni.
     // The initial variable is x(1:pinit)-x(pinit+1:2*pinit).
-    // The same happens for the equality constraints which is turned from 
+    // The same happens for the equality constraints which is turned from
     // Aeq*x=b to [Aeq -Aeq 0][xp;xn;s]=b.
     // The cost function is turned from c'*x into [c;-c;0]'[xp;xn].
     //
@@ -338,7 +338,7 @@ function [AAeq,bbeq,cc,xx0,pinit,newposvars] = karmarkar_preprocess ( Aeq , beq 
     end
     //
     // Remove constraints where b(i) = %inf.
-    // Such an A(i,:)*x <= %inf = b(i) will be satisfied anyway, but 
+    // Such an A(i,:)*x <= %inf = b(i) will be satisfied anyway, but
     // may cause failures in the algorithm.
     iinf = find(b == %inf)
     b(iinf) = []
@@ -352,12 +352,12 @@ function [AAeq,bbeq,cc,xx0,pinit,newposvars] = karmarkar_preprocess ( Aeq , beq 
     //
     // Initialize AAeq, bbeq, cc and xx0.
     //
-    // If ni inequality constraints are given, transform the problem by 
+    // If ni inequality constraints are given, transform the problem by
     // adding pinit positive variables and ni slack variables.
     // The inequality is Ax <= b.
     if ( A <> [] ) then
         //
-        // Create the matrix 
+        // Create the matrix
         // AAeq = [
         //     Aeq -Aeq 0
         //     A   -A   I
@@ -381,7 +381,7 @@ function [AAeq,bbeq,cc,xx0,pinit,newposvars] = karmarkar_preprocess ( Aeq , beq 
             xx0(pinit+1:2*pinit) = -min(x0,0)
             s = b - A*x0
             if ( min(s)<0 ) then
-              error(msprintf(gettext("%s: Wrong value for input argument #%d. x0 does not satisfy the inequality constraints."),"karmarkar",4));
+                error(msprintf(gettext("%s: Wrong value for input argument #%d. x0 does not satisfy the inequality constraints."),"karmarkar",4));
             end
             xx0(2*pinit+1:2*pinit+ni) = s
         end
@@ -403,7 +403,7 @@ function [xopt,fopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb ,
     [ni,pi]=size(A)
     plb=size(lb,"*")
     pub=size(ub,"*")
-    // 
+    //
     // Initialize
     if ( yyopt == [] ) then
         yopt.ineqlin = []
@@ -420,32 +420,32 @@ function [xopt,fopt,yopt] = karmarkar_postprocess ( Aeq , beq , c , A , b , lb ,
     // Update depending on the presence of the options.
     kstart = 1
     if ( ne > 0 ) then
-      kstop = kstart + ne - 1
-      yopt.eqlin = -yyopt(kstart:kstop)
-      kstart = kstop + 1
+        kstop = kstart + ne - 1
+        yopt.eqlin = -yyopt(kstart:kstop)
+        kstart = kstop + 1
     end
     if ( ni > 0 ) then
-      noninf = find(b<>%inf)
-      kinf = find(b==%inf)
-      kstop = kstart + ni - 1 - size(kinf,"*")
-      yopt.ineqlin(noninf) = -yyopt(kstart:kstop)
-      kstart = kstop + 1
+        noninf = find(b<>%inf)
+        kinf = find(b==%inf)
+        kstop = kstart + ni - 1 - size(kinf,"*")
+        yopt.ineqlin(noninf) = -yyopt(kstart:kstop)
+        kstart = kstop + 1
     end
     if ( ni == 0 & plb == 0 & pub == 0 ) then
-      yopt.lower = c - Aeq'*yyopt
+        yopt.lower = c - Aeq'*yyopt
     elseif ( plb > 0 ) then
-      noninf = find(lb<>%inf)
-      kinf = find(lb==%inf)
-      kstop = kstart + plb - 1 - size(kinf,"*")
-      yopt.lower(noninf) = -yyopt(kstart:kstop)
-      kstart = kstop + 1
+        noninf = find(lb<>%inf)
+        kinf = find(lb==%inf)
+        kstop = kstart + plb - 1 - size(kinf,"*")
+        yopt.lower(noninf) = -yyopt(kstart:kstop)
+        kstart = kstop + 1
     end
     if ( pub > 0 ) then
-      noninf = find(ub<>%inf)
-      kinf = find(ub==%inf)
-      kstop = kstart + pub - 1 - size(kinf,"*")
-      yopt.upper(noninf) = -yyopt(kstart:kstop)
-      kstart = kstop + 1
+        noninf = find(ub<>%inf)
+        kinf = find(ub==%inf)
+        kstop = kstart + pub - 1 - size(kinf,"*")
+        yopt.upper(noninf) = -yyopt(kstart:kstop)
+        kstart = kstop + 1
     end
 endfunction
 
@@ -546,7 +546,7 @@ function [xopt,fopt,exitflag,iter,yopt] = karmarkar_findxopt ( Aeq , beq , c , x
     // We assume that x0 is strictly feasible, i.e. || Aeq*x0-beq || is small and x0 > 0.
     //
     // If step = 1, we stop when xopt($) is below the feasibility threshold xfeasmax.
-    // If step = 2, we stop when the objective function does not vary anymore, or the maximum number 
+    // If step = 2, we stop when the objective function does not vary anymore, or the maximum number
     // of iterations exceeds the maximum, or the users asks to.
     //
     // exitflag = 1 if algorithm converged.
@@ -559,11 +559,11 @@ function [xopt,fopt,exitflag,iter,yopt] = karmarkar_findxopt ( Aeq , beq , c , x
     // References
     //      "A variation on Karmarkar’s algorithm for solving linear programming problems,
     //      Earl R. Barnes, Mathematical Programming, Volume 36, Number 2, 174-182, 1986.
-    //      
+    //
     //      "A modification of karmarkar's linear programming algorithm",
     //      Robert J. Vanderbei, Marc S. Meketon and Barry A. Freedman,
     //      Algorithmica, Volume 1, Numbers 1-4, 395-407, 1986.
-    //      
+    //
     //      "Practical Optimization: Algorithms and Engineering Applications",
     //      Andreas Antoniou, Wu-Sheng Lu, Springer, 2007,
     //      Chapter 12, "Linear Programming Part II: Interior Point Methods".
@@ -652,8 +652,8 @@ function [xopt,fopt,exitflag,iter,yopt] = karmarkar_findxopt ( Aeq , beq , c , x
         xt = xopt'
         B = Aeq.*xt(ones(ne,1),:)
         v = xopt.*c
-        // y = inv(B*B') * (B*v) i.e. y is the solution of (B*B') y = B*v. 
-        // This implies that y is the solution of (B')*y = v, i.e. 
+        // y = inv(B*B') * (B*v) i.e. y is the solution of (B*B') y = B*v.
+        // This implies that y is the solution of (B')*y = v, i.e.
         yopt = B'\v
         p = -v+B'*yopt
         if ( min(p)==0 ) then
@@ -661,7 +661,7 @@ function [xopt,fopt,exitflag,iter,yopt] = karmarkar_findxopt ( Aeq , beq , c , x
             break
         end
         d = xopt.*p
-        if ( min(d)>0 ) then 
+        if ( min(d)>0 ) then
             // Unbounded problem.
             exitflag = -2
             break
@@ -709,7 +709,7 @@ function stop = karmarkar_outfunDriver ( xopt , optimValues , state , outfun )
     //
     // The driver for the output function.
     // outfun : a list where the first item is the output function.
-    __karmarkar_outfun__ = outfun (1) 
+    __karmarkar_outfun__ = outfun (1)
     pinit = outfun (2)
     newposvars = outfun (3)
     //

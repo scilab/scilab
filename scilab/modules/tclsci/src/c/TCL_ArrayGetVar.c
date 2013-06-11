@@ -23,27 +23,27 @@
 ** TCL Arrays are Hashtable in fact.
 ** So we have to access it through string indexes.
 */
-char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter,char *VarName,char *index)
+char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter, char *VarName, char *index)
 {
-	char *RetStr=NULL;
-	char ArrayName[2048];
+    char *RetStr = NULL;
+    char ArrayName[2048];
 
-	if (index == NULL)
-	  {
-	    return os_strdup(TCL_NOT_DEFINE);
-	  }
+    if (index == NULL)
+    {
+        return os_strdup(TCL_NOT_DEFINE);
+    }
 
-	sprintf(ArrayName,"%s(%s)",VarName,index);
+    sprintf(ArrayName, "%s(%s)", VarName, index);
 
-	RetStr = (char*)Tcl_GetVar(TCLinterpreter, ArrayName, TCL_GLOBAL_ONLY);
+    RetStr = (char*)Tcl_GetVar(TCLinterpreter, ArrayName, TCL_GLOBAL_ONLY);
 
-	if (RetStr)
-	{
-		return os_strdup(RetStr);
-	}
-	else
-	{
-		return os_strdup(TCL_NOT_DEFINE);
-	}
+    if (RetStr)
+    {
+        return os_strdup(RetStr);
+    }
+    else
+    {
+        return os_strdup(TCL_NOT_DEFINE);
+    }
 }
 /*--------------------------------------------------------------------------*/

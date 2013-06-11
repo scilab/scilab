@@ -9,31 +9,31 @@
 
 
 function []=halt(varargin)
-	
-	//halt() stops execution until something is entered in the keyboard.
-	
-	[lhs,rhs] = argn(0);
-	
-	msg = "halt";
-	
-	if (rhs > 0) then
-		
-		if rhs > 1  then
-			error(msprintf(gettext("%s: Wrong number of input argument.\n"),"halt"));
-		end
-		
-		if type(varargin(1)) <> 10 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"halt",1));
-		end
-		
-		if size(varargin(1),"*") <> 1 then
-			error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"halt",1));
-		end
-		
-		msg = string(varargin(1));
-	end
-	
-	mprintf(msg);
-	mscanf('%c');
-	
+
+    //halt() stops execution until something is entered in the keyboard.
+
+    [lhs,rhs] = argn(0);
+
+    msg = "halt";
+
+    if (rhs > 0) then
+
+        if rhs > 1  then
+            error(msprintf(gettext("%s: Wrong number of input argument.\n"),"halt"));
+        end
+
+        if type(varargin(1)) <> 10 then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"halt",1));
+        end
+
+        if size(varargin(1),"*") <> 1 then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"halt",1));
+        end
+
+        msg = string(varargin(1));
+    end
+
+    mprintf(msg);
+    mscanf("%c");
+
 endfunction

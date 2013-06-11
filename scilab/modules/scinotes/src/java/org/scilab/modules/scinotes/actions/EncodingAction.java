@@ -149,10 +149,10 @@ public class EncodingAction extends DefaultCheckAction {
     public JRadioButtonMenuItem createRadioButtonMenuItem(SciNotes editor) {
         JRadioButtonMenuItem radio = new JRadioButtonMenuItem(encoding);
         radio.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent arg0) {
-                    doAction();
-                }
-            });
+            public void actionPerformed(ActionEvent arg0) {
+                doAction();
+            }
+        });
 
         return radio;
     }
@@ -275,14 +275,14 @@ public class EncodingAction extends DefaultCheckAction {
                 switch (ScilabModalDialog.show(getEditor(),
                                                SciNotesMessages.MODIFICATIONS_WILL_BE_LOST, SciNotesMessages.CONTINUE,
                                                IconType.QUESTION_ICON, ButtonType.YES_NO)) {
-                case YES_OPTION : //Yes, continue
-                    break;
-                case NO_OPTION ://No, exit
-                    //Back to previous menu checked
-                    updateEncodingMenu(styleDocument);
-                    return;
-                default:
-                    break;
+                    case YES_OPTION : //Yes, continue
+                        break;
+                    case NO_OPTION ://No, exit
+                        //Back to previous menu checked
+                        updateEncodingMenu(styleDocument);
+                        return;
+                    default:
+                        break;
                 }
             }
         }
@@ -335,16 +335,16 @@ public class EncodingAction extends DefaultCheckAction {
             isSuccess = false;
         } finally {
             try {
-                    if (fis != null) {
-                        fis.close();
-                    }
-                    if (isr != null) {
-                        isr.close();
-                    }
-                    if (br != null) {
-                        br.close();
-                    }
-                } catch (IOException e) { }
+                if (fis != null) {
+                    fis.close();
+                }
+                if (isr != null) {
+                    isr.close();
+                }
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException e) { }
         }
 
         /* Allow changes to be saved */

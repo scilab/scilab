@@ -18,56 +18,73 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "MALLOC.h"
 #include "scicos_block.h"
 #include "scicos_free.h"
 #include "scicos_malloc.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void backlash(scicos_block *block,int flag)
-{ 
-  double* rw = NULL,t  = 0.;
-  if (flag == 4){/* the workspace is used to store previous values */
-    if ((*block->work=	 scicos_malloc(sizeof(double)* 4))== NULL ) {
-      set_block_error(-16);
-      return;
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void backlash(scicos_block *block, int flag)
+{
+    double* rw = NULL, t  = 0.;
+    if (flag == 4) /* the workspace is used to store previous values */
+    {
+        if ((*block->work =	 scicos_malloc(sizeof(double) * 4)) == NULL )
+        {
+            set_block_error(-16);
+            return;
+        }
+        rw = *block->work;
+        t = get_scicos_time();
+        rw[0] = t;
+        rw[1] = t;
+        rw[2] = block->rpar[0];
+        rw[3] = block->rpar[0];
     }
-    rw=*block->work; 
-    t=get_scicos_time();
-    rw[0]=t;
-    rw[1]=t;
-    rw[2]=block->rpar[0];
-    rw[3]=block->rpar[0];
-  }else  if (flag == 5){
-    scicos_free(*block->work);
-  }else  if (flag == 1) {
-    rw=*block->work;
-    t=get_scicos_time();
-    if(t>rw[1]) {
-      rw[0]=rw[1];
-      rw[2]=rw[3];
+    else  if (flag == 5)
+    {
+        scicos_free(*block->work);
     }
-    rw[1]=t;
-    if(block->inptr[0][0]>rw[2]+block->rpar[1]/2){
-      rw[3]=block->inptr[0][0]-block->rpar[1]/2;
-    } else if (block->inptr[0][0]<rw[2]-block->rpar[1]/2){
-      rw[3]=block->inptr[0][0]+block->rpar[1]/2;
-    } else {
-      rw[3]=rw[2];
+    else  if (flag == 1)
+    {
+        rw = *block->work;
+        t = get_scicos_time();
+        if (t > rw[1])
+        {
+            rw[0] = rw[1];
+            rw[2] = rw[3];
+        }
+        rw[1] = t;
+        if (block->inptr[0][0] > rw[2] + block->rpar[1] / 2)
+        {
+            rw[3] = block->inptr[0][0] - block->rpar[1] / 2;
+        }
+        else if (block->inptr[0][0] < rw[2] - block->rpar[1] / 2)
+        {
+            rw[3] = block->inptr[0][0] + block->rpar[1] / 2;
+        }
+        else
+        {
+            rw[3] = rw[2];
+        }
+        block->outptr[0][0] = rw[3];
     }
-    block->outptr[0][0]=rw[3];
-  }  else if (flag == 9) {
-    rw=*block->work;
-    t=get_scicos_time();
-    if(t>rw[1]){
-      block->g[0] = block->inptr[0][0]-block->rpar[1]/2-rw[3];
-      block->g[1] = block->inptr[0][0]+block->rpar[1]/2-rw[3];
-    }else{
-      block->g[0] = block->inptr[0][0]-block->rpar[1]/2-rw[2];
-      block->g[1] = block->inptr[0][0]+block->rpar[1]/2-rw[2];
+    else if (flag == 9)
+    {
+        rw = *block->work;
+        t = get_scicos_time();
+        if (t > rw[1])
+        {
+            block->g[0] = block->inptr[0][0] - block->rpar[1] / 2 - rw[3];
+            block->g[1] = block->inptr[0][0] + block->rpar[1] / 2 - rw[3];
+        }
+        else
+        {
+            block->g[0] = block->inptr[0][0] - block->rpar[1] / 2 - rw[2];
+            block->g[1] = block->inptr[0][0] + block->rpar[1] / 2 - rw[2];
+        }
     }
-  } 
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

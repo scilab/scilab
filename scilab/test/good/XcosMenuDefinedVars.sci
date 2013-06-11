@@ -20,11 +20,11 @@
 //
 
 function XcosMenuDefinedVars()
-//
-  Cmenu=[]
-  //**
-  //** Waiting for a Java tree. Will be available for release.
-  //**
-       tree_show(%scicos_context,'Available parameters:')
-  //**
+    //
+    Cmenu=[]
+    //**
+    //** Waiting for a Java tree. Will be available for release.
+    //**
+    tree_show(%scicos_context,"Available parameters:")
+    //**
 endfunction

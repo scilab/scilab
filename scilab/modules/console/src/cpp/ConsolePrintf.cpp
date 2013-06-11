@@ -26,15 +26,16 @@ using namespace  org_scilab_modules_gui_bridge;
 
 int ConsolePrintf(char *line)
 {
-	JavaVM *vm = getScilabJavaVM();
-	if (vm == NULL) 
-	{ /* Java not yet or badly initialized */
-		printf("%s",line);
-	}
-	else
-	{
-		CallScilabBridge::display(vm, line);
-	}
+    JavaVM *vm = getScilabJavaVM();
+    if (vm == NULL)
+    {
+        /* Java not yet or badly initialized */
+        printf("%s", line);
+    }
+    else
+    {
+        CallScilabBridge::display(vm, line);
+    }
 
-	return 0;
+    return 0;
 }

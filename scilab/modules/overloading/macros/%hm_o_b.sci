@@ -7,10 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function M=%hm_o_b(M,s)
-//M==s
-  if size(s,'*')<> 1 then
-    M=%f
-  else
-    M.entries=M.entries==s
-  end
+    //M==s
+    if size(s,"*")<> 1 then
+        M=%f
+    else
+        M.entries=M.entries==s
+    end
 endfunction

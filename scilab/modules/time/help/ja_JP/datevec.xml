@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,35 +10,35 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datevec">
-    <refnamediv>
-        <refname>datevec</refname>
-        <refpurpose>日付の要素</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>V=datevec(DT)
-            [Y,M,D,H,MI,S]=datevec(DT)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>説明</title>
-        <para>
-            V = datevec(DT) は,(datenumにより定義された)日数を
-            要素[year, month, day, hour, minute, second]を有する日付ベクトル V
-            に変換します.
-            最初の5個の要素は整数です.
-            DT は配列とすることができます.
-        </para>
-        <para>
-            [Y, M, D, H, MI, S] = datevec(DT) は日付ベクトルの
-            要素を別々の配列に返します.
-            DT は配列とすることができます.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datevec">
+        <refnamediv>
+            <refname>datevec</refname>
+            <refpurpose>日付の要素</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>V=datevec(DT)
+                [Y,M,D,H,MI,S]=datevec(DT)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>説明</title>
+            <para>
+                V = datevec(DT) は,(datenumにより定義された)日数を
+                要素[year, month, day, hour, minute, second]を有する日付ベクトル V
+                に変換します.
+                最初の5個の要素は整数です.
+                DT は配列とすることができます.
+            </para>
+            <para>
+                [Y, M, D, H, MI, S] = datevec(DT) は日付ベクトルの
+                要素を別々の配列に返します.
+                DT は配列とすることができます.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 // 最初の例
 datevec(720840)
 
@@ -53,16 +53,16 @@ datevec(A)
 A = grand(10,12,'unf',1,1000000)
 datevec(A)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="datenum">datenum</link>
-            </member>
-            <member>
-                <link linkend="calendar">calendar</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="datenum">datenum</link>
+                </member>
+                <member>
+                    <link linkend="calendar">calendar</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

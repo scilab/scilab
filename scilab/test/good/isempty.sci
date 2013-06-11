@@ -8,38 +8,38 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function answ=isempty(m)
-	
-	m_type = type(m);
-	
-	if( (type(m) >= 11) & (type(m) <= 13) | (type(m) >= 128) ) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"isempty",1));
-	end
-	
-	select m_type
-	case 10
-		// matrix of character string
-		answ = ( max(length(m)) == 0 );
-		
-	case 15
-		// list
-		answ = %t;
-		for i=1:size(m),
-			answ = (answ & isempty(m(i)));
-		end;
-		
-	case 16
-		// typed list
-		answ = %t;
-		for i=1:size(m),
-			answ = (answ & isempty(m(i)));
-		end;
-	
-	case 17
-		// mlist
-		answ = %f;
-		
-	else
-		answ = size(m,'*')==0;
-	end
-	
+
+    m_type = type(m);
+
+    if( (type(m) >= 11) & (type(m) <= 13) | (type(m) >= 128) ) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"isempty",1));
+    end
+
+    select m_type
+    case 10
+        // matrix of character string
+        answ = ( max(length(m)) == 0 );
+
+    case 15
+        // list
+        answ = %t;
+        for i=1:size(m),
+            answ = (answ & isempty(m(i)));
+        end;
+
+    case 16
+        // typed list
+        answ = %t;
+        for i=1:size(m),
+            answ = (answ & isempty(m(i)));
+        end;
+
+    case 17
+        // mlist
+        answ = %f;
+
+    else
+        answ = size(m,"*")==0;
+    end
+
 endfunction

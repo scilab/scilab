@@ -17,26 +17,44 @@
 
 namespace types
 {
-    template <typename T>
-    class User : public InternalType
+template <typename T>
+class User : public InternalType
+{
+public :
+    User() {}
+    virtual	                ~User() {}
+    T*                      getAsUserType()
     {
-    public :
-                                User() {}
-        virtual	                ~User() {}
-        T*                      getAsUserType() { return this; }
-        //non virtaul function to prevent overriding in user derived class
-        RealType                getType(void)   { return RealUserType; } 
+        return this;
+    }
+    //non virtaul function to prevent overriding in user derived class
+    RealType                getType(void)
+    {
+        return RealUserType;
+    }
 
-        /*
-        ** User will be asked to implement the following methods
-        ** in order Scilab engine to manage correctly this user type
-        */
-    public :
-        virtual bool            toString(std::wostringstream& ostr) { return L""; }
-        std::wstring            getTypeStr() { return L"pointer"; }
-        std::wstring            getShortTypeStr() { return L"p"; }
-        InternalType*           clone() { return new User(); }
-    };
+    /*
+    ** User will be asked to implement the following methods
+    ** in order Scilab engine to manage correctly this user type
+    */
+public :
+    virtual bool            toString(std::wostringstream& ostr)
+    {
+        return L"";
+    }
+    std::wstring            getTypeStr()
+    {
+        return L"pointer";
+    }
+    std::wstring            getShortTypeStr()
+    {
+        return L"p";
+    }
+    InternalType*           clone()
+    {
+        return new User();
+    }
+};
 }
 
 #endif /* !__USER_HXX__ */

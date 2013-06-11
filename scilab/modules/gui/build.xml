@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
@@ -11,13 +11,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<project name="gui" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.gui.name}"/>
-  <property name="library.title" value="Graphical interface"/>
-  <!-- List only the mandatory packages -->
-  <property name="manifest.class-path" value="flexdock.jar jrosetta-engine.jar jrosetta-API.jar "/>
-  <description>
-			Build the Scilab GUI module
-  </description>
-</project>
+    <project name="gui" default="jar">
+        <import file="../../build.incl.xml"/>
+        <property name="library.name" value="${library.gui.name}"/>
+        <property name="library.title" value="Graphical interface"/>
+        <!-- List only the mandatory packages -->
+        <property name="manifest.class-path" value="flexdock.jar jrosetta-engine.jar jrosetta-API.jar "/>
+        <description>
+            Build the Scilab GUI module
+        </description>
+    </project>

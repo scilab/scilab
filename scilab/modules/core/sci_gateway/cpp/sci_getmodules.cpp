@@ -22,7 +22,7 @@ using namespace types;
 
 Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() != 0 || _iRetCount > 1)
+    if (in.size() != 0 || _iRetCount > 1)
     {
         return Function::Error;
     }
@@ -32,7 +32,7 @@ Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, type
     String *pOut  = new String(static_cast<int>(sModuleList.size()), 1);
 
     std::list<std::wstring>::iterator it = sModuleList.begin();
-    for(int i = 0; it != sModuleList.end() ; it++,i++)
+    for (int i = 0; it != sModuleList.end() ; it++, i++)
     {
         pOut->set(i, it->c_str());
     }

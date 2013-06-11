@@ -18,117 +18,121 @@
 /*--------------------------------------------------------------------------*/
 int sci_asin(char *fname, void* pvApiCtx)
 {
-	SciErr sciErr;
-	int i;
-	int iRows 					= 0;
-	int iCols 					= 0;
-	int iType						= 0;
+    SciErr sciErr;
+    int i;
+    int iRows 					= 0;
+    int iCols 					= 0;
+    int iType						= 0;
 
-	int* piAddr					=	NULL;
-	double *pdblReal		= NULL;
-	double *pdblImg			= NULL;
-	double *pdblRealRet	= NULL;
-	double *pdblImgRet	= NULL;
+    int* piAddr					=	NULL;
+    double *pdblReal		= NULL;
+    double *pdblImg			= NULL;
+    double *pdblRealRet	= NULL;
+    double *pdblImgRet	= NULL;
 
 
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
 
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	sciErr = getVarType(pvApiCtx, piAddr, &iType);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	if(iType != sci_matrix)
-	{
-		OverLoad(1);
-		return 0;
-	}
+    if (iType != sci_matrix)
+    {
+        OverLoad(1);
+        return 0;
+    }
 
-	if(isVarComplex(pvApiCtx, piAddr))
-	{// case complex
+    if (isVarComplex(pvApiCtx, piAddr))
+    {
+        // case complex
 
-		sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+        sciErr = getComplexMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-		sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+        sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-		for(i = 0 ; i < iRows * iCols ; i++)
-		{
-			wasin(pdblReal[i], pdblImg[i], &pdblRealRet[i], &pdblImgRet[i]);
-		}
-	}
-	else
-	{// case real
-		int		itr				= 0;
+        for (i = 0 ; i < iRows * iCols ; i++)
+        {
+            wasin(pdblReal[i], pdblImg[i], &pdblRealRet[i], &pdblImgRet[i]);
+        }
+    }
+    else
+    {
+        // case real
+        int		itr				= 0;
 
-		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-		//check if all variables are between [-1,1]
-		for(i = 0 ; i < iRows * iCols ; i++)
-		{
-			if(fabs(pdblReal[i]) > 1)
-			{
-				itr = 1;
-				break;
-			}
-		}
+        //check if all variables are between [-1,1]
+        for (i = 0 ; i < iRows * iCols ; i++)
+        {
+            if (fabs(pdblReal[i]) > 1)
+            {
+                itr = 1;
+                break;
+            }
+        }
 
-		if(itr == 0)
-		{//all values are in [-1,1]
-			sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
-			if(sciErr.iErr)
-			{
-				printError(&sciErr, 0);
-				return 0;
-			}
+        if (itr == 0)
+        {
+            //all values are in [-1,1]
+            sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
 
-			for(i = 0 ; i < iRows * iCols ; i++)
-			{
-				pdblRealRet[i] = dasins(pdblReal[i]);
-			}
-		}
-		else
-		{// Values outside [-1,1]
-			sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
-			if(sciErr.iErr)
-			{
-				printError(&sciErr, 0);
-				return 0;
-			}
+            for (i = 0 ; i < iRows * iCols ; i++)
+            {
+                pdblRealRet[i] = dasins(pdblReal[i]);
+            }
+        }
+        else
+        {
+            // Values outside [-1,1]
+            sciErr = allocComplexMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
 
-			for(i = 0 ; i < iRows * iCols ; i++)
-			{
-				wasin(pdblReal[i], 0, &pdblRealRet[i], &pdblImgRet[i]);
-			}
-		}
-	}
+            for (i = 0 ; i < iRows * iCols ; i++)
+            {
+                wasin(pdblReal[i], 0, &pdblRealRet[i], &pdblImgRet[i]);
+            }
+        }
+    }
 
-	LhsVar(1) = Rhs + 1;
-	PutLhsVar();
-	return 0;
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

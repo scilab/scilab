@@ -119,7 +119,7 @@ public :
     int getOdedcFlag();
 
     int execOdeF(int* n, double* t, double* y, double* ydot);
-    int execFunctionJac(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd);
+    int execFunctionJac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd);
     int execFunctionG(int* n, double* t, double* y, int* ng, double* gout);
 
     double execIntgF(double* x);
@@ -209,7 +209,7 @@ private :
 
     // ode / odedc
     int callOdeMacroF(int* n, double* t, double* y, double* ydot);
-    int callMacroJac(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd);
+    int callMacroJac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrpd);
     int callMacroG(int* n, double* t, double* y, int* ng, double* gout);
 
     // intg
@@ -268,7 +268,7 @@ private :
     int callDasrtMacroG(int*, double*, double*, int*, double*, double*, int*);
 };
 
-class DIFFERENTIAL_EQUATIONS_IMPEXP DifferentialEquation 
+class DIFFERENTIAL_EQUATIONS_IMPEXP DifferentialEquation
 {
     // differential equation functions
 private :

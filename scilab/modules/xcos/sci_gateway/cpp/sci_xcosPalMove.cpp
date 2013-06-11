@@ -38,13 +38,13 @@ int sci_xcosPalMove(char *fname, void* pvApiCtx)
     int targetLength = 0;
 
     /* source setup */
-    if (readVectorString(pvApiCtx,1, &source, &sourceLength, fname))
+    if (readVectorString(pvApiCtx, 1, &source, &sourceLength, fname))
     {
         return 0;
     }
 
     /* target setup */
-    if (readVectorString(pvApiCtx,2, &target, &targetLength, fname))
+    if (readVectorString(pvApiCtx, 2, &target, &targetLength, fname))
     {
         return 0;
     }

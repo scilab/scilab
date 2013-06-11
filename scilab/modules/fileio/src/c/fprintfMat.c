@@ -62,8 +62,8 @@ static int signbit(double x)
 #endif /* signbit */
 /*--------------------------------------------------------------------------*/
 fprintfMatError fprintfMat(char *filename, char *format, char *separator,
-    double *MatrixValues, int m, int n,
-    char **textAdded, int sizeTextAdded)
+                           double *MatrixValues, int m, int n,
+                           char **textAdded, int sizeTextAdded)
 {
 #if _MSC_VER
 #define MODEFD "wt"
@@ -73,17 +73,38 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
     int i = 0;
     FILE  *fd = NULL;
 
-    if (filename == NULL) return FPRINTMAT_NULL_POINTER_ERROR;
-    if (format == NULL) return FPRINTMAT_NULL_POINTER_ERROR;
-    if (separator == NULL) return FPRINTMAT_NULL_POINTER_ERROR;
-    if ((sizeTextAdded > 0) && (textAdded == NULL)) return FPRINTFMAT_ERROR;
-    if ((m > 0) && (n > 0) && (MatrixValues == NULL)) return FPRINTFMAT_ERROR;
+    if (filename == NULL)
+    {
+        return FPRINTMAT_NULL_POINTER_ERROR;
+    }
+    if (format == NULL)
+    {
+        return FPRINTMAT_NULL_POINTER_ERROR;
+    }
+    if (separator == NULL)
+    {
+        return FPRINTMAT_NULL_POINTER_ERROR;
+    }
+    if ((sizeTextAdded > 0) && (textAdded == NULL))
+    {
+        return FPRINTFMAT_ERROR;
+    }
+    if ((m > 0) && (n > 0) && (MatrixValues == NULL))
+    {
+        return FPRINTFMAT_ERROR;
+    }
 
-    if (!checkFprintfMatFormat(format)) return FPRINTMAT_FORMAT_ERROR;
+    if (!checkFprintfMatFormat(format))
+    {
+        return FPRINTMAT_FORMAT_ERROR;
+    }
 
     wcfopen(fd , filename, MODEFD);
 
-    if ( fd == (FILE *)NULL ) return FPRINTFMAT_FOPEN_ERROR;
+    if ( fd == (FILE *)NULL )
+    {
+        return FPRINTFMAT_FOPEN_ERROR;
+    }
 
     if (sizeTextAdded > 0)
     {
@@ -104,7 +125,7 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
         int j = 0;
         for ( j = 0 ; j < n ; j++)
         {
-            if (ISNAN(MatrixValues[i + m*j]))
+            if (ISNAN(MatrixValues[i + m * j]))
             {
                 char *localFormat = replaceInFormat(format);
                 if (localFormat)
@@ -115,16 +136,16 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
                 }
                 else
                 {
-                    fprintf(fd, format, MatrixValues[i + m*j]);
+                    fprintf(fd, format, MatrixValues[i + m * j]);
                 }
             }
-            else if (finite(MatrixValues[i + m*j]))
+            else if (finite(MatrixValues[i + m * j]))
             {
-                fprintf(fd, format, MatrixValues[i + m*j]);
+                fprintf(fd, format, MatrixValues[i + m * j]);
             }
             else
             {
-                if ( signbit(MatrixValues[i + m*j]) )
+                if ( signbit(MatrixValues[i + m * j]) )
                 {
                     char *localFormat = replaceInFormat(format);
                     if (localFormat)
@@ -135,7 +156,7 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
                     }
                     else
                     {
-                        fprintf(fd, format, MatrixValues[i + m*j]);
+                        fprintf(fd, format, MatrixValues[i + m * j]);
                     }
                 }
                 else
@@ -143,13 +164,13 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
                     char *localFormat = replaceInFormat(format);
                     if (localFormat)
                     {
-                        fprintf(fd, localFormat,InfString);
+                        fprintf(fd, localFormat, InfString);
                         FREE(localFormat);
                         localFormat = NULL;
                     }
                     else
                     {
-                        fprintf(fd, format, MatrixValues[i + m*j]);
+                        fprintf(fd, format, MatrixValues[i + m * j]);
                     }
                 }
             }
@@ -209,7 +230,7 @@ static char *getCleanedFormat(char *format)
         if (percent)
         {
             int i = 0;
-            for(i = 0; i < NB_FORMAT_SUPPORTED; i++)
+            for (i = 0; i < NB_FORMAT_SUPPORTED; i++)
             {
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
@@ -217,9 +238,9 @@ static char *getCleanedFormat(char *format)
                     int nbcharacters = (int)(strlen(percent) - strlen(token));
                     cleanedFormat = os_strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
-                    if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters-1])) ||
-                        (cleanedFormat[nbcharacters-1]) == '.') ||
-                        (cleanedFormat[nbcharacters-1]) == '%')
+                    if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1])) ||
+                            (cleanedFormat[nbcharacters - 1]) == '.') ||
+                            (cleanedFormat[nbcharacters - 1]) == '%')
                     {
                         strcat(cleanedFormat, supportedFormat[i]);
                         return cleanedFormat;

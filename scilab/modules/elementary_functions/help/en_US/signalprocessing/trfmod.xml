@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,43 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="trfmod">
-    <refnamediv>
-        <refname>trfmod</refname>
-        <refpurpose>poles and zeros display</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[hm]=trfmod(h [,job])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>
-            To visualize the pole-zero structure of a SISO transfer 
-            function <literal>h</literal> .
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>job='p'</term>
-                <listitem>
-                    <para>visualization of polynomials (default)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>job='f'</term>
-                <listitem>
-                    <para>visualization of natural frequencies and damping</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <para>
-            Interactive simplification of <literal>h</literal>. <literal>trfmod</literal> opens
-            a dialog window.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="trfmod">
+        <refnamediv>
+            <refname>trfmod</refname>
+            <refpurpose>poles and zeros display</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[hm]=trfmod(h [,job])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>
+                To visualize the pole-zero structure of a SISO transfer 
+                function <literal>h</literal> .
+            </para>
+            <variablelist>
+                <varlistentry>
+                    <term>job='p'</term>
+                    <listitem>
+                        <para>visualization of polynomials (default)</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>job='f'</term>
+                    <listitem>
+                        <para>visualization of natural frequencies and damping</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+            <para>
+                Interactive simplification of <literal>h</literal>. <literal>trfmod</literal> opens
+                a dialog window.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 // with a transfer function 
 s=poly(0,'s');
 gs=syslin('c',1/(s+1));
@@ -59,17 +59,17 @@ C=[2,2,2];
 sys=syslin('c',A,B,C);
 trfmod(sys)
  ]]></programlisting>
-    </refsection>
-    
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="poly">poly</link>
-            </member>
-            <member>
-                <link linkend="simp">simp</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="poly">poly</link>
+                </member>
+                <member>
+                    <link linkend="simp">simp</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

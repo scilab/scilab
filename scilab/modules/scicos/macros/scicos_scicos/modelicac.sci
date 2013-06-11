@@ -20,69 +20,69 @@
 //
 
 function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with_gui, init)
-//Scilab interface with external tool modelicac
+    //Scilab interface with external tool modelicac
 
-  MODELICAC_FILENAME = 'modelicac';
-  if getos() == 'Windows' then
-    MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe';
-  end
+    MODELICAC_FILENAME = "modelicac";
+    if getos() == "Windows" then
+        MODELICAC_FILENAME = MODELICAC_FILENAME + ".exe";
+    end
 
-  if argn(2) < 7 then init = %f,end
-  incidence = '';
-  tmpdir = pathconvert(TMPDIR, %t, %t);  //for error log and  shell scripts
-  xmlfileTMP = pathconvert(xmlfileTMP, %f, %t);  
-  Cfile = pathconvert(Cfile, %f, %t);  
+    if argn(2) < 7 then init = %f,end
+    incidence = "";
+    tmpdir = pathconvert(TMPDIR, %t, %t);  //for error log and  shell scripts
+    xmlfileTMP = pathconvert(xmlfileTMP, %f, %t);
+    Cfile = pathconvert(Cfile, %f, %t);
 
-  if fileinfo(Flat_functions) == [] then
-    Flat_functions = " "; 
-  else
-    Flat_functions = '""' + Flat_functions + '""';
-  end
-  
-  if ( (with_gui) & (fileinfo(xmlfileTMP) <> []) ) then // if GUI is running
-    XMLfiles = ' -with-init-in ""' + strsubst(xmlfileTMP, '\', '/') + '"" -with-init-out ""' + strsubst(xmlfileTMP,'\','/') + '""';
-  else
-    XMLfiles = '';
-  end 
-
-  exe = '""' + pathconvert(getmodelicacpath() + MODELICAC_FILENAME, %f, %t) + '""';
-  
-  Flat = '""' + Flat + '""';
-  out = '-o ""' + Cfile + '""';
-
-  if Jacobian then
-    JAC = ' -jac ';
-  else
-    JAC='';
-  end
-
-  if init then
-    Errfile = '>""' + tmpdir + 'imodelicac.err""';
-  else
-    Errfile = '>""' + tmpdir + 'S_modelicac.err""';
-  end
-
-  instr = strcat([exe, Flat, Flat_functions, XMLfiles, out, JAC, Errfile], ' ');
- 
-  if getos() == 'Windows' then
-    if init then
-      mputl(instr,tmpdir+'igenm.bat'); 
-      instr = tmpdir + 'igenm.bat';
+    if fileinfo(Flat_functions) == [] then
+        Flat_functions = " ";
     else
-      mputl(instr, tmpdir + 'genm2.bat'); 
-      instr = tmpdir + 'genm2.bat';
+        Flat_functions = """" + Flat_functions + """";
     end
-  end
 
-  if execstr('unix_s(instr)', 'errcatch') <> 0 then  
-    messagebox([_('-------Modelica compiler error (with the translator):-------');_('Please read the error message in the Scilab window')], 'error', 'modal');
-    if isfile(Errfile) then
-      mgetl(Errfile);
+    if ( (with_gui) & (fileinfo(xmlfileTMP) <> []) ) then // if GUI is running
+        XMLfiles = " -with-init-in """ + strsubst(xmlfileTMP, "\", "/") + """ -with-init-out """ + strsubst(xmlfileTMP,"\","/") + """";
+    else
+        XMLfiles = "";
     end
-    
-    ok=%f;
-    return
-  end     
+
+    exe = """" + pathconvert(getmodelicacpath() + MODELICAC_FILENAME, %f, %t) + """";
+
+    Flat = """" + Flat + """";
+    out = "-o """ + Cfile + """";
+
+    if Jacobian then
+        JAC = " -jac ";
+    else
+        JAC="";
+    end
+
+    if init then
+        Errfile = ">""" + tmpdir + "imodelicac.err""";
+    else
+        Errfile = ">""" + tmpdir + "S_modelicac.err""";
+    end
+
+    instr = strcat([exe, Flat, Flat_functions, XMLfiles, out, JAC, Errfile], " ");
+
+    if getos() == "Windows" then
+        if init then
+            mputl(instr,tmpdir+"igenm.bat");
+            instr = tmpdir + "igenm.bat";
+        else
+            mputl(instr, tmpdir + "genm2.bat");
+            instr = tmpdir + "genm2.bat";
+        end
+    end
+
+    if execstr("unix_s(instr)", "errcatch") <> 0 then
+        messagebox([_("-------Modelica compiler error (with the translator):-------");_("Please read the error message in the Scilab window")], "error", "modal");
+        if isfile(Errfile) then
+            mgetl(Errfile);
+        end
+
+        ok=%f;
+        return
+    end
 
 endfunction
 

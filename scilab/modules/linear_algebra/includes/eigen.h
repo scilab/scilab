@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY 
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -56,7 +56,7 @@ LINEAR_ALGEBRA_IMPEXP int iEigen1RealM(double* pData, int iCols, double* pEigenV
  *
  * @param pData double[complex]* : input  (&output for real) pData[0:iCols[ contains diagonal elements
  * @param iCols int : input nb of elements
- * 
+ *
  * out:
  * @param  pRMatrix double* real part of the diagonal output matrix
  * @param  pIMatrix double* imaginary part of the diagonal output matrix
@@ -86,7 +86,7 @@ LINEAR_ALGEBRA_IMPEXP void expandZToDiagonalOfCMatrix(doublecomplex const* pZVec
  * @param pAlphaImg double*
  *
  *
- * @param pBeta double[complex]* 
+ * @param pBeta double[complex]*
  *
  * L and R are either
  * in 'z' format for complex matrix
@@ -103,8 +103,8 @@ LINEAR_ALGEBRA_IMPEXP void expandZToDiagonalOfCMatrix(doublecomplex const* pZVec
  */
 
 LINEAR_ALGEBRA_IMPEXP int iEigen2ComplexM(doublecomplex* pData1, doublecomplex* pData2, int iCols
-		     , doublecomplex* pAlpha, doublecomplex* pBeta, doublecomplex* pR, doublecomplex* pL);
+        , doublecomplex* pAlpha, doublecomplex* pBeta, doublecomplex* pR, doublecomplex* pL);
 LINEAR_ALGEBRA_IMPEXP int iEigen2RealM(double* pData1, double* pData2, int iCols
-		     , double* pAlphaReal, double* pAlphaImg, double* pBeta, double* pRReal, double* pRimg, double* pLReal, double* pLImg);
+                                       , double* pAlphaReal, double* pAlphaImg, double* pBeta, double* pRReal, double* pRimg, double* pLReal, double* pLImg);
 
 #endif

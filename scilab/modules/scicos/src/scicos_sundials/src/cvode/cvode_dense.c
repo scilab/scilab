@@ -2,7 +2,7 @@
  * -----------------------------------------------------------------
  * $Revision: 1.12 $
  * $Date: 2010/12/01 22:21:04 $
- * ----------------------------------------------------------------- 
+ * -----------------------------------------------------------------
  * Programmer(s): Scott D. Cohen, Alan C. Hindmarsh and
  *                Radu Serban @ LLNL
  * -----------------------------------------------------------------
@@ -31,11 +31,11 @@
 #define TWO          RCONST(2.0)
 
 /* CVDENSE linit, lsetup, lsolve, and lfree routines */
- 
+
 static int cvDenseInit(CVodeMem cv_mem);
 
 static int cvDenseSetup(CVodeMem cv_mem, int convfail, N_Vector ypred,
-                        N_Vector fpred, booleantype *jcurPtr, 
+                        N_Vector fpred, booleantype *jcurPtr,
                         N_Vector vtemp1, N_Vector vtemp2, N_Vector vtemp3);
 
 static int cvDenseSolve(CVodeMem cv_mem, N_Vector b, N_Vector weight,
@@ -74,7 +74,7 @@ static void cvDenseFree(CVodeMem cv_mem);
 #define nfeDQ     (cvdls_mem->d_nfeDQ)
 #define J_data    (cvdls_mem->d_J_data)
 #define last_flag (cvdls_mem->d_last_flag)
-                  
+
 /*
  * -----------------------------------------------------------------
  * CVDense
@@ -92,7 +92,7 @@ static void cvDenseFree(CVodeMem cv_mem);
  * The return value is SUCCESS = 0, or LMEM_FAIL = -1.
  *
  * NOTE: The dense linear solver assumes a serial implementation
- *       of the NVECTOR package. Therefore, CVDense will first 
+ *       of the NVECTOR package. Therefore, CVDense will first
  *       test for compatible a compatible N_Vector internal
  *       representation by checking that N_VGetArrayPointer and
  *       N_VSetArrayPointer exist.
@@ -101,85 +101,97 @@ static void cvDenseFree(CVodeMem cv_mem);
 
 int CVDense(void *cvode_mem, long int N)
 {
-  CVodeMem cv_mem;
-  CVDlsMem cvdls_mem;
+    CVodeMem cv_mem;
+    CVDlsMem cvdls_mem;
 
-  /* Return immediately if cvode_mem is NULL */
-  if (cvode_mem == NULL) {
-    CVProcessError(NULL, CVDLS_MEM_NULL, "CVDENSE", "CVDense", MSGD_CVMEM_NULL);
-    return(CVDLS_MEM_NULL);
-  }
-  cv_mem = (CVodeMem) cvode_mem;
+    /* Return immediately if cvode_mem is NULL */
+    if (cvode_mem == NULL)
+    {
+        CVProcessError(NULL, CVDLS_MEM_NULL, "CVDENSE", "CVDense", MSGD_CVMEM_NULL);
+        return(CVDLS_MEM_NULL);
+    }
+    cv_mem = (CVodeMem) cvode_mem;
 
-  /* Test if the NVECTOR package is compatible with the DENSE solver */
-  if (vec_tmpl->ops->nvgetarraypointer == NULL ||
-      vec_tmpl->ops->nvsetarraypointer == NULL) {
-    CVProcessError(cv_mem, CVDLS_ILL_INPUT, "CVDENSE", "CVDense", MSGD_BAD_NVECTOR);
-    return(CVDLS_ILL_INPUT);
-  }
+    /* Test if the NVECTOR package is compatible with the DENSE solver */
+    if (vec_tmpl->ops->nvgetarraypointer == NULL ||
+            vec_tmpl->ops->nvsetarraypointer == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_ILL_INPUT, "CVDENSE", "CVDense", MSGD_BAD_NVECTOR);
+        return(CVDLS_ILL_INPUT);
+    }
 
-  if (lfree !=NULL) lfree(cv_mem);
+    if (lfree != NULL)
+    {
+        lfree(cv_mem);
+    }
 
-  /* Set four main function fields in cv_mem */
-  linit  = cvDenseInit;
-  lsetup = cvDenseSetup;
-  lsolve = cvDenseSolve;
-  lfree  = cvDenseFree;
+    /* Set four main function fields in cv_mem */
+    linit  = cvDenseInit;
+    lsetup = cvDenseSetup;
+    lsolve = cvDenseSolve;
+    lfree  = cvDenseFree;
 
-  /* Get memory for CVDlsMemRec */
-  cvdls_mem = NULL;
-  cvdls_mem = (CVDlsMem) malloc(sizeof(struct CVDlsMemRec));
-  if (cvdls_mem == NULL) {
-    CVProcessError(cv_mem, CVDLS_MEM_FAIL, "CVDENSE", "CVDense", MSGD_MEM_FAIL);
-    return(CVDLS_MEM_FAIL);
-  }
+    /* Get memory for CVDlsMemRec */
+    cvdls_mem = NULL;
+    cvdls_mem = (CVDlsMem) malloc(sizeof(struct CVDlsMemRec));
+    if (cvdls_mem == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_MEM_FAIL, "CVDENSE", "CVDense", MSGD_MEM_FAIL);
+        return(CVDLS_MEM_FAIL);
+    }
 
-  /* Set matrix type */
-  mtype = SUNDIALS_DENSE;
+    /* Set matrix type */
+    mtype = SUNDIALS_DENSE;
 
-  /* Initialize Jacobian-related data */
-  jacDQ = TRUE;
-  jac = NULL;
-  J_data = NULL;
+    /* Initialize Jacobian-related data */
+    jacDQ = TRUE;
+    jac = NULL;
+    J_data = NULL;
 
-  last_flag = CVDLS_SUCCESS;
+    last_flag = CVDLS_SUCCESS;
 
-  setupNonNull = TRUE;
+    setupNonNull = TRUE;
 
-  /* Set problem dimension */
-  n = N;
+    /* Set problem dimension */
+    n = N;
 
-  /* Allocate memory for M, savedJ, and pivot array */
+    /* Allocate memory for M, savedJ, and pivot array */
 
-  M = NULL;
-  M = NewDenseMat(N, N);
-  if (M == NULL) {
-    CVProcessError(cv_mem, CVDLS_MEM_FAIL, "CVDENSE", "CVDense", MSGD_MEM_FAIL);
-    free(cvdls_mem); cvdls_mem = NULL;
-    return(CVDLS_MEM_FAIL);
-  }
-  savedJ = NULL;
-  savedJ = NewDenseMat(N, N);
-  if (savedJ == NULL) {
-    CVProcessError(cv_mem, CVDLS_MEM_FAIL, "CVDENSE", "CVDense", MSGD_MEM_FAIL);
-    DestroyMat(M);
-    free(cvdls_mem); cvdls_mem = NULL;
-    return(CVDLS_MEM_FAIL);
-  }
-  lpivots = NULL;
-  lpivots = NewLintArray(N);
-  if (lpivots == NULL) {
-    CVProcessError(cv_mem, CVDLS_MEM_FAIL, "CVDENSE", "CVDense", MSGD_MEM_FAIL);
-    DestroyMat(M);
-    DestroyMat(savedJ);
-    free(cvdls_mem); cvdls_mem = NULL;
-    return(CVDLS_MEM_FAIL);
-  }
+    M = NULL;
+    M = NewDenseMat(N, N);
+    if (M == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_MEM_FAIL, "CVDENSE", "CVDense", MSGD_MEM_FAIL);
+        free(cvdls_mem);
+        cvdls_mem = NULL;
+        return(CVDLS_MEM_FAIL);
+    }
+    savedJ = NULL;
+    savedJ = NewDenseMat(N, N);
+    if (savedJ == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_MEM_FAIL, "CVDENSE", "CVDense", MSGD_MEM_FAIL);
+        DestroyMat(M);
+        free(cvdls_mem);
+        cvdls_mem = NULL;
+        return(CVDLS_MEM_FAIL);
+    }
+    lpivots = NULL;
+    lpivots = NewLintArray(N);
+    if (lpivots == NULL)
+    {
+        CVProcessError(cv_mem, CVDLS_MEM_FAIL, "CVDENSE", "CVDense", MSGD_MEM_FAIL);
+        DestroyMat(M);
+        DestroyMat(savedJ);
+        free(cvdls_mem);
+        cvdls_mem = NULL;
+        return(CVDLS_MEM_FAIL);
+    }
 
-  /* Attach linear solver memory to integrator memory */
-  lmem = cvdls_mem;
+    /* Attach linear solver memory to integrator memory */
+    lmem = cvdls_mem;
 
-  return(CVDLS_SUCCESS);
+    return(CVDLS_SUCCESS);
 }
 
 /*
@@ -193,24 +205,27 @@ int CVDense(void *cvode_mem, long int N)
 
 static int cvDenseInit(CVodeMem cv_mem)
 {
-  CVDlsMem cvdls_mem;
+    CVDlsMem cvdls_mem;
 
-  cvdls_mem = (CVDlsMem) lmem;
-  
-  nje   = 0;
-  nfeDQ = 0;
-  nstlj = 0;
+    cvdls_mem = (CVDlsMem) lmem;
 
-  /* Set Jacobian function and data, depending on jacDQ */
-  if (jacDQ) {
-    jac = cvDlsDenseDQJac;
-    J_data = cv_mem;
-  } else {
-    J_data = cv_mem->cv_user_data;
-  }
+    nje   = 0;
+    nfeDQ = 0;
+    nstlj = 0;
 
-  last_flag = CVDLS_SUCCESS;
-  return(0);
+    /* Set Jacobian function and data, depending on jacDQ */
+    if (jacDQ)
+    {
+        jac = cvDlsDenseDQJac;
+        J_data = cv_mem;
+    }
+    else
+    {
+        J_data = cv_mem->cv_user_data;
+    }
+
+    last_flag = CVDLS_SUCCESS;
+    return(0);
 }
 
 /*
@@ -219,73 +234,81 @@ static int cvDenseInit(CVodeMem cv_mem)
  * -----------------------------------------------------------------
  * This routine does the setup operations for the dense linear solver.
  * It makes a decision whether or not to call the Jacobian evaluation
- * routine based on various state variables, and if not it uses the 
- * saved copy.  In any case, it constructs the Newton matrix 
- * M = I - gamma*J, updates counters, and calls the dense LU 
+ * routine based on various state variables, and if not it uses the
+ * saved copy.  In any case, it constructs the Newton matrix
+ * M = I - gamma*J, updates counters, and calls the dense LU
  * factorization routine.
  * -----------------------------------------------------------------
  */
 
 static int cvDenseSetup(CVodeMem cv_mem, int convfail, N_Vector ypred,
-                        N_Vector fpred, booleantype *jcurPtr, 
+                        N_Vector fpred, booleantype *jcurPtr,
                         N_Vector vtemp1, N_Vector vtemp2, N_Vector vtemp3)
 {
-  booleantype jbad, jok;
-  realtype dgamma;
-  long int ier;
-  CVDlsMem cvdls_mem;
-  int retval;
+    booleantype jbad, jok;
+    realtype dgamma;
+    long int ier;
+    CVDlsMem cvdls_mem;
+    int retval;
 
-  cvdls_mem = (CVDlsMem) lmem;
- 
-  /* Use nst, gamma/gammap, and convfail to set J eval. flag jok */
- 
-  dgamma = ABS((gamma/gammap) - ONE);
-  jbad = (nst == 0) || (nst > nstlj + CVD_MSBJ) ||
-         ((convfail == CV_FAIL_BAD_J) && (dgamma < CVD_DGMAX)) ||
-         (convfail == CV_FAIL_OTHER);
-  jok = !jbad;
- 
-  if (jok) {
+    cvdls_mem = (CVDlsMem) lmem;
 
-    /* If jok = TRUE, use saved copy of J */
-    *jcurPtr = FALSE;
-    DenseCopy(savedJ, M);
+    /* Use nst, gamma/gammap, and convfail to set J eval. flag jok */
 
-  } else {
+    dgamma = ABS((gamma / gammap) - ONE);
+    jbad = (nst == 0) || (nst > nstlj + CVD_MSBJ) ||
+           ((convfail == CV_FAIL_BAD_J) && (dgamma < CVD_DGMAX)) ||
+           (convfail == CV_FAIL_OTHER);
+    jok = !jbad;
 
-    /* If jok = FALSE, call jac routine for new J value */
-    nje++;
-    nstlj = nst;
-    *jcurPtr = TRUE;
-    SetToZero(M);
+    if (jok)
+    {
 
-    retval = jac(n, tn, ypred, fpred, M, J_data, vtemp1, vtemp2, vtemp3);
-    if (retval < 0) {
-      CVProcessError(cv_mem, CVDLS_JACFUNC_UNRECVR, "CVDENSE", "cvDenseSetup", MSGD_JACFUNC_FAILED);
-      last_flag = CVDLS_JACFUNC_UNRECVR;
-      return(-1);
+        /* If jok = TRUE, use saved copy of J */
+        *jcurPtr = FALSE;
+        DenseCopy(savedJ, M);
+
     }
-    if (retval > 0) {
-      last_flag = CVDLS_JACFUNC_RECVR;
-      return(1);
+    else
+    {
+
+        /* If jok = FALSE, call jac routine for new J value */
+        nje++;
+        nstlj = nst;
+        *jcurPtr = TRUE;
+        SetToZero(M);
+
+        retval = jac(n, tn, ypred, fpred, M, J_data, vtemp1, vtemp2, vtemp3);
+        if (retval < 0)
+        {
+            CVProcessError(cv_mem, CVDLS_JACFUNC_UNRECVR, "CVDENSE", "cvDenseSetup", MSGD_JACFUNC_FAILED);
+            last_flag = CVDLS_JACFUNC_UNRECVR;
+            return(-1);
+        }
+        if (retval > 0)
+        {
+            last_flag = CVDLS_JACFUNC_RECVR;
+            return(1);
+        }
+
+        DenseCopy(M, savedJ);
+
     }
 
-    DenseCopy(M, savedJ);
+    /* Scale and add I to get M = I - gamma*J */
+    DenseScale(-gamma, M);
+    AddIdentity(M);
 
-  }
-  
-  /* Scale and add I to get M = I - gamma*J */
-  DenseScale(-gamma, M);
-  AddIdentity(M);
+    /* Do LU factorization of M */
+    ier = DenseGETRF(M, lpivots);
 
-  /* Do LU factorization of M */
-  ier = DenseGETRF(M, lpivots); 
-
-  /* Return 0 if the LU was complete; otherwise return 1 */
-  last_flag = ier;
-  if (ier > 0) return(1);
-  return(0);
+    /* Return 0 if the LU was complete; otherwise return 1 */
+    last_flag = ier;
+    if (ier > 0)
+    {
+        return(1);
+    }
+    return(0);
 }
 
 /*
@@ -300,22 +323,23 @@ static int cvDenseSetup(CVodeMem cv_mem, int convfail, N_Vector ypred,
 static int cvDenseSolve(CVodeMem cv_mem, N_Vector b, N_Vector weight,
                         N_Vector ycur, N_Vector fcur)
 {
-  CVDlsMem cvdls_mem;
-  realtype *bd;
+    CVDlsMem cvdls_mem;
+    realtype *bd;
 
-  cvdls_mem = (CVDlsMem) lmem;
-  
-  bd = N_VGetArrayPointer(b);
+    cvdls_mem = (CVDlsMem) lmem;
 
-  DenseGETRS(M, lpivots, bd);
+    bd = N_VGetArrayPointer(b);
 
-  /* If CV_BDF, scale the correction to account for change in gamma */
-  if ((lmm == CV_BDF) && (gamrat != ONE)) {
-    N_VScale(TWO/(ONE + gamrat), b, b);
-  }
-  
-  last_flag = CVDLS_SUCCESS;
-  return(0);
+    DenseGETRS(M, lpivots, bd);
+
+    /* If CV_BDF, scale the correction to account for change in gamma */
+    if ((lmm == CV_BDF) && (gamrat != ONE))
+    {
+        N_VScale(TWO / (ONE + gamrat), b, b);
+    }
+
+    last_flag = CVDLS_SUCCESS;
+    return(0);
 }
 
 /*
@@ -328,14 +352,14 @@ static int cvDenseSolve(CVodeMem cv_mem, N_Vector b, N_Vector weight,
 
 static void cvDenseFree(CVodeMem cv_mem)
 {
-  CVDlsMem  cvdls_mem;
+    CVDlsMem  cvdls_mem;
 
-  cvdls_mem = (CVDlsMem) lmem;
-  
-  DestroyMat(M);
-  DestroyMat(savedJ);
-  DestroyArray(lpivots);
-  free(cvdls_mem);
-  cv_mem->cv_lmem = NULL;
+    cvdls_mem = (CVDlsMem) lmem;
+
+    DestroyMat(M);
+    DestroyMat(savedJ);
+    DestroyArray(lpivots);
+    free(cvdls_mem);
+    cv_mem->cv_lmem = NULL;
 }
 

@@ -38,7 +38,7 @@ else
     SCI_LIB     = strsubst(SCI,"/share\/scilab$/", "lib/scilab", "r");
     SCI_INCLUDE = strsubst(SCI,"/share\/scilab$/", "include/scilab", "r");
     libs        = SCI_LIB + "/lib" + lib1 + ..
-                  SCI_LIB + "/lib" + lib1;
+    SCI_LIB + "/lib" + lib1;
     cflags      = "-I " + SCI_INCLUDE;
 end
 

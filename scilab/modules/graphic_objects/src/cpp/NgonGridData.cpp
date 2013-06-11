@@ -65,28 +65,28 @@ int NgonGridData::getPropertyFromName(int propertyName)
 {
     switch (propertyName)
     {
-    case __GO_DATA_MODEL_NUM_X__ :
-        return NUM_X;
-    case __GO_DATA_MODEL_NUM_Y__ :
-        return NUM_Y;
-    case __GO_DATA_MODEL_NUM_Z__ :
-        return NUM_Z;
-    case __GO_DATA_MODEL_X_DIMENSIONS__ :
-        return X_DIMENSIONS;
-    case __GO_DATA_MODEL_Y_DIMENSIONS__ :
-        return Y_DIMENSIONS;
-    case __GO_DATA_MODEL_GRID_SIZE__ :
-        return GRID_SIZE;
-    case __GO_DATA_MODEL_X__ :
-        return X_COORDINATES;
-    case __GO_DATA_MODEL_Y__ :
-        return Y_COORDINATES;
-    case __GO_DATA_MODEL_Z__ :
-        return Z_COORDINATES;
-    case __GO_DATA_MODEL_Z_COORDINATES_SHIFT__ :
-        return Z_COORDINATES_SHIFT;
-    default :
-        return NgonData::getPropertyFromName(propertyName);
+        case __GO_DATA_MODEL_NUM_X__ :
+            return NUM_X;
+        case __GO_DATA_MODEL_NUM_Y__ :
+            return NUM_Y;
+        case __GO_DATA_MODEL_NUM_Z__ :
+            return NUM_Z;
+        case __GO_DATA_MODEL_X_DIMENSIONS__ :
+            return X_DIMENSIONS;
+        case __GO_DATA_MODEL_Y_DIMENSIONS__ :
+            return Y_DIMENSIONS;
+        case __GO_DATA_MODEL_GRID_SIZE__ :
+            return GRID_SIZE;
+        case __GO_DATA_MODEL_X__ :
+            return X_COORDINATES;
+        case __GO_DATA_MODEL_Y__ :
+            return Y_COORDINATES;
+        case __GO_DATA_MODEL_Z__ :
+            return Z_COORDINATES;
+        case __GO_DATA_MODEL_Z_COORDINATES_SHIFT__ :
+            return Z_COORDINATES_SHIFT;
+        default :
+            return NgonData::getPropertyFromName(propertyName);
     }
 
 }

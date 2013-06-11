@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
  * 
@@ -10,49 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="is_handle_valid" xml:lang="en">
-    <refnamediv>
-        <refname>is_handle_valid</refname>
-        <refpurpose>Verifica se um conjunto de manipuladores gráficos ainda é
-            válido
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>isValid = is_handle_valid(h)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>h</term>
-                <listitem>
-                    <para>matriz de manipuladores gráficos</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>isValid</term>
-                <listitem>
-                    <para>matriz de booleanos com o mesmo tamanho que
-                        <literal>h</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descriçãp</title>
-        <para>
-            <literal>is_handle_valid</literal> testa se um conjunto de
-            manipuladores ainda é válido. Um manipulador válido é um que ainda não foi
-            deletado. O resultado, <literal>isValid</literal>, é uma matriz de
-            booleanos tal que <literal>isValid(i,j)</literal> é verdadeiro se
-            <literal>h(i,j)</literal> é válido e falso em caso contrário.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="is_handle_valid" xml:lang="en">
+        <refnamediv>
+            <refname>is_handle_valid</refname>
+            <refpurpose>Verifica se um conjunto de manipuladores gráficos ainda é
+                válido
+            </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Seqüência de Chamamento</title>
+            <synopsis>isValid = is_handle_valid(h)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>h</term>
+                    <listitem>
+                        <para>matriz de manipuladores gráficos</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>isValid</term>
+                    <listitem>
+                        <para>matriz de booleanos com o mesmo tamanho que
+                            <literal>h</literal>
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descriçãp</title>
+            <para>
+                <literal>is_handle_valid</literal> testa se um conjunto de
+                manipuladores ainda é válido. Um manipulador válido é um que ainda não foi
+                deletado. O resultado, <literal>isValid</literal>, é uma matriz de
+                booleanos tal que <literal>isValid(i,j)</literal> é verdadeiro se
+                <literal>h(i,j)</literal> é válido e falso em caso contrário.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 // verificando se os objetos correntes são válidos
 is_handle_valid([gcf(), gca(), gce()])
 
@@ -69,16 +69,16 @@ delete(polylines(3:7));
 // imprimindo a validade
 is_handle_valid(polylines)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Ver Também</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="delete">delete</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Ver Também</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="delete">delete</link>
+                </member>
+                <member>
+                    <link linkend="graphics_entities">graphics_entities</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

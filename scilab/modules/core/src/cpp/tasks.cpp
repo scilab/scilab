@@ -42,14 +42,14 @@ void parseFileTask(Parser *parser, bool timed, const wchar_t* file_name, const w
     std::cerr << "*** Processing " << file_name << " file..." << std::endl;
 #endif
 
-    if(timed)
+    if (timed)
     {
         _timer.start();
     }
 
     parser->parseFile(file_name, prog_name);
 
-    if(timed)
+    if (timed)
     {
         _timer.check("Parsing");
     }
@@ -66,14 +66,14 @@ void parseCommandTask(Parser *parser, bool timed, wchar_t *command)
     std::cerr << "*** Processing [" <<  command << "]..." << std::endl;
 #endif
 
-    if(timed)
+    if (timed)
     {
         _timer.start();
     }
 
     parser->parse(command);
 
-    if(timed && parser->getControlStatus() == Parser::AllControlClosed)
+    if (timed && parser->getControlStatus() == Parser::AllControlClosed)
     {
         _timer.check("Parsing");
     }
@@ -86,7 +86,7 @@ void parseCommandTask(Parser *parser, bool timed, wchar_t *command)
 */
 void dumpAstTask(ast::Exp *tree, bool timed)
 {
-    if(timed)
+    if (timed)
     {
         _timer.start();
     }
@@ -97,7 +97,7 @@ void dumpAstTask(ast::Exp *tree, bool timed)
         tree->accept(debugMe);
     }
 
-    if(timed)
+    if (timed)
     {
         _timer.check("AST Dump");
     }
@@ -110,7 +110,7 @@ void dumpAstTask(ast::Exp *tree, bool timed)
 */
 void printAstTask(ast::Exp *tree, bool timed)
 {
-    if(timed)
+    if (timed)
     {
         _timer.start();
     }
@@ -121,7 +121,7 @@ void printAstTask(ast::Exp *tree, bool timed)
         tree->accept(printMe);
     }
 
-    if(timed)
+    if (timed)
     {
         _timer.check("Pretty Print");
     }
@@ -135,28 +135,28 @@ void printAstTask(ast::Exp *tree, bool timed)
 */
 void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
 {
-    if(tree == NULL)
+    if (tree == NULL)
     {
         return;
     }
 
     ast::ExecVisitor *exec;
-    if(timed)
+    if (timed)
     {
         _timer.start();
     }
 
-    if(ASTtimed)
+    if (ASTtimed)
     {
         exec = (ast::ExecVisitor*)new ast::TimedVisitor();
     }
 
-    if(execVerbose)
+    if (execVerbose)
     {
         exec = (ast::ExecVisitor*)new ast::StepVisitor();
     }
 
-    if(!execVerbose && !ASTtimed)
+    if (!execVerbose && !ASTtimed)
     {
         exec = new ast::ExecVisitor();
     }
@@ -164,7 +164,7 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
     Runner::execAndWait(tree, exec);
     //delete exec;
 
-    if(timed)
+    if (timed)
     {
         _timer.check("Execute AST");
     }
@@ -177,14 +177,14 @@ void execAstTask(ast::Exp* tree, bool timed, bool ASTtimed, bool execVerbose)
 */
 void dumpStackTask(bool timed)
 {
-    if(timed)
+    if (timed)
     {
         _timer.start();
     }
 
     symbol::Context::getInstance()->print(std::wcout);
 
-    if(timed)
+    if (timed)
     {
         _timer.check("Dumping Stack");
     }
@@ -202,7 +202,7 @@ void execScilabStartTask(void)
     stSCI += SCILAB_START;
     parse.parseFile(stSCI, L"");
 
-    if(parse.getExitStatus() != Parser::Succeded)
+    if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.start");
@@ -224,7 +224,7 @@ void execScilabQuitTask(void)
     stSCI += SCILAB_QUIT;
     parse.parseFile(stSCI, L"");
 
-    if(parse.getExitStatus() != Parser::Succeded)
+    if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.start");

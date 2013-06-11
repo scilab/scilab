@@ -22,348 +22,354 @@ extern "C"
 
 namespace types
 {
-    Bool::~Bool()
+Bool::~Bool()
+{
+    if (isDeletable() == true)
     {
-        if(isDeletable() == true)
+        deleteAll();
+    }
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
+}
+
+Bool::Bool(int _iRows, int _iCols)
+{
+    int piDims[2]   = {_iRows, _iCols};
+    int *piBool = NULL;
+    create(piDims, 2, &piBool, NULL);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
+Bool::Bool(int _iReal)
+{
+    int piDims[2]   = {1, 1};
+    int *piBool = NULL;
+    create(piDims, 2, &piBool, NULL);
+    piBool[0] = _iReal == 0 ? 0 : 1;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
+Bool::Bool(int _iRows, int _iCols, int **_piData)
+{
+    int piDims[2] = {_iRows, _iCols};
+    create(piDims, 2, _piData, NULL);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
+Bool::Bool(int _iDims, int* _piDims)
+{
+    int* piData = NULL;
+    create(_piDims, _iDims, &piData, NULL);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
+InternalType* Bool::clone()
+{
+    Bool *pbClone =  new Bool(getDims(), getDimsArray());
+    pbClone->set(get());
+    return pbClone;
+}
+
+void Bool::whoAmI()
+{
+    std::cout << "types::Bool";
+}
+
+GenericType::RealType Bool::getType(void)
+{
+    return RealBool;
+}
+
+bool Bool::setFalse()
+{
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        set(i, 0);
+    }
+    return true;
+}
+
+bool Bool::setTrue()
+{
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        set(i, 1);
+    }
+    return true;
+}
+
+bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+{
+    int iCurrentLine = 0;
+    int iLineLen = getConsoleWidth();
+    int iMaxLines = getConsoleLines();
+
+    if (isScalar())
+    {
+        //scalar
+        _piDims[0] = 0;
+        _piDims[1] = 0;
+        int iPos = getIndex(_piDims);
+        ostr << (get(iPos) == 1 ? L"  T" : L"  F");
+        ostr << std::endl;
+    }
+    else if (getCols() == 1)
+    {
+        //column vector
+        for (int i = m_iRows1PrintState ; i < getRows() ; i++)
         {
-            deleteAll();
-        }
-#ifndef NDEBUG
-        Inspector::removeItem(this);
-#endif
-    }
+            iCurrentLine++;
+            if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+            {
+                m_iRows1PrintState = i;
+                return false;
+            }
 
-    Bool::Bool(int _iRows, int _iCols)
-    {
-        int piDims[2]   = {_iRows, _iCols};
-        int *piBool = NULL;
-        create(piDims, 2, &piBool, NULL);
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
-    }
-
-    Bool::Bool(int _iReal)
-    {
-        int piDims[2]   = {1, 1};
-        int *piBool = NULL;
-        create(piDims, 2, &piBool, NULL);
-        piBool[0] = _iReal == 0 ? 0 : 1;
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
-    }
-
-    Bool::Bool(int _iRows, int _iCols, int **_piData)
-    {
-        int piDims[2] = {_iRows, _iCols};
-        create(piDims, 2, _piData, NULL);
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
-    }
-
-    Bool::Bool(int _iDims, int* _piDims)
-    {
-        int* piData = NULL;
-        create(_piDims, _iDims, &piData, NULL);
-#ifndef NDEBUG
-        Inspector::addItem(this);
-#endif
-    }
-
-    InternalType* Bool::clone()
-    {
-        Bool *pbClone =  new Bool(getDims(), getDimsArray());
-        pbClone->set(get());
-        return pbClone;
-    }
-
-    void Bool::whoAmI()
-    {
-        std::cout << "types::Bool";
-    }
-
-    GenericType::RealType Bool::getType(void)
-    {
-        return RealBool;
-    }
-
-    bool Bool::setFalse()
-    {
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            set(i, 0);
-        }
-        return true;
-    }
-
-    bool Bool::setTrue()
-    {
-        for(int i = 0 ; i < getSize() ; i++)
-        {
-            set(i, 1);
-        }
-        return true;
-    }
-
-    bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
-    {
-        int iCurrentLine = 0;
-        int iLineLen = getConsoleWidth();
-        int iMaxLines = getConsoleLines();
-
-        if(isScalar())
-        {//scalar
-            _piDims[0] = 0;
             _piDims[1] = 0;
+            _piDims[0] = i;
             int iPos = getIndex(_piDims);
             ostr << (get(iPos) == 1 ? L"  T" : L"  F");
             ostr << std::endl;
         }
-        else if(getCols() == 1)
-        {//column vector
-            for(int i = m_iRows1PrintState ; i < getRows() ; i++)
+    }
+    else if (getRows() == 1)
+    {
+        //row vector
+        std::wostringstream ostemp;
+        int iLastVal = m_iCols1PrintState;
+        int iLen = 0;
+
+        for (int i = m_iCols1PrintState ; i < getCols() ; i++)
+        {
+            _piDims[0] = 0;
+            _piDims[1] = i;
+            int iPos = getIndex(_piDims);
+
+            if (iLen + 2 >= iLineLen)
             {
-                iCurrentLine++;
-                if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
+                if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
                 {
-                    m_iRows1PrintState = i;
+                    m_iCols1PrintState = iLastVal;
                     return false;
                 }
 
-                _piDims[1] = 0;
-                _piDims[0] = i;
-                int iPos = getIndex(_piDims);
-                ostr << (get(iPos) == 1 ? L"  T" : L"  F");
-                ostr << std::endl;
+                ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << i << std::endl << std::endl;
+                ostr << L" " << ostemp.str() << std::endl;
+                ostemp.str(L"");
+                iLastVal = i;
+                iLen = 0;
             }
+
+            ostemp << (get(iPos) ? L" T" : L" F");
+            iLen += 2;
         }
-        else if(getRows() == 1)
-        {//row vector
-            std::wostringstream ostemp;
-            int iLastVal = m_iCols1PrintState;
-            int iLen = 0;
 
-            for(int i = m_iCols1PrintState ; i < getCols() ; i++)
+        if (iLastVal != 0)
+        {
+            ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << getCols() << std::endl << std::endl;
+        }
+        ostr << L" " << ostemp.str() << std::endl;
+    }
+    else
+    {
+        std::wostringstream ostemp;
+        int iLen = 0;
+        int iLastCol = m_iCols1PrintState;
+
+        //compute the row size for padding for each printed bloc.
+        for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
+        {
+            if (iLen + 2 > iLineLen)
             {
-                _piDims[0] = 0;
-                _piDims[1] = i;
-                int iPos = getIndex(_piDims);
-
-                if(iLen + 2 >= iLineLen)
+                //find the limit, print this part
+                for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
                 {
-                    iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
-                    if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                    iCurrentLine++;
+                    if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
+                            ( (iMaxLines != 0 && iCurrentLine + 3 >= iMaxLines && iRows2 == m_iRows2PrintState) ||
+                              (iMaxLines != 0 && iCurrentLine + 1 >= iMaxLines && iRows2 != m_iRows2PrintState)))
                     {
-                        m_iCols1PrintState = iLastVal;
+                        if (m_iRows2PrintState == 0 && iRows2 != 0)
+                        {
+                            //add header
+                            ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                        }
+                        ostr << L" " << ostemp.str();
+                        m_iRows2PrintState = iRows2;
+                        m_iCols1PrintState = iLastCol;
                         return false;
                     }
 
-                    ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << i << std::endl << std::endl;
-                    ostr << L" " << ostemp.str() << std::endl;
-                    ostemp.str(L"");
-                    iLastVal = i;
-                    iLen = 0;
-                }
-
-                ostemp << (get(iPos) ? L" T" : L" F");
-                iLen += 2;
-            }
-
-            if(iLastVal != 0)
-            {
-                ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << getCols() << std::endl << std::endl;
-            }
-            ostr << L" " << ostemp.str() << std::endl;
-        }
-        else
-        {
-            std::wostringstream ostemp;
-            int iLen = 0;
-            int iLastCol = m_iCols1PrintState;
-
-            //compute the row size for padding for each printed bloc.
-            for(int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
-            {
-                if(iLen + 2 > iLineLen)
-                {//find the limit, print this part
-                    for(int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+                    for (int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
                     {
-                        iCurrentLine++;
-                        if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) ||
-                            ( (iMaxLines != 0 && iCurrentLine + 3 >= iMaxLines && iRows2 == m_iRows2PrintState) || 
-                            (iMaxLines != 0 && iCurrentLine + 1 >= iMaxLines && iRows2 != m_iRows2PrintState)))
-                        {
-                            if(m_iRows2PrintState == 0 && iRows2 != 0)
-                            {//add header
-                                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
-                            }
-                            ostr << L" " << ostemp.str();
-                            m_iRows2PrintState = iRows2;
-                            m_iCols1PrintState = iLastCol;
-                            return false;
-                        }
-
-                        for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
-                        {
-                            _piDims[0] = iRows2;
-                            _piDims[1] = iCols2;
-                            int iPos = getIndex(_piDims);
-                            ostemp << (get(iPos) == 0 ? L" F" : L" T");
-                        }
-                        ostemp << std::endl << L" ";
+                        _piDims[0] = iRows2;
+                        _piDims[1] = iCols2;
+                        int iPos = getIndex(_piDims);
+                        ostemp << (get(iPos) == 0 ? L" F" : L" T");
                     }
-                    iLen = 0;
-                    iCurrentLine++;
-                    if(m_iRows2PrintState == 0)
-                    {
-                        iCurrentLine += 3;
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
-                    }
-
-                    ostr << L" " << ostemp.str();
-                    ostemp.str(L"");
-                    iLastCol = iCols1;
-                    m_iRows2PrintState = 0;
-                    m_iCols1PrintState = 0;
+                    ostemp << std::endl << L" ";
                 }
-                iLen += 2;
-            }
-
-            for(int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
-            {
+                iLen = 0;
                 iCurrentLine++;
-                if((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+                if (m_iRows2PrintState == 0)
                 {
-                    if(m_iRows2PrintState == 0 && iLastCol != 0)
-                    {//add header
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
-                    }
-
-                    ostr << ostemp.str();
-                    m_iRows2PrintState = iRows2;
-                    m_iCols1PrintState = iLastCol;
-                    return false;
+                    iCurrentLine += 3;
+                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
                 }
 
-                for(int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
+                ostr << L" " << ostemp.str();
+                ostemp.str(L"");
+                iLastCol = iCols1;
+                m_iRows2PrintState = 0;
+                m_iCols1PrintState = 0;
+            }
+            iLen += 2;
+        }
+
+        for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
+        {
+            iCurrentLine++;
+            if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
+            {
+                if (m_iRows2PrintState == 0 && iLastCol != 0)
                 {
-                    _piDims[0] = iRows2;
-                    _piDims[1] = iCols2;
-                    int iPos = getIndex(_piDims);
-
-                    ostemp << (get(iPos) == 0 ? L" F" : L" T");
+                    //add header
+                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
                 }
-                ostemp << std::endl << L" ";
-            }
-            if(m_iRows2PrintState == 0 && iLastCol != 0)
-            {
-                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
-            }
-            ostr << ostemp.str();
-        }
 
-        return true;
-    }
-
-    bool Bool::operator==(const InternalType& it)
-    {
-        if(const_cast<InternalType &>(it).isBool() == false)
-        {
-            return false;
-        }
-
-        Bool* pb = const_cast<InternalType &>(it).getAs<types::Bool>();
-
-        if(pb->getDims() != getDims())
-        {
-            return false;
-        }
-
-        for(int i = 0 ; i < getDims() ; i++)
-        {
-            if(pb->getDimsArray()[i] != getDimsArray()[i])
-            {
+                ostr << ostemp.str();
+                m_iRows2PrintState = iRows2;
+                m_iCols1PrintState = iLastCol;
                 return false;
             }
-        }
 
-        if(memcmp(get(), pb->get(), getSize() * sizeof(int)) != 0)
+            for (int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
+            {
+                _piDims[0] = iRows2;
+                _piDims[1] = iCols2;
+                int iPos = getIndex(_piDims);
+
+                ostemp << (get(iPos) == 0 ? L" F" : L" T");
+            }
+            ostemp << std::endl << L" ";
+        }
+        if (m_iRows2PrintState == 0 && iLastCol != 0)
+        {
+            ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+        }
+        ostr << ostemp.str();
+    }
+
+    return true;
+}
+
+bool Bool::operator==(const InternalType& it)
+{
+    if (const_cast<InternalType &>(it).isBool() == false)
+    {
+        return false;
+    }
+
+    Bool* pb = const_cast<InternalType &>(it).getAs<types::Bool>();
+
+    if (pb->getDims() != getDims())
+    {
+        return false;
+    }
+
+    for (int i = 0 ; i < getDims() ; i++)
+    {
+        if (pb->getDimsArray()[i] != getDimsArray()[i])
         {
             return false;
         }
-        return true;
     }
 
-    bool Bool::operator!=(const InternalType& it)
+    if (memcmp(get(), pb->get(), getSize() * sizeof(int)) != 0)
     {
-        return !(*this == it);
+        return false;
     }
+    return true;
+}
 
-    int Bool::getNullValue()
-    {
-        return 0;
-    }
+bool Bool::operator!=(const InternalType& it)
+{
+    return !(*this == it);
+}
 
-    Bool* Bool::createEmpty(int _iDims, int* _piDims, bool _bComplex)
-    {
-        return new Bool(_iDims, _piDims);
-    }
+int Bool::getNullValue()
+{
+    return 0;
+}
 
-    int Bool::copyValue(int _iData)
-    {
-        return _iData == 0 ? 0 : 1;
-    }
+Bool* Bool::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+{
+    return new Bool(_iDims, _piDims);
+}
 
-    void Bool::deleteAll()
-    {
-        delete[] m_pRealData;
-        m_pRealData = NULL;
-        deleteImg();
-    }
+int Bool::copyValue(int _iData)
+{
+    return _iData == 0 ? 0 : 1;
+}
 
-    void Bool::deleteImg()
-    {
-    }
+void Bool::deleteAll()
+{
+    delete[] m_pRealData;
+    m_pRealData = NULL;
+    deleteImg();
+}
 
-    int* Bool::allocData(int _iSize)
-    {
-        return new int[_iSize];
-    }
+void Bool::deleteImg()
+{
+}
 
-    //std::wstring Bool::toStringInLine(int _iPrecision, int iLineLen)
-    //{
-    //    std::wostringstream ostr;
+int* Bool::allocData(int _iSize)
+{
+    return new int[_iSize];
+}
 
-    //    if(isScalar() || (isVector() && getRows() == 1))
-    //    {
-    //        for(int i = 0 ; i < getSize() ; i++)
-    //        {
-    //            ostr << L"  ";
-    //            ostr << (get(i) == 0 ? L"F" : L"T");
+//std::wstring Bool::toStringInLine(int _iPrecision, int iLineLen)
+//{
+//    std::wostringstream ostr;
 
-    //            if(ostr.str().length() > iLineLen)
-    //            {
-    //                break;
-    //            }
-    //        }
+//    if(isScalar() || (isVector() && getRows() == 1))
+//    {
+//        for(int i = 0 ; i < getSize() ; i++)
+//        {
+//            ostr << L"  ";
+//            ostr << (get(i) == 0 ? L"F" : L"T");
 
-    //        return ostr.str();
-    //    }
+//            if(ostr.str().length() > iLineLen)
+//            {
+//                break;
+//            }
+//        }
 
-    //    //all other cases
-    //    ostr << L"[";
-    //    for(int i = 0 ; i < m_iDims ; i++)
-    //    {
-    //        if(i > 0)
-    //        {
-    //            ostr << L"x";
-    //        }
-    //        ostr << m_piDims[i];
-    //    }
+//        return ostr.str();
+//    }
 
-    //    ostr << L" " << getTypeStr() << L"]";
-    //    return ostr.str();
-    //}
+//    //all other cases
+//    ostr << L"[";
+//    for(int i = 0 ; i < m_iDims ; i++)
+//    {
+//        if(i > 0)
+//        {
+//            ostr << L"x";
+//        }
+//        ostr << m_piDims[i];
+//    }
+
+//    ostr << L" " << getTypeStr() << L"]";
+//    return ostr.str();
+//}
 }

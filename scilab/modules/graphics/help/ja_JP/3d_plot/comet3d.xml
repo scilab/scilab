@@ -1,173 +1,173 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Add some comments about XML file
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="comet3d">
-    <refnamediv>
-        <refname>comet3d</refname>
-        <refpurpose>3次元 comet アニメーションプロット. </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>comet3d(z)</synopsis>
-        <synopsis>comet3d(x,y,z)</synopsis>
-        <synopsis>comet3d(x,y,fun)</synopsis>
-        <synopsis>comet3d(x,y,z,p)</synopsis>
-        <synopsis>comet3d(x,y,fun,p)</synopsis>
-        <synopsis>comet3d(...,"colors",c)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>
-                        実数ベクトルまたは行列. 省略された場合,
-                        ベクトル  <literal>1:nz</literal> が使用されます.
-                        ただし,  <literal>nz</literal> は<literal>z</literal>パラメータ
-                        で指定される曲線の点の数です.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>
-                        実数ベクトルまたは行列. 省略された場合,
-                        ベクトル  <literal>1:nz</literal> が使用されます.
-                        ただし,  <literal>nz</literal> は<literal>z</literal>パラメータ
-                        で指定される曲線の点の数です.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>z</term>
-                <listitem>
-                    <para>
-                        長さ <literal>nz</literal> の実数ベクトル, または,
-                        <literal>nz</literal> 行の行列.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>p</term>
-                <listitem>
-                    <para>
-                        範囲 <literal>[0 1[</literal> の実数スカラー.
-                        デフォルト値は 0.1.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fun</term>
-                <listitem>
-                    <para>
-                        呼び出し手順 <literal>z=fun(x,y)</literal> のScilab関数.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c</term>
-                <listitem>
-                    <para>
-                        <literal>ny</literal> 色の添字のベクトル.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>(x,y,z)</literal>が要素数が同じ3つのベクトルの場合,
-            この関数は3次元cometアニメーションプロットを描画します.
-            このプロットは以下の3つの部分から構成されます:
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="comet3d">
+        <refnamediv>
+            <refname>comet3d</refname>
+            <refpurpose>3次元 comet アニメーションプロット. </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>comet3d(z)</synopsis>
+            <synopsis>comet3d(x,y,z)</synopsis>
+            <synopsis>comet3d(x,y,fun)</synopsis>
+            <synopsis>comet3d(x,y,z,p)</synopsis>
+            <synopsis>comet3d(x,y,fun,p)</synopsis>
+            <synopsis>comet3d(...,"colors",c)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータ</title>
             <variablelist>
                 <varlistentry>
-                    <term>ヘッド</term>
-                    カレントの位置<literal>(x(i),y(i),z(i))</literal>を示すマーカ.
-                    <listitem><para>
+                    <term>x</term>
+                    <listitem>
+                        <para>
+                            実数ベクトルまたは行列. 省略された場合,
+                            ベクトル  <literal>1:nz</literal> が使用されます.
+                            ただし,  <literal>nz</literal> は<literal>z</literal>パラメータ
+                            で指定される曲線の点の数です.
                         </para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>ボディー</term> ヘッドに続く尾の曲線を示す:
-                    曲線の一部
-                    <literal>(x(i-k:i),y(i-k:i),z(i-k:i))</literal>) 
-                    <listitem><para>
+                    <term>y</term>
+                    <listitem>
+                        <para>
+                            実数ベクトルまたは行列. 省略された場合,
+                            ベクトル  <literal>1:nz</literal> が使用されます.
+                            ただし,  <literal>nz</literal> は<literal>z</literal>パラメータ
+                            で指定される曲線の点の数です.
                         </para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
-                    <term>テール</term> 
-                    曲線の一部<literal>(x(1:i-k),y(1:i-k),z(1:i-k))</literal> を示す.
-                    <listitem><para>
+                    <term>z</term>
+                    <listitem>
+                        <para>
+                            長さ <literal>nz</literal> の実数ベクトル, または,
+                            <literal>nz</literal> 行の行列.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>p</term>
+                    <listitem>
+                        <para>
+                            範囲 <literal>[0 1[</literal> の実数スカラー.
+                            デフォルト値は 0.1.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fun</term>
+                    <listitem>
+                        <para>
+                            呼び出し手順 <literal>z=fun(x,y)</literal> のScilab関数.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>c</term>
+                    <listitem>
+                        <para>
+                            <literal>ny</literal> 色の添字のベクトル.
                         </para>
                     </listitem>
                 </varlistentry>
             </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
             <para>
-                <literal>z</literal> が行列,
-                <literal>(x,y)</literal> がベクトルの場合,
-                アニメーション表示される曲線は各<literal>(x,y,z(:,l))</literal>
-                の組について描画されます.
-                この場合,
-                <literal>nz</literal> は <literal>z</literal>の行の数となります.
+                <literal>(x,y,z)</literal>が要素数が同じ3つのベクトルの場合,
+                この関数は3次元cometアニメーションプロットを描画します.
+                このプロットは以下の3つの部分から構成されます:
+                <variablelist>
+                    <varlistentry>
+                        <term>ヘッド</term>
+                        カレントの位置<literal>(x(i),y(i),z(i))</literal>を示すマーカ.
+                        <listitem><para>
+                            </para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>ボディー</term> ヘッドに続く尾の曲線を示す:
+                        曲線の一部
+                        <literal>(x(i-k:i),y(i-k:i),z(i-k:i))</literal>) 
+                        <listitem><para>
+                            </para>
+                        </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                        <term>テール</term> 
+                        曲線の一部<literal>(x(1:i-k),y(1:i-k),z(1:i-k))</literal> を示す.
+                        <listitem><para>
+                            </para>
+                        </listitem>
+                    </varlistentry>
+                </variablelist>
+                <para>
+                    <literal>z</literal> が行列,
+                    <literal>(x,y)</literal> がベクトルの場合,
+                    アニメーション表示される曲線は各<literal>(x,y,z(:,l))</literal>
+                    の組について描画されます.
+                    この場合,
+                    <literal>nz</literal> は <literal>z</literal>の行の数となります.
+                </para>
+                <para>
+                    <literal>x,y,z</literal> が同じ次元の行列の場合,
+                    アニメーション表示される曲線は,
+                    各組<literal>(x(:,l),y(:,l),z(:,l))</literal>について
+                    描画されます.
+                </para>
+                
+                <para>
+                    <literal>comet3d(x,y,fun,...)</literal> は,
+                    <literal>z</literal> ベクトルを
+                    <literal>z(i)=fun(x(i),y(i))</literal>により
+                    計算します.
+                </para>
+                <para>
+                    <literal>comet3d(...,p)</literal> は,
+                    ボディの相対長を設定するために使用することができます.
+                    <literal>k</literal> は,
+                    <literal>k = round(p*nz)</literal>により定義されます.
+                </para>
+                
             </para>
-            <para>
-                <literal>x,y,z</literal> が同じ次元の行列の場合,
-                アニメーション表示される曲線は,
-                各組<literal>(x(:,l),y(:,l),z(:,l))</literal>について
-                描画されます.
-            </para>
-            
-            <para>
-                <literal>comet3d(x,y,fun,...)</literal> は,
-                <literal>z</literal> ベクトルを
-                <literal>z(i)=fun(x(i),y(i))</literal>により
-                計算します.
-            </para>
-            <para>
-                <literal>comet3d(...,p)</literal> は,
-                ボディの相対長を設定するために使用することができます.
-                <literal>k</literal> は,
-                <literal>k = round(p*nz)</literal>により定義されます.
-            </para>
-            
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500);
 clf();comet3d(sin(5*t),sin(t),t^2)
     ]]></programlisting>
-        <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500)';
 clf();comet3d(sin(5*t),sin(t),[t^2,ones(t)])
     ]]></programlisting>
-        <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500)';
 function z=traj(x,y),z=1.5*sin(x^2)*cos(y),endfunction
 clf();comet3d(cos(t),sin(t),traj)
     ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="comet">comet</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.3.2</revnumber>
-                <revremark>関数 comet3d が導入されました.</revremark>
-            </revision>
-        </revhistory>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="comet">comet</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>履歴</title>
+            <revhistory>
+                <revision>
+                    <revnumber>5.3.2</revnumber>
+                    <revremark>関数 comet3d が導入されました.</revremark>
+                </revision>
+            </revhistory>
+        </refsection>
+    </refentry>

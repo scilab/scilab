@@ -1,41 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getscilabmode">
-    <refnamediv>
-        <refname>getscilabmode</refname>
-        <refpurpose>returns scilab mode</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>m = getscilabmode()</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
-        <para>Returns scilab mode. 4 modes are possible: STD, API, NW, NWNI.</para>
-        <para>
-            <literal>API</literal>: Scilab is launch as an API.
-        </para>
-        <para>
-            <literal>STD</literal>: the standard Scilab (gui, plot ...).
-        </para>
-        <para>
-            <literal>NW</literal>: Scilab in command line with the plots.
-        </para>
-        <para>
-            <literal>NWNI</literal>: Scilab in command line without any graphics.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getscilabmode">
+        <refnamediv>
+            <refname>getscilabmode</refname>
+            <refpurpose>returns scilab mode</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>m = getscilabmode()</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Description</title>
+            <para>Returns scilab mode. 4 modes are possible: STD, API, NW, NWNI.</para>
+            <para>
+                <literal>API</literal>: Scilab is launch as an API.
+            </para>
+            <para>
+                <literal>STD</literal>: the standard Scilab (gui, plot ...).
+            </para>
+            <para>
+                <literal>NW</literal>: Scilab in command line with the plots.
+            </para>
+            <para>
+                <literal>NWNI</literal>: Scilab in command line without any graphics.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 getscilabmode()
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="scilab">scilab</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="scilab">scilab</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

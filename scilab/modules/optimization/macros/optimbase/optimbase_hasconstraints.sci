@@ -12,7 +12,7 @@
 
 //
 // optimbase_hasconstraints --
-//   Returns %T if current problem has 
+//   Returns %T if current problem has
 //   * bounds constraints or
 //   * linear constraints or
 //   * non linear constraints.
@@ -22,9 +22,9 @@
 // TODO  : linear constraints
 //
 function [ this , hascons ] = optimbase_hasconstraints ( this )
-  hascons = %f
-  hascons = ( hascons | ( this.nbineqconst > 0 ) )
-  maxl = length ( this.boundsmax )
-  minl = length ( this.boundsmin )
-  hascons = ( hascons | ( maxl <> 0 ) | ( minl <> 0 ) )
+    hascons = %f
+    hascons = ( hascons | ( this.nbineqconst > 0 ) )
+    maxl = length ( this.boundsmax )
+    minl = length ( this.boundsmin )
+    hascons = ( hascons | ( maxl <> 0 ) | ( minl <> 0 ) )
 endfunction

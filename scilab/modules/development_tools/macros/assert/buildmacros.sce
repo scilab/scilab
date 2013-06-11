@@ -6,6 +6,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-tbx_build_macros("assert", get_absolute_file_path('buildmacros.sce'));
+tbx_build_macros("assert", get_absolute_file_path("buildmacros.sce"));
 
 clear tbx_build_macros;

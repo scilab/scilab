@@ -20,37 +20,46 @@
 
 namespace types
 {
-    class TYPES_IMPEXP TList : public List
+class TYPES_IMPEXP TList : public List
+{
+public :
+    TList();
+    ~TList();
+protected :
+    TList(TList *_oTListCopyMe);
+
+public :
+    void                            whoAmI(void)
     {
-    public :
-                                        TList();
-                                        ~TList();
-    protected :
-                                        TList(TList *_oTListCopyMe);
-
-    public :
-        void                            whoAmI(void) { std::cout << "types::TList"; };
-
-        RealType                        getType(void) { return RealTList; }
-        bool                            isTList() { return true; }
-
-        virtual InternalType*           clone();
-
-        bool                            exists(const std::wstring& _sKey);
-        InternalType*                   get(const std::wstring& _sKey);
-        int                             getIndexFromString(const std::wstring& _sKey);
-        bool                            set(const std::wstring& _sKey, InternalType* _pIT);
-        bool                            set(const int _iIndex, InternalType* _pIT);
-
-        std::vector<InternalType*>      extractStrings(const std::list<std::wstring>& _stFields);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring            getTypeStr();
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring            getShortTypeStr();
-
-    private :
+        std::cout << "types::TList";
     };
+
+    RealType                        getType(void)
+    {
+        return RealTList;
+    }
+    bool                            isTList()
+    {
+        return true;
+    }
+
+    virtual InternalType*           clone();
+
+    bool                            exists(const std::wstring& _sKey);
+    InternalType*                   get(const std::wstring& _sKey);
+    int                             getIndexFromString(const std::wstring& _sKey);
+    bool                            set(const std::wstring& _sKey, InternalType* _pIT);
+    bool                            set(const int _iIndex, InternalType* _pIT);
+
+    std::vector<InternalType*>      extractStrings(const std::list<std::wstring>& _stFields);
+
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring            getTypeStr();
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring            getShortTypeStr();
+
+private :
+};
 }
 
 #endif /* __TLIST_HXX__ */

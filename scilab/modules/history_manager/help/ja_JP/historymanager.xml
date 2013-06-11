@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
  *
@@ -11,78 +11,78 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="historymanager">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="historymanager">
         
-        <refname>historymanager</refname>
-        
-        <refpurpose>履歴マネージャを有効/無効にする</refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼び出し手順</title>
-        
-        <synopsis>state1=historymanager(state2)
+        <refnamediv>
             
-            state1=historymanager()
+            <refname>historymanager</refname>
             
-        </synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
+            <refpurpose>履歴マネージャを有効/無効にする</refpurpose>
             
-            <varlistentry>
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼び出し手順</title>
+            
+            <synopsis>state1=historymanager(state2)
                 
-                <term>state1</term>
+                state1=historymanager()
                 
-                <listitem>
+            </synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
                     
-                    <para>履歴マネージャの状態('on' または 'off')を返す</para>
+                    <term>state1</term>
                     
-                </listitem>
+                    <listitem>
+                        
+                        <para>履歴マネージャの状態('on' または 'off')を返す</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
                 
-            </varlistentry>
+                <varlistentry>
+                    
+                    <term>state2</term>
+                    
+                    <listitem>
+                        
+                        <para>履歴マネージャの状態を'on' または 'off'に設定</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
             
-            <varlistentry>
-                
-                <term>state2</term>
-                
-                <listitem>
-                    
-                    <para>履歴マネージャの状態を'on' または 'off'に設定</para>
-                    
-                </listitem>
-                
-            </varlistentry>
+        </refsection>
+        
+        <refsection>
             
-        </variablelist>
+            <title>説明</title>
+            
+            <para>履歴マネージャを有効/無効にします.</para>
+            
+            <para>'API'モードでは, 履歴マネージャは無効になります.</para>
+            
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>履歴マネージャを有効/無効にします.</para>
-        
-        <para>'API'モードでは, 履歴マネージャは無効になります.</para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <programlisting role="example"><![CDATA[ 
+        <refsection>
+            
+            <title>例</title>
+            
+            <programlisting role="example"><![CDATA[ 
 displayhistory()
 backupstate=historymanager()
 historymanager('off')
@@ -92,30 +92,30 @@ loadhistory()
 displayhistory()
 historymanager(backupstate)
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+        <refsection role="see also">
+            
+            <title>参照</title>
+            
+            <simplelist type="inline">
+                
+                <member>
+                    
+                    <link linkend="getscilabmode">getscilabmode</link>
+                    
+                </member>
+                
+                <member>
+                    
+                    <link linkend="call_scilab">call_scilab</link>
+                    
+                </member>
+                
+            </simplelist>
+            
+        </refsection>
+        
+    </refentry>
     
-    <refsection role="see also">
-        
-        <title>参照</title>
-        
-        <simplelist type="inline">
-            
-            <member>
-                
-                <link linkend="getscilabmode">getscilabmode</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="call_scilab">call_scilab</link>
-                
-            </member>
-            
-        </simplelist>
-        
-    </refsection>
-    
-</refentry>
-

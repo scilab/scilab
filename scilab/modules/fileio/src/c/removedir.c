@@ -46,7 +46,7 @@ BOOL removedir(char *path)
 #ifdef _MSC_VER
         {
             wchar_t *pstPath = to_wide_string(path);
-            if(pstPath)
+            if (pstPath)
             {
                 removedirW(pstPath);
                 FREE(pstPath);
@@ -56,7 +56,10 @@ BOOL removedir(char *path)
 #else
         DeleteDirectory(path);
 #endif
-        if (!isdir(path)) return TRUE;
+        if (!isdir(path))
+        {
+            return TRUE;
+        }
     }
     return FALSE;
 }
@@ -76,7 +79,10 @@ BOOL removedirW(wchar_t *pathW)
             path = NULL;
         }
 #endif
-        if (!isdirW(pathW)) return TRUE;
+        if (!isdirW(pathW))
+        {
+            return TRUE;
+        }
     }
     return FALSE;
 }
@@ -84,7 +90,7 @@ BOOL removedirW(wchar_t *pathW)
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 {
-    #define DEFAULT_PATTERN L"%ls/*.*"
+#define DEFAULT_PATTERN L"%ls/*.*"
     BOOL bDeleteSubdirectories = TRUE;
     BOOL bSubdirectory = FALSE;
     HANDLE hFile;
@@ -94,7 +100,10 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
     wchar_t	*strFilePath	= NULL;
     int len = 0;
 
-    if (refcstrRootDirectory == NULL) return 1;
+    if (refcstrRootDirectory == NULL)
+    {
+        return 1;
+    }
 
     len = (int)(wcslen(refcstrRootDirectory) + (int)wcslen(DEFAULT_PATTERN) + 1);
 
@@ -109,15 +118,19 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
     }
 
     hFile = FindFirstFileW(strPattern, &FileInformation);
-    if (strPattern) { FREE(strPattern);strPattern=NULL;}
+    if (strPattern)
+    {
+        FREE(strPattern);
+        strPattern = NULL;
+    }
 
-    if(hFile != INVALID_HANDLE_VALUE)
+    if (hFile != INVALID_HANDLE_VALUE)
     {
         do
         {
-            if ( (wcscmp(FileInformation.cFileName,L".") != 0) && (wcscmp(FileInformation.cFileName,L"..") != 0) )
+            if ( (wcscmp(FileInformation.cFileName, L".") != 0) && (wcscmp(FileInformation.cFileName, L"..") != 0) )
             {
-                #define FORMAT_PATH_TO_REMOVE L"%ls\\%ls"
+#define FORMAT_PATH_TO_REMOVE L"%ls\\%ls"
                 int len = (int) (wcslen(refcstrRootDirectory) + wcslen(FORMAT_PATH_TO_REMOVE) + wcslen((wchar_t*)(FileInformation.cFileName)) + 1);
                 strFilePath = (wchar_t*) MALLOC(sizeof(wchar_t) * len);
                 if (strFilePath)
@@ -125,58 +138,94 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
                     os_swprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
                 }
 
-                if(FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+                if (FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
                 {
-                    if(bDeleteSubdirectories)
+                    if (bDeleteSubdirectories)
                     {
                         int iRC = DeleteDirectory(strFilePath);
-                        if (strFilePath) {FREE(strFilePath); strFilePath = NULL;}
-                        if (strPattern) {FREE(strPattern); strPattern = NULL;}
+                        if (strFilePath)
+                        {
+                            FREE(strFilePath);
+                            strFilePath = NULL;
+                        }
+                        if (strPattern)
+                        {
+                            FREE(strPattern);
+                            strPattern = NULL;
+                        }
 
-                        if(iRC)
+                        if (iRC)
                         {
                             return iRC;
                         }
                     }
-                    else bSubdirectory = TRUE;
+                    else
+                    {
+                        bSubdirectory = TRUE;
+                    }
                 }
                 else
                 {
-                    if(SetFileAttributesW(strFilePath,FILE_ATTRIBUTE_NORMAL) == FALSE)
+                    if (SetFileAttributesW(strFilePath, FILE_ATTRIBUTE_NORMAL) == FALSE)
                     {
-                        if (strFilePath) {FREE(strFilePath); strFilePath = NULL;}
-                        if (strPattern) {FREE(strPattern); strPattern = NULL;}
+                        if (strFilePath)
+                        {
+                            FREE(strFilePath);
+                            strFilePath = NULL;
+                        }
+                        if (strPattern)
+                        {
+                            FREE(strPattern);
+                            strPattern = NULL;
+                        }
                         return GetLastError();
                     }
 
-                    if(DeleteFileW(strFilePath) == FALSE)
+                    if (DeleteFileW(strFilePath) == FALSE)
                     {
-                        if (strFilePath) {FREE(strFilePath); strFilePath = NULL;}
-                        if (strPattern) {FREE(strPattern); strPattern = NULL;}
+                        if (strFilePath)
+                        {
+                            FREE(strFilePath);
+                            strFilePath = NULL;
+                        }
+                        if (strPattern)
+                        {
+                            FREE(strPattern);
+                            strPattern = NULL;
+                        }
                         return GetLastError();
                     }
                 }
             }
-        } while(FindNextFileW(hFile, &FileInformation) == TRUE);
+        }
+        while (FindNextFileW(hFile, &FileInformation) == TRUE);
 
         FindClose(hFile);
-        if (strFilePath) {FREE(strFilePath); strFilePath = NULL;}
-        if (strPattern) {FREE(strPattern); strPattern = NULL;}
+        if (strFilePath)
+        {
+            FREE(strFilePath);
+            strFilePath = NULL;
+        }
+        if (strPattern)
+        {
+            FREE(strPattern);
+            strPattern = NULL;
+        }
 
         dwError = GetLastError();
-        if(dwError != ERROR_NO_MORE_FILES)
+        if (dwError != ERROR_NO_MORE_FILES)
         {
             return dwError;
         }
         else
         {
-            if(!bSubdirectory)
+            if (!bSubdirectory)
             {
-                if(SetFileAttributesW(refcstrRootDirectory,FILE_ATTRIBUTE_NORMAL) == FALSE)
+                if (SetFileAttributesW(refcstrRootDirectory, FILE_ATTRIBUTE_NORMAL) == FALSE)
                 {
                     return GetLastError();
                 }
-                if(RemoveDirectoryW(refcstrRootDirectory) == FALSE)
+                if (RemoveDirectoryW(refcstrRootDirectory) == FALSE)
                 {
                     return GetLastError();
                 }
@@ -184,8 +233,16 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
         }
     }
 
-    if (strFilePath) {FREE(strFilePath); strFilePath = NULL;}
-    if (strPattern) {FREE(strPattern); strPattern = NULL;}
+    if (strFilePath)
+    {
+        FREE(strFilePath);
+        strFilePath = NULL;
+    }
+    if (strPattern)
+    {
+        FREE(strPattern);
+        strPattern = NULL;
+    }
     return 0;
 }
 #endif
@@ -197,34 +254,54 @@ static int DeleteDirectory(char *refcstrRootDirectory)
     struct dirent *ent;
     dir = opendir(refcstrRootDirectory) ;
 
-    if (dir==NULL)
+    if (dir == NULL)
     {
-        sciprint(_("Warning: Error while opening %s: %s\n"),refcstrRootDirectory, strerror(errno));
+        sciprint(_("Warning: Error while opening %s: %s\n"), refcstrRootDirectory, strerror(errno));
         return -1;
     }
-    while((ent = readdir(dir)) != NULL)
+    while ((ent = readdir(dir)) != NULL)
     {
         char *filename = NULL;
-        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) continue ;
-        filename = MALLOC(sizeof(char)*(strlen(refcstrRootDirectory) + 1 + strlen(ent->d_name) + 1 + 1)) ;
-        sprintf(filename,"%s/%s",refcstrRootDirectory,ent->d_name);
-        if (isdir(filename)) {
+        if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0)
+        {
+            continue ;
+        }
+        filename = MALLOC(sizeof(char) * (strlen(refcstrRootDirectory) + 1 + strlen(ent->d_name) + 1 + 1)) ;
+        sprintf(filename, "%s/%s", refcstrRootDirectory, ent->d_name);
+        if (isdir(filename))
+        {
             /* Delete recursively */
             DeleteDirectory(filename);
-            if (filename) {FREE(filename);filename=NULL;}
-        } else {
-            /* Not a directory... It must be a file (at least, I hope it is a file */
-            if (remove(filename) != 0) {
-                sciprint(_("Warning: Could not remove file %s: %s\n"),filename, strerror(errno));
+            if (filename)
+            {
+                FREE(filename);
+                filename = NULL;
             }
-            if (filename) {FREE(filename);filename=NULL;}
+        }
+        else
+        {
+            /* Not a directory... It must be a file (at least, I hope it is a file */
+            if (remove(filename) != 0)
+            {
+                sciprint(_("Warning: Could not remove file %s: %s\n"), filename, strerror(errno));
+            }
+            if (filename)
+            {
+                FREE(filename);
+                filename = NULL;
+            }
         }
     }
-    if (rmdir(refcstrRootDirectory) != 0) {
-        sciprint(_("Warning: Could not remove directory %s: %s\n"),refcstrRootDirectory, strerror(errno));
+    if (rmdir(refcstrRootDirectory) != 0)
+    {
+        sciprint(_("Warning: Could not remove directory %s: %s\n"), refcstrRootDirectory, strerror(errno));
     }
 
-    if (dir) {FREE(dir);dir = NULL;}
+    if (dir)
+    {
+        FREE(dir);
+        dir = NULL;
+    }
 
     return 0;
 }

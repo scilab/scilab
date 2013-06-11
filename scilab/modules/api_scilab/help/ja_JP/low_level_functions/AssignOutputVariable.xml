@@ -1,110 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="AssignOutputVariable"  xml:lang="ja">
+    <?xml version="1.0" encoding="UTF-8"?>
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="AssignOutputVariable"  xml:lang="ja">
         
-        <refname>AssignOutputVariable</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            Cゲートウェイ内で作成され, Scilab に出力変数として返されるパラメータを指定するCゲートウェイ関数.
+            <refname>AssignOutputVariable</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsynopsisdiv>
-        
-        <title>呼出し手順</title>
-        
-        <synopsis>AssignOutputVariable(pvApiCtx, RankPos) = RankVar;</synopsis>
-        
-    </refsynopsisdiv>
-    
-    <refsection>
-        
-        <title>引数</title>
-        
-        <variablelist>
-            
-            <varlistentry>
+            <refpurpose>
                 
-                <term>RankPos</term>
+                Cゲートウェイ内で作成され, Scilab に出力変数として返されるパラメータを指定するCゲートウェイ関数.
+                
+            </refpurpose>
+            
+        </refnamediv>
+        
+        <refsynopsisdiv>
+            
+            <title>呼出し手順</title>
+            
+            <synopsis>AssignOutputVariable(pvApiCtx, RankPos) = RankVar;</synopsis>
+            
+        </refsynopsisdiv>
+        
+        <refsection>
+            
+            <title>引数</title>
+            
+            <variablelist>
+                
+                <varlistentry>
+                    
+                    <term>RankPos</term>
+                    
+                    <listitem>
+                        
+                        <para>出力引数のランクを与える整数</para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+                <varlistentry>
+                    
+                    <term>RankVar</term>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            Cゲートウェイ内で生成され, Scilab出力引数として返されるパラメータのランク
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </varlistentry>
+                
+            </variablelist>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>
+                
+                Cゲートウェイ内で作成され, Scilab に出力変数として返されるパラメータを指定するCゲートウェイ関数.
+                
+            </para>
+            
+        </refsection>
+        
+        <refsection>
+            
+            <title>例</title>
+            
+            <para>この例はdoubleの行列を入力として取り, 以下を返します:</para>
+            
+            <itemizedlist>
                 
                 <listitem>
                     
-                    <para>出力引数のランクを与える整数</para>
+                    <para>ライン数 (最初の出力引数)</para>
                     
                 </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>RankVar</term>
                 
                 <listitem>
                     
-                    <para>
-                        
-                        Cゲートウェイ内で生成され, Scilab出力引数として返されるパラメータのランク
-                        
-                    </para>
+                    <para>行数 (2番目の出力引数)</para>
                     
                 </listitem>
                 
-            </varlistentry>
+            </itemizedlist>
             
-        </variablelist>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>
-            
-            Cゲートウェイ内で作成され, Scilab に出力変数として返されるパラメータを指定するCゲートウェイ関数.
-            
-        </para>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
-        <para>この例はdoubleの行列を入力として取り, 以下を返します:</para>
-        
-        <itemizedlist>
-            
-            <listitem>
+            <para>
                 
-                <para>ライン数 (最初の出力引数)</para>
+                整数を処理するScilab中間パラメータを作成しますが,
                 
-            </listitem>
-            
-            <listitem>
+                使用したり,出力引数として返したりしません.
                 
-                <para>行数 (2番目の出力引数)</para>
+            </para>
+            
+            <programlisting role="example">
                 
-            </listitem>
-            
-        </itemizedlist>
-        
-        <para>
-            
-            整数を処理するScilab中間パラメータを作成しますが,
-            
-            使用したり,出力引数として返したりしません.
-            
-        </para>
-        
-        <programlisting role="example">
-            
-            <![CDATA[
+                <![CDATA[
 #include "api_scilab.h"
 int sci_mysizedouble(char * fname, unsigned long fname_len)
 {
@@ -138,10 +138,10 @@ int sci_mysizedouble(char * fname, unsigned long fname_len)
     return 0;
 }
  ]]>
+                
+            </programlisting>
             
-        </programlisting>
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

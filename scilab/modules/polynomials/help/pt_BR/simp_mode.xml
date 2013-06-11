@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
+    <?xml version="1.0" encoding="ISO-8859-1"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,64 +10,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="simp_mode" xml:lang="en">
-    <refnamediv>
-        <refname>simp_mode</refname>
-        <refpurpose>modifica o modo de simplificação racional</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
-        <synopsis>mod=simp_mode()
-            simp_mode(mod)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>mod</term>
-                <listitem>
-                    <para>um booleano</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Descrição</title>
-        <para>A simplificação racional é chamada após quase cada operação sobre
-            razões de polinômios. É possível alternar o modo de simplificação entre
-            "on" e "off" (ligado e desligado) utilizando a função
-            <literal>simp_mode</literal>.
-        </para>
-        <para>
-            <literal>simp_mod(%t)</literal> ajusta o modo de simplificação
-            racional para "on"
-        </para>
-        <para>
-            <literal>simp_mod(%f)</literal> ajusta o modo de simplificação
-            racional para "off"
-        </para>
-        <para>
-            <literal>mod=simp_mod()</literal> retorna em mod o modo de
-            simplificação racional corrente
-        </para>
-    </refsection>
-    <refsection>
-        <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="simp_mode" xml:lang="en">
+        <refnamediv>
+            <refname>simp_mode</refname>
+            <refpurpose>modifica o modo de simplificação racional</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title> Seqüência de Chamamento </title>
+            <synopsis>mod=simp_mode()
+                simp_mode(mod)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parâmetros</title>
+            <variablelist>
+                <varlistentry>
+                    <term>mod</term>
+                    <listitem>
+                        <para>um booleano</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Descrição</title>
+            <para>A simplificação racional é chamada após quase cada operação sobre
+                razões de polinômios. É possível alternar o modo de simplificação entre
+                "on" e "off" (ligado e desligado) utilizando a função
+                <literal>simp_mode</literal>.
+            </para>
+            <para>
+                <literal>simp_mod(%t)</literal> ajusta o modo de simplificação
+                racional para "on"
+            </para>
+            <para>
+                <literal>simp_mod(%f)</literal> ajusta o modo de simplificação
+                racional para "off"
+            </para>
+            <para>
+                <literal>mod=simp_mod()</literal> retorna em mod o modo de
+                simplificação racional corrente
+            </para>
+        </refsection>
+        <refsection>
+            <title>Exemplos</title>
+            <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 mod=simp_mode()
 simp_mode(%f);hns=s/s
 simp_mode(%t);hns=s/s
 simp_mode(mod);
  ]]></programlisting>
-    </refsection>
-    <refsection>
-        <title> Ver Também </title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="simp">simp</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection>
+            <title> Ver Também </title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="simp">simp</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

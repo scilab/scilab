@@ -7,12 +7,12 @@
 mode(-1);
 clear
 
-execstr('inttype(''hell'')','errcatch');
+execstr("inttype(''hell'')","errcatch");
 
-if lasterror() == 'first argument is incorrect' then
-	affich_result(%T,1977);
+if lasterror() == "first argument is incorrect" then
+    affich_result(%T,1977);
 else
-	affich_result(%F,1977);
+    affich_result(%F,1977);
 end
 
 clear

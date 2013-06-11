@@ -16,5 +16,5 @@
 //
 
 function [] = %_xget()
-  xsetm();
+    xsetm();
 endfunction

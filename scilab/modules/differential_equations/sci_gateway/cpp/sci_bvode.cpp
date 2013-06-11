@@ -49,26 +49,26 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     int iflag       = 0;
     int ipar[11];
 
-// *** check the minimal number of input args. ***
-    if(in.size() != 15)
+    // *** check the minimal number of input args. ***
+    if (in.size() != 15)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "bvode", 15);
         return types::Function::Error;
     }
 
-// *** check number of output args ***
-    if(_iRetCount > 1)
+    // *** check number of output args ***
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "bvode", 1);
         return types::Function::Error;
     }
 
-// *** check type of input args and get it. ***
+    // *** check type of input args and get it. ***
 
     // xpoints
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos + 1);
         return types::Function::Error;
     }
 
@@ -76,55 +76,55 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // ncomp
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos + 1);
         return types::Function::Error;
     }
 
     types::Double* pDblN = in[iPos]->getAs<types::Double>();
 
-    if(pDblN->isScalar() == false)
+    if (pDblN->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos + 1);
         return types::Function::Error;
     }
 
     ncomp = (int)pDblN->get(0);
 
-    if(ncomp > 20)
+    if (ncomp > 20)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d : Value at most 20 expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong value for input argument #%d : Value at most 20 expected.\n"), "bvode", iPos + 1);
         return types::Function::Error;
     }
     iPos++;
 
     // m
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos + 1);
         return types::Function::Error;
     }
 
     pDblM = in[iPos]->getAs<types::Double>();
 
-    if(pDblM->getSize() != ncomp)
+    if (pDblM->getSize() != ncomp)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A vector of size %d (N) expected.\n"), "bvode", iPos+1, ncomp);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A vector of size %d (N) expected.\n"), "bvode", iPos + 1, ncomp);
         return types::Function::Error;
     }
 
     int* M = (int*)malloc(pDblM->getSize() * sizeof(int));
-    for(int i = 0; i < pDblM->getSize(); i++)
+    for (int i = 0; i < pDblM->getSize(); i++)
     {
         M[i] = (int)pDblM->get(i);
         sumM += (int)pDblM->get(i);
         maxM = Max(maxM, (int)pDblM->get(i));
     }
 
-    if(sumM > 40)
+    if (sumM > 40)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d : Sum of m must be less than 40.\n"), "bvode", iPos+1, sumM);
+        Scierror(999, _("%s: Wrong value for input argument #%d : Sum of m must be less than 40.\n"), "bvode", iPos + 1, sumM);
         free(M);
         return types::Function::Error;
     }
@@ -132,18 +132,18 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // aleft
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
 
     types::Double* pDblXLow = in[iPos]->getAs<types::Double>();
 
-    if(pDblXLow->isScalar() == false)
+    if (pDblXLow->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
@@ -152,18 +152,18 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // aright
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
 
     types::Double* pDblXUp = in[iPos]->getAs<types::Double>();
 
-    if(pDblXUp->isScalar() == false)
+    if (pDblXUp->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
@@ -172,20 +172,20 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // zeta
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
 
     pDblZeta = in[iPos]->getAs<types::Double>();
 
-    for(int i = 0; i < pDblZeta->getSize() - 1; i++)
+    for (int i = 0; i < pDblZeta->getSize() - 1; i++)
     {
-        if(pDblZeta->get(i) > pDblZeta->get(i+1))
+        if (pDblZeta->get(i) > pDblZeta->get(i + 1))
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d : zeta(j) lower or equal to zeta(j+1) expected.\n"), "bvode", iPos+1);
+            Scierror(999, _("%s: Wrong value for input argument #%d : zeta(j) lower or equal to zeta(j+1) expected.\n"), "bvode", iPos + 1);
             free(M);
             return types::Function::Error;
         }
@@ -194,33 +194,33 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // ipar
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
 
     pDblIpar = in[iPos]->getAs<types::Double>();
 
-    if(pDblIpar->getSize() != 11)
+    if (pDblIpar->getSize() != 11)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : A vector of size 11 expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong size for input argument #%d : A vector of size 11 expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
 
-    for(int i = 0; i < 11; i++)
+    for (int i = 0; i < 11; i++)
     {
-       ipar[i] = (int)pDblIpar->get(i);
+        ipar[i] = (int)pDblIpar->get(i);
     }
 
-    if(ipar[1] < maxM || ipar[1] > 7)
+    if (ipar[1] < maxM || ipar[1] > 7)
     {
         ipar[1] = Max(maxM + 1, 5 - maxM);
     }
 
-    if(ipar[2] == 0)
+    if (ipar[2] == 0)
     {
         ipar[2] = 5;
     }
@@ -228,18 +228,18 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // ltol
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
 
     pDblLtol = in[iPos]->getAs<types::Double>();
 
-    if(pDblLtol->getSize() != ipar[3])
+    if (pDblLtol->getSize() != ipar[3])
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : An array of size %d (ipar(4)) expected.\n"), "bvode", iPos+1, ipar[3]);
+        Scierror(999, _("%s: Wrong size for input argument #%d : An array of size %d (ipar(4)) expected.\n"), "bvode", iPos + 1, ipar[3]);
         free(M);
         return types::Function::Error;
     }
@@ -247,18 +247,18 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // tol
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
 
     pDblTol = in[iPos]->getAs<types::Double>();
 
-    if(pDblTol->getSize() != ipar[3])
+    if (pDblTol->getSize() != ipar[3])
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : An array of size %d (ipar(4)) expected.\n"), "bvode", iPos+1, ipar[3]);
+        Scierror(999, _("%s: Wrong size for input argument #%d : An array of size %d (ipar(4)) expected.\n"), "bvode", iPos + 1, ipar[3]);
         free(M);
         return types::Function::Error;
     }
@@ -266,18 +266,18 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // fixpnt
-    if(in[iPos]->isDouble() == false)
+    if (in[iPos]->isDouble() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos+1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A matrix expected.\n"), "bvode", iPos + 1);
         free(M);
         return types::Function::Error;
     }
 
     pDblFixpnt = in[iPos]->getAs<types::Double>();
 
-    if(pDblFixpnt->getSize() != ipar[10] && ipar[10] != 0)
+    if (pDblFixpnt->getSize() != ipar[10] && ipar[10] != 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d : An array of size %d (ipar(11)) expected.\n"), "bvode", iPos+1, ipar[10]);
+        Scierror(999, _("%s: Wrong size for input argument #%d : An array of size %d (ipar(11)) expected.\n"), "bvode", iPos + 1, ipar[10]);
         free(M);
         return types::Function::Error;
     }
@@ -290,58 +290,58 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     deFunctionsManager->setBvodeM(sumM);
     deFunctionsManager->setBvodeN(ncomp);
 
-    for(int i = iPos; i < 15; i++)
+    for (int i = iPos; i < 15; i++)
     {
-        if(in[i]->isCallable())
+        if (in[i]->isCallable())
         {
             types::Callable* pCall = in[i]->getAs<types::Callable>();
-            if(i == 10) // fsub
+            if (i == 10) // fsub
             {
                 deFunctionsManager->setFsubFunction(pCall);
             }
-            else if(i == 11) // dfsub
+            else if (i == 11) // dfsub
             {
                 deFunctionsManager->setDfsubFunction(pCall);
             }
-            else if(i == 12) // gsub
+            else if (i == 12) // gsub
             {
                 deFunctionsManager->setGsubFunction(pCall);
             }
-            else if(i == 13) // dgsub
+            else if (i == 13) // dgsub
             {
                 deFunctionsManager->setDgsubFunction(pCall);
             }
-            else if(i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
+            else if (i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
             {
                 deFunctionsManager->setGuessFunction(pCall);
             }
         }
-        else if(in[i]->isString())
+        else if (in[i]->isString())
         {
             bool bOK = false;
             types::String* pStr = in[i]->getAs<types::String>();
-            if(i == 10) // fsub
+            if (i == 10) // fsub
             {
                 bOK = deFunctionsManager->setFsubFunction(pStr);
             }
-            else if(i == 11) // dfsub
+            else if (i == 11) // dfsub
             {
                 bOK = deFunctionsManager->setDfsubFunction(pStr);
             }
-            else if(i == 12) // gsub
+            else if (i == 12) // gsub
             {
                 bOK = deFunctionsManager->setGsubFunction(pStr);
             }
-            else if(i == 13) // dgsub
+            else if (i == 13) // dgsub
             {
                 bOK = deFunctionsManager->setDgsubFunction(pStr);
             }
-            else if(i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
+            else if (i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
             {
                 bOK = deFunctionsManager->setGuessFunction(pStr);
             }
 
-            if(bOK == false)
+            if (bOK == false)
             {
                 char* pst = wide_string_to_UTF8(pStr->get(0));
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "bvode", pst);
@@ -351,56 +351,56 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
         }
-        else if(in[i]->isList())
+        else if (in[i]->isList())
         {
             types::List* pList = in[i]->getAs<types::List>();
 
-            if(pList->getSize() == 0)
+            if (pList->getSize() == 0)
             {
-                Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "bvode", i+1, "(string empty)");
+                Scierror(50, _("%s: Argument #%d : Subroutine not found in list: %s\n"), "bvode", i + 1, "(string empty)");
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(M);
                 return types::Function::Error;
             }
 
-            if(pList->get(0)->isCallable())
+            if (pList->get(0)->isCallable())
             {
-                if(i == 10) // fsub
+                if (i == 10) // fsub
                 {
                     deFunctionsManager->setFsubFunction(pList->get(0)->getAs<types::Callable>());
-                    for(int iter = 1; iter < pList->getSize(); iter++)
+                    for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager->setFsubArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
-                else if(i == 11) // dfsub
+                else if (i == 11) // dfsub
                 {
                     deFunctionsManager->setDfsubFunction(pList->get(0)->getAs<types::Callable>());
-                    for(int iter = 1; iter < pList->getSize(); iter++)
+                    for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager->setDfsubArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
-                else if(i == 12) // gsub
+                else if (i == 12) // gsub
                 {
                     deFunctionsManager->setGsubFunction(pList->get(0)->getAs<types::Callable>());
-                    for(int iter = 1; iter < pList->getSize(); iter++)
+                    for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager->setGsubArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
-                else if(i == 13) // dgsub
+                else if (i == 13) // dgsub
                 {
                     deFunctionsManager->setDgsubFunction(pList->get(0)->getAs<types::Callable>());
-                    for(int iter = 1; iter < pList->getSize(); iter++)
+                    for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager->setDgsubArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
-                else if(i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
+                else if (i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
                 {
                     deFunctionsManager->setGuessFunction(pList->get(0)->getAs<types::Callable>());
-                    for(int iter = 1; iter < pList->getSize(); iter++)
+                    for (int iter = 1; iter < pList->getSize(); iter++)
                     {
                         deFunctionsManager->setGuessArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
@@ -408,7 +408,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), "bvode", i+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : The first argument in the list must be a Scilab function.\n"), "bvode", i + 1);
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 free(M);
                 return types::Function::Error;
@@ -416,14 +416,14 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "bvode", i+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A function expected.\n"), "bvode", i + 1);
             DifferentialEquation::removeDifferentialEquationFunctions();
             free(M);
             return types::Function::Error;
         }
     }
 
-// *** check functions. ***
+    // *** check functions. ***
 
     int ret     = 0;
     int i       = 1;
@@ -435,7 +435,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     // fsub
     ret = bvode_fsub(&x, z, d);
-    if(ret == 0)
+    if (ret == 0)
     {
         Scierror(50, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 11, "fsub");
         free(d);
@@ -446,7 +446,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     // dfsub
     ret = bvode_dfsub(&x, z, d);
-    if(ret == 0)
+    if (ret == 0)
     {
         Scierror(50, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 12, "dfsub");
         free(d);
@@ -457,7 +457,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     // gsub
     ret = bvode_gsub(&i, z, d);
-    if(ret == 0)
+    if (ret == 0)
     {
         Scierror(50, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 13, "gsub");
         free(d);
@@ -468,7 +468,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     // dgsub
     ret = bvode_dgsub(&i, z, d);
-    if(ret == 0)
+    if (ret == 0)
     {
         Scierror(50, _("%s: Argument #%d : Execution of ls function failed.\n"), "bvode", 14, "dgsub");
         free(d);
@@ -479,7 +479,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     // guess
     ret = bvode_guess(&x, z, d);
-    if(ret == 0)
+    if (ret == 0)
     {
         Scierror(50, _("%s: Argument #%d : Execution of %s function failed.\n"), "bvode", 15, "guess");
         free(d);
@@ -491,33 +491,33 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     free(d);
     free(z);
 
-// *** Perform operation. ***
+    // *** Perform operation. ***
     double* rwork   = (double*)malloc(ipar[4] * sizeof(double));
     int* iwork      = (int*)malloc(ipar[5] * sizeof(int));
     int* ltol       = (int*)malloc(pDblLtol->getSize() * sizeof(int));
 
-    for(int i = 0; i < pDblLtol->getSize(); i++)
+    for (int i = 0; i < pDblLtol->getSize(); i++)
     {
         ltol[i] = (int)pDblLtol->get(i);
     }
 
     C2F(colnew)(&ncomp, M, &aleft, &aright, pDblZeta->get(), ipar, ltol, pDblTol->get(), pDblFixpnt->get(), iwork, rwork, &iflag, bvode_fsub, bvode_dfsub, bvode_gsub, bvode_dgsub, bvode_guess);
 
-    if(iflag != 1)
+    if (iflag != 1)
     {
-        if(iflag == 0)
+        if (iflag == 0)
         {
             Scierror(999, _("%s: The collocation matrix is singular.\n"), "bvode");
         }
-        else if(iflag == -1)
+        else if (iflag == -1)
         {
             Scierror(999, _("%s: The expected no. of subintervals exceeds storage specifications.\n"), "bvode");
         }
-        else if(iflag == -2)
+        else if (iflag == -2)
         {
             Scierror(999, _("%s: The nonlinear iteration has not converged.\n"), "bvode");
         }
-        else if(iflag == -3)
+        else if (iflag == -3)
         {
             Scierror(999, _("%s: There is an input data error.\n"), "bvode");
         }
@@ -533,7 +533,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
 
     types::Double* pDblRes = new types::Double(sumM, pDblXpts->getSize());
     double* res = (double*)malloc(pDblXpts->getSize() * sumM * sizeof(double));
-    for(int i = 0; i < pDblXpts->getSize(); i++)
+    for (int i = 0; i < pDblXpts->getSize(); i++)
     {
         double val = pDblXpts->get(i);
         C2F(appsln)(&val, &res[i * sumM], rwork, iwork);
@@ -548,7 +548,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     free(res);
     DifferentialEquation::removeDifferentialEquationFunctions();
 
-// *** Return result in Scilab. ***
+    // *** Return result in Scilab. ***
     out.push_back(pDblRes);
 
     return types::Function::OK;

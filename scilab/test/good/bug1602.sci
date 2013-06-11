@@ -18,9 +18,9 @@ data_boundsRef = [ -0.95, -0.95 ; 0.95, 0.95 ] ;
 
 // check that xfarc fill the arc and don't draw the limit
 if ( a.data_bounds == data_boundsRef ) then
-  affich_result(%T,1602);
+    affich_result(%T,1602);
 else
-  affich_result(%F,1602);
+    affich_result(%F,1602);
 end
 
 clear;

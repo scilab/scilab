@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,34 +21,34 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="steadycos">
-    <refnamediv>
-        <refname>steadycos</refname>
-        <refpurpose>Finds an equilibrium state of a general dynamical system described by a xcos diagram</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
-    </refsynopsisdiv>
-    <refsection id="Module_steadycos">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Description_steadycos">
-        <title>Description</title>
-        <para>
-            This function finds the steady state for a given system described by a xcos diagram or <link linkend="SUPER_f">sub-diagram</link>. The diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.The steady state concern only the continuous-time dynamics.  
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="steadycos">
+        <refnamediv>
+            <refname>steadycos</refname>
+            <refpurpose>Finds an equilibrium state of a general dynamical system described by a xcos diagram</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
+        </refsynopsisdiv>
+        <refsection id="Module_steadycos">
+            <title>Module</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="xcos">xcos</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Description_steadycos">
+            <title>Description</title>
+            <para>
+                This function finds the steady state for a given system described by a xcos diagram or <link linkend="SUPER_f">sub-diagram</link>. The diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.The steady state concern only the continuous-time dynamics.  
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 // loading data
 exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
 exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
@@ -72,103 +72,103 @@ end
 
 [X,U,Y,XP] = steadycos(scs_m,[],[],[],[],1,1:$);
  ]]></programlisting>
-    </refsection>
-    <refsection id="Parameters_steadycos">
-        <title>Arguments</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">scs_m :</emphasis> a xcos data structure
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">X:</emphasis> column vector. Continuous state. Can be set to [] if zero.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">U:</emphasis> column vector. Input. Can be set to [] if zero.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Y:</emphasis> column vector. Output. Can be set to [] if zero.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Indx :</emphasis> index of entries of X that are not fixed. If all can vary, set to 1:$
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Indu :</emphasis> index of entries of U that are not fixed. If all can vary, set to 1:$
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Indy :</emphasis> index of entries of Y that are not fixed. If all can vary, set to 1:$
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Indxp :</emphasis> index of entries of XP (derivative of x) that need not be zero. If all can vary, set to 1:$. Default [].
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">param :</emphasis> list with two elements (default list(1.d-6,0)). param(1): scalar. Perturbation level for linearization; the following variation is used del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): scalar. Time t.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">X:</emphasis> steady state X
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">U:</emphasis> stationary input U
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Y:</emphasis> output corresponding to steady state found
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">XP :</emphasis> derivative of the state corresponding to steady state found
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Filecontent_steadycos">
-        <title>File content</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos/macros/scicos_auto/steadycos.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="SeeAlso_steadycos">
-        <title>See Also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="lincos">lincos - Constructs by linearization a linear state-space model from a general dynamical system described by a xcos diagram (Scilab Function)</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_simulate">scicos_simulate - Function for running xcos simulation in batch mode (Scilab Function)</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos - Block diagram editor and GUI for the hybrid simulator (Scilab Function)</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection id="Parameters_steadycos">
+            <title>Arguments</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">scs_m :</emphasis> a xcos data structure
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">X:</emphasis> column vector. Continuous state. Can be set to [] if zero.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">U:</emphasis> column vector. Input. Can be set to [] if zero.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Y:</emphasis> column vector. Output. Can be set to [] if zero.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Indx :</emphasis> index of entries of X that are not fixed. If all can vary, set to 1:$
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Indu :</emphasis> index of entries of U that are not fixed. If all can vary, set to 1:$
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Indy :</emphasis> index of entries of Y that are not fixed. If all can vary, set to 1:$
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Indxp :</emphasis> index of entries of XP (derivative of x) that need not be zero. If all can vary, set to 1:$. Default [].
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">param :</emphasis> list with two elements (default list(1.d-6,0)). param(1): scalar. Perturbation level for linearization; the following variation is used del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): scalar. Time t.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">X:</emphasis> steady state X
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">U:</emphasis> stationary input U
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Y:</emphasis> output corresponding to steady state found
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">XP :</emphasis> derivative of the state corresponding to steady state found
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="Filecontent_steadycos">
+            <title>File content</title>
+            <itemizedlist>
+                <listitem>
+                    <para> SCI/modules/scicos/macros/scicos_auto/steadycos.sci</para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+        <refsection id="SeeAlso_steadycos">
+            <title>See Also</title>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <link linkend="lincos">lincos - Constructs by linearization a linear state-space model from a general dynamical system described by a xcos diagram (Scilab Function)</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="scicos_simulate">scicos_simulate - Function for running xcos simulation in batch mode (Scilab Function)</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <link linkend="xcos">xcos - Block diagram editor and GUI for the hybrid simulator (Scilab Function)</link>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refentry>

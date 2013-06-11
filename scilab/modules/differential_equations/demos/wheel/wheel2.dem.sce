@@ -7,31 +7,31 @@
 
 
 function demo_wheel2()
-  
-  thispath = get_absolute_file_path("wheel2.dem.sce");
 
-  my_handle = scf(100001);
-  clf(my_handle,"reset");
+    thispath = get_absolute_file_path("wheel2.dem.sce");
 
-  exec(thispath+"wheel_show.sci");
+    my_handle = scf(100001);
+    clf(my_handle,"reset");
 
-  if ~(haveacompiler()) then
-      messagebox(["Scilab doesn''t find a C compiler","This demo is disabled"],"modal");
-      return;
-  end
+    exec(thispath+"wheel_show.sci");
 
-  mode(0);
-  wheel_build_and_load();
-  wheelg = wheelgf;
-  tmin   = 0.0;
-  tmax   = 15;
-  nn     = 300;
-  times  = (0:(nn-1));
-  times  = tmax*times/(nn-1) +tmin*((nn-1)*ones(times)-times);
+    if ~(haveacompiler()) then
+        messagebox(["Scilab doesn''t find a C compiler","This demo is disabled"],"modal");
+        return;
+    end
 
-  // Initial conditions
-  // =========================================================================
-  x0=[0;             // theta
+    mode(0);
+    wheel_build_and_load();
+    wheelg = wheelgf;
+    tmin   = 0.0;
+    tmax   = 15;
+    nn     = 300;
+    times  = (0:(nn-1));
+    times  = tmax*times/(nn-1) +tmin*((nn-1)*ones(times)-times);
+
+    // Initial conditions
+    // =========================================================================
+    x0=[0;             // theta
     %pi/2+0.1;     // phi
     0;             // psi
     5.0;           // Dtheta
@@ -40,36 +40,36 @@ function demo_wheel2()
     0;             // x
     0];            // y
 
-  // Simulation
-  // =========================================================================
+    // Simulation
+    // =========================================================================
 
-  x=ode(x0,tmin,times,"wheel");
+    x=ode(x0,tmin,times,"wheel");
 
-  clf(my_handle,"reset");
-  wheel_show(x);
+    clf(my_handle,"reset");
+    wheel_show(x);
 
-  ystr = [ 'phi';'theta';'psi';'Dpsi';'Dtheta';'Dpsi';'x';'y'];
-  flag = 2;
-  
-  if ~is_handle_valid(my_handle) then
-    break;
-  end
-    
-  while flag==2, [n1,n2]=size(x);
-    if is_handle_valid(my_handle) then
-      flag=x_choose(['Stop';'Go on'],'Choose');
-      if flag==2 then
-        x0 = evstr(x_mdialog(['Initial conditions'],ystr,string(x(:,n2))));
-        x  = ode(x0,tmin,times,'wheel');
-        clf(my_handle,"reset");
-        if is_handle_valid(my_handle) then
-          wheel_show(x);
-        end
-      end
+    ystr = [ "phi";"theta";"psi";"Dpsi";"Dtheta";"Dpsi";"x";"y"];
+    flag = 2;
+
+    if ~is_handle_valid(my_handle) then
+        break;
     end
-  end
 
-endfunction 
+    while flag==2, [n1,n2]=size(x);
+        if is_handle_valid(my_handle) then
+            flag=x_choose(["Stop";"Go on"],"Choose");
+            if flag==2 then
+                x0 = evstr(x_mdialog(["Initial conditions"],ystr,string(x(:,n2))));
+                x  = ode(x0,tmin,times,"wheel");
+                clf(my_handle,"reset");
+                if is_handle_valid(my_handle) then
+                    wheel_show(x);
+                end
+            end
+        end
+    end
+
+endfunction
 
 demo_wheel2();
 clear demo_wheel2;

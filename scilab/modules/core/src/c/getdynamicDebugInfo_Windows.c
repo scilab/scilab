@@ -32,7 +32,7 @@
 static char * GetRegKeyCPUIdentifier(void);
 static char * GetScreenResolution(void);
 static char * GetNumberMonitors(void);
-static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str);
+static char ** appendStringDebugInfo(char **listInfo, int *sizeListInfo, char *str);
 /*--------------------------------------------------------------------------*/
 char **getDynamicDebugInfo_Windows(int *sizeArray)
 {
@@ -55,92 +55,92 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
     GlobalMemoryStatusEx (&statex);
 
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         sprintf(str_info,
-            "Memory in use: %*ld %%",
-            WIDTH,
-            statex.dwMemoryLoad);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                "Memory in use: %*ld %%",
+                WIDTH,
+                statex.dwMemoryLoad);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         sprintf(str_info,
-            "Total Physical Memory (Kbytes): %*I64d",
-            WIDTH,
-            statex.ullTotalPhys/DIV);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                "Total Physical Memory (Kbytes): %*I64d",
+                WIDTH,
+                statex.ullTotalPhys / DIV);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         sprintf(str_info,
-            "Free Physical Memory (Kbytes): %*I64d",
-            WIDTH,
-            statex.ullAvailPhys/DIV);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                "Free Physical Memory (Kbytes): %*I64d",
+                WIDTH,
+                statex.ullAvailPhys / DIV);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         sprintf(str_info,
-            "Total Paging File (Kbytes): %*I64d",
-            WIDTH,
-            statex.ullTotalPageFile/DIV);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                "Total Paging File (Kbytes): %*I64d",
+                WIDTH,
+                statex.ullTotalPageFile / DIV);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         sprintf(str_info,
-            "Free Paging File (Kbytes): %*I64d",
-            WIDTH,
-            statex.ullAvailPageFile/DIV);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                "Free Paging File (Kbytes): %*I64d",
+                WIDTH,
+                statex.ullAvailPageFile / DIV);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         sprintf(str_info,
-            "Total Virtual Memory (Kbytes): %*I64d",
-            WIDTH,
-            statex.ullTotalVirtual/DIV);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                "Total Virtual Memory (Kbytes): %*I64d",
+                WIDTH,
+                statex.ullTotalVirtual / DIV);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         sprintf(str_info,
-            "Free Virtual Memory (Kbytes): %*I64d",
-            WIDTH,
-            statex.ullAvailVirtual/DIV);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                "Free Virtual Memory (Kbytes): %*I64d",
+                WIDTH,
+                statex.ullAvailVirtual / DIV);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         sprintf(str_info,
-            "Free Extended Memory (Kbytes): %*I64d",
-            WIDTH,
-            statex.ullAvailExtendedVirtual/DIV);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                "Free Extended Memory (Kbytes): %*I64d",
+                WIDTH,
+                statex.ullAvailExtendedVirtual / DIV);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
+    str_info = (char*)MALLOC(sizeof(char) * BUFFER_LEN);
     if (str_info)
     {
         char *OS = getOSFullName();
         char *OSRelease = getOSRelease();
-        strcpy(str_info ,"Operating System: ");
+        strcpy(str_info , "Operating System: ");
 
         if (OS && OSRelease)
         {
@@ -153,31 +153,39 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
             strcat(str_info, "ERROR");
         }
 
-        if (OS) {FREE(OS); OS = NULL;}
-        if (OSRelease) {FREE(OSRelease); OSRelease = NULL;}
+        if (OS)
+        {
+            FREE(OS);
+            OS = NULL;
+        }
+        if (OSRelease)
+        {
+            FREE(OSRelease);
+            OSRelease = NULL;
+        }
 
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetRegKeyCPUIdentifier());
+    outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, GetRegKeyCPUIdentifier());
 
-    str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
+    str_info = (char*)MALLOC( sizeof(char) * BUFFER_LEN );
     if (str_info)
     {
         SYSTEM_INFO siSysInfo;
         GetSystemInfo(&siSysInfo);
-        sprintf(str_info,"Number of processors: %d",  siSysInfo.dwNumberOfProcessors);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "Number of processors: %d",  siSysInfo.dwNumberOfProcessors);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
     DevicesName = getVideoAdapters(&nbDevices);
     if (nbDevices > 0)
     {
-        str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
+        str_info = (char*)MALLOC( sizeof(char) * BUFFER_LEN );
         if (str_info)
         {
-            sprintf(str_info,"Number of Video cards: %d", nbDevices);
-            outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+            sprintf(str_info, "Number of Video cards: %d", nbDevices);
+            outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
         }
     }
 
@@ -186,11 +194,11 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
         int i = 0;
         for (i = 0; i < nbDevices; i++)
         {
-            str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
+            str_info = (char*)MALLOC( sizeof(char) * BUFFER_LEN );
             if (str_info)
             {
-                sprintf(str_info,"Video card #%d: %s",  i, DevicesName[i]);
-                outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                sprintf(str_info, "Video card #%d: %s",  i, DevicesName[i]);
+                outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
             }
         }
         freeArrayOfString(DevicesName, nbDevices);
@@ -198,59 +206,59 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
     }
     else
     {
-        str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
+        str_info = (char*)MALLOC( sizeof(char) * BUFFER_LEN );
         if (str_info)
         {
-            sprintf(str_info,"Video card: %s",  "ERROR");
-            outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+            sprintf(str_info, "Video card: %s",  "ERROR");
+            outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
         }
     }
 
-    str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
+    str_info = (char*)MALLOC( sizeof(char) * BUFFER_LEN );
     if (str_info)
     {
-        sprintf(str_info,"Primary Video card driver version: %s", GetPrimaryVideoCardVersion());
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+        sprintf(str_info, "Primary Video card driver version: %s", GetPrimaryVideoCardVersion());
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetScreenResolution());
-    outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetNumberMonitors());
+    outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, GetScreenResolution());
+    outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, GetNumberMonitors());
 
-    #define PATH_var "Path"
+#define PATH_var "Path"
     fromGetenv = getenv(PATH_var);
 
     if (fromGetenv)
     {
-        str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(PATH_var) +1) );
-        sprintf(str_info,"%s: %s", PATH_var, fromGetenv);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+        str_info = (char*)MALLOC( sizeof(char) * (strlen(fromGetenv) + strlen("%s : %s") + strlen(PATH_var) + 1) );
+        sprintf(str_info, "%s: %s", PATH_var, fromGetenv);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    #define COMSPEC_var "ComSpec"
+#define COMSPEC_var "ComSpec"
     fromGetenv = getenv(COMSPEC_var);
     if (fromGetenv)
     {
-        str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(COMSPEC_var) + 1) );
-        sprintf(str_info,"%s: %s", COMSPEC_var,fromGetenv);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+        str_info = (char*)MALLOC( sizeof(char) * (strlen(fromGetenv) + strlen("%s : %s") + strlen(COMSPEC_var) + 1) );
+        sprintf(str_info, "%s: %s", COMSPEC_var, fromGetenv);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    #define TMP_var "TMP"
+#define TMP_var "TMP"
     fromGetenv = getenv(TMP_var);
     if (fromGetenv)
     {
-        str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TMP_var) + 1) );
-        sprintf(str_info,"%s : %s", TMP_var,fromGetenv);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+        str_info = (char*)MALLOC( sizeof(char) * (strlen(fromGetenv) + strlen("%s : %s") + strlen(TMP_var) + 1) );
+        sprintf(str_info, "%s : %s", TMP_var, fromGetenv);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    #define TEMP_var "TEMP"
+#define TEMP_var "TEMP"
     fromGetenv = getenv(TEMP_var);
     if (fromGetenv)
     {
-        str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TEMP_var) + 1) );
-        sprintf(str_info,"%s: %s", TEMP_var,fromGetenv);
-        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+        str_info = (char*)MALLOC( sizeof(char) * (strlen(fromGetenv) + strlen("%s : %s") + strlen(TEMP_var) + 1) );
+        sprintf(str_info, "%s: %s", TEMP_var, fromGetenv);
+        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
     /*
@@ -362,30 +370,33 @@ static char * GetRegKeyCPUIdentifier(void)
     HKEY key;
     DWORD result;
     char *LineIdentifier;
-    ULONG length = LenLine,Type;
+    ULONG length = LenLine, Type;
 
-    result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyCpuIdentifer, 0, KEY_QUERY_VALUE , &key);
+    result = RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyCpuIdentifer, 0, KEY_QUERY_VALUE , &key);
 
-    LineIdentifier=(char*)MALLOC(sizeof(char)*length);
+    LineIdentifier = (char*)MALLOC(sizeof(char) * length);
 
     if ( RegQueryValueEx(key, "ProcessorNameString", 0, &Type, (LPBYTE)LineIdentifier, &length) !=  ERROR_SUCCESS )
     {
-        wsprintf(LineIdentifier,"ERROR");
+        wsprintf(LineIdentifier, "ERROR");
     }
 
-    if( Type != REG_SZ )
+    if ( Type != REG_SZ )
     {
-        wsprintf(LineIdentifier,"ERROR");
+        wsprintf(LineIdentifier, "ERROR");
     }
 
-    if ( result == ERROR_SUCCESS ) RegCloseKey(key);
+    if ( result == ERROR_SUCCESS )
+    {
+        RegCloseKey(key);
+    }
 
     return (char *)LineIdentifier;
 }
 /*--------------------------------------------------------------------------*/
 static char * GetScreenResolution(void)
 {
-    HDC hdc=GetDC(NULL);
+    HDC hdc = GetDC(NULL);
     int BitsByPixel = GetDeviceCaps(hdc, BITSPIXEL);
     int ResX = GetSystemMetrics(SM_CXSCREEN);
     int ResY = GetSystemMetrics(SM_CYSCREEN) ;
@@ -393,27 +404,27 @@ static char * GetScreenResolution(void)
 
     ReleaseDC (NULL, hdc);
 
-    Resolution = (char*)MALLOC( sizeof(char)*( strlen("Screen size: %d x %d %d bits") + 32));
+    Resolution = (char*)MALLOC( sizeof(char) * ( strlen("Screen size: %d x %d %d bits") + 32));
     if (Resolution)
     {
-        sprintf(Resolution,"Screen size: %d x %d %d bits",ResX ,ResY,BitsByPixel);
+        sprintf(Resolution, "Screen size: %d x %d %d bits", ResX , ResY, BitsByPixel);
     }
 
     return Resolution;
 }
 /*--------------------------------------------------------------------------*/
-static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str)
+static char ** appendStringDebugInfo(char **listInfo, int *sizeListInfo, char *str)
 {
     char ** returnListInfo = NULL;
     if (listInfo)
     {
         (*sizeListInfo)++;
-        returnListInfo = (char**)REALLOC(listInfo,sizeof(char*)*(*sizeListInfo));
+        returnListInfo = (char**)REALLOC(listInfo, sizeof(char*) * (*sizeListInfo));
     }
     else
     {
         (*sizeListInfo) = 1;
-        returnListInfo = (char**)MALLOC(sizeof(char*)*(*sizeListInfo));
+        returnListInfo = (char**)MALLOC(sizeof(char*) * (*sizeListInfo));
     }
     returnListInfo[(*sizeListInfo) - 1] = str;
 
@@ -426,10 +437,10 @@ static char * GetNumberMonitors(void)
     char *returnedStr = NULL;
     int nbMonitors = GetSystemMetrics(SM_CMONITORS) ;
 
-    returnedStr = (char*)MALLOC( sizeof(char)*( strlen(NBMONITORS) +  32));
+    returnedStr = (char*)MALLOC( sizeof(char) * ( strlen(NBMONITORS) +  32));
     if (returnedStr)
     {
-        sprintf(returnedStr,NBMONITORS,nbMonitors);
+        sprintf(returnedStr, NBMONITORS, nbMonitors);
     }
 
     return returnedStr;

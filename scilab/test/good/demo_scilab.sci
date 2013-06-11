@@ -1,9 +1,9 @@
 function demo_scilab()
-  demo_help demo_scilab
-  // Définition des variables
+    demo_help demo_scilab
+    // Définition des variables
 
-x=[1 2 3 4 5 6 7 8 9 10 11 12];
-y=[ 0 0 0 ; ..
+    x=[1 2 3 4 5 6 7 8 9 10 11 12];
+    y=[ 0 0 0 ; ..
     0 0 0 ; ..
     8231 0 0 ; ..
     791 0 0 ; ..
@@ -16,57 +16,57 @@ y=[ 0 0 0 ; ..
     7708 0 0; ..
     6223 0 0];
 
-// bar()
-f = gcf() ;
-f.pixmap = 'on' ;
+    // bar()
+    f = gcf() ;
+    f.pixmap = "on" ;
 
-bar(x,y);
-SetPosition() ;
-// Ajustements
+    bar(x,y);
+    SetPosition() ;
+    // Ajustements
 
-axes = gca();
-axes.data_bounds = [ 0 0 ; 12.5 20000 ];
-axes.x_ticks.labels = ['Jan';'Feb';'Mar';'Apr';'May';'Jun';'Jul';'Aug';'Sep';'Oct';'Nov';'Dec'];
-axes.grid=[-1 0];
-axes.y_label.text = "Number of downloads" ;
-t = axes.title ;
-t.text = "Scilab download statistics" ;
-t.font_size = 5 ;
+    axes = gca();
+    axes.data_bounds = [ 0 0 ; 12.5 20000 ];
+    axes.x_ticks.labels = ["Jan";"Feb";"Mar";"Apr";"May";"Jun";"Jul";"Aug";"Sep";"Oct";"Nov";"Dec"];
+    axes.grid=[-1 0];
+    axes.y_label.text = "Number of downloads" ;
+    t = axes.title ;
+    t.text = "Scilab download statistics" ;
+    t.font_size = 5 ;
 
-years = axes.children.children;
-year2003 = years(3);
-year2004 = years(2);
-year2005 = years(1);
+    years = axes.children.children;
+    year2003 = years(3);
+    year2004 = years(2);
+    year2005 = years(1);
 
-year2003.background = 32;
-year2004.background = 5;
-year2005.background = 33;
+    year2003.background = 32;
+    year2004.background = 5;
+    year2005.background = 33;
 
-year2003.bar_width = 0.25;
-year2004.bar_width = 0.25;
-year2005.bar_width = 0.25;
+    year2003.bar_width = 0.25;
+    year2004.bar_width = 0.25;
+    year2005.bar_width = 0.25;
 
-legends(['Year 2003';'Year 2004';'Year 2005'],[32;5;33],[9.5;19500]);
+    legends(["Year 2003";"Year 2004";"Year 2005"],[32;5;33],[9.5;19500]);
 
-histogramme = gcf();
-histogramme.background = 17;
+    histogramme = gcf();
+    histogramme.background = 17;
 
-legend_axes = histogramme.children(1);
+    legend_axes = histogramme.children(1);
 
-legend_axes.children.children(2).thickness = 4;
-legend_axes.children.children(4).thickness = 4;
-legend_axes.children.children(6).thickness = 4;
+    legend_axes.children.children(2).thickness = 4;
+    legend_axes.children.children(4).thickness = 4;
+    legend_axes.children.children(6).thickness = 4;
 
-show_pixmap() ;
+    show_pixmap() ;
 
 
-  realtimeinit(1.0) ;
-  for i=1:7
-    realtime(i) ;
-  end ;
+    realtimeinit(1.0) ;
+    for i=1:7
+        realtime(i) ;
+    end ;
 
-x=[1 2 3 4 5 6 7 8 9 10 11 12];
-y=[ 0 7687 0 ; ..
+    x=[1 2 3 4 5 6 7 8 9 10 11 12];
+    y=[ 0 7687 0 ; ..
     0 8003 0 ; ..
     8231 10450 0 ; ..
     791 9124 0 ; ..
@@ -80,53 +80,53 @@ y=[ 0 7687 0 ; ..
     6223 11384 0];
 
 
-// bar()
-clf() ;
-SetPosition() ;
-bar(x,y);
+    // bar()
+    clf() ;
+    SetPosition() ;
+    bar(x,y);
 
-axes = gca();
-axes.data_bounds = [ 0 0 ; 12.5 20000 ];
-axes.x_ticks.labels = ['Jan';'Feb';'Mar';'Apr';'May';'Jun';'Jul';'Aug';'Sep';'Oct';'Nov';'Dec'];
-axes.grid=[-1 0];
-axes.y_label.text = "Number of downloads" ;
-t = axes.title ;
-t.text = "Scilab download statistics" ;
-t.font_size = 5 ;
+    axes = gca();
+    axes.data_bounds = [ 0 0 ; 12.5 20000 ];
+    axes.x_ticks.labels = ["Jan";"Feb";"Mar";"Apr";"May";"Jun";"Jul";"Aug";"Sep";"Oct";"Nov";"Dec"];
+    axes.grid=[-1 0];
+    axes.y_label.text = "Number of downloads" ;
+    t = axes.title ;
+    t.text = "Scilab download statistics" ;
+    t.font_size = 5 ;
 
-years = axes.children.children;
-year2003 = years(3);
-year2004 = years(2);
-year2005 = years(1);
+    years = axes.children.children;
+    year2003 = years(3);
+    year2004 = years(2);
+    year2005 = years(1);
 
-year2003.background = 32;
-year2004.background = 5;
-year2005.background = 33;
+    year2003.background = 32;
+    year2004.background = 5;
+    year2005.background = 33;
 
-year2003.bar_width = 0.25;
-year2004.bar_width = 0.25;
-year2005.bar_width = 0.25;
+    year2003.bar_width = 0.25;
+    year2004.bar_width = 0.25;
+    year2005.bar_width = 0.25;
 
-legends(['Year 2003';'Year 2004';'Year 2005'],[32;5;33],[9.5;19500]);
+    legends(["Year 2003";"Year 2004";"Year 2005"],[32;5;33],[9.5;19500]);
 
-histogramme = gcf();
-histogramme.background = 17;
+    histogramme = gcf();
+    histogramme.background = 17;
 
-legend_axes = histogramme.children(1);
+    legend_axes = histogramme.children(1);
 
-legend_axes.children.children(2).thickness = 4;
-legend_axes.children.children(4).thickness = 4;
-legend_axes.children.children(6).thickness = 4;
+    legend_axes.children.children(2).thickness = 4;
+    legend_axes.children.children(4).thickness = 4;
+    legend_axes.children.children(6).thickness = 4;
 
-show_pixmap() ;
+    show_pixmap() ;
 
-  realtimeinit(1.0) ;
-  for i=1:7
-    realtime(i) ;
-  end ;
+    realtimeinit(1.0) ;
+    for i=1:7
+        realtime(i) ;
+    end ;
 
-x=[1 2 3 4 5 6 7 8 9 10 11 12];
-y=[ 0 7687 13588 ; ..
+    x=[1 2 3 4 5 6 7 8 9 10 11 12];
+    y=[ 0 7687 13588 ; ..
     0 8003 13597 ; ..
     8231 10450 16772 ; ..
     791 9124 16169 ; ..
@@ -139,51 +139,51 @@ y=[ 0 7687 13588 ; ..
     7708 15116 16238; ..
     6223 11384 14335];
 
-// bar()
-clf() ;
-SetPosition() ;
-bar(x,y);
+    // bar()
+    clf() ;
+    SetPosition() ;
+    bar(x,y);
 
-// Ajustements
+    // Ajustements
 
-axes = gca();
-axes.data_bounds = [ 0 0 ; 12.5 20000 ];
-axes.x_ticks.labels = ['Jan';'Feb';'Mar';'Apr';'May';'Jun';'Jul';'Aug';'Sep';'Oct';'Nov';'Dec'];
-axes.grid=[-1 0];
-axes.y_label.text = "Number of downloads" ;
-t = axes.title ;
-t.text = "Scilab download statistics" ;
-t.font_size = 5 ;
+    axes = gca();
+    axes.data_bounds = [ 0 0 ; 12.5 20000 ];
+    axes.x_ticks.labels = ["Jan";"Feb";"Mar";"Apr";"May";"Jun";"Jul";"Aug";"Sep";"Oct";"Nov";"Dec"];
+    axes.grid=[-1 0];
+    axes.y_label.text = "Number of downloads" ;
+    t = axes.title ;
+    t.text = "Scilab download statistics" ;
+    t.font_size = 5 ;
 
-years = axes.children.children;
-year2003 = years(3);
-year2004 = years(2);
-year2005 = years(1);
+    years = axes.children.children;
+    year2003 = years(3);
+    year2004 = years(2);
+    year2005 = years(1);
 
-year2003.background = 32;
-year2004.background = 5;
-year2005.background = 33;
+    year2003.background = 32;
+    year2004.background = 5;
+    year2005.background = 33;
 
-year2003.bar_width = 0.25;
-year2004.bar_width = 0.25;
-year2005.bar_width = 0.25;
+    year2003.bar_width = 0.25;
+    year2004.bar_width = 0.25;
+    year2005.bar_width = 0.25;
 
-legends(['Year 2003';'Year 2004';'Year 2005'],[32;5;33],[9.5;19500]);
+    legends(["Year 2003";"Year 2004";"Year 2005"],[32;5;33],[9.5;19500]);
 
-histogramme = gcf();
-histogramme.background = 17;
+    histogramme = gcf();
+    histogramme.background = 17;
 
-legend_axes = histogramme.children(1);
+    legend_axes = histogramme.children(1);
 
-legend_axes.children.children(2).thickness = 4;
-legend_axes.children.children(4).thickness = 4;
-legend_axes.children.children(6).thickness = 4;
+    legend_axes.children.children(2).thickness = 4;
+    legend_axes.children.children(4).thickness = 4;
+    legend_axes.children.children(6).thickness = 4;
 
-show_pixmap() ;
+    show_pixmap() ;
 
-  realtimeinit(1.0) ;
-  for i=1:10
-    realtime(i) ;
-  end ;
-  
+    realtimeinit(1.0) ;
+    for i=1:10
+        realtime(i) ;
+    end ;
+
 endfunction

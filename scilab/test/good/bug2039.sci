@@ -7,9 +7,9 @@ mode(-1);
 clear;
 
 if lasterror(%F) == [] then
-	affich_result(%T,2039);
+    affich_result(%T,2039);
 else
-	affich_result(%F,2039);
+    affich_result(%F,2039);
 end
 
 clear

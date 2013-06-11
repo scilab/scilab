@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2008 - INRIA - Vincent COUVERT 
     * 
@@ -10,66 +10,66 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matfile_open">
-    <refnamediv>
-        <refname>matfile_open</refname>
-        <refpurpose>Opens a Matlab binary MAT-file.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>fd = matfile_open(filename[, mode])</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>filename</term>
-                <listitem>
-                    <para>String: the path of the file. Must contain only ANSI character.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>mode</term>
-                <listitem>
-                    <para>
-                        String: file access type (<literal>"r"</literal> by default).
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <emphasis>"r"</emphasis>: opens the file for reading.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis>"w"</emphasis>: opens the file for writing.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fd</term>
-                <listitem>
-                    <para>Real: file descriptor (-1 if opening failed).</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Opens a Matlab binary MAT-file for reading or writing data.
-        </para>
-        <para>
-            <warning>
-                If <varname>mode</varname> is set to <literal>w</literal>, the content of <varname>filename</varname> will be reseted.
-            </warning>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="matfile_open">
+        <refnamediv>
+            <refname>matfile_open</refname>
+            <refpurpose>Opens a Matlab binary MAT-file.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>fd = matfile_open(filename[, mode])</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>filename</term>
+                    <listitem>
+                        <para>String: the path of the file. Must contain only ANSI character.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>mode</term>
+                    <listitem>
+                        <para>
+                            String: file access type (<literal>"r"</literal> by default).
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <emphasis>"r"</emphasis>: opens the file for reading.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <emphasis>"w"</emphasis>: opens the file for writing.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>fd</term>
+                    <listitem>
+                        <para>Real: file descriptor (-1 if opening failed).</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Opens a Matlab binary MAT-file for reading or writing data.
+            </para>
+            <para>
+                <warning>
+                    If <varname>mode</varname> is set to <literal>w</literal>, the content of <varname>filename</varname> will be reseted.
+                </warning>
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 A = rand(10,10);
 B = sprand(100,100,0.1);
 savematfile('test_matfile.mat','A','B','-v6');
@@ -80,32 +80,32 @@ matfile_close(fd);
 
 //fd = matfile_open("test_matfile.mat","w"); // Empty test_matfile.mat
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="matfile_close">matfile_close</link>
-            </member>
-            <member>
-                <link linkend="matfile_varreadnext">matfile_varreadnext</link>
-            </member>
-            <member>
-                <link linkend="matfile_varwrite">matfile_varwrite</link>
-            </member>
-            <member>
-                <link linkend="matfile_listvar">matfile_listvar</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Bibliography</title>
-        <para>
-            This function uses MATIO library (
-            <literal>
-                <ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink>
-            </literal>
-            ).
-        </para>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="matfile_close">matfile_close</link>
+                </member>
+                <member>
+                    <link linkend="matfile_varreadnext">matfile_varreadnext</link>
+                </member>
+                <member>
+                    <link linkend="matfile_varwrite">matfile_varwrite</link>
+                </member>
+                <member>
+                    <link linkend="matfile_listvar">matfile_listvar</link>
+                </member>
+            </simplelist>
+        </refsection>
+        <refsection>
+            <title>Bibliography</title>
+            <para>
+                This function uses MATIO library (
+                <literal>
+                    <ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink>
+                </literal>
+                ).
+            </para>
+        </refsection>
+    </refentry>

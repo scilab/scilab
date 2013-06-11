@@ -46,7 +46,8 @@ g = gtild(gm)*gm
  ]]></programlisting>
         <para>
             gtild(gm) returns a state-space representation of gm(-s)'.
-        </para> 
+        </para>
+        
         <para>
             <literal>g</literal> is inversible.
         </para>

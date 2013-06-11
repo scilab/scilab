@@ -32,33 +32,33 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
 {
     bool bStringMode = false;
 
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getmd5", 1);
         return Function::Error;
     }
 
-    if(in.size() != 1 && in.size() != 2)
+    if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "getmd5", 1, 2);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), "getmd5", 1);
         return Function::Error;
     }
 
-    if(in.size() == 2 && in[1]->isString() == false)
+    if (in.size() == 2 && in[1]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), "getmd5", 2);
         return Function::Error;
     }
 
-    if(in.size() == 2)
+    if (in.size() == 2)
     {
-        if(wcscmp(in[1]->getAs<types::String>()->get(0), L"string") == 0)
+        if (wcscmp(in[1]->getAs<types::String>()->get(0), L"string") == 0)
         {
             bStringMode = true;
         }
@@ -72,12 +72,12 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
     String *pIn = in[0]->getAs<types::String>();
     String *pOutput = new String(pIn->getRows(), pIn->getCols());
 
-    for(int i = 0 ; i < pIn->getSize() ; ++i)
+    for (int i = 0 ; i < pIn->getSize() ; ++i)
     {
         wchar_t *wcsCurrentIn = pIn->get(i);
         wchar_t *pstMD5 = NULL;
 
-        if(bStringMode)
+        if (bStringMode)
         {
             pstMD5 = to_wide_string(md5_str(wide_string_to_UTF8(wcsCurrentIn)));
         }

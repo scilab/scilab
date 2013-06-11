@@ -11,16 +11,16 @@
 //
 function %diagram_xcos(scs_m)
 
-k= 1 ;
-tempfile = TMPDIR + filesep() + "xcos_scs_m_" + string(k) + ".h5";
+    k= 1 ;
+    tempfile = TMPDIR + filesep() + "xcos_scs_m_" + string(k) + ".h5";
 
-while isfile(tempfile)
-  k = k + 1;
-  tempfile = TMPDIR + filesep() + "xcos_scs_m_" + string(k) + ".h5";
-end
+    while isfile(tempfile)
+        k = k + 1;
+        tempfile = TMPDIR + filesep() + "xcos_scs_m_" + string(k) + ".h5";
+    end
 
-export_to_hdf5(tempfile, "scs_m");
+    export_to_hdf5(tempfile, "scs_m");
 
-xcos(tempfile);
+    xcos(tempfile);
 
 endfunction

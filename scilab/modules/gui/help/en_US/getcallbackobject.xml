@@ -1,51 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getcallbackobject" xml:lang="en">
-    <refnamediv>
-        <refname>getcallbackobject</refname>
-        <refpurpose>Return the handle of the object whose callback is executing.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            h = getcallbackobject(objectUID)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>h</term>
-                <listitem>
-                    <para>Handle: the handle of the object whose callback is executing.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>objectUID</term>
-                <listitem>
-                    <para>String: UID of the Java object.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>getcallbackobject</literal> is used to automatically create Scilab variable called <link linkend="gcbo">gcbo</link>
-            each time a callback in executed.
-        </para>
-        <para>
-            <literal>getcallbackobject</literal> returns [] if no callback is currently executed.
-        </para>
-        <para>
-            <literal>getcallbackobject</literal> must not be used directly out of a Java callback.
-        </para>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="gcbo">gcbo</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getcallbackobject" xml:lang="en">
+        <refnamediv>
+            <refname>getcallbackobject</refname>
+            <refpurpose>Return the handle of the object whose callback is executing.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                h = getcallbackobject(objectUID)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>h</term>
+                    <listitem>
+                        <para>Handle: the handle of the object whose callback is executing.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>objectUID</term>
+                    <listitem>
+                        <para>String: UID of the Java object.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                <literal>getcallbackobject</literal> is used to automatically create Scilab variable called <link linkend="gcbo">gcbo</link>
+                each time a callback in executed.
+            </para>
+            <para>
+                <literal>getcallbackobject</literal> returns [] if no callback is currently executed.
+            </para>
+            <para>
+                <literal>getcallbackobject</literal> must not be used directly out of a Java callback.
+            </para>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="gcbo">gcbo</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

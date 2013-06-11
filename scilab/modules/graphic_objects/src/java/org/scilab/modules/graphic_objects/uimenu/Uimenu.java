@@ -78,24 +78,24 @@ public class Uimenu extends GraphicObject {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-        case __GO_UI_ACCELERATOR__ :
-            return UimenuProperty.ACCELERATOR;
-        case __GO_UI_CHECKED__ :
-            return UimenuProperty.CHECKED;
-        case __GO_UI_ENABLE__ :
-            return UimenuProperty.ENABLE;
-        case __GO_UI_FOREGROUNDCOLOR__ :
-            return UimenuProperty.FOREGROUNDCOLOR;
-        case __GO_UI_ICON__ :
-            return UimenuProperty.ICON;
-        case __GO_UI_LABEL__ :
-            return UimenuProperty.LABEL;
-        case __GO_UI_MNEMONIC__ :
-            return UimenuProperty.MNEMONIC;
-        case __GO_UI_SEPARATOR__ :
-            return UimenuProperty.SEPARATOR;
-        default :
-            return super.getPropertyFromName(propertyName);
+            case __GO_UI_ACCELERATOR__ :
+                return UimenuProperty.ACCELERATOR;
+            case __GO_UI_CHECKED__ :
+                return UimenuProperty.CHECKED;
+            case __GO_UI_ENABLE__ :
+                return UimenuProperty.ENABLE;
+            case __GO_UI_FOREGROUNDCOLOR__ :
+                return UimenuProperty.FOREGROUNDCOLOR;
+            case __GO_UI_ICON__ :
+                return UimenuProperty.ICON;
+            case __GO_UI_LABEL__ :
+                return UimenuProperty.LABEL;
+            case __GO_UI_MNEMONIC__ :
+                return UimenuProperty.MNEMONIC;
+            case __GO_UI_SEPARATOR__ :
+                return UimenuProperty.SEPARATOR;
+            default :
+                return super.getPropertyFromName(propertyName);
         }
     }
 

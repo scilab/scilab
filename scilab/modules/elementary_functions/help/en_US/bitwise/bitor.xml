@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
@@ -12,68 +12,68 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitor" xml:lang="en">
-    <refnamediv>
-        <refname>bitor</refname>
-        <refpurpose>bitwise OR</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>
-            z = bitor(x, y)            
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Parameters</title>
-        <variablelist>
-            <varlistentry>
-                <term>x :</term>
-                <listitem>
-                    <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        Must contain positive integer values.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y :</term>
-                <listitem>
-                    <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        Must contain positive integer values.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>z :</term>
-                <listitem>
-                    <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of  integers.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-          Given <varname>x</varname> and <varname>y</varname> two positive integers, this function returns the decimal
-            number <varname>z</varname> whose the binary form is the OR of the binary representations
-              of <varname>x</varname> and <varname>y</varname>.
-        </para>
-        <para>
-            <varname>x</varname>, <varname>y</varname>, <varname>z</varname> have the same size.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitor" xml:lang="en">
+        <refnamediv>
+            <refname>bitor</refname>
+            <refpurpose>bitwise OR</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>
+                z = bitor(x, y)            
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Parameters</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x :</term>
+                    <listitem>
+                        <para>
+                            a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                            or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                            or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                            Must contain positive integer values.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>y :</term>
+                    <listitem>
+                        <para>
+                            a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                            or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                            or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                            Must contain positive integer values.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>z :</term>
+                    <listitem>
+                        <para>
+                            a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                            or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                            or a <literal>m</literal>-by-<literal>n</literal> matrix of  integers.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                Given <varname>x</varname> and <varname>y</varname> two positive integers, this function returns the decimal
+                number <varname>z</varname> whose the binary form is the OR of the binary representations
+                of <varname>x</varname> and <varname>y</varname>.
+            </para>
+            <para>
+                <varname>x</varname>, <varname>y</varname>, <varname>z</varname> have the same size.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[
 // '110000' : is the binary representation of 48 
 // '100101' : is the binary representation of 37   
 // '110101' : is the binary representation for the OR applied to the binary forms 48 and 37 
@@ -110,19 +110,19 @@ bitor(uint8(13), uint8(27))
 bitor(13, 27)
 
    ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="bitand">bitand</link>
-            </member>
-            <member>
-                <link linkend="bin2dec">bin2dec</link>
-            </member>
-            <member>
-                <link linkend="dec2bin">dec2bin</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="bitand">bitand</link>
+                </member>
+                <member>
+                    <link linkend="bin2dec">bin2dec</link>
+                </member>
+                <member>
+                    <link linkend="dec2bin">dec2bin</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

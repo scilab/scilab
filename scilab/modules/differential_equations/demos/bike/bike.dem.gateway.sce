@@ -5,12 +5,12 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function subdemolist = bike_demo_gateway()
-  demopath = get_absolute_file_path("bike.dem.gateway.sce");
+    demopath = get_absolute_file_path("bike.dem.gateway.sce");
 
-  subdemolist = ["unstable trajectory"  , "bike1.dem.sce" ; ..
-                 "stable trajectory!"   , "bike2.dem.sce" ];
+    subdemolist = ["unstable trajectory"  , "bike1.dem.sce" ; ..
+    "stable trajectory!"   , "bike2.dem.sce" ];
 
-  subdemolist(:,2) = demopath + subdemolist(:,2);
+    subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction
 
 subdemolist = bike_demo_gateway();

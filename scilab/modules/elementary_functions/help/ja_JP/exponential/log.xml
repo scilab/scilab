@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,55 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="log" xml:lang="ja">
-    <refnamediv>
-        <refname>log</refname>
-        <refpurpose>自然対数</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>y=log(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>定数ベクトルまたは定数行列</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>log(x)</literal> は"要素毎の" 対数です.
-            <literal>y(i,j)=log(x(i,j))</literal>. 行列の対数の場合,
-            <literal>logm</literal>を使用してください.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="log" xml:lang="ja">
+        <refnamediv>
+            <refname>log</refname>
+            <refpurpose>自然対数</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>y=log(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータ</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>定数ベクトルまたは定数行列</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                <literal>log(x)</literal> は"要素毎の" 対数です.
+                <literal>y(i,j)=log(x(i,j))</literal>. 行列の対数の場合,
+                <literal>logm</literal>を使用してください.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 exp(log([1,%i,-1,-%i]))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="exp">exp</link>
-            </member>
-            <member>
-                <link linkend="logm">logm</link>
-            </member>
-            <member>
-                <link linkend="log10">log10</link>
-            </member>
-            <member>
-                <link linkend="ieee">ieee</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="exp">exp</link>
+                </member>
+                <member>
+                    <link linkend="logm">logm</link>
+                </member>
+                <member>
+                    <link linkend="log10">log10</link>
+                </member>
+                <member>
+                    <link linkend="ieee">ieee</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

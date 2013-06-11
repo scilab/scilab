@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- * 
+ *
  * This file is released under the 3-clause BSD license. See COPYING-BSD.
  */
 
@@ -10,10 +10,10 @@
 
 /****************************************
  *     exemple with a call to ReadMatrix
- *     -->param=[0.04,10000,3d+7]; 
- *     -->link('ext11c.o','ext11c','C')  
- *     -->y=ode([1;0;0],0,[0.4,4],'ext11c') 
- *     param must be defined as a scilab variable 
+ *     -->param=[0.04,10000,3d+7];
+ *     -->link('ext11c.o','ext11c','C')
+ *     -->y=ode([1;0;0],0,[0.4,4],'ext11c')
+ *     param must be defined as a scilab variable
  *********************************/
 
 int ext11c(int *neq, double *t, double *y, double *ydot)

@@ -56,10 +56,10 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
         [OSNAME,ARCH,LINUX,MACOSX,SOLARIS,BSD] = atomsGetPlatform();
 
         description_files = [ ..
-            atomsPath("system","allusers") + "DESCRIPTION_installed" "" ; ..
-            atomsPath("system","user")     + "DESCRIPTION_installed" "" ; ..
-            atomsPath("system","session")  + "DESCRIPTION_installed" "" ; ..
-            atomsPath("system","session")  + "DESCRIPTION_archives"  "" ];
+        atomsPath("system","allusers") + "DESCRIPTION_installed" "" ; ..
+        atomsPath("system","user")     + "DESCRIPTION_installed" "" ; ..
+        atomsPath("system","session")  + "DESCRIPTION_installed" "" ; ..
+        atomsPath("system","session")  + "DESCRIPTION_archives"  "" ];
 
         // 1st step : Loop on available repositories
         // ---------------------------------------------------------------------
@@ -167,8 +167,8 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 
         save(packages_path,packages,categories,categories_flat)
 
-    // Just load from file
-    // =========================================================================
+        // Just load from file
+        // =========================================================================
 
     else
         load(packages_path,"packages","categories","categories_flat");

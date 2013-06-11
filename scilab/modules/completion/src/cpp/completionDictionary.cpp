@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -32,7 +32,7 @@ char **getAllDictionary(int *sizeArrayReturned)
     *sizeArrayReturned = (int)symbol::Symbol::map_size();
     wchar_t** allSymbols = symbol::Symbol::get_all();
 
-    pStrAllSymbols = static_cast<char**>(MALLOC(sizeof(char*)*(*sizeArrayReturned)));
+    pStrAllSymbols = static_cast<char**>(MALLOC(sizeof(char*) * (*sizeArrayReturned)));
     if (pStrAllSymbols)
     {
         for (int i = 0 ; i <  ( *sizeArrayReturned) ; i++)
@@ -312,7 +312,7 @@ char **getKeywordsDictionary(int *sizeArrayReturned)
     if (pStrKeyWords)
     {
         pStrKeyWords = SortDictionary(pStrKeyWords, *sizeArrayReturned);
-        pStrKeyWords = RemoveDuplicateDictionary(pStrKeyWords, sizeArrayReturned);	
+        pStrKeyWords = RemoveDuplicateDictionary(pStrKeyWords, sizeArrayReturned);
     }
     return pStrKeyWords;
 }

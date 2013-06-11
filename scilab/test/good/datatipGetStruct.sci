@@ -8,6 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function t=datatipGetStruct(curve)
-//to be customized when a specific field will be dedicated to datatips
-  t=curve.user_data
+    //to be customized when a specific field will be dedicated to datatips
+    t=curve.user_data
 endfunction

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * 
@@ -10,11 +10,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<project name="completion" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.completion.name}"/>
-  <property name="library.title" value="Scilab commands completion"/>
-  <description>
-	Build "completion" module
-  </description>
-</project>
+    <project name="completion" default="jar">
+        <import file="../../build.incl.xml"/>
+        <property name="library.name" value="${library.completion.name}"/>
+        <property name="library.title" value="Scilab commands completion"/>
+        <description>
+            Build "completion" module
+        </description>
+    </project>

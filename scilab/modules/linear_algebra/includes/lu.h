@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY 
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,11 +13,11 @@
 #define LU_H
 #include "dynlib_linear_algebra.h"
 /**
- * iLuM performs memory allocations and computes (calling iLu) LU decomposition 
+ * iLuM performs memory allocations and computes (calling iLu) LU decomposition
  * in :
  * @param pData double* pointer to memory (either in 'd' or 'z' format) of argument matrix
- * @param iRows int number of rows 
- * @param iCols int number of columns 
+ * @param iRows int number of rows
+ * @param iCols int number of columns
  * @param complexArg int (really bool) tells if data is in real (in 'd' format) or complex (in 'z' format)
  * out :
  * @param pdblLData double* pointer to memory (either in 'd' or 'z' format) where L result will be stored
@@ -28,6 +28,6 @@
  */
 LINEAR_ALGEBRA_IMPEXP int iLuM(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pbdlEData );
 LINEAR_ALGEBRA_IMPEXP int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pbdlEData
-	       , int* piPivot, int* piWork, double* pdblWork);
+                              , int* piPivot, int* piWork, double* pdblWork);
 
 #endif

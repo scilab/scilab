@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,56 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sin" xml:lang="ja">
-    <refnamediv>
-        <refname>sin</refname>
-        <refpurpose>正弦関数</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>[t]=sin(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>実数または複素数のベクトルまたは行列</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            ベクトルまたは行列の場合, <literal>sin(x)</literal> はその要素の
-            正弦となります. 行列の正弦の場合はm<literal>sinm(X)</literal>関数を
-            使用してください.
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <scilab:image>
-            x = -%pi*2:.05:%pi*2;
-            plot(x,sin(x))
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sin" xml:lang="ja">
+        <refnamediv>
+            <refname>sin</refname>
+            <refpurpose>正弦関数</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>呼び出し手順</title>
+            <synopsis>[t]=sin(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>パラメータ</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>実数または複素数のベクトルまたは行列</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>説明</title>
+            <para>
+                ベクトルまたは行列の場合, <literal>sin(x)</literal> はその要素の
+                正弦となります. 行列の正弦の場合はm<literal>sinm(X)</literal>関数を
+                使用してください.
+            </para>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <scilab:image>
+                x = -%pi*2:.05:%pi*2;
+                plot(x,sin(x))
+            </scilab:image>
+        </refsection>
+        <refsection>
+            <title>例</title>
+            <programlisting role="example"><![CDATA[ 
 asin(sin([1,0,%i]))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="sinm">sinm</link>
-            </member>
-            <member>
-                <link linkend="asin">asin</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>参照</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="sinm">sinm</link>
+                </member>
+                <member>
+                    <link linkend="asin">asin</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

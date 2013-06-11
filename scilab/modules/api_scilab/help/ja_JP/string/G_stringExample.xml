@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
+    <?xml version="1.0" encoding="utf-8"?>
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,44 +11,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="stringExample" xml:lang="ja">
     
-    <refnamediv>
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="stringExample" xml:lang="ja">
         
-        <refname>文字列の例</refname>
-        
-        <refpurpose>
+        <refnamediv>
             
-            文字列の使用例.
+            <refname>文字列の例</refname>
             
-        </refpurpose>
-        
-    </refnamediv>
-    
-    <refsection>
-        
-        <title>説明</title>
-        
-        <para>この例は文字列変数を取得し,Scilabに戻すものです
+            <refpurpose>
+                
+                文字列の使用例.
+                
+            </refpurpose>
             
-        </para>
+        </refnamediv>
         
-    </refsection>
-    
-    <refsection>
+        <refsection>
+            
+            <title>説明</title>
+            
+            <para>この例は文字列変数を取得し,Scilabに戻すものです
+                
+            </para>
+            
+        </refsection>
         
-        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/stringExample.c-->
-        
-        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/stringExample.tst-->
-        
-        <!--Lib_name: stringExample-->
-        
-        <!--Func_list: stringExample-->
-        
-        <title>ゲートウェイソース</title>
-        
-        <programlisting role="code_gateway"><![CDATA[ 
+        <refsection>
+            
+            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/stringExample.c-->
+            
+            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/stringExample.tst-->
+            
+            <!--Lib_name: stringExample-->
+            
+            <!--Func_list: stringExample-->
+            
+            <title>ゲートウェイソース</title>
+            
+            <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int stringExample(char *fname,unsigned long fname_len)
 {
@@ -122,21 +122,21 @@ int stringExample(char *fname,unsigned long fname_len)
 	return 0;
 }
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
-    
-    <refsection>
-        
-        <title>Scilab テストスクリプト</title>
-        
-        <programlisting role="code_scilab"><![CDATA[ 
+        <refsection>
+            
+            <title>Scilab テストスクリプト</title>
+            
+            <programlisting role="code_scilab"><![CDATA[ 
 a = "Scilab";
 b = ["New","Scilab";"API","functions"];
 if stringExample(a) <> a then pause, end
 if stringExample(b) <> b then pause, end
  ]]></programlisting>
+            
+        </refsection>
         
-    </refsection>
+    </refentry>
     
-</refentry>
-

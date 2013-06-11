@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * 
@@ -10,37 +10,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="sda">
-    <refnamediv>
-        <refname>sda</refname>
-        <refpurpose>Set default axes. </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Calling Sequence</title>
-        <synopsis>sda()
-            a = gda(); set(a,"default_values",1)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>handle, the handle of the default axes.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            This routine resets the axes' model to default values.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="sda">
+        <refnamediv>
+            <refname>sda</refname>
+            <refpurpose>Set default axes. </refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Calling Sequence</title>
+            <synopsis>sda()
+                a = gda(); set(a,"default_values",1)
+            </synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Arguments</title>
+            <variablelist>
+                <varlistentry>
+                    <term>a</term>
+                    <listitem>
+                        <para>handle, the handle of the default axes.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Description</title>
+            <para>
+                This routine resets the axes' model to default values.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Examples</title>
+            <programlisting role="example"><![CDATA[ 
 x=[0:0.1:2*%pi]';
 f=get("default_figure"); // get the handle of the model figure 
 a=get("default_axes");   // get the handle of the model axes 
@@ -70,25 +70,25 @@ plot2d(x-6,[2*cos(x)+.7 2*cos(x)+.9 cos(2*x) .2+sin(3*x)],[-1,-2,-3 -4])
 xdel(0)
 plot2d(x-2,sin(x))
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="sdf">sdf</link>
-            </member>
-            <member>
-                <link linkend="gda">gda</link>
-            </member>
-            <member>
-                <link linkend="gdf">gdf</link>
-            </member>
-            <member>
-                <link linkend="set">set</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>See Also</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="sdf">sdf</link>
+                </member>
+                <member>
+                    <link linkend="gda">gda</link>
+                </member>
+                <member>
+                    <link linkend="gdf">gdf</link>
+                </member>
+                <member>
+                    <link linkend="set">set</link>
+                </member>
+                <member>
+                    <link linkend="graphics_entities">graphics_entities</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

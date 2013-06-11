@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,62 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="acosd" xml:lang="ru">
-    <refnamediv>
-        <refname>acosd</refname>
-        <refpurpose>поэлементный арккосинус, результат в градусах.</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>Последовательность вызова</title>
-        <synopsis>t = acosd(x)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>Аргументы</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>матрица или вектор вещественных или комплексных значений.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>матрица или вектор вещественных или комплексных значений.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Описание</title>
-        <para>
-            Элементы <varname>t</varname> являются значениями арккосинуса, в градусах,
-            соответствующих элементов <varname>x</varname> (<code>t=acos(x)*180/%pi</code>).
-            Для вещественных данных в <literal>[-1, 1]</literal> результаты  являются вещественными
-            в <literal>[0 180]</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Образец</title>
-        <scilab:image>
-            x=-0.99:0.1:0.99;
-            plot(x,acosd(x))
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="acosd" xml:lang="ru">
+        <refnamediv>
+            <refname>acosd</refname>
+            <refpurpose>поэлементный арккосинус, результат в градусах.</refpurpose>
+        </refnamediv>
+        <refsynopsisdiv>
+            <title>Последовательность вызова</title>
+            <synopsis>t = acosd(x)</synopsis>
+        </refsynopsisdiv>
+        <refsection>
+            <title>Аргументы</title>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>матрица или вектор вещественных или комплексных значений.</para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>t</term>
+                    <listitem>
+                        <para>матрица или вектор вещественных или комплексных значений.</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsection>
+        <refsection>
+            <title>Описание</title>
+            <para>
+                Элементы <varname>t</varname> являются значениями арккосинуса, в градусах,
+                соответствующих элементов <varname>x</varname> (<code>t=acos(x)*180/%pi</code>).
+                Для вещественных данных в <literal>[-1, 1]</literal> результаты  являются вещественными
+                в <literal>[0 180]</literal>.
+            </para>
+        </refsection>
+        <refsection>
+            <title>Образец</title>
+            <scilab:image>
+                x=-0.99:0.1:0.99;
+                plot(x,acosd(x))
+            </scilab:image>
+        </refsection>
+        <refsection>
+            <title>Примеры</title>
+            <programlisting role="example"><![CDATA[ 
 x=[-1 0 1 sqrt(2)/2 -sqrt(2)/2 sqrt(3)/2 -sqrt(3)/2];
 acosd(x)
  ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="acos">acos</link>
-                <link linkend="cos">cos</link>
-            </member>
-        </simplelist>
-    </refsection>
-</refentry>
+        </refsection>
+        <refsection role="see also">
+            <title>Смотрите также</title>
+            <simplelist type="inline">
+                <member>
+                    <link linkend="acos">acos</link>
+                    <link linkend="cos">cos</link>
+                </member>
+            </simplelist>
+        </refsection>
+    </refentry>

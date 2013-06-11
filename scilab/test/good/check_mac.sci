@@ -20,10 +20,10 @@
 //
 
 function ok=check_mac(txt)
-//errcatch doesnt work poperly
-  ok=%t
-  if execstr('comp(mac)','errcatch')<>0 then
-   messagebox(['Incorrect syntax: ';lasterror()],'modal')
-    ok=%f
-  end
+    //errcatch doesnt work poperly
+    ok=%t
+    if execstr("comp(mac)","errcatch")<>0 then
+        messagebox(["Incorrect syntax: ";lasterror()],"modal")
+        ok=%f
+    end
 endfunction

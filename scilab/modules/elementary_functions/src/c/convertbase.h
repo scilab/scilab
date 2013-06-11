@@ -1,22 +1,22 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __CONVERTBASE_H__
 #define __CONVERTBASE_H__
 
 #include "dynlib_elementary_functions.h"
 
 typedef enum
-{ 
+{
     ERROR_CONVERTBASE_OK = 0,
     ERROR_CONVERTBASE_NOK = 1,
     ERROR_CONVERTBASE_NOT_INTEGER_VALUE = 2,
@@ -29,7 +29,7 @@ typedef enum
 * convert from base b to decimal
 * @param string base
 * @param int base
-* @param[out] int if 0 no error  
+* @param[out] int if 0 no error
 * @return converted value (decimal)
 */
 ELEMENTARY_FUNCTIONS_IMPEXP double convertBase2Dec(const char *pStr, int numberbase, error_convertbase *err);
@@ -45,4 +45,4 @@ ELEMENTARY_FUNCTIONS_IMPEXP double convertBase2Dec(const char *pStr, int numberb
 ELEMENTARY_FUNCTIONS_IMPEXP char **convertMatrixOfDec2Base(const double* dValues, int mn, int numberbase, unsigned int nbDigits, error_convertbase *err);
 
 #endif /* __CONVERTBASE_H__ */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

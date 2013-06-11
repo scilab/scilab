@@ -21,10 +21,10 @@
 
 function XcosMenuDuplicate()
 
-  Cmenu = []; // Cmenu XcosMenuQuit can come out
+    Cmenu = []; // Cmenu XcosMenuQuit can come out
 
-  [scs_m,needcompile,Select] = do_duplicate(%pt, scs_m, needcompile,Select) ;
-  
-  %pt = [];
+    [scs_m,needcompile,Select] = do_duplicate(%pt, scs_m, needcompile,Select) ;
+
+    %pt = [];
 
 endfunction

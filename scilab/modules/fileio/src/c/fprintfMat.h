@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -14,7 +14,8 @@
 #define __FPRINTFMAT_H__
 
 #include "dynlib_fileio.h"
-typedef enum { 
+typedef enum
+{
     FPRINTFMAT_NO_ERROR = 0,
     FPRINTFMAT_FOPEN_ERROR = 1,
     FPRINTMAT_FORMAT_ERROR = 2,
@@ -26,8 +27,8 @@ typedef enum {
 #define DEFAULT_FPRINTFMAT_SEPARATOR " "
 
 FILEIO_IMPEXP fprintfMatError fprintfMat(char *filename, char *format, char *separator,
-                           double *MatrixValues, int m, int n,
-                           char **textAdded, int sizeTextAdded);
+        double *MatrixValues, int m, int n,
+        char **textAdded, int sizeTextAdded);
 
 #endif /* __FPRINTFMAT_H__ */
 /*--------------------------------------------------------------------------*/

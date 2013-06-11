@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan SIMON
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -38,7 +38,7 @@ public final class SetContextAction extends SimulationNotRunningAction {
 
     /**
      * Constructor
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      */
@@ -48,7 +48,7 @@ public final class SetContextAction extends SimulationNotRunningAction {
 
     /**
      * Create the associated menu
-     * 
+     *
      * @param scilabGraph
      *            corresponding Scilab Graph
      * @return the menu
@@ -59,7 +59,7 @@ public final class SetContextAction extends SimulationNotRunningAction {
 
     /**
      * Action !
-     * 
+     *
      * @param e
      *            the event
      * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
@@ -73,9 +73,9 @@ public final class SetContextAction extends SimulationNotRunningAction {
         if (comp.isEditing()) {
             return;
         }
-        
+
         final SetContextDialog dialog = new SetContextDialog(
-                comp, graph, graph.getScicosParameters());
+            comp, graph, graph.getScicosParameters());
 
         dialog.pack();
         dialog.setVisible(true);

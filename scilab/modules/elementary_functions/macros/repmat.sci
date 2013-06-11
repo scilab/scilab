@@ -20,7 +20,7 @@ function B = repmat(A,varargin)
         if typeof(varargin(1)) <> "constant" then
             error(msprintf(_("%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
         end
-        if size(varargin(1),'*')<>1 & isempty(find(size(varargin(1))==1)) then
+        if size(varargin(1),"*")<>1 & isempty(find(size(varargin(1))==1)) then
             error(msprintf(_("%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"), "repmat", 2))
         end
     else
@@ -39,18 +39,18 @@ function B = repmat(A,varargin)
             B=rlist(repmat(A.num,varargin(:)),repmat(A.den,varargin(:)),A.dt)
             return
         else
-            execstr('B=%'+typeof(A)+"_repmat(A,varargin(:))")
+            execstr("B=%"+typeof(A)+"_repmat(A,varargin(:))")
             return
         end
     end
 
     if narg==1 then
-        if size(varargin(1),'*')==1 then
+        if size(varargin(1),"*")==1 then
             siz=list(varargin(1),varargin(1))
         else //convert array into list
             tmp=varargin(1)
             siz=list();
-            for i=1:size(tmp,'*'),siz(i)=tmp(i); end
+            for i=1:size(tmp,"*"),siz(i)=tmp(i); end
         end
     else
         siz=list();
@@ -71,7 +71,7 @@ function B = repmat(A,varargin)
         nd=nd-1
     end
     sizA=size(A)
-    nda=size(sizA,'*')
+    nda=size(sizA,"*")
 
     if and(sizA==1) then //scalar case
 

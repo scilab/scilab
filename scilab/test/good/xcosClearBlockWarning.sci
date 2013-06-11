@@ -11,10 +11,10 @@
 //
 
 function xcosClearBlockWarning(k, win)
-  for i = k'
-    if typeof(scs_m.objs(i)) == "Block"
-      warnBlockByUID(scs_m.objs(i).doc(1), "");
+    for i = k'
+        if typeof(scs_m.objs(i)) == "Block"
+            warnBlockByUID(scs_m.objs(i).doc(1), "");
+        end
     end
-  end 
 
 endfunction

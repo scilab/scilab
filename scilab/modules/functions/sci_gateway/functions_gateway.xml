@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
-<!--
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+    <!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
@@ -18,12 +18,12 @@
 
  Don't touch if you do not know what you are doing
 -->
-<module name="functions">
-    <gateway name="sci_exec"                function="exec"                 type="1" />
-    <gateway name="sci_execstr"             function="execstr"              type="1" />
-    <gateway name="sci_funclist"            function="funclist"             type="1" />
-    <gateway name="sci_whereis"             function="whereis"              type="1" />
-    <gateway name="sci_getCurrentThreadId"  function="getCurrentThreadId"   type="1" />
-    <gateway name="sci_getThreads"          function="getThreads"           type="1" />
-    <gateway name="sci_macrovar"            function="macrovar"           type="1" />
-</module>
+    <module name="functions">
+        <gateway name="sci_exec"                function="exec"                 type="1" />
+        <gateway name="sci_execstr"             function="execstr"              type="1" />
+        <gateway name="sci_funclist"            function="funclist"             type="1" />
+        <gateway name="sci_whereis"             function="whereis"              type="1" />
+        <gateway name="sci_getCurrentThreadId"  function="getCurrentThreadId"   type="1" />
+        <gateway name="sci_getThreads"          function="getThreads"           type="1" />
+        <gateway name="sci_macrovar"            function="macrovar"           type="1" />
+    </module>

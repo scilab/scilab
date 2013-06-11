@@ -23,10 +23,10 @@ extern "C"
 class BooleanModule
 {
 private :
-	BooleanModule(){};
-	~BooleanModule(){};
+    BooleanModule() {};
+    ~BooleanModule() {};
 public :
-	BOOLEAN_GW_IMPEXP static int Load();
+    BOOLEAN_GW_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_bool2s);

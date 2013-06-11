@@ -39,13 +39,13 @@ inline int macOSwcscasecmp(const wchar_t *_pwcsS1, const wchar_t *_pwcsS2)
     wcscpy(pwcsLowerS2, _pwcsS2);
 
     // Lower S1
-    for(i = 0 ; i < wcslen(_pwcsS1) ; ++i)
+    for (i = 0 ; i < wcslen(_pwcsS1) ; ++i)
     {
         pwcsLowerS1[i] = towlower(_pwcsS1[i]);
     }
 
     // Lower S2
-    for(i = 0 ; i < wcslen(_pwcsS2) ; ++i)
+    for (i = 0 ; i < wcslen(_pwcsS2) ; ++i)
     {
         pwcsLowerS2[i] = towlower(_pwcsS2[i]);
     }

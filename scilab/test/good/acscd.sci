@@ -7,9 +7,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = acscd(x)
-//Inverse cosecant, result in degrees.
-  if ~isreal(x) then
-    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"asecd",1));
-  end
-  y = 180/%pi*asin(ones(x)./x);
+    //Inverse cosecant, result in degrees.
+    if ~isreal(x) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"asecd",1));
+    end
+    y = 180/%pi*asin(ones(x)./x);
 endfunction

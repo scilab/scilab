@@ -124,10 +124,10 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                 missingfield = atomsCheckFields( current_toolbox );
                 if ~ isempty(missingfield) then
                     error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
-                        "atomsDESCRIPTIONread",..
-                        file_in,current_toolbox("Toolbox"),..
-                        current_toolbox("Version"),..
-                        missingfield));
+                    "atomsDESCRIPTIONread",..
+                    file_in,current_toolbox("Toolbox"),..
+                    current_toolbox("Version"),..
+                    missingfield));
                 end
 
                 // Register the current toolbox : Check the scilab version
@@ -168,10 +168,10 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
                     missingfield = atomsCheckFields( current_toolbox );
                     if ~ isempty(missingfield) then
                         error(msprintf(gettext("%s: The file ""%s"" is not well formated, the toolbox ""%s - %s"" doesn''t contain the %s field\n"), ..
-                            "atomsDESCRIPTIONread",..
-                            file_in,current_toolbox("Toolbox"),..
-                            current_toolbox("Version"),..
-                            missingfield));
+                        "atomsDESCRIPTIONread",..
+                        file_in,current_toolbox("Toolbox"),..
+                        current_toolbox("Version"),..
+                        missingfield));
                     end
 
                     // Register the current toolbox : Check the scilab version
@@ -212,7 +212,7 @@ function description_out = atomsDESCRIPTIONread(file_in,additional)
             if isfield(additional,"repository") & ..
                 ( regexp(current_field,"/^(source|binary|windows|linux|macosx|solaris|bsd)(32|64)?Url$/","o")<>[] | current_field=="URL" ) & ..
                 regexp(current_value,"/^(http(s)?|ftp(s)?|file)\:\/\//","o")==[] then
-                    current_value = additional("repository") + current_value;
+                current_value = additional("repository") + current_value;
             end
 
             current_toolbox(current_field) = current_value;
@@ -365,18 +365,18 @@ function field = atomsCheckFields( module )
     field = "";
 
     mandatory = [             ..
-        "Toolbox"           ; ..
-        "Title"             ; ..
-        "Summary"           ; ..
-        "Version"           ; ..
-        "Author"            ; ..
-        "Maintainer"        ; ..
-        "Category"          ; ..
-        "Entity"            ; ..
-        "License"           ; ..
-        "ScilabVersion"     ; ..
-        "Depends"           ; ..
-        "Date"              ];
+    "Toolbox"           ; ..
+    "Title"             ; ..
+    "Summary"           ; ..
+    "Version"           ; ..
+    "Author"            ; ..
+    "Maintainer"        ; ..
+    "Category"          ; ..
+    "Entity"            ; ..
+    "License"           ; ..
+    "ScilabVersion"     ; ..
+    "Depends"           ; ..
+    "Date"              ];
 
     for i=1:size(mandatory,"*")
         if ~ isfield(module,mandatory(i)) then
