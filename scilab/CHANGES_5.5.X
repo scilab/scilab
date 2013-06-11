@@ -45,6 +45,13 @@ Syntax changes
 * Vector ^ scalar syntax declared obsolete. See bug #11524
 
 
+Improvements
+=============
+
+* graypolarplot has been improved in term of performance and rendering.
+  See bug #12641
+
+
 Obsolete
 =========
 
@@ -98,6 +105,9 @@ Xcos
 * Bug #12619 fixed - The discrete block DLR was not displaying latex formula
                      like continuous CLR block.
 
+* Bug #12651 fixed - The 'nw' scicos_simulate option did not work while
+                     passing a previous Info simulation status.
+
 
 Toolbox skeleton
 =================
@@ -136,6 +146,8 @@ Bug fixes
 * Bug #6988 fixed - Error messages in modules/data_structures/src/c/hmops.c were not standard.
 
 * Bug #7026 fixed - There was no unit test for plot2d.
+
+* Bug #7080 fixed - Some graphics macros did not use standard error messages.
 
 * Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
                     returned an error.
@@ -249,6 +261,8 @@ Bug fixes
 * Bug #12070 fixed - Removing a module can now be done in on-line mode even if
                      it installed in off-line mode.
 
+* Bug #12080 fixed - lsqrsolve always printed messages.
+
 * Bug #12085 fixed - On Windows csvWrite wrote wrong EOL.
 
 * Bug #12143 fixed - "stop entity picker" (ged(11)) returned an error message.
@@ -325,4 +339,10 @@ Bug fixes
 * Bug #12634 fixed - ATOMS modules could not be installed from an archive file
                      already existing in SCI/contrib/archives in offline mode.
 
+* Bug #12637 fixed - Some signal processing functions were not in the correct
+                     section of the help pages.
+
 * Bug #12639 fixed - justify([], position) returned an error instead of [].
+
+* Bug #12641 fixed - graypolarplot() was slow and has been fully vectorized.
+

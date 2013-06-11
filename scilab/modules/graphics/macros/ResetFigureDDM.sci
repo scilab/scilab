@@ -17,7 +17,7 @@ if type(cur_figure) == 9
   if cur_figure.type == "Figure"
     cur_figure.immediate_drawing = cur_draw_mode;
   else
-    warning("Error in ResetFigureDDM : input argument must be a figure graphic handle");
+    warning(msprintf(gettext("%s: Wrong type for input argument #%d: figure graphic handle expected.\n"),"ResetFigureDDM",1));
     return;
   end
 end
