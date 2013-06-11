@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,83 +10,83 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="htrianr" xml:lang="en">
-        <refnamediv>
-            <refname>htrianr</refname>
-            <refpurpose>triangularização de matrizes de polinômios</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title> Seqüência de Chamamento </title>
-            <synopsis>[Ar,U,rk]=htrianr(A)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title> Parâmetros </title>
-            <variablelist>
-                <varlistentry>
-                    <term>A</term>
-                    <listitem>
-                        <para>matriz de polinômios</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>Ar</term>
-                    <listitem>
-                        <para>matriz de polinômios</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>U</term>
-                    <listitem>
-                        <para>matriz unimodular de polinômios </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>rk</term>
-                    <listitem>
-                        <para>
-                            inteiro, posto normal def <literal>A</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>Triangularização da matriz de polinômios
-                <literal>A</literal>.
-            </para>
-            <para>
-                <literal>A</literal> is <literal>[m,n]</literal> , <literal>m &lt;=
-                    n
-                </literal>
-                .
-            </para>
-            <para>
-                <literal>Ar=A*U</literal>
-            </para>
-            <para>Aviso: há eliminação de termos "pequenos" (ver código da
-                função).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="htrianr" xml:lang="en">
+    <refnamediv>
+        <refname>htrianr</refname>
+        <refpurpose>triangularização de matrizes de polinômios</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>[Ar,U,rk]=htrianr(A)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title> Parâmetros </title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>matriz de polinômios</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Ar</term>
+                <listitem>
+                    <para>matriz de polinômios</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>matriz unimodular de polinômios </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rk</term>
+                <listitem>
+                    <para>
+                        inteiro, posto normal def <literal>A</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Triangularização da matriz de polinômios
+            <literal>A</literal>.
+        </para>
+        <para>
+            <literal>A</literal> is <literal>[m,n]</literal> , <literal>m &lt;=
+                n
+            </literal>
+            .
+        </para>
+        <para>
+            <literal>Ar=A*U</literal>
+        </para>
+        <para>Aviso: há eliminação de termos "pequenos" (ver código da
+            função).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 x=poly(0,'x');
 M=[x;x^2;2+x^3]*[1,x-2,x^4];
 [Mu,U,rk]=htrianr(M)
 det(U)
 M*U(:,1:2)
  ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title> Ver Também </title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="hrmt">hrmt</link>
-                </member>
-                <member>
-                    <link linkend="colcompr">colcompr</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hrmt">hrmt</link>
+            </member>
+            <member>
+                <link linkend="colcompr">colcompr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

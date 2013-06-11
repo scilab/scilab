@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
@@ -10,47 +10,47 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlDocument" xml:lang="en">
-        <refnamediv>
-            <refname>xmlDocument</refname>
-            <refpurpose>Create a new XML document</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                doc = xmlDocument([uri, [, version]])
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>uri</term>
-                    <listitem>
-                        <para>a string giving document uri</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>version</term>
-                    <listitem>
-                        <para>a string giving the XML version ofthe document</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>doc</term>
-                    <listitem>
-                        <para>a mlist typed XMLDoc</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>Create a new XML document.</para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlDocument" xml:lang="en">
+    <refnamediv>
+        <refname>xmlDocument</refname>
+        <refpurpose>Create a new XML document</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            doc = xmlDocument([uri, [, version]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>uri</term>
+                <listitem>
+                    <para>a string giving document uri</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>version</term>
+                <listitem>
+                    <para>a string giving the XML version ofthe document</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>doc</term>
+                <listitem>
+                    <para>a mlist typed XMLDoc</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Create a new XML document.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     doc = xmlDocument("TMPDIR/foo.xml");
     root = xmlElement(doc, "root");
     root.attributes.attr = "value";
@@ -65,25 +65,25 @@
 
     xmlDelete(doc);
     ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="XMLObjects">XML Objects</link>
-                </member>
-                <member>
-                    <link linkend="xmlElement">xmlElement</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>XML module introduced.</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="XMLObjects">XML Objects</link>
+            </member>
+            <member>
+                <link linkend="xmlElement">xmlElement</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XML module introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

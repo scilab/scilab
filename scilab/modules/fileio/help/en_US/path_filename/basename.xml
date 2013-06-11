@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,69 +11,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="basename" xml:lang="en">
-        <refnamediv>
-            <refname>basename</refname>
-            <refpurpose>strip directory and suffix from filenames</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>processedfiles = basename(files[,flag [,flagexpand]])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>files</term>
-                    <listitem>
-                        <para>a string matrix giving a set of file names.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>flag</term>
-                    <listitem>
-                        <para>optional boolean, used to convert the given path(s) for the current operating system.
-                            Default value is true (<constant>%t</constant>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>flagexpand</term>
-                    <listitem>
-                        <para>optional boolean, used to expand leading 
-                            variables in paths. Only used with 
-                            <varname>flag</varname> argument. Default value 
-                            is true (<constant>%t</constant>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>processedFiles</term>
-                    <listitem>
-                        <para>a string matrix containing the processed filenames.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <code>basename(files)</code> returns the suffixs of paths, i.e. the last string following the final file separator for each path given in <varname>files</varname>.
-            </para>
-            <para>
-                If <varname>flag</varname> is true the paths are first converted for the current operating system (for example, 'C:/Tmp/folder' will be converted on Windows to 'C:\Tmp\folder').
-            </para>
-            <para>
-                if <varname>flagexpand</varname> is true, leading path variables (HOME, SCI, SCIHOME, ...) are expanded for the current operating system
-                (for example, 'HOME\tmp' will be converted on Linux to 'home/&lt;user&gt;/tmp', where &lt;user&gt; is the current user logged on).
-            </para>
-            <para>
-                See more details on <varname>flag</varname> and <varname>flagexpand</varname> in <link linkend="pathconvert">pathconvert</link> section.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="basename" xml:lang="en">
+    <refnamediv>
+        <refname>basename</refname>
+        <refpurpose>strip directory and suffix from filenames</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>processedfiles = basename(files[,flag [,flagexpand]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>files</term>
+                <listitem>
+                    <para>a string matrix giving a set of file names.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>optional boolean, used to convert the given path(s) for the current operating system.
+                        Default value is true (<constant>%t</constant>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flagexpand</term>
+                <listitem>
+                    <para>optional boolean, used to expand leading 
+                        variables in paths. Only used with 
+                        <varname>flag</varname> argument. Default value 
+                        is true (<constant>%t</constant>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>processedFiles</term>
+                <listitem>
+                    <para>a string matrix containing the processed filenames.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>basename(files)</code> returns the suffixs of paths, i.e. the last string following the final file separator for each path given in <varname>files</varname>.
+        </para>
+        <para>
+            If <varname>flag</varname> is true the paths are first converted for the current operating system (for example, 'C:/Tmp/folder' will be converted on Windows to 'C:\Tmp\folder').
+        </para>
+        <para>
+            if <varname>flagexpand</varname> is true, leading path variables (HOME, SCI, SCIHOME, ...) are expanded for the current operating system
+            (for example, 'HOME\tmp' will be converted on Linux to 'home/&lt;user&gt;/tmp', where &lt;user&gt; is the current user logged on).
+        </para>
+        <para>
+            See more details on <varname>flag</varname> and <varname>flagexpand</varname> in <link linkend="pathconvert">pathconvert</link> section.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 files=basename('/tmp/poo')
 files=basename('/tmp/poo.sci')
 files=basename('/tmp/poo.bak.sci')
@@ -87,19 +87,19 @@ files=basename('C:\tmp\')
 
 files=basename(['SCI/etc/scilab.start', 'SCI/etc/scilab.quit'])
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="listfiles">listfiles</link>
-                </member>
-                <member>
-                    <link linkend="pathconvert">pathconvert</link>
-                </member>
-                <member>
-                    <link linkend="fileparts">fileparts</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="listfiles">listfiles</link>
+            </member>
+            <member>
+                <link linkend="pathconvert">pathconvert</link>
+            </member>
+            <member>
+                <link linkend="fileparts">fileparts</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

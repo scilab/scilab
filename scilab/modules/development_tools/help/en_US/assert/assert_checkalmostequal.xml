@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
@@ -11,166 +11,166 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkalmostequal" xml:lang="en">
-        <refnamediv>
-            <refname>assert_checkalmostequal</refname>
-            <refpurpose>Check that computed and expected are numerically close.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                flag = assert_checkalmostequal ( computed , expected )
-                flag = assert_checkalmostequal ( computed , expected , reltol )
-                flag = assert_checkalmostequal ( computed , expected , reltol , abstol )
-                flag = assert_checkalmostequal ( computed , expected , reltol , abstol , comptype )
-                [flag,errmsg] = assert_checkalmostequal ( ... )
-                
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parameters</title>
-            <variablelist>
-                <varlistentry>
-                    <term>computed:</term>
-                    <listitem>
-                        <para> a matrix of doubles, a sparse matrix of doubles, or an hypermatrix of doubles, the computed result</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>expected :</term>
-                    <listitem>
-                        <para> a matrix of doubles, a sparse matrix of doubles, or an hypermatrix of doubles, the expected result</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>reltol :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of doubles, the relative tolerance (default reltol=sqrt(%eps)).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>abstol :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of doubles, the absolute tolerance (default abstol=0).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>comptype :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of strings, "matrix" or "element" (default comptype="element"). The comparison type.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>flag :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of boolean, %t if computed is close to expected, %f if not</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>errmsg :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Performs silently if the two matrices of doubles or complex doubles
-                computed and expected are close.
-                The variables computed and expected can be exchanged without changing the result.
-            </para>
-            <para>
-                Any optional input argument equal to the empty matrix is replaced by its default value.
-            </para>
-            <para>
-                We use the following algorithm.
-                We compare first the real parts. In case of equality, we compare the imaginary parts.
-            </para>
-            <para>
-                The condition used is mixed relative and absolute:
-                <programlisting>
-                    ( |e-c| &lt;= reltol * max(|e|,|c|) + abstol )
-                </programlisting>
-                If comptype="matrix", the norm is used.
-                If comptype="element", the absolute value are used and the two matrices are
-                almost equal if all the conditions are true.
-            </para>
-            <para>
-                The default value comptype="matrix" option performs the comparison for the matrices as a whole,
-                the norm of the difference of the matrices is used.
-                The comptype="element" option performs the comparison elementwise, i.e.
-                all the elements of the matrices must be almost equal. 
-                Choosing between these two comparison types must be done with care. 
-                For example, if we are checking the elementwise output of an elementary function, 
-                we should choose the "element" comparison type, since we must compare the 
-                matrix elements one after the other. 
-            </para>
-            <para>
-                If the IEEE values %inf, -%inf or %nan values are in the matrices,
-                then they are almost equal only if the IEEE values are
-                at the same indices in the matrices.
-            </para>
-            <para>
-                The default comparison is based on a relative error, ensuring that 8 digits are common.
-                This allows to assert the number of significant digits in the computed result.
-            </para>
-            <para>
-                This procedure only works when the computed and expected variables
-                are matrices of doubles.
-                It will generate an error in any other case.
-            </para>
-            <para>
-                If the comparison shows that computed is not almost equal to expected,
-                <itemizedlist>
-                    <listitem>
-                        <para>if the errmsg output variable is not used, an error is generated,</para>
-                    </listitem>
-                    <listitem>
-                        <para>if the errmsg output variable is used, no error is generated.</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                In the process of comparing the values, we separate %nan, +%inf, -%inf and remaining values.
-                Comparing nan values between them is not possible. This is why we compare the
-                indices where %nan value occurs.
-                If we form differences of infinity values, we produce %nan values.
-                This is why we compare the indices where +%inf values occurs.
-                We do the same for -%inf values.
-                Then, the non-nan, non-infinity values are actually compared.
-            </para>
-            <para>
-                The default comptype="element" option performs the comparison elementwise, i.e.
-                all the elements of the matrices must be almost equal.
-                The comptype="matrix" option performs the comparison for the matrices as a whole,
-                the norm of the difference of the matrices is used.
-            </para>
-            <para>
-                In general, the relative tolerance should be
-                set to a multiple of the machine precision %eps.
-                The relative tolerance should also be chosen with the lowest
-                possible magnitude, that is, we shoud configure
-                the tolerance as accurately as possible.
-                During the process of configuring the relative tolerance, we
-                suggest to use the following values, in that order :
-                0 (all digits correct), %eps, 10*%eps, 100*%eps, 1.e3*%eps, 1.e4*%eps, ...,
-                1.e17*%eps (no digit correct).
-                See below for examples of this.
-            </para>
-            <para>
-                This function takes into account for complex numbers.
-                We first compare the real parts of the input arguments.
-                If this fails, we immediately return.
-                If this succeeds, we compare the imaginary parts of the input arguments.
-            </para>
-            <para>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkalmostequal" xml:lang="en">
+    <refnamediv>
+        <refname>assert_checkalmostequal</refname>
+        <refpurpose>Check that computed and expected are numerically close.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            flag = assert_checkalmostequal ( computed , expected )
+            flag = assert_checkalmostequal ( computed , expected , reltol )
+            flag = assert_checkalmostequal ( computed , expected , reltol , abstol )
+            flag = assert_checkalmostequal ( computed , expected , reltol , abstol , comptype )
+            [flag,errmsg] = assert_checkalmostequal ( ... )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>computed:</term>
+                <listitem>
+                    <para> a matrix of doubles, a sparse matrix of doubles, or an hypermatrix of doubles, the computed result</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expected :</term>
+                <listitem>
+                    <para> a matrix of doubles, a sparse matrix of doubles, or an hypermatrix of doubles, the expected result</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>reltol :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of doubles, the relative tolerance (default reltol=sqrt(%eps)).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abstol :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of doubles, the absolute tolerance (default abstol=0).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comptype :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of strings, "matrix" or "element" (default comptype="element"). The comparison type.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of boolean, %t if computed is close to expected, %f if not</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>errmsg :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Performs silently if the two matrices of doubles or complex doubles
+            computed and expected are close.
+            The variables computed and expected can be exchanged without changing the result.
+        </para>
+        <para>
+            Any optional input argument equal to the empty matrix is replaced by its default value.
+        </para>
+        <para>
+            We use the following algorithm.
+            We compare first the real parts. In case of equality, we compare the imaginary parts.
+        </para>
+        <para>
+            The condition used is mixed relative and absolute:
+            <programlisting>
+                ( |e-c| &lt;= reltol * max(|e|,|c|) + abstol )
+            </programlisting>
+            If comptype="matrix", the norm is used.
+            If comptype="element", the absolute value are used and the two matrices are
+            almost equal if all the conditions are true.
+        </para>
+        <para>
+            The default value comptype="matrix" option performs the comparison for the matrices as a whole,
+            the norm of the difference of the matrices is used.
+            The comptype="element" option performs the comparison elementwise, i.e.
+            all the elements of the matrices must be almost equal. 
+            Choosing between these two comparison types must be done with care. 
+            For example, if we are checking the elementwise output of an elementary function, 
+            we should choose the "element" comparison type, since we must compare the 
+            matrix elements one after the other. 
+        </para>
+        <para>
+            If the IEEE values %inf, -%inf or %nan values are in the matrices,
+            then they are almost equal only if the IEEE values are
+            at the same indices in the matrices.
+        </para>
+        <para>
+            The default comparison is based on a relative error, ensuring that 8 digits are common.
+            This allows to assert the number of significant digits in the computed result.
+        </para>
+        <para>
+            This procedure only works when the computed and expected variables
+            are matrices of doubles.
+            It will generate an error in any other case.
+        </para>
+        <para>
+            If the comparison shows that computed is not almost equal to expected,
+            <itemizedlist>
+                <listitem>
+                    <para>if the errmsg output variable is not used, an error is generated,</para>
+                </listitem>
+                <listitem>
+                    <para>if the errmsg output variable is used, no error is generated.</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            In the process of comparing the values, we separate %nan, +%inf, -%inf and remaining values.
+            Comparing nan values between them is not possible. This is why we compare the
+            indices where %nan value occurs.
+            If we form differences of infinity values, we produce %nan values.
+            This is why we compare the indices where +%inf values occurs.
+            We do the same for -%inf values.
+            Then, the non-nan, non-infinity values are actually compared.
+        </para>
+        <para>
+            The default comptype="element" option performs the comparison elementwise, i.e.
+            all the elements of the matrices must be almost equal.
+            The comptype="matrix" option performs the comparison for the matrices as a whole,
+            the norm of the difference of the matrices is used.
+        </para>
+        <para>
+            In general, the relative tolerance should be
+            set to a multiple of the machine precision %eps.
+            The relative tolerance should also be chosen with the lowest
+            possible magnitude, that is, we shoud configure
+            the tolerance as accurately as possible.
+            During the process of configuring the relative tolerance, we
+            suggest to use the following values, in that order :
+            0 (all digits correct), %eps, 10*%eps, 100*%eps, 1.e3*%eps, 1.e4*%eps, ...,
+            1.e17*%eps (no digit correct).
+            See below for examples of this.
+        </para>
+        <para>
+            This function takes into account for complex numbers.
+            We first compare the real parts of the input arguments.
+            If this fails, we immediately return.
+            If this succeeds, we compare the imaginary parts of the input arguments.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // Comparisons which are successful.
 // Relative error :
 assert_checkalmostequal ( 1 , 1 );
@@ -258,15 +258,15 @@ assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-3 , [], "element" );
 assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-5 , [], "element" );
 
    ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revdescription>Function introduced
-                    </revdescription>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>Function introduced
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

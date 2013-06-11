@@ -1,6 +1,6 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
  * 
@@ -11,87 +11,87 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ismatrix" xml:lang="ja">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ismatrix" xml:lang="ja">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>ismatrix</refname>
-            
-            <refpurpose>変数が行列かどうかを確認</refpurpose>
-            
-        </refnamediv>
+        <refname>ismatrix</refname>
         
-        <refsynopsisdiv>
-            
-            <title>呼び出し手順</title>
-            
-            <synopsis>t=ismatrix(x)</synopsis>
-            
-        </refsynopsisdiv>
+        <refpurpose>変数が行列かどうかを確認</refpurpose>
         
-        <refsection>
-            
-            <title>引数</title>
-            
-            <variablelist>
-                
-                <varlistentry>
-                    
-                    <term>x</term>
-                    
-                    <listitem>
-                        
-                        <para>スカラー,ベクトル, 行列, ハイパー行列, リスト, 構造体の配列またはセル</para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>t</term>
-                    
-                    <listitem>
-                        
-                        <para>論理値</para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-            </variablelist>
-            
-        </refsection>
+    </refnamediv>
+    
+    <refsynopsisdiv>
         
-        <refsection>
-            
-            <title>説明</title>
-            
-            <para>
-                
-                <literal>
-                    ismatrix(<varname>x</varname>)
-                </literal>
-                は,
-                
-                <varname>x</varname>が行列の場合にtrueを返します.
-                
-                スカラーとベクトルは行列とみなされます,
-                
-                これは3次元の1つが1の場合のみハイパー行列の場合も同じです.
-                
-                <literal>matrix([])</literal>はfalseを返します.
-                
-            </para>
-            
-        </refsection>
+        <title>呼び出し手順</title>
         
-        <refsection>
+        <synopsis>t=ismatrix(x)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
             
-            <title>例</title>
+            <varlistentry>
+                
+                <term>x</term>
+                
+                <listitem>
+                    
+                    <para>スカラー,ベクトル, 行列, ハイパー行列, リスト, 構造体の配列またはセル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <programlisting role="example"><![CDATA[ 
+            <varlistentry>
+                
+                <term>t</term>
+                
+                <listitem>
+                    
+                    <para>論理値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            <literal>
+                ismatrix(<varname>x</varname>)
+            </literal>
+            は,
+            
+            <varname>x</varname>が行列の場合にtrueを返します.
+            
+            スカラーとベクトルは行列とみなされます,
+            
+            これは3次元の1つが1の場合のみハイパー行列の場合も同じです.
+            
+            <literal>matrix([])</literal>はfalseを返します.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[ 
 ismatrix(ones(10,5))
 ismatrix(1)
 ismatrix(["s" "t" "u"; "t" "s" "u"])
@@ -124,66 +124,66 @@ s(2,2,2).a = %f;
 s(1,2,1).b = list(%e, %s);
 ismatrix(s) // 構造体の3次元 (立法)配列
  ]]></programlisting>
-            
-        </refsection>
         
-        <refsection role="see also">
-            
-            <title>参照</title>
-            
-            <simplelist type="inline">
-                
-                <member>
-                    
-                    <link linkend="isscalar">isscalar</link>
-                    
-                </member>
-                
-                <member>
-                    
-                    <link linkend="isrow">isrow</link>
-                    
-                </member>
-                
-                <member>
-                    
-                    <link linkend="iscolumn">iscolumn</link>
-                    
-                </member>
-                
-                <member>
-                    
-                    <link linkend="issquare">issquare</link>
-                    
-                </member>
-                
-                <member>
-                    
-                    <link linkend="isempty">isempty</link>
-                    
-                </member>
-                
-            </simplelist>
-            
-        </refsection>
-        
-        <refsection>
-            
-            <title>履歴</title>
-            
-            <revhistory>
-                
-                <revision>
-                    
-                    <revnumber>5.5.0</revnumber>
-                    
-                    <revremark>関数 ismatrix が導入されました.</revremark>
-                    
-                </revision>
-                
-            </revhistory>
-            
-        </refsection>
-        
-    </refentry>
+    </refsection>
     
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="isscalar">isscalar</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="isrow">isrow</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="iscolumn">iscolumn</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="issquare">issquare</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="isempty">isempty</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>関数 ismatrix が導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

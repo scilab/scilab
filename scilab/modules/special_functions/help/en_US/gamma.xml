@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,58 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="gamma" xml:lang="en">
-        <refnamediv>
-            <refname>gamma</refname>
-            <refpurpose>The gamma function.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>y = gamma(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>real vector or matrix</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>real vector or matrix with same size than x.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>gamma(x)</literal> evaluates the gamma function at all the
-                elements of <literal>x</literal>. The gamma function is defined by
-                :
-            </para>
-            <informalequation>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../mml/gamma_equation1.mml"/>
-                    </imageobject>
-                </mediaobject>
-            </informalequation>
-            <para>and generalizes the factorial function for real numbers
-                (<literal>gamma(n+1) = n!</literal>).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="gamma" xml:lang="en">
+    <refnamediv>
+        <refname>gamma</refname>
+        <refpurpose>The gamma function.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>y = gamma(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>real vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>real vector or matrix with same size than x.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>gamma(x)</literal> evaluates the gamma function at all the
+            elements of <literal>x</literal>. The gamma function is defined by
+            :
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../mml/gamma_equation1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>and generalizes the factorial function for real numbers
+            (<literal>gamma(n+1) = n!</literal>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // simple examples
 gamma(0.5)
 gamma(6)-prod(1:5)
  ]]></programlisting>
-            <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[ 
 // the graph of the Gamma function on [a,b]
 a = -3; b = 5;
 x = linspace(a,b,40000)';
@@ -74,32 +74,32 @@ xset("color",c)
 xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
 show_window()
  ]]></programlisting>
-            <scilab:image>
-                a = -3; b = 5;
-                x = linspace(a,b,40000)';
-                y = gamma(x);
-                plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
-                xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
-            </scilab:image>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="gammaln">gammaln</link>
-                </member>
-                <member>
-                    <link linkend="dlgamma">dlgamma</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>Overloading allowed for list, mlist, tlist and hypermatrix types.</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+        <scilab:image>
+            a = -3; b = 5;
+            x = linspace(a,b,40000)';
+            y = gamma(x);
+            plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
+            xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gammaln">gammaln</link>
+            </member>
+            <member>
+                <link linkend="dlgamma">dlgamma</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Overloading allowed for list, mlist, tlist and hypermatrix types.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

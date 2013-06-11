@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="utf-8"?>
-    <!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -10,110 +10,110 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bsparse_reading_API" xml:lang="en">
-        <refnamediv>
-            <refname>Boolean sparse reading (Scilab gateway)</refname>
-            <refpurpose>
-                How to read boolean sparse in a gateway.
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <para>Input argument profile:</para>
-            <synopsis>SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)</synopsis>
-            <para>Named variable profile:</para>
-            <synopsis>SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>_pvCtx</term>
-                    <listitem>
-                        <para>
-                            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>_piAddress</term>
-                    <listitem>
-                        <para>
-                            Address of the Scilab variable.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>_pstName</term>
-                    <listitem>
-                        <para>
-                            Name of the variable for "named" functions.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>_piRows</term>
-                    <listitem>
-                        <para>
-                            Return number of rows of the variable.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>_piCols</term>
-                    <listitem>
-                        <para>
-                            Return number of columns of the variable.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>_piNbItem</term>
-                    <listitem>
-                        <para>
-                            Return number of non zero value.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>_piNbItemRow</term>
-                    <listitem>
-                        <para>
-                            Return number of item in each rows (size: _iRows).
-                            For "Named" function, _piNbItemRow must be allocated before calling function.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>_piColPos</term>
-                    <listitem>
-                        <para>
-                            Return column position for each item (size: _iNbItem).
-                            For "Named" function, _piColPos must be allocated before calling function.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>SciErr</term>
-                    <listitem>
-                        <para>
-                            Error structure where is stored errors messages history and first error number.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>This help describes how to read boolean sparse.</para>
-        </refsection>
-        <refsection>
-            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/read_write_bsparse_api.c-->
-            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/read_write_bsparse_api.tst-->
-            <!--Lib_name: read_write_bsparse-->
-            <!--Func_list: read_write_bsparse-->
-            <title>Gateway Source</title>
-            <programlisting role="code_gateway"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bsparse_reading_API" xml:lang="en">
+    <refnamediv>
+        <refname>Boolean sparse reading (Scilab gateway)</refname>
+        <refpurpose>
+            How to read boolean sparse in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <para>Input argument profile:</para>
+        <synopsis>SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)</synopsis>
+        <para>Named variable profile:</para>
+        <synopsis>SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the Scilab variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstName</term>
+                <listitem>
+                    <para>
+                        Name of the variable for "named" functions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        Return number of rows of the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        Return number of columns of the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItem</term>
+                <listitem>
+                    <para>
+                        Return number of non zero value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItemRow</term>
+                <listitem>
+                    <para>
+                        Return number of item in each rows (size: _iRows).
+                        For "Named" function, _piNbItemRow must be allocated before calling function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piColPos</term>
+                <listitem>
+                    <para>
+                        Return column position for each item (size: _iNbItem).
+                        For "Named" function, _piColPos must be allocated before calling function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciErr</term>
+                <listitem>
+                    <para>
+                        Error structure where is stored errors messages history and first error number.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to read boolean sparse.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/read_write_bsparse_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/read_write_bsparse_api.tst-->
+        <!--Lib_name: read_write_bsparse-->
+        <!--Func_list: read_write_bsparse-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 int read_write_bsparse(char *fname,unsigned long fname_len)
 {
@@ -195,15 +195,15 @@ int read_write_bsparse(char *fname,unsigned long fname_len)
     return 0;
 }
  ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>Scilab test script</title>
-            <programlisting role="code_scilab"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab"><![CDATA[ 
 a = sparse([%t, %f, %t ; %f, %t, %f ; %t, %f, %t]);
 a_ref = sparse([%f, %t, %f ; %t, %f, %t ; %f, %t, %f]);
 
 b = read_write_bsparse(a);
 if or(b <> a_ref) then error("failed");end
  ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

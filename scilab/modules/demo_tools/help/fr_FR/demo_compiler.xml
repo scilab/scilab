@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,26 +10,26 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="demo_compiler">
-        <refnamediv>
-            <refname>demo_compiler</refname>
-            <refpurpose>teste la présence d'un compilateur </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Séquence d'appel</title>
-            <synopsis>status = demo_compiler()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
-                compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
-                compilateur.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="demo_compiler">
+    <refnamediv>
+        <refname>demo_compiler</refname>
+        <refpurpose>teste la présence d'un compilateur </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>status = demo_compiler()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
+            compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
+            compilateur.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 select num,
  case 0
   return;
@@ -45,13 +45,13 @@ select num,
     show(x);
 end
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="findmsvccompiler">findmsvccompiler</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="findmsvccompiler">findmsvccompiler</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

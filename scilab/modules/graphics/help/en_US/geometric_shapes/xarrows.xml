@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  *
@@ -10,76 +10,76 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xarrows">
-        <refnamediv>
-            <refname>xarrows</refname>
-            <refpurpose>draw a set of arrows</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>xarrows(nx, ny, [arsize, color])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>nx, ny</term>
-                    <listitem>
-                        <para>real vectors or matrices of same size.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>arsize</term>
-                    <listitem>
-                        <para>
-                            a real scalar, size of the arrow head.
-                            The default value can be obtained  by
-                            setting <varname>arsize</varname> to
-                            <literal>-1</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>color</term>
-                    <listitem>
-                        <para>
-                            a matrix or scalar. If <varname>color</varname>
-                            is a positive scalar it gives the color
-                            to use for all arrows. If it is a
-                            negative scalar then the current color is
-                            used. If it is a vector <literal>color(i)</literal>
-                            gives the color to use for arrow <literal>i</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <function>xarrows</function> draws a set of arrows
-                given by <varname>nx</varname> and <varname>ny</varname>.
-                If <varname>nx</varname> and <varname>ny</varname> are vectors,
-                the <literal>i</literal>-th arrow is defined by
-                <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>.
-                If <varname>nx</varname> and <varname>ny</varname> are matrices:
-            </para>
-            <programlisting role="no-scilab-exec"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xarrows">
+    <refnamediv>
+        <refname>xarrows</refname>
+        <refpurpose>draw a set of arrows</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xarrows(nx, ny, [arsize, color])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>nx, ny</term>
+                <listitem>
+                    <para>real vectors or matrices of same size.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arsize</term>
+                <listitem>
+                    <para>
+                        a real scalar, size of the arrow head.
+                        The default value can be obtained  by
+                        setting <varname>arsize</varname> to
+                        <literal>-1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>
+                        a matrix or scalar. If <varname>color</varname>
+                        is a positive scalar it gives the color
+                        to use for all arrows. If it is a
+                        negative scalar then the current color is
+                        used. If it is a vector <literal>color(i)</literal>
+                        gives the color to use for arrow <literal>i</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>xarrows</function> draws a set of arrows
+            given by <varname>nx</varname> and <varname>ny</varname>.
+            If <varname>nx</varname> and <varname>ny</varname> are vectors,
+            the <literal>i</literal>-th arrow is defined by
+            <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>.
+            If <varname>nx</varname> and <varname>ny</varname> are matrices:
+        </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
 nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
 ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
  ]]></programlisting>
-            <para>
-                the <literal>k</literal>-th arrow is defined by <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
-            </para>
-            <para>
-                <function>xarrows</function> uses the current graphics
-                scale which can be set by calling a high level
-                drawing function such as <function>plot2d</function>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+        <para>
+            the <literal>k</literal>-th arrow is defined by <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
+        </para>
+        <para>
+            <function>xarrows</function> uses the current graphics
+            scale which can be set by calling a high level
+            drawing function such as <function>plot2d</function>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 x = 2*%pi*(0:7)/8
 x1 = [sin(x); 9*sin(x)];
 y1 = [cos(x); 9*cos(x)];
@@ -88,14 +88,14 @@ xset("clipgrf")
 xarrows(x1, y1, -1, [1:7,9]) //8-th color is white
 xset("clipoff")
  ]]></programlisting>
-            <scilab:image>
-                x = 2*%pi*(0:7)/8
-                x1 = [sin(x); 9*sin(x)];
-                y1 = [cos(x); 9*cos(x)];
-                plot2d([-10,10], [-10,10], [-1,-1], "022")
-                xset("clipgrf")
-                xarrows(x1, y1, -1, [1:7,9])
-                xset("clipoff")
-            </scilab:image>
-        </refsection>
-    </refentry>
+        <scilab:image>
+            x = 2*%pi*(0:7)/8
+            x1 = [sin(x); 9*sin(x)];
+            y1 = [cos(x); 9*cos(x)];
+            plot2d([-10,10], [-10,10], [-1,-1], "022")
+            xset("clipgrf")
+            xarrows(x1, y1, -1, [1:7,9])
+            xset("clipoff")
+        </scilab:image>
+    </refsection>
+</refentry>

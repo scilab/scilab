@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Calixte DENIZET
  *
@@ -10,40 +10,40 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <!-- This document was created with Syntext Serna Free. -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="how_to_link_toolbox_help">
-        <refnamediv>
-            <refname>Link toolbox help with Scilab one</refname>
-            <refpurpose>How to make hyperlink in toolbox help pointing to Scilab's items</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Description</title>
-            <para>Since Scilab 5.3.1, the hyperlinks in a toolbox help can be used to point on any help pages or to execute demos in the console.</para>
-            <para>
-                Now you can link a demo <link type="scilab" linkend="scilab.demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link> or execute a script <link type="scilab" linkend="scilab.exec/helptools/demos/about.sce">about.sce</link>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Details</title>
-            <itemizedlist>
-                <listitem>
-                    <para>To link from two external modules, the syntax is: &lt;link type="scilab" linkend="module_name.help/fun_in_module_name"&gt;fun_in_module_name&lt;/link&gt; Usually, the name of the function is the id of the page.</para>
-                </listitem>
-                <listitem>
-                    <para>To link from a external module to a Scilab function, the syntax is: &lt;link type="scilab" linkend="scilab.help/bvode"&gt;bvode&lt;/link&gt; Usually, the name of the function is the id of the page.</para>
-                </listitem>
-                <listitem>
-                    <para>To enable the execution of a script, the syntax is: &lt;link type="scilab" linkend="mytoolbox.exec/macros/fooexec.sce"&gt;macros/fooexec.sce&lt;/link&gt; </para>
-                </listitem>
-                <listitem>
-                    <para>To enable the execution of a demo, the syntax is: &lt;link type="scilab" linkend="mytoolbox.demos/mydemo.dem"&gt;My demo&lt;/link&gt; </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="xml"><![CDATA[
-    <?xml version="1.0" encoding="UTF-8"?>
+<!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="how_to_link_toolbox_help">
+    <refnamediv>
+        <refname>Link toolbox help with Scilab one</refname>
+        <refpurpose>How to make hyperlink in toolbox help pointing to Scilab's items</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>Since Scilab 5.3.1, the hyperlinks in a toolbox help can be used to point on any help pages or to execute demos in the console.</para>
+        <para>
+            Now you can link a demo <link type="scilab" linkend="scilab.demos/gui/demos/uicontrol_plot3d.dem">Uicontrol demo</link> or execute a script <link type="scilab" linkend="scilab.exec/helptools/demos/about.sce">about.sce</link>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Details</title>
+        <itemizedlist>
+            <listitem>
+                <para>To link from two external modules, the syntax is: &lt;link type="scilab" linkend="module_name.help/fun_in_module_name"&gt;fun_in_module_name&lt;/link&gt; Usually, the name of the function is the id of the page.</para>
+            </listitem>
+            <listitem>
+                <para>To link from a external module to a Scilab function, the syntax is: &lt;link type="scilab" linkend="scilab.help/bvode"&gt;bvode&lt;/link&gt; Usually, the name of the function is the id of the page.</para>
+            </listitem>
+            <listitem>
+                <para>To enable the execution of a script, the syntax is: &lt;link type="scilab" linkend="mytoolbox.exec/macros/fooexec.sce"&gt;macros/fooexec.sce&lt;/link&gt; </para>
+            </listitem>
+            <listitem>
+                <para>To enable the execution of a demo, the syntax is: &lt;link type="scilab" linkend="mytoolbox.demos/mydemo.dem"&gt;My demo&lt;/link&gt; </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="xml"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
     <refentry xmlns:scilab="http://www.scilab.org"
               xmlns="http://docbook.org/ns/docbook"
               xmlns:html="http://www.w3.org/1999/xhtml"
@@ -68,5 +68,5 @@
       </programlisting>
     </refentry>
     ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

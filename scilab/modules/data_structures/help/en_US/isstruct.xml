@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
  *
@@ -10,42 +10,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isstruct" xml:lang="en">
-        <refnamediv>
-            <refname>isstruct</refname>
-            <refpurpose>checks if a variable is a structure array</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>bool = isstruct(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>a Scilab variable.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>bool</term>
-                    <listitem>
-                        <para>a boolean.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <code>isstruct(x)</code> returns <constant>%t</constant> if
-                <varname>x</varname> is a struct array and <constant>%f</constant> otherwise.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isstruct" xml:lang="en">
+    <refnamediv>
+        <refname>isstruct</refname>
+        <refpurpose>checks if a variable is a structure array</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>bool = isstruct(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a Scilab variable.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bool</term>
+                <listitem>
+                    <para>a boolean.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>isstruct(x)</code> returns <constant>%t</constant> if
+            <varname>x</varname> is a struct array and <constant>%f</constant> otherwise.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 isstruct(1)
  
 isstruct(cell())
@@ -57,16 +57,16 @@ info.function="isstruct";
 info.module="help";
 isstruct(info)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="struct">struct</link>
-                </member>
-                <member>
-                    <link linkend="iscell">iscell</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="struct">struct</link>
+            </member>
+            <member>
+                <link linkend="iscell">iscell</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

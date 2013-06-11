@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
@@ -10,51 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="macro" xml:lang="en">
-        <refnamediv>
-            <refname>macro</refname>
-            <refpurpose>Procedimento Scilab e objeto Scilab</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Descrição</title>
-            <para>Macros são procedimentos Scilab ("macro", "função" e "procedimento"
-                possuem o mesmo significado). Geralmente, eles são definidos em arquivos
-                com um editor e carregados no Scilab com <literal>exec</literal> ou
-                através de uma biblioteca.
-            </para>
-            <para>
-                Também podem ser definidos on-line (ver <literal>deff</literal>). Um
-                arquivo que contém uma macro deve começar como segue:
-            </para>
-            <programlisting role=""><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="macro" xml:lang="en">
+    <refnamediv>
+        <refname>macro</refname>
+        <refpurpose>Procedimento Scilab e objeto Scilab</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Macros são procedimentos Scilab ("macro", "função" e "procedimento"
+            possuem o mesmo significado). Geralmente, eles são definidos em arquivos
+            com um editor e carregados no Scilab com <literal>exec</literal> ou
+            através de uma biblioteca.
+        </para>
+        <para>
+            Também podem ser definidos on-line (ver <literal>deff</literal>). Um
+            arquivo que contém uma macro deve começar como segue:
+        </para>
+        <programlisting role=""><![CDATA[ 
 function [y1,...,yn]=foo(x1,...,xm)
  ]]></programlisting>
-            <para>
-                Os <literal>yi</literal> são variáveis de saída calculadas como
-                funções de variáveis de entrada e variáveis existentes no Scilab quando o
-                macro é executado. Um macro pode ser compilado para uma execução mais
-                rápida. Coleções de macros podem ser armazenadas em bibliotecas. Macros
-                que começam pelo símbolo <literal>%</literal> (ex.:
-                <literal>%foo</literal>) e cujos argumentos são listas são usadas para
-                executar operações específicas: por exemplo,
-                <literal>z=%rmr(x,y)</literal> é equivalente a <literal>z=x*y</literal>
-                quando <literal>x</literal> e <literal>z</literal> são racionais (i.e.
-                <literal>x=list('r',n,d,[])</literal> com <literal>n</literal> e
-                <literal>d</literal> polinômios).
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="deff">deff</link>
-                </member>
-                <member>
-                    <link linkend="comp">comp</link>
-                </member>
-                <member>
-                    <link linkend="lib">lib</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        <para>
+            Os <literal>yi</literal> são variáveis de saída calculadas como
+            funções de variáveis de entrada e variáveis existentes no Scilab quando o
+            macro é executado. Um macro pode ser compilado para uma execução mais
+            rápida. Coleções de macros podem ser armazenadas em bibliotecas. Macros
+            que começam pelo símbolo <literal>%</literal> (ex.:
+            <literal>%foo</literal>) e cujos argumentos são listas são usadas para
+            executar operações específicas: por exemplo,
+            <literal>z=%rmr(x,y)</literal> é equivalente a <literal>z=x*y</literal>
+            quando <literal>x</literal> e <literal>z</literal> são racionais (i.e.
+            <literal>x=list('r',n,d,[])</literal> com <literal>n</literal> e
+            <literal>d</literal> polinômios).
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="deff">deff</link>
+            </member>
+            <member>
+                <link linkend="comp">comp</link>
+            </member>
+            <member>
+                <link linkend="lib">lib</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

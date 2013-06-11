@@ -1,6 +1,6 @@
-        <?xml version="1.0" encoding="utf-8"?>
-    
-    <!--
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,262 +11,262 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_sparse_reading_API" xml:lang="ja">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_sparse_reading_API" xml:lang="ja">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>疎行列の読み込み (Scilab ゲートウェイ)</refname>
-            
-            <refpurpose>
-                
-                リスト中の疎行列を読み込む方法.
-                
-            </refpurpose>
-            
-        </refnamediv>
+        <refname>疎行列の読み込み (Scilab ゲートウェイ)</refname>
         
-        <refsynopsisdiv>
+        <refpurpose>
             
-            <title>呼び出し手順</title>
+            リスト中の疎行列を読み込む方法.
             
-            <para>入力引数プロファイル:</para>
-            
-            <synopsis>SciErr getSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
-            
-            <synopsis>SciErr getComplexSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
-            
-            <para>名前指定変数プロファイル:</para>
-            
-            <synopsis>SciErr readSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
-            
-            <synopsis>SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
-            
-        </refsynopsisdiv>
+        </refpurpose>
         
-        <refsection>
-            
-            <title>引数</title>
-            
-            <variablelist>
-                
-                <varlistentry>
-                    
-                    <term>_pvCtx</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            Scilab環境ポインタ, api_scilab.hで定義された"pvApiCtx"で指定.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piParent</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            新規要素の親のアドレス.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_pstName</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            "名前指定" 関数の変数名.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_iItemPos</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            リストにおける新規要素の位置.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piRows</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返される変数の行数.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piCols</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返される変数の列数.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piNbItem</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返される非ゼロ値の数.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piNbItemRow</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返される各行の要素数 (大きさ: _iRows).
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piColPos</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返される各要素の列の位置 (大きさ: _iNbItem).
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_pdblReal</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返されるデータ実部の配列 (大きさ: _iNbItem).
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_pdblImg</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返されるデータ虚部の配列 (大きさ: _iNbItem).
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>SciErr</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            エラーメッセージの履歴と最初のエラー番号が保存されるエラー構造体.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-            </variablelist>
-            
-        </refsection>
+    </refnamediv>
+    
+    <refsynopsisdiv>
         
-        <refsection>
-            
-            <title>説明</title>
-            
-            <para>このヘルプはリスト中に疎行列を読み込む方法を説明します.</para>
-            
-        </refsection>
+        <title>呼び出し手順</title>
         
-        <refsection>
+        <para>入力引数プロファイル:</para>
+        
+        <synopsis>SciErr getSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
+        
+        <synopsis>SciErr getComplexSparseMatrixInList(void* _pvCtx, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
+        
+        <para>名前指定変数プロファイル:</para>
+        
+        <synopsis>SciErr readSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
+        
+        <synopsis>SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
             
-            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
+            <varlistentry>
+                
+                <term>_pvCtx</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        Scilab環境ポインタ, api_scilab.hで定義された"pvApiCtx"で指定.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
+            <varlistentry>
+                
+                <term>_piParent</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        新規要素の親のアドレス.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <!--Lib_name: common_read-->
+            <varlistentry>
+                
+                <term>_pstName</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        "名前指定" 関数の変数名.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <!--Func_list: common_read-->
+            <varlistentry>
+                
+                <term>_iItemPos</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        リストにおける新規要素の位置.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <title>ゲートウェイのソース</title>
+            <varlistentry>
+                
+                <term>_piRows</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返される変数の行数.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <programlisting role="code_gateway"><![CDATA[ 
+            <varlistentry>
+                
+                <term>_piCols</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返される変数の列数.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piNbItem</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返される非ゼロ値の数.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piNbItemRow</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返される各行の要素数 (大きさ: _iRows).
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piColPos</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返される各要素の列の位置 (大きさ: _iNbItem).
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_pdblReal</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返されるデータ実部の配列 (大きさ: _iNbItem).
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_pdblImg</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返されるデータ虚部の配列 (大きさ: _iNbItem).
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>SciErr</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        エラーメッセージの履歴と最初のエラー番号が保存されるエラー構造体.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>このヘルプはリスト中に疎行列を読み込む方法を説明します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_read_api.c-->
+        
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_read_api.tst-->
+        
+        <!--Lib_name: common_read-->
+        
+        <!--Func_list: common_read-->
+        
+        <title>ゲートウェイのソース</title>
+        
+        <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 static int iTab = 0;
 void insert_indent(void)
@@ -857,14 +857,14 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 	return 0;
 }
  ]]></programlisting>
-            
-        </refsection>
         
-        <refsection>
-            
-            <title>Scilab テストスクリプト</title>
-            
-            <programlisting role="code_scilab"><![CDATA[ 
+    </refsection>
+    
+    <refsection>
+        
+        <title>Scilab テストスクリプト</title>
+        
+        <programlisting role="code_scilab"><![CDATA[ 
 function read_all()
 d = [1,2,3;4,5,6;7,8,9];common_read(d);
 s=poly(0,"x");p=1+s+2*s^2;p = [(p * 2),(p * s + 3);(p * 2 * s ** 2 - 6),(12 - 4 * p * (- s) ** 2)];common_read(p);
@@ -884,8 +884,8 @@ common_read(l)
 endfunction
 read_all;
  ]]></programlisting>
-            
-        </refsection>
         
-    </refentry>
+    </refsection>
     
+</refentry>
+

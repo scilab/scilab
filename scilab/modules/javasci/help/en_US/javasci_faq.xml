@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
  *
@@ -10,139 +10,139 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" scilab:needs-examples="no" xml:id="javasci_faq_v2" xml:lang="en">
-        <refnamediv>
-            <refname>javasci FAQ</refname>
-            <refpurpose>The frequently asked questions for Javasci v2</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Questions / Answers</title>
-            <qandaset>
-                <qandaentry>
-                    <question>
-                        <para>Running an application based on javasci, I get the error
-                            <emphasis role="italic">Exception in thread "main" java.lang.NoClassDefFoundError:
-                                org/scilab/modules/javasci/Scilab
-                            </emphasis>
-                        </para>
-                    </question>
-                    <answer>
-                        <para>org.scilab.modules.javasci.jar is probably not defined in the CLASSPATH. See
-                            <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
-                        </para>
-                    </answer>
-                </qandaentry>
-                <qandaentry>
-                    <question>
-                        <para>On Linux/Unix/MacOSX, the native library javasci2 does not exist or cannot be found.</para>
-                    </question>
-                    <answer>
-                        <para>Probably the java.library.path value has not been set. See
-                            <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
-                        </para>
-                    </answer>
-                </qandaentry>
-                <qandaentry>
-                    <question>
-                        <para>On Windows, the native library javasci.dll does not exist or cannot be found.</para>
-                    </question>
-                    <answer>
-                        <para>The PATH environment variable may have not been set. See
-                            <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
-                        </para>
-                    </answer>
-                </qandaentry>
-                <qandaentry>
-                    <question>
-                        <para>On Linux/Unix/MacOSX, the native library javasci2 does not exist or cannot be found even if the java.library.path is being set.</para>
-                    </question>
-                    <answer>
-                        <para>
-                            If the error is something like: <emphasis role="italic">java.lang.UnsatisfiedLinkError: /path/to/scilab/lib/scilab/libscilab.so.0.0.0: libsciparameters.so.5: cannot open shared object file: No such file or directory</emphasis>, try to set LD_LIBRARY_PATH to the path where Scilab native libraries are.
-                        </para>
-                    </answer>
-                </qandaentry>
-                <qandaentry>
-                    <question>
-                        <para>On Windows, the native library javasci.dll does not exist or cannot be found even if the PATH is being set.</para>
-                    </question>
-                    <answer>
-                        <para>
-                            If the error is something like: <emphasis role="italic">java.lang.UnsatisfiedLinkError: C:\Program Files\scilab-XXXX\bin\javasci.dll: The specified procedure could not be found</emphasis>, your PATH environment variable may introduce a conflict between the Scilab libraries with other libraries on your system. Try to move (in the PATH variable) the Scilab path to the front of paths.
-                        </para>
-                    </answer>
-                </qandaentry>
-                <qandaentry>
-                    <question>
-                        <para>A Javasci program fails to start with:
-                            <emphasis role="italic">An exception occurred: Auto detection of SCI failed.
-                                Could not retrieve the variable SCI
-                            </emphasis>
-                        </para>
-                    </question>
-                    <answer>
-                        <para>
-                            SCI should be set to <emphasis role="italic">scilab-X.Y.Z/share/scilab/ under GNU/Linux</emphasis>, <emphasis role="italic">scilab-X.Y.Z/Contents/MacOS/share/scilab/</emphasis> under Mac OS X and <emphasis role="italic">scilab-X.Y.Z/</emphasis> under Windows.
-                        </para>
-                    </answer>
-                </qandaentry>
-                
-                <qandaentry>
-                    <question>
-                        <para>I try to plot a graphic but the graphic never appears.</para>
-                    </question>
-                    <answer>
-                        <para>
-                            Make sure that you called the constructor (<emphasis role="italic">Scilab sci = new Scilab(true);</emphasis>) with the boolean value <emphasis role="italic">true</emphasis>. It starts Scilab in advanced mode.
-                        </para>
-                    </answer>
-                </qandaentry>
-                <qandaentry>
-                    <question>
-                        <para>I would like to attach a graphic from Javasci to an existing Swing application. I don't know how to do that?</para>
-                    </question>
-                    <answer>
-                        <para>Well. For now, it is not possible out of the box. The feature should be available in a future version of Scilab. As always, contributions are welcome!
-                        </para>
-                    </answer>
-                </qandaentry>
-                <qandaentry>
-                    <question>
-                        <para>I found the current way to manage Scilab graphic windows from javasci pretty hard. What should I do?</para>
-                    </question>
-                    <answer>
-                        <para>This is embarassing. We are aware that the current solution is far from perfect. We hope we will be able to tackle this limitation in a future release.
-                        </para>
-                    </answer>
-                </qandaentry>
-                <qandaentry>
-                    <question>
-                        <para>
-                            The Scilab instance has some external modules but fails to start with an <literal>undefined symbol:</literal>
-                        </para>
-                    </question>
-                    <answer>
-                        <para><literal>
-                                <emphasis role="italic">atomsLoad: An error occurred while loading 'module-0.0.2':	link : Library could not be loaded: /path/2.0-1/sci_gateway/c/../../src/cpp/libmy.so: undefined symbol: scirun_</emphasis>
-                            </literal>
-                            There are two potential solutions. First is to fix the module itself to build with the library providing the symbol. The second is to define the missing declared library with <literal>LD_PRELOAD=/path/to/the/lib/providing/the/symbol/libmy.so</literal>
-                        </para>
-                    </answer>
-                </qandaentry>
-            </qandaset>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
-                </member>
-                <member>
-                    <link linkend="javasci">Javasci</link>
-                </member>
-                <member>
-                    <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" scilab:needs-examples="no" xml:id="javasci_faq_v2" xml:lang="en">
+    <refnamediv>
+        <refname>javasci FAQ</refname>
+        <refpurpose>The frequently asked questions for Javasci v2</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Questions / Answers</title>
+        <qandaset>
+            <qandaentry>
+                <question>
+                    <para>Running an application based on javasci, I get the error
+                        <emphasis role="italic">Exception in thread "main" java.lang.NoClassDefFoundError:
+                            org/scilab/modules/javasci/Scilab
+                        </emphasis>
+                    </para>
+                </question>
+                <answer>
+                    <para>org.scilab.modules.javasci.jar is probably not defined in the CLASSPATH. See
+                        <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>On Linux/Unix/MacOSX, the native library javasci2 does not exist or cannot be found.</para>
+                </question>
+                <answer>
+                    <para>Probably the java.library.path value has not been set. See
+                        <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>On Windows, the native library javasci.dll does not exist or cannot be found.</para>
+                </question>
+                <answer>
+                    <para>The PATH environment variable may have not been set. See
+                        <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>On Linux/Unix/MacOSX, the native library javasci2 does not exist or cannot be found even if the java.library.path is being set.</para>
+                </question>
+                <answer>
+                    <para>
+                        If the error is something like: <emphasis role="italic">java.lang.UnsatisfiedLinkError: /path/to/scilab/lib/scilab/libscilab.so.0.0.0: libsciparameters.so.5: cannot open shared object file: No such file or directory</emphasis>, try to set LD_LIBRARY_PATH to the path where Scilab native libraries are.
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>On Windows, the native library javasci.dll does not exist or cannot be found even if the PATH is being set.</para>
+                </question>
+                <answer>
+                    <para>
+                        If the error is something like: <emphasis role="italic">java.lang.UnsatisfiedLinkError: C:\Program Files\scilab-XXXX\bin\javasci.dll: The specified procedure could not be found</emphasis>, your PATH environment variable may introduce a conflict between the Scilab libraries with other libraries on your system. Try to move (in the PATH variable) the Scilab path to the front of paths.
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>A Javasci program fails to start with:
+                        <emphasis role="italic">An exception occurred: Auto detection of SCI failed.
+                            Could not retrieve the variable SCI
+                        </emphasis>
+                    </para>
+                </question>
+                <answer>
+                    <para>
+                        SCI should be set to <emphasis role="italic">scilab-X.Y.Z/share/scilab/ under GNU/Linux</emphasis>, <emphasis role="italic">scilab-X.Y.Z/Contents/MacOS/share/scilab/</emphasis> under Mac OS X and <emphasis role="italic">scilab-X.Y.Z/</emphasis> under Windows.
+                    </para>
+                </answer>
+            </qandaentry>
+            
+            <qandaentry>
+                <question>
+                    <para>I try to plot a graphic but the graphic never appears.</para>
+                </question>
+                <answer>
+                    <para>
+                        Make sure that you called the constructor (<emphasis role="italic">Scilab sci = new Scilab(true);</emphasis>) with the boolean value <emphasis role="italic">true</emphasis>. It starts Scilab in advanced mode.
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>I would like to attach a graphic from Javasci to an existing Swing application. I don't know how to do that?</para>
+                </question>
+                <answer>
+                    <para>Well. For now, it is not possible out of the box. The feature should be available in a future version of Scilab. As always, contributions are welcome!
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>I found the current way to manage Scilab graphic windows from javasci pretty hard. What should I do?</para>
+                </question>
+                <answer>
+                    <para>This is embarassing. We are aware that the current solution is far from perfect. We hope we will be able to tackle this limitation in a future release.
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>
+                        The Scilab instance has some external modules but fails to start with an <literal>undefined symbol:</literal>
+                    </para>
+                </question>
+                <answer>
+                    <para><literal>
+                            <emphasis role="italic">atomsLoad: An error occurred while loading 'module-0.0.2':	link : Library could not be loaded: /path/2.0-1/sci_gateway/c/../../src/cpp/libmy.so: undefined symbol: scirun_</emphasis>
+                        </literal>
+                        There are two potential solutions. First is to fix the module itself to build with the library providing the symbol. The second is to define the missing declared library with <literal>LD_PRELOAD=/path/to/the/lib/providing/the/symbol/libmy.so</literal>
+                    </para>
+                </answer>
+            </qandaentry>
+        </qandaset>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
+            </member>
+            <member>
+                <link linkend="javasci">Javasci</link>
+            </member>
+            <member>
+                <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

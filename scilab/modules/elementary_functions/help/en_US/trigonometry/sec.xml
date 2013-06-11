@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
@@ -10,71 +10,71 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sec" xml:lang="en">
-        <refnamediv>
-            <refname>sec</refname>
-            <refpurpose>computes the element-wise secant of the argument</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>y = sec(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>a real or complex array.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>a real or complex array.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <function>sec</function> function computes the element-wise secant of the argument. The secant is a
-                periodic function defined as <latex>1/\cos(x)</latex>. For real data the results are real and
-                in <latex>]-\infty -1] \cup [1 \infty[</latex>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Sample</title>
-            <scilab:image>
-                x=linspace(-%pi,%pi,100)
-                plot(x,sec(x))
-            </scilab:image>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sec" xml:lang="en">
+    <refnamediv>
+        <refname>sec</refname>
+        <refpurpose>computes the element-wise secant of the argument</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>y = sec(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a real or complex array.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a real or complex array.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>sec</function> function computes the element-wise secant of the argument. The secant is a
+            periodic function defined as <latex>1/\cos(x)</latex>. For real data the results are real and
+            in <latex>]-\infty -1] \cup [1 \infty[</latex>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            x=linspace(-%pi,%pi,100)
+            plot(x,sec(x))
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=[0 %pi/3 2*%pi/3 %pi/4 3*%pi/4 %pi/6 5*%pi/6 %pi];
 sec(x)
 x=linspace(-%pi,%pi,100)
 plot(x,sec(x))
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="cos">cos</link>
-                </member>
-                <member>
-                    <link linkend="secd">secd</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>Used Functions</title>
-            <para>
-                This function uses the <latex>cos</latex> function.
-            </para>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cos">cos</link>
+            </member>
+            <member>
+                <link linkend="secd">secd</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Used Functions</title>
+        <para>
+            This function uses the <latex>cos</latex> function.
+        </para>
+    </refsection>
+</refentry>

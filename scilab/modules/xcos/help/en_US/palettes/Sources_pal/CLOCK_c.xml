@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Xcos
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -23,216 +23,216 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLOCK_c" xml:lang="en_US">
-        <refnamediv>
-            <refname>CLOCK_c</refname>
-            <refpurpose>Activation clock</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLOCK_c" xml:lang="en_US">
+    <refnamediv>
+        <refname>CLOCK_c</refname>
+        <refpurpose>Activation clock</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/CLOCK_c.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_CLOCK_c">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="CLOCK_c">Activation clock</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_CLOCK_c">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_CLOCK_c">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_CLOCK_c">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_CLOCK_c">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <link linkend="Example_CLOCK_c">Example</link>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_CLOCK_c">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_CLOCK_c">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_CLOCK_c">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Sources_pal">Sources palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_CLOCK_c">
+        <title>Description</title>
+        <para>
+            The unique output of this block generates a regular train of events that are scheduled by
+            parameter <emphasis role="bold">Period</emphasis> in seconds. The starting date of events
+            generation can be set in seconds with the <emphasis role="bold">Initialisation Time</emphasis>
+            parameter.
+        </para>
+    </refsection>
+    <refsection id="Dialogbox_CLOCK_c">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/sources_pal/en_US/CLOCK_c_gui.png" align="center"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Period</emphasis>
+                </para>
+                <para> Scalar.
+                    Period is the time that separates two output events, it is the
+                    inverse of the frequency of the clock.
+                </para>
+                <para> Properties : Type 'vec' of size 1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Initialisation Time</emphasis>
+                </para>
+                <para> Scalar. Starting date.</para>
+                <para> If negative the clock never starts.</para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_CLOCK_c">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 1
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">csuper</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_CLOCK_c">
+        <title>Example</title>
+        <para>
+            A simple example of CLOCK_c block event output.
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
+                Open this example in Xcos
+            </link>
+            .
+        </para>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../images/palettes/CLOCK_c.png" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/clock_c_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_CLOCK_c">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="CLOCK_c">Activation clock</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_CLOCK_c">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_CLOCK_c">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_CLOCK_c">Dialog box</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_CLOCK_c">Default properties</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <link linkend="Example_CLOCK_c">Example</link>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_CLOCK_c">Interfacing function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Seealso_CLOCK_c">See also</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_CLOCK_c">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Sources_pal">Sources palette</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_CLOCK_c">
-            <title>Description</title>
-            <para>
-                The unique output of this block generates a regular train of events that are scheduled by
-                parameter <emphasis role="bold">Period</emphasis> in seconds. The starting date of events
-                generation can be set in seconds with the <emphasis role="bold">Initialisation Time</emphasis>
-                parameter.
-            </para>
-        </refsection>
-        <refsection id="Dialogbox_CLOCK_c">
-            <title>Dialog box</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../../../gui/sources_pal/en_US/CLOCK_c_gui.png" align="center"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para/>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Period</emphasis>
-                    </para>
-                    <para> Scalar.
-                        Period is the time that separates two output events, it is the
-                        inverse of the frequency of the clock.
-                    </para>
-                    <para> Properties : Type 'vec' of size 1. </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Initialisation Time</emphasis>
-                    </para>
-                    <para> Scalar. Starting date.</para>
-                    <para> If negative the clock never starts.</para>
-                    <para> Properties : Type 'vec' of size 1.</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_CLOCK_c">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 1
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">csuper</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Example_CLOCK_c">
-            <title>Example</title>
-            <para>
-                A simple example of CLOCK_c block event output.
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
-                    Open this example in Xcos
-                </link>
-                .
-            </para>
-            <para/>
-            <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../examples/sources_pal/en_US/clock_c_en_US.zcos" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                </link>
-                <scilab:image><![CDATA[
+            </link>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
-        </refsection>
-        <refsection id="Interfacingfunction_CLOCK_c">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/CLOCK_c.sci">SCI/modules/scicos_blocks/macros/Sources/CLOCK_c.sci</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection role="see also" id="Seealso_CLOCK_c">
-            <title>See also</title>
-            <itemizedlist>
-                <listitem>
-                    <link linkend="SampleCLK">SampleCLK</link>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+        </para>
+    </refsection>
+    <refsection id="Interfacingfunction_CLOCK_c">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/CLOCK_c.sci">SCI/modules/scicos_blocks/macros/Sources/CLOCK_c.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="see also" id="Seealso_CLOCK_c">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="SampleCLK">SampleCLK</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

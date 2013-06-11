@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ????-2006 - INRIA - Scilab 
     * 
@@ -10,55 +10,55 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="loadwave" xml:lang="en">
-        <refnamediv>
-            <refname>loadwave</refname>
-            <refpurpose>load a sound wav file into scilab</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>x=loadwave(filename);
-                [x,y]=loadwave(filename);
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>filename</term>
-                    <listitem>
-                        <para>a string. The path of the wav file to be loaded</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>a matrix one line for each channel</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>vector as [data format, number of channels, samples per second
-                            per channel, estimate of bytes per second needed, byte alignment of
-                            a basic sample block, bits per sample, length of sound data in
-                            bytes, bytes per sample (per channel)].
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Reads a <literal>.wav</literal> sound file into Scilab as a matrix.
-                If y is given, it is filled with information about the samples (See the
-                message sent by <literal>loadwave</literal>).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="loadwave" xml:lang="en">
+    <refnamediv>
+        <refname>loadwave</refname>
+        <refpurpose>load a sound wav file into scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>x=loadwave(filename);
+            [x,y]=loadwave(filename);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>a string. The path of the wav file to be loaded</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a matrix one line for each channel</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>vector as [data format, number of channels, samples per second
+                        per channel, estimate of bytes per second needed, byte alignment of
+                        a basic sample block, bits per sample, length of sound data in
+                        bytes, bytes per sample (per channel)].
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Reads a <literal>.wav</literal> sound file into Scilab as a matrix.
+            If y is given, it is filled with information about the samples (See the
+            message sent by <literal>loadwave</literal>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // At first we create 0.5 seconds of sound parameters.
 t=soundsec(0.5);
 
@@ -68,19 +68,19 @@ savewave(TMPDIR+'/foo.wav',s);
 s1=loadwave(TMPDIR+'/foo.wav');
 max(abs(s1-s))
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="savewave">savewave</link>
-                </member>
-                <member>
-                    <link linkend="analyze">analyze</link>
-                </member>
-                <member>
-                    <link linkend="mapsound">mapsound</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="savewave">savewave</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+            <member>
+                <link linkend="mapsound">mapsound</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

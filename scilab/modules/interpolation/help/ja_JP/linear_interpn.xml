@@ -1,142 +1,142 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="ja">
-        <refnamediv>
-            <refname>linear_interpn</refname>
-            <refpurpose>n 次元線形補間</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>パラメータ</title>
-            <variablelist>
-                <varlistentry>
-                    <term>xp1, xp2, .., xpn</term>
-                    <listitem>
-                        <para>同じ大きさの実数ベクトル (または行列)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x1 ,x2, ..., xn</term>
-                    <listitem>
-                        <para>
-                            n次元の補間グリッドを定義する
-                            (最低でも2つの要素を有する)単調増加の行ベクトル 
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>v</term>
-                    <listitem>
-                        <para>ベクトル ( n=1の場合), 行列 (n=2の場合) またはハイパー行列 ( n
-                            &gt; 2の場合) で,
-                            グリッド点における補間関数の基準値を指定します.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>out_mode</term>
-                    <listitem>
-                        <para>(オプションの) 文字列で,
-                            グリッド外の評価方法(捕外)を定義します.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>vp</term>
-                    <listitem>
-                        <para>
-                            <literal>xp1, ...,
-                                xpn
-                            </literal>
-                            と同じ大きさのベクトルまたは行列
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                n個のベクトル<literal>x1 ,x2,..., xn</literal>で定義された n次元グリッド
-                とそのグリッドにおける関数(例えば <emphasis>f</emphasis>)の値を次のように指定すると:
-            </para>
-            <informalequation>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../mml/linear_interpn_equation1.mml"/>
-                    </imageobject>
-                </mediaobject>
-            </informalequation>
-            <para>
-                この関数は, ベクトル<literal>xp1, xp2, ..., xpn</literal>(または行列)により定義された座標にある
-                (以下 <emphasis>s</emphasis> と呼ぶ)グリッドから次のように
-                <emphasis>f</emphasis>の線形補間を計算します:
-            </para>
-            <informalequation>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../mml/linear_interpn_equation2.mml"/>
-                    </imageobject>
-                </mediaobject>
-            </informalequation>
-            <para>
-                <literal>out_mode</literal> パラメータは捕外の評価規則を設定します:
-                <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> とすると,
-                <literal>out_mode</literal> は次の場合に評価規則を定義します:
-            </para>
-            <informalequation>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../mml/linear_interpn_equation3.mml"/>
-                    </imageobject>
-                </mediaobject>
-            </informalequation>
-            <para>その他の選択肢は以下があります:</para>
-            <variablelist>
-                <varlistentry>
-                    <term>"by_zero"</term>
-                    <listitem>
-                        <para>ゼロによる捕外が行われますa</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"by_nan"</term>
-                    <listitem>
-                        <para>Nanによる捕外</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"C0"</term>
-                    <listitem>
-                        <para>捕外が以下のように定義されます:</para>
-                        <programlisting role=""><![CDATA[ 
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="ja">
+    <refnamediv>
+        <refname>linear_interpn</refname>
+        <refpurpose>n 次元線形補間</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>xp1, xp2, .., xpn</term>
+                <listitem>
+                    <para>同じ大きさの実数ベクトル (または行列)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x1 ,x2, ..., xn</term>
+                <listitem>
+                    <para>
+                        n次元の補間グリッドを定義する
+                        (最低でも2つの要素を有する)単調増加の行ベクトル 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>ベクトル ( n=1の場合), 行列 (n=2の場合) またはハイパー行列 ( n
+                        &gt; 2の場合) で,
+                        グリッド点における補間関数の基準値を指定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>out_mode</term>
+                <listitem>
+                    <para>(オプションの) 文字列で,
+                        グリッド外の評価方法(捕外)を定義します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>vp</term>
+                <listitem>
+                    <para>
+                        <literal>xp1, ...,
+                            xpn
+                        </literal>
+                        と同じ大きさのベクトルまたは行列
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            n個のベクトル<literal>x1 ,x2,..., xn</literal>で定義された n次元グリッド
+            とそのグリッドにおける関数(例えば <emphasis>f</emphasis>)の値を次のように指定すると:
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../mml/linear_interpn_equation1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            この関数は, ベクトル<literal>xp1, xp2, ..., xpn</literal>(または行列)により定義された座標にある
+            (以下 <emphasis>s</emphasis> と呼ぶ)グリッドから次のように
+            <emphasis>f</emphasis>の線形補間を計算します:
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../mml/linear_interpn_equation2.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            <literal>out_mode</literal> パラメータは捕外の評価規則を設定します:
+            <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> とすると,
+            <literal>out_mode</literal> は次の場合に評価規則を定義します:
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../mml/linear_interpn_equation3.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>その他の選択肢は以下があります:</para>
+        <variablelist>
+            <varlistentry>
+                <term>"by_zero"</term>
+                <listitem>
+                    <para>ゼロによる捕外が行われますa</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"by_nan"</term>
+                <listitem>
+                    <para>Nanによる捕外</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"C0"</term>
+                <listitem>
+                    <para>捕外が以下のように定義されます:</para>
+                    <programlisting role=""><![CDATA[ 
 s(P) = s(proj(P)) where proj(P) is nearest point from P 
                   located on the grid boundary.
  ]]></programlisting>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"natural"</term>
-                    <listitem>
-                        <para>捕外はその点に最も近いn線形パッチにより行われます.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"periodic"</term>
-                    <listitem>
-                        <para>
-                            <literal>s</literal> は周期的に拡張されます.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"natural"</term>
+                <listitem>
+                    <para>捕外はその点に最も近いn線形パッチにより行われます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"periodic"</term>
+                <listitem>
+                    <para>
+                        <literal>s</literal> は周期的に拡張されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 // example 1 : 1d linear interpolation
 x = linspace(0,2*%pi,11);
 y = sin(x);
@@ -236,22 +236,22 @@ plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("tri-linear interpolation of "+func)
 show_window()
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="interpln">interpln</link>
-                </member>
-                <member>
-                    <link linkend="splin">splin</link>
-                </member>
-                <member>
-                    <link linkend="splin2d">splin2d</link>
-                </member>
-                <member>
-                    <link linkend="splin3d">splin3d</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="interpln">interpln</link>
+            </member>
+            <member>
+                <link linkend="splin">splin</link>
+            </member>
+            <member>
+                <link linkend="splin2d">splin2d</link>
+            </member>
+            <member>
+                <link linkend="splin3d">splin3d</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

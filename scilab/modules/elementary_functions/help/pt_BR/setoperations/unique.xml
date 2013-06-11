@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,73 +10,73 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="en">
-        <refnamediv>
-            <refname>unique</refname>
-            <refpurpose>extrai componentes únicos de um vetor ou de
-                matrizes
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>
-                [N [,k]]=unique(M)
-                [N [,k]]=unique(M ,orient)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>M</term>
-                    <listitem>
-                        <para>vetor ou matriz de números ou strings </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>orient</term>
-                    <listitem>
-                        <para>flag com valores possíveis : 1 ou "r", 2 ou "c"</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>N</term>
-                    <listitem>
-                        <para>vetor ou matriz de números ou strings </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>k</term>
-                    <listitem>
-                        <para>vetor de inteiros</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                <literal>unique(M)</literal> retorna um vetor que retém as entradas
-                únicas de <literal>M</literal> em ordem ascendente.
-            </para>
-            <para>
-                <literal>unique(M,"r")</literal> ou
-                <literal>unique(M,1)</literal>retorna as linhas únicas de
-                <literal>M</literal> em ordem lexicográfica ascendente.
-            </para>
-            <para>
-                <literal>unique(M,"c")</literal> ou
-                <literal>unique(M,2)</literal>retorna as linhas únicas de
-                <literal>M</literal> em ordem lexicográfica ascendente.
-            </para>
-            <para>
-                Se requerido, o argumento de saída, <literal>k</literal> contém a
-                posição das primeiras entradas únicas encontradas.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unique" xml:lang="en">
+    <refnamediv>
+        <refname>unique</refname>
+        <refpurpose>extrai componentes únicos de um vetor ou de
+            matrizes
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>
+            [N [,k]]=unique(M)
+            [N [,k]]=unique(M ,orient)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>vetor ou matriz de números ou strings </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orient</term>
+                <listitem>
+                    <para>flag com valores possíveis : 1 ou "r", 2 ou "c"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>vetor ou matriz de números ou strings </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>vetor de inteiros</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>unique(M)</literal> retorna um vetor que retém as entradas
+            únicas de <literal>M</literal> em ordem ascendente.
+        </para>
+        <para>
+            <literal>unique(M,"r")</literal> ou
+            <literal>unique(M,1)</literal>retorna as linhas únicas de
+            <literal>M</literal> em ordem lexicográfica ascendente.
+        </para>
+        <para>
+            <literal>unique(M,"c")</literal> ou
+            <literal>unique(M,2)</literal>retorna as linhas únicas de
+            <literal>M</literal> em ordem lexicográfica ascendente.
+        </para>
+        <para>
+            Se requerido, o argumento de saída, <literal>k</literal> contém a
+            posição das primeiras entradas únicas encontradas.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 M=round(2*rand(20,1));
 
 unique(M)
@@ -102,22 +102,22 @@ unique(T,'r')
 [m,k]=unique(T,'c')
 unique(A,'c')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="union">union</link>
-                </member>
-                <member>
-                    <link linkend="intersect">intersect</link>
-                </member>
-                <member>
-                    <link linkend="gsort">gsort</link>
-                </member>
-                <member>
-                    <link linkend="lex_sort">lex_sort</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="union">union</link>
+            </member>
+            <member>
+                <link linkend="intersect">intersect</link>
+            </member>
+            <member>
+                <link linkend="gsort">gsort</link>
+            </member>
+            <member>
+                <link linkend="lex_sort">lex_sort</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
@@ -11,67 +11,67 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitxor" xml:lang="en">
-        <refnamediv>
-            <refname>bitxor</refname>
-            <refpurpose>bitwise XOR</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                z = bitxor(x, y)            
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parameters</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x :</term>
-                    <listitem>
-                        <para>
-                            a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                            or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                            or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                            Must contain positive integer values.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y :</term>
-                    <listitem>
-                        <para>
-                            a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                            or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                            or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                            Must contain positive integer values.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>z :</term>
-                    <listitem>
-                        <para>
-                            a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                            or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                            or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Given <varname>x</varname> and <varname>y</varname> two positive integers, this function returns the decimal
-                number <varname>z</varname> whose the binary form is the XOR of the binary representations
-                of <varname>x</varname> and <varname>y</varname>.
-            </para>
-            <para>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitxor" xml:lang="en">
+    <refnamediv>
+        <refname>bitxor</refname>
+        <refpurpose>bitwise XOR</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            z = bitxor(x, y)            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                        Must contain positive integer values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
+                        Must contain positive integer values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z :</term>
+                <listitem>
+                    <para>
+                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
+                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
+                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given <varname>x</varname> and <varname>y</varname> two positive integers, this function returns the decimal
+            number <varname>z</varname> whose the binary form is the XOR of the binary representations
+            of <varname>x</varname> and <varname>y</varname>.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // Compute the bitwise XOR of two matrices of doubles.
 x = [0 1 0 1];
 y = [0 0 1 1];
@@ -95,5 +95,5 @@ bitxor(uint8(13), uint8(27))
 bitxor(13, 27)
 
    ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,92 +11,92 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mfprintf" xml:lang="ru">
-        <refnamediv>
-            <refname>mfprintf</refname>
-            <refpurpose>преобразует, форматирует и записывает данные в файл</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>fd</term>
-                    <listitem>
-                        <para>
-                            скаляр, файловый дескриптор, предоставленный с помощью 
-                            <function>mopen</function> (это положительное число). 
-                        </para>
-                        <para>
-                            Если <varname>fd</varname> равен 0, то перенаправление в 
-                            стандартное устройство вывода сообщений об ошибках (stderr).
-                        </para>
-                        <para>
-                            Если <varname>fd</varname> равен 6, то перенаправление в 
-                            стандартное устройство вывода (stdout).
-                        </para>
-                        <para>
-                            УСТАРЕЛО: значение <literal>-1</literal> относится к файлу по 
-                            умолчанию (т. е. последнему открытому файлу).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>format</term>
-                    <listitem>
-                        <para>
-                            Scilab-строка, описывающая формат, который нужно использовать для 
-                            записи оставшихся операндов. Операнд <varname>format</varname> 
-                            следует как можно ближе к синтаксису операндов формата 
-                            <function>printf</function> в языке C.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>str</term>
-                    <listitem>
-                        <para>
-                            символьная строка: строка, которую нужно отсканировать.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>a1, ..., an</term>
-                    <listitem>
-                        <para>
-                            данные, которые преобразуются и распечатываются в соответствии с параметром формата.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Функция <function>mfprintf</function> является интерфейсом для версии функции <function>fprintf</function> на языке C.
-            </para>
-            <para>
-                Функция <function>mfprintf</function> записывает форматированные 
-                операнды в файл, указанный файловым дескриптором <varname>fd</varname>. 
-                Операнды аргумента форматируются по управлением операнда      
-                <varname>format</varname>.
-            </para>
-            <para>
-                Эта функция может быть использована для вывода векторов-столбцов чисел и 
-                строковых векторов без явных циклов по элементам. В этом случае функция 
-                проводит итерации по строкам. Наиболее короткий вектор даёт количество раз, сколько формат будет повторён.
-            </para>
-            <para>
-                Однородная последовательность параметров одинакового типа может быть 
-                заменена матрицей.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mfprintf" xml:lang="ru">
+    <refnamediv>
+        <refname>mfprintf</refname>
+        <refpurpose>преобразует, форматирует и записывает данные в файл</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>mfprintf(fd, format, a1, ..., an);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        скаляр, файловый дескриптор, предоставленный с помощью 
+                        <function>mopen</function> (это положительное число). 
+                    </para>
+                    <para>
+                        Если <varname>fd</varname> равен 0, то перенаправление в 
+                        стандартное устройство вывода сообщений об ошибках (stderr).
+                    </para>
+                    <para>
+                        Если <varname>fd</varname> равен 6, то перенаправление в 
+                        стандартное устройство вывода (stdout).
+                    </para>
+                    <para>
+                        УСТАРЕЛО: значение <literal>-1</literal> относится к файлу по 
+                        умолчанию (т. е. последнему открытому файлу).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>
+                        Scilab-строка, описывающая формат, который нужно использовать для 
+                        записи оставшихся операндов. Операнд <varname>format</varname> 
+                        следует как можно ближе к синтаксису операндов формата 
+                        <function>printf</function> в языке C.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>
+                        символьная строка: строка, которую нужно отсканировать.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1, ..., an</term>
+                <listitem>
+                    <para>
+                        данные, которые преобразуются и распечатываются в соответствии с параметром формата.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>mfprintf</function> является интерфейсом для версии функции <function>fprintf</function> на языке C.
+        </para>
+        <para>
+            Функция <function>mfprintf</function> записывает форматированные 
+            операнды в файл, указанный файловым дескриптором <varname>fd</varname>. 
+            Операнды аргумента форматируются по управлением операнда      
+            <varname>format</varname>.
+        </para>
+        <para>
+            Эта функция может быть использована для вывода векторов-столбцов чисел и 
+            строковых векторов без явных циклов по элементам. В этом случае функция 
+            проводит итерации по строкам. Наиболее короткий вектор даёт количество раз, сколько формат будет повторён.
+        </para>
+        <para>
+            Однородная последовательность параметров одинакового типа может быть 
+            заменена матрицей.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
  
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'Привет, %s %d.\n','мир!',1);
@@ -112,56 +112,56 @@ end
 mfprintf(0,'stderr output.\n');
 mfprintf(6,'stdout output.\n');
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="mclose">mclose</link>
-                </member>
-                <member>
-                    <link linkend="meof">meof</link>
-                </member>
-                <member>
-                    <link linkend="fprintfMat">fprintfMat</link>
-                </member>
-                <member>
-                    <link linkend="mfscanf">mfscanf</link>
-                </member>
-                <member>
-                    <link linkend="fscanfMat">fscanfMat</link>
-                </member>
-                <member>
-                    <link linkend="mget">mget</link>
-                </member>
-                <member>
-                    <link linkend="mgetstr">mgetstr</link>
-                </member>
-                <member>
-                    <link linkend="mopen">mopen</link>
-                </member>
-                <member>
-                    <link linkend="mprintf">mprintf</link>
-                </member>
-                <member>
-                    <link linkend="mput">mput</link>
-                </member>
-                <member>
-                    <link linkend="mputstr">mputstr</link>
-                </member>
-                <member>
-                    <link linkend="mseek">mseek</link>
-                </member>
-                <member>
-                    <link linkend="mtell">mtell</link>
-                </member>
-                <member>
-                    <link linkend="mdelete">mdelete</link>
-                </member>
-                <member>
-                    <link linkend="printf_conversion">преобразование в printf</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
-    
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+            <member>
+                <link linkend="printf_conversion">преобразование в printf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

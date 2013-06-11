@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,231 +21,231 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GENSQR_f">
-        <refnamediv>
-            <refname>GENSQR_f</refname>
-            <refpurpose>Square wave generator</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../images/palettes/GENSQR_f.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_GENSQR_f">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="GENSQR_f">Square wave generator</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_GENSQR_f">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_GENSQR_f">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_GENSQR_f">Dialog box</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_GENSQR_f">Default properties</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Example_GENSQR_f">Example</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_GENSQR_f">Interfacing function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Computationalfunction_GENSQR_f">Computational function</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_GENSQR_f">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Sources_pal">Sources palette</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_GENSQR_f">
-            <title>Description</title>
-            <para>
-                This block is a square wave generator: output takes values <emphasis>-M</emphasis> and  <emphasis>+M</emphasis>. Every time an event is received on the input event port, the output switches from <emphasis>-M</emphasis>  to <emphasis>M</emphasis>, or <emphasis>M</emphasis> to <emphasis>-M</emphasis>.
-            </para>
-            <para>
-                <latex><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GENSQR_f">
+    <refnamediv>
+        <refname>GENSQR_f</refname>
+        <refpurpose>Square wave generator</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/GENSQR_f.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_GENSQR_f">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="GENSQR_f">Square wave generator</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_GENSQR_f">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_GENSQR_f">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_GENSQR_f">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_GENSQR_f">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_GENSQR_f">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_GENSQR_f">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_GENSQR_f">Computational function</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_GENSQR_f">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Sources_pal">Sources palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_GENSQR_f">
+        <title>Description</title>
+        <para>
+            This block is a square wave generator: output takes values <emphasis>-M</emphasis> and  <emphasis>+M</emphasis>. Every time an event is received on the input event port, the output switches from <emphasis>-M</emphasis>  to <emphasis>M</emphasis>, or <emphasis>M</emphasis> to <emphasis>-M</emphasis>.
+        </para>
+        <para>
+            <latex><![CDATA[
 v(k)=\begin{cases}-M\\+M\end{cases}\ \ \mbox{,switch on activation}
 ]]></latex>
-            </para>
-            <para>
-                Typically the event input port is used to specify the signal period.
-            </para>
-        </refsection>
-        <refsection id="Dialogbox_GENSQR_f">
-            <title>Dialog box</title>
-            <para>
+        </para>
+        <para>
+            Typically the event input port is used to specify the signal period.
+        </para>
+    </refsection>
+    <refsection id="Dialogbox_GENSQR_f">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/sources_pal/en_US/GENSQR_f_gui.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Amplitude</emphasis>
+                </para>
+                <para>
+                    a scalar <emphasis>M</emphasis>.
+                </para>
+                <para> Properties : Type 'vec' of size 1. </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_GENSQR_f">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">gensqr</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_GENSQR_f">
+        <title>Example</title>
+        <para>This is a typical use of this block in context. This example should also alert the user about a specific behavior when linked to the same event its sink. <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos">
+                Open this exemple into Xcos
+            </link>
+        </para>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../gui/sources_pal/en_US/GENSQR_f_gui.png" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </para>
-            <para>
-                
-            </para>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Amplitude</emphasis>
-                    </para>
-                    <para>
-                        a scalar <emphasis>M</emphasis>.
-                    </para>
-                    <para> Properties : Type 'vec' of size 1. </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_GENSQR_f">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular outputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">gensqr</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Example_GENSQR_f">
-            <title>Example</title>
-            <para>This is a typical use of this block in context. This example should also alert the user about a specific behavior when linked to the same event its sink. <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos">
-                    Open this exemple into Xcos
-                </link>
-            </para>
-            <para/>
-            <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos">
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                </link>
-                <scilab:image><![CDATA[
+            </link>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
-            <para>
-                First the sink block is a <link linkend="CMSCOPE">scope</link> with a sample rate set to <emphasis>1 second</emphasis>. This parameter will affect the printed results of all the diagram branches.
-            </para>
-            <para>
-                The first source block (green) illustrate the typical use of this block. The period of each output level is set with a <link linkend="CLOCK_c">clock</link>. The signal edge is fast and should be accurate for most of the application with a edge speed ratio of <emphasis>1/10</emphasis>.
-            </para>
-            <para>
-                The second source block (blue) illustrate a much more problematic use case. The signal edge is not as fast as the previous one and can lead problematic use case. Users can use these parameters to illustrate some limitations of a design.
-            </para>
-            <para>
-                The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positve or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).
-            </para>
-        </refsection>
-        <refsection id="Interfacingfunction_GENSQR_f">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/GENSQR_f.sci">SCI/modules/scicos_blocks/macros/Sources/GENSQR_f.sci</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Computationalfunction_GENSQR_f">
-            <title>Computational function</title>
-            <itemizedlist>
-                <listitem>
-                    <para> SCI/modules/scicos_blocks/src/fortran/gensqr.f (Type 0)</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+        </para>
+        <para>
+            First the sink block is a <link linkend="CMSCOPE">scope</link> with a sample rate set to <emphasis>1 second</emphasis>. This parameter will affect the printed results of all the diagram branches.
+        </para>
+        <para>
+            The first source block (green) illustrate the typical use of this block. The period of each output level is set with a <link linkend="CLOCK_c">clock</link>. The signal edge is fast and should be accurate for most of the application with a edge speed ratio of <emphasis>1/10</emphasis>.
+        </para>
+        <para>
+            The second source block (blue) illustrate a much more problematic use case. The signal edge is not as fast as the previous one and can lead problematic use case. Users can use these parameters to illustrate some limitations of a design.
+        </para>
+        <para>
+            The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positve or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).
+        </para>
+    </refsection>
+    <refsection id="Interfacingfunction_GENSQR_f">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/GENSQR_f.sci">SCI/modules/scicos_blocks/macros/Sources/GENSQR_f.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_GENSQR_f">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/fortran/gensqr.f (Type 0)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

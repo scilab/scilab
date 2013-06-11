@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
@@ -10,93 +10,93 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="function">
-        <refnamediv>
-            <refname>function</refname>
-            <refpurpose>opens a function definition</refpurpose>
-        </refnamediv>
-        <refnamediv xml:id="endfunction">
-            <refname>endfunction</refname>
-            <refpurpose>closes a function definition</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Description</title>
-            <programlisting><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="function">
+    <refnamediv>
+        <refname>function</refname>
+        <refpurpose>opens a function definition</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="endfunction">
+        <refname>endfunction</refname>
+        <refpurpose>closes a function definition</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <programlisting><![CDATA[ 
 function <lhs_arguments>=<function_name><rhs_arguments>
   <statements>
 endfunction
  ]]></programlisting>
-            <para>
-                Where
-            </para>
-            <variablelist>
-                <varlistentry>
-                    <term>&lt;function_name&gt;</term>
-                    <listitem>
-                        <para>stands for the name of the function</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>&lt;rhs_arguments&gt;</term>
-                    <listitem>
-                        <para>stands for the input argument list. It may be</para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>
-                                    a comma separated sequence of variable names enclosed in parenthesis, like  <literal>(x1,...,xm)</literal>. Last variable name can be the key word <literal>varargin</literal> (see varargin)
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    the sequence <literal>()</literal> or nothing, if the function has no input argument.
-                                </para>
-                            </listitem>
-                        </itemizedlist>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>&lt;lhs_arguments&gt;</term>
-                    <listitem>
-                        <para>stands for the output argument list. It may be</para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>
-                                    a comma separated sequence of variable names enclosed in brackets, like  <literal>[y1,...,yn]</literal>. Last variable name can be the key word <literal>varargout</literal> (see varargout)
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    the sequence <literal>[]</literal> ,if the function has no input argument. In this case the syntax may also be:  <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
-                                </para>
-                            </listitem>
-                        </itemizedlist>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>&lt;statements&gt;</term>
-                    <listitem>
-                        <para>
-                            stands for a set of scilab instructions (statements)  This syntax may be used to define function (see <link linkend="functions">functions</link>) inline or in a script file (see <link linkend="exec">exec</link>). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <literal>exec</literal> function.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-            <para>
-                The <literal>function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
-                sequence cannot be split over several lines. This sequence can be
-                followed by statements in the same line if a comma or a semicolon is
-                added at its end.
-            </para>
-            <para>
-                Note that <literal>&lt;function_name&gt;</literal> must respect some syntax rules (see <link linkend="names">names</link>).
-            </para>
-            <para>
-                Function definitions can be nested.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+        <para>
+            Where
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>&lt;function_name&gt;</term>
+                <listitem>
+                    <para>stands for the name of the function</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;rhs_arguments&gt;</term>
+                <listitem>
+                    <para>stands for the input argument list. It may be</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                a comma separated sequence of variable names enclosed in parenthesis, like  <literal>(x1,...,xm)</literal>. Last variable name can be the key word <literal>varargin</literal> (see varargin)
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                the sequence <literal>()</literal> or nothing, if the function has no input argument.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;lhs_arguments&gt;</term>
+                <listitem>
+                    <para>stands for the output argument list. It may be</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                a comma separated sequence of variable names enclosed in brackets, like  <literal>[y1,...,yn]</literal>. Last variable name can be the key word <literal>varargout</literal> (see varargout)
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                the sequence <literal>[]</literal> ,if the function has no input argument. In this case the syntax may also be:  <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;statements&gt;</term>
+                <listitem>
+                    <para>
+                        stands for a set of scilab instructions (statements)  This syntax may be used to define function (see <link linkend="functions">functions</link>) inline or in a script file (see <link linkend="exec">exec</link>). For compatibility with old Scilab versions, functions defined in a script file containing only function definitions can be "loaded" into Scilab using the <literal>exec</literal> function.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            The <literal>function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
+            sequence cannot be split over several lines. This sequence can be
+            followed by statements in the same line if a comma or a semicolon is
+            added at its end.
+        </para>
+        <para>
+            Note that <literal>&lt;function_name&gt;</literal> must respect some syntax rules (see <link linkend="names">names</link>).
+        </para>
+        <para>
+            Function definitions can be nested.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //inline definition (see function)
 function [x,y]=myfct(a,b)
 x=a+b
@@ -122,19 +122,19 @@ foo(%pi/3)
 // definition in an script file (see exec)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="functions">functions</link>
-                </member>
-                <member>
-                    <link linkend="exec">exec</link>
-                </member>
-                <member>
-                    <link linkend="names">names</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="functions">functions</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

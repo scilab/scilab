@@ -1,6 +1,6 @@
-        <?xml version="1.0" encoding="utf-8"?>
-    
-    <!--
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,86 +11,86 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="freeAllocatedSparseMatrix" xml:lang="ja">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="freeAllocatedSparseMatrix" xml:lang="ja">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>freeAllocatedSparseMatrix</refname>
-            
-            <refpurpose>
-                
-                getAllocatedSparseMatrix関数で確保されたメモリを解放.
-                
-            </refpurpose>
-            
-        </refnamediv>
+        <refname>freeAllocatedSparseMatrix</refname>
         
-        <refsynopsisdiv>
+        <refpurpose>
             
-            <title>呼び出し手順</title>
+            getAllocatedSparseMatrix関数で確保されたメモリを解放.
             
-            <synopsis>void freeAllocatedSparseMatrix(int* _piNbItemRows, int* _piColPos, double* _pdblReal)</synopsis>
-            
-        </refsynopsisdiv>
+        </refpurpose>
         
-        <refsection>
-            
-            <title>引数</title>
-            
-            <variablelist>
-                
-                <varlistentry>
-                    
-                    <term>_piNbItemRows</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            getAllocatedSparseMatrixで確保された"_piNbItemRows" ポインタ.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piColPos</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            getAllocatedSparseMatrixで確保された"_piColPos"ポインタ.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_pdblReal</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            getAllocatedSparseMatrixで確保された"_pdblReal".
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-            </variablelist>
-            
-        </refsection>
-        
-    </refentry>
+    </refnamediv>
     
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>void freeAllocatedSparseMatrix(int* _piNbItemRows, int* _piColPos, double* _pdblReal)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>_piNbItemRows</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        getAllocatedSparseMatrixで確保された"_piNbItemRows" ポインタ.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piColPos</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        getAllocatedSparseMatrixで確保された"_piColPos"ポインタ.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_pdblReal</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        getAllocatedSparseMatrixで確保された"_pdblReal".
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+</refentry>
+

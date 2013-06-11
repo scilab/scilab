@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,43 +10,43 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gcd">
-        <refnamediv>
-            <refname>gcd</refname>
-            <refpurpose>最大公約数を計算</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>[pgcd,U]=gcd(p)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>パラメータ</title>
-            <variablelist>
-                <varlistentry>
-                    <term>p</term>
-                    <listitem>
-                        <para>
-                            多項式行ベクトル <literal>p=[p1,..,pn]</literal> または整数行ベクトル
-                            (8型)
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                <literal>p</literal>の要素の最大公約数および以下のような最小次数の
-                (多項式の逆を有する)ユニモジュラ行列 <literal>U</literal>
-                を計算します
-            </para>
-            <para>
-                <literal>p*U=[0 ... 0 pgcd]</literal>
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gcd">
+    <refnamediv>
+        <refname>gcd</refname>
+        <refpurpose>最大公約数を計算</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[pgcd,U]=gcd(p)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        多項式行ベクトル <literal>p=[p1,..,pn]</literal> または整数行ベクトル
+                        (8型)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>p</literal>の要素の最大公約数および以下のような最小次数の
+            (多項式の逆を有する)ユニモジュラ行列 <literal>U</literal>
+            を計算します
+        </para>
+        <para>
+            <literal>p*U=[0 ... 0 pgcd]</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 //多項式の場合
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];
@@ -66,19 +66,19 @@ gcd([iconvert(15,4) iconvert(20,4)])
 
 gcd(iconvert([15 20],4))
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="bezout">bezout</link>
-                </member>
-                <member>
-                    <link linkend="lcm">lcm</link>
-                </member>
-                <member>
-                    <link linkend="hermit">hermit</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bezout">bezout</link>
+            </member>
+            <member>
+                <link linkend="lcm">lcm</link>
+            </member>
+            <member>
+                <link linkend="hermit">hermit</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

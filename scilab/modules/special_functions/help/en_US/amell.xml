@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,59 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="amell">
-        <refnamediv>
-            <refname>amell</refname>
-            <refpurpose>Jacobi's am function</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>[sn]=amell(u,k)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>u</term>
-                    <listitem>
-                        <para>real scalar or vector</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>k</term>
-                    <listitem>
-                        <para>scalar</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>sn</term>
-                    <listitem>
-                        <para>real scalar or vector</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Computes Jacobi's elliptic function <literal>am(u,k)</literal>
-                where <literal>k</literal> is the parameter and <literal>u</literal> is the argument. If <literal>u</literal> 
-                is a vector <literal>sn</literal> is the vector of the (element wise) computed values.
-                Used in function <literal>%sn</literal>.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="delip">delip</link>
-                </member>
-                <member>
-                    <link linkend="percentsn">%sn</link>
-                </member>
-                <member>
-                    <link linkend="percentasn">%asn</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="amell">
+    <refnamediv>
+        <refname>amell</refname>
+        <refpurpose>Jacobi's am function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[sn]=amell(u,k)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>real scalar or vector</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>scalar</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sn</term>
+                <listitem>
+                    <para>real scalar or vector</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Computes Jacobi's elliptic function <literal>am(u,k)</literal>
+            where <literal>k</literal> is the parameter and <literal>u</literal> is the argument. If <literal>u</literal> 
+            is a vector <literal>sn</literal> is the vector of the (element wise) computed values.
+            Used in function <literal>%sn</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="delip">delip</link>
+            </member>
+            <member>
+                <link linkend="percentsn">%sn</link>
+            </member>
+            <member>
+                <link linkend="percentasn">%asn</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,178 +1,178 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="number_properties" xml:lang="ru">
-        <refnamediv>
-            <refname>number_properties</refname>
-            <refpurpose>определение параметров чисел с плавающей запятой</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>pr = number_properties(prop)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>prop</term>
-                    <listitem>
-                        <para>строка</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>pr</term>
-                    <listitem>
-                        <para>вещественный или логический скаляр</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Эта функция может быть использована для получения характеристик
-                чисел/свойств из набора с плавающей запятой, обозначенного здесь как
-                <literal>F(b,p,emin,emax)</literal> (обычно набор 64-х разрядных чисел
-                описывается IEEE 754). Числа <literal>F</literal> представляются в
-                виде:
-            </para>
-            <screen><![CDATA[ 
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="number_properties" xml:lang="ru">
+    <refnamediv>
+        <refname>number_properties</refname>
+        <refpurpose>определение параметров чисел с плавающей запятой</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>pr = number_properties(prop)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>prop</term>
+                <listitem>
+                    <para>строка</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pr</term>
+                <listitem>
+                    <para>вещественный или логический скаляр</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция может быть использована для получения характеристик
+            чисел/свойств из набора с плавающей запятой, обозначенного здесь как
+            <literal>F(b,p,emin,emax)</literal> (обычно набор 64-х разрядных чисел
+            описывается IEEE 754). Числа <literal>F</literal> представляются в
+            виде:
+        </para>
+        <screen><![CDATA[ 
 sign * m * b^e
  ]]></screen>
-            <para>
-                <literal>e</literal> - показатель, а 
-                <literal>m</literal> - мантисса:
-            </para>
-            <latex>
-                $$
-                m = d_1 \cdot b^{-1} + d_2 \cdot b^{-2} + \ldots + d_p \cdot b^{-p}
-                $$
-            </latex>
-            <para>
-                Разряды <latex>$d_i$</latex> находятся в диапазоне <literal>[0,
-                    b-1]
-                </literal>
-                а <literal>e</literal> находится в диапазоне 
-                <literal>[emin, emax]</literal>, скажем, что число "нормированное", если
-                <latex>$d_1 \neq 0$</latex>. Можно получить следующие сведения:
-            </para>
-            <variablelist>
-                <varlistentry>
-                    <term>prop = "radix"</term>
-                    <listitem>
-                        <para>
-                            тогда <literal>pr</literal> является основание логарифма 
-                            <literal>b</literal> набора <literal>F</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>prop = "digits"</term>
-                    <listitem>
-                        <para>
-                            тогда <literal>pr</literal> является количеством разрядов
-                            <literal>p</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>prop = "huge"</term>
-                    <listitem>
-                        <para>
-                            тогда <literal>pr</literal> является максимальным положительным
-                            числом с плавающей запятой из <literal>F</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>prop = "tiny"</term>
-                    <listitem>
-                        <para>
-                            тогда <literal>pr</literal> является минимальным
-                            положительным нормированным числом с плавающей запятой из
-                            <literal>F</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>prop = "denorm"</term>
-                    <listitem>
-                        <para>
-                            тогда <literal>pr</literal> является логическим значением (%t,
-                            если используются ненормированные числа)
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>prop = "tiniest"</term>
-                    <listitem>
-                        <para>
-                            тогда, если <literal>denorm = %t</literal>, то
-                            <literal>pr</literal> является минимальным положительным ненормированным
-                            числом, в противном случае <literal>pr = tiny</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>prop = "eps"</term>
-                    <listitem>
-                        <para>
-                            тогда <literal>pr</literal> является машинным эпсилоном (вообще
-                            <latex>$\dfrac{b^{1-p}}{2}$</latex>), которое является относительной
-                            максимальной ошибкой между вещественным <literal>x</literal> (таким,
-                            что <literal>|x|</literal> в <literal>[tiny, huge]</literal>) и
-                            <literal>fl(x)</literal>, его приближением с плавающей запятой в 
-                            <literal>F</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>prop = "minexp"</term>
-                    <listitem>
-                        <para>
-                            тогда <literal>pr</literal> является 
-                            <literal>emin</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>prop = "maxexp"</term>
-                    <listitem>
-                        <para>
-                            тогда <literal>pr</literal> является 
-                            <literal>emax</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Примечания</title>
-            <para>
-                Эта функция использует подпрограмму dlamch для получения параметров
-                машины (имена (radix, digit, huge и т. д.) рекомендованы стандартом LIA 1
-                и отличаются от соответствующих имён lapack); ПРЕДУПРЕЖДЕНИЕ: иногда вы
-                можете увидеть следующее определение машинного эпсилона: <latex>$eps = b^{1-p}$</latex>
-                ,но в этой функции мы используем традиционное определение
-                (см. выше prop = "eps") и поэтому <latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
-                ,если производится нормальное округление, а
-                если нет, то <latex>$eps = b^{1-p}$</latex>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+        <para>
+            <literal>e</literal> - показатель, а 
+            <literal>m</literal> - мантисса:
+        </para>
+        <latex>
+            $$
+            m = d_1 \cdot b^{-1} + d_2 \cdot b^{-2} + \ldots + d_p \cdot b^{-p}
+            $$
+        </latex>
+        <para>
+            Разряды <latex>$d_i$</latex> находятся в диапазоне <literal>[0,
+                b-1]
+            </literal>
+            а <literal>e</literal> находится в диапазоне 
+            <literal>[emin, emax]</literal>, скажем, что число "нормированное", если
+            <latex>$d_1 \neq 0$</latex>. Можно получить следующие сведения:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>prop = "radix"</term>
+                <listitem>
+                    <para>
+                        тогда <literal>pr</literal> является основание логарифма 
+                        <literal>b</literal> набора <literal>F</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop = "digits"</term>
+                <listitem>
+                    <para>
+                        тогда <literal>pr</literal> является количеством разрядов
+                        <literal>p</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop = "huge"</term>
+                <listitem>
+                    <para>
+                        тогда <literal>pr</literal> является максимальным положительным
+                        числом с плавающей запятой из <literal>F</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop = "tiny"</term>
+                <listitem>
+                    <para>
+                        тогда <literal>pr</literal> является минимальным
+                        положительным нормированным числом с плавающей запятой из
+                        <literal>F</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop = "denorm"</term>
+                <listitem>
+                    <para>
+                        тогда <literal>pr</literal> является логическим значением (%t,
+                        если используются ненормированные числа)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop = "tiniest"</term>
+                <listitem>
+                    <para>
+                        тогда, если <literal>denorm = %t</literal>, то
+                        <literal>pr</literal> является минимальным положительным ненормированным
+                        числом, в противном случае <literal>pr = tiny</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop = "eps"</term>
+                <listitem>
+                    <para>
+                        тогда <literal>pr</literal> является машинным эпсилоном (вообще
+                        <latex>$\dfrac{b^{1-p}}{2}$</latex>), которое является относительной
+                        максимальной ошибкой между вещественным <literal>x</literal> (таким,
+                        что <literal>|x|</literal> в <literal>[tiny, huge]</literal>) и
+                        <literal>fl(x)</literal>, его приближением с плавающей запятой в 
+                        <literal>F</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop = "minexp"</term>
+                <listitem>
+                    <para>
+                        тогда <literal>pr</literal> является 
+                        <literal>emin</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prop = "maxexp"</term>
+                <listitem>
+                    <para>
+                        тогда <literal>pr</literal> является 
+                        <literal>emax</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примечания</title>
+        <para>
+            Эта функция использует подпрограмму dlamch для получения параметров
+            машины (имена (radix, digit, huge и т. д.) рекомендованы стандартом LIA 1
+            и отличаются от соответствующих имён lapack); ПРЕДУПРЕЖДЕНИЕ: иногда вы
+            можете увидеть следующее определение машинного эпсилона: <latex>$eps = b^{1-p}$</latex>
+            ,но в этой функции мы используем традиционное определение
+            (см. выше prop = "eps") и поэтому <latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
+            ,если производится нормальное округление, а
+            если нет, то <latex>$eps = b^{1-p}$</latex>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 b = number_properties("radix")
 eps = number_properties("eps")
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="nearfloat">nearfloat</link>
-                </member>
-                <member>
-                    <link linkend="frexp">frexp</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nearfloat">nearfloat</link>
+            </member>
+            <member>
+                <link linkend="frexp">frexp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
  *
@@ -10,69 +10,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="polfact" xml:lang="en">
-        <refnamediv>
-            <refname>polfact</refname>
-            <refpurpose>fatores mínimos</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title> Seqüência de Chamamento </title>
-            <synopsis>[f]=polfact(p)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>p</term>
-                    <listitem>
-                        <para>polinômio </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>f</term>
-                    <listitem>
-                        <para>
-                            vetor <literal>[f0 f1 ... fn]</literal> tal que
-                            <literal>p=prod(f)</literal>
-                        </para>
-                        <variablelist>
-                            <varlistentry>
-                                <term>f0</term>
-                                <listitem>
-                                    <para>constante</para>
-                                </listitem>
-                            </varlistentry>
-                            <varlistentry>
-                                <term>fi</term>
-                                <listitem>
-                                    <para>polinômio</para>
-                                </listitem>
-                            </varlistentry>
-                        </variablelist>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                <literal>f=polfact(p)</literal> retorna os valores mínimos de p,
-                i.e., <literal>f=[f0 f1 ... fn]</literal> tal que
-                <literal>p=prod(f)</literal>
-            </para>
-        </refsection>
-        <refsection>
-            <title> Ver Também </title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="lcm">lcm</link>
-                </member>
-                <member>
-                    <link linkend="cmndred">cmndred</link>
-                </member>
-                <member>
-                    <link linkend="factors">factors</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="polfact" xml:lang="en">
+    <refnamediv>
+        <refname>polfact</refname>
+        <refpurpose>fatores mínimos</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>[f]=polfact(p)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>polinômio </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>
+                        vetor <literal>[f0 f1 ... fn]</literal> tal que
+                        <literal>p=prod(f)</literal>
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>f0</term>
+                            <listitem>
+                                <para>constante</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>fi</term>
+                            <listitem>
+                                <para>polinômio</para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>f=polfact(p)</literal> retorna os valores mínimos de p,
+            i.e., <literal>f=[f0 f1 ... fn]</literal> tal que
+            <literal>p=prod(f)</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lcm">lcm</link>
+            </member>
+            <member>
+                <link linkend="cmndred">cmndred</link>
+            </member>
+            <member>
+                <link linkend="factors">factors</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

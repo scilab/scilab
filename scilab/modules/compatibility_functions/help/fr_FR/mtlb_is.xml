@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
     * 
@@ -10,36 +10,36 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="mtlb_is">
-        <refnamediv>
-            <refname>mtlb_is</refname>
-            <refpurpose>Fonction d'émulation de l'insertion dans une chaîne de caractères de Matlab</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                L'insertion se comporte différemment dans Matlab et dans Scilab pour les chaînes de caractères
-                étant donné que celles-ci ne sont pas considérées de la même façon.
-            </para>
-            <para>
-                La fonction <literal>str = mtlb_is(sto,sfrom,i,j)</literal> est utilisée par
-                <literal>mfile2sci</literal> pour remplacer les opérations d'insertion dans des 
-                chaînes de caractères. Cette fonction va
-                déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
-            </para>
-            <para>
-                Attention : <literal>mtlb_is</literal> ne doit pas être utilisée pour une programmation manuelle.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link>
-                </member>
-                <member>
-                    <link linkend="mtlb_i">mtlb_i</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="mtlb_is">
+    <refnamediv>
+        <refname>mtlb_is</refname>
+        <refpurpose>Fonction d'émulation de l'insertion dans une chaîne de caractères de Matlab</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            L'insertion se comporte différemment dans Matlab et dans Scilab pour les chaînes de caractères
+            étant donné que celles-ci ne sont pas considérées de la même façon.
+        </para>
+        <para>
+            La fonction <literal>str = mtlb_is(sto,sfrom,i,j)</literal> est utilisée par
+            <literal>mfile2sci</literal> pour remplacer les opérations d'insertion dans des 
+            chaînes de caractères. Cette fonction va
+            déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
+        </para>
+        <para>
+            Attention : <literal>mtlb_is</literal> ne doit pas être utilisée pour une programmation manuelle.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="Chaines_de_caracteres_MatlabScilab">Chaines_de_caracteres_Matlab-Scilab</link>
+            </member>
+            <member>
+                <link linkend="mtlb_i">mtlb_i</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,45 +1,45 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="with_javasci">
-        <refnamediv>
-            <refname>with_javasci</refname>
-            <refpurpose>Checks if Scilab has been built with
-                the Java interface
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>r = with_javasci()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>r</term>
-                    <listitem>
-                        <para>a boolean</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Returns <constant>%t</constant> if Scilab has been built with the Java interface
-                or <constant>%f</constant> if not.
-            </para>
-            <para>
-                <note>Note that this function will always return True under GNU/Linux or Mac OS X.</note>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="with_javasci">
+    <refnamediv>
+        <refname>with_javasci</refname>
+        <refpurpose>Checks if Scilab has been built with
+            the Java interface
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>r = with_javasci()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>a boolean</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Returns <constant>%t</constant> if Scilab has been built with the Java interface
+            or <constant>%f</constant> if not.
+        </para>
+        <para>
+            <note>Note that this function will always return True under GNU/Linux or Mac OS X.</note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 if with_javasci() == %t then
    disp("javasci is available");
 else
    disp("javasci is not available");
 end
  ]]></programlisting>
-        </refsection>
-        
-    </refentry>
+    </refsection>
+    
+</refentry>

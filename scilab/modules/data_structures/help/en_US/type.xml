@@ -1,206 +1,206 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="type">
-        <refnamediv>
-            <refname>type</refname>
-            <refpurpose>returns the type of a variable</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>[i]=type(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>a Scilab object.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>i</term>
-                    <listitem>
-                        <para>an integer.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <code>type(x)</code>  returns an integer which is the type of <varname>x</varname> as following:
-            </para>
-            <variablelist>
-                <varlistentry>
-                    <term>1</term>
-                    <listitem>
-                        <para>a real or complex matrix of double.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>2</term>
-                    <listitem>
-                        <para>
-                            a <link linkend="poly">polynomial matrix</link>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>4</term>
-                    <listitem>
-                        <para>
-                            a <link linkend="matrices">boolean matrix</link>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>5</term>
-                    <listitem>
-                        <para>
-                            a <link linkend="sparse">sparse matrix</link>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>6</term>
-                    <listitem>
-                        <para>
-                            a <link linkend="sparse">sparse boolean matrix</link>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>7</term>
-                    <listitem>
-                        <para>Matlab sparse matrix</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>8</term>
-                    <listitem>
-                        <para>
-                            a matrix of <link linkend="int8">integers</link> stored on 1 (<literal>int8</literal>), 2 (<literal>int16</literal>) or 4 (<literal>int32</literal>) bytes.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>9</term>
-                    <listitem>
-                        <para>
-                            a matrix of <link linkend="graphics_entities">graphic handles</link>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>10</term>
-                    <listitem>
-                        <para>
-                            a matrix of <link linkend="strings">character strings</link>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>11</term>
-                    <listitem>
-                        <para>
-                            an un-compiled function (Scilab code). A function created with <link linkend="deff">deff</link> with argument <literal>'n'</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>13</term>
-                    <listitem>
-                        <para>
-                            a compiled <link linkend="function">function</link> (Scilab code).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>14</term>
-                    <listitem>
-                        <para>
-                            a function <link linkend="library">library</link>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>15</term>
-                    <listitem>
-                        <para>
-                            a <link linkend="list">list</link>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>16</term>
-                    <listitem>
-                        <para>
-                            a typed list (<link linkend="tlist">tlist</link>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>17</term>
-                    <listitem>
-                        <para>
-                            a matrix oriented typed list (<link linkend="mlist">mlist</link>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>128</term>
-                    <listitem>
-                        <para>
-                            a pointer (Use case: <link linkend="lufact">lufact</link>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>129</term>
-                    <listitem>
-                        <para>a size implicit polynomial used for indexing.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>130</term>
-                    <listitem>
-                        <para>
-                            a built-in Scilab function, called also <emphasis role="italic">gateway</emphasis> (C, C++ or Fortran code).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>0</term>
-                    <listitem>
-                        <para>a null variable. It is mainly used internally by
-                            Scilab. If a function has no declared returned argument
-                            like <function>disp</function> when it is called it returns
-                            a null variable. If a function is called with an omitted
-                            argument in the argument list like
-                            <code>foo(a,,b)</code> the missing argument is
-                            assigned to a null variable.
-                        </para>
-                        <para>
-                            <note>
-                                Note that if a null variable is assigned to a name, it is removed.
-                                <code>x=disp(1)</code> deletes <varname>x</varname>.
-                            </note>
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-            <para>
-                <note>
-                    Please note that, for some variables, <function>type</function> will return <literal>tlist</literal>
-                    or <literal>mlist</literal> due to the internal data structure. This is the case of
-                    <emphasis role="italic">rational</emphasis> and <emphasis role="italic">state-space</emphasis> matrices, <emphasis role="italic">hypermat</emphasis> and <emphasis role="italic">struct</emphasis>. Please considering the use of
-                    <link linkend="typeof">typeof</link> instead.
-                </note>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="type">
+    <refnamediv>
+        <refname>type</refname>
+        <refpurpose>returns the type of a variable</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[i]=type(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a Scilab object.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i</term>
+                <listitem>
+                    <para>an integer.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>type(x)</code>  returns an integer which is the type of <varname>x</varname> as following:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>1</term>
+                <listitem>
+                    <para>a real or complex matrix of double.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>2</term>
+                <listitem>
+                    <para>
+                        a <link linkend="poly">polynomial matrix</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>4</term>
+                <listitem>
+                    <para>
+                        a <link linkend="matrices">boolean matrix</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>5</term>
+                <listitem>
+                    <para>
+                        a <link linkend="sparse">sparse matrix</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>6</term>
+                <listitem>
+                    <para>
+                        a <link linkend="sparse">sparse boolean matrix</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>7</term>
+                <listitem>
+                    <para>Matlab sparse matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>8</term>
+                <listitem>
+                    <para>
+                        a matrix of <link linkend="int8">integers</link> stored on 1 (<literal>int8</literal>), 2 (<literal>int16</literal>) or 4 (<literal>int32</literal>) bytes.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>9</term>
+                <listitem>
+                    <para>
+                        a matrix of <link linkend="graphics_entities">graphic handles</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>10</term>
+                <listitem>
+                    <para>
+                        a matrix of <link linkend="strings">character strings</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>11</term>
+                <listitem>
+                    <para>
+                        an un-compiled function (Scilab code). A function created with <link linkend="deff">deff</link> with argument <literal>'n'</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>13</term>
+                <listitem>
+                    <para>
+                        a compiled <link linkend="function">function</link> (Scilab code).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>14</term>
+                <listitem>
+                    <para>
+                        a function <link linkend="library">library</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>15</term>
+                <listitem>
+                    <para>
+                        a <link linkend="list">list</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>16</term>
+                <listitem>
+                    <para>
+                        a typed list (<link linkend="tlist">tlist</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>17</term>
+                <listitem>
+                    <para>
+                        a matrix oriented typed list (<link linkend="mlist">mlist</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>128</term>
+                <listitem>
+                    <para>
+                        a pointer (Use case: <link linkend="lufact">lufact</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>129</term>
+                <listitem>
+                    <para>a size implicit polynomial used for indexing.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>130</term>
+                <listitem>
+                    <para>
+                        a built-in Scilab function, called also <emphasis role="italic">gateway</emphasis> (C, C++ or Fortran code).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>0</term>
+                <listitem>
+                    <para>a null variable. It is mainly used internally by
+                        Scilab. If a function has no declared returned argument
+                        like <function>disp</function> when it is called it returns
+                        a null variable. If a function is called with an omitted
+                        argument in the argument list like
+                        <code>foo(a,,b)</code> the missing argument is
+                        assigned to a null variable.
+                    </para>
+                    <para>
+                        <note>
+                            Note that if a null variable is assigned to a name, it is removed.
+                            <code>x=disp(1)</code> deletes <varname>x</varname>.
+                        </note>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            <note>
+                Please note that, for some variables, <function>type</function> will return <literal>tlist</literal>
+                or <literal>mlist</literal> due to the internal data structure. This is the case of
+                <emphasis role="italic">rational</emphasis> and <emphasis role="italic">state-space</emphasis> matrices, <emphasis role="italic">hypermat</emphasis> and <emphasis role="italic">struct</emphasis>. Please considering the use of
+                <link linkend="typeof">typeof</link> instead.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 a=42;
 type(a)
 
@@ -235,16 +235,16 @@ deff('[x]=myplus(y,z)','x=y+z','n');
 type(myplus)
 
 ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="typeof">typeof</link>
-                </member>
-                <member>
-                    <link linkend="inttype">inttype</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="typeof">typeof</link>
+            </member>
+            <member>
+                <link linkend="inttype">inttype</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
  *
@@ -10,38 +10,38 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="init_param" xml:lang="ja">
-        <refnamediv>
-            <refname>init_param</refname>
-            <refpurpose>パラメータリストを扱う構造体を初期化</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>param_list = init_param(['param_name1',param_value1,...])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>引数</title>
-            <variablelist>
-                <varlistentry>
-                    <term>param_list</term>
-                    <listitem>
-                        <para>初期化済みのパラメータのリスト
-                            (入力パラメータが指定されない場合, このリストは空となり,
-                            plist 型となります).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>この関数はパラメータの空のリストを初期化します.
-                パラメータのリストは使用前に初期化する必要があります.
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="init_param" xml:lang="ja">
+    <refnamediv>
+        <refname>init_param</refname>
+        <refpurpose>パラメータリストを扱う構造体を初期化</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>param_list = init_param(['param_name1',param_value1,...])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>param_list</term>
+                <listitem>
+                    <para>初期化済みのパラメータのリスト
+                        (入力パラメータが指定されない場合, このリストは空となり,
+                        plist 型となります).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>この関数はパラメータの空のリストを初期化します.
+            パラメータのリストは使用前に初期化する必要があります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 // 空の plistを作成
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
@@ -49,25 +49,25 @@ mylist = add_param(mylist,'minbound',[0 0 0]);
 // 代入済みのplistを作成
 mylist_2 = init_param('minbound', [0 0 0], 'maxbound', [1 1 1]);
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="add_param">add_param</link>
-                </member>
-                <member>
-                    <link linkend="set_param">set_param</link>
-                </member>
-                <member>
-                    <link linkend="get_param">get_param</link>
-                </member>
-                <member>
-                    <link linkend="remove_param">remove_param</link>
-                </member>
-                <member>
-                    <link linkend="is_param">is_param</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="add_param">add_param</link>
+            </member>
+            <member>
+                <link linkend="set_param">set_param</link>
+            </member>
+            <member>
+                <link linkend="get_param">get_param</link>
+            </member>
+            <member>
+                <link linkend="remove_param">remove_param</link>
+            </member>
+            <member>
+                <link linkend="is_param">is_param</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

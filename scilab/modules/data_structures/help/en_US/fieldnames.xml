@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  * Copyright (C) 2010 - Digiteo - Vincent LIARD
@@ -11,69 +11,69 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fieldnames">
-        <refnamediv>
-            <refname>fieldnames</refname>
-            <refpurpose>get a tlist, mlist or struct fields names</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>f = fieldnames(lst)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>lst</term>
-                    <listitem>
-                        <para>A tlist, mlist or struct variable.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>f</term>
-                    <listitem>
-                        <para>Strings column vector of fields names.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <function>fieldnames</function> function returns field names
-                of a <literal>tlist</literal>, <literal>mlist</literal> or <literal>struct</literal>. <function>fieldnames</function>
-                does not work on cells.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example">
-                fieldnames(tlist(['listtype', 'f1', 'f2'], [], []))
-                fieldnames(mlist(['V', 'key', 'value'], ['a' 'b' ; 'c' 'd'], [1 2 ; 3 4]))
-                fieldnames(struct('f1', 25, 'month', 'DEC', 'year', 2006))
-                obj.x = 3;
-                obj.y = 3;
-                fieldnames(obj)
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="extraction">extraction</link>
-                </member>
-                <member>
-                    <link linkend="getfield">getfield</link>
-                </member>
-                <member>
-                    <link linkend="tlist">tlist</link>
-                </member>
-                <member>
-                    <link linkend="mlist">mlist</link>
-                </member>
-                <member>
-                    <link linkend="struct">struct</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="fieldnames">
+    <refnamediv>
+        <refname>fieldnames</refname>
+        <refpurpose>get a tlist, mlist or struct fields names</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>f = fieldnames(lst)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>lst</term>
+                <listitem>
+                    <para>A tlist, mlist or struct variable.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>Strings column vector of fields names.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>fieldnames</function> function returns field names
+            of a <literal>tlist</literal>, <literal>mlist</literal> or <literal>struct</literal>. <function>fieldnames</function>
+            does not work on cells.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            fieldnames(tlist(['listtype', 'f1', 'f2'], [], []))
+            fieldnames(mlist(['V', 'key', 'value'], ['a' 'b' ; 'c' 'd'], [1 2 ; 3 4]))
+            fieldnames(struct('f1', 25, 'month', 'DEC', 'year', 2006))
+            obj.x = 3;
+            obj.y = 3;
+            fieldnames(obj)
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+            <member>
+                <link linkend="struct">struct</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Xcos
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -22,43 +22,43 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Annotations_pal" xml:lang="en_US">
-        <refnamediv>
-            <refname>Annotations_pal</refname>
-            <refpurpose>Annotations palette</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata linkend="TEXT_f" fileref="../../../../images/palettes/TEXT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Module_Annotations_pal">
-            <title>Module</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="xcos">xcos</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_Annotations_pal">
-            <title>Description</title>
-            <para>This palette includes blocks used for annotations.</para>
-        </refsection>
-        <refsection id="Blocks_Annotations_pal">
-            <title>Blocks</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="TEXT_f">TEXT_f - Free annotation</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Annotations_pal" xml:lang="en_US">
+    <refnamediv>
+        <refname>Annotations_pal</refname>
+        <refpurpose>Annotations palette</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="TEXT_f" fileref="../../../../images/palettes/TEXT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Module_Annotations_pal">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_Annotations_pal">
+        <title>Description</title>
+        <para>This palette includes blocks used for annotations.</para>
+    </refsection>
+    <refsection id="Blocks_Annotations_pal">
+        <title>Blocks</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="TEXT_f">TEXT_f - Free annotation</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

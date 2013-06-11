@@ -1,29 +1,29 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rational" xml:lang="en">
-        <refnamediv>
-            <refname>rational</refname>
-            <refpurpose>objeto do Scilab, razão de polinômios</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                Um razão de polinômios <literal>r</literal> é um quociente entre
-                dois polinômios <literal>r=num/den</literal>. A representação interna de
-                uma razão de polinômios é uma lista.
-                <literal>r = rlist(num,den,[])</literal> é o mesmo
-                que <literal>r=num/den</literal>. Uma matriz de razões de polinômios pode
-                ser definida pela sintaxe usual, por exemplo:
-                <literal>[r11,r12;r21,r22]</literal> ié uma matriz 2x2 onde
-                <literal>rij</literal> são razões 1x1. Uma matriz de razões de polinômios
-                também pode ser definida como acima como uma lista
-                <literal>tlist(['r','num','den','dt'],num,den,[])</literal> com
-                <literal>num</literal> e <literal>den</literal> matrizes de
-                polinômios.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rational" xml:lang="en">
+    <refnamediv>
+        <refname>rational</refname>
+        <refpurpose>objeto do Scilab, razão de polinômios</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Um razão de polinômios <literal>r</literal> é um quociente entre
+            dois polinômios <literal>r=num/den</literal>. A representação interna de
+            uma razão de polinômios é uma lista.
+            <literal>r = rlist(num,den,[])</literal> é o mesmo
+            que <literal>r=num/den</literal>. Uma matriz de razões de polinômios pode
+            ser definida pela sintaxe usual, por exemplo:
+            <literal>[r11,r12;r21,r22]</literal> ié uma matriz 2x2 onde
+            <literal>rij</literal> são razões 1x1. Uma matriz de razões de polinômios
+            também pode ser definida como acima como uma lista
+            <literal>tlist(['r','num','den','dt'],num,den,[])</literal> com
+            <literal>num</literal> e <literal>den</literal> matrizes de
+            polinômios.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 W=[1/s,1/(s+1)]
 W'*W
@@ -34,19 +34,19 @@ syslin('c',Num,Den)
 syslin('c',H)
 [Num1,Den1]=simp(Num,Den)
  ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title> Ver Também </title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="poly">poly</link>
-                </member>
-                <member>
-                    <link linkend="syslin">syslin</link>
-                </member>
-                <member>
-                    <link linkend="simp">simp</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="simp">simp</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
  *
@@ -10,100 +10,100 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="filebrowser">
-        <refnamediv>
-            <refname>filebrowser</refname>
-            <refpurpose>Open the Scilab file browser</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>filebrowser()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>Open the file browser</para>
-            <para>
-                <literal>filebrowser</literal> allows to browse the file sand directories of the system directly from Scilab.
-            </para>
-            <para>
-                <literal>filebrowser</literal> has several features: 
-                <itemizedlist>
-                    <listitem><para>
-                            A nice and easy file browser
-                            <para/>
-                            <para>
-                                <inlinemediaobject>
-                                    <imageobject>
-                                        <imagedata fileref="../images/filebrowser_list.png"/>
-                                    </imageobject>
-                                </inlinemediaobject>
-                            </para>
-                            <para/>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="filebrowser">
+    <refnamediv>
+        <refname>filebrowser</refname>
+        <refpurpose>Open the Scilab file browser</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>filebrowser()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>Open the file browser</para>
+        <para>
+            <literal>filebrowser</literal> allows to browse the file sand directories of the system directly from Scilab.
+        </para>
+        <para>
+            <literal>filebrowser</literal> has several features: 
+            <itemizedlist>
+                <listitem><para>
+                        A nice and easy file browser
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_list.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
                         </para>
-                    </listitem>
-                    <listitem><para>
-                            Quick actions on the file items (open in SciNotes, Execute or load in Scilab, Open with Xcos, etc)
-                            <para/>
-                            <para>
-                                <inlinemediaobject>
-                                    <imageobject>
-                                        <imagedata fileref="../images/filebrowser_action.png"/>
-                                    </imageobject>
-                                </inlinemediaobject>
-                            </para>
-                            <para/>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Quick actions on the file items (open in SciNotes, Execute or load in Scilab, Open with Xcos, etc)
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_action.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
                         </para>
-                    </listitem>
-                    <listitem><para>
-                            Open with the system default application            
-                            <para/>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Open with the system default application            
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Multiple selection on file items<para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_multiple.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
                         </para>
-                    </listitem>
-                    <listitem><para>
-                            Multiple selection on file items<para/>
-                            <para>
-                                <inlinemediaobject>
-                                    <imageobject>
-                                        <imagedata fileref="../images/filebrowser_multiple.png"/>
-                                    </imageobject>
-                                </inlinemediaobject>
-                            </para>
-                            <para/>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Quick and easy filters
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_filter.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
                         </para>
-                    </listitem>
-                    <listitem><para>
-                            Quick and easy filters
-                            <para/>
-                            <para>
-                                <inlinemediaobject>
-                                    <imageobject>
-                                        <imagedata fileref="../images/filebrowser_filter.png"/>
-                                    </imageobject>
-                                </inlinemediaobject>
-                            </para>
-                            <para/>
+                        <para/>
+                    </para>
+                </listitem>
+                <listitem><para>
+                        Advanced filters with <ulink url="http://en.wikipedia.org/wiki/Regular_expression">regular expressions</ulink>
+                        <para/>
+                        <para>
+                            <inlinemediaobject>
+                                <imageobject>
+                                    <imagedata fileref="../images/filebrowser_filter_regexp.png"/>
+                                </imageobject>
+                            </inlinemediaobject>
                         </para>
-                    </listitem>
-                    <listitem><para>
-                            Advanced filters with <ulink url="http://en.wikipedia.org/wiki/Regular_expression">regular expressions</ulink>
-                            <para/>
-                            <para>
-                                <inlinemediaobject>
-                                    <imageobject>
-                                        <imagedata fileref="../images/filebrowser_filter_regexp.png"/>
-                                    </imageobject>
-                                </inlinemediaobject>
-                            </para>
-                            <para/>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example"><![CDATA[ 
+                        <para/>
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[ 
 filebrowser();
  ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
@@ -11,177 +11,177 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rand" xml:lang="ru">
-        <refnamediv>
-            <refname>rand</refname>
-            <refpurpose>Случайные числа</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>
-                r = rand()
-                r = rand(m1,m2,...)
-                r = rand(m1,m2,...,key)
-                r = rand(x)
-                r = rand(x,key)
-                
-                s = rand("seed")
-                rand("seed",s)
-                
-                rand(key)
-                key = rand("info")
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>m1, m2, ...</term>
-                    <listitem>
-                        <para>
-                            целые числа, размер матрицы случайных чисел <literal>r</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>key</term>
-                    <listitem>
-                        <para>
-                            строка, распределение случайных чисел (по умолчанию <literal>key="uniform"</literal>). Доступными значениями являются <literal>"uniform"</literal> (равновероятный) и <literal>"normal"</literal> (нормальный).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>
-                            вещественная или комплексная матрица. Рассматриваются только её вещественное или комплексное содержимое и её размеры.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>r</term>
-                    <listitem>
-                        <para>
-                            вещественный массив чисел двойной точности (double) размером  m1 на m2 на ... со случайными элементами.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>s</term>
-                    <listitem>
-                        <para>
-                            матрица чисел двойной точности размером  1 на 1, целочисленное значение, положительное, семя генератора случайных чисел (по умолчанию <literal>s=0</literal>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Назначение данной функции в том, чтобы возвращать матрицу чисел двойной точности со случайными вещественными или комплексными элементами. В зависимости от входных аргументов, функция может возвращать матрицу случайных чисел двойной точности или может получать или устанавливать закон распределения случайных чисел, или может получать или устанавливать семя генератора случайных чисел.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Генерация случайных чисел</title>
-            <variablelist>
-                <varlistentry>
-                    <term>r=rand()</term>
-                    <listitem>
-                        <para>
-                            возвращает матрицу чисел двойной точности размером 1 на 1 с одним случайным значением.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>r=rand(m1,m2)</term>
-                    <listitem>
-                        <para>
-                            это матрица случайных чисел размером <literal>m1</literal> на  <literal>m2</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>r=rand(m1,m2,...,mn)</term>
-                    <listitem>
-                        <para>
-                            возвращает матрицу случайных чисел размером <literal>m1</literal> на
-                            <literal>m2</literal> на ... на <literal>mn</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>r=rand(a)</term>
-                    <listitem>
-                        <para>
-                            возвращает матрицу случайных чисел того же размера, что и <literal>a</literal>. Матрица <literal>r</literal> является вещественной, если  <literal>a</literal> является вещественной и  <literal>r</literal> является комплексной, если <literal>a</literal> является комплексной матрицей.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Смена закона распределения случайных чисел</title>
-            <para>
-                Входной аргумент <literal>key</literal> устанавливает закон распределения генерируемых случайных чисел.
-            </para>
-            <variablelist>
-                <varlistentry>
-                    <term>rand("uniform")</term>
-                    <listitem>
-                        <para>
-                            устанавливает генератор случайных чисел на генерацию случайных чисел по равновероятному закону. Случайные числа равномерно распределены на интервале
-                            (0,1).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>rand("normal")</term>
-                    <listitem>
-                        <para>
-                            устанавливает генератор случайных чисел на генерацию случайных чисел по нормальному (Гаусс-Лапласовскому) закону распределения, с математическим ожиданием 0 и дисперсией 1.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>key=rand("info")</term>
-                    <listitem>
-                        <para>
-                            возвращает текущий закон распределения генератора случайных чисел ("uniform" для равновероятного или "normal" для нормального).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Получение или установка семени генератора случайных чисел</title>
-            <para>
-                Есть возможность получить или установить семя генератора случайных чисел.
-            </para>
-            <variablelist>
-                <varlistentry>
-                    <term>s=rand("seed")</term>
-                    <listitem>
-                        <para>возвращает текущее значение семени.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>rand("seed",s)</term>
-                    <listitem>
-                        <para>
-                            устанавливает семя генератора случайных чисел равным <literal>s</literal> (по умолчанию <literal>s=0</literal> при первом вызове).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <para>
-                В следующем примере мы генерируем случайные числа двойной точности с различными законами распределения.
-            </para>
-            <programlisting role="example"><![CDATA[  
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rand" xml:lang="ru">
+    <refnamediv>
+        <refname>rand</refname>
+        <refpurpose>Случайные числа</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            r = rand()
+            r = rand(m1,m2,...)
+            r = rand(m1,m2,...,key)
+            r = rand(x)
+            r = rand(x,key)
+            
+            s = rand("seed")
+            rand("seed",s)
+            
+            rand(key)
+            key = rand("info")
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>m1, m2, ...</term>
+                <listitem>
+                    <para>
+                        целые числа, размер матрицы случайных чисел <literal>r</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>key</term>
+                <listitem>
+                    <para>
+                        строка, распределение случайных чисел (по умолчанию <literal>key="uniform"</literal>). Доступными значениями являются <literal>"uniform"</literal> (равновероятный) и <literal>"normal"</literal> (нормальный).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        вещественная или комплексная матрица. Рассматриваются только её вещественное или комплексное содержимое и её размеры.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        вещественный массив чисел двойной точности (double) размером  m1 на m2 на ... со случайными элементами.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>
+                        матрица чисел двойной точности размером  1 на 1, целочисленное значение, положительное, семя генератора случайных чисел (по умолчанию <literal>s=0</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Назначение данной функции в том, чтобы возвращать матрицу чисел двойной точности со случайными вещественными или комплексными элементами. В зависимости от входных аргументов, функция может возвращать матрицу случайных чисел двойной точности или может получать или устанавливать закон распределения случайных чисел, или может получать или устанавливать семя генератора случайных чисел.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Генерация случайных чисел</title>
+        <variablelist>
+            <varlistentry>
+                <term>r=rand()</term>
+                <listitem>
+                    <para>
+                        возвращает матрицу чисел двойной точности размером 1 на 1 с одним случайным значением.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r=rand(m1,m2)</term>
+                <listitem>
+                    <para>
+                        это матрица случайных чисел размером <literal>m1</literal> на  <literal>m2</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r=rand(m1,m2,...,mn)</term>
+                <listitem>
+                    <para>
+                        возвращает матрицу случайных чисел размером <literal>m1</literal> на
+                        <literal>m2</literal> на ... на <literal>mn</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r=rand(a)</term>
+                <listitem>
+                    <para>
+                        возвращает матрицу случайных чисел того же размера, что и <literal>a</literal>. Матрица <literal>r</literal> является вещественной, если  <literal>a</literal> является вещественной и  <literal>r</literal> является комплексной, если <literal>a</literal> является комплексной матрицей.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Смена закона распределения случайных чисел</title>
+        <para>
+            Входной аргумент <literal>key</literal> устанавливает закон распределения генерируемых случайных чисел.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>rand("uniform")</term>
+                <listitem>
+                    <para>
+                        устанавливает генератор случайных чисел на генерацию случайных чисел по равновероятному закону. Случайные числа равномерно распределены на интервале
+                        (0,1).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rand("normal")</term>
+                <listitem>
+                    <para>
+                        устанавливает генератор случайных чисел на генерацию случайных чисел по нормальному (Гаусс-Лапласовскому) закону распределения, с математическим ожиданием 0 и дисперсией 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>key=rand("info")</term>
+                <listitem>
+                    <para>
+                        возвращает текущий закон распределения генератора случайных чисел ("uniform" для равновероятного или "normal" для нормального).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Получение или установка семени генератора случайных чисел</title>
+        <para>
+            Есть возможность получить или установить семя генератора случайных чисел.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>s=rand("seed")</term>
+                <listitem>
+                    <para>возвращает текущее значение семени.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rand("seed",s)</term>
+                <listitem>
+                    <para>
+                        устанавливает семя генератора случайных чисел равным <literal>s</literal> (по умолчанию <literal>s=0</literal> при первом вызове).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+            В следующем примере мы генерируем случайные числа двойной точности с различными законами распределения.
+        </para>
+        <programlisting role="example"><![CDATA[  
 // Получим одно случайное число (на основе текущего распределения)
 r=rand()
 
@@ -199,10 +199,10 @@ r=rand(x,"normal")
 // Сформируем массив случайных чисел размером 2 на 2 на 2
 r=rand(2,2,2)
  ]]></programlisting>
-            <para>
-                В следующем примере мы изменим закон распределения чисел, генерируемых функцией <literal>rand</literal>. Сначала генерируем числа по нормальному закону распределения, а затем числа но равновероятному закону на интервале [0,1).
-            </para>
-            <programlisting role="example"><![CDATA[  
+        <para>
+            В следующем примере мы изменим закон распределения чисел, генерируемых функцией <literal>rand</literal>. Сначала генерируем числа по нормальному закону распределения, а затем числа но равновероятному закону на интервале [0,1).
+        </para>
+        <programlisting role="example"><![CDATA[  
     // настроим генератор случайных чисел на
     // нормальный закон распределения
     rand("normal")
@@ -217,103 +217,103 @@ r=rand(2,2,2)
     // получим текущий закон распределения
     key=rand("info")
     ]]></programlisting>
-            <para>
-                В следующем примере мы сгенерируем матрицу комплексных чисел размером 2 на 3 по нормальному закону распределения.
-            </para>
-            <programlisting role="example"><![CDATA[  
+        <para>
+            В следующем примере мы сгенерируем матрицу комплексных чисел размером 2 на 3 по нормальному закону распределения.
+        </para>
+        <programlisting role="example"><![CDATA[  
     // формируем матрицу случайных комплексных чисел размером 2 на 3
     x=rand(2,3)+%i*rand(2,3)
     // Формируем матрицу случайных комплексных чисел по нормальному
     // закону распределения того же размера, что и x
     r=rand(x,"normal")
     ]]></programlisting>
-            <para>
-                В следующем примере мы построим на графике распределение случайных равновероятных чисел, полученных <literal>rand</literal>.
-            </para>
-            <programlisting role="example"><![CDATA[  
+        <para>
+            В следующем примере мы построим на графике распределение случайных равновероятных чисел, полученных <literal>rand</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[  
     r=rand(1000,1,"uniform");
     scf();
     histplot(10,r);
     xtitle("Равновероятные числа из rand","X","Частота")
     ]]></programlisting>
-            <para>
-                В следующем примере мы построим на графике распределение случайных чисел, сгенерированных <literal>rand</literal> по нормальному закону распределения.
-            </para>
-            <programlisting role="example"><![CDATA[  
+        <para>
+            В следующем примере мы построим на графике распределение случайных чисел, сгенерированных <literal>rand</literal> по нормальному закону распределения.
+        </para>
+        <programlisting role="example"><![CDATA[  
     r=rand(1000,1,"normal");
     scf();
     histplot(10,r);
     xtitle("Случайные числа по нормальному закону распределения из","X","Частота")
     ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>Получение более или менее предсказуемых чисел</title>
-            <para>
-                Генератор псевдослучайных "равновероятных" чисел является детерминированной последовательностью, которая предназначена для воспроизводства независимых одинаково распределённых чисел, равновероятных на интервале (0,1).
-            </para>
-            <para>
-                Для того, чтобы получить повторяемые моделирования, начальное семя генератора случайных чисел равно нулю, так что последовательность будет оставаться одной и той же от одной сессии к другой. Иными словами, начальные числа, производимые <literal>rand()</literal>, всегда: 0.2113249,  0.7560439, ...
-            </para>
-            <para>
-                В некоторых случаях моделирования мы можем захотеть инициализировать семя генератора случайных чисел для того, чтобы получить менее предсказуемые последовательности. В этом случае мы можем инициализировать семя с помощью выходного значения функции <literal>getdate</literal>:
-            </para>
-            <programlisting role="example"><![CDATA[  
+    </refsection>
+    <refsection>
+        <title>Получение более или менее предсказуемых чисел</title>
+        <para>
+            Генератор псевдослучайных "равновероятных" чисел является детерминированной последовательностью, которая предназначена для воспроизводства независимых одинаково распределённых чисел, равновероятных на интервале (0,1).
+        </para>
+        <para>
+            Для того, чтобы получить повторяемые моделирования, начальное семя генератора случайных чисел равно нулю, так что последовательность будет оставаться одной и той же от одной сессии к другой. Иными словами, начальные числа, производимые <literal>rand()</literal>, всегда: 0.2113249,  0.7560439, ...
+        </para>
+        <para>
+            В некоторых случаях моделирования мы можем захотеть инициализировать семя генератора случайных чисел для того, чтобы получить менее предсказуемые последовательности. В этом случае мы можем инициализировать семя с помощью выходного значения функции <literal>getdate</literal>:
+        </para>
+        <programlisting role="example"><![CDATA[  
 n=getdate("s");
 rand("seed",n);
  ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>Генератор</title>
-            <para>
-                Генератор случайных "равновероятных" чисел описан в работе Майкла А. Малькольма, (Michael A. Malcolm), Клива Б. Молера (Cleve B. Moler) "Urand, A Universal Random Number Generator" (Urand, Универсальный Генератор Случайных Чисел), Stan-Cs-73-334, январь 1973, факультет информатики, кафедра гуманитарных и естественных наук Стенфордского университета.
-            </para>
-            <para>
-                Это линейный конгруэнтный генератор вида:
-            </para>
-            <para>
-                <latex>
-                    $$
-                    x = (a x + c) \textrm{mod} M
-                    $$
-                </latex>
-            </para>
-            <para>
-                где константами являются
-            </para>
-            <para>
-                <latex><![CDATA[  
+    </refsection>
+    <refsection>
+        <title>Генератор</title>
+        <para>
+            Генератор случайных "равновероятных" чисел описан в работе Майкла А. Малькольма, (Michael A. Malcolm), Клива Б. Молера (Cleve B. Moler) "Urand, A Universal Random Number Generator" (Urand, Универсальный Генератор Случайных Чисел), Stan-Cs-73-334, январь 1973, факультет информатики, кафедра гуманитарных и естественных наук Стенфордского университета.
+        </para>
+        <para>
+            Это линейный конгруэнтный генератор вида:
+        </para>
+        <para>
+            <latex>
+                $$
+                x = (a x + c) \textrm{mod} M
+                $$
+            </latex>
+        </para>
+        <para>
+            где константами являются
+        </para>
+        <para>
+            <latex><![CDATA[  
 	  \begin{eqnarray}
       a &=& 843314861\\
       c &=& 453816693\\
       M &=& 2^{31}
 	  \end{eqnarray}
  ]]></latex>
-            </para>
-            <para>
-                Согласно авторам, этот генератор является генератором полной длины, иначе говоря, его период равен <latex>M=2^{31}=2147483648</latex>.
-            </para>
-            <para>
-                Генератор случайных чисел с нормальным распределением (<literal>"normal"</literal>) основан на методе Бокса-Мюллера, где источником равновероятных случайных чисел является  Urand.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Статистическое качество генератора</title>
-            <para>
-                В функции <link linkend="grand">grand</link> доступны более лучшие генераторы случайных чисел в том смысле, что они имеют как более длинный период, так и более лучшие статистические свойства. В случае, когда качество случайных чисел имеет значение, следует использовать функцию <literal>grand</literal>. Более того, функция <literal>grand</literal> имеет больше возможностей.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="grand">grand</link>
-                </member>
-                <member>
-                    <link linkend="ssrand">ssrand</link>
-                </member>
-                <member>
-                    <link linkend="sprand">sprand</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        </para>
+        <para>
+            Согласно авторам, этот генератор является генератором полной длины, иначе говоря, его период равен <latex>M=2^{31}=2147483648</latex>.
+        </para>
+        <para>
+            Генератор случайных чисел с нормальным распределением (<literal>"normal"</literal>) основан на методе Бокса-Мюллера, где источником равновероятных случайных чисел является  Urand.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Статистическое качество генератора</title>
+        <para>
+            В функции <link linkend="grand">grand</link> доступны более лучшие генераторы случайных чисел в том смысле, что они имеют как более длинный период, так и более лучшие статистические свойства. В случае, когда качество случайных чисел имеет значение, следует использовать функцию <literal>grand</literal>. Более того, функция <literal>grand</literal> имеет больше возможностей.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+            <member>
+                <link linkend="ssrand">ssrand</link>
+            </member>
+            <member>
+                <link linkend="sprand">sprand</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,44 +1,44 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="who">
-        <refnamediv>
-            <refname>who</refname>
-            <refpurpose>listing of variables</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>who
-                who()
-                names = who('local')
-                [names, mem] = who('local')
-                names = who('global')
-                [names, mem] = who('global')
-                who('sorted')
-                names = who('local','sorted')
-                [names, mem] = who('local','sorted')
-                names = who('global','sorted')
-                [names, mem] = who('global','sorted')
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <code>who()</code> displays current variable names.
-            </para>
-            <para>
-                <code>who('local')</code> or <code>who('get')</code> returns current
-                variable names and memory used in double precision words.
-            </para>
-            <para>
-                <code>who('global')</code> returns global variable names and memory
-                used in double precision words.
-            </para>
-            <para>
-                <code>who('sorted')</code> displays in alphabetical order all variables.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="who">
+    <refnamediv>
+        <refname>who</refname>
+        <refpurpose>listing of variables</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>who
+            who()
+            names = who('local')
+            [names, mem] = who('local')
+            names = who('global')
+            [names, mem] = who('global')
+            who('sorted')
+            names = who('local','sorted')
+            [names, mem] = who('local','sorted')
+            names = who('global','sorted')
+            [names, mem] = who('global','sorted')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>who()</code> displays current variable names.
+        </para>
+        <para>
+            <code>who('local')</code> or <code>who('get')</code> returns current
+            variable names and memory used in double precision words.
+        </para>
+        <para>
+            <code>who('global')</code> returns global variable names and memory
+            used in double precision words.
+        </para>
+        <para>
+            <code>who('sorted')</code> displays in alphabetical order all variables.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 a=1;
 b=2;
 [name, mem]=who("local");
@@ -46,16 +46,16 @@ position=find(name=="a")
 mem(position) // Size used by a
 position=find(name=="d") // []
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="whos">whos</link>
-                </member>
-                <member>
-                    <link linkend="who_user">who_user</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="whos">whos</link>
+            </member>
+            <member>
+                <link linkend="who_user">who_user</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

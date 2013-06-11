@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
@@ -10,56 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unpack" xml:lang="en">
-        <refnamediv>
-            <refname>unpack</refname>
-            <refpurpose>Uncompress a list of block-diagonal symmetric matrices.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>A=unpack(CA,blocksizes)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>CA</term>
-                    <listitem>
-                        <para>
-                            p-by-n real matrix of doubles, a compressed representation of <literal>A</literal>. 
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>blocksizes</term>
-                    <listitem>
-                        <para>
-                            b-by-1 real matrix of doubles, the sizes of the blocks.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>A</term>
-                    <listitem>
-                        <para>
-                            m-by-n real matrix of doubles, the entries of a list of block-diagonal symmetric matrices. 
-                            n is the number of matrices stored into <literal>A</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                This function is the reverse of the <literal>pack</literal> function. 
-                It uncompresses a list of symmetric block-diagonal matrices which have 
-                been compressed by <literal>pack</literal>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unpack" xml:lang="en">
+    <refnamediv>
+        <refname>unpack</refname>
+        <refpurpose>Uncompress a list of block-diagonal symmetric matrices.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>A=unpack(CA,blocksizes)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>CA</term>
+                <listitem>
+                    <para>
+                        p-by-n real matrix of doubles, a compressed representation of <literal>A</literal>. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>blocksizes</term>
+                <listitem>
+                    <para>
+                        b-by-1 real matrix of doubles, the sizes of the blocks.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>
+                        m-by-n real matrix of doubles, the entries of a list of block-diagonal symmetric matrices. 
+                        n is the number of matrices stored into <literal>A</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function is the reverse of the <literal>pack</literal> function. 
+            It uncompresses a list of symmetric block-diagonal matrices which have 
+            been compressed by <literal>pack</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // Define a compressed list of symmetric block-diagonal matrices.
 // There are 3 matrices in the list, as indicated by the 3 columns in CA.
 // Only the nonzero entries are stored in CA. 
@@ -80,13 +80,13 @@ blocksizes=[2,2];
 // Unpack the matrices.
 A=unpack(CA,blocksizes)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="pack">pack</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="pack">pack</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

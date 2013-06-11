@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,80 +10,80 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="length" xml:lang="en">
-        <refnamediv>
-            <refname>length</refname>
-            <refpurpose>length of object</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>n = length(M)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>M</term>
-                    <listitem>
-                        <para>
-                            a matrix (usual or polynomial or character string) or a
-                            list.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>n</term>
-                    <listitem>
-                        <para>an integer or a matrix of integers.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                For usual or polynomial matrix <varname>n</varname> is the integer
-                equal to number of rows times number of columns
-                of <varname>M</varname>. (Also valid for <varname>M</varname>
-                a boolean matrix).
-            </para>
-            <para>
-                For matrices made of character strings (and in particular for a
-                character string) <function>length</function> returns in
-                <varname>n</varname> the length of entries of the matrix of
-                character strings <varname>M</varname>.
-            </para>
-            <para>
-                The length of a list is the number of elements in the list (also
-                given by <function>size</function>).
-            </para>
-            <para>
-                The length of a mlist is by default the number of elements in the
-                mlist, but you can overload it (see example).
-            </para>
-            <para>
-                <code>length('123')</code> is <literal>3</literal>.
-                <code>length([1,2;3,4])</code> is <literal>4</literal>.
-            </para>
-            <para>
-                <warning>
-                    WARNING : <function>length</function> of a sparse matrix
-                    returns the max of dimensions and not the product
-                    of the dimensions. (For example:
-                    <code>length(sparse(eye(12,2)))</code>
-                    returns <code>max(12,2)</code> and not <literal>24</literal>).
-                    Please use <literal>size(...,'*')</literal> with sparse matrix.
-                </warning>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="length" xml:lang="en">
+    <refnamediv>
+        <refname>length</refname>
+        <refpurpose>length of object</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>n = length(M)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>
+                        a matrix (usual or polynomial or character string) or a
+                        list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>an integer or a matrix of integers.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            For usual or polynomial matrix <varname>n</varname> is the integer
+            equal to number of rows times number of columns
+            of <varname>M</varname>. (Also valid for <varname>M</varname>
+            a boolean matrix).
+        </para>
+        <para>
+            For matrices made of character strings (and in particular for a
+            character string) <function>length</function> returns in
+            <varname>n</varname> the length of entries of the matrix of
+            character strings <varname>M</varname>.
+        </para>
+        <para>
+            The length of a list is the number of elements in the list (also
+            given by <function>size</function>).
+        </para>
+        <para>
+            The length of a mlist is by default the number of elements in the
+            mlist, but you can overload it (see example).
+        </para>
+        <para>
+            <code>length('123')</code> is <literal>3</literal>.
+            <code>length([1,2;3,4])</code> is <literal>4</literal>.
+        </para>
+        <para>
+            <warning>
+                WARNING : <function>length</function> of a sparse matrix
+                returns the max of dimensions and not the product
+                of the dimensions. (For example:
+                <code>length(sparse(eye(12,2)))</code>
+                returns <code>max(12,2)</code> and not <literal>24</literal>).
+                Please use <literal>size(...,'*')</literal> with sparse matrix.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 length([123 ; 456 ])
 length(['hello world',SCI])
 
     ]]></programlisting>
-            <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[
 
 a = mlist(["myMlistT" "field1" "field2"],"aexample","bexampleb");
 length(a)
@@ -97,24 +97,24 @@ endfunction
 length(a)
 // returns 8 result of length(a.field1)
     ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="size">size</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>
-                        This function allows overloading for mlist type.
-                    </revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="size">size</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    This function allows overloading for mlist type.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

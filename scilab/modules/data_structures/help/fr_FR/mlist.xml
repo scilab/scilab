@@ -1,55 +1,55 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="mlist">
-        <refnamediv>
-            <refname>mlist</refname>
-            <refpurpose>Objet Scilab, définition d'une liste
-                typée
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Séquence d'appel</title>
-            <synopsis>mlist(typ,a1,....an )</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Paramètres</title>
-            <variablelist>
-                <varlistentry>
-                    <term>typ</term>
-                    <listitem>
-                        <para>vecteur de chaînes de caractères</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ai</term>
-                    <listitem>
-                        <para>
-                            objet Scilab (<literal>matrice, liste, chaîne...</literal>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Les objets de type <literal>mlist</literal> sont très similaires aux objets
-                de type <literal>tlist</literal>. Si <literal>M</literal> est de type mlist, pour tout
-                indice <literal>i</literal> qui n'est pas le nom d'un champ de la liste,
-                <literal>M(i)</literal> n'est pas le <literal>i</literal>-ème champ de la liste mais
-                est interprété comme le <literal>i</literal>-ème terme de <literal>M</literal> vu
-                comme un vecteur. C'est la seule différence entre <literal>mlist</literal> et
-                <literal>tlist</literal>.
-            </para>
-            <para/>
-            <para>Les champs des mlist doivent donc être manipulés par leur noms. Il
-                peuvent aussi être manipulés avec les fonctions <literal>getfield</literal> et
-                <literal>setfield</literal>.
-            </para>
-            <para/>
-        </refsection>
-        <refsection>
-            <title>Exemples</title>
-            <programlisting role="example"><![CDATA[ 
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="mlist">
+    <refnamediv>
+        <refname>mlist</refname>
+        <refpurpose>Objet Scilab, définition d'une liste
+            typée
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>mlist(typ,a1,....an )</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>vecteur de chaînes de caractères</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ai</term>
+                <listitem>
+                    <para>
+                        objet Scilab (<literal>matrice, liste, chaîne...</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Les objets de type <literal>mlist</literal> sont très similaires aux objets
+            de type <literal>tlist</literal>. Si <literal>M</literal> est de type mlist, pour tout
+            indice <literal>i</literal> qui n'est pas le nom d'un champ de la liste,
+            <literal>M(i)</literal> n'est pas le <literal>i</literal>-ème champ de la liste mais
+            est interprété comme le <literal>i</literal>-ème terme de <literal>M</literal> vu
+            comme un vecteur. C'est la seule différence entre <literal>mlist</literal> et
+            <literal>tlist</literal>.
+        </para>
+        <para/>
+        <para>Les champs des mlist doivent donc être manipulés par leur noms. Il
+            peuvent aussi être manipulés avec les fonctions <literal>getfield</literal> et
+            <literal>setfield</literal>.
+        </para>
+        <para/>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
 
 // définition de la fonction d'affichage
@@ -83,25 +83,25 @@ v=hypermat([2,2,2],1:8);
 M=mlist(['V','name','value'],n,v);
 M(1,1:2,2)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="tlist">tlist</link>
-                </member>
-                <member>
-                    <link linkend="list">list</link>
-                </member>
-                <member>
-                    <link linkend="overloading">overloading</link>
-                </member>
-                <member>
-                    <link linkend="getfield">getfield</link>
-                </member>
-                <member>
-                    <link linkend="setfield">setfield</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
+            <member>
+                <link linkend="setfield">setfield</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,74 +1,74 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="standard_outputs">
-        <refnamediv>
-            <refname>standard_outputs</refname>
-            <refpurpose>Get the position of the output ports of a block in Xcos editor.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>[x,y,typ] = standard_outputs(block)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>block</term>
-                    <listitem>
-                        <para>xcos block.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>
-                            x position of the port. When multiple ports are described, <varname>x</varname> is a float vector of x positions.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>
-                            y position of the port. When multiple ports are described, <varname>y</varname> is a float vector of y positions.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>typ</term>
-                    <listitem>
-                        <para>
-                            determine the type of ports. It can take the following values: <literal>-1</literal> if this is a clock port; <literal>1</literal> if this is an explicit port; <literal>2</literal> if this is an implicit port. When multiple ports are described, <varname>typ</varname> is a vector.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                This Scilab function is used to get the position (<varname>x</varname>,<varname>y</varname>) of each output port of a Xcos block.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example"><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="standard_outputs">
+    <refnamediv>
+        <refname>standard_outputs</refname>
+        <refpurpose>Get the position of the output ports of a block in Xcos editor.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[x,y,typ] = standard_outputs(block)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>block</term>
+                <listitem>
+                    <para>xcos block.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        x position of the port. When multiple ports are described, <varname>x</varname> is a float vector of x positions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        y position of the port. When multiple ports are described, <varname>y</varname> is a float vector of y positions.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>
+                        determine the type of ports. It can take the following values: <literal>-1</literal> if this is a clock port; <literal>1</literal> if this is an explicit port; <literal>2</literal> if this is an implicit port. When multiple ports are described, <varname>typ</varname> is a vector.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This Scilab function is used to get the position (<varname>x</varname>,<varname>y</varname>) of each output port of a Xcos block.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
 loadXcosLibs();
 o1 = DELAYV_f("define");
 [x1,y1,typ1] = standard_outputs(o1)
 o2 = Capacitor("define");
 [x2,y2,typ2] = standard_inputs(o2)
     ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="standard_inputs">standard_inputs</link>
-                </member>
-                <member>
-                    <link linkend="standard_origin">standard_origin</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="standard_inputs">standard_inputs</link>
+            </member>
+            <member>
+                <link linkend="standard_origin">standard_origin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

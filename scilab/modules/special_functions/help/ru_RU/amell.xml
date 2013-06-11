@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,59 +10,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="amell">
-        <refnamediv>
-            <refname>amell</refname>
-            <refpurpose>Эллиптическая функция am Якоби</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>[sn]=amell(u,k)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>u</term>
-                    <listitem>
-                        <para>вещественный скаляр или вектор</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>k</term>
-                    <listitem>
-                        <para>скаляр</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>sn</term>
-                    <listitem>
-                        <para>вещественный скаляр или вектор</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Вычисляет эллиптическую функцию <literal>am(u,k)</literal> Якоби, где
-                <literal>k</literal> - параметр, а <literal>u</literal> - аргумент. Если 
-                <literal>u</literal> является вектором, то <literal>sn</literal> является вектором 
-                вычисленных (поэлементно) значений. Используется в функции <literal>%sn</literal>.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="delip">delip</link>
-                </member>
-                <member>
-                    <link linkend="percentsn">%sn</link>
-                </member>
-                <member>
-                    <link linkend="percentasn">%asn</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="amell">
+    <refnamediv>
+        <refname>amell</refname>
+        <refpurpose>Эллиптическая функция am Якоби</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[sn]=amell(u,k)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    <para>вещественный скаляр или вектор</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>скаляр</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sn</term>
+                <listitem>
+                    <para>вещественный скаляр или вектор</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Вычисляет эллиптическую функцию <literal>am(u,k)</literal> Якоби, где
+            <literal>k</literal> - параметр, а <literal>u</literal> - аргумент. Если 
+            <literal>u</literal> является вектором, то <literal>sn</literal> является вектором 
+            вычисленных (поэлементно) значений. Используется в функции <literal>%sn</literal>.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="delip">delip</link>
+            </member>
+            <member>
+                <link linkend="percentsn">%sn</link>
+            </member>
+            <member>
+                <link linkend="percentasn">%asn</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
@@ -11,87 +11,87 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkfilesequal" xml:lang="en">
-        <refnamediv>
-            <refname>assert_checkfilesequal</refname>
-            <refpurpose>Check that two files are equal.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                flag = assert_checkfilesequal ( filecomp , fileref )
-                flag = assert_checkfilesequal ( filecomp , fileref , compfun )
-                [flag,errmsg] = assert_checkfilesequal ( ... )
-                
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parameters</title>
-            <variablelist>
-                <varlistentry>
-                    <term>filecomp :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of strings, the computed file.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>fileref :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of strings, the reference file.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>compfun :</term>
-                    <listitem>
-                        <para> a function or a list, the comparison function (default compfun = []). If no comparison function is used, the equality operator "==" is used. See below for details.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>flag :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of boolean, %t if computed is close to expected, %f if not</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>errmsg :</term>
-                    <listitem>
-                        <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Performs silently if the files are equal.
-                Generates an error if filecomp or fileref do not exist.
-                Generates an error if the content of the files are not equal.
-            </para>
-            <para>
-                If the files are not equal,
-                <itemizedlist>
-                    <listitem>
-                        <para>if the errmsg output variable is not used, an error is generated,</para>
-                    </listitem>
-                    <listitem>
-                        <para>if the errmsg output variable is used, no error is generated.</para>
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                If the comparison function compfun is a function, it should have header areequal = compfun ( txtcomp , txtref )
-                where txtcomp is the content of the computed file, txtref is the content of the reference file and areequal
-                is a boolean. The areequal boolean is true if the two contents are equal.
-                If compfun is a list, it should be list (cf,a1,a2,...), where cf is a comparison function,
-                and the arguments a1, a2, will be automatically be appended at the
-                end of the calling sequence of cf.
-            </para>
-            <para>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkfilesequal" xml:lang="en">
+    <refnamediv>
+        <refname>assert_checkfilesequal</refname>
+        <refpurpose>Check that two files are equal.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            flag = assert_checkfilesequal ( filecomp , fileref )
+            flag = assert_checkfilesequal ( filecomp , fileref , compfun )
+            [flag,errmsg] = assert_checkfilesequal ( ... )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>filecomp :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of strings, the computed file.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fileref :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of strings, the reference file.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>compfun :</term>
+                <listitem>
+                    <para> a function or a list, the comparison function (default compfun = []). If no comparison function is used, the equality operator "==" is used. See below for details.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of boolean, %t if computed is close to expected, %f if not</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>errmsg :</term>
+                <listitem>
+                    <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Performs silently if the files are equal.
+            Generates an error if filecomp or fileref do not exist.
+            Generates an error if the content of the files are not equal.
+        </para>
+        <para>
+            If the files are not equal,
+            <itemizedlist>
+                <listitem>
+                    <para>if the errmsg output variable is not used, an error is generated,</para>
+                </listitem>
+                <listitem>
+                    <para>if the errmsg output variable is used, no error is generated.</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            If the comparison function compfun is a function, it should have header areequal = compfun ( txtcomp , txtref )
+            where txtcomp is the content of the computed file, txtref is the content of the reference file and areequal
+            is a boolean. The areequal boolean is true if the two contents are equal.
+            If compfun is a list, it should be list (cf,a1,a2,...), where cf is a comparison function,
+            and the arguments a1, a2, will be automatically be appended at the
+            end of the calling sequence of cf.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 //
 // Prepare data for the tests
 // fileref1 : three lines of text.
@@ -196,15 +196,15 @@ endfunction
 [flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun )
 
    ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revdescription>Function introduced
-                    </revdescription>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>Function introduced
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

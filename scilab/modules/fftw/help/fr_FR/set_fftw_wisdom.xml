@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - Allan Layec - INRIA
  * Copyright (C) 2012 - Serge Steer - INRIA
@@ -11,53 +11,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" 
+<refentry xmlns="http://docbook.org/ns/docbook" 
           xmlns:xlink="http://www.w3.org/1999/xlink" 
           xmlns:svg="http://www.w3.org/2000/svg" 
           xmlns:mml="http://www.w3.org/1998/Math/MathML" 
           xmlns:db="http://docbook.org/ns/docbook" 
           xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="set_fftw_wisdom">
-        <refnamediv>
-            <refname>set_fftw_wisdom</refname>
-            <refpurpose>charge un wisdom fftw</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Séquence d'appel</title>
-            <synopsis>set_fftw_wisdom(txt)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Paramètres</title>
-            <variablelist>
-                <varlistentry>
-                    <term>txt</term>
-                    <listitem>
-                        <para>Matrice de chaîne de caractères contenant le wisdom fftw.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Attention</title>
-            <para> 
-                Cette fonction n'est pas implémentée lorsque Scilab utilise la
-                bibliuthèque MKL d'Intel (c'est en particulier le cas des
-                binaires Windows officiels).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Cette fonction charge un wisdom fftw contenue dans une chaîne de
-                caractères. L'utilisation de <literal>get_fftw_wisdom</literal>
-                et de <literal>set_fftw_wisdom</literal> permet d'optimiser
-                l'efficaité de la fft si de nombreux appels doivent être
-                effectués sur des tailles de données identiques et pour les
-                mêmes options de la fonction <link linkend="fft">fft</link>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemples</title>
-            <programlisting role="example"><![CDATA[ 
+    <refnamediv>
+        <refname>set_fftw_wisdom</refname>
+        <refpurpose>charge un wisdom fftw</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>set_fftw_wisdom(txt)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>Matrice de chaîne de caractères contenant le wisdom fftw.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Attention</title>
+        <para> 
+            Cette fonction n'est pas implémentée lorsque Scilab utilise la
+            bibliuthèque MKL d'Intel (c'est en particulier le cas des
+            binaires Windows officiels).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Cette fonction charge un wisdom fftw contenue dans une chaîne de
+            caractères. L'utilisation de <literal>get_fftw_wisdom</literal>
+            et de <literal>set_fftw_wisdom</literal> permet d'optimiser
+            l'efficaité de la fft si de nombreux appels doivent être
+            effectués sur des tailles de données identiques et pour les
+            mêmes options de la fonction <link linkend="fft">fft</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 sample_rate=1000;
 t = 0:1/sample_rate:40;
 N=size(t,'*'); //number of samples
@@ -80,19 +80,19 @@ timer();y=fft(s);t3=timer()
 t3/t2
 
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="fft">fft</link>
-                </member>
-                <member>
-                    <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
-                </member>
-                <member>
-                    <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

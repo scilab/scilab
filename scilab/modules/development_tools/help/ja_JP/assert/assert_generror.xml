@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
@@ -11,62 +11,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_generror" xml:lang="ja">
-        <refnamediv>
-            <refname>assert_generror</refname>
-            <refpurpose>エラーを生成する.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>
-                assert_generror ( errormsg )
-                assert_generror ( errormsg , errornb )
-                
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>パラメータ</title>
-            <variablelist>
-                <varlistentry>
-                    <term>expectedmsg :</term>
-                    <listitem>
-                        <para>
-                            1行1列の文字列行列, 出力するエラーメッセージ
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>expectederrnb :</term>
-                    <listitem>
-                        <para> 
-                            1行1列のdouble行列,整数値,エラー番号 
-                            (デフォルト: expectederrnb=[]).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                指定した引数でエラー関数をコールします.
-            </para>
-            <para>
-                この関数は,予測された出力と計算された出力が一致しない
-                エラーが発生する度にassert_check* 関数によりコールされます.
-                assert_check* 関数に指定された
-                入力引数の数,出力引数の数,入力引数の型,
-                または入力引数の内容が間違っている場合,
-                通常のエラー関数がコールされます.
-                この関数はassert_check* 関数の動作を修正するために
-                カスタマイズできます.
-            </para>
-            <para>
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_generror" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_generror</refname>
+        <refpurpose>エラーを生成する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            assert_generror ( errormsg )
+            assert_generror ( errormsg , errornb )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>expectedmsg :</term>
+                <listitem>
+                    <para>
+                        1行1列の文字列行列, 出力するエラーメッセージ
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>expectederrnb :</term>
+                <listitem>
+                    <para> 
+                        1行1列のdouble行列,整数値,エラー番号 
+                        (デフォルト: expectederrnb=[]).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            指定した引数でエラー関数をコールします.
+        </para>
+        <para>
+            この関数は,予測された出力と計算された出力が一致しない
+            エラーが発生する度にassert_check* 関数によりコールされます.
+            assert_check* 関数に指定された
+            入力引数の数,出力引数の数,入力引数の型,
+            または入力引数の内容が間違っている場合,
+            通常のエラー関数がコールされます.
+            この関数はassert_check* 関数の動作を修正するために
+            カスタマイズできます.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
 // 以下のコールは共にエラーを発生します
 assert_generror ( "oups" );
 assert_generror ( "oups" , 123456789 );
@@ -103,15 +103,15 @@ assert_generror = olderrorfunction;
 funcprot(back);
 
    ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>履歴</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revdescription>関数が導入されました
-                    </revdescription>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

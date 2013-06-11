@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,76 +10,76 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcat" xml:lang="en">
-        <refnamediv>
-            <refname>strcat</refname>
-            <refpurpose>concatena strings</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>txt=strcat(vector_of_strings [,string_added])
-                txt=strcat(vector_of_strings [,string_added, ["flag"]])
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>vector_of_strings</term>
-                    <listitem>
-                        <para>vetor de strings</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>string_added</term>
-                    <listitem>
-                        <para>string adicionado, o valor padrão é emptystr
-                            <literal>""</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>txt</term>
-                    <listitem>
-                        <para>string</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"flag"</term>
-                    <listitem>
-                        <para>string ( "r" para retornar uma matriz linha, "c" para
-                            retornar uma matriz coluna)
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                <literal>txt=strcat(vector_of_strings)</literal> concatena strings :
-                <literal>txt=vector_of_strings(1)+...+vector_of_strings(n)</literal>
-            </para>
-            <para>
-                <literal>txt=strcat(vector_of_strings,string_added)</literal>
-                retorna
-                <literal>txt=vector_of_strings(1)+string_added+...+string_added+vector_of_strings(n)</literal>.
-            </para>
-            <para>
-                O símbolo de mais faz o mesmo: <literal>"a"+"b"</literal> é o mesmo
-                que <literal>strcat(["a","b"]).</literal>
-            </para>
-            <para>Se o tamanho de vector_of_strings for um, retorna
-                <literal>txt=vector_of_strings(1); </literal>
-            </para>
-            <para>
-                <literal>strcat('A','B')</literal> retorna 'A' , não 'AB' como
-                <literal>strcat(['A','B'])</literal>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcat" xml:lang="en">
+    <refnamediv>
+        <refname>strcat</refname>
+        <refpurpose>concatena strings</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>txt=strcat(vector_of_strings [,string_added])
+            txt=strcat(vector_of_strings [,string_added, ["flag"]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>vector_of_strings</term>
+                <listitem>
+                    <para>vetor de strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>string_added</term>
+                <listitem>
+                    <para>string adicionado, o valor padrão é emptystr
+                        <literal>""</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"flag"</term>
+                <listitem>
+                    <para>string ( "r" para retornar uma matriz linha, "c" para
+                        retornar uma matriz coluna)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>txt=strcat(vector_of_strings)</literal> concatena strings :
+            <literal>txt=vector_of_strings(1)+...+vector_of_strings(n)</literal>
+        </para>
+        <para>
+            <literal>txt=strcat(vector_of_strings,string_added)</literal>
+            retorna
+            <literal>txt=vector_of_strings(1)+string_added+...+string_added+vector_of_strings(n)</literal>.
+        </para>
+        <para>
+            O símbolo de mais faz o mesmo: <literal>"a"+"b"</literal> é o mesmo
+            que <literal>strcat(["a","b"]).</literal>
+        </para>
+        <para>Se o tamanho de vector_of_strings for um, retorna
+            <literal>txt=vector_of_strings(1); </literal>
+        </para>
+        <para>
+            <literal>strcat('A','B')</literal> retorna 'A' , não 'AB' como
+            <literal>strcat(['A','B'])</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 strcat(string(1:10),',')
 strcat(["a","b"])
 strcat(["a","b"],'|')
@@ -94,16 +94,16 @@ strcat(m, "", "r")
 strcat(m, "", "c")
 
  ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="string">string</link>
-                </member>
-                <member>
-                    <link linkend="strings">strings</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="strings">strings</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

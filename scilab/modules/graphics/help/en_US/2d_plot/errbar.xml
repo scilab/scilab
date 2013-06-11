@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -10,63 +10,63 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="errbar">
-        <refnamediv>
-            <refname>errbar</refname>
-            <refpurpose>add vertical error bars on a 2D plot</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>errbar(x, y, em, ep)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x, y, em, ep</term>
-                    <listitem>
-                        <para>four matrices of the same size.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <function>errbar</function> adds vertical error bars on a 2D plot.
-                <varname>x</varname> and <varname>y</varname> have the same meaning
-                as in <function>plot2d</function>.
-            </para>
-            <para>
-                <literal>em(i,j)</literal> and <literal>ep(i,j)</literal> stands for
-                the error interval on the value <literal>y(i,j)</literal>:
-                <literal>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</literal>.
-            </para>
-            <para>
-                Enter the command <code>errbar()</code> to see a demo.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="errbar">
+    <refnamediv>
+        <refname>errbar</refname>
+        <refpurpose>add vertical error bars on a 2D plot</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>errbar(x, y, em, ep)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y, em, ep</term>
+                <listitem>
+                    <para>four matrices of the same size.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>errbar</function> adds vertical error bars on a 2D plot.
+            <varname>x</varname> and <varname>y</varname> have the same meaning
+            as in <function>plot2d</function>.
+        </para>
+        <para>
+            <literal>em(i,j)</literal> and <literal>ep(i,j)</literal> stands for
+            the error interval on the value <literal>y(i,j)</literal>:
+            <literal>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</literal>.
+        </para>
+        <para>
+            Enter the command <code>errbar()</code> to see a demo.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 t=[0:0.1:2*%pi]';
 y=[sin(t) cos(t)]; x=[t t];
 plot2d(x,y)
 errbar(x,y,0.05*ones(x),0.03*ones(x))
  ]]></programlisting>
-            <scilab:image>
-                t=[0:0.1:2*%pi]';
-                y=[sin(t) cos(t)]; x=[t t];
-                plot2d(x,y)
-                errbar(x,y,0.05*ones(x),0.03*ones(x))
-            </scilab:image>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="plot2d">plot2d</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        <scilab:image>
+            t=[0:0.1:2*%pi]';
+            y=[sin(t) cos(t)]; x=[t t];
+            plot2d(x,y)
+            errbar(x,y,0.05*ones(x),0.03*ones(x))
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

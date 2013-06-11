@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
     * 
@@ -10,67 +10,67 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="clc">
-        <refnamediv>
-            <refname>clc</refname>
-            <refpurpose>очистка командного окна</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>clc([nblines])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>nblines</term>
-                    <listitem>
-                        <para>значение типа double</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <code>clc()</code> очищает весь ввод и вывод в Командном окне.
-            </para>
-            <para>
-                После использования <code>clc()</code> вы не можете 
-                использовать ползунок, чтобы посмотреть историю функцию, но 
-                вы по-прежнему можете использовать клавишу со стрелкой вверх, 
-                чтобы повторно вызывать инструкции из истории команд.
-            </para>
-            <para>
-                <code>clc(nblines)</code> очищает <varname>nblines</varname> 
-                строк выше курсора текущей строки  и передвигает курсор на 
-                эту строку.
-            </para>
-            <para>
-                <note>
-                    Заметьте, что <literal>clc([nblines])</literal> не 
-                    может быть использована на платформах Unix/Linux, когда 
-                    Scilab используется в неграфических режимах 
-                    <literal>cli</literal> или <literal>adv-cli</literal>.
-                </note>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="clc">
+    <refnamediv>
+        <refname>clc</refname>
+        <refpurpose>очистка командного окна</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>clc([nblines])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>nblines</term>
+                <listitem>
+                    <para>значение типа double</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>clc()</code> очищает весь ввод и вывод в Командном окне.
+        </para>
+        <para>
+            После использования <code>clc()</code> вы не можете 
+            использовать ползунок, чтобы посмотреть историю функцию, но 
+            вы по-прежнему можете использовать клавишу со стрелкой вверх, 
+            чтобы повторно вызывать инструкции из истории команд.
+        </para>
+        <para>
+            <code>clc(nblines)</code> очищает <varname>nblines</varname> 
+            строк выше курсора текущей строки  и передвигает курсор на 
+            эту строку.
+        </para>
+        <para>
+            <note>
+                Заметьте, что <literal>clc([nblines])</literal> не 
+                может быть использована на платформах Unix/Linux, когда 
+                Scilab используется в неграфических режимах 
+                <literal>cli</literal> или <literal>adv-cli</literal>.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
 rand(10,10)
 clc();
 rand(10,10)
 clc(5); // удаляет 5 предыдущих строчек
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="tohome">tohome</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
-    
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tohome">tohome</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

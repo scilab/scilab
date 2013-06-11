@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,55 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="isascii">
-        <refnamediv>
-            <refname>isascii</refname>
-            <refpurpose>文字が7ビットUS-ASCII文字であるかどうかを確認する</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>res = isascii(str)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>パラメータ</title>
-            <variablelist>
-                <varlistentry>
-                    <term>str</term>
-                    <listitem>
-                        <para>文字列.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>res</term>
-                    <listitem>
-                        <para>論理値行列.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明n</title>
-            <para>
-                <literal>res = isascii(str)</literal> は,
-                cが0および8進数0177の間の7ビットUS-ACII文字コードの場合にTRUE (%T),
-                それ以外の場合に FALSE (%F)を返します.
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="isascii">
+    <refnamediv>
+        <refname>isascii</refname>
+        <refpurpose>文字が7ビットUS-ASCII文字であるかどうかを確認する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>res = isascii(str)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>文字列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>論理値行列.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明n</title>
+        <para>
+            <literal>res = isascii(str)</literal> は,
+            cが0および8進数0177の間の7ビットUS-ACII文字コードの場合にTRUE (%T),
+            それ以外の場合に FALSE (%F)を返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 letters = [115.    99.    105.    108.    97.    98.]
 isascii(letters)
 ascii(letters)
 isascii('scilab')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="isalphanum">isalphanum</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="isalphanum">isalphanum</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

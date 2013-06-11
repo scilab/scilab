@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,52 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="denom" xml:lang="en">
-        <refnamediv>
-            <refname>denom</refname>
-            <refpurpose>denominador</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title> Seqüência de Chamamento </title>
-            <synopsis>den=denom(r)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>r</term>
-                    <listitem>
-                        <para>matriz de polinômios, de razões de polinômios ou de
-                            constantes. 
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>den</term>
-                    <listitem>
-                        <para>matriz de polinômios</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                <literal>den=denom(r)</literal> retorna o denominador de uma matriz
-                de razões de polinômios.
-            </para>
-            <para>Desde que razões de polinômios são representadas internamente como
-                <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
-                <literal>denom(r</literal>) é o mesmo que <literal>r(3)</literal>,
-                <literal>r('den')</literal> ou <literal>r.den</literal>
-            </para>
-        </refsection>
-        <refsection>
-            <title> Ver Também </title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="numer">numer</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="denom" xml:lang="en">
+    <refnamediv>
+        <refname>denom</refname>
+        <refpurpose>denominador</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>den=denom(r)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>matriz de polinômios, de razões de polinômios ou de
+                        constantes. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>den</term>
+                <listitem>
+                    <para>matriz de polinômios</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>den=denom(r)</literal> retorna o denominador de uma matriz
+            de razões de polinômios.
+        </para>
+        <para>Desde que razões de polinômios são representadas internamente como
+            <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
+            <literal>denom(r</literal>) é o mesmo que <literal>r(3)</literal>,
+            <literal>r('den')</literal> ou <literal>r.den</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="numer">numer</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

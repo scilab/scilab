@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,62 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cotd" xml:lang="en">
-        <refnamediv>
-            <refname>cotd</refname>
-            <refpurpose>cotangent elemento a elemento do argumento dado em
-                graus
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>y=cotd(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>array de reais</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>array de reais com as mesmas dimensões que
-                            <literal>x</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                As entradas <literal>y</literal> são as cotangentes das entradas
-                correspondentes de <literal>x</literal> supostamente dadas em graus.
-                <literal>t=cos(x)./sin(x)</literal>. Para entradas iguais a
-                <literal>n*180</literal> com <literal>n</literal> inteiro, os resultados
-                são infinitos, enquanto que com <literal>cotg(n*%pi)</literal> o resultado
-                é grande, pois <literal>%pi</literal> não pode ser representado
-                exatamente. para entradas iguais a <literal>n*90</literal> com
-                <literal>n</literal> inteiro e ímpar, o resultado é exatamente 0.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cotd" xml:lang="en">
+    <refnamediv>
+        <refname>cotd</refname>
+        <refpurpose>cotangent elemento a elemento do argumento dado em
+            graus
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>y=cotd(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>array de reais</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>array de reais com as mesmas dimensões que
+                        <literal>x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            As entradas <literal>y</literal> são as cotangentes das entradas
+            correspondentes de <literal>x</literal> supostamente dadas em graus.
+            <literal>t=cos(x)./sin(x)</literal>. Para entradas iguais a
+            <literal>n*180</literal> com <literal>n</literal> inteiro, os resultados
+            são infinitos, enquanto que com <literal>cotg(n*%pi)</literal> o resultado
+            é grande, pois <literal>%pi</literal> não pode ser representado
+            exatamente. para entradas iguais a <literal>n*90</literal> com
+            <literal>n</literal> inteiro e ímpar, o resultado é exatamente 0.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 x=[30 45 60 90];
 cotd(x)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="cotg">cotg</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cotg">cotg</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

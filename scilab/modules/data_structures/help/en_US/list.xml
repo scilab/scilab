@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,125 +10,125 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="list">
-        <refnamediv>
-            <refname>list</refname>
-            <refpurpose>a Scilab object and a list definition function</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>list(a1, ..., an)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Creates a <literal>list</literal> with elements
-                <varname>ai</varname>'s which are arbitrary Scilab objects
-                (<literal>matrix</literal>,
-                <literal>list</literal>,...). Type of
-                <literal>list</literal> objects is 15. <code>list()</code>
-                creates the empty <literal>list</literal> (0 element).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Operations on lists</title>
-            <variablelist>
-                <varlistentry>
-                    <term>extraction</term>
-                    <listitem>
-                        <para>
-                            <literal>[x,y,z,...]=L(v)</literal> where <literal>v</literal> is a vector of indices;
-                            <literal>[x,y,z,...]=L(:)</literal> extracts all the elements.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>insertion at index i</term>
-                    <listitem>
-                        <para>
-                            <code>L(i)=a</code> (note that it is not an
-                            error to use <code>L(i)=a</code> with
-                            <code><![CDATA[i > 1 + size(L)]]></code> but
-                            some list entries are then undefined and their
-                            extraction gives raise to an error).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>append an element in queue</term>
-                    <listitem>
-                        <para>
-                            <code>L($+1)=e</code>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>append an element in head</term>
-                    <listitem>
-                        <para>
-                            <code>L(0)=e</code>.
-                            <note>
-                                After this
-                                operation <literal>e</literal> is an index 1,
-                                the initial elements being shifted on the
-                                right.
-                            </note>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>deletion</term>
-                    <listitem>
-                        <para>
-                            <code>L(i)=null()</code> removes the <literal>i</literal>-th element of the list <literal>L</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>concatenation of two lists</term>
-                    <listitem>
-                        <para>
-                            <code>L3 = lstcat(L1,L2)</code>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>number of elements of a list</term>
-                    <listitem>
-                        <para>
-                            you can use either <code>nb_elm = size(L)</code>
-                            or <code>nb_elm = length(L)</code>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>iterations with a list</term>
-                    <listitem>
-                        <para>
-                            it is possible to use a list <literal>L</literal> with a <link linkend="for">for</link> loop:
-                            <literal>for e=L,...,end</literal> is a loop with <literal>length(L)</literal>
-                            iterations, the loop variable <literal>e</literal> being equal to <literal>L(i)</literal>
-                            at the <literal>i</literal>-th iteration.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Remarks</title>
-            <para>
-                Scilab provides also other kinds of list, the <link linkend="tlist">tlist</link> type (typed list) and
-                the <link linkend="mlist">mlist</link> type which are useful to define a new data type with operator
-                <link linkend="overloading">overloading</link> facilities (<link linkend="hypermatrices">hypermatrices</link> which are
-                multidimensional arrays in Scilab are in fact <emphasis>mlist</emphasis>).
-            </para>
-            <para>
-                Matlab <emphasis>struct</emphasis> are also available.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="list">
+    <refnamediv>
+        <refname>list</refname>
+        <refpurpose>a Scilab object and a list definition function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>list(a1, ..., an)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Creates a <literal>list</literal> with elements
+            <varname>ai</varname>'s which are arbitrary Scilab objects
+            (<literal>matrix</literal>,
+            <literal>list</literal>,...). Type of
+            <literal>list</literal> objects is 15. <code>list()</code>
+            creates the empty <literal>list</literal> (0 element).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Operations on lists</title>
+        <variablelist>
+            <varlistentry>
+                <term>extraction</term>
+                <listitem>
+                    <para>
+                        <literal>[x,y,z,...]=L(v)</literal> where <literal>v</literal> is a vector of indices;
+                        <literal>[x,y,z,...]=L(:)</literal> extracts all the elements.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>insertion at index i</term>
+                <listitem>
+                    <para>
+                        <code>L(i)=a</code> (note that it is not an
+                        error to use <code>L(i)=a</code> with
+                        <code><![CDATA[i > 1 + size(L)]]></code> but
+                        some list entries are then undefined and their
+                        extraction gives raise to an error).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>append an element in queue</term>
+                <listitem>
+                    <para>
+                        <code>L($+1)=e</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>append an element in head</term>
+                <listitem>
+                    <para>
+                        <code>L(0)=e</code>.
+                        <note>
+                            After this
+                            operation <literal>e</literal> is an index 1,
+                            the initial elements being shifted on the
+                            right.
+                        </note>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>deletion</term>
+                <listitem>
+                    <para>
+                        <code>L(i)=null()</code> removes the <literal>i</literal>-th element of the list <literal>L</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>concatenation of two lists</term>
+                <listitem>
+                    <para>
+                        <code>L3 = lstcat(L1,L2)</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>number of elements of a list</term>
+                <listitem>
+                    <para>
+                        you can use either <code>nb_elm = size(L)</code>
+                        or <code>nb_elm = length(L)</code>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>iterations with a list</term>
+                <listitem>
+                    <para>
+                        it is possible to use a list <literal>L</literal> with a <link linkend="for">for</link> loop:
+                        <literal>for e=L,...,end</literal> is a loop with <literal>length(L)</literal>
+                        iterations, the loop variable <literal>e</literal> being equal to <literal>L(i)</literal>
+                        at the <literal>i</literal>-th iteration.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Remarks</title>
+        <para>
+            Scilab provides also other kinds of list, the <link linkend="tlist">tlist</link> type (typed list) and
+            the <link linkend="mlist">mlist</link> type which are useful to define a new data type with operator
+            <link linkend="overloading">overloading</link> facilities (<link linkend="hypermatrices">hypermatrices</link> which are
+            multidimensional arrays in Scilab are in fact <emphasis>mlist</emphasis>).
+        </para>
+        <para>
+            Matlab <emphasis>struct</emphasis> are also available.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 l = list(1,["a" "b"]) // declaration of a basic list with a double & a vector of two strings
 size(l) // Size is 2
 // l(0) - Does not exist!
@@ -150,34 +150,34 @@ lbis = list("gewurtz", "caipirina" ,"debug") // Declare a new list
 lter = lstcat(l,lbis) // Merge the two list
 size(lter) - size(lbis) - size(l)  // must be zero
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="null">null</link>
-                </member>
-                <member>
-                    <link linkend="lstcat">lstcat</link>
-                </member>
-                <member>
-                    <link linkend="tlist">tlist</link>
-                </member>
-                <member>
-                    <link linkend="mlist">mlist</link>
-                </member>
-                <member>
-                    <link linkend="insertion">insertion</link>
-                </member>
-                <member>
-                    <link linkend="extraction">extraction</link>
-                </member>
-                <member>
-                    <link linkend="size">size</link>
-                </member>
-                <member>
-                    <link linkend="length">length</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="null">null</link>
+            </member>
+            <member>
+                <link linkend="lstcat">lstcat</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

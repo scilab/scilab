@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
@@ -11,79 +11,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="temp_law_vfsa" xml:lang="en">
-        <refnamediv>
-            <refname>temp_law_vfsa</refname>
-            <refpurpose>This function implements the Very Fast Simulated Annealing
-                from L. Ingber
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>T_out = temp_law_vfsa(T_in,step_mean,step_var,temp_stage,n, param)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>T_in</term>
-                    <listitem>
-                        <para>the temperature at the current stage</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>step_mean</term>
-                    <listitem>
-                        <para>the mean value of the objective function computed during the
-                            current stage
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>step_var</term>
-                    <listitem>
-                        <para>the variance value of the objective function computed during
-                            the current stage
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>temp_stage</term>
-                    <listitem>
-                        <para>the index of the current temperature stage</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>n</term>
-                    <listitem>
-                        <para>the dimension of the decision variable (the x in f(x))</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>param</term>
-                    <listitem>
-                        <para>a float: the 'c' parameter of the VFSA method (0.01 by
-                            default)
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>T_out</term>
-                    <listitem>
-                        <para>the temperature for the temperature stage to come</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>This function implements the Very Fast Simulated Annealing from
-                L. Ingber.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="temp_law_vfsa" xml:lang="en">
+    <refnamediv>
+        <refname>temp_law_vfsa</refname>
+        <refpurpose>This function implements the Very Fast Simulated Annealing
+            from L. Ingber
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>T_out = temp_law_vfsa(T_in,step_mean,step_var,temp_stage,n, param)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>T_in</term>
+                <listitem>
+                    <para>the temperature at the current stage</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step_mean</term>
+                <listitem>
+                    <para>the mean value of the objective function computed during the
+                        current stage
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>step_var</term>
+                <listitem>
+                    <para>the variance value of the objective function computed during
+                        the current stage
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>temp_stage</term>
+                <listitem>
+                    <para>the index of the current temperature stage</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>the dimension of the decision variable (the x in f(x))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>param</term>
+                <listitem>
+                    <para>a float: the 'c' parameter of the VFSA method (0.01 by
+                        default)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>T_out</term>
+                <listitem>
+                    <para>the temperature for the temperature stage to come</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This function implements the Very Fast Simulated Annealing from
+            L. Ingber.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 function y = rastrigin(x)
   y = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
 endfunction
@@ -115,20 +115,20 @@ subplot(2,1,2);
 xtitle('Temperature evolution','Iteration','Temperature');
 plot(t,temp_list,'k-');
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="optim_sa"> optim_sa </link>
-                </member>
-                <member>
-                    <link linkend="neigh_func_vfsa"> neigh_func_vfsa
-                    </link>
-                </member>
-                <member>
-                    <link linkend="temp_law_huang"> temp_law_huang </link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optim_sa"> optim_sa </link>
+            </member>
+            <member>
+                <link linkend="neigh_func_vfsa"> neigh_func_vfsa
+                </link>
+            </member>
+            <member>
+                <link linkend="temp_law_huang"> temp_law_huang </link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

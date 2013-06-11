@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,52 +10,52 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_checkbounds" xml:lang="en">
-        <refnamediv>
-            <refname>optimbase_checkbounds</refname>
-            <refpurpose>Checks the bounds.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                opt = optimbase_checkbounds(opt)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Argument</title>
-            <variablelist>
-                <varlistentry>
-                    <term>opt </term>
-                    <listitem>
-                        <para>The object of TOPTIM type (tlist).</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <literal>optimbase_checkbounds</literal> function checks if the bounds are 
-                consistent and produces an error message if not.
-            </para>
-            <para>
-                To have a consistency of bounds, you must satisfy the two conditions: 
-            </para>
-            <itemizedlist>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_checkbounds" xml:lang="en">
+    <refnamediv>
+        <refname>optimbase_checkbounds</refname>
+        <refpurpose>Checks the bounds.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            opt = optimbase_checkbounds(opt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
                 <listitem>
-                    <para>
-                        the number of maximal and minimal bounds must be the same as the number of variables,
-                    </para>
+                    <para>The object of TOPTIM type (tlist).</para>
                 </listitem>
-                <listitem>
-                    <para>minimal bounds must be lower than maximal bounds ,</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example">
-                <![CDATA[ 
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimbase_checkbounds</literal> function checks if the bounds are 
+            consistent and produces an error message if not.
+        </para>
+        <para>
+            To have a consistency of bounds, you must satisfy the two conditions: 
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    the number of maximal and minimal bounds must be the same as the number of variables,
+                </para>
+            </listitem>
+            <listitem>
+                <para>minimal bounds must be lower than maximal bounds ,</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
     opt = optimbase_new();
  
     // Set number of variables
@@ -69,17 +69,17 @@
     opt = optimbase_checkbounds(opt)
     opt = optimbase_destroy(opt);
  ]]>
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="optimbase_isinbounds">optimbase_isinbounds</link>
-                </member>
-                <member>
-                    <link linkend="optimbase_hasbounds">optimbase_hasbounds</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimbase_isinbounds">optimbase_isinbounds</link>
+            </member>
+            <member>
+                <link linkend="optimbase_hasbounds">optimbase_hasbounds</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

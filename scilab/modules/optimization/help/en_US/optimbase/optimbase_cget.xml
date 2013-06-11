@@ -1,5 +1,5 @@
-        ﻿<?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,55 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_cget" xml:lang="en">
-        <refnamediv>
-            <refname>optimbase_cget</refname>
-            <refpurpose>Returns the value for the given key.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                value = optimbase_cget(opt, key)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Argument</title>
-            <variablelist>
-                <varlistentry>
-                    <term>opt </term>
-                    <listitem>
-                        <para>The object of TOPTIM type (tlist).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>key </term>
-                    <listitem>
-                        <para>A string, the name of the key to quiery.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>value </term>
-                    <listitem>
-                        <para>the value in fonction of the given key.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <literal>optimbase_cget</literal> function returns the value contained in the 
-                <literal>key</literal>. If the <literal>key</literal> is unknown, this function generates 
-                an error. 
-            </para>
-            <para>
-                To know the list of available keys, go to <literal>optimbase_configure</literal> help page.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example">
-                <![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_cget" xml:lang="en">
+    <refnamediv>
+        <refname>optimbase_cget</refname>
+        <refpurpose>Returns the value for the given key.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            value = optimbase_cget(opt, key)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The object of TOPTIM type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>key </term>
+                <listitem>
+                    <para>A string, the name of the key to quiery.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value </term>
+                <listitem>
+                    <para>the value in fonction of the given key.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimbase_cget</literal> function returns the value contained in the 
+            <literal>key</literal>. If the <literal>key</literal> is unknown, this function generates 
+            an error. 
+        </para>
+        <para>
+            To know the list of available keys, go to <literal>optimbase_configure</literal> help page.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
     opt = optimbase_new();
 
     // Set number of variables
@@ -75,23 +75,23 @@
 
     opt = optimbase_destroy(opt);
  ]]>
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="optimbase_new">optimbase_new</link>
-                </member>
-                <member>
-                    <link linkend="optimbase_configure">optimbase_configure</link>
-                </member>
-                <member>
-                    <link linkend="optimbase_get">optimbase_get </link>
-                </member>
-                <member>
-                    <link linkend="optimbase_histget">optimbase_histget </link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimbase_new">optimbase_new</link>
+            </member>
+            <member>
+                <link linkend="optimbase_configure">optimbase_configure</link>
+            </member>
+            <member>
+                <link linkend="optimbase_get">optimbase_get </link>
+            </member>
+            <member>
+                <link linkend="optimbase_histget">optimbase_histget </link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

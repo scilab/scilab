@@ -1,6 +1,6 @@
-        <?xml version="1.0" encoding="utf-8"?>
-    
-    <!--
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,44 +11,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="doubleExample" xml:lang="ja">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="doubleExample" xml:lang="ja">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>doubleの例</refname>
-            
-            <refpurpose>
-                
-                doubleの使用例.
-                
-            </refpurpose>
-            
-        </refnamediv>
+        <refname>doubleの例</refname>
         
-        <refsection>
+        <refpurpose>
             
-            <title>説明</title>
+            doubleの使用例.
             
-            <para>この例はdouble変数を取得し,Scilabに戻す手順を示します.</para>
-            
-        </refsection>
+        </refpurpose>
         
-        <refsection>
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>この例はdouble変数を取得し,Scilabに戻す手順を示します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/doubleExample.c-->
+        
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/doubleExample.tst-->
+        
+        <!--Lib_name: doubleExample-->
+        
+        <!--Func_list: doubleExample-->
+        
+        <title>ゲートウェイのソース</title>
+        
+        <programlisting role="code_gateway">
             
-            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/doubleExample.c-->
-            
-            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/doubleExample.tst-->
-            
-            <!--Lib_name: doubleExample-->
-            
-            <!--Func_list: doubleExample-->
-            
-            <title>ゲートウェイのソース</title>
-            
-            <programlisting role="code_gateway">
-                
-                <![CDATA[ 
+            <![CDATA[ 
 #include "api_scilab.h"
 
 int doubleExample(char *fname,unsigned long fname_len)
@@ -161,16 +161,16 @@ int doubleExample(char *fname,unsigned long fname_len)
 	return 0;
 }
  ]]>
-                
-            </programlisting>
             
-        </refsection>
+        </programlisting>
         
-        <refsection>
-            
-            <title>Scilabテストスクリプト</title>
-            
-            <programlisting role="code_scilab"><![CDATA[ 
+    </refsection>
+    
+    <refsection>
+        
+        <title>Scilabテストスクリプト</title>
+        
+        <programlisting role="code_scilab"><![CDATA[ 
 a = 1;
 b = %i;
 c = [1,2,3;4,5,6];
@@ -181,8 +181,8 @@ doubleExample(b) == b
 doubleExample(c) == c
 doubleExample(d) == d
  ]]></programlisting>
-            
-        </refsection>
         
-    </refentry>
+    </refsection>
     
+</refentry>
+

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
  * 
  * This file must be used under the terms of the CeCILL.
@@ -8,73 +8,73 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetStyle">
-        <refnamediv>
-            <refname>datatipSetStyle</refname>
-            <refpurpose>Set the tip style for the given polyline datatips.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                datatipSetStyle(curve_handle)
-                datatipSetStyle(curve_handle,t [,boxed [,labeled]])
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>curve_handle</term>
-                    <listitem>
-                        <para>
-                            A handle on a polyline. 
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>t</term>
-                    <listitem>
-                        <para>
-                            A number with possible value 1 or 2. If omitted a choose popup will open.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>boxed</term>
-                    <listitem>
-                        <para>
-                            A a boolean, default value is %t.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>labeled</term>
-                    <listitem>
-                        <para>
-                            A a boolean, default value is %t.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                There are two different styles for the datatip polyline marker:
-            </para>
-            <para>
-                - Square mark, centered on the tip point. 
-            </para>
-            <para>
-                - Directional arrows drawn along the tangeant at the tip point. The arrowhead is on the  tip point.
-            </para>
-            <para>
-                If the boxed option is selected the text associated with the datatip is written in a boxed area.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetStyle">
+    <refnamediv>
+        <refname>datatipSetStyle</refname>
+        <refpurpose>Set the tip style for the given polyline datatips.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            datatipSetStyle(curve_handle)
+            datatipSetStyle(curve_handle,t [,boxed [,labeled]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>curve_handle</term>
+                <listitem>
+                    <para>
+                        A handle on a polyline. 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>
+                        A number with possible value 1 or 2. If omitted a choose popup will open.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>boxed</term>
+                <listitem>
+                    <para>
+                        A a boolean, default value is %t.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>labeled</term>
+                <listitem>
+                    <para>
+                        A a boolean, default value is %t.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            There are two different styles for the datatip polyline marker:
+        </para>
+        <para>
+            - Square mark, centered on the tip point. 
+        </para>
+        <para>
+            - Directional arrows drawn along the tangeant at the tip point. The arrowhead is on the  tip point.
+        </para>
+        <para>
+            If the boxed option is selected the text associated with the datatip is written in a boxed area.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
     x=linspace(-20,20,1000);
     clf();plot(x,sinc(x),x,sinc(x^2));
     e=gce();e=e.children;
@@ -87,40 +87,40 @@
     d2=datatipCreate(e(2),200);
 
     ]]></programlisting>
-            <scilab:image>
-                x=linspace(-20,20,1000);
-                clf();plot(x,sinc(x),x,sinc(x^2));
-                e=gce();e=e.children;
-                function str=mydisplay(curve,pt,index),str=msprintf('%0.2g', pt(1)),endfunction
-                datatipSetDisplay(e(1),mydisplay)
-                datatipSetStyle(e(1),2,%f)
-                d1=datatipCreate(e(1),540);
-                
-                datatipSetStyle(e(2),1,%t)
-                d2=datatipCreate(e(2),200);
-            </scilab:image>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="datatips">datatips</link>
-                </member>
-                <member>
-                    <link linkend="datatipCreate">datatipCreate</link>
-                </member>
-                <member>
-                    <link linkend="datatipInitStruct">datatipInitStruct</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>Function datatipSetStyle introduced.</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+        <scilab:image>
+            x=linspace(-20,20,1000);
+            clf();plot(x,sinc(x),x,sinc(x^2));
+            e=gce();e=e.children;
+            function str=mydisplay(curve,pt,index),str=msprintf('%0.2g', pt(1)),endfunction
+            datatipSetDisplay(e(1),mydisplay)
+            datatipSetStyle(e(1),2,%f)
+            d1=datatipCreate(e(1),540);
+            
+            datatipSetStyle(e(2),1,%t)
+            d2=datatipCreate(e(2),200);
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="datatips">datatips</link>
+            </member>
+            <member>
+                <link linkend="datatipCreate">datatipCreate</link>
+            </member>
+            <member>
+                <link linkend="datatipInitStruct">datatipInitStruct</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Function datatipSetStyle introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

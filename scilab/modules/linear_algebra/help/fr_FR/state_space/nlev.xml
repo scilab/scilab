@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,79 +10,79 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="nlev">
-        <refnamediv>
-            <refname>nlev</refname>
-            <refpurpose>Algorithme de Leverrier   </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Séquence d'appel</title>
-            <synopsis>[num,den]=nlev(A,z [,rmax])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Paramètres</title>
-            <variablelist>
-                <varlistentry>
-                    <term>A  </term>
-                    <listitem>
-                        <para>matrice réelle carrée
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>z  </term>
-                    <listitem>
-                        <para>chaîne de caractères
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>rmax  </term>
-                    <listitem>
-                        <para>
-                            paramètre optionnel (voir <literal>bdiag</literal>) 
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>[num,den]=nlev(A,z [,rmax])</literal> calcule
-                <literal>(z*eye()-A)^(-1)</literal> par bloc diagonalisation de
-                <literal>A</literal> suivie de l'algorithme de Leverrier sur chaque
-                bloc.
-            </para>
-            <para>
-                Cet algorithme est plus efficace que l'algorithme de
-                Leverrier seul, mais il n'est toujours pas parfait !
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="nlev">
+    <refnamediv>
+        <refname>nlev</refname>
+        <refpurpose>Algorithme de Leverrier   </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[num,den]=nlev(A,z [,rmax])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>A  </term>
+                <listitem>
+                    <para>matrice réelle carrée
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z  </term>
+                <listitem>
+                    <para>chaîne de caractères
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rmax  </term>
+                <listitem>
+                    <para>
+                        paramètre optionnel (voir <literal>bdiag</literal>) 
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>[num,den]=nlev(A,z [,rmax])</literal> calcule
+            <literal>(z*eye()-A)^(-1)</literal> par bloc diagonalisation de
+            <literal>A</literal> suivie de l'algorithme de Leverrier sur chaque
+            bloc.
+        </para>
+        <para>
+            Cet algorithme est plus efficace que l'algorithme de
+            Leverrier seul, mais il n'est toujours pas parfait !
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 A=rand(3,3);x=poly(0,'x');
 [NUM,den]=nlev(A,'x')
 clean(den-poly(A,'x'))
 clean(NUM/den-inv(x*eye()-A))
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="coff">coff</link>
-                </member>
-                <member>
-                    <link linkend="coffg">coffg</link>
-                </member>
-                <member>
-                    <link linkend="glever">glever</link>
-                </member>
-                <member>
-                    <link linkend="ss2tf">ss2tf</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="coff">coff</link>
+            </member>
+            <member>
+                <link linkend="coffg">coffg</link>
+            </member>
+            <member>
+                <link linkend="glever">glever</link>
+            </member>
+            <member>
+                <link linkend="ss2tf">ss2tf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

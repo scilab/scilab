@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
@@ -10,44 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="erf" xml:lang="en">
-        <refnamediv>
-            <refname>erf</refname>
-            <refpurpose>The error function.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>y = erf(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>vector or matrix</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>vector or matrix (of same size than x)</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>erf</literal> computes the error function:
-                <latex>
-                    \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt
-                </latex>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="erf" xml:lang="en">
+    <refnamediv>
+        <refname>erf</refname>
+        <refpurpose>The error function.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>y = erf(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>vector or matrix (of same size than x)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>erf</literal> computes the error function:
+            <latex>
+                \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} dt
+            </latex>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 deff('y=f(t)','y=exp(-t^2)');
 erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
 
@@ -57,40 +57,40 @@ a=erf(x)
 // Equivalent to
 1-erfc(x)
 ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>Algorithms</title>
-            <para>
-                This function is based on the <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeeva package</ulink> library.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="calerf">calerf</link>
-                </member>
-                <member>
-                    <link linkend="cdfnor">cdfnor</link>
-                </member>
-                <member>
-                    <link linkend="erfc">erfc</link>
-                </member>
-                <member>
-                    <link linkend="erfcx">erfcx</link>
-                </member>
-                <member>
-                    <link linkend="erfinv">erfinv</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.5.0</revnumber>
-                    <revremark>Function erf supports complex arguments</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>Algorithms</title>
+        <para>
+            This function is based on the <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeeva package</ulink> library.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="calerf">calerf</link>
+            </member>
+            <member>
+                <link linkend="cdfnor">cdfnor</link>
+            </member>
+            <member>
+                <link linkend="erfc">erfc</link>
+            </member>
+            <member>
+                <link linkend="erfcx">erfcx</link>
+            </member>
+            <member>
+                <link linkend="erfinv">erfinv</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Function erf supports complex arguments</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

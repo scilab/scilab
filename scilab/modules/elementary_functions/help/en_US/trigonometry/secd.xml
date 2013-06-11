@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  *
@@ -10,63 +10,63 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="secd" xml:lang="en">
-        <refnamediv>
-            <refname>secd</refname>
-            <refpurpose>computes the element-wise secant of the argument given in
-                degree
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>y = secd(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>a real array.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>a real array.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The entries of <varname>y</varname> are the secant
-                <latex>1/\cos(x)</latex> of the entries of <varname>x</varname> given in
-                degree. The results are real and in <latex>]-\infty -1] \cup [1 %infty[</latex>.
-                For entries equal to <literal>n*180</literal> with
-                <literal>n</literal> integer, the result is exactly <literal>-1</literal>
-                or <literal>+1</literal>. For entries equal to <literal>n*90</literal>with
-                <literal>n</literal> integer and odd the result is infinite (or an error
-                depending on <link linkend="ieee">ieee</link> mode).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="secd" xml:lang="en">
+    <refnamediv>
+        <refname>secd</refname>
+        <refpurpose>computes the element-wise secant of the argument given in
+            degree
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>y = secd(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a real array.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>a real array.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The entries of <varname>y</varname> are the secant
+            <latex>1/\cos(x)</latex> of the entries of <varname>x</varname> given in
+            degree. The results are real and in <latex>]-\infty -1] \cup [1 %infty[</latex>.
+            For entries equal to <literal>n*180</literal> with
+            <literal>n</literal> integer, the result is exactly <literal>-1</literal>
+            or <literal>+1</literal>. For entries equal to <literal>n*90</literal>with
+            <literal>n</literal> integer and odd the result is infinite (or an error
+            depending on <link linkend="ieee">ieee</link> mode).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 secd(90)
 sec(%pi/2)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="cosd">cosd</link>
-                </member>
-                <member>
-                    <link linkend="sec">sec</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cosd">cosd</link>
+            </member>
+            <member>
+                <link linkend="sec">sec</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

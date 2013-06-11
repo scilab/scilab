@@ -1,91 +1,91 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="atand" xml:lang="en">
-        <refnamediv>
-            <refname>atand</refname>
-            <refpurpose>2-quadrant and 4-quadrant element-wise inverse tangent, result
-                in degree
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>phi = atand(x)
-                phi = atand(y, x)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>a real scalar, vector or matrix.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>phi</term>
-                    <listitem>
-                        <para>a real scalar, vector or matrix.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x, y</term>
-                    <listitem>
-                        <para>real scalars, vectors or matrices of the same size.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>phi</term>
-                    <listitem>
-                        <para>a real scalar, vector or matrix.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The first form computes the 2-quadrant inverse tangent, which is the
-                inverse of <code>tand(phi)</code>. The
-                <literal/>
-                <varname>phi</varname> elements are in the interval
-                <literal>[-90, 90]</literal>.
-            </para>
-            <para>The second form computes the 4-quadrant arctangent (atan2 in
-                Fortran), this is, it returns the argument (angle) of the complex number
-                <literal>x+i*y</literal>. The range of <code>atand(y,x)</code> is
-                <literal>[-180, 180i]</literal>.
-            </para>
-            <para>Both forms yield identical values if
-                <literal>x&gt;0</literal>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Sample</title>
-            <scilab:image>
-                x=-60:1:60
-                plot(x,atand(x))
-            </scilab:image>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="atand" xml:lang="en">
+    <refnamediv>
+        <refname>atand</refname>
+        <refpurpose>2-quadrant and 4-quadrant element-wise inverse tangent, result
+            in degree
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>phi = atand(x)
+            phi = atand(y, x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>a real scalar, vector or matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>a real scalar, vector or matrix.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>real scalars, vectors or matrices of the same size.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>a real scalar, vector or matrix.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The first form computes the 2-quadrant inverse tangent, which is the
+            inverse of <code>tand(phi)</code>. The
+            <literal/>
+            <varname>phi</varname> elements are in the interval
+            <literal>[-90, 90]</literal>.
+        </para>
+        <para>The second form computes the 4-quadrant arctangent (atan2 in
+            Fortran), this is, it returns the argument (angle) of the complex number
+            <literal>x+i*y</literal>. The range of <code>atand(y,x)</code> is
+            <literal>[-180, 180i]</literal>.
+        </para>
+        <para>Both forms yield identical values if
+            <literal>x&gt;0</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Sample</title>
+        <scilab:image>
+            x=-60:1:60
+            plot(x,atand(x))
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 // example with the second form
 x=[0,1/sqrt(3),1,sqrt(3),%inf,0]
 atand(x)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="atan">atan</link>
-                </member>
-                <member>
-                    <link linkend="tan">tan</link>
-                </member>
-                <member>
-                    <link linkend="tand">tand</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="tand">tand</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

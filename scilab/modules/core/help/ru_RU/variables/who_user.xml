@@ -1,68 +1,68 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="who_user">
-        <refnamediv>
-            <refname>who_user</refname>
-            <refpurpose>список имён пользовательских переменных</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>who_user()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>bPrint</term>
-                    <listitem>
-                        <para>
-                            включает или отключает вывод на экран (по умолчанию: <constant>%t</constant>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Возвращаемое значение</title>
-            <variablelist>
-                <varlistentry>
-                    <term>varList</term>
-                    <listitem>
-                        <para>
-                            вектор-столбец пользовательских переменных, либо 
-                            <literal>[]</literal>, если у пользователя нет 
-                            переменных.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <function>who_user</function> выводит на экран и/или 
-                возвращает имена пользовательских переменных.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="whos">whos</link>
-                </member>
-                <member>
-                    <link linkend="who">who</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>История</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>
-                        <function>who_user</function> can now return user's variable names in a column vector of character strings.
-                    </revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="who_user">
+    <refnamediv>
+        <refname>who_user</refname>
+        <refpurpose>список имён пользовательских переменных</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>who_user()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>bPrint</term>
+                <listitem>
+                    <para>
+                        включает или отключает вывод на экран (по умолчанию: <constant>%t</constant>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Возвращаемое значение</title>
+        <variablelist>
+            <varlistentry>
+                <term>varList</term>
+                <listitem>
+                    <para>
+                        вектор-столбец пользовательских переменных, либо 
+                        <literal>[]</literal>, если у пользователя нет 
+                        переменных.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <function>who_user</function> выводит на экран и/или 
+            возвращает имена пользовательских переменных.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="whos">whos</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <function>who_user</function> can now return user's variable names in a column vector of character strings.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

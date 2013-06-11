@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * Copyright (C) DIGITEO - 2009 - Allan CORNET
@@ -11,57 +11,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ilib_gen_gateway" xml:lang="en">
-        <refnamediv>
-            <refname>ilib_gen_gateway</refname>
-            <refpurpose>utility for ilib_build, generates a gateway file.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>ilib_gen_gateway(name,table)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>name</term>
-                    <listitem>
-                        <para>a character string, the generic name of the library without
-                            path and extension.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>table</term>
-                    <listitem>
-                        <para>2 column string matrix giving the table of pairs 'scilab-name'
-                            'interface name'
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Utility function used by <literal>ilib_build</literal> This function
-                generates a gateway file used by <literal>addinter</literal>.
-            </para>
-            <para>if WITHOUT_AUTO_PUTLHSVAR variable is defined and equals to %t,
-                PutLhsVar(); will need to manage PutLhsVar in each interface as internal
-                scilab functions.
-            </para>
-            <para>In another case (default, for compatibility with previous version) ,
-                PutLhsVar(); is added in each interface.
-            </para>
-            <para>You can also see
-                SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (as
-                example about WITHOUT_AUTO_PUTLHSVAR)
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example about WITHOUT_AUTO_PUTLHSVAR = %t</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ilib_gen_gateway" xml:lang="en">
+    <refnamediv>
+        <refname>ilib_gen_gateway</refname>
+        <refpurpose>utility for ilib_build, generates a gateway file.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>ilib_gen_gateway(name,table)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>a character string, the generic name of the library without
+                        path and extension.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>table</term>
+                <listitem>
+                    <para>2 column string matrix giving the table of pairs 'scilab-name'
+                        'interface name'
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Utility function used by <literal>ilib_build</literal> This function
+            generates a gateway file used by <literal>addinter</literal>.
+        </para>
+        <para>if WITHOUT_AUTO_PUTLHSVAR variable is defined and equals to %t,
+            PutLhsVar(); will need to manage PutLhsVar in each interface as internal
+            scilab functions.
+        </para>
+        <para>In another case (default, for compatibility with previous version) ,
+            PutLhsVar(); is added in each interface.
+        </para>
+        <para>You can also see
+            SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (as
+            example about WITHOUT_AUTO_PUTLHSVAR)
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example about WITHOUT_AUTO_PUTLHSVAR = %t</title>
+        <programlisting role="example"><![CDATA[ 
 cd TMPDIR
 WITHOUT_AUTO_PUTLHSVAR = %t;
 name = 'gw_example1';
@@ -71,7 +71,7 @@ ilib_gen_gateway(name,table)
 // generated gateway
 mgetl(TMPDIR+'/gw_example1.c')
 ]]></programlisting>
-            <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[ 
 int sci_func1(char *fname)
 {
   // ... your C code
@@ -82,10 +82,10 @@ int sci_func1(char *fname)
   return 0;
 }
 ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>Example about WITHOUT_AUTO_PUTLHSVAR = %f (default)</title>
-            <programlisting role="example"><![CDATA[ 
+    </refsection>
+    <refsection>
+        <title>Example about WITHOUT_AUTO_PUTLHSVAR = %f (default)</title>
+        <programlisting role="example"><![CDATA[ 
 cd TMPDIR
 WITHOUT_AUTO_PUTLHSVAR = %f;
 name = 'gw_example2';
@@ -95,7 +95,7 @@ ilib_gen_gateway(name,table)
 // generated gateway
 mgetl(TMPDIR+'/gw_example2.c')
 ]]></programlisting>
-            <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[
 int sci_func2(char *fname)
 {
   // ... your code
@@ -106,34 +106,34 @@ int sci_func2(char *fname)
   return 0;
 }
 ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="addinter">addinter</link>
-                </member>
-                <member>
-                    <link linkend="link">link</link>
-                </member>
-                <member>
-                    <link linkend="ilib_build">ilib_build</link>
-                </member>
-                <member>
-                    <link linkend="ilib_compile">ilib_compile</link>
-                </member>
-                <member>
-                    <link linkend="ilib_gen_Make">ilib_gen_Make</link>
-                </member>
-                <member>
-                    <link linkend="ilib_gen_loader">ilib_gen_loader</link>
-                </member>
-                <member>
-                    <link linkend="ilib_for_link">ilib_for_link</link>
-                </member>
-                <member>
-                    <link linkend="api_scilab">api_scilab</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+            <member>
+                <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="ilib_build">ilib_build</link>
+            </member>
+            <member>
+                <link linkend="ilib_compile">ilib_compile</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_Make">ilib_gen_Make</link>
+            </member>
+            <member>
+                <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+            </member>
+            <member>
+                <link linkend="ilib_for_link">ilib_for_link</link>
+            </member>
+            <member>
+                <link linkend="api_scilab">api_scilab</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

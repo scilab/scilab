@@ -1,65 +1,65 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spones" xml:lang="fr">
-        <refnamediv>
-            <refname>spones</refname>
-            <refpurpose>matrice creuse dont les termes valent 1</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Séquence d'appel</title>
-            <synopsis>sp = spones(A)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Paramètres</title>
-            <variablelist>
-                <varlistentry>
-                    <term>A</term>
-                    <listitem>
-                        <para>matrice creuse</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>sp</term>
-                    <listitem>
-                        <para>matrice creuse</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>sp=spones(A)</literal> génère une matrice creuse de même
-                structure que <literal>A</literal>, mais où les termes non-nuls ont été
-                remplacés par la valeur 1.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemples</title>
-            <programlisting role="example"><![CDATA[ 
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spones" xml:lang="fr">
+    <refnamediv>
+        <refname>spones</refname>
+        <refpurpose>matrice creuse dont les termes valent 1</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>sp = spones(A)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>matrice creuse</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sp</term>
+                <listitem>
+                    <para>matrice creuse</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>sp=spones(A)</literal> génère une matrice creuse de même
+            structure que <literal>A</literal>, mais où les termes non-nuls ont été
+            remplacés par la valeur 1.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 A=sprand(10,12,0.1);
 sp=spones(A)
 B = A~=0
 bool2s(B)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="sparse">sparse</link>
-                </member>
-                <member>
-                    <link linkend="full">full</link>
-                </member>
-                <member>
-                    <link linkend="eye">eye</link>
-                </member>
-                <member>
-                    <link linkend="speye">speye</link>
-                </member>
-                <member>
-                    <link linkend="spzeros">spzeros</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="sparse">sparse</link>
+            </member>
+            <member>
+                <link linkend="full">full</link>
+            </member>
+            <member>
+                <link linkend="eye">eye</link>
+            </member>
+            <member>
+                <link linkend="speye">speye</link>
+            </member>
+            <member>
+                <link linkend="spzeros">spzeros</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

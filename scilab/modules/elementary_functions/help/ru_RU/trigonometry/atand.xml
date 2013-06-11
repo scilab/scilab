@@ -1,87 +1,87 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atand" xml:lang="ru">
-        <refnamediv>
-            <refname>atand</refname>
-            <refpurpose>2-х и 4-х квадрантный поэлементный арктангенс, результаты в градусах.
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>phi = atand(x)
-                phi = atand(y, x)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>вещественный скаляр, вектор или матрица.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>phi</term>
-                    <listitem>
-                        <para>вещественный скаляр, вектор или матрица.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x, y</term>
-                    <listitem>
-                        <para>вещественные скаляры, векторы или матрицы одинакового размера.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>phi</term>
-                    <listitem>
-                        <para>вещественный скаляр, вектор или матрица.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Первая форма вычисляет 2-квадрантный арктангенс, который является обратным от <code>tand(phi)</code>. Элементы <varname>phi</varname> лежат на интервале
-                <literal>[-90, 90]</literal>.
-            </para>
-            <para>
-                Вторая форма вычисляет 4-квадрантный арктангенс (в Фортране <function>atan2</function>), то есть возвращает аргумент (угол) комплексного числа <literal>x+i*y</literal>.
-                Диапазон <code>atand(y,x)</code> равен
-                <literal>[-180,180i]</literal>.
-            </para>
-            <para>
-                Обе формы дают одинаковые значения, если <literal>x&gt;0</literal>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Образец</title>
-            <scilab:image>
-                x=-60:1:60
-                plot(x,atand(x))
-            </scilab:image>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atand" xml:lang="ru">
+    <refnamediv>
+        <refname>atand</refname>
+        <refpurpose>2-х и 4-х квадрантный поэлементный арктангенс, результаты в градусах.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>phi = atand(x)
+            phi = atand(y, x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>вещественный скаляр, вектор или матрица.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>вещественный скаляр, вектор или матрица.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>вещественные скаляры, векторы или матрицы одинакового размера.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>phi</term>
+                <listitem>
+                    <para>вещественный скаляр, вектор или матрица.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Первая форма вычисляет 2-квадрантный арктангенс, который является обратным от <code>tand(phi)</code>. Элементы <varname>phi</varname> лежат на интервале
+            <literal>[-90, 90]</literal>.
+        </para>
+        <para>
+            Вторая форма вычисляет 4-квадрантный арктангенс (в Фортране <function>atan2</function>), то есть возвращает аргумент (угол) комплексного числа <literal>x+i*y</literal>.
+            Диапазон <code>atand(y,x)</code> равен
+            <literal>[-180,180i]</literal>.
+        </para>
+        <para>
+            Обе формы дают одинаковые значения, если <literal>x&gt;0</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Образец</title>
+        <scilab:image>
+            x=-60:1:60
+            plot(x,atand(x))
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 // пример со второй формой
 x=[0,1/sqrt(3),1,sqrt(3),%inf,0]
 atand(x)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="atan">atan</link>
-                </member>
-                <member>
-                    <link linkend="tan">tan</link>
-                </member>
-                <member>
-                    <link linkend="ieee">tand</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="ieee">tand</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

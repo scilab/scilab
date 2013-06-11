@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Xcos
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -22,250 +22,250 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Modulo_Count" xml:lang="en_US">
-        <refnamediv>
-            <refname>Modulo_Count</refname>
-            <refpurpose>Modulo counter (0 to N counter)</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Modulo_Count" xml:lang="en_US">
+    <refnamediv>
+        <refname>Modulo_Count</refname>
+        <refpurpose>Modulo counter (0 to N counter)</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/Modulo_Count.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_Modulo_Count">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Modulo_Count">Modulo counter (0 to N counter)</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_Modulo_Count">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_Modulo_Count">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Datatype_Modulo_Count">Data types</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_Modulo_Count">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_Modulo_Count">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_Modulo_Count">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_Modulo_Count">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_Modulo_Count">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_Modulo_Count">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_Modulo_Count">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Sources_pal">Sources palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_Modulo_Count">
+        <title>Description</title>
+        <para>
+            It is a discrete block. The block outputs a periodic scalar piecewise constant signal. Signal begin at <emphasis role="bold">Initial State</emphasis> value. The output is incremented when block received an event on its activation input until output reaches the <emphasis role="bold">Upper Limit</emphasis> parameter value. At this time the output is reset to 0. For a periodic event input, the output is a quantized sawtooth signal.
+        </para>
+    </refsection>
+    <refsection id="Datatype_Modulo_Count">
+        <title>Data type</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Output: scalar double.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Dialogbox_Modulo_Count">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/sources_pal/en_US/Modulo_Count_gui.png" align="center"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Initial State</emphasis>
+                </para>
+                <para> Scalar. Initial discrete state.</para>
+                <para> Properties : Type 'vec' of size 1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Upper Limit (positive number)</emphasis>
+                </para>
+                <para> Scalar. Number of required step.</para>
+                <para> Properties : Type 'vec' of size 1 </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_Modulo_Count">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">modulo_count</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_Modulo_Count">
+        <title>Exemple</title>
+        <para>
+            This diagram shows the Modulo_count usage as a quantized sawtooth generator application.
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/modulo_count_en_US.zcos">
+                Open this example in Xcos
+            </link>
+        </para>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/modulo_count_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../images/palettes/Modulo_Count.png" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/modulo_count_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_Modulo_Count">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Modulo_Count">Modulo counter (0 to N counter)</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_Modulo_Count">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_Modulo_Count">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Datatype_Modulo_Count">Data types</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_Modulo_Count">Dialog box</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_Modulo_Count">Default properties</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Example_Modulo_Count">Example</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_Modulo_Count">Interfacing function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Computationalfunction_Modulo_Count">Computational function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Seealso_Modulo_Count">See also</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_Modulo_Count">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Sources_pal">Sources palette</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_Modulo_Count">
-            <title>Description</title>
-            <para>
-                It is a discrete block. The block outputs a periodic scalar piecewise constant signal. Signal begin at <emphasis role="bold">Initial State</emphasis> value. The output is incremented when block received an event on its activation input until output reaches the <emphasis role="bold">Upper Limit</emphasis> parameter value. At this time the output is reset to 0. For a periodic event input, the output is a quantized sawtooth signal.
-            </para>
-        </refsection>
-        <refsection id="Datatype_Modulo_Count">
-            <title>Data type</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        Output: scalar double.
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Dialogbox_Modulo_Count">
-            <title>Dialog box</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../../../gui/sources_pal/en_US/Modulo_Count_gui.png" align="center"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para/>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Initial State</emphasis>
-                    </para>
-                    <para> Scalar. Initial discrete state.</para>
-                    <para> Properties : Type 'vec' of size 1 </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Upper Limit (positive number)</emphasis>
-                    </para>
-                    <para> Scalar. Number of required step.</para>
-                    <para> Properties : Type 'vec' of size 1 </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_Modulo_Count">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular outputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">modulo_count</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Example_Modulo_Count">
-            <title>Exemple</title>
-            <para>
-                This diagram shows the Modulo_count usage as a quantized sawtooth generator application.
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/modulo_count_en_US.zcos">
-                    Open this example in Xcos
-                </link>
-            </para>
-            <para/>
-            <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/modulo_count_en_US.zcos">
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../examples/sources_pal/en_US/modulo_count_en_US.zcos" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                </link>
-                <scilab:image><![CDATA[
+            </link>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/modulo_count_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
-        </refsection>
-        <refsection id="Interfacingfunction_Modulo_Count">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/Modulo_Count.sci">SCI/modules/scicos_blocks/macros/Sources/Modulo_Count.sci</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Computationalfunction_Modulo_Count">
-            <title>Computational function</title>
-            <itemizedlist>
-                <listitem>
-                    <para> SCI/modules/scicos_blocks/src/c/modulo_count.c (Type 4)</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Seealso_Modulo_Count">
-            <title>See also</title>
-            <itemizedlist>
-                <listitem>
-                    <link linkend="GENSQR_f">GENSQR_f</link>
-                </listitem>
-                <listitem>
-                    <link linkend="SAWTOOTH_f">SAWTOOTH_f</link>
-                </listitem>
-                <listitem>
-                    <link linkend="Sigbuilder">Sigbuilder</link>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+        </para>
+    </refsection>
+    <refsection id="Interfacingfunction_Modulo_Count">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/Modulo_Count.sci">SCI/modules/scicos_blocks/macros/Sources/Modulo_Count.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_Modulo_Count">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/c/modulo_count.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Seealso_Modulo_Count">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="GENSQR_f">GENSQR_f</link>
+            </listitem>
+            <listitem>
+                <link linkend="SAWTOOTH_f">SAWTOOTH_f</link>
+            </listitem>
+            <listitem>
+                <link linkend="Sigbuilder">Sigbuilder</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

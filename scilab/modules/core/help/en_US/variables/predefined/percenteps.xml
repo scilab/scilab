@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Allan CORNET
  * 
@@ -10,41 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percenteps" xml:lang="en">
-        <refnamediv>
-            <refname>%eps</refname>
-            <refpurpose>epsilon (floating-point relative accuracy)</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>%eps</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>%eps</literal> is a predefined variable, <literal>%eps =
-                    2^(-52)
-                </literal>
-                .
-            </para>
-            <para>Calculations are not exact but performed for a given precision,
-                Scilab uses the IEEE 754 standard.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example">%eps
-                format(20)
-                1 + %eps
-                1 + (%eps / 2) == 1
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="format">format</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percenteps" xml:lang="en">
+    <refnamediv>
+        <refname>%eps</refname>
+        <refpurpose>epsilon (floating-point relative accuracy)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>%eps</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>%eps</literal> is a predefined variable, <literal>%eps =
+                2^(-52)
+            </literal>
+            .
+        </para>
+        <para>Calculations are not exact but performed for a given precision,
+            Scilab uses the IEEE 754 standard.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">%eps
+            format(20)
+            1 + %eps
+            1 + (%eps / 2) == 1
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="format">format</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

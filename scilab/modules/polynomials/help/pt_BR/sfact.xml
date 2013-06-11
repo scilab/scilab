@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,49 +10,49 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sfact" xml:lang="en">
-        <refnamediv>
-            <refname>sfact</refname>
-            <refpurpose>fatoração espectral em tempo discreto</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title> Seqüência de Chamamento </title>
-            <synopsis>F=sfact(P)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>P</term>
-                    <listitem>
-                        <para>matriz de polinômios reais</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                Acha <literal>F</literal>, um fator espectral de
-                <literal>P</literal>. <literal>P</literal> é uma matriz de polinômios tal
-                que cada raiz de <literal>P</literal> possui uma imagem simétrica em
-                relação ao círculo unitário. O problema é singular se uma raiz estiver no
-                círculo unitário.
-            </para>
-            <para>
-                <literal>sfact(P)</literal> retorna uma matriz de polinômios
-                <literal>F(z)</literal> que é anti-estável e tal que
-            </para>
-            <para>
-                <literal>P = F(z)* F(1/z) *z^n</literal>
-            </para>
-            <para> Para polinômios escalares um algorimto específico é implementado.
-                Os algoritmos são implementados do livro de Kucera.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sfact" xml:lang="en">
+    <refnamediv>
+        <refname>sfact</refname>
+        <refpurpose>fatoração espectral em tempo discreto</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento </title>
+        <synopsis>F=sfact(P)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>matriz de polinômios reais</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Acha <literal>F</literal>, um fator espectral de
+            <literal>P</literal>. <literal>P</literal> é uma matriz de polinômios tal
+            que cada raiz de <literal>P</literal> possui uma imagem simétrica em
+            relação ao círculo unitário. O problema é singular se uma raiz estiver no
+            círculo unitário.
+        </para>
+        <para>
+            <literal>sfact(P)</literal> retorna uma matriz de polinômios
+            <literal>F(z)</literal> que é anti-estável e tal que
+        </para>
+        <para>
+            <literal>P = F(z)* F(1/z) *z^n</literal>
+        </para>
+        <para> Para polinômios escalares um algorimto específico é implementado.
+            Os algoritmos são implementados do livro de Kucera.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 //exemplo polinomial
 z=poly(0,'z');
 p=(z-1/2)*(2-z)
@@ -80,16 +80,16 @@ f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      //normalização
 roots(f)    //f é estável
 clean(f*gtild(f,'c')-p)    //f(s)*f(-s) é p(s)
  ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title> Ver Também </title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="gtild">gtild</link>
-                </member>
-                <member>
-                    <link linkend="fspecg">fspecg</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title> Ver Também </title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gtild">gtild</link>
+            </member>
+            <member>
+                <link linkend="fspecg">fspecg</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

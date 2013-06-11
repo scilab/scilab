@@ -1,6 +1,6 @@
-        <?xml version="1.0" encoding="utf-8"?>
-    
-    <!--
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,164 +11,164 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Common_getvardimension_API" xml:lang="ja">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Common_getvardimension_API" xml:lang="ja">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>変数の次元 (Scilabゲートウェイ)</refname>
-            
-            <refpurpose>
-                
-                引数または行列に保存された変数の次元を取得する方法.
-                
-            </refpurpose>
-            
-        </refnamediv>
+        <refname>変数の次元 (Scilabゲートウェイ)</refname>
         
-        <refsynopsisdiv>
+        <refpurpose>
             
-            <title>呼び出し手順</title>
+            引数または行列に保存された変数の次元を取得する方法.
             
-            <para>入力引数プロファイル:</para>
-            
-            <synopsis>SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols)</synopsis>
-            
-            <para>名前指定変数プロファイル:</para>
-            
-            <synopsis>SciErr getNamedVarDimension(void* _pvCtx, const char *_pstName, int* _piRows, int* _piCols)</synopsis>
-            
-        </refsynopsisdiv>
+        </refpurpose>
         
-        <refsection>
-            
-            <title>引数</title>
-            
-            <variablelist>
-                
-                <varlistentry>
-                    
-                    <term>_pvCtx</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            Scilab環境ポインタ, api_scilab.hで定義される "pvApiCtx" を指定
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piAddress</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            変数のアドレス.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_pstName</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            Scilab変数名.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piRows</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返される行数.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piCols</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            返される列数.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>SciErr</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            エラー構造体で,エラーメッセージ履歴と最初のエラー番号を保持します.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-            </variablelist>
-            
-        </refsection>
+    </refnamediv>
+    
+    <refsynopsisdiv>
         
-        <refsection>
-            
-            <title>説明</title>
-            
-            <para>このヘルプはゲートウェイ内で変数の次元を取得する方法を示します.</para>
-            
-        </refsection>
+        <title>呼び出し手順</title>
         
-        <refsection>
+        <para>入力引数プロファイル:</para>
+        
+        <synopsis>SciErr getVarDimension(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols)</synopsis>
+        
+        <para>名前指定変数プロファイル:</para>
+        
+        <synopsis>SciErr getNamedVarDimension(void* _pvCtx, const char *_pstName, int* _piRows, int* _piCols)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
             
-            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
-            
-            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
-            
-            <!--Lib_name: common_function-->
-            
-            <!--Func_list: common_function-->
-            
-            <title>ゲートウェイのソース</title>
-            
-            <programlisting role="code_gateway">
+            <varlistentry>
                 
-                <![CDATA[ 
+                <term>_pvCtx</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        Scilab環境ポインタ, api_scilab.hで定義される "pvApiCtx" を指定
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piAddress</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        変数のアドレス.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_pstName</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        Scilab変数名.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piRows</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返される行数.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piCols</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        返される列数.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>SciErr</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        エラー構造体で,エラーメッセージ履歴と最初のエラー番号を保持します.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>このヘルプはゲートウェイ内で変数の次元を取得する方法を示します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/common_function_api.c-->
+        
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/common_function.tst-->
+        
+        <!--Lib_name: common_function-->
+        
+        <!--Func_list: common_function-->
+        
+        <title>ゲートウェイのソース</title>
+        
+        <programlisting role="code_gateway">
+            
+            <![CDATA[ 
 #include "api_scilab.h"
 SciErr printf_info(int _iVar);
 
@@ -313,16 +313,16 @@ SciErr printf_info(int _iVar)
     return sciErr;
 }
  ]]>
-                
-            </programlisting>
             
-        </refsection>
+        </programlisting>
         
-        <refsection>
-            
-            <title>Scilabテストスクリプト</title>
-            
-            <programlisting role="code_scilab"><![CDATA[ 
+    </refsection>
+    
+    <refsection>
+        
+        <title>Scilabテストスクリプト</title>
+        
+        <programlisting role="code_scilab"><![CDATA[ 
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -331,8 +331,8 @@ l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
 common_function(l(1:$))
  ]]></programlisting>
-            
-        </refsection>
         
-    </refentry>
+    </refsection>
     
+</refentry>
+

@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
  *
@@ -10,71 +10,71 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="mlist">
-        <refnamediv>
-            <refname>mlist</refname>
-            <refpurpose>Scilab オブジェクト, 型付リスト定義に向いた行列.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>mlist(typ,a1,....an )</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>パラメータ</title>
-            <variablelist>
-                <varlistentry>
-                    <term>typ</term>
-                    <listitem>
-                        <para>文字列のベクトル</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ai</term>
-                    <listitem>
-                        <para>
-                            任意のScilabオブジェクト (<literal>matrix, list,string...</literal>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                <literal>mlist</literal> オブジェクトは <link linkend="tlist">tlist</link> オブジェクトに
-                非常に良く似ています. 唯一の差異は,
-                <link linkend="extraction">展開</link> および
-                <link linkend="insertion">insertion</link>   挿入の構文です:
-                <literal>M</literal> が mlistの場合, フィールド名でない <literal>i</literal> に関して, 
-                <literal>M(i)</literal> はリストの <literal>i</literal>番目のフィールドではありません.
-            </para>
-            <para> 
-                展開および挿入の構文の意味付けは, <link linkend="overloading">overloading</link>
-                関数で指定される必要があります.
-            </para>
-            <para>
-                overloading 関数の展開構文 <literal>b=a(i1,...,in)</literal>
-                は以下の呼び出し手順となります
-                : <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal> 
-            </para>
-            <para>そして構文
-                <literal>[x1,..,xm]=a(i1,...,in)</literal> は以下の呼び出し手順となります:
-                <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
-            </para>
-            <para/>
-            <para>挿入構文に関連する overloading 関数
-                <literal>a(i1,...,in)=b</literal>  は以下の呼び出し手順となります:
-                <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>. 
-            </para>
-            <para/>
-            <para>mlist フィールドはそれらの名前に基づき設計される必要があります.
-                <literal>getfield</literal> および <literal>setfield</literal>
-                関数により処理することも可能です.
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="mlist">
+    <refnamediv>
+        <refname>mlist</refname>
+        <refpurpose>Scilab オブジェクト, 型付リスト定義に向いた行列.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>mlist(typ,a1,....an )</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>文字列のベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ai</term>
+                <listitem>
+                    <para>
+                        任意のScilabオブジェクト (<literal>matrix, list,string...</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>mlist</literal> オブジェクトは <link linkend="tlist">tlist</link> オブジェクトに
+            非常に良く似ています. 唯一の差異は,
+            <link linkend="extraction">展開</link> および
+            <link linkend="insertion">insertion</link>   挿入の構文です:
+            <literal>M</literal> が mlistの場合, フィールド名でない <literal>i</literal> に関して, 
+            <literal>M(i)</literal> はリストの <literal>i</literal>番目のフィールドではありません.
+        </para>
+        <para> 
+            展開および挿入の構文の意味付けは, <link linkend="overloading">overloading</link>
+            関数で指定される必要があります.
+        </para>
+        <para>
+            overloading 関数の展開構文 <literal>b=a(i1,...,in)</literal>
+            は以下の呼び出し手順となります
+            : <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal> 
+        </para>
+        <para>そして構文
+            <literal>[x1,..,xm]=a(i1,...,in)</literal> は以下の呼び出し手順となります:
+            <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+        </para>
+        <para/>
+        <para>挿入構文に関連する overloading 関数
+            <literal>a(i1,...,in)=b</literal>  は以下の呼び出し手順となります:
+            <literal>a=%&lt;type_of_b&gt;_i_&lt;type_of_a&gt;(i1,...,in,b,a)</literal>. 
+        </para>
+        <para/>
+        <para>mlist フィールドはそれらの名前に基づき設計される必要があります.
+            <literal>getfield</literal> および <literal>setfield</literal>
+            関数により処理することも可能です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
 //define display
 function %V_p(M),disp(M.name+':'+string(M.value)),endfunction
@@ -111,25 +111,25 @@ M(2)='a'+string([1 2;3 4])
 
 M('name')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="tlist">tlist</link>
-                </member>
-                <member>
-                    <link linkend="list">list</link>
-                </member>
-                <member>
-                    <link linkend="overloading">overloading</link>
-                </member>
-                <member>
-                    <link linkend="getfield">getfield</link>
-                </member>
-                <member>
-                    <link linkend="setfield">setfield</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
+            <member>
+                <link linkend="setfield">setfield</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

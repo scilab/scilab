@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,48 +10,48 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_center" xml:lang="en">
-        <refnamediv>
-            <refname>optimsimplex_center</refname>
-            <refpurpose>Computes the center.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                sicenter = optimsimplex_center(opt)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Argument</title>
-            <variablelist>
-                <varlistentry>
-                    <term>opt </term>
-                    <listitem>
-                        <para>The current simplex object of TSIMPLEX type (tlist).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>sicenter </term>
-                    <listitem>
-                        <para>
-                            A vector of length <literal>nbve</literal>, where <literal>nbve</literal> 
-                            is the number of vertices in the current simplex object.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <literal>optimsimplex_center</literal> function returns the center of the current 
-                simplex.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example">
-                <![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_center" xml:lang="en">
+    <refnamediv>
+        <refname>optimsimplex_center</refname>
+        <refpurpose>Computes the center.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            sicenter = optimsimplex_center(opt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The current simplex object of TSIMPLEX type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sicenter </term>
+                <listitem>
+                    <para>
+                        A vector of length <literal>nbve</literal>, where <literal>nbve</literal> 
+                        is the number of vertices in the current simplex object.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimsimplex_center</literal> function returns the center of the current 
+            simplex.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
     coords = [...
         0.    0.  
         1.    0.  
@@ -63,14 +63,14 @@
     
     s1 = optimsimplex_destroy(s1);
  ]]>
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="optimsimplex_new">optimsimplex_new</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimsimplex_new">optimsimplex_new</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

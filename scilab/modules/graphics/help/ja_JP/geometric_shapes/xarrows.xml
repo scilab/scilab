@@ -1,5 +1,5 @@
-        <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -10,86 +10,86 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xarrows">
-        <refnamediv>
-            <refname>xarrows</refname>
-            <refpurpose>一連の矢印を描画</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>xarrows(nx, ny, [arsize, color])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>引数</title>
-            <variablelist>
-                <varlistentry>
-                    <term>nx,ny</term>
-                    <listitem>
-                        <para>同じ大きさの実数のベクトルまたは行列e.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>arsize</term>
-                    <listitem>
-                        <para>実数スカラー, 矢じりの大きさ. 
-                            デフォルト値は <varname>arsize</varname> を -1 に設定することにより得られます.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>color</term>
-                    <listitem>
-                        <para>行列またはスカラー. 
-                            <varname>color</varname>が正のスカラーの場合,
-                            この値は全ての矢印に使用される色を指定します.
-                            負のスカラーの場合,カレントの色が使用されます.
-                            ベクトルの場合,<literal>color(i)</literal> は <literal>i</literal>番目の
-                            矢印に使用される色を指定します.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                <function>xarrows</function>は<varname>nx</varname> および <varname>ny</varname>
-                により指定される矢印の集合を描画します.
-                <varname>nx</varname> および <varname>ny</varname>がベクトルの場合,
-                i番目の矢印は
-                <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>により定義されます.
-                <varname>nx</varname> および <varname>ny</varname> が行列の場合:
-            </para>
-            <programlisting role=""><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xarrows">
+    <refnamediv>
+        <refname>xarrows</refname>
+        <refpurpose>一連の矢印を描画</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>xarrows(nx, ny, [arsize, color])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>nx,ny</term>
+                <listitem>
+                    <para>同じ大きさの実数のベクトルまたは行列e.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arsize</term>
+                <listitem>
+                    <para>実数スカラー, 矢じりの大きさ. 
+                        デフォルト値は <varname>arsize</varname> を -1 に設定することにより得られます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>行列またはスカラー. 
+                        <varname>color</varname>が正のスカラーの場合,
+                        この値は全ての矢印に使用される色を指定します.
+                        負のスカラーの場合,カレントの色が使用されます.
+                        ベクトルの場合,<literal>color(i)</literal> は <literal>i</literal>番目の
+                        矢印に使用される色を指定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <function>xarrows</function>は<varname>nx</varname> および <varname>ny</varname>
+            により指定される矢印の集合を描画します.
+            <varname>nx</varname> および <varname>ny</varname>がベクトルの場合,
+            i番目の矢印は
+            <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>により定義されます.
+            <varname>nx</varname> および <varname>ny</varname> が行列の場合:
+        </para>
+        <programlisting role=""><![CDATA[ 
 nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
 ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
  ]]></programlisting>
-            <para>
-                <literal>k</literal>番目の矢印は <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>
-                により定義されます.
-            </para>
-            <para>
-                <function>xarrows</function>は,
-                <function>plot2d</function>のような高レベル関数をコールすることにより
-                設定可能なカレントのグラフィックスケールを使用します.
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            
-            <scilab:image>
-                x = 2*%pi*(0:7)/8
-                x1 = [sin(x); 9*sin(x)];
-                y1 = [cos(x); 9*cos(x)];
-                plot2d([-10,10], [-10,10], [-1,-1], "022")
-                xset("clipgrf")
-                xarrows(x1, y1, -1, [1:7,9])
-                xset("clipoff")
-            </scilab:image>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+        <para>
+            <literal>k</literal>番目の矢印は <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>
+            により定義されます.
+        </para>
+        <para>
+            <function>xarrows</function>は,
+            <function>plot2d</function>のような高レベル関数をコールすることにより
+            設定可能なカレントのグラフィックスケールを使用します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        
+        <scilab:image>
+            x = 2*%pi*(0:7)/8
+            x1 = [sin(x); 9*sin(x)];
+            y1 = [cos(x); 9*cos(x)];
+            plot2d([-10,10], [-10,10], [-1,-1], "022")
+            xset("clipgrf")
+            xarrows(x1, y1, -1, [1:7,9])
+            xset("clipoff")
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 x = 2*%pi*(0:7)/8
 x1 = [sin(x); 9*sin(x)];
 y1 = [cos(x); 9*cos(x)];
@@ -98,5 +98,5 @@ xset("clipgrf")
 xarrows(x1, y1, -1, [1:7,9])
 xset("clipoff")
  ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>
