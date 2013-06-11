@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="UpdateStack">
-        <refnamediv>
-            <refname>UpdateStack</refname>
-            <refpurpose>
-                A C gateway function which update stack information with your modifications.
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>UpdateStack();</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                A C gateway function which update stack information with your modifications.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <para>This example takes a matrix of doubles as input and returns:</para>
-            <itemizedlist>
-                <listitem>
-                    <para>the number of lines (first output argument)</para>
-                </listitem>
-                <listitem>
-                    <para>the number of rows (second output argument)</para>
-                </listitem>
-            </itemizedlist>
-            <programlisting role="example">
-                <![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="UpdateStack">
+    <refnamediv>
+        <refname>UpdateStack</refname>
+        <refpurpose>
+            A C gateway function which update stack information with your modifications.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>UpdateStack();</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            A C gateway function which update stack information with your modifications.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>This example takes a matrix of doubles as input and returns:</para>
+        <itemizedlist>
+            <listitem>
+                <para>the number of lines (first output argument)</para>
+            </listitem>
+            <listitem>
+                <para>the number of rows (second output argument)</para>
+            </listitem>
+        </itemizedlist>
+        <programlisting role="example">
+            <![CDATA[
 #include "api_scilab.h"
 int sci_mysizedouble(char * fname, unsigned long fname_len)
 {
@@ -63,6 +63,6 @@ int sci_mysizedouble(char * fname, unsigned long fname_len)
     return 0;
 }
  ]]>
-            </programlisting>
-        </refsection>
-    </refentry>
+        </programlisting>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Allan CORNET
  * 
@@ -10,98 +10,98 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dec2base" xml:lang="ja">
-        <refnamediv>
-            <refname>dec2base</refname>
-            <refpurpose>10進数を基底Nの数値（文字列）に変換</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>str = dec2base(d, base)</synopsis>
-            <synopsis>str = dec2base(d, base, n)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>引数</title>
-            <variablelist>
-                <varlistentry>
-                    <term>str</term>
-                    <listitem>
-                        <para>"base" 表現に対応する文字列の行列</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>base</term>
-                    <listitem>
-                        <para>double、正の整数値、基底の1行1列の行列</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>d</term>
-                    <listitem>
-                        <para>double、正の整数値の行列</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                <literal>str = dec2base(d, base)</literal> 非負の整数 d を指定した基底<literal>base</literal>に
-                変換します。
-            </para>
-            <para>
-                <literal>d</literal> は 2^52 未満の非負の整数である必要があり,
-                <literal>base</literal> は 2 から 36までの整数とする必要があります。
-            </para>
-            <para>
-                返り値 <literal>str</literal> は文字列です。
-            </para>
-            <para>
-                <literal>str = dec2base(d, base, n)</literal> は少なくとも n桁の
-                表現を出力します。
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dec2base" xml:lang="ja">
+    <refnamediv>
+        <refname>dec2base</refname>
+        <refpurpose>10進数を基底Nの数値（文字列）に変換</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>str = dec2base(d, base)</synopsis>
+        <synopsis>str = dec2base(d, base, n)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>"base" 表現に対応する文字列の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>base</term>
+                <listitem>
+                    <para>double、正の整数値、基底の1行1列の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>double、正の整数値の行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>str = dec2base(d, base)</literal> 非負の整数 d を指定した基底<literal>base</literal>に
+            変換します。
+        </para>
+        <para>
+            <literal>d</literal> は 2^52 未満の非負の整数である必要があり,
+            <literal>base</literal> は 2 から 36までの整数とする必要があります。
+        </para>
+        <para>
+            返り値 <literal>str</literal> は文字列です。
+        </para>
+        <para>
+            <literal>str = dec2base(d, base, n)</literal> は少なくとも n桁の
+            表現を出力します。
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 for b = 2:36
  disp( dec2base(666, b) )
 end 
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="base2dec">base2dec</link>
-                </member>
-                <member>
-                    <link linkend="bin2dec">bin2dec</link>
-                </member>
-                <member>
-                    <link linkend="oct2dec">oct2dec</link>
-                </member>
-                <member>
-                    <link linkend="hex2dec">hex2dec</link>
-                </member>
-                <member>
-                    <link linkend="dec2bin">dec2bin</link>
-                </member>
-                <member>
-                    <link linkend="dec2oct">dec2oct</link>
-                </member>
-                <member>
-                    <link linkend="dec2hex">dec2hex</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>履歴</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>この関数は Scilab 5.4.0で追加されました</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="base2dec">base2dec</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="oct2dec">oct2dec</link>
+            </member>
+            <member>
+                <link linkend="hex2dec">hex2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
+                <link linkend="dec2oct">dec2oct</link>
+            </member>
+            <member>
+                <link linkend="dec2hex">dec2hex</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>この関数は Scilab 5.4.0で追加されました</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

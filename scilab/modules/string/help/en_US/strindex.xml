@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,103 +10,103 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strindex" xml:lang="en">
-        <refnamediv>
-            <refname>strindex</refname>
-            <refpurpose>
-                search position of a character string in an other string
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                ind = strindex(haystack, needle, [flag])
-                [ind, which] = strindex(haystack, needle, [flag])
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>haystack</term>
-                    <listitem>
-                        <para>
-                            a character string. The string where to search
-                            occurrences of <varname>needle</varname>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>needle</term>
-                    <listitem>
-                        <para>
-                            a character string or character string vector. The
-                            string(s) to search in <varname>haystack</varname>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ind</term>
-                    <listitem>
-                        <para>a vector of indexes.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>which</term>
-                    <listitem>
-                        <para>a vector of indexes.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>flag</term>
-                    <listitem>
-                        <para>
-                            a string (<literal>"r"</literal> for regular expression).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <function>strindex</function> searches indexes where
-                <literal>needle(i)</literal> is found in <varname>haystack</varname>.
-            </para>
-            <para>
-                For each <literal>k</literal> it exist an <literal>i</literal> such
-                that <code>part(haystack,ind(k)+(0:length(needle(i))-1))</code> is
-                the same string than <literal>needle(i)</literal>. If
-                <varname>which</varname> argument is required it contains these
-                <literal>i</literal>. When using the third parameter <literal>"r"</literal>, the <varname>needle</varname>
-                should be a string of regular expression. And then <function>strindex</function> is going to
-                match it with <varname>haystack</varname> according to the regular express rules.
-            </para>
-            <para>
-                <function>strindex</function> without regular expression argument is
-                based on Knuth-Morris-Pratt algorithm.
-            </para>
-            <para>
-                This algorithm is more powerful than that used in Scilab 4.x. In
-                some special case, result can be different.
-            </para>
-            <para>Example:</para>
-            <para>// Scilab 5.x</para>
-            <para>--&gt;[k,w]=strindex('aab',['a','ab'])</para>
-            <para>w = 1. 1. 2. k = 1. 2. 2.</para>
-            <para>// Scilab 4.x</para>
-            <para>--&gt;[k,w]=strindex('aab',['a','ab'])</para>
-            <para>w = 1. 1. k = 1. 2.</para>
-            <para>
-                The rules of regular expression are similar to Perl language. For a
-                quick start, see <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
-                For a more in-depth tutorial on, see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
-                and for the reference page, see <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strindex" xml:lang="en">
+    <refnamediv>
+        <refname>strindex</refname>
+        <refpurpose>
+            search position of a character string in an other string
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            ind = strindex(haystack, needle, [flag])
+            [ind, which] = strindex(haystack, needle, [flag])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>haystack</term>
+                <listitem>
+                    <para>
+                        a character string. The string where to search
+                        occurrences of <varname>needle</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>needle</term>
+                <listitem>
+                    <para>
+                        a character string or character string vector. The
+                        string(s) to search in <varname>haystack</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>a vector of indexes.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>which</term>
+                <listitem>
+                    <para>a vector of indexes.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        a string (<literal>"r"</literal> for regular expression).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>strindex</function> searches indexes where
+            <literal>needle(i)</literal> is found in <varname>haystack</varname>.
+        </para>
+        <para>
+            For each <literal>k</literal> it exist an <literal>i</literal> such
+            that <code>part(haystack,ind(k)+(0:length(needle(i))-1))</code> is
+            the same string than <literal>needle(i)</literal>. If
+            <varname>which</varname> argument is required it contains these
+            <literal>i</literal>. When using the third parameter <literal>"r"</literal>, the <varname>needle</varname>
+            should be a string of regular expression. And then <function>strindex</function> is going to
+            match it with <varname>haystack</varname> according to the regular express rules.
+        </para>
+        <para>
+            <function>strindex</function> without regular expression argument is
+            based on Knuth-Morris-Pratt algorithm.
+        </para>
+        <para>
+            This algorithm is more powerful than that used in Scilab 4.x. In
+            some special case, result can be different.
+        </para>
+        <para>Example:</para>
+        <para>// Scilab 5.x</para>
+        <para>--&gt;[k,w]=strindex('aab',['a','ab'])</para>
+        <para>w = 1. 1. 2. k = 1. 2. 2.</para>
+        <para>// Scilab 4.x</para>
+        <para>--&gt;[k,w]=strindex('aab',['a','ab'])</para>
+        <para>w = 1. 1. k = 1. 2.</para>
+        <para>
+            The rules of regular expression are similar to Perl language. For a
+            quick start, see <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
+            For a more in-depth tutorial on, see <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
+            and for the reference page, see <ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 k=strindex('SCI/demos/scicos','/')
 k=strindex('SCI/demos/scicos','SCI/')
 k=strindex('SCI/demos/scicos','!')
@@ -115,22 +115,22 @@ k=strindex('SCI/demos/scicos',['SCI','sci'])
 [k,w]=strindex('1+3*abc/2.33',['+','-','*','/'])
 k=strindex('2' ,'/2(]*)?$\1/' ,'r') 
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="string">string</link>
-                </member>
-                <member>
-                    <link linkend="strings">strings</link>
-                </member>
-                <member>
-                    <link linkend="regexp">regexp</link>
-                </member>
-                <member>
-                    <link linkend="strsubst">strsubst</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="strings">strings</link>
+            </member>
+            <member>
+                <link linkend="regexp">regexp</link>
+            </member>
+            <member>
+                <link linkend="strsubst">strsubst</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

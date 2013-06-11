@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
  * 
@@ -10,11 +10,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <project name="core" default="jar">
-        <import file="../../build.incl.xml"/>
-        <property name="library.name" value="${library.core.name}"/>
-        <property name="library.title" value="Scilab application"/>
-        <description>
-            Build the core Scilab module
-        </description>
-    </project>
+<project name="core" default="jar">
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.core.name}"/>
+    <property name="library.title" value="Scilab application"/>
+    <description>
+        Build the core Scilab module
+    </description>
+</project>

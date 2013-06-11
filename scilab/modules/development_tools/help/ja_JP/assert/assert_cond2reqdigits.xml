@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
@@ -11,112 +11,112 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_cond2reqdigits" xml:lang="ja">
-        <refnamediv>
-            <refname>assert_cond2reqdigits</refname>
-            <refpurpose>指定した条件数に必要な桁数を提案する.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>
-                d = assert_cond2reqdigits ( condition )
-                d = assert_cond2reqdigits ( condition , offset )
-                d = assert_cond2reqdigits ( condition , offset , b )
-                
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>パラメータ</title>
-            <variablelist>
-                <varlistentry>
-                    <term>condition :</term>
-                    <listitem>
-                        <para>
-                            doubleの行列, 条件数.
-                            条件数は厳密に正とする必要があります.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>offset :</term>
-                    <listitem>
-                        <para> 
-                            doubleの行列, 
-                            必要な基底bの桁数(デフォルト offset = 0).
-                            例えば, offset=-1 は必要な桁数よりも小さい数
-                            を出力します(必要な精度を減らす).
-                            offset=1は必要な桁数よりも大きな数を出力します
-                            (必要な精度を増やす).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>b :</term>
-                    <listitem>
-                        <para>doubleの行列, 整数値,  b (デフォルト: b = 10).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>d :</term>
-                    <listitem>
-                        <para>doubleの行列, 必要な桁数. 
-                            正の実数で, b=10の場合は0 から 15.95 の範囲,
-                            b=2の場合は0から53の範囲.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                条件数に基づき,対応する必要な桁数を返します.
-            </para>
-            <para>
-                オプションのパラメータが空の行列[]に等しい場合,
-                そのデフォルト値に置換されます.
-            </para>
-            <para>
-                この必要な桁数は単なる推奨値であることを強調しておきます.
-                代わりに,より小さいまたは大きな桁数を使用する
-                正当な理由がある場合がありえます.
-            </para>
-            <para>
-                <itemizedlist>
-                    <listitem>
-                        悪条件の問題においても,
-                        正確な計算が可能な素晴らしいアルゴリズムがある場合を
-                        考えてみましょう.
-                        この場合,より高い精度(正のオフセット)が必要となります.
-                    </listitem>
-                    <listitem>
-                        性能と精度のトレードオフがあり,性能が勝る場合について
-                        考えてみましょう.
-                        この場合, より劣る精度(負のオフセット)が必要となります.
-                    </listitem>
-                </itemizedlist>
-            </para>
-            <para>
-                スカラー入力引数は全て他の入力引数と同じ大きさのdoubleの
-                行列に展開されます.
-            </para>
-            <para>
-                アルゴリズムは以下のようになります.
-                条件の基底10の指数を計算し,オフセットを引きます.
-                この数は失われる桁数の予測値を表します.
-                これを範囲 [0,dmax] に投影します.
-                ただし, dmax -log10(2^(-53)) は doubleで最大実現可能な
-                桁数です.
-                dmaxと失われる桁数の差から
-                必要な桁数 d を計算します.
-                この結果,相対許容誤差は 10^-d となります.
-            </para>
-            <para>
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_cond2reqdigits" xml:lang="ja">
+    <refnamediv>
+        <refname>assert_cond2reqdigits</refname>
+        <refpurpose>指定した条件数に必要な桁数を提案する.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            d = assert_cond2reqdigits ( condition )
+            d = assert_cond2reqdigits ( condition , offset )
+            d = assert_cond2reqdigits ( condition , offset , b )
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>condition :</term>
+                <listitem>
+                    <para>
+                        doubleの行列, 条件数.
+                        条件数は厳密に正とする必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>offset :</term>
+                <listitem>
+                    <para> 
+                        doubleの行列, 
+                        必要な基底bの桁数(デフォルト offset = 0).
+                        例えば, offset=-1 は必要な桁数よりも小さい数
+                        を出力します(必要な精度を減らす).
+                        offset=1は必要な桁数よりも大きな数を出力します
+                        (必要な精度を増やす).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b :</term>
+                <listitem>
+                    <para>doubleの行列, 整数値,  b (デフォルト: b = 10).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d :</term>
+                <listitem>
+                    <para>doubleの行列, 必要な桁数. 
+                        正の実数で, b=10の場合は0 から 15.95 の範囲,
+                        b=2の場合は0から53の範囲.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            条件数に基づき,対応する必要な桁数を返します.
+        </para>
+        <para>
+            オプションのパラメータが空の行列[]に等しい場合,
+            そのデフォルト値に置換されます.
+        </para>
+        <para>
+            この必要な桁数は単なる推奨値であることを強調しておきます.
+            代わりに,より小さいまたは大きな桁数を使用する
+            正当な理由がある場合がありえます.
+        </para>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    悪条件の問題においても,
+                    正確な計算が可能な素晴らしいアルゴリズムがある場合を
+                    考えてみましょう.
+                    この場合,より高い精度(正のオフセット)が必要となります.
+                </listitem>
+                <listitem>
+                    性能と精度のトレードオフがあり,性能が勝る場合について
+                    考えてみましょう.
+                    この場合, より劣る精度(負のオフセット)が必要となります.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            スカラー入力引数は全て他の入力引数と同じ大きさのdoubleの
+            行列に展開されます.
+        </para>
+        <para>
+            アルゴリズムは以下のようになります.
+            条件の基底10の指数を計算し,オフセットを引きます.
+            この数は失われる桁数の予測値を表します.
+            これを範囲 [0,dmax] に投影します.
+            ただし, dmax -log10(2^(-53)) は doubleで最大実現可能な
+            桁数です.
+            dmaxと失われる桁数の差から
+            必要な桁数 d を計算します.
+            この結果,相対許容誤差は 10^-d となります.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
 assert_cond2reqdigits ( 0 ) // 15.95459
 assert_cond2reqdigits ( 1 ) // 15.95459
 assert_cond2reqdigits ( 1.e1 ) // 14.95459
@@ -182,15 +182,15 @@ plot(condition,d,"g")
 legend(["Offset=0","Offset=+10","Offset=-10"]);
 
    ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>履歴</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revdescription>関数が導入されました
-                    </revdescription>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>関数が導入されました
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

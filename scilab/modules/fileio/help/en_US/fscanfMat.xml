@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
@@ -11,167 +11,167 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fscanfMat" xml:lang="en">
-        <refnamediv>
-            <refname>fscanfMat</refname>
-            <refpurpose>reads a matrix from a text file</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>M = fscanfMat(filename[, fmt]);
-                [M, text] = fscanfMat(filename [, fmt]);
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>filename</term>
-                    <listitem>
-                        <para>
-                            a character string giving the name of the file to be scanned.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>fmt</term>
-                    <listitem>
-                        <para>
-                            a character string giving the format. This is an optional
-                            parameter, the default value is <literal>"%lg"</literal>.
-                        </para>
-                        <para>
-                            Supported format: <literal>%[width].[precision]type</literal> or <literal>%type</literal> where:
-                        </para>
-                        <para>
-                            <literal>width</literal>: optional number that specifies
-                            the minimum number of characters output;
-                        </para>
-                        <para>
-                            <literal>precision</literal>: optional number that
-                            specifies the maximum number of characters printed for all
-                            or part of the output field, or the minimum number of
-                            digits printed for integer values.
-                        </para>
-                        <para>
-                            <literal>type</literal>: lf, lg, d, i, e, f, g (see <link
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fscanfMat" xml:lang="en">
+    <refnamediv>
+        <refname>fscanfMat</refname>
+        <refpurpose>reads a matrix from a text file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>M = fscanfMat(filename[, fmt]);
+            [M, text] = fscanfMat(filename [, fmt]);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>
+                        a character string giving the name of the file to be scanned.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmt</term>
+                <listitem>
+                    <para>
+                        a character string giving the format. This is an optional
+                        parameter, the default value is <literal>"%lg"</literal>.
+                    </para>
+                    <para>
+                        Supported format: <literal>%[width].[precision]type</literal> or <literal>%type</literal> where:
+                    </para>
+                    <para>
+                        <literal>width</literal>: optional number that specifies
+                        the minimum number of characters output;
+                    </para>
+                    <para>
+                        <literal>precision</literal>: optional number that
+                        specifies the maximum number of characters printed for all
+                        or part of the output field, or the minimum number of
+                        digits printed for integer values.
+                    </para>
+                    <para>
+                        <literal>type</literal>: lf, lg, d, i, e, f, g (see <link
             linkend="scanf_conversion">scanf_conversion</link>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>M</term>
-                    <listitem>
-                        <para>output variable. A matrix of real numbers.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>text</term>
-                    <listitem>
-                        <para>
-                            output variable. A column vector of strings. It is
-                            comments in the beginning of the file <varname>filename</varname>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <function>fscanfMat</function> function is used to read a real
-                matrix from a text file. The first non-numeric lines of the file are
-                returned in <varname>text</varname> if requested and all the remaining
-                lines must have the same number of columns (column separator are assumed
-                to be white spaces or tab characters). The number of columns of the matrix
-                will follow the number of columns found in the file and the number of
-                lines is fetched by detecting eof in the input file. This function can be
-                used to read back numerical data saved with the
-                <function>fprintfMat</function> (default separator used is a space).
-            </para>
-            <para>
-                <function>fscanfMat</function> supports files encoded as ANSI/ASCII and UTF-8.
-            </para>
-            <para>
-                To read a CSV formated file, the <link linkend="csvRead">csvRead</link> function is recommended.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"> 
-                fd = mopen(TMPDIR + "/Mat", "w");
-                mfprintf(fd, "Some text.....\n");
-                mfprintf(fd, "Some text again\n");
-                a = rand(6,6);
-                for i = 1:6 ,
-                for j = 1:6, mfprintf(fd, "%5.2f ", a(i,j));end;
-                mfprintf(fd, "\n"); 
-                end
-                mclose(fd);
-                a1 = fscanfMat(TMPDIR + "/Mat")
-                
-                A = ones(5,5) + 0.1;
-                fprintfMat(TMPDIR + "/Matrix.txt", A, "%lg");
-                B = fscanfMat(TMPDIR + "/Matrix.txt", "%lg");
-                A == B
-                
-                C = [%nan, %inf, -%inf, 1];
-                fprintfMat(TMPDIR + "/MatrixNANINF.txt", C);
-                D = fscanfMat(TMPDIR + '/MatrixNANINF.txt')
-                
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="scanf_conversion">scanf_conversion</link>
-                </member>
-                <member>
-                    <link linkend="mclose">mclose</link>
-                </member>
-                <member>
-                    <link linkend="meof">meof</link>
-                </member>
-                <member>
-                    <link linkend="mfprintf">mfprintf</link>
-                </member>
-                <member>
-                    <link linkend="fprintfMat">fprintfMat</link>
-                </member>
-                <member>
-                    <link linkend="mfscanf">mfscanf</link>
-                </member>
-                <member>
-                    <link linkend="mget">mget</link>
-                </member>
-                <member>
-                    <link linkend="mgetstr">mgetstr</link>
-                </member>
-                <member>
-                    <link linkend="mopen">mopen</link>
-                </member>
-                <member>
-                    <link linkend="mprintf">mprintf</link>
-                </member>
-                <member>
-                    <link linkend="mput">mput</link>
-                </member>
-                <member>
-                    <link linkend="mputstr">mputstr</link>
-                </member>
-                <member>
-                    <link linkend="mseek">mseek</link>
-                </member>
-                <member>
-                    <link linkend="mtell">mtell</link>
-                </member>
-                <member>
-                    <link linkend="mdelete">mdelete</link>
-                </member>
-                <member>
-                    <link linkend="csvRead">csvRead</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>output variable. A matrix of real numbers.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>text</term>
+                <listitem>
+                    <para>
+                        output variable. A column vector of strings. It is
+                        comments in the beginning of the file <varname>filename</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>fscanfMat</function> function is used to read a real
+            matrix from a text file. The first non-numeric lines of the file are
+            returned in <varname>text</varname> if requested and all the remaining
+            lines must have the same number of columns (column separator are assumed
+            to be white spaces or tab characters). The number of columns of the matrix
+            will follow the number of columns found in the file and the number of
+            lines is fetched by detecting eof in the input file. This function can be
+            used to read back numerical data saved with the
+            <function>fprintfMat</function> (default separator used is a space).
+        </para>
+        <para>
+            <function>fscanfMat</function> supports files encoded as ANSI/ASCII and UTF-8.
+        </para>
+        <para>
+            To read a CSV formated file, the <link linkend="csvRead">csvRead</link> function is recommended.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"> 
+            fd = mopen(TMPDIR + "/Mat", "w");
+            mfprintf(fd, "Some text.....\n");
+            mfprintf(fd, "Some text again\n");
+            a = rand(6,6);
+            for i = 1:6 ,
+            for j = 1:6, mfprintf(fd, "%5.2f ", a(i,j));end;
+            mfprintf(fd, "\n"); 
+            end
+            mclose(fd);
+            a1 = fscanfMat(TMPDIR + "/Mat")
+            
+            A = ones(5,5) + 0.1;
+            fprintfMat(TMPDIR + "/Matrix.txt", A, "%lg");
+            B = fscanfMat(TMPDIR + "/Matrix.txt", "%lg");
+            A == B
+            
+            C = [%nan, %inf, -%inf, 1];
+            fprintfMat(TMPDIR + "/MatrixNANINF.txt", C);
+            D = fscanfMat(TMPDIR + '/MatrixNANINF.txt')
+            
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scanf_conversion">scanf_conversion</link>
+            </member>
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+            <member>
+                <link linkend="csvRead">csvRead</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

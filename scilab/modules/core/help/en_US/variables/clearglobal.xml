@@ -1,64 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clearglobal">
-        <refnamediv>
-            <refname>clearglobal</refname>
-            <refpurpose>kills global variables</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                clearglobal()
-                clearglobal nam1 ... namn
-                clearglobal('nam1', ...,'namn')
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>nam1,..., namn</term>
-                    <listitem>
-                        <para>valid variable names</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <code>clearglobal()</code> kills all the global variables.
-            </para>
-            <para>
-                <literal>clearglobal nam1 ... namn</literal>  kills  the global variables given by
-                their names.
-            </para>
-            <para>
-                <note>
-                    Note that <code>clearglobal()</code> only clears 
-                    the global variables, the local copies of these global 
-                    variables are not destroyed.
-                </note>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clearglobal">
+    <refnamediv>
+        <refname>clearglobal</refname>
+        <refpurpose>kills global variables</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            clearglobal()
+            clearglobal nam1 ... namn
+            clearglobal('nam1', ...,'namn')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>nam1,..., namn</term>
+                <listitem>
+                    <para>valid variable names</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>clearglobal()</code> kills all the global variables.
+        </para>
+        <para>
+            <literal>clearglobal nam1 ... namn</literal>  kills  the global variables given by
+            their names.
+        </para>
+        <para>
+            <note>
+                Note that <code>clearglobal()</code> only clears 
+                the global variables, the local copies of these global 
+                variables are not destroyed.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 global a b c
 a=1;b=2;c=3;
 who('global')
 clearglobal b
 who('global')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="global">global</link>
-                </member>
-                <member>
-                    <link linkend="who">who</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="global">global</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

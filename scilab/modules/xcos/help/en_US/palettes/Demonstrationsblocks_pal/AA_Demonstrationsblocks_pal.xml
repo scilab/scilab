@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,77 +21,77 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Demonstrationsblocks_pal">
-        <refnamediv>
-            <refname>Demonstrationsblocks_pal</refname>
-            <refpurpose>Demonstrations blocks palette</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata linkend="BOUNCE" fileref="../../../../../../modules/xcos/images/palettes/BOUNCE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata linkend="BOUNCEXY" fileref="../../../../../../modules/xcos/images/palettes/BOUNCEXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata linkend="BPLATFORM" fileref="../../../../../../modules/xcos/images/palettes/BPLATFORM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Module_Demonstrationsblocks_pal">
-            <title>Module</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="xcos">xcos</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_Demonstrationsblocks_pal">
-            <title>Description</title>
-            <para>The Demonstrations blocks palette contains blocks used in some Xcos
-                demonstration diagrams.
-            </para>
-        </refsection>
-        <refsection id="Blocks_Demonstrationsblocks_pal">
-            <title>Blocks</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="AUTOMAT">AUTOMAT — hybrid automata</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <link linkend="BOUNCE">BOUNCE - Balls coordinates generator</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <link linkend="BOUNCEXY">BOUNCEXY — Balls viewer</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <link linkend="BPLATFORM">BPLATFORM — Balls under a platform
-                            viewer
-                        </link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <link linkend="PDE">PDE — 1D PDE block</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Demonstrationsblocks_pal">
+    <refnamediv>
+        <refname>Demonstrationsblocks_pal</refname>
+        <refpurpose>Demonstrations blocks palette</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="BOUNCE" fileref="../../../../../../modules/xcos/images/palettes/BOUNCE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="BOUNCEXY" fileref="../../../../../../modules/xcos/images/palettes/BOUNCEXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="BPLATFORM" fileref="../../../../../../modules/xcos/images/palettes/BPLATFORM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Module_Demonstrationsblocks_pal">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_Demonstrationsblocks_pal">
+        <title>Description</title>
+        <para>The Demonstrations blocks palette contains blocks used in some Xcos
+            demonstration diagrams.
+        </para>
+    </refsection>
+    <refsection id="Blocks_Demonstrationsblocks_pal">
+        <title>Blocks</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="AUTOMAT">AUTOMAT — hybrid automata</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="BOUNCE">BOUNCE - Balls coordinates generator</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="BOUNCEXY">BOUNCEXY — Balls viewer</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="BPLATFORM">BPLATFORM — Balls under a platform
+                        viewer
+                    </link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="PDE">PDE — 1D PDE block</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

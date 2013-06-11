@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,56 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="date" xml:lang="en">
-        <refnamediv>
-            <refname>date</refname>
-            <refpurpose>retorna string contendo a data corrente</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>dt=date()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>dt</term>
-                    <listitem>
-                        <para>a string</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>dt=date() retorna um string contendo a data no formato
-                dd-mmm-yyyy.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="date" xml:lang="en">
+    <refnamediv>
+        <refname>date</refname>
+        <refpurpose>retorna string contendo a data corrente</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>dt=date()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>dt</term>
+                <listitem>
+                    <para>a string</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>dt=date() retorna um string contendo a data no formato
+            dd-mmm-yyyy.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 date()
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="getdate">getdate</link>
-                </member>
-                <member>
-                    <link linkend="toc">toc</link>
-                </member>
-                <member>
-                    <link linkend="tic">tic</link>
-                </member>
-                <member>
-                    <link linkend="timer">timer</link>
-                </member>
-                <member>
-                    <link linkend="etime">etime</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getdate">getdate</link>
+            </member>
+            <member>
+                <link linkend="toc">toc</link>
+            </member>
+            <member>
+                <link linkend="tic">tic</link>
+            </member>
+            <member>
+                <link linkend="timer">timer</link>
+            </member>
+            <member>
+                <link linkend="etime">etime</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Xcos
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -22,451 +22,451 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SHIFT">
-        <refnamediv>
-            <refname>SHIFT</refname>
-            <refpurpose>Shift/Rotates Bits</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../images/palettes/SHIFT.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_SHIFT">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="SHIFT">Shift/Rotate Bits</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_SHIFT">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_SHIFT">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Data_Type_SHIFT">Data types</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_SHIFT">Dialog box</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_SHIFT">Default
-                                    properties
-                                </xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Example_SHIFT">Example</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_SHIFT">Interfacing function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Computationalfunction_SHIFT">Computational function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Seealso_SHIFT">See also</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_SHIFT">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Integer_pal">Integer palette</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_SHIFT">
-            <title>Description</title>
-            <para>
-                This block shifts the bits of the input signal. In this operation the digits are moved to the
-                right or to the left.The user can choose the rule to shifts the bits that can be normal or cycle
-                by setting the <emphasis role="bold">Shift Type</emphasis> parameter to 0 or 1. The number and
-                the direction of the shifts are set with the <emphasis role="bold">Number of Bits to Shift Left</emphasis>.
-                If this number is positive the input is shifted to the left, otherwise it is shifted to the right.
-            </para>
-            <para>
-                When the <emphasis role="bold">Shift Type</emphasis> parameter is :
-            </para>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">0</emphasis> : an arithmetic shift is applied to the input signal.
-                        In this case, the bits that are shifted out of either end are discarded. Zeros are shifted
-                        in on the right, in the case of left shift; in the case of right shifts, copies of the sign
-                        bit is shifted in on the left.
-                    </para>
-                    <para>
-                        By example, the one bit shift right gives: 
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata fileref="../../../images/integer_pal/en_US/shift_arithmetic_right_en_US.png"/>
-                            </imageobject>
-                        </inlinemediaobject>
-                        and the one bit shift left gives: 
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata fileref="../../../images/integer_pal/en_US/shift_arithmetic_left_en_US.png"/>
-                            </imageobject>
-                        </inlinemediaobject>
-                    </para>
-                    <para/>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">1</emphasis> : a circular shift is applied to the input signal.
-                        In this case, the bits are rotated as if the left and right ends of the register are joined.
-                        The value that is shifted in on the right during a left-shift is whatever values was shifted
-                        out on the left, and vice versa.
-                    </para>
-                    <para>
-                        By example, the one bit rotation right gives: 
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata fileref="../../../images/integer_pal/en_US/shift_rotate_right_en_US.png" valign="middle"/>
-                            </imageobject>
-                        </inlinemediaobject>
-                        and the one bit rotation left gives: 
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata fileref="../../../images/integer_pal/en_US/shift_rotate_left_en_US.png" valign="middle"/>
-                            </imageobject>
-                        </inlinemediaobject>
-                        .
-                    </para>
-                </listitem>
-            </itemizedlist>
-            <para>
-                The shift register makes a multiplication by 
-                <literal>
-                    2<superscript>n</superscript>
-                </literal>
-                (arithmetic left shift) or an integer division by 
-                <literal>
-                    2<superscript>n</superscript>
-                </literal>
-                (arithmetic right shift), where <literal>n</literal> is the number of bit shifts.
-                It can also be used to serialize data or to create a memory buffer.
-            </para>
-        </refsection>
-        <refsection id="Data_Type_SHIFT">
-            <title>Data types</title>
-            <para>
-                The block supports the following types :
-            </para>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        Input : scalar. All Scilab's integer type (<emphasis role="bold">Data Type</emphasis> parameter).
-                    </para>
-                    <para/>
-                </listitem>
-                <listitem>
-                    <para>
-                        Output : same type and dimensions than input.
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Dialogbox_SHIFT">
-            <title>Dialog box</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../gui/integer_pal/en_US/SHIFT_gui.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para/>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Data Type (3:int32, 4:int16, 5:int8, ...)</emphasis>
-                    </para>
-                    <para>
-                        It indicates the type of the input/output : between 3 and 8.
-                    </para>
-                    <para>Properties : Type 'vec' of size 1.</para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Number of Bits to Shift Left (Negative number to shift right)</emphasis>
-                    </para>
-                    <para>
-                        It indicates the number of bits the input signal is shifted/rotated. A positive value indicates
-                        a shift left, a negative value a shift right. The index must be, when the type is :
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                int32 or uint32:  positive and less than 32.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                int16 or uint16: positive and less than 16.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                int8 or uint8: positive and less than 8.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                    <para>Properties : Type 'vec' of size 1.</para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Shift Type (0:Arithmetic, 1:Circular)</emphasis>
-                    </para>
-                    <para>
-                        O or 1. It indicates the rule used to shift the bits. It can be arithmetic or circular.
-                        When it is :
-                    </para>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <emphasis role="bold">0</emphasis>, an arithmetic shift is applied to the input signal.
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <emphasis role="bold">1</emphasis>, a circular shift is applied to the input signal.
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                    <para>See description for more information.</para>
-                    <para>Properties : Type 'vec' of size 1.</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_SHIFT">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular inputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular outputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">shift_32_LA</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Example_SHIFT">
-            <title>Example</title>
-            <para>
-                In this example the Super block is a binary counter with 3 bits output. In order to obtain the corresponding decimal value,
-                the outputs 
-                <emphasis><literal>
-                        Q<subscript>1</subscript>
-                    </literal>
-                </emphasis>
-                and 
-                <emphasis><literal>
-                        Q<subscript>2</subscript>
-                    </literal>
-                </emphasis>
-                of the counter are respectively shifted left
-                of one bit and of two bits. Finally the 
-                <emphasis><literal>
-                        Q<subscript>0</subscript>
-                    </literal>
-                </emphasis>
-                output,
-                and the shifted outputs are added.
-            </para>
-            <para>
-                To better see the output change, set the parameter <emphasis>Real Time Scale</emphasis> to 0.5
-                in the <emphasis>Settings menu</emphasis> item of the <emphasis>Simulation menu</emphasis>.
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos">
-                    Open this example in Xcos
-                </link>
-            </para>
-            <para/>
-            <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SHIFT">
+    <refnamediv>
+        <refname>SHIFT</refname>
+        <refpurpose>Shift/Rotates Bits</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/SHIFT.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_SHIFT">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="SHIFT">Shift/Rotate Bits</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_SHIFT">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_SHIFT">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Data_Type_SHIFT">Data types</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_SHIFT">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_SHIFT">Default
+                                properties
+                            </xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_SHIFT">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_SHIFT">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_SHIFT">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_SHIFT">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_SHIFT">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Integer_pal">Integer palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_SHIFT">
+        <title>Description</title>
+        <para>
+            This block shifts the bits of the input signal. In this operation the digits are moved to the
+            right or to the left.The user can choose the rule to shifts the bits that can be normal or cycle
+            by setting the <emphasis role="bold">Shift Type</emphasis> parameter to 0 or 1. The number and
+            the direction of the shifts are set with the <emphasis role="bold">Number of Bits to Shift Left</emphasis>.
+            If this number is positive the input is shifted to the left, otherwise it is shifted to the right.
+        </para>
+        <para>
+            When the <emphasis role="bold">Shift Type</emphasis> parameter is :
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">0</emphasis> : an arithmetic shift is applied to the input signal.
+                    In this case, the bits that are shifted out of either end are discarded. Zeros are shifted
+                    in on the right, in the case of left shift; in the case of right shifts, copies of the sign
+                    bit is shifted in on the left.
+                </para>
+                <para>
+                    By example, the one bit shift right gives: 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../../examples/integer_pal/en_US/SHIFT_en_US.zcos" align="center" valign="middle"/>
+                            <imagedata fileref="../../../images/integer_pal/en_US/shift_arithmetic_right_en_US.png"/>
                         </imageobject>
                     </inlinemediaobject>
-                </link>
-                <scilab:image><![CDATA[
+                    and the one bit shift left gives: 
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../../../images/integer_pal/en_US/shift_arithmetic_left_en_US.png"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">1</emphasis> : a circular shift is applied to the input signal.
+                    In this case, the bits are rotated as if the left and right ends of the register are joined.
+                    The value that is shifted in on the right during a left-shift is whatever values was shifted
+                    out on the left, and vice versa.
+                </para>
+                <para>
+                    By example, the one bit rotation right gives: 
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../../../images/integer_pal/en_US/shift_rotate_right_en_US.png" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                    and the one bit rotation left gives: 
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../../../images/integer_pal/en_US/shift_rotate_left_en_US.png" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                    .
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The shift register makes a multiplication by 
+            <literal>
+                2<superscript>n</superscript>
+            </literal>
+            (arithmetic left shift) or an integer division by 
+            <literal>
+                2<superscript>n</superscript>
+            </literal>
+            (arithmetic right shift), where <literal>n</literal> is the number of bit shifts.
+            It can also be used to serialize data or to create a memory buffer.
+        </para>
+    </refsection>
+    <refsection id="Data_Type_SHIFT">
+        <title>Data types</title>
+        <para>
+            The block supports the following types :
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Input : scalar. All Scilab's integer type (<emphasis role="bold">Data Type</emphasis> parameter).
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    Output : same type and dimensions than input.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Dialogbox_SHIFT">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../gui/integer_pal/en_US/SHIFT_gui.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Data Type (3:int32, 4:int16, 5:int8, ...)</emphasis>
+                </para>
+                <para>
+                    It indicates the type of the input/output : between 3 and 8.
+                </para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Number of Bits to Shift Left (Negative number to shift right)</emphasis>
+                </para>
+                <para>
+                    It indicates the number of bits the input signal is shifted/rotated. A positive value indicates
+                    a shift left, a negative value a shift right. The index must be, when the type is :
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            int32 or uint32:  positive and less than 32.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            int16 or uint16: positive and less than 16.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            int8 or uint8: positive and less than 8.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Shift Type (0:Arithmetic, 1:Circular)</emphasis>
+                </para>
+                <para>
+                    O or 1. It indicates the rule used to shift the bits. It can be arithmetic or circular.
+                    When it is :
+                </para>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">0</emphasis>, an arithmetic shift is applied to the input signal.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <emphasis role="bold">1</emphasis>, a circular shift is applied to the input signal.
+                        </para>
+                    </listitem>
+                </itemizedlist>
+                <para>See description for more information.</para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_SHIFT">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">shift_32_LA</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_SHIFT">
+        <title>Example</title>
+        <para>
+            In this example the Super block is a binary counter with 3 bits output. In order to obtain the corresponding decimal value,
+            the outputs 
+            <emphasis><literal>
+                    Q<subscript>1</subscript>
+                </literal>
+            </emphasis>
+            and 
+            <emphasis><literal>
+                    Q<subscript>2</subscript>
+                </literal>
+            </emphasis>
+            of the counter are respectively shifted left
+            of one bit and of two bits. Finally the 
+            <emphasis><literal>
+                    Q<subscript>0</subscript>
+                </literal>
+            </emphasis>
+            output,
+            and the shifted outputs are added.
+        </para>
+        <para>
+            To better see the output change, set the parameter <emphasis>Real Time Scale</emphasis> to 0.5
+            in the <emphasis>Settings menu</emphasis> item of the <emphasis>Simulation menu</emphasis>.
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos">
+                Open this example in Xcos
+            </link>
+        </para>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/SHIFT_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
-            <para>
-                Below the details of the binary counter.
-            </para>
-            <para/>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/integer_pal/en_US/SHIFT_internal_en_US.zcos"/>
-                </imageobject>
-            </mediaobject>
-        </refsection>
-        <refsection id="Interfacingfunction_SHIFT">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/SHIFT.sci">SCI/modules/scicos_blocks/macros/IntegerOp/SHIFT.sci</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Computationalfunction_SHIFT">
-            <title>Computational function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_32_LA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_32_LC.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_32_RA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_u32_RA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_32_RC.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_16_LA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_16_LC.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_16_RA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_u16_RA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_16_RC.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_8_LA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_8_LC.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_8_RA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_u8_RA.c</para>
-                </listitem>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/shift_8_RC.c</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection role="see also" id="Seealso_SHIFT">
-            <title>See also</title>
-            <itemizedlist>
-                <listitem>
-                    <link linkend="BITSET">BITSET</link>
-                </listitem>
-                <listitem>
-                    <link linkend="BITCLEAR">BITCLEAR</link>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+        </para>
+        <para>
+            Below the details of the binary counter.
+        </para>
+        <para/>
+        <mediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../examples/integer_pal/en_US/SHIFT_internal_en_US.zcos"/>
+            </imageobject>
+        </mediaobject>
+    </refsection>
+    <refsection id="Interfacingfunction_SHIFT">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/SHIFT.sci">SCI/modules/scicos_blocks/macros/IntegerOp/SHIFT.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_SHIFT">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_32_LA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_32_LC.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_32_RA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_u32_RA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_32_RC.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_16_LA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_16_LC.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_16_RA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_u16_RA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_16_RC.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_8_LA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_8_LC.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_8_RA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_u8_RA.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/shift_8_RC.c</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="see also" id="Seealso_SHIFT">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="BITSET">BITSET</link>
+            </listitem>
+            <listitem>
+                <link linkend="BITCLEAR">BITCLEAR</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

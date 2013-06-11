@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * 
@@ -10,36 +10,36 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="findfileassociation">
-        <refnamediv>
-            <refname>findfileassociation</refname>
-            <refpurpose>Searches for and retrieves a file association-related string from the registry (Windows only)</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>findfileassociation('A file name extension, such as .txt')</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>findfileassociation('A file name extension, such as .txt')</literal> Searches for and retrieves a file association-related string from the registry.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="findfileassociation">
+    <refnamediv>
+        <refname>findfileassociation</refname>
+        <refpurpose>Searches for and retrieves a file association-related string from the registry (Windows only)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>findfileassociation('A file name extension, such as .txt')</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>findfileassociation('A file name extension, such as .txt')</literal> Searches for and retrieves a file association-related string from the registry.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 findfileassociation('.txt')
 findfileassociation('.sce')
 findfileassociation('.xsl')
 findfileassociation('.toto')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="winopen">winopen</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="winopen">winopen</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

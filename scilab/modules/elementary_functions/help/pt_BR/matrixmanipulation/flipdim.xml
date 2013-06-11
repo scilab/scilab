@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
  * 
@@ -10,53 +10,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="en">
-        <refnamediv>
-            <refname>flipdim</refname>
-            <refpurpose>gira os componentes de x ao longo de uma dada
-                dimensão
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>y=flipdim(x,dim)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>um escalar, vetor ou array de reais</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>dim</term>
-                    <listitem>
-                        <para>um inteiro positivo</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>um escalar, vetor ou array de reais</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                Dado <literal>x</literal>, um escalar/vetor/array de reais e
-                <literal>dim</literal> um inteiro positivo, esta função gira os
-                componentes de x ao longo da dimensão de número <literal>dim</literal> de
-                <literal>x</literal> (<literal>x</literal> e <literal>y</literal> têm o
-                mesmo tamanho)
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="en">
+    <refnamediv>
+        <refname>flipdim</refname>
+        <refpurpose>gira os componentes de x ao longo de uma dada
+            dimensão
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>y=flipdim(x,dim)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>um escalar, vetor ou array de reais</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dim</term>
+                <listitem>
+                    <para>um inteiro positivo</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>um escalar, vetor ou array de reais</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Dado <literal>x</literal>, um escalar/vetor/array de reais e
+            <literal>dim</literal> um inteiro positivo, esta função gira os
+            componentes de x ao longo da dimensão de número <literal>dim</literal> de
+            <literal>x</literal> (<literal>x</literal> e <literal>y</literal> têm o
+            mesmo tamanho)
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 // exemplo 1: girando os componentes de x ao longo da primeira dimensão
 x=[1 2 3 4; 5 6 7 8];
 dim=1;
@@ -71,9 +71,9 @@ x=matrix(1:48,[3 2,4,2]);
 dim=3;
 y=flipdim(x,dim)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <para>F.Belahcene</para>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <para>F.Belahcene</para>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
@@ -10,14 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<project name="graphic_objects" default="jar">
     
-    <project name="graphic_objects" default="jar">
-        
-        <import file="../../build.incl.xml"/>
-        <property name="library.name" value="${library.graphic_objects.name}" />
-        
-        <description>
-            Build the Scilab graphic_objects module
-        </description>
-        
-    </project>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.graphic_objects.name}" />
+    
+    <description>
+        Build the Scilab graphic_objects module
+    </description>
+    
+</project>

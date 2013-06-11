@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -10,60 +10,60 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xgrid">
-        <refnamediv>
-            <refname>xgrid</refname>
-            <refpurpose>2次元プロットにグリッドを追加</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>xgrid([style])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>引数</title>
-            <variablelist>
-                <varlistentry>
-                    <term>style</term>
-                    <listitem>
-                        <para>整数</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                <literal>xgrid</literal> は2次元プロットにグリッドを追加します.
-                グリッド表示を行う場合,
-                <literal>style</literal> はダッシュIDまたはカラーIDとします.
-                IDの意味を知るには<literal>xset()</literal>を使用してください.
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <scilab:image>
-                x=[0:0.1:2*%pi]';
-                plot2d(sin(x))
-                xgrid(5)
-            </scilab:image>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="xgrid">
+    <refnamediv>
+        <refname>xgrid</refname>
+        <refpurpose>2次元プロットにグリッドを追加</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>xgrid([style])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>style</term>
+                <listitem>
+                    <para>整数</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>xgrid</literal> は2次元プロットにグリッドを追加します.
+            グリッド表示を行う場合,
+            <literal>style</literal> はダッシュIDまたはカラーIDとします.
+            IDの意味を知るには<literal>xset()</literal>を使用してください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(sin(x))
+            xgrid(5)
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 x=[0:0.1:2*%pi]';
 plot2d(sin(x))
 xgrid(2)
  ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>参考</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="xset">xset</link>
-                </member>
-                <member>
-                    <link linkend="plot2d">plot2d</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>参考</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xset">xset</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

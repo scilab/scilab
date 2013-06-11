@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * 
@@ -10,44 +10,44 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setdefaultlanguage" xml:lang="ru">
-        <refnamediv>
-            <refname>setdefaultlanguage</refname>
-            <refpurpose>устанавливает и сохраняет значение внутреннего языка LANGUAGE</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>setdefaultlanguage(language)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>language</term>
-                    <listitem>
-                        <para>строка, указывающая язык 'fr', 'en', 'ru_RU', 'zh_TW' и др.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <literal>setdefaultlanguage(language)</literal> меняет текущий язык и сохраняет это значение в Scilab'е.
-            </para>
-            <para>
-                Если вы хотите использовать меню, то вам придётся перезапустить Scilab.
-            </para>
-            <para>
-                <literal>setdefaultlanguage('')</literal> сбрасывает язык к системному значению.
-            </para>
-            <para>
-                <literal>setdefaultlanguage</literal> используется только в Windows. В других операционных системах она всегда возвращает <literal>%f</literal>. 
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setdefaultlanguage" xml:lang="ru">
+    <refnamediv>
+        <refname>setdefaultlanguage</refname>
+        <refpurpose>устанавливает и сохраняет значение внутреннего языка LANGUAGE</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>setdefaultlanguage(language)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>language</term>
+                <listitem>
+                    <para>строка, указывающая язык 'fr', 'en', 'ru_RU', 'zh_TW' и др.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>setdefaultlanguage(language)</literal> меняет текущий язык и сохраняет это значение в Scilab'е.
+        </para>
+        <para>
+            Если вы хотите использовать меню, то вам придётся перезапустить Scilab.
+        </para>
+        <para>
+            <literal>setdefaultlanguage('')</literal> сбрасывает язык к системному значению.
+        </para>
+        <para>
+            <literal>setdefaultlanguage</literal> используется только в Windows. В других операционных системах она всегда возвращает <literal>%f</literal>. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 setdefaultlanguage('en_US')
  
 // restart scilab
@@ -60,16 +60,16 @@ setdefaultlanguage('')
  
 // restart scilab
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="getlanguage">getlanguage</link>
-                </member>
-                <member>
-                    <link linkend="setlanguage">setlanguage</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getlanguage">getlanguage</link>
+            </member>
+            <member>
+                <link linkend="setlanguage">setlanguage</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

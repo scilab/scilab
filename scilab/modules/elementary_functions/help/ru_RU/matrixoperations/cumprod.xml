@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - Serge Steer - INRIA
  * 
@@ -10,180 +10,180 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cumprod" xml:lang="ru">
-        <refnamediv>
-            <refname>cumprod</refname>
-            <refpurpose>произведение элементов массива с накоплением</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>y=cumprod(x)</synopsis>
-            <synopsis>y=cumprod(x,orientation)</synopsis>
-            <synopsis>y=cumprod(x,outtype)</synopsis>
-            <synopsis>y=cumprod(x,orientation,outtype)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <para>
-                <variablelist>
-                    <varlistentry>
-                        <term>x</term>
-                        <listitem>
-                            <para>
-                                массив вещественных, комплексных, логических значений, а также полиномов или 
-                                рациональных дробей.
-                            </para>
-                        </listitem>
-                    </varlistentry>
-                    <varlistentry>
-                        <term>orientation</term>
-                        <listitem>
-                            <para>
-                                ориентация, она может быть: 
-                            </para>
-                            <itemizedlist>
-                                <listitem>
-                                    <para>
-                                        строкой с возможными значениями: <literal>"*"</literal>, <literal>"r"</literal>, <literal>"c"</literal> или  <literal>"m"</literal>
-                                    </para>
-                                </listitem>
-                                <listitem>
-                                    <para>номером с положительным целым значением</para>
-                                </listitem>
-                            </itemizedlist>
-                        </listitem>
-                    </varlistentry>
-                    <varlistentry>
-                        <term>outtype</term>
-                        <listitem>
-                            <para>
-                                тип на выходе: строка с возможными значениями: 
-                                <literal>"native"</literal> или <literal>"double"</literal>. 
-                            </para>
-                        </listitem>
-                    </varlistentry>
-                    <varlistentry>
-                        <term>y</term>
-                        <listitem>
-                            <para>скаляр или массив</para>
-                        </listitem>
-                    </varlistentry>
-                </variablelist>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Для массива <literal>x</literal>, <literal>y=cumprod(x)</literal> возвращает
-                скаляр <literal>y</literal>, представляющий произведение всех элементов 
-                <literal>x</literal> с накоплением.
-            </para>
-            <para>
-                <literal>y=cumprod(x,orientation)</literal> возвращает в <literal>y</literal>
-                произведение элементов <literal>x</literal> с накоплением по заданной размерности
-                <literal>orientation</literal>:
-            </para>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        если <literal>orientation</literal> равна 1 или "r", то
-                    </para>
-                    <para>
-                        <latex><![CDATA[ y(\mathbf{l},j) = \prod_{\mathbf{i}=1}^l x(\mathbf{i},j)]]></latex>
-                    </para>
-                    <para>или </para>
-                    <para>
-                        <latex><![CDATA[ y(\mathbf{l},j,k,\ldots) = \prod_{\mathbf{i}=1}^l x(\mathbf{i},j,k,\ldots)]]></latex>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        если <literal>orientation</literal> равна 2 или "c", то:
-                    </para>
-                    <para>
-                        <latex><![CDATA[ y(i,\mathbf{l}) = \prod_{\mathbf{j}=1}^l x(i,{\mathbf{j})]]></latex>
-                    </para>
-                    <para> или </para>
-                    <para>
-                        <latex><![CDATA[ y(i,\mathbf{l},k,\ldots) = \prod_{\mathbf{j}=1}^l x(i,\mathbf{j},k,\ldots)]]></latex>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        если <literal>orientation</literal> равна n, то
-                    </para>
-                    <para>
-                        <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{l},i_{n+1},\ldots) = \prod_{\mathbf{i_n}=1}^l x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <literal>y=cumprod(x,"*")</literal> эквивалентно <literal>y=cumprod(x)</literal> 
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <literal>y=cumprod(x,"m")</literal> эквивалентно
-                        <literal>y=cumprod(x,orientation)</literal>, где <literal>orientation</literal> 
-                        является индексом первой размерности <literal>x</literal>, которая больше 1. 
-                        Эта опция используется для совместимости с Matlab'ом.
-                    </para>
-                </listitem>
-            </itemizedlist>
-            <para/>
-            <para>
-                Аргумент <literal>outtype</literal> правила, по которым производится произведение:
-            </para>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        Для массивов чисел с плавающей запятой, полиномов, рациональных дробей 
-                        вычисление всегда делается через вычисления с плавающей запятой.
-                        Опции <literal>"double"</literal> и <literal>"native"</literal> ("естественное") 
-                        эквивалентны.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>Для массивов целых чисел:</para>
-                    <para>
-                        если <literal>outtype="native"</literal> ("естественное"), то вычисление делается через целочисленные вычисления (по модулю 2^b, где b - число используемых битов);
-                    </para>
-                    <para> 
-                        если <literal>outtype="double"</literal>, то вычисление делается через вычисления 
-                        с плавающей запятой.
-                    </para>
-                    <para>
-                        Значение по умолчанию <literal>outtype="native"</literal>.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>Для массивов логических значений:</para>
-                    <para> 
-                        если <literal>outtype="native"</literal> ("естественное"), то вычисления делаются 
-                        с помощью  булевой алгебры (* заменяется на &amp;),
-                    </para>
-                    <para> 
-                        если <literal>outtype="double"</literal>, то вычисление  делается через вычисления
-                        с плавающей запятой (значения %t заменяются на 1, а значения %f - на 0).
-                    </para>
-                    <para>
-                        Значение по умолчанию <literal>outtype="double"</literal>.
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection>
-            <title>Примечание</title>
-            <para>
-                Эта функция применяется с аналогичными правилами к <link linkend="sparse">разряжённым 
-                    матрицам
-                </link>
-                и <link linkend="hypermat">гиперматрицам</link>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cumprod" xml:lang="ru">
+    <refnamediv>
+        <refname>cumprod</refname>
+        <refpurpose>произведение элементов массива с накоплением</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y=cumprod(x)</synopsis>
+        <synopsis>y=cumprod(x,orientation)</synopsis>
+        <synopsis>y=cumprod(x,outtype)</synopsis>
+        <synopsis>y=cumprod(x,orientation,outtype)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <para>
+            <variablelist>
+                <varlistentry>
+                    <term>x</term>
+                    <listitem>
+                        <para>
+                            массив вещественных, комплексных, логических значений, а также полиномов или 
+                            рациональных дробей.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>orientation</term>
+                    <listitem>
+                        <para>
+                            ориентация, она может быть: 
+                        </para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    строкой с возможными значениями: <literal>"*"</literal>, <literal>"r"</literal>, <literal>"c"</literal> или  <literal>"m"</literal>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>номером с положительным целым значением</para>
+                            </listitem>
+                        </itemizedlist>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>outtype</term>
+                    <listitem>
+                        <para>
+                            тип на выходе: строка с возможными значениями: 
+                            <literal>"native"</literal> или <literal>"double"</literal>. 
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>y</term>
+                    <listitem>
+                        <para>скаляр или массив</para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для массива <literal>x</literal>, <literal>y=cumprod(x)</literal> возвращает
+            скаляр <literal>y</literal>, представляющий произведение всех элементов 
+            <literal>x</literal> с накоплением.
+        </para>
+        <para>
+            <literal>y=cumprod(x,orientation)</literal> возвращает в <literal>y</literal>
+            произведение элементов <literal>x</literal> с накоплением по заданной размерности
+            <literal>orientation</literal>:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    если <literal>orientation</literal> равна 1 или "r", то
+                </para>
+                <para>
+                    <latex><![CDATA[ y(\mathbf{l},j) = \prod_{\mathbf{i}=1}^l x(\mathbf{i},j)]]></latex>
+                </para>
+                <para>или </para>
+                <para>
+                    <latex><![CDATA[ y(\mathbf{l},j,k,\ldots) = \prod_{\mathbf{i}=1}^l x(\mathbf{i},j,k,\ldots)]]></latex>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    если <literal>orientation</literal> равна 2 или "c", то:
+                </para>
+                <para>
+                    <latex><![CDATA[ y(i,\mathbf{l}) = \prod_{\mathbf{j}=1}^l x(i,{\mathbf{j})]]></latex>
+                </para>
+                <para> или </para>
+                <para>
+                    <latex><![CDATA[ y(i,\mathbf{l},k,\ldots) = \prod_{\mathbf{j}=1}^l x(i,\mathbf{j},k,\ldots)]]></latex>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    если <literal>orientation</literal> равна n, то
+                </para>
+                <para>
+                    <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{l},i_{n+1},\ldots) = \prod_{\mathbf{i_n}=1}^l x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>y=cumprod(x,"*")</literal> эквивалентно <literal>y=cumprod(x)</literal> 
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>y=cumprod(x,"m")</literal> эквивалентно
+                    <literal>y=cumprod(x,orientation)</literal>, где <literal>orientation</literal> 
+                    является индексом первой размерности <literal>x</literal>, которая больше 1. 
+                    Эта опция используется для совместимости с Matlab'ом.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para/>
+        <para>
+            Аргумент <literal>outtype</literal> правила, по которым производится произведение:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Для массивов чисел с плавающей запятой, полиномов, рациональных дробей 
+                    вычисление всегда делается через вычисления с плавающей запятой.
+                    Опции <literal>"double"</literal> и <literal>"native"</literal> ("естественное") 
+                    эквивалентны.
+                </para>
+            </listitem>
+            <listitem>
+                <para>Для массивов целых чисел:</para>
+                <para>
+                    если <literal>outtype="native"</literal> ("естественное"), то вычисление делается через целочисленные вычисления (по модулю 2^b, где b - число используемых битов);
+                </para>
+                <para> 
+                    если <literal>outtype="double"</literal>, то вычисление делается через вычисления 
+                    с плавающей запятой.
+                </para>
+                <para>
+                    Значение по умолчанию <literal>outtype="native"</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>Для массивов логических значений:</para>
+                <para> 
+                    если <literal>outtype="native"</literal> ("естественное"), то вычисления делаются 
+                    с помощью  булевой алгебры (* заменяется на &amp;),
+                </para>
+                <para> 
+                    если <literal>outtype="double"</literal>, то вычисление  делается через вычисления
+                    с плавающей запятой (значения %t заменяются на 1, а значения %f - на 0).
+                </para>
+                <para>
+                    Значение по умолчанию <literal>outtype="double"</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Примечание</title>
+        <para>
+            Эта функция применяется с аналогичными правилами к <link linkend="sparse">разряжённым 
+                матрицам
+            </link>
+            и <link linkend="hypermat">гиперматрицам</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 cumprod(A)
 cumprod(A,1)
@@ -202,16 +202,16 @@ B=[%t %t %f %f];
 cumprod(B) //вычисление с плавающей запятой
 cumprod(B,"native") //аналогично and(B)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="prod">prod</link>
-                </member>
-                <member>
-                    <link linkend="cumsum">cumsum</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="prod">prod</link>
+            </member>
+            <member>
+                <link linkend="cumsum">cumsum</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

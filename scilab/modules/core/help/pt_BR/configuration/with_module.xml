@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="with_module" xml:lang="en">
-        <refnamediv>
-            <refname>with_module</refname>
-            <refpurpose>checa se um módulo Scilab foi instalado</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>r=with_module(module_name)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>r</term>
-                    <listitem>
-                        <para>um booleano</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>module_name</term>
-                    <listitem>
-                        <para>um string. Exemplo : 'core'</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                Retorna <literal>%t</literal> se o módulo Scilab tiver sido
-                instalado.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="getmodules">getmodules</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="with_module" xml:lang="en">
+    <refnamediv>
+        <refname>with_module</refname>
+        <refpurpose>checa se um módulo Scilab foi instalado</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>r=with_module(module_name)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>um booleano</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>module_name</term>
+                <listitem>
+                    <para>um string. Exemplo : 'core'</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Retorna <literal>%t</literal> se o módulo Scilab tiver sido
+            instalado.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getmodules">getmodules</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

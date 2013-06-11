@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,51 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tic" xml:lang="en">
-        <refnamediv>
-            <refname>tic</refname>
-            <refpurpose>inicia um cronômetro</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>tic()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                A seqüência de comando <literal>tic(); operation; toc();</literal>
-                imprime o número de segundos requeridos para a operação.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tic" xml:lang="en">
+    <refnamediv>
+        <refname>tic</refname>
+        <refpurpose>inicia um cronômetro</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>tic()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            A seqüência de comando <literal>tic(); operation; toc();</literal>
+            imprime o número de segundos requeridos para a operação.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 tic();
 realtimeinit(1);
 realtime(0);
 realtime(10);
 toc();
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="toc">toc</link>
-                </member>
-                <member>
-                    <link linkend="timer">timer</link>
-                </member>
-                <member>
-                    <link linkend="etime">etime</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>Autores</title>
-            <simplelist type="vert">
-                <member>V.C.</member>
-                <member>A.C.</member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="toc">toc</link>
+            </member>
+            <member>
+                <link linkend="timer">timer</link>
+            </member>
+            <member>
+                <link linkend="etime">etime</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Autores</title>
+        <simplelist type="vert">
+            <member>V.C.</member>
+            <member>A.C.</member>
+        </simplelist>
+    </refsection>
+</refentry>

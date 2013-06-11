@@ -1,81 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="varn">
-        <refnamediv>
-            <refname>varn</refname>
-            <refpurpose>символическая переменная полинома</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>
-                [symb]=varn(p)
-                [pm]=varn(x,var)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>p</term>
-                    <listitem>
-                        <para>полином (или матрица полиномов)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>symb</term>
-                    <listitem>
-                        <para>символьная строка</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>полином или матрица полиномов</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>var</term>
-                    <listitem>
-                        <para>символическая переменная (символьная строка)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>pm</term>
-                    <listitem>
-                        <para>полином (или матрица полиномов)</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <literal>symb=varn(p)</literal> возвращает в <literal>symb</literal> символическую
-                переменную полинома <literal>p</literal> (т. е., если 
-                <literal>varn(poly(0,'x'))</literal>, то <literal>'x'</literal>).
-            </para>
-            <para>
-                <literal>varn(x,'s')</literal> возвращает матрицу полиномов с теми же коэффициентами, 
-                что и <literal>x</literal>, но с <literal>'s'</literal> в качестве символической 
-                переменой (смена имени переменной).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="varn">
+    <refnamediv>
+        <refname>varn</refname>
+        <refpurpose>символическая переменная полинома</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            [symb]=varn(p)
+            [pm]=varn(x,var)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>полином (или матрица полиномов)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>symb</term>
+                <listitem>
+                    <para>символьная строка</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>полином или матрица полиномов</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>var</term>
+                <listitem>
+                    <para>символическая переменная (символьная строка)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pm</term>
+                <listitem>
+                    <para>полином (или матрица полиномов)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>symb=varn(p)</literal> возвращает в <literal>symb</literal> символическую
+            переменную полинома <literal>p</literal> (т. е., если 
+            <literal>varn(poly(0,'x'))</literal>, то <literal>'x'</literal>).
+        </para>
+        <para>
+            <literal>varn(x,'s')</literal> возвращает матрицу полиномов с теми же коэффициентами, 
+            что и <literal>x</literal>, но с <literal>'s'</literal> в качестве символической 
+            переменой (смена имени переменной).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');p=[s^2+1,s];
 varn(p)
 varn(p,'x')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="horner">horner</link>
-                </member>
-                <member>
-                    <link linkend="poly">poly</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="poly">poly</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

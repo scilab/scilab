@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
  * Copyright (C) 2008 - INRIA - Ramine NIKOUKHAH
@@ -12,53 +12,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="vectorfind" xml:lang="en">
-        <refnamediv>
-            <refname>vectorfind</refname>
-            <refpurpose>finds in a matrix rows or columns matching a vector</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>ind = vectorfind(m,v[,job])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>m</term>
-                    <listitem>
-                        <para>a matrix of any type (the same type as v).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>v</term>
-                    <listitem>
-                        <para>a vector of any type (the same type as m).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>job</term>
-                    <listitem>
-                        <para>A character string: optional flag with possible values "r" to look for matching rows
-                            or "c" to look for matching columns. Default value is "r".
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ind</term>
-                    <listitem>
-                        <para>row vector containing indices of matching rows or columns</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>Finds in a matrix rows or columns matching a vector.</para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="vectorfind" xml:lang="en">
+    <refnamediv>
+        <refname>vectorfind</refname>
+        <refpurpose>finds in a matrix rows or columns matching a vector</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>ind = vectorfind(m,v[,job])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>a matrix of any type (the same type as v).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>a vector of any type (the same type as m).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>job</term>
+                <listitem>
+                    <para>A character string: optional flag with possible values "r" to look for matching rows
+                        or "c" to look for matching columns. Default value is "r".
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>row vector containing indices of matching rows or columns</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Finds in a matrix rows or columns matching a vector.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 alr=[1,2,2;
      1,2,1;
      1,1,2;
@@ -68,16 +68,16 @@ alr=[1,2,2;
 ind = vectorfind(alr,[1,2,1],'r')
 ind = vectorfind(string(alr),string([1,2,1]),'r')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="find">find</link>
-                </member>
-                <member>
-                    <link linkend="gsort">gsort</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="find">find</link>
+            </member>
+            <member>
+                <link linkend="gsort">gsort</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

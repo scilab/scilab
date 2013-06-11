@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
  * 
@@ -10,51 +10,51 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="titlepage">
-        <refnamediv>
-            <refname>titlepage</refname>
-            <refpurpose>add a title in the middle of a graphics window</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>titlepage(str)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>str</term>
-                    <listitem>
-                        <para>matrix of strings</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>titlepage</literal> displays the matrix of strings <literal>str</literal> in the middle of 
-                the current graphics window
-                with a font as big as possible.
-            </para>
-        </refsection>
-        
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="titlepage">
+    <refnamediv>
+        <refname>titlepage</refname>
+        <refpurpose>add a title in the middle of a graphics window</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>titlepage(str)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>matrix of strings</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>titlepage</literal> displays the matrix of strings <literal>str</literal> in the middle of 
+            the current graphics window
+            with a font as big as possible.
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 titlepage("This is the title of the page");
  ]]></programlisting>
-            <scilab:image>
-                titlepage("This is the title of the page");
-            </scilab:image>
-            
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="xtitle">xtitle</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        <scilab:image>
+            titlepage("This is the title of the page");
+        </scilab:image>
+        
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xtitle">xtitle</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

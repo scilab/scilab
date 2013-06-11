@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,58 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isletter" xml:lang="en">
-        <refnamediv>
-            <refname>isletter</refname>
-            <refpurpose>verifica se os caracteres de um string são letras do
-                alfabeto
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>res = isletter(str)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>str</term>
-                    <listitem>
-                        <para>string</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>res</term>
-                    <listitem>
-                        <para>matriz de booleanos</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                <literal>res = isletter(str)</literal> retorna um array de mesmo
-                tamanho que str com %t (verdadeiro) onde os elementos de str são letras do
-                alfabeto e %f (false) onde eles não são.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isletter" xml:lang="en">
+    <refnamediv>
+        <refname>isletter</refname>
+        <refpurpose>verifica se os caracteres de um string são letras do
+            alfabeto
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>res = isletter(str)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>matriz de booleanos</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>res = isletter(str)</literal> retorna um array de mesmo
+            tamanho que str com %t (verdadeiro) onde os elementos de str são letras do
+            alfabeto e %f (false) onde eles não são.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 s = 'A1,B2,C3';
 isletter(s)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="isalphanum">isalphanum</link>
-                </member>
-                <member>
-                    <link linkend="isdigit">isdigit</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="isalphanum">isalphanum</link>
+            </member>
+            <member>
+                <link linkend="isdigit">isdigit</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

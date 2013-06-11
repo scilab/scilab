@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getshell" xml:lang="en">
-        <refnamediv>
-            <refname>getshell</refname>
-            <refpurpose>retorna o interpretador de comando corrente</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>getshell()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                <literal>getshell </literal>retorna o interpretador de comando
-                corrente
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getshell" xml:lang="en">
+    <refnamediv>
+        <refname>getshell</refname>
+        <refpurpose>retorna o interpretador de comando corrente</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>getshell()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>getshell </literal>retorna o interpretador de comando
+            corrente
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 getshell()
  ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

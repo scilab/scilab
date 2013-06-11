@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
  *
@@ -10,23 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="write_csv" scilab:needs-examples="no" xml:lang="en">
-        <refnamediv>
-            <refname>write_csv</refname>
-            <refpurpose>
-                writes comma-separated value fileOutclassed by <link linkend="csvWrite">csvWrite</link>
-            </refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>
-                        <link linkend="csvRead">csvWrite</link> provide a better replacement of write_csv.
-                    </revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
-    
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="write_csv" scilab:needs-examples="no" xml:lang="en">
+    <refnamediv>
+        <refname>write_csv</refname>
+        <refpurpose>
+            writes comma-separated value fileOutclassed by <link linkend="csvWrite">csvWrite</link>
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <link linkend="csvRead">csvWrite</link> provide a better replacement of write_csv.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

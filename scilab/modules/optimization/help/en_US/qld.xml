@@ -1,173 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="qld" xml:lang="en">
-        <refnamediv>
-            <refname>qld</refname>
-            <refpurpose>linear quadratic programming solver</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                [x [,lagr [,info]]] = qld(Q, p, C, b, ci, cs, me [,tol])
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>Q</term>
-                    <listitem>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="qld" xml:lang="en">
+    <refnamediv>
+        <refname>qld</refname>
+        <refpurpose>linear quadratic programming solver</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            [x [,lagr [,info]]] = qld(Q, p, C, b, ci, cs, me [,tol])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Q</term>
+                <listitem>
+                    <para>
+                        real positive definite symmetric matrix (dimension <literal>
+                            n
+                            x n
+                        </literal>
+                        ).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        real (column) vector (dimension <literal> n</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        real matrix (dimension <literal>
+                            (me + md) x
+                            n
+                        </literal>
+                        )
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>
+                        RHS column vector (dimension <literal>
+                            (me +
+                            md)
+                        </literal>
+                        )
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ci</term>
+                <listitem>
+                    <para>
+                        column vector of lower-bounds (dimension
+                        <literal>n</literal>). If there are no lower bound constraints, put
+                        <literal>ci = []</literal>. If some components of
+                        <literal>x</literal> are bounded from below, set the other
+                        (unconstrained) values of <literal>ci</literal> to a very large
+                        negative number (e.g. <literal>
+                            ci(j) =
+                            -number_properties('huge')
+                        </literal>
+                        .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cs</term>
+                <listitem>
+                    <para>column vector of upper-bounds. (Same remarks as above).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>me</term>
+                <listitem>
+                    <para>
+                        number of equality constraints (i.e. <literal>
+                            C(1:me,:)*x =
+                            b(1:me)
+                        </literal>
+                        )
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tol</term>
+                <listitem>
+                    <para>Floatting point number, required precision.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>optimal solution found.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lagr</term>
+                <listitem>
+                    <para>
+                        vector of Lagrange multipliers.
                         <para>
-                            real positive definite symmetric matrix (dimension <literal>
-                                n
-                                x n
+                            If lower and upper-bounds
+                            <literal>ci, cs</literal> are provided, <literal>lagr</literal> has
+                            <literal>me + md + 2* n</literal> components. The components <literal>lagr(1:me + md)</literal>
+                            are associated with
+                            the linear constraints and <literal>
+                                lagr (me + md + 1 : 2 * n)
                             </literal>
-                            ).
+                            are associated with the lower and upper bounds constraints.
                         </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>p</term>
-                    <listitem>
                         <para>
-                            real (column) vector (dimension <literal> n</literal>)
+                            If an upper-bound (resp. lower-bound) constraint
+                            <literal>i</literal> is active <literal>lagr(i)</literal> is &gt; 0
+                            (resp. &lt;0). If no bounds are provided, <literal>lagr</literal>
+                            has only <literal>me + md</literal> components.
                         </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>C</term>
-                    <listitem>
                         <para>
-                            real matrix (dimension <literal>
-                                (me + md) x
-                                n
-                            </literal>
-                            )
+                            On successful termination, all values of <literal>lagr</literal> with respect to inequalities
+                            and bounds should be greater or equal to zero.
                         </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>b</term>
-                    <listitem>
-                        <para>
-                            RHS column vector (dimension <literal>
-                                (me +
-                                md)
-                            </literal>
-                            )
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ci</term>
-                    <listitem>
-                        <para>
-                            column vector of lower-bounds (dimension
-                            <literal>n</literal>). If there are no lower bound constraints, put
-                            <literal>ci = []</literal>. If some components of
-                            <literal>x</literal> are bounded from below, set the other
-                            (unconstrained) values of <literal>ci</literal> to a very large
-                            negative number (e.g. <literal>
-                                ci(j) =
-                                -number_properties('huge')
-                            </literal>
-                            .
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>cs</term>
-                    <listitem>
-                        <para>column vector of upper-bounds. (Same remarks as above).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>me</term>
-                    <listitem>
-                        <para>
-                            number of equality constraints (i.e. <literal>
-                                C(1:me,:)*x =
-                                b(1:me)
-                            </literal>
-                            )
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>tol</term>
-                    <listitem>
-                        <para>Floatting point number, required precision.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>optimal solution found.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>lagr</term>
-                    <listitem>
-                        <para>
-                            vector of Lagrange multipliers.
-                            <para>
-                                If lower and upper-bounds
-                                <literal>ci, cs</literal> are provided, <literal>lagr</literal> has
-                                <literal>me + md + 2* n</literal> components. The components <literal>lagr(1:me + md)</literal>
-                                are associated with
-                                the linear constraints and <literal>
-                                    lagr (me + md + 1 : 2 * n)
-                                </literal>
-                                are associated with the lower and upper bounds constraints.
-                            </para>
-                            <para>
-                                If an upper-bound (resp. lower-bound) constraint
-                                <literal>i</literal> is active <literal>lagr(i)</literal> is &gt; 0
-                                (resp. &lt;0). If no bounds are provided, <literal>lagr</literal>
-                                has only <literal>me + md</literal> components.
-                            </para>
-                            <para>
-                                On successful termination, all values of <literal>lagr</literal> with respect to inequalities
-                                and bounds should be greater or equal to zero.
-                            </para>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>info</term>
-                    <listitem>
-                        <para>
-                            integer, return the execution status instead of sending
-                            errors.
-                        </para>
-                        <para>info==1 : Too many iterations needed</para>
-                        <para>
-                            info==2 : Accuracy insufficient to statisfy convergence
-                            criterion
-                        </para>
-                        <para>info==5 : Length of working array is too short</para>
-                        <para>info==10: The constraints are inconsistent</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <informalequation>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../mml/qld_equation_1.mml"/>
-                    </imageobject>
-                </mediaobject>
-            </informalequation>
-            <para>
-                This function requires <literal>Q</literal> to be positive definite,
-                if it is not the case, one may use the contributed toolbox "<emphasis role="bold">quapro</emphasis>".
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example">
-                <![CDATA[ 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>info</term>
+                <listitem>
+                    <para>
+                        integer, return the execution status instead of sending
+                        errors.
+                    </para>
+                    <para>info==1 : Too many iterations needed</para>
+                    <para>
+                        info==2 : Accuracy insufficient to statisfy convergence
+                        criterion
+                    </para>
+                    <para>info==5 : Length of working array is too short</para>
+                    <para>info==10: The constraints are inconsistent</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../mml/qld_equation_1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            This function requires <literal>Q</literal> to be positive definite,
+            if it is not the case, one may use the contributed toolbox "<emphasis role="bold">quapro</emphasis>".
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            <![CDATA[ 
 //Find x in R^6 such that:
 //C1*x = b1 (3 equality constraints i.e me=3)
 C1= [1,-1,1,0,3,1;
@@ -193,28 +193,28 @@ me=3;
 [x,lagr]=qld(Q,p,C,b,ci,cs,me)
 //Only linear constraints (1 to 4) are active (lagr(1:6)=0):
  ]]>
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="qpsolve">qpsolve</link>
-                </member>
-                <member>
-                    <link linkend="optim">optim</link>
-                </member>
-            </simplelist>
-            <para>
-                The contributed toolbox "quapro" may also be of interest, in
-                particular for singular <literal>Q</literal>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Used Functions</title>
-            <para>
-                <literal>ql0001.f</literal> in
-                <literal>modules/optimization/src/fortran/ql0001.f</literal>
-            </para>
-        </refsection>
-    </refentry>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="qpsolve">qpsolve</link>
+            </member>
+            <member>
+                <link linkend="optim">optim</link>
+            </member>
+        </simplelist>
+        <para>
+            The contributed toolbox "quapro" may also be of interest, in
+            particular for singular <literal>Q</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Used Functions</title>
+        <para>
+            <literal>ql0001.f</literal> in
+            <literal>modules/optimization/src/fortran/ql0001.f</literal>
+        </para>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
 *
@@ -10,63 +10,63 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlXPath" xml:lang="ja">
-        <refnamediv>
-            <refname>xmlXPath</refname>
-            <refpurpose>XML文書にXPathクエリを作成する</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>
-                result = xmlXPath(xmlObj, queryStr [, namespaces])
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>引数</title>
-            <variablelist>
-                <varlistentry>
-                    <term>xmlObj</term>
-                    <listitem>
-                        <para>XMLDocまたはXMLElem型のXML mlist</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>queryStr</term>
-                    <listitem>
-                        <para>Xpathクエリ</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>namespaces</term>
-                    <listitem>
-                        <para>オプションの文字列の n x 2行列</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>result</term>
-                    <listitem>
-                        <para>
-                            XMLElementsの集合または数値または文字列または論理値
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                特定の文書中またはある要素で始まるXPathクエリを作成します.
-                名前空間を使用する必要がある場合,オプション引数によりこれらを
-                定義する必要があります.
-                XML名前空間は最初のタグにキーワード "xmlns" で定義します.
-            </para>
-            <para>
-                XPathに関する詳細については, <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>を参照ください.
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlXPath" xml:lang="ja">
+    <refnamediv>
+        <refname>xmlXPath</refname>
+        <refpurpose>XML文書にXPathクエリを作成する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            result = xmlXPath(xmlObj, queryStr [, namespaces])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>xmlObj</term>
+                <listitem>
+                    <para>XMLDocまたはXMLElem型のXML mlist</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>queryStr</term>
+                <listitem>
+                    <para>Xpathクエリ</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>namespaces</term>
+                <listitem>
+                    <para>オプションの文字列の n x 2行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>
+                        XMLElementsの集合または数値または文字列または論理値
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            特定の文書中またはある要素で始まるXPathクエリを作成します.
+            名前空間を使用する必要がある場合,オプション引数によりこれらを
+            定義する必要があります.
+            XML名前空間は最初のタグにキーワード "xmlns" で定義します.
+        </para>
+        <para>
+            XPathに関する詳細については, <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandation</ulink>を参照ください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
     doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
 
     // "note"に名前が等しいノードを取得
@@ -126,25 +126,25 @@
 
     xmlDelete(doc);
     ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath recommandation</ulink>
-                </member>
-                <member>
-                    <ulink url="http://www.w3schools.com/xpath/">XPathチュートリアル</ulink>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>履歴</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>XML文字列が導入されました.</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <ulink url="http://www.w3.org/TR/1999/REC-xpath-19991116/">W3C XPath recommandation</ulink>
+            </member>
+            <member>
+                <ulink url="http://www.w3schools.com/xpath/">XPathチュートリアル</ulink>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>XML文字列が導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

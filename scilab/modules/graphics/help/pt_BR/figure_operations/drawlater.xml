@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) INRIA - Fabrice Leray
@@ -11,37 +11,37 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="drawlater" xml:lang="en">
-        <refnamediv>
-            <refname>drawlater</refname>
-            <refpurpose>Torna galhos dos eixos invisíveis.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>drawlater()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Descrição</title>
-            <para>Esta função pode ser utilizada para não se exibir imediatamente na
-                figura corrente os próximos objetos gráficos a serem criados por uma
-                chamada a funções de alto-nível tais como funções de esboço ou ajuste de
-                propriedades de objetos existentes. A propriedade
-                <literal>immediate_drawing</literal> da figura corrente é ajustada para
-                <literal>'off'</literal> para se adiar os próximos desenhos.
-            </para>
-            <para>Pode ser utilizada especialmente com a função</para>
-            <para>
-                Para reabilitar <literal>immediate_drawing</literal> para a figura
-                corrente, você pode utilizar a função.
-            </para>
-            <para>Aviso: note que entre chamadas às funções drawlater e drawnow, a
-                figura corrente pode ser modificada. Logo, estas funções devem ser usadas
-                com cuidado.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="drawlater" xml:lang="en">
+    <refnamediv>
+        <refname>drawlater</refname>
+        <refpurpose>Torna galhos dos eixos invisíveis.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>drawlater()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Esta função pode ser utilizada para não se exibir imediatamente na
+            figura corrente os próximos objetos gráficos a serem criados por uma
+            chamada a funções de alto-nível tais como funções de esboço ou ajuste de
+            propriedades de objetos existentes. A propriedade
+            <literal>immediate_drawing</literal> da figura corrente é ajustada para
+            <literal>'off'</literal> para se adiar os próximos desenhos.
+        </para>
+        <para>Pode ser utilizada especialmente com a função</para>
+        <para>
+            Para reabilitar <literal>immediate_drawing</literal> para a figura
+            corrente, você pode utilizar a função.
+        </para>
+        <para>Aviso: note que entre chamadas às funções drawlater e drawnow, a
+            figura corrente pode ser modificada. Logo, estas funções devem ser usadas
+            com cuidado.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 //Exemplo 1:  uma entidade Axes / uma entidade Figure
 drawlater(); 
 xfarc(.25,.55,.1,.15,0,64*360);
@@ -77,22 +77,22 @@ plot2d1 // modo de desenho padrão
 draw(a) // ...os eixos são visíveis apenas se você não resdesenhar a janela
 drawnow() // tudo está visível
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="get">get</link>
-                </member>
-                <member>
-                    <link linkend="set">set</link>
-                </member>
-                <member>
-                    <link linkend="drawnow">drawnow</link>
-                </member>
-                <member>
-                    <link linkend="graphics_entities">graphics_entities</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="drawnow">drawnow</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

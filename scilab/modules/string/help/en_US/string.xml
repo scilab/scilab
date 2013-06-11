@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
@@ -11,133 +11,133 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="en">
-        <refnamediv>
-            <refname>string</refname>
-            <refpurpose>conversion to string</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>string(x)
-                [out, in, text] = string(x)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>
-                            a boolean, complex, real, integer, polynomial matrix,
-                            an implicit size, a library or a function.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <function>string</function> function converts a matrix <varname>x</varname> into a matrix of strings.
-            </para>
-            <para>
-                If <varname>x</varname> is a function <code>[out, in, text] = string(x)</code>
-                returns three vectors of strings: <varname>out</varname>
-                is the vector of output variables, <varname>in</varname> is the vector of
-                input variables, and <varname>text</varname> is the (column) vector of the
-                source code of the function.
-            </para>
-            <para>
-                If <varname>x</varname> is a <literal>lib</literal> variable
-                (library), <varname>text</varname> is a character string column vector. The first element
-                contains the path of library file and the other the name of functions it
-                defines.
-            </para>
-            <para>
-                Character strings are defined as <literal>'string'</literal>
-                (between quotes) or <literal>"string"</literal> (between doublequotes);
-                matrices of strings are defined as usual constant matrices.
-            </para>
-            <para>
-                Concatenation of strings is made by the <literal>+</literal>
-                operation.
-            </para>
-            <para>
-                For complex, real, integer, polynomial matrix
-                <function>string</function> output is managed by <link linkend="format">format</link> function (see examples).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example">
-                string(rand(2, 2))
-                
-                deff("y = mymacro(x)", "y = x + 1")
-                [out, in, text] = string(mymacro)
-                x = 123.356;
-                disp("Result is " + string(x));
-                
-                disp("/" + string(~%t) + "/");
-                disp("/" + string(%i+1) + "/");
-                disp("/" + string(int16(-123)) + "/");
-                disp("/" + string(1 + %s + %s^3) + "/");
-                
-                string(corelib)
-                
-                v = format();
-                disp(string(%pi))
-                format(24);
-                disp(string(%pi))
-                format(v(2))
-                
-                string(1:4:$)
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="part">part</link>
-                </member>
-                <member>
-                    <link linkend="length">length</link>
-                </member>
-                <member>
-                    <link linkend="quote">quote</link>
-                </member>
-                <member>
-                    <link linkend="evstr">evstr</link>
-                </member>
-                <member>
-                    <link linkend="execstr">execstr</link>
-                </member>
-                <member>
-                    <link linkend="strsubst">strsubst</link>
-                </member>
-                <member>
-                    <link linkend="strcat">strcat</link>
-                </member>
-                <member>
-                    <link linkend="strindex">strindex</link>
-                </member>
-                <member>
-                    <link linkend="sci2exp">sci2exp</link>
-                </member>
-                <member>
-                    <link linkend="format">format</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>
-                        implicit size type managed as input argument.
-                    </revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="en">
+    <refnamediv>
+        <refname>string</refname>
+        <refpurpose>conversion to string</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>string(x)
+            [out, in, text] = string(x)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        a boolean, complex, real, integer, polynomial matrix,
+                        an implicit size, a library or a function.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>string</function> function converts a matrix <varname>x</varname> into a matrix of strings.
+        </para>
+        <para>
+            If <varname>x</varname> is a function <code>[out, in, text] = string(x)</code>
+            returns three vectors of strings: <varname>out</varname>
+            is the vector of output variables, <varname>in</varname> is the vector of
+            input variables, and <varname>text</varname> is the (column) vector of the
+            source code of the function.
+        </para>
+        <para>
+            If <varname>x</varname> is a <literal>lib</literal> variable
+            (library), <varname>text</varname> is a character string column vector. The first element
+            contains the path of library file and the other the name of functions it
+            defines.
+        </para>
+        <para>
+            Character strings are defined as <literal>'string'</literal>
+            (between quotes) or <literal>"string"</literal> (between doublequotes);
+            matrices of strings are defined as usual constant matrices.
+        </para>
+        <para>
+            Concatenation of strings is made by the <literal>+</literal>
+            operation.
+        </para>
+        <para>
+            For complex, real, integer, polynomial matrix
+            <function>string</function> output is managed by <link linkend="format">format</link> function (see examples).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            string(rand(2, 2))
+            
+            deff("y = mymacro(x)", "y = x + 1")
+            [out, in, text] = string(mymacro)
+            x = 123.356;
+            disp("Result is " + string(x));
+            
+            disp("/" + string(~%t) + "/");
+            disp("/" + string(%i+1) + "/");
+            disp("/" + string(int16(-123)) + "/");
+            disp("/" + string(1 + %s + %s^3) + "/");
+            
+            string(corelib)
+            
+            v = format();
+            disp(string(%pi))
+            format(24);
+            disp(string(%pi))
+            format(v(2))
+            
+            string(1:4:$)
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="part">part</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+            <member>
+                <link linkend="quote">quote</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="strsubst">strsubst</link>
+            </member>
+            <member>
+                <link linkend="strcat">strcat</link>
+            </member>
+            <member>
+                <link linkend="strindex">strindex</link>
+            </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
+            </member>
+            <member>
+                <link linkend="format">format</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    implicit size type managed as input argument.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,46 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="and_op" xml:lang="en">
-        <refnamediv>
-            <refname>&amp;</refname>
-            <refpurpose>logical AND operator</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>A&amp;B</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>A&amp;B</literal> gives the element-wise logical
-                <literal>and</literal> of the booleans matrices <literal>A</literal> and
-                <literal>B</literal>. <literal>A</literal> and <literal>B</literal> must
-                be matrices with the same dimensions or one from them must be a single
-                boolean.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="and_op" xml:lang="en">
+    <refnamediv>
+        <refname>&amp;</refname>
+        <refpurpose>logical AND operator</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>A&amp;B</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>A&amp;B</literal> gives the element-wise logical
+            <literal>and</literal> of the booleans matrices <literal>A</literal> and
+            <literal>B</literal>. <literal>A</literal> and <literal>B</literal> must
+            be matrices with the same dimensions or one from them must be a single
+            boolean.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 [%t %t %f] & [%f %t %t]
 [%t %t %f] & %f
 [%t %t %f] & %t
  ]]></programlisting>
-        </refsection>
-        
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="not">not</link>
-                </member>
-                <member>
-                    <link linkend="and">and</link>
-                </member>
-                <member>
-                    <link linkend="or_op">or operator (|)</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="not">not</link>
+            </member>
+            <member>
+                <link linkend="and">and</link>
+            </member>
+            <member>
+                <link linkend="or_op">or operator (|)</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
-    <!--
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
@@ -18,15 +18,15 @@
 
  Don't touch if you do not know what you are doing
 -->
-    <module name="differential_equations">
-        <gateway name="sci_ode"     function="ode"      type="1" />
-        <gateway name="sci_impl"    function="impl"     type="1" />
-        <gateway name="sci_dassl"   function="dassl"    type="1" />
-        <gateway name="sci_dasrt"   function="dasrt"    type="1" />
-        <gateway name="sci_odedc"   function="odedc"    type="1" />
-        <gateway name="sci_intg"    function="intg"     type="1" />
-        <gateway name="sci_int2d"   function="int2d"    type="1" />
-        <gateway name="sci_int3d"   function="int3d"    type="1" />
-        <gateway name="sci_feval"   function="feval"    type="1" />
-        <gateway name="sci_bvode"   function="bvode"    type="1" />
-    </module>
+<module name="differential_equations">
+    <gateway name="sci_ode"     function="ode"      type="1" />
+    <gateway name="sci_impl"    function="impl"     type="1" />
+    <gateway name="sci_dassl"   function="dassl"    type="1" />
+    <gateway name="sci_dasrt"   function="dasrt"    type="1" />
+    <gateway name="sci_odedc"   function="odedc"    type="1" />
+    <gateway name="sci_intg"    function="intg"     type="1" />
+    <gateway name="sci_int2d"   function="int2d"    type="1" />
+    <gateway name="sci_int3d"   function="int3d"    type="1" />
+    <gateway name="sci_feval"   function="feval"    type="1" />
+    <gateway name="sci_bvode"   function="bvode"    type="1" />
+</module>

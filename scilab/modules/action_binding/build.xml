@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -12,11 +12,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <project name="action_binding" default="jar">
-        <import file="../../build.incl.xml"/>
-        <property name="library.name" value="${library.action_binding.name}"/>
-        <property name="library.title" value="Java-Scilab communication"/>
-        <description>
-            Build the action_binding Scilab module
-        </description>
-    </project>
+<project name="action_binding" default="jar">
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.action_binding.name}"/>
+    <property name="library.title" value="Java-Scilab communication"/>
+    <description>
+        Build the action_binding Scilab module
+    </description>
+</project>

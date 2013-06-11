@@ -1,75 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getversion" xml:lang="en">
-        <refnamediv>
-            <refname>getversion</refname>
-            <refpurpose>retorna o nome da versão do Scilab</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title> Seqüência de Chamamento</title>
-            <synopsis>getversion()
-                
-                [version, opts] = getversion()
-                COMPILER = opts(1)
-                ARCH = opts(2)
-                or(opts == 'modelicac')
-                or(opts == 'tk')
-                RELEASE_MODE = opts($-2)
-                RELEASE_DATE = opts($-1)
-                RELEASE_TIME = opts($)
-                
-                version = getversion('scilab')
-                versionstr = getversion('scilab','string_info')
-                version = getversion('overloading')
-                versionstr = getversion('overloading','string_info')
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>version</term>
-                    <listitem>
-                        <para>um string</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>versioninfo</term>
-                    <listitem>
-                        <para>um string sobre a versão</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ver</term>
-                    <listitem>
-                        <para>um vetor de inteiros</para>
-                        <para>ver(1): versão maior</para>
-                        <para>ver(2): versão menor</para>
-                        <para>ver(3): versão de manutençãp</para>
-                        <para>ver(4): timestamp GIT</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>opts</term>
-                    <listitem>
-                        <para>um vetor de strings:
-                            <literal>[compiler, architecture, [tk, modelicac, ] release_mode, release_date, release_time]</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                Retorna em <literal>version</literal> o nome da versão do Scilab e
-                em <literal>opts</literal> build options ("opções de construção") que
-                podem ser usadas para determinar se o Scilab foi construído em tk ou
-                modelicac.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getversion" xml:lang="en">
+    <refnamediv>
+        <refname>getversion</refname>
+        <refpurpose>retorna o nome da versão do Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title> Seqüência de Chamamento</title>
+        <synopsis>getversion()
+            
+            [version, opts] = getversion()
+            COMPILER = opts(1)
+            ARCH = opts(2)
+            or(opts == 'modelicac')
+            or(opts == 'tk')
+            RELEASE_MODE = opts($-2)
+            RELEASE_DATE = opts($-1)
+            RELEASE_TIME = opts($)
+            
+            version = getversion('scilab')
+            versionstr = getversion('scilab','string_info')
+            version = getversion('overloading')
+            versionstr = getversion('overloading','string_info')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>version</term>
+                <listitem>
+                    <para>um string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>versioninfo</term>
+                <listitem>
+                    <para>um string sobre a versão</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ver</term>
+                <listitem>
+                    <para>um vetor de inteiros</para>
+                    <para>ver(1): versão maior</para>
+                    <para>ver(2): versão menor</para>
+                    <para>ver(3): versão de manutençãp</para>
+                    <para>ver(4): timestamp GIT</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opts</term>
+                <listitem>
+                    <para>um vetor de strings:
+                        <literal>[compiler, architecture, [tk, modelicac, ] release_mode, release_date, release_time]</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Retorna em <literal>version</literal> o nome da versão do Scilab e
+            em <literal>opts</literal> build options ("opções de construção") que
+            podem ser usadas para determinar se o Scilab foi construído em tk ou
+            modelicac.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 getversion()
 
 [version, opts] = getversion()
@@ -87,13 +87,13 @@ version = getversion('overloading')
 versionstr = getversion('overloading','string_info')
 
  ]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="getmodules">getmodules</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getmodules">getmodules</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    
-    <!--
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
  *
@@ -11,64 +11,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gethistoryfile">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gethistoryfile">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>gethistoryfile</refname>
-            
-            <refpurpose>Scilab履歴に使用されるファイルの名前を取得</refpurpose>
-            
-        </refnamediv>
+        <refname>gethistoryfile</refname>
         
-        <refsynopsisdiv>
-            
-            <title>呼び出し手順</title>
-            
-            <synopsis>filename = gethistoryfile()</synopsis>
-            
-        </refsynopsisdiv>
+        <refpurpose>Scilab履歴に使用されるファイルの名前を取得</refpurpose>
         
-        <refsection>
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>filename = gethistoryfile()</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
             
-            <title>引数</title>
-            
-            <variablelist>
+            <varlistentry>
                 
-                <varlistentry>
-                    
-                    <term>filename</term>
-                    
-                    <listitem>
-                        
-                        <para>履歴に使用されるファイルの名前</para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
+                <term>filename</term>
                 
-            </variablelist>
+                <listitem>
+                    
+                    <para>履歴に使用されるファイルの名前</para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-        </refsection>
+        </variablelist>
         
-        <refsection>
-            
-            <title>説明</title>
-            
-            <para>Scilabの履歴に使用されるファイルの名前を取得します.</para>
-            
-        </refsection>
+    </refsection>
+    
+    <refsection>
         
-        <refsection>
-            
-            <title>例</title>
-            
-            <programlisting role="example"><![CDATA[ 
+        <title>説明</title>
+        
+        <para>Scilabの履歴に使用されるファイルの名前を取得します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[ 
 gethistoryfile()
  ]]></programlisting>
-            
-        </refsection>
         
-    </refentry>
+    </refsection>
     
+</refentry>
+

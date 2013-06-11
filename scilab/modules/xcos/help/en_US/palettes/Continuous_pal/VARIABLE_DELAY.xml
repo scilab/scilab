@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,285 +21,285 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="VARIABLE_DELAY">
-        <refnamediv>
-            <refname>VARIABLE_DELAY</refname>
-            <refpurpose>Variable delay</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="VARIABLE_DELAY">
+    <refnamediv>
+        <refname>VARIABLE_DELAY</refname>
+        <refpurpose>Variable delay</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/VARIABLE_DELAY.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_VARIABLE_DELAY">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="VARIABLE_DELAY">Variable delay</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_VARIABLE_DELAY">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_VARIABLE_DELAY">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_VARIABLE_DELAY">Dialog
+                                box
+                            </xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_VARIABLE_DELAY">Default
+                                properties
+                            </xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_VARIABLE_DELAY">Interfacing
+                                function
+                            </xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_VARIABLE_DELAY">Computational
+                                function
+                            </xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_VARIABLE_DELAY">Example</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_VARIABLE_DELAY">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Continuous_pal">Continuous time systems
+                        palette
+                    </link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_VARIABLE_DELAY">
+        <title>Description</title>
+        <para>The Variable Transport Delay block can be used to simulate a
+            variable time delay between an action and its effect. The block might be
+            used, for example, to model a system with a pipe where the speed of a
+            motor pumping fluid in the pipe is variable.
+        </para>
+        <para>The block accepts two inputs and one output: the first input is the
+            signal u(t) that passes through the block (data input); the second input
+            is the variable time delay τ(t).
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../examples/variable_delay_with_equations.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>At the current time step t, the block outputs the delayed data input
+            u(θ) where θ is the current simulation time t minus the time delay
+            parameter τ.
+        </para>
+        <para>The equation of the output signal is:</para>
+        <para>
+            <latex>y(t) = y(θ) - u(t - τ(t))</latex>
+        </para>
+    </refsection>
+    <refsection id="Dialogbox_VARIABLE_DELAY">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../examples/variable_delay1.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Max delay</emphasis>
+                </para>
+                <para>It defines the largest value the time delay input can have. The
+                    value cannot be negative.
+                </para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Initial input</emphasis>
+                </para>
+                <para>The output generated by the block until the simulation time
+                    first exceeds the time delay input. If it is not set to the 
+                    y(τ) value, a linear approximation will be calculated between
+                    the initial input at t0 and the y(τ) value.
+                </para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Buffer size</emphasis>
+                </para>
+                <para>The number of points the block can store.</para>
+                <para>Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_VARIABLE_DELAY">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type
+                        1
+                    </emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 2 : size [1,1] / type
+                        1
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type
+                        1
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation
+                        inputs:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation
+                        outputs:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">variable_delay</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_VARIABLE_DELAY">
+        <title>Example</title>
+        <para>In this example, the max time delay in the Block Parameters dialog
+            box is set to 4. The input signal is a sine wave with amplitude 1 and
+            frequency 0.2 Hz.
+        </para>
+        <para>The constant block is set to 2 to introduce a delay of 2 second. The
+            input and output waveforms of the VARIABLE_DELAY block are shown
+            below:
+        </para>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../images/palettes/VARIABLE_DELAY.png" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_VARIABLE_DELAY">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="VARIABLE_DELAY">Variable delay</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_VARIABLE_DELAY">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_VARIABLE_DELAY">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_VARIABLE_DELAY">Dialog
-                                    box
-                                </xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_VARIABLE_DELAY">Default
-                                    properties
-                                </xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_VARIABLE_DELAY">Interfacing
-                                    function
-                                </xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Computationalfunction_VARIABLE_DELAY">Computational
-                                    function
-                                </xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Example_VARIABLE_DELAY">Example</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_VARIABLE_DELAY">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Continuous_pal">Continuous time systems
-                            palette
-                        </link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_VARIABLE_DELAY">
-            <title>Description</title>
-            <para>The Variable Transport Delay block can be used to simulate a
-                variable time delay between an action and its effect. The block might be
-                used, for example, to model a system with a pipe where the speed of a
-                motor pumping fluid in the pipe is variable.
-            </para>
-            <para>The block accepts two inputs and one output: the first input is the
-                signal u(t) that passes through the block (data input); the second input
-                is the variable time delay τ(t).
-            </para>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../examples/variable_delay_with_equations.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para>At the current time step t, the block outputs the delayed data input
-                u(θ) where θ is the current simulation time t minus the time delay
-                parameter τ.
-            </para>
-            <para>The equation of the output signal is:</para>
-            <para>
-                <latex>y(t) = y(θ) - u(t - τ(t))</latex>
-            </para>
-        </refsection>
-        <refsection id="Dialogbox_VARIABLE_DELAY">
-            <title>Dialog box</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../examples/variable_delay1.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para/>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Max delay</emphasis>
-                    </para>
-                    <para>It defines the largest value the time delay input can have. The
-                        value cannot be negative.
-                    </para>
-                    <para>Properties : Type 'vec' of size 1.</para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Initial input</emphasis>
-                    </para>
-                    <para>The output generated by the block until the simulation time
-                        first exceeds the time delay input. If it is not set to the 
-                        y(τ) value, a linear approximation will be calculated between
-                        the initial input at t0 and the y(τ) value.
-                    </para>
-                    <para>Properties : Type 'vec' of size 1.</para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Buffer size</emphasis>
-                    </para>
-                    <para>The number of points the block can store.</para>
-                    <para>Properties : Type 'vec' of size 1.</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_VARIABLE_DELAY">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular inputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [1,1] / type
-                            1
-                        </emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 2 : size [1,1] / type
-                            1
-                        </emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular outputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [1,1] / type
-                            1
-                        </emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation
-                            inputs:
-                        </emphasis>
-                        0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation
-                            outputs:
-                        </emphasis>
-                        0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis>
-                        no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis>
-                        no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">variable_delay</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Example_VARIABLE_DELAY">
-            <title>Example</title>
-            <para>In this example, the max time delay in the Block Parameters dialog
-                box is set to 4. The input signal is a sine wave with amplitude 1 and
-                frequency 0.2 Hz.
-            </para>
-            <para>The constant block is set to 2 to introduce a delay of 2 second. The
-                input and output waveforms of the VARIABLE_DELAY block are shown
-                below:
-            </para>
-            <para/>
-            <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos">
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata align="center" fileref="../../../../examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                </link>
-                <scilab:image><![CDATA[
+            </link>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
-        </refsection>
-        <refsection id="Interfacingfunction_VARIABLE_DELAY">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Computationalfunction_VARIABLE_DELAY">
-            <title>Computational function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/src/c/variable_delay.c (Type 4)</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+        </para>
+    </refsection>
+    <refsection id="Interfacingfunction_VARIABLE_DELAY">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_VARIABLE_DELAY">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/variable_delay.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

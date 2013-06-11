@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002 - INRIA
     * Copyright (C) 2012 - DIGITEO - Allan CORNET
@@ -11,115 +11,115 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lines" xml:lang="ru">
-        <info>
-            <pubdate>$LastChangedDate$</pubdate>
-        </info>
-        <refnamediv>
-            <refname>lines</refname>
-            <refpurpose>строки и столбцы, используемые для отображения</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>lines(nl)
-                lines(nl, nc)
-                lines(ncl)
-                ncl = lines()
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>nl</term>
-                    <listitem>
-                        <para>
-                            Целое число, количество строк для управления разбивкой на страницы по вертикали.
-                        </para>
-                        <itemizedlist>
-                            <listitem>
-                                <para>Если 0: нет управления разбивкой на страницы по вертикали.</para>
-                            </listitem>
-                            <listitem>
-                                <para>Если -1: сброс управления разбивкой на страницы по вертикали до текущего размера окна.</para>
-                            </listitem>
-                        </itemizedlist>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>nc</term>
-                    <listitem>
-                        <para>
-                            Целое число, количество столбцов при выводе. Используется для форматирования вывода.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ncl</term>
-                    <listitem>
-                        <para>вектор [nc, nl] размером 1 на 2.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <literal>lines</literal> управляет отображением страниц в Scilab'е.
-            </para>
-            <para>
-                <literal>lines()</literal> возвращает вектор <literal>[количество столбцов, количество строк]</literal>,
-                который в настоящий момент используется Scilab'ом для отображения результатов.
-            </para>
-            <para>
-                <literal>lines(nl)</literal> устанавливает количество отображаемых строк
-                (прежде, чем пользователя не спросят о дальнейшем отображении) равным
-                <literal>nl</literal>.
-            </para>
-            <para>
-                <literal>lines(0)</literal> отключает разбивку на страницы по вертикали.
-            </para>
-            <para>
-                <literal>lines(nl,nc)</literal> и <literal>lines([nc,nl])</literal> 
-                меняет также размер вывода до <literal>nc</literal> столбцов.
-            </para>
-            <para>
-                Если Scilab запущен без опции <literal>-nw</literal>, то параметры
-                <literal>lines</literal> автоматически устанавливаются в соответствии
-                с размером окна вывода, эти параметры также автоматически изменяются
-                при изменении размера окна.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="disp">disp</link>
-                </member>
-                <member>
-                    <link linkend="print">print</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>История</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revdescription>
-                        <itemizedlist>
-                            <listitem>
-                                lines по умолчанию установлена в 0. Добавлен Аргумент -1. 
-                                За более подробной информацией обращайтесь к SEP #67.
-                            </listitem>
-                            <listitem>
-                                lines работает с вектором [nc, nl] размером 1 на 2
-                                в качестве входного аргумента.
-                            </listitem>
-                        </itemizedlist>
-                    </revdescription>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
-    
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lines" xml:lang="ru">
+    <info>
+        <pubdate>$LastChangedDate$</pubdate>
+    </info>
+    <refnamediv>
+        <refname>lines</refname>
+        <refpurpose>строки и столбцы, используемые для отображения</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>lines(nl)
+            lines(nl, nc)
+            lines(ncl)
+            ncl = lines()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>nl</term>
+                <listitem>
+                    <para>
+                        Целое число, количество строк для управления разбивкой на страницы по вертикали.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Если 0: нет управления разбивкой на страницы по вертикали.</para>
+                        </listitem>
+                        <listitem>
+                            <para>Если -1: сброс управления разбивкой на страницы по вертикали до текущего размера окна.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nc</term>
+                <listitem>
+                    <para>
+                        Целое число, количество столбцов при выводе. Используется для форматирования вывода.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ncl</term>
+                <listitem>
+                    <para>вектор [nc, nl] размером 1 на 2.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>lines</literal> управляет отображением страниц в Scilab'е.
+        </para>
+        <para>
+            <literal>lines()</literal> возвращает вектор <literal>[количество столбцов, количество строк]</literal>,
+            который в настоящий момент используется Scilab'ом для отображения результатов.
+        </para>
+        <para>
+            <literal>lines(nl)</literal> устанавливает количество отображаемых строк
+            (прежде, чем пользователя не спросят о дальнейшем отображении) равным
+            <literal>nl</literal>.
+        </para>
+        <para>
+            <literal>lines(0)</literal> отключает разбивку на страницы по вертикали.
+        </para>
+        <para>
+            <literal>lines(nl,nc)</literal> и <literal>lines([nc,nl])</literal> 
+            меняет также размер вывода до <literal>nc</literal> столбцов.
+        </para>
+        <para>
+            Если Scilab запущен без опции <literal>-nw</literal>, то параметры
+            <literal>lines</literal> автоматически устанавливаются в соответствии
+            с размером окна вывода, эти параметры также автоматически изменяются
+            при изменении размера окна.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="disp">disp</link>
+            </member>
+            <member>
+                <link linkend="print">print</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            lines по умолчанию установлена в 0. Добавлен Аргумент -1. 
+                            За более подробной информацией обращайтесь к SEP #67.
+                        </listitem>
+                        <listitem>
+                            lines работает с вектором [nc, nl] размером 1 на 2
+                            в качестве входного аргумента.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

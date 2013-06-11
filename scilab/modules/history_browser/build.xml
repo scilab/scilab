@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
@@ -10,11 +10,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <project name="history_browser" default="jar">
-        <import file="../../build.incl.xml"/>
-        <property name="library.name" value="${library.history_browser.name}"/>
-        <property name="library.title" value="Scilab history browser"/>
-        <description>
-            Build the Scilab history_browser module
-        </description>
-    </project>
+<project name="history_browser" default="jar">
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.history_browser.name}"/>
+    <property name="library.title" value="Scilab history browser"/>
+    <description>
+        Build the Scilab history_browser module
+    </description>
+</project>

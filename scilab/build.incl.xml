@@ -1,137 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!-- Common definitions of Java compilation for Scilab -->
-    <project name="common">
-        <!-- Base of Scilab source tree -->
-        <property name="base.dir" location="../../"/>
-        <!-- Where the module should be created (modules/xxx/jar) -->
-        <property name="build.jar.dir" value="jar/"/>
-        <!-- Where the thirdparty libraries could be found -->
-        <property name="thirdparty.dir" location="${base.dir}/thirdparty/"/>
-        <!-- The building directory -->
-        <property name="build.dir" location="build/"/>
-        <!-- The building test directory -->
-        <property name="build.test.dir" location="${build.dir}/test"/>
-        <!-- Where built classes will be generated -->
-        <property name="classes.dir" location="${build.dir}/classes"/>
-        <!-- Where built test classes will be generated -->
-        <property name="classes.test.dir" location="${build.test.dir}/classes"/>
-        <property name="instrumented.classes.test.dir" location="${build.test.dir}/instrumented-classes"/>
-        <!-- Where we store cache files -->
-        <property name="cache.dir" location="${build.dir}/cachefile"/>
-        <!-- Where we can find the sources -->
-        <property name="src.dir" location="src/java/"/>
-        
-        <property name="modules.dir" value="${base.dir}/modules"/>
-        <!-- JAR names -->
-        <property file="${base.dir}/scilab-lib.properties"/>
-        <property file="${base.dir}/scilab-lib-doc.properties"/>
-        <!-- Configure ANT flags -->
-        <property file="${base.dir}/scilab.properties"/>
-        <!-- Set ${SCIVERSION} -->
-        <property file="${base.dir}/Version.incl"/>
-        
-        <path id="checkstyle.classpath">
-            <pathelement location="${checkstyle.jar}"/>
-            <pathelement location="${commons-logging.jar}"/>
-            <pathelement location="${commons-beanutils.jar}"/>
-            <pathelement location="${antlr.jar}"/>
-        </path>
-        
-        <path id="compile.classpath">
-            <pathelement location="${library.types.dir}/${library.types.name}"/>
-            <pathelement location="${library.graph.dir}/${library.graph.name}"/>
-            <pathelement location="${library.graphic_objects.dir}/${library.graphic_objects.name}"/>
-            <pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
-            <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
-            <pathelement location="${library.scinotes.dir}/${library.scinotes.name}"/>
-            <pathelement location="${library.localization.dir}/${library.localization.name}"/>
-            <pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
-            <pathelement location="${library.completion.dir}/${library.completion.name}"/>
-            <pathelement location="${library.console.dir}/${library.console.name}"/>
-            <pathelement location="${library.action_binding.dir}/${library.action_binding.name}"/>
-            <pathelement location="${library.gui.dir}/${library.gui.name}"/>
-            <pathelement location="${library.commons.dir}/${library.commons.name}"/>
-            <pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
-            <pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
-            <pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
-            <pathelement location="${library.core.dir}/${library.core.name}"/>
-            <pathelement location="${library.preferences.dir}/${library.preferences.name}"/>
-            <!-- Not use at build time but used for unitary tests -->
-            <pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
-            <pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
-            <pathelement location="${commons-logging.jar}"/>
-            <pathelement location="${flexdock.jar}"/>
-            <pathelement location="${gluegen2.jar}"/>
-            <pathelement location="${jrosetta-API.jar}"/>
-            <pathelement location="${jrosetta-engine.jar}"/>
-            <pathelement location="${jogl2.jar}"/>
-            <pathelement location="${jhall.jar}"/>
-            <pathelement location="${jgraphx.jar}"/>
-            <pathelement location="${scirenderer.jar}"/>
-            <!-- Only useful for the documentation -->
-            <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
-            <pathelement location="${batik.jar}"/>
-            <pathelement location="${xml_apis_ext.jar}"/>
-            <pathelement location="${saxon.jar}"/>
-            <pathelement location="${xmlgraphics-commons.jar}"/>
-            <pathelement location="${fop.jar}"/>
-            <pathelement location="${jlatexmath-fop.jar}"/>
-            <pathelement location="${avalon-framework.jar}"/>
-            <pathelement location="${jeuclid-core.jar}"/>
-            <pathelement location="${jlatexmath.jar}"/>
-        </path>
-        <target name="init">
-            <!-- Check the version of Java. If it changes after the configure
+<!-- Common definitions of Java compilation for Scilab -->
+<project name="common">
+    <!-- Base of Scilab source tree -->
+    <property name="base.dir" location="../../"/>
+    <!-- Where the module should be created (modules/xxx/jar) -->
+    <property name="build.jar.dir" value="jar/"/>
+    <!-- Where the thirdparty libraries could be found -->
+    <property name="thirdparty.dir" location="${base.dir}/thirdparty/"/>
+    <!-- The building directory -->
+    <property name="build.dir" location="build/"/>
+    <!-- The building test directory -->
+    <property name="build.test.dir" location="${build.dir}/test"/>
+    <!-- Where built classes will be generated -->
+    <property name="classes.dir" location="${build.dir}/classes"/>
+    <!-- Where built test classes will be generated -->
+    <property name="classes.test.dir" location="${build.test.dir}/classes"/>
+    <property name="instrumented.classes.test.dir" location="${build.test.dir}/instrumented-classes"/>
+    <!-- Where we store cache files -->
+    <property name="cache.dir" location="${build.dir}/cachefile"/>
+    <!-- Where we can find the sources -->
+    <property name="src.dir" location="src/java/"/>
+    
+    <property name="modules.dir" value="${base.dir}/modules"/>
+    <!-- JAR names -->
+    <property file="${base.dir}/scilab-lib.properties"/>
+    <property file="${base.dir}/scilab-lib-doc.properties"/>
+    <!-- Configure ANT flags -->
+    <property file="${base.dir}/scilab.properties"/>
+    <!-- Set ${SCIVERSION} -->
+    <property file="${base.dir}/Version.incl"/>
+    
+    <path id="checkstyle.classpath">
+        <pathelement location="${checkstyle.jar}"/>
+        <pathelement location="${commons-logging.jar}"/>
+        <pathelement location="${commons-beanutils.jar}"/>
+        <pathelement location="${antlr.jar}"/>
+    </path>
+    
+    <path id="compile.classpath">
+        <pathelement location="${library.types.dir}/${library.types.name}"/>
+        <pathelement location="${library.graph.dir}/${library.graph.name}"/>
+        <pathelement location="${library.graphic_objects.dir}/${library.graphic_objects.name}"/>
+        <pathelement location="${library.xcos.dir}/${library.xcos.name}"/>
+        <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
+        <pathelement location="${library.scinotes.dir}/${library.scinotes.name}"/>
+        <pathelement location="${library.localization.dir}/${library.localization.name}"/>
+        <pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
+        <pathelement location="${library.completion.dir}/${library.completion.name}"/>
+        <pathelement location="${library.console.dir}/${library.console.name}"/>
+        <pathelement location="${library.action_binding.dir}/${library.action_binding.name}"/>
+        <pathelement location="${library.gui.dir}/${library.gui.name}"/>
+        <pathelement location="${library.commons.dir}/${library.commons.name}"/>
+        <pathelement location="${library.jvm.dir}/${library.jvm.name}"/>
+        <pathelement location="${library.renderer.dir}/${library.renderer.name}"/>
+        <pathelement location="${library.graphic_export.dir}/${library.graphic_export.name}"/>
+        <pathelement location="${library.core.dir}/${library.core.name}"/>
+        <pathelement location="${library.preferences.dir}/${library.preferences.name}"/>
+        <!-- Not use at build time but used for unitary tests -->
+        <pathelement location="${library.javasci.dir}/${library.javasci.name}"/>
+        <pathelement location="${library.javasci.dir}/${library.javasci-v1.name}"/>
+        <pathelement location="${commons-logging.jar}"/>
+        <pathelement location="${flexdock.jar}"/>
+        <pathelement location="${gluegen2.jar}"/>
+        <pathelement location="${jrosetta-API.jar}"/>
+        <pathelement location="${jrosetta-engine.jar}"/>
+        <pathelement location="${jogl2.jar}"/>
+        <pathelement location="${jhall.jar}"/>
+        <pathelement location="${jgraphx.jar}"/>
+        <pathelement location="${scirenderer.jar}"/>
+        <!-- Only useful for the documentation -->
+        <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
+        <pathelement location="${batik.jar}"/>
+        <pathelement location="${xml_apis_ext.jar}"/>
+        <pathelement location="${saxon.jar}"/>
+        <pathelement location="${xmlgraphics-commons.jar}"/>
+        <pathelement location="${fop.jar}"/>
+        <pathelement location="${jlatexmath-fop.jar}"/>
+        <pathelement location="${avalon-framework.jar}"/>
+        <pathelement location="${jeuclid-core.jar}"/>
+        <pathelement location="${jlatexmath.jar}"/>
+    </path>
+    <target name="init">
+        <!-- Check the version of Java. If it changes after the configure
          or if there is a mistake in the build system
     -->
-            <fail message="JDK 1.6 or 1.7 required. Found ${ant.java.version}">
-                <condition>
-                    <not>
-                        <or>
-                            <equals arg1="${ant.java.version}" arg2="1.6"/>
-                            <equals arg1="${ant.java.version}" arg2="1.7"/>
-                        </or>
-                    </not>
-                </condition>
-            </fail>
-            <mkdir dir="${classes.dir}"/>
-            <mkdir dir="${classes.test.dir}"/>
-            <mkdir dir="${build.jar.dir}"/>
-            <!-- Create the time stamp -->
-            <tstamp/>
-        </target>
-        <!-- Clean sources -->
-        <target name="clean" description="Clean built files" depends="clean-test">
-            <delete dir="${build.dir}"/>
-            <delete dir="${build.jar.dir}"/>
-            <delete file="${build.jar.dir}/${library.name}"/>
-        </target>
-        <!-- Compile sources -->
-        <target name="compile" description="Build sources" depends="init">
-            <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="utf-8">
-                <compilerarg value="-Xlint"/>
-            </javac>
-        </target>
-        
-        <!-- Create the jar -->
-        <target name="jar" description="Build the jar file" depends="compile">
-            <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
-                <manifest>
-                    <attribute name="Built-By" value="${user.name}"/>
-                    <section name="org/scilab/modules/${ant.project.name}/">
-                        <attribute name="Specification-Title" value="${library.title}"/>
-                        <attribute name="Specification-Version" value="${SCIVERSION}"/>
-                        <attribute name="Specification-Vendor" value="${library.vendor}"/>
-                        <attribute name="Implementation-Title" value="${library.name}"/>
-                        <attribute name="Implementation-Version" value="${DSTAMP} ${TSTAMP}"/>
-                        <attribute name="Implementation-Vendor" value="${library.vendor}"/>
-                        <attribute name="Class-Path" value="${manifest.class-path}"/>
-                    </section>
-                </manifest>
-            </jar>
-        </target>
-        
-        <import file="build.qa.incl.xml"/>
-        
-        
-    </project>
+        <fail message="JDK 1.6 or 1.7 required. Found ${ant.java.version}">
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="${ant.java.version}" arg2="1.6"/>
+                        <equals arg1="${ant.java.version}" arg2="1.7"/>
+                    </or>
+                </not>
+            </condition>
+        </fail>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${classes.test.dir}"/>
+        <mkdir dir="${build.jar.dir}"/>
+        <!-- Create the time stamp -->
+        <tstamp/>
+    </target>
+    <!-- Clean sources -->
+    <target name="clean" description="Clean built files" depends="clean-test">
+        <delete dir="${build.dir}"/>
+        <delete dir="${build.jar.dir}"/>
+        <delete file="${build.jar.dir}/${library.name}"/>
+    </target>
+    <!-- Compile sources -->
+    <target name="compile" description="Build sources" depends="init">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="utf-8">
+            <compilerarg value="-Xlint"/>
+        </javac>
+    </target>
+    
+    <!-- Create the jar -->
+    <target name="jar" description="Build the jar file" depends="compile">
+        <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}"/>
+                <section name="org/scilab/modules/${ant.project.name}/">
+                    <attribute name="Specification-Title" value="${library.title}"/>
+                    <attribute name="Specification-Version" value="${SCIVERSION}"/>
+                    <attribute name="Specification-Vendor" value="${library.vendor}"/>
+                    <attribute name="Implementation-Title" value="${library.name}"/>
+                    <attribute name="Implementation-Version" value="${DSTAMP} ${TSTAMP}"/>
+                    <attribute name="Implementation-Vendor" value="${library.vendor}"/>
+                    <attribute name="Class-Path" value="${manifest.class-path}"/>
+                </section>
+            </manifest>
+        </jar>
+    </target>
+    
+    <import file="build.qa.incl.xml"/>
+    
+    
+</project>

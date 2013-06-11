@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO Bernard HUGUENEY
  *
@@ -10,25 +10,25 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="parallel_concurrency" xml:lang="en">
-        <refnamediv>
-            <refname>parallel_concurrency</refname>
-            <refpurpose>query about the concurrency of the current execution context</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>C=parallel_concurrency()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                parallel_concurrency() returns a non-zero value when called from a parallel execution context (such as <link linkend="parallel_run">parallel_run</link>.
-            </para>
-            <programlisting role="example"><![CDATA[function r=dummy_arg(n)
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="parallel_concurrency" xml:lang="en">
+    <refnamediv>
+        <refname>parallel_concurrency</refname>
+        <refpurpose>query about the concurrency of the current execution context</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>C=parallel_concurrency()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            parallel_concurrency() returns a non-zero value when called from a parallel execution context (such as <link linkend="parallel_run">parallel_run</link>.
+        </para>
+        <programlisting role="example"><![CDATA[function r=dummy_arg(n)
   r= parallel_concurrency();
   endfunction;
 parallel_concurrency() // returns 0
 // parallel_run requires a function taking at least one argument
 parallel_run(1:2,dummy_arg)// returns 2 non zero values ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

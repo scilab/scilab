@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="ru">
-        <refnamediv>
-            <refname>secd</refname>
-            <refpurpose>вычисляет поэлементно секанс аргумента, заданного в градусах
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>y = secd(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>Вещественный массив.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>Вещественный массив.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Элементы  <varname>y</varname> являются секансом <latex>1/\cos(x)</latex>
-                соответствующих элементов <varname>x</varname>, заданных в градусах.
-                Результаты вещественны и лежат на интервале <latex>]-\infty -1] \cup [1 %infty[</latex>. Для элементов, равных <literal>n*180</literal>, где
-                <literal>n</literal> - целое число, результат равен строго <literal>-1</literal>
-                или <literal>+1</literal>. Для элементов, равных <literal>n*90</literal>, где
-                <literal>n</literal> - целое нечётное число, резульат равен бесконечности 
-                (или ошибка, в зависимости от режима <link linkend="ieee">ieee</link>).
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="ru">
+    <refnamediv>
+        <refname>secd</refname>
+        <refpurpose>вычисляет поэлементно секанс аргумента, заданного в градусах
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>y = secd(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>Вещественный массив.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>Вещественный массив.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Элементы  <varname>y</varname> являются секансом <latex>1/\cos(x)</latex>
+            соответствующих элементов <varname>x</varname>, заданных в градусах.
+            Результаты вещественны и лежат на интервале <latex>]-\infty -1] \cup [1 %infty[</latex>. Для элементов, равных <literal>n*180</literal>, где
+            <literal>n</literal> - целое число, результат равен строго <literal>-1</literal>
+            или <literal>+1</literal>. Для элементов, равных <literal>n*90</literal>, где
+            <literal>n</literal> - целое нечётное число, резульат равен бесконечности 
+            (или ошибка, в зависимости от режима <link linkend="ieee">ieee</link>).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 secd(90)
 sec(%pi/2)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="cosd">cosd</link>
-                </member>
-                <member>
-                    <link linkend="sec">sec</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cosd">cosd</link>
+            </member>
+            <member>
+                <link linkend="sec">sec</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

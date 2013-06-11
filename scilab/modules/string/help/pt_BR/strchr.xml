@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  *
@@ -10,67 +10,67 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strchr" xml:lang="en">
-        <refnamediv>
-            <refname>strchr</refname>
-            <refpurpose>acha a primeira ocorrência de um caractere em um
-                string
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>res = strchr(haystack,char)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>haystack</term>
-                    <listitem>
-                        <para>string ou matriz de strings</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>char</term>
-                    <listitem>
-                        <para>caractere</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>res</term>
-                    <listitem>
-                        <para>string ou matriz de strings</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                <literal>res = strchr(haystack,char)</literal> retorna a primeira
-                ocorrência do caractere no string str.
-            </para>
-            <para>char deve ter as mesmas dimensões que haystack, ou apenas um
-                caractere.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strchr" xml:lang="en">
+    <refnamediv>
+        <refname>strchr</refname>
+        <refpurpose>acha a primeira ocorrência de um caractere em um
+            string
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>res = strchr(haystack,char)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>haystack</term>
+                <listitem>
+                    <para>string ou matriz de strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>char</term>
+                <listitem>
+                    <para>caractere</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>string ou matriz de strings</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>res = strchr(haystack,char)</literal> retorna a primeira
+            ocorrência do caractere no string str.
+        </para>
+        <para>char deve ter as mesmas dimensões que haystack, ou apenas um
+            caractere.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 strchr('Este é um string de amostra','s')
 strchr(['Este é um string de amostra','no scilab'],'s')
 strchr(['Este é um string de amostra','no scilab'],['s','a'])
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="strrchr">strrchr</link>
-                </member>
-                <member>
-                    <link linkend="strstr">strstr</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="strrchr">strrchr</link>
+            </member>
+            <member>
+                <link linkend="strstr">strstr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

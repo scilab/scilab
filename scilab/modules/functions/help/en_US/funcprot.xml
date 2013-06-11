@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="funcprot">
-        <refnamediv>
-            <refname>funcprot</refname>
-            <refpurpose>switch scilab functions protection mode</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>funcprot(prot)
-                previousprot = funcprot(prot)
-                prot = funcprot()
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>prot</term>
-                    <listitem>
-                        <para>integer with possible values 0, 1, 2</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>previousprot</term>
-                    <listitem>
-                        <para>integer with possible values 0, 1, 2 returns previous value</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Scilab functions are variable, <literal>funcprot</literal> allows the user to specify
-                what scilab do when such  variables are redefined.
-            </para>
-            <itemizedlist>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="funcprot">
+    <refnamediv>
+        <refname>funcprot</refname>
+        <refpurpose>switch scilab functions protection mode</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>funcprot(prot)
+            previousprot = funcprot(prot)
+            prot = funcprot()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>prot</term>
                 <listitem>
-                    <para>
-                        If <literal>prot == 0</literal> nothing special is done.
-                    </para>
+                    <para>integer with possible values 0, 1, 2</para>
                 </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>previousprot</term>
                 <listitem>
-                    <para>
-                        If <literal>prot == 1</literal> scilab issues a warning message when a function is redefined (default mode).
-                    </para>
+                    <para>integer with possible values 0, 1, 2 returns previous value</para>
                 </listitem>
-                <listitem>
-                    <para>
-                        If <literal>prot == 2</literal> scilab issues an error when a function is redefined.
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[previousprot = funcprot(1)
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Scilab functions are variable, <literal>funcprot</literal> allows the user to specify
+            what scilab do when such  variables are redefined.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <literal>prot == 0</literal> nothing special is done.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>prot == 1</literal> scilab issues a warning message when a function is redefined (default mode).
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    If <literal>prot == 2</literal> scilab issues an error when a function is redefined.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[previousprot = funcprot(1)
 deff('x = foo(a)','x = a;')
 deff('x = foo(a)','x = a + 1;')
 foo = 33
@@ -63,14 +63,14 @@ deff('x = foo(a)', 'x = a;')
 deff('x = foo(a)', 'x = a + 1;')
 foo = 33
 funcprot(previousprot)]]></programlisting>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>Previous value is returned as output argument when setting a new value.</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Previous value is returned as output argument when setting a new value.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

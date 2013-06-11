@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,349 +21,349 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PID">
-        <refnamediv>
-            <refname>PID</refname>
-            <refpurpose>PID regulator</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../images/palettes/PID.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_PID">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="PID">PID regulator</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_PID">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_PID">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_PID">Dialog box</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_PID">Default
-                                    properties
-                                </xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_PID">Interfacing function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="CompiledSuperBlockcontent_PID">Compiled Super Block content</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Examples_PID">Examples</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_PID">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Continuous_pal">Continuous time systems
-                            palette
-                        </link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_PID">
-            <title>Description</title>
-            <para>This block implements a PID (Proportional-Integral-Differential)
-                controller. It calculates an "error" value Ue as the difference between a
-                measured process variable Upr and a desired setpoint Ur.
-            </para>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../examples/pid_error.gif" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para>The purpose is to make the process variable Up follow the setpoint
-                value Ur. The PID controller is widely used in feedback control of
-                industrial processes.
-            </para>
-            <para>The PID controller calculation (algorithm) involves three separate
-                parameters; the Proportional Kp, the Integral Ki and Derivative Kd values.
-                These terms describe three basic mathematical functions applied to the
-                error signal Ue. Kp determines the reaction to the current error, Ki
-                determines the reaction based on the sum of recent errors and Kd
-                determines the reaction to the rate at which the error has been
-                changing.
-            </para>
-            <para>The weighted sum of these three actions is used to adjust the
-                process via a control element such as the position of a control valve or
-                the power supply of a heating element. The basic structure of conventional
-                feedback control systems is shown below:
-            </para>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../examples/pid_structure.png" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para>PID law is a linear combination of an input variable Up(t), its time
-                integral Ui(t) and its first derivative Ud(t). The control law Ucon(t) has
-                the form:
-            </para>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../examples/pid_law.gif" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Dialogbox_PID">
-            <title>Dialog box</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../images/gui/PID_gui.gif" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para/>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Proportional</emphasis>
-                    </para>
-                    <para>The value of the gain that multiply the error.</para>
-                    <para>Properties : Type 'vec' of size -1.</para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Integral</emphasis>
-                    </para>
-                    <para>The value of the integral time of the error.(1/Integral)</para>
-                    <para>Properties : Type 'vec' of size -1.</para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Derivation</emphasis>
-                    </para>
-                    <para>The value of the derivative time of the error.</para>
-                    <para>Properties : Type 'vec' of size -1.</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_PID">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular inputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [-1,-2] / type
-                            1
-                        </emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular outputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [-1,-2] / type
-                            1
-                        </emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation
-                            inputs:
-                        </emphasis>
-                        0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation
-                            outputs:
-                        </emphasis>
-                        0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis>
-                        no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis>
-                        no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">csuper</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Interfacingfunction_PID">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>SCI/modules/scicos_blocks/macros/Linear/PID.sci</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="CompiledSuperBlockcontent_PID">
-            <title>Compiled Super Block content</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_internal.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Examples_PID">
-            <title>Examples</title>
-            <refsection id="Example_1_PID">
-                <title>Example 1</title>
-                <para>This example illustrates the usage of PID regulator. It enables you
-                    to fit the output signal Upr(t) to the required signal Ur(t)
-                    easily.
-                </para>
-                <para>In this example the control system is a second-order unity-gain
-                    low-pass filter with damping ratio ξ=0.5 and cutoff frequency fc= 100 Hz.
-                    Its transfer function H(s) is:
-                </para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PID">
+    <refnamediv>
+        <refname>PID</refname>
+        <refpurpose>PID regulator</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/PID.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_PID">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
                 <para>
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata align="center" fileref="../../../examples/pid_filter.gif" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
+                    <link linkend="PID">PID regulator</link>
                 </para>
-                <para>To model this filter we use Continuous transfer function block (CLR)
-                    from Continuous time systems Palette.
-                </para>
-                <para>The PID parameters Kp, Ki and Kd are set to 100, 0.1 and 0.</para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_PID">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_PID">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_PID">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_PID">Default
+                                properties
+                            </xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_PID">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="CompiledSuperBlockcontent_PID">Compiled Super Block content</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Examples_PID">Examples</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_PID">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
                 <para>
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata align="center" fileref="../../../examples/pid_filter_parameters.png" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                </para>
-                <para>The scope displays the waveforms of system error Ue (black),
-                    reference signal Ur (blue) and process signal Upr(red). It shows how
-                    initially the process signal Upr(t) does not follow the reference signal
-                    Ur(t).
-                </para>
-                <para>
-                    <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_1_Example.zcos" valign="middle"/>
-                            </imageobject>
-                        </inlinemediaobject>
+                    <link linkend="Continuous_pal">Continuous time systems
+                        palette
                     </link>
-                    <scilab:image><![CDATA[
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_PID">
+        <title>Description</title>
+        <para>This block implements a PID (Proportional-Integral-Differential)
+            controller. It calculates an "error" value Ue as the difference between a
+            measured process variable Upr and a desired setpoint Ur.
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../examples/pid_error.gif" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>The purpose is to make the process variable Up follow the setpoint
+            value Ur. The PID controller is widely used in feedback control of
+            industrial processes.
+        </para>
+        <para>The PID controller calculation (algorithm) involves three separate
+            parameters; the Proportional Kp, the Integral Ki and Derivative Kd values.
+            These terms describe three basic mathematical functions applied to the
+            error signal Ue. Kp determines the reaction to the current error, Ki
+            determines the reaction based on the sum of recent errors and Kd
+            determines the reaction to the rate at which the error has been
+            changing.
+        </para>
+        <para>The weighted sum of these three actions is used to adjust the
+            process via a control element such as the position of a control valve or
+            the power supply of a heating element. The basic structure of conventional
+            feedback control systems is shown below:
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../examples/pid_structure.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>PID law is a linear combination of an input variable Up(t), its time
+            integral Ui(t) and its first derivative Ud(t). The control law Ucon(t) has
+            the form:
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../examples/pid_law.gif" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Dialogbox_PID">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/gui/PID_gui.gif" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Proportional</emphasis>
+                </para>
+                <para>The value of the gain that multiply the error.</para>
+                <para>Properties : Type 'vec' of size -1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Integral</emphasis>
+                </para>
+                <para>The value of the integral time of the error.(1/Integral)</para>
+                <para>Properties : Type 'vec' of size -1.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Derivation</emphasis>
+                </para>
+                <para>The value of the derivative time of the error.</para>
+                <para>Properties : Type 'vec' of size -1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_PID">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type
+                        1
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type
+                        1
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation
+                        inputs:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation
+                        outputs:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">csuper</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_PID">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/PID.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="CompiledSuperBlockcontent_PID">
+        <title>Compiled Super Block content</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_internal.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Examples_PID">
+        <title>Examples</title>
+        <refsection id="Example_1_PID">
+            <title>Example 1</title>
+            <para>This example illustrates the usage of PID regulator. It enables you
+                to fit the output signal Upr(t) to the required signal Ur(t)
+                easily.
+            </para>
+            <para>In this example the control system is a second-order unity-gain
+                low-pass filter with damping ratio ξ=0.5 and cutoff frequency fc= 100 Hz.
+                Its transfer function H(s) is:
+            </para>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/pid_filter.gif" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+            <para>To model this filter we use Continuous transfer function block (CLR)
+                from Continuous time systems Palette.
+            </para>
+            <para>The PID parameters Kp, Ki and Kd are set to 100, 0.1 and 0.</para>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/pid_filter_parameters.png" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+            <para>The scope displays the waveforms of system error Ue (black),
+                reference signal Ur (blue) and process signal Upr(red). It shows how
+                initially the process signal Upr(t) does not follow the reference signal
+                Ur(t).
+            </para>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_1_Example.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_1_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-                </para>
-            </refsection>
-            <refsection id="Example_2_PID">
-                <title>Example 2</title>
-                <para>
-                    <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_2_Example.zcos" valign="middle"/>
-                            </imageobject>
-                        </inlinemediaobject>
-                    </link>
-                    <scilab:image><![CDATA[
+            </para>
+        </refsection>
+        <refsection id="Example_2_PID">
+            <title>Example 2</title>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_2_Example.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_2_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-                </para>
-            </refsection>
-            <refsection id="Example_3_PID">
-                <title>Example 3</title>
-                <para>
-                    <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
-                        <inlinemediaobject>
-                            <imageobject>
-                                <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_3_Example.zcos" valign="middle"/>
-                            </imageobject>
-                        </inlinemediaobject>
-                    </link>
-                    <scilab:image><![CDATA[
+            </para>
+        </refsection>
+        <refsection id="Example_3_PID">
+            <title>Example 3</title>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_3_Example.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_3_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-                </para>
-            </refsection>
+            </para>
         </refsection>
-    </refentry>
+    </refsection>
+</refentry>

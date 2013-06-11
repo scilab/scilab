@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
-    <!--
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
@@ -18,16 +18,16 @@
 
  Don't touch if you do not know what you are doing
 -->
-    <module name="interpolation">
-        <gateway name="sci_splin"           function="splin"            type="1" />
-        <gateway name="sci_lsq_splin"       function="lsq_splin"        type="1" />
-        <gateway name="sci_interp"          function="interp"           type="1" />
-        <gateway name="sci_linear_interpn"  function="linear_interpn"   type="1" />
-        <gateway name="sci_splin2d"         function="splin2d"          type="1" />
-        <gateway name="sci_interp2d"        function="interp2d"         type="1" />
-        <gateway name="sci_cshep2d"         function="cshep2d"          type="1" />
-        <gateway name="sci_eval_cshep2d"    function="eval_cshep2d"     type="1" />
-        <gateway name="sci_splin3d"         function="splin3d"          type="1" />
-        <gateway name="sci_interp3d"        function="interp3d"         type="1" />
-        <gateway name="sci_bsplin3val"      function="bsplin3val"       type="1" />
-    </module>
+<module name="interpolation">
+    <gateway name="sci_splin"           function="splin"            type="1" />
+    <gateway name="sci_lsq_splin"       function="lsq_splin"        type="1" />
+    <gateway name="sci_interp"          function="interp"           type="1" />
+    <gateway name="sci_linear_interpn"  function="linear_interpn"   type="1" />
+    <gateway name="sci_splin2d"         function="splin2d"          type="1" />
+    <gateway name="sci_interp2d"        function="interp2d"         type="1" />
+    <gateway name="sci_cshep2d"         function="cshep2d"          type="1" />
+    <gateway name="sci_eval_cshep2d"    function="eval_cshep2d"     type="1" />
+    <gateway name="sci_splin3d"         function="splin3d"          type="1" />
+    <gateway name="sci_interp3d"        function="interp3d"         type="1" />
+    <gateway name="sci_bsplin3val"      function="bsplin3val"       type="1" />
+</module>

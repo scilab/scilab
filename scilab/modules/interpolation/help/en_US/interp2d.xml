@@ -1,193 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp2d" xml:lang="en">
-        <refnamediv>
-            <refname>interp2d</refname>
-            <refpurpose>bicubic spline (2d) evaluation function</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>[zp[, dzpdx, dzpdy[, d2zpdxx, d2zpdxy, d2zpdyy]]]=interp2d(xp, yp, x, y, C [,out_mode])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>xp</term>
-                    <listitem>
-                        <para>
-                            a mx-by-my matrix of doubles, the <varname>x</varname> coordinates of the points where the spline is to be evaluated.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>yp</term>
-                    <listitem>
-                        <para>
-                            a mx-by-my matrix of doubles, the <varname>y</varname> coordinates of the points where the spline is to be evaluated.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>
-                            a 1-by-nx matrix of doubles, the <varname>x</varname> coordinate of the interpolation points.
-                            We must have x(i)&lt;x(i+1), for i=1,2,...,nx-1.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>
-                            a 1-by-ny matrix of doubles, the <varname>y</varname> coordinate of the interpolation points.
-                            We must have y(i)&lt;y(i+1), for i=1,2,...,ny-1.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                    <term>C</term>
-                    <listitem>
-                        <para>
-                            The coefficients of the bicubic spline. The input argument of the interp2d function is the output argument of the <link linkend="splin2d">splin2d</link> function.                    
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>out_mode</term>
-                    <listitem>
-                        <para>a 1-by-1 matrix of strings, the evaluation of s outside the range [x(1),x(nx)] by [y(1),y(ny)].
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>zp</term>
-                    <listitem>
-                        <para>
-                            a mx-by-my matrix of doubles, the evaluation of the <varname>z</varname> coordinate of the spline, i.e. zp(i,j)=s(xp(i,j),yp(i,j)), for i=1,2,...,mx and j = 1,2,...,my.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                    <term>dzpdx</term>
-                    <listitem>
-                        <para>a mx-by-my matrix of doubles, the first derivative of the spline with
-                            respect to <varname>x</varname>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                    <term>dzpdy</term>
-                    <listitem>
-                        <para>a mx-by-my matrix of doubles, the first derivative of the spline with
-                            respect to <varname>y</varname>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                    <term>d2zpdxx</term>
-                    <listitem>
-                        <para>a mx-by-my matrix of doubles, the second derivative of the spline with
-                            respect to <varname>x</varname>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                    <term>d2zpdxy</term>
-                    <listitem>
-                        <para> a mx-by-my matrix of doubles, the second derivative of the spline with
-                            respect to <varname>x</varname> and <varname>y</varname>.
-                            
-                        </para>
-                    </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                    <term>d2zpdyy</term>
-                    <listitem>
-                        <para>a mx-by-my matrix of doubles, the second derivative of the spline with
-                            respect to <varname>y</varname>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Given three vectors <literal>(x,y,C)</literal> defining a bicubic
-                spline or sub-spline function (see <link linkend="splin2d">splin2d</link>)
-                this function evaluates <emphasis>s</emphasis> (and <emphasis>ds/dx,
-                    ds/dy, d2s/dxx, d2s/dxy, d2s/dyy
-                </emphasis>
-                if needed) at
-                <emphasis>(xp(i),yp(i))</emphasis> :
-            </para>
-            <informalequation>
-                <mediaobject>
-                    <imageobject>
-                        <imagedata fileref="../mml/interp2_equation_1.mml"/>
-                    </imageobject>
-                </mediaobject>
-            </informalequation>
-            <para>
-                The <literal>out_mode</literal> parameter defines the evaluation
-                rule for extrapolation, i.e. for <emphasis>(xp(i),yp(i)) not in
-                    [x(1),x(nx)]x[y(1),y(ny)]
-                </emphasis>
-                :
-            </para>
-            <variablelist>
-                <varlistentry>
-                    <term>"by_zero"</term>
-                    <listitem>
-                        <para>an extrapolation by zero is done</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"by_nan"</term>
-                    <listitem>
-                        <para>extrapolation by Nan</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"C0"</term>
-                    <listitem>
-                        <para>the extrapolation is defined as follows :</para>
-                        <programlisting role=""><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp2d" xml:lang="en">
+    <refnamediv>
+        <refname>interp2d</refname>
+        <refpurpose>bicubic spline (2d) evaluation function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[zp[, dzpdx, dzpdy[, d2zpdxx, d2zpdxy, d2zpdyy]]]=interp2d(xp, yp, x, y, C [,out_mode])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xp</term>
+                <listitem>
+                    <para>
+                        a mx-by-my matrix of doubles, the <varname>x</varname> coordinates of the points where the spline is to be evaluated.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>yp</term>
+                <listitem>
+                    <para>
+                        a mx-by-my matrix of doubles, the <varname>y</varname> coordinates of the points where the spline is to be evaluated.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        a 1-by-nx matrix of doubles, the <varname>x</varname> coordinate of the interpolation points.
+                        We must have x(i)&lt;x(i+1), for i=1,2,...,nx-1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        a 1-by-ny matrix of doubles, the <varname>y</varname> coordinate of the interpolation points.
+                        We must have y(i)&lt;y(i+1), for i=1,2,...,ny-1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        The coefficients of the bicubic spline. The input argument of the interp2d function is the output argument of the <link linkend="splin2d">splin2d</link> function.                    
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>out_mode</term>
+                <listitem>
+                    <para>a 1-by-1 matrix of strings, the evaluation of s outside the range [x(1),x(nx)] by [y(1),y(ny)].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zp</term>
+                <listitem>
+                    <para>
+                        a mx-by-my matrix of doubles, the evaluation of the <varname>z</varname> coordinate of the spline, i.e. zp(i,j)=s(xp(i,j),yp(i,j)), for i=1,2,...,mx and j = 1,2,...,my.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>dzpdx</term>
+                <listitem>
+                    <para>a mx-by-my matrix of doubles, the first derivative of the spline with
+                        respect to <varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>dzpdy</term>
+                <listitem>
+                    <para>a mx-by-my matrix of doubles, the first derivative of the spline with
+                        respect to <varname>y</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>d2zpdxx</term>
+                <listitem>
+                    <para>a mx-by-my matrix of doubles, the second derivative of the spline with
+                        respect to <varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>d2zpdxy</term>
+                <listitem>
+                    <para> a mx-by-my matrix of doubles, the second derivative of the spline with
+                        respect to <varname>x</varname> and <varname>y</varname>.
+                        
+                    </para>
+                </listitem>
+            </varlistentry>
+            
+            <varlistentry>
+                <term>d2zpdyy</term>
+                <listitem>
+                    <para>a mx-by-my matrix of doubles, the second derivative of the spline with
+                        respect to <varname>y</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given three vectors <literal>(x,y,C)</literal> defining a bicubic
+            spline or sub-spline function (see <link linkend="splin2d">splin2d</link>)
+            this function evaluates <emphasis>s</emphasis> (and <emphasis>ds/dx,
+                ds/dy, d2s/dxx, d2s/dxy, d2s/dyy
+            </emphasis>
+            if needed) at
+            <emphasis>(xp(i),yp(i))</emphasis> :
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../mml/interp2_equation_1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            The <literal>out_mode</literal> parameter defines the evaluation
+            rule for extrapolation, i.e. for <emphasis>(xp(i),yp(i)) not in
+                [x(1),x(nx)]x[y(1),y(ny)]
+            </emphasis>
+            :
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"by_zero"</term>
+                <listitem>
+                    <para>an extrapolation by zero is done</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"by_nan"</term>
+                <listitem>
+                    <para>extrapolation by Nan</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"C0"</term>
+                <listitem>
+                    <para>the extrapolation is defined as follows :</para>
+                    <programlisting role=""><![CDATA[ 
 s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
                       of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
  ]]></programlisting>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"natural"</term>
-                    <listitem>
-                        <para>the extrapolation is done by using the nearest bicubic-patch
-                            from (x,y).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"periodic"</term>
-                    <listitem>
-                        <para>
-                            <literal>s</literal> is extended by periodicity.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            
-            <programlisting role="example"><![CDATA[
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"natural"</term>
+                <listitem>
+                    <para>the extrapolation is done by using the nearest bicubic-patch
+                        from (x,y).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"periodic"</term>
+                <listitem>
+                    <para>
+                        <literal>s</literal> is extended by periodicity.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
@@ -201,22 +201,22 @@ zz1 = interp2d(XX,YY, x, y, C, "C0");
 plot3d(xx, yy, zz1, flag=[2 6 4])
 xtitle("extrapolation with the C0 outmode")
  ]]></programlisting>
-            <scilab:image>
-                n = 7;  // a n x n interpolation grid
-                x = linspace(0,2*%pi,n); y = x;
-                z = cos(x')*cos(y);
-                C = splin2d(x, y, z, "periodic");
-                
-                // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-                m = 80; // discretisation parameter of the evaluation grid
-                xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
-                [XX,YY] = ndgrid(xx,yy);
-                zz1 = interp2d(XX,YY, x, y, C, "C0");
-                plot3d(xx, yy, zz1, flag=[2 6 4])
-                xtitle("extrapolation with the C0 outmode")
-            </scilab:image>
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
             
-            <programlisting role="example"><![CDATA[
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretisation parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz1 = interp2d(XX,YY, x, y, C, "C0");
+            plot3d(xx, yy, zz1, flag=[2 6 4])
+            xtitle("extrapolation with the C0 outmode")
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
@@ -230,21 +230,21 @@ zz2 = interp2d(XX,YY, x, y, C, "by_zero");
 plot3d(xx, yy, zz2, flag=[2 6 4])
 xtitle("extrapolation with the by_zero outmode")
  ]]></programlisting>
-            <scilab:image>
-                n = 7;  // a n x n interpolation grid
-                x = linspace(0,2*%pi,n); y = x;
-                z = cos(x')*cos(y);
-                C = splin2d(x, y, z, "periodic");
-                
-                // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-                m = 80; // discretisation parameter of the evaluation grid
-                xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
-                [XX,YY] = ndgrid(xx,yy);
-                zz2 = interp2d(XX,YY, x, y, C, "by_zero");
-                plot3d(xx, yy, zz2, flag=[2 6 4])
-                xtitle("extrapolation with the by_zero outmode")
-            </scilab:image>
-            <programlisting role="example"><![CDATA[
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretisation parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz2 = interp2d(XX,YY, x, y, C, "by_zero");
+            plot3d(xx, yy, zz2, flag=[2 6 4])
+            xtitle("extrapolation with the by_zero outmode")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
@@ -258,22 +258,22 @@ zz3 = interp2d(XX,YY, x, y, C, "periodic");
 plot3d(xx, yy, zz3, flag=[2 6 4])
 xtitle("extrapolation with the periodic outmode")
  ]]></programlisting>
-            <scilab:image>
-                n = 7;  // a n x n interpolation grid
-                x = linspace(0,2*%pi,n); y = x;
-                z = cos(x')*cos(y);
-                C = splin2d(x, y, z, "periodic");
-                
-                // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-                m = 80; // discretisation parameter of the evaluation grid
-                xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
-                [XX,YY] = ndgrid(xx,yy);
-                zz3 = interp2d(XX,YY, x, y, C, "periodic");
-                plot3d(xx, yy, zz3, flag=[2 6 4])
-                xtitle("extrapolation with the periodic outmode")
-            </scilab:image>
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
             
-            <programlisting role="example"><![CDATA[
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretisation parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz3 = interp2d(XX,YY, x, y, C, "periodic");
+            plot3d(xx, yy, zz3, flag=[2 6 4])
+            xtitle("extrapolation with the periodic outmode")
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
@@ -287,37 +287,37 @@ zz4 = interp2d(XX,YY, x, y, C, "natural");
 plot3d(xx, yy, zz4, flag=[2 6 4])
 xtitle("extrapolation with the natural outmode")
  ]]></programlisting>
-            <scilab:image>
-                
-                n = 7;  // a n x n interpolation grid
-                x = linspace(0,2*%pi,n); y = x;
-                z = cos(x')*cos(y);
-                C = splin2d(x, y, z, "periodic");
-                
-                // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-                m = 80; // discretisation parameter of the evaluation grid
-                xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
-                [XX,YY] = ndgrid(xx,yy);
-                zz4 = interp2d(XX,YY, x, y, C, "natural");
-                plot3d(xx, yy, zz4, flag=[2 6 4])
-                xtitle("extrapolation with the natural outmode")
-            </scilab:image>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="splin2d">splin2d</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revremark>Previously, imaginary part of input arguments were implicitly ignored.</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+        <scilab:image>
+            
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretisation parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz4 = interp2d(XX,YY, x, y, C, "natural");
+            plot3d(xx, yy, zz4, flag=[2 6 4])
+            xtitle("extrapolation with the natural outmode")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="splin2d">splin2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>Previously, imaginary part of input arguments were implicitly ignored.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

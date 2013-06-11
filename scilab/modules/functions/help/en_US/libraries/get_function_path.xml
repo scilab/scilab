@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
@@ -10,56 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="get_function_path">
-        <refnamediv>
-            <refname>get_function_path</refname>
-            <refpurpose>get source file path of a library function</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>path=get_function_path(fun_name)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>fun_name</term>
-                    <listitem>
-                        <para>a string, the name of the function</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>path</term>
-                    <listitem>
-                        <para>a string, the absolute pathname of the function source file (.sci) or [].</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                Given the name of a function get_function_path returns the absolute
-                pathname of the function source file if the function is defined in a
-                Scilab library (see lib) or [] if name does not match any library
-                function.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="get_function_path">
+    <refnamediv>
+        <refname>get_function_path</refname>
+        <refpurpose>get source file path of a library function</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>path=get_function_path(fun_name)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>fun_name</term>
+                <listitem>
+                    <para>a string, the name of the function</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>a string, the absolute pathname of the function source file (.sci) or [].</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Given the name of a function get_function_path returns the absolute
+            pathname of the function source file if the function is defined in a
+            Scilab library (see lib) or [] if name does not match any library
+            function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 get_function_path('median')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="lib">lib</link>
-                </member>
-                <member>
-                    <link linkend="string">string</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lib">lib</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

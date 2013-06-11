@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,224 +21,224 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="EXPRESSION">
-        <refnamediv>
-            <refname>EXPRESSION</refname>
-            <refpurpose>Mathematical expression</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="EXPRESSION">
+    <refnamediv>
+        <refname>EXPRESSION</refname>
+        <refpurpose>Mathematical expression</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/EXPRESSION.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_EXPRESSION">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="EXPRESSION">Mathematical expression</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_EXPRESSION">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_EXPRESSION">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_EXPRESSION">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_EXPRESSION">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_EXPRESSION">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_EXPRESSION">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_EXPRESSION">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_EXPRESSION">
+        <title>Description</title>
+        <para>
+            The Expression block applies the specified Scilab expressions to its input.
+        </para>
+    </refsection>
+    <refsection id="Dialogbox_EXPRESSION">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/userdefinedfunctions_pal/en_US/EXPRESSION_gui.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number of inputs</emphasis>
+                </para>
+                <para> Block input can be a scalar or vector.</para>
+                <para> Properties : Type 'vec' of size 1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">scilab expression</emphasis>
+                </para>
+                <para> The Scilab expression applied to the input.</para>
+                <para> Properties : Type 'vec' of size 1 </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">use zero-crossing</emphasis>
+                </para>
+                <para> Select to enable zero crossing detection.</para>
+                <para> Properties : Type 'vec' of size 1</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_EXPRESSION">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">evaluate_expr</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_EXPRESSION">
+        <title>Example</title>
+        <para>
+            The following example calculate an arbitrary expression with multiple different configuration or blocks.
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
+                Open this example in Xcos
+            </link>
+        </para>
+        <para>
+            <latex>y=u(1) - u(2) - u(3)</latex>
+        </para>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../images/palettes/EXPRESSION.png" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_EXPRESSION">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="EXPRESSION">Mathematical expression</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_EXPRESSION">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_EXPRESSION">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_EXPRESSION">Dialog box</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_EXPRESSION">Default properties</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Example_EXPRESSION">Example</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_EXPRESSION">Interfacing function</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_EXPRESSION">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_EXPRESSION">
-            <title>Description</title>
-            <para>
-                The Expression block applies the specified Scilab expressions to its input.
-            </para>
-        </refsection>
-        <refsection id="Dialogbox_EXPRESSION">
-            <title>Dialog box</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../../../gui/userdefinedfunctions_pal/en_US/EXPRESSION_gui.png" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para>
-                
-            </para>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number of inputs</emphasis>
-                    </para>
-                    <para> Block input can be a scalar or vector.</para>
-                    <para> Properties : Type 'vec' of size 1 </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">scilab expression</emphasis>
-                    </para>
-                    <para> The Scilab expression applied to the input.</para>
-                    <para> Properties : Type 'vec' of size 1 </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">use zero-crossing</emphasis>
-                    </para>
-                    <para> Select to enable zero crossing detection.</para>
-                    <para> Properties : Type 'vec' of size 1</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_EXPRESSION">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular inputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular outputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">evaluate_expr</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Example_EXPRESSION">
-            <title>Example</title>
-            <para>
-                The following example calculate an arbitrary expression with multiple different configuration or blocks.
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
-                    Open this example in Xcos
-                </link>
-            </para>
-            <para>
-                <latex>y=u(1) - u(2) - u(3)</latex>
-            </para>
-            <para/>
-            <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                </link>
-                <scilab:image><![CDATA[
+            </link>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
-        </refsection>
-        <refsection id="Interfacingfunction_EXPRESSION">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para> SCI/modules/scicos_blocks/macros/Misc/EXPRESSION.sci</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+        </para>
+    </refsection>
+    <refsection id="Interfacingfunction_EXPRESSION">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Misc/EXPRESSION.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

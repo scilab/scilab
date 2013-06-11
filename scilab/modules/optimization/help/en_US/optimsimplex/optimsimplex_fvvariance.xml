@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,45 +10,45 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_fvvariance" xml:lang="en">
-        <refnamediv>
-            <refname>optimsimplex_fvvariance</refname>
-            <refpurpose>Computes the variance.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                v = optimsimplex_fvvariance(opt)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Argument</title>
-            <variablelist>
-                <varlistentry>
-                    <term>opt </term>
-                    <listitem>
-                        <para>The current simplex object of TSIMPLEX type (tlist).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>v </term>
-                    <listitem>
-                        <para>A scalar, the variance.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <literal>optimsimplex_fvvariance</literal> function returns the variance 
-                of the function value on the simplex.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example">
-                <![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_fvvariance" xml:lang="en">
+    <refnamediv>
+        <refname>optimsimplex_fvvariance</refname>
+        <refpurpose>Computes the variance.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            v = optimsimplex_fvvariance(opt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The current simplex object of TSIMPLEX type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v </term>
+                <listitem>
+                    <para>A scalar, the variance.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimsimplex_fvvariance</literal> function returns the variance 
+            of the function value on the simplex.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
     s1 = optimsimplex_new ();
 simplex = [
 3.  0.  0.
@@ -61,17 +61,17 @@ disp(v)
 
 s1 = optimsimplex_destroy(s1);
  ]]>
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="optimsimplex_fvmean">optimsimplex_fvmean</link>
-                </member>
-                <member>
-                    <link linkend="optimsimplex_fvstdev">optimsimplex_fvstdev</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimsimplex_fvmean">optimsimplex_fvmean</link>
+            </member>
+            <member>
+                <link linkend="optimsimplex_fvstdev">optimsimplex_fvstdev</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

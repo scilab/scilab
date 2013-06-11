@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,63 +10,63 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="tan" xml:lang="ja">
-        <refnamediv>
-            <refname>tan</refname>
-            <refpurpose>正接</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>[t]=tan(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>引数</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>ベクトルまたは行列</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>t</term>
-                    <listitem>
-                        <para>ベクトルまたは行列</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                <literal>t</literal> の要素は
-                <literal>x</literal>の要素の正接となります.
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <scilab:image>
-                x=(-%pi/2)+0.01:0.01:(%pi/2)-0.01;
-                plot(x,tan(x))
-            </scilab:image>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="tan" xml:lang="ja">
+    <refnamediv>
+        <refname>tan</refname>
+        <refpurpose>正接</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[t]=tan(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>ベクトルまたは行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>ベクトルまたは行列</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>t</literal> の要素は
+            <literal>x</literal>の要素の正接となります.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <scilab:image>
+            x=(-%pi/2)+0.01:0.01:(%pi/2)-0.01;
+            plot(x,tan(x))
+        </scilab:image>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 x=[1,%i,-1,-%i]
 tan(x)
 sin(x)./cos(x)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="atan">atan</link>
-                </member>
-                <member>
-                    <link linkend="tanm">tanm</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atan">atan</link>
+            </member>
+            <member>
+                <link linkend="tanm">tanm</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

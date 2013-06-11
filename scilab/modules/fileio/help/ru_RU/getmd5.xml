@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
@@ -11,50 +11,50 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getmd5">
-        <refnamediv>
-            <refname>getmd5</refname>
-            <refpurpose>получение контрольной суммы md5</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>
-                res=getmd5(filename)
-                res=getmd5(ParamString,'string')
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>res</term>
-                    <listitem>
-                        <para>результат, контрольная сумма md5 (строка)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>filename</term>
-                    <listitem>
-                        <para>имя файла (строка или матрица строк)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ParamString</term>
-                    <listitem>
-                        <para>строка или матрица строк</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Функция <function>getmd5</function> получает контрольную сумму md5 файла <varname>filename</varname> или строки <varname>ParamString</varname>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getmd5">
+    <refnamediv>
+        <refname>getmd5</refname>
+        <refpurpose>получение контрольной суммы md5</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            res=getmd5(filename)
+            res=getmd5(ParamString,'string')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>результат, контрольная сумма md5 (строка)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>имя файла (строка или матрица строк)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ParamString</term>
+                <listitem>
+                    <para>строка или матрица строк</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>getmd5</function> получает контрольную сумму md5 файла <varname>filename</varname> или строки <varname>ParamString</varname>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 getmd5('Привет, мир!','string')
 getmd5(['Привет,' 'мир!'],'string')
 getmd5(['Привет,' ; 'мир!'],'string')
@@ -62,5 +62,5 @@ getmd5(['Привет,' ; 'мир!'],'string')
 getmd5( SCI+'/modules/core/etc/core.start' )
 getmd5( SCI+'/modules/core/etc/'+['core.start' 'core.quit'])
  ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

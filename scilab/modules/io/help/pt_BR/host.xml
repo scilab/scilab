@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
  * 
@@ -10,46 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="host" xml:lang="en">
-        <refnamediv>
-            <refname>host</refname>
-            <refpurpose>execução de comandos do Unix ou DOS</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>stat=host(command-name)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>command-name</term>
-                    <listitem>
-                        <para>um string contendo uma instrução sh Unix </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>stat</term>
-                    <listitem>
-                        <para>um flag ("indicador") inteiro </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                Envia um string <literal>command-name</literal> para o Unix para
-                execução pelo interpretador de comando (sh em Unix, ou command.com em
-                DOS). As saídas e os erros padrões do comando do shell são escritos no
-                shell chamado. <literal>stat</literal> fornece -1 se o "host" (significa
-                "anfitrião") não pode ser chamado (memória disponível do sistema
-                insuficiente) ou se o interpretador de comando retorna o código.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="host" xml:lang="en">
+    <refnamediv>
+        <refname>host</refname>
+        <refpurpose>execução de comandos do Unix ou DOS</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>stat=host(command-name)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>command-name</term>
+                <listitem>
+                    <para>um string contendo uma instrução sh Unix </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>stat</term>
+                <listitem>
+                    <para>um flag ("indicador") inteiro </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Envia um string <literal>command-name</literal> para o Unix para
+            execução pelo interpretador de comando (sh em Unix, ou command.com em
+            DOS). As saídas e os erros padrões do comando do shell são escritos no
+            shell chamado. <literal>stat</literal> fornece -1 se o "host" (significa
+            "anfitrião") não pode ser chamado (memória disponível do sistema
+            insuficiente) ou se o interpretador de comando retorna o código.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 //criando uma função getdir baseda no host
 function wd=getdir()
   if getos() == 'Windows' then 
@@ -62,28 +62,28 @@ endfunction
 //chamando-a
 wd=getdir()
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="edit">edit</link>
-                </member>
-                <member>
-                    <link linkend="manedit">manedit</link>
-                </member>
-                <member>
-                    <link linkend="unix_g">unix_g</link>
-                </member>
-                <member>
-                    <link linkend="unix_s">unix_s</link>
-                </member>
-                <member>
-                    <link linkend="unix_w">unix_w</link>
-                </member>
-                <member>
-                    <link linkend="unix_x">unix_x</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="edit">edit</link>
+            </member>
+            <member>
+                <link linkend="manedit">manedit</link>
+            </member>
+            <member>
+                <link linkend="unix_g">unix_g</link>
+            </member>
+            <member>
+                <link linkend="unix_s">unix_s</link>
+            </member>
+            <member>
+                <link linkend="unix_w">unix_w</link>
+            </member>
+            <member>
+                <link linkend="unix_x">unix_x</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

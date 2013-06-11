@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    
-    <!--
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
  *
@@ -11,66 +11,66 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="preferences" xml:lang="ja">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="preferences" xml:lang="ja">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>preferences</refname>
-            
-            <refpurpose>Scilab設定ウィンドウを開く</refpurpose>
-            
-        </refnamediv>
+        <refname>preferences</refname>
         
-        <refsynopsisdiv>
-            
-            <title>呼び出し手順</title>
-            
-            <synopsis>
-                
-                preferences()
-                
-            </synopsis>
-            
-        </refsynopsisdiv>
+        <refpurpose>Scilab設定ウィンドウを開く</refpurpose>
         
-        <refsection>
-            
-            <title>説明</title>
-            
-            <para>
-                
-                Scilab設定ウィンドウを開きます. 
-                
-            </para>
-            
-        </refsection>
+    </refnamediv>
+    
+    <refsynopsisdiv>
         
-        <refsection>
+        <title>呼び出し手順</title>
+        
+        <synopsis>
             
-            <title>例</title>
+            preferences()
             
-            <programlisting role="example"><![CDATA[
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            Scilab設定ウィンドウを開きます. 
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
 preferences()
  ]]></programlisting>
-            
-        </refsection>
         
-        <refsection role="see also">
-            
-            <title>参照</title>
-            
-            <simplelist type="inline">
-                
-                <member>
-                    
-                    <link linkend="scinotes">scinotes</link>
-                    
-                </member>
-                
-            </simplelist>
-            
-        </refsection>
-        
-    </refentry>
+    </refsection>
     
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="scinotes">scinotes</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

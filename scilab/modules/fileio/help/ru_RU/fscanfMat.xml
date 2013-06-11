@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
@@ -11,177 +11,177 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fscanfMat" xml:lang="ru">
-        <refnamediv>
-            <refname>fscanfMat</refname>
-            <refpurpose>считывает матрицу из текстового файла</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>M = fscanfMat(filename[, fmt]);
-                [M, text] = fscanfMat(filename [, fmt]);
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>filename</term>
-                    <listitem>
-                        <para>
-                            символьная строка, указывающая имя файла, который
-                            необходимо просканировать.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>fmt</term>
-                    <listitem>
-                        <para>
-                            символьная строка, указывающая формат. Это необязательный
-                            параметр. Значение по умолчанию <literal>"%lg"</literal>.
-                        </para>
-                        <para>
-                            Поддерживаемый формат:
-                            <literal>%[width].[precision]type</literal> или
-                            <literal>%type</literal>, где:
-                        </para>
-                        <para>
-                            <literal>width</literal>: необязательное число, которое
-                            определяет минимальное количество знаков на выходе;
-                        </para>
-                        <para>
-                            <literal>precision</literal>: необязательное число,
-                            которое определяет максимальное количество знаков,
-                            выводимых для всех или части выходных полей, или
-                            минимальное количество цифр, выводимых для целочисленных значений.
-                        </para>
-                        <para>
-                            <literal>type</literal>: lf, lg, d, i, e, f, g (см. <link
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fscanfMat" xml:lang="ru">
+    <refnamediv>
+        <refname>fscanfMat</refname>
+        <refpurpose>считывает матрицу из текстового файла</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>M = fscanfMat(filename[, fmt]);
+            [M, text] = fscanfMat(filename [, fmt]);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>
+                        символьная строка, указывающая имя файла, который
+                        необходимо просканировать.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fmt</term>
+                <listitem>
+                    <para>
+                        символьная строка, указывающая формат. Это необязательный
+                        параметр. Значение по умолчанию <literal>"%lg"</literal>.
+                    </para>
+                    <para>
+                        Поддерживаемый формат:
+                        <literal>%[width].[precision]type</literal> или
+                        <literal>%type</literal>, где:
+                    </para>
+                    <para>
+                        <literal>width</literal>: необязательное число, которое
+                        определяет минимальное количество знаков на выходе;
+                    </para>
+                    <para>
+                        <literal>precision</literal>: необязательное число,
+                        которое определяет максимальное количество знаков,
+                        выводимых для всех или части выходных полей, или
+                        минимальное количество цифр, выводимых для целочисленных значений.
+                    </para>
+                    <para>
+                        <literal>type</literal>: lf, lg, d, i, e, f, g (см. <link
             linkend="scanf_conversion">scanf_conversion</link>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>M</term>
-                    <listitem>
-                        <para>
-                            выходная переменная. Матрица вещественных чисел.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>text</term>
-                    <listitem>
-                        <para>
-                            выходная переменная. Вектор-столбец строк. Это комментарии
-                            в начале файла с именем <varname>filename</varname>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Функция <function>fscanfMat</function> используется для считывания
-                вещественной матрицы из текстового файла с именем
-                <varname>filename</varname>. Первые нечисловые строчки файла
-                возвращаются в переменной <varname>text</varname>, если это
-                запрошено, а все оставшиеся строчки должны иметь одинаковое
-                количество столбцов (разделителем столбцов предполагается пробел
-                или символы табуляции). Количество столбцов матрицы должно
-                соответствовать количеству столбцов, обнаруженных в файле
-                <varname>filename</varname>, а количество строк получается при
-                обнаружении конца файла (EOF) во входном файле. Эта функция
-                может быть использована для чтения числовых данных, сохранённых
-                с помощью функции <function>fprintfMat</function> (по умолчанию в
-                качестве разделителя используется пробел).
-            </para>
-            <para>
-                <function>fscanfMat</function> поддерживает файлы с кодировкой ANSI/ASCII и UTF-8.
-            </para>
-            <para>
-                Для чтения CSV-файлов, рекомендуется функция <link linkend="csvRead">csvRead</link>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"> 
-                fd = mopen(TMPDIR + "/Mat", "w");
-                mfprintf(fd, "Какой-то текст.....\n");
-                mfprintf(fd, "Ещё какой-то текст...\n");
-                a = rand(6,6);
-                for i = 1:6 ,
-                for j = 1:6, mfprintf(fd, "%5.2f ", a(i,j));end;
-                mfprintf(fd, "\n"); 
-                end
-                mclose(fd);
-                a1 = fscanfMat(TMPDIR + "/Mat")
-                
-                A = ones(5,5) + 0.1;
-                fprintfMat(TMPDIR + "/Matrix.txt", A, "%lg");
-                B = fscanfMat(TMPDIR + "/Matrix.txt", "%lg");
-                A == B
-                
-                C = [%nan, %inf, -%inf, 1];
-                fprintfMat(TMPDIR + "/MatrixNANINF.txt", C);
-                D = fscanfMat(TMPDIR + '/MatrixNANINF.txt')
-                
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="scanf_conversion">scanf_conversion</link>
-                </member>
-                <member>
-                    <link linkend="mclose">mclose</link>
-                </member>
-                <member>
-                    <link linkend="meof">meof</link>
-                </member>
-                <member>
-                    <link linkend="mfprintf">mfprintf</link>
-                </member>
-                <member>
-                    <link linkend="fprintfMat">fprintfMat</link>
-                </member>
-                <member>
-                    <link linkend="mfscanf">mfscanf</link>
-                </member>
-                <member>
-                    <link linkend="mget">mget</link>
-                </member>
-                <member>
-                    <link linkend="mgetstr">mgetstr</link>
-                </member>
-                <member>
-                    <link linkend="mopen">mopen</link>
-                </member>
-                <member>
-                    <link linkend="mprintf">mprintf</link>
-                </member>
-                <member>
-                    <link linkend="mput">mput</link>
-                </member>
-                <member>
-                    <link linkend="mputstr">mputstr</link>
-                </member>
-                <member>
-                    <link linkend="mseek">mseek</link>
-                </member>
-                <member>
-                    <link linkend="mtell">mtell</link>
-                </member>
-                <member>
-                    <link linkend="mdelete">mdelete</link>
-                </member>
-                <member>
-                    <link linkend="csvRead">csvRead</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
-    
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>
+                        выходная переменная. Матрица вещественных чисел.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>text</term>
+                <listitem>
+                    <para>
+                        выходная переменная. Вектор-столбец строк. Это комментарии
+                        в начале файла с именем <varname>filename</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>fscanfMat</function> используется для считывания
+            вещественной матрицы из текстового файла с именем
+            <varname>filename</varname>. Первые нечисловые строчки файла
+            возвращаются в переменной <varname>text</varname>, если это
+            запрошено, а все оставшиеся строчки должны иметь одинаковое
+            количество столбцов (разделителем столбцов предполагается пробел
+            или символы табуляции). Количество столбцов матрицы должно
+            соответствовать количеству столбцов, обнаруженных в файле
+            <varname>filename</varname>, а количество строк получается при
+            обнаружении конца файла (EOF) во входном файле. Эта функция
+            может быть использована для чтения числовых данных, сохранённых
+            с помощью функции <function>fprintfMat</function> (по умолчанию в
+            качестве разделителя используется пробел).
+        </para>
+        <para>
+            <function>fscanfMat</function> поддерживает файлы с кодировкой ANSI/ASCII и UTF-8.
+        </para>
+        <para>
+            Для чтения CSV-файлов, рекомендуется функция <link linkend="csvRead">csvRead</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"> 
+            fd = mopen(TMPDIR + "/Mat", "w");
+            mfprintf(fd, "Какой-то текст.....\n");
+            mfprintf(fd, "Ещё какой-то текст...\n");
+            a = rand(6,6);
+            for i = 1:6 ,
+            for j = 1:6, mfprintf(fd, "%5.2f ", a(i,j));end;
+            mfprintf(fd, "\n"); 
+            end
+            mclose(fd);
+            a1 = fscanfMat(TMPDIR + "/Mat")
+            
+            A = ones(5,5) + 0.1;
+            fprintfMat(TMPDIR + "/Matrix.txt", A, "%lg");
+            B = fscanfMat(TMPDIR + "/Matrix.txt", "%lg");
+            A == B
+            
+            C = [%nan, %inf, -%inf, 1];
+            fprintfMat(TMPDIR + "/MatrixNANINF.txt", C);
+            D = fscanfMat(TMPDIR + '/MatrixNANINF.txt')
+            
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scanf_conversion">scanf_conversion</link>
+            </member>
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="fprintfMat">fprintfMat</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+            <member>
+                <link linkend="csvRead">csvRead</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

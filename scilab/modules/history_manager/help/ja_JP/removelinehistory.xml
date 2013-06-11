@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    
-    <!--
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
  *
@@ -11,66 +11,66 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="removelinehistory">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="removelinehistory">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>removelinehistory</refname>
-            
-            <refpurpose>履歴のN行目を削除.</refpurpose>
-            
-        </refnamediv>
+        <refname>removelinehistory</refname>
         
-        <refsynopsisdiv>
-            
-            <title>呼び出し手順</title>
-            
-            <synopsis>removelinehistory(N)</synopsis>
-            
-        </refsynopsisdiv>
+        <refpurpose>履歴のN行目を削除.</refpurpose>
         
-        <refsection>
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>removelinehistory(N)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
             
-            <title>引数</title>
-            
-            <variablelist>
+            <varlistentry>
                 
-                <varlistentry>
-                    
-                    <term>N</term>
-                    
-                    <listitem>
-                        
-                        <para>行番号</para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
+                <term>N</term>
                 
-            </variablelist>
+                <listitem>
+                    
+                    <para>行番号</para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-        </refsection>
+        </variablelist>
         
-        <refsection>
-            
-            <title>説明</title>
-            
-            <para>履歴のN行目を削除します.</para>
-            
-        </refsection>
+    </refsection>
+    
+    <refsection>
         
-        <refsection>
-            
-            <title>例</title>
-            
-            <programlisting role="example"><![CDATA[ 
+        <title>説明</title>
+        
+        <para>履歴のN行目を削除します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[ 
 displayhistory()
 removelinehistory(historysize()-2)
 displayhistory()
  ]]></programlisting>
-            
-        </refsection>
         
-    </refentry>
+    </refsection>
     
+</refentry>
+

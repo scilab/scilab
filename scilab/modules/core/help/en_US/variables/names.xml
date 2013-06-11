@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="names">
-        <refnamediv>
-            <refname>names</refname>
-            <refpurpose>Scilab names syntax</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Description</title><para>
-                Names of variables and functions must begin with a letter or one of
-                the following special characters  '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
-            </para>
-            <para>
-                Next characters may be letters or digits or any special character in '<literal>_</literal>', 
-                '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
-            </para>
-            <para>
-            </para>
-            Upper and lower case letters are different.
-            <para>
-                Names may be as long as you want but only the first 24 characters are
-                taken into account. If you exceed this limit you get a warning. Please note that this limitation will be fixed with the release of Scilab 6.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="names">
+    <refnamediv>
+        <refname>names</refname>
+        <refpurpose>Scilab names syntax</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title><para>
+            Names of variables and functions must begin with a letter or one of
+            the following special characters  '<literal>%</literal>', '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
+        </para>
+        <para>
+            Next characters may be letters or digits or any special character in '<literal>_</literal>', 
+            '<literal>#</literal>', '<literal>!</literal>', '<literal>$</literal>', '<literal>?</literal>'.
+        </para>
+        <para>
+        </para>
+        Upper and lower case letters are different.
+        <para>
+            Names may be as long as you want but only the first 24 characters are
+            taken into account. If you exceed this limit you get a warning. Please note that this limitation will be fixed with the release of Scilab 6.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 //Valid names
 %eps
 A1=123
@@ -43,5 +43,5 @@ Try_to_use_a_too_long_name2 = 2
 disp(Try_to_use_a_too_long_name)
 // Please note that this limitation will be fixed with the release of Scilab 6.
  ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

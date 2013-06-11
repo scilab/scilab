@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
  * 
@@ -10,86 +10,86 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="emptystr">
-        <refnamediv>
-            <refname>emptystr</refname>
-            <refpurpose>zero length string</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>s = emptystr()
-                s = emptystr(a)
-                s = emptystr(m, n)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>a</term>
-                    <listitem>
-                        <para>
-                            a matrix of size <literal>mx n</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>s</term>
-                    <listitem>
-                        <para>a matrix of character strings.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>m, n</term>
-                    <listitem>
-                        <para>integers</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <function>emptystr</function> function returns a matrix of zero
-                length character strings.
-            </para>
-            <para>
-                With no input argument <function>emptystr</function> returns a zero
-                length character string.
-            </para>
-            <para>
-                With a matrix <varname>a</varname> for input argument
-                <function>emptystr</function> returns a zero length character
-                strings matrix of the same size.
-            </para>
-            <para>
-                With two integer arguments <function>emptystr</function> returns a
-                <varname>m</varname> <literal>x</literal> <varname>n</varname> zero
-                length character strings matrix.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="emptystr">
+    <refnamediv>
+        <refname>emptystr</refname>
+        <refpurpose>zero length string</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>s = emptystr()
+            s = emptystr(a)
+            s = emptystr(m, n)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>
+                        a matrix of size <literal>mx n</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>a matrix of character strings.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m, n</term>
+                <listitem>
+                    <para>integers</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <function>emptystr</function> function returns a matrix of zero
+            length character strings.
+        </para>
+        <para>
+            With no input argument <function>emptystr</function> returns a zero
+            length character string.
+        </para>
+        <para>
+            With a matrix <varname>a</varname> for input argument
+            <function>emptystr</function> returns a zero length character
+            strings matrix of the same size.
+        </para>
+        <para>
+            With two integer arguments <function>emptystr</function> returns a
+            <varname>m</varname> <literal>x</literal> <varname>n</varname> zero
+            length character strings matrix.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=emptystr();
 for k=1:10
     x = x + ',' + string(k)
     emptystr(1,k) + string(k)
 end
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="part">part</link>
-                </member>
-                <member>
-                    <link linkend="length">length</link>
-                </member>
-                <member>
-                    <link linkend="string">string</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="part">part</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+            <member>
+                <link linkend="string">string</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

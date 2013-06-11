@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2007 - INRIA - Vincent COUVERT
     * 
@@ -10,58 +10,58 @@
     * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
     *
     -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="clc">
-        <refnamediv>
-            <refname>clc</refname>
-            <refpurpose>Efface la fenêtre de commande</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Séquence d'appel</title>
-            <synopsis>clc([nblines])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Paramètres</title>
-            <variablelist>
-                <varlistentry>
-                    <term>nblines</term>
-                    <listitem>
-                        <para>une valeur double</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <code>clc()</code> efface toutes les entrées et sorties de la fenêtre de commande.
-            </para>
-            <para>
-                Après avoir utilisé <code>clc()</code>, vous ne pouvez pas utiliser la barre de défilement pour voir l'historique des fonctions, mais vous pouvez encore utiliser le clavier pour rappeler les instructions de l'historique des commandes.
-            </para>
-            <para>
-                <code>clc(nblines)</code> efface <varname>nblines</varname> au dessus de la ligne courante du curseur et déplace le curseur jusqu'à cette ligne.
-            </para>
-            <para>
-                <note>
-                    Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
-                </note>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="clc">
+    <refnamediv>
+        <refname>clc</refname>
+        <refpurpose>Efface la fenêtre de commande</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>clc([nblines])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>nblines</term>
+                <listitem>
+                    <para>une valeur double</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>clc()</code> efface toutes les entrées et sorties de la fenêtre de commande.
+        </para>
+        <para>
+            Après avoir utilisé <code>clc()</code>, vous ne pouvez pas utiliser la barre de défilement pour voir l'historique des fonctions, mais vous pouvez encore utiliser le clavier pour rappeler les instructions de l'historique des commandes.
+        </para>
+        <para>
+            <code>clc(nblines)</code> efface <varname>nblines</varname> au dessus de la ligne courante du curseur et déplace le curseur jusqu'à cette ligne.
+        </para>
+        <para>
+            <note>
+                Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[
 rand(10,10)
 clc();
 rand(10,10)
 clc(5); // Efface les 5 précédentes lignes.
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="tohome">tohome</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tohome">tohome</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

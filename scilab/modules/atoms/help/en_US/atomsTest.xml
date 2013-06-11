@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 DIGITEO - Simon GARESTE <simon.gareste@scilab.org>
  * Copyright (C) 2011 DIGITEO - Allan CORNET
@@ -11,325 +11,325 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsTest" xml:lang="en">
-        <refnamediv>
-            <refname>atomsTest</refname>
-            <refpurpose>Execute tests of given module installed</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                status = atomsTest(module)
-                status = atomsTest(module, test_name)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>module</term>
-                    <listitem>
-                        <para>mx1 Matrix of strings:</para>
-                        <informaltable border="1">
-                            <!-- Technical name -->
-                            <tr>
-                                <td>
-                                    <emphasis>1st Col.</emphasis>
-                                </td>
-                                <td>
-                                    <emphasis role="strong">Technical name</emphasis>
-                                </td>
-                                <td>Mandatory</td>
-                                <td/>
-                            </tr>
-                        </informaltable>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>test_name</term>
-                    <listitem>
-                        <para>A string array</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>status</term>
-                    <listitem>
-                        <para>boolean value %t or %f Returns %t if no error has been
-                            detected Returns %f if any error has been detected
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>atomsTest</literal> executes all the tests provided by the
-                module and print their results.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <para>
-                <emphasis role="strong">Example 1</emphasis>: Test a module already
-                installed
-            </para>
-            <programlisting role="example">// Display some additionnal information
-                atomsSetConfig("Verbose","True");
-                
-                // Get the list of loaded modules:
-                atomsGetLoaded();
-                
-                //Supposing that toolbox_1 is installed, test :
-                atomsTest("toolbox_1");
-            </programlisting>
-            <refsection>
-                <title>Explanations on the printing</title>
-                <para>
-                    <emphasis role="strong">Example 1</emphasis>: result of
-                    atomsTest("apifun")
-                </para>
-                <programlisting role="example">   atomsTest("apifun")
-                    TMPDIR = /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV
-                    
-                    001/019 - [SCI/contrib/apifun/0.2-2] argindefault...............passed
-                    002/019 - [SCI/contrib/apifun/0.2-2] checkcallable..............passed
-                    003/019 - [SCI/contrib/apifun/0.2-2] checkdims..................passed
-                    004/019 - [SCI/contrib/apifun/0.2-2] checkflint.................passed
-                    005/019 - [SCI/contrib/apifun/0.2-2] checkgreq..................passed
-                    006/019 - [SCI/contrib/apifun/0.2-2] checklhs...................passed
-                    007/019 - [SCI/contrib/apifun/0.2-2] checkloweq.................passed
-                    008/019 - [SCI/contrib/apifun/0.2-2] checkoption................passed
-                    009/019 - [SCI/contrib/apifun/0.2-2] checkrange.................passed
-                    010/019 - [SCI/contrib/apifun/0.2-2] checkrhs...................passed
-                    011/019 - [SCI/contrib/apifun/0.2-2] checkscalar................passed
-                    012/019 - [SCI/contrib/apifun/0.2-2] checksquare................passed
-                    013/019 - [SCI/contrib/apifun/0.2-2] checktype..................passed
-                    014/019 - [SCI/contrib/apifun/0.2-2] checkveccol................failed  : dia and ref are not equal
-                    015/019 - [SCI/contrib/apifun/0.2-2] checkvecrow................passed
-                    016/019 - [SCI/contrib/apifun/0.2-2] checkvector................failed  : dia and ref are not equal
-                    017/019 - [SCI/contrib/apifun/0.2-2] complete...................passed
-                    018/019 - [SCI/contrib/apifun/0.2-2] complete2..................passed
-                    019/019 - [SCI/contrib/apifun/0.2-2] expandvar..................passed
-                    
-                    --------------------------------------------------------------------------
-                    Summary
-                    
-                    tests                       19 - 100 %
-                    passed                      17 -  89 %
-                    failed                       2 -  10 %
-                    skipped                      0 -   0 %
-                    length                          26.34 sec
-                    --------------------------------------------------------------------------
-                    Details
-                    
-                    
-                    TEST : [SCI/contrib/apifun/0.2-2] checkveccol
-                    failed  : dia and ref are not equal
-                    Compare the following files :
-                    - /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV/checkveccol.dia
-                    - /Users/scilab/Desktop/scilab-5.3.3.app/Contents/MacOS/share/scilab/contrib/apifun/0.2-2/tests/unit_tests/checkveccol.dia.ref
-                    
-                    TEST : [SCI/contrib/apifun/0.2-2] checkvector
-                    failed  : dia and ref are not equal
-                    Compare the following files :
-                    - /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV/checkvector.dia
-                    - /Users/scilab/Desktop/scilab-5.3.3.app/Contents/MacOS/share/scilab/contrib/apifun/0.2-2/tests/unit_tests/checkvector.dia.ref
-                    
-                    
-                    --------------------------------------------------------------------------
-                    ans  =
-                    
-                    %f 
-                </programlisting>
-                <para>TMPDIR is the general folder where all the temporary files of the
-                    tests will be saved. The list of the tests is then shown, with their
-                    endings.
-                </para>
-                <para>
-                    <emphasis role="strong">Possible endings</emphasis>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsTest" xml:lang="en">
+    <refnamediv>
+        <refname>atomsTest</refname>
+        <refpurpose>Execute tests of given module installed</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            status = atomsTest(module)
+            status = atomsTest(module, test_name)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>module</term>
+                <listitem>
+                    <para>mx1 Matrix of strings:</para>
                     <informaltable border="1">
-                        <!-- Passed -->
+                        <!-- Technical name -->
                         <tr>
                             <td>
-                                <emphasis>passed</emphasis>
+                                <emphasis>1st Col.</emphasis>
                             </td>
-                            <td>Test ended up successfully</td>
-                        </tr>
-                        <!-- failed : error_output not empty -->
-                        <tr>
                             <td>
-                                <emphasis>failed : error_output not empty</emphasis>
+                                <emphasis role="strong">Technical name</emphasis>
                             </td>
-                            <td>A line has been printed whereas it should not have</td>
-                        </tr>
-                        <!-- failed : dia and ref are not equal -->
-                        <tr>
-                            <td>
-                                <emphasis>failed : dia and ref are not equal</emphasis>
-                            </td>
-                            <td>You have a difference between your result and what it should
-                                have been (reference)
-                            </td>
-                        </tr>
-                        <!-- failed : premature end of the test scrip -->
-                        <tr>
-                            <td>
-                                <emphasis>failed : premature end of the test
-                                    script
-                                </emphasis>
-                            </td>
-                            <td>Something stopped the test before it had time to finish
-                                normally
-                            </td>
-                        </tr>
-                        <!-- unknown -->
-                        <tr>
-                            <td>
-                                <emphasis>unknown</emphasis>
-                            </td>
-                            <td>You have an error that doesn't match any of our usual
-                                situations
-                            </td>
-                        </tr>
-                        <!-- failed : the ref file doesn't exist -->
-                        <tr>
-                            <td>
-                                <emphasis>failed : the ref file doesn't exist</emphasis>
-                            </td>
-                            <td>The test needs a reference file to compare its result</td>
-                        </tr>
-                        <!-- failed : the dia file is not correct -->
-                        <tr>
-                            <td>
-                                <emphasis>failed : the dia file is not correct</emphasis>
-                            </td>
-                            <td>The file produced by the test isn't correctly formatted</td>
-                        </tr>
-                        <!-- failed : the string (error) has been detected -->
-                        <tr>
-                            <td>
-                                <emphasis>failed : the string (!--error) has been
-                                    detected
-                                </emphasis>
-                            </td>
-                            <td>The test script produced an error that might have been masked
-                                by the rest of the test
-                            </td>
-                        </tr>
-                        <!-- skipped : interactive test -->
-                        <tr>
-                            <td>
-                                <emphasis>skipped : interactive test</emphasis>
-                            </td>
-                            <td>The test needs an action from your part, and has been skipped
-                                as you are in non interactive mode
-                            </td>
-                        </tr>
-                        <!-- skipped : not yet fixed -->
-                        <tr>
-                            <td>
-                                <emphasis>skipped : not yet fixed</emphasis>
-                            </td>
-                            <td>The bug is reported, however the developer did not have time
-                                to fix it
-                            </td>
-                        </tr>
-                        <!-- skipped : bug reoponed -->
-                        <tr>
-                            <td>
-                                <emphasis>failed : bug reopened</emphasis>
-                            </td>
-                            <td>This bug used to be fixed, but it came back to an instable
-                                status and is waiting another fix from its developer
-                            </td>
-                        </tr>
-                        <!-- skipped : test with graphic -->
-                        <tr>
-                            <td>
-                                <emphasis>skipped : test with graphic</emphasis>
-                            </td>
-                            <td>When a test is graphic and scilab is launched without
-                                graphic
-                            </td>
-                        </tr>
-                        <!-- skipped : Long time duration -->
-                        <tr>
-                            <td>
-                                <emphasis>skipped : Long time duration</emphasis>
-                            </td>
-                            <td>This test is too long to be tested. Usually appears on
-                                Scilab's test chain
-                            </td>
-                        </tr>
-                        <!-- skipped : Windows only -->
-                        <tr>
-                            <td>
-                                <emphasis>skipped : Windows only</emphasis>
-                            </td>
-                            <td>You are under another OS than Windows, and this test is only
-                                available for Windows platforms
-                            </td>
-                        </tr>
-                        <!-- skipped : MacOSX only -->
-                        <tr>
-                            <td>
-                                <emphasis>skipped : MacOSX only</emphasis>
-                            </td>
-                            <td>You are under another OS than MacOSX, and this test is only
-                                available for Mac platforms
-                            </td>
-                        </tr>
-                        <!-- skipped : Linux only -->
-                        <tr>
-                            <td>
-                                <emphasis>skipped : Linux only</emphasis>
-                            </td>
-                            <td>You are under another OS than Linux, and this test is only
-                                available for Linux platforms
-                            </td>
+                            <td>Mandatory</td>
+                            <td/>
                         </tr>
                     </informaltable>
-                    You then have a summary of the execution, indicating
-                    how many tests were skipped, failed or suceed, and the duration time of
-                    the whole. In details, you have a report for each test that failed,
-                    indicating where to check for error logs.
-                </para>
-            </refsection>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="atomsIsInstalled">atomsInstall</link>
-                </member>
-                <member>
-                    <link linkend="atomsLoad">atomsLoad</link>
-                </member>
-                <member>
-                    <link linkend="test_run">test_run</link>
-                </member>
-                <member>
-                    <link linkend="assert_overview">assert</link>
-                </member>
-            </simplelist>
-        </refsection>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>test_name</term>
+                <listitem>
+                    <para>A string array</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>status</term>
+                <listitem>
+                    <para>boolean value %t or %f Returns %t if no error has been
+                        detected Returns %f if any error has been detected
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>atomsTest</literal> executes all the tests provided by the
+            module and print their results.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <para>
+            <emphasis role="strong">Example 1</emphasis>: Test a module already
+            installed
+        </para>
+        <programlisting role="example">// Display some additionnal information
+            atomsSetConfig("Verbose","True");
+            
+            // Get the list of loaded modules:
+            atomsGetLoaded();
+            
+            //Supposing that toolbox_1 is installed, test :
+            atomsTest("toolbox_1");
+        </programlisting>
         <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revdescription>
-                        atomsTest returns a status: 
-                        <itemizedlist>
-                            <listitem>Returns %t if no error has been detected</listitem><listitem>Returns %f if any error has been detected</listitem>
-                        </itemizedlist>
-                    </revdescription>
-                </revision>
-                <revision>
-                    <revnumber>5.4.0</revnumber>
-                    <revdescription>atomsTest manages specific test names.</revdescription>
-                </revision>
-            </revhistory>
+            <title>Explanations on the printing</title>
+            <para>
+                <emphasis role="strong">Example 1</emphasis>: result of
+                atomsTest("apifun")
+            </para>
+            <programlisting role="example">   atomsTest("apifun")
+                TMPDIR = /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV
+                
+                001/019 - [SCI/contrib/apifun/0.2-2] argindefault...............passed
+                002/019 - [SCI/contrib/apifun/0.2-2] checkcallable..............passed
+                003/019 - [SCI/contrib/apifun/0.2-2] checkdims..................passed
+                004/019 - [SCI/contrib/apifun/0.2-2] checkflint.................passed
+                005/019 - [SCI/contrib/apifun/0.2-2] checkgreq..................passed
+                006/019 - [SCI/contrib/apifun/0.2-2] checklhs...................passed
+                007/019 - [SCI/contrib/apifun/0.2-2] checkloweq.................passed
+                008/019 - [SCI/contrib/apifun/0.2-2] checkoption................passed
+                009/019 - [SCI/contrib/apifun/0.2-2] checkrange.................passed
+                010/019 - [SCI/contrib/apifun/0.2-2] checkrhs...................passed
+                011/019 - [SCI/contrib/apifun/0.2-2] checkscalar................passed
+                012/019 - [SCI/contrib/apifun/0.2-2] checksquare................passed
+                013/019 - [SCI/contrib/apifun/0.2-2] checktype..................passed
+                014/019 - [SCI/contrib/apifun/0.2-2] checkveccol................failed  : dia and ref are not equal
+                015/019 - [SCI/contrib/apifun/0.2-2] checkvecrow................passed
+                016/019 - [SCI/contrib/apifun/0.2-2] checkvector................failed  : dia and ref are not equal
+                017/019 - [SCI/contrib/apifun/0.2-2] complete...................passed
+                018/019 - [SCI/contrib/apifun/0.2-2] complete2..................passed
+                019/019 - [SCI/contrib/apifun/0.2-2] expandvar..................passed
+                
+                --------------------------------------------------------------------------
+                Summary
+                
+                tests                       19 - 100 %
+                passed                      17 -  89 %
+                failed                       2 -  10 %
+                skipped                      0 -   0 %
+                length                          26.34 sec
+                --------------------------------------------------------------------------
+                Details
+                
+                
+                TEST : [SCI/contrib/apifun/0.2-2] checkveccol
+                failed  : dia and ref are not equal
+                Compare the following files :
+                - /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV/checkveccol.dia
+                - /Users/scilab/Desktop/scilab-5.3.3.app/Contents/MacOS/share/scilab/contrib/apifun/0.2-2/tests/unit_tests/checkveccol.dia.ref
+                
+                TEST : [SCI/contrib/apifun/0.2-2] checkvector
+                failed  : dia and ref are not equal
+                Compare the following files :
+                - /var/folders/z+/z+tSde0-FIufFmhuoUJtjE+++TI/-Tmp-//SCI_TMP_17720_kcOsmV/checkvector.dia
+                - /Users/scilab/Desktop/scilab-5.3.3.app/Contents/MacOS/share/scilab/contrib/apifun/0.2-2/tests/unit_tests/checkvector.dia.ref
+                
+                
+                --------------------------------------------------------------------------
+                ans  =
+                
+                %f 
+            </programlisting>
+            <para>TMPDIR is the general folder where all the temporary files of the
+                tests will be saved. The list of the tests is then shown, with their
+                endings.
+            </para>
+            <para>
+                <emphasis role="strong">Possible endings</emphasis>
+                <informaltable border="1">
+                    <!-- Passed -->
+                    <tr>
+                        <td>
+                            <emphasis>passed</emphasis>
+                        </td>
+                        <td>Test ended up successfully</td>
+                    </tr>
+                    <!-- failed : error_output not empty -->
+                    <tr>
+                        <td>
+                            <emphasis>failed : error_output not empty</emphasis>
+                        </td>
+                        <td>A line has been printed whereas it should not have</td>
+                    </tr>
+                    <!-- failed : dia and ref are not equal -->
+                    <tr>
+                        <td>
+                            <emphasis>failed : dia and ref are not equal</emphasis>
+                        </td>
+                        <td>You have a difference between your result and what it should
+                            have been (reference)
+                        </td>
+                    </tr>
+                    <!-- failed : premature end of the test scrip -->
+                    <tr>
+                        <td>
+                            <emphasis>failed : premature end of the test
+                                script
+                            </emphasis>
+                        </td>
+                        <td>Something stopped the test before it had time to finish
+                            normally
+                        </td>
+                    </tr>
+                    <!-- unknown -->
+                    <tr>
+                        <td>
+                            <emphasis>unknown</emphasis>
+                        </td>
+                        <td>You have an error that doesn't match any of our usual
+                            situations
+                        </td>
+                    </tr>
+                    <!-- failed : the ref file doesn't exist -->
+                    <tr>
+                        <td>
+                            <emphasis>failed : the ref file doesn't exist</emphasis>
+                        </td>
+                        <td>The test needs a reference file to compare its result</td>
+                    </tr>
+                    <!-- failed : the dia file is not correct -->
+                    <tr>
+                        <td>
+                            <emphasis>failed : the dia file is not correct</emphasis>
+                        </td>
+                        <td>The file produced by the test isn't correctly formatted</td>
+                    </tr>
+                    <!-- failed : the string (error) has been detected -->
+                    <tr>
+                        <td>
+                            <emphasis>failed : the string (!--error) has been
+                                detected
+                            </emphasis>
+                        </td>
+                        <td>The test script produced an error that might have been masked
+                            by the rest of the test
+                        </td>
+                    </tr>
+                    <!-- skipped : interactive test -->
+                    <tr>
+                        <td>
+                            <emphasis>skipped : interactive test</emphasis>
+                        </td>
+                        <td>The test needs an action from your part, and has been skipped
+                            as you are in non interactive mode
+                        </td>
+                    </tr>
+                    <!-- skipped : not yet fixed -->
+                    <tr>
+                        <td>
+                            <emphasis>skipped : not yet fixed</emphasis>
+                        </td>
+                        <td>The bug is reported, however the developer did not have time
+                            to fix it
+                        </td>
+                    </tr>
+                    <!-- skipped : bug reoponed -->
+                    <tr>
+                        <td>
+                            <emphasis>failed : bug reopened</emphasis>
+                        </td>
+                        <td>This bug used to be fixed, but it came back to an instable
+                            status and is waiting another fix from its developer
+                        </td>
+                    </tr>
+                    <!-- skipped : test with graphic -->
+                    <tr>
+                        <td>
+                            <emphasis>skipped : test with graphic</emphasis>
+                        </td>
+                        <td>When a test is graphic and scilab is launched without
+                            graphic
+                        </td>
+                    </tr>
+                    <!-- skipped : Long time duration -->
+                    <tr>
+                        <td>
+                            <emphasis>skipped : Long time duration</emphasis>
+                        </td>
+                        <td>This test is too long to be tested. Usually appears on
+                            Scilab's test chain
+                        </td>
+                    </tr>
+                    <!-- skipped : Windows only -->
+                    <tr>
+                        <td>
+                            <emphasis>skipped : Windows only</emphasis>
+                        </td>
+                        <td>You are under another OS than Windows, and this test is only
+                            available for Windows platforms
+                        </td>
+                    </tr>
+                    <!-- skipped : MacOSX only -->
+                    <tr>
+                        <td>
+                            <emphasis>skipped : MacOSX only</emphasis>
+                        </td>
+                        <td>You are under another OS than MacOSX, and this test is only
+                            available for Mac platforms
+                        </td>
+                    </tr>
+                    <!-- skipped : Linux only -->
+                    <tr>
+                        <td>
+                            <emphasis>skipped : Linux only</emphasis>
+                        </td>
+                        <td>You are under another OS than Linux, and this test is only
+                            available for Linux platforms
+                        </td>
+                    </tr>
+                </informaltable>
+                You then have a summary of the execution, indicating
+                how many tests were skipped, failed or suceed, and the duration time of
+                the whole. In details, you have a report for each test that failed,
+                indicating where to check for error logs.
+            </para>
         </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="atomsIsInstalled">atomsInstall</link>
+            </member>
+            <member>
+                <link linkend="atomsLoad">atomsLoad</link>
+            </member>
+            <member>
+                <link linkend="test_run">test_run</link>
+            </member>
+            <member>
+                <link linkend="assert_overview">assert</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    atomsTest returns a status: 
+                    <itemizedlist>
+                        <listitem>Returns %t if no error has been detected</listitem><listitem>Returns %f if any error has been detected</listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>atomsTest manages specific test names.</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

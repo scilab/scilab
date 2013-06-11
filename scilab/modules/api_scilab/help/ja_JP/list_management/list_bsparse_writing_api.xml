@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-    
-    <!--
+
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
  * 
@@ -11,242 +11,242 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_bsparse_writing_API" xml:lang="ja">
     
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="list_bsparse_writing_API" xml:lang="ja">
+    <refnamediv>
         
-        <refnamediv>
-            
-            <refname>疎論理値を書き込む (Scilabゲートウェイ)</refname>
-            
-            <refpurpose>
-                
-                疎論理値をリストに追加する手順.
-                
-            </refpurpose>
-            
-        </refnamediv>
+        <refname>疎論理値を書き込む (Scilabゲートウェイ)</refname>
         
-        <refsynopsisdiv>
+        <refpurpose>
             
-            <title>呼び出し手順</title>
+            疎論理値をリストに追加する手順.
             
-            <para>入力引数プロファイル:</para>
-            
-            <synopsis>SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)</synopsis>
-            
-            <para>名前指定変数プロファイル:</para>
-            
-            <synopsis>SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)</synopsis>
-            
-        </refsynopsisdiv>
+        </refpurpose>
         
-        <refsection>
-            
-            <title>引数</title>
-            
-            <variablelist>
-                
-                <varlistentry>
-                    
-                    <term>_pvCtx</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            Scilab環境ポインタ, api_scilab.hで提供される"pvApiCtx"を指定.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_iVar</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            保存する変数のScilabメモリにおける位置.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_pstName</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            "名前指定" 関数の場合の変数名.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piParent</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            新規アイテムの親のアドレス.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_iItemPos</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            リストにおける新規アイテムの位置.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_iRows</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            新規変数の行数.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_iCols</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            新規変数の列数.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_iNbItem</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            疎行列における非ゼロアイテムの数.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piNbItemRow</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            各行におけるアイテムの数 (大きさ: _iRows).
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>_piColPos</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            各アイテムの列の位置 (大きさ: _iNbItem).
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-                <varlistentry>
-                    
-                    <term>SciErr</term>
-                    
-                    <listitem>
-                        
-                        <para>
-                            
-                            エラーメッセージの履歴と最初のエラー番号を保存するエラー構造体.
-                            
-                        </para>
-                        
-                    </listitem>
-                    
-                </varlistentry>
-                
-            </variablelist>
-            
-        </refsection>
+    </refnamediv>
+    
+    <refsynopsisdiv>
         
-        <refsection>
-            
-            <title>説明</title>
-            
-            <para>このヘルプはリストにdouble疎行列を追加する手順を示します.</para>
-            
-        </refsection>
+        <title>呼び出し手順</title>
         
-        <refsection>
+        <para>入力引数プロファイル:</para>
+        
+        <synopsis>SciErr createBooleanSparseMatrixInList(void* _pvCtx, int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)</synopsis>
+        
+        <para>名前指定変数プロファイル:</para>
+        
+        <synopsis>SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
             
-            <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
+            <varlistentry>
+                
+                <term>_pvCtx</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        Scilab環境ポインタ, api_scilab.hで提供される"pvApiCtx"を指定.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
+            <varlistentry>
+                
+                <term>_iVar</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        保存する変数のScilabメモリにおける位置.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <!--Lib_name: list_createlist-->
+            <varlistentry>
+                
+                <term>_pstName</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        "名前指定" 関数の場合の変数名.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <!--Func_list: list_createlist-->
+            <varlistentry>
+                
+                <term>_piParent</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        新規アイテムの親のアドレス.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <title>ゲートウェイのソース</title>
+            <varlistentry>
+                
+                <term>_iItemPos</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        リストにおける新規アイテムの位置.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
             
-            <programlisting role="code_gateway"><![CDATA[ 
+            <varlistentry>
+                
+                <term>_iRows</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        新規変数の行数.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_iCols</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        新規変数の列数.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_iNbItem</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        疎行列における非ゼロアイテムの数.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piNbItemRow</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        各行におけるアイテムの数 (大きさ: _iRows).
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>_piColPos</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        各アイテムの列の位置 (大きさ: _iNbItem).
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>SciErr</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        エラーメッセージの履歴と最初のエラー番号を保存するエラー構造体.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>このヘルプはリストにdouble疎行列を追加する手順を示します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
+        
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
+        
+        <!--Lib_name: list_createlist-->
+        
+        <!--Func_list: list_createlist-->
+        
+        <title>ゲートウェイのソース</title>
+        
+        <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
 
 int list_createlist(char *fname,unsigned long fname_len)
@@ -366,14 +366,14 @@ int list_createlist(char *fname,unsigned long fname_len)
 	return 0;
 }
  ]]></programlisting>
-            
-        </refsection>
         
-        <refsection>
-            
-            <title>Scilabテストスクリプト</title>
-            
-            <programlisting role="code_scilab"><![CDATA[ 
+    </refsection>
+    
+    <refsection>
+        
+        <title>Scilabテストスクリプト</title>
+        
+        <programlisting role="code_scilab"><![CDATA[ 
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
 dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
@@ -385,8 +385,8 @@ for i = 1 : size_ref
     if size(l(i)) <> dim_ref(i) then error("failed"), end
 end
  ]]></programlisting>
-            
-        </refsection>
         
-    </refentry>
+    </refsection>
     
+</refentry>
+

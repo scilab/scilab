@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
@@ -10,65 +10,65 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isfile" xml:lang="ru">
-        <refnamediv>
-            <refname>isfile</refname>
-            <refpurpose>
-                проверяет является ли аргумент существующим файлом
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>x = isfile(filenames)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>filenames</term>
-                    <listitem>
-                        <para>символьная строка или матрица строк: имена файлов.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>
-                            матрица логических значений (<constant>%t</constant>, если имена в <varname>filenames</varname> являются именами существующих файлов).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <code>x = isfile(filenames)</code> проверяет являются ли имена в 
-                <varname>filenames</varname> именами существующих файлов или нет 
-                (директория не является файлом). См. также <link linkend="isdir">isdir</link>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example">
-                filenames = ls(SCI)
-                
-                x = isfile(filenames)
-                
-                isfile(SCI + '/etc')
-                isdir(SCI + '/etc')
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="fileinfo">fileinfo</link>
-                </member>
-                <member>
-                    <link linkend="isdir">isdir</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
-    
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isfile" xml:lang="ru">
+    <refnamediv>
+        <refname>isfile</refname>
+        <refpurpose>
+            проверяет является ли аргумент существующим файлом
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>x = isfile(filenames)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>filenames</term>
+                <listitem>
+                    <para>символьная строка или матрица строк: имена файлов.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        матрица логических значений (<constant>%t</constant>, если имена в <varname>filenames</varname> являются именами существующих файлов).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>x = isfile(filenames)</code> проверяет являются ли имена в 
+            <varname>filenames</varname> именами существующих файлов или нет 
+            (директория не является файлом). См. также <link linkend="isdir">isdir</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example">
+            filenames = ls(SCI)
+            
+            x = isfile(filenames)
+            
+            isfile(SCI + '/etc')
+            isdir(SCI + '/etc')
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fileinfo">fileinfo</link>
+            </member>
+            <member>
+                <link linkend="isdir">isdir</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

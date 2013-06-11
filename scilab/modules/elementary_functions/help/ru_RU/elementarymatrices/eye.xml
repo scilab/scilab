@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,58 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eye" xml:lang="ru">
-        <refnamediv>
-            <refname>eye</refname>
-            <refpurpose>единичная матрица</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>
-                X=eye(m,n)
-                X=eye(A)
-                X=eye()
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>A,X</term>
-                    <listitem>
-                        <para>
-                            матрицы или списки <literal>syslin</literal>
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>m,n</term>
-                    <listitem>
-                        <para>целые числа</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                В соответствии со своими аргументами определяет матрицу <literal>m</literal> x <literal>n</literal> с единицами по главной диагонали или единичную матрицу того же размера, что и <literal>A</literal>.
-            </para>
-            <para>
-                Предупреждение: <literal>eye(10)</literal> интерпретируется как
-                <literal>eye(A)</literal> где <literal>A=10</literal> т. е. размером
-                <literal>1</literal> x <literal>1</literal>. (Это единичная матрица размером НЕ десять на десять!).
-            </para>
-            <para>
-                Если <literal>A</literal> является линейной системой, представленной списком <literal>syslin</literal>, то <literal>eye(A)</literal> возвращает матрицу  <literal>eye</literal> соответствующего размера: количество выходных данных на количество входных данных.
-            </para>
-            <para>
-                <literal>eye()</literal> формирует единичную матрицу неопределённых размеров. Размеры будут определены, когда данная единичная матрица будет просуммирована с матрицей фиксированных размеров.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eye" xml:lang="ru">
+    <refnamediv>
+        <refname>eye</refname>
+        <refpurpose>единичная матрица</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            X=eye(m,n)
+            X=eye(A)
+            X=eye()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>A,X</term>
+                <listitem>
+                    <para>
+                        матрицы или списки <literal>syslin</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m,n</term>
+                <listitem>
+                    <para>целые числа</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            В соответствии со своими аргументами определяет матрицу <literal>m</literal> x <literal>n</literal> с единицами по главной диагонали или единичную матрицу того же размера, что и <literal>A</literal>.
+        </para>
+        <para>
+            Предупреждение: <literal>eye(10)</literal> интерпретируется как
+            <literal>eye(A)</literal> где <literal>A=10</literal> т. е. размером
+            <literal>1</literal> x <literal>1</literal>. (Это единичная матрица размером НЕ десять на десять!).
+        </para>
+        <para>
+            Если <literal>A</literal> является линейной системой, представленной списком <literal>syslin</literal>, то <literal>eye(A)</literal> возвращает матрицу  <literal>eye</literal> соответствующего размера: количество выходных данных на количество входных данных.
+        </para>
+        <para>
+            <literal>eye()</literal> формирует единичную матрицу неопределённых размеров. Размеры будут определены, когда данная единичная матрица будет просуммирована с матрицей фиксированных размеров.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 eye(2,3)
 A=rand(2,3);eye(A)
 s=poly(0,'s');A=[s,1;s,s+1];eye(A)
@@ -69,16 +69,16 @@ A=[1/s,1;s,2];eye(A);
 A=ssrand(2,2,3);eye(A)
 [1 2;3 4]+2*eye()
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="ones">ones</link>
-                </member>
-                <member>
-                    <link linkend="zeros">zeros</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ones">ones</link>
+            </member>
+            <member>
+                <link linkend="zeros">zeros</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

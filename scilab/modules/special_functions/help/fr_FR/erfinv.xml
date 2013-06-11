@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - Digiteo - Vincent LIARD
@@ -11,70 +11,70 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="erfinv">
-        <refnamediv>
-            <refname>erfinv</refname>
-            <refpurpose>fonction erreur inverse</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Séquence d'appel</title>
-            <synopsis>y = erfinv(x)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Paramètres</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x</term>
-                    <listitem>
-                        <para>vecteur réel</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y</term>
-                    <listitem>
-                        <para>vecteur réel (de même taille que x)</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                La fonction <literal>erfinv</literal> calcule l'inverse de la
-                fonction d'erreur <literal>erf</literal>. Donc, erf(erfinv(x)) =
-                x pour tout <literal>x</literal> tel que <literal>-1 ≤ x ≤
-                    1
-                </literal>
-                .
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="erfinv">
+    <refnamediv>
+        <refname>erfinv</refname>
+        <refpurpose>fonction erreur inverse</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>y = erfinv(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>vecteur réel</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>vecteur réel (de même taille que x)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            La fonction <literal>erfinv</literal> calcule l'inverse de la
+            fonction d'erreur <literal>erf</literal>. Donc, erf(erfinv(x)) =
+            x pour tout <literal>x</literal> tel que <literal>-1 ≤ x ≤
+                1
+            </literal>
+            .
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
 x=linspace(-0.99,0.99,100);
 y=erfinv(x);
 plot2d(x,y)
 ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="cdfnor">cdfnor</link>
-                </member>
-                <member>
-                    <link linkend="erf">erf</link>
-                </member>
-                <member>
-                    <link linkend="erfc">erfc</link>
-                </member>
-                <member>
-                    <link linkend="erfcx">erfcx</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>Références</title>
-            <para>Milton Abramowitz and Irene A. Stegun, eds. Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables. New York: Dover, 1972.</para>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfnor">cdfnor</link>
+            </member>
+            <member>
+                <link linkend="erf">erf</link>
+            </member>
+            <member>
+                <link linkend="erfc">erfc</link>
+            </member>
+            <member>
+                <link linkend="erfcx">erfcx</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Références</title>
+        <para>Milton Abramowitz and Irene A. Stegun, eds. Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables. New York: Dover, 1972.</para>
+    </refsection>
+</refentry>

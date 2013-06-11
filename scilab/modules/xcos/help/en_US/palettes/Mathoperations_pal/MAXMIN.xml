@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scicos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -21,264 +21,264 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MAXMIN">
-        <refnamediv>
-            <refname>MAXMIN</refname>
-            <refpurpose>Maximum or minimum value of vectors's elements</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../../../../images/palettes/MAXMIN.png" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_MAXMIN">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="MAXMIN">Maximum or minimum value of vectors's elements</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_MAXMIN">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_MAXMIN">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_MAXMIN">Dialog box</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_MAXMIN">Default properties</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_MAXMIN">Interfacing function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Computationalfunction_MAXMIN">Computational function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Seealso_MAXMIN">See also</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_MAXMIN">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Mathoperations_pal">Math operations palette</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_MAXMIN">
-            <title>Description</title>
-            <para>
-                This block finds the minimum/maximum values (parameter <emphasis role="bold">Min or Max</emphasis>) and accepts one or two inputs depending on the parameter <emphasis role="bold">Number of input vectors</emphasis> :
-            </para>
-            <para/>
-            <informaltable border="1" cellpadding="2">
-                <tr>
-                    <td align="left">
-                        <emphasis role="bold">Number of input vectors</emphasis>
-                    </td>
-                    <td align="left">
-                        <emphasis role="bold">Input</emphasis>
-                    </td>
-                    <td align="left">
-                        <emphasis role="bold">Operation</emphasis>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left">
-                        <emphasis role="bold">1</emphasis>
-                    </td>
-                    <td align="left">Vector</td>
-                    <td align="left">
-                        The input must be a vector and the bloc output is the minimum/maximum value of the elements of its input vector.
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left">
-                        <emphasis role="bold">2</emphasis>
-                    </td>
-                    <td align="left">Scalar</td>
-                    <td align="left">The block output is the minimal or maximal scalar.</td>
-                </tr>
-                <tr>
-                    <td align="left">
-                        <emphasis role="bold">2</emphasis>
-                    </td>
-                    <td align="left">Vector</td>
-                    <td align="left">
-                        The input vectors must have the same size. The block output is a vector with the same size as
-                        inputs.The elements of the output vector are the minimum/maximum elements of the corresponding
-                        elements of the inputs.
-                    </td>
-                </tr>
-            </informaltable>
-        </refsection>
-        <refsection id="Dialogbox_MAXMIN">
-            <title>Dialog box</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../../../../images/gui/MAXMIN_gui.gif" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-            <para>
-                
-            </para>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Min or Max</emphasis>
-                    </para>
-                    <para> The function (min or max) to apply to the input.</para>
-                    <para> Properties : Type 'vec' of size 1. </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Number of input vectors</emphasis>
-                    </para>
-                    <para> The number of inputs to the block.</para>
-                    <para> Properties : Type 'vec' of size 1. </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing</emphasis>
-                    </para>
-                    <para> Select to enable zero crossing detection to detect minimum and maximum values.</para>
-                    <para> Properties : Type 'vec' of size 1. </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_MAXMIN">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular inputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular outputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">minmax</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Interfacingfunction_MAXMIN">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para> SCI/modules/scicos_blocks/macros/NonLinear/MAXMIN.sci</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Computationalfunction_MAXMIN">
-            <title>Computational function</title>
-            <itemizedlist>
-                <listitem>
-                    <para> SCI/modules/scicos_blocks/src/c/minmax.c (Type 4)</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Seealso_MAXMIN">
-            <title>See also</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="MIN_f">MIN_f - Minimum value of vector's element (Xcos block)</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <link linkend="MAX_f">MAX_f - Maximum value of vector's elements (Xcos block)</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MAXMIN">
+    <refnamediv>
+        <refname>MAXMIN</refname>
+        <refpurpose>Maximum or minimum value of vectors's elements</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/MAXMIN.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_MAXMIN">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="MAXMIN">Maximum or minimum value of vectors's elements</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_MAXMIN">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_MAXMIN">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_MAXMIN">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_MAXMIN">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_MAXMIN">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_MAXMIN">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_MAXMIN">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_MAXMIN">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Mathoperations_pal">Math operations palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_MAXMIN">
+        <title>Description</title>
+        <para>
+            This block finds the minimum/maximum values (parameter <emphasis role="bold">Min or Max</emphasis>) and accepts one or two inputs depending on the parameter <emphasis role="bold">Number of input vectors</emphasis> :
+        </para>
+        <para/>
+        <informaltable border="1" cellpadding="2">
+            <tr>
+                <td align="left">
+                    <emphasis role="bold">Number of input vectors</emphasis>
+                </td>
+                <td align="left">
+                    <emphasis role="bold">Input</emphasis>
+                </td>
+                <td align="left">
+                    <emphasis role="bold">Operation</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <emphasis role="bold">1</emphasis>
+                </td>
+                <td align="left">Vector</td>
+                <td align="left">
+                    The input must be a vector and the bloc output is the minimum/maximum value of the elements of its input vector.
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <emphasis role="bold">2</emphasis>
+                </td>
+                <td align="left">Scalar</td>
+                <td align="left">The block output is the minimal or maximal scalar.</td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <emphasis role="bold">2</emphasis>
+                </td>
+                <td align="left">Vector</td>
+                <td align="left">
+                    The input vectors must have the same size. The block output is a vector with the same size as
+                    inputs.The elements of the output vector are the minimum/maximum elements of the corresponding
+                    elements of the inputs.
+                </td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection id="Dialogbox_MAXMIN">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/gui/MAXMIN_gui.gif" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para>
+            
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Min or Max</emphasis>
+                </para>
+                <para> The function (min or max) to apply to the input.</para>
+                <para> Properties : Type 'vec' of size 1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Number of input vectors</emphasis>
+                </para>
+                <para> The number of inputs to the block.</para>
+                <para> Properties : Type 'vec' of size 1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing</emphasis>
+                </para>
+                <para> Select to enable zero crossing detection to detect minimum and maximum values.</para>
+                <para> Properties : Type 'vec' of size 1. </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_MAXMIN">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular inputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">minmax</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_MAXMIN">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/NonLinear/MAXMIN.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_MAXMIN">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/c/minmax.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Seealso_MAXMIN">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="MIN_f">MIN_f - Minimum value of vector's element (Xcos block)</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="MAX_f">MAX_f - Maximum value of vector's elements (Xcos block)</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

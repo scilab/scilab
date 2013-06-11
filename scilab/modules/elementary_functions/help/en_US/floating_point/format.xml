@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="format" xml:lang="en">
-        <refnamediv>
-            <refname>format</refname>
-            <refpurpose>number printing and display format</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                format([type],[long])
-                v = format()
-                format(m)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>type</term>
-                    <listitem>
-                        <para>character string</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>long</term>
-                    <listitem>
-                        <para>integer (max number of digits (default 10))</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>v</term>
-                    <listitem>
-                        <para>a vector for the current format.</para>
-                        <para>
-                            <literal>v(1)</literal> is a type of format : 0 for 'e' 
-                            and 1 for 'v'
-                        </para>
-                        <para>
-                            <literal>v(2)</literal> is a number of digits 
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>m</term>
-                    <listitem>
-                        <para>a vector to set new format </para>
-                        <para>m(1) is a number of digits </para>
-                        <para>m(2) is a type of format : 0 for 'e' and 1 for 'v'</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>Sets the current printing format with the parameter
-                <literal>type</literal>; it is one of the following :
-            </para>
-            <variablelist>
-                <varlistentry>
-                    <term>"v"</term>
-                    <listitem>
-                        <para>for a variable format (default)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"e"</term>
-                    <listitem>
-                        <para>for the e-format.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-            <para>
-                <literal>long</literal> defines the max number of digits (default
-                10). <literal>format()</literal> returns a vector for the current format:
-                first component is the type of format (1 if 'v' ; 0 if
-                'e'); second component is the number of digits.
-            </para>
-            <para>In the old Scilab versions, in "variable format" mode, vector
-                entries which are less than %eps times the maximum absolute value of the
-                entries were displayed as "0". It is no more the case, the clean function
-                can be used to set negligible entries to zeros.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="format" xml:lang="en">
+    <refnamediv>
+        <refname>format</refname>
+        <refpurpose>number printing and display format</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            format([type],[long])
+            v = format()
+            format(m)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>type</term>
+                <listitem>
+                    <para>character string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>long</term>
+                <listitem>
+                    <para>integer (max number of digits (default 10))</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>a vector for the current format.</para>
+                    <para>
+                        <literal>v(1)</literal> is a type of format : 0 for 'e' 
+                        and 1 for 'v'
+                    </para>
+                    <para>
+                        <literal>v(2)</literal> is a number of digits 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>a vector to set new format </para>
+                    <para>m(1) is a number of digits </para>
+                    <para>m(2) is a type of format : 0 for 'e' and 1 for 'v'</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Sets the current printing format with the parameter
+            <literal>type</literal>; it is one of the following :
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"v"</term>
+                <listitem>
+                    <para>for a variable format (default)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"e"</term>
+                <listitem>
+                    <para>for the e-format.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            <literal>long</literal> defines the max number of digits (default
+            10). <literal>format()</literal> returns a vector for the current format:
+            first component is the type of format (1 if 'v' ; 0 if
+            'e'); second component is the number of digits.
+        </para>
+        <para>In the old Scilab versions, in "variable format" mode, vector
+            entries which are less than %eps times the maximum absolute value of the
+            entries were displayed as "0". It is no more the case, the clean function
+            can be used to set negligible entries to zeros.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 x=rand(1,5);
 format('v',10);x
 format(20);x
@@ -96,22 +96,22 @@ format('v',10);x
 
 format("v")
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="write">write</link>
-                </member>
-                <member>
-                    <link linkend="disp">disp</link>
-                </member>
-                <member>
-                    <link linkend="print">print</link>
-                </member>
-                <member>
-                    <link linkend="clean">clean</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="disp">disp</link>
+            </member>
+            <member>
+                <link linkend="print">print</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

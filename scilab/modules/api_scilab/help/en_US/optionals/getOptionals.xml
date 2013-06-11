@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getOptionals" xml:lang="en">
-        <refnamediv>
-            <refname>get optional argument (Scilab gateway)</refname>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>int getOptionals(void* _pvCtx, char* fname, rhs_opts opts[])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>_pvCtx</term>
-                    <listitem>
-                        <para>
-                            Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>fname</term>
-                    <listitem>
-                        <para>
-                            Name of the calling function.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>opts</term>
-                    <listitem>
-                        <para>structure array of optional argument</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                A C gateway functions which use optional arguments.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <para>
-                In this example, the C interface function can take several optional
-                arguments and prints theirs dimensions if exists.
-            </para>
-            <programlisting role="example">
-                <![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getOptionals" xml:lang="en">
+    <refnamediv>
+        <refname>get optional argument (Scilab gateway)</refname>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>int getOptionals(void* _pvCtx, char* fname, rhs_opts opts[])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>_pvCtx</term>
+                <listitem>
+                    <para>
+                        Scilab environment pointer, pass in "pvApiCtx" provided by api_scilab.h
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fname</term>
+                <listitem>
+                    <para>
+                        Name of the calling function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opts</term>
+                <listitem>
+                    <para>structure array of optional argument</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            A C gateway functions which use optional arguments.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            In this example, the C interface function can take several optional
+            arguments and prints theirs dimensions if exists.
+        </para>
+        <programlisting role="example">
+            <![CDATA[ 
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "sciprint.h"
@@ -121,24 +121,24 @@ int sci_use_optional(char * fname)
     return 0;
 }
  ]]>
-            </programlisting>
-        </refsection>
-        <refsection>
-            <title>Scilab test script</title>
-            <programlisting role="code_scilab">
-                <![CDATA[ 
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[ 
 use_optional();
 use_optional(name = "M. Puffin");
 use_optional(age = 25, name = "M. Puffin");
 use_optional(drivinglicense = %t, age = 25, name = "M. Puffin");
  ]]>
-            </programlisting>
-        </refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.5.0</revnumber>
-                <revremark>This function added in Scilab 5.5.0</revremark>
-            </revision>
-        </revhistory>
-    </refentry>
+        </programlisting>
+    </refsection>
+    <title>History</title>
+    <revhistory>
+        <revision>
+            <revnumber>5.5.0</revnumber>
+            <revremark>This function added in Scilab 5.5.0</revremark>
+        </revision>
+    </revhistory>
+</refentry>

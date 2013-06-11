@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
-    <!--
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
@@ -18,14 +18,14 @@
 
  Don't touch if you do not know what you are doing
 -->
-    <module name="spreadsheet">
-        <gateway name="sci_xls_open"            function="xls_open"             type="1" />
-        <gateway name="sci_xls_read"            function="xls_read"             type="1" />
-        <gateway name="sci_csvDefault"          function="csvDefault"           type="0" />
-        <gateway name="sci_csvRead"             function="csvRead"              type="0" />
-        <gateway name="sci_csvStringToDouble"   function="csvStringToDouble"    type="0" />
-        <gateway name="sci_csvTextScan"         function="csvTextScan"          type="0" />
-        <gateway name="sci_csvWrite"            function="csvWrite"             type="0" />
-        <gateway name="sci_write_csv"           function="write_csv"            type="0" />
-        <gateway name="sci_read_csv"            function="read_csv"             type="0" />
-    </module>
+<module name="spreadsheet">
+    <gateway name="sci_xls_open"            function="xls_open"             type="1" />
+    <gateway name="sci_xls_read"            function="xls_read"             type="1" />
+    <gateway name="sci_csvDefault"          function="csvDefault"           type="0" />
+    <gateway name="sci_csvRead"             function="csvRead"              type="0" />
+    <gateway name="sci_csvStringToDouble"   function="csvStringToDouble"    type="0" />
+    <gateway name="sci_csvTextScan"         function="csvTextScan"          type="0" />
+    <gateway name="sci_csvWrite"            function="csvWrite"             type="0" />
+    <gateway name="sci_write_csv"           function="write_csv"            type="0" />
+    <gateway name="sci_read_csv"            function="read_csv"             type="0" />
+</module>

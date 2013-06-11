@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
-    <!--
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
@@ -19,20 +19,20 @@
 
  Don't touch if you do not know what you are doing
 -->
-    <module name="special_functions">
-        <gateway name="sci_legendre"        function="legendre"     type="0" />
-        <gateway name="sci_beta"            function="beta"         type="0" />
-        <gateway name="sci_besseli"         function="besseli"      type="0" />
-        <gateway name="sci_besselj"         function="besselj"      type="0" />
-        <gateway name="sci_besselk"         function="besselk"      type="0" />
-        <gateway name="sci_bessely"         function="bessely"      type="0" />
-        <gateway name="sci_besselh"         function="besselh"      type="0" />
-        <gateway name="sci_gamma"           function="gamma"        type="0" />
-        <gateway name="sci_lgamma"          function="gammaln"      type="0" />
-        <gateway name="sci_dlgamma"         function="dlgamma"      type="0" />
-        <gateway name="sci_Faddeeva_erf"    function="erf"          type="0" />
-        <gateway name="sci_Faddeeva_erfc"   function="erfc"         type="0" />
-        <gateway name="sci_Faddeeva_erfcx"  function="erfcx"        type="0" />
-        <gateway name="sci_Faddeeva_erfi"   function="erfi"         type="0" />
-        <gateway name="sci_Faddeeva_dawson" function="dawson"       type="0" />
-    </module>
+<module name="special_functions">
+    <gateway name="sci_legendre"        function="legendre"     type="0" />
+    <gateway name="sci_beta"            function="beta"         type="0" />
+    <gateway name="sci_besseli"         function="besseli"      type="0" />
+    <gateway name="sci_besselj"         function="besselj"      type="0" />
+    <gateway name="sci_besselk"         function="besselk"      type="0" />
+    <gateway name="sci_bessely"         function="bessely"      type="0" />
+    <gateway name="sci_besselh"         function="besselh"      type="0" />
+    <gateway name="sci_gamma"           function="gamma"        type="0" />
+    <gateway name="sci_lgamma"          function="gammaln"      type="0" />
+    <gateway name="sci_dlgamma"         function="dlgamma"      type="0" />
+    <gateway name="sci_Faddeeva_erf"    function="erf"          type="0" />
+    <gateway name="sci_Faddeeva_erfc"   function="erfc"         type="0" />
+    <gateway name="sci_Faddeeva_erfcx"  function="erfcx"        type="0" />
+    <gateway name="sci_Faddeeva_erfi"   function="erfi"         type="0" />
+    <gateway name="sci_Faddeeva_dawson" function="dawson"       type="0" />
+</module>

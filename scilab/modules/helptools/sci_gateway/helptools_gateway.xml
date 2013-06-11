@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    <!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
-    <!--
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
@@ -18,6 +18,6 @@
 
  Don't touch if you do not know what you are doing
 -->
-    <module name="helptools">
-        <gateway name="sci_buildDocv2"  function="buildDocv2"   type="0" />
-    </module>
+<module name="helptools">
+    <gateway name="sci_buildDocv2"  function="buildDocv2"   type="0" />
+</module>

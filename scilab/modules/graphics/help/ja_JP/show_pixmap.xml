@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
  * 
@@ -10,33 +10,33 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="show_pixmap">
-        <refnamediv>
-            <refname>show_pixmap</refname>
-            <refpurpose>pixmapバッファを画面に送信する</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>show_pixmap()</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>説明</title>
-            <para>
-                グラフィックウインドウの <literal>pixmap</literal> プロパティが <literal>"on"</literal>の場合,
-                描画データは画面ではなく,pixmapメモリに送信されます.
-            </para>
-            <para>
-                <literal>show_pixmap()</literal>命令はpixmapを画面に送信します.
-            </para>
-            <para>pixmapモードは滑らかなアニメーションを得るために使用されます.
-                このプロパティはfigureエンティティフィールドの中にあります
-                (
-                <link linkend="figure_properties">figure_properties</link>参照).
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="show_pixmap">
+    <refnamediv>
+        <refname>show_pixmap</refname>
+        <refpurpose>pixmapバッファを画面に送信する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>show_pixmap()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            グラフィックウインドウの <literal>pixmap</literal> プロパティが <literal>"on"</literal>の場合,
+            描画データは画面ではなく,pixmapメモリに送信されます.
+        </para>
+        <para>
+            <literal>show_pixmap()</literal>命令はpixmapを画面に送信します.
+        </para>
+        <para>pixmapモードは滑らかなアニメーションを得るために使用されます.
+            このプロパティはfigureエンティティフィールドの中にあります
+            (
+            <link linkend="figure_properties">figure_properties</link>参照).
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
 f=gcf();f.pixmap='on'; //pixmapモードを設定
 a=gca();a.data_bounds=[0 0; 10 10];
 //2つの矩形を構築
@@ -50,16 +50,16 @@ for k=1:1000
   show_pixmap()
 end
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="figure_properties">figure_properties</link>
-                </member>
-                <member>
-                    <link linkend="clear_pixmap">clear_pixmap</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="figure_properties">figure_properties</link>
+            </member>
+            <member>
+                <link linkend="clear_pixmap">clear_pixmap</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

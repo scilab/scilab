@@ -1,169 +1,169 @@
 <?xml version="1.0"?>
-    <menubar>
-        <!-- All "main" menus are disabled when created and then enabled in scilab.start file after all macros are loaded -->
-        <!-- The accelerator can be "control shift A" or "control A" or "meta A" or "OSSCKEY A" where oskey means "OS ShortCut key"
+<menubar>
+    <!-- All "main" menus are disabled when created and then enabled in scilab.start file after all macros are loaded -->
+    <!-- The accelerator can be "control shift A" or "control A" or "meta A" or "OSSCKEY A" where oskey means "OS ShortCut key"
 	and is replaced by the good key (control for Unix/Windows OS and meta for Mac) -->
-        <!-- File menu -->
-        <menu label="&amp;File" enabled="true">
-            <submenu label="&amp;Execute..." accelerator="OSSCKEY E">
-                <callback instruction="               %fileToExec = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to execute&quot;));               if ~(%fileToExec == &quot;&quot;) then                 exec(%fileToExec);                 disp(msprintf(gettext(&quot;Execution done.\n&quot;)));               end               clear(&quot;%fileToExec&quot;);" type="0"/>
+    <!-- File menu -->
+    <menu label="&amp;File" enabled="true">
+        <submenu label="&amp;Execute..." accelerator="OSSCKEY E">
+            <callback instruction="               %fileToExec = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to execute&quot;));               if ~(%fileToExec == &quot;&quot;) then                 exec(%fileToExec);                 disp(msprintf(gettext(&quot;Execution done.\n&quot;)));               end               clear(&quot;%fileToExec&quot;);" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Open a file..." accelerator="OSSCKEY O" icon="document-open-sci">
+            <callback instruction="               %fileToOpen = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to open with SciNotes&quot;));               if ~(%fileToOpen == &quot;&quot;) then                 editor(%fileToOpen);               end               clear(&quot;%fileToOpen&quot;);" type="0"/>
+        </submenu>
+        <submenu label="&amp;Load environment..." accelerator="OSSCKEY L" icon="document-open">
+            <callback instruction="               %fileToLoad = uigetfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to load&quot;));               if ~(%fileToLoad == &quot;&quot;) then                 load(%fileToLoad);                 disp(msprintf(gettext(&quot;Environment loaded.\n&quot;)));               end               clear(&quot;%fileToLoad&quot;);" type="0"/>
+        </submenu>
+        <submenu label="&amp;Save environment..." accelerator="OSSCKEY S" icon="document-save">
+            <callback instruction="               %fileToSave = uiputfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to write&quot;));               if ~(%fileToSave == &quot;&quot;) then                 if (fileparts(%fileToSave, &quot;extension&quot;) == &quot;&quot;) then                   %fileToSave = %fileToSave + &quot;.sav&quot;;                 end                 save(%fileToSave);                 disp(msprintf(gettext(&quot;Environment saved.\n&quot;)));               end               clear(&quot;%fileToSave&quot;);" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Change current directory..." icon="scilab-folder-open">
+            <callback instruction="               %newDir = uigetdir(pwd(), gettext(&quot;Select a directory&quot;));               if ~(%newDir == &quot;&quot;) then                 cd(%newDir);               end               clear(&quot;%newDir&quot;);" type="0"/>
+        </submenu>
+        <submenu label="&amp;Display current directory">
+            <callback instruction="if iswaitingforinput() then printf(&quot;\n%s\n\n%s\n&quot;,prompt(),pwd()); else printf(&quot;\n\n%s\n\n&quot;,pwd());end" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="P&amp;age setup...">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup" type="3"/>
+        </submenu>
+        <submenu label="&amp;Print..." accelerator="OSSCKEY P" icon="document-print">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents" type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Quit" accelerator="OSSCKEY Q" macosx="false">
+            <callback instruction="exit();" type="0"/>
+        </submenu>
+    </menu>
+    <!-- Edit menu -->
+    <menu label="&amp;Edit" enabled="true">
+        <submenu label="C&amp;ut" accelerator="OSSCKEY X" icon="edit-cut">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection" type="3"/>
+        </submenu>
+        <submenu label="&amp;Copy" accelerator="OSSCKEY C" icon="edit-copy">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection" type="3"/>
+        </submenu>
+        <submenu label="&amp;Paste" accelerator="OSSCKEY V" icon="edit-paste">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole" type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Empty clipboard">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.emptyClipboard" type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Select all" accelerator="OSSCKEY A" icon="edit-select-all">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents" type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="Show/Hide &amp;Toolbar">
+            <callback instruction="                 if toolbar(-1)==&quot;on&quot; then                   toolbar(-1, &quot;off&quot;);                 else                   toolbar(-1, &quot;on&quot;);                 end" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="Clear &amp;History">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory" type="3"/>
+        </submenu>
+        <submenu label="Clear C&amp;onsole" icon="edit-clear">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="P&amp;references" icon="preferences-system" macosx="false">
+            <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
+        </submenu>
+    </menu>
+    <!-- Control menu -->
+    <menu label="&amp;Control" enabled="true">
+        <submenu label="&amp;Resume" icon="media-playback-start">
+            <callback instruction="resume;" type="-2"/>
+        </submenu>
+        <submenu label="&amp;Abort" icon="process-stop">
+            <callback instruction="abort;" type="-2"/>
+        </submenu>
+        <submenu label="&amp;Interrupt">
+            <callback instruction="pause;" type="-2"/>
+        </submenu>
+    </menu>
+    <!-- Applications menu -->
+    <menu label="&amp;Applications" enabled="true">
+        <submenu label="&amp;SciNotes" icon="accessories-text-editor">
+            <callback instruction="editor();" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Xcos" icon="utilities-system-monitor">
+            <callback instruction="if with_module(&quot;xcos&quot;) then xcos(); else disp(gettext(&quot;Please install xcos module.&quot;)); end" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Matlab to Scilab translator">
+            <callback instruction="if with_module(&quot;m2sci&quot;) then mfile2sci(); else disp(gettext(&quot;Please install m2sci module.&quot;)); end" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="M&amp;odule manager - ATOMS" icon="package-x-generic">
+            <callback instruction="if with_module(&quot;atoms&quot;) then atomsGui(); else disp(gettext(&quot;Please install atoms module.&quot;)); end" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Variable Browser">
+            <callback instruction="browsevar()" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Command History">
+            <callback instruction="org.scilab.modules.history_browser.CommandHistory.setVisible" type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;File Browser">
+            <callback instruction="filebrowser()" type="0"/>
+        </submenu>
+    </menu>
+    <!-- Help menu -->
+    <menu label="&amp;?" enabled="true">
+        <submenu label="Scilab &amp;Help" accelerator="F1" icon="help-browser">
+            <callback instruction="help();" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="Scilab &amp;Demonstrations" icon="applications-system">
+            <callback instruction="demo_gui();" type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Links">
+            <submenu label="Scilab &amp;Web Site">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite" type="3"/>
             </submenu>
             <separator/>
-            <submenu label="&amp;Open a file..." accelerator="OSSCKEY O" icon="document-open-sci">
-                <callback instruction="               %fileToOpen = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to open with SciNotes&quot;));               if ~(%fileToOpen == &quot;&quot;) then                 editor(%fileToOpen);               end               clear(&quot;%fileToOpen&quot;);" type="0"/>
+            <submenu label="Scilab &amp;Online Help">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openOnlineHelp" type="3"/>
             </submenu>
-            <submenu label="&amp;Load environment..." accelerator="OSSCKEY L" icon="document-open">
-                <callback instruction="               %fileToLoad = uigetfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to load&quot;));               if ~(%fileToLoad == &quot;&quot;) then                 load(%fileToLoad);                 disp(msprintf(gettext(&quot;Environment loaded.\n&quot;)));               end               clear(&quot;%fileToLoad&quot;);" type="0"/>
-            </submenu>
-            <submenu label="&amp;Save environment..." accelerator="OSSCKEY S" icon="document-save">
-                <callback instruction="               %fileToSave = uiputfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to write&quot;));               if ~(%fileToSave == &quot;&quot;) then                 if (fileparts(%fileToSave, &quot;extension&quot;) == &quot;&quot;) then                   %fileToSave = %fileToSave + &quot;.sav&quot;;                 end                 save(%fileToSave);                 disp(msprintf(gettext(&quot;Environment saved.\n&quot;)));               end               clear(&quot;%fileToSave&quot;);" type="0"/>
+            <submenu label="Scilab &amp;Wiki">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openWiki" type="3"/>
             </submenu>
             <separator/>
-            <submenu label="&amp;Change current directory..." icon="scilab-folder-open">
-                <callback instruction="               %newDir = uigetdir(pwd(), gettext(&quot;Select a directory&quot;));               if ~(%newDir == &quot;&quot;) then                 cd(%newDir);               end               clear(&quot;%newDir&quot;);" type="0"/>
+            <submenu label="Scilab &amp;ATOMS Web Site">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilab" type="3"/>
             </submenu>
-            <submenu label="&amp;Display current directory">
-                <callback instruction="if iswaitingforinput() then printf(&quot;\n%s\n\n%s\n&quot;,prompt(),pwd()); else printf(&quot;\n\n%s\n\n&quot;,pwd());end" type="0"/>
+            <submenu label="&amp;File Exchange">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openFileExchange" type="3"/>
             </submenu>
-            <separator/>
-            <submenu label="P&amp;age setup...">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup" type="3"/>
+            <submenu label="&amp;Mailing Lists">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openMailingList" type="3"/>
             </submenu>
-            <submenu label="&amp;Print..." accelerator="OSSCKEY P" icon="document-print">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents" type="3"/>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;Quit" accelerator="OSSCKEY Q" macosx="false">
-                <callback instruction="exit();" type="0"/>
-            </submenu>
-        </menu>
-        <!-- Edit menu -->
-        <menu label="&amp;Edit" enabled="true">
-            <submenu label="C&amp;ut" accelerator="OSSCKEY X" icon="edit-cut">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection" type="3"/>
-            </submenu>
-            <submenu label="&amp;Copy" accelerator="OSSCKEY C" icon="edit-copy">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection" type="3"/>
-            </submenu>
-            <submenu label="&amp;Paste" accelerator="OSSCKEY V" icon="edit-paste">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole" type="3"/>
+            <submenu label="Mailing Lists &amp;Archives">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openMailingListArchives" type="3"/>
             </submenu>
             <separator/>
-            <submenu label="&amp;Empty clipboard">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.emptyClipboard" type="3"/>
+            <submenu label="&amp;Forge">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openForge" type="3"/>
             </submenu>
-            <separator/>
-            <submenu label="&amp;Select all" accelerator="OSSCKEY A" icon="edit-select-all">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents" type="3"/>
+            <submenu label="&amp;Bugs And Requests">
+                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openBugzilla" type="3"/>
             </submenu>
-            <separator/>
-            <submenu label="Show/Hide &amp;Toolbar">
-                <callback instruction="                 if toolbar(-1)==&quot;on&quot; then                   toolbar(-1, &quot;off&quot;);                 else                   toolbar(-1, &quot;on&quot;);                 end" type="0"/>
-            </submenu>
-            <separator/>
-            <submenu label="Clear &amp;History">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clearHistory" type="3"/>
-            </submenu>
-            <submenu label="Clear C&amp;onsole" icon="edit-clear">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.clear" type="3"/>
-            </submenu>
-            <separator/>
-            <submenu label="P&amp;references" icon="preferences-system" macosx="false">
-                <callback instruction='org.scilab.modules.preferences.XConfigManager.openPreferences' type="3"/>
-            </submenu>
-        </menu>
-        <!-- Control menu -->
-        <menu label="&amp;Control" enabled="true">
-            <submenu label="&amp;Resume" icon="media-playback-start">
-                <callback instruction="resume;" type="-2"/>
-            </submenu>
-            <submenu label="&amp;Abort" icon="process-stop">
-                <callback instruction="abort;" type="-2"/>
-            </submenu>
-            <submenu label="&amp;Interrupt">
-                <callback instruction="pause;" type="-2"/>
-            </submenu>
-        </menu>
-        <!-- Applications menu -->
-        <menu label="&amp;Applications" enabled="true">
-            <submenu label="&amp;SciNotes" icon="accessories-text-editor">
-                <callback instruction="editor();" type="0"/>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;Xcos" icon="utilities-system-monitor">
-                <callback instruction="if with_module(&quot;xcos&quot;) then xcos(); else disp(gettext(&quot;Please install xcos module.&quot;)); end" type="0"/>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;Matlab to Scilab translator">
-                <callback instruction="if with_module(&quot;m2sci&quot;) then mfile2sci(); else disp(gettext(&quot;Please install m2sci module.&quot;)); end" type="0"/>
-            </submenu>
-            <separator/>
-            <submenu label="M&amp;odule manager - ATOMS" icon="package-x-generic">
-                <callback instruction="if with_module(&quot;atoms&quot;) then atomsGui(); else disp(gettext(&quot;Please install atoms module.&quot;)); end" type="0"/>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;Variable Browser">
-                <callback instruction="browsevar()" type="0"/>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;Command History">
-                <callback instruction="org.scilab.modules.history_browser.CommandHistory.setVisible" type="3"/>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;File Browser">
-                <callback instruction="filebrowser()" type="0"/>
-            </submenu>
-        </menu>
-        <!-- Help menu -->
-        <menu label="&amp;?" enabled="true">
-            <submenu label="Scilab &amp;Help" accelerator="F1" icon="help-browser">
-                <callback instruction="help();" type="0"/>
-            </submenu>
-            <separator/>
-            <submenu label="Scilab &amp;Demonstrations" icon="applications-system">
-                <callback instruction="demo_gui();" type="0"/>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;Links">
-                <submenu label="Scilab &amp;Web Site">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite" type="3"/>
-                </submenu>
-                <separator/>
-                <submenu label="Scilab &amp;Online Help">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openOnlineHelp" type="3"/>
-                </submenu>
-                <submenu label="Scilab &amp;Wiki">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openWiki" type="3"/>
-                </submenu>
-                <separator/>
-                <submenu label="Scilab &amp;ATOMS Web Site">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilab" type="3"/>
-                </submenu>
-                <submenu label="&amp;File Exchange">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openFileExchange" type="3"/>
-                </submenu>
-                <submenu label="&amp;Mailing Lists">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openMailingList" type="3"/>
-                </submenu>
-                <submenu label="Mailing Lists &amp;Archives">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openMailingListArchives" type="3"/>
-                </submenu>
-                <separator/>
-                <submenu label="&amp;Forge">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openForge" type="3"/>
-                </submenu>
-                <submenu label="&amp;Bugs And Requests">
-                    <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openBugzilla" type="3"/>
-                </submenu>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;Scilab Enterprises">
-                <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openSE" type="3"/>
-            </submenu>
-            <separator/>
-            <submenu label="&amp;About Scilab..." accelerator="shift F1">
-                <callback instruction="about()" type="0"/>
-            </submenu>
-        </menu>
-    </menubar>
-    
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Scilab Enterprises">
+            <callback instruction="org.scilab.modules.gui.bridge.CallScilabBridge.openSE" type="3"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;About Scilab..." accelerator="shift F1">
+            <callback instruction="about()" type="0"/>
+        </submenu>
+    </menu>
+</menubar>
+

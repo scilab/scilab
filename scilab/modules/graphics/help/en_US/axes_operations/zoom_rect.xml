@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
@@ -11,64 +11,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="zoom_rect">
-        <refnamediv>
-            <refname>zoom_rect</refname>
-            <refpurpose>zoom a selection of the current graphic figure</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>zoom_rect()
-                zoom_rect(rect)
-                zoom_rect(h)
-                zoom_rect(h,rect)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>rect</term>
-                    <listitem>
-                        <para>
-                            Vector of size 4 <literal>[xmin,ymin,xmax,ymax]</literal> give the
-                            rectangle to be zoomed.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>h</term>
-                    <listitem>
-                        <para>Graphic handle of type Figure or Axes. Specify on which Axes
-                            the zoom will apply.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>zoom_rect</literal> funtion is used to perform a zoom inside a set of Axes Objects.
-            </para>
-            <para>
-                The <literal>h</literal> input argument specifies on which Axes the zoom will apply.
-                If <literal>h</literal> is a Figure handle then the zoom will apply on its Axes children.
-                If <literal>h</literal> is a Axes handle then the zoom will only apply to this handle.
-                If <literal>h</literal> is not specified, then the zoom is performed on the current Figure.
-            </para>
-            <para>
-                If <literal>rect</literal> input argument is specified then the zoomed Axes <literal>zoom_box</literal>
-                property is modified by the argument (see  <link linkend="axes_properties">axes_properties</link>).
-                Its bounds along X and Y axis are replaced by <literal>rect</literal>.
-                If <literal>rect</literal> is not specified zoom_rect is an interactive zoom. User is required to select
-                a rectangle using the mouse. The new <literal>zoom_box</literal> property of zoomed axes are then computed
-                by finding the intersections of the rectangle with their axes boxe.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="zoom_rect">
+    <refnamediv>
+        <refname>zoom_rect</refname>
+        <refpurpose>zoom a selection of the current graphic figure</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>zoom_rect()
+            zoom_rect(rect)
+            zoom_rect(h)
+            zoom_rect(h,rect)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>rect</term>
+                <listitem>
+                    <para>
+                        Vector of size 4 <literal>[xmin,ymin,xmax,ymax]</literal> give the
+                        rectangle to be zoomed.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>Graphic handle of type Figure or Axes. Specify on which Axes
+                        the zoom will apply.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>zoom_rect</literal> funtion is used to perform a zoom inside a set of Axes Objects.
+        </para>
+        <para>
+            The <literal>h</literal> input argument specifies on which Axes the zoom will apply.
+            If <literal>h</literal> is a Figure handle then the zoom will apply on its Axes children.
+            If <literal>h</literal> is a Axes handle then the zoom will only apply to this handle.
+            If <literal>h</literal> is not specified, then the zoom is performed on the current Figure.
+        </para>
+        <para>
+            If <literal>rect</literal> input argument is specified then the zoomed Axes <literal>zoom_box</literal>
+            property is modified by the argument (see  <link linkend="axes_properties">axes_properties</link>).
+            Its bounds along X and Y axis are replaced by <literal>rect</literal>.
+            If <literal>rect</literal> is not specified zoom_rect is an interactive zoom. User is required to select
+            a rectangle using the mouse. The new <literal>zoom_box</literal> property of zoomed axes are then computed
+            by finding the intersections of the rectangle with their axes boxe.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 clf()
 x=0:0.01:6*%pi;
 plot2d(x,sin(x^2))
@@ -104,16 +104,16 @@ zoom_rect();
 // or
 zoom_rect(gcf());
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="unzoom">unzoom</link>
-                </member>
-                <member>
-                    <link linkend="axes_properties">axes_properties</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="unzoom">unzoom</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

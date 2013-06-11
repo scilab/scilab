@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,84 +10,84 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="union" xml:lang="ru">
-        <refnamediv>
-            <refname>union</refname>
-            <refpurpose>выделяет объединение компонентов векторов</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>
-                [v [,ka, kb] ] = union(a,b)
-                [v [,ka, kb] ] = union(a,b,orient)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>a</term>
-                    <listitem>
-                        <para>вектор или матрица чисел или строк</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>b</term>
-                    <listitem>
-                        <para>вектор вещественных числе или строк</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>orient</term>
-                    <listitem>
-                        <para>флаг с возможными значениями: 1 или "r", 2 или "c".</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>v</term>
-                    <listitem>
-                        <para>вектор-строка или матрица чисел или строк</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ka</term>
-                    <listitem>
-                        <para>вектор-строка целых чисел</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>kb</term>
-                    <listitem>
-                        <para>вектор-строка целых чисел</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <literal>union(a,b)</literal> возвращает отсортированный вектор-строку, который 
-                содержит уникальные элементы <literal>[a(:);b(:)]</literal>.
-            </para>
-            <para>
-                <literal>union(a,b,"r")</literal> или <literal>union(a,b,1)</literal>
-                возвращает матрицу, сформированную объединением уникальных строк <literal>a</literal> 
-                и <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество столбцов.
-            </para>
-            <para>
-                <literal>union(a,b,"c")</literal> или <literal>union(a,b,2)</literal> 
-                возвращает матрицу, сформированную объединением уникальных столбцов 
-                <literal>a</literal> and <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество строк.
-            </para>
-            <para>
-                <literal>[v,ka,kb]=union(a,b)</literal> также возвращает векторы индексов     <literal>ka</literal> и <literal>kb</literal> такие, что <literal>v</literal> является  
-                сортированной комбинацией элементов <literal>a(ka)</literal> и 
-                <literal>b(kb)</literal>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="union" xml:lang="ru">
+    <refnamediv>
+        <refname>union</refname>
+        <refpurpose>выделяет объединение компонентов векторов</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            [v [,ka, kb] ] = union(a,b)
+            [v [,ka, kb] ] = union(a,b,orient)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>вектор или матрица чисел или строк</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>b</term>
+                <listitem>
+                    <para>вектор вещественных числе или строк</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orient</term>
+                <listitem>
+                    <para>флаг с возможными значениями: 1 или "r", 2 или "c".</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>вектор-строка или матрица чисел или строк</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ka</term>
+                <listitem>
+                    <para>вектор-строка целых чисел</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>kb</term>
+                <listitem>
+                    <para>вектор-строка целых чисел</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>union(a,b)</literal> возвращает отсортированный вектор-строку, который 
+            содержит уникальные элементы <literal>[a(:);b(:)]</literal>.
+        </para>
+        <para>
+            <literal>union(a,b,"r")</literal> или <literal>union(a,b,1)</literal>
+            возвращает матрицу, сформированную объединением уникальных строк <literal>a</literal> 
+            и <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество столбцов.
+        </para>
+        <para>
+            <literal>union(a,b,"c")</literal> или <literal>union(a,b,2)</literal> 
+            возвращает матрицу, сформированную объединением уникальных столбцов 
+            <literal>a</literal> and <literal>b</literal>, отсортированную в лексикографическом порядке возрастания. В этом случае матрицы <literal>a</literal> и <literal>b</literal> должны иметь одинаковое количество строк.
+        </para>
+        <para>
+            <literal>[v,ka,kb]=union(a,b)</literal> также возвращает векторы индексов     <literal>ka</literal> и <literal>kb</literal> такие, что <literal>v</literal> является  
+            сортированной комбинацией элементов <literal>a(ka)</literal> и 
+            <literal>b(kb)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 A=round(5*rand(10,1));
 B=round(5*rand(7,1));
  
@@ -96,16 +96,16 @@ union(A,B)
  
 union('a'+string(A),'b'+string(B))
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="unique">unique</link>
-                </member>
-                <member>
-                    <link linkend="gsort">gsort</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="unique">unique</link>
+            </member>
+            <member>
+                <link linkend="gsort">gsort</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

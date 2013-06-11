@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
  * 
@@ -10,140 +10,140 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_get" xml:lang="en">
-        <refnamediv>
-            <refname>optimbase_get</refname>
-            <refpurpose>Returns the value for the given key.</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                value = optimbase_set(opt, key)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Argument</title>
-            <variablelist>
-                <varlistentry>
-                    <term>opt </term>
-                    <listitem>
-                        <para>The object of TOPTIM type (tlist).</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>key </term>
-                    <listitem>
-                        <para>A string, the name of the key to set.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>value </term>
-                    <listitem>
-                        <para>the value in fonction of the given key.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The <literal>optimbase_get</literal> function returns the value for the given key. 
-                If the key is unknown, this function generates an error.
-            </para>
-            <para>
-                The list of available keys is the same as the optimbase_set function:
-            </para>
-            <variablelist>
-                <varlistentry>
-                    <term>-funevals </term>
-                    <listitem>
-                        <para>
-                            The number of function evaluations is a 1-by-1 matrix of doubles, 
-                            positive, integer value.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>-iterations </term>
-                    <listitem>
-                        <para>
-                            The number of iterations is a 1-by-1 matrix of doubles, positive, 
-                            integer value.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>-xopt </term>
-                    <listitem>
-                        <para>
-                            The x optimum.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>-fopt </term>
-                    <listitem>
-                        <para>
-                            The optimum cost function value.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>-historyxopt </term>
-                    <listitem>
-                        <para>
-                            An array, with nbiter values, containing the history of x during the iterations.
-                        </para>
-                        <para>
-                            This array is available after optimization if the history storing was enabled with 
-                            the <literal>-storehistory</literal> option.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>-historyfopt </term>
-                    <listitem>
-                        <para>
-                            An array, with nbiter values, containing the history of the function value during 
-                            the iterations.
-                        </para>
-                        <para>
-                            This array is available after optimization if the history storing was enabled with 
-                            the <literal>-storehistory</literal> option.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>-fx0 </term>
-                    <listitem>
-                        <para>
-                            The function value for the initial guess.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>-status </term>
-                    <listitem>
-                        <para>
-                            A string containing the status of the optimization.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>-logstartup </term>
-                    <listitem>
-                        <para>
-                            A 1-by-1 matrix of booleans. Set to %t when the logging is started up 
-                            (default <literal>-logstartup</literal> = %f).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Example</title>
-            <programlisting role="example">
-                <![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimbase_get" xml:lang="en">
+    <refnamediv>
+        <refname>optimbase_get</refname>
+        <refpurpose>Returns the value for the given key.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            value = optimbase_set(opt, key)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Argument</title>
+        <variablelist>
+            <varlistentry>
+                <term>opt </term>
+                <listitem>
+                    <para>The object of TOPTIM type (tlist).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>key </term>
+                <listitem>
+                    <para>A string, the name of the key to set.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value </term>
+                <listitem>
+                    <para>the value in fonction of the given key.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The <literal>optimbase_get</literal> function returns the value for the given key. 
+            If the key is unknown, this function generates an error.
+        </para>
+        <para>
+            The list of available keys is the same as the optimbase_set function:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>-funevals </term>
+                <listitem>
+                    <para>
+                        The number of function evaluations is a 1-by-1 matrix of doubles, 
+                        positive, integer value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-iterations </term>
+                <listitem>
+                    <para>
+                        The number of iterations is a 1-by-1 matrix of doubles, positive, 
+                        integer value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-xopt </term>
+                <listitem>
+                    <para>
+                        The x optimum.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-fopt </term>
+                <listitem>
+                    <para>
+                        The optimum cost function value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-historyxopt </term>
+                <listitem>
+                    <para>
+                        An array, with nbiter values, containing the history of x during the iterations.
+                    </para>
+                    <para>
+                        This array is available after optimization if the history storing was enabled with 
+                        the <literal>-storehistory</literal> option.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-historyfopt </term>
+                <listitem>
+                    <para>
+                        An array, with nbiter values, containing the history of the function value during 
+                        the iterations.
+                    </para>
+                    <para>
+                        This array is available after optimization if the history storing was enabled with 
+                        the <literal>-storehistory</literal> option.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-fx0 </term>
+                <listitem>
+                    <para>
+                        The function value for the initial guess.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-status </term>
+                <listitem>
+                    <para>
+                        A string containing the status of the optimization.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-logstartup </term>
+                <listitem>
+                    <para>
+                        A 1-by-1 matrix of booleans. Set to %t when the logging is started up 
+                        (default <literal>-logstartup</literal> = %f).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
     opt = optimbase_new();
     
     // Set optimum
@@ -163,20 +163,20 @@
 
     opt = optimbase_destroy(opt);
  ]]>
-            </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="optimbase_set">optimbase_set</link>
-                </member>
-                <member>
-                    <link linkend="optimbase_cget">optimbase_cget</link>
-                </member>
-                <member>
-                    <link linkend="optimbase_histget">optimbase_histget </link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optimbase_set">optimbase_set</link>
+            </member>
+            <member>
+                <link linkend="optimbase_cget">optimbase_cget</link>
+            </member>
+            <member>
+                <link linkend="optimbase_histget">optimbase_histget </link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

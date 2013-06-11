@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <interface version="0.12" path="1/" width="800" height="600">
-        <general/>
-        <web/>
-        <preference/>
-        <fonts/>
-        <colors/>
-        <console/>
-        <command-history/>
-        <scinotes/>
-        <xcos/>
-    </interface>
+<interface version="0.12" path="1/" width="800" height="600">
+    <general/>
+    <web/>
+    <preference/>
+    <fonts/>
+    <colors/>
+    <console/>
+    <command-history/>
+    <scinotes/>
+    <xcos/>
+</interface>

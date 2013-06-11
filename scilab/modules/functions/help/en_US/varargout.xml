@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
  *
@@ -10,47 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargout" xml:lang="en">
-        <refnamediv>
-            <refname>varargout</refname>
-            <refpurpose>variable numbers of arguments in an output argument
-                list
-            </refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Description</title>
-            <para>A function whose output argument list contains
-                <literal>varargout</literal> must be called with more output arguments
-                than indicated in the output argument list. The calling arguments passed
-                form <literal>varargout</literal> keyword onwards are extracted out of the
-                <literal>varargout</literal> list defined in the function.
-            </para>
-            <para>
-                <literal>varargout= function ex()</literal> may be called with any
-                number of output arguments. Within function <literal>ex</literal> output
-                arguments may be stored in in <literal>varargout(i)</literal>.
-            </para>
-            <para>
-                <literal>[X1,...Xn,varargout]= function ex()</literal> may also be
-                used. In this case the <literal>Xi</literal> variables must be assigned in
-                the function as well as <literal>varargout(i)</literal>.
-            </para>
-            <para>
-                The actual total number of output argument is given <link linkend="argn">argn(1)</link>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Remark</title>
-            <para>
-                The <literal>varargout</literal> variable must be created within the
-                function and assigned to a <link linkend="list">list</link>. If varargout
-                is the only formal output variable the list must contain at least one
-                entry.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargout" xml:lang="en">
+    <refnamediv>
+        <refname>varargout</refname>
+        <refpurpose>variable numbers of arguments in an output argument
+            list
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>A function whose output argument list contains
+            <literal>varargout</literal> must be called with more output arguments
+            than indicated in the output argument list. The calling arguments passed
+            form <literal>varargout</literal> keyword onwards are extracted out of the
+            <literal>varargout</literal> list defined in the function.
+        </para>
+        <para>
+            <literal>varargout= function ex()</literal> may be called with any
+            number of output arguments. Within function <literal>ex</literal> output
+            arguments may be stored in in <literal>varargout(i)</literal>.
+        </para>
+        <para>
+            <literal>[X1,...Xn,varargout]= function ex()</literal> may also be
+            used. In this case the <literal>Xi</literal> variables must be assigned in
+            the function as well as <literal>varargout(i)</literal>.
+        </para>
+        <para>
+            The actual total number of output argument is given <link linkend="argn">argn(1)</link>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Remark</title>
+        <para>
+            The <literal>varargout</literal> variable must be created within the
+            function and assigned to a <link linkend="list">list</link>. If varargout
+            is the only formal output variable the list must contain at least one
+            entry.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 function varargout=exampl()
   varargout=list(1,2,3,4)
 endfunction
@@ -69,19 +69,19 @@ exampl1()
 [a,b]=exampl1()
 [a,b,c]=exampl1()
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="function">function</link>
-                </member>
-                <member>
-                    <link linkend="varargin">varargin</link>
-                </member>
-                <member>
-                    <link linkend="list">list</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="varargin">varargin</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

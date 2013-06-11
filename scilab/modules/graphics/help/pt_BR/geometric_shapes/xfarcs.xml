@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * 
@@ -10,56 +10,56 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xfarcs" xml:lang="en">
-        <refnamediv>
-            <refname>xfarcs</refname>
-            <refpurpose>preenche partes de um conjunto de elipses</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Seqüência de Chamamento</title>
-            <synopsis>xfarcs(arcs,[style])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Parâmetros</title>
-            <variablelist>
-                <varlistentry>
-                    <term>arcs</term>
-                    <listitem>
-                        <para>matriz de tamanho (6,n) descrevendo as elipses. </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>style</term>
-                    <listitem>
-                        <para>vetor linha de tamanho n fornecendo as cores a serem
-                            utilizadas.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Descrição</title>
-            <para>
-                <literal>xarcs</literal> preenche parte de um conjunto de elipses
-                descritas por <literal>arcs</literal>: <literal>arcs=[x y w h a1 a2;x y w
-                    h a1 a2;...]'
-                </literal>
-                onde cada elipse é definida por 6 parâmetros
-                <literal>(x,y,w,h,a1,a2)</literal> (ver <literal>xfarc</literal>).
-            </para>
-            <para>
-                <literal>x, y, w, h</literal> são especificados nas coordenadas do
-                usuário.
-            </para>
-            <para>
-                <literal>style(i)</literal> fornece o número da cor para preencher a
-                elipse número <literal>i</literal>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemplos</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xfarcs" xml:lang="en">
+    <refnamediv>
+        <refname>xfarcs</refname>
+        <refpurpose>preenche partes de um conjunto de elipses</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>xfarcs(arcs,[style])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>arcs</term>
+                <listitem>
+                    <para>matriz de tamanho (6,n) descrevendo as elipses. </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>style</term>
+                <listitem>
+                    <para>vetor linha de tamanho n fornecendo as cores a serem
+                        utilizadas.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            <literal>xarcs</literal> preenche parte de um conjunto de elipses
+            descritas por <literal>arcs</literal>: <literal>arcs=[x y w h a1 a2;x y w
+                h a1 a2;...]'
+            </literal>
+            onde cada elipse é definida por 6 parâmetros
+            <literal>(x,y,w,h,a1,a2)</literal> (ver <literal>xfarc</literal>).
+        </para>
+        <para>
+            <literal>x, y, w, h</literal> são especificados nas coordenadas do
+            usuário.
+        </para>
+        <para>
+            <literal>style(i)</literal> fornece o número da cor para preencher a
+            elipse número <literal>i</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
 arcs=[-1.0 0.0 0.5; // x superior esquerdo
        1.0 0.0 0.5; // y superior esquerdo
@@ -69,19 +69,19 @@ arcs=[-1.0 0.0 0.5; // x superior esquerdo
        180*64 360*64 90*64]; // ângulo 2
 xfarcs(arcs,[1,2,3])
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Ver Também</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="xarc">xarc</link>
-                </member>
-                <member>
-                    <link linkend="xfarc">xfarc</link>
-                </member>
-                <member>
-                    <link linkend="xfarc">xfarc</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xarc">xarc</link>
+            </member>
+            <member>
+                <link linkend="xfarc">xfarc</link>
+            </member>
+            <member>
+                <link linkend="xfarc">xfarc</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

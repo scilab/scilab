@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
  * 
@@ -10,12 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <project name="helptools" default="jar">
-        <import file="../../build.incl.xml"/>
-        <property name="library.name" value="${library.helptools.name}"/>
-        <property name="library.title" value="Help components"/>
-        <property name="isDocBuilding" value="True"/>
-        <description>
-            Build the Scilab Help Tools module
-        </description>
-    </project>
+<project name="helptools" default="jar">
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.helptools.name}"/>
+    <property name="library.title" value="Help components"/>
+    <property name="isDocBuilding" value="True"/>
+    <description>
+        Build the Scilab Help Tools module
+    </description>
+</project>

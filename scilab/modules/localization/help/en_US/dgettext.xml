@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
@@ -11,53 +11,53 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dgettext">
-        <refnamediv>
-            <refname>dgettext</refname>
-            <refpurpose>get text translated into the current locale and a specific domain</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>msg=dgettext(domain, myString)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>domain</term>
-                    <listitem>
-                        <para>a string, the name of the message domain</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>myString</term>
-                    <listitem>
-                        <para>a string, the message to be translated</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>dgettext</literal> gets the translation of a string <literal>myString</literal> to the current locale in a specified message domain <literal>domain</literal>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dgettext">
+    <refnamediv>
+        <refname>dgettext</refname>
+        <refpurpose>get text translated into the current locale and a specific domain</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>msg=dgettext(domain, myString)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>domain</term>
+                <listitem>
+                    <para>a string, the name of the message domain</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>myString</term>
+                <listitem>
+                    <para>a string, the message to be translated</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>dgettext</literal> gets the translation of a string <literal>myString</literal> to the current locale in a specified message domain <literal>domain</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 dgettext('scilab','Startup execution:')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="gettext">gettext</link>
-                </member>
-                <member>
-                    <link linkend="_">_</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gettext">gettext</link>
+            </member>
+            <member>
+                <link linkend="_">_</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

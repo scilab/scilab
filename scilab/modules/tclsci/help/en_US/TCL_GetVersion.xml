@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * 
@@ -10,31 +10,31 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="TCL_GetVersion">
-        <refnamediv>
-            <refname>TCL_GetVersion</refname>
-            <refpurpose>get the version of the TCL/TK
-                library at runtime.
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>TCL_GetVersion()
-                ret=TCL_GetVersion('numbers')
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>get the version of the TCL/TK library at runtime.</para>
-            <para>ret=TCL_GetVersion('numbers') returns a matrix with the version of the
-                TCL/TK library at runtime.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="TCL_GetVersion">
+    <refnamediv>
+        <refname>TCL_GetVersion</refname>
+        <refpurpose>get the version of the TCL/TK
+            library at runtime.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>TCL_GetVersion()
+            ret=TCL_GetVersion('numbers')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>get the version of the TCL/TK library at runtime.</para>
+        <para>ret=TCL_GetVersion('numbers') returns a matrix with the version of the
+            TCL/TK library at runtime.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 TCL_GetVersion() 
 TCL_GetVersion("numbers") 
  ]]></programlisting>
-        </refsection>
-    </refentry>
+    </refsection>
+</refentry>

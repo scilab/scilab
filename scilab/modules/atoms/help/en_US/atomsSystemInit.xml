@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 DIGITEO - Simon GARESTE <simon.gareste@scilab.org>
  * 
@@ -10,39 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsSystemInit">
-        <refnamediv>
-            <refname>atomsSystemInit</refname>
-            <refpurpose>Sets the rightful write access for the ATOMS system</refpurpose>
-        </refnamediv>
-        <!-- ===================================================================== -->
-        <!-- Calling Sequence -->
-        <!-- ===================================================================== -->
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>
-                atomsSystemInit()
-            </synopsis>
-        </refsynopsisdiv>
-        <!-- ===================================================================== -->
-        <!-- Description -->
-        <!-- ===================================================================== -->
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>atomsSystemInit</literal> sets the rightful write access, which can be 'allusers' or 'user'.
-            </para>
-        </refsection>
-        <!-- ===================================================================== -->
-        <!-- Examples -->
-        <!-- ===================================================================== -->
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsSystemInit">
+    <refnamediv>
+        <refname>atomsSystemInit</refname>
+        <refpurpose>Sets the rightful write access for the ATOMS system</refpurpose>
+    </refnamediv>
+    <!-- ===================================================================== -->
+    <!-- Calling Sequence -->
+    <!-- ===================================================================== -->
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            atomsSystemInit()
+        </synopsis>
+    </refsynopsisdiv>
+    <!-- ===================================================================== -->
+    <!-- Description -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>atomsSystemInit</literal> sets the rightful write access, which can be 'allusers' or 'user'.
+        </para>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Examples -->
+    <!-- ===================================================================== -->
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 atomsSystemInit();
 ]]></programlisting>
-        </refsection>
-        <!-- ===================================================================== -->
-        <!-- Authors -->
-        <!-- ===================================================================== -->
-    </refentry>
+    </refsection>
+    <!-- ===================================================================== -->
+    <!-- Authors -->
+    <!-- ===================================================================== -->
+</refentry>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * 
@@ -10,47 +10,47 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="seteventhandler">
-        <refnamediv>
-            <refname>seteventhandler</refname>
-            <refpurpose>set an event handler for
-                the current graphic window
-            </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>seteventhandler(sfun_name)
-                seteventhandler('')
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>sfun_name</term>
-                    <listitem>
-                        <para>a character string. The name of the Scilab function which is
-                            intended to handle the events
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                The function allows the user to set a particular event handler for
-                the current graphic window. <literal>seteventhandler('') </literal>
-                removes the handler.
-            </para>
-            <para>
-                For more information about event handler functions see the
-                <link linkend="eventhandlerfunctions">event handler functions</link> help.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="seteventhandler">
+    <refnamediv>
+        <refname>seteventhandler</refname>
+        <refpurpose>set an event handler for
+            the current graphic window
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>seteventhandler(sfun_name)
+            seteventhandler('')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>sfun_name</term>
+                <listitem>
+                    <para>a character string. The name of the Scilab function which is
+                        intended to handle the events
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            The function allows the user to set a particular event handler for
+            the current graphic window. <literal>seteventhandler('') </literal>
+            removes the handler.
+        </para>
+        <para>
+            For more information about event handler functions see the
+            <link linkend="eventhandlerfunctions">event handler functions</link> help.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
 function my_eventhandler(win,x,y,ibut)
   if ibut==-1000 then return,end
   [x,y]=xchange(x,y,'i2f')
@@ -68,28 +68,28 @@ seteventhandler('my_eventhandler')
 
 seteventhandler('') //suppress the event handler
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="addmenu">addmenu</link>
-                </member>
-                <member>
-                    <link linkend="xgetmouse">xgetmouse</link>
-                </member>
-                <member>
-                    <link linkend="xclick">xclick</link>
-                </member>
-                <member>
-                    <link linkend="xchange">xchange</link>
-                </member>
-                <member>
-                    <link linkend="eventhandlerfunctions">event handler functions</link>
-                </member>
-                <member>
-                    <link linkend="figure_properties">figure_properties</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="addmenu">addmenu</link>
+            </member>
+            <member>
+                <link linkend="xgetmouse">xgetmouse</link>
+            </member>
+            <member>
+                <link linkend="xclick">xclick</link>
+            </member>
+            <member>
+                <link linkend="xchange">xchange</link>
+            </member>
+            <member>
+                <link linkend="eventhandlerfunctions">event handler functions</link>
+            </member>
+            <member>
+                <link linkend="figure_properties">figure_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

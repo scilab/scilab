@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
@@ -12,66 +12,66 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  * 
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitor" xml:lang="ja">
-        <refnamediv>
-            <refname>bitor</refname>
-            <refpurpose>ビット単位の論理和(OR)</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>呼び出し手順</title>
-            <synopsis>
-                z = bitor(x,y)
-                
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>パラメータ</title>
-            <variablelist>
-                <varlistentry>
-                    <term>x :</term>
-                    <listitem>
-                        <para>
-                            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-                            または符合なし整数(uint8, uint16 または uint32)の
-                            m行n列行列.値は正の整数値である必要があります.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>y :</term>
-                    <listitem>
-                        <para>
-                            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-                            または符合なし整数(uint8, uint16 または uint32)の
-                            m行n列行列.値は正の整数値である必要があります.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>z :</term>
-                    <listitem>
-                        <para>
-                            m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-                            または符合なし整数.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>説明</title>
-            <para>
-                2つの正の整数 x および y を指定すると,この関数は2進形式が
-                x および y　の2進形式の論理和となるような10進数を返します.
-            </para>
-            <para>
-                <literal>x</literal>,
-                <literal>y</literal>, <literal>z</literal> の大きさは同じです. 
-            </para>
-        </refsection>
-        <refsection>
-            <title>例</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitor" xml:lang="ja">
+    <refnamediv>
+        <refname>bitor</refname>
+        <refpurpose>ビット単位の論理和(OR)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            z = bitor(x,y)
+            
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>パラメータ</title>
+        <variablelist>
+            <varlistentry>
+                <term>x :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数(uint8, uint16 または uint32)の
+                        m行n列行列.値は正の整数値である必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数(uint8, uint16 または uint32)の
+                        m行n列行列.値は正の整数値である必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>z :</term>
+                <listitem>
+                    <para>
+                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        または符合なし整数.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            2つの正の整数 x および y を指定すると,この関数は2進形式が
+            x および y　の2進形式の論理和となるような10進数を返します.
+        </para>
+        <para>
+            <literal>x</literal>,
+            <literal>y</literal>, <literal>z</literal> の大きさは同じです. 
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
 // '110000' : is the binary representation of 48 
 // '100101' : is the binary representation of 37   
 // '110101' : is the binary representation for the OR applied to the binary forms 48 and 37 
@@ -108,19 +108,19 @@ bitor(uint8(13), uint8(27))
 bitor(13, 27)
 
    ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>参照</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="bitand">bitand</link>
-                </member>
-                <member>
-                    <link linkend="bin2dec">bin2dec</link>
-                </member>
-                <member>
-                    <link linkend="dec2bin">dec2bin</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bitand">bitand</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

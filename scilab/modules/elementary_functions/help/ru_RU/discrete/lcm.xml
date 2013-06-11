@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,58 +10,58 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="lcm">
-        <refnamediv>
-            <refname>lcm</refname>
-            <refpurpose>наименьшее общее кратное (НОК)</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>[pp, fact] = lcm(p)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>p</term>
-                    <listitem>
-                        <para>
-                            вектор-строка полиномиальных значений <literal>p = [p1, ..., pn]</literal> либо
-                            вектор-строка целочисленных значений (тип 8).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>fact</term>
-                    <listitem>
-                        <para>
-                            вектор полиномиальных или целочисленных значений (тип 8).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>pp</term>
-                    <listitem>
-                        <para>полином или целое число.</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <code>pp=lcm(p)</code> вычисляет наименьшее общее кратное <varname>pp</varname> вектора полиномиальных значений <varname>p</varname>.
-            </para>
-            <para>
-                <code>[pp, fact]=lcm(p)</code> вычисляет дополнительно вектор <varname>fact</varname> такой, что:
-            </para>
-            <para>
-                <code>p.*fact=pp*ones(p)</code>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="lcm">
+    <refnamediv>
+        <refname>lcm</refname>
+        <refpurpose>наименьшее общее кратное (НОК)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[pp, fact] = lcm(p)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        вектор-строка полиномиальных значений <literal>p = [p1, ..., pn]</literal> либо
+                        вектор-строка целочисленных значений (тип 8).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fact</term>
+                <listitem>
+                    <para>
+                        вектор полиномиальных или целочисленных значений (тип 8).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pp</term>
+                <listitem>
+                    <para>полином или целое число.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <code>pp=lcm(p)</code> вычисляет наименьшее общее кратное <varname>pp</varname> вектора полиномиальных значений <varname>p</varname>.
+        </para>
+        <para>
+            <code>[pp, fact]=lcm(p)</code> вычисляет дополнительно вектор <varname>fact</varname> такой, что:
+        </para>
+        <para>
+            <code>p.*fact=pp*ones(p)</code>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 //случай полиномов
 s=poly(0,'s');
 p=[s,s*(s+1)^2,s^2*(s+2)];
@@ -72,16 +72,16 @@ p.*fact, pp
 V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 lcm(V)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="gcd">gcd</link>
-                </member>
-                <member>
-                    <link linkend="bezout">bezout</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="gcd">gcd</link>
+            </member>
+            <member>
+                <link linkend="bezout">bezout</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

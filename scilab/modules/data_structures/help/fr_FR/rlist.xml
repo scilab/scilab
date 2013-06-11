@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="rlist">
-        <refnamediv>
-            <refname>rlist</refname>
-            <refpurpose>définition d'une fraction rationnelle  </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Séquence d'appel</title>
-            <synopsis>rlist()
-                rlist(a1,....an)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>rlist(a1,....an)</literal> est équivalent à
-                <literal>tlist(['r','num';'den','dt'], a1,....an)</literal> 
-            </para>
-            <para>
-                Crée une <literal>tlist</literal> avec <literal>['r','num';'den','dt']</literal> comme premier argument et les <literal>ai</literal> comme termes suivants s'ils sont présents dans les arguments. Aucune vérification de type ou de taille n'est faite sur les <literal>ai</literal>.
-            </para>
-            <para>
-            </para>
-        </refsection>
-        <refsection>
-            <title>Exemples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="rlist">
+    <refnamediv>
+        <refname>rlist</refname>
+        <refpurpose>définition d'une fraction rationnelle  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>rlist()
+            rlist(a1,....an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>rlist(a1,....an)</literal> est équivalent à
+            <literal>tlist(['r','num';'den','dt'], a1,....an)</literal> 
+        </para>
+        <para>
+            Crée une <literal>tlist</literal> avec <literal>['r','num';'den','dt']</literal> comme premier argument et les <literal>ai</literal> comme termes suivants s'ils sont présents dans les arguments. Aucune vérification de type ou de taille n'est faite sur les <literal>ai</literal>.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
 s=poly(0,'s');
 W=[1/s,1/(s+1)]
 W'*W
@@ -32,19 +32,19 @@ Num=[s,s+2;1,s];
 Den=[s*s,s;s,s*s];
 rlist(Num,Den,[])
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Voir aussi</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="tlist">tlist</link>
-                </member>
-                <member>
-                    <link linkend="syslin">syslin</link>
-                </member>
-                <member>
-                    <link linkend="rational">rational</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

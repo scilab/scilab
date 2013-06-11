@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,78 +10,78 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ssrand" xml:lang="ru">
-        <refnamediv>
-            <refname>ssrand</refname>
-            <refpurpose>генератор случайной системы</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>
-                sl=ssrand(nout,nin,nstate)
-                [sl,U]=ssrand(nout,nin,nstate,flag)
-            </synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>nout</term>
-                    <listitem>
-                        <para>целое число (число выходов)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>nin</term>
-                    <listitem>
-                        <para>целое число (число входов)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>nstate</term>
-                    <listitem>
-                        <para>целое число (размерность пространства состояний)</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>flag</term>
-                    <listitem>
-                        <para>
-                            список, сделанный из одной символьной строки и одного или нескольких целых чисел
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>sl</term>
-                    <listitem>
-                        <para>
-                            список (список <literal>syslin</literal>)
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>U</term>
-                    <listitem>
-                        <para>
-                            квадратная невырожденная матрица размером <literal>(nstate x nstate)</literal> 
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                <literal>sl=ssrand(nout,nin,nstate)</literal> возвращает случайную строго корректную (<literal>D=0</literal>) систему пространства состояний размером   
-                <literal>[nout,nint]</literal>, представленную списком <literal>syslin</literal> и с
-                <literal>nstate</literal> переменными состояния.
-            </para>
-            <para>
-                <literal>[sl,U]=ssrand(nout,nin,nstate,flag)</literal> возвращает тестовую линейную систему
-                с заданными свойствами, определёнными флагом <literal>flag</literal>.
-                <literal>flag</literal> может быть одним из следующих:
-            </para>
-            <programlisting><![CDATA[ 
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ssrand" xml:lang="ru">
+    <refnamediv>
+        <refname>ssrand</refname>
+        <refpurpose>генератор случайной системы</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            sl=ssrand(nout,nin,nstate)
+            [sl,U]=ssrand(nout,nin,nstate,flag)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>nout</term>
+                <listitem>
+                    <para>целое число (число выходов)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nin</term>
+                <listitem>
+                    <para>целое число (число входов)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nstate</term>
+                <listitem>
+                    <para>целое число (размерность пространства состояний)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>
+                        список, сделанный из одной символьной строки и одного или нескольких целых чисел
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sl</term>
+                <listitem>
+                    <para>
+                        список (список <literal>syslin</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        квадратная невырожденная матрица размером <literal>(nstate x nstate)</literal> 
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>sl=ssrand(nout,nin,nstate)</literal> возвращает случайную строго корректную (<literal>D=0</literal>) систему пространства состояний размером   
+            <literal>[nout,nint]</literal>, представленную списком <literal>syslin</literal> и с
+            <literal>nstate</literal> переменными состояния.
+        </para>
+        <para>
+            <literal>[sl,U]=ssrand(nout,nin,nstate,flag)</literal> возвращает тестовую линейную систему
+            с заданными свойствами, определёнными флагом <literal>flag</literal>.
+            <literal>flag</literal> может быть одним из следующих:
+        </para>
+        <programlisting><![CDATA[ 
 flag=list('co',dim_cont_subs)  
 flag=list('uo',dim_unobs_subs)
 flag=list('ncno',dim_cno,dim_ncno,dim_co,dim_nco)
@@ -90,25 +90,25 @@ flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)
 flag=list('on',nr,ng,ng0,nv,rk)
 flag=list('ui',nw,nwu,nwui,nwuis,rk)
  ]]></programlisting>
-            <para>
-                Полное описание  <literal>Sys</literal> дано в коде функции <literal>ssrand</literal>
-                (в <literal>SCI/modules/cacsd/macros/</literal>). Например,  с
-                <literal>flag=list('co',dim_cont_subs)</literal> возвращается неконтролируемая система, а
-                <literal>dim_cont_subs</literal> - размерность контролируемого подпространства 
-                <literal>Sys</literal>. Символьные 
-                строки<literal>'co','uo','ncno','st','dt','on','ui'</literal> обозначают:
-            </para>
-            <para>"controllable" - "контролируемая",</para>
-            <para>"unobservable", </para>
-            <para>"non-controllable-non-observable" - "неконтролируемая и ненаблюдаемая",</para>
-            <para>"stabilizable" - "стабилизируемая",</para>
-            <para>"detectable" - "обнаружимая",</para>
-            <para>"output-nulling" - "обнуление выхода",</para>
-            <para>"unknown-input" - "неизвестный вход".</para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+        <para>
+            Полное описание  <literal>Sys</literal> дано в коде функции <literal>ssrand</literal>
+            (в <literal>SCI/modules/cacsd/macros/</literal>). Например,  с
+            <literal>flag=list('co',dim_cont_subs)</literal> возвращается неконтролируемая система, а
+            <literal>dim_cont_subs</literal> - размерность контролируемого подпространства 
+            <literal>Sys</literal>. Символьные 
+            строки<literal>'co','uo','ncno','st','dt','on','ui'</literal> обозначают:
+        </para>
+        <para>"controllable" - "контролируемая",</para>
+        <para>"unobservable", </para>
+        <para>"non-controllable-non-observable" - "неконтролируемая и ненаблюдаемая",</para>
+        <para>"stabilizable" - "стабилизируемая",</para>
+        <para>"detectable" - "обнаружимая",</para>
+        <para>"output-nulling" - "обнуление выхода",</para>
+        <para>"unknown-input" - "неизвестный вход".</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 //flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
 //dim_cont_subs&lt;=dim_stab_subs&lt;=dim_stab0  
 //пара (A,B) U-образная для:
@@ -125,13 +125,13 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
 w=ss2ss(Sl,inv(U)); //отменить случайное изменение базиса => формировать как выше
 [n,nc,u,sl]=st_ility(Sl);n,nc
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="syslin">syslin</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

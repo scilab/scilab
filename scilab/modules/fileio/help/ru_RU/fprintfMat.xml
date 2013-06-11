@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
@@ -11,81 +11,81 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fprintfMat" xml:lang="ru">
-        <refnamediv>
-            <refname>fprintfMat</refname>
-            <refpurpose>записывает матрицу в файл</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Последовательность вызова</title>
-            <synopsis>fprintfMat(file, M [,format, text])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Аргументы</title>
-            <variablelist>
-                <varlistentry>
-                    <term>file</term>
-                    <listitem>
-                        <para>строка, путь к файлу, который нужно записать</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>M</term>
-                    <listitem>
-                        <para>матрица вещественных чисел</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>format</term>
-                    <listitem>
-                        <para>
-                            символьная строка, задающая формат. Это необязательный
-                            параметр, значение по умолчанию <literal>"%lf"</literal>.
-                        </para>
-                        <para>
-                            Поддерживаемый формат:
-                            <literal>%[width].[precision]type</literal> или
-                            <literal>%type</literal>, где:
-                        </para>
-                        <para>
-                            <literal>width</literal>: необязательное число, которое
-                            определяет минимальное количество символов на выходе;
-                        </para>
-                        <para>
-                            <literal>precision</literal>: необязательное число,
-                            которое определяет максимальное количество символов,
-                            напечатанных для всего или части выходного поля, или
-                            минимальное количество цифр, печатаемых для целых значений;
-                        </para>
-                        <para>
-                            <literal>type</literal>: lf, lg, d, i, e, f, g (см. <link
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fprintfMat" xml:lang="ru">
+    <refnamediv>
+        <refname>fprintfMat</refname>
+        <refpurpose>записывает матрицу в файл</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>fprintfMat(file, M [,format, text])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>file</term>
+                <listitem>
+                    <para>строка, путь к файлу, который нужно записать</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>матрица вещественных чисел</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>
+                        символьная строка, задающая формат. Это необязательный
+                        параметр, значение по умолчанию <literal>"%lf"</literal>.
+                    </para>
+                    <para>
+                        Поддерживаемый формат:
+                        <literal>%[width].[precision]type</literal> или
+                        <literal>%type</literal>, где:
+                    </para>
+                    <para>
+                        <literal>width</literal>: необязательное число, которое
+                        определяет минимальное количество символов на выходе;
+                    </para>
+                    <para>
+                        <literal>precision</literal>: необязательное число,
+                        которое определяет максимальное количество символов,
+                        напечатанных для всего или части выходного поля, или
+                        минимальное количество цифр, печатаемых для целых значений;
+                    </para>
+                    <para>
+                        <literal>type</literal>: lf, lg, d, i, e, f, g (см. <link
             linkend="scanf_conversion">scanf_conversion</link>).
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>text</term>
-                    <listitem>
-                        <para>
-                            вектор-строка или вектор-столбец строк, указывающий
-                            нечисловые комментарии в начале файла.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Описание</title>
-            <para>
-                Функция <function>fprintfMat</function> записывает матрицу в
-                форматированном файле. Каждая строка матрицы даёт строчку в
-                файле. Если указан <varname>text</varname>, то его элементы
-                вносятся (поэлементно) в начало файла, один элемент на строку.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Примеры</title>
-            <programlisting role="example"><![CDATA[ 
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>text</term>
+                <listitem>
+                    <para>
+                        вектор-строка или вектор-столбец строк, указывающий
+                        нечисловые комментарии в начале файла.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Функция <function>fprintfMat</function> записывает матрицу в
+            форматированном файле. Каждая строка матрицы даёт строчку в
+            файле. Если указан <varname>text</varname>, то его элементы
+            вносятся (поэлементно) в начало файла, один элемент на строку.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
 n = 50;
 a = rand(n, n, "u");
 fprintfMat(TMPDIR + "/Mat", a, "%5.2f");
@@ -95,56 +95,56 @@ a1 = fscanfMat(TMPDIR + "/Mat");
 some_comment = ["Это комментарий.","Это вторая строчка комментария.","Это третья строчка комментария."];
 fprintfMat(TMPDIR + "/Mat1", a, "%5.2f",some_comment);
    ]]> </programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>Смотрите также</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="scanf_conversion">scanf_conversion</link>
-                </member>
-                <member>
-                    <link linkend="mclose">mclose</link>
-                </member>
-                <member>
-                    <link linkend="meof">meof</link>
-                </member>
-                <member>
-                    <link linkend="mfprintf">mfprintf</link>
-                </member>
-                <member>
-                    <link linkend="mfscanf">mfscanf</link>
-                </member>
-                <member>
-                    <link linkend="fscanfMat">fscanfMat</link>
-                </member>
-                <member>
-                    <link linkend="mget">mget</link>
-                </member>
-                <member>
-                    <link linkend="mgetstr">mgetstr</link>
-                </member>
-                <member>
-                    <link linkend="mopen">mopen</link>
-                </member>
-                <member>
-                    <link linkend="mprintf">mprintf</link>
-                </member>
-                <member>
-                    <link linkend="mput">mput</link>
-                </member>
-                <member>
-                    <link linkend="mputstr">mputstr</link>
-                </member>
-                <member>
-                    <link linkend="mseek">mseek</link>
-                </member>
-                <member>
-                    <link linkend="mtell">mtell</link>
-                </member>
-                <member>
-                    <link linkend="mdelete">mdelete</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
-    
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scanf_conversion">scanf_conversion</link>
+            </member>
+            <member>
+                <link linkend="mclose">mclose</link>
+            </member>
+            <member>
+                <link linkend="meof">meof</link>
+            </member>
+            <member>
+                <link linkend="mfprintf">mfprintf</link>
+            </member>
+            <member>
+                <link linkend="mfscanf">mfscanf</link>
+            </member>
+            <member>
+                <link linkend="fscanfMat">fscanfMat</link>
+            </member>
+            <member>
+                <link linkend="mget">mget</link>
+            </member>
+            <member>
+                <link linkend="mgetstr">mgetstr</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
+                <link linkend="mprintf">mprintf</link>
+            </member>
+            <member>
+                <link linkend="mput">mput</link>
+            </member>
+            <member>
+                <link linkend="mputstr">mputstr</link>
+            </member>
+            <member>
+                <link linkend="mseek">mseek</link>
+            </member>
+            <member>
+                <link linkend="mtell">mtell</link>
+            </member>
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Xcos
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
@@ -22,354 +22,354 @@
  * 
  * See the file ./license.txt
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="RFILE_f" xml:lang="en_US">
-        <refnamediv>
-            <refname>RFILE_f</refname>
-            <refpurpose>Read from input file</refpurpose>
-        </refnamediv>
-        <refsection>
-            <title>Block Screenshot</title>
-            <para>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../../../../images/palettes/RFILE_f.png" align="center" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </para>
-        </refsection>
-        <refsection id="Contents_RFILE_f">
-            <title>Contents</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="RFILE_f">Read from input file</link>
-                    </para>
-                </listitem>
-                <listitem>
-                    <itemizedlist>
-                        <listitem>
-                            <para>
-                                <xref linkend="Palette_RFILE_f">Palette</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Description_RFILE_f">Description</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Datatype_RFILE_f">Data types</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Dialogbox_RFILE_f">Dialog box</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Defaultproperties_RFILE_f">Default properties</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Example_RFILE_f">Example</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Interfacingfunction_RFILE_f">Interfacing function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Computationalfunction_RFILE_f">Computational function</xref>
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <xref linkend="Seealso_RFILE_f">See also</xref>
-                            </para>
-                        </listitem>
-                    </itemizedlist>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Palette_RFILE_f">
-            <title>Palette</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link linkend="Sources_pal">Sources palette</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Description_RFILE_f">
-            <title>Description</title>
-            <para>
-                This block allows user to read data in a file with the name defined with the <emphasis role="bold">Input File Name</emphasis> parameter, in text formatted mode or in binary mode.
-            </para>
-            <para>
-                The file is a sequence of records. Each record has the length <emphasis role="bold">Record Size</emphasis> <literal>+ 1
-                </literal>
-                and the structure shown below:
-            </para>
-            <para/>
-            <mediaobject>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="RFILE_f" xml:lang="en_US">
+    <refnamediv>
+        <refname>RFILE_f</refname>
+        <refpurpose>Read from input file</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Block Screenshot</title>
+        <para>
+            <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../images/sources_pal/en_US/rfile_f_record_en_US.png" align="center"/>
+                    <imagedata fileref="../../../../images/palettes/RFILE_f.png" align="center" valign="middle"/>
                 </imageobject>
-            </mediaobject>
-            <para>
-                The <emphasis role="bold">Time Record Selection</emphasis> parameter allows to user the selection of one field in the
-                record which represents time events. When this parameter is set, an activation output is added to the block to return
-                these events to the user.
-                With a feedback of the activation output to the event input of the block, the records are read in sequence until file end as in the example below.
-            </para>
-            <para>
-                The <emphasis role="bold">Outputs Record Selection</emphasis> is used to select the record's fields which will be
-                included in the regular output.
-            </para>
-            <para>
-                The <emphasis role="bold">Output Format</emphasis> parameter gives the record format.
-            </para>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        For a binary file, this parameter is an empty string.
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        For a text file, this parameter is a string of format (Fortran syntax) enclosed by parentheses.
-                    </para>
-                </listitem>
-            </itemizedlist>
-            <para>Each event on the activation input of the block advances one record in the file.</para>
-        </refsection>
-        <refsection id="Datatype_RFILE_f">
-            <title>Data types</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        Output:  a scalar or a column vector of data of type double. The vector length is equal to the length of the
-                        <emphasis role="bold">Outputs Record Selection</emphasis> vector.
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Dialogbox_RFILE_f">
-            <title>Dialog box</title>
-            <para>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_RFILE_f">
+        <title>Contents</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="RFILE_f">Read from input file</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_RFILE_f">Palette</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_RFILE_f">Description</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Datatype_RFILE_f">Data types</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_RFILE_f">Dialog box</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_RFILE_f">Default properties</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Example_RFILE_f">Example</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_RFILE_f">Interfacing function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_RFILE_f">Computational function</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Seealso_RFILE_f">See also</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_RFILE_f">
+        <title>Palette</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Sources_pal">Sources palette</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_RFILE_f">
+        <title>Description</title>
+        <para>
+            This block allows user to read data in a file with the name defined with the <emphasis role="bold">Input File Name</emphasis> parameter, in text formatted mode or in binary mode.
+        </para>
+        <para>
+            The file is a sequence of records. Each record has the length <emphasis role="bold">Record Size</emphasis> <literal>+ 1
+            </literal>
+            and the structure shown below:
+        </para>
+        <para/>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../../../images/sources_pal/en_US/rfile_f_record_en_US.png" align="center"/>
+            </imageobject>
+        </mediaobject>
+        <para>
+            The <emphasis role="bold">Time Record Selection</emphasis> parameter allows to user the selection of one field in the
+            record which represents time events. When this parameter is set, an activation output is added to the block to return
+            these events to the user.
+            With a feedback of the activation output to the event input of the block, the records are read in sequence until file end as in the example below.
+        </para>
+        <para>
+            The <emphasis role="bold">Outputs Record Selection</emphasis> is used to select the record's fields which will be
+            included in the regular output.
+        </para>
+        <para>
+            The <emphasis role="bold">Output Format</emphasis> parameter gives the record format.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    For a binary file, this parameter is an empty string.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    For a text file, this parameter is a string of format (Fortran syntax) enclosed by parentheses.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>Each event on the activation input of the block advances one record in the file.</para>
+    </refsection>
+    <refsection id="Datatype_RFILE_f">
+        <title>Data types</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Output:  a scalar or a column vector of data of type double. The vector length is equal to the length of the
+                    <emphasis role="bold">Outputs Record Selection</emphasis> vector.
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Dialogbox_RFILE_f">
+        <title>Dialog box</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../gui/sources_pal/en_US/RFILE_f_gui.png" align="center"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Time record selection</emphasis>
+                </para>
+                <para> An empty matrix or a positive integer.</para>
+                <para>
+                    If an integer 
+                    <emphasis>
+                        <literal>i</literal>
+                    </emphasis>
+                    is given the 
+                    <emphasis><literal>
+                            i<superscript>th</superscript>
+                        </literal>
+                    </emphasis>
+                    element of the read record is assumed to be the date of the output event.
+                </para>
+                <para> If it is an empty matrice, no output event exists.</para>
+                <para> Properties : Type 'vec' of size -1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Outputs record selection</emphasis>
+                </para>
+                <para>
+                    A vector of positive integer 
+                    <emphasis><literal>
+                            [k<subscript>i</subscript>,...,k<subscript>n</subscript>]
+                        </literal>
+                    </emphasis>
+                    the element 
+                    <emphasis><literal>
+                            k<subscript>i</subscript><superscript>th</superscript>
+                        </literal>
+                    </emphasis>
+                    of the read record gives the value of the 
+                    <emphasis><literal>
+                            i<superscript>th</superscript>
+                        </literal>
+                    </emphasis>
+                    output.
+                </para>
+                <para> Properties : Type 'vec' of size -1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Input file name</emphasis>
+                </para>
+                <para>
+                    A character string defining the path of the file. The block support file name expansion and you can use environment variables
+                    like <emphasis>PWD</emphasis> in the path, by example <emphasis>"PWD/my_data/"</emphasis>. Without path specifier, the file is read
+                    in the directory defined by the <emphasis>PWD</emphasis> variable.
+                </para>
+                <para>The file must exist, otherwise you will be prompted by an error message.</para>
+                <para> Properties : Type 'str' of size 1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Input Format</emphasis>
+                </para>
+                <para>
+                    A character string defining the Fortran format to use or nothing for an unformatted (binary) write. If given, the format must began by a left parenthesis and end by a right parenthesis. Example: 
+                    <emphasis>
+                        <literal>(10e3)</literal>
+                    </emphasis>
+                </para>
+                <para> Properties : Type 'str' of size 1. </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Buffer size</emphasis>
+                </para>
+                <para>
+                    To improve efficiency it is possible to buffer the input data. The reading of samples on the peripheral fills
+                    the buffer so that there are always available data in memory for the block.
+                </para>
+                <para> Properties : Type 'vec' of size 1.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_RFILE_f">
+        <title>Default properties</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">always active:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">direct-feedthrough:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">zero-crossing:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">mode:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">continuous-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">discrete-time state:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">name of computational function:</emphasis>
+                    <emphasis role="italic">readf</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Example_RFILE_f">
+        <title>Example</title>
+        <para>
+            This example reads the file: <emphasis>"SCI/modules/xcos/examples/sources_pal/en_US/rfile_f.txt"</emphasis> which contains a set of data generated by the example of the
+            <link linkend="WFILE_f">WFILE_f</link> block help page.
+        </para>
+        <para>
+            It use its activation output as event input of CSCOPE. In the file, the first field of the record is the time, the two others are regular data. The feedback of the
+            activation output on event input ensures the file sequential read.
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
+                Open this example in Xcos
+            </link>
+            .
+        </para>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../gui/sources_pal/en_US/RFILE_f_gui.png" align="center"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/rfile_f_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </para>
-            <para/>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Time record selection</emphasis>
-                    </para>
-                    <para> An empty matrix or a positive integer.</para>
-                    <para>
-                        If an integer 
-                        <emphasis>
-                            <literal>i</literal>
-                        </emphasis>
-                        is given the 
-                        <emphasis><literal>
-                                i<superscript>th</superscript>
-                            </literal>
-                        </emphasis>
-                        element of the read record is assumed to be the date of the output event.
-                    </para>
-                    <para> If it is an empty matrice, no output event exists.</para>
-                    <para> Properties : Type 'vec' of size -1. </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Outputs record selection</emphasis>
-                    </para>
-                    <para>
-                        A vector of positive integer 
-                        <emphasis><literal>
-                                [k<subscript>i</subscript>,...,k<subscript>n</subscript>]
-                            </literal>
-                        </emphasis>
-                        the element 
-                        <emphasis><literal>
-                                k<subscript>i</subscript><superscript>th</superscript>
-                            </literal>
-                        </emphasis>
-                        of the read record gives the value of the 
-                        <emphasis><literal>
-                                i<superscript>th</superscript>
-                            </literal>
-                        </emphasis>
-                        output.
-                    </para>
-                    <para> Properties : Type 'vec' of size -1. </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Input file name</emphasis>
-                    </para>
-                    <para>
-                        A character string defining the path of the file. The block support file name expansion and you can use environment variables
-                        like <emphasis>PWD</emphasis> in the path, by example <emphasis>"PWD/my_data/"</emphasis>. Without path specifier, the file is read
-                        in the directory defined by the <emphasis>PWD</emphasis> variable.
-                    </para>
-                    <para>The file must exist, otherwise you will be prompted by an error message.</para>
-                    <para> Properties : Type 'str' of size 1. </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Input Format</emphasis>
-                    </para>
-                    <para>
-                        A character string defining the Fortran format to use or nothing for an unformatted (binary) write. If given, the format must began by a left parenthesis and end by a right parenthesis. Example: 
-                        <emphasis>
-                            <literal>(10e3)</literal>
-                        </emphasis>
-                    </para>
-                    <para> Properties : Type 'str' of size 1. </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">Buffer size</emphasis>
-                    </para>
-                    <para>
-                        To improve efficiency it is possible to buffer the input data. The reading of samples on the peripheral fills
-                        the buffer so that there are always available data in memory for the block.
-                    </para>
-                    <para> Properties : Type 'vec' of size 1.</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Defaultproperties_RFILE_f">
-            <title>Default properties</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">always active:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">direct-feedthrough:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">zero-crossing:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">mode:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">regular outputs:</emphasis>
-                    </para>
-                    <para>
-                        <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation inputs:</emphasis> 1
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">continuous-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">discrete-time state:</emphasis> yes
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">object discrete-time state:</emphasis> no
-                    </para>
-                </listitem>
-                <listitem>
-                    <para>
-                        <emphasis role="bold">name of computational function:</emphasis>
-                        <emphasis role="italic">readf</emphasis>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Example_RFILE_f">
-            <title>Example</title>
-            <para>
-                This example reads the file: <emphasis>"SCI/modules/xcos/examples/sources_pal/en_US/rfile_f.txt"</emphasis> which contains a set of data generated by the example of the
-                <link linkend="WFILE_f">WFILE_f</link> block help page.
-            </para>
-            <para>
-                It use its activation output as event input of CSCOPE. In the file, the first field of the record is the time, the two others are regular data. The feedback of the
-                activation output on event input ensures the file sequential read.
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
-                    Open this example in Xcos
-                </link>
-                .
-            </para>
-            <para/>
-            <para>
-                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../examples/sources_pal/en_US/rfile_f_en_US.zcos" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                </link>
-            </para>
-        </refsection>
-        <refsection id="Interfacingfunction_RFILE_f">
-            <title>Interfacing function</title>
-            <itemizedlist>
-                <listitem>
-                    <para>
-                        <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RFILE_f.sci">SCI/modules/scicos_blocks/macros/Sources/RFILE_f.sci</link>
-                    </para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection id="Computationalfunction_RFILE_f">
-            <title>Computational function</title>
-            <itemizedlist>
-                <listitem>
-                    <para> SCI/modules/scicos_blocks/src/fortran/readf.f (Type 0)</para>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-        <refsection role="see also" id="Seealso_RFILE_f">
-            <title>See also</title>
-            <itemizedlist>
-                <listitem>
-                    <link linkend="WFILE_f">WFILE_f</link>
-                </listitem>
-                <listitem>
-                    <link linkend="READC_f">READC_f</link>
-                </listitem>
-                <listitem>
-                    <link linkend="WRITEC_f">WRITEC_f</link>
-                </listitem>
-            </itemizedlist>
-        </refsection>
-    </refentry>
+            </link>
+        </para>
+    </refsection>
+    <refsection id="Interfacingfunction_RFILE_f">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RFILE_f.sci">SCI/modules/scicos_blocks/macros/Sources/RFILE_f.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_RFILE_f">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/fortran/readf.f (Type 0)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection role="see also" id="Seealso_RFILE_f">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="WFILE_f">WFILE_f</link>
+            </listitem>
+            <listitem>
+                <link linkend="READC_f">READC_f</link>
+            </listitem>
+            <listitem>
+                <link linkend="WRITEC_f">WRITEC_f</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

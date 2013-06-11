@@ -1,95 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="poly">
-        <refnamediv>
-            <refname>poly</refname>
-            <refpurpose>polynomial definition</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>p = poly(a, vname, ["flag"])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>a</term>
-                    <listitem>
-                        <para>a matrix or real number</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>vname</term>
-                    <listitem>
-                        <para>a string, the symbolic variable name. The string must be 4 characters max.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>"flag"</term>
-                    <listitem>
-                        <para>
-                            string (<literal>"roots"</literal>, <literal>"coeff"</literal>),
-                            default value is <literal>"roots"</literal>.
-                        </para>
-                        <para>
-                            Shortcuts can be also used: <literal>"r"</literal> for <literal>"roots"</literal> and <literal>"c"</literal> for <literal>"coeff"</literal>.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <variablelist>
-                <varlistentry>
-                    <term>
-                        If <literal>a</literal> is a matrix,
-                    </term>
-                    <listitem>
-                        <para>
-                            <varname>p</varname> is the characteristic
-                            polynomial i.e. <code>determinant(x*eye()-a)</code>, <literal>x</literal> being
-                            the symbolic variable.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>
-                        If <literal>v</literal> is a vector,
-                    </term>
-                    <listitem>
-                        <itemizedlist>
-                            <listitem>
-                                <para>
-                                    <code>poly(v,"x",["roots"])</code>  is the polynomial
-                                    with <literal>roots</literal> the entries of <varname>v</varname> and
-                                    <literal>"x"</literal> as formal variable. (In this case,
-                                    <function>roots</function> and <function>poly</function> are inverse functions).
-                                    <note>
-                                        Note that Infinite roots gives zero highest degree coefficients.
-                                    </note>
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <code>poly(v,"x","coeff")</code> creates the
-                                    polynomial with symbol <literal>"x"</literal> and with coefficients
-                                    the entries of <varname>v</varname> (<code>v(1)</code> is the constant term
-                                    of the polynomial). (Here <function>poly</function> and <function>coeff</function> are inverse functions).
-                                </para>
-                            </listitem>
-                        </itemizedlist>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-            <para>
-                <code>s=poly(0,"s")</code> is the seed for defining
-                polynomials with symbol <literal>"s"</literal>.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="poly">
+    <refnamediv>
+        <refname>poly</refname>
+        <refpurpose>polynomial definition</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>p = poly(a, vname, ["flag"])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>a</term>
+                <listitem>
+                    <para>a matrix or real number</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>vname</term>
+                <listitem>
+                    <para>a string, the symbolic variable name. The string must be 4 characters max.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"flag"</term>
+                <listitem>
+                    <para>
+                        string (<literal>"roots"</literal>, <literal>"coeff"</literal>),
+                        default value is <literal>"roots"</literal>.
+                    </para>
+                    <para>
+                        Shortcuts can be also used: <literal>"r"</literal> for <literal>"roots"</literal> and <literal>"c"</literal> for <literal>"coeff"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    If <literal>a</literal> is a matrix,
+                </term>
+                <listitem>
+                    <para>
+                        <varname>p</varname> is the characteristic
+                        polynomial i.e. <code>determinant(x*eye()-a)</code>, <literal>x</literal> being
+                        the symbolic variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    If <literal>v</literal> is a vector,
+                </term>
+                <listitem>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <code>poly(v,"x",["roots"])</code>  is the polynomial
+                                with <literal>roots</literal> the entries of <varname>v</varname> and
+                                <literal>"x"</literal> as formal variable. (In this case,
+                                <function>roots</function> and <function>poly</function> are inverse functions).
+                                <note>
+                                    Note that Infinite roots gives zero highest degree coefficients.
+                                </note>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <code>poly(v,"x","coeff")</code> creates the
+                                polynomial with symbol <literal>"x"</literal> and with coefficients
+                                the entries of <varname>v</varname> (<code>v(1)</code> is the constant term
+                                of the polynomial). (Here <function>poly</function> and <function>coeff</function> are inverse functions).
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            <code>s=poly(0,"s")</code> is the seed for defining
+            polynomials with symbol <literal>"s"</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 s=poly(0,"s");
 p=1+s+2*s^2
 A=rand(2,2);
@@ -97,40 +97,40 @@ poly(A,"x")
 //rational fractions
 h=(1+2*%s)/poly(1:4,'s','coeff')
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="coeff">coeff</link>
-                </member>
-                <member>
-                    <link linkend="roots">roots</link>
-                </member>
-                <member>
-                    <link linkend="varn">varn</link>
-                </member>
-                <member>
-                    <link linkend="horner">horner</link>
-                </member>
-                <member>
-                    <link linkend="derivat">derivat</link>
-                </member>
-                <member>
-                    <link linkend="matrices">matrices</link>
-                </member>
-                <member>
-                    <link linkend="rational">rational</link>
-                </member>
-            </simplelist>
-        </refsection>
-        <refsection>
-            <title>History</title>
-            <revhistory>
-                <revision>
-                    <revnumber>5.5.0</revnumber>
-                    <revremark>The only values allowed for the third argument are "roots", "coeff", "c" and "r".</revremark>
-                </revision>
-            </revhistory>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="coeff">coeff</link>
+            </member>
+            <member>
+                <link linkend="roots">roots</link>
+            </member>
+            <member>
+                <link linkend="varn">varn</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
+                <link linkend="derivat">derivat</link>
+            </member>
+            <member>
+                <link linkend="matrices">matrices</link>
+            </member>
+            <member>
+                <link linkend="rational">rational</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>The only values allowed for the third argument are "roots", "coeff", "c" and "r".</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

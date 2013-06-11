@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * 
@@ -10,68 +10,68 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="add_help_chapter">
-        <refnamediv>
-            <refname>add_help_chapter</refname>
-            <refpurpose>Add an entry in the help list</refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>ok = add_help_chapter(title,path[,mode])</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>title</term>
-                    <listitem>
-                        <para>String array, Help chapter title</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>path</term>
-                    <listitem>
-                        <para>String array, Help chapters path</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>mode</term>
-                    <listitem>
-                        <para>A boolean, if TRUE, the chapter is considered as belongs to a
-                            internal modules, otherwise, the chapter is added as external module.
-                            It is an optional input argument and its default value is %F.
-                        </para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ok</term>
-                    <listitem>
-                        <para>A vector of booleans. The same size as
-                            the <literal>path</literal> variable. If the chapter page
-                            number i was not existing in the help system then ok(i) is
-                            set to %t.
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                This function adds a new entry in the help list. If the path is already present
-                in the help list, <literal>add_help_chapter</literal> skips the add. The function
-                checks if the directory exist.
-            </para>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="help">help</link>
-                </member>
-                <member>
-                    <link linkend="del_help_chapter">del_help_chapter</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="add_help_chapter">
+    <refnamediv>
+        <refname>add_help_chapter</refname>
+        <refpurpose>Add an entry in the help list</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>ok = add_help_chapter(title,path[,mode])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>title</term>
+                <listitem>
+                    <para>String array, Help chapter title</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>String array, Help chapters path</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mode</term>
+                <listitem>
+                    <para>A boolean, if TRUE, the chapter is considered as belongs to a
+                        internal modules, otherwise, the chapter is added as external module.
+                        It is an optional input argument and its default value is %F.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ok</term>
+                <listitem>
+                    <para>A vector of booleans. The same size as
+                        the <literal>path</literal> variable. If the chapter page
+                        number i was not existing in the help system then ok(i) is
+                        set to %t.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function adds a new entry in the help list. If the path is already present
+            in the help list, <literal>add_help_chapter</literal> skips the add. The function
+            checks if the directory exist.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="help">help</link>
+            </member>
+            <member>
+                <link linkend="del_help_chapter">del_help_chapter</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

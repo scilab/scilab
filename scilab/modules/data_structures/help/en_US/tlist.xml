@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!--
+<!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
  *
@@ -10,104 +10,104 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-    <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="tlist">
-        <refnamediv>
-            <refname>tlist</refname>
-            <refpurpose>Scilab object and typed list definition.  </refpurpose>
-        </refnamediv>
-        <refsynopsisdiv>
-            <title>Calling Sequence</title>
-            <synopsis>tlist(typ, a1, ..., an)</synopsis>
-        </refsynopsisdiv>
-        <refsection>
-            <title>Arguments</title>
-            <variablelist>
-                <varlistentry>
-                    <term>typ</term>
-                    <listitem>
-                        <para>a character string or vector of character strings.</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>ai</term>
-                    <listitem>
-                        <para>
-                            any Scilab object (<literal>matrix</literal>, <literal>list</literal>,
-                            <literal>string</literal>, ...).
-                        </para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
-        </refsection>
-        <refsection>
-            <title>Description</title>
-            <para>
-                <literal>tlist(typ, a1, ..., an)</literal> creates a <literal>typed-list</literal> with elements <varname>ai</varname>'s. The <varname>typ</varname> argument specifies the list type. Such <literal>typed-list</literal> allows the user to define new operations working on these object through Scilab functions. The only difference between <literal>typed-list</literal> and <literal>list</literal> is the value of the type (16 instead of 15).
-            </para>
-            <para>
-                <code>typ(1)</code> specifies the list type (character string used to define soft coded operations).
-            </para>
-            <para>
-                If specified <code>typ(i)</code> may give the <literal>(i+1)</literal>-th element formal name.
-            </para>
-            <para>
-                Standard Operations on <literal>list</literal> work similarly for <literal>typed-list</literal>:
-            </para>
-            <para>
-                extraction:
-            </para>
-            <para>
-                <literal>[x, y, z, ...]=l(v)</literal> where <literal>v</literal> is a vector of indices;
-                <literal>[x, y, z]=l(:)</literal> extracts all the elements.
-            </para>
-            <para>
-                insertion:
-            </para>
-            <para>
-                <literal>l(i)=a</literal>
-            </para>
-            <para>
-                deletion:
-            </para>
-            <para>
-                <code>l(i)=null()</code> removes the <literal>i</literal>-th
-                element of the <literal>tlist</literal> <literal>l</literal>.
-                <note>
-                    Note that the  semantics of <code>l.x=null()</code> is undefined, but a definition can be given through the <link linkend="overloading">overloading</link> mechanism.
-                </note>
-            </para>
-            <para>
-                display.
-            </para>
-            <para>
-                Moreover if <code>typ(2:n+1)</code> are specified, user may 
-                point elements by their names.
-            </para>
-            <para>
-                We give below examples where <literal>tlist</literal> are used.
-            </para>
-            <para>
-                Linear systems are represented by specific <literal>typed-list</literal> e.g. a
-                linear system <literal>[A,B,C,D]</literal> is represented by the <literal>tlist</literal>
-                <code>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</code>
-                and this specific list may be created by the function <function>syslin</function>.
-            </para>
-            <para>
-                <code>Sys(2)</code>, <code>Sys('A')</code> or <code>Sys.A</code> is the state-matrix and <code>Sys('dt')</code> or <code>Sys.dt</code> is the time domain.
-            </para>
-            <para>
-                A rational matrix <literal>H</literal> is represented by the <literal>typed-list</literal>
-                <code>H=rlist(Num,Den,[])</code> where <literal>Num</literal> and <literal>Den</literal> are two
-                polynomial matrices and a continuous time linear system with
-                transfer matrix <literal>H</literal> may be created by <code>syslin('c',H)</code>.
-            </para>
-            <para>
-                <code>H(2)</code>, <code>H('num')</code> or <code>H.num</code> is the transfer matrix numerator.
-            </para>
-        </refsection>
-        <refsection>
-            <title>Examples</title>
-            <programlisting role="example"><![CDATA[
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="tlist">
+    <refnamediv>
+        <refname>tlist</refname>
+        <refpurpose>Scilab object and typed list definition.  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>tlist(typ, a1, ..., an)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>a character string or vector of character strings.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ai</term>
+                <listitem>
+                    <para>
+                        any Scilab object (<literal>matrix</literal>, <literal>list</literal>,
+                        <literal>string</literal>, ...).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>tlist(typ, a1, ..., an)</literal> creates a <literal>typed-list</literal> with elements <varname>ai</varname>'s. The <varname>typ</varname> argument specifies the list type. Such <literal>typed-list</literal> allows the user to define new operations working on these object through Scilab functions. The only difference between <literal>typed-list</literal> and <literal>list</literal> is the value of the type (16 instead of 15).
+        </para>
+        <para>
+            <code>typ(1)</code> specifies the list type (character string used to define soft coded operations).
+        </para>
+        <para>
+            If specified <code>typ(i)</code> may give the <literal>(i+1)</literal>-th element formal name.
+        </para>
+        <para>
+            Standard Operations on <literal>list</literal> work similarly for <literal>typed-list</literal>:
+        </para>
+        <para>
+            extraction:
+        </para>
+        <para>
+            <literal>[x, y, z, ...]=l(v)</literal> where <literal>v</literal> is a vector of indices;
+            <literal>[x, y, z]=l(:)</literal> extracts all the elements.
+        </para>
+        <para>
+            insertion:
+        </para>
+        <para>
+            <literal>l(i)=a</literal>
+        </para>
+        <para>
+            deletion:
+        </para>
+        <para>
+            <code>l(i)=null()</code> removes the <literal>i</literal>-th
+            element of the <literal>tlist</literal> <literal>l</literal>.
+            <note>
+                Note that the  semantics of <code>l.x=null()</code> is undefined, but a definition can be given through the <link linkend="overloading">overloading</link> mechanism.
+            </note>
+        </para>
+        <para>
+            display.
+        </para>
+        <para>
+            Moreover if <code>typ(2:n+1)</code> are specified, user may 
+            point elements by their names.
+        </para>
+        <para>
+            We give below examples where <literal>tlist</literal> are used.
+        </para>
+        <para>
+            Linear systems are represented by specific <literal>typed-list</literal> e.g. a
+            linear system <literal>[A,B,C,D]</literal> is represented by the <literal>tlist</literal>
+            <code>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</code>
+            and this specific list may be created by the function <function>syslin</function>.
+        </para>
+        <para>
+            <code>Sys(2)</code>, <code>Sys('A')</code> or <code>Sys.A</code> is the state-matrix and <code>Sys('dt')</code> or <code>Sys.dt</code> is the time domain.
+        </para>
+        <para>
+            A rational matrix <literal>H</literal> is represented by the <literal>typed-list</literal>
+            <code>H=rlist(Num,Den,[])</code> where <literal>Num</literal> and <literal>Den</literal> are two
+            polynomial matrices and a continuous time linear system with
+            transfer matrix <literal>H</literal> may be created by <code>syslin('c',H)</code>.
+        </para>
+        <para>
+            <code>H(2)</code>, <code>H('num')</code> or <code>H.num</code> is the transfer matrix numerator.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 // tlist creation
 t = tlist(["listtype","field1","field2"], [], []);
 t.field1(1) = 10;
@@ -144,22 +144,22 @@ endfunction
 // Display using overloading function
 disp(t)
  ]]></programlisting>
-        </refsection>
-        <refsection role="see also">
-            <title>See Also</title>
-            <simplelist type="inline">
-                <member>
-                    <link linkend="percent">percent</link>
-                </member>
-                <member>
-                    <link linkend="syslin">syslin</link>
-                </member>
-                <member>
-                    <link linkend="list">list</link>
-                </member>
-                <member>
-                    <link linkend="mlist">mlist</link>
-                </member>
-            </simplelist>
-        </refsection>
-    </refentry>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percent">percent</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
