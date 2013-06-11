@@ -521,3 +521,23 @@ int ArnoldiModule::Load()
 
     return 1;
 }
+
+int CallScilabModule::Load()
+{
+    wstring wstModuleName = L"call_scilab";
+#ifdef _MSC_VER
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+#else
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+#endif
+    vectGateway vect = loadGatewaysName(wstModuleName);
+
+    for (int i = 0 ; i < (int)vect.size() ; i++)
+    {
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+    }
+
+    FREE(pwstLibName);
+
+    return 1;
+}
