@@ -11,10 +11,10 @@
  *
  -->
 <project name="history_browser" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.history_browser.name}"/>
-  <property name="library.title" value="Scilab history browser"/>
-  <description>
-			Build the Scilab history_browser module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.history_browser.name}"/>
+    <property name="library.title" value="Scilab history browser"/>
+    <description>
+        Build the Scilab history_browser module
+    </description>
 </project>

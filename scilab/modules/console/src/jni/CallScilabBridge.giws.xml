@@ -1,4 +1,4 @@
-<!--
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
  *
@@ -10,26 +10,26 @@
  *
  -->
 <package name="org.scilab.modules.gui.bridge">
-  <object name="CallScilabBridge">
-	<method name="display" returnType="void" modifier="static">
-	  <parameter type="String" name="dataToDisplay" />
-	</method>
-	<method name="readLine" returnType="String" modifier="static" detachThread="true">
-	</method>
-	<method name="clear" returnType="void" modifier="static">
-	</method>
-	<method name="clear" returnType="void" modifier="static">
-	  <parameter type="int" name="nbLines" />
-	</method>
-	<method name="getCharWithoutOutput" returnType="int" modifier="static">
-	</method>
-	<method name="toHome" returnType="void" modifier="static">
-	</method>
-	<method name="scilabLinesUpdate" returnType="void" modifier="static">
-	</method>
-	<method name="setPrompt" returnType="void" modifier="static">
-	  <parameter type="String" name="promptToSet" />
-	</method>
-	<method name="isWaitingForInput" returnType="boolean" modifier="static"/>
-  </object>
+    <object name="CallScilabBridge">
+        <method name="display" returnType="void" modifier="static">
+            <parameter type="String" name="dataToDisplay" />
+        </method>
+        <method name="readLine" returnType="String" modifier="static" detachThread="true">
+        </method>
+        <method name="clear" returnType="void" modifier="static">
+        </method>
+        <method name="clear" returnType="void" modifier="static">
+            <parameter type="int" name="nbLines" />
+        </method>
+        <method name="getCharWithoutOutput" returnType="int" modifier="static">
+        </method>
+        <method name="toHome" returnType="void" modifier="static">
+        </method>
+        <method name="scilabLinesUpdate" returnType="void" modifier="static">
+        </method>
+        <method name="setPrompt" returnType="void" modifier="static">
+            <parameter type="String" name="promptToSet" />
+        </method>
+        <method name="isWaitingForInput" returnType="boolean" modifier="static"/>
+    </object>
 </package>

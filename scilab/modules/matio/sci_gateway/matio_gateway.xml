@@ -14,8 +14,8 @@
     -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="matio">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -30,11 +30,11 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="59" primitiveId="1" primitiveName="matfile_open"/>
-<PRIMITIVE gatewayId="59" primitiveId="2" primitiveName="matfile_close"/>
-<PRIMITIVE gatewayId="59" primitiveId="3" primitiveName="matfile_listvar"/>
-<PRIMITIVE gatewayId="59" primitiveId="4" primitiveName="matfile_varreadnext"/>
-<PRIMITIVE gatewayId="59" primitiveId="5" primitiveName="matfile_varwrite"/>
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="59" primitiveId="1" primitiveName="matfile_open"/>
+    <PRIMITIVE gatewayId="59" primitiveId="2" primitiveName="matfile_close"/>
+    <PRIMITIVE gatewayId="59" primitiveId="3" primitiveName="matfile_listvar"/>
+    <PRIMITIVE gatewayId="59" primitiveId="4" primitiveName="matfile_varreadnext"/>
+    <PRIMITIVE gatewayId="59" primitiveId="5" primitiveName="matfile_varwrite"/>
 </GATEWAY>

@@ -11,62 +11,62 @@
  *
  -->
 <Setting version="0.02">
-  <!-- Scilab configuration -->
-  <Profile name="scilab">
-    <!-- Welcome line -->
-    <WelcomeLine useCache="true" value=""/>
+    <!-- Scilab configuration -->
+    <Profile name="scilab">
+        <!-- Welcome line -->
+        <WelcomeLine useCache="true" value=""/>
+        
+        <!-- GUI Part -->
+        <PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
+        <OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
+        <LastOpenedDirectory useCache="true" value=""/>
+        <InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
+        <BackgroundColor useCache="true" value="#FFFFFF"/>
+        <ForegroundColor useCache="true" value="#000000"/>
+        <ScrollableUnitIncrement useCache="true" value="20"/>
+        <ScrollableBlockIncrement useCache="true" value="20"/>
+        <VerticalWrapAllowed useCache="true" value="false"/>
+        <HorizontalWrapAllowed useCache="true" value="false"/>
+        <FontName useCache="true" value="Monospaced"/>
+        <FontStyle useCache="true" value="0"/>
+        <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+        <FontSize useCache="true" value="13"/>
+        
+        <MainWindowPosition useCache="true" x="0" y="0"/>
+        <MainWindowSize useCache="true" width="650" height="550"/>
+        
+        <!-- Help part -->
+        <HelpFontSize useCache="true" value="2"/>
+        
+        <!-- Core part -->
+        <OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+        <InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
+        <InputParsingManager useCache="true" value="org.scilab.modules.console.SciInputParsingManager"/>
+        <GenericInterpreter useCache="true" value="org.scilab.modules.console.SciInterpreter"/>
+        <CompletionManager useCache="true" value="org.scilab.modules.console.SciCompletionManager"/>
+        <CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
+        <HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
+        <MaxOutputSize useCache="true" value="10000"/>
+        
+        <!-- Key mapping -->
+        <KeyMapping>
+            <Key name="VK_F1" mask="" action="HELP"/>
+        </KeyMapping>
+        
+        <!-- Key mapping -->
+        <!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
+        <ActionMapping>
+            <Action name="HELP" className="org.scilab.modules.console.HelpAction"/>
+        </ActionMapping>
+        
+    </Profile>
     
-    <!-- GUI Part -->
-    <PromptView useCache="true" value="org.scilab.modules.console.SciPromptView"/>
-    <OutputView useCache="true" value="org.scilab.modules.console.SciOutputView"/>
-    <LastOpenedDirectory useCache="true" value=""/>
-    <InputCommandView useCache="true" value="org.scilab.modules.console.SciInputCommandView"/>
-    <BackgroundColor useCache="true" value="#FFFFFF"/>
-    <ForegroundColor useCache="true" value="#000000"/>
-    <ScrollableUnitIncrement useCache="true" value="20"/>
-    <ScrollableBlockIncrement useCache="true" value="20"/>
-    <VerticalWrapAllowed useCache="true" value="false"/>
-    <HorizontalWrapAllowed useCache="true" value="false"/>
-    <FontName useCache="true" value="Monospaced"/>
-    <FontStyle useCache="true" value="0"/>
-     <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-    <FontSize useCache="true" value="13"/>
+    <!-- Scilab configuration under MacOSX -->
+    <Profile name="macosx">
+        <!-- Key mapping -->
+        <KeyMapping>
+            <Key name="VK_F1" mask="" action="HELP"/>
+        </KeyMapping>
+    </Profile>
     
-    <MainWindowPosition useCache="true" x="0" y="0"/>
-    <MainWindowSize useCache="true" width="650" height="550"/>
-    
-    <!-- Help part -->
-    <HelpFontSize useCache="true" value="2"/>
-    
-    <!-- Core part -->
-    <OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
-    <InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
-    <InputParsingManager useCache="true" value="org.scilab.modules.console.SciInputParsingManager"/>
-    <GenericInterpreter useCache="true" value="org.scilab.modules.console.SciInterpreter"/>
-    <CompletionManager useCache="true" value="org.scilab.modules.console.SciCompletionManager"/>
-    <CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
-    <HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
-    <MaxOutputSize useCache="true" value="10000"/>
-    
-    <!-- Key mapping -->
-    <KeyMapping>
-      <Key name="VK_F1" mask="" action="HELP"/>
-    </KeyMapping>
-    
-    <!-- Key mapping -->
-    <!--<Action name="PASTE" className="org.scilab.modules.console.PasteClipboard"/>-->
-    <ActionMapping>
-      <Action name="HELP" className="org.scilab.modules.console.HelpAction"/>
-    </ActionMapping>
-    
-  </Profile>
-  
-  <!-- Scilab configuration under MacOSX -->
-  <Profile name="macosx">
-    <!-- Key mapping -->
-    <KeyMapping>
-      <Key name="VK_F1" mask="" action="HELP"/>
-    </KeyMapping>
-  </Profile>
-  
 </Setting>

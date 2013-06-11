@@ -30,12 +30,12 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="functions">
-<PRIMITIVE gatewayId="31" primitiveId="1" primitiveName="lib" />
-<PRIMITIVE gatewayId="31" primitiveId="2" primitiveName="deff" />
-<PRIMITIVE gatewayId="31" primitiveId="4" primitiveName="exec" />
-<PRIMITIVE gatewayId="31" primitiveId="5" primitiveName="execstr" />
-<PRIMITIVE gatewayId="31" primitiveId="6" primitiveName="librarieslist" />
-<PRIMITIVE gatewayId="31" primitiveId="7" primitiveName="libraryinfo" />
-<PRIMITIVE gatewayId="31" primitiveId="8" primitiveName="whereis" />
-
+    <PRIMITIVE gatewayId="31" primitiveId="1" primitiveName="lib" />
+    <PRIMITIVE gatewayId="31" primitiveId="2" primitiveName="deff" />
+    <PRIMITIVE gatewayId="31" primitiveId="4" primitiveName="exec" />
+    <PRIMITIVE gatewayId="31" primitiveId="5" primitiveName="execstr" />
+    <PRIMITIVE gatewayId="31" primitiveId="6" primitiveName="librarieslist" />
+    <PRIMITIVE gatewayId="31" primitiveId="7" primitiveName="libraryinfo" />
+    <PRIMITIVE gatewayId="31" primitiveId="8" primitiveName="whereis" />
+    
 </GATEWAY>

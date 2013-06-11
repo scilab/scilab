@@ -11,10 +11,10 @@
  *
  -->
 <project name="completion" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.completion.name}"/>
-  <property name="library.title" value="Scilab commands completion"/>
-  <description>
-	Build "completion" module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.completion.name}"/>
+    <property name="library.title" value="Scilab commands completion"/>
+    <description>
+        Build "completion" module
+    </description>
 </project>
