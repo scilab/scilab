@@ -17,7 +17,7 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-char *fftwlibname = NULL;
+static char *fftwlibname = NULL;
 /*--------------------------------------------------------------------------*/
 void setfftwlibname(char *libname)
 {
@@ -42,5 +42,14 @@ char *getfftwlibname(void)
     }
 
     return name;
+}
+/*--------------------------------------------------------------------------*/
+void freefftwlibname(void)
+{
+    if (fftwlibname)
+    {
+        FREE(fftwlibname);
+        fftwlibname = NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/

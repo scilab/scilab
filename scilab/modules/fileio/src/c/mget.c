@@ -81,8 +81,9 @@ void C2F(mgetnc) (int *fd, void *res, int *n1, char *type, int *ierr)
         return;
     }
     swap = GetSwapStatus(*fd);
-    c1 = (strlen(type) > 1) ? type[1] : ' ';
-    c2 = (strlen(type) > 2) ? type[2] : ' ';
+    /* Safe version for optional type modifiers */
+    c1 = (type[0] && type[1]) ? type[1] : ' ';
+    c2 = (type[0] && type[1] && type[2]) ? type[2] : ' ';
     switch (type[0])
     {
         case 'i':
