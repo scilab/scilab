@@ -48,10 +48,14 @@ Syntax changes
 Improvements
 =============
 
-* graypolarplot has been improved in term of performance and rendering.
-  See bug #12641
-
 * New calling sequence allowed for nicholschart: nicholschart(gains, phases, colors).
+  See bug #7828.
+
+* graypolarplot has been improved in term of performances and rendering.
+  See bug #12641.
+
+* nthroot() is now vectorizable.
+  See bug #12678.
 
 
 Obsolete
