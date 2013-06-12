@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-06-12 11:17+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -274,20 +274,20 @@ msgid "%s and %s must have same size.\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 122
-# File: src/c/CdfBase.c, line: 126
+# File: src/c/CdfBase.c, line: 125
+# File: src/c/CdfBase.c, line: 129
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 134
+# File: src/c/CdfBase.c, line: 137
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
 
 #
-# File: src/c/CdfBase.c, line: 138
+# File: src/c/CdfBase.c, line: 141
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
 msgstr ""

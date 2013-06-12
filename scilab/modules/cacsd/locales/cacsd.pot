@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:49+0100\n"
+"Revision-Date: 2013-06-12 11:17+0100\n"
 
 # File: sci_gateway/c/sci_contr.c, line: 72
 # File: sci_gateway/c/sci_contr.c, line: 78
@@ -1096,18 +1096,18 @@ msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 11
+# File: macros/chart.sci, line: 12
 # File: macros/nicholschart.sci, line: 25
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 88
+# File: macros/chart.sci, line: 89
 msgid "magnitude(y) (Db)"
 msgstr ""
 
 #
-# File: macros/chart.sci, line: 88
+# File: macros/chart.sci, line: 89
 # File: macros/nicholschart.sci, line: 26
 msgid "phase(y) (degree)"
 msgstr ""

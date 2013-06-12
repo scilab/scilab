@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-05-23 15:50+0100\n"
+"Revision-Date: 2013-06-12 11:17+0100\n"
 
 # File: sci_gateway/c/sci_buildouttb.c, line: 95
 #, c-format
@@ -28,34 +28,34 @@ msgid "%s : lnktyp argument must be double or integer.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 134
-# File: sci_gateway/c/sci_buildouttb.c, line: 151
+# File: sci_gateway/c/sci_buildouttb.c, line: 143
+# File: sci_gateway/c/sci_buildouttb.c, line: 166
 #, c-format
 msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 140
+# File: sci_gateway/c/sci_buildouttb.c, line: 149
 #, c-format
 msgid "%s : bad dimension for lnksz argument.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 157
+# File: sci_gateway/c/sci_buildouttb.c, line: 172
 #, c-format
 msgid "%s : bad dimension for lnktyp argument.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 164
+# File: sci_gateway/c/sci_buildouttb.c, line: 179
 #, c-format
 msgid "%s : lnksz and lnktyp argument must have the same length.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_buildouttb.c, line: 171
-# File: sci_gateway/c/sci_buildouttb.c, line: 178
-# File: sci_gateway/c/sci_buildouttb.c, line: 465
+# File: sci_gateway/c/sci_buildouttb.c, line: 186
+# File: sci_gateway/c/sci_buildouttb.c, line: 193
+# File: sci_gateway/c/sci_buildouttb.c, line: 562
 # File: sci_gateway/c/sci_scicosim.c, line: 2358
 #, c-format
 msgid "%s : No more free memory.\n"
@@ -126,19 +126,19 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_callblk.c, line: 169
+# File: sci_gateway/c/sci_callblk.c, line: 184
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_callblk.c, line: 181
+# File: sci_gateway/c/sci_callblk.c, line: 196
 #, c-format
 msgid "%s : Third argument must be scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_coserror.c, line: 59
+# File: sci_gateway/c/sci_coserror.c, line: 62
 # File: sci_gateway/c/sci_end_scicosim.c, line: 43
 # File: sci_gateway/c/sci_phase_simulation.c, line: 38
 # File: sci_gateway/c/sci_pointer_xproperty.c, line: 43
@@ -149,8 +149,8 @@ msgid "%s: scicosim is not running.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_coserror.c, line: 67
-# File: sci_gateway/c/sci_getscicosvars.c, line: 173
+# File: sci_gateway/c/sci_coserror.c, line: 70
+# File: sci_gateway/c/sci_getscicosvars.c, line: 179
 #, c-format
 msgid "%s : First argument must be a string.\n"
 msgstr ""
@@ -227,21 +227,21 @@ msgid "  that must be informed with the following values :\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 185
-# File: sci_gateway/c/sci_getscicosvars.c, line: 193
-# File: sci_gateway/c/sci_getscicosvars.c, line: 222
+# File: sci_gateway/c/sci_getscicosvars.c, line: 191
+# File: sci_gateway/c/sci_getscicosvars.c, line: 199
+# File: sci_gateway/c/sci_getscicosvars.c, line: 235
 #, c-format
 msgid "%s : No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 235
+# File: sci_gateway/c/sci_getscicosvars.c, line: 251
 #, c-format
 msgid "%s : Undefined field in string matrix position : %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getscicosvars.c, line: 515
+# File: sci_gateway/c/sci_getscicosvars.c, line: 556
 #, c-format
 msgid "%s : Error.\n"
 msgstr ""
@@ -585,44 +585,44 @@ msgid "%s : First argument must be a scicos signal structure.\n"
 msgstr ""
 
 #
-# File: src/c/sciblk4.c, line: 511
+# File: src/c/sciblk4.c, line: 590
 #, c-format
 msgid "%s: error %d. Stack is full.\n"
 msgstr ""
 
 #
-# File: src/c/sciblk4.c, line: 514
+# File: src/c/sciblk4.c, line: 594
 #, c-format
 msgid "%s: error %d. No more space on the stack for new data.\n"
 msgstr ""
 
 #
-# File: src/c/sciblk4.c, line: 517
-# File: src/c/sciblk4.c, line: 537
+# File: src/c/sciblk4.c, line: 598
+# File: src/c/sciblk4.c, line: 623
 #, c-format
 msgid "%s: error %d. Undefined error.\n"
 msgstr ""
 
 #
-# File: src/c/sciblk4.c, line: 525
+# File: src/c/sciblk4.c, line: 607
 #, c-format
 msgid "%s: error %d. Only int or double object are accepted.\n"
 msgstr ""
 
 #
-# File: src/c/sciblk4.c, line: 528
+# File: src/c/sciblk4.c, line: 611
 #, c-format
 msgid "%s: error %d. Bad double object sub_type.\n"
 msgstr ""
 
 #
-# File: src/c/sciblk4.c, line: 531
+# File: src/c/sciblk4.c, line: 615
 #, c-format
 msgid "%s: error %d. Bad int object sub_type.\n"
 msgstr ""
 
 #
-# File: src/c/sciblk4.c, line: 534
+# File: src/c/sciblk4.c, line: 619
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
 msgstr ""
@@ -888,7 +888,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/slider.c, line: 74
+# File: src/c/slider.c, line: 75
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr ""
@@ -1012,42 +1012,42 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 261
+# File: macros/scicos_auto/scicos_simulate.sci, line: 262
 #, c-format
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 270
+# File: macros/scicos_auto/scicos_simulate.sci, line: 271
 msgid ""
 "Diagram has been compiled for implicit solver\n"
 "switching to implicit solver.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 275
+# File: macros/scicos_auto/scicos_simulate.sci, line: 276
 msgid ""
 "Diagram has been compiled for explicit solver\n"
 "switching to explicit solver.\n"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 299
+# File: macros/scicos_auto/scicos_simulate.sci, line: 300
 msgid "Simulation parameters not set:"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 304
+# File: macros/scicos_auto/scicos_simulate.sci, line: 305
 msgid "Initialisation problem:"
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 321
+# File: macros/scicos_auto/scicos_simulate.sci, line: 322
 msgid "Simulation problem: "
 msgstr ""
 
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 352
+# File: macros/scicos_auto/scicos_simulate.sci, line: 353
 msgid "End problem: "
 msgstr ""
 
@@ -1055,6 +1055,38 @@ msgstr ""
 # File: macros/scicos_auto/steadycos.sci, line: 113
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/Compute_cic.sci, line: 43
+msgid "Your model contains states defined in standard Scicos blocks.\n"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/Compute_cic.sci, line: 53
+# File: macros/scicos_scicos/Compute_cic.sci, line: 57
+# File: macros/scicos_scicos/Compute_cic.sci, line: 69
+# File: macros/scicos_scicos/Compute_cic.sci, line: 72
+# File: macros/scicos_scicos/Compute_cic.sci, line: 89
+# File: macros/scicos_scicos/Compute_cic.sci, line: 92
+# File: macros/scicos_scicos/Compute_cic.sci, line: 109
+#, c-format
+msgid "Initialisation problem in %s "
+msgstr ""
+
+#
+# File: macros/scicos_scicos/Compute_cic.sci, line: 126
+# File: macros/scicos_scicos/Compute_cic.sci, line: 137
+# File: macros/scicos_scicos/Compute_cic.sci, line: 145
+# File: macros/scicos_scicos/Compute_cic.sci, line: 148
+#, c-format
+msgid "Initialisation problem in the %s method"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/Compute_cic.sci, line: 181
+# File: macros/scicos_scicos/Compute_cic.sci, line: 186
+msgid "Initialisation problem in the finish phase"
 msgstr ""
 
 #
@@ -1278,6 +1310,97 @@ msgid "Not enough information to find port type.\n"
 msgstr ""
 
 #
+# File: macros/scicos_scicos/compile_modelica.sci, line: 74
+msgid "The initialization file already exists!"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 75
+msgid "Do you want to overwrite it?"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 76
+msgid "No"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 76
+msgid "Yes"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 117
+msgid "Modelica blocks are reduced to a block with:"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 118
+#, c-format
+msgid "Number of differential states: %d"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 119
+#, c-format
+msgid "Number of algebraic states: %d"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 120
+#, c-format
+msgid "Number of discrete time states  : %d"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 121
+#, c-format
+msgid "Number of zero-crossing surfaces: %d"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 122
+#, c-format
+msgid "Number of modes  : %d"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 123
+#, c-format
+msgid "Number of inputs : %d"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 124
+#, c-format
+msgid "Number of outputs: %d"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 125
+#, c-format
+msgid "Input/output dependency:[%s]"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 126
+#, c-format
+msgid "Analytical Jacobian: enabled  (%%Jacobian=%s)"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 127
+#, c-format
+msgid "Parameter embedding mode: enabled (%%Modelica_ParEmb=%s)"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/compile_modelica.sci, line: 129
+#, c-format
+msgid "Generated files path: %s"
+msgstr ""
+
+#
 # File: macros/scicos_scicos/create_modelica.sci, line: 265
 # File: macros/scicos_scicos/create_modelica.sci, line: 317
 msgid "Hyper Matrix is not supported"
@@ -1294,6 +1417,16 @@ msgid "Complex Matrix is not supported"
 msgstr ""
 
 #
+# File: macros/scicos_scicos/delete_unconnected.sci, line: 92
+msgid "Block is ignored because of undefined input(s)."
+msgstr ""
+
+#
+# File: macros/scicos_scicos/do_compile_superblock42.sci, line: 1361
+msgid "Superblock should not contains any Scilab function block."
+msgstr ""
+
+#
 # File: macros/scicos_scicos/do_eval.sci, line: 49
 # File: macros/scicos_scicos/do_eval.sci, line: 54
 msgid "Evaluation problem: value not updated from context."
@@ -1306,6 +1439,31 @@ msgid "Evaluation problem: Unknown block"
 msgstr ""
 
 #
+# File: macros/scicos_scicos/link_olibs.sci, line: 64
+msgid "Can not loaded dynamic library: "
+msgstr ""
+
+#
+# File: macros/scicos_scicos/link_olibs.sci, line: 77
+msgid "Can't include "
+msgstr ""
+
+#
+# File: macros/scicos_scicos/link_olibs.sci, line: 77
+msgid "This file does not exist"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/modelicac.sci, line: 78
+msgid "-------Modelica compiler error (with the translator):-------"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/modelicac.sci, line: 78
+msgid "Please read the error message in the Scilab window"
+msgstr ""
+
+#
 # File: macros/scicos_scicos/scicos_block_link.sci, line: 35
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr ""
@@ -1313,6 +1471,16 @@ msgstr ""
 #
 # File: macros/scicos_scicos/scicos_block_link.sci, line: 40
 msgid "Sorry file name not defined in "
+msgstr ""
+
+#
+# File: macros/scicos_scicos/scicos_flat.sci, line: 162
+msgid "I/O blocks must be only used in a Super Block"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/scicos_flat.sci, line: 169
+msgid "This Super block input port is not connected."
 msgstr ""
 
 #
@@ -1365,6 +1533,11 @@ msgstr ""
 #
 # File: macros/scicos_scicos/translator.sci, line: 106
 msgid "-------Modelica translator error message:-----"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/xml2modelica.sci, line: 55
+msgid "-------XML to Modelica error:-------"
 msgstr ""
 
 #
