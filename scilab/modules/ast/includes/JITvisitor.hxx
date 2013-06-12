@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2013 - Harris Bakiras <harris.bakiras@lip6.fr>,
+ *  Peter Senna Tschudin <peter.senna@lip6.fr>
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -21,9 +22,6 @@
 #include <iostream>
 
 #include "visitor_common.hxx"
-//#include "runvisitor.hxx"
-//#include "execvisitor.hxx"
-//#include "timedvisitor.hxx"
 #include "shortcutvisitor.hxx"
 #include "printvisitor.hxx"
 #include "mutevisitor.hxx"
@@ -59,12 +57,11 @@ extern "C" {
 
 #undef ID
 #undef LT
-
-#include "llvm/Constants.h"
 #include "llvm/DerivedTypes.h"
 #include "llvm/IRBuilder.h"
 #include "llvm/LLVMContext.h"
 #include "llvm/Module.h"
+
 #include "llvm/Analysis/Verifier.h"
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/ExecutionEngine/ExecutionEngine.h"
@@ -180,6 +177,7 @@ namespace ast
     	}
 
     	void visitprivate(const SeqExp &e) {
+
             //T execMe;
             std::list<Exp *>::const_iterator	itExp;
 
@@ -207,7 +205,102 @@ namespace ast
             }
     	}
 
+		llvm::Value* const llvm_value_one = llvm::ConstantFP::get(llvm::getGlobalContext(),llvm::APFloat(1.0));
+		llvm::Value* llvm_rec_power (llvm::Value* x, llvm::Value* n)
+		{
+			llvm::ConstantFP* ncfp = llvm::dyn_cast<llvm::ConstantFP>(n);
+
+			if (ncfp->isZero())
+			{
+				// return 1
+				return llvm_value_one;
+			}
+			if (ncfp->isNegative()){
+				llvm::Value* moduloN = Builder->CreateFMul(llvm::ConstantFP::get(llvm::getGlobalContext(),llvm::APFloat(-1.0)), n);
+				// return 1 / (x * llvm_rec_power(x, (-1 * n)-1))
+				return Builder->CreateFDiv(llvm_value_one, Builder->CreateFMul(x, llvm_rec_power(x, Builder->CreateFSub(moduloN, llvm_value_one, "OpExp::minus")), "OpExp::times"), "OpExp::rdivide");
+			} else {
+				// return x * llvm_rec_power(x, n-1)
+				return Builder->CreateFMul(x, llvm_rec_power(x,Builder->CreateFSub(n, llvm_value_one, "OpExp::minus")), "OpExp::times");
+			}
+		}
     	void visitprivate(const OpExp &e) {
+    		/*
+            switch (e.kind_get())
+            {
+            	case OpExp::invalid_kind :
+            	{
+            		std::cout << "OpExp::invalid_kind" << std::endl;
+            		break;
+            	}
+            	case OpExp::bool_kind :
+            	{
+            		std::cout << "OpExp::bool_kind" << std::endl;
+            		break;
+            	}
+            	case OpExp::string_kind :
+            	{
+            		std::cout << "OpExp::string_kind" << std::endl;
+            		break;
+            	}
+            	case OpExp::integer_kind :
+            	{
+            		std::cout << "OpExp::integer_kind" << std::endl;
+            		break;
+            	}
+            	case OpExp::float_kind :
+            	{
+            		std::cout << "OpExp::float_kind" << std::endl;
+            		break;
+            	}
+            	case OpExp::double_kind :
+            	{
+            		std::cout << "OpExp::double_kind" << std::endl;
+            		break;
+            	}
+            	case OpExp::float_complex_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::double_complex_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::bool_matrix_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::string_matrix_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::integer_matrix_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::float_matrix_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::double_matrix_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::float_complex_matrix_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::double_complex_matrix_kind :
+            	{
+            		break;
+            	}
+            	case OpExp::matrix_kind :
+            	{
+            		break;
+            	}
+            }
+    		 */
+
     		/*getting what to assign*/
     		e.left_get().accept(*this);
     		llvm::Value *pITL = result_get();
@@ -217,19 +310,77 @@ namespace ast
             llvm::Value *pITR = result_get();
 
             llvm::Value *pResult = NULL;
-
             switch (e.oper_get())
             {
             	case OpExp::plus :
             	{
-//            		pResult = GenericPlus(pITL, pITR);
-            		//Sum
-            		pResult = Builder->CreateFAdd(pITL, pITR, "addtmp");
+            		pResult = Builder->CreateFAdd(pITL, pITR, "OpExp::plus");
+            		break;
+            	}
+            	case OpExp::minus :
+            	{
+            		pResult = Builder->CreateFSub(pITL, pITR, "OpExp::minus");
+            		break;
+            	}
+            	case OpExp::times :
+            	{
+            		pResult = Builder->CreateFMul(pITL, pITR, "OpExp::times");
+            		break;
+            	}
+            	case OpExp::rdivide :
+            	{
+            		pResult = Builder->CreateFDiv(pITL, pITR, "OpExp::rdivide");
+            		break;
+            	}
+            	case OpExp::ldivide :
+            	{
+            		pResult = Builder->CreateFDiv(pITR, pITL, "OpExp::ldivide");
+            		break;
+            	}
+            	case OpExp::power :
+            	{
+            		pResult = llvm_rec_power(pITL, pITR);
+            		break;
+            	}
+            	case OpExp::unaryMinus :
+            	{
+            		pResult = Builder->CreateFSub(pITL, pITR, "OpExp::unaryMinus");
+            		break;
+            	}
+            	case OpExp::eq :
+            	{
+            		pResult = Builder->CreateUIToFP(Builder->CreateFCmpUEQ(pITL, pITR, "OpExp::eq"), llvm::Type::getDoubleTy(llvm::getGlobalContext()), "booltodouble");
+            		break;
+            	}
+            	case OpExp::ne :
+            	{
+            		pResult = Builder->CreateUIToFP(Builder->CreateNot(Builder->CreateFCmpUEQ(pITL, pITR, "OpExp::eq"),"not"), llvm::Type::getDoubleTy(llvm::getGlobalContext()), "booltodouble");
+            		break;
+            	}
+            	case OpExp::lt :
+            	{
+            		pResult = Builder->CreateUIToFP(Builder->CreateFCmpULT(pITL, pITR, "OpExp::lt"), llvm::Type::getDoubleTy(llvm::getGlobalContext()), "booltodouble");
+            		break;
+            	}
+            	case OpExp::le :
+            	{
+            		pResult = Builder->CreateUIToFP(Builder->CreateFCmpULE(pITL, pITR, "OpExp::le"), llvm::Type::getDoubleTy(llvm::getGlobalContext()), "booltodouble");
+            		break;
+            	}
+            	case OpExp::gt :
+            	{
+            		pResult = Builder->CreateUIToFP(Builder->CreateFCmpUGT(pITL, pITR, "OpExp::gt"), llvm::Type::getDoubleTy(llvm::getGlobalContext()), "booltodouble");
+            		break;
+            	}
+            	case OpExp::ge :
+            	{
+            		pResult = Builder->CreateUIToFP(Builder->CreateFCmpUGE(pITL, pITR, "OpExp::ge"), llvm::Type::getDoubleTy(llvm::getGlobalContext()), "booltodouble");
             		break;
             	}
             	default:
             	{
             		std::cout << "Operation not supported, returning 42..." << std::endl;
+            		pResult = llvm::ConstantFP::get(llvm::getGlobalContext(),llvm::APFloat(42.0));
             		break;
             	}
             }
