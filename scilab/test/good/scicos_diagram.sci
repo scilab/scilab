@@ -20,11 +20,11 @@
 //
 
 function scs_m=scicos_diagram(v1,v2,v3)
-  if exists('props','local')==0 then props=scicos_params(),end
-  if exists('objs','local')==0 then objs=list(),end
-  if exists('version','local')==0 then version='',end
-  if exists('contrib','local')==0 then contrib=list(),end
+    if exists("props","local")==0 then props=scicos_params(),end
+    if exists("objs","local")==0 then objs=list(),end
+    if exists("version","local")==0 then version="",end
+    if exists("contrib","local")==0 then contrib=list(),end
 
-  scs_m=mlist(['diagram','props','objs','version','contrib'],...
-                props,objs,version,contrib)
+    scs_m=mlist(["diagram","props","objs","version","contrib"],...
+    props,objs,version,contrib)
 endfunction

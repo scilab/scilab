@@ -47,7 +47,8 @@
             должны оставаться однозначными. Более того, строковое определение не
             чувствительно к регистру. <literal>ГлобальноеСвойство</literal> -
             имеет преимущество над всеми ранее установленными  <literal>ВидамиЛиний</literal>.
-		</para> 
+        </para>
+        
         <para>
             Вот полный список <literal>ИмёнСвойств</literal>, которые вы можете
             определять (при использовании <link linkend="plot">plot</link> или
@@ -101,12 +102,12 @@
                         <literal>2</literal>, <literal>3</literal> или
                         <literal>4</literal>.
                         <note>
-                             Заметьте, что это свойство существует только
-                             у объектов <literal>Fac3d</literal>. Заметьте
-                             также, у <function>plot3d</function> по умолчанию
-                             режим <literal>'direct'</literal>, а у
-                             <function>surf</function> по умолчанию режим
-                             <literal>'scaled'</literal>.
+                            Заметьте, что это свойство существует только
+                            у объектов <literal>Fac3d</literal>. Заметьте
+                            также, у <function>plot3d</function> по умолчанию
+                            режим <literal>'direct'</literal>, а у
+                            <function>surf</function> по умолчанию режим
+                            <literal>'scaled'</literal>.
                         </note>
                     </para>
                 </listitem>
@@ -144,7 +145,9 @@
                         объектным свойством <literal>foreground</literal>
                         (передний план, см. <link
                         linkend="polyline_properties">свойства ломаной
-                        линии</link>).
+                            линии
+                        </link>
+                        ).
                         <warning>
                             Цвет не доступен для объектов поверхности. Свойство
                             <literal>Foreground</literal> существует только для
@@ -206,7 +209,9 @@
                         объектным свойством <literal>line_style</literal>
                         ("стиль линии", см. <link
                         linkend="polyline_properties">свойства ломаной
-                        линии</link> или <link linkend="surface_properties">свойства поверхности</link>).
+                            линии
+                        </link>
+                        или <link linkend="surface_properties">свойства поверхности</link>).
                     </para>
                     <para/>
                     <informaltable border="1">
@@ -371,7 +376,9 @@
                         Это свойство связано со объектным свойством
                         <literal>mark_foreground</literal> (см. <link
                         linkend="polyline_properties">свойства ломаной
-                        линии</link> или <link linkend="surface_properties">свойства поверхности</link>).
+                            линии
+                        </link>
+                        или <link linkend="surface_properties">свойства поверхности</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -390,7 +397,9 @@
                         Это свойство связано с объектным свойством
                         <literal>mark_background</literal> ("фон маркера", см.
                         <link linkend="polyline_properties">свойства ломаной
-                        линии</link> или <link linkend="surface_properties">свойства поверхности</link>).
+                            линии
+                        </link>
+                        или <link linkend="surface_properties">свойства поверхности</link>).
                     </para>
                 </listitem>
             </varlistentry>

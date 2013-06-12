@@ -18,7 +18,7 @@
 #include "dynlib_data_structures.h"
 /*--------------------------------------------------------------------------*/
 /* it can be called by fortran mklist.f & mkindx.f */
-DATA_STRUCTURES_IMPEXP int C2F(gwdatastructures1)(void); 
+DATA_STRUCTURES_IMPEXP int C2F(gwdatastructures1)(void);
 DATA_STRUCTURES_IMPEXP int gw_data_structures1(void);
 /*--------------------------------------------------------------------------*/
 int sci_glist(char *fname, unsigned long fname_len);

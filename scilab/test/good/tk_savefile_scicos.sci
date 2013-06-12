@@ -19,28 +19,27 @@
 // See the file ../license.txt
 //
 function p=tk_savefile_scicos(file_mask,path,Title,ini)
-  if ~with_tk() then error('Tcl/Tk interface not defined'),end
-  arg=''
-  if exists('file_mask','local')==1 then
-    fmask="";
-    for i=1:size(file_mask,'*')
-      a=file_mask(i);
-      a=strsubst(a,'.','');a=strsubst(a,'*','');
-      if and(a<>[[],'']) then a=convstr(a,'u');
-      else a='All';
-      end
-      if a=='COS' then a='Scicos'; end
-      fmask=fmask+"{"""+a+" Files"" {"+file_mask(i)+"}} ";
+    if ~with_tk() then error("Tcl/Tk interface not defined"),end
+    arg=""
+    if exists("file_mask","local")==1 then
+        fmask="";
+        for i=1:size(file_mask,"*")
+            a=file_mask(i);
+            a=strsubst(a,".","");a=strsubst(a,"*","");
+            if and(a<>[[],""]) then a=convstr(a,"u");
+            else a="All";
+            end
+            if a=="COS" then a="Scicos"; end
+            fmask=fmask+"{"""+a+" Files"" {"+file_mask(i)+"}} ";
+        end
+        TCL_SetVar("ftypes",fmask)
+        arg = arg+" -filetypes $ftypes"
     end
-    TCL_SetVar("ftypes",fmask)
-    arg = arg+" -filetypes $ftypes"
-  end
-  if exists('path','local')==1 then arg=arg+' -initialdir ""'+path+'""',end
-  if exists('title','local')==1 then Title=title,end
-  if exists('Title','local')==1 then arg=arg+' -title ""'+Title+'""',end
-  if exists('ini','local')==1 then arg=arg+' -initialfile ""'+ini+'.cos""',end
-  TCL_EvalStr('set scifilepath [tk_getSaveFile'+arg+']')
-  p=TCL_GetVar('scifilepath')
+    if exists("path","local")==1 then arg=arg+" -initialdir """+path+"""",end
+    if exists("title","local")==1 then Title=title,end
+    if exists("Title","local")==1 then arg=arg+" -title """+Title+"""",end
+    if exists("ini","local")==1 then arg=arg+" -initialfile """+ini+".cos""",end
+    TCL_EvalStr("set scifilepath [tk_getSaveFile"+arg+"]")
+    p=TCL_GetVar("scifilepath")
 endfunction
- 
- 
+

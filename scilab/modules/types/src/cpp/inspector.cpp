@@ -21,145 +21,145 @@ extern "C"
 namespace types
 {
 #ifndef NDEBUG
-    std::vector<InternalType*> Inspector::m_vIT;
+std::vector<InternalType*> Inspector::m_vIT;
 
-    int Inspector::getItemCount()
-    {
-        return (int)m_vIT.size();
-    }
+int Inspector::getItemCount()
+{
+    return (int)m_vIT.size();
+}
 
-    int Inspector::getUnreferencedItemCount()
+int Inspector::getUnreferencedItemCount()
+{
+    int iCount = 0;
+    for (int i = 0 ; i < m_vIT.size() ; i++)
     {
-        int iCount = 0;
-        for(int i = 0 ; i < m_vIT.size() ; i++)
+        if (m_vIT[i]->getRef() == 0)
         {
-            if(m_vIT[i]->getRef() == 0)
+            iCount++;
+        }
+    }
+    return iCount;
+}
+
+
+void Inspector::addItem(InternalType* _pIT)
+{
+    types::GenericType* pGT = _pIT->getAs<types::GenericType>();
+
+    if (pGT)
+    {
+        //std::wcout << L"addItem " << pGT->getTypeStr() << L"[" << pGT->getSize() << L"] : " << pGT << std::endl;
+    }
+    else
+    {
+        //std::wcout << L"addItem " << _pIT->getTypeStr() << L" : " << _pIT << std::endl;
+    }
+    m_vIT.push_back(_pIT);
+}
+
+void Inspector::removeItem(InternalType* _pIT)
+{
+    std::vector<InternalType*>::iterator it;
+
+    for (it = m_vIT.begin() ; it != m_vIT.end() ; it++)
+    {
+        if ((*it) == _pIT)
+        {
+            types::GenericType* pGT = _pIT->getAs<types::GenericType>();
+
+            if (pGT)
             {
-                iCount++;
+                //std::wcout << L"removeItem " << pGT->getTypeStr() << L"[" << pGT->getSize() << L"] : " << pGT << std::endl;
             }
-        }
-        return iCount;
-    }
-
-
-    void Inspector::addItem(InternalType* _pIT)
-    {
-        types::GenericType* pGT = _pIT->getAs<types::GenericType>();
-
-        if(pGT)
-        {
-            //std::wcout << L"addItem " << pGT->getTypeStr() << L"[" << pGT->getSize() << L"] : " << pGT << std::endl;
-        }
-        else
-        {
-            //std::wcout << L"addItem " << _pIT->getTypeStr() << L" : " << _pIT << std::endl;
-        }
-        m_vIT.push_back(_pIT);
-    }
-
-    void Inspector::removeItem(InternalType* _pIT)
-    {
-        std::vector<InternalType*>::iterator it;
-
-        for(it = m_vIT.begin() ; it != m_vIT.end() ; it++)
-        {
-            if((*it) == _pIT)
+            else
             {
-                types::GenericType* pGT = _pIT->getAs<types::GenericType>();
-
-                if(pGT)
-                {
-                    //std::wcout << L"removeItem " << pGT->getTypeStr() << L"[" << pGT->getSize() << L"] : " << pGT << std::endl;
-                }
-                else
-                {
-                    //std::wcout << L"removeItem " << _pIT->getTypeStr() << L" : " << _pIT << std::endl;
-                }
-                m_vIT.erase(it);
-                break;
+                //std::wcout << L"removeItem " << _pIT->getTypeStr() << L" : " << _pIT << std::endl;
             }
+            m_vIT.erase(it);
+            break;
         }
     }
+}
 
-    InternalType* Inspector::getItem(int _iPos)
+InternalType* Inspector::getItem(int _iPos)
+{
+    if (_iPos >= m_vIT.size())
     {
-        if(_iPos >= m_vIT.size())
-        {
-            return NULL;
-        }
-        return m_vIT[_iPos];
-    }
-
-    InternalType* Inspector::getUnreferencedItem(int _iPos)
-    {
-        int iCount = 0;
-        for(int i = 0 ; i < m_vIT.size() ; i++)
-        {
-            if(m_vIT[i]->getRef() == 0)
-            {
-                if(iCount == _iPos)
-                {
-                    std::wcout << L"getUnreferencedItem : " << m_vIT[i] << std::endl;
-                    return m_vIT[i];
-                }
-                iCount++;
-            }
-        }
-
         return NULL;
     }
+    return m_vIT[_iPos];
+}
 
-    std::wstring Inspector::showItem(int _iPos)
+InternalType* Inspector::getUnreferencedItem(int _iPos)
+{
+    int iCount = 0;
+    for (int i = 0 ; i < m_vIT.size() ; i++)
     {
-        std::wstring st;
-        InternalType* pIT = getItem(_iPos);
-        if(pIT == NULL)
+        if (m_vIT[i]->getRef() == 0)
         {
-            st = L"NULL";
+            if (iCount == _iPos)
+            {
+                std::wcout << L"getUnreferencedItem : " << m_vIT[i] << std::endl;
+                return m_vIT[i];
+            }
+            iCount++;
         }
-        else
-        {
-            st = pIT->getTypeStr();
-        }
-        return st;
     }
 
-    std::wstring Inspector::showUnreferencedItem(int _iPos)
+    return NULL;
+}
+
+std::wstring Inspector::showItem(int _iPos)
+{
+    std::wstring st;
+    InternalType* pIT = getItem(_iPos);
+    if (pIT == NULL)
     {
-        std::wstring st;
-        InternalType* pIT = getUnreferencedItem(_iPos);
-        if(pIT == NULL)
-        {
-            st = L"NULL";
-        }
-        else
-        {
-            st = pIT->getTypeStr();
-        }
-        return st;
+        st = L"NULL";
+    }
+    else
+    {
+        st = pIT->getTypeStr();
+    }
+    return st;
+}
+
+std::wstring Inspector::showUnreferencedItem(int _iPos)
+{
+    std::wstring st;
+    InternalType* pIT = getUnreferencedItem(_iPos);
+    if (pIT == NULL)
+    {
+        st = L"NULL";
+    }
+    else
+    {
+        st = pIT->getTypeStr();
+    }
+    return st;
+}
+
+void Inspector::deleteItems()
+{
+    InternalType** pIT = new InternalType*[m_vIT.size()];
+
+    //copy item values
+    for (int i = 0 ; i < m_vIT.size() ; i++)
+    {
+        pIT[i] = m_vIT[i];
     }
 
-    void Inspector::deleteItems()
+    //delete each item
+    for (int i = 0 ; i < m_vIT.size() ; i++)
     {
-        InternalType** pIT = new InternalType*[m_vIT.size()];
-
-        //copy item values
-        for(int i = 0 ; i < m_vIT.size() ; i++)
-        {
-            pIT[i] = m_vIT[i];
-        }
-
-        //delete each item
-        for(int i = 0 ; i < m_vIT.size() ; i++)
-        {
-            delete pIT[i];
-        }
-
-        //check vector update
-        if(m_vIT.size() != 0)
-        {
-            printf("Oo\n");
-        }
+        delete pIT[i];
     }
+
+    //check vector update
+    if (m_vIT.size() != 0)
+    {
+        printf("Oo\n");
+    }
+}
 #endif
 }

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-04-16 17:44+0100\n"
+"Revision-Date: 2013-05-23 15:49+0100\n"
 
 # File: sci_gateway/c/sci_contr.c, line: 72
 # File: sci_gateway/c/sci_contr.c, line: 78
@@ -92,6 +92,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_dhinf.c, line: 151
+# File: sci_gateway/c/sci_hinf.c, line: 148
 #, c-format
 msgid "%s: A and C must have equal number of columns.\n"
 msgstr ""
@@ -105,6 +106,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_dhinf.c, line: 179
+# File: sci_gateway/c/sci_hinf.c, line: 176
 #, c-format
 msgid "%s: C and D must have equal number of rows.\n"
 msgstr ""
@@ -226,18 +228,6 @@ msgstr ""
 # File: sci_gateway/c/sci_dhinf.c, line: 411
 #, c-format
 msgid "%s: SB10DD exit with info = %d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_hinf.c, line: 148
-#, c-format
-msgid "%s: A and // must have equal number of columns.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_hinf.c, line: 176
-#, c-format
-msgid "%s: // and D must have equal number of rows.\n"
 msgstr ""
 
 #
@@ -372,7 +362,8 @@ msgstr ""
 # File: sci_gateway/c/sci_linmeq.c, line: 1183
 #, c-format
 msgid ""
-"%s: Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"%s: Wrong value for input argument #%d: eigenvalues must have negative real "
+"parts.\n"
 msgstr ""
 
 #
@@ -380,7 +371,8 @@ msgstr ""
 # File: sci_gateway/c/sci_linmeq.c, line: 1193
 #, c-format
 msgid ""
-"%s: Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"%s: Wrong value for input argument #%d: eigenvalues modulus must be less "
+"than one.\n"
 msgstr ""
 
 #
@@ -580,7 +572,7 @@ msgstr ""
 # File: macros/h_norm.sci, line: 34
 # File: macros/nyquistfrequencybounds.sci, line: 22
 # File: macros/obsv_mat.sci, line: 26
-# File: macros/plzr.sci, line: 52
+# File: macros/plzr.sci, line: 54
 # File: macros/repfreq.sci, line: 17
 #, c-format
 msgid ""
@@ -591,8 +583,8 @@ msgstr ""
 # File: macros/abinv.sci, line: 60
 # File: macros/abinv.sci, line: 66
 # File: macros/abinv.sci, line: 70
-# File: macros/plzr.sci, line: 46
-# File: macros/plzr.sci, line: 58
+# File: macros/plzr.sci, line: 48
+# File: macros/plzr.sci, line: 60
 # File: macros/syslin.sci, line: 79
 # File: macros/syslin.sci, line: 86
 # File: macros/syslin.sci, line: 93
@@ -694,21 +686,21 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 71
+# File: macros/armax.sci, line: 72
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 82
+# File: macros/armax.sci, line: 83
 #, c-format
 msgid "%s: %s is numerically singular.\n"
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 117
-# File: macros/armax.sci, line: 121
+# File: macros/armax.sci, line: 119
+# File: macros/armax.sci, line: 123
 #, c-format
 msgid "%s: Standard deviation of the estimator %s:\n"
 msgstr ""
@@ -1029,7 +1021,7 @@ msgstr ""
 # File: macros/h_inf.sci, line: 35
 # File: macros/macglov.sci, line: 18
 # File: macros/plzr.sci, line: 26
-# File: macros/plzr.sci, line: 35
+# File: macros/plzr.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
@@ -1138,7 +1130,7 @@ msgstr ""
 # File: macros/obs_gram.sci, line: 52
 # File: macros/obsv_mat.sci, line: 28
 # File: macros/obsvss.sci, line: 42
-# File: macros/plzr.sci, line: 54
+# File: macros/plzr.sci, line: 56
 #, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: Array of floating point numbers "
@@ -1378,14 +1370,16 @@ msgstr ""
 #
 # File: macros/evans.sci, line: 133
 # File: macros/hallchart.sci, line: 50
-# File: macros/plzr.sci, line: 112
+# File: macros/plzr.sci, line: 114
+# File: macros/plzr.sci, line: 122
 msgid "Real axis"
 msgstr ""
 
 #
 # File: macros/evans.sci, line: 134
 # File: macros/hallchart.sci, line: 51
-# File: macros/plzr.sci, line: 113
+# File: macros/plzr.sci, line: 115
+# File: macros/plzr.sci, line: 123
 msgid "Imaginary axis"
 msgstr ""
 
@@ -1906,30 +1900,31 @@ msgid "Phase (Deg)"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 31
-# File: macros/plzr.sci, line: 39
+# File: macros/plzr.sci, line: 32
+# File: macros/plzr.sci, line: 41
 #, c-format
 msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 43
+# File: macros/plzr.sci, line: 45
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 99
+# File: macros/plzr.sci, line: 100
 msgid "Zeros"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 106
+# File: macros/plzr.sci, line: 107
 msgid "Poles"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 112
+# File: macros/plzr.sci, line: 114
+# File: macros/plzr.sci, line: 122
 msgid "Transmission zeros and poles"
 msgstr ""
 

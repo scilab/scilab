@@ -17,7 +17,7 @@
 #define MODULE_NAME L"graphics"
 extern "C"
 {
-    #include "gw_graphics.h"
+#include "gw_graphics.h"
 }
 
 using namespace types;

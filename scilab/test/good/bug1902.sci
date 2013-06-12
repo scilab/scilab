@@ -8,7 +8,7 @@
 // draw later part
 drawlater() ;
 
-xstring(0,0,['toto','titi';"tatapjp","iiih"]) ;
+xstring(0,0,["toto","titi";"tatapjp","iiih"]) ;
 
 e = gce() ;
 
@@ -19,7 +19,7 @@ a.data_bounds = [-2,-2;7,7] ;
 
 box21 = stringbox(e)
 
-a.view = '3d' ;
+a.view = "3d" ;
 
 box31 = stringbox(e)
 
@@ -34,7 +34,7 @@ clf() ;
 
 
 // same as first part but wthout drawlater
-xstring(0,0,['toto','titi';"tatapjp","iiih"]) ;
+xstring(0,0,["toto","titi";"tatapjp","iiih"]) ;
 
 e = gce() ;
 
@@ -45,7 +45,7 @@ a.data_bounds = [-2,-2;7,7] ;
 
 box22 = stringbox(e)
 
-a.view = '3d' ;
+a.view = "3d" ;
 
 box32 = stringbox(e)
 
@@ -58,8 +58,8 @@ if (  norm( box11 - box12 ) < 0.02 ..
     & norm( box21 - box22 ) < 0.02 ..
     & norm( box31 - box32 ) < 0.02 ..
     & norm( box41 - box42 ) < 0.02 ) then
-  affich_result(%T,1902) ;
+    affich_result(%T,1902) ;
 else
-  affich_result(%F,1902) ;
+    affich_result(%F,1902) ;
 end
 

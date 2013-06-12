@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -682,7 +682,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\sci_gateway\sparse_gateway.xml" />
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>

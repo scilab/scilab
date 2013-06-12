@@ -2,11 +2,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,15 +19,15 @@
 /* compare two strings ignoring the case */
 
 #ifdef _MSC_VER
-	#define stricmp _stricmp 
-	#define strnicmp _strnicmp 
-	#define wcsicmp _wcsicmp 
-	#define wcsnicmp _wcsnicmp 
- #else
-    #define stricmp strcasecmp
-    #define strnicmp strncasecmp
-    #define wcsicmp wcscasecmp
-    #define wcsnicmp wcsncasecmp
+#define stricmp _stricmp
+#define strnicmp _strnicmp
+#define wcsicmp _wcsicmp
+#define wcsnicmp _wcsnicmp
+#else
+#define stricmp strcasecmp
+#define strnicmp strncasecmp
+#define wcsicmp wcscasecmp
+#define wcsnicmp wcsncasecmp
 #endif
 
 #endif /* __STRICMP_H__ */

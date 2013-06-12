@@ -11,5 +11,5 @@ affich_result(correct, AAA)
 clear all
 
 //
-// message du bug rencontré ou explication
+// message du bug rencontrÃ© ou explication
 //

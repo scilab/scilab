@@ -28,7 +28,7 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
     public DragPointRubberBox(DrawerVisitor drawerVisitor) {
         super(drawerVisitor);
     }
-    
+
     @Override
     public final void mouseClicked(MouseEvent e) {
 
@@ -37,99 +37,99 @@ public class DragPointRubberBox extends TwoPointsRubberBox {
     public void mousePressed(MouseEvent e) {
         mouseButton = e.getButton();
         switch (status) {
-        case WAIT_POINT_A:
-            if (setPointA(e.getPoint())) {
-                status = Status.WAIT_POINT_B;
-            } else {
-                setEnable(false);
-                fireRubberBoxEnd();
-            }
-            break;
-        case WAIT_POINT_B:
-            setPointB(e.getPoint());
-            if (pointBComputer.is2D()) {
+            case WAIT_POINT_A:
+                if (setPointA(e.getPoint())) {
+                    status = Status.WAIT_POINT_B;
+                } else {
+                    setEnable(false);
+                    fireRubberBoxEnd();
+                }
+                break;
+            case WAIT_POINT_B:
+                setPointB(e.getPoint());
+                if (pointBComputer.is2D()) {
+                    process();
+                    setEnable(false);
+                    fireRubberBoxEnd();
+                } else {
+                    status = Status.WAIT_POINT_C;
+                }
+                break;
+            case WAIT_POINT_C:
+                setPointC(e.getPoint());
+                status = Status.WAIT_POINT_D;
+                break;
+            case WAIT_POINT_D:
+                setPointD(e.getPoint());
                 process();
                 setEnable(false);
                 fireRubberBoxEnd();
-            } else {
-                status = Status.WAIT_POINT_C;
-            }
-            break;
-        case WAIT_POINT_C:
-            setPointC(e.getPoint());
-            status = Status.WAIT_POINT_D;
-            break;
-        case WAIT_POINT_D:
-            setPointD(e.getPoint());
-            process();
-            setEnable(false);
-            fireRubberBoxEnd();
-            break;
-        default:
+                break;
+            default:
         }
-        updateInfoMessage();      
+        updateInfoMessage();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         mouseButton = e.getButton();
         switch (status) {
-        case WAIT_POINT_A:
-            if (setPointA(e.getPoint())) {
-                status = Status.WAIT_POINT_B;
-            } else {
-                setEnable(false);
-                fireRubberBoxEnd();
-            }
-            break;
-        case WAIT_POINT_B:
-            setPointB(e.getPoint());
-            if (pointBComputer.is2D()) {
+            case WAIT_POINT_A:
+                if (setPointA(e.getPoint())) {
+                    status = Status.WAIT_POINT_B;
+                } else {
+                    setEnable(false);
+                    fireRubberBoxEnd();
+                }
+                break;
+            case WAIT_POINT_B:
+                setPointB(e.getPoint());
+                if (pointBComputer.is2D()) {
+                    process();
+                    setEnable(false);
+                    fireRubberBoxEnd();
+                } else {
+                    status = Status.WAIT_POINT_C;
+                }
+                break;
+            case WAIT_POINT_C:
+                setPointC(e.getPoint());
+                status = Status.WAIT_POINT_D;
+                break;
+            case WAIT_POINT_D:
+                setPointD(e.getPoint());
                 process();
                 setEnable(false);
                 fireRubberBoxEnd();
-            } else {
-                status = Status.WAIT_POINT_C;
-            }
-            break;
-        case WAIT_POINT_C:
-            setPointC(e.getPoint());
-            status = Status.WAIT_POINT_D;
-            break;
-        case WAIT_POINT_D:
-            setPointD(e.getPoint());
-            process();
-            setEnable(false);
-            fireRubberBoxEnd();
-            break;
-        default:
-        }
-        updateInfoMessage();
-    }
-    
-    @Override
-    public final void mouseDragged(MouseEvent e) {
-        switch (status) {
-        case WAIT_POINT_A:
-            setPointA(e.getPoint());
-            getDrawerVisitor().getCanvas().redraw();
-            break;
-        case WAIT_POINT_B:
-            setPointB(e.getPoint());
-            getDrawerVisitor().getCanvas().redraw();
-            break;
-        case WAIT_POINT_C:
-            setPointC(e.getPoint());
-            getDrawerVisitor().getCanvas().redraw();
-            break;
-        case WAIT_POINT_D:
-            setPointD(e.getPoint());
-            getDrawerVisitor().getCanvas().redraw();
-            break;
-        default:
+                break;
+            default:
         }
         updateInfoMessage();
     }
 
-    
+    @Override
+    public final void mouseDragged(MouseEvent e) {
+        switch (status) {
+            case WAIT_POINT_A:
+                setPointA(e.getPoint());
+                getDrawerVisitor().getCanvas().redraw();
+                break;
+            case WAIT_POINT_B:
+                setPointB(e.getPoint());
+                getDrawerVisitor().getCanvas().redraw();
+                break;
+            case WAIT_POINT_C:
+                setPointC(e.getPoint());
+                getDrawerVisitor().getCanvas().redraw();
+                break;
+            case WAIT_POINT_D:
+                setPointD(e.getPoint());
+                getDrawerVisitor().getCanvas().redraw();
+                break;
+            default:
+        }
+        updateInfoMessage();
+    }
+
+
 }

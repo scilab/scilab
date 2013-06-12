@@ -21,9 +21,9 @@
 
 function XcosMenuExport()
 
-  do_export(scs_m) ;
-  
-  scf(gh_current_window); 
-  drawnow(); 
-  Cmenu=[]   ;
+    do_export(scs_m) ;
+
+    scf(gh_current_window);
+    drawnow();
+    Cmenu=[]   ;
 endfunction

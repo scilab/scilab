@@ -27,39 +27,39 @@ extern "C"
 
 types::Function::ReturnValue sci_savehistory(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         char* pstFilename = HistoryManager::getInstance()->getFilename();
-		if (pstFilename)
-		{
+        if (pstFilename)
+        {
             HistoryManager::getInstance()->writeToFile(pstFilename);
-			FREE(pstFilename);
-			pstFilename=NULL;
-		}
+            FREE(pstFilename);
+            pstFilename = NULL;
+        }
     }
-    else if(in.size() == 1)
+    else if (in.size() == 1)
     {
-        if((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
+        if ((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "savehistory", 1);
             return types::Function::Error;
         }
 
         wchar_t* pwscsPath = in[0]->getAs<types::String>()->get(0);
-		wchar_t* pwcsLine = expandPathVariableW(pwscsPath);
-		if (pwcsLine)
-		{
+        wchar_t* pwcsLine = expandPathVariableW(pwscsPath);
+        if (pwcsLine)
+        {
             char* pstLine = wide_string_to_UTF8(pwcsLine);
-            if(pstLine)
+            if (pstLine)
             {
                 HistoryManager::getInstance()->writeToFile(pstLine);
-			    FREE(pstLine);
-			    pstLine = NULL;
+                FREE(pstLine);
+                pstLine = NULL;
 
             }
-			FREE(pwcsLine);
-			pwcsLine = NULL;
-		}
+            FREE(pwcsLine);
+            pwcsLine = NULL;
+        }
     }
     else
     {

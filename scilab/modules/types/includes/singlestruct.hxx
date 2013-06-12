@@ -22,40 +22,52 @@
 
 namespace types
 {
-    class TYPES_IMPEXP SingleStruct : public InternalType
+class TYPES_IMPEXP SingleStruct : public InternalType
+{
+public :
+    SingleStruct();
+    ~SingleStruct();
+
+private :
+    SingleStruct(SingleStruct *_oListCopyMe);
+    int                                     getFieldIndex(const std::wstring& _field);
+
+public :
+    SingleStruct*                           clone();
+
+    RealType                                getType(void)
     {
-    public :
-                                                SingleStruct();
-                                                ~SingleStruct();
+        return RealSingleStruct;
+    }
 
-    private :
-                                                SingleStruct(SingleStruct *_oListCopyMe);
-        std::map<std::wstring, InternalType *>* getData();
+    bool                                    toString(std::wostringstream& ostr);
 
-    public :
-        SingleStruct*                           clone();
+    bool                                    set(const std::wstring& _sKey, InternalType *_typedValue);
+    InternalType*                           get(const std::wstring& _sKey);
+    bool                                    exists(const std::wstring& _sKey);
+    InternalType*                           insert(typed_list* _pArgs, InternalType* _pSource);
+    std::vector<InternalType*>              extract(std::list<std::wstring> _stFields);
+    String*                                 getFieldNames();
+    bool                                    addField(const std::wstring& _sKey);
+    std::vector<InternalType *>             getData();
+    std::vector<std::wstring>               getFields();
 
-        RealType                                getType(void) {return RealSingleStruct;}
 
-        bool                                    toString(std::wostringstream& ostr);
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring                    getTypeStr()
+    {
+        return L"";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring                    getShortTypeStr()
+    {
+        return L"";
+    }
 
-        bool                                    set(const std::wstring& _sKey, InternalType *_typedValue);
-        InternalType*                           get(const std::wstring& _sKey);
-        bool                                    exists(const std::wstring& _sKey);
-        InternalType*                           insert(typed_list* _pArgs, InternalType* _pSource);
-        std::vector<InternalType*>              extract(std::list<std::wstring> _stFields);
-        String*                                 getFieldNames();
-        bool                                    addField(const std::wstring& _sKey);
-
-    
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring                    getTypeStr() {return L"";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring                    getShortTypeStr() {return L"";}
-
-    private :
-        std::map<std::wstring, InternalType *>* m_pData;
-    };
+private :
+    std::vector<std::wstring> m_wstFields;
+    std::vector<InternalType *> m_Data;
+};
 }
 
 #endif /* !__SINGLESTRUCT_HXX__ */

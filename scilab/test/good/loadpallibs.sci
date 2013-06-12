@@ -20,17 +20,17 @@
 //
 
 function loadpallibs()
-//to be called by exec(loadpallibs)
-   if ~(exists('scicos_pal_libs')) then
-      // this is for make tests
-      [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
-       modelica_libs,scicos_pal_libs,..
-       %scicos_gif,%scicos_contrib ] = initial_scicos_tables(); 
-   end
-   for d = scicos_pal_libs 
-        execstr(['if exists(''scs'+convstr(d)+'lib'')==0 then'
-                 '  load(''SCI/modules/scicos_blocks/macros/'+d+'/lib'');'
-	         'end']);
-   end
-   clear d
+    //to be called by exec(loadpallibs)
+    if ~(exists("scicos_pal_libs")) then
+        // this is for make tests
+        [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ..
+        modelica_libs,scicos_pal_libs,..
+        %scicos_gif,%scicos_contrib ] = initial_scicos_tables();
+    end
+    for d = scicos_pal_libs
+        execstr(["if exists(''scs"+convstr(d)+"lib'')==0 then"
+        "  load(''SCI/modules/scicos_blocks/macros/"+d+"/lib'');"
+        "end"]);
+    end
+    clear d
 endfunction

@@ -35,19 +35,19 @@ using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_isdir(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "isdir" , 1);
         return Function::Error;
     }
 
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isdir", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "isdir", 1);
         return Function::Error;
@@ -56,20 +56,20 @@ Function::ReturnValue sci_isdir(typed_list &in, int _iRetCount, typed_list &out)
     String* pS  = in[0]->getAs<types::String>();
     Bool* pOut  = new Bool(pS->getRows(), pS->getCols());
 
-    for(int i = 0 ; i < pS->getSize() ; i++)
+    for (int i = 0 ; i < pS->getSize() ; i++)
     {
         wchar_t *expandedPath = expandPathVariableW(pS->get(i));
-		if(expandedPath)
-		{
-			pOut->get()[i] = isdirW(expandedPath);
-			FREE(expandedPath);
-			expandedPath = NULL;
-		}
-		else
-		{
-			pOut->get()[i] = FALSE;
-		}
-	}
+        if (expandedPath)
+        {
+            pOut->get()[i] = isdirW(expandedPath);
+            FREE(expandedPath);
+            expandedPath = NULL;
+        }
+        else
+        {
+            pOut->get()[i] = FALSE;
+        }
+    }
 
     out.push_back(pOut);
     return Function::OK;

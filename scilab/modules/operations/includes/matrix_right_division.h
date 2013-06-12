@@ -14,49 +14,49 @@
 #define __MATRIX_RDIV__
 
 EXTERN_OP int	iRightDivisionOfRealMatrix(
-			double *_pdblReal1,		int _iRows1,	int _iCols1,
-			double *_pdblReal2,		int _iRows2,	int _iCols2,
-			double *_pdblRealOut,	int _iRowsOut,	int _iColsOut, double* _pdblRcond);
+    double *_pdblReal1,		int _iRows1,	int _iCols1,
+    double *_pdblReal2,		int _iRows2,	int _iCols2,
+    double *_pdblRealOut,	int _iRowsOut,	int _iColsOut, double* _pdblRcond);
 
 EXTERN_OP int	iRightDivisionOfComplexMatrix(
-			double *_pdblReal1,		double *_pdblImg1,		int _iRows1,	int _iCols1,
-			double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
-			double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut, double *_pdblRcond);
+    double *_pdblReal1,		double *_pdblImg1,		int _iRows1,	int _iCols1,
+    double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
+    double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut, double *_pdblRcond);
 
 EXTERN_OP int iRightDivisionRealMatrixByRealMatrix(
-			double *_pdblReal1, int _iInc1,
-			double *_pdblReal2, int _iInc2,
-			double *_pdblRealOut, int _iIncOut, int _iSize);
+    double *_pdblReal1, int _iInc1,
+    double *_pdblReal2, int _iInc2,
+    double *_pdblRealOut, int _iIncOut, int _iSize);
 
 EXTERN_OP int iRightDivisionComplexByReal(
-			double _dblReal1, double _dblImg1,
-			double _dblReal2,
-			double *_pdblRealOut, double *_pdblImgOut);
+    double _dblReal1, double _dblImg1,
+    double _dblReal2,
+    double *_pdblRealOut, double *_pdblImgOut);
 
 EXTERN_OP int iRightDivisionComplexMatrixByRealMatrix(
-			double *_pdblReal1,		double *_pdblImg1,		int _iInc1,
-			double *_pdblReal2,								int _iInc2,
-			double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
+    double *_pdblReal1,		double *_pdblImg1,		int _iInc1,
+    double *_pdblReal2,								int _iInc2,
+    double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
 
 EXTERN_OP int iRightDivisionRealByComplex(
-			double _dblReal1,
-			double _dblReal2, double _dblImg2,
-			double *_pdblRealOut, double *_pdblImgOut);
+    double _dblReal1,
+    double _dblReal2, double _dblImg2,
+    double *_pdblRealOut, double *_pdblImgOut);
 
 EXTERN_OP int iRightDivisionRealMatrixByComplexMatrix(
-			double *_pdblReal1,								int _iInc1,
-			double *_pdblReal2,		double *_pdblImg2,		int _iInc2,
-			double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
+    double *_pdblReal1,								int _iInc1,
+    double *_pdblReal2,		double *_pdblImg2,		int _iInc2,
+    double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
 
 EXTERN_OP int iRightDivisionComplexByComplex(
-			double _dblReal1, double _dblImg1,
-			double _dblReal2, double _dblImg2,
-			double *_pdblRealOut, double *_pdblImgOut);
+    double _dblReal1, double _dblImg1,
+    double _dblReal2, double _dblImg2,
+    double *_pdblRealOut, double *_pdblImgOut);
 
 EXTERN_OP int iRightDivisionComplexMatrixByComplexMatrix(
-			double *_pdblReal1,		double *_pdblImg1,		int _iInc1,
-			double *_pdblReal2,		double *_pdblImg2,		int _iInc2,
-			double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
+    double *_pdblReal1,		double *_pdblImg1,		int _iInc1,
+    double *_pdblReal2,		double *_pdblImg2,		int _iInc2,
+    double *_pdblRealOut,	double *_pdblImgOut,	int _iIncOut, int _iSize);
 
 
 #endif /* __MATRIX_RDIV__ */

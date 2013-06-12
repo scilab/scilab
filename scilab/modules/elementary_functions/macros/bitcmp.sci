@@ -34,8 +34,8 @@ function y = bitcmp(x,n)
     //   - Add argument check
 
     // check number input argument
-
     rhs = argn(2);
+
     if rhs == 0 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"),"bitcmp",1));
     elseif (type(x) == 1) & (rhs == 1) then
@@ -62,12 +62,12 @@ function y = bitcmp(x,n)
 
     // check n value
 
-        select inttype(x)
-        case 0  then nmax = 52;
-        case 11 then nmax = 8;
-        case 12 then nmax = 16;
-        case 14 then nmax = 32;
-        end
+    select inttype(x)
+    case 0  then nmax = 52;
+    case 11 then nmax = 8;
+    case 12 then nmax = 16;
+    case 14 then nmax = 32;
+    end
 
     if rhs>1 then
 

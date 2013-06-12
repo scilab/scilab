@@ -29,11 +29,13 @@ typedef int * (*gzhself)(ARGS_gzhsel);
 /**************** gzhsel ***************/
 LINEAR_ALGEBRA_IMPEXP void C2F(zb02ow)(ARGS_gzhsel);
 LINEAR_ALGEBRA_IMPEXP void C2F(zb02ox)(ARGS_gzhsel);
- 
-FTAB FTab_gzhsel[] ={
-{"zb02ow", (voidf)  C2F(zb02ow)},
-{"zb02ox", (voidf)  C2F(zb02ox)},
-{(char *) 0, (voidf) 0}};
+
+FTAB FTab_gzhsel[] =
+{
+    {"zb02ow", (voidf)  C2F(zb02ow)},
+    {"zb02ox", (voidf)  C2F(zb02ox)},
+    {(char *) 0, (voidf) 0}
+};
 
 
 /***********************************
@@ -47,10 +49,12 @@ typedef int * (*gshself)(ARGS_gshsel);
 /**************** gshsel ***************/
 LINEAR_ALGEBRA_IMPEXP void C2F(sb02ow)(ARGS_gshsel);
 LINEAR_ALGEBRA_IMPEXP void C2F(sb02ox)(ARGS_gshsel);
- 
-FTAB FTab_gshsel[] ={
-{"sb02ow", (voidf)  C2F(sb02ow)},
-{"sb02ox", (voidf)  C2F(sb02ox)},
-{(char *) 0, (voidf) 0}};
+
+FTAB FTab_gshsel[] =
+{
+    {"sb02ow", (voidf)  C2F(sb02ow)},
+    {"sb02ox", (voidf)  C2F(sb02ox)},
+    {(char *) 0, (voidf) 0}
+};
 
 #endif /* __GSCHUR_H__ */

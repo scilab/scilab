@@ -7,6 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = sec(x)
-// Secant
-  y = ones(x)./cos(x);
+    // Secant
+    y = ones(x)./cos(x);
 endfunction

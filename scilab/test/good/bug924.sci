@@ -10,18 +10,18 @@ mode(-1);
 clear;
 
 MFILECONTENTS=["function bug924";
-		"a=''milou'';";
-		"a=''milou'',";
-		"a=''milou''";
-		"a;";
-		"a,";
-		"a";
-		"[c,d]=svd(1);";
-		"[c,d]=svd(1),";
-		"[c,d]=svd(1)";
-		"b=a;";
-		"b=a,";
-		"b=a"]
+"a=''milou'';";
+"a=''milou'',";
+"a=''milou''";
+"a;";
+"a,";
+"a";
+"[c,d]=svd(1);";
+"[c,d]=svd(1),";
+"[c,d]=svd(1)";
+"b=a;";
+"b=a,";
+"b=a"]
 
 MFILE=TMPDIR+"/bug924.m"
 SCIFILE=TMPDIR+"/bug924.sci"
@@ -31,31 +31,31 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["function [] = bug924()";
-		"";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"a = ""milou"";";
-		"a = ""milou"",";
-		"a = ""milou""";
-		"a;";
-		"a,";
-		"a";
-		"[c,d] = svd(1);";
-		"[c,d] = svd(1),";
-		"[c,d] = svd(1)";
-		"b = a;";
-		"b = a,";
-		"b = a";
-		"endfunction"]
+"";
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"a = ""milou"";";
+"a = ""milou"",";
+"a = ""milou""";
+"a;";
+"a,";
+"a";
+"[c,d] = svd(1);";
+"[c,d] = svd(1),";
+"[c,d] = svd(1)";
+"b = a;";
+"b = a,";
+"b = a";
+"endfunction"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,924);
+    affich_result(%F,924);
 else
-	affich_result(%T,924);
+    affich_result(%T,924);
 end
 
 clear

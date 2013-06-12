@@ -1,8 +1,8 @@
-']'		// string
-[[] 'toto']	// matrix
+"]"		// string
+[[] "toto"]	// matrix
 toto'		// transpose matrix toto
-'[toto]'	// string
-[[]' ,'']	// transpose and string
+"[toto]"	// string
+[[]' ,""]	// transpose and string
 (([]')')'	// multiple transpose
-a ''''
+a "''"
 

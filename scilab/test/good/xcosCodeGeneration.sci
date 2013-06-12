@@ -11,36 +11,36 @@
 //
 
 function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
-  
-//-- BJ : Alias Warning Function
-  prot = funcprot();
-  funcprot(0);
-  hilite_obj = xcosShowBlockWarning;
-  unhilite_obj = xcosClearBlockWarning;
-  funcprot(prot);
-  //-- end
-  
-  // This will create a scs_m variable.
-  status = import_from_hdf5(hdf5FileToLoad);
-  if ~status then
-    error(msprintf(gettext("%s: Unable to import data from %s"), "xcosCodeGeneration", hdf5FileToLoad));
-  end
-  
-  ierr = execstr("[ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock42(scs_m, [], [], %f); ", 'errcatch');
-  if ierr <> 0 then
-	  [msg, err] = lasterror();
-	  disp(msg);
-	  deletefile(hdf5FileToSave);
-	  return;
-  end
-  
-  if ok then
-    status = export_to_hdf5(hdf5FileToSave, "XX");
+
+    //-- BJ : Alias Warning Function
+    prot = funcprot();
+    funcprot(0);
+    hilite_obj = xcosShowBlockWarning;
+    unhilite_obj = xcosClearBlockWarning;
+    funcprot(prot);
+    //-- end
+
+    // This will create a scs_m variable.
+    status = import_from_hdf5(hdf5FileToLoad);
     if ~status then
-      error(msprintf(gettext("%s: Unable to export ''XX'' to %s"), "xcosCodeGeneration", hdf5FileToSave));
+        error(msprintf(gettext("%s: Unable to import data from %s"), "xcosCodeGeneration", hdf5FileToLoad));
     end
-  else
-    deletefile(hdf5FileToSave);
-  end
+
+    ierr = execstr("[ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock42(scs_m, [], [], %f); ", "errcatch");
+    if ierr <> 0 then
+        [msg, err] = lasterror();
+        disp(msg);
+        deletefile(hdf5FileToSave);
+        return;
+    end
+
+    if ok then
+        status = export_to_hdf5(hdf5FileToSave, "XX");
+        if ~status then
+            error(msprintf(gettext("%s: Unable to export ''XX'' to %s"), "xcosCodeGeneration", hdf5FileToSave));
+        end
+    else
+        deletefile(hdf5FileToSave);
+    end
 endfunction
 

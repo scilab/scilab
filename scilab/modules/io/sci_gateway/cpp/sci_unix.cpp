@@ -17,9 +17,9 @@
 
 extern "C"
 {
-    #include "systemc.h"
-    #include "localization.h"
-    #include "Scierror.h"
+#include "systemc.h"
+#include "localization.h"
+#include "Scierror.h"
 }
 
 types::Function::ReturnValue sci_unix(types::typed_list &in, int _iRetCount, types::typed_list &out)

@@ -20,26 +20,26 @@
 //
 
 function model_name=get_model_name(mo_model,Bnames)
-//Copyright INRIA
-//## return an unique name for a modelica model
-//## for the compiled modelica structure
-//##
-//## inputs :
-//##   mo_model : a string that gives the name of the model
-//##              in the modelica list (equations) of a modelica block.
-//##
-//##   Bnames   : vector of strings of already attribuate models name
-//##
-//## output :
-//##   model_name : the output string of the model name
-//##
+    //Copyright INRIA
+    //## return an unique name for a modelica model
+    //## for the compiled modelica structure
+    //##
+    //## inputs :
+    //##   mo_model : a string that gives the name of the model
+    //##              in the modelica list (equations) of a modelica block.
+    //##
+    //##   Bnames   : vector of strings of already attribuate models name
+    //##
+    //## output :
+    //##   model_name : the output string of the model name
+    //##
 
-  ind = 1;
-  model_name = strsubst(mo_model," ","") + string(ind);
+    ind = 1;
+    model_name = strsubst(mo_model," ","") + string(ind);
 
-  while find(model_name==Bnames) <> [] then
-    ind = ind + 1;
-    model_name=strsubst(mo_model," ","") + string(ind);
-  end
+    while find(model_name==Bnames) <> [] then
+        ind = ind + 1;
+        model_name=strsubst(mo_model," ","") + string(ind);
+    end
 
 endfunction

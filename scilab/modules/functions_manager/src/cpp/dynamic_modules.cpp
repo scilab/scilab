@@ -49,6 +49,7 @@ vectGateway loadGatewaysName(wstring _wstModuleName)
         FREE(pstModuleName);
         return vect;
     }
+    FREE(pstModuleName);
 
     xpathCtxt = xmlXPathNewContext(doc);
     xpathObj = xmlXPathEval((const xmlChar*)"//module/gateway", xpathCtxt);
@@ -66,11 +67,15 @@ vectGateway loadGatewaysName(wstring _wstModuleName)
                 /* loop until when have read all the attributes */
                 if (xmlStrEqual(attrib->name, (const xmlChar*)"name"))
                 {
-                    str.wstName = to_wide_string((const char*)attrib->children->content);
+                    wchar_t * ws = to_wide_string((const char*)attrib->children->content);
+                    str.wstName = ws;
+                    FREE(ws);
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"function"))
                 {
-                    str.wstFunction = to_wide_string((const char*)attrib->children->content);
+                    wchar_t * ws = to_wide_string((const char*)attrib->children->content);
+                    str.wstFunction = ws;
+                    FREE(ws);
                 }
                 else if (xmlStrEqual(attrib->name, (const xmlChar*)"type"))
                 {
@@ -124,6 +129,8 @@ int ScinotesModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &ScinotesModule::LoadDeps, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -145,6 +152,8 @@ int FunctionsModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -165,6 +174,8 @@ int StatisticsModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -184,6 +195,8 @@ int SignalProcessingModule::Load()
     {
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
+
+    FREE(pwstLibName);
 
     return 1;
 }
@@ -214,6 +227,8 @@ int HelptoolsModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &HelptoolsModule::LoadDeps, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -234,6 +249,8 @@ int MatioModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -251,6 +268,8 @@ int Hdf5Module::Load()
     {
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
+
+    FREE(pwstLibName);
 
     return 1;
 }
@@ -272,6 +291,8 @@ int ActionBindingModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -292,6 +313,8 @@ int DifferentialEquationsModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -309,6 +332,8 @@ int SpreadsheetModule::Load()
     {
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
+
+    FREE(pwstLibName);
 
     return 1;
 }
@@ -330,6 +355,8 @@ int InterpolationModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -350,6 +377,8 @@ int SoundModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -367,6 +396,8 @@ int RandlibModule::Load()
     {
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
+
+    FREE(pwstLibName);
 
     return 1;
 }
@@ -386,6 +417,8 @@ int CacsdModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -403,6 +436,8 @@ int UmfpackModule::Load()
     {
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
+
+    FREE(pwstLibName);
 
     return 1;
 }
@@ -422,6 +457,8 @@ int OptimizationModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -440,6 +477,8 @@ int SpecialFunctionModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
+
     return 1;
 }
 
@@ -447,7 +486,7 @@ int GraphicExportModule::Load()
 {
     wstring wstModuleName = L"graphic_export";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
@@ -457,6 +496,8 @@ int GraphicExportModule::Load()
     {
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
+
+    FREE(pwstLibName);
 
     return 1;
 }
@@ -475,6 +516,8 @@ int ArnoldiModule::Load()
     {
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
+
+    FREE(pwstLibName);
 
     return 1;
 }

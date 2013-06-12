@@ -20,413 +20,413 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
- * Contoured object class 
+ * Contoured object class
  * @author Manuel JULIACHS
  */
 public abstract class ContouredObject extends GraphicObject {
-	/** ContouredObject properties */
-	public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, MARK };
-	
-	/** Line property */
-	private Line line;
+    /** ContouredObject properties */
+    public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, MARK };
 
-	/** Specifies whether the object is filled or not */
-	private boolean fillMode;
+    /** Line property */
+    private Line line;
 
-	/** Background (fill) color */
-	private int background;
+    /** Specifies whether the object is filled or not */
+    private boolean fillMode;
 
-	/** Mark property */
-	private Mark mark;
+    /** Background (fill) color */
+    private int background;
 
-	/** Default constructor */
-	public ContouredObject() {
-		line = new Line();
-		fillMode = false;
-		background = 0;
-		mark = new Mark();
-	}
+    /** Mark property */
+    private Mark mark;
 
-	public ContouredObject clone() {
-		ContouredObject copy = (ContouredObject) super.clone();
+    /** Default constructor */
+    public ContouredObject() {
+        line = new Line();
+        fillMode = false;
+        background = 0;
+        mark = new Mark();
+    }
 
-		copy.line = new Line(line);
-		copy.mark = new Mark(mark);
+    public ContouredObject clone() {
+        ContouredObject copy = (ContouredObject) super.clone();
 
-		return copy;
-	}
-	
-	/**
-	 * Returns the enum associated to a property name
-	 * @param propertyName the property name
-	 * @return the property enum
-	 */
-	public Object getPropertyFromName(int propertyName) {
-		switch (propertyName) {
-		case __GO_LINE__ :
-			return ContouredObjectPropertyType.LINE;
-		case __GO_LINE_MODE__ :
-			return LinePropertyType.MODE;
-		case __GO_LINE_STYLE__ :
-			return LinePropertyType.LINESTYLE;
-		case __GO_LINE_THICKNESS__ :
-			return LinePropertyType.THICKNESS;
-		case __GO_LINE_COLOR__ :
-			return LinePropertyType.COLOR;
-		case __GO_FILL_MODE__ :
-			return ContouredObjectPropertyType.FILLMODE;
-		case __GO_BACKGROUND__ :
-			return ContouredObjectPropertyType.BACKGROUND;
-		case __GO_MARK__ :
-			return ContouredObjectPropertyType.MARK;
-		case __GO_MARK_MODE__ :
-			return MarkPropertyType.MODE;
-		case __GO_MARK_STYLE__ :
-			return MarkPropertyType.STYLE;
-		case __GO_MARK_SIZE_UNIT__ :
-			return MarkPropertyType.SIZEUNIT;
-		case __GO_MARK_SIZE__ :
-			return MarkPropertyType.SIZE;
-		case __GO_MARK_FOREGROUND__ :
-			return MarkPropertyType.FOREGROUND;
-		case __GO_MARK_BACKGROUND__ :
-			return MarkPropertyType.BACKGROUND;
-		default :
-			return super.getPropertyFromName(propertyName);
-		}
-	}
+        copy.line = new Line(line);
+        copy.mark = new Mark(mark);
 
-	/**
-	 * Fast property get method
-	 * @param property the property to get
-	 * @return the property value
-	 */
-	public Object getProperty(Object property) {
-		if (property == ContouredObjectPropertyType.LINE) {
-			return getLine();
-		} else if (property == LinePropertyType.MODE) {
-			return getLineMode();
-		} else if (property == LinePropertyType.LINESTYLE) {
-			return getLineStyle();
-		} else if (property == LinePropertyType.THICKNESS) {
-			return getLineThickness();
-		} else if (property == LinePropertyType.COLOR) {
-			return getLineColor();
-		} else if (property == ContouredObjectPropertyType.FILLMODE) {
-			return getFillMode();
-		} else if (property == ContouredObjectPropertyType.BACKGROUND) {
-			return getBackground();
-		} else if (property == ContouredObjectPropertyType.MARK) {
-			return getMark();
-		} else if (property == MarkPropertyType.MODE) {
-			return getMarkMode();
-		} else if (property == MarkPropertyType.STYLE) {
-			return getMarkStyle();
-		} else if (property == MarkPropertyType.SIZEUNIT) {
-			return getMarkSizeUnit();
-		} else if (property == MarkPropertyType.SIZE) {
-			return getMarkSize();
-		} else if (property == MarkPropertyType.FOREGROUND) {
-			return getMarkForeground();
-		} else if (property == MarkPropertyType.BACKGROUND) {
-			return getMarkBackground();
-		} else {
-			return super.getProperty(property);
-		}
-	}
+        return copy;
+    }
 
-	/**
-	 * Fast property set method
-	 * @param property the property to set
-	 * @param value the property value
-	 * @return true if the property has been set, false otherwise
-	 */
-	public UpdateStatus setProperty(Object property, Object value) {
-		if (property == ContouredObjectPropertyType.LINE) {
-			setLine((Line) value);
-		} else if (property == LinePropertyType.MODE) {
-			return setLineMode((Boolean) value);
-		} else if (property == LinePropertyType.LINESTYLE) {
-			setLineStyle((Integer) value);
-		} else if (property == LinePropertyType.THICKNESS) {
-			setLineThickness((Double) value);
-		} else if (property == LinePropertyType.COLOR) {
-			return setLineColor((Integer) value);
-		} else if (property == ContouredObjectPropertyType.FILLMODE) {
-			return setFillMode((Boolean) value);
-		} else if (property == ContouredObjectPropertyType.BACKGROUND) {
-			setBackground((Integer) value);
-		} else if (property == ContouredObjectPropertyType.MARK) {
-			setMark((Mark) value);
-		} else if (property == MarkPropertyType.MODE) {
-			return setMarkMode((Boolean) value);
-		} else if (property == MarkPropertyType.STYLE) {
-			return setMarkStyle((Integer) value);
-		} else if (property == MarkPropertyType.SIZEUNIT) {
-			setMarkSizeUnit((Integer) value);
-		} else if (property == MarkPropertyType.SIZE) {
-			return setMarkSize((Integer) value);
-		} else if (property == MarkPropertyType.FOREGROUND) {
-			this.setMarkForeground((Integer) value);
-		} else if (property == MarkPropertyType.BACKGROUND) {
-			this.setMarkBackground((Integer) value);
-		} else {
-			return super.setProperty(property, value);
-		}
+    /**
+     * Returns the enum associated to a property name
+     * @param propertyName the property name
+     * @return the property enum
+     */
+    public Object getPropertyFromName(int propertyName) {
+        switch (propertyName) {
+            case __GO_LINE__ :
+                return ContouredObjectPropertyType.LINE;
+            case __GO_LINE_MODE__ :
+                return LinePropertyType.MODE;
+            case __GO_LINE_STYLE__ :
+                return LinePropertyType.LINESTYLE;
+            case __GO_LINE_THICKNESS__ :
+                return LinePropertyType.THICKNESS;
+            case __GO_LINE_COLOR__ :
+                return LinePropertyType.COLOR;
+            case __GO_FILL_MODE__ :
+                return ContouredObjectPropertyType.FILLMODE;
+            case __GO_BACKGROUND__ :
+                return ContouredObjectPropertyType.BACKGROUND;
+            case __GO_MARK__ :
+                return ContouredObjectPropertyType.MARK;
+            case __GO_MARK_MODE__ :
+                return MarkPropertyType.MODE;
+            case __GO_MARK_STYLE__ :
+                return MarkPropertyType.STYLE;
+            case __GO_MARK_SIZE_UNIT__ :
+                return MarkPropertyType.SIZEUNIT;
+            case __GO_MARK_SIZE__ :
+                return MarkPropertyType.SIZE;
+            case __GO_MARK_FOREGROUND__ :
+                return MarkPropertyType.FOREGROUND;
+            case __GO_MARK_BACKGROUND__ :
+                return MarkPropertyType.BACKGROUND;
+            default :
+                return super.getPropertyFromName(propertyName);
+        }
+    }
 
-		return UpdateStatus.Success;
-	}
+    /**
+     * Fast property get method
+     * @param property the property to get
+     * @return the property value
+     */
+    public Object getProperty(Object property) {
+        if (property == ContouredObjectPropertyType.LINE) {
+            return getLine();
+        } else if (property == LinePropertyType.MODE) {
+            return getLineMode();
+        } else if (property == LinePropertyType.LINESTYLE) {
+            return getLineStyle();
+        } else if (property == LinePropertyType.THICKNESS) {
+            return getLineThickness();
+        } else if (property == LinePropertyType.COLOR) {
+            return getLineColor();
+        } else if (property == ContouredObjectPropertyType.FILLMODE) {
+            return getFillMode();
+        } else if (property == ContouredObjectPropertyType.BACKGROUND) {
+            return getBackground();
+        } else if (property == ContouredObjectPropertyType.MARK) {
+            return getMark();
+        } else if (property == MarkPropertyType.MODE) {
+            return getMarkMode();
+        } else if (property == MarkPropertyType.STYLE) {
+            return getMarkStyle();
+        } else if (property == MarkPropertyType.SIZEUNIT) {
+            return getMarkSizeUnit();
+        } else if (property == MarkPropertyType.SIZE) {
+            return getMarkSize();
+        } else if (property == MarkPropertyType.FOREGROUND) {
+            return getMarkForeground();
+        } else if (property == MarkPropertyType.BACKGROUND) {
+            return getMarkBackground();
+        } else {
+            return super.getProperty(property);
+        }
+    }
 
-	/**
-	 * @return the background
-	 */
-	public Integer getBackground() {
-		return background;
-	}
+    /**
+     * Fast property set method
+     * @param property the property to set
+     * @param value the property value
+     * @return true if the property has been set, false otherwise
+     */
+    public UpdateStatus setProperty(Object property, Object value) {
+        if (property == ContouredObjectPropertyType.LINE) {
+            setLine((Line) value);
+        } else if (property == LinePropertyType.MODE) {
+            return setLineMode((Boolean) value);
+        } else if (property == LinePropertyType.LINESTYLE) {
+            setLineStyle((Integer) value);
+        } else if (property == LinePropertyType.THICKNESS) {
+            setLineThickness((Double) value);
+        } else if (property == LinePropertyType.COLOR) {
+            return setLineColor((Integer) value);
+        } else if (property == ContouredObjectPropertyType.FILLMODE) {
+            return setFillMode((Boolean) value);
+        } else if (property == ContouredObjectPropertyType.BACKGROUND) {
+            setBackground((Integer) value);
+        } else if (property == ContouredObjectPropertyType.MARK) {
+            setMark((Mark) value);
+        } else if (property == MarkPropertyType.MODE) {
+            return setMarkMode((Boolean) value);
+        } else if (property == MarkPropertyType.STYLE) {
+            return setMarkStyle((Integer) value);
+        } else if (property == MarkPropertyType.SIZEUNIT) {
+            setMarkSizeUnit((Integer) value);
+        } else if (property == MarkPropertyType.SIZE) {
+            return setMarkSize((Integer) value);
+        } else if (property == MarkPropertyType.FOREGROUND) {
+            this.setMarkForeground((Integer) value);
+        } else if (property == MarkPropertyType.BACKGROUND) {
+            this.setMarkBackground((Integer) value);
+        } else {
+            return super.setProperty(property, value);
+        }
 
-	/**
-	 * @param background the background to set
-	 */
-	public void setBackground(Integer background) {
-		this.background = background;
-	}
+        return UpdateStatus.Success;
+    }
 
-	/**
-	 * @return the fillMode
-	 */
-	public Boolean getFillMode() {
-		return fillMode;
-	}
+    /**
+     * @return the background
+     */
+    public Integer getBackground() {
+        return background;
+    }
 
-	/**
-	 * @param fillMode the fillMode to set
-	 */
-	public UpdateStatus setFillMode(Boolean fillMode) {
-		if (this.fillMode == fillMode) {
-		    return UpdateStatus.NoChange;
-		}
-		this.fillMode = fillMode;
-		return UpdateStatus.Success;
-	}
+    /**
+     * @param background the background to set
+     */
+    public void setBackground(Integer background) {
+        this.background = background;
+    }
 
-	/**
-	 * @return the line
-	 */
-	public Line getLine() {
-		return line;
-	}
+    /**
+     * @return the fillMode
+     */
+    public Boolean getFillMode() {
+        return fillMode;
+    }
 
-	/**
-	 * @param line the line to set
-	 */
-	public void setLine(Line line) {
-		this.line = line;
-	}
+    /**
+     * @param fillMode the fillMode to set
+     */
+    public UpdateStatus setFillMode(Boolean fillMode) {
+        if (this.fillMode == fillMode) {
+            return UpdateStatus.NoChange;
+        }
+        this.fillMode = fillMode;
+        return UpdateStatus.Success;
+    }
 
-	/**
-	 * Get the line color
-	 * @return the color
-	 */
-	public Integer getLineColor() {
-		return line.getColor();
-	}
+    /**
+     * @return the line
+     */
+    public Line getLine() {
+        return line;
+    }
 
-	/**
-	 * Set the line color
-	 * @param color the color to set
-	 */
-	public UpdateStatus setLineColor(Integer color) {
-		return line.setColor(color);
-	}
+    /**
+     * @param line the line to set
+     */
+    public void setLine(Line line) {
+        this.line = line;
+    }
 
-	/**
-	 * Get the line style
-	 * @return the lineStyle
-	 */
-	public Integer getLineStyle() {
-		return getLineStyleAsEnum().asScilabIndex();
-	}
+    /**
+     * Get the line color
+     * @return the color
+     */
+    public Integer getLineColor() {
+        return line.getColor();
+    }
 
-	/**
-	 * Get the line style
-	 * @return the lineStyle
-	 */
-	public LineType getLineStyleAsEnum() {
-		return line.getLineStyle();
-	}
+    /**
+     * Set the line color
+     * @param color the color to set
+     */
+    public UpdateStatus setLineColor(Integer color) {
+        return line.setColor(color);
+    }
 
-	/**
-	 * Set the line style
-	 * @param lineStyle the lineStyle to set
-	 */
-	public void setLineStyle(Integer lineStyle) {
-		setLineStyleAsEnum(LineType.fromScilabIndex(lineStyle));
-	}
+    /**
+     * Get the line style
+     * @return the lineStyle
+     */
+    public Integer getLineStyle() {
+        return getLineStyleAsEnum().asScilabIndex();
+    }
 
-	/**
-	 * Set the line style
-	 * @param lineStyle the lineStyle to set
-	 */
-	public void setLineStyleAsEnum(LineType lineStyle) {
-		line.setLineStyle(lineStyle);
-	}
+    /**
+     * Get the line style
+     * @return the lineStyle
+     */
+    public LineType getLineStyleAsEnum() {
+        return line.getLineStyle();
+    }
 
-	/**
-	 * Return the line mode
-	 * @return the mode
-	 */
-	public Boolean getLineMode() {
-		return line.getMode();
-	}
+    /**
+     * Set the line style
+     * @param lineStyle the lineStyle to set
+     */
+    public void setLineStyle(Integer lineStyle) {
+        setLineStyleAsEnum(LineType.fromScilabIndex(lineStyle));
+    }
 
-	/**
-	 * Set the line mode
-	 * @param mode the mode to set
-	 */
-	public UpdateStatus setLineMode(Boolean mode) {
-		return line.setMode(mode);
-	}
+    /**
+     * Set the line style
+     * @param lineStyle the lineStyle to set
+     */
+    public void setLineStyleAsEnum(LineType lineStyle) {
+        line.setLineStyle(lineStyle);
+    }
 
-	/**
-	 * Get the line thickness
-	 * @return the thickness
-	 */
-	public Double getLineThickness() {
-		return line.getThickness();
-	}
+    /**
+     * Return the line mode
+     * @return the mode
+     */
+    public Boolean getLineMode() {
+        return line.getMode();
+    }
 
-	/**
-	 * Set the line thickness
-	 * @param thickness the thickness to set
-	 */
-	public void setLineThickness(Double thickness) {
-		line.setThickness(thickness);
-	}
+    /**
+     * Set the line mode
+     * @param mode the mode to set
+     */
+    public UpdateStatus setLineMode(Boolean mode) {
+        return line.setMode(mode);
+    }
 
-	/**
-	 * @return the mark
-	 */
-	public Mark getMark() {
-		return mark;
-	}
+    /**
+     * Get the line thickness
+     * @return the thickness
+     */
+    public Double getLineThickness() {
+        return line.getThickness();
+    }
 
-	/**
-	 * @param mark the mark to set
-	 */
-	public void setMark(Mark mark) {
-		this.mark = mark;
-	}
+    /**
+     * Set the line thickness
+     * @param thickness the thickness to set
+     */
+    public void setLineThickness(Double thickness) {
+        line.setThickness(thickness);
+    }
 
-	/**
-	 * Get the mark background
-	 * @return the background
-	 */
-	public Integer getMarkBackground() {
-		return mark.getBackground();
-	}
+    /**
+     * @return the mark
+     */
+    public Mark getMark() {
+        return mark;
+    }
 
-	/**
-	 * Set the mark background
-	 * @param background the background to set
-	 */
-	public void setMarkBackground(Integer background) {
-		mark.setBackground(background);
-	}
+    /**
+     * @param mark the mark to set
+     */
+    public void setMark(Mark mark) {
+        this.mark = mark;
+    }
 
-	/**
-	 * Get the mark foreground
-	 * @return the foreground
-	 */
-	public Integer getMarkForeground() {
-		return mark.getForeground();
-	}
+    /**
+     * Get the mark background
+     * @return the background
+     */
+    public Integer getMarkBackground() {
+        return mark.getBackground();
+    }
 
-	/**
-	 * Set the mark foreground
-	 * @param foreground the foreground to set
-	 */
-	public void setMarkForeground(Integer foreground) {
-		mark.setForeground(foreground);
-	}
+    /**
+     * Set the mark background
+     * @param background the background to set
+     */
+    public void setMarkBackground(Integer background) {
+        mark.setBackground(background);
+    }
 
-	/**
-	 * Get the mark size unit
-	 * @return the markSizeUnit
-	 */
-	public Integer getMarkSizeUnit() {
-		return getMarkSizeUnitAsEnum().ordinal();
-	}
+    /**
+     * Get the mark foreground
+     * @return the foreground
+     */
+    public Integer getMarkForeground() {
+        return mark.getForeground();
+    }
 
-	/**
-	 * Get the mark size unit
-	 * @return the markSizeUnit
-	 */
-	public MarkSizeUnitType getMarkSizeUnitAsEnum() {
-		return mark.getMarkSizeUnit();
-	}
+    /**
+     * Set the mark foreground
+     * @param foreground the foreground to set
+     */
+    public void setMarkForeground(Integer foreground) {
+        mark.setForeground(foreground);
+    }
 
-	/**
-	 * Set the mark size unit
-	 * @param markSizeUnit the markSizeUnit to set
-	 */
-	public void setMarkSizeUnit(Integer markSizeUnit) {
-		setMarkSizeUnitAsEnum(MarkSizeUnitType.intToEnum(markSizeUnit));
-	}
+    /**
+     * Get the mark size unit
+     * @return the markSizeUnit
+     */
+    public Integer getMarkSizeUnit() {
+        return getMarkSizeUnitAsEnum().ordinal();
+    }
 
-	/**
-	 * Set the mark size unit
-	 * @param markSizeUnit the markSizeUnit to set
-	 */
-	public void setMarkSizeUnitAsEnum(MarkSizeUnitType markSizeUnit) {
-		mark.setMarkSizeUnit(markSizeUnit);
-	}
+    /**
+     * Get the mark size unit
+     * @return the markSizeUnit
+     */
+    public MarkSizeUnitType getMarkSizeUnitAsEnum() {
+        return mark.getMarkSizeUnit();
+    }
 
-	/**
-	 * Get the mark size
-	 * @return the size
-	 */
-	public Integer getMarkSize() {
-		return mark.getSize();
-	}
+    /**
+     * Set the mark size unit
+     * @param markSizeUnit the markSizeUnit to set
+     */
+    public void setMarkSizeUnit(Integer markSizeUnit) {
+        setMarkSizeUnitAsEnum(MarkSizeUnitType.intToEnum(markSizeUnit));
+    }
 
-	/**
-	 * Set the mark size
-	 * @param size the size to set
-	 */
-	public UpdateStatus setMarkSize(Integer size) {
-		return mark.setSize(size);
-	}
+    /**
+     * Set the mark size unit
+     * @param markSizeUnit the markSizeUnit to set
+     */
+    public void setMarkSizeUnitAsEnum(MarkSizeUnitType markSizeUnit) {
+        mark.setMarkSizeUnit(markSizeUnit);
+    }
 
-	/**
-	 * Get the mark mode
-	 * @return the mode
-	 */
-	public Boolean getMarkMode() {
-		return mark.getMode();
-	}
+    /**
+     * Get the mark size
+     * @return the size
+     */
+    public Integer getMarkSize() {
+        return mark.getSize();
+    }
 
-	/**
-	 * Set the mark mode
-	 * @param mode the mode to set
-	 */
-	public UpdateStatus setMarkMode(Boolean mode) {
-		return mark.setMode(mode);
-	}
+    /**
+     * Set the mark size
+     * @param size the size to set
+     */
+    public UpdateStatus setMarkSize(Integer size) {
+        return mark.setSize(size);
+    }
 
-	/**
-	 * Get the mark style
-	 * @return the style
-	 */
-	public Integer getMarkStyle() {
-		return mark.getStyle();
-	}
+    /**
+     * Get the mark mode
+     * @return the mode
+     */
+    public Boolean getMarkMode() {
+        return mark.getMode();
+    }
 
-	/**
-	 * Set the mark style
-	 * @param style the style to set
-	 */
-	public UpdateStatus setMarkStyle(Integer style) {
-		return mark.setStyle(style);
-	}
+    /**
+     * Set the mark mode
+     * @param mode the mode to set
+     */
+    public UpdateStatus setMarkMode(Boolean mode) {
+        return mark.setMode(mode);
+    }
+
+    /**
+     * Get the mark style
+     * @return the style
+     */
+    public Integer getMarkStyle() {
+        return mark.getStyle();
+    }
+
+    /**
+     * Set the mark style
+     * @param style the style to set
+     */
+    public UpdateStatus setMarkStyle(Integer style) {
+        return mark.setStyle(style);
+    }
 
 }

@@ -113,7 +113,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
         {
             pstStrings = list->getContentFromList();
 
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char * const *>(pstStrings));
 
             // contents are created with xmlGetNodeContent which requires that the user free the himself the memory
             for (int i = 0; i < list->getSize(); i++)
@@ -135,7 +135,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
         {
             pstStrings = list->getNameFromList();
 
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char * const *>(pstStrings));
 
             delete[]pstStrings;
             if (err.iErr)

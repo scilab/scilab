@@ -9,31 +9,31 @@
 
 //=============================================================================
 function bOK = dlwSetEnvVc10(msCompiler, bWin64)
-  bOK = %F;
-  MSVSDir = '';
-  select msCompiler
-    case 'msvc100pro'
-      MSVSDir = dlwGetVc10ProPath();
-    case 'msvc100express'
-      MSVSDir = dlwGetVc10ExpressPath();
-  else
-    return
-  end
-  
-  // MS compiler path is wrong
-  if MSVSDir == [] then
-    return
-  end
-
-  IsExpress = (msCompiler == 'msvc100express');
-
-  VS100COMNTOOLS = MSVSDir + '\Common7\Tools\'
-  if ~setenv('VS100COMNTOOLS', VS100COMNTOOLS) then
     bOK = %F;
-    return
-  end
+    MSVSDir = "";
+    select msCompiler
+    case "msvc100pro"
+        MSVSDir = dlwGetVc10ProPath();
+    case "msvc100express"
+        MSVSDir = dlwGetVc10ExpressPath();
+    else
+        return
+    end
 
-  bOK = dlwSetEnvCommonVc9Vc10(MSVSDir, IsExpress, bWin64);
+    // MS compiler path is wrong
+    if MSVSDir == [] then
+        return
+    end
+
+    IsExpress = (msCompiler == "msvc100express");
+
+    VS100COMNTOOLS = MSVSDir + "\Common7\Tools\"
+    if ~setenv("VS100COMNTOOLS", VS100COMNTOOLS) then
+        bOK = %F;
+        return
+    end
+
+    bOK = dlwSetEnvCommonVc9Vc10(MSVSDir, IsExpress, bWin64);
 
 endfunction
 //=============================================================================

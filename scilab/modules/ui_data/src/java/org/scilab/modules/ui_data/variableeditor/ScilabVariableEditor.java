@@ -132,36 +132,36 @@ public final class ScilabVariableEditor extends SwingScilabWindow implements Var
         if (instance == null) {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                        public void run() {
-                            instance = new ScilabVariableEditor(type, data, variableName);
-                            instance.setVisible(true);
-                        }
-                    });
+                    public void run() {
+                        instance = new ScilabVariableEditor(type, data, variableName);
+                        instance.setVisible(true);
+                    }
+                });
             } catch (Exception e) {
                 System.err.println(e);
             }
         } else {
             SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, editorTab);
-                        window.setVisible(true);
-                        window.toFront();
-                        final JTable table = editorTab.getCurrentTable();
-                        int r = -1;
-                        int c = -1;
+                public void run() {
+                    SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, editorTab);
+                    window.setVisible(true);
+                    window.toFront();
+                    final JTable table = editorTab.getCurrentTable();
+                    int r = -1;
+                    int c = -1;
 
-                        if (table != null) {
-                            r = table.getSelectedRow();
-                            c = table.getSelectedColumn();
-                        }
-                        boolean b = map.containsKey(variableName);
-                        instance.updateData(variableName, type, data);
-                        if (b && r != -1 && c != -1) {
-                            table.setRowSelectionInterval(r, r);
-                            table.setColumnSelectionInterval(c, c);
-                        }
+                    if (table != null) {
+                        r = table.getSelectedRow();
+                        c = table.getSelectedColumn();
                     }
-                });
+                    boolean b = map.containsKey(variableName);
+                    instance.updateData(variableName, type, data);
+                    if (b && r != -1 && c != -1) {
+                        table.setRowSelectionInterval(r, r);
+                        table.setColumnSelectionInterval(c, c);
+                    }
+                }
+            });
         }
 
         editorTab.setName(Messages.gettext("Variable Editor") + " - " + variableName + "  (" + type + ")");

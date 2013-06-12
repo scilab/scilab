@@ -2,7 +2,7 @@
 
 mode (-1);
 clear;
- set old_style on;
+set old_style on;
 
 x=-25:0.1:25;
 y=x.^2;
@@ -11,9 +11,9 @@ result=execstr("for k=1:20,xclear();xtape(""replay"",0),xpause(1d5),end","errcat
 xdel();
 
 if result==0 then
-	affich_result(%T,502);
+    affich_result(%T,502);
 else
-	affich_result(%F,502);
+    affich_result(%F,502);
 end
 
 // The Error Messages are:

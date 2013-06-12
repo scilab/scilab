@@ -10,47 +10,47 @@
 
 //===========================================================
 function [y] = toolboxes(path)
-// INTERNAL macro should NOT used by users
-// toolboxes loading
-// path is a directory to explore for contribs
-//===========================================================
-  global %toolboxes
-  global %toolboxes_dir
-//===========================================================
-  [lhs,rhs] = argn(0)
-  y = [];
-  if (rhs == 1) & typeof(path)=="constant" then
-    // return string to exec
-    y = "exec(""" + %toolboxes_dir + %toolboxes(path) + filesep() + "loader.sce" + """);";
-    return
-  end
-
-  if rhs == 0 then
-    path = SCI + filesep() + 'contrib';
-  end
-
-  cur_wd = pwd();
-  chdir(path);
-  files = listfiles('.');
-  contribs = [];
-  for k = 1:size(files,'*')
-    if isfile(files(k)+'/loader.sce') then
-      contribs = [contribs ; files(k)];
+    // INTERNAL macro should NOT used by users
+    // toolboxes loading
+    // path is a directory to explore for contribs
+    //===========================================================
+    global %toolboxes
+    global %toolboxes_dir
+    //===========================================================
+    [lhs,rhs] = argn(0)
+    y = [];
+    if (rhs == 1) & typeof(path)=="constant" then
+        // return string to exec
+        y = "exec(""" + %toolboxes_dir + %toolboxes(path) + filesep() + "loader.sce" + """);";
+        return
     end
-  end
 
-  if (contribs <> []) & (getscilabmode() == 'STD') then
-    delmenu(gettext("&Toolboxes"));
-    h = uimenu("parent", 0, "label", gettext("&Toolboxes"));
-    for k=1:size(contribs,'*')
-      m = uimenu(h,'label', string(contribs(k)), 'callback','execstr(toolboxes('+string(k)+'))');
+    if rhs == 0 then
+        path = SCI + filesep() + "contrib";
     end
-    unsetmenu(gettext("&Toolboxes"));
-  end
 
-  %toolboxes = contribs;
-  %toolboxes_dir = pathconvert(path);
-  chdir(cur_wd);
+    cur_wd = pwd();
+    chdir(path);
+    files = listfiles(".");
+    contribs = [];
+    for k = 1:size(files,"*")
+        if isfile(files(k)+"/loader.sce") then
+            contribs = [contribs ; files(k)];
+        end
+    end
+
+    if (contribs <> []) & (getscilabmode() == "STD") then
+        delmenu(gettext("&Toolboxes"));
+        h = uimenu("parent", 0, "label", gettext("&Toolboxes"));
+        for k=1:size(contribs,"*")
+            m = uimenu(h,"label", string(contribs(k)), "callback","execstr(toolboxes("+string(k)+"))");
+        end
+        unsetmenu(gettext("&Toolboxes"));
+    end
+
+    %toolboxes = contribs;
+    %toolboxes_dir = pathconvert(path);
+    chdir(cur_wd);
 
 endfunction
 //===========================================================

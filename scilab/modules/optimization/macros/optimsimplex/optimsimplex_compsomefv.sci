@@ -19,7 +19,7 @@
 function [ this , data ] = optimsimplex_compsomefv ( varargin )
     function argin = argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
-        // If this argument was not provided, or was equal to the 
+        // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
         if ( rhs < ivar ) then
             argin = default
@@ -40,24 +40,24 @@ function [ this , data ] = optimsimplex_compsomefv ( varargin )
         errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "optimsimplex_computefv", 3,4);
         error(errmsg)
     end
-	this = varargin(1)
-	fun = varargin(2)
-	indices = argindefault ( rhs , varargin , 3 , this.nbve )
-	data = argindefault ( rhs , varargin , 4 , [] )
-	if ( typeof(data)=="constant" ) then
-		if ( data==[] ) then
-			for j = indices;
-				this.fv(j)  = fun (this.x(j,:));
-			end
-		else
-			for j = indices;
-				[ this.fv(j) , data ]  = fun ( this.x(j,:) , data );
-			end
-		end
-	else
-		for j = indices;
-			[ this.fv(j) , data ]  = fun ( this.x(j,:) , data );
-		end
-	end
+    this = varargin(1)
+    fun = varargin(2)
+    indices = argindefault ( rhs , varargin , 3 , this.nbve )
+    data = argindefault ( rhs , varargin , 4 , [] )
+    if ( typeof(data)=="constant" ) then
+        if ( data==[] ) then
+            for j = indices;
+                this.fv(j)  = fun (this.x(j,:));
+            end
+        else
+            for j = indices;
+                [ this.fv(j) , data ]  = fun ( this.x(j,:) , data );
+            end
+        end
+    else
+        for j = indices;
+            [ this.fv(j) , data ]  = fun ( this.x(j,:) , data );
+        end
+    end
 endfunction
 

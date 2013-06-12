@@ -9,17 +9,17 @@
 
 //=============================================================================
 function bOK = haveacompiler()
-  if getos() == 'Windows' then
-    // Load dynamic_link Internal lib if it's not already loaded
-    if ~ exists("dynamic_linkwindowslib") then
-      load("SCI/modules/dynamic_link/macros/windows/lib");
+    if getos() == "Windows" then
+        // Load dynamic_link Internal lib if it's not already loaded
+        if ~ exists("dynamic_linkwindowslib") then
+            load("SCI/modules/dynamic_link/macros/windows/lib");
+        end
+        bOK = dlwHaveCompiler();
+    else
+        // Very hard to detect under Linux/Unix since there are plenty of
+        // compiler... Then, we return all the time TRUE
+        // The actual detection is done by the dedicated ./configure
+        bOK = %T;
     end
-    bOK = dlwHaveCompiler();
-  else
-    // Very hard to detect under Linux/Unix since there are plenty of
-    // compiler... Then, we return all the time TRUE
-    // The actual detection is done by the dedicated ./configure
-    bOK = %T;
-  end
 endfunction
 //=============================================================================

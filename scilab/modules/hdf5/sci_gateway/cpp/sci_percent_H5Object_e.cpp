@@ -42,7 +42,7 @@ int sci_percent_H5Object_e(char * fname, int* pvApiCtx)
 
     if (nbIn < 2)
     {
-        Scierror(999, gettext("%s: Wrong number of input argument: More than %d expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong number of input arguments: More than %d expected.\n"), fname, 2);
     }
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
@@ -61,7 +61,7 @@ int sci_percent_H5Object_e(char * fname, int* pvApiCtx)
 
     if (fieldtype != sci_matrix && fieldtype != sci_strings)
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string or a double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a double expected.\n"), fname, 1);
         return 0;
     }
 
@@ -137,7 +137,7 @@ int sci_percent_H5Object_e(char * fname, int* pvApiCtx)
         {
             delete[] index;
         }
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A H5Object expected.\n"), fname, nbIn);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: A H5Object expected.\n"), fname, nbIn);
         return 0;
     }
 

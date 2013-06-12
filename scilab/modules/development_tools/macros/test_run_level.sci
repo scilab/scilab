@@ -11,27 +11,27 @@
 //   Launch unit tests.
 
 function test_run_level(severity)
-  disp("Run all test level " + string(severity));
-  doc = xmlRead(SCI+"/modules/development_tools/data/test_run_level.xml");
+    disp("Run all test level " + string(severity));
+    doc = xmlRead(SCI+"/modules/development_tools/data/test_run_level.xml");
 
-  // Retrieve the list of modules
-  modules=xmlXPath(doc, "/tests/level[@severity=" + string(severity) + "]/module");
+    // Retrieve the list of modules
+    modules=xmlXPath(doc, "/tests/level[@severity=" + string(severity) + "]/module");
 
-  for (i=1:modules.size)
+    for (i=1:modules.size)
 
-    // Retrieve the list of tests
-    tests = xmlAsText(xmlXPath(modules(i),"test"));
+        // Retrieve the list of tests
+        tests = xmlAsText(xmlXPath(modules(i),"test"));
 
-    // Run the test
-    status = test_run(modules(i).attributes.name,  tests, ["no_check_error_output","short_summary","show_diff","show_error"],TMPDIR+"/../test_runelevel_report.xml");
+        // Run the test
+        status = test_run(modules(i).attributes.name,  tests, ["no_check_error_output","short_summary","show_diff","show_error"],TMPDIR+"/../test_runelevel_report.xml");
 
-    if (status == %f) then
-      error("At least one error has been detected. Failing all tests.");
-      // Since make check is launched by the build system
-      // It checks if any error occurred and fails if it happens
+        if (status == %f) then
+            error("At least one error has been detected. Failing all tests.");
+            // Since make check is launched by the build system
+            // It checks if any error occurred and fails if it happens
+        end
     end
-  end
 
-  xmlDelete(doc);
+    xmlDelete(doc);
 
 endfunction

@@ -15,6 +15,6 @@
 #ifndef __OPERATION_F_H__
 #define __OPERATION_F_H__
 
-int C2F(dpmul)(double *_pdblP1,int *_piD1,double *_pdblP2,int *_piD2,double *_pdblP3,int *_piD3);
-int C2F(dmpmu)(double *mp1,int *d1,int *nl1,double *mp2,int *d2,int *nl2,double *mp3,int *d3,int *l,int *m,int *n);
+int C2F(dpmul)(double *_pdblP1, int *_piD1, double *_pdblP2, int *_piD2, double *_pdblP3, int *_piD3);
+int C2F(dmpmu)(double *mp1, int *d1, int *nl1, double *mp2, int *d2, int *nl2, double *mp3, int *d3, int *l, int *m, int *n);
 #endif /* __OPERATION_F_H__ */

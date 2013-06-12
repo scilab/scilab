@@ -33,36 +33,36 @@ types::Function::ReturnValue sci_chol(types::typed_list &in, int _iRetCount, typ
     int iCholProductResult  = 0;
     types::Double* result   = NULL;
 
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "chol", 1);
         return types::Function::Error;
     }
 
-    if((in[0]->isDouble() == false))
+    if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_chol";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
     pDbl = in[0]->getAs<types::Double>();
-    if(pDbl->getRows() != pDbl->getCols())
+    if (pDbl->getRows() != pDbl->getCols())
     {
-		Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "chol", 1);
-        return types::Function::Error;            
+        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "chol", 1);
+        return types::Function::Error;
     }
 
-    if(pDbl->getRows() == 0)
+    if (pDbl->getRows() == 0)
     {
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
-    else if(pDbl->getRows() == -1) // manage eye case
+    else if (pDbl->getRows() == -1) // manage eye case
     {
-        if(pDbl->get(0) <= 0)
+        if (pDbl->get(0) <= 0)
         {
-	    	/* Matrix must be positive definite */
-			Scierror(29, _("%s: Matrix is not positive definite.\n"), "chol");
+            /* Matrix must be positive definite */
+            Scierror(29, _("%s: Matrix is not positive definite.\n"), "chol");
             return types::Function::Error;
         }
 
@@ -71,26 +71,26 @@ types::Function::ReturnValue sci_chol(types::typed_list &in, int _iRetCount, typ
         return types::Function::OK;
     }
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         doublecomplex* poData = oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
-		iCholProductResult = iComplexCholProduct(poData, pDbl->getRows());
+        iCholProductResult = iComplexCholProduct(poData, pDbl->getRows());
 
         result = new types::Double(pDbl->getRows(), pDbl->getCols(), true);
-        
-		vGetPointerFromDoubleComplex(poData, pDbl->getSize(), result->getReal(), result->getImg());
-		vFreeDoubleComplexFromPointer(poData);
+
+        vGetPointerFromDoubleComplex(poData, pDbl->getSize(), result->getReal(), result->getImg());
+        vFreeDoubleComplexFromPointer(poData);
     }
     else
     {
         result = pDbl->clone()->getAs<types::Double>();
-		iCholProductResult = iRealCholProduct(result->get(), pDbl->getRows());
+        iCholProductResult = iRealCholProduct(result->get(), pDbl->getRows());
     }
 
-    if(iCholProductResult > 0)
+    if (iCholProductResult > 0)
     {
-    	/* Matrix must be positive definite */
-		Scierror(29, _("%s: Matrix is not positive definite.\n"), "chol");
+        /* Matrix must be positive definite */
+        Scierror(29, _("%s: Matrix is not positive definite.\n"), "chol");
         return types::Function::Error;
     }
 

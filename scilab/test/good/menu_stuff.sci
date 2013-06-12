@@ -21,18 +21,18 @@
 
 function menu_stuff()
 
-//** Remove the default Scilab graphics window menus 
-delmenu(curwin,_("&File"))  ; 
-delmenu(curwin,_("&Edit"))  ;
-delmenu(curwin,_("&Tools")) ;
-delmenu(curwin,_("&?"))     ; 
+    //** Remove the default Scilab graphics window menus
+    delmenu(curwin,_("&File"))  ;
+    delmenu(curwin,_("&Edit"))  ;
+    delmenu(curwin,_("&Tools")) ;
+    delmenu(curwin,_("&?"))     ;
 
-//** Remove the toolbar 
-toolbar(curwin, "off"); //** by Vincent C. :)
+    //** Remove the toolbar
+    toolbar(curwin, "off"); //** by Vincent C. :)
 
-//** Add the Scicos specific menu 
-menuss    = menus        ;
-menuss(1) = menus(1)(2:$);
-scicos_menubar(curwin,menuss)   ; //** this function add physically the Scicos menus
+    //** Add the Scicos specific menu
+    menuss    = menus        ;
+    menuss(1) = menus(1)(2:$);
+    scicos_menubar(curwin,menuss)   ; //** this function add physically the Scicos menus
 
 endfunction

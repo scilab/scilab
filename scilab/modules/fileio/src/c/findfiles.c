@@ -11,11 +11,11 @@
  */
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	#include <Windows.h>
+#include <Windows.h>
 #else
-	#include <sys/types.h>
-	#include <dirent.h>
-	#include <errno.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <errno.h>
 #endif
 #include <stdio.h>
 #include <string.h>
@@ -29,63 +29,64 @@
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
-static BOOL find_spec( char *filename ,char *filespec);
+static BOOL find_spec( char *filename , char *filespec);
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 wchar_t** findfilesW(wchar_t *path, wchar_t *filespec, int *sizeListReturned, BOOL warning)
 {
-	wchar_t **ListFiles = NULL;
-	wchar_t *wcstrPattern = NULL;
-	HANDLE hFile;
-	WIN32_FIND_DATAW FileInformation;
-	int nbElements = 0;
-	int len = 0;
+    wchar_t **ListFiles = NULL;
+    wchar_t *wcstrPattern = NULL;
+    HANDLE hFile;
+    WIN32_FIND_DATAW FileInformation;
+    int nbElements = 0;
+    int len = 0;
 
-	len = (int)( wcslen(path) + wcslen(filespec) + 8);
-	wcstrPattern = (wchar_t*)MALLOC(sizeof(wchar_t)*len);
-	os_swprintf(wcstrPattern,len,L"%ls/%ls", path, filespec);
+    len = (int)( wcslen(path) + wcslen(filespec) + 8);
+    wcstrPattern = (wchar_t*)MALLOC(sizeof(wchar_t) * len);
+    os_swprintf(wcstrPattern, len, L"%ls/%ls", path, filespec);
 
-	hFile = FindFirstFileW(wcstrPattern, &FileInformation);
-	if (wcstrPattern) 
+    hFile = FindFirstFileW(wcstrPattern, &FileInformation);
+    if (wcstrPattern)
     {
-        FREE(wcstrPattern); 
+        FREE(wcstrPattern);
         wcstrPattern = NULL;
     }
 
-	if(hFile != INVALID_HANDLE_VALUE)
-	{
-		do
-		{
-			if(wcscmp(FileInformation.cFileName,L".") &&  wcscmp(FileInformation.cFileName,L".."))
-			{
-				nbElements++;
-				if(ListFiles)
+    if (hFile != INVALID_HANDLE_VALUE)
+    {
+        do
+        {
+            if (wcscmp(FileInformation.cFileName, L".") &&  wcscmp(FileInformation.cFileName, L".."))
+            {
+                nbElements++;
+                if (ListFiles)
                 {
-                    ListFiles = (wchar_t**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+                    ListFiles = (wchar_t**)REALLOC(ListFiles, sizeof(char*) * (nbElements));
                 }
-				else
+                else
                 {
-                    ListFiles = (wchar_t**)MALLOC(sizeof(wchar_t*)*(nbElements));
+                    ListFiles = (wchar_t**)MALLOC(sizeof(wchar_t*) * (nbElements));
                 }
-				ListFiles[nbElements-1] = os_wcsdup(FileInformation.cFileName);
-			}
-		} while(FindNextFileW(hFile, &FileInformation) == TRUE);
-	}
-	else
-	{
-		if (warning)
-		{
+                ListFiles[nbElements - 1] = os_wcsdup(FileInformation.cFileName);
+            }
+        }
+        while (FindNextFileW(hFile, &FileInformation) == TRUE);
+    }
+    else
+    {
+        if (warning)
+        {
             char* pstPath = wide_string_to_UTF8(path);
             char* pstError = wide_string_to_UTF8(_wcserror(errno));
             sciprint(_("Warning: Could not open directory %s: %s\n"), pstPath, pstError);
             FREE(pstPath);
             FREE(pstError);
-		}
-	}
-	FindClose(hFile);
-	*sizeListReturned = nbElements;
-	return ListFiles;
+        }
+    }
+    FindClose(hFile);
+    *sizeListReturned = nbElements;
+    return ListFiles;
 }
 
 char** findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning)
@@ -99,7 +100,7 @@ char** findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning
 
     ListFiles = (char**)MALLOC(sizeof(char*) * *sizeListReturned);
 
-    for(i = 0 ; i < *sizeListReturned ; i++)
+    for (i = 0 ; i < *sizeListReturned ; i++)
     {
         ListFiles[i] = wide_string_to_UTF8(wListFiles[i]);
         FREE(wListFiles[i]);
@@ -113,47 +114,47 @@ char** findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning
 /*--------------------------------------------------------------------------*/
 char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning)
 {
-	char **ListFiles = NULL;
-	int nbElements = 0;
-	DIR *folder = NULL;
-	struct dirent *read = NULL;
+    char **ListFiles = NULL;
+    int nbElements = 0;
+    DIR *folder = NULL;
+    struct dirent *read = NULL;
 
-	*sizeListReturned = 0;
+    *sizeListReturned = 0;
 
-	folder = opendir(path);
-	if (folder)
-	{
-		while ((read = readdir(folder)))
-		{
-			if ( strcmp(read->d_name,".") && strcmp(read->d_name,"..") )
-			{
-				if ( find_spec(read->d_name ,filespec) )
-				{
-					nbElements++;
-					if (ListFiles)
-					{
-						ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
-					}
-					else
-					{
-						ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
-					}
-					ListFiles[nbElements-1] = os_strdup(read->d_name);
-				}
-			}
-		}
-		closedir(folder);
-	}
-	else
-	{
-		if (warning)
-		{
-			sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
-		}
-	}
+    folder = opendir(path);
+    if (folder)
+    {
+        while ((read = readdir(folder)))
+        {
+            if ( strcmp(read->d_name, ".") && strcmp(read->d_name, "..") )
+            {
+                if ( find_spec(read->d_name , filespec) )
+                {
+                    nbElements++;
+                    if (ListFiles)
+                    {
+                        ListFiles = (char**)REALLOC(ListFiles, sizeof(char*) * (nbElements));
+                    }
+                    else
+                    {
+                        ListFiles = (char**)MALLOC(sizeof(char*) * (nbElements));
+                    }
+                    ListFiles[nbElements - 1] = os_strdup(read->d_name);
+                }
+            }
+        }
+        closedir(folder);
+    }
+    else
+    {
+        if (warning)
+        {
+            sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+        }
+    }
 
-	*sizeListReturned = nbElements;
-	return ListFiles;
+    *sizeListReturned = nbElements;
+    return ListFiles;
 }
 /*--------------------------------------------------------------------------*/
 wchar_t** findfilesW(wchar_t* path, wchar_t* filespec, int* sizeListReturned, BOOL warning)
@@ -164,12 +165,12 @@ wchar_t** findfilesW(wchar_t* path, wchar_t* filespec, int* sizeListReturned, BO
 
     wchar_t** wListFiles = NULL;
     char** ListFiles = findfiles(pstPath, pstFileSpec, sizeListReturned, warning);
-    
-    if(*sizeListReturned != 0)
+
+    if (*sizeListReturned != 0)
     {
         wListFiles = (wchar_t**)MALLOC(sizeof(wchar_t*) * (*sizeListReturned));
 
-        for(i = 0 ; i < (*sizeListReturned) ; i++)
+        for (i = 0 ; i < (*sizeListReturned) ; i++)
         {
             wListFiles[i] = to_wide_string(ListFiles[i]);
             FREE(ListFiles[i]);
@@ -193,41 +194,53 @@ wchar_t** findfilesW(wchar_t* path, wchar_t* filespec, int* sizeListReturned, BO
  * @param filename the filename
  * @param filespec the mask
  */
-static BOOL find_spec( char *filename ,char *filespec)
+static BOOL find_spec( char *filename , char *filespec)
 {
-	char *any = NULL;
+    char *any = NULL;
 
-	while( ( *filespec ) || ( *filename ) )
-	{
-		switch( *filespec )
-		{
-		case '*':
-			any = filespec;
-			filespec++;
-			while( ( *filename != *filespec ) && ( *filename ) ) filename++;
-			break;
+    while ( ( *filespec ) || ( *filename ) )
+    {
+        switch ( *filespec )
+        {
+            case '*':
+                any = filespec;
+                filespec++;
+                while ( ( *filename != *filespec ) && ( *filename ) )
+                {
+                    filename++;
+                }
+                break;
 
-		case '?':
-			filespec++;
-			if( *filename ) filename++;
-			break;
+            case '?':
+                filespec++;
+                if ( *filename )
+                {
+                    filename++;
+                }
+                break;
 
-		default:
-			if( *filespec != *filename )
-			{
-				if( ( any ) && ( *filename ) ) filespec = any;
-				else return FALSE;
-			}
-			else
-			{
-				filespec++;
-				filename++;
-			}
-			break;
-		}
-	}
+            default:
+                if ( *filespec != *filename )
+                {
+                    if ( ( any ) && ( *filename ) )
+                    {
+                        filespec = any;
+                    }
+                    else
+                    {
+                        return FALSE;
+                    }
+                }
+                else
+                {
+                    filespec++;
+                    filename++;
+                }
+                break;
+        }
+    }
 
-	return TRUE;
+    return TRUE;
 }
 #endif
 /*--------------------------------------------------------------------------*/

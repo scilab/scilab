@@ -12,13 +12,13 @@ lines(0);
 
 CurrentDirectory=pwd();
 
-chdir ('SCI/modules');
-if getos() == 'Windows' then
-  dos('del lib /s 2>NUL','-echo');
-  dos('del *.moc /s 2>NUL','-echo');
+chdir ("SCI/modules");
+if getos() == "Windows" then
+    dos("del lib /s 2>NUL","-echo");
+    dos("del *.moc /s 2>NUL","-echo");
 else
-  unix('rm -Rf lib');
-end 
+    unix("rm -Rf lib");
+end
 
 chdir (CurrentDirectory);
 

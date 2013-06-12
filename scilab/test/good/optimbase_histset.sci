@@ -19,21 +19,21 @@
 //   value : the value to store
 //
 function this = optimbase_histset ( this , iter , key , value )
-  if ( ~this.storehistory ) then
-    errmsg = msprintf(gettext("%s: History disabled ; turn on -storehistory option.") , "optimbase_histset" )
-    error(errmsg)
-  end
-  if iter < 1 then
-    errmsg = msprintf(gettext("%s: Negative iteration index are not allowed.") , "optimbase_histset" )
-    error(errmsg)
-  end
-  select key
-  case "-xopt" then
-    this.historyxopt ( iter ) = value;
-  case "-fopt" then
-    this.historyfopt ( iter ) = value;
-  else
-    errmsg = msprintf(gettext("%s: Unknown key %s" ) , "optimbase_histset" , key )
-    error(errmsg)
-  end
+    if ( ~this.storehistory ) then
+        errmsg = msprintf(gettext("%s: History disabled ; turn on -storehistory option.") , "optimbase_histset" )
+        error(errmsg)
+    end
+    if iter < 1 then
+        errmsg = msprintf(gettext("%s: Negative iteration index are not allowed.") , "optimbase_histset" )
+        error(errmsg)
+    end
+    select key
+    case "-xopt" then
+        this.historyxopt ( iter ) = value;
+    case "-fopt" then
+        this.historyfopt ( iter ) = value;
+    else
+        errmsg = msprintf(gettext("%s: Unknown key %s" ) , "optimbase_histset" , key )
+        error(errmsg)
+    end
 endfunction

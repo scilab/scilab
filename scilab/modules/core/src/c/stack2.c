@@ -122,7 +122,9 @@ int C2F(isopt) (int *k, char *namex, unsigned long name_len)
 void C2F(freeptr) (double *ip[])
 {
     if (ip)
+    {
         FREE((char *)(*ip));
+    }
 }
 
 /*---------------------------------------
@@ -135,7 +137,9 @@ void C2F(freeptr) (double *ip[])
 int C2F(isoptlw) (int *topk, int *lw, char *namex, unsigned long name_len)
 {
     if (*Infstk(*lw) != 1)
+    {
         return FALSE;
+    }
     C2F(cvname) (&C2F(vstk).idstk[(*lw) * nsiz - nsiz], namex, &cx1, name_len);
     return TRUE;
 }
@@ -218,7 +222,9 @@ int C2F(gettype) (int *lw)
 
     il = iadr(*Lstk(*lw));
     if (*istk(il) < 0)
+    {
         il = iadr(*istk(il + 1));
+    }
     return *istk(il);
 }
 
@@ -235,7 +241,9 @@ static int overloadtype(int *lw, char *fname, unsigned char *typ)
 
     il = iadr(*Lstk(*lw));
     if (*istk(il) < 0)
+    {
         il = iadr(*istk(il + 1));
+    }
     switch (*typ)
     {
         case 'c':                  /* string */
@@ -1117,9 +1125,13 @@ void strcpy_tws(char *str1, char *str2, int len)
     int i;
 
     for (i = 0; i < (int)strlen(str2); i++)
+    {
         str1[i] = str2[i];
+    }
     for (i = (int)strlen(str2); i < len; i++)
+    {
         str1[i] = ' ';
+    }
     str1[len - 1] = '\0';
 }
 
@@ -1236,7 +1248,9 @@ char *ArgsPosition(int i, int j)
             FREE(tmp_buffer_1);
         }
         else
+        {
             sprintf(arg_position, _("arguments #%d and #%d"), i, j);
+        }
     }
     return arg_position;
 }
@@ -1364,7 +1378,9 @@ int check_length(int posi, int m, int m1)
 int check_same_dims(int i, int j, int m1, int n1, int m2, int n2)
 {
     if (m1 == m2 && n1 == n2)
+    {
         return TRUE;
+    }
     Scierror(999, _("%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"), Get_Iname(), ArgsPosition(i, j), m1, n1, m2, n2);
     return FALSE;
 }
@@ -1639,10 +1655,14 @@ static int intersci_push(void)
 
     new = MALLOC(Nbvars * sizeof(intersci_state));
     if (new == 0)
+    {
         return 0;
+    }
     loc = MALLOC(sizeof(intersci_list));
     if (loc == NULL)
+    {
         return 0;
+    }
     loc->next = L_intersci;
     loc->state = new;
     loc->nbvars = Nbvars;
@@ -1663,7 +1683,9 @@ static void intersci_pop(void)
     intersci_list *loc = L_intersci;
 
     if (loc == NULL)
+    {
         return;
+    }
     Nbvars = loc->nbvars;
     for (i = 0; i < Nbvars; i++)
     {

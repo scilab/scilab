@@ -7,4 +7,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-genlib('data_structureslib','SCI/modules/data_structures/macros',%f,%t);
+genlib("data_structureslib","SCI/modules/data_structures/macros",%f,%t);

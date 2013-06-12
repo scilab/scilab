@@ -1504,7 +1504,7 @@ extern int yylex (void);
 YY_DECL
 {
     register yy_state_type yy_current_state;
-    register char *yy_cp, *yy_bp;
+    register char * yy_cp, *yy_bp;
     register int yy_act;
 
     if ( !(yy_init) )
@@ -1881,8 +1881,9 @@ do_action:	/* This label is used only to access EOF actions. */
                         scan_error("can not convert string to UTF-8");
                     }
                     yylval.str = new std::wstring(pwText);
-                    if (symbol::Context::getInstance()->get(*new symbol::Symbol(*yylval.str)) != NULL
-                    && symbol::Context::getInstance()->get(*new symbol::Symbol(*yylval.str))->isCallable())
+                    FREE(pwText);
+                    if (symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str)) != NULL
+                    && symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str))->isCallable())
                     {
                         scan_throw(ID);
                         BEGIN(SHELLMODE);
@@ -2225,6 +2226,7 @@ do_action:	/* This label is used only to access EOF actions. */
                         scan_error("can not convert string to UTF-8");
                     }
                     yylval.str = new std::wstring(pwText);
+                    FREE(pwText);
 #ifdef TOKENDEV
                     std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -2601,6 +2603,7 @@ do_action:	/* This label is used only to access EOF actions. */
                         scan_error("can not convert string to UTF-8");
                     }
                     yylval.str = new std::wstring(pwText);
+                    FREE(pwText);
 #ifdef TOKENDEV
                     std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -2771,7 +2774,9 @@ do_action:	/* This label is used only to access EOF actions. */
             case 116:
                 YY_RULE_SETUP
                 {
-                    *yylval.comment += std::wstring(to_wide_string(yytext));
+                    wchar_t *pwText = to_wide_string(yytext);
+                    *yylval.comment += std::wstring(pwText);
+                    FREE(pwText);
                 }
                 YY_BREAK
             case YY_STATE_EOF(REGIONCOMMENT):
@@ -2995,7 +3000,9 @@ do_action:	/* This label is used only to access EOF actions. */
                 {
                     if (last_token == STR)
                     {
-                        yylval.str = new std::wstring(to_wide_string(yytext));
+                        wchar_t *pwText = to_wide_string(yytext);
+                        yylval.str = new std::wstring(pwText);
+                        FREE(pwText);
                         return scan_throw(STR);
                     }
                     else
@@ -3010,7 +3017,9 @@ do_action:	/* This label is used only to access EOF actions. */
                 {
                     if (last_token == STR)
                     {
-                        yylval.str = new std::wstring(to_wide_string(yytext));
+                        wchar_t *pwText = to_wide_string(yytext);
+                        yylval.str = new std::wstring(pwText);
+                        FREE(pwText);
                         return scan_throw(STR);
                     }
                     else
@@ -3025,7 +3034,9 @@ do_action:	/* This label is used only to access EOF actions. */
                 {
                     if (last_token == STR)
                     {
-                        yylval.str = new std::wstring(to_wide_string(yytext));
+                        wchar_t *pwText = to_wide_string(yytext);
+                        yylval.str = new std::wstring(pwText);
+                        FREE(pwText);
                         return scan_throw(STR);
                     }
                     else
@@ -3040,7 +3051,9 @@ do_action:	/* This label is used only to access EOF actions. */
                 {
                     if (last_token == STR)
                     {
-                        yylval.str = new std::wstring(to_wide_string(yytext));
+                        wchar_t *pwText = to_wide_string(yytext);
+                        yylval.str = new std::wstring(pwText);
+                        FREE(pwText);
                         return scan_throw(STR);
                     }
                     else
@@ -3055,7 +3068,9 @@ do_action:	/* This label is used only to access EOF actions. */
                 {
                     if (last_token == STR)
                     {
-                        yylval.str = new std::wstring(to_wide_string(yytext));
+                        wchar_t *pwText = to_wide_string(yytext);
+                        yylval.str = new std::wstring(pwText);
+                        FREE(pwText);
                         return scan_throw(STR);
                     }
                     else
@@ -3068,7 +3083,9 @@ do_action:	/* This label is used only to access EOF actions. */
             case 144:
                 YY_RULE_SETUP
                 {
-                    yylval.str = new std::wstring(to_wide_string(yytext));
+                    wchar_t *pwText = to_wide_string(yytext);
+                    yylval.str = new std::wstring(pwText);
+                    FREE(pwText);
                     return scan_throw(STR);
                 }
                 YY_BREAK
@@ -4200,6 +4217,11 @@ int scan_throw(int token)
     std::cout << "--> [DEBUG] TOKEN : " << token << std::endl;
 #endif
     return token;
+}
+
+int get_last_token()
+{
+    return last_token;
 }
 
 void scan_step()

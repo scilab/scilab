@@ -1,4 +1,4 @@
- // Non-regression test file for bug 1149
+// Non-regression test file for bug 1149
 // Copyright INRIA
 // Scilab Project - F.Belahcene
 
@@ -31,7 +31,7 @@ SCIFILECONTENTSREF=["";
 
 correct=%T
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
+    correct=%F
 end
 affich_result(correct,1149);
 

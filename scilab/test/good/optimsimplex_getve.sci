@@ -10,15 +10,15 @@
 
 //
 // optimsimplex_getve --
-//   Returns the vertex at given index as a tlist, 
+//   Returns the vertex at given index as a tlist,
 //   with fields n, x and fv
 // Arguments
 //   ive : vertex index
 //
 function vertex = optimsimplex_getve ( this , ive )
-  vertex = tlist(["T_VERTEX","x","n","fv"]);
-  vertex.n = this.n;
-  vertex.x = this.x ( ive , : );
-  vertex.fv = this.fv ( ive );
+    vertex = tlist(["T_VERTEX","x","n","fv"]);
+    vertex.n = this.n;
+    vertex.x = this.x ( ive , : );
+    vertex.fv = this.fv ( ive );
 endfunction
 

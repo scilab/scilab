@@ -20,7 +20,7 @@
 //
 
 function XcosMenuRotateLeft()
-//** Al@n
+    //** Al@n
 
     scs_m_save = scs_m ;
     nc_save    = needcompile ;

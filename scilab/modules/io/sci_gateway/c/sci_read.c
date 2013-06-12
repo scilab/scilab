@@ -14,9 +14,9 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intread)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int sci_read(char *fname,unsigned long fname_len)
+int sci_read(char *fname, unsigned long fname_len)
 {
-	//C2F(intread)();
-	return 0;
+    //C2F(intread)();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

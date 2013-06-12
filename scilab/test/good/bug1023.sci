@@ -6,11 +6,11 @@
 
 mode(-1);
 clear
-Tref=['xxxx';'yyy';'z'];
-mputl(Tref,TMPDIR+'/bug1023.txt');
-u=mopen(TMPDIR+'/bug1023.txt','r');
+Tref=["xxxx";"yyy";"z"];
+mputl(Tref,TMPDIR+"/bug1023.txt");
+u=mopen(TMPDIR+"/bug1023.txt","r");
 
-[n,a] = mfscanf(-1,u,"%s"); 
+[n,a] = mfscanf(-1,u,"%s");
 [m,b] = mfscanf(-1,u,"%s");
 
 ok=n==1&and(a==Tref)&m==-1&b==[];

@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -145,12 +145,12 @@ OUTPUT_STREAM_IMPEXP int diaryAppend(wchar_t *filename);
 OUTPUT_STREAM_IMPEXP int diarySetFilterMode(int _iId, diary_filter mode);
 
 /*
-* Set prefix time mode 
+* Set prefix time mode
 * @param[in] ID
 * @param[in] mode
 * @return 0 (OK) 1 (NOK)
 */
-OUTPUT_STREAM_IMPEXP int diarySetPrefixMode(int ID_diary,diary_prefix_time_format iPrefixMode);
+OUTPUT_STREAM_IMPEXP int diarySetPrefixMode(int ID_diary, diary_prefix_time_format iPrefixMode);
 
 /*
 * get prefix mode
@@ -165,12 +165,12 @@ OUTPUT_STREAM_IMPEXP int diaryGetPrefixMode(int ID_diary);
 * @param[in] mode
 * @return 0 (OK) 1 (NOK)
 */
-OUTPUT_STREAM_IMPEXP int diarySetPrefixIoModeFilter(int ID_diary,diary_prefix_time_filter mode);
+OUTPUT_STREAM_IMPEXP int diarySetPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode);
 
 /*
 * get prefix IO mode filter
 * @param[in] ID
-* @return mode 
+* @return mode
 */
 OUTPUT_STREAM_IMPEXP diary_prefix_time_filter diaryGetPrefixIoModeFilter(int ID_diary);
 

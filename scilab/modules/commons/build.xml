@@ -11,10 +11,10 @@
  *
  -->
 <project name="commons" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.commons.name}"/>
-  <property name="library.title" value="Commons for Scilab modules"/>
-  <description>
-			Build the Scilab commons module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.commons.name}"/>
+    <property name="library.title" value="Commons for Scilab modules"/>
+    <description>
+        Build the Scilab commons module
+    </description>
 </project>

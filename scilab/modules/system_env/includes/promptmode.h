@@ -31,12 +31,12 @@ extern "C"
 #define SILENT_ERROR        1
 #define VERBOSE_ERROR       0
 
-EXTERN_SYSTEM_ENV int getPromptMode(void);
-EXTERN_SYSTEM_ENV void setPromptMode(int _iMode);
-EXTERN_SYSTEM_ENV int isPromptShow(void);
+    EXTERN_SYSTEM_ENV int getPromptMode(void);
+    EXTERN_SYSTEM_ENV void setPromptMode(int _iMode);
+    EXTERN_SYSTEM_ENV int isPromptShow(void);
 
-EXTERN_SYSTEM_ENV int getSilentError(void);
-EXTERN_SYSTEM_ENV void setSilentError(int _iSilent);
+    EXTERN_SYSTEM_ENV int getSilentError(void);
+    EXTERN_SYSTEM_ENV void setSilentError(int _iSilent);
 
 #ifdef __cplusplus
 }

@@ -93,10 +93,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>system_env.lib;elementary_functions.lib;scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;system_env.lib;elementary_functions.lib;scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -129,10 +130,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>system_env.lib;elementary_functions.lib;scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;system_env.lib;elementary_functions.lib;scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -163,10 +165,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>system_env.lib;elementary_functions.lib;scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;system_env.lib;elementary_functions.lib;scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -202,10 +205,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>system_env.lib;elementary_functions.lib;scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;system_env.lib;elementary_functions.lib;scilocalization.lib;linear_algebra_f.lib;elementary_functions_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -225,6 +229,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\cpp\types_kronecker.cpp" />
     <ClCompile Include="src\cpp\types_ldivide.cpp" />
     <ClCompile Include="src\c\doublecomplex.c" />
+    <ClCompile Include="src\c\invert_matrix.c" />
     <ClCompile Include="src\c\matrix_addition.c" />
     <ClCompile Include="src\c\matrix_division.c" />
     <ClCompile Include="src\c\matrix_finite.c" />
@@ -246,6 +251,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\doublecomplex.h" />
     <ClInclude Include="includes\dynlib_operations.hxx" />
     <ClInclude Include="includes\generic_operations.hxx" />
+    <ClInclude Include="includes\invert_matrix.h" />
     <ClInclude Include="includes\matrix_addition.h" />
     <ClInclude Include="includes\matrix_division.h" />
     <ClInclude Include="includes\matrix_finite.h" />
@@ -272,6 +278,7 @@ lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\types_substraction.hxx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="core_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="elementary_functions_Import.def" />
     <None Include="linear_algebra_f_Import.def" />

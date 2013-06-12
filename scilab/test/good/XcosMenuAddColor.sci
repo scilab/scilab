@@ -20,18 +20,18 @@
 //
 
 function XcosMenuAddColor()
-//** 
-    [edited,options] = do_options(scs_m.props.options,'Cmap')
+    //**
+    [edited,options] = do_options(scs_m.props.options,"Cmap")
 
     if edited then
-      scs_m.props.options = options ;
-      set_cmap(scs_m.props.options('Cmap')) ;
-           
-      Cmenu = [] ; %pt = [];
+        scs_m.props.options = options ;
+        set_cmap(scs_m.props.options("Cmap")) ;
+
+        Cmenu = [] ; %pt = [];
 
     else
 
-      Cmenu = [] ; %pt = [];
+        Cmenu = [] ; %pt = [];
 
     end
 

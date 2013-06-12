@@ -10,16 +10,16 @@
 
 // Simple wrapper around ilib_build
 function tbx_build_gateway(libname,      ..
-                           names,        ..
-                           files,        ..
-                           gateway_path, ..
-                           libs,         ..
-                           ldflags,      ..
-                           cflags,       ..
-                           fflags,       ..
-                           cc,           ..
-                           makename,     ..
-                           ismex)
+    names,        ..
+    files,        ..
+    gateway_path, ..
+    libs,         ..
+    ldflags,      ..
+    cflags,       ..
+    fflags,       ..
+    cc,           ..
+    makename,     ..
+    ismex)
 
 
     rhs = argn(2);
@@ -49,7 +49,7 @@ function tbx_build_gateway(libname,      ..
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"),"tbx_build_gateway",2));
     end
 
-    if size(names,'r') > 999 then
+    if size(names,"r") > 999 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: At most %d rows expected.\n"),"tbx_build_gateway",2,999));
     end
 
@@ -143,15 +143,15 @@ function tbx_build_gateway(libname,      ..
     end
 
     ilib_build(libname,  ..
-               names,    ..
-               files,    ..
-               libs,     ..
-               makename, ..
-               ldflags,  ..
-               cflags,   ..
-               fflags,   ..
-               ismex,    ..
-               cc);
+    names,    ..
+    files,    ..
+    libs,     ..
+    makename, ..
+    ldflags,  ..
+    cflags,   ..
+    fflags,   ..
+    ismex,    ..
+    cc);
 
     if ~chdir(currentdirectory) then
         error(msprintf(gettext("%s: Can''t go to directory ''%s''.\n"),"tbx_builder_gateway",currentdirectory));

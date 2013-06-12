@@ -19,13 +19,13 @@
 //   f : the cost function
 //
 function [ this , f ] = neldermead_function ( this , x )
-  index = 2;
-  [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
-  if ( hasnlcons ) then
-    [ this.optbase , f , c , index ] = optimbase_function ( this.optbase , x , index );
-  else
-    [ this.optbase , f , index ] = optimbase_function ( this.optbase , x , index );
-  end
-  // Ignores the value of index at output.
+    index = 2;
+    [ this.optbase , hasnlcons ] = optimbase_hasnlcons ( this.optbase );
+    if ( hasnlcons ) then
+        [ this.optbase , f , c , index ] = optimbase_function ( this.optbase , x , index );
+    else
+        [ this.optbase , f , index ] = optimbase_function ( this.optbase , x , index );
+    end
+    // Ignores the value of index at output.
 endfunction
 

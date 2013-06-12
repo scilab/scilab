@@ -7,7 +7,7 @@ mode(-1);
 clear;
 
 if 1.7977E+308 == %inf  then
-	affich_result(%T,1057);
+    affich_result(%T,1057);
 else
-	affich_result(%F,1057);
+    affich_result(%F,1057);
 end

@@ -18,70 +18,70 @@
 
 extern "C"
 {
-//#include "PATH_MAX.h"
-//#include "gw_io.h"
+    //#include "PATH_MAX.h"
+    //#include "gw_io.h"
 #include "MALLOC.h"
-//#include "sciprint.h"
-//#include "stack-c.h"
+    //#include "sciprint.h"
+    //#include "stack-c.h"
 #include "expandPathVariable.h"
-//#include "Scierror.h"
-//#include "localization.h"
-//#include "freeArrayOfString.h"
+    //#include "Scierror.h"
+    //#include "localization.h"
+    //#include "freeArrayOfString.h"
 #include "charEncoding.h"
-//#include "os_strdup.h"
+    //#include "os_strdup.h"
 #include "newest.h"
 }
 
 int newest(wchar_t** _pwcsFilesString, int _iNbrOfFileString)
 {
 #ifdef _MSC_VER
-	struct _stat buf;
+    struct _stat buf;
 #else
-	struct stat buf;
+    struct stat buf;
 #endif
 
-	int i=0;
-	int RetVal=0;
+    int i = 0;
+    int RetVal = 0;
 
-	int RetIndex=1;
-	long int MaxTime=0;
+    int RetIndex = 1;
+    long int MaxTime = 0;
 
-	for (i = 0; i<_iNbrOfFileString ;i++)
-	{
+    for (i = 0; i < _iNbrOfFileString ; i++)
+    {
 
-		int resultstat = 0;
-		wchar_t *FileName = NULL;
+        int resultstat = 0;
+        wchar_t *FileName = NULL;
 
-		FileName = expandPathVariableW(_pwcsFilesString[i]);
+        FileName = expandPathVariableW(_pwcsFilesString[i]);
 
 #ifdef _MSC_VER
-		if (FileName)
-		{
-			if ( (FileName[wcslen(FileName)-1]==L'/') || (FileName[wcslen(FileName)-1]==L'\\') )
-			{
-				FileName[wcslen(FileName)-1]=L'\0';
-			}
+        if (FileName)
+        {
+            if ( (FileName[wcslen(FileName) - 1] == L'/') || (FileName[wcslen(FileName) - 1] == L'\\') )
+            {
+                FileName[wcslen(FileName) - 1] = L'\0';
+            }
 
-		}
-		resultstat = _wstat(FileName, &buf );
+        }
+        resultstat = _wstat(FileName, &buf );
 #else
         char* temp = wide_string_to_UTF8(FileName);
-		resultstat = stat(temp, &buf );
-		FREE(temp);
+        resultstat = stat(temp, &buf );
+        FREE(temp);
 #endif
-		if (resultstat == 0)
-		{
-			if ((long int)buf.st_mtime>MaxTime)
-			{
-				MaxTime=(long int)buf.st_mtime;
-				RetIndex=i+1;
-			}
-		}
+        if (resultstat == 0)
+        {
+            if ((long int)buf.st_mtime > MaxTime)
+            {
+                MaxTime = (long int)buf.st_mtime;
+                RetIndex = i + 1;
+            }
+        }
 
-		FREE(FileName);
-		FileName = NULL;
-	}
+        FREE(FileName);
+        FileName = NULL;
+    }
 
-	RetVal=RetIndex;
-	return RetVal;
+    RetVal = RetIndex;
+    return RetVal;
 }

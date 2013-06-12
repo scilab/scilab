@@ -22,7 +22,9 @@
             <varlistentry>
                 <term>module_name</term>
                 <listitem>
-                    <para>a string, for example : <literal>'core'</literal></para>
+                    <para>
+                        a string, for example : <literal>'core'</literal>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

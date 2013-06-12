@@ -25,8 +25,8 @@ public class ColorMap {
      */
     private static final int CHANNELS_NUMBER = 3;
 
-    private static final float[] BLACK_COLOR = new float[]{0, 0, 0};
-    private static final float[] WHITE_COLOR = new float[]{1, 1, 1};
+    private static final float[] BLACK_COLOR = new float[] {0, 0, 0};
+    private static final float[] WHITE_COLOR = new float[] {1, 1, 1};
 
     /**
      * The data of this ColorMap.
@@ -91,17 +91,17 @@ public class ColorMap {
             index = lastScilabIndex - index;
         }
 
-        if (index==-1 || index < -2) {
+        if (index == -1 || index < -2) {
             return BLACK_COLOR;
-        } else if (index==-2) {
+        } else if (index == -2) {
             return WHITE_COLOR;
         } else {
             index = index - 1;
-            return new float[]{
-                Math.min(1.f, data[index].floatValue()),
-                Math.min(1.f, data[index + getSize()].floatValue()),
-                Math.min(1.f, data[index + getSize() * 2].floatValue())
-            };
+            return new float[] {
+                       Math.min(1.f, data[index].floatValue()),
+                       Math.min(1.f, data[index + getSize()].floatValue()),
+                       Math.min(1.f, data[index + getSize() * 2].floatValue())
+                   };
         }
     }
 

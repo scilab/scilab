@@ -38,56 +38,64 @@
 */
 ELEMENTARY_FUNCTIONS_IMPEXP double dpythags(double _dblVal1, double _dblVal2)
 {
-	double dblSqrt2		= 1.41421356237309504;
-	double dblSqrt2p1	= 2.41421356237309504;
-	double dblEsp		= 1.25371671790502177E-16;
-	double dblRMax		= getOverflowThreshold();
+    double dblSqrt2		= 1.41421356237309504;
+    double dblSqrt2p1	= 2.41421356237309504;
+    double dblEsp		= 1.25371671790502177E-16;
+    double dblRMax		= getOverflowThreshold();
 
-	double dblAbs1 = 0;
-	double dblAbs2 = 0;
-	double dblTemp = 0;
+    double dblAbs1 = 0;
+    double dblAbs2 = 0;
+    double dblTemp = 0;
 
-	if(ISNAN(_dblVal1) == 1)
-		return _dblVal2;
+    if (ISNAN(_dblVal1) == 1)
+    {
+        return _dblVal2;
+    }
 
-	if(ISNAN(_dblVal2) == 1)
-		return _dblVal1;
+    if (ISNAN(_dblVal2) == 1)
+    {
+        return _dblVal1;
+    }
 
-	dblAbs1 = dabss(_dblVal1);
-	dblAbs2 = dabss(_dblVal2);
+    dblAbs1 = dabss(_dblVal1);
+    dblAbs2 = dabss(_dblVal2);
 
-	//Order x and y such that 0 <= y <= x
-	if(dblAbs1 < dblAbs2)
-	{
-		dblTemp = dblAbs1;
-		dblAbs1 = dblAbs2;
-		dblAbs2 = dblTemp;
-	}
+    //Order x and y such that 0 <= y <= x
+    if (dblAbs1 < dblAbs2)
+    {
+        dblTemp = dblAbs1;
+        dblAbs1 = dblAbs2;
+        dblAbs2 = dblTemp;
+    }
 
-	//Test for overflowing x
-	if( dblAbs1 >= dblRMax)
-		return dblAbs1;
+    //Test for overflowing x
+    if ( dblAbs1 >= dblRMax)
+    {
+        return dblAbs1;
+    }
 
-	//Handle generic case
-	dblTemp = dblAbs1 - dblAbs2;
-	if(dblTemp != dblAbs1)
-	{
-		double dblS = 0;
-		if(dblTemp > dblAbs2)
-		{
-			dblS = dblAbs1 / dblAbs2;
-			dblS += dsqrts(1 + dblS * dblS);
-		}
-		else
-		{
-			dblS	= dblTemp / dblAbs2;
-			dblTemp = (2 + dblS) * dblS;
-			dblS	= ((dblEsp + dblTemp / (dblSqrt2 + dsqrts(2 + dblTemp))) + dblS) + dblSqrt2p1;
-		}
-		return dblAbs1 + dblAbs2 / dblS;
-	}
-	else
-		return dblAbs1;
+    //Handle generic case
+    dblTemp = dblAbs1 - dblAbs2;
+    if (dblTemp != dblAbs1)
+    {
+        double dblS = 0;
+        if (dblTemp > dblAbs2)
+        {
+            dblS = dblAbs1 / dblAbs2;
+            dblS += dsqrts(1 + dblS * dblS);
+        }
+        else
+        {
+            dblS	= dblTemp / dblAbs2;
+            dblTemp = (2 + dblS) * dblS;
+            dblS	= ((dblEsp + dblTemp / (dblSqrt2 + dsqrts(2 + dblTemp))) + dblS) + dblSqrt2p1;
+        }
+        return dblAbs1 + dblAbs2 / dblS;
+    }
+    else
+    {
+        return dblAbs1;
+    }
 
-	return 0;
+    return 0;
 }

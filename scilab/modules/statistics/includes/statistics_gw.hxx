@@ -21,10 +21,10 @@ extern "C"
 class StatisticsModule
 {
 private :
-   StatisticsModule(){};
-   ~StatisticsModule(){};
+    StatisticsModule() {};
+    ~StatisticsModule() {};
 public :
-   EXTERN_STATISTICS_GW static int Load();
+    EXTERN_STATISTICS_GW static int Load();
 };
 
 #endif /* !__STATISTICS_GW_HXX__ */

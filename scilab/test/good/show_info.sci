@@ -21,10 +21,10 @@
 
 function show_info(info)
 
-//** This function may be redefined by the user to handle display
-//**  of the information associated with the current diagram
+    //** This function may be redefined by the user to handle display
+    //**  of the information associated with the current diagram
 
 
-//** --- User defined function (usually empty, do nothing) -----
+    //** --- User defined function (usually empty, do nothing) -----
 
 endfunction

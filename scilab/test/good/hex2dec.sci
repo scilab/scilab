@@ -11,7 +11,7 @@
 //
 // hex2dec function
 //
-// hex2dec(h) returns in vector d the numbers corresponding to the 
+// hex2dec(h) returns in vector d the numbers corresponding to the
 // hexadecimal representation h.
 //
 // -Input :
@@ -22,24 +22,24 @@
 // =============================================================================
 
 function d=hex2dec(h)
-	
-	if type(h)<> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"hex2dec",1));
-	end
-	
-	[nr,nc] = size(h)
-	n       = length(h)
-	p       = cumprod([1,16*ones(1,max(n)-1)]);
-	d       = zeros(h);
-	
-	for i=1:nr
-		for j=1:nc
-			s = abs(str2code(h(i,j)));
-			if max(s)>15 then
-				error(msprintf(gettext("%s: Wrong value for input argument #%d: Valid hexadecimal representations expected.\n"),"hex2dec",1));
-			end
-			d(i,j) = p(n(i,j):-1:1)*s;
-		end
-	end
-	
+
+    if type(h)<> 10 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"hex2dec",1));
+    end
+
+    [nr,nc] = size(h)
+    n       = length(h)
+    p       = cumprod([1,16*ones(1,max(n)-1)]);
+    d       = zeros(h);
+
+    for i=1:nr
+        for j=1:nc
+            s = abs(str2code(h(i,j)));
+            if max(s)>15 then
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: Valid hexadecimal representations expected.\n"),"hex2dec",1));
+            end
+            d(i,j) = p(n(i,j):-1:1)*s;
+        end
+    end
+
 endfunction

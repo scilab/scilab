@@ -21,30 +21,30 @@
 
 function XcosMenuExportAll()
 
-  Cmenu = []
+    Cmenu = []
 
-  // Select output directory
-  %exp_dir = uigetdir('./',_("Select a directory path"))
-  
-  if %exp_dir=="" then return; end //user cancelled
-  info=fileinfo(%exp_dir)
-  if isempty(info) then
-    mkdir(%exp_dir)
-  elseif ~isdir(%exp_dir) then
-    messagebox(msprintf(_("""%s"" is not a valid directory\n"),%exp_dir),"error","modal")
-    return
-  end
-  // Select output format
-  %exp_format=choose_export_format();
-  if isempty(%exp_format) then  // User cancelled
-    return
-  end
-  // Export full diagram tree
-  systexport(scs_m, %exp_dir, %exp_format)
+    // Select output directory
+    %exp_dir = uigetdir("./",_("Select a directory path"))
 
-  // Export a 'navigator' file showing full diagram tree
-  ok=navigatorexport(scs_m, %exp_dir,%exp_format)
-  
- 
+    if %exp_dir=="" then return; end //user cancelled
+    info=fileinfo(%exp_dir)
+    if isempty(info) then
+        mkdir(%exp_dir)
+    elseif ~isdir(%exp_dir) then
+        messagebox(msprintf(_("""%s"" is not a valid directory\n"),%exp_dir),"error","modal")
+        return
+    end
+    // Select output format
+    %exp_format=choose_export_format();
+    if isempty(%exp_format) then  // User cancelled
+        return
+    end
+    // Export full diagram tree
+    systexport(scs_m, %exp_dir, %exp_format)
+
+    // Export a 'navigator' file showing full diagram tree
+    ok=navigatorexport(scs_m, %exp_dir,%exp_format)
+
+
 endfunction
 

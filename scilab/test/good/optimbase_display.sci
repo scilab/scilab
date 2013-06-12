@@ -14,7 +14,7 @@
 //   Display the current settings in the console.
 //
 function this = optimbase_display ( this )
-  warnobsolete("disp", "optimbase_display")
-  disp(this)
+    warnobsolete("disp", "optimbase_display")
+    disp(this)
 endfunction
 

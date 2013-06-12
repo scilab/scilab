@@ -64,9 +64,9 @@ isdigit(s)
             <member>
                 <link linkend="isletter">isletter</link>
             </member>
-             <member>
+            <member>
                 <link linkend="isnum">isnum</link>
             </member>
-       </simplelist>
+        </simplelist>
     </refsection>
 </refentry>

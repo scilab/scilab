@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5objects" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>H5 Objects</refname>
+        
+        <refpurpose>種々のH5オブジェクトのプロパティを説明</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>内容</title>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="H5File">H5ファイル</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="H5Group">H5グループ</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="H5Dataset">H5データセット</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="H5Dataspace">H5データスペース</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="H5Attribute">H5属性</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="H5Type">H5型</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="H5Reference">H5リファレンス</link>
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>H5オブジェクトはアクセス可能なプロパティを有します.
+            
+            全てのプロパティ名は,大文字小文字を区別します(パス名およびオブジェクト名を
+            
+            除きます).
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection id="H5File">
+        
+        <title>H5ファイル</title>
+        
+        <para>以下のプロパティにアクセス可能です:
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">name</emphasis>: ファイル名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">size</emphasis>: ファイルの大きさ;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">version</emphasis>: HDF5ライブラリのバージョン;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">root</emphasis>: ルートグループ "/".
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+            フィールド名が'/'で始まる場合, 
+            
+            パスとみなされ, 戻り値はこのパスに対応するH5オブジェクトとなります.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+
+// aはファイル
+h5isFile(a)
+
+// プロパティにアクセス
+a.name, a.size, a.version, a.root
+
+// データセットxをオープン
+a("/x")
+
+// 全リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    
+    
+    <refsection id="H5Group">
+        
+        <title>H5グループ</title>
+        
+        <para>以下のプロパティがアクセス可能:
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">attributes</emphasis>: 属性名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">groups</emphasis>: サブグループ名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">datasets</emphasis>: データセット名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">types</emphasis>: 型名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">externals</emphasis>: 外部リンク名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">softs</emphasis>: ソフトリンク名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">danglings</emphasis>: ダングリングリンク名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">hards</emphasis>: ハードリンク名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">links</emphasis>: リンク名と型;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">name</emphasis>: グループ名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">path</emphasis>: グループのパス.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+            フィールド名が過去のリストにない場合, 他のH5オブジェクトへのローカルパスとみなされます.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+root = a.root;
+
+// rootはグループ
+h5isGroup(root)
+
+// プロパティにアクセス
+root.name, root.path, root.datasets, root.attributes
+
+// データセットxをオープン
+dset_x = root.x
+
+// 全リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    
+    
+    <refsection id="H5Dataset">
+        
+        <title>H5 Dataset</title>
+        
+        <para>以下のプロパティにアクセス可能です:
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">attributes</emphasis>: 属性名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">type</emphasis>: データセット型;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">dataspace</emphasis>: データセット空間;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">data</emphasis>: データセットデータ;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">name</emphasis>: グループ名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">path</emphasis>: グループパス.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+            フィールド名が過去のリストに存在しない場合, 属性名とみなされます.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+dset_x = a.root.x;
+
+// dset_x がデータセットです
+h5isSet(dset_x)
+
+// プロパティにアクセス
+dset_x.attributes, dset_x.type, dset_x.dataspace, dset_x.data
+
+// 属性xをオープン
+attr_x = dset_x.SCILAB_Class
+
+// 全リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    
+    
+    <refsection id="H5Dataspace">
+        
+        <title>H5データスペース</title>
+        
+        <para>以下のプロパティにアクセスできます:
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">dims</emphasis>: データスペースの次元;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">extents</emphasis>: データスペースの最大次元;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">type</emphasis>: データスペースの型: "scalar", "simple" または "null";
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">name</emphasis>: 親の名前.
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">path</emphasis>: 親のパス.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+dspace_x = a.root.x.dataspace;
+
+// dspace_x はスペース
+h5isSpace(dspace_x)
+
+// プロパティにアクセス
+dspace_x.dims, dspace_x.extents, dspace_x.type
+
+// 全リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    
+    
+    <refsection id="H5Attribute">
+        
+        <title>H5属性</title>
+        
+        <para>以下のプロパティにアクセス可能です:
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">type</emphasis>: 属性の型;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">dataspace</emphasis>: 属性のデータスペース;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">data</emphasis>: 属性データ;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">name</emphasis>: 属性名.
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">path</emphasis>: 親のパス.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+attr_x = a.root.x.SCILAB_Class;
+
+// attr_x は属性
+h5isAttr(attr_x)
+
+// プロパティにアクセス
+attr_x.type, attr_x.dataspace, attr_x.data
+
+// 全リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    
+    
+    <refsection id="H5Type">
+        
+        <title>H5型</title>
+        
+        <para>以下のプロパティにアクセス可能です:
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">class</emphasis>: 型のクラス;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">type</emphasis>: 型名;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">size</emphasis>: 大きさ(単位:バイト);
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">nativetype</emphasis>: この型に関連するネーティブ型;
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">nativesize</emphasis>: ネーティブ型の大きさ.
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">name</emphasis>: 親の名前.
+                        
+                    </para>
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <emphasis role="bold">path</emphasis>: 親のパス.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+x = [1 2;3 4];
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+type_x = a.root.x.type;
+
+// type_x は型
+h5isType(type_x)
+
+// プロパティにアクセス
+type_x.class, type_x.type, type_x.size, type_x.nativetype, type_x.nativesize, 
+
+// 全リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    
+    
+    <refsection id="H5Reference">
+        
+        <title>H5リファレンス</title>
+        
+        <para>
+            
+            H5リファレンスオブジェクトは,各要素がH5オブジェクトへのリファレンスであるハイパー行列オブジェクト
+            
+            をラップします.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+x = list([1 2;3 4], "Hello", uint32(123));
+save(TMPDIR + "/x.sod", "x");
+a = h5open(TMPDIR + "/x.sod");
+dims_x = a.root.x.dataspace.dims
+ref_x = a.root.x.data;
+
+// ref_x はリファレンス
+h5isRef(ref_x)
+
+// 3個の要素を取得
+x1 = ref_x(1), x2 = ref_x(2), x3 = ref_x(3) 
+
+// データを取得
+x1.data, x2.data, x3.data
+
+// 全リソース解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5attr">h5attr</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5close">h5close</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5cp">h5cp</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5dataset">h5dataset</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5dump">h5dump</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5exists">h5exists</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5flush">h5flush</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5get">h5get</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5group">h5group</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5isAttr">h5isAttr</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5isFile">h5isFile</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5isGroup">h5isGroup</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5isRef">h5isRef</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5isSet">h5isSet</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5isSpace">h5isSpace</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5isType">h5isType</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5label">h5label</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5ln">h5ln</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5ls">h5ls</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5mount">h5mount</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5mv">h5mv</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5open">h5open</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5readattr">h5read</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5rm">h5rm</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5umount">h5umount</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5write">h5write</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5writeattr">h5writeattr</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

@@ -51,13 +51,14 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
         bClearError = in[0]->getAs<types::Bool>()->get()[0] == 1; //convert int to bool
     }
 
-    std::wstring wstLastErrorMessage = ConfigVariable::getLastErrorMessage();
-    if (wstLastErrorMessage.size() == 0)
+    // check on error number because error message can be empty.
+    if (ConfigVariable::getLastErrorNumber() == 0)
     {
         out.push_back(Double::Empty());
     }
     else
     {
+        std::wstring wstLastErrorMessage = ConfigVariable::getLastErrorMessage();
         std::vector<std::wstring> vectLines;
         std::wistringstream iss(wstLastErrorMessage);
         std::wstring line;
@@ -67,7 +68,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
             vectLines.push_back(line);
         }
 
-        types::String* StrLastError = new types::String(vectLines.size(), 1);
+        types::String* StrLastError = new types::String((int)vectLines.size(), 1);
         // put lines in output
         for (int i = 0; i < (int)vectLines.size(); i++)
         {
@@ -93,7 +94,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
                 std::wstring wstLastErrorFunction = ConfigVariable::getLastErrorFunction();
                 if (wstLastErrorFunction.size() == 0)
                 {
-                    out.push_back(Double::Empty());
+                    out.push_back(new String(L""));
                 }
                 else
                 {

@@ -26,14 +26,14 @@ import javax.swing.JTextPane;
  */
 public class FocusMouseListener implements MouseListener {
 
-	private SciConsole c;
+    private SciConsole c;
 
     /**
      * @param console the console object associated
      */
     public FocusMouseListener(SciConsole console) {
-    	super();
-    	c = console;
+        super();
+        c = console;
     }
 
     /**
@@ -42,13 +42,13 @@ public class FocusMouseListener implements MouseListener {
      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
      */
     public void mouseClicked(MouseEvent e) {
- 			// If the user clicks in the Outputview then the focus is given to the input command view
-			if (((JPanel) c.getConfiguration().getPromptView()).isVisible()) {
-				((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
-			} else {
-				// In case of "more ?"
-				c.grabFocus();
-			}
+        // If the user clicks in the Outputview then the focus is given to the input command view
+        if (((JPanel) c.getConfiguration().getPromptView()).isVisible()) {
+            ((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+        } else {
+            // In case of "more ?"
+            c.grabFocus();
+        }
     }
 
     /**
@@ -93,12 +93,12 @@ public class FocusMouseListener implements MouseListener {
      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
      */
     public void mouseOver(MouseEvent e) {
-       	// If the user clicks in the Outputview then the focus is given to the input command view
-    	if (((JPanel) c.getConfiguration().getPromptView()).isVisible()) {
-    		((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
-    	} else {
-    		// In case of "more ?"
-    		c.grabFocus();
-    	}
+        // If the user clicks in the Outputview then the focus is given to the input command view
+        if (((JPanel) c.getConfiguration().getPromptView()).isVisible()) {
+            ((JTextPane) c.getConfiguration().getInputCommandView()).grabFocus();
+        } else {
+            // In case of "more ?"
+            c.grabFocus();
+        }
     }
 }

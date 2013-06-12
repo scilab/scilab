@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -13,13 +13,13 @@
 // This function is intended to be private.
 function ResetFigureDDM(cur_figure, cur_draw_mode)
 
-if type(cur_figure) == 9
-  if cur_figure.type == "Figure"
-    cur_figure.immediate_drawing = cur_draw_mode;
-  else
-    warning("Error in ResetFigureDDM : input argument must be a figure graphic handle");
-    return;
-  end
-end
+    if type(cur_figure) == 9
+        if cur_figure.type == "Figure"
+            cur_figure.immediate_drawing = cur_draw_mode;
+        else
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: figure graphic handle expected.\n"),"ResetFigureDDM",1));
+            return;
+        end
+    end
 
 endfunction

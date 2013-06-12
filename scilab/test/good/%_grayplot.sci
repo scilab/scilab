@@ -16,9 +16,9 @@
 //
 
 function [] = %_grayplot()
-  t=-%pi:0.05:%pi;
-  m=sin(t)'*cos(t);
-  f = gcf();
-  f.color_map = hotcolormap(128);
-  grayplot(t,t,m);
+    t=-%pi:0.05:%pi;
+    m=sin(t)'*cos(t);
+    f = gcf();
+    f.color_map = hotcolormap(128);
+    grayplot(t,t,m);
 endfunction

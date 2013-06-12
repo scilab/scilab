@@ -28,56 +28,56 @@ using namespace types;
 
 types::Function::ReturnValue sci_getos(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	char *OperatingSystem = getOSFullName();
+    char *OperatingSystem = getOSFullName();
 
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
-        Scierror(77,_("%s: Wrong number of input argument(s): %d expected.\n"), "getos", 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getos", 0);
         return Function::Error;
     }
 
-    if(_iRetCount != 2 && _iRetCount != 1 && _iRetCount != -1)
+    if (_iRetCount != 2 && _iRetCount != 1 && _iRetCount != -1)
     {
-        Scierror(78,_("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getos", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getos", 1, 2);
         return Function::Error;
     }
 
-	if (OperatingSystem)
-	{
+    if (OperatingSystem)
+    {
         String* pS1 = new String(OperatingSystem);
         out.push_back(pS1);
-		if (OperatingSystem)
+        if (OperatingSystem)
         {
             FREE(OperatingSystem);
             OperatingSystem = NULL;
         }
 
 
-		if (_iRetCount == 2)
-		{
-			char *Release = getOSRelease();
-			if (Release)
-			{
+        if (_iRetCount == 2)
+        {
+            char *Release = getOSRelease();
+            if (Release)
+            {
                 String* pS2 = new String(Release);
                 out.push_back(pS2);
-				if (Release)
+                if (Release)
                 {
                     FREE(Release);
                     Release = NULL;
                 }
-			}
-			else
-			{
-				Scierror(999,_("%s: No more memory.\n"), "getos");
-				return Function::Error;
-			}
-		}
-	}
-	else
-	{
-		Scierror(999,_("%s: No more memory.\n"), "getos");
+            }
+            else
+            {
+                Scierror(999, _("%s: No more memory.\n"), "getos");
+                return Function::Error;
+            }
+        }
+    }
+    else
+    {
+        Scierror(999, _("%s: No more memory.\n"), "getos");
         return Function::Error;
-	}
-	return Function::OK;
+    }
+    return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

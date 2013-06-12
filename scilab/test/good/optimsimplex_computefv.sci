@@ -16,10 +16,10 @@
 //   data : user-defined data
 //
 function [ this , data ] = optimsimplex_computefv ( this , fun , data )
-  if (~isdef('data','local')) then
-    this = optimsimplex_compsomefv ( this , fun , 1 : this.nbve )
-  else
-    [ this , data ] = optimsimplex_compsomefv ( this , fun , 1 : this.nbve , data )
-  end
+    if (~isdef("data","local")) then
+        this = optimsimplex_compsomefv ( this , fun , 1 : this.nbve )
+    else
+        [ this , data ] = optimsimplex_compsomefv ( this , fun , 1 : this.nbve , data )
+    end
 endfunction
 

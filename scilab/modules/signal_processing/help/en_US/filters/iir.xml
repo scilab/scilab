@@ -46,9 +46,10 @@
                     <para>2-vector of discrete cut-off frequencies (i.e.,
                         <literal>0&lt;frq&lt;.5</literal>). For <literal>'lp'</literal> and
                         <literal>'hp'</literal> filters only <literal>frq(1)</literal> is
-                        used. For <literal>'bp'</literal> and <literal>'sb'</literal> filters
-                        <literal>frq(1)</literal> is the lower cut-off frequency and
-                        <literal>frq(2)</literal> is the upper cut-off frequency
+                        used (in this case, <varname>frq</varname> can be a scalar). 
+                        For <literal>'bp'</literal> and <literal>'sb'</literal> filters
+                        <literal>frq(1)</literal> is the upper cut-off frequency and
+                        <literal>frq(2)</literal> is the lower cut-off frequency.
                     </para>
                 </listitem>
             </varlistentry>

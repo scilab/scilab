@@ -13,8 +13,8 @@
 //   Update the simplex and restart the search.
 //
 function this = nmplot_restart (this)
-  this.nmbase = neldermead_updatesimp ( this.nmbase );
-  this = nmplot_search ( this )
+    this.nmbase = neldermead_updatesimp ( this.nmbase );
+    this = nmplot_search ( this )
 endfunction
 
 

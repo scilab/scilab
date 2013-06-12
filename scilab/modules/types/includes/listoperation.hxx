@@ -19,27 +19,39 @@
 
 namespace types
 {
-    class TYPES_IMPEXP ListOperation : public InternalType
+class TYPES_IMPEXP ListOperation : public InternalType
+{
+public :
+    ListOperation(): InternalType() {};
+    virtual                 ~ListOperation();
+
+    InternalType*           clone();
+
+    RealType                getType(void);
+    bool                    isListOperation()
     {
-    public :
-                                ListOperation(): InternalType(){};
-        virtual                 ~ListOperation();
+        return true;
+    }
 
-        InternalType*           clone();
+    void                    whoAmI();
 
-        RealType                getType(void);
-        bool                    isListOperation() { return true; }
+    bool                    toString(std::wostringstream& ostr);
+    virtual bool            isAssignable(void)
+    {
+        return false;
+    }
 
-        void                    whoAmI();
-
-        bool                    toString(std::wostringstream& ostr);
-        virtual bool            isAssignable(void) { return false; }
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring    getTypeStr() {return L"listoperation";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring    getShortTypeStr() {return L"";}
-    };
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring    getTypeStr()
+    {
+        return L"listoperation";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring    getShortTypeStr()
+    {
+        return L"";
+    }
+};
 }
 
 

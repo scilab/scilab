@@ -13,219 +13,247 @@
  -->
 
 <Setting version="0.41">
-
-  <!-- SCINOTES configuration -->
-  <Profile name="scinotes">
-
-    <!-- GUI Part -->
-
-    <ScrollableUnitIncrement value="20"/>
-    <ScrollableBlockIncrement value="20"/>
-    <HorizontalWrapAllowed default="true" value="true"/>
-    <AutoIndent default="true" value="true"/>
-    <AutoColorize default="true" value="true"/>
-    <DefaultEncoding value="utf-8"/> <!-- Initialized to system default at first launch -->
-
-
-    <!-- linecolor or contourcolor can be "null" to be transparent -->
-    <LineHighlighter value="false" linecolor="#e4e9f4" contourcolor="#323232"/>
-
-    <!-- colors to use in the left panel to indicate you're a in a function (color1)
+    
+    <!-- SCINOTES configuration -->
+    <Profile name="scinotes">
+        
+        <!-- GUI Part -->
+        
+        <ScrollableUnitIncrement value="20"/>
+        <ScrollableBlockIncrement value="20"/>
+        <HorizontalWrapAllowed default="true" value="true"/>
+        <AutoIndent default="true" value="true"/>
+        <AutoColorize default="true" value="true"/>
+        <DefaultEncoding value="utf-8"/>
+        <!-- Initialized to system default at first launch -->
+        
+        
+        <!-- linecolor or contourcolor can be "null" to be transparent -->
+        <LineHighlighter value="false" linecolor="#e4e9f4" contourcolor="#323232"/>
+        
+        <!-- colors to use in the left panel to indicate you're a in a function (color1)
 	 or in a inner function (color2) (only available in whereami mode)-->
-    <AlternColors color1="#f6bff6" color2="#f665f6"/>
-
-    <!-- Activate or not the help on typing for openers such as '(', '[', '"',... -->
-    <HelpOnTypingOpeners value="true"/>
-
-    <!-- Activate or not the help on typing for keywords such as 'if', 'function',... -->
-    <HelpOnTypingKeywords value="true"/>
-
-    <!-- Restore the open files from the last session  -->
-    <RestoreFiles value="true"/>
-
-    <!-- Line numbering : 0 is off, 1 is normal and 2 is whereami-->
-    <LineNumbering value="1"/>
-
-    <!-- Suppress comments when executing code with ctrl+E -->
-    <SuppressComments value="true"/>
-
-    <!-- * inside is a boolean to indicate if the contents between the keywords must be highlighted.
+        <AlternColors color1="#f6bff6" color2="#f665f6"/>
+        
+        <!-- Activate or not the help on typing for openers such as '(', '[', '"',... -->
+        <HelpOnTypingOpeners value="true"/>
+        
+        <!-- Activate or not the help on typing for keywords such as 'if', 'function',... -->
+        <HelpOnTypingKeywords value="true"/>
+        
+        <!-- Restore the open files from the last session  -->
+        <RestoreFiles value="true"/>
+        
+        <!-- Line numbering : 0 is off, 1 is normal and 2 is whereami-->
+        <LineNumbering value="1"/>
+        
+        <!-- Suppress comments when executing code with ctrl+E -->
+        <SuppressComments value="true"/>
+        
+        <!-- * inside is a boolean to indicate if the contents between the keywords must be highlighted.
          * included is only used when inside is true to say if keywords or open/close must be highlighted.
          * If inside is true type can be filled or framed else it can be filled, framed or underlined.
          * strict is only used for Keywords when inside is true, in this case the lines which contain the keywords
            are not highlighted. -->
-    <Matching onmouseover="true">
-      <KeywordsHighlighter color="#fff3d2" inside="true" included="false" strict="true" type="filled"/>
-      <OpenCloseHighlighter color="#e40087" inside="false" included="true" type="framed"/>
-    </Matching>
-
-    <SciNotes>
-      <BackgroundColor default="#FFFFFF" value="#FFFFFF"/>
-      <ForegroundColor default="#000000" value="#000000"/>
-    </SciNotes>
-
-    <styles>
-
-      <FontName default="Monospaced" value="Monospaced"/>
-      <FontSize default="14" value="14"/>
-
-      <MainWindowPosition x="150" y="50"/>
-      <MainWindowSize height="550" width="650"/>
-
-      <style name="Default">
-        <ForegroundColor default="#000000" value="#000000"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Special">
-        <ForegroundColor default="#ffaa00" value="#ffaa00"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Url" underline="true" defaultUnderline="true">
-        <ForegroundColor default="#0000ff" value="#0000ff"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Mail" underline="true" defaultUnderline="true">
-        <ForegroundColor default="#0000ff" value="#0000ff"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Constantes">
-        <ForegroundColor default="#da70d6" value="#da70d6"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Operator">
-        <ForegroundColor default="#5c5c5c" value="#5c5c5c"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Number">
-        <ForegroundColor default="#bc8f8f" value="#bc8f8f"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="FunctionKwd">
-        <ForegroundColor default="#b01813" value="#b01813"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Structure">
-        <ForegroundColor default="#a020f0" value="#a020f0"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Control">
-        <ForegroundColor default="#5f9ea0" value="#5f9ea0"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Primitive">
-        <ForegroundColor default="#32b9b9" value="#32b9b9"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Macro" underline="true" defaultUnderline="true">
-        <ForegroundColor default="#ae5cb0" value="#ae5cb0"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="MacroInFile" underline="true" defaultUnderline="true">
-        <ForegroundColor default="#000000" value="#000000"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="String">
-        <ForegroundColor default="#bc8f8f" value="#bc8f8f"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="ExternalVariable">
-        <ForegroundColor default="#FF0000" value="#FF0000"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="InputOutputArgs">
-        <ForegroundColor default="#834310" value="#834310"/>
-        <FontStyle default="1" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Identifier">
-        <ForegroundColor default="#000000" value="#000000"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Comment">
-        <ForegroundColor default="#01a801" value="#01a801"/>
-        <FontStyle default="2" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="WhiteInComment">
-        <ForegroundColor default="#90f790" value="#90f790"/>
-        <FontStyle default="2" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="TabulationInComment">
-        <ForegroundColor default="#90f790" value="#90f790"/>
-        <FontStyle default="2" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="LaTeXInComment">
-        <ForegroundColor default="#8b2252" value="#8b2252"/>
-        <FontStyle default="2" value="2"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="WhiteInString">
-        <ForegroundColor default="#e9b1b1" value="#e9b1b1"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="TabulationInString">
-        <ForegroundColor default="#e9b1b1" value="#e9b1b1"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="Field">
-        <ForegroundColor default="#aaaaaa" value="#aaaaaa"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <!-- rep can be "doublechevrons", "horizontal" or "vertical" or a single char such as "#" or "none" -->
-      <!-- value is the number of space equivalent to a tabulation -->
-      <!-- white is a boolean indicating if a \t must be inserted (false) or a sequence of whites -->
-      <style name="Tabulation" rep="doublechevrons" value="4" white="true">
-        <ForegroundColor default="#dcdcdc" value="#dcdcdc"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="White">
-        <ForegroundColor default="#dcdcdc" value="#dcdcdc"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-
-      <style name="OpenClose">
-        <ForegroundColor default="#4a55db" value="#4a55db"/>
-        <FontStyle default="0" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
-      </style>
-    </styles>
-
-    <!-- Paper format Section
+        <Matching onmouseover="true">
+            <KeywordsHighlighter color="#fff3d2" inside="true" included="false" strict="true" type="filled"/>
+            <OpenCloseHighlighter color="#e40087" inside="false" included="true" type="framed"/>
+        </Matching>
+        
+        <SciNotes>
+            <BackgroundColor default="#FFFFFF" value="#FFFFFF"/>
+            <ForegroundColor default="#000000" value="#000000"/>
+        </SciNotes>
+        
+        <styles>
+            
+            <FontName default="Monospaced" value="Monospaced"/>
+            <FontSize default="14" value="14"/>
+            
+            <MainWindowPosition x="150" y="50"/>
+            <MainWindowSize height="550" width="650"/>
+            
+            <style name="Default">
+                <ForegroundColor default="#000000" value="#000000"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Special">
+                <ForegroundColor default="#ffaa00" value="#ffaa00"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Url" underline="true" defaultUnderline="true">
+                <ForegroundColor default="#0000ff" value="#0000ff"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Mail" underline="true" defaultUnderline="true">
+                <ForegroundColor default="#0000ff" value="#0000ff"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Constantes">
+                <ForegroundColor default="#da70d6" value="#da70d6"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Operator">
+                <ForegroundColor default="#5c5c5c" value="#5c5c5c"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Number">
+                <ForegroundColor default="#bc8f8f" value="#bc8f8f"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="FunctionKwd">
+                <ForegroundColor default="#b01813" value="#b01813"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Structure">
+                <ForegroundColor default="#a020f0" value="#a020f0"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Control">
+                <ForegroundColor default="#5f9ea0" value="#5f9ea0"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Primitive">
+                <ForegroundColor default="#32b9b9" value="#32b9b9"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Macro" underline="true" defaultUnderline="true">
+                <ForegroundColor default="#ae5cb0" value="#ae5cb0"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="MacroInFile" underline="true" defaultUnderline="true">
+                <ForegroundColor default="#000000" value="#000000"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="String">
+                <ForegroundColor default="#bc8f8f" value="#bc8f8f"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="ExternalVariable">
+                <ForegroundColor default="#FF0000" value="#FF0000"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="InputOutputArgs">
+                <ForegroundColor default="#834310" value="#834310"/>
+                <FontStyle default="1" value="1"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Identifier">
+                <ForegroundColor default="#000000" value="#000000"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Comment">
+                <ForegroundColor default="#01a801" value="#01a801"/>
+                <FontStyle default="2" value="2"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="WhiteInComment">
+                <ForegroundColor default="#90f790" value="#90f790"/>
+                <FontStyle default="2" value="2"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="TabulationInComment">
+                <ForegroundColor default="#90f790" value="#90f790"/>
+                <FontStyle default="2" value="2"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="LaTeXInComment">
+                <ForegroundColor default="#8b2252" value="#8b2252"/>
+                <FontStyle default="2" value="2"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="WhiteInString">
+                <ForegroundColor default="#e9b1b1" value="#e9b1b1"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="TabulationInString">
+                <ForegroundColor default="#e9b1b1" value="#e9b1b1"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="Field">
+                <ForegroundColor default="#aaaaaa" value="#aaaaaa"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <!-- rep can be "doublechevrons", "horizontal" or "vertical" or a single char such as "#" or "none" -->
+            <!-- value is the number of space equivalent to a tabulation -->
+            <!-- white is a boolean indicating if a \t must be inserted (false) or a sequence of whites -->
+            <style name="Tabulation" rep="doublechevrons" value="4" white="true">
+                <ForegroundColor default="#dcdcdc" value="#dcdcdc"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="White">
+                <ForegroundColor default="#dcdcdc" value="#dcdcdc"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+            
+            <style name="OpenClose">
+                <ForegroundColor default="#4a55db" value="#4a55db"/>
+                <FontStyle default="0" value="0"/>
+                <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+            </style>
+        </styles>
+        
+        <!-- Paper format Section
 	 The default unit is the postscript point (1/72 inch) -->
-    <PaperFormat MarginBottom="58.0" MarginLeft="57.0" MarginRight="57.0" MarginTop="57.0" height="794.0" width="613.0"/>
-
-    <!-- Favorite Directories Section  -->
-    <favoriteDirectories>
-    </favoriteDirectories>
-
-    <!-- Recent Opened Files Section  -->
-    <recentFiles>
-    </recentFiles>
-
-    <!-- Currently Open Files Section  -->
-    <openFiles>
-    </openFiles>
-
-  </Profile>
+        <PaperFormat MarginBottom="58.0" MarginLeft="57.0" MarginRight="57.0" MarginTop="57.0" height="794.0" width="613.0"/>
+        
+        <!-- Favorite Directories Section  -->
+        <favoriteDirectories>
+        </favoriteDirectories>
+        
+        <!-- Recent Opened Files Section  -->
+        <recentFiles>
+        </recentFiles>
+        
+        <!-- Currently Open Files Section  -->
+        <openFiles>
+        </openFiles>
+        
+    </Profile>
 </Setting>

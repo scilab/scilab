@@ -21,21 +21,21 @@
 function [ this , p ] = optimbase_proj2bnds ( this ,  x )
     [ this , hasbounds ] = optimbase_hasbounds ( this )
     if ( ~hasbounds ) then
-      p = x
-      return
+        p = x
+        return
     end
     p = x
     for ix = 1:this.numberofvariables
-      xmin = this.boundsmin ( ix )
-      xmax = this.boundsmax ( ix )
-      pix = p ( ix )
-      if (pix > xmax) then
-        this = optimbase_log ( this , sprintf ( "Projecting p(%d) = %e on max bound %e" , ix , pix , xmax ))
-        p ( ix ) = xmax
-      elseif ( pix < xmin) then
-        this = optimbase_log ( this , sprintf ( "Projecting p(%d) = %e on min bound %e" , ix , pix , xmin ))
-        p ( ix ) = xmin
-      end
+        xmin = this.boundsmin ( ix )
+        xmax = this.boundsmax ( ix )
+        pix = p ( ix )
+        if (pix > xmax) then
+            this = optimbase_log ( this , sprintf ( "Projecting p(%d) = %e on max bound %e" , ix , pix , xmax ))
+            p ( ix ) = xmax
+        elseif ( pix < xmin) then
+            this = optimbase_log ( this , sprintf ( "Projecting p(%d) = %e on min bound %e" , ix , pix , xmin ))
+            p ( ix ) = xmin
+        end
     end
 endfunction
 

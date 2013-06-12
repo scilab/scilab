@@ -175,3 +175,5 @@ modules/*/*.plist
 # optional modules
 modules/pvm/
 
+# call_scilab examples
+call_scilab_*

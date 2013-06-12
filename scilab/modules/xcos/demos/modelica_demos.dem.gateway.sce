@@ -6,14 +6,14 @@
 
 if with_modelica_compiler() then
 
-  subdemolist = [_("Ball on a Platform")     , "ModelicaBlocks/ball_platform.dem.sce"           ; ..
-                 _("Bouncing Ball")          , "ModelicaBlocks/modelica_bouncing_ball.dem.sce"  ; ..
-                 _("Chaos Modelica")         , "ModelicaBlocks/modelica_chaos.dem.sce"          ; ..
-                 _("Hydraulics blocks")      , "ModelicaBlocks/modelica_hydraulics.dem.sce"     ; ..
-                 _("RLC circuit")            , "ModelicaBlocks/modelica_rlc_circuit.dem.sce"
-                 ];
+    subdemolist = [_("Ball on a Platform")     , "ModelicaBlocks/ball_platform.dem.sce"           ; ..
+    _("Bouncing Ball")          , "ModelicaBlocks/modelica_bouncing_ball.dem.sce"  ; ..
+    _("Chaos Modelica")         , "ModelicaBlocks/modelica_chaos.dem.sce"          ; ..
+    _("Hydraulics blocks")      , "ModelicaBlocks/modelica_hydraulics.dem.sce"     ; ..
+    _("RLC circuit")            , "ModelicaBlocks/modelica_rlc_circuit.dem.sce"
+    ];
 
-  subdemolist(:,2) = SCI + "/modules/xcos/demos/" + subdemolist(:,2);
+    subdemolist(:,2) = SCI + "/modules/xcos/demos/" + subdemolist(:,2);
 
 end
 

@@ -19,9 +19,9 @@
 extern double C2F(zlange)(char const norm[1], int const* m, int const* n, doublecomplex const* a, int const* ldA, double* work, int* info);
 extern double C2F(dlange)(char const norm[1], int const* m, int const* n, double const* a, int const* ldA, double* work, int* info);
 extern void C2F(zgecon)(char const norm[1], int const* n, doublecomplex const* a, int const* ldA, double const* aNorm, double* rCond,
-    doublecomplex* work, double* rWork, int* info);
+                        doublecomplex* work, double* rWork, int* info);
 extern void C2F(dgecon)(char const norm[1], int const* n, double const* a, int const* ldA, double const* aNorm, double* rCond,
-    double* work, int* iWork, int* info);
+                        double* work, int* iWork, int* info);
 extern void C2F(zgetrf)(int const* m, int const* n, doublecomplex* a, int const* ldA, int* iPiv, int* info);
 extern void C2F(dgetrf)(int const* m, int const* n, double* a, int const* ldA, int* iPiv, int* info);
 
@@ -29,13 +29,13 @@ extern void C2F(dgetrf)(int const* m, int const* n, double* a, int const* ldA, i
 int iRcondM(double* pData, int iCols, int complexArg, double* pRcond)
 {
     int info;
-    int* piPiv= (int*) MALLOC( iCols * sizeof(int));
-    void* pRIWork= complexArg ? MALLOC(2*iCols * sizeof(double)) : MALLOC(iCols * sizeof(int));
-    double* pWork= (double*)MALLOC(complexArg ? (2*iCols*sizeof(doublecomplex)) : (4*iCols*sizeof(double)));
-    if( piPiv && pRIWork && pWork)
+    int* piPiv = (int*) MALLOC( iCols * sizeof(int));
+    void* pRIWork = complexArg ? MALLOC(2 * iCols * sizeof(double)) : MALLOC(iCols * sizeof(int));
+    double* pWork = (double*)MALLOC(complexArg ? (2 * iCols * sizeof(doublecomplex)) : (4 * iCols * sizeof(double)));
+    if ( piPiv && pRIWork && pWork)
     {
         double aNorm = 0;
-        if(complexArg)
+        if (complexArg)
         {
             aNorm = C2F(zlange)("1", &iCols, &iCols, (doublecomplex*)pData, &iCols, NULL, &info);
         }
@@ -44,12 +44,12 @@ int iRcondM(double* pData, int iCols, int complexArg, double* pRcond)
             aNorm = C2F(dlange)("1", &iCols, &iCols, pData, &iCols, NULL, &info);
         }
 
-        *pRcond= 0.;
+        *pRcond = 0.;
 
-        if(complexArg)
+        if (complexArg)
         {
             C2F(zgetrf)(&iCols, &iCols, (doublecomplex*)pData, &iCols, piPiv, &info);
-            if(!info)
+            if (!info)
             {
                 C2F(zgecon)("1", &iCols, (doublecomplex*)pData, &iCols, &aNorm, pRcond, (doublecomplex*)pWork, (double*)pRIWork, &info);
             }
@@ -57,7 +57,7 @@ int iRcondM(double* pData, int iCols, int complexArg, double* pRcond)
         else
         {
             C2F(dgetrf)(&iCols, &iCols, pData, &iCols, piPiv, &info);
-            if(!info)
+            if (!info)
             {
                 C2F(dgecon)("1", &iCols, pData, &iCols, &aNorm, pRcond, pWork, (int*)pRIWork, &info);
             }
@@ -65,7 +65,7 @@ int iRcondM(double* pData, int iCols, int complexArg, double* pRcond)
     }
     else
     {
-        info= -1; /* MALLOC error */
+        info = -1; /* MALLOC error */
     }
     FREE(piPiv);
     FREE(pRIWork);

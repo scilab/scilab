@@ -9,10 +9,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y=asciimat(x)
-// This function converts a matrix of string into a matrix of ascii codes using ascii() Scilab function
-// and converts an array of ascii codes into a array of string
-// Returned value have same size as input value instead of second dims !
-// Fonction created because ascii() Scilab function returns a row vector
+    // This function converts a matrix of string into a matrix of ascii codes using ascii() Scilab function
+    // and converts an array of ascii codes into a array of string
+    // Returned value have same size as input value instead of second dims !
+    // Fonction created because ascii() Scilab function returns a row vector
 
     if x==[] then
         y=[]
@@ -21,20 +21,20 @@ function y=asciimat(x)
 
     dims = size(x);
     if typeof(x) == "string" // convert string to ascii code
-        if size(dims,'*') > 2 // hypermatrix case
+        if size(dims,"*") > 2 // hypermatrix case
             colref = 0;
             lastDim = dims($);
             dims($) = [];
             l=list();
-            for i=1:size(dims,'*')
+            for i=1:size(dims,"*")
                 l(i) = 1:$;
             end
             for i=1:lastDim
                 res=asciimat(x(l(:), i));
                 if colref == 0 then
-                    colref=size(res,'c');
+                    colref=size(res,"c");
                 else
-                    if colref <> size(res,'c')
+                    if colref <> size(res,"c")
                         error(msprintf(gettext("%s: Wrong input argument #%d: Inconsistent size.\n"),"asciimat", 1));
                         return
                     end
@@ -55,11 +55,11 @@ function y=asciimat(x)
             y = matrix(a, dims)';
         end
     else    // convert asciicode to string
-        if size(dims,'*') > 2 // hypermatrix case
+        if size(dims,"*") > 2 // hypermatrix case
             lastDim = dims($);
             dims($) = [];
             l=list();
-            for i=1:size(dims,'*')
+            for i=1:size(dims,"*")
                 l(i) = 1:$;
             end
             for i=1:lastDim

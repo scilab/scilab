@@ -18,7 +18,7 @@
 
 extern "C"
 {
-    #include "dynlib_action_binding_gw.h"
+#include "dynlib_action_binding_gw.h"
 }
 
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_notify, ACTION_BINDING_GW_IMPEXP);

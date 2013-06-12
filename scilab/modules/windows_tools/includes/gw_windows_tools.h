@@ -20,18 +20,18 @@ WINDOWS_TOOLS_IMPEXP int gw_windows_tools(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-WINDOWS_TOOLS_IMPEXP int sci_winopen(char *fname,unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_findfileassociation(char *fname,unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_mcisendstring(char *fname,unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_consolebox(char *fname,unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_istssession(char *fname,unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_getsystemmetrics(char *fname,unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_createGUID(char *fname,unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_winopen(char *fname, unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_findfileassociation(char *fname, unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_mcisendstring(char *fname, unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_consolebox(char *fname, unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_istssession(char *fname, unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_getsystemmetrics(char *fname, unsigned long l);
+WINDOWS_TOOLS_IMPEXP int sci_createGUID(char *fname, unsigned long l);
 
 //YaSp
 WINDOWS_TOOLS_IMPEXP int sci_dos(char *fname, void* pvApiCtx);
-WINDOWS_TOOLS_IMPEXP int sci_win64(char *fname,void* pvApiCtx);
-WINDOWS_TOOLS_IMPEXP int sci_winqueryreg(char *fname,void* pvApiCtx);
+WINDOWS_TOOLS_IMPEXP int sci_win64(char *fname, void* pvApiCtx);
+WINDOWS_TOOLS_IMPEXP int sci_winqueryreg(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_WINDOWS_TOOLS_H__ */
 

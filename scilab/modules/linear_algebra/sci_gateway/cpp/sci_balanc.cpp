@@ -33,56 +33,56 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
     double* pData[2]            = {NULL, NULL};
     bool bComplex               = false;
 
-    if(in.size() != 1 && in.size() != 2)
+    if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "balanc", 1, 2);
         return types::Function::Error;
     }
 
-    if(_iRetCount != 2*in.size())
+    if (_iRetCount != 2 * in.size())
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "balanc", 2*in.size());
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "balanc", 2 * in.size());
         return types::Function::Error;
     }
 
-    if((in[0]->isDouble() == false))
+    if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_balanc";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
     }
 
     pDbl[0] = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
-    if(pDbl[0]->isComplex())
+    if (pDbl[0]->isComplex())
     {
         bComplex = true;
     }
 
-    if(in.size() == 2)
+    if (in.size() == 2)
     {
-        if((in[1]->isDouble() == false))
+        if ((in[1]->isDouble() == false))
         {
             std::wstring wstFuncName = L"%"  + in[1]->getShortTypeStr() + L"_balanc";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
         }
 
         pDbl[1] = in[1]->getAs<types::Double>()->clone()->getAs<types::Double>();
-        if(pDbl[1]->isComplex())
+        if (pDbl[1]->isComplex())
         {
             bComplex = true;
         }
 
-        if(pDbl[0]->getRows() != pDbl[1]->getRows())
+        if (pDbl[0]->getRows() != pDbl[1]->getRows())
         {
             Scierror(999, _("%s: Arguments %d and %d must have equal dimensions.\n"), "balanc", 1, 2);
             return types::Function::Error;
         }
     }
 
-    if(pDbl[0]->getCols() == 0)
+    if (pDbl[0]->getCols() == 0)
     {
         out.push_back(types::Double::Empty());
         out.push_back(types::Double::Empty());
-        if(_iRetCount == 4)
+        if (_iRetCount == 4)
         {
             out.push_back(types::Double::Empty());
             out.push_back(types::Double::Empty());
@@ -90,18 +90,18 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
         return types::Function::OK;
     }
 
-    if(pDbl[0]->getRows() != pDbl[0]->getCols())
+    if (pDbl[0]->getRows() != pDbl[0]->getCols())
     {
         Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "balanc", 1);
         return types::Function::Error;
     }
 
-    for(int i=0; i<in.size(); i++)
+    for (int i = 0; i < in.size(); i++)
     {
-        if(bComplex)
+        if (bComplex)
         {
             pData[i] = (double*)oGetDoubleComplexFromPointer(pDbl[i]->getReal(), pDbl[i]->getImg(), pDbl[i]->getSize());
-            if(!pData[i])
+            if (!pData[i])
             {
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "balanc");
                 return types::Function::Error;
@@ -117,22 +117,22 @@ types::Function::ReturnValue sci_balanc(types::typed_list &in, int _iRetCount, t
 
     int iRet = iBalancM(pData[0], pData[1], pDbl[0]->getCols(), bComplex, pDblRes[0]->get(), ( pDblRes[1] ? pDblRes[1]->get() : NULL));
 
-    if(iRet != 0)
+    if (iRet != 0)
     {
-	    Scierror(999, _("%s: LAPACK error n°%d.\n"), "balanc",iRet);
+        Scierror(999, _("%s: LAPACK error n°%d.\n"), "balanc", iRet);
         return types::Function::Error;
     }
 
-    if(bComplex)
+    if (bComplex)
     {
-        for(int i=0; i<in.size(); i++)
+        for (int i = 0; i < in.size(); i++)
         {
             vGetPointerFromDoubleComplex((doublecomplex*)pData[i], pDbl[i]->getSize(), pDbl[i]->getReal(), pDbl[i]->getImg());
             vFreeDoubleComplexFromPointer((doublecomplex*)pData[i]);
         }
     }
 
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
         out.push_back(pDbl[0]);
         out.push_back(pDblRes[0]);

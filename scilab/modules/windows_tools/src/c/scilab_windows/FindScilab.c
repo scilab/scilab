@@ -65,11 +65,11 @@ BOOL HaveAnotherWindowScilab(void)
 /*--------------------------------------------------------------------------*/
 char * getLastScilabFound(void)
 {
-	return os_strdup(ListHiddenScilabName[0]);
+    return os_strdup(ListHiddenScilabName[0]);
 }
 /*--------------------------------------------------------------------------*/
 char * getFirstScilabFound(void)
 {
-	return os_strdup(ListHiddenScilabName[NumberScilab-1]);
+    return os_strdup(ListHiddenScilabName[NumberScilab - 1]);
 }
 /*--------------------------------------------------------------------------*/

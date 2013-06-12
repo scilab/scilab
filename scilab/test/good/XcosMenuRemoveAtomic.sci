@@ -19,32 +19,32 @@
 // See the file ../license.txt
 //
 function XcosMenuRemoveAtomic()
-  if alreadyran then
-    Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
-		     '[alreadyran,%cpr]=do_terminate();%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
-		     'Select='+sci2exp(Select)+';Cmenu='"XcosMenuRemoveAtomic"'';]
-  else
-    K=find(Select(:,2)==%win)
-    if K==[] then
-      K = getblock(scs_m, %pt(:))
+    if alreadyran then
+        Scicos_commands=["%diagram_path_objective=[];%scicos_navig=1";
+        "[alreadyran,%cpr]=do_terminate();%diagram_path_objective="+sci2exp(super_path)+";%scicos_navig=1";
+        "Select="+sci2exp(Select)+";Cmenu='"XcosMenuRemoveAtomic"'";]
     else
-      K=Select(K,1)
-    end
-    Cmenu=[];%pt=[];
-    if K==[] then
-      messagebox(_("No selected block in the current Scicos window."),'error','modal')
-      return
-    end  	
-    if size(K,'*')>1 then
-      messagebox(_("Only one block can be selected in current window for this operation."),'error','modal')
-      return
-    end 
-    i=K
+        K=find(Select(:,2)==%win)
+        if K==[] then
+            K = getblock(scs_m, %pt(:))
+        else
+            K=Select(K,1)
+        end
+        Cmenu=[];%pt=[];
+        if K==[] then
+            messagebox(_("No selected block in the current Scicos window."),"error","modal")
+            return
+        end
+        if size(K,"*")>1 then
+            messagebox(_("Only one block can be selected in current window for this operation."),"error","modal")
+            return
+        end
+        i=K
 
-    o=scs_m.objs(i)
-    [o,needcompile,ok]=do_RemoveAtomic(o)
-    if ~ok then messagebox('Error in removing atomic','modal');return; end
-    scs_m = update_redraw_obj(scs_m,list('objs',i),o)
-  end
+        o=scs_m.objs(i)
+        [o,needcompile,ok]=do_RemoveAtomic(o)
+        if ~ok then messagebox("Error in removing atomic","modal");return; end
+        scs_m = update_redraw_obj(scs_m,list("objs",i),o)
+    end
 endfunction
 

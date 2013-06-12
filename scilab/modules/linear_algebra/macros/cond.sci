@@ -47,12 +47,12 @@ function c = cond(varargin)
         if and(type(p) <> [1, 10]) then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar or a string expected.\n"),"cond", 2));
         end
-        if and(p <> [1 2 %inf] & p <> ['inf','fro']) then
+        if and(p <> [1 2 %inf] & p <> ["inf","fro"]) then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: must be %d, %d, %s, ''%s'' or ''%s''.\n"), "cond", 2, 1, 2, "%inf", "inf", "fro"));
         end
-        
+
         c = norm(A, p) * norm(inv(A), p);
     else
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "cond", 1, 2));
-    end 
+    end
 endfunction

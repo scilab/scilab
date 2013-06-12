@@ -79,7 +79,7 @@ msgstr "%s: L'argument d'entrada #%d té una mida incorrecta.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorisation.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: No és compatible amb la "

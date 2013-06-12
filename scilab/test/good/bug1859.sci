@@ -15,9 +15,9 @@ test = datenum(Year, Month, Day);
 ref = [731275 ; 731276];
 
 if ~or(test <> ref) then
-	affich_result(%T,1859);
+    affich_result(%T,1859);
 else
-	affich_result(%F,1859);
+    affich_result(%F,1859);
 end
 
 clear

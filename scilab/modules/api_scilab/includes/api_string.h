@@ -25,9 +25,9 @@ extern "C" {
 
 #include "dynlib_api_scilab.h"
 
-/*****************************/
-/*   string matrix functions   */
-/*******************************/
+    /*****************************/
+    /*   string matrix functions   */
+    /*******************************/
 
     /**
      * Get strings variable data

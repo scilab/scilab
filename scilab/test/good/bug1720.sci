@@ -20,10 +20,10 @@ hc = gce();
 hc.background = 6;
 
 // check that xfarc fill the arc and don't draw the limit
-if ( hc.line_mode == 'off' ) then
-  affich_result(%T,1720);
+if ( hc.line_mode == "off" ) then
+    affich_result(%T,1720);
 else
-  affich_result(%F,1720);
+    affich_result(%F,1720);
 end
 
 clear;

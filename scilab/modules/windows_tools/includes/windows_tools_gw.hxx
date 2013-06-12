@@ -23,11 +23,11 @@
 class WindowsToolsModule
 {
 private :
-  WindowsToolsModule() {};
-  ~WindowsToolsModule() {};
+    WindowsToolsModule() {};
+    ~WindowsToolsModule() {};
 
 public :
-  WINDOWS_TOOLS_IMPEXP static int Load();
+    WINDOWS_TOOLS_IMPEXP static int Load();
 };
 
 

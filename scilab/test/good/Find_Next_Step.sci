@@ -20,21 +20,21 @@
 //
 
 function [Cmenu,Select]=Find_Next_Step(path_objective,path)
-i=length(path_objective)
-j=length(path)
-m=min(i,j)
-k=min(find(path_objective(1:m)<>path(1:m)))
-if k==[] then
-  if i<j then 
-    Cmenu='XcosMenuQuit'
-  elseif j<i then
-    Cmenu='XcosMenuOpenSet'
-    Select=[path_objective(j+1),curwin]
-  else
-    mprintf("Find_Next_Step: Impossible step\n"),pause
-  end
-else
-  Cmenu='XcosMenuQuit'
-end
+    i=length(path_objective)
+    j=length(path)
+    m=min(i,j)
+    k=min(find(path_objective(1:m)<>path(1:m)))
+    if k==[] then
+        if i<j then
+            Cmenu="XcosMenuQuit"
+        elseif j<i then
+            Cmenu="XcosMenuOpenSet"
+            Select=[path_objective(j+1),curwin]
+        else
+            mprintf("Find_Next_Step: Impossible step\n"),pause
+        end
+    else
+        Cmenu="XcosMenuQuit"
+    end
 endfunction
 

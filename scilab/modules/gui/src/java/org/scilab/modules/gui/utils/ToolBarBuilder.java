@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -45,7 +45,7 @@ public final class ToolBarBuilder {
     private static final String FILE_NOT_FOUND = "Could not find file: ";
 
     private static final String CANNOT_CREATE_TOOLBAR = "Cannot create ToolBar.\n"
-        + "Check if file *_toolbar.xml is available and valid.";	
+            + "Check if file *_toolbar.xml is available and valid.";
 
     private static int figureIndex;
 
@@ -94,7 +94,7 @@ public final class ToolBarBuilder {
         ToolBar toolbar = ScilabToolBar.createToolBar();
 
         try {
-            ToolBarConfiguration toolBarConfig = 
+            ToolBarConfiguration toolBarConfig =
                 (ToolBarConfiguration) buildToolBar(new Class[] {ToolBarConfiguration.class}, fileToLoad);
             toolBarConfig.addPushButtons(toolbar);
         } catch (IllegalArgumentException e) {
@@ -112,10 +112,10 @@ public final class ToolBarBuilder {
         }
 
         return toolbar;
-    }	
+    }
 
     /**
-     * Class used to read the XMl file 
+     * Class used to read the XMl file
      */
     private static class ToolBarConfigurationHandler implements InvocationHandler {
         protected static final String BUTTON = "button";
@@ -167,7 +167,7 @@ public final class ToolBarBuilder {
          * @throws NoSuchMethodException thrown when invoking a non-existing method
          * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method, java.lang.Object[])
          */
-        public Object invoke(Object proxy, Method method, Object[] args) 
+        public Object invoke(Object proxy, Method method, Object[] args)
         throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 
             if (internalMethodNames.contains(method.getName())) {

@@ -26,9 +26,10 @@
 char *getlibrarypath(char *libraryname)
 {
     char *path = NULL;
-    int lw = 0; int fin = 0;
+    int lw = 0;
+    int fin = 0;
 
-    if (C2F(objptr)(libraryname,&lw,&fin,(unsigned long)strlen(libraryname)))
+    if (C2F(objptr)(libraryname, &lw, &fin, (unsigned long)strlen(libraryname)))
     {
         int *header = istk(iadr(*Lstk(fin)));
         if ( (header) && (header[0] == sci_lib ) )
@@ -36,17 +37,17 @@ char *getlibrarypath(char *libraryname)
             int lengthpath = 0, job = 0;
 
             lengthpath = header[1];
-            path = (char *) MALLOC((lengthpath+1)*sizeof(char));
+            path = (char *) MALLOC((lengthpath + 1) * sizeof(char));
 
-            job=1; /* convert scilab to ascii */
-            C2F(cvstr)(&lengthpath, &header[2], path,&job,lengthpath);
-            path[lengthpath]='\0';
+            job = 1; /* convert scilab to ascii */
+            C2F(cvstr)(&lengthpath, &header[2], path, &job, lengthpath);
+            path[lengthpath] = '\0';
         }
     }
     return path;
 }
 /*--------------------------------------------------------------------------*/
-char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
+char **getlistmacrosfromlibrary(char *libraryname, int *sizearray)
 {
     char **macroslist = NULL;
     char *pathlibrary = getlibrarypath(libraryname);
@@ -54,24 +55,24 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
     if (pathlibrary)
     {
         /* in each library directory , we have a "names" file with list of macros */
-        #define filenameNAMES "names"
+#define filenameNAMES "names"
         char *expandedpath = expandPathVariable(pathlibrary);
 
         if (expandedpath)
         {
-            char *fullfilename = (char*)MALLOC(sizeof(char)*(strlen(expandedpath)+strlen(filenameNAMES)+1));
+            char *fullfilename = (char*)MALLOC(sizeof(char) * (strlen(expandedpath) + strlen(filenameNAMES) + 1));
             if (fullfilename)
             {
-                char  line[PATH_MAX+1];
+                char  line[PATH_MAX + 1];
                 FILE * pFile = NULL;
                 int nbElements = 0;
 
-                sprintf(fullfilename,"%s%s",expandedpath,filenameNAMES);
+                sprintf(fullfilename, "%s%s", expandedpath, filenameNAMES);
 
-                wcfopen (pFile,fullfilename,"rt");
+                wcfopen (pFile, fullfilename, "rt");
                 if (pFile)
                 {
-                    while(fgets (line,sizeof(line),pFile) != NULL)
+                    while (fgets (line, sizeof(line), pFile) != NULL)
                     {
                         /* remove carriage return */
                         char *pos = strchr(line, '\n');
@@ -86,8 +87,14 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
                             *pos = 0;
                         }
 
-                        if (macroslist) macroslist = (char**)REALLOC(macroslist,sizeof(char*)*(nbElements+1));
-                        else macroslist =(char**)MALLOC(sizeof(char*)*(nbElements+1));
+                        if (macroslist)
+                        {
+                            macroslist = (char**)REALLOC(macroslist, sizeof(char*) * (nbElements + 1));
+                        }
+                        else
+                        {
+                            macroslist = (char**)MALLOC(sizeof(char*) * (nbElements + 1));
+                        }
 
                         macroslist[nbElements] = os_strdup(line);
                         nbElements++;

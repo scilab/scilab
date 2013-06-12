@@ -36,42 +36,42 @@ Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list
     char **helpAdr      = NULL;
     char **languageAdr  = NULL;
 
-    if(_iRetCount > 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s:  Wrong number of output argument(s): %d to %d expected."), "helpbrowser", 0, 1);
         return Function::Error;
     }
     switch (in.size())
     {
-    case 4:
-        if( !(in[3]->isBool() == true && in[3]->getAs<Bool>()->isScalar() == true))
-        {
-            Scierror(999, _("%s:  Wrong type for input argument #%d: A boolean expected."), "helpbrowser", 4);
+        case 4:
+            if ( !(in[3]->isBool() == true && in[3]->getAs<Bool>()->isScalar() == true))
+            {
+                Scierror(999, _("%s:  Wrong type for input argument #%d: A boolean expected."), "helpbrowser", 4);
+                return Function::Error;
+            }
+            if ( !(in[2]->isString() == true && in[2]->getAs<String>()->isScalar() == true))
+            {
+                Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 3);
+                return Function::Error;
+            }
+        case 2:
+            // Second argument must be String or at least [].
+            if ( !(in[1]->isString() == true && in[1]->getAs<String>()->isScalar() == true))
+            {
+                Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 2);
+                return Function::Error;
+            }
+            // Scalar String or [] allowed.
+            if ( !( (in[0]->isString() == true && in[0]->getAs<String>()->isScalar() == true)
+                    || (in[0]->isDouble() == true && in[0]->getAs<Double>()->isEmpty() == true)) )
+            {
+                Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 1);
+                return Function::Error;
+            }
+            break;
+        default:
+            Scierror(77, _("%s:  Wrong number of input argument(s): %d to %d expected."), "helpbrowser", 2, 4);
             return Function::Error;
-        }
-        if( !(in[2]->isString() == true && in[2]->getAs<String>()->isScalar() == true))
-        {
-            Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 3);
-            return Function::Error;
-        }
-    case 2:
-        // Second argument must be String or at least [].
-        if( !(in[1]->isString() == true && in[1]->getAs<String>()->isScalar() == true))
-        {
-            Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 2);
-            return Function::Error;
-        }
-        // Scalar String or [] allowed.
-        if( !( (in[0]->isString() == true && in[0]->getAs<String>()->isScalar() == true)
-               || (in[0]->isDouble() == true && in[0]->getAs<Double>()->isEmpty() == true)) )
-        {
-            Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 1);
-            return Function::Error;
-        }
-        break;
-    default:
-        Scierror(77, _("%s:  Wrong number of input argument(s): %d to %d expected."), "helpbrowser", 2, 4);
-        return Function::Error;
     }
 
     /* We load SciNotes when calling javahelp because we have no way to know
@@ -110,19 +110,19 @@ Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list
         searchKeyword(helpAdr, iHelpAdrSize, pstKey, pstLang, (BOOL) iFullText);
     }
 
-    if(pstLang != NULL)
+    if (pstLang != NULL)
     {
         FREE(pstLang);
     }
 
-    if(pstKey != NULL)
+    if (pstKey != NULL)
     {
         FREE(pstKey);
     }
 
-    if(helpAdr != NULL) /* No toolboxes loaded */
+    if (helpAdr != NULL) /* No toolboxes loaded */
     {
-        for(int i = 0 ; i < iHelpAdrSize ; i++)
+        for (int i = 0 ; i < iHelpAdrSize ; i++)
         {
             FREE(helpAdr[i]);
         }

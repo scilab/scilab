@@ -1,11 +1,11 @@
-//** Comments by Simone Mannori 
+//** Comments by Simone Mannori
 
 function Duplicate_()
 
-  Cmenu=[]; // Cmenu Quit can come out
+    Cmenu=[]; // Cmenu Quit can come out
 
-  [scs_m,needcompile] = do_duplicate(%pt, scs_m, needcompile) ;
-  
-  %pt=[];
+    [scs_m,needcompile] = do_duplicate(%pt, scs_m, needcompile) ;
+
+    %pt=[];
 
 endfunction

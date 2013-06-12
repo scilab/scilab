@@ -10,7 +10,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 -->
-    <refentry xmlns="http://docbook.org/ns/docbook"
+<refentry xmlns="http://docbook.org/ns/docbook"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:svg="http://www.w3.org/2000/svg"
     xmlns:mml="http://www.w3.org/1998/Math/MathML"
@@ -36,10 +36,10 @@
             <varlistentry>
                 <term>Tj</term>
                 <listitem>
-                <para>
-                    матрица символьных строк. Результат выравнивания.
-                </para>
-            </listitem>
+                    <para>
+                        матрица символьных строк. Результат выравнивания.
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
                 <term>opt</term>
@@ -100,4 +100,4 @@ justify(t,'r')
         </simplelist>
     </refsection>
 </refentry>
-                                    
+

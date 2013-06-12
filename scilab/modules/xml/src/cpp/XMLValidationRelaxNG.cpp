@@ -140,7 +140,10 @@ bool XMLValidationRelaxNG::validate(xmlTextReader * reader, std::string * error)
     xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorReaderFunction, 0);
     xmlTextReaderRelaxNGSetSchema(reader, getValidationFile < xmlRelaxNG > ());
 
-    while ((last = xmlTextReaderRead(reader)) == 1) ;
+    while ((last = xmlTextReaderRead(reader)) == 1)
+    {
+        ;
+    }
     valid = xmlTextReaderIsValid(reader);
 
     xmlTextReaderSetErrorHandler(reader, 0, 0);

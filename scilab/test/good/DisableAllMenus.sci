@@ -20,21 +20,21 @@
 //
 
 function DisableAllMenus()
-//** Serge Steer Sept 2009, 
-//   use the uimenu properties instead of unsetmenu
-//   No more called when window deletion has been requested (see scicos)
+    //** Serge Steer Sept 2009,
+    //   use the uimenu properties instead of unsetmenu
+    //   No more called when window deletion has been requested (see scicos)
 
 
-  curf=gcf(); //preserve current figure
-  
-  //loop on all opened scicos windows
-  for win = intersect(winsid(), [inactive_windows(2);curwin]')
-    C=get(scf(win),'children')
-    for k=1:size(C,'*')
-      if C(k).type=='uimenu' then 
-	C(k).Enable = "off";
-      end
+    curf=gcf(); //preserve current figure
+
+    //loop on all opened scicos windows
+    for win = intersect(winsid(), [inactive_windows(2);curwin]')
+        C=get(scf(win),"children")
+        for k=1:size(C,"*")
+            if C(k).type=="uimenu" then
+                C(k).Enable = "off";
+            end
+        end
     end
- end
-  scf(curf);//restore current figure
+    scf(curf);//restore current figure
 endfunction

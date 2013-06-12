@@ -64,7 +64,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -73,7 +73,7 @@ x_current = 1;
 x_neigh = neigh_func_vfsa(x_current,10,[])
  ]]></programlisting>
     </refsection>
-
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

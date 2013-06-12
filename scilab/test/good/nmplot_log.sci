@@ -13,6 +13,6 @@
 //   Prints the given message.
 //
 function this = nmplot_log (this,msg)
-  this.nmbase = neldermead_log ( this.nmbase , msg )
+    this.nmbase = neldermead_log ( this.nmbase , msg )
 endfunction
 

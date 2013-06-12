@@ -8,17 +8,17 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function t=datatipGetStruct(curve)
-//to be customized when a specific field will be dedicated to datatips
-  if type(curve)<>9|size(curve,'*')<>1 then
-    error(msprintf(_("%s: Wrong type for input argument #%d: Graphic handle expected.\n"),"datatipGetStruct",1))
-  end
+    //to be customized when a specific field will be dedicated to datatips
+    if type(curve)<>9|size(curve,"*")<>1 then
+        error(msprintf(_("%s: Wrong type for input argument #%d: Graphic handle expected.\n"),"datatipGetStruct",1))
+    end
 
-  u_d=get(curve,'user_data')
-  if  typeof(u_d)=="datatips" then //compatibility
-    t=u_d
-  elseif typeof(u_d)=="st"&isfield(u_d,"datatips")
-    t=u_d.datatips
-  else
-    t=[]
-  end
+    u_d=get(curve,"user_data")
+    if  typeof(u_d)=="datatips" then //compatibility
+        t=u_d
+    elseif typeof(u_d)=="st"&isfield(u_d,"datatips")
+        t=u_d.datatips
+    else
+        t=[]
+    end
 endfunction

@@ -22,9 +22,9 @@ res2 = ha.sub_ticks ;
 
 // check the sub_ticks were not modified
 if ( res1 == ref & res2 == ref  ) then
-  affich_result(%T,1732);
+    affich_result(%T,1732);
 else
-  affich_result(%F,1732);
+    affich_result(%F,1732);
 end
 
 clear;

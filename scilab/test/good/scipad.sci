@@ -1,11 +1,11 @@
 function scipad(varargin)
-// start Scipad editor
+    // start Scipad editor
 
     global SCIPADISSTARTING
     // ensure that no concurrent launching occurs
-	// this fixes the issue that shows up when quickly
-	// clicking twice the menu or icon button in the
-	// Scilab window (bug 2226)
+    // this fixes the issue that shows up when quickly
+    // clicking twice the menu or icon button in the
+    // Scilab window (bug 2226)
     if exists("SCIPADISSTARTING","nolocal") then
         return
     end
@@ -46,12 +46,12 @@ function scipad(varargin)
         else
             TCL_EvalStr("set tmpdir """+pathconvert(TMPDIR,%f,%t)+"""","scipad")
         end
-// Although the following line might seem to be a bit too much it is
-// designed to take advantage of the ScilabEval sequential mode in
-// order to prevent flushing of events by Scilab to Tcl during the
-// launch of Scipad
-//        TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+ ..
-//                "/modules/scipad/tcl/scipad.tcl""""}"")} ""seq"" ")
+        // Although the following line might seem to be a bit too much it is
+        // designed to take advantage of the ScilabEval sequential mode in
+        // order to prevent flushing of events by Scilab to Tcl during the
+        // launch of Scipad
+        //        TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {source """""+SCI+ ..
+        //                "/modules/scipad/tcl/scipad.tcl""""}"")} ""seq"" ")
         TCL_EvalStr("source """+SCI+"/modules/scipad/tcl/scipad.tcl""","scipad")
         nfiles=argn(2)
         if nfiles>0 then
@@ -62,23 +62,23 @@ function scipad(varargin)
                 case 1 then filetoopen=string(f); validfile=%t;
                 case 8 then filetoopen=string(f); validfile=%t;
                 case 10 then filetoopen=f; validfile=%t;
-////nice try, but can't be done. The assignement to the argument
-//// overrides the original function name, and this is correct.
-//              case 13 then
-//                  b=macr2tree(f); funname=b(2) //DOESN'T WORK. How else?
-//                  libmacro=whereis(funname)
-//                  disp(libmacro,funname)
-//                  if libmacro<>[] & funname<>[] then
-//                      a=string(eval(libmacro));libpath=a(1)
-//                      if libpath<>[] then
-//                          validfile=%t;
-//                          //the correspondance between function and file name it is tacitly assumed
-//                          filetoopen=pathconvert(libpath+funname+".sci",%f)
-//                      else
-//                          warning("Function "+funname+"is not contained in a loaded library, "..
-//                                  +"Scipad doesn''t know where to find its source")
-//                      end
-//                  end
+                    ////nice try, but can't be done. The assignement to the argument
+                    //// overrides the original function name, and this is correct.
+                    //              case 13 then
+                    //                  b=macr2tree(f); funname=b(2) //DOESN'T WORK. How else?
+                    //                  libmacro=whereis(funname)
+                    //                  disp(libmacro,funname)
+                    //                  if libmacro<>[] & funname<>[] then
+                    //                      a=string(eval(libmacro));libpath=a(1)
+                    //                      if libpath<>[] then
+                    //                          validfile=%t;
+                    //                          //the correspondance between function and file name it is tacitly assumed
+                    //                          filetoopen=pathconvert(libpath+funname+".sci",%f)
+                    //                      else
+                    //                          warning("Function "+funname+"is not contained in a loaded library, "..
+                    //                                  +"Scipad doesn''t know where to find its source")
+                    //                      end
+                    //                  end
                 else
                     warning("Scipad cannot open a "+typeof(f)+" object!")
                 end
@@ -87,11 +87,11 @@ function scipad(varargin)
                     if MSDOS then
                         filetoopen=strsubst(filetoopen,"\","/");
                     end
-//  Given that scipad is open via a ScilabEval as is done above, the initial
-//  opening of files has to be done in the same way, so that the command is sequenced
-//  after scipad is really open
-//                  TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {openfile {"+..
-//                              filetoopen +"}}"")} ""seq"" ")
+                    //  Given that scipad is open via a ScilabEval as is done above, the initial
+                    //  opening of files has to be done in the same way, so that the command is sequenced
+                    //  after scipad is really open
+                    //                  TCL_EvalStr("ScilabEval {TCL_EvalStr(""scipad eval {openfile {"+..
+                    //                              filetoopen +"}}"")} ""seq"" ")
                     TCL_EvalStr("openfile """+filetoopen+"""","scipad")
                 end
             end  // end of "for i=1:nfiles"

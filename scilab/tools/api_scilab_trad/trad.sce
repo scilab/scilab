@@ -38,7 +38,7 @@ function status = trad(inputFile, backupFile)
         copyfile(inputFile, backupFile);
     end
     inputFile = pathconvert(inputFile, %f);
-        //check if astyle exist on computer
+    //check if astyle exist on computer
     cmd = "astyle --pad-header --suffix=none --pad-oper --indent-col1-comments --indent-switches --add-brackets --style=bsd --formatted ";
     if getos() == "Windows" then
         cmd = SCI + "/tools/astyle/" + cmd + inputFile;
@@ -73,14 +73,14 @@ function status = trad(inputFile, backupFile)
     index = grep(result, "/#include [""<]localization.h[""<]/", "r");
     if index == [] then
         index = grep(result, "/#include [""<]api_scilab.h["">]/", "r");
-    result = [result(1:index) ; "#include ""localization.h""" ; result((index+1):$)];
+        result = [result(1:index) ; "#include ""localization.h""" ; result((index+1):$)];
     end
 
     //add Scierror header
     index = grep(result, "/#include [""<]Scierror.h[""<]/", "r");
     if index == [] then
         index = grep(result, "/#include [""<]api_scilab.h["">]/", "r");
-    result = [result(1:index) ; "#include ""Scierror.h""" ; result((index+1):$)];
+        result = [result(1:index) ; "#include ""Scierror.h""" ; result((index+1):$)];
     end
 
     printf(":\tOK\n");
@@ -171,9 +171,9 @@ function status = trad(inputFile, backupFile)
     dec = result(index);
     dec = strsubst(dec, " //@MOVE@", "");
     dec = ["";
-           "//WARNING ALL NEW DECALRATIONS ARE HERE IF YOUR HAVE MANY FUNCTIONS";
-           "//IN THE FILE YOU HAVE PROBABLY TO MOVE DECLARATIONS IN GOOD FUNCTIONS";
-           dec];
+    "//WARNING ALL NEW DECALRATIONS ARE HERE IF YOUR HAVE MANY FUNCTIONS";
+    "//IN THE FILE YOU HAVE PROBABLY TO MOVE DECLARATIONS IN GOOD FUNCTIONS";
+    dec];
     result(index) = [];
 
     sciErrPos = grep(result, "SciErr sciErr;");
@@ -267,31 +267,31 @@ function result = commonDouble(str, findExp, replaceExp)
     index = grep(result, findExp, "r");
     while index <> []
         i = index(1);
-        [start, end, match, captured] = regexp(result(i), findExp);
-        replace = replaceExp;
+    [start, end, match, captured] = regexp(result(i), findExp);
+    replace = replaceExp;
 
-        if size(captured, "c") >= 5 then
-            //try to replace (i)stk(\5*) by (\5*).
-            if captured(5) <> "" then
-                //hstk(\5*) -> (long long*)(\5*)
-                result = sed(result, "/hstk\(" + captured(5) + "(.*[^)]?)\)/", "(long long*)(" + captured(5) + "\1)");
-                result = sed(result, "/istk\(" + captured(5) + "(.*[^)]?)\)/", "(int*)(" + captured(5) + "\1)");
-                result = sed(result, "/[^(csz]?stk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
-            end
+    if size(captured, "c") >= 5 then
+        //try to replace (i)stk(\5*) by (\5*).
+        if captured(5) <> "" then
+            //hstk(\5*) -> (long long*)(\5*)
+            result = sed(result, "/hstk\(" + captured(5) + "(.*[^)]?)\)/", "(long long*)(" + captured(5) + "\1)");
+            result = sed(result, "/istk\(" + captured(5) + "(.*[^)]?)\)/", "(int*)(" + captured(5) + "\1)");
+            result = sed(result, "/[^(csz]?stk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
         end
-
-        for j = 1:size(captured, "c")
-            replace = strsubst(replace, "\" + string(j), captured(j));
-        end
-
-        if size(replace, "*") > 1 then
-            result = [result(1:(i-1)); replace; result((i+1):$)];
-        else
-            result(i) = strsubst(str(i), match, replace);
-        end
-
-        index = grep(result, findExp, "r");
     end
+
+    for j = 1:size(captured, "c")
+        replace = strsubst(replace, "\" + string(j), captured(j));
+    end
+
+    if size(replace, "*") > 1 then
+        result = [result(1:(i-1)); replace; result((i+1):$)];
+    else
+        result(i) = strsubst(str(i), match, replace);
+    end
+
+    index = grep(result, findExp, "r");
+end
 endfunction
 
 function result = GetDoubleComplex(str)
@@ -337,39 +337,39 @@ function result = commonDoubleComplex(str, findExp, replaceExp)
     index = grep(result, findExp, "r");
     while index <> []
         i = index(1);
-        [start, end, match, captured] = regexp(result(i), findExp);
-        replace = replaceExp;
+    [start, end, match, captured] = regexp(result(i), findExp);
+    replace = replaceExp;
 
-        if size(captured, "c") >= 6 then
-            //try to replace stk(\6*) by (\6*).
-            if captured(6) <> "" then
-                result = sed(result, "/hstk\(" + captured(5) + "(.*[^)]?)\)/", "(long long*)(" + captured(5) + "\1)");
-                result = sed(result, "/istk\(" + captured(5) + "(.*[^)]?)\)/", "(int*)(" + captured(5) + "\1)");
-                result = sed(result, "/[^(csz]?stk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
-            end
+    if size(captured, "c") >= 6 then
+        //try to replace stk(\6*) by (\6*).
+        if captured(6) <> "" then
+            result = sed(result, "/hstk\(" + captured(5) + "(.*[^)]?)\)/", "(long long*)(" + captured(5) + "\1)");
+            result = sed(result, "/istk\(" + captured(5) + "(.*[^)]?)\)/", "(int*)(" + captured(5) + "\1)");
+            result = sed(result, "/[^(csz]?stk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
         end
-
-        if size(captured, "c") >= 7 then
-            //try to replace stk(\7*) by (\7*).
-            if captured(7) <> "" then
-                result = sed(result, "/hstk\(" + captured(7) + "(.*[^)]?)\)/", "(long long*)(" + captured(7) + "\1)");
-                result = sed(result, "/istk\(" + captured(7) + "(.*[^)]?)\)/", "(int*)(" + captured(7) + "\1)");
-                result = sed(result, "/[^(csz]?stk\(" + captured(7) + "(.*[^)]?)\)/", "(" + captured(7) + "\1)");
-            end
-        end
-
-        for j = 1:size(captured, "c")
-            replace = strsubst(replace, "\" + string(j), captured(j));
-        end
-
-        if size(replace, "*") > 1 then
-            result = [result(1:(i-1)); replace; result((i+1):$)];
-        else
-            result(i) = strsubst(str(i), match, replace);
-        end
-
-        index = grep(result, findExp, "r");
     end
+
+    if size(captured, "c") >= 7 then
+        //try to replace stk(\7*) by (\7*).
+        if captured(7) <> "" then
+            result = sed(result, "/hstk\(" + captured(7) + "(.*[^)]?)\)/", "(long long*)(" + captured(7) + "\1)");
+            result = sed(result, "/istk\(" + captured(7) + "(.*[^)]?)\)/", "(int*)(" + captured(7) + "\1)");
+            result = sed(result, "/[^(csz]?stk\(" + captured(7) + "(.*[^)]?)\)/", "(" + captured(7) + "\1)");
+        end
+    end
+
+    for j = 1:size(captured, "c")
+        replace = strsubst(replace, "\" + string(j), captured(j));
+    end
+
+    if size(replace, "*") > 1 then
+        result = [result(1:(i-1)); replace; result((i+1):$)];
+    else
+        result(i) = strsubst(str(i), match, replace);
+    end
+
+    index = grep(result, findExp, "r");
+end
 endfunction
 
 
@@ -414,28 +414,28 @@ function result = commonString(str, findExp, ReplaceExp)
     index = grep(result, findExp, "r");
     while index <> []
         i = index(1);
-        [start, end, match, captured] = regexp(result(i), findExp);
-        replace = replaceExp;
+    [start, end, match, captured] = regexp(result(i), findExp);
+    replace = replaceExp;
 
-        if size(captured, "c") >= 5 then
-            //try to replace stk(\5*) by (\5*).
-            if captured(5) <> "" then
-                result = sed(result, "/cstk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
-            end
+    if size(captured, "c") >= 5 then
+        //try to replace stk(\5*) by (\5*).
+        if captured(5) <> "" then
+            result = sed(result, "/cstk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
         end
-
-        for j = 1:size(captured, "c")
-            replace = strsubst(replace, "\" + string(j), captured(j));
-        end
-
-        if size(replace, "*") > 1 then
-            result = [result(1:(i-1)); replace; result((i+1):$)];
-        else
-            result(i) = strsubst(str(i), match, replace);
-        end
-
-        index = grep(result, findExp, "r");
     end
+
+    for j = 1:size(captured, "c")
+        replace = strsubst(replace, "\" + string(j), captured(j));
+    end
+
+    if size(replace, "*") > 1 then
+        result = [result(1:(i-1)); replace; result((i+1):$)];
+    else
+        result(i) = strsubst(str(i), match, replace);
+    end
+
+    index = grep(result, findExp, "r");
+end
 endfunction
 
 //////////////
@@ -467,28 +467,28 @@ function result = commonBool(str, findExp, ReplaceExp)
     index = grep(result, findExp, "r");
     while index <> []
         i = index(1);
-        [start, end, match, captured] = regexp(result(i), findExp);
-        replace = replaceExp;
+    [start, end, match, captured] = regexp(result(i), findExp);
+    replace = replaceExp;
 
-        if size(captured, "c") >= 5 then
-            //try to replace stk(\5*) by (\5*).
-            if captured(5) <> "" then
-                result = sed(result, "/istk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
-            end
+    if size(captured, "c") >= 5 then
+        //try to replace stk(\5*) by (\5*).
+        if captured(5) <> "" then
+            result = sed(result, "/istk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
         end
-
-        for j = 1:size(captured, "c")
-            replace = strsubst(replace, "\" + string(j), captured(j));
-        end
-
-        if size(replace, "*") > 1 then
-            result = [result(1:(i-1)); replace; result((i+1):$)];
-        else
-            result(i) = strsubst(str(i), match, replace);
-        end
-
-        index = grep(result, findExp, "r");
     end
+
+    for j = 1:size(captured, "c")
+        replace = strsubst(replace, "\" + string(j), captured(j));
+    end
+
+    if size(replace, "*") > 1 then
+        result = [result(1:(i-1)); replace; result((i+1):$)];
+    else
+        result(i) = strsubst(str(i), match, replace);
+    end
+
+    index = grep(result, findExp, "r");
+end
 endfunction
 
 /////////////////
@@ -520,28 +520,28 @@ function result = commonPointer(str, findExp, ReplaceExp)
     index = grep(result, findExp, "r");
     while index <> []
         i = index(1);
-        [start, end, match, captured] = regexp(result(i), findExp);
-        replace = replaceExp;
+    [start, end, match, captured] = regexp(result(i), findExp);
+    replace = replaceExp;
 
-        if size(captured, "c") >= 5 then
-            //try to replace stk(\5*) by (\5*).
-            if captured(5) <> "" then
-                result = sed(result, "/[^(cisz]?stk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
-            end
+    if size(captured, "c") >= 5 then
+        //try to replace stk(\5*) by (\5*).
+        if captured(5) <> "" then
+            result = sed(result, "/[^(cisz]?stk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
         end
-
-        for j = 1:size(captured, "c")
-            replace = strsubst(replace, "\" + string(j), captured(j));
-        end
-
-        if size(replace, "*") > 1 then
-            result = [result(1:(i-1)); replace; result((i+1):$)];
-        else
-            result(i) = strsubst(str(i), match, replace);
-        end
-
-        index = grep(result, findExp, "r");
     end
+
+    for j = 1:size(captured, "c")
+        replace = strsubst(replace, "\" + string(j), captured(j));
+    end
+
+    if size(replace, "*") > 1 then
+        result = [result(1:(i-1)); replace; result((i+1):$)];
+    else
+        result(i) = strsubst(str(i), match, replace);
+    end
+
+    index = grep(result, findExp, "r");
+end
 endfunction
 
 ////////////////
@@ -573,28 +573,28 @@ function result = commonHandle(str, findExp, ReplaceExp)
     index = grep(result, findExp, "r");
     while index <> []
         i = index(1);
-        [start, end, match, captured] = regexp(result(i), findExp);
-        replace = replaceExp;
+    [start, end, match, captured] = regexp(result(i), findExp);
+    replace = replaceExp;
 
-        if size(captured, "c") >= 5 then
-            //try to replace stk(\5*) by (\5*).
-            if captured(5) <> "" then
-                result = sed(result, "/[h]?stk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
-            end
+    if size(captured, "c") >= 5 then
+        //try to replace stk(\5*) by (\5*).
+        if captured(5) <> "" then
+            result = sed(result, "/[h]?stk\(" + captured(5) + "(.*[^)]?)\)/", "(" + captured(5) + "\1)");
         end
-
-        for j = 1:size(captured, "c")
-            replace = strsubst(replace, "\" + string(j), captured(j));
-        end
-
-        if size(replace, "*") > 1 then
-            result = [result(1:(i-1)); replace; result((i+1):$)];
-        else
-            result(i) = strsubst(str(i), match, replace);
-        end
-
-        index = grep(result, findExp, "r");
     end
+
+    for j = 1:size(captured, "c")
+        replace = strsubst(replace, "\" + string(j), captured(j));
+    end
+
+    if size(replace, "*") > 1 then
+        result = [result(1:(i-1)); replace; result((i+1):$)];
+    else
+        result(i) = strsubst(str(i), match, replace);
+    end
+
+    index = grep(result, findExp, "r");
+end
 endfunction
 
 ///////////////

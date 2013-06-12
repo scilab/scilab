@@ -18,131 +18,131 @@
 #include "hess.h"
 
 extern void C2F(dgehrd)(int const * piN, int const * piLo, int const * piHi, double* pA, int const * piLDA, double* pTau
-			, double* pWork, int const * piLWork, int * piInfo);
+                        , double* pWork, int const * piLWork, int * piInfo);
 extern void C2F(zgehrd)(int const * piN, int const * piLo, int const * piHi, double* pA, int const * piLDA, double* pTau
-			, double* pWork, int const * piLWork, int * piInfo);
+                        , double* pWork, int const * piLWork, int * piInfo);
 
 extern void C2F(dorghr)(int const * piN, int const * piLo, int const * piHi, double* pA, int const * piLDA, double* pTau
-			, double* pWork, int const * piLWork, int * piInfo);
+                        , double* pWork, int const * piLWork, int * piInfo);
 extern void C2F(zunghr)(int const * piN, int const * piLo, int const * piHi, double* pA, int const * piLDA, double* pTau
-			, double* pWork, int const * piLWork, int * piInfo);
+                        , double* pWork, int const * piLWork, int * piInfo);
 
 extern void C2F(zlacpy)(char const * uplo /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
-			, double const* pdblSource, int const * piLDSource, double* pdblDest, int const* piLDDest);
+                        , double const* pdblSource, int const * piLDSource, double* pdblDest, int const* piLDDest);
 
 extern void C2F(dlacpy)(char const * uplo /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
-			, double const* pdblSource, int const * piLDSource, double* pdblDest, int const* piLDDest);
+                        , double const* pdblSource, int const * piLDSource, double* pdblDest, int const* piLDDest);
 
 #define WORKING_Z_QUERIES 0
 
 /* min = hi - lo * sizeof & Max(1,N) */
 void workSizes(int n, int lo, int hi, int complexArg, int* bestSize, int* semiOptimalSize, int* minimalSize)
 {
-  double optHrd, optGhr;
-  int query= -1;
-  int info= 0;
-  if( WORKING_Z_QUERIES && complexArg)
+    double optHrd, optGhr;
+    int query = -1;
+    int info = 0;
+    if ( WORKING_Z_QUERIES && complexArg)
     {
-      C2F(zgehrd)(&n, &lo, &hi, NULL, &n, NULL, &optHrd, &query, &info);
-      C2F(zunghr)(&n, &lo, &hi, NULL, &n, NULL, &optGhr, &query, &info);
+        C2F(zgehrd)(&n, &lo, &hi, NULL, &n, NULL, &optHrd, &query, &info);
+        C2F(zunghr)(&n, &lo, &hi, NULL, &n, NULL, &optGhr, &query, &info);
     }
-  else
+    else
     {
-      C2F(dgehrd)(&n, &lo, &hi, NULL, &n, NULL, &optHrd, &query, &info);
-      C2F(dorghr)(&n, &lo, &hi, NULL, &n, NULL, &optGhr, &query, &info);      
+        C2F(dgehrd)(&n, &lo, &hi, NULL, &n, NULL, &optHrd, &query, &info);
+        C2F(dorghr)(&n, &lo, &hi, NULL, &n, NULL, &optGhr, &query, &info);
     }
-  *bestSize= (int)Max(optHrd, optGhr);
-  *semiOptimalSize= (int)Min(optHrd, optGhr);
-  *minimalSize= Max( (hi-lo), Max(1, n));
+    *bestSize = (int)Max(optHrd, optGhr);
+    *semiOptimalSize = (int)Min(optHrd, optGhr);
+    *minimalSize = Max( (hi - lo), Max(1, n));
 }
 
 
 int iHessM(double * pData, int iCols, int complexArg, double* pH)
 {
-  /* dynamic allocation of Tau and Work */
-  int ret= 0;
-  int ws[3];
-  int workSize;
-  double* pWork= NULL;
-  double* pTau=  NULL;
-  workSizes(iCols, 1, iCols, complexArg, ws, ws+1, ws+2);
-  {
-    int i;
-    for(i=0; (pWork==NULL) && (i!=3); ++i)
-      {
-	workSize= ws[i];
-	pWork= (double*) MALLOC( workSize * (complexArg ?  sizeof(doublecomplex): sizeof(double))) ;
-      }
-  }
-  if(pWork)
+    /* dynamic allocation of Tau and Work */
+    int ret = 0;
+    int ws[3];
+    int workSize;
+    double* pWork = NULL;
+    double* pTau =  NULL;
+    workSizes(iCols, 1, iCols, complexArg, ws, ws + 1, ws + 2);
     {
-      pTau= (double*) MALLOC( (iCols-1) * (complexArg ?  sizeof(doublecomplex): sizeof(double))) ;
+        int i;
+        for (i = 0; (pWork == NULL) && (i != 3); ++i)
+        {
+            workSize = ws[i];
+            pWork = (double*) MALLOC( workSize * (complexArg ?  sizeof(doublecomplex) : sizeof(double))) ;
+        }
     }
-  if( pWork && pTau )
+    if (pWork)
     {
-      ret= iHess(pData, iCols, complexArg, pH, pTau, pWork, workSize);
+        pTau = (double*) MALLOC( (iCols - 1) * (complexArg ?  sizeof(doublecomplex) : sizeof(double))) ;
     }
-  else
+    if ( pWork && pTau )
     {
-      ret= 1; /* there should be an error cond enum for inner routines that should not depend on macro _ */
+        ret = iHess(pData, iCols, complexArg, pH, pTau, pWork, workSize);
     }
-  return ret;
+    else
+    {
+        ret = 1; /* there should be an error cond enum for inner routines that should not depend on macro _ */
+    }
+    return ret;
 }
 
 int iHess(double* pData, int iCols, int complexArg, double* pH, double* pTau, double* pWork, int workSize)
 {
-  int const one= 1;
-  int info;
-  if(complexArg)
+    int const one = 1;
+    int info;
+    if (complexArg)
     {
-      C2F(zgehrd)(&iCols, &one, &iCols, pData, &iCols, pTau, pWork, &workSize, &info);
+        C2F(zgehrd)(&iCols, &one, &iCols, pData, &iCols, pTau, pWork, &workSize, &info);
     }
-  else
+    else
     {
-      C2F(dgehrd)(&iCols, &one, &iCols, pData, &iCols, pTau, pWork, &workSize, &info);
+        C2F(dgehrd)(&iCols, &one, &iCols, pData, &iCols, pTau, pWork, &workSize, &info);
     }
-  if(pH) /* -> Lhs == 2 */
+    if (pH) /* -> Lhs == 2 */
     {
-      /* TODO : replace useless [z|d]lapcy with memcpy(pH, pData, iCols * iCols * (complexArg ? sizeof(doublecomplex): sizeof(double))) ; */
-      if(complexArg)
-	{
-	  C2F(zlacpy)( "F", &iCols, &iCols, pData, &iCols, pH, &iCols);
-	}
-      else
-	{
-	  C2F(dlacpy)( "F", &iCols, &iCols, pData, &iCols, pH, &iCols);
-	}
+        /* TODO : replace useless [z|d]lapcy with memcpy(pH, pData, iCols * iCols * (complexArg ? sizeof(doublecomplex): sizeof(double))) ; */
+        if (complexArg)
+        {
+            C2F(zlacpy)( "F", &iCols, &iCols, pData, &iCols, pH, &iCols);
+        }
+        else
+        {
+            C2F(dlacpy)( "F", &iCols, &iCols, pData, &iCols, pH, &iCols);
+        }
     }
-  if(iCols > 2)
+    if (iCols > 2)
     {
-      int i, j;
-      for(j=0; j!= iCols-2; ++j)
-	{
-	  for(i= j+2; i != iCols; ++i)
-	    {
-	      if(complexArg)
-		{
-		  double* ptr= pData+ 2*(i+j*iCols);
-		  *ptr= 0.;
-		  *(ptr+1)=0.;
-		}
-	      else
-		{
-		  *(pData+i+j*iCols)= 0.;
-		}
-	    }
-	}
+        int i, j;
+        for (j = 0; j != iCols - 2; ++j)
+        {
+            for (i = j + 2; i != iCols; ++i)
+            {
+                if (complexArg)
+                {
+                    double* ptr = pData + 2 * (i + j * iCols);
+                    *ptr = 0.;
+                    *(ptr + 1) = 0.;
+                }
+                else
+                {
+                    *(pData + i + j * iCols) = 0.;
+                }
+            }
+        }
     }
-  if(pH) /* lhs == 2 */
+    if (pH) /* lhs == 2 */
     {
-      if(complexArg)
-	{
-	  C2F(zunghr)(&iCols, &one, &iCols, pH, &iCols, pTau, pWork, &workSize, &info);
-	}
-      else
-	{
-	   C2F(dorghr)(&iCols, &one, &iCols, pH, &iCols, pTau, pWork, &workSize, &info);
-	}
+        if (complexArg)
+        {
+            C2F(zunghr)(&iCols, &one, &iCols, pH, &iCols, pTau, pWork, &workSize, &info);
+        }
+        else
+        {
+            C2F(dorghr)(&iCols, &one, &iCols, pH, &iCols, pTau, pWork, &workSize, &info);
+        }
     }
-  return info;
+    return info;
 }

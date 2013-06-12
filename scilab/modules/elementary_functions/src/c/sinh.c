@@ -14,7 +14,7 @@
 /*sinh*/
 double dsinhs(double _dblVal)
 {
-	return sinh(_dblVal);
+    return sinh(_dblVal);
 }
 
 

@@ -32,10 +32,10 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     global %helps_modules;
 
     if %helps_modules == [] then
-      moduleslist = getmodules();
-      for i = 1:size(moduleslist,'*')
-        add_module_help_chapter(moduleslist(i));
-      end
+        moduleslist = getmodules();
+        for i = 1:size(moduleslist,"*")
+            add_module_help_chapter(moduleslist(i));
+        end
     end
 
     %HELPS = [%helps_modules; %helps];
@@ -55,7 +55,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
     all_scilab_help     = %F;
     my_wanted_language  = getlanguage(); // This variable is only need when
-                                         // build all scilab help
+    // build all scilab help
 
     [lhs,rhs] = argn(0);
 
@@ -117,38 +117,38 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         language_system_c      = []; // with the default language
 
         if my_wanted_language == getdefaultlanguage() then
-            for k=1:size(dirs,'*')
+            for k=1:size(dirs,"*")
                 directory_language = [directory_language;my_wanted_language];
                 language_system    = [language_system;%F];
             end
-            for k=1:size(dirs_m,'*')
+            for k=1:size(dirs_m,"*")
                 directory_language_m = [directory_language_m;my_wanted_language];
                 language_system_m    = [language_system_m;%F];
             end
-            for k=1:size(dirs_c,'*')
+            for k=1:size(dirs_c,"*")
                 directory_language_c = [directory_language_c;my_wanted_language];
                 language_system_c    = [language_system_c;%F];
             end
         else
-            for k=1:size(dirs,'*')
+            for k=1:size(dirs,"*")
                 directory_language = [directory_language;my_wanted_language];
                 default_language   = [default_language;getdefaultlanguage()];
                 language_system    = [language_system;%T]; // Enable the language system
             end
-            for k=1:size(dirs_m,'*')
+            for k=1:size(dirs_m,"*")
                 directory_language_m = [directory_language_m;my_wanted_language];
                 default_language_m   = [default_language_m;getdefaultlanguage()];
                 language_system_m    = [language_system_m;%T]; // Enable the language system
             end
-            for k=1:size(dirs_c,'*')
+            for k=1:size(dirs_c,"*")
                 directory_language_c = [directory_language_c;my_wanted_language];
                 default_language_c   = [default_language_c;getdefaultlanguage()];
                 language_system_c    = [language_system_c;%T]; // Enable the language system
             end
         end
 
-    // Only directories are precised
-    // ---------------------------------------------------------------------
+        // Only directories are precised
+        // ---------------------------------------------------------------------
 
     elseif (rhs == 2) & (dirs <> []) then
 
@@ -157,7 +157,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         directory_language = [];
         default_language   = [];
 
-        for k=1:size(dirs,'*')
+        for k=1:size(dirs,"*")
             directory_language = [directory_language ; x2f_guess_lang(dirs(k)) ]; // Language detection
             default_language   = [default_language   ; getdefaultlanguage()]; // Default Language
             titles             = [titles;gettext("Help chapter")+" "+string(k)];
@@ -169,8 +169,8 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
         end
 
-    // Only directories and title are precised
-    // ---------------------------------------------------------------------
+        // Only directories and title are precised
+        // ---------------------------------------------------------------------
 
     elseif rhs == 3 then
 
@@ -178,7 +178,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         directory_language = [];
         default_language   = [];
 
-        for k=1:size(dirs,'*')
+        for k=1:size(dirs,"*")
             directory_language = [directory_language ; x2f_guess_lang(dirs(k)) ]; // Language detection
             default_language   = [default_language   ; getdefaultlanguage()]; // Default Language
 
@@ -189,15 +189,15 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
         end
 
-    // Directories, title and languages are specified
-    // ---------------------------------------------------------------------
+        // Directories, title and languages are specified
+        // ---------------------------------------------------------------------
 
     elseif rhs == 4 then
 
         language_system   = [];
         default_language  = [];
 
-        for k=1:size(dirs,'*')
+        for k=1:size(dirs,"*")
             default_language = [default_language   ; getdefaultlanguage()]; // Default Language
 
             if directory_language(k) == default_language(k) then
@@ -207,14 +207,14 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
         end
 
-    // All is specified
-    // ---------------------------------------------------------------------
+        // All is specified
+        // ---------------------------------------------------------------------
 
     elseif rhs == 5 then
 
         language_system   = [];
 
-        for k=1:size(dirs,'*')
+        for k=1:size(dirs,"*")
             if isdir(pathconvert(dirs(k)+"/../"+default_language(k),%f,%f)) then
                 if directory_language(k) == default_language(k) then
                     language_system    = [language_system;%F]; // Enable the language system
@@ -229,7 +229,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // Convert paths into absolute paths
     // ---------------------------------------------------------------------
 
-    for k=1:size(dirs,'*');
+    for k=1:size(dirs,"*");
         if ~isdir(dirs(k)) then
             error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs(k)));
         end
@@ -239,14 +239,14 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
     if all_scilab_help then
 
-        for k=1:size(dirs_m,'*');
+        for k=1:size(dirs_m,"*");
             if ~isdir(dirs_m(k)) then
                 error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
             end
             dirs_m(k) = fullpath(dirs_m(k));
         end
 
-        for k=1:size(dirs_c,'*');
+        for k=1:size(dirs_c,"*");
             if ~isdir(dirs_c(k)) then
                 error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
             end
@@ -521,7 +521,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
         elseif is_html then
             my_html_files = listfiles(buildDoc_dir);
-            for k=1:size(my_html_files,'*')
+            for k=1:size(my_html_files,"*")
                 if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
                     error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                 end
@@ -615,7 +615,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             elseif is_html then
                 my_html_files = listfiles(buildDoc_dir);
-                for k=1:size(my_html_files,'*')
+                for k=1:size(my_html_files,"*")
                     if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
                         error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                     end
@@ -637,9 +637,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
     else
-    // ------------------------------
-    // external (Toolboxes)
-    // ------------------------------
+        // ------------------------------
+        // external (Toolboxes)
+        // ------------------------------
 
 
         // Dirs are precised in the input arguments
@@ -731,10 +731,10 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             // move the generated file(s)
             if is_chm then
-            // nothing to do
+                // nothing to do
             elseif is_html then
                 my_html_files = listfiles(buildDoc_dir);
-                for k=1:size(my_html_files,'*')
+                for k=1:size(my_html_files,"*")
                     if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
                         error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
                     end
@@ -828,7 +828,7 @@ function x2f_reset_help_mod_var(language)
     module_list = getmodules();
 
     // Loop on modules
-    for k=1:size(module_list,'*');
+    for k=1:size(module_list,"*");
         addchapter_path = getlongpathname(SCI+"/modules/"+module_list(k)+"/help/"+language+"/addchapter.sce");
         if fileinfo(addchapter_path)<>[] then
             exec(addchapter_path,-1);
@@ -935,7 +935,7 @@ function tree = x2f_dir_to_tree(directory,level)
 
     // Get the default title
 
-    if getos() == 'Windows' then
+    if getos() == "Windows" then
         tmpdirectory = strsubst(directory,"/\\$/","","r");
     else
         tmpdirectory = strsubst(directory,"/\/$/","","r");
@@ -1120,7 +1120,7 @@ function directories = x2f_get_directories(directory)
     directories(grep(directories,"/^\./","r")) = [];
 
     // Remove blank strings from the list
-    directories(find(directories == '')) = [];
+    directories(find(directories == "")) = [];
 
     // Remove all scilab_xx_XX_help directories from the list
     directories( grep(directories,"/^scilab_[a-z][a-z]_[A-Z][A-Z]_help$/","r") ) = []
@@ -1354,14 +1354,14 @@ function master_document = x2f_tree_to_master( tree )
     end
 
     master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>";..
-        "<!DOCTYPE book [";
-        "<!--Begin Entities-->"];
+    "<!DOCTYPE book [";
+    "<!--Begin Entities-->"];
 
     // Get the list of all xml files present in this tree
     tree_xmllist = x2f_cat_xmllist( tree , [] )
 
     // Process the path if under windows
-    if getos() == 'Windows' then
+    if getos() == "Windows" then
         tree_xmllist(:,2) = "file:///"+ getshortpathname(tree_xmllist(:,2));
     end
 
@@ -1391,20 +1391,20 @@ function master_document = x2f_tree_to_master( tree )
     book_title = strsubst(book_title,"<"  ,"&lt;");
 
     master_document    = [ master_document; ..
-        "<!--End Entities-->"; ..
-        "]>"; ..
-        "<book version=""5.0-subset Scilab"" xml:lang="""+language+""""; ..
-        "      xmlns=""http://docbook.org/ns/docbook"""; ..
-        "      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
-        "      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..
-        "      xmlns:svg=""http://www.w3.org/2000/svg"""; ..
-        "      xmlns:mml=""http://www.w3.org/1998/Math/MathML"""; ..
-        "      xmlns:html=""http://www.w3.org/1999/xhtml"""; ..
-        "      xmlns:db=""http://docbook.org/ns/docbook"">"; ..
-        "  <info xml:id=''"+x2f_title2id(book_title)+"_manual''>"; ..
-        "    <title>"+book_title+"</title>"; ..
-        "  </info>"; ..
-        ""];
+    "<!--End Entities-->"; ..
+    "]>"; ..
+    "<book version=""5.0-subset Scilab"" xml:lang="""+language+""""; ..
+    "      xmlns=""http://docbook.org/ns/docbook"""; ..
+    "      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
+    "      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..
+    "      xmlns:svg=""http://www.w3.org/2000/svg"""; ..
+    "      xmlns:mml=""http://www.w3.org/1998/Math/MathML"""; ..
+    "      xmlns:html=""http://www.w3.org/1999/xhtml"""; ..
+    "      xmlns:db=""http://docbook.org/ns/docbook"">"; ..
+    "  <info xml:id=''"+x2f_title2id(book_title)+"_manual''>"; ..
+    "    <title>"+book_title+"</title>"; ..
+    "  </info>"; ..
+    ""];
 
     // title management
     // =========================================================================
@@ -1502,14 +1502,14 @@ function master_section = x2f_tree_to_section( tree , offset )
     //  6 : sect4
 
     section_types = [ ..
-                "book"    ; ..
-                "part"    ; ..
-                "chapter" ; ..
-                "section" ; ..
-                "section"   ; ..
-                "section"   ; ..
-                "section"   ; ..
-                "section"   ];
+    "book"    ; ..
+    "part"    ; ..
+    "chapter" ; ..
+    "section" ; ..
+    "section"   ; ..
+    "section"   ; ..
+    "section"   ; ..
+    "section"   ];
 
     if isfield(tree,"level") & ((tree("level") + offset)>0) & ((tree("level") + offset)<8) then
         section_type = section_types( tree("level") + offset + 1 );

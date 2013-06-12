@@ -41,7 +41,7 @@ int set_user_data_property(void* _pvCtx, char* pobjUID, void* _pvData, int value
     increaseValRef(_pvCtx, (int*)_pvData);
 
     pPrevious = get_user_data_property(_pvCtx, pobjUID);
-    if(pPrevious)
+    if (pPrevious)
     {
         decreaseValRef(_pvCtx, (int*)pPrevious);
     }

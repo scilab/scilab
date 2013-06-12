@@ -43,7 +43,7 @@
         <para>
             The entries of <varname>y</varname> are the secant
             <latex>1/\cos(x)</latex> of the entries of <varname>x</varname> given in
-                degree. The results are real and in <latex>]-\infty -1] \cup [1 %infty[</latex>.
+            degree. The results are real and in <latex>]-\infty -1] \cup [1 %infty[</latex>.
             For entries equal to <literal>n*180</literal> with
             <literal>n</literal> integer, the result is exactly <literal>-1</literal>
             or <literal>+1</literal>. For entries equal to <literal>n*90</literal>with

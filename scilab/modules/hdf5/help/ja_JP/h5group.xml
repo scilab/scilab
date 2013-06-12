@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5group" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5group</refname>
+        
+        <refpurpose>グループを作成</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5group(obj, names)
+            
+            h5group(filename, names)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>names</term>
+                
+                <listitem>
+                    
+                    <para>名前を指定する文字列の行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>ファイル名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>グループの集合を作成します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+// ファイルを作成
+a = h5open(TMPDIR + "/test_group.h5", "a");
+
+// 10個のサブグループを有する10個のグループを作成
+// まず, 名前を作成
+gnames = "Group_" + string(1:10);
+sgnames = "SubGroup_" + string(1:10);
+names = gnames;
+for s=gnames
+    names = [names s + "/" + sgnames]
+end
+
+// 次に, グループを作成
+h5group(a, names);
+
+// 全てOKであることを確認
+h5ls(a)
+
+// ...そして
+h5ls(a, "Group_3")
+
+// a に関連するリソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5group">h5group</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5dataset">h5dataset</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5attr">h5attr</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

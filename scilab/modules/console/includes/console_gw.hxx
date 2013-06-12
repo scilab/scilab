@@ -23,10 +23,10 @@ extern "C"
 class ConsoleModule
 {
 private :
-   ConsoleModule(){};
-   ~ConsoleModule(){};
+    ConsoleModule() {};
+    ~ConsoleModule() {};
 public :
-   EXTERN_CONSOLE_GW static int Load();
+    EXTERN_CONSOLE_GW static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_clc);

@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     const char* pobjUID = NULL;
     types::InternalType* pOut = NULL;
 
-    if(in.size() < 1)
+    if (in.size() < 1)
     {
         //Error
         return types::Function::Error;
@@ -47,30 +47,30 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
     types::InternalType* p1 = in[0];
 
-    if(p1->isMList() || p1->isTList())
+    if (p1->isMList() || p1->isTList())
     {
         ExecVisitor exec;
         Overload::generateNameAndCall(L"get", in, _iRetCount, out, &exec);
         return types::Function::OK;
     }
 
-    if(p1->isHandle())
+    if (p1->isHandle())
     {
-        if(in.size() != 2)
+        if (in.size() != 2)
         {
             //Error
             return types::Function::Error;
         }
 
         types::GraphicHandle* pH = p1->getAs<types::GraphicHandle>();
-        if(pH->isScalar() == false)
+        if (pH->isScalar() == false)
         {
             ExecVisitor exec;
             return Overload::call(L"%h_get", in, _iRetCount, out, &exec);
         }
 
         pS = in[1]->getAs<types::String>();
-        if(in[1]->isString() == false || pS->isScalar() == false)
+        if (in[1]->isString() == false || pS->isScalar() == false)
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 2);
             return types::Function::Error;
@@ -78,16 +78,16 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
         llH = pH->get(0);
     }
-    else if(p1->isString())
+    else if (p1->isString())
     {
-        if(in.size() != 1)
+        if (in.size() != 1)
         {
             //Error
             return types::Function::Error;
         }
 
         pS = in[0]->getAs<types::String>();
-        if(in[0]->isString() == false || pS->isScalar() == false)
+        if (in[0]->isString() == false || pS->isScalar() == false)
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 1);
             return types::Function::Error;
@@ -95,18 +95,18 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
         wchar_t* pstProperty = pS->get(0);
 
-        if(wcscmp(pstProperty, L"default_figure") && wcscmp(pstProperty, L"default_axes"))
+        if (wcscmp(pstProperty, L"default_figure") && wcscmp(pstProperty, L"default_axes"))
         {
-            if( wcscmp(pstProperty, L"current_figure") &&
-                wcscmp(pstProperty, L"current_axes") &&
-                wcscmp(pstProperty, L"current_entity") &&
-                wcscmp(pstProperty, L"hdl") &&
-                wcscmp(pstProperty, L"figures_id"))
+            if ( wcscmp(pstProperty, L"current_figure") &&
+                    wcscmp(pstProperty, L"current_axes") &&
+                    wcscmp(pstProperty, L"current_entity") &&
+                    wcscmp(pstProperty, L"hdl") &&
+                    wcscmp(pstProperty, L"figures_id"))
             {
-                if( wcscmp(pstProperty, L"children") &&
-                    wcscmp(pstProperty, L"zoom_") &&
-                    wcscmp(pstProperty, L"clip_box") &&
-                    wcscmp(pstProperty, L"auto_"))
+                if ( wcscmp(pstProperty, L"children") &&
+                        wcscmp(pstProperty, L"zoom_") &&
+                        wcscmp(pstProperty, L"clip_box") &&
+                        wcscmp(pstProperty, L"auto_"))
                 {
                     getOrCreateDefaultSubwin();
                     llH = getHandle(getCurrentObject());
@@ -125,7 +125,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
     char* pstProperty = wide_string_to_UTF8(pS->get(0));
 
-    if(llH)
+    if (llH)
     {
         pobjUID = getObjectFromHandle((long)llH);
         if (pobjUID == NULL)
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
 
     pOut = (types::InternalType*)callGetProperty(NULL, (char*)pobjUID, pstProperty);
-    if(pOut == NULL)
+    if (pOut == NULL)
     {
         /* An error has occurred */
         FREE(pstProperty);

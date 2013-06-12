@@ -20,36 +20,36 @@
 // See the file ../license.txt
 //
 function [in,out] = get_objs_in_rect(scs_m,ox,oy,w,h)
-//returns in "in" the index of Scicos objects which are inside the
-//selected rectangle and in "out" index of Scicos objects which are
-//outside the rectangle
-  in = []; out = [] ; ok = %f;
-  for k=1:lstsize(scs_m.objs)
-    ok = %f;
-    o=scs_m.objs(k)
-    if typeof(o)=='Block'|typeof(o)=='Text' then
-      if (ox <= o.graphics.orig(1)) & ...
-         (oy >= o.graphics.orig(2)+o.graphics.sz(2)) & ...
-         ((ox+w) >= (o.graphics.orig(1)+o.graphics.sz(1))) & ...
-         ((oy-h) <= o.graphics.orig(2)) then
-           ok=%t
-           in=[in k]
-      end
+    //returns in "in" the index of Scicos objects which are inside the
+    //selected rectangle and in "out" index of Scicos objects which are
+    //outside the rectangle
+    in = []; out = [] ; ok = %f;
+    for k=1:lstsize(scs_m.objs)
+        ok = %f;
+        o=scs_m.objs(k)
+        if typeof(o)=="Block"|typeof(o)=="Text" then
+            if (ox <= o.graphics.orig(1)) & ...
+                (oy >= o.graphics.orig(2)+o.graphics.sz(2)) & ...
+                ((ox+w) >= (o.graphics.orig(1)+o.graphics.sz(1))) & ...
+                ((oy-h) <= o.graphics.orig(2)) then
+                ok=%t
+                in=[in k]
+            end
 
-     elseif  typeof(o)=='Link' then
-//       [x,y]=(o.xx,o.yy)
-      if (ox <= max(o.xx)) & ...
-         (oy >= max(o.yy)) & ...
-         ((ox+w) >= max(o.xx)) & ...
-         ((oy-h) <= min(o.yy)) then
-           ok=%t
-           in=[in k]
-      end
+        elseif  typeof(o)=="Link" then
+            //       [x,y]=(o.xx,o.yy)
+            if (ox <= max(o.xx)) & ...
+                (oy >= max(o.yy)) & ...
+                ((ox+w) >= max(o.xx)) & ...
+                ((oy-h) <= min(o.yy)) then
+                ok=%t
+                in=[in k]
+            end
 
-    else
-      x=[] // object is "Deleted"
+        else
+            x=[] // object is "Deleted"
+        end
+        if ~ok then out=[out k],end
+
     end
-    if ~ok then out=[out k],end
-
-  end
 endfunction

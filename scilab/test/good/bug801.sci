@@ -13,7 +13,7 @@ m=[ 2 3 4 5; 5 4 3 2];
 correct=%F
 
 if (covar(x,y,m) <> -0.1785714) then
-  correct=%T
+    correct=%T
 end
 
 affich_result(correct,801);

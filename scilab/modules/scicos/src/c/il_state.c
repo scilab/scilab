@@ -26,12 +26,12 @@ static int *il_state_save = NULL;
 /*--------------------------------------------------------------------------*/
 int *get_il_state(void)
 {
-	return il_state_save;
+    return il_state_save;
 }
 /*--------------------------------------------------------------------------*/
 int *set_il_state(int *_state)
 {
-	il_state_save = _state;
-	return il_state_save;
+    il_state_save = _state;
+    return il_state_save;
 }
 /*--------------------------------------------------------------------------*/

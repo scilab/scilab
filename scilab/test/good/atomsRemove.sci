@@ -31,7 +31,7 @@ function result = atomsRemove(packages,section)
 
     // Get scilab version (needed for later)
     // =========================================================================
-    sciversion = strcat(string(getversion('scilab')) + ".");
+    sciversion = strcat(string(getversion("scilab")) + ".");
 
     // Check input parameters
     // =========================================================================
@@ -206,11 +206,11 @@ function result = atomsRemove(packages,section)
             (grep(this_package_directory,"/^(SCI|SCIHOME)\"+filesep()+"/","r") == []) then
 
             atomsError("error", ..
-                msprintf( ..
-                    gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"), ..
-                        "atomsRemove", ..
-                        this_package_name, ..
-                        this_package_version));
+            msprintf( ..
+            gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"), ..
+            "atomsRemove", ..
+            this_package_name, ..
+            this_package_version));
         end
 
         if isdir(this_package_directory) then
@@ -219,12 +219,12 @@ function result = atomsRemove(packages,section)
 
             if uninstall_status<>1 then
                 atomsError("error", ..
-                    msprintf( ..
-                        gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
-                        "atomsRemove", ..
-                        this_package_name, ..
-                        this_package_version, ..
-                        strsubst(this_package_directory,"\","\\") ));
+                msprintf( ..
+                gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
+                "atomsRemove", ..
+                this_package_name, ..
+                this_package_version, ..
+                strsubst(this_package_directory,"\","\\") ));
             end
 
         end
@@ -238,12 +238,12 @@ function result = atomsRemove(packages,section)
             stat = rmdir(this_package_root_dir);
             if stat<>1 then
                 atomsError("error", ..
-                    msprintf( ..
-                        gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
-                        "atomsRemove", ..
-                        this_package_name, ..
-                        this_package_version, ..
-                        strsubst(this_package_root_dir,"\","\\") ));
+                msprintf( ..
+                gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
+                "atomsRemove", ..
+                this_package_name, ..
+                this_package_version, ..
+                strsubst(this_package_root_dir,"\","\\") ));
             end
         end
 

@@ -16,5 +16,5 @@
 //
 
 function [] = %_fec()
-  exec("SCI/modules/graphics/demos/fec/fec.ex1");
+    exec("SCI/modules/graphics/demos/fec/fec.ex1");
 endfunction

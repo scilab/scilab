@@ -7,16 +7,16 @@
 
 function [rep,stat] = javac(test_path,java_filename)
 
-	Command="javac -deprecation -d " ..
-			+ SCI + "/modules/javasci/tests/nonreg_tests -cp " ..
-			+ SCI + "/modules/javasci/jar/javasci.jar" ..
-			+ pathsep() +". " + java_filename;
-	
-	[rep,stat] = unix_g(Command);
-	
-	if (stat <> 0) then
-		warning("Error in the compilation of " + java_filename);
-		warning("Command was : " + Command);
-	end
-	
+    Command="javac -deprecation -d " ..
+    + SCI + "/modules/javasci/tests/nonreg_tests -cp " ..
+    + SCI + "/modules/javasci/jar/javasci.jar" ..
+    + pathsep() +". " + java_filename;
+
+    [rep,stat] = unix_g(Command);
+
+    if (stat <> 0) then
+        warning("Error in the compilation of " + java_filename);
+        warning("Command was : " + Command);
+    end
+
 endfunction

@@ -22,7 +22,7 @@ int sci_historysize(char *fname, int* pvApiCtx)
 {
     int iReturnedValue = 0;
 
-    Rhs = Max(Rhs,0);
+    Rhs = Max(Rhs, 0);
     CheckRhs(0, 1);
     CheckLhs(0, 1);
     if (Rhs == 1)
@@ -30,7 +30,7 @@ int sci_historysize(char *fname, int* pvApiCtx)
         int iValue = 0;
         int *piAddressVarOne = NULL;
         SciErr sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if(sciErr.iErr)
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -52,7 +52,7 @@ int sci_historysize(char *fname, int* pvApiCtx)
                     }
                     else
                     {
-                        Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"),fname,1, "max");
+                        Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"), fname, 1, "max");
                         freeAllocatedSingleString(paramValue);
                         paramValue = NULL;
                         return 0;
@@ -60,7 +60,7 @@ int sci_historysize(char *fname, int* pvApiCtx)
                 }
                 else
                 {
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 }
             }
             else

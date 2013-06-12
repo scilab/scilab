@@ -19,40 +19,40 @@
 // See the file ../license.txt
 //
 function XcosMenuCreateAtomic()
-// Copyright INRIA
-  if alreadyran then
-    Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
-		     '[alreadyran,%cpr]=do_terminate();%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
-		     'Select='+sci2exp(Select)+';Cmenu='"XcosMenuCreateAtomic'"';]
-    //return
-  else
-    K=find(Select(:,2)==%win)
-    if K==[] then
-      K = getblock(scs_m, %pt(:))
+    // Copyright INRIA
+    if alreadyran then
+        Scicos_commands=["%diagram_path_objective=[];%scicos_navig=1";
+        "[alreadyran,%cpr]=do_terminate();%diagram_path_objective="+sci2exp(super_path)+";%scicos_navig=1";
+        "Select="+sci2exp(Select)+";Cmenu='"XcosMenuCreateAtomic'"";]
+        //return
     else
-      K=Select(K,1)
+        K=find(Select(:,2)==%win)
+        if K==[] then
+            K = getblock(scs_m, %pt(:))
+        else
+            K=Select(K,1)
+        end
+        Cmenu=[];%pt=[];
+        if K==[] then
+            messagebox(_("No selected block in the current Scicos window."),"error","modal")
+            return
+        end
+        if size(K,"*")>1 then
+            messagebox(_("Only one block can be selected in current window for this operation."),"error","modal")
+            return
+        end
+        i=K
+        o=scs_m.objs(i)
+        if typeof(o)=="Block" then
+            if o.model.sim=="super" then
+                [o,needcompile,ok]=do_CreateAtomic(o,i,scs_m)
+                if ~ok then messagebox("Error in Creating Atomic","modal");return ;end
+                scs_m = update_redraw_obj(scs_m,list("objs",i),o)
+            else
+                messagebox(_("Atomic can only be affected to Non Atomic Super Blocks."),"error","modal");
+            end
+        else
+            messagebox(_("Atomic can only be affected to Non Atomic Super Blocks."),"error","modal");
+        end
     end
-    Cmenu=[];%pt=[];
-    if K==[] then
-      messagebox(_("No selected block in the current Scicos window."),'error','modal')
-      return
-    end  	
-    if size(K,'*')>1 then
-      messagebox(_("Only one block can be selected in current window for this operation."),'error','modal')
-      return
-    end 
-    i=K
-    o=scs_m.objs(i)
-    if typeof(o)=='Block' then
-      if o.model.sim=='super' then
-	[o,needcompile,ok]=do_CreateAtomic(o,i,scs_m)
-	if ~ok then messagebox('Error in Creating Atomic','modal');return ;end
-	scs_m = update_redraw_obj(scs_m,list('objs',i),o)
-      else
-	messagebox(_('Atomic can only be affected to Non Atomic Super Blocks.'),'error','modal');
-      end
-    else
-      messagebox(_('Atomic can only be affected to Non Atomic Super Blocks.'),'error','modal');
-    end
-  end
 endfunction

@@ -8,22 +8,22 @@ mode(-1);
 clear
 beta=5;
 try
-  beta
-  ok1=%t;
+    beta
+    ok1=%t;
 catch
-  ok1=%f;
+    ok1=%f;
 end
 
 function y=foo()
-  beta;
-  y=beta+1
+    beta;
+    y=beta+1
 endfunction
 
 try
- foo()
-  ok2=%t;
+    foo()
+    ok2=%t;
 catch
-  ok2=%f;
+    ok2=%f;
 end
 
 affich_result(ok1&ok2,1794);

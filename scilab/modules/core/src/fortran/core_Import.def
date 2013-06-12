@@ -2,9 +2,9 @@ LIBRARY    core.dll
 
 
 EXPORTS
-; --------------------------------------- 
+; ---------------------------------------
 ; core
-; --------------------------------------- 
+; ---------------------------------------
 recu_
 iop_
 stack_
@@ -73,5 +73,7 @@ pmatj_
 getpoly_
 getmat_
 inffic_
-freegmem_
-freemem_
+freestacklastmemory_
+freeglobalstacklastmemory_
+freeStackCurrentMemory
+freeGlobalStackCurrentmemory

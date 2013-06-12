@@ -23,7 +23,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_getdynlibext(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getdynlibext", 0);
         return types::Function::Error;
@@ -31,14 +31,14 @@ types::Function::ReturnValue sci_getdynlibext(types::typed_list &in, int _iRetCo
 
     out.push_back(new types::String(SHARED_LIB_EXTW));
     return types::Function::OK;
-	//CheckRhs(0,0);
-	//CheckLhs(1,1);
+    //CheckRhs(0,0);
+    //CheckLhs(1,1);
 
- //   createSingleString(pvApiCtx, Rhs + 1, SHARED_LIB_EXT);
+    //   createSingleString(pvApiCtx, Rhs + 1, SHARED_LIB_EXT);
 
-	//LhsVar(1) = Rhs+1;
-	//PutLhsVar();
+    //LhsVar(1) = Rhs+1;
+    //PutLhsVar();
 
-	//return 0;
+    //return 0;
 }
 /*--------------------------------------------------------------------------*/

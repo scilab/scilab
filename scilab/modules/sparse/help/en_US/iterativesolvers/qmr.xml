@@ -167,15 +167,21 @@ function y = Ap ( x )
                 <listitem>
                     <itemizedlist>
                         <listitem>
-                            <para><varname>flag</varname>=0: <code>qmr</code> converged to the desired tolerance within <varname>maxi</varname>
-                            iterations,</para>
+                            <para>
+                                <varname>flag</varname>=0: <code>qmr</code> converged to the desired tolerance within <varname>maxi</varname>
+                                iterations,
+                            </para>
                         </listitem>
                         <listitem>
-                            <para><varname>flag</varname>=1: no convergence given <varname>maxi</varname>,</para>
+                            <para>
+                                <varname>flag</varname>=1: no convergence given <varname>maxi</varname>,
+                            </para>
                         </listitem>
                         <listitem>
-                            <para><literal>-7 &lt; flag &lt; 0</literal>: A breakdown occurred because one of the scalar quantities calculated during
-                            <code>qmr</code> was equal to zero.</para>
+                            <para>
+                                <literal>-7 &lt; flag &lt; 0</literal>: A breakdown occurred because one of the scalar quantities calculated during
+                                <code>qmr</code> was equal to zero.
+                            </para>
                         </listitem>
                     </itemizedlist>
                 </listitem>

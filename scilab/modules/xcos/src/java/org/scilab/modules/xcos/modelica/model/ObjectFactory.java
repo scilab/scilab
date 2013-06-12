@@ -26,7 +26,7 @@ import javax.xml.namespace.QName;
  * can consist of schema derived interfaces and classes representing the binding
  * of schema type definitions, element declarations and model groups. Factory
  * methods for each of these are provided in this class.
- * 
+ *
  */
 // CSOFF: ClassDataAbstractionCoupling
 @XmlRegistry
@@ -40,14 +40,14 @@ public class ObjectFactory {
     /**
      * Create a new ObjectFactory that can be used to create new instances of
      * schema derived classes for package: generated
-     * 
+     *
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link Model.Elements }
-     * 
+     *
      * @return a new instance
      */
     public Model.Elements createModelElements() {
@@ -56,7 +56,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Model.ImplicitRelations.ImplicitRelation }
-     * 
+     *
      * @return a new instance
      */
     public Model.ImplicitRelations.ImplicitRelation createModelImplicitRelationsImplicitRelation() {
@@ -65,7 +65,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Model.Outputs }
-     * 
+     *
      * @return a new instance
      */
     public Model.Outputs createModelOutputs() {
@@ -74,7 +74,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Model.Equations }
-     * 
+     *
      * @return a new instance
      */
     public Model.Equations createModelEquations() {
@@ -83,7 +83,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Struct }
-     * 
+     *
      * @return a new instance
      */
     public Struct createStruct() {
@@ -92,7 +92,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Model.ExplicitRelations }
-     * 
+     *
      * @return a new instance
      */
     public Model.ExplicitRelations createModelExplicitRelations() {
@@ -101,7 +101,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Model.ImplicitRelations }
-     * 
+     *
      * @return a new instance
      */
     public Model.ImplicitRelations createModelImplicitRelations() {
@@ -110,7 +110,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Output.Dependencies }
-     * 
+     *
      * @return a new instance
      */
     public Output.Dependencies createOutputDependencies() {
@@ -119,7 +119,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Struct.Subnodes }
-     * 
+     *
      * @return a new instance
      */
     public Struct.Subnodes createStructSubnodes() {
@@ -128,7 +128,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Output }
-     * 
+     *
      * @return a new instance
      */
     public Output createOutput() {
@@ -137,7 +137,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Model }
-     * 
+     *
      * @return a new instance
      */
     public Model createModel() {
@@ -146,7 +146,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Terminal }
-     * 
+     *
      * @return a new instance
      */
     public Terminal createTerminal() {
@@ -155,7 +155,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Info }
-     * 
+     *
      * @return a new instance
      */
     public Info createInfo() {
@@ -164,7 +164,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link ModelicaValue }
-     * 
+     *
      * @return a new instance
      */
     public ModelicaValue createModelicaValue() {
@@ -173,7 +173,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Model.Identifiers }
-     * 
+     *
      * @return a new instance
      */
     public Model.Identifiers createModelIdentifiers() {
@@ -182,7 +182,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Model.ExplicitRelations.ExplicitRelation }
-     * 
+     *
      * @return a new instance
      */
     public Model.ExplicitRelations.ExplicitRelation createModelExplicitRelationsExplicitRelation() {
@@ -191,7 +191,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Model }{@code >}
-     * 
+     *
      * @param value
      *            the value
      * @return a new instance

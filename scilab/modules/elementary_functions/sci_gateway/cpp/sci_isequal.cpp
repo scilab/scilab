@@ -18,26 +18,26 @@ using namespace types;
 
 Function::ReturnValue sci_isequal(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	bool bResult = true;
-	if(in.size() <= 1 || _iRetCount != 1)
-	{
-		return Function::Error;
-	}
+    bool bResult = true;
+    if (in.size() <= 1 || _iRetCount != 1)
+    {
+        return Function::Error;
+    }
 
-	for(int i = 1 ; i < in.size() ; i++)
-	{
-		InternalType* pIn1 = in[i - 1];
-		InternalType* pIn2 = in[i];
+    for (int i = 1 ; i < in.size() ; i++)
+    {
+        InternalType* pIn1 = in[i - 1];
+        InternalType* pIn2 = in[i];
 
-		if(*pIn1 != *pIn2)
-		{
-			bResult = false;
-		}
-	}
+        if (*pIn1 != *pIn2)
+        {
+            bResult = false;
+        }
+    }
 
-	Bool* pBool = new Bool(bResult);
+    Bool* pBool = new Bool(bResult);
 
-	out.push_back(pBool);
-	return Function::OK;
+    out.push_back(pBool);
+    return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

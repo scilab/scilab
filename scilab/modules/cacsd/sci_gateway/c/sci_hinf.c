@@ -144,7 +144,7 @@ int sci_hinf(char *fname, void* pvApiCtx)
 
     if (NA != NC)
     {
-        Scierror(999, _("%s: A and // must have equal number of columns.\n"), fname);
+        Scierror(999, _("%s: A and C must have equal number of columns.\n"), fname);
         return 1;
     }
 
@@ -172,7 +172,7 @@ int sci_hinf(char *fname, void* pvApiCtx)
 
     if (MC != MD)
     {
-        Scierror(999, _("%s: // and D must have equal number of rows.\n"), fname);
+        Scierror(999, _("%s: C and D must have equal number of rows.\n"), fname);
         return 1;
     }
 

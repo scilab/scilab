@@ -36,7 +36,7 @@ void ReleaseLaunchScilabSignal(void)
     /* http://msdn.microsoft.com/en-us/magazine/cc164040.aspx */
     if ((pLaunchScilabLock) && (pLaunchScilabLock->LockCount == -1))
 #else
-    if(pLaunchScilabLock)
+    if (pLaunchScilabLock)
 #endif
     {
         __UnLockSignal(pLaunchScilabLock);
@@ -53,7 +53,7 @@ void InitializeLaunchScilabSignal(void)
 {
     if (pLaunchScilabLock == NULL)
     {
-        pLaunchScilabLock = mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE,MAP_SHARED |  MAP_ANONYMOUS, -1, 0);
+        pLaunchScilabLock = mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE, MAP_SHARED |  MAP_ANONYMOUS, -1, 0);
         __InitSignal(&LaunchScilab);
         __InitSignalLock(pLaunchScilabLock);
         atexit(ReleaseLaunchScilabSignal);

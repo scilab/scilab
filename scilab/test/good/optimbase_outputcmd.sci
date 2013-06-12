@@ -18,13 +18,13 @@
 //   data : the data to pass to the client output command
 //
 function  optimbase_outputcmd ( this , ...
-   state , data )
-  if this.outputcommand <> "" then
-    if typeof(this.outputcommandarg)=="string" then
-      this.outputcommand ( state , data )
-    else
-      this.outputcommand ( state , data , this.outputcommandarg )
+    state , data )
+    if this.outputcommand <> "" then
+        if typeof(this.outputcommandarg)=="string" then
+            this.outputcommand ( state , data )
+        else
+            this.outputcommand ( state , data , this.outputcommandarg )
+        end
     end
-  end
 endfunction
 

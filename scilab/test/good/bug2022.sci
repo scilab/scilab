@@ -16,9 +16,9 @@ test6 = ( perctl([500 480 460 453 452 452 451 450 450 431 421 420 420 417 416 41
 test7 = ( perctl([23.4,364.34,1929.3,4234.3,293.3,928.3],[10]) == [23.4 1] );
 
 if and(test1) & and(test2) & and(test3) & and(test4) & and(test5) & and(test6) & and(test7) then
-	affich_result(%T,2022);
+    affich_result(%T,2022);
 else
-	affich_result(%F,2022);
+    affich_result(%F,2022);
 end
 
 clear

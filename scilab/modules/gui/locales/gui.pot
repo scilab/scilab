@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-04-16 17:44+0100\n"
+"Revision-Date: 2013-05-23 15:49+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 73
 #, c-format
@@ -22,10 +22,10 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 69
-# File: sci_gateway/c/sci_ClipBoard.c, line: 126
-# File: sci_gateway/c/sci_ClipBoard.c, line: 159
-# File: sci_gateway/c/sci_ClipBoard.c, line: 363
+# File: sci_gateway/c/sci_ClipBoard.c, line: 70
+# File: sci_gateway/c/sci_ClipBoard.c, line: 127
+# File: sci_gateway/c/sci_ClipBoard.c, line: 160
+# File: sci_gateway/c/sci_ClipBoard.c, line: 364
 # File: sci_gateway/c/sci_delmenu.c, line: 66
 # File: sci_gateway/c/sci_delmenu.c, line: 113
 # File: sci_gateway/c/sci_setmenu.c, line: 73
@@ -49,10 +49,10 @@ msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 85
-# File: sci_gateway/c/sci_ClipBoard.c, line: 194
-# File: sci_gateway/c/sci_ClipBoard.c, line: 301
-# File: sci_gateway/c/sci_ClipBoard.c, line: 392
+# File: sci_gateway/c/sci_ClipBoard.c, line: 86
+# File: sci_gateway/c/sci_ClipBoard.c, line: 195
+# File: sci_gateway/c/sci_ClipBoard.c, line: 302
+# File: sci_gateway/c/sci_ClipBoard.c, line: 393
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 78
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 92
 # File: sci_gateway/c/sci_messagebox.c, line: 290
@@ -113,24 +113,24 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 101
-# File: sci_gateway/c/sci_ClipBoard.c, line: 133
-# File: sci_gateway/c/sci_ClipBoard.c, line: 410
+# File: sci_gateway/c/sci_ClipBoard.c, line: 102
+# File: sci_gateway/c/sci_ClipBoard.c, line: 134
+# File: sci_gateway/c/sci_ClipBoard.c, line: 411
 # File: sci_gateway/c/sci_toolbar.c, line: 183
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 107
-# File: sci_gateway/c/sci_ClipBoard.c, line: 313
-# File: sci_gateway/c/sci_ClipBoard.c, line: 417
+# File: sci_gateway/c/sci_ClipBoard.c, line: 108
+# File: sci_gateway/c/sci_ClipBoard.c, line: 314
+# File: sci_gateway/c/sci_ClipBoard.c, line: 418
 # File: sci_gateway/c/sci_delmenu.c, line: 59
 # File: sci_gateway/c/sci_delmenu.c, line: 100
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 60
-# File: sci_gateway/c/sci_helpbrowser.c, line: 124
-# File: sci_gateway/c/sci_helpbrowser.c, line: 181
-# File: sci_gateway/c/sci_helpbrowser.c, line: 231
+# File: sci_gateway/c/sci_helpbrowser.c, line: 125
+# File: sci_gateway/c/sci_helpbrowser.c, line: 182
+# File: sci_gateway/c/sci_helpbrowser.c, line: 232
 # File: sci_gateway/c/sci_messagebox.c, line: 72
 # File: sci_gateway/c/sci_messagebox.c, line: 109
 # File: sci_gateway/c/sci_messagebox.c, line: 227
@@ -160,18 +160,18 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 181
+# File: sci_gateway/c/sci_ClipBoard.c, line: 182
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 225
+# File: sci_gateway/c/sci_ClipBoard.c, line: 226
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 48
-# File: sci_gateway/c/sci_helpbrowser.c, line: 66
-# File: sci_gateway/c/sci_helpbrowser.c, line: 103
-# File: sci_gateway/c/sci_helpbrowser.c, line: 160
-# File: sci_gateway/c/sci_helpbrowser.c, line: 208
+# File: sci_gateway/c/sci_helpbrowser.c, line: 67
+# File: sci_gateway/c/sci_helpbrowser.c, line: 104
+# File: sci_gateway/c/sci_helpbrowser.c, line: 161
+# File: sci_gateway/c/sci_helpbrowser.c, line: 209
 # File: sci_gateway/c/sci_messagebox.c, line: 66
 # File: sci_gateway/c/sci_messagebox.c, line: 91
 # File: sci_gateway/c/sci_messagebox.c, line: 129
@@ -206,8 +206,8 @@ msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 245
-# File: sci_gateway/c/sci_ClipBoard.c, line: 262
+# File: sci_gateway/c/sci_ClipBoard.c, line: 246
+# File: sci_gateway/c/sci_ClipBoard.c, line: 263
 # File: sci_gateway/c/sci_uicontrol.c, line: 203
 # File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 82
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 76
@@ -222,14 +222,13 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 339
+# File: sci_gateway/c/sci_ClipBoard.c, line: 340
 # File: sci_gateway/c/sci_delmenu.c, line: 87
 # File: sci_gateway/c/sci_exportUI.c, line: 87
 # File: sci_gateway/c/sci_setmenu.c, line: 98
 # File: sci_gateway/c/sci_setmenu.c, line: 156
 # File: sci_gateway/c/sci_setmenu.c, line: 192
 # File: sci_gateway/c/sci_setmenu.c, line: 246
-# File: sci_gateway/c/sci_toolbar.c, line: 71
 # File: sci_gateway/c/sci_uicontrol.c, line: 243
 # File: sci_gateway/c/sci_uicontrol.c, line: 469
 # File: sci_gateway/c/sci_uigetcolor.c, line: 67
@@ -255,7 +254,7 @@ msgid "%s: Wrong type for argument %d: A real expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 347
+# File: sci_gateway/c/sci_ClipBoard.c, line: 348
 # File: sci_gateway/c/sci_delmenu.c, line: 94
 # File: sci_gateway/c/sci_setmenu.c, line: 105
 # File: sci_gateway/c/sci_setmenu.c, line: 163
@@ -280,20 +279,20 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 402
+# File: sci_gateway/c/sci_ClipBoard.c, line: 403
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 96
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 423
+# File: sci_gateway/c/sci_ClipBoard.c, line: 424
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ClipBoard.c, line: 430
+# File: sci_gateway/c/sci_ClipBoard.c, line: 431
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 108
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
@@ -312,6 +311,7 @@ msgstr ""
 # File: sci_gateway/c/sci_delmenu.c, line: 78
 # File: sci_gateway/c/sci_setmenu.c, line: 205
 # File: sci_gateway/c/sci_setmenu.c, line: 259
+# File: sci_gateway/c/sci_toolbar.c, line: 71
 # File: sci_gateway/c/sci_uigetcolor.c, line: 241
 # File: sci_gateway/c/sci_uigetcolor.c, line: 272
 # File: sci_gateway/c/sci_uigetcolor.c, line: 303
@@ -338,7 +338,7 @@ msgstr ""
 # File: sci_gateway/c/sci_waitbar.c, line: 250
 # File: sci_gateway/c/sci_waitbar.c, line: 345
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
 msgstr ""
 
 #
@@ -361,9 +361,9 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 54
-# File: sci_gateway/c/sci_helpbrowser.c, line: 114
-# File: sci_gateway/c/sci_helpbrowser.c, line: 171
-# File: sci_gateway/c/sci_helpbrowser.c, line: 220
+# File: sci_gateway/c/sci_helpbrowser.c, line: 115
+# File: sci_gateway/c/sci_helpbrowser.c, line: 172
+# File: sci_gateway/c/sci_helpbrowser.c, line: 221
 # File: sci_gateway/c/sci_messagebox.c, line: 97
 # File: sci_gateway/c/sci_messagebox.c, line: 221
 # File: sci_gateway/c/sci_setmenu.c, line: 66
@@ -379,14 +379,14 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_helpbrowser.c, line: 76
+# File: sci_gateway/c/sci_helpbrowser.c, line: 77
 # File: sci_gateway/c/sci_x_mdialog.c, line: 211
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_helpbrowser.c, line: 261
+# File: sci_gateway/c/sci_helpbrowser.c, line: 262
 # File: sci_gateway/c/sci_uigetfont.c, line: 136
 # File: sci_gateway/c/sci_uigetfont.c, line: 173
 #, c-format
@@ -394,7 +394,7 @@ msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_helpbrowser.c, line: 273
+# File: sci_gateway/c/sci_helpbrowser.c, line: 274
 # File: sci_gateway/c/sci_uigetfont.c, line: 143
 # File: sci_gateway/c/sci_uigetfont.c, line: 180
 #, c-format
@@ -402,7 +402,7 @@ msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_helpbrowser.c, line: 285
+# File: sci_gateway/c/sci_helpbrowser.c, line: 286
 # File: sci_gateway/c/sci_uigetfont.c, line: 151
 # File: sci_gateway/c/sci_uigetfont.c, line: 188
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 45
@@ -411,7 +411,7 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_helpbrowser.c, line: 301
+# File: sci_gateway/c/sci_helpbrowser.c, line: 302
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -623,7 +623,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_uimenu.c, line: 96
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: Handle expected.\n"
 msgstr ""
 
 #
@@ -746,6 +746,8 @@ msgstr ""
 # File: sci_gateway/cpp/sci_uiputfile.cpp, line: 234
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 68
 # File: sci_gateway/cpp/sci_usecanvas.cpp, line: 80
+# File: src/cpp/CallHelpBrowser.cpp, line: 26
+# File: src/cpp/CallHelpBrowser.cpp, line: 41
 #, c-format
 msgid ""
 "%s: A Java exception arisen:\n"
@@ -1979,17 +1981,17 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2480
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2516
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2499
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2535
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2633
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2669
 msgid "No print service found."
 msgstr ""
 
@@ -2239,7 +2241,7 @@ msgid "Loading help browser..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 306
+# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 307
 msgid "Feature not available in this mode..."
 msgstr ""
 

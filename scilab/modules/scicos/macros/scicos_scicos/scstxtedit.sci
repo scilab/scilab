@@ -35,28 +35,28 @@
 //##                 1 : Quit
 //##
 function [str_out,Quit] = scstxtedit(str_in,ptxtedit)
-  //** check lhs/rhs arg
-  [lhs,rhs]=argn(0)
+    //** check lhs/rhs arg
+    [lhs,rhs]=argn(0)
 
-  //## param from ptxtedit
-  clos = ptxtedit.clos
-  typ  = ptxtedit.typ
-  head = ptxtedit.head
+    //## param from ptxtedit
+    clos = ptxtedit.clos
+    typ  = ptxtedit.typ
+    head = ptxtedit.head
 
-  if clos<>1 then
-   if head==[] then
-     str_out = dialog(['DIALOG'], str_in) ;
-   else
-     str_out = dialog([head], str_in) ;
-   end
-  else
-    str_out=[];
-  end
+    if clos<>1 then
+        if head==[] then
+            str_out = dialog(["DIALOG"], str_in) ;
+        else
+            str_out = dialog([head], str_in) ;
+        end
+    else
+        str_out=[];
+    end
 
-  if str_out == [] then
-    Quit = 1
-  else
-    Quit = 0
-  end
+    if str_out == [] then
+        Quit = 1
+    else
+        Quit = 0
+    end
 
 endfunction

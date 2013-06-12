@@ -52,12 +52,12 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         return sci_file_no_rhs(in, _iRetCount, out);
     }
 
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
         return sci_file_one_rhs(in, _iRetCount, out);
     }
@@ -323,9 +323,9 @@ Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, types::typ
 Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iCount = FileManager::getOpenedCount();
-    if(iCount == 0)
+    if (iCount == 0)
     {
-        for(int i = 0 ; i < _iRetCount ; i++)
+        for (int i = 0 ; i < _iRetCount ; i++)
         {
             out.push_back(Double::Empty());
         }
@@ -333,7 +333,7 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
     }
 
     int* piIds = FileManager::getIDs();
-    if(piIds)
+    if (piIds)
     {
         Double *pD = new Double(1, iCount);
         pD->setInt(piIds);
@@ -341,15 +341,15 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         delete[] piIds;
     }
 
-    if(_iRetCount > 1) /*types*/
+    if (_iRetCount > 1) /*types*/
     {
         wchar_t** pstTypes = FileManager::getTypesAsString();
-        if(pstTypes != NULL)
+        if (pstTypes != NULL)
         {
             String* pS = new String(1, iCount);
             pS->set(pstTypes);
             out.push_back(pS);
-            for(int i = 0 ; i < iCount ; i++)
+            for (int i = 0 ; i < iCount ; i++)
             {
                 delete[] pstTypes[i];
             }
@@ -357,15 +357,15 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         }
     }
 
-    if(_iRetCount > 2) /*names*/
+    if (_iRetCount > 2) /*names*/
     {
         wchar_t** pstNames = FileManager::getFilenames();
-        if(pstNames != NULL)
+        if (pstNames != NULL)
         {
             String* pS = new String(1, iCount);
             pS->set(pstNames);
             out.push_back(pS);
-            for(int i = 0 ; i < iCount ; i++)
+            for (int i = 0 ; i < iCount ; i++)
             {
                 delete[] pstNames[i];
             }
@@ -373,10 +373,10 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         }
     }
 
-    if(_iRetCount > 3) /* mod */
+    if (_iRetCount > 3) /* mod */
     {
         double* pdblModes = FileManager::getModes();
-        if(pdblModes != NULL)
+        if (pdblModes != NULL)
         {
             Double* pD = new Double(1, iCount);
             pD->set(pdblModes);
@@ -385,10 +385,10 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
         }
     }
 
-    if(_iRetCount > 4) /* swap */
+    if (_iRetCount > 4) /* swap */
     {
         double* pdblSwaps = FileManager::getSwaps();
-        if(pdblSwaps != NULL)
+        if (pdblSwaps != NULL)
         {
             Double* pD = new Double(1, iCount);
             pD->set(pdblSwaps);
@@ -402,9 +402,9 @@ Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, typ
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
+    if (in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
     {
-		Scierror(201,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), "file", 1);
+        Scierror(201, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "file", 1);
         return Function::Error;
     }
 
@@ -412,16 +412,16 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
     int iID = static_cast<int>(pD->getReal()[0]);
 
     //check if double value is an integer to exclude decimal values
-    if(static_cast<double>(iID) != pD->getReal()[0])
+    if (static_cast<double>(iID) != pD->getReal()[0])
     {
- 		Scierror(201,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), "file", 1);
+        Scierror(201, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "file", 1);
         return Function::Error;
-   }
+    }
 
     File *pF = FileManager::getFile(iID);
-    if(pF == NULL)
+    if (pF == NULL)
     {
-        for(int i = 0 ; i < _iRetCount ; i++)
+        for (int i = 0 ; i < _iRetCount ; i++)
         {
             out.push_back(Double::Empty());
         }
@@ -429,10 +429,10 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
     }
 
     out.push_back(new Double(iID));
-    if(_iRetCount > 1) /*type*/
+    if (_iRetCount > 1) /*type*/
     {
         wchar_t* pstType = os_wcsdup(pF->getFileTypeAsString().c_str());
-        if(pstType != NULL)
+        if (pstType != NULL)
         {
             String* pS = new String(pstType);
             out.push_back(pS);
@@ -440,10 +440,10 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    if(_iRetCount > 2) /*name*/
+    if (_iRetCount > 2) /*name*/
     {
         wchar_t* pstName =  os_wcsdup(pF->getFilename().c_str());
-        if(pstName != NULL)
+        if (pstName != NULL)
         {
             String* pS = new String(pstName);
             out.push_back(pS);
@@ -451,12 +451,12 @@ Function::ReturnValue sci_file_one_rhs(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    if(_iRetCount > 3) /* mod */
+    if (_iRetCount > 3) /* mod */
     {
         out.push_back(new Double(pF->getFileModeAsDouble()));
     }
 
-    if(_iRetCount > 4) /* swap */
+    if (_iRetCount > 4) /* swap */
     {
         out.push_back(new Double(pF->getFileSwap()));
     }

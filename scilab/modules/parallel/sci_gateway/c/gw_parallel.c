@@ -16,7 +16,8 @@
 #include "callFunctionFromGateway.h"
 
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[] = {
+static gw_generic_table Tab[] =
+{
     {NULL, ""},                 // "parallel_run"
     {NULL, ""}                  // "parallel_concurrency"
 };

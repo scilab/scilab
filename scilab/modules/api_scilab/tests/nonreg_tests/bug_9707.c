@@ -13,72 +13,72 @@
 // =============================================================================
 int sci_bug_9707_1(char *fname)
 {
-  SciErr sciErr;
-  const char varname[] = "1";
+    SciErr sciErr;
+    const char varname[] = "1";
 
-  
-  sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
-  if(sciErr.iErr)
-  {
-    printError(&sciErr, 0);
-    Scierror(999, _("%s: Invalid variable name.\n"), fname);
-  }
-  return 0;
+
+    sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Invalid variable name.\n"), fname);
+    }
+    return 0;
 }
 // =============================================================================
 int sci_bug_9707_2(char *fname)
 {
-  SciErr sciErr;
-  const char varname[] = "";
-  
-  sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
-  if(sciErr.iErr)
-  {
-    printError(&sciErr, 0);
-    Scierror(999, _("%s: Invalid variable name.\n"), fname);
-  }
-  return 0;
+    SciErr sciErr;
+    const char varname[] = "";
+
+    sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Invalid variable name.\n"), fname);
+    }
+    return 0;
 }
 // =============================================================================
 int sci_bug_9707_3(char *fname)
 {
-  SciErr sciErr;
-  const char varname[] = " ";
-  
-  sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
-  if(sciErr.iErr)
-  {
-    printError(&sciErr, 0);
-    Scierror(999, _("%s: Invalid variable name.\n"), fname);
-  }
-  return 0;
+    SciErr sciErr;
+    const char varname[] = " ";
+
+    sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Invalid variable name.\n"), fname);
+    }
+    return 0;
 }
 // =============================================================================
 int sci_bug_9707_4(char *fname)
 {
-  SciErr sciErr;
-  const char varname[] = "Scilab Variable";
-  
-  sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
-  if(sciErr.iErr)
-  {
-    printError(&sciErr, 0);
-    Scierror(999, _("%s: Invalid variable name.\n"), fname);
-  }
-  return 0;
+    SciErr sciErr;
+    const char varname[] = "Scilab Variable";
+
+    sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Invalid variable name.\n"), fname);
+    }
+    return 0;
 }
 // =============================================================================
 int sci_bug_9707_OK(char *fname)
 {
-  SciErr sciErr;
-  const char varname[] = "VAR_9707";
-  
-  sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
-  if(sciErr.iErr)
-  {
-    printError(&sciErr, 0);
-    Scierror(999, _("%s: Invalid variable name.\n"), fname);
-  }
-  return 0;
+    SciErr sciErr;
+    const char varname[] = "VAR_9707";
+
+    sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &fname);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Invalid variable name.\n"), fname);
+    }
+    return 0;
 }
 // =============================================================================

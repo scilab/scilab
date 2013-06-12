@@ -239,6 +239,12 @@ type(h)
 l = list(1,["a" "b"]);
 type(l)
 
+deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y']);
+type(mymacro)
+
+deff('[x]=myplus(y,z)','x=y+z','n');
+type(myplus)
+
 ]]></programlisting>
     </refsection>
     <refsection role="see also">

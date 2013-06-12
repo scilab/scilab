@@ -960,7 +960,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                        [JOGL2_LIBS="-ljogl_desktop -lGL"],
                        [AC_MSG_ERROR(["libjogl: Library
 missing (Cannot find symbol glTexParameterf). Check if libjogl - C/Java (JNI)
-interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries."])],
+interface for JOGL2 - or libGL (OpenGL library) are installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path to the JNI libraries."])],
                        [-lGL])
                    fi
 
@@ -983,7 +983,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                    LDFLAGS="$LDFLAGS -L$SCI_SRCDIR/thirdparty -L$SCI_SRCDIR/lib/thirdparty -L$SCI_SRCDIR/bin"        # Scilab thirdparties
                    symbol="Java_jogamp_common_jvm_JVMUtil_initialize"
                    AC_CHECK_LIB([gluegen2-rt], [$symbol], [GLUEGEN2_RT_LIBS="-lgluegen2-rt"],
-                   [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries.])],
+                   [AC_MSG_ERROR([libgluegen2-rt: Library missing (Cannot find symbol $symbol). Check if libgluegen-rt - C/Java (JNI) interface for GLUEGEN2 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path to the JNI libraries.])],
                    [-ldl])
                    LDFLAGS=$LDFLAGS_save
                 fi

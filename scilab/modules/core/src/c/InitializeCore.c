@@ -22,25 +22,25 @@
 /*--------------------------------------------------------------------------*/
 BOOL InitializeCore(void)
 {
-	BOOL bOK=FALSE;
-	int pause=0;
+    BOOL bOK = FALSE;
+    int pause = 0;
 
-	InitializeScilabFilesList();
+    InitializeScilabFilesList();
 
-	getmodules();
+    getmodules();
 
-	if ( create_hashtable_scilab_functions() == FALSE )
-	{
-		sciprint(_("Fatal Error: Can't create table for scilab functions.\n"));
-		exit(1);
-	}
+    if ( create_hashtable_scilab_functions() == FALSE )
+    {
+        sciprint(_("Fatal Error: Can't create table for scilab functions.\n"));
+        exit(1);
+    }
 
-	LoadFunctionsTab();
+    LoadFunctionsTab();
 
-	/* Set prompt level */
-	C2F(setprlev)(&pause);
+    /* Set prompt level */
+    C2F(setprlev)(&pause);
 
-	return bOK;
+    return bOK;
 }
 /*--------------------------------------------------------------------------*/
 

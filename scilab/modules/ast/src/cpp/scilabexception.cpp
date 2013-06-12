@@ -22,93 +22,93 @@ extern "C"
 namespace ast
 {
 
-    void ScilabException::createScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
-    {
-        m_wstErrorMessage   = _wstErrorMesssage;
-        m_iErrorNumber      = _iErrorNumber;
-        m_ErrorLocation     = _ErrorLocation;
-    }
+void ScilabException::createScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+{
+    m_wstErrorMessage   = _wstErrorMesssage;
+    m_iErrorNumber      = _iErrorNumber;
+    m_ErrorLocation     = _ErrorLocation;
+}
 
-    ScilabException::ScilabException(std::wstring _wstErrorMesssage)
-    {
-        setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
-        createScilabException(_wstErrorMesssage);
-    }
+ScilabException::ScilabException(std::wstring _wstErrorMesssage)
+{
+    setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
+    createScilabException(_wstErrorMesssage);
+}
 
-    ScilabException::ScilabException(std::string _stErrorMesssage)
-    {
+ScilabException::ScilabException(std::string _stErrorMesssage)
+{
 
-        wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
-        setLastError(999, pwst, 0, NULL);
-        createScilabException(pwst);
-        FREE(pwst);
-    }
+    wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
+    setLastError(999, pwst, 0, NULL);
+    createScilabException(pwst);
+    FREE(pwst);
+}
 
-    ScilabException::ScilabException(const Location& _ErrorLocation)
-    {
-        createScilabException(L"", 0, _ErrorLocation);
-    }
+ScilabException::ScilabException(const Location& _ErrorLocation)
+{
+    createScilabException(L"", 0, _ErrorLocation);
+}
 
-    ScilabException::ScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
-    {
-        setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), 0, NULL);
-        createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
-    }
+ScilabException::ScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+{
+    setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), _ErrorLocation.first_line, NULL);
+    createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
+}
 
-    ScilabException::ScilabException()
-    {
-        createScilabException();
-    }
+ScilabException::ScilabException()
+{
+    createScilabException();
+}
 
-    void ScilabException::SetErrorMessage(std::wstring _wstErrorMesssage)
-    {
-        m_wstErrorMessage = _wstErrorMesssage;
-    }
+void ScilabException::SetErrorMessage(std::wstring _wstErrorMesssage)
+{
+    m_wstErrorMessage = _wstErrorMesssage;
+}
 
-    std::wstring ScilabException::GetErrorMessage(void)
-    {
-        return m_wstErrorMessage;
-    }
+std::wstring ScilabException::GetErrorMessage(void)
+{
+    return m_wstErrorMessage;
+}
 
-    void ScilabException::SetErrorNumber(int _iErrorNumber)
-    {
-        m_iErrorNumber = _iErrorNumber;
-    } 
+void ScilabException::SetErrorNumber(int _iErrorNumber)
+{
+    m_iErrorNumber = _iErrorNumber;
+}
 
-    int ScilabException::GetErrorNumber(void)
-    {
-        return m_iErrorNumber;
-    }
+int ScilabException::GetErrorNumber(void)
+{
+    return m_iErrorNumber;
+}
 
-    void ScilabException::SetErrorLocation(const Location& _ErrorLocation)
-    {
-        m_ErrorLocation = _ErrorLocation;
-    }
+void ScilabException::SetErrorLocation(const Location& _ErrorLocation)
+{
+    m_ErrorLocation = _ErrorLocation;
+}
 
-    Location& ScilabException::GetErrorLocation(void)
-    {
-        return m_ErrorLocation;
-    }
+Location& ScilabException::GetErrorLocation(void)
+{
+    return m_ErrorLocation;
+}
 
-    ScilabMessage::ScilabMessage(std::wstring _wstErrorMesssage)
-    {
-        //setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
-        createScilabException(_wstErrorMesssage);
-    }
+ScilabMessage::ScilabMessage(std::wstring _wstErrorMesssage)
+{
+    //setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
+    createScilabException(_wstErrorMesssage);
+}
 
-    ScilabMessage::ScilabMessage(std::string _stErrorMesssage)
-    {
+ScilabMessage::ScilabMessage(std::string _stErrorMesssage)
+{
 
-        wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
-        //setLastError(999, pwst, 0, NULL);
-        createScilabException(pwst);
-        FREE(pwst);
-    }
+    wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
+    //setLastError(999, pwst, 0, NULL);
+    createScilabException(pwst);
+    FREE(pwst);
+}
 
-    ScilabMessage::ScilabMessage(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
-    {
-        //setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), 0, NULL);
-        createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
-    }
+ScilabMessage::ScilabMessage(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+{
+    //setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), 0, NULL);
+    createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
+}
 
 }

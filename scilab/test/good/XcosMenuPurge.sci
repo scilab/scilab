@@ -27,5 +27,5 @@ function XcosMenuPurge()
     scs_m = do_purge(scs_m);
     needcompile = 4;
     edited = %t ;
-    Cmenu = "XcosMenuReplot" ; 
+    Cmenu = "XcosMenuReplot" ;
 endfunction

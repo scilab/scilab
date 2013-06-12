@@ -39,9 +39,9 @@
     <refsection>
         <title>Description</title>
         <para>
-          The <function>squeeze</function> function removes singleton dimensions of a
-          hypermatrix, that is any dimension for which the size is <literal>1</literal>. If
-          the input <varname>hypIn</varname> is a matrix, it is unaffected.
+            The <function>squeeze</function> function removes singleton dimensions of a
+            hypermatrix, that is any dimension for which the size is <literal>1</literal>. If
+            the input <varname>hypIn</varname> is a matrix, it is unaffected.
         </para>
     </refsection>
     <refsection>

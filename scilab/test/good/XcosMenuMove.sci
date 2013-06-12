@@ -21,26 +21,26 @@
 
 function XcosMenuMove()
 
-  Cmenu = []; //** NB : preserve %pt information 
-  //** Filter out selection on other windows 
-  Select=Select(find(Select(:,2)==curwin),:)
-  if Select==[] then
-    k = getobj(scs_m,%pt)
-    if k<>[] then
-       Select=[k,curwin]
-    else
-      Cmenu = "XcosMenuMove" //re-enter waitaing for a click
-      return
+    Cmenu = []; //** NB : preserve %pt information
+    //** Filter out selection on other windows
+    Select=Select(find(Select(:,2)==curwin),:)
+    if Select==[] then
+        k = getobj(scs_m,%pt)
+        if k<>[] then
+            Select=[k,curwin]
+        else
+            Cmenu = "XcosMenuMove" //re-enter waitaing for a click
+            return
+        end
     end
-  end
 
-  if  size(Select,1)==1 & typeof(scs_m.objs(Select(1,1)))=="Link" then
-    //** ONE  link is selected (move a corner or add and move a corner)
-    scs_m = do_stupidmove_corner(%pt, Select,scs_m) ; 
-  else //** multiple object or single block move
-    scs_m = do_stupidMultimove(%pt, Select, scs_m) ; //** move multiple objects
-  end
+    if  size(Select,1)==1 & typeof(scs_m.objs(Select(1,1)))=="Link" then
+        //** ONE  link is selected (move a corner or add and move a corner)
+        scs_m = do_stupidmove_corner(%pt, Select,scs_m) ;
+    else //** multiple object or single block move
+        scs_m = do_stupidMultimove(%pt, Select, scs_m) ; //** move multiple objects
+    end
 
-  %pt = [];
+    %pt = [];
 
 endfunction

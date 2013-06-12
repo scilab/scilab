@@ -20,14 +20,14 @@
 //
 
 function XcosMenuAlign()
-//** Align unconnected blocks 
-//** 24/06/2009: Serge Steer  not to take care of selected blocs  
+    //** Align unconnected blocks
+    //** 24/06/2009: Serge Steer  not to take care of selected blocs
 
-  Cmenu = [] ;
-  if find(Select(:,2)==curwin)<>[] then  %pt  = []  ;end
+    Cmenu = [] ;
+    if find(Select(:,2)==curwin)<>[] then  %pt  = []  ;end
 
-  scs_m_save = scs_m;
-  nc_save    = needcompile;
-  [scs_m]    = prt_align(scs_m); 
+    scs_m_save = scs_m;
+    nc_save    = needcompile;
+    [scs_m]    = prt_align(scs_m);
 
 endfunction

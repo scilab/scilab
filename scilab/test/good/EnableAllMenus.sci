@@ -1,4 +1,4 @@
- //  Scicos
+//  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //
@@ -20,15 +20,15 @@
 //
 
 function EnableAllMenus()
-  //** Serge Steer Sept 2009, use the uimenu properties instead of setmenu
-  curf=gcf(); //preserve current figure
-  for win=intersect(winsid(),[inactive_windows(2);curwin]')
-    C=get(scf(win),'children')
-    for k=1:size(C,'*')
-      if C(k).type=='uimenu'&C(k).Tag<>'XcosMenuStop' then 
-	C(k).Enable = "on";
-      end
+    //** Serge Steer Sept 2009, use the uimenu properties instead of setmenu
+    curf=gcf(); //preserve current figure
+    for win=intersect(winsid(),[inactive_windows(2);curwin]')
+        C=get(scf(win),"children")
+        for k=1:size(C,"*")
+            if C(k).type=="uimenu"&C(k).Tag<>"XcosMenuStop" then
+                C(k).Enable = "on";
+            end
+        end
     end
-  end
-  scf(curf) //restore current figure
+    scf(curf) //restore current figure
 endfunction

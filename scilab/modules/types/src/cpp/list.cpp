@@ -102,6 +102,7 @@ int List::getSize()
 void List::append(InternalType *_typedValue)
 {
     m_plData->push_back(_typedValue->clone());
+    m_plData->back()->IncreaseRef();
     m_iSize = static_cast<int>(m_plData->size());
 }
 

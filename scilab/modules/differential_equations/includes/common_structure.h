@@ -15,105 +15,109 @@
 #include "machine.h"
 #include "dynlib_differential_equations.h"
 
-typedef struct {
+typedef struct
+{
     int mesflg, lunit;
 } STR_EH0001;
 
-typedef struct {
-	double tsw; /**< @TODO : add comment */
-	double rowns2[20]; /**< @TODO : add comment */
-	double pdnorm; /**< @TODO : add comment */
-	int insufr; /**< @TODO : add comment */
-	int insufi; /**< @TODO : add comment */
-	int ixpr; /**< @TODO : add comment */
-	int iowns2[2]; /**< @TODO : add comment */
-	int jtyp; /**< @TODO : add comment */
-	int mused; /**< @TODO : add comment */
-	int mxordn; /**< @TODO : add comment */
-	int mxords; /**< @TODO : add comment */
+typedef struct
+{
+    double tsw; /**< @TODO : add comment */
+    double rowns2[20]; /**< @TODO : add comment */
+    double pdnorm; /**< @TODO : add comment */
+    int insufr; /**< @TODO : add comment */
+    int insufi; /**< @TODO : add comment */
+    int ixpr; /**< @TODO : add comment */
+    int iowns2[2]; /**< @TODO : add comment */
+    int jtyp; /**< @TODO : add comment */
+    int mused; /**< @TODO : add comment */
+    int mxordn; /**< @TODO : add comment */
+    int mxords; /**< @TODO : add comment */
 } STR_LSA001;
 
-typedef struct {
-    double rownr3[2]; 
-    double t0; 
-    double tlast; 
-    double toutc;  
-    int lg0; 
-    int lg1; 
-    int lgx; 
-    int iownr3[2]; 
-    int irfnd; 
-    int itaskc; 
-    int ngc; 
-    int nge; 
+typedef struct
+{
+    double rownr3[2];
+    double t0;
+    double tlast;
+    double toutc;
+    int lg0;
+    int lg1;
+    int lgx;
+    int iownr3[2];
+    int irfnd;
+    int itaskc;
+    int ngc;
+    int nge;
 } STR_LSR001;
 
-typedef struct {
-    double tret; 
-    double rowns[209]; 
-    double ccmax; 
-    double el0; 
-    double h__; 
-    double hmin; 
-    double hmxi; 
-    double hu; 
-    double rc; 
-    double tn; 
-    double uround; 
-    int illin; 
-    int init; 
-    int lyh; 
-    int lewt; 
-    int lacor; 
-    int lsavf; 
-    int lwm; 
-    int liwm; 
-    int mxstep; 
-    int mxhnil; 
+typedef struct
+{
+    double tret;
+    double rowns[209];
+    double ccmax;
+    double el0;
+    double h__;
+    double hmin;
+    double hmxi;
+    double hu;
+    double rc;
+    double tn;
+    double uround;
+    int illin;
+    int init;
+    int lyh;
+    int lewt;
+    int lacor;
+    int lsavf;
+    int lwm;
+    int liwm;
+    int mxstep;
+    int mxhnil;
 
-    int nhnil; 
-    int ntrep; 
-    int nslast; 
-    int nyh; 
-    int iowns[6]; 
-    int icf; 
-    int ierpj; 
-    int iersl; 
-    int jcur; 
+    int nhnil;
+    int ntrep;
+    int nslast;
+    int nyh;
+    int iowns[6];
+    int icf;
+    int ierpj;
+    int iersl;
+    int jcur;
 
-    int jstart; 
-    int kflag; 
-    int l; 
-    int meth; 
-    int miter; 
-    int maxord; 
-    int maxcor; 
-    int msbp; 
-    int mxncf; 
-    int n; 
-    int nq; 
-    int nst; 
-    int nfe; 
-    int nje; 
-    int nqu; 
+    int jstart;
+    int kflag;
+    int l;
+    int meth;
+    int miter;
+    int maxord;
+    int maxcor;
+    int msbp;
+    int mxncf;
+    int n;
+    int nq;
+    int nst;
+    int nfe;
+    int nje;
+    int nqu;
 } STR_LS0001;
 
 #ifdef _MSC_VER
-    DIFFERENTIAL_EQUATIONS_IMPEXP STR_EH0001 C2F(eh0001);
-    DIFFERENTIAL_EQUATIONS_IMPEXP STR_LSA001 C2F(lsa001);
-    DIFFERENTIAL_EQUATIONS_IMPEXP STR_LSR001 C2F(lsr001);
-    DIFFERENTIAL_EQUATIONS_IMPEXP STR_LS0001 C2F(ls0001);
+DIFFERENTIAL_EQUATIONS_IMPEXP STR_EH0001 C2F(eh0001);
+DIFFERENTIAL_EQUATIONS_IMPEXP STR_LSA001 C2F(lsa001);
+DIFFERENTIAL_EQUATIONS_IMPEXP STR_LSR001 C2F(lsr001);
+DIFFERENTIAL_EQUATIONS_IMPEXP STR_LS0001 C2F(ls0001);
 #else
-    #ifdef __DIFFERENTIAL_EQUATIONS_GW_HXX__
-        extern STR_EH0001 C2F(eh0001);
-        extern STR_LSA001 C2F(lsa001);
-        extern STR_LSR001 C2F(lsr001);
-        extern STR_LS0001 C2F(ls0001);
-    #else
-        STR_EH0001 C2F(eh0001);
-        STR_LSA001 C2F(lsa001);
-        STR_LSR001 C2F(lsr001);
-        STR_LS0001 C2F(ls0001);
-    #endif
+#ifdef __DIFFERENTIAL_EQUATIONS_GW_HXX__
+extern STR_EH0001 C2F(eh0001);
+extern STR_LSA001 C2F(lsa001);
+extern STR_LSR001 C2F(lsr001);
+extern STR_LS0001 C2F(ls0001);
+#else
+STR_EH0001 C2F(eh0001);
+STR_LSA001 C2F(lsa001);
+STR_LSR001 C2F(lsr001);
+STR_LS0001 C2F(ls0001);
+#endif
 #endif
 #endif /* !__COMMOM_STRUCTURE_H__ */

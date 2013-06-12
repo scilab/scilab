@@ -38,7 +38,7 @@ public class VectFieldDecomposer {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 2 vertices per arrow */
-        return 2*numberArrows;
+        return 2 * numberArrows;
     }
 
     /**
@@ -52,7 +52,7 @@ public class VectFieldDecomposer {
      * @param logMask the bit mask specifying whether logarithmic coordinates are used.
      */
     public static void fillVertices(FloatBuffer buffer, String id, int elementsSize,
-        int coordinateMask, double[] scale, double[] translation, int logMask) {
+                                    int coordinateMask, double[] scale, double[] translation, int logMask) {
         int bufferOffset = 0;
 
         /* The x coordinates of a segment's base and direction */
@@ -94,8 +94,8 @@ public class VectFieldDecomposer {
                 xcoords[0] = xcoords[0] * scale[0] + translation[0];
                 xcoords[1] = xcoords[1] * scale[0] + translation[0];
 
-                buffer.put(bufferOffset,(float) xcoords[0]);
-                buffer.put(bufferOffset+elementsSize, (float) xcoords[1]);
+                buffer.put(bufferOffset, (float) xcoords[0]);
+                buffer.put(bufferOffset + elementsSize, (float) xcoords[1]);
             }
 
             if ((coordinateMask & 0x2) != 0) {
@@ -107,8 +107,8 @@ public class VectFieldDecomposer {
                 ycoords[0] = ycoords[0] * scale[1] + translation[1];
                 ycoords[1] = ycoords[1] * scale[1] + translation[1];
 
-                buffer.put(bufferOffset+1, (float) ycoords[0]);
-                buffer.put(bufferOffset+elementsSize+1, (float) ycoords[1]);
+                buffer.put(bufferOffset + 1, (float) ycoords[0]);
+                buffer.put(bufferOffset + elementsSize + 1, (float) ycoords[1]);
             }
 
             if ((coordinateMask & 0x4) != 0) {
@@ -120,16 +120,16 @@ public class VectFieldDecomposer {
                 zcoords[0] = zcoords[0] * scale[2] + translation[2];
                 zcoords[1] = zcoords[1] * scale[2] + translation[2];
 
-                buffer.put(bufferOffset+2, (float) zcoords[0]);
-                buffer.put(bufferOffset+elementsSize+2, (float) zcoords[1]);
+                buffer.put(bufferOffset + 2, (float) zcoords[0]);
+                buffer.put(bufferOffset + elementsSize + 2, (float) zcoords[1]);
             }
 
             if (elementsSize == 4 && (coordinateMask & 0x8) != 0) {
-                buffer.put(bufferOffset+3, 1.0f);
-                buffer.put(bufferOffset+elementsSize +3, 1.0f);
+                buffer.put(bufferOffset + 3, 1.0f);
+                buffer.put(bufferOffset + elementsSize + 3, 1.0f);
             }
 
-            bufferOffset += 2*elementsSize;
+            bufferOffset += 2 * elementsSize;
         }
     }
 
@@ -153,16 +153,16 @@ public class VectFieldDecomposer {
      */
     protected static void writeSegmentColors(FloatBuffer buffer, int elementsSize, int bufferOffset, float[] color) {
         buffer.put(bufferOffset, color[0]);
-        buffer.put(bufferOffset+1, color[1]);
-        buffer.put(bufferOffset+2, color[2]);
+        buffer.put(bufferOffset + 1, color[1]);
+        buffer.put(bufferOffset + 2, color[2]);
 
-        buffer.put(bufferOffset+elementsSize, color[0]);
-        buffer.put(bufferOffset+elementsSize+1, color[1]);
-        buffer.put(bufferOffset+elementsSize+2, color[2]);
+        buffer.put(bufferOffset + elementsSize, color[0]);
+        buffer.put(bufferOffset + elementsSize + 1, color[1]);
+        buffer.put(bufferOffset + elementsSize + 2, color[2]);
 
         if (elementsSize == 4) {
-            buffer.put(bufferOffset+3, 1.0f);
-            buffer.put(bufferOffset+elementsSize+3, 1.0f);
+            buffer.put(bufferOffset + 3, 1.0f);
+            buffer.put(bufferOffset + elementsSize + 3, 1.0f);
         }
     }
 
@@ -176,21 +176,21 @@ public class VectFieldDecomposer {
      */
     protected static void writeArrowColors(FloatBuffer buffer, int elementsSize, int bufferOffset, float[] color) {
         buffer.put(bufferOffset, color[0]);
-        buffer.put(bufferOffset+1, color[1]);
-        buffer.put(bufferOffset+2, color[2]);
+        buffer.put(bufferOffset + 1, color[1]);
+        buffer.put(bufferOffset + 2, color[2]);
 
-        buffer.put(bufferOffset+elementsSize, color[0]);
-        buffer.put(bufferOffset+elementsSize+1, color[1]);
-        buffer.put(bufferOffset+elementsSize+2, color[2]);
+        buffer.put(bufferOffset + elementsSize, color[0]);
+        buffer.put(bufferOffset + elementsSize + 1, color[1]);
+        buffer.put(bufferOffset + elementsSize + 2, color[2]);
 
-        buffer.put(bufferOffset+2*elementsSize, color[0]);
-        buffer.put(bufferOffset+2*elementsSize+1, color[1]);
-        buffer.put(bufferOffset+2*elementsSize+2, color[2]);
+        buffer.put(bufferOffset + 2 * elementsSize, color[0]);
+        buffer.put(bufferOffset + 2 * elementsSize + 1, color[1]);
+        buffer.put(bufferOffset + 2 * elementsSize + 2, color[2]);
 
         if (elementsSize == 4) {
-            buffer.put(bufferOffset+3, 1.0f);
-            buffer.put(bufferOffset+elementsSize+3, 1.0f);
-            buffer.put(bufferOffset+2*elementsSize+3, 1.0f);
+            buffer.put(bufferOffset + 3, 1.0f);
+            buffer.put(bufferOffset + elementsSize + 3, 1.0f);
+            buffer.put(bufferOffset + 2 * elementsSize + 3, 1.0f);
         }
     }
 
@@ -222,7 +222,7 @@ public class VectFieldDecomposer {
         int numberArrows = (Integer) GraphicController.getController().getProperty(id, __GO_NUMBER_ARROWS__);
 
         /* 2 segment indices per arrow */
-        return 2*numberArrows;
+        return 2 * numberArrows;
     }
 
     /**
@@ -263,7 +263,7 @@ public class VectFieldDecomposer {
             direction[2] = zDirection[i];
 
             if (Utils.isValid(base[0], base[1], base[2])
-                && Utils.isValid(direction[0], direction[1], direction[2])) {
+                    && Utils.isValid(direction[0], direction[1], direction[2])) {
                 valid = true;
             } else {
                 valid = false;
@@ -275,8 +275,8 @@ public class VectFieldDecomposer {
             }
 
             if (valid) {
-                buffer.put(bufferOffset, 2*i);
-                buffer.put(bufferOffset+1, 2*i+1);
+                buffer.put(bufferOffset, 2 * i);
+                buffer.put(bufferOffset + 1, 2 * i + 1);
 
                 bufferOffset += 2;
             }

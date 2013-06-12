@@ -19,13 +19,13 @@
 class GraphicsModule
 {
 private :
-	GraphicsModule(){};
-	~GraphicsModule(){};
+    GraphicsModule() {};
+    ~GraphicsModule() {};
 
 
 public :
     GRAPHICS_GW_IMPEXP static void LoadDeps(void);
-	GRAPHICS_GW_IMPEXP static int Load();
+    GRAPHICS_GW_IMPEXP static int Load();
 
     static bool loadedDep;
 };

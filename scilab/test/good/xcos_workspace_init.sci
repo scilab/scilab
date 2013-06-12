@@ -20,23 +20,23 @@
 //
 //
 function xcos_workspace_init()
-//preserve all variables of type struct having a "time" and a "value"
-//field in temporary binary files 
-  path=TMPDIR+"/Workspace/"
-  mkdir(path);
-  prt=funcprot(),funcprot(0)
-  varnames = who("get")   ;
-  varnames = varnames(1:$-predef()+1);  //** exclude protected variables
-  varnames(varnames=='ans')=[];
-  for var=varnames'
-    v=evstr(var);
-    if typeof(v)=='st' then
-      if execstr('x=v.values','errcatch')==0 then
-	if execstr('t=v.time','errcatch') ==0 then
-	    execstr('save(path'+var+''",x,t)')
-	end
-      end
+    //preserve all variables of type struct having a "time" and a "value"
+    //field in temporary binary files
+    path=TMPDIR+"/Workspace/"
+    mkdir(path);
+    prt=funcprot(),funcprot(0)
+    varnames = who("get")   ;
+    varnames = varnames(1:$-predef()+1);  //** exclude protected variables
+    varnames(varnames=="ans")=[];
+    for var=varnames'
+        v=evstr(var);
+        if typeof(v)=="st" then
+            if execstr("x=v.values","errcatch")==0 then
+                if execstr("t=v.time","errcatch") ==0 then
+                    execstr("save(path"+var+"'",x,t)")
+                end
+            end
+        end
     end
-  end
-  funcprot(prt)
+    funcprot(prt)
 endfunction

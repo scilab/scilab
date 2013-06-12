@@ -54,7 +54,7 @@ int sci_save(char *fname, void *pvApiCtx)
         int iColsI      = 0;
         char* pstVarI   = NULL;
 
-        if(Rhs > 1)
+        if (Rhs > 1)
         {
             int i = 0;
             for (i = 2 ; i <= Rhs ; i++)
@@ -97,7 +97,7 @@ int sci_save(char *fname, void *pvApiCtx)
                     return 1;
                 }
 
-                if(strcmp(pstVarI, "-append") != 0)
+                if (strcmp(pstVarI, "-append") != 0)
                 {
                     //try to get variable by name
                     sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
@@ -130,7 +130,7 @@ int sci_save(char *fname, void *pvApiCtx)
     }
 
     //new save to sod format
-    if(iOldSave == FALSE)
+    if (iOldSave == FALSE)
     {
         int lw = 0;
         //call "overload" to prepare data to export_to_hdf5 function.

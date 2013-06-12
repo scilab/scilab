@@ -85,10 +85,10 @@
             <variablelist>
                 <varlistentry>
                     <term>a head</term> 
-                        <listitem>
-                            <para>
-                                mark that shows the current <literal>(x(i),y(i))</literal> position.
-                            </para>
+                    <listitem>
+                        <para>
+                            mark that shows the current <literal>(x(i),y(i))</literal> position.
+                        </para>
                     </listitem>
                 </varlistentry>
                 <varlistentry>
@@ -185,7 +185,9 @@ comet(linspace(-2,4,500), (%s-3)/(%s^3+2*%s^2+1))
         <revhistory>
             <revision>
                 <revnumber>5.3.2</revnumber>
-                <revremark>Function <function>comet</function> introduced.</revremark>
+                <revremark>
+                    Function <function>comet</function> introduced.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

@@ -8,28 +8,28 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function datatipSetTipPosition(ud,tip_handle,pt,k)
-//datatip utility function
-  point_handle=tip_handle.children(1)
-  string_handle=tip_handle.children(2)
+    //datatip utility function
+    point_handle=tip_handle.children(1)
+    string_handle=tip_handle.children(2)
 
-  tip_refs=point_handle.user_data
-  [curve_handle,point_index]=tip_refs(:)
-  formatfunction=ud.formatfunction
+    tip_refs=point_handle.user_data
+    [curve_handle,point_index]=tip_refs(:)
+    formatfunction=ud.formatfunction
 
-  if ud.style==0 | size(curve_handle.data,1) == 1 then
-    point_handle.data=pt
-  else
-    if k<size(curve_handle.data,1)
-      dxy=curve_handle.data(k+1,:)-pt;
+    if ud.style==0 | size(curve_handle.data,1) == 1 then
+        point_handle.data=pt
     else
-      dxy=pt-curve_handle.data(k-1,:);
+        if k<size(curve_handle.data,1)
+            dxy=curve_handle.data(k+1,:)-pt;
+        else
+            dxy=pt-curve_handle.data(k-1,:);
+        end
+        dxy=dxy/norm(dxy)/10000;
+        point_handle.data=[pt;pt+dxy]
     end
-    dxy=dxy/norm(dxy)/10000;
-    point_handle.data=[pt;pt+dxy]
-  end
-  tip_refs(2)=k;
-  point_handle.user_data=tip_refs
-  string_handle.text=formatfunction(curve_handle,pt,k)
-  setStringPosition(tip_handle,pt)
+    tip_refs(2)=k;
+    point_handle.user_data=tip_refs
+    string_handle.text=formatfunction(curve_handle,pt,k)
+    setStringPosition(tip_handle,pt)
 
 endfunction

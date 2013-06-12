@@ -2,7 +2,7 @@
  * -----------------------------------------------------------------
  * $Revision: 1.6 $
  * $Date: 2010/12/01 22:10:38 $
- * ----------------------------------------------------------------- 
+ * -----------------------------------------------------------------
  * Programmer(s): Scott D. Cohen, Alan C. Hindmarsh and
  *                Radu Serban @ LLNL
  * -----------------------------------------------------------------
@@ -25,27 +25,27 @@ extern "C" {
 #include <cvode/cvode_direct.h>
 #include <sundials/sundials_dense.h>
 
-/*
- * -----------------------------------------------------------------
- * Function: CVDense
- * -----------------------------------------------------------------
- * A call to the CVDense function links the main integrator with
- * the CVDENSE linear solver.
- *
- * cvode_mem is the pointer to the integrator memory returned by
- *           CVodeCreate.
- *
- * N is the size of the ODE system.
- *
- * The return value of CVDense is one of:
- *    CVDLS_SUCCESS   if successful
- *    CVDLS_MEM_NULL  if the cvode memory was NULL
- *    CVDLS_MEM_FAIL  if there was a memory allocation failure
- *    CVDLS_ILL_INPUT if a required vector operation is missing
- * -----------------------------------------------------------------
- */
+    /*
+     * -----------------------------------------------------------------
+     * Function: CVDense
+     * -----------------------------------------------------------------
+     * A call to the CVDense function links the main integrator with
+     * the CVDENSE linear solver.
+     *
+     * cvode_mem is the pointer to the integrator memory returned by
+     *           CVodeCreate.
+     *
+     * N is the size of the ODE system.
+     *
+     * The return value of CVDense is one of:
+     *    CVDLS_SUCCESS   if successful
+     *    CVDLS_MEM_NULL  if the cvode memory was NULL
+     *    CVDLS_MEM_FAIL  if there was a memory allocation failure
+     *    CVDLS_ILL_INPUT if a required vector operation is missing
+     * -----------------------------------------------------------------
+     */
 
-SUNDIALS_EXPORT int CVDense(void *cvode_mem, long int N);
+    SUNDIALS_EXPORT int CVDense(void *cvode_mem, long int N);
 
 #ifdef __cplusplus
 }

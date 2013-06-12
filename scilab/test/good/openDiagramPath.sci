@@ -12,22 +12,22 @@
 
 function ret = openDiagramPath(path, highlighted_blocks, msg, field, show_intermediate)
 
-	//1st : open path diagram
-	for i = 1 : size(path, "*")
-		//highlight parent block
-		xcosShowBlockWarning(path(i))
-		//open superblock
-		if  i == size(path, "*") then
-			xcos_open(path(i), %t);
-		else
-			xcos_open(path(i), show_intermediate);
-		end
-		//build new scs_m to go deeper
-		scs_m=scs_m.objs(path(i)).model.rpar;
-	end
-	
-	//highlight incriminated blocks
-	for i = 1 : size(highlighted_blocks,"*")
-		xcosShowBlockWarning(highlighted_blocks(i));
-	end
+    //1st : open path diagram
+    for i = 1 : size(path, "*")
+        //highlight parent block
+        xcosShowBlockWarning(path(i))
+        //open superblock
+        if  i == size(path, "*") then
+            xcos_open(path(i), %t);
+        else
+            xcos_open(path(i), show_intermediate);
+        end
+        //build new scs_m to go deeper
+        scs_m=scs_m.objs(path(i)).model.rpar;
+    end
+
+    //highlight incriminated blocks
+    for i = 1 : size(highlighted_blocks,"*")
+        xcosShowBlockWarning(highlighted_blocks(i));
+    end
 endfunction

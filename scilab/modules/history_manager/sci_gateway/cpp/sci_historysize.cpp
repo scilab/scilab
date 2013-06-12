@@ -25,7 +25,7 @@ extern "C"
 
 types::Function::ReturnValue sci_historysize(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         int size = HistoryManager::getInstance()->getNumberOfLines() - 1;
         out.push_back(new types::Double((double)size));

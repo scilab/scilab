@@ -15,24 +15,24 @@
 /*up round*/
 double dceils(double _dblVal)
 {
-	/*
-	3.14 -> 3
-	4,00 -> 4
+    /*
+    3.14 -> 3
+    4,00 -> 4
 
-	-3.14 -> -3
-	-4.00 -> -4
-	*/
-	return ceil(_dblVal);
+    -3.14 -> -3
+    -4.00 -> -4
+    */
+    return ceil(_dblVal);
 }
 
 /*up round with precision*/
 double dceilsEx(double _dblVal, int _iPrecision)
 {
-	double iPow = pow(10, _iPrecision);
+    double iPow = pow(10, _iPrecision);
 
-	double dblTemp = _dblVal * iPow;
-	dblTemp = dceils(dblTemp);
+    double dblTemp = _dblVal * iPow;
+    dblTemp = dceils(dblTemp);
 
-	return (double)dblTemp / iPow;
+    return (double)dblTemp / iPow;
 
 }

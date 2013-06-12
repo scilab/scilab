@@ -25,34 +25,34 @@ function XcosMenuUndo()
     %pt = [];
 
     if enable_undo==2 then  // open SB's may have been affected
-      %r=2
-      %r=messagebox(['Undo operation undoes changes in a subdiagram';
-                  'These changes will be lost for ever'], 'modal', ['Proceed'; ...
-		    'Cancel'])
-      if %r==2 then 
-         return,
-      else
-         scs_m = scs_m_save ; //** recover the previous diagram
-	 Select = [] ; //** unselect object  
-         needcompile = nc_save ;
-         supers=findopenchildren(scs_m,super_path,list(super_path))
-         Scicos_commands=[]
-         for i=1:size(supers)
-            Scicos_commands=[Scicos_commands;
-         	 '%diagram_path_objective='+sci2exp(supers(i))+';%scicos_navig=1';
-                 'Cmenu='"XcosMenuReplot'"']
-         end
-         enable_undo = %f ; //** "Undo" is a single level function 
-      end
-    
+        %r=2
+        %r=messagebox(["Undo operation undoes changes in a subdiagram";
+        "These changes will be lost for ever"], "modal", ["Proceed"; ...
+        "Cancel"])
+        if %r==2 then
+            return,
+        else
+            scs_m = scs_m_save ; //** recover the previous diagram
+            Select = [] ; //** unselect object
+            needcompile = nc_save ;
+            supers=findopenchildren(scs_m,super_path,list(super_path))
+            Scicos_commands=[]
+            for i=1:size(supers)
+                Scicos_commands=[Scicos_commands;
+                "%diagram_path_objective="+sci2exp(supers(i))+";%scicos_navig=1";
+                "Cmenu='"XcosMenuReplot'""]
+            end
+            enable_undo = %f ; //** "Undo" is a single level function
+        end
+
     elseif enable_undo then
-         scs_m = scs_m_save ; //** recover the previous diagram
-	 Select = [] ; //** unselect object  
-         needcompile = nc_save ;
-         Cmenu='XcosMenuReplot'     
-         enable_undo = %f ; //** "Undo" is a single level function 
+        scs_m = scs_m_save ; //** recover the previous diagram
+        Select = [] ; //** unselect object
+        needcompile = nc_save ;
+        Cmenu="XcosMenuReplot"
+        enable_undo = %f ; //** "Undo" is a single level function
     else
-      messagebox('No more undo available.','modal')
+        messagebox("No more undo available.","modal")
     end
-    
+
 endfunction

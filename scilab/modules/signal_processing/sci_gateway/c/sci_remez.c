@@ -25,13 +25,13 @@ int remez_buffered(int ngrid, int nc, int *iext, float *des, float *grid, float 
 
 int sci_remez(char *fname, void *pvApiCtx)
 {
-  /************************************************
-   * Warning : bug 4189                           *
-   * The remez function returns                   *
-   * an array which last element is meaningless.  *
-   * -> sementic of the fortran gw preserved      *
-   * -> watch the curious nc's cooking            *
-   ************************************************/
+    /************************************************
+     * Warning : bug 4189                           *
+     * The remez function returns                   *
+     * an array which last element is meaningless.  *
+     * -> sementic of the fortran gw preserved      *
+     * -> watch the curious nc's cooking            *
+     ************************************************/
 
     int rows, cols, length, ngrid = 0, nc = 0, error = 0;
     double *output = NULL, *argument = NULL;

@@ -3,18 +3,18 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
 function h=%h_copy(h,ax)
-  save(TMPDIR+'/ghdlcopy',h)
-  if argn(2)<2 then 
-    load(TMPDIR+'/ghdlcopy')
-  else
-    a=get('current_axes')
-    set('current_axes', ax)
-    load(TMPDIR+'/ghdlcopy')
-    set('current_axes', a)
-  end
+    save(TMPDIR+"/ghdlcopy",h)
+    if argn(2)<2 then
+        load(TMPDIR+"/ghdlcopy")
+    else
+        a=get("current_axes")
+        set("current_axes", ax)
+        load(TMPDIR+"/ghdlcopy")
+        set("current_axes", a)
+    end
 endfunction

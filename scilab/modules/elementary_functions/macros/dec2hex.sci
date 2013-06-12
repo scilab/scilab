@@ -17,13 +17,13 @@
 
 function h = dec2hex(v)
 
-  rhs = argn(2);
+    rhs = argn(2);
 
-  // check the number of input arguments
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "dec2hex", 1));
-  end
+    // check the number of input arguments
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "dec2hex", 1));
+    end
 
-  h = dec2base(double(v), 16);
+    h = dec2base(double(v), 16);
 
 endfunction

@@ -13,10 +13,10 @@
 //   Destroy an object.
 //
 function this = optimbase_destroy (this)
-  this.historyfopt = [];
-  this.historyxopt = [];
-  if ( this.logstartup ) then
-    this = optimbase_logshutdown ( this );
-  end
+    this.historyfopt = [];
+    this.historyxopt = [];
+    if ( this.logstartup ) then
+        this = optimbase_logshutdown ( this );
+    end
 endfunction
 

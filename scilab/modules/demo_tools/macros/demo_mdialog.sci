@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [resp]=demo_mdialog(fil)
-	load(fil,'titl','namevar','value');
-	resp=x_mdialog(titl,namevar,value);
+    load(fil,"titl","namevar","value");
+    resp=x_mdialog(titl,namevar,value);
 endfunction
 

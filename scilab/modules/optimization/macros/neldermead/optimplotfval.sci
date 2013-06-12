@@ -23,41 +23,41 @@
 //    "init", "iter", "done"
 // Notes:
 //   The algorithm is the following.
-//   At initialization of the algorithm, create an empty 
+//   At initialization of the algorithm, create an empty
 //   graphic plot, retrieve the handle, and store a special
 //   key "optimplotfval" in the user_data field of the handle.
-//   When the plot is to update, this key is searched so that the 
+//   When the plot is to update, this key is searched so that the
 //   correct plot can be update (and not another).
 //
 function optimplotfval ( x , optimValues , state )
-  if ( state == "init" ) then
-    opfvh = scf();
-    plot ( 0 , optimValues.fval );
-    opfvh.user_data = "optimplotfval";
-    opfvh.children.x_label.text = "Iteration";
-    opfvh.children.y_label.text = "Function value";
-    opfvh.children.title.text = msprintf ( "Current Function Value: %e", optimValues.fval )
-    opfvh.children.children.children.mark_mode = "on";
-    opfvh.children.children.children.mark_style = 5;
-    opfvh.children.children.children.mark_size = 10;
-    opfvh.children.children.children.mark_background = 6;
-  else
-    opfvh = findobj ( "user_data" , "optimplotfval" );
-    gg = opfvh.children.children;
-    // Update data
-    gg.children.data($+1,1:2) = [optimValues.iteration optimValues.fval];
-    // Compute new bounds
-    itermin = 0;
-    itermax = optimValues.iteration;
-    fmin = min(gg.children.data(:,2));
-    fmax = max(gg.children.data(:,2));
-    // Update bounds
-    opfvh.children.data_bounds = [
-      itermin fmin
-      itermax fmax
-    ];
-    // Update title
-    opfvh.children.title.text = msprintf ( "Current Function Value: %e", optimValues.fval )
-  end
+    if ( state == "init" ) then
+        opfvh = scf();
+        plot ( 0 , optimValues.fval );
+        opfvh.user_data = "optimplotfval";
+        opfvh.children.x_label.text = "Iteration";
+        opfvh.children.y_label.text = "Function value";
+        opfvh.children.title.text = msprintf ( "Current Function Value: %e", optimValues.fval )
+        opfvh.children.children.children.mark_mode = "on";
+        opfvh.children.children.children.mark_style = 5;
+        opfvh.children.children.children.mark_size = 10;
+        opfvh.children.children.children.mark_background = 6;
+    else
+        opfvh = findobj ( "user_data" , "optimplotfval" );
+        gg = opfvh.children.children;
+        // Update data
+        gg.children.data($+1,1:2) = [optimValues.iteration optimValues.fval];
+        // Compute new bounds
+        itermin = 0;
+        itermax = optimValues.iteration;
+        fmin = min(gg.children.data(:,2));
+        fmax = max(gg.children.data(:,2));
+        // Update bounds
+        opfvh.children.data_bounds = [
+        itermin fmin
+        itermax fmax
+        ];
+        // Update title
+        opfvh.children.title.text = msprintf ( "Current Function Value: %e", optimValues.fval )
+    end
 endfunction
 

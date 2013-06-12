@@ -16,8 +16,8 @@
 #include "string.hxx"
 
 extern "C" {
-    #include "Scierror.h"
-    #include "localization.h"
+#include "Scierror.h"
+#include "localization.h"
 }
 
 #define OPTION L"overload"
@@ -26,30 +26,30 @@ using namespace types;
 
 Function::ReturnValue sci_typeof(typed_list &in, int _piRetCount, typed_list &out)
 {
-    if(in.size() < 1 || in.size() > 2)
+    if (in.size() < 1 || in.size() > 2)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "typeof", 1, 2);
         return Function::Error;
     }
 
     // Old typeof call
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
         out.push_back(new String(in[0]->getTypeStr().c_str()));
         return Function::OK;
     }
 
     // Check second argument is a string
-    if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
+    if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "typeof", 2);
         return Function::Error;
     }
 
-    if(wcscmp(in[1]->getAs<types::String>()->get(0,0), OPTION) == 0)
+    if (wcscmp(in[1]->getAs<types::String>()->get(0, 0), OPTION) == 0)
     {
-       out.push_back(new String(in[0]->getShortTypeStr().c_str()));
-       return Function::OK;
+        out.push_back(new String(in[0]->getShortTypeStr().c_str()));
+        return Function::OK;
     }
     else
     {

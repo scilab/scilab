@@ -139,7 +139,7 @@ int sci_h5attr(char *fname, int* pvApiCtx)
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Invalid dimension for input argument #%d: a single String expected.\n"), fname, nbIn);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, nbIn);
             return 0;
         }
 

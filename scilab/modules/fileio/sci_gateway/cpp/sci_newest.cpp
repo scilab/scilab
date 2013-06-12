@@ -22,8 +22,8 @@ extern "C"
 #include <stdio.h>
 #include <string.h>
 #include "MALLOC.h"
-//#include "removedir.h"
-//#include "isdir.h"
+    //#include "removedir.h"
+    //#include "isdir.h"
 #include "expandPathVariable.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -34,23 +34,23 @@ extern "C"
 
 types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int dimsArray[2]                = {1,1};
+    int dimsArray[2]                = {1, 1};
     int iRet                        = 0;
     int iNbrString                  = 0;
     wchar_t** pwcsStringInput       = NULL;
     types::Double* pStringOutput    = NULL;
 
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
 
-    if(in.size() == 1)
+    if (in.size() == 1)
     {
-        if(in[0]->isString() == FALSE)
+        if (in[0]->isString() == FALSE)
         {
-            if(in[0]->getAs<types::GenericType>()->getSize() == 0)
+            if (in[0]->getAs<types::GenericType>()->getSize() == 0)
             {
                 out.push_back(types::Double::Empty());
                 return types::Function::OK;
@@ -62,9 +62,9 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
             }
         }
 
-        if(in[0]->getAs<types::String>()->isScalar())
+        if (in[0]->getAs<types::String>()->isScalar())
         {
-            pStringOutput = new types::Double(2,dimsArray);
+            pStringOutput = new types::Double(2, dimsArray);
             pStringOutput->set(0, 1);
             out.push_back(pStringOutput);
             return types::Function::OK;
@@ -73,14 +73,14 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
         {
             int size = in[0]->getAs<types::String>()->getSize();
             pwcsStringInput = (wchar_t**)MALLOC(size * sizeof(wchar_t*));
-            for(iNbrString = 0; iNbrString < size; iNbrString++)
+            for (iNbrString = 0; iNbrString < size; iNbrString++)
             {
                 pwcsStringInput[iNbrString] = in[0]->getAs<types::String>()->get(iNbrString);
             }
 
             iRet = newest(pwcsStringInput, iNbrString);
 
-            pStringOutput = new types::Double(2,dimsArray);
+            pStringOutput = new types::Double(2, dimsArray);
             pStringOutput->set(0, iRet);
             out.push_back(pStringOutput);
         }
@@ -88,9 +88,9 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
     else
     {
         pwcsStringInput = (wchar_t**)MALLOC(in.size() * sizeof(wchar_t*));
-        for(iNbrString = 0; iNbrString < in.size(); iNbrString++)
+        for (iNbrString = 0; iNbrString < in.size(); iNbrString++)
         {
-            if(in[iNbrString]->isString() == FALSE)
+            if (in[iNbrString]->isString() == FALSE)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A String(s) expected.\n"), "newest", iNbrString);
                 return types::Function::Error;
@@ -100,7 +100,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
 
         iRet = newest(pwcsStringInput, iNbrString);
 
-        pStringOutput = new types::Double(2,dimsArray);
+        pStringOutput = new types::Double(2, dimsArray);
         pStringOutput->set(0, iRet);
         out.push_back(pStringOutput);
     }

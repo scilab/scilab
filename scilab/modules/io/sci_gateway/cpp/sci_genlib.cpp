@@ -54,68 +54,70 @@ using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	wchar_t pstParseFile[PATH_MAX + FILENAME_MAX];
-	wchar_t pstVerbose[65535];
+    wchar_t pstParseFile[PATH_MAX + FILENAME_MAX];
+    wchar_t pstVerbose[65535];
 
     int iNbFile	            = 0;
-	wchar_t *pstParsePath      = NULL;
-	int iParsePathLen		= 0;
-	wchar_t* pstLibName		= NULL;
+    wchar_t *pstParsePath      = NULL;
+    int iParsePathLen		= 0;
+    wchar_t* pstLibName		= NULL;
     bool bVerbose           = false;
 
-	if(in.size() < 2 && in.size() > 4)
-	{
-		return Function::Error;
-	}
-
-	//param 1, library name
-	InternalType* pIT = in[0];
-	if(pIT->isString() == false)
-	{
-		return Function::Error;
-	}
-
-	String *pS = pIT->getAs<types::String>();
-	if(pS->getSize() != 1)
-	{
-		return Function::Error;
-	}
-	pstLibName = pS->get(0);
-
-	//param 2, library path
-	pIT = in[1];
-	if(pIT->isString() == false)
-	{
-		return Function::Error;
-	}
-
-	pS = pIT->getAs<types::String>();
-	if(pS->isScalar() == false)
-	{
-		return Function::Error;
-	}
-
-    if(in.size() > 2)
-    {//force flag, do nothing but keep for compatibility
+    if (in.size() < 2 && in.size() > 4)
+    {
+        return Function::Error;
     }
 
-    if(in.size() > 3)
-    {//versbose flag
+    //param 1, library name
+    InternalType* pIT = in[0];
+    if (pIT->isString() == false)
+    {
+        return Function::Error;
+    }
+
+    String *pS = pIT->getAs<types::String>();
+    if (pS->getSize() != 1)
+    {
+        return Function::Error;
+    }
+    pstLibName = pS->get(0);
+
+    //param 2, library path
+    pIT = in[1];
+    if (pIT->isString() == false)
+    {
+        return Function::Error;
+    }
+
+    pS = pIT->getAs<types::String>();
+    if (pS->isScalar() == false)
+    {
+        return Function::Error;
+    }
+
+    if (in.size() > 2)
+    {
+        //force flag, do nothing but keep for compatibility
+    }
+
+    if (in.size() > 3)
+    {
+        //versbose flag
         pIT = in[3];
-	    if(pIT->isBool() == false)
-	    {
-		    return Function::Error;
-	    }
+        if (pIT->isBool() == false)
+        {
+            return Function::Error;
+        }
 
         bVerbose = pIT->getAs<types::Bool>()->get()[0] == 1;
     }
 
-	wchar_t* pstFile = pS->get(0);
+    wchar_t* pstFile = pS->get(0);
     pstParsePath = expandPathVariableW(pstFile);
 
-	os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%lslib", pstParsePath, FILE_SEPARATOR);
+    os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%lslib", pstParsePath, FILE_SEPARATOR);
 
-    if(bVerbose)
+    if (bVerbose)
     {
         os_swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n"), pstLibName);
 
@@ -128,14 +130,14 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         ConfigVariable::setPromptMode(oldVal);
     }
 
-    if(FileExistW(pstParseFile))
+    if (FileExistW(pstParseFile))
     {
         deleteafileW(pstParseFile);
     }
 
-	xmlTextWriterPtr pWriter = openXMLFile(pstParseFile, pstLibName);
+    xmlTextWriterPtr pWriter = openXMLFile(pstParseFile, pstLibName);
 
-    if(pWriter == NULL)
+    if (pWriter == NULL)
     {
         os_swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n"), L"genlib", pstParseFile);
         scilabWriteW(pstVerbose);
@@ -146,19 +148,19 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     }
 
 
-	wchar_t **pstPath = findfilesW(pstParsePath, L"*.sci", &iNbFile, FALSE);
+    wchar_t **pstPath = findfilesW(pstParsePath, L"*.sci", &iNbFile, FALSE);
 
-	if(pstPath)
-	{
-		for(int k = 0 ; k < iNbFile ; k++)
-		{
-			//version with direct parsing
-			//parse the file to find all functions
-			wstring stFullPath = wstring(pstParsePath) + wstring(FILE_SEPARATOR) + wstring(pstPath[k]);
+    if (pstPath)
+    {
+        for (int k = 0 ; k < iNbFile ; k++)
+        {
+            //version with direct parsing
+            //parse the file to find all functions
+            wstring stFullPath = wstring(pstParsePath) + wstring(FILE_SEPARATOR) + wstring(pstPath[k]);
 
             Parser parser;
-			parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
-            if(parser.getExitStatus() !=  Parser::Succeded)
+            parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
+            if (parser.getExitStatus() !=  Parser::Succeded)
             {
                 os_swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
                 scilabWriteW(pstVerbose);
@@ -166,139 +168,139 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                 continue;
             }
 
-			std::list<ast::Exp *>::iterator j;
-			std::list<ast::Exp *>LExp = ((ast::SeqExp*)parser.getTree())->exps_get();
+            std::list<ast::Exp *>::iterator j;
+            std::list<ast::Exp *>LExp = ((ast::SeqExp*)parser.getTree())->exps_get();
 
-			for(j = LExp.begin() ; j != LExp.end() ; j++)
-			{
-				ast::FunctionDec* pFD = dynamic_cast<ast::FunctionDec*>(*j);
-				if(pFD)
-				{
-					if(AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get().name_get(), pstPath[k])) == false)
+            for (j = LExp.begin() ; j != LExp.end() ; j++)
+            {
+                ast::FunctionDec* pFD = dynamic_cast<ast::FunctionDec*>(*j);
+                if (pFD)
+                {
+                    if (AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get().name_get(), pstPath[k])) == false)
                     {
                         os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"), L"genlib", pFD->name_get().name_get().c_str(), pstPath[k]);
                         scilabWriteW(pstVerbose);
                     }
-				}
-			}
+                }
+            }
 
-			delete parser.getTree();
-		}
-	}
+            delete parser.getTree();
+        }
+    }
 
     out.push_back(new Bool(1));
     FREE(pstParsePath);
-	closeXMLFile(pWriter);
-	return Function::OK;
+    closeXMLFile(pWriter);
+    return Function::OK;
 }
 
 void closeXMLFile(xmlTextWriterPtr _pWriter)
 {
-	int iLen;
+    int iLen;
 
-	//close opened nodes
-	iLen = xmlTextWriterEndElement(_pWriter);
-	if(iLen < 0)
-	{
-		return;
-	}
+    //close opened nodes
+    iLen = xmlTextWriterEndElement(_pWriter);
+    if (iLen < 0)
+    {
+        return;
+    }
 
-	//close document
-	iLen = xmlTextWriterEndDocument(_pWriter);
-	if(iLen < 0)
-	{
-		return;
-	}
+    //close document
+    iLen = xmlTextWriterEndDocument(_pWriter);
+    if (iLen < 0)
+    {
+        return;
+    }
 
-	//close xml writer
-	xmlFreeTextWriter(_pWriter);
+    //close xml writer
+    xmlFreeTextWriter(_pWriter);
 }
 
 xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName)
 {
-	int iLen;
-	xmlTextWriterPtr pWriter = NULL;;
+    int iLen;
+    xmlTextWriterPtr pWriter = NULL;;
     char *pstFilename = wide_string_to_UTF8(_pstFilename);
     char *pstLibName = wide_string_to_UTF8(_pstLibName);
 
 
-	//create a writer
-	pWriter = xmlNewTextWriterFilename(pstFilename, 0);
-	if(pWriter == NULL)
-	{
-		return NULL;
-	}
+    //create a writer
+    pWriter = xmlNewTextWriterFilename(pstFilename, 0);
+    if (pWriter == NULL)
+    {
+        return NULL;
+    }
 
-	//setup indentation
-	xmlTextWriterSetIndent (pWriter, 1);
-	xmlTextWriterSetIndentString (pWriter, (xmlChar*)"  ");
+    //setup indentation
+    xmlTextWriterSetIndent (pWriter, 1);
+    xmlTextWriterSetIndentString (pWriter, (xmlChar*)"  ");
 
-	//create a new document
-	iLen = xmlTextWriterStartDocument(pWriter, NULL, DEFAULT_ENCODING, "no");
-	if(iLen < 0)
-	{
-		return NULL;
-	}
+    //create a new document
+    iLen = xmlTextWriterStartDocument(pWriter, NULL, DEFAULT_ENCODING, "no");
+    if (iLen < 0)
+    {
+        return NULL;
+    }
 
-	//add a node "scilablib"
-	iLen = xmlTextWriterStartElement(pWriter, (xmlChar*)"scilablib");
-	if(iLen < 0)
-	{
-		return NULL;
-	}
+    //add a node "scilablib"
+    iLen = xmlTextWriterStartElement(pWriter, (xmlChar*)"scilablib");
+    if (iLen < 0)
+    {
+        return NULL;
+    }
 
-	//Add attribute "name"
-	iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)pstLibName);
-	if (iLen < 0)
-	{
-		return false;
-	}
+    //Add attribute "name"
+    iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)pstLibName);
+    if (iLen < 0)
+    {
+        return false;
+    }
 
     FREE(pstFilename);
     FREE(pstLibName);
 
-	return pWriter;
+    return pWriter;
 }
 
 bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<wstring, wstring> _pair)
 {
-	int iLen;
+    int iLen;
 
-	if(_pWriter == NULL)
-	{
-		return false;
-	}
+    if (_pWriter == NULL)
+    {
+        return false;
+    }
 
-	//create node "macro"
-	iLen = xmlTextWriterStartElement(_pWriter, (xmlChar*)"macro");
-	if(iLen < 0)
-	{
-		return false;
-	}
+    //create node "macro"
+    iLen = xmlTextWriterStartElement(_pWriter, (xmlChar*)"macro");
+    if (iLen < 0)
+    {
+        return false;
+    }
 
-	//Add attribute "name"
+    //Add attribute "name"
     char* pstFirst = wide_string_to_UTF8(_pair.first.c_str());
-	iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"name", (xmlChar*)pstFirst);
-	if (iLen < 0)
-	{
-		return false;
-	}
+    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"name", (xmlChar*)pstFirst);
+    if (iLen < 0)
+    {
+        return false;
+    }
     FREE(pstFirst);
 
-	//Add attribute "file"
+    //Add attribute "file"
     char* pstSecond = wide_string_to_UTF8(_pair.second.c_str());
-	iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)pstSecond);
-	if (iLen < 0)
-	{
-		return false;
-	}
+    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)pstSecond);
+    if (iLen < 0)
+    {
+        return false;
+    }
     FREE(pstSecond);
 
-	//close "macro" node
-	iLen = xmlTextWriterEndElement(_pWriter);
-	if(iLen < 0)
-	{
-		return false;
-	}
-	return true;
+    //close "macro" node
+    iLen = xmlTextWriterEndElement(_pWriter);
+    if (iLen < 0)
+    {
+        return false;
+    }
+    return true;
 }

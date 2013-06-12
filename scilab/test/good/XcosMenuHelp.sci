@@ -20,14 +20,14 @@
 //
 
 function XcosMenuHelp()
-  xinfo("Click on object or menu to get help") ; 
+    xinfo("Click on object or menu to get help") ;
 
-  do_help() ; //** call the help function 
+    do_help() ; //** call the help function
 
-  xinfo(" ") ;
-    
-  //** Clear state machine variables   
-  Cmenu = [];
-  %pt = [];
+    xinfo(" ") ;
+
+    //** Clear state machine variables
+    Cmenu = [];
+    %pt = [];
 
 endfunction

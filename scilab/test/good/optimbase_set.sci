@@ -15,34 +15,34 @@
 //   If the key is unknown, generates an error.
 //
 function this = optimbase_set ( this , key , value )
-  select key
-  case "-iterations" then
-    this.iterations = value;
-  case "-xopt" then
-    this.xopt = value;
-  case "-fopt" then
-    this.fopt = value;
-  case "-historyxopt" then
-    if ( ~this.storehistory ) then
-      errmsg = msprintf( gettext ( "%s: History disabled ; turn on -storehistory option.") , "optimbase_set" )
-      error(errmsg)
+    select key
+    case "-iterations" then
+        this.iterations = value;
+    case "-xopt" then
+        this.xopt = value;
+    case "-fopt" then
+        this.fopt = value;
+    case "-historyxopt" then
+        if ( ~this.storehistory ) then
+            errmsg = msprintf( gettext ( "%s: History disabled ; turn on -storehistory option.") , "optimbase_set" )
+            error(errmsg)
+        else
+            this.historyxopt = value;
+        end
+    case "-historyfopt" then
+        if ( ~this.storehistory ) then
+            errmsg = msprintf(gettext ( "%s: History disabled ; turn on -storehistory option.") , "optimbase_set" )
+            error(errmsg)
+        else
+            this.historyfopt = value;
+        end
+    case "-fx0" then
+        this.fx0 = value;
+    case "-status" then
+        this.status = value;
     else
-      this.historyxopt = value;
+        errmsg = msprintf(gettext ( "%s: Unknown key %s") , "optimbase_set", key )
+        error(errmsg)
     end
-  case "-historyfopt" then
-    if ( ~this.storehistory ) then
-      errmsg = msprintf(gettext ( "%s: History disabled ; turn on -storehistory option.") , "optimbase_set" )
-      error(errmsg)
-    else
-      this.historyfopt = value;
-    end
-  case "-fx0" then
-    this.fx0 = value;
-  case "-status" then
-    this.status = value;
-  else
-    errmsg = msprintf(gettext ( "%s: Unknown key %s") , "optimbase_set", key )
-    error(errmsg)
-  end
 endfunction
 

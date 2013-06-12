@@ -12,14 +12,15 @@
 #ifndef _STRING_MATRIX_
 #define _STRING_MATRIX_
 
-#include "dynlib_statistics.h" 
+#include "dynlib_statistics.h"
 /**
  * End-developer oriented string matrix
  */
-struct string_matrix {
-  int rows;
-  int cols;
-  char **strings;
+struct string_matrix
+{
+    int rows;
+    int cols;
+    char **strings;
 };
 
 /**

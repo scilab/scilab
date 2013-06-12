@@ -12,7 +12,7 @@
 
 #include "pipo.h"
 
-int foo(int x) 
+int foo(int x)
 {
-  return x+2; 
+    return x + 2;
 }

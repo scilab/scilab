@@ -34,14 +34,14 @@ int sci_dgettext(char *fname, void* pvApiCtx)
     CheckLhs(1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
@@ -53,7 +53,7 @@ int sci_dgettext(char *fname, void* pvApiCtx)
 
         if (!isScalar(pvApiCtx, piAddressVarOne))
         {
-            Scierror(999,"%s: Wrong size for input argument #%d: A string expected.\n", fname, 1);
+            Scierror(999, "%s: Wrong size for input argument #%d: A string expected.\n", fname, 1);
             return 0;
         }
 
@@ -98,10 +98,10 @@ int sci_dgettext(char *fname, void* pvApiCtx)
             freeArrayOfString(TranslatedStrings, m * n);
             TranslatedStrings = NULL;
 
-            if(sciErr.iErr)
+            if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
 
@@ -118,11 +118,11 @@ int sci_dgettext(char *fname, void* pvApiCtx)
     {
         if (isStringType(pvApiCtx, piAddressVarOne))
         {
-            Scierror(999,"%s: Wrong type for input argument #%d: String expected.\n", fname, 2);
+            Scierror(999, "%s: Wrong type for input argument #%d: String expected.\n", fname, 2);
         }
         else
         {
-            Scierror(999,"%s: Wrong type for input argument #%d: String expected.\n", fname, 1);
+            Scierror(999, "%s: Wrong type for input argument #%d: String expected.\n", fname, 1);
         }
     }
     return 0;

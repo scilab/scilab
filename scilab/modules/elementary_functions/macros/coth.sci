@@ -8,19 +8,19 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function t=coth(x)
-//Syntax : t=coth(x)
-//
-// hyperbolic co-tangent of x
+    //Syntax : t=coth(x)
+    //
+    // hyperbolic co-tangent of x
 
-  rhs = argn(2);
+    rhs = argn(2);
 
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"coth",1));
-  end
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"coth",1));
+    end
 
-  if type(x)<>1 then
-   error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"coth",1));
-  end
-  t=exp(x);
-  t=(t-ones(x)./t).\(t+ones(x)./t);
+    if type(x)<>1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"coth",1));
+    end
+    t=exp(x);
+    t=(t-ones(x)./t).\(t+ones(x)./t);
 endfunction

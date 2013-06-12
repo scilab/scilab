@@ -24,28 +24,28 @@
 //
 
 function XcosMenuZoomOut()
-//** 12 Feb. 2006:  new graphic (Simone), grid insertion (Alan)
-//**                geometrical correction (Ramine)
+    //** 12 Feb. 2006:  new graphic (Simone), grid insertion (Alan)
+    //**                geometrical correction (Ramine)
     Cmenu = [];
     xinfo("Zoom out");
     gh_window = gh_current_window;
-    //** Get the current postion of the visible part of graphics in the panner. 
+    //** Get the current postion of the visible part of graphics in the panner.
     viewport  = gh_window.viewport; //** [x,y]
 
-    
-    zoomfactor = 1/1.2 ;  
+
+    zoomfactor = 1/1.2 ;
     %zoom = %zoom * zoomfactor ;
-    
-    //** geometrical correction: zoom in the center  
+
+    //** geometrical correction: zoom in the center
     viewport = viewport / zoomfactor - 0.5 * gh_window.figure_size*(1 - zoomfactor)  ;
 
     drawlater()
     window_set_size(gh_window, viewport);
-     
-    if exists('%scicos_with_grid') & %scicos_with_grid==%t then
-      drawgrid(); //** set the new grid 
+
+    if exists("%scicos_with_grid") & %scicos_with_grid==%t then
+        drawgrid(); //** set the new grid
     end
-    
+
     drawnow();
-    xinfo(' ');
+    xinfo(" ");
 endfunction

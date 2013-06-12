@@ -26,13 +26,13 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_deletefile(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "deletefile", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "deletefile", 1);
         return Function::Error;
@@ -40,7 +40,7 @@ Function::ReturnValue sci_deletefile(typed_list &in, int _iRetCount, typed_list 
 
 
     Bool *pOut = NULL;
-    if(deleteafileW(in[0]->getAs<types::String>()->get(0)))
+    if (deleteafileW(in[0]->getAs<types::String>()->get(0)))
     {
         pOut = new Bool(1);
     }
@@ -51,37 +51,37 @@ Function::ReturnValue sci_deletefile(typed_list &in, int _iRetCount, typed_list 
 
     out.push_back(pOut);
     return Function::OK;
-	//CheckRhs(1,1);
-	//CheckLhs(1,1);
+    //CheckRhs(1,1);
+    //CheckLhs(1,1);
 
-	//if (GetType(1) == sci_strings)
-	//{
-	//	int m1,n1,l1;
-	//	char *VarName=NULL;
+    //if (GetType(1) == sci_strings)
+    //{
+    //	int m1,n1,l1;
+    //	char *VarName=NULL;
 
-	//	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-	//	/* Bug 3089 */
-	//	VarName = cstk(l1);
+    //	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+    //	/* Bug 3089 */
+    //	VarName = cstk(l1);
 
-	//	n1=1;
-	//	if ( deleteafile(VarName) )
-	//	{
-	//		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-	//		*istk(l1)=(int)(TRUE);
-	//	}
-	//	else
-	//	{
-	//		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-	//		*istk(l1)=(int)(FALSE);
-	//	}
+    //	n1=1;
+    //	if ( deleteafile(VarName) )
+    //	{
+    //		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+    //		*istk(l1)=(int)(TRUE);
+    //	}
+    //	else
+    //	{
+    //		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
+    //		*istk(l1)=(int)(FALSE);
+    //	}
 
-	//	LhsVar(1)=Rhs+1;
-	//	C2F(putlhsvar)();
-	//}
-	//else
-	//{
-	//	Scierror(999,_("%s: Wrong type for input argument: A string expected.\n"),fname);
-	//}
-	//return 0;
+    //	LhsVar(1)=Rhs+1;
+    //	C2F(putlhsvar)();
+    //}
+    //else
+    //{
+    //	Scierror(999,_("%s: Wrong type for input argument: A string expected.\n"),fname);
+    //}
+    //return 0;
 }
 /*--------------------------------------------------------------------------*/

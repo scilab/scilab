@@ -24,20 +24,20 @@ import com.mxgraph.view.mxMultiplicity;
 
 /**
  * Validate the connection between ports for a rule.
- * 
+ *
  * The {@link #check(mxGraph, Object, Object, Object, int, int)} method will
  * return an error message if the link cannot be created. Otherwise it will
  * return an empty string.
  */
 public class PortCheck extends mxMultiplicity {
 
-    private final Class<? extends mxCell> sourceTemplate;
-    private final List<Class<? extends mxCell>> targetTemplateList;
+    private final Class <? extends mxCell > sourceTemplate;
+    private final List < Class <? extends mxCell >> targetTemplateList;
     private final String errorMessage;
 
     /**
      * Construct a new connection rule.
-     * 
+     *
      * @param sourceTemplate
      *            The source ports
      * @param targetTemplate
@@ -45,8 +45,8 @@ public class PortCheck extends mxMultiplicity {
      * @param errorMessage
      *            The associated error message.
      */
-    public PortCheck(Class<? extends mxCell> sourceTemplate,
-            List<Class<? extends mxCell>> targetTemplate, String errorMessage) {
+    public PortCheck(Class <? extends mxCell > sourceTemplate,
+                     List < Class <? extends mxCell >> targetTemplate, String errorMessage) {
         // We completely override mxMultiplicity
         super(true, null, null, null, 0, null, null, null, null, false);
         this.sourceTemplate = sourceTemplate;
@@ -58,7 +58,7 @@ public class PortCheck extends mxMultiplicity {
 
     /**
      * Check for the rule.
-     * 
+     *
      * @param graph
      *            the graph
      * @param edge
@@ -72,13 +72,13 @@ public class PortCheck extends mxMultiplicity {
      * @param targetIn
      *            number of connections at target
      * @return An error message or null if the link is valid
-     * 
+     *
      * @see com.mxgraph.view.mxMultiplicity#check(com.mxgraph.view.mxGraph,
      *      java.lang.Object, java.lang.Object, java.lang.Object, int, int)
      */
     @Override
     public String check(mxGraph graph, Object edge, Object source,
-            Object target, int sourceOut, int targetIn) {
+                        Object target, int sourceOut, int targetIn) {
 
         // check that source and target has no connections (removing the current
         // edge)
@@ -104,7 +104,7 @@ public class PortCheck extends mxMultiplicity {
     /**
      * Returns the number of incoming and outgoing edges, ignoring the given
      * edge.
-     * 
+     *
      * @param model
      *            Graph model that contains the connection data.
      * @param cell
@@ -116,7 +116,7 @@ public class PortCheck extends mxMultiplicity {
      *      Object)
      */
     private int getEdgeCount(mxIGraphModel model, Object cell,
-            Object ignoredEdge) {
+                             Object ignoredEdge) {
         int count = 0;
         int edgeCount = model.getEdgeCount(cell);
 
@@ -133,7 +133,7 @@ public class PortCheck extends mxMultiplicity {
 
     /**
      * Check for port compatibility.
-     * 
+     *
      * @param firstPort
      *            the first port to check
      * @param secondPort
@@ -147,10 +147,10 @@ public class PortCheck extends mxMultiplicity {
          */
 
         if (sourceTemplate.getSimpleName().compareTo(
-                firstPort.getClass().getSimpleName()) == 0) {
-            for (Class<? extends mxCell> iterableElement : targetTemplateList) {
+                    firstPort.getClass().getSimpleName()) == 0) {
+            for (Class <? extends mxCell > iterableElement : targetTemplateList) {
                 if (iterableElement.getSimpleName().compareTo(
-                        secondPort.getClass().getSimpleName()) == 0) {
+                            secondPort.getClass().getSimpleName()) == 0) {
                     return true;
                 }
             }

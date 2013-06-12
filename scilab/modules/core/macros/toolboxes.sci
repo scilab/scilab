@@ -36,15 +36,15 @@ function [y] = toolboxes(path)
 
     // Non ATOMS modules
     if rhs == 0 then
-        path = SCI + filesep() + 'contrib';
+        path = SCI + filesep() + "contrib";
     end
 
     cur_wd = pwd();
     chdir(path);
-    files = listfiles('.');
+    files = listfiles(".");
     contribs = [];
-    for k = 1:size(files,'*')
-        if isfile(files(k)+'/loader.sce') then
+    for k = 1:size(files,"*")
+        if isfile(files(k)+"/loader.sce") then
             contribs = [contribs ; files(k)];
         end
     end
@@ -62,13 +62,13 @@ function [y] = toolboxes(path)
         end
     end
 
-    if (contribs <> []) & (getscilabmode() == 'STD') then
+    if (contribs <> []) & (getscilabmode() == "STD") then
         delmenu(gettext("&Toolboxes"));
         h = uimenu("parent", 0, "label", gettext("&Toolboxes"));
-        for k=1:size(contribs,'*')
+        for k=1:size(contribs,"*")
             tmp = strsubst(contribs(k),","," ");
             tmp = strsubst(tmp,"!","");
-            m = uimenu(h,'label', tmp, 'callback','execstr(toolboxes('+msprintf("%d",k)+'))');
+            m = uimenu(h,"label", tmp, "callback","execstr(toolboxes("+msprintf("%d",k)+"))");
         end
         unsetmenu(gettext("&Toolboxes"));
     end

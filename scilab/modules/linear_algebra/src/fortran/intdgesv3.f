@@ -117,6 +117,7 @@ c     SUBROUTINE DLACPY( UPLO, M, N, A, LDA, B, LDB )
       do 10 i = 1, N
          istk(lJPVT+i-1) = 0
  10   continue
+      info = 1
       call DGELSY1( M, N, NRHS, stk(lA), M, stk(lXB), max(M,N),
      $     istk(lJPVT), RCOND, istk(lRANK), stk(lDWORK),
      $     LWORK, INFO )

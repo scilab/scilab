@@ -246,7 +246,9 @@ static sco_data *getScoData(scicos_block * block)
 
         sco = (sco_data *) MALLOC(sizeof(sco_data));
         if (sco == NULL)
+        {
             goto error_handler_sco;
+        }
 
         sco->internal.numberOfPoints = (int *)CALLOC(nclk, sizeof(int));
         if (sco->internal.numberOfPoints == NULL)
@@ -265,7 +267,9 @@ static sco_data *getScoData(scicos_block * block)
 
         sco->internal.data = (double **)CALLOC(2 * nclk, sizeof(double *));
         if (sco->internal.data == NULL)
+        {
             goto error_handler_data;
+        }
 
         for (i = 0; i < nclk; i++)
         {
@@ -274,7 +278,9 @@ static sco_data *getScoData(scicos_block * block)
              */
             sco->internal.data[2 * i + 0] = (double *)CALLOC(3 * DEFAULT_MAX_NUMBER_OF_POINTS, sizeof(double));
             if (sco->internal.data[2 * i + 0] == NULL)
+            {
                 goto error_handler_data_i;
+            }
 
             /*
              * Alloc direction pointer
@@ -365,7 +371,9 @@ static sco_data *reallocScoData(scicos_block * block, int input, int numberOfPoi
      */
     ptr = (double *)REALLOC(sco->internal.data[2 * input], 3 * numberOfPoints * sizeof(double));
     if (ptr == NULL)
+    {
         goto error_handler;
+    }
 
     for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
     {
@@ -380,7 +388,9 @@ static sco_data *reallocScoData(scicos_block * block, int input, int numberOfPoi
      */
     ptr = (double *)REALLOC(sco->internal.data[2 * input + 1], 3 * numberOfPoints * sizeof(double));
     if (ptr == NULL)
+    {
         goto error_handler;
+    }
 
     for (setLen = numberOfPoints - previousNumberOfPoints - 1; setLen >= 0; setLen--)
     {
@@ -498,7 +508,9 @@ static BOOL pushData(scicos_block * block, int input)
 
     sco = getScoData(block);
     if (sco == NULL)
+    {
         return FALSE;
+    }
 
     // select the right input and row
     base = sco->internal.data[2 * input];

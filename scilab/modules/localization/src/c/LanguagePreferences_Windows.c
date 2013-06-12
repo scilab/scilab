@@ -32,7 +32,7 @@ static wchar_t *languageFromCommandLine = NULL;
 /*--------------------------------------------------------------------------*/
 static wchar_t *getLanguagePreferencesCurrentUser(void);
 static wchar_t *getLanguagePreferencesAllUsers(void);
-static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyString);
+static wchar_t *readRegistryLanguage(HKEY hKeyRoot, wchar_t *keyString);
 /*--------------------------------------------------------------------------*/
 BOOL isValidLanguage(wchar_t *lang)
 {
@@ -96,22 +96,28 @@ wchar_t *getLanguagePreferences(void)
         }
         else
         {
-            if (isValidLanguage(LanguageAllUsers)) return LanguageAllUsers;
+            if (isValidLanguage(LanguageAllUsers))
+            {
+                return LanguageAllUsers;
+            }
         }
     }
     else
     {
-        if (isValidLanguage(LanguageUser)) return LanguageUser;
+        if (isValidLanguage(LanguageUser))
+        {
+            return LanguageUser;
+        }
     }
     return os_wcsdup(L"");
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyStringFormat)
+static wchar_t *readRegistryLanguage(HKEY hKeyRoot, wchar_t *keyStringFormat)
 {
 #define LENGTH_LANGUAGE_REGISTRY 64
     wchar_t LANGUAGE_REGISTRY[LENGTH_LANGUAGE_REGISTRY] = DEFAULT_LANGUAGE_VALUE;
     wchar_t *keyString = NULL;
-    int lenkeyString = (int)(wcslen(keyStringFormat)+wcslen(SCI_VERSION_WIDE_STRING)) + 1;
+    int lenkeyString = (int)(wcslen(keyStringFormat) + wcslen(SCI_VERSION_WIDE_STRING)) + 1;
 
     keyString = (wchar_t*) MALLOC(sizeof(wchar_t) * lenkeyString);
 
@@ -137,19 +143,31 @@ static wchar_t *readRegistryLanguage(HKEY hKeyRoot,wchar_t *keyStringFormat)
         if ( RegOpenKeyExW(hKeyRoot, keyString, 0, OpensKeyOptions, &hKey) != ERROR_SUCCESS )
         {
             RegCloseKey(hKey);
-            if (keyString) { FREE(keyString); keyString = NULL;}
+            if (keyString)
+            {
+                FREE(keyString);
+                keyString = NULL;
+            }
             return NULL;
         }
 
-        if ( RegQueryValueExW(hKey, LANGUAGE_ENTRY, 0, NULL ,(LPBYTE)LANGUAGE_REGISTRY,&length)  !=  ERROR_SUCCESS )
+        if ( RegQueryValueExW(hKey, LANGUAGE_ENTRY, 0, NULL , (LPBYTE)LANGUAGE_REGISTRY, &length)  !=  ERROR_SUCCESS )
         {
             RegCloseKey(hKey);
-            if (keyString) { FREE(keyString); keyString = NULL;}
+            if (keyString)
+            {
+                FREE(keyString);
+                keyString = NULL;
+            }
             return NULL;
         }
 
         RegCloseKey(hKey);
-        if (keyString) { FREE(keyString); keyString = NULL;}
+        if (keyString)
+        {
+            FREE(keyString);
+            keyString = NULL;
+        }
     }
     return os_wcsdup(LANGUAGE_REGISTRY);
 }
@@ -171,7 +189,7 @@ BOOL setLanguagePreferences(void)
     if (LANGUAGE)
     {
         wchar_t *keyString = NULL;
-        int lenkeyString = (int)(wcslen(HKCU_LANGUAGE_FORMAT)+wcslen(SCI_VERSION_WIDE_STRING)) + 1;
+        int lenkeyString = (int)(wcslen(HKCU_LANGUAGE_FORMAT) + wcslen(SCI_VERSION_WIDE_STRING)) + 1;
         keyString = (wchar_t*) MALLOC(sizeof(wchar_t) * lenkeyString);
         if (keyString)
         {
@@ -195,19 +213,31 @@ BOOL setLanguagePreferences(void)
             if ( RegCreateKeyExW(HKEY_CURRENT_USER, keyString, 0, NULL, REG_OPTION_NON_VOLATILE, OpensKeyOptions, NULL, &hKey, &result) != ERROR_SUCCESS)
             {
                 RegCloseKey(hKey);
-                if (keyString) { FREE(keyString); keyString = NULL;}
+                if (keyString)
+                {
+                    FREE(keyString);
+                    keyString = NULL;
+                }
                 return FALSE;
             }
 
-            if ( RegSetValueExW(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, (DWORD)(strlen(LANGUAGE)+1)) != ERROR_SUCCESS)
+            if ( RegSetValueExW(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, (DWORD)(strlen(LANGUAGE) + 1)) != ERROR_SUCCESS)
             {
                 RegCloseKey(hKey);
-                if (keyString) { FREE(keyString); keyString = NULL;}
+                if (keyString)
+                {
+                    FREE(keyString);
+                    keyString = NULL;
+                }
                 return FALSE;
             }
 
             RegCloseKey(hKey);
-            if (keyString) { FREE(keyString); keyString = NULL;}
+            if (keyString)
+            {
+                FREE(keyString);
+                keyString = NULL;
+            }
             return TRUE;
         }
     }

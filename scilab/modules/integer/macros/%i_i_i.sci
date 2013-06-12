@@ -8,10 +8,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function left=%i_i_i(varargin)
-//- insertion of an integer matrix in an matrix of integers
-//            for more than 2 indices
-// -insertion an integer matrix in an integer matrix which has a
-//            different integer type
+    //- insertion of an integer matrix in an matrix of integers
+    //            for more than 2 indices
+    // -insertion an integer matrix in an integer matrix which has a
+    //            different integer type
 
     left  = varargin($);
     rigth = varargin($-1);

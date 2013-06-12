@@ -8,9 +8,9 @@ mode(-1);
 x=matrix([5 2:8],2,4);
 r=(msd(x)-3.5)<%eps
 r=r&norm(msd(x,1)-[3 1 1 1]/2)<%eps
-r=r&norm(msd(x,'r')-[3 1 1 1]/2)<%eps
+r=r&norm(msd(x,"r")-[3 1 1 1]/2)<%eps
 r=r&norm(msd(x,2)-sqrt([2;5]))<%eps
-r=r&norm(msd(x,'c')-sqrt([2;5]))<%eps
+r=r&norm(msd(x,"c")-sqrt([2;5]))<%eps
 
 affich_result(r,1742);
 clear

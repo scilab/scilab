@@ -27,11 +27,11 @@ function M=hypermat(dims,v)
         dims=[0 0];
     end
 
-    if size(dims, '*') == 1 then
+    if size(dims, "*") == 1 then
         dims=[1 dims];
     else
         //remove last dimensions equal to 1
-        nd = size(dims, '*');
+        nd = size(dims, "*");
         while nd > 2 & dims(nd) == 1 then
             nd = nd - 1;
         end
@@ -42,7 +42,7 @@ function M=hypermat(dims,v)
         v = zeros(prod(dims), 1);
     end
 
-    if size(v, '*') <> double(prod(dims)) then
+    if size(v, "*") <> double(prod(dims)) then
         error(msprintf(gettext("%s: Number of entries does not match product of dimensions"), "hypermat"));
     end
 

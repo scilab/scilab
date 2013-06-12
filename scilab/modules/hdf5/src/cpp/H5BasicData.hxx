@@ -197,7 +197,7 @@ public:
     {
         if (rows * cols != strs.size())
         {
-            throw H5Exception(__LINE__, __FILE__, _("Invalid dimensions."));
+            throw H5Exception(__LINE__, __FILE__, _("Wrong dimensions."));
         }
 
         if (strs.size() == 0)

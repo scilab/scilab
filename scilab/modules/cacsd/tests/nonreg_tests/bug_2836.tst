@@ -13,7 +13,7 @@
 // <-- Short Description -->
 //Problem with the function csim when using state space form. When using this
 //function with two output arguments [y, x] (output and state of the dynamical
-//system), with an observation matrix C=[1 0], the ouput is not equal to the first
+//system), with an observation matrix C=[1 0], the output is not equal to the first
 //component of the state.
 
 Ks = 2; z = 0.9; w = 10;

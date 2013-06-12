@@ -20,7 +20,7 @@ extern "C"
 void __InitLock(__threadLock *lockName)
 {
 #ifdef _MSC_VER
-    *(lockName)=CreateMutex(NULL, FALSE, NULL);
+    *(lockName) = CreateMutex(NULL, FALSE, NULL);
 #else
     pthread_mutex_init(lockName, NULL);
 #endif
@@ -49,10 +49,10 @@ void __InitSignalLock(__threadSignalLock *lockName)
 #ifdef _MSC_VER
     InitializeCriticalSection(lockName);
 #else
-/* PTHREAD_MUTEX_ERRORCHECK needed for a safe release atexit when we try to release without knowing if we own the lock
-   PTHREAD_PROCESS_SHARED needed for interprocess synch (plus alloc in shared mem thread_mutexattr_settype
-   Linux uses PTHREAD_MUTEX_ERRORCHECK_NP other Posix use PTHREAD_MUTEX_ERRORCHECK
-*/
+    /* PTHREAD_MUTEX_ERRORCHECK needed for a safe release atexit when we try to release without knowing if we own the lock
+       PTHREAD_PROCESS_SHARED needed for interprocess synch (plus alloc in shared mem thread_mutexattr_settype
+       Linux uses PTHREAD_MUTEX_ERRORCHECK_NP other Posix use PTHREAD_MUTEX_ERRORCHECK
+    */
 #ifndef PTHREAD_MUTEX_ERRORCHECK
 #define PTHREAD_MUTEX_ERRORCHECK PTHREAD_MUTEX_ERRORCHECK_NP
 #endif
@@ -114,12 +114,12 @@ void __Wait(__threadSignal *signalName, __threadSignalLock *lockName)
 #endif
 }
 
-void __CreateThread(__threadId *threadId, __threadKey *threadKey, void *(*functionName) (void *))
+void __CreateThread(__threadId *threadId, __threadKey *threadKey, void * (*functionName) (void *))
 {
     __CreateThreadWithParams(threadId, threadKey, functionName, NULL);
 }
 
-void __CreateThreadWithParams(__threadId *threadId, __threadKey *threadKey, void *(*functionName) (void *), void *params)
+void __CreateThreadWithParams(__threadId *threadId, __threadKey *threadKey, void * (*functionName) (void *), void *params)
 {
 #ifdef _MSC_VER
     size_t size = 128 * 1024 * 1024;
@@ -155,7 +155,7 @@ void __CreateThreadWithParams(__threadId *threadId, __threadKey *threadKey, void
 void __WaitThreadDie(__threadId threadId)
 {
 #ifdef _MSC_VER
-    ((WaitForSingleObject((threadId),INFINITE)!=WAIT_OBJECT_0) || !CloseHandle(threadId));
+    ((WaitForSingleObject((threadId), INFINITE) != WAIT_OBJECT_0) || !CloseHandle(threadId));
 #else
     pthread_join(threadId, NULL);
 #endif

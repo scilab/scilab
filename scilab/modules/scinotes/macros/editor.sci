@@ -14,7 +14,7 @@ function editor(varargin)
     if ~isfile(SCIHOME + "/XConfiguration.xml") then
         cmd = makeCommand("scinotes", varargin);
         execstr(cmd);
-	return;
+        return;
     end
 
     doc = xmlRead(SCIHOME + "/XConfiguration.xml");
@@ -54,7 +54,7 @@ function cmd = makeCommand(name, args)
             if type(args(i)) == 10 then
                 arg = """" + arg + """";
             end
-            cmd = cmd + arg + ","; 
+            cmd = cmd + arg + ",";
         end
 
         arg = string(args(N));

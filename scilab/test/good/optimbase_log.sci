@@ -14,12 +14,12 @@
 //   If verbose logging is disabled, does nothing.
 //
 function this = optimbase_log (this,msg)
-  if ( this.verbose == 1 ) then
-    if ( this.logfile <> "" ) then
-      mfprintf ( this.logfilehandle , "%s\n" , msg );
-    else
-      mprintf("%s\n",msg);
+    if ( this.verbose == 1 ) then
+        if ( this.logfile <> "" ) then
+            mfprintf ( this.logfilehandle , "%s\n" , msg );
+        else
+            mprintf("%s\n",msg);
+        end
     end
-  end
 endfunction
 

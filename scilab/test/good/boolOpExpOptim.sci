@@ -1,34 +1,34 @@
 function r=plop()
-  disp("plop")
-  r = %f
+    disp("plop")
+    r = %f
 endfunction
 
 function r=plip()
-  disp("plip")
-  r = %t
+    disp("plip")
+    r = %t
 endfunction
 
 plop() & plip()
 plip() | plop()
 
 if(plop() & plip())
-  disp("then...")
+    disp("then...")
 else
-  disp("else...")
+    disp("else...")
 end
 
 if(plip() | plop())
-  disp("then...")
+    disp("then...")
 else
-  disp("else...")
+    disp("else...")
 end
 
 while(plip() | plop())
-  disp("while |...")
-  break;
-  end
+    disp("while |...")
+    break;
+end
 
-  while(plop() & plip())
-  disp("while &...")
-  break;
+while(plop() & plip())
+    disp("while &...")
+    break;
 end

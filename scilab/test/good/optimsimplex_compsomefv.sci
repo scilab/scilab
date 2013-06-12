@@ -17,12 +17,12 @@
 //   data : user-defined data
 //
 function [ this , data ] = optimsimplex_compsomefv ( this , fun , indices , data )
-  for j = indices;
-    if (~isdef('data','local')) then
-      this.fv(j)  = fun (this.x(j,:));
-    else
-      [ this.fv(j) , data ]  = fun (this.x(j,:) , data );
+    for j = indices;
+        if (~isdef("data","local")) then
+            this.fv(j)  = fun (this.x(j,:));
+        else
+            [ this.fv(j) , data ]  = fun (this.x(j,:) , data );
+        end
     end
-  end
 endfunction
 

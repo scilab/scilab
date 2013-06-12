@@ -1,5 +1,5 @@
 function show_pixmap()
-  xset('wshow')
+    xset("wshow")
 endfunction
 
-    
+

@@ -7,6 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = acot(x)
-//Inverse cotangeant.
-  y = %pi/2-atan(x);
+    //Inverse cotangeant.
+    y = %pi/2-atan(x);
 endfunction

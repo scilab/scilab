@@ -21,20 +21,22 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "machine.h" /* C2F */
-#include "math_graphics.h" 
+#include "math_graphics.h"
 #include "PloEch.h"
 /*--------------------------------------------------------------------------*/
 void C2F(scicosclip)(int *n)
 {
-  if(*n==1){
-	  /* disabled */
-	  /* TO DO : new graphics version */
-    /*C2F(dr1)("xset","clipgrf",PI0,PI0,PI0,PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-  }
-  else{
-	  /* disabled */
-	  /* TO DO : new graphics version */
-    /*C2F(dr1)("xset","clipoff",PI0,PI0,PI0,PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-  }
+    if (*n == 1)
+    {
+        /* disabled */
+        /* TO DO : new graphics version */
+        /*C2F(dr1)("xset","clipgrf",PI0,PI0,PI0,PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+    }
+    else
+    {
+        /* disabled */
+        /* TO DO : new graphics version */
+        /*C2F(dr1)("xset","clipoff",PI0,PI0,PI0,PI0, PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+    }
 }
 /*--------------------------------------------------------------------------*/

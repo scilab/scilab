@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="gui">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
@@ -29,43 +29,43 @@
  *
  * Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="25" primitiveId="1" primitiveName="x_dialog" />
-<PRIMITIVE gatewayId="25" primitiveId="2" primitiveName="x_choose" />
-<PRIMITIVE gatewayId="25" primitiveId="3" primitiveName="x_mdialog" />
-<PRIMITIVE gatewayId="25" primitiveId="4" primitiveName="xchoicesi" />
-<PRIMITIVE gatewayId="25" primitiveId="5" primitiveName="delmenu" />
-<PRIMITIVE gatewayId="25" primitiveId="6" primitiveName="setmenu" />
-<PRIMITIVE gatewayId="25" primitiveId="7" primitiveName="unsetmenu" />
-<PRIMITIVE gatewayId="25" primitiveId="8" primitiveName="raise_window" />
-<PRIMITIVE gatewayId="25" primitiveId="9" primitiveName="getlookandfeel"/>
-<PRIMITIVE gatewayId="25" primitiveId="10" primitiveName="getinstalledlookandfeels"/>
-<PRIMITIVE gatewayId="25" primitiveId="11" primitiveName="setlookandfeel"/>
-<PRIMITIVE gatewayId="25" primitiveId="12" primitiveName="ClipBoard"/>
-<PRIMITIVE gatewayId="25" primitiveId="13" primitiveName="toolbar"/>
-<PRIMITIVE gatewayId="25" primitiveId="14" primitiveName="uigetdir"/>
-<PRIMITIVE gatewayId="25" primitiveId="15" primitiveName="uicontrol"/>
-<PRIMITIVE gatewayId="25" primitiveId="16" primitiveName="uimenu"/>
-<PRIMITIVE gatewayId="25" primitiveId="17" primitiveName="uipopup"/>
-<PRIMITIVE gatewayId="25" primitiveId="18" primitiveName="x_choose_modeless" />
-<PRIMITIVE gatewayId="25" primitiveId="19" primitiveName="uicontextmenu" />
-<PRIMITIVE gatewayId="25" primitiveId="20" primitiveName="uiwait" />
-<PRIMITIVE gatewayId="25" primitiveId="21" primitiveName="messagebox" />
-<PRIMITIVE gatewayId="25" primitiveId="22" primitiveName="waitbar" />
-<PRIMITIVE gatewayId="25" primitiveId="23" primitiveName="progressionbar" />
-<PRIMITIVE gatewayId="25" primitiveId="24" primitiveName="helpbrowser" />
-<PRIMITIVE gatewayId="25" primitiveId="25" primitiveName="uigetfont" />
-<PRIMITIVE gatewayId="25" primitiveId="26" primitiveName="uigetcolor" />
-<PRIMITIVE gatewayId="25" primitiveId="27" primitiveName="getcallbackobject" />
-<PRIMITIVE gatewayId="25" primitiveId="28" primitiveName="printfigure" />
-<PRIMITIVE gatewayId="25" primitiveId="29" primitiveName="exportUI" />
-<PRIMITIVE gatewayId="25" primitiveId="30" primitiveName="printsetupbox" />
-<PRIMITIVE gatewayId="25" primitiveId="31" primitiveName="toprint" />
-<PRIMITIVE gatewayId="25" primitiveId="32" primitiveName="uigetfile" />
-<PRIMITIVE gatewayId="25" primitiveId="33" primitiveName="usecanvas" />
-<PRIMITIVE gatewayId="25" primitiveId="34" primitiveName="uiDisplayTree" />
-<PRIMITIVE gatewayId="25" primitiveId="35" primitiveName="uiputfile" />
-<PRIMITIVE gatewayId="25" primitiveId="36" primitiveName="about" />
-<PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="fire_closing_finished" />
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="25" primitiveId="1" primitiveName="x_dialog" />
+    <PRIMITIVE gatewayId="25" primitiveId="2" primitiveName="x_choose" />
+    <PRIMITIVE gatewayId="25" primitiveId="3" primitiveName="x_mdialog" />
+    <PRIMITIVE gatewayId="25" primitiveId="4" primitiveName="xchoicesi" />
+    <PRIMITIVE gatewayId="25" primitiveId="5" primitiveName="delmenu" />
+    <PRIMITIVE gatewayId="25" primitiveId="6" primitiveName="setmenu" />
+    <PRIMITIVE gatewayId="25" primitiveId="7" primitiveName="unsetmenu" />
+    <PRIMITIVE gatewayId="25" primitiveId="8" primitiveName="raise_window" />
+    <PRIMITIVE gatewayId="25" primitiveId="9" primitiveName="getlookandfeel"/>
+    <PRIMITIVE gatewayId="25" primitiveId="10" primitiveName="getinstalledlookandfeels"/>
+    <PRIMITIVE gatewayId="25" primitiveId="11" primitiveName="setlookandfeel"/>
+    <PRIMITIVE gatewayId="25" primitiveId="12" primitiveName="ClipBoard"/>
+    <PRIMITIVE gatewayId="25" primitiveId="13" primitiveName="toolbar"/>
+    <PRIMITIVE gatewayId="25" primitiveId="14" primitiveName="uigetdir"/>
+    <PRIMITIVE gatewayId="25" primitiveId="15" primitiveName="uicontrol"/>
+    <PRIMITIVE gatewayId="25" primitiveId="16" primitiveName="uimenu"/>
+    <PRIMITIVE gatewayId="25" primitiveId="17" primitiveName="uipopup"/>
+    <PRIMITIVE gatewayId="25" primitiveId="18" primitiveName="x_choose_modeless" />
+    <PRIMITIVE gatewayId="25" primitiveId="19" primitiveName="uicontextmenu" />
+    <PRIMITIVE gatewayId="25" primitiveId="20" primitiveName="uiwait" />
+    <PRIMITIVE gatewayId="25" primitiveId="21" primitiveName="messagebox" />
+    <PRIMITIVE gatewayId="25" primitiveId="22" primitiveName="waitbar" />
+    <PRIMITIVE gatewayId="25" primitiveId="23" primitiveName="progressionbar" />
+    <PRIMITIVE gatewayId="25" primitiveId="24" primitiveName="helpbrowser" />
+    <PRIMITIVE gatewayId="25" primitiveId="25" primitiveName="uigetfont" />
+    <PRIMITIVE gatewayId="25" primitiveId="26" primitiveName="uigetcolor" />
+    <PRIMITIVE gatewayId="25" primitiveId="27" primitiveName="getcallbackobject" />
+    <PRIMITIVE gatewayId="25" primitiveId="28" primitiveName="printfigure" />
+    <PRIMITIVE gatewayId="25" primitiveId="29" primitiveName="exportUI" />
+    <PRIMITIVE gatewayId="25" primitiveId="30" primitiveName="printsetupbox" />
+    <PRIMITIVE gatewayId="25" primitiveId="31" primitiveName="toprint" />
+    <PRIMITIVE gatewayId="25" primitiveId="32" primitiveName="uigetfile" />
+    <PRIMITIVE gatewayId="25" primitiveId="33" primitiveName="usecanvas" />
+    <PRIMITIVE gatewayId="25" primitiveId="34" primitiveName="uiDisplayTree" />
+    <PRIMITIVE gatewayId="25" primitiveId="35" primitiveName="uiputfile" />
+    <PRIMITIVE gatewayId="25" primitiveId="36" primitiveName="about" />
+    <PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="fire_closing_finished" />
 </GATEWAY>

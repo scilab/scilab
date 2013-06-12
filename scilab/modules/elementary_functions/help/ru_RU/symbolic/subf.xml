@@ -33,8 +33,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-          <code>c = subf("a", "b")</code> выполняет символьное вычитание и возвращает символьную строку <varname>c</varname>, которая равна <literal>"a-b"</literal>. Выполняются такие простейшие упрощения как <literal>subf("0","a")</literal> или
-          <literal>subf("1","2")</literal>.
+            <code>c = subf("a", "b")</code> выполняет символьное вычитание и возвращает символьную строку <varname>c</varname>, которая равна <literal>"a-b"</literal>. Выполняются такие простейшие упрощения как <literal>subf("0","a")</literal> или
+            <literal>subf("1","2")</literal>.
         </para>
     </refsection>
     <refsection>

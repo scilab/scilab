@@ -1,4 +1,4 @@
-<package name="org.scilab.modules.zcos.palette">
+        <package name="org.scilab.modules.xcos.palette">
     <object name="Palette">
         <method name="loadPal" returnType="void" modifier="static">
             <parameter name="name" type="String"/>
@@ -24,9 +24,6 @@
         </method>
         <method name="generatePaletteIcon" returnType="void" modifier="static">
             <parameter name="iconPath" type="String"/>
-        </method>
-        <method name="generateAllImages" returnType="void" modifier="static">
-            <parameter name="path" type="String[]"/>
         </method>
     </object>
 </package>

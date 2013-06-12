@@ -20,9 +20,9 @@
 //
 
 function do_xsetech(wdm)
-xset('alufunction',3);clf();show_window();
+    xset("alufunction",3);clf();show_window();
 
-f_xsetech(wdm)
+    f_xsetech(wdm)
 
-xset('alufunction',6)
+    xset("alufunction",6)
 endfunction

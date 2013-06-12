@@ -10,13 +10,13 @@
 
 //
 // optimsimplex_setfv --
-//   Set the function value at given index and 
+//   Set the function value at given index and
 //   returns an updated simplex.
 // Arguments
 //   ive : vertex index
 //   fv : the function value
 //
 function this = optimsimplex_setfv ( this , ive , fv )
-  this.fv ( ive , 1 ) = fv;
+    this.fv ( ive , 1 ) = fv;
 endfunction
 

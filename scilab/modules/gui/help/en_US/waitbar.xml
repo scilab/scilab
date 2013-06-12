@@ -78,4 +78,12 @@ end
 close(winH);
  ]]></programlisting>
     </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="progressionbar">progressionbar</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

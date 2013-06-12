@@ -20,17 +20,17 @@
 //   data : user-defined data
 //
 function [ this , data ] = optimsimplex_shrink ( this , fun , sigma , data )
-  if (~isdef('sigma','local')) then
-    sigma = 0.5;
-  end
-  nv = this.nbve;
-  mv1 = this.x(1,:) .*. ones ( nv - 1 , 1 );
-  newx = ( 1.0 - sigma ) * mv1(1:nv-1,:) + sigma * this.x ( 2 : nv , : ) ;
-  this.x(2:nv,:) = newx(1:nv-1,:);
-  if (~isdef('data','local')) then
-    this = optimsimplex_compsomefv ( this , fun , 2 : nv )
-  else
-    [ this , data ] = optimsimplex_compsomefv ( this , fun , 2 : nv , data )
-  end
+    if (~isdef("sigma","local")) then
+        sigma = 0.5;
+    end
+    nv = this.nbve;
+    mv1 = this.x(1,:) .*. ones ( nv - 1 , 1 );
+    newx = ( 1.0 - sigma ) * mv1(1:nv-1,:) + sigma * this.x ( 2 : nv , : ) ;
+    this.x(2:nv,:) = newx(1:nv-1,:);
+    if (~isdef("data","local")) then
+        this = optimsimplex_compsomefv ( this , fun , 2 : nv )
+    else
+        [ this , data ] = optimsimplex_compsomefv ( this , fun , 2 : nv , data )
+    end
 endfunction
 

@@ -17,7 +17,7 @@
 
 extern "C"
 {
-    #include "dynlib_hdf5_scilab.h"
+#include "dynlib_hdf5_scilab.h"
 }
 
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_export_to_hdf5, HDF5_SCILAB_IMPEXP);

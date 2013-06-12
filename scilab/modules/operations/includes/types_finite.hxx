@@ -18,7 +18,7 @@
 
 extern "C"
 {
-	#include "matrix_finite.h"
+#include "matrix_finite.h"
 }
 
 // FIXME : Remove using namespace.

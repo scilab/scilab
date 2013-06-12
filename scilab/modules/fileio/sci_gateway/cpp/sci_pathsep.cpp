@@ -28,10 +28,10 @@ extern "C"
 
 types::Function::ReturnValue sci_pathsep(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int dimsArray[2]    = {1,1};
+    int dimsArray[2]    = {1, 1};
     wchar_t* wcsSep     = to_wide_string(PATH_SEPARATOR);
-    
-    if(in.size() > 0)
+
+    if (in.size() > 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "pathsep", 0);
         return types::Function::Error;

@@ -35,13 +35,13 @@ SCIFILECONTENTSREF=["";
 
 correct=%T
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
+    correct=%F
 end
-instr='mtlb_fprintf(""qsdfsdcvwqghcv"")';
-ierr=execstr(instr,'errcatch') 
+instr="mtlb_fprintf(""qsdfsdcvwqghcv"")";
+ierr=execstr(instr,"errcatch")
 if ierr<>0 then correct=%F, end
 affich_result(correct,1971);
 
 clear
 
- 
+

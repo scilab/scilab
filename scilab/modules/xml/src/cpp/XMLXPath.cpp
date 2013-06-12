@@ -19,37 +19,37 @@
 
 namespace org_modules_xml
 {
-    XMLXPath::XMLXPath(const XMLDocument & _doc, xmlXPathObject * _xpath):XMLObject(), doc(_doc)
+XMLXPath::XMLXPath(const XMLDocument & _doc, xmlXPathObject * _xpath): XMLObject(), doc(_doc)
+{
+    xpath = _xpath;
+    scope->registerPointers(xpath, this);
+    id = scope->getVariableId(*this);
+}
+
+XMLXPath::~XMLXPath()
+{
+    scope->unregisterPointer(xpath);
+    scope->removeId(id);
+}
+
+void *XMLXPath::getRealXMLPointer() const
+{
+    return static_cast < void *>(xpath);
+}
+
+const XMLObject *XMLXPath::getXMLObjectParent() const
+{
+    return &doc;
+}
+
+const XMLNodeSet *XMLXPath::getNodeSet() const
+{
+    XMLObject *obj = scope->getXMLObjectFromLibXMLPtr(xpath->nodesetval);
+    if (obj)
     {
-        xpath = _xpath;
-        scope->registerPointers(xpath, this);
-        id = scope->getVariableId(*this);
+        return static_cast < XMLNodeSet * >(obj);
     }
 
-    XMLXPath::~XMLXPath()
-    {
-        scope->unregisterPointer(xpath);
-        scope->removeId(id);
-    }
-
-    void *XMLXPath::getRealXMLPointer() const
-    {
-        return static_cast < void *>(xpath);
-    }
-
-    const XMLObject *XMLXPath::getXMLObjectParent() const
-    {
-        return &doc;
-    }
-
-    const XMLNodeSet *XMLXPath::getNodeSet() const
-    {
-        XMLObject *obj = scope->getXMLObjectFromLibXMLPtr(xpath->nodesetval);
-        if (obj)
-        {
-            return static_cast < XMLNodeSet * >(obj);
-        }
-
-        return new XMLNodeSet(doc, xpath);
-    }
+    return new XMLNodeSet(doc, xpath);
+}
 }

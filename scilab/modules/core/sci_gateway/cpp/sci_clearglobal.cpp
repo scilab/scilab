@@ -30,7 +30,7 @@ Function::ReturnValue sci_clearglobal(types::typed_list &in, int _iRetCount, typ
     types::typed_list::iterator inIterator;
     int iWrongType = 1;
 
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         symbol::Context::getInstance()->removeGlobalAll();
     }
@@ -39,9 +39,9 @@ Function::ReturnValue sci_clearglobal(types::typed_list &in, int _iRetCount, typ
         // First check if all arguments are Single Strings.
         for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
         {
-            if(!(*inIterator)->isString() || (*inIterator)->getAs<String>()->getSize() != 1)
+            if (!(*inIterator)->isString() || (*inIterator)->getAs<String>()->getSize() != 1)
             {
-                Scierror(999,_("%s: Wrong type for input argument #%d: Single string expected.\n"), "clearglobal", iWrongType);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "clearglobal", iWrongType);
                 return Function::Error;
             }
             iWrongType++;
@@ -49,7 +49,7 @@ Function::ReturnValue sci_clearglobal(types::typed_list &in, int _iRetCount, typ
 
         for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
         {
-            symbol::Context::getInstance()->removeGlobal(symbol::Symbol((*inIterator)->getAs<String>()->get(0,0)));
+            symbol::Context::getInstance()->removeGlobal(symbol::Symbol((*inIterator)->getAs<String>()->get(0, 0)));
         }
     }
     return Function::OK;

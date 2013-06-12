@@ -20,9 +20,9 @@
 //
 
 function XcosMenuDelete()
-  
-  [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select)
-  
-  Cmenu = []; %pt = []
-  
+
+    [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select)
+
+    Cmenu = []; %pt = []
+
 endfunction

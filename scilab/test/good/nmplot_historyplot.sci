@@ -17,24 +17,24 @@
 //  mytitle , myxlabel , myylabel : the parameters of the plot
 //
 function nmplot_historyplot ( this , datafile  , mytitle , myxlabel , myylabel )
-  if (~isdef('datafile','local')) then
-    datafile = this.foptfn;
-  end
-  if (~isdef('mytitle','local')) then
-    mytitle = "";
-  end
-  if (~isdef('myxlabel','local')) then
-    myxlabel = "";
-  end
-  if (~isdef('myylabel','local')) then
-    myylabel = "";
-  end
-  exec(datafile,-1);
-  nbiter = size ( history , 1 )
-  plot2d ( history(1:nbiter,1) , history(1:nbiter,2) )
-  f = gcf();
-  f.children.title.text = mytitle;
-  f.children.x_label.text = myxlabel;
-  f.children.y_label.text = myylabel;
+    if (~isdef("datafile","local")) then
+        datafile = this.foptfn;
+    end
+    if (~isdef("mytitle","local")) then
+        mytitle = "";
+    end
+    if (~isdef("myxlabel","local")) then
+        myxlabel = "";
+    end
+    if (~isdef("myylabel","local")) then
+        myylabel = "";
+    end
+    exec(datafile,-1);
+    nbiter = size ( history , 1 )
+    plot2d ( history(1:nbiter,1) , history(1:nbiter,2) )
+    f = gcf();
+    f.children.title.text = mytitle;
+    f.children.x_label.text = myxlabel;
+    f.children.y_label.text = myylabel;
 endfunction
 

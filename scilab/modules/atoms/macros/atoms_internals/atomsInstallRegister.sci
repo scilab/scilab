@@ -103,11 +103,11 @@ function nbAdd = atomsInstallRegister(name,version,status,section)
 
         // Add this package to the struct
         installed(name(i)+" - "+version(i)) = [ ..
-            name(i)              ; .. // name
-            version(i)           ; .. // version
-            this_package_path    ; .. // path
-            section              ; .. // allusers / user
-            status(i)            ];   // I / A
+        name(i)              ; .. // name
+        version(i)           ; .. // version
+        this_package_path    ; .. // path
+        section              ; .. // allusers / user
+        status(i)            ];   // I / A
 
         // installed_deps file
         // Get the depencency tree & and child package

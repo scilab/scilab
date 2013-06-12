@@ -9,6 +9,8 @@
 
 //argn
 
+funcprot(0);
+
 function [x,y]=foo(a,b)
     [lhs,rhs]=argn(0);
     x=[lhs,rhs];

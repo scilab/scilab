@@ -23,11 +23,11 @@ int sci_libraryinfo(char *fname, void* pvApiCtx)
     SciErr sciErr;
     int *piAddressVarOne = NULL;
 
-    CheckRhs(1,1);
-    CheckLhs(1,2);
+    CheckRhs(1, 1);
+    CheckLhs(1, 2);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -40,7 +40,7 @@ int sci_libraryinfo(char *fname, void* pvApiCtx)
 
         if (!isScalar(pvApiCtx, piAddressVarOne))
         {
-            Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
             return 0;
         }
 
@@ -59,7 +59,7 @@ int sci_libraryinfo(char *fname, void* pvApiCtx)
                         int n = 1;
 
                         sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m, n, macros);
-                        if(sciErr.iErr)
+                        if (sciErr.iErr)
                         {
                             freeArrayOfString(macros, sizemacrosarray);
                             if (pathlibrary)
@@ -74,7 +74,7 @@ int sci_libraryinfo(char *fname, void* pvApiCtx)
                                 libraryname = NULL;
                             }
                             printError(&sciErr, 0);
-                            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                            Scierror(999, _("%s: Memory allocation error.\n"), fname);
                             return 0;
                         }
                     }
@@ -82,23 +82,27 @@ int sci_libraryinfo(char *fname, void* pvApiCtx)
                     {
                         createEmptyMatrix(pvApiCtx, Rhs + 1);
                     }
-                    LhsVar(1) = Rhs+1;
+                    LhsVar(1) = Rhs + 1;
 
                     freeArrayOfString(macros, sizemacrosarray);
 
                     if (Lhs == 2)
                     {
                         createSingleString(pvApiCtx, Rhs + 2, pathlibrary);
-                        LhsVar(2) = Rhs+2;
+                        LhsVar(2) = Rhs + 2;
                     }
 
-                    if (pathlibrary) {FREE(pathlibrary);pathlibrary=NULL;}
+                    if (pathlibrary)
+                    {
+                        FREE(pathlibrary);
+                        pathlibrary = NULL;
+                    }
 
                     PutLhsVar();
                 }
                 else
                 {
-                    Scierror(999,_("%s: Invalid library %s.\n"),fname, libraryname);
+                    Scierror(999, _("%s: Invalid library %s.\n"), fname, libraryname);
                 }
 
                 if (libraryname)
@@ -109,17 +113,17 @@ int sci_libraryinfo(char *fname, void* pvApiCtx)
             }
             else
             {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
             }
         }
         else
         {
-            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
     }
     else
     {
-        Scierror(999,_("%s: Wrong type of input argument #%d: String expected.\n"),fname,1);
+        Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), fname, 1);
     }
 
     return 0;

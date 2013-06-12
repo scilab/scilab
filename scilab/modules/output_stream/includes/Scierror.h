@@ -23,15 +23,15 @@ extern "C" {
 #include "do_error_number.h"
 
 #define bsiz 4096
-/*
-* as sciprint but with an added first argument
-* which is ignored (used in do_printf)
-* @param iv error code
-* @param fmt
-* @param ...
-*/
-int  Scierror(int iv, const char *fmt,...);
-//int  ScierrorW(int iv, const wchar_t *fmt,...);
+    /*
+    * as sciprint but with an added first argument
+    * which is ignored (used in do_printf)
+    * @param iv error code
+    * @param fmt
+    * @param ...
+    */
+    int  Scierror(int iv, const char *fmt, ...);
+    //int  ScierrorW(int iv, const wchar_t *fmt,...);
 
 
 #ifdef __cplusplus

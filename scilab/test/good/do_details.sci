@@ -20,29 +20,29 @@
 //
 
 function do_details(x)
-//** 26/06/2009, Serge Steer: multiple selection detection
-  if type(x)==1 then
-    Select = x ;
-    if Select==[] then // nothing selected return details on current diagram
-      o = scs_m;
-    elseif size(Select,1)>1 then
-      messagebox(_("Multiple selection cannot be used here"),"error","modal")
-      return
-    else //a single object is selected
-      cwin = Select(1,2)
-      if cwin==curwin then //a block in current diagram
-	k = Select(1,1)
-	o = scs_m.objs(k)
-      elseif or(windows(find(windows(:,1)<0),2)==cwin) then //a block in a palette
-	kwin = find(windows(:,2)==cwin)   ;
-	pal  = palettes(-windows(kwin,1)) ;
-	k = Select(1,1) ;
-	o = pal.objs(k);
-      end
+    //** 26/06/2009, Serge Steer: multiple selection detection
+    if type(x)==1 then
+        Select = x ;
+        if Select==[] then // nothing selected return details on current diagram
+            o = scs_m;
+        elseif size(Select,1)>1 then
+            messagebox(_("Multiple selection cannot be used here"),"error","modal")
+            return
+        else //a single object is selected
+            cwin = Select(1,2)
+            if cwin==curwin then //a block in current diagram
+                k = Select(1,1)
+                o = scs_m.objs(k)
+            elseif or(windows(find(windows(:,1)<0),2)==cwin) then //a block in a palette
+                kwin = find(windows(:,2)==cwin)   ;
+                pal  = palettes(-windows(kwin,1)) ;
+                k = Select(1,1) ;
+                o = pal.objs(k);
+            end
+        end
+    else
+        o = x ;
     end
-  else
-    o = x ; 
-  end
-  tree_show(o) ; //** beware to the BWidget version ! 
+    tree_show(o) ; //** beware to the BWidget version !
 
 endfunction

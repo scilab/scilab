@@ -33,15 +33,15 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
         %er=1d-14;
     end
 
-    if size(%x0,'*')<>1 then
+    if size(%x0,"*")<>1 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"integrate",3));
     end
 
-    if size(%ea,'*')<>1 then
+    if size(%ea,"*")<>1 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"integrate",5));
     end
 
-    if size(%er,'*')<>1 then
+    if size(%er,"*")<>1 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A real expected.\n"),"integrate",6));
     end
 
@@ -58,19 +58,19 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
 
     try
         if %expr==%var then
-            execstr('function '+%var+'=%func('+%var+'),'+%expr+',endfunction');
+            execstr("function "+%var+"=%func("+%var+"),"+%expr+",endfunction");
         else
-            execstr('function ans=%func('+%var+'),'+%expr+',endfunction');
+            execstr("function ans=%func("+%var+"),"+%expr+",endfunction");
         end
     catch
         error(msprintf(gettext("%s: Wrong value for input argument #%d: syntax error in given expression\n"),"integrate",1));
     end
 
-    if strstr(%expr,'%i') <> "" then
+    if strstr(%expr,"%i") <> "" then
         error(msprintf(_("%s: Wrong value for input argument #%d: A real expected.\n"),"integrate",1));
     end
 
-    [%x1,%ks]=gsort(%x1,'g','i')
+    [%x1,%ks]=gsort(%x1,"g","i")
     %x=zeros(%x1)
 
     %kkk=find((%x1(1:$-1)<%x0) & (%x1(2:$)>=%x0))
@@ -82,7 +82,7 @@ function %x=integrate(%expr,%var,%x0,%x1,%ea,%er)
         end
     end
     %xx0=%x0;
-    for %kk=1:size(%x1,'*')
+    for %kk=1:size(%x1,"*")
         %x(%kk)=intg(%xx0,%x1(%kk),%func,%ea,%er);
         %xx0=%x1(%kk);
     end

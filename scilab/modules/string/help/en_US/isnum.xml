@@ -30,9 +30,9 @@ xml:lang="en" xml:id="isnum">
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                <para>
-                    a character string or a matrix of character strings.
-                </para>
+                    <para>
+                        a character string or a matrix of character strings.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

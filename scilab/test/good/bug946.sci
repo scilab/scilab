@@ -19,21 +19,21 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"x = zeros(3,2);";
-		"y = zeros(3,1);";
-		"x = [1,0;0,0;0,0];";
-		"y(1:3) = x(:,1);"]
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"x = zeros(3,2);";
+"y = zeros(3,1);";
+"x = [1,0;0,0;0,0];";
+"y(1:3) = x(:,1);"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,946);
+    affich_result(%F,946);
 else
-	affich_result(%T,946);
+    affich_result(%T,946);
 end
 
 clear

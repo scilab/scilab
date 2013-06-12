@@ -26,29 +26,29 @@ extern "C"
 
 types::Function::ReturnValue sci_saveafterncommands(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         int num = HistoryManager::getInstance()->getAfterHowManyLinesHistoryIsSaved();
         out.push_back(new types::Double((double)num));
     }
-    else if(in.size() == 1)
+    else if (in.size() == 1)
     {
-        if((in[0]->isDouble() == false) || (in[0]->getAs<types::Double>()->isScalar() == false))
+        if ((in[0]->isDouble() == false) || (in[0]->getAs<types::Double>()->isScalar() == false))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A double expected.\n"), "saveafterncommands", 1);
             return types::Function::Error;
         }
 
         char* pstFilename = HistoryManager::getInstance()->getFilename();
-        if(pstFilename == NULL)
+        if (pstFilename == NULL)
         {
             HistoryManager::getInstance()->setDefaultFilename();
             pstFilename = HistoryManager::getInstance()->getFilename();
         }
         int iLine = (int)in[0]->getAs<types::Double>()->get(0);
         HistoryManager::getInstance()->setAfterHowManyLinesHistoryIsSaved(iLine);
-		FREE(pstFilename);
-		pstFilename=NULL;
+        FREE(pstFilename);
+        pstFilename = NULL;
     }
     else
     {

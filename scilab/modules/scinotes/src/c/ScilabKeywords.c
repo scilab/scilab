@@ -42,15 +42,15 @@ char **GetVariablesName(void)
     VarsName[7] = NULL;
     return VarsName;
 #if 0
-        int returnedArraySize = 0;
-        char **VarsName = getVariablesName(&returnedArraySize, TRUE);
-        /* SWIG char array must be finished by NULL */
-        if (VarsName)
-        {
-                VarsName = (char**)REALLOC(VarsName,sizeof(char*)*(returnedArraySize+1));
-                VarsName[returnedArraySize] = NULL;
-        }
-        return VarsName;
+    int returnedArraySize = 0;
+    char **VarsName = getVariablesName(&returnedArraySize, TRUE);
+    /* SWIG char array must be finished by NULL */
+    if (VarsName)
+    {
+        VarsName = (char**)REALLOC(VarsName, sizeof(char*) * (returnedArraySize + 1));
+        VarsName[returnedArraySize] = NULL;
+    }
+    return VarsName;
 #endif
 }
 /*--------------------------------------------------------------------------*/
@@ -72,14 +72,14 @@ char **GetCommandsName(void)
     }
     return CommandKeywords;
 #if 0
-        int returnedArraySize = 0;
-        char **CommandKeywords = getcommandkeywords(&returnedArraySize);
-        if (CommandKeywords)
-        {
-                CommandKeywords = (char**)REALLOC(CommandKeywords, sizeof(char*)*(returnedArraySize+1));
-                CommandKeywords[returnedArraySize] = NULL;
-        }
-        return CommandKeywords;
+    int returnedArraySize = 0;
+    char **CommandKeywords = getcommandkeywords(&returnedArraySize);
+    if (CommandKeywords)
+    {
+        CommandKeywords = (char**)REALLOC(CommandKeywords, sizeof(char*) * (returnedArraySize + 1));
+        CommandKeywords[returnedArraySize] = NULL;
+    }
+    return CommandKeywords;
 #endif
 }
 /*--------------------------------------------------------------------------*/
@@ -96,14 +96,14 @@ char **GetFunctionsName(void)
     FunctionsName[2] = NULL;
     return FunctionsName;
 #if 0
-        int returnedArraySize = 0;
-        char **FunctionsName = GetFunctionsList(&returnedArraySize);
-        if (FunctionsName)
-        {
-                FunctionsName = (char**)REALLOC(FunctionsName, sizeof(char*)*(returnedArraySize+1));
-                FunctionsName[returnedArraySize] = NULL;
-        }
-        return FunctionsName;
+    int returnedArraySize = 0;
+    char **FunctionsName = GetFunctionsList(&returnedArraySize);
+    if (FunctionsName)
+    {
+        FunctionsName = (char**)REALLOC(FunctionsName, sizeof(char*) * (returnedArraySize + 1));
+        FunctionsName[returnedArraySize] = NULL;
+    }
+    return FunctionsName;
 #endif
 }
 /*--------------------------------------------------------------------------*/
@@ -111,8 +111,8 @@ char **GetMacrosName(void)
 {
 #pragma message ("WARNING : GetFunctionsName return a static list should be linked to declared macros.")
     int i = 0;
-	char *pstStaticMacrosName[] = {"plot3d", "acosh"};
-	char **MacrosName = MALLOC(3 * sizeof(char *));
+    char *pstStaticMacrosName[] = {"plot3d", "acosh"};
+    char **MacrosName = MALLOC(3 * sizeof(char *));
     for (i = 0 ; i < 2 ; ++i)
     {
         MacrosName[i] = os_strdup(pstStaticMacrosName[i]);
@@ -121,14 +121,14 @@ char **GetMacrosName(void)
     return MacrosName;
 
 #if 0
-        int returnedArraySize = 0;
-        char **MacrosName = getmacroslist(&returnedArraySize);
-        if (MacrosName)
-        {
-                MacrosName = (char**)REALLOC(MacrosName, sizeof(char*)*(returnedArraySize+1));
-                MacrosName[returnedArraySize] = NULL;
-        }
-        return MacrosName;
+    int returnedArraySize = 0;
+    char **MacrosName = getmacroslist(&returnedArraySize);
+    if (MacrosName)
+    {
+        MacrosName = (char**)REALLOC(MacrosName, sizeof(char*) * (returnedArraySize + 1));
+        MacrosName[returnedArraySize] = NULL;
+    }
+    return MacrosName;
 #endif
 }
 /*--------------------------------------------------------------------------*/

@@ -22,7 +22,9 @@
             <varlistentry>
                 <term>module_name</term>
                 <listitem>
-                    <para>строковое значение, например: <literal>'core'</literal></para>
+                    <para>
+                        строковое значение, например: <literal>'core'</literal>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

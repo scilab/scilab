@@ -10,14 +10,14 @@
 
 function demo_bar()
 
-  my_handle             = scf(100001);
-  clf(my_handle,"reset");
-  demo_viewCode("bar.dem.sce");
+    my_handle             = scf(100001);
+    clf(my_handle,"reset");
+    demo_viewCode("bar.dem.sce");
 
-  // Parameters
+    // Parameters
 
-  x=[1 2 3 4 5 6 7 8 9 10 11 12];
-  y=[ 13702 16902 22765 ; ..
+    x=[1 2 3 4 5 6 7 8 9 10 11 12];
+    y=[ 13702 16902 22765 ; ..
     13758 19959 21321 ; ..
     16944 23254 24971 ; ..
     16324 18323 21325 ; ..
@@ -30,50 +30,50 @@ function demo_bar()
     16919 21535 43048 ; ..
     14759 19979 33706];
 
-  angle = 295;
+    angle = 295;
 
-  BackgroundColorId = color(205,253,203);
-  year2005ColorId = color(238,222,12);
-  year2006ColorId = color(255,0,0);
-  year2007ColorId = color(64,155,59);
+    BackgroundColorId = color(205,253,203);
+    year2005ColorId = color(238,222,12);
+    year2006ColorId = color(255,0,0);
+    year2007ColorId = color(64,155,59);
 
-  // Histogramm drawing
+    // Histogramm drawing
 
-  drawlater();
-  bar(x,y);
-  histo = gce();
+    drawlater();
+    bar(x,y);
+    histo = gce();
 
 
-  // Adjustements
-  histogramme = gcf();
-  histogramme.figure_size = [900,600];
-  histogramme.background = BackgroundColorId;
+    // Adjustements
+    histogramme = gcf();
+    histogramme.figure_size = [900,600];
+    histogramme.background = BackgroundColorId;
 
-  axes = gca();
-  axes.background = BackgroundColorId;
-  axes.x_ticks.labels = ['Jan';'Feb';'Mar';'Apr';'May';'Jun';'Jul';'Aug';'Sep';'Oct';'Nov';'Dec'];
-  axes.grid=[-1 0];
+    axes = gca();
+    axes.background = BackgroundColorId;
+    axes.x_ticks.labels = ["Jan";"Feb";"Mar";"Apr";"May";"Jun";"Jul";"Aug";"Sep";"Oct";"Nov";"Dec"];
+    axes.grid=[-1 0];
 
-  years = axes.children.children;
-  year2005 = years(3);
-  year2006 = years(2);
-  year2007 = years(1);
+    years = axes.children.children;
+    year2005 = years(3);
+    year2006 = years(2);
+    year2007 = years(1);
 
-  year2005.background = year2005ColorId;
-  year2006.background = year2006ColorId;
-  year2007.background = year2007ColorId;
+    year2005.background = year2005ColorId;
+    year2006.background = year2006ColorId;
+    year2007.background = year2007ColorId;
 
-  year2005.bar_width = 0.25;
-  year2006.bar_width = 0.25;
-  year2007.bar_width = 0.25;
+    year2005.bar_width = 0.25;
+    year2006.bar_width = 0.25;
+    year2007.bar_width = 0.25;
 
-  // Legend drawing
+    // Legend drawing
 
-  captions(histo.children($:-1:1), ['Year 2005';'Year 2006';'Year 2007']);
-  legs = gce();
-  legs.legend_location = "in_upper_left";
+    captions(histo.children($:-1:1), ["Year 2005";"Year 2006";"Year 2007"]);
+    legs = gce();
+    legs.legend_location = "in_upper_left";
 
-  drawnow();
+    drawnow();
 endfunction
 
 

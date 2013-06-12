@@ -6,13 +6,13 @@
 mode(-1);
 clear;
 
-mkdir('bug2038_dir');
-cd('bug2038_dir');
-mkdir('bug2038_subdir');
-cd('..')
+mkdir("bug2038_dir");
+cd("bug2038_dir");
+mkdir("bug2038_subdir");
+cd("..")
 
-a=dir('bug2038_dir');
-b=mtlb_dir('bug2038_dir');
+a=dir("bug2038_dir");
+b=mtlb_dir("bug2038_dir");
 
 x=getdate(a.date);
 cx=x(1:4);
@@ -24,9 +24,9 @@ T1=(a.isdir & b.isdir);
 T2=(cx == cy);
 
 if (T1 & T2) then
-	affich_result(%T,2038);
+    affich_result(%T,2038);
 else
-	affich_result(%F,2038);
+    affich_result(%F,2038);
 end
 
 clear

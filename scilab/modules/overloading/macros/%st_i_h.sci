@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function M=%st_i_h(varargin)
-  M=generic_i_h(varargin(1),varargin(2),varargin(3))
+    M=generic_i_h(varargin(1),varargin(2),varargin(3))
 endfunction

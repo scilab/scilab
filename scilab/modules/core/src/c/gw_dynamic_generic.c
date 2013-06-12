@@ -15,28 +15,28 @@
 #include "gw_dynamic_generic.h"
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_generic(char *moduleName,
-					   char **dynlibName,
-					   char **gatewayName,
-					   DynLibHandle *hModuleLib,
-					   void* ptrGatewayFunction)
+                       char **dynlibName,
+                       char **gatewayName,
+                       DynLibHandle *hModuleLib,
+                       void* ptrGatewayFunction)
 {
-	//dynamic_gateway_error_code err;
-	//if (*dynlibName == NULL)
-	//{
-	//	*dynlibName = buildModuleDynLibraryName(moduleName, DYNLIB_NAME_FORMAT_AUTO);
-	//}
+    //dynamic_gateway_error_code err;
+    //if (*dynlibName == NULL)
+    //{
+    //	*dynlibName = buildModuleDynLibraryName(moduleName, DYNLIB_NAME_FORMAT_AUTO);
+    //}
 
-	//if (*gatewayName == NULL)
-	//{
-	//	*gatewayName = buildGatewayName(moduleName);
-	//}
+    //if (*gatewayName == NULL)
+    //{
+    //	*gatewayName = buildGatewayName(moduleName);
+    //}
 
-	//err = callDynamicGateway(moduleName,*dynlibName,
-	//						*gatewayName,
-	//						hModuleLib,
-	//						ptrGatewayFunction);
-	//displayErrorGateway(err,*dynlibName,*gatewayName);
-	//
-	return 0;
+    //err = callDynamicGateway(moduleName,*dynlibName,
+    //						*gatewayName,
+    //						hModuleLib,
+    //						ptrGatewayFunction);
+    //displayErrorGateway(err,*dynlibName,*gatewayName);
+    //
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

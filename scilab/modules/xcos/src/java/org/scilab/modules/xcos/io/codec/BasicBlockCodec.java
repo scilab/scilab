@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -249,11 +250,23 @@ public class BasicBlockCodec extends XcosObjectCodec {
             map.put(name, null);
         }
 
-        // Remove a custom shape value
-        // This is used for pre-5.2 schema with TEXT_f block with a custom
-        // "shape=label" style attribute.
-        map.remove("shape");
-
         formatStyle(map);
+    }
+
+    /**
+     * To force serialisation/deserialisation of Scilab values, return null
+     * instead of any ScilabType instance.
+     *
+     * {@inheritDoc}
+     */
+    @Override
+    protected Object getFieldTemplate(Object obj, String fieldname, Node child) {
+        final Object template = getFieldValue(obj, fieldname);
+
+        if (template instanceof ScilabType) {
+            return null;
+        } else {
+            return super.getFieldTemplate(obj, fieldname, child);
+        }
     }
 }

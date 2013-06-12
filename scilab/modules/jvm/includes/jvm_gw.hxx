@@ -23,11 +23,11 @@ extern "C"
 class JvmModule
 {
 private :
-  JvmModule() {};
-  ~JvmModule() {};
+    JvmModule() {};
+    ~JvmModule() {};
 
 public :
-  JVM_GW_IMPEXP static int Load();
+    JVM_GW_IMPEXP static int Load();
 };
 CPP_GATEWAY_PROTOTYPE(sci_system_getproperty);
 

@@ -1,7 +1,7 @@
 
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA 
+ * Copyright (C) INRIA
  * Copyright (C) ENPC
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
@@ -17,19 +17,19 @@
 extern "C" {
 #endif
 
-#ifndef SCI_MEX 
-#define SCI_MEX 
+#ifndef SCI_MEX
+#define SCI_MEX
 
 #ifdef WIN32
-	#include <stddef.h> /*for LCC */
+#include <stddef.h> /*for LCC */
 #endif
 
 #include <stdio.h>
 #include "machine.h"
 #include <assert.h>
 
-typedef int Matrix;
-typedef unsigned long int vraiptrst;
+    typedef int Matrix;
+    typedef unsigned long int vraiptrst;
 
 #ifndef __cplusplus
     typedef int bool;

@@ -28,7 +28,7 @@ public class ConnectPreview extends com.mxgraph.swing.handler.mxConnectPreview {
 
     /**
      * Default constructor
-     * 
+     *
      * @param graphComponent
      *            the default graph component
      */
@@ -38,7 +38,7 @@ public class ConnectPreview extends com.mxgraph.swing.handler.mxConnectPreview {
 
     /**
      * Stop the current link creation
-     * 
+     *
      * @param commit
      *            true if any modification should be performed
      * @param e

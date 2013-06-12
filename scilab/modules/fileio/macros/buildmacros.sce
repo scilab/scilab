@@ -7,4 +7,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-genlib('fileiolib','SCI/modules/fileio/macros',%f,%t);
+genlib("fileiolib","SCI/modules/fileio/macros",%f,%t);

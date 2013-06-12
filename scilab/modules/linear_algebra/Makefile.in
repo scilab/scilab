@@ -135,7 +135,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscilinear_algebra_algo_la_LIBADD =
 am__objects_1 = intdggbal.lo intzgeqpf4.lo intzgehrd.lo intzgesvd1.lo \
-	intzgesvd2.lo intdgesv3.lo intdgesv4.lo DGELSY1.lo \
+	intzgesvd2.lo intdgesv3.lo intdgesv4.lo DGELSY1.lo ZGELSY1.lo \
 	intdpotrf.lo intdoldsvd.lo intdgecon.lo zoldqr.lo intzgetrf.lo \
 	complexify.lo intzgebal.lo intzgetri.lo intzggbal.lo \
 	intddet.lo intzgesv3.lo intzgesv4.lo intzpotrf.lo intzgecon.lo \
@@ -145,7 +145,6 @@ am__objects_1 = intdggbal.lo intzgeqpf4.lo intzgehrd.lo intzgesvd1.lo \
 	intzgeqpf3.lo writebuf.lo intzschur.lo
 am__objects_2 = libscilinear_algebra_algo_la-schurtable.lo \
 	libscilinear_algebra_algo_la-issymmetric.lo \
-	libscilinear_algebra_algo_la-invert_matrix.lo \
 	libscilinear_algebra_algo_la-lu.lo \
 	libscilinear_algebra_algo_la-qr.lo \
 	libscilinear_algebra_algo_la-hess.lo \
@@ -518,7 +517,6 @@ LINEAR_ALGEBRA_CPP_SOURCES = \
 
 LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
 src/c/issymmetric.c \
-src/c/invert_matrix.c \
 src/c/lu.c \
 src/c/qr.c \
 src/c/hess.c \
@@ -539,6 +537,7 @@ LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/intdgesv3.f \
     src/fortran/intdgesv4.f \
     src/fortran/DGELSY1.f \
+    src/fortran/ZGELSY1.f \
     src/fortran/intdpotrf.f \
     src/fortran/intdoldsvd.f \
     src/fortran/intdgecon.f \
@@ -810,7 +809,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_algo_la-det.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_algo_la-eigen.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_algo_la-hess.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_algo_la-invert_matrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_algo_la-issymmetric.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_algo_la-lsq.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_algo_la-lu.Plo@am__quote@
@@ -880,13 +878,6 @@ libscilinear_algebra_algo_la-issymmetric.lo: src/c/issymmetric.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/issymmetric.c' object='libscilinear_algebra_algo_la-issymmetric.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_algo_la-issymmetric.lo `test -f 'src/c/issymmetric.c' || echo '$(srcdir)/'`src/c/issymmetric.c
-
-libscilinear_algebra_algo_la-invert_matrix.lo: src/c/invert_matrix.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_algo_la-invert_matrix.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_algo_la-invert_matrix.Tpo -c -o libscilinear_algebra_algo_la-invert_matrix.lo `test -f 'src/c/invert_matrix.c' || echo '$(srcdir)/'`src/c/invert_matrix.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscilinear_algebra_algo_la-invert_matrix.Tpo $(DEPDIR)/libscilinear_algebra_algo_la-invert_matrix.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/invert_matrix.c' object='libscilinear_algebra_algo_la-invert_matrix.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_algo_la-invert_matrix.lo `test -f 'src/c/invert_matrix.c' || echo '$(srcdir)/'`src/c/invert_matrix.c
 
 libscilinear_algebra_algo_la-lu.lo: src/c/lu.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_algo_la-lu.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_algo_la-lu.Tpo -c -o libscilinear_algebra_algo_la-lu.lo `test -f 'src/c/lu.c' || echo '$(srcdir)/'`src/c/lu.c
@@ -1200,6 +1191,9 @@ intdgesv4.lo: src/fortran/intdgesv4.f
 
 DGELSY1.lo: src/fortran/DGELSY1.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o DGELSY1.lo `test -f 'src/fortran/DGELSY1.f' || echo '$(srcdir)/'`src/fortran/DGELSY1.f
+
+ZGELSY1.lo: src/fortran/ZGELSY1.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ZGELSY1.lo `test -f 'src/fortran/ZGELSY1.f' || echo '$(srcdir)/'`src/fortran/ZGELSY1.f
 
 intdpotrf.lo: src/fortran/intdpotrf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdpotrf.lo `test -f 'src/fortran/intdpotrf.f' || echo '$(srcdir)/'`src/fortran/intdpotrf.f

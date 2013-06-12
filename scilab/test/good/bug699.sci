@@ -19,20 +19,20 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"M(1,1) = -sin(0.1);";
-		"M(1,1) = sin(0.1);"]
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"M(1,1) = -sin(0.1);";
+"M(1,1) = sin(0.1);"]
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-	affich_result(%F,699);
+    affich_result(%F,699);
 else
-	affich_result(%T,699);
+    affich_result(%T,699);
 end
 
 clear

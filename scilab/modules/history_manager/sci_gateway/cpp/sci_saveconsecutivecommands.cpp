@@ -25,16 +25,16 @@ extern "C"
 
 types::Function::ReturnValue sci_saveconsecutivecommands(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         BOOL bSave = HistoryManager::getInstance()->getSaveConsecutiveDuplicateLines();
         out.push_back(new types::Bool(bSave));
     }
-    else if(in.size() == 1)
+    else if (in.size() == 1)
     {
         wchar_t* line = NULL;
 
-        if((in[0]->isBool() == false) || (in[0]->getAs<types::Bool>()->isScalar() == false))
+        if ((in[0]->isBool() == false) || (in[0]->getAs<types::Bool>()->isScalar() == false))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "saveconsecutivecommands", 1);
             return types::Function::Error;

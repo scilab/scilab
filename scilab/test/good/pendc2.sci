@@ -3,9 +3,9 @@
 // f(x,y)=y-x^2-cos(omega*x)/3
 
 function res=fx(x,y)
-res=-2*x+omega*sin(omega*x)/3;
+    res=-2*x+omega*sin(omega*x)/3;
 endfunction
 
 function res=fy(x,y)
-res=1;
+    res=1;
 endfunction

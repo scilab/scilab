@@ -34,7 +34,7 @@ my_struct = ["field_1","field_2"];
 
 ierr = execstr("isfield(my_struct,''field_1'')","errcatch");
 if ierr == 0 then pause,end
-if lasterror() <> msprintf(gettext("%s: Wrong type for input argument #%d: struct array expected.\n"),"isfield",1) then pause, end
+if lasterror() <> msprintf(gettext("%s: Wrong type for input argument #%d: struct array or tlist or mlist expected.\n"),"isfield",1) then pause, end
 
 // Fonctionnality
 
@@ -63,4 +63,9 @@ if or( isfield( my_struct , fields ) <> ref ) then pause, end
 fields = [ "field_1" "field_2" "field_3" ; "field_4" "field_3" "field_4" ];
 ref    = [    %T        %T        %F     ;    %T        %F        %T     ];
 if or( isfield( my_struct , fields ) <> ref ) then pause, end
+
+
+s = tlist(["test" "t" "n","","p"], "Hello", %pi, "anonymous", (1-%z)^3);
+a=isfield(s, ["b" "t" ""]);
+assert_checkequal(a, [%f %t %t]);
 

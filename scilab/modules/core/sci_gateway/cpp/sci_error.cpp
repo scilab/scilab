@@ -68,7 +68,6 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
             FREE(pstError);
 
             Scierror(DEFAULT_ERROR_CODE, "%s", strErr.c_str());
-            return Function::Error;
         }
         else
         {
@@ -89,50 +88,69 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
             Scierror((int)in[0]->getAs<Double>()->getReal(0, 0),
                      "[Error %d]: message given by ID... Should avoid this !!",
                      (int) in[0]->getAs<Double>()->getReal(0, 0));
-            return Function::Error;
         }
-
     }
     else
     {
+        types::Double* pDbl = NULL;
+        types::String* pStr = NULL;
+        int iPosDouble = 1;
+        int iPosString = 1;
         // RHS = 2 according to previous check.
-        if (in[0]->isDouble() == false)
+        if (in[0]->isDouble() == false && in[0]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 1);
             return Function::Error;
         }
 
-        if (in[1]->isString() == false)
+        if (in[1]->isString() == false && in[1]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 2);
             return Function::Error;
         }
 
-        if (in[0]->getAs<Double>()->getSize() != 1)
+        if (in[0]->isDouble() == false && in[1]->isDouble() == false ||
+                in[0]->isString() == false && in[1]->isString() == false )
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 2);
             return Function::Error;
         }
 
-        if (in[1]->getAs<types::String>()->getSize() != 1)
+        if (in[0]->isDouble())
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", 2);
+            iPosString = 2;
+            pDbl = in[0]->getAs<types::Double>();
+            pStr = in[1]->getAs<types::String>();
+        }
+        else
+        {
+            iPosDouble = 2;
+            pDbl = in[1]->getAs<types::Double>();
+            pStr = in[0]->getAs<types::String>();
+        }
+
+        if (pDbl->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", iPosDouble);
             return Function::Error;
         }
 
-        if (in[0]->getAs<Double>()->getReal(0, 0) <= 0 || in[0]->getAs<Double>()->isComplex())
+        if (pStr->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), "error", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", iPosString);
             return Function::Error;
         }
 
-        char* pst = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
-        Scierror((int)in[0]->getAs<Double>()->getReal(0, 0), "%s", pst);
+        if (pDbl->get(0) <= 0 || pDbl->isComplex())
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), "error", iPosDouble);
+            return Function::Error;
+        }
+
+        char* pst = wide_string_to_UTF8(pStr->get(0));
+        Scierror((int)pDbl->get(0), "%s", pst);
         FREE(pst);
-        return Function::Error;
-
     }
-
 
     return Function::Error;
 }

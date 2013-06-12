@@ -513,7 +513,7 @@ void visitprivate(const CallExp &e)
                     if (pArgs->size() == 1 && (*pArgs)[0]->isString())
                     {
                         //s(["x","xx"])
-                        std::list<wstring> wstFields;
+                        std::vector<wstring> wstFields;
                         types::String *pS = (*pArgs)[0]->getAs<types::String>();
                         for (int i = 0 ; i < pS->getSize() ; i++)
                         {
@@ -531,7 +531,11 @@ void visitprivate(const CallExp &e)
                         }
 
                         ResultList = pStr->extractFields(wstFields);
-                        if (ResultList.size() == 1 && ResultList[0]->getAs<types::List>()->getSize() == 1)
+                        if (ResultList.size() == 1 && ResultList[0]->isList() == false)
+                        {
+                            result_set(ResultList[0]);
+                        }
+                        else if (ResultList.size() == 1 && ResultList[0]->getAs<types::List>()->getSize() == 1)
                         {
                             result_set(ResultList[0]->getAs<types::List>()->get(0));
                         }

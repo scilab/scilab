@@ -37,15 +37,15 @@ using namespace types;
 
 Function::ReturnValue sci_gettext(typed_list &in, int _piRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "gettext", 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "gettext" ,1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "gettext" , 1);
         return Function::Error;
     }
 
@@ -54,13 +54,13 @@ Function::ReturnValue sci_gettext(typed_list &in, int _piRetCount, typed_list &o
     wchar_t* pwstCIn    = ScilabStringToCString(in[0]->getAs<types::String>()->get()[0], &bConveted);
     char* pstCIn        = wide_string_to_UTF8(pwstCIn);
     wchar_t* pwstOut    = _W(pstCIn);
-    if(bConveted)
+    if (bConveted)
     {
         wchar_t* pwstTemp    = CStringToScilabString(pwstOut);
         SwitchString(&pwstOut, &pwstTemp);
     }
 
-    String* pOut        = new String(1,1);
+    String* pOut        = new String(1, 1);
     pOut->set(0, pwstOut);
     out.push_back(pOut);
 
@@ -70,116 +70,117 @@ Function::ReturnValue sci_gettext(typed_list &in, int _piRetCount, typed_list &o
 
 
     return Function::OK;
- //   CheckRhs(1,1);
-	//CheckLhs(1,1);
+    //   CheckRhs(1,1);
+    //CheckLhs(1,1);
 
-	//if ( (GetType(1) == sci_strings) )
-	//{
-	//	int l1 = 0, n1 = 0, m1 = 0;
-	//	char *tmpStr = NULL;
+    //if ( (GetType(1) == sci_strings) )
+    //{
+    //	int l1 = 0, n1 = 0, m1 = 0;
+    //	char *tmpStr = NULL;
 
-	//	char *msgid = NULL;
-	//	char *TranslatedString = NULL;
+    //	char *msgid = NULL;
+    //	char *TranslatedString = NULL;
 
-	//	int revertStrsub = FALSE;
+    //	int revertStrsub = FALSE;
 
-	//	GetRhsVar(1,STRING_DATATYPE, &m1, &n1, &l1);
-	//	msgid = cstk(l1);
+    //	GetRhsVar(1,STRING_DATATYPE, &m1, &n1, &l1);
+    //	msgid = cstk(l1);
 
-	//	/* This stupid stuff is necessary because scilab is add slashes
-	//	* and we need to remove them
-	//	* An other solution might be to replace the string "\x" by it
-	//	* real code
-	//	*/
-	//	if (strchr(msgid, '\\') != NULL)
-	//	{
-	//		char *tmpStr1 = NULL;
-	//		char *tmpStr2 = NULL;
-	//		/* There is an \ in the string process to replace */
+    //	/* This stupid stuff is necessary because scilab is add slashes
+    //	* and we need to remove them
+    //	* An other solution might be to replace the string "\x" by it
+    //	* real code
+    //	*/
+    //	if (strchr(msgid, '\\') != NULL)
+    //	{
+    //		char *tmpStr1 = NULL;
+    //		char *tmpStr2 = NULL;
+    //		/* There is an \ in the string process to replace */
 
-	//		/* We always have something from this functions because gettext
-	//		* is returning the same string if it cannot find it */
+    //		/* We always have something from this functions because gettext
+    //		* is returning the same string if it cannot find it */
 
-	//		tmpStr1 = strsub(msgid, "\\n", "\n"); /* linefeed */
-	//		tmpStr2 = strsub(tmpStr1, "\\t", "\t"); /* horizontal tab */
-	//		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
+    //		tmpStr1 = strsub(msgid, "\\n", "\n"); /* linefeed */
+    //		tmpStr2 = strsub(tmpStr1, "\\t", "\t"); /* horizontal tab */
+    //		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
-	//		tmpStr1 = strsub(tmpStr2, "\\r", "\r"); /* carriage return */
-	//		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
+    //		tmpStr1 = strsub(tmpStr2, "\\r", "\r"); /* carriage return */
+    //		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
 
-	//		tmpStr2 = strsub(tmpStr1, "\\v", "\v"); /* vertical tab */
-	//		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
+    //		tmpStr2 = strsub(tmpStr1, "\\v", "\v"); /* vertical tab */
+    //		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
-	//		tmpStr1 = strsub(tmpStr2, "\\f", "\f"); /* form feed */
-	//		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
+    //		tmpStr1 = strsub(tmpStr2, "\\f", "\f"); /* form feed */
+    //		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
 
-	//		tmpStr2 = strsub(tmpStr1, "\\\\", "\\"); /* backslash */
-	//		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
+    //		tmpStr2 = strsub(tmpStr1, "\\\\", "\\"); /* backslash */
+    //		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
-	//		tmpStr1 = strsub(tmpStr2, "\\\"", "\""); /* double quote */
-	//		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
+    //		tmpStr1 = strsub(tmpStr2, "\\\"", "\""); /* double quote */
+    //		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
 
-	//		revertStrsub = TRUE;
-	//		tmpStr = os_strdup(tmpStr1);
-	//		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
-	//	}
-	//	else
-	//	{
-	//		revertStrsub = FALSE;
-	//		tmpStr = os_strdup(msgid);
-	//	}
+    //		revertStrsub = TRUE;
+    //		tmpStr = os_strdup(tmpStr1);
+    //		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
+    //	}
+    //	else
+    //	{
+    //		revertStrsub = FALSE;
+    //		tmpStr = os_strdup(msgid);
+    //	}
 
-	//	TranslatedString = os_strdup(gettext(tmpStr));
-	//	if (tmpStr) {FREE(tmpStr); tmpStr = NULL;}
+    //	TranslatedString = os_strdup(gettext(tmpStr));
+    //	if (tmpStr) {FREE(tmpStr); tmpStr = NULL;}
 
-	//	/* Add removed slashes */
-	//	if (revertStrsub)
-	//	{
-	//		char *tmpStr1 = NULL;
-	//		char *tmpStr2 = NULL;
+    //	/* Add removed slashes */
+    //	if (revertStrsub)
+    //	{
+    //		char *tmpStr1 = NULL;
+    //		char *tmpStr2 = NULL;
 
-	//		tmpStr1 = strsub(TranslatedString, "\\", "\\\\"); /* backslash */
+    //		tmpStr1 = strsub(TranslatedString, "\\", "\\\\"); /* backslash */
 
-	//		tmpStr2 = strsub(tmpStr1, "\f", "\\f"); /* form feed */
-	//		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
+    //		tmpStr2 = strsub(tmpStr1, "\f", "\\f"); /* form feed */
+    //		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
-	//		tmpStr1 = strsub(tmpStr2, "\n", "\\n"); /* linefeed */
-	//		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
+    //		tmpStr1 = strsub(tmpStr2, "\n", "\\n"); /* linefeed */
+    //		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
 
-	//		tmpStr2 = strsub(tmpStr1, "\t", "\\t"); /* horizontal tab */
-	//		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
+    //		tmpStr2 = strsub(tmpStr1, "\t", "\\t"); /* horizontal tab */
+    //		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
-	//		tmpStr1 = strsub(tmpStr2, "\r", "\\r"); /* carriage return */
-	//		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
+    //		tmpStr1 = strsub(tmpStr2, "\r", "\\r"); /* carriage return */
+    //		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
 
-	//		tmpStr2 = strsub(tmpStr1, "\v", "\\v"); /* vertical tab */
-	//		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
+    //		tmpStr2 = strsub(tmpStr1, "\v", "\\v"); /* vertical tab */
+    //		if (tmpStr1) {FREE(tmpStr1); tmpStr1 = NULL;}
 
-	//		if (TranslatedString) {FREE(TranslatedString); TranslatedString = NULL;}
-	//		TranslatedString = os_strdup(tmpStr2);
-	//		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
-	//	}
+    //		if (TranslatedString) {FREE(TranslatedString); TranslatedString = NULL;}
+    //		TranslatedString = os_strdup(tmpStr2);
+    //		if (tmpStr2) {FREE(tmpStr2); tmpStr2 = NULL;}
+    //	}
 
-	//	n1 = 1;
-	//	m1 = (int)strlen(TranslatedString);
-	//	CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &TranslatedString);
-	//	LhsVar(1) = Rhs + 1;
-	//	C2F(putlhsvar)();
+    //	n1 = 1;
+    //	m1 = (int)strlen(TranslatedString);
+    //	CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &TranslatedString);
+    //	LhsVar(1) = Rhs + 1;
+    //	C2F(putlhsvar)();
 
-	//	if (TranslatedString) {FREE(TranslatedString); TranslatedString = NULL;}
-	//	return 0;
-	//}
-	//else
-	//{
-	//	Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
-	//	return 0;
-	//}
+    //	if (TranslatedString) {FREE(TranslatedString); TranslatedString = NULL;}
+    //	return 0;
+    //}
+    //else
+    //{
+    //	Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+    //	return 0;
+    //}
 }
 /*--------------------------------------------------------------------------*/
 wchar_t* ScilabStringToCString(wchar_t *_pwstIn, bool* _pbIsConverted)
 {
-    if(wcschr(_pwstIn, L'\\'))
-    {// '\\' is present so find specials characters
+    if (wcschr(_pwstIn, L'\\'))
+    {
+        // '\\' is present so find specials characters
         //replace "\\n" by "\n"
         wchar_t* pwstTemp1 = NULL;
         wchar_t* pwstTemp2 = NULL;
@@ -256,7 +257,7 @@ wchar_t* CStringToScilabString(wchar_t *_pwstIn)
 /*--------------------------------------------------------------------------*/
 void SwitchString(wchar_t** _pwst1, wchar_t** _pwst2)
 {
-    if(_pwst2 && *_pwst2)
+    if (_pwst2 && *_pwst2)
     {
         FREE(*_pwst1);
         *_pwst1 = *_pwst2;

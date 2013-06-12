@@ -9,7 +9,6 @@ LINEAR_ALGEBRA_CPP_SOURCES = \
 
 LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
 src/c/issymmetric.c \
-src/c/invert_matrix.c \
 src/c/lu.c \
 src/c/qr.c \
 src/c/hess.c \
@@ -30,6 +29,7 @@ LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/intdgesv3.f \
     src/fortran/intdgesv4.f \
     src/fortran/DGELSY1.f \
+    src/fortran/ZGELSY1.f \
     src/fortran/intdpotrf.f \
     src/fortran/intdoldsvd.f \
     src/fortran/intdgecon.f \

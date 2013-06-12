@@ -18,7 +18,7 @@ extern "C"
 #include <sys/time.h>
 #else
 #include <windows.h>
-//#include <winbase.h>
+    //#include <winbase.h>
 #endif
 
 #include <string.h>
@@ -45,19 +45,19 @@ static int readIntAttribute(int _iDatasetId, const char *_pstName)
     int iVal = 0;
 
     iAttributeId = DynHDF5::dynH5Aopen_name(_iDatasetId, _pstName);
-    if(iAttributeId < 0)
+    if (iAttributeId < 0)
     {
         return 0;
     }
 
     status = DynHDF5::dynH5Aread(iAttributeId, H5T_NATIVE_INT, &iVal);
-    if(status < 0)
+    if (status < 0)
     {
         return 0;
     }
 
     status = DynHDF5::dynH5Aclose(iAttributeId);
-    if(status < 0)
+    if (status < 0)
     {
         return 0;
     }
@@ -78,10 +78,10 @@ static char *readAttribute(int _iDatasetId, const char *_pstName)
 
     char *pstValue  = NULL;
 
-    if(DynHDF5::dynH5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void*)_pstName))
+    if (DynHDF5::dynH5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void*)_pstName))
     {
         iAttributeId = DynHDF5::dynH5Aopen_name(_iDatasetId, _pstName);
-        if(iAttributeId < 0)
+        if (iAttributeId < 0)
         {
             return NULL;
         }
@@ -98,13 +98,13 @@ static char *readAttribute(int _iDatasetId, const char *_pstName)
         * in steps.
         */
         iSpace = DynHDF5::dynH5Aget_space (iAttributeId);
-        if(iSpace < 0)
+        if (iSpace < 0)
         {
             return NULL;
         }
 
         status = DynHDF5::dynH5Sget_simple_extent_dims (iSpace, dims, NULL);
-        if(status < 0)
+        if (status < 0)
         {
             return NULL;
         }
@@ -119,7 +119,7 @@ static char *readAttribute(int _iDatasetId, const char *_pstName)
         */
         memtype = DynHDF5::dynH5Tcopy (H5T_C_S1);
         status = DynHDF5::dynH5Tset_size (memtype, iDim);
-        if(status < 0)
+        if (status < 0)
         {
             return NULL;
         }
@@ -128,31 +128,31 @@ static char *readAttribute(int _iDatasetId, const char *_pstName)
         * Read the data.
         */
         status = DynHDF5::dynH5Aread (iAttributeId, memtype, pstValue);
-        if(status < 0)
+        if (status < 0)
         {
             return NULL;
         }
 
         status = DynHDF5::dynH5Tclose(memtype);
-        if(status < 0)
+        if (status < 0)
         {
             return NULL;
         }
 
         status = DynHDF5::dynH5Sclose(iSpace);
-        if(status < 0)
+        if (status < 0)
         {
             return NULL;
         }
 
         status = DynHDF5::dynH5Tclose(iFileType);
-        if(status < 0)
+        if (status < 0)
         {
             return NULL;
         }
 
         status = DynHDF5::dynH5Aclose(iAttributeId);
-        if(status < 0)
+        if (status < 0)
         {
             return NULL;
         }
@@ -167,11 +167,11 @@ static int checkAttribute(int _iDatasetId, char* _pstAttribute, char* _pstValue)
     char *pstScilabClass    = NULL;
 
     pstScilabClass = readAttribute(_iDatasetId, _pstAttribute);
-    if(pstScilabClass != NULL && strcmp(pstScilabClass, _pstValue) == 0)
+    if (pstScilabClass != NULL && strcmp(pstScilabClass, _pstValue) == 0)
     {
         iRet = 1;
     }
-    if(pstScilabClass)
+    if (pstScilabClass)
     {
         FREE(pstScilabClass);
     }
@@ -231,39 +231,39 @@ int getDatasetPrecision(int _iDatasetId, int* _piPrec)
     int iRet                = 0;
     char* pstScilabClass    = readAttribute(_iDatasetId, g_SCILAB_CLASS_PREC);
 
-    if(pstScilabClass == NULL)
+    if (pstScilabClass == NULL)
     {
         return -1;
     }
-    else if(strcmp(pstScilabClass, "8") == 0)
+    else if (strcmp(pstScilabClass, "8") == 0)
     {
         *_piPrec    = SCI_INT8;
     }
-    else if(strcmp(pstScilabClass, "u8") == 0)
+    else if (strcmp(pstScilabClass, "u8") == 0)
     {
         *_piPrec    = SCI_UINT8;
     }
-    else if(strcmp(pstScilabClass, "16") == 0)
+    else if (strcmp(pstScilabClass, "16") == 0)
     {
         *_piPrec = SCI_INT16;
     }
-    else if(strcmp(pstScilabClass, "u16") == 0)
+    else if (strcmp(pstScilabClass, "u16") == 0)
     {
         *_piPrec = SCI_UINT16;
     }
-    else if(strcmp(pstScilabClass, "32") == 0)
+    else if (strcmp(pstScilabClass, "32") == 0)
     {
         *_piPrec = SCI_INT32;
     }
-    else if(strcmp(pstScilabClass, "u32") == 0)
+    else if (strcmp(pstScilabClass, "u32") == 0)
     {
         *_piPrec = SCI_UINT32;
     }
-    else if(strcmp(pstScilabClass, "64") == 0)
+    else if (strcmp(pstScilabClass, "64") == 0)
     {
         *_piPrec = SCI_INT64;
     }
-    else if(strcmp(pstScilabClass, "u64") == 0)
+    else if (strcmp(pstScilabClass, "u64") == 0)
     {
         *_piPrec = SCI_UINT64;
     }
@@ -284,16 +284,16 @@ int getVariableNames(int _iFile, char **pstNameList)
     int iNbItem         = 0;
 
     status = DynHDF5::dynH5Gget_num_objs(_iFile, &iCount);
-    if(status != 0)
+    if (status != 0)
     {
         return 0;
     }
 
-    for(i = 0 ; i < iCount ; i++)
+    for (i = 0 ; i < iCount ; i++)
     {
-        if(DynHDF5::dynH5Gget_objtype_by_idx(_iFile, i) == H5G_DATASET)
+        if (DynHDF5::dynH5Gget_objtype_by_idx(_iFile, i) == H5G_DATASET)
         {
-            if(pstNameList != NULL)
+            if (pstNameList != NULL)
             {
                 int iLen = 0;
                 iLen = (int)DynHDF5::dynH5Gget_objname_by_idx(_iFile, i, NULL, iLen);
@@ -317,7 +317,7 @@ int getListDims(int _iDatasetId, int *_piItems)
     * Get dataspace and dimensions of the dataset. This is a
     * two dimensional dataset.
     */
-    if(isEmptyDataset(_iDatasetId))
+    if (isEmptyDataset(_iDatasetId))
     {
         *_piItems = 0;
     }
@@ -334,7 +334,7 @@ int getDatasetDims(int _iDatasetId, int *_piRows, int *_piCols)
     * Get dataspace and dimensions of the dataset. This is a
     * two dimensional dataset.
     */
-    if(isEmptyDataset(_iDatasetId))
+    if (isEmptyDataset(_iDatasetId))
     {
         *_piCols = 0;
         *_piRows = 0;
@@ -355,13 +355,13 @@ int readDouble(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pdblData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -373,7 +373,7 @@ int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 {
     herr_t status;
 
-    if(_iRows != 0 && _iCols != 0)
+    if (_iRows != 0 && _iCols != 0)
     {
         hid_t obj;
         hobj_ref_t *pRef = (hobj_ref_t *) MALLOC (1 * sizeof (hobj_ref_t));
@@ -383,12 +383,12 @@ int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 
         //Open the referenced object, get its name and type.
         obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
-        readDouble(obj,_iRows, _iCols, _pdblData);
+        readDouble(obj, _iRows, _iCols, _pdblData);
         FREE(pRef);
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -407,21 +407,21 @@ int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pd
 
     //Open the referenced object, get its name and type.
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
-    status = readDouble(obj,_iRows, _iCols, _pdblReal);
-    if(status < 0)
+    status = readDouble(obj, _iRows, _iCols, _pdblReal);
+    if (status < 0)
     {
         return -1;
     }
 
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[1]);
-    status = readDouble(obj,_iRows, _iCols, _pdblImg);
-    if(status < 0)
+    status = readDouble(obj, _iRows, _iCols, _pdblImg);
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -430,10 +430,11 @@ int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pd
 }
 
 int readEmptyMatrix(int _iDatasetId)
-{//close dataset
+{
+    //close dataset
     herr_t status;
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -448,13 +449,13 @@ int readBooleanMatrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_INT, H5S_ALL, H5S_ALL, H5P_DEFAULT, _piData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -483,13 +484,13 @@ static int readString(int _iDatasetId, char **_pstData)
     * in steps.
     */
     iSpace = DynHDF5::dynH5Dget_space (_iDatasetId);
-    if(iSpace< 0)
+    if (iSpace < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Sget_simple_extent_dims (iSpace, dims, NULL);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -504,7 +505,7 @@ static int readString(int _iDatasetId, char **_pstData)
     */
     memtype = DynHDF5::dynH5Tcopy (H5T_C_S1);
     status = DynHDF5::dynH5Tset_size (memtype, iDim);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -513,31 +514,31 @@ static int readString(int _iDatasetId, char **_pstData)
     * Read the data.
     */
     status = DynHDF5::dynH5Dread (_iDatasetId, memtype, H5S_ALL, H5S_ALL, H5P_DEFAULT, *_pstData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Tclose(memtype);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Sclose(iSpace);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Tclose(iFileType);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -578,20 +579,20 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
 
     /*create sub space*/
     memspace = DynHDF5::dynH5Screate_simple(1, subdims, NULL);
-    if(memspace < 0)
+    if (memspace < 0)
     {
         return -1;
     }
 
 
     status = DynHDF5::dynH5Sget_simple_extent_dims (memspace, dims, NULL);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     space = DynHDF5::dynH5Dget_space (_iDatasetId);
-    if(space < 0)
+    if (space < 0)
     {
         return -1;
     }
@@ -602,7 +603,7 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
     */
     memtype = DynHDF5::dynH5Tcopy (H5T_C_S1);
     status = DynHDF5::dynH5Tset_size (memtype, iDim);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -621,13 +622,13 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
     */
     for (i = 0 ; i < _iRows * _iCols; i++)
     {
-        hsize_t start[1]={i};
-        hsize_t count[1]={1};
+        hsize_t start[1] = {i};
+        hsize_t count[1] = {1};
 #ifdef TIME_DEBUG
-        QueryPerformanceCounter(&piStart[i+1]);
+        QueryPerformanceCounter(&piStart[i + 1]);
 #endif
         status = DynHDF5::dynH5Sselect_hyperslab (space, H5S_SELECT_SET, start, NULL, count, NULL);
-        if(status < 0)
+        if (status < 0)
         {
             return -1;
         }
@@ -636,36 +637,36 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
         * Read the data.
         */
         status = DynHDF5::dynH5Dread (_iDatasetId, memtype, memspace, space, H5P_DEFAULT, _pstData[i]);
-        if(status < 0)
+        if (status < 0)
         {
             return -1;
         }
 #ifdef TIME_DEBUG
-        QueryPerformanceCounter(&piEnd[i+1]);
+        QueryPerformanceCounter(&piEnd[i + 1]);
 #endif
     }
 
     status = DynHDF5::dynH5Sclose(space);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Sclose(memspace);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
 
     status = DynHDF5::dynH5Tclose(filetype);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -677,7 +678,7 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
     printf("\nGlobalTime : %0.3f ms\n", ((piEnd[0].QuadPart - piStart[0].QuadPart) * 1000.0) / iFreq.QuadPart);
     for (i = 0 ; i < _iRows * _iCols; i++)
     {
-        double dblTime    =((piEnd[i+1].QuadPart - piStart[i+1].QuadPart) * 1000.0) / iFreq.QuadPart;
+        double dblTime    = ((piEnd[i + 1].QuadPart - piStart[i + 1].QuadPart) * 1000.0) / iFreq.QuadPart;
         printf("SubTime %d : %0.3f ms\n", i, dblTime);
     }
 #endif
@@ -728,7 +729,7 @@ int readCommonPolyMatrix(int _iDatasetId, char* _pstVarname, int _iComplex, int 
     * Read the data.
     */
     status = DynHDF5::dynH5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -739,7 +740,7 @@ int readCommonPolyMatrix(int _iDatasetId, char* _pstVarname, int _iComplex, int 
         * Open the referenced object, get its name and type.
         */
         obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pData[i]);
-        if(_iComplex)
+        if (_iComplex)
         {
             status = readComplexPoly(obj, &_piNbCoef[i], &_pdblReal[i], &_pdblImg[i]);
         }
@@ -748,7 +749,7 @@ int readCommonPolyMatrix(int _iDatasetId, char* _pstVarname, int _iComplex, int 
             status = readPoly(obj, &_piNbCoef[i], &_pdblReal[i]);
         }
 
-        if(status < 0)
+        if (status < 0)
         {
             return -1;
         }
@@ -757,7 +758,7 @@ int readCommonPolyMatrix(int _iDatasetId, char* _pstVarname, int _iComplex, int 
     pstVarName = readAttribute(_iDatasetId, g_SCILAB_CLASS_VARNAME);
     strcpy(_pstVarname, pstVarName);
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -785,13 +786,13 @@ int readInteger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData)
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pcData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -806,13 +807,13 @@ int readInteger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData)
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_INT16, H5S_ALL, H5S_ALL, H5P_DEFAULT, _psData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -827,13 +828,13 @@ int readInteger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_INT32, H5S_ALL, H5S_ALL, H5P_DEFAULT, _piData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -848,13 +849,13 @@ int readInteger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pll
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_INT64, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pllData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -869,13 +870,13 @@ int readUnsignedInteger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_UINT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pucData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -891,13 +892,13 @@ int readUnsignedInteger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigne
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_UINT16, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pusData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -913,13 +914,13 @@ int readUnsignedInteger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigne
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_UINT32, H5S_ALL, H5S_ALL, H5P_DEFAULT, _puiData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -935,13 +936,13 @@ int readUnsignedInteger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigne
     * Read the data.
     */
     status = DynHDF5::dynH5Dread(_iDatasetId, H5T_NATIVE_UINT64, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pullData);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -959,7 +960,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
     * Read the data.
     */
     status = DynHDF5::dynH5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -967,7 +968,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
     //read Row data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
     status = readInteger32Matrix(obj, 1, _iRows, _piNbItemRow);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -975,7 +976,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
     //read cols data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[1]);
     status = readInteger32Matrix(obj, 1, _iNbItem, _piColPos);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -983,7 +984,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
     //read sparse data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[2]);
 
-    if(_iComplex)
+    if (_iComplex)
     {
         status = readDoubleComplexMatrix(obj, 1, _iNbItem, _pdblReal, _pdblImg);
     }
@@ -992,7 +993,7 @@ int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, in
         status = readDoubleMatrix(obj, 1, _iNbItem, _pdblReal);
     }
 
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -1022,7 +1023,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
     * Read the data.
     */
     status = DynHDF5::dynH5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -1030,7 +1031,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
     //read Row data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
     status = readInteger32Matrix(obj, 1, _iRows, _piNbItemRow);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -1038,7 +1039,7 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
     //read cols data
     obj = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[1]);
     status = readInteger32Matrix(obj, 1, _iNbItem, _piColPos);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -1053,65 +1054,65 @@ int getScilabTypeFromDataSet(int _iDatasetId)
     int iVarType            = 0;
     char *pstScilabClass    = readAttribute(_iDatasetId, g_SCILAB_CLASS);
 
-    if(pstScilabClass == NULL)
+    if (pstScilabClass == NULL)
     {
         return unknow_type;
     }
     /* HDF5 Float type + SCILAB_Class = double <=> double */
-    if(strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
+    if (strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
     {
         iVarType = sci_matrix;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
     {
         iVarType = sci_strings;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
     {
         iVarType = sci_boolean;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
     {
         iVarType = sci_boolean;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_POLY) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_POLY) == 0)
     {
         iVarType = sci_poly;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_INT) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_INT) == 0)
     {
         iVarType = sci_ints;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_SPARSE) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_SPARSE) == 0)
     {
         iVarType = sci_sparse;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_BSPARSE) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BSPARSE) == 0)
     {
         iVarType = sci_boolean_sparse;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_LIST) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_LIST) == 0)
     {
         iVarType = sci_list;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_TLIST) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_TLIST) == 0)
     {
         iVarType = sci_tlist;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_MLIST) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_MLIST) == 0)
     {
         iVarType = sci_mlist;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_VOID) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_VOID) == 0)
     {
         iVarType = sci_void;
     }
-    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_UNDEFINED) == 0)
+    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_UNDEFINED) == 0)
     {
         iVarType = sci_undefined;
     }
 
-    if(iVarType == 0)
+    if (iVarType == 0)
     {
         return 0;
     }
@@ -1130,7 +1131,7 @@ int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef)
     *_piItemRef = (hobj_ref_t *) MALLOC (iItem * sizeof (hobj_ref_t));
 
     status = DynHDF5::dynH5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, *_piItemRef);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }
@@ -1143,7 +1144,7 @@ int getListItemDataset(int _iDatasetId, void* _piItemRef, int _iItemPos, int* _p
     hobj_ref_t poRef    = ((hobj_ref_t*)_piItemRef)[_iItemPos];
     *_piItemDataset     = DynHDF5::dynH5Rdereference (_iDatasetId, H5R_OBJECT, &poRef);
 
-    if(*_piItemDataset == 0)
+    if (*_piItemDataset == 0)
     {
         return -1;
     }
@@ -1154,14 +1155,14 @@ int getListItemDataset(int _iDatasetId, void* _piItemRef, int _iItemPos, int* _p
 int deleteListItemReferences(int _iDatasetId, void* _piItemRef)
 {
     herr_t status;
-    if(_piItemRef)
+    if (_piItemRef)
     {
         hobj_ref_t *poRef    = (hobj_ref_t*)_piItemRef;
         FREE(poRef);
     }
 
     status = DynHDF5::dynH5Dclose(_iDatasetId);
-    if(status < 0)
+    if (status < 0)
     {
         return -1;
     }

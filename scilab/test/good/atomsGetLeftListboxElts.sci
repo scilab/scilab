@@ -70,7 +70,7 @@ function elements = atomsGetLeftListboxElts(category)
         items_str = [items_str ; thisItem ];
         items_mat = [items_mat ; "category" "filter:all"];
 
-         for i=1:size(categories, "*")
+        for i=1:size(categories, "*")
 
             if background == "#eeeeee" then
                 background = "#ffffff";
@@ -89,8 +89,8 @@ function elements = atomsGetLeftListboxElts(category)
             items_mat = [items_mat ; "category" categories(i)];
         end
 
-    // 2nd case: Sub categories + modules
-    // -------------------------------------------------------------------------
+        // 2nd case: Sub categories + modules
+        // -------------------------------------------------------------------------
 
     else
 

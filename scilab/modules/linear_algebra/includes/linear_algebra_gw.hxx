@@ -23,10 +23,10 @@ extern "C"
 class LinearAlgebraModule
 {
 private :
-   LinearAlgebraModule(){};
-   ~LinearAlgebraModule(){};
+    LinearAlgebraModule() {};
+    ~LinearAlgebraModule() {};
 public :
-   LINEAR_ALGEBRA_GW_IMPEXP static int Load();
+    LINEAR_ALGEBRA_GW_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_chol);

@@ -31,19 +31,19 @@ using namespace types;
 
 Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed_list &out)
 {
-    if(in.size() != 1)
+    if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getshortpathname" , 1);
         return Function::Error;
     }
 
-    if(_iRetCount != 1 && _iRetCount != 2)
+    if (_iRetCount != 1 && _iRetCount != 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getshortpathname", 1, 2);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "getshortpathname", 1);
         return Function::Error;
@@ -54,13 +54,13 @@ Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed
     String* pOut1 = new String(pS->getRows() , pS->getCols());
     Bool* pOut2 = new Bool(pS->getRows() , pS->getCols());
     int* pBool = pOut2->get();
-    for(int i = 0 ; i < pS->getSize(); i++)
+    for (int i = 0 ; i < pS->getSize(); i++)
     {
         pOut1->set(i, getshortpathnameW(pS->get(i), (BOOL*) &pBool[i]));
     }
 
     out.push_back(pOut1);
-    if(_iRetCount == 2)
+    if (_iRetCount == 2)
     {
         out.push_back(pOut2);
     }
@@ -70,57 +70,57 @@ Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed
     }
 
     return Function::OK;
-	//CheckRhs(0,1);
-	//CheckLhs(1,2);
+    //CheckRhs(0,1);
+    //CheckLhs(1,2);
 
-	//if (GetType(1) == sci_strings)
-	//{
-	//	int n1 = 0,m1 = 0, m1n1 = 0;
-	//	char **LongNames = NULL;
-	//	char **ShortNames = NULL;
-	//	BOOL *bOK = NULL;
-	//	int i = 0;
+    //if (GetType(1) == sci_strings)
+    //{
+    //	int n1 = 0,m1 = 0, m1n1 = 0;
+    //	char **LongNames = NULL;
+    //	char **ShortNames = NULL;
+    //	BOOL *bOK = NULL;
+    //	int i = 0;
 
-	//	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&LongNames);
-	//	m1n1 = m1*n1;
+    //	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&LongNames);
+    //	m1n1 = m1*n1;
 
-	//	if (m1n1 > 0)
-	//	{
-	//		ShortNames = (char**) MALLOC(sizeof(char*)* (m1n1));
-	//		bOK = (BOOL*) MALLOC(sizeof(BOOL)*(m1n1));
+    //	if (m1n1 > 0)
+    //	{
+    //		ShortNames = (char**) MALLOC(sizeof(char*)* (m1n1));
+    //		bOK = (BOOL*) MALLOC(sizeof(BOOL)*(m1n1));
 
-	//		if ( (ShortNames == NULL) || (bOK == NULL) )
-	//		{
-	//			freeArrayOfString(LongNames, m1n1);
-	//			Scierror(999,"%s: Memory allocation error.\n", fname);
-	//			return 0;
-	//		}
-	//	}
+    //		if ( (ShortNames == NULL) || (bOK == NULL) )
+    //		{
+    //			freeArrayOfString(LongNames, m1n1);
+    //			Scierror(999,"%s: Memory allocation error.\n", fname);
+    //			return 0;
+    //		}
+    //	}
 
-	//	for (i = 0;i < m1n1; i++)
-	//	{
-	//		ShortNames[i] = getshortpathname(LongNames[i], &bOK[i]);
-	//	}
-	//	freeArrayOfString(LongNames, m1n1);
+    //	for (i = 0;i < m1n1; i++)
+    //	{
+    //		ShortNames[i] = getshortpathname(LongNames[i], &bOK[i]);
+    //	}
+    //	freeArrayOfString(LongNames, m1n1);
 
-	//	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,ShortNames);
-	//	LhsVar(1) = Rhs+1;
+    //	CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,ShortNames);
+    //	LhsVar(1) = Rhs+1;
 
-	//	if (Lhs == 2)
-	//	{
-	//		CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &bOK);
-	//		LhsVar(2) = Rhs + 2;
-	//	}
+    //	if (Lhs == 2)
+    //	{
+    //		CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &bOK);
+    //		LhsVar(2) = Rhs + 2;
+    //	}
 
-	//	C2F(putlhsvar)();
+    //	C2F(putlhsvar)();
 
-	//	freeArrayOfString(ShortNames, m1n1);
-	//	if (bOK) {FREE(bOK); bOK = NULL;}
-	//}
-	//else
-	//{
-	//	Scierror(999,_("%s: Wrong type for input argument: A string expected.\n"),fname);
-	//}
-	//return 0;
+    //	freeArrayOfString(ShortNames, m1n1);
+    //	if (bOK) {FREE(bOK); bOK = NULL;}
+    //}
+    //else
+    //{
+    //	Scierror(999,_("%s: Wrong type for input argument: A string expected.\n"),fname);
+    //}
+    //return 0;
 }
 /*--------------------------------------------------------------------------*/

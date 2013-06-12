@@ -20,7 +20,7 @@
 //
 
 function num=message(strings ,buttons, modal)
-//interface to message primitive to allow simple overloading for live demo 
+    //interface to message primitive to allow simple overloading for live demo
     [lhs,rhs]=argn(0)
     if rhs==3 then
         if modal == %t then

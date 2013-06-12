@@ -22,21 +22,21 @@
 
 function XcosMenuLink()
 
-//** 28 Nov 2008 : begin with the "Simulink like" (SL) mode 
-  
-  //** "0" standard scicos oblique link ; "1" SL orthogonanal links 
-  global SL_mode ; 
+    //** 28 Nov 2008 : begin with the "Simulink like" (SL) mode
 
-  //** use a global variable in oder to switch 
-  //** from/to the two operating modes 
-  if SL_mode then //avoid oblic links
-    [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile);
-  else
-    [scs_m, needcompile] = getlink(%pt, scs_m, needcompile); 
-  end 
+    //** "0" standard scicos oblique link ; "1" SL orthogonanal links
+    global SL_mode ;
 
-  Cmenu = []; 
-  %pt = []; 
-  Select = [] ;
+    //** use a global variable in oder to switch
+    //** from/to the two operating modes
+    if SL_mode then //avoid oblic links
+        [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile);
+    else
+        [scs_m, needcompile] = getlink(%pt, scs_m, needcompile);
+    end
+
+    Cmenu = [];
+    %pt = [];
+    Select = [] ;
 
 endfunction

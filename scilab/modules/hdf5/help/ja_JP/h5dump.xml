@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5dump" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5dump</refname>
+        
+        <refpurpose>H5オブジェクトの内容を標準出力ストリームにダンプ</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            h5dataset(obj, name)  
+            
+            h5dataset(filename, name)  
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>name</term>
+                
+                <listitem>
+                    
+                    <para>ダンプするパスを指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>ファイル名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            H5オブジェクトの内容を標準出力ストリームに書き込みます.
+            
+            デバッグを容易にし,
+            
+            オブジェクトの内容が全て問題ないことを確認する際に有用です.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+// HDF5ファイルを新規に作成
+a = h5open(TMPDIR + "/test.h5", "a")
+
+// データ
+h5write(a, "DS1", 1:10);
+h5write(a, "DS2", uint16(1:10));
+h5write(a, "DS3", ["Hello" "World"]);
+h5writeattr(a, "/DS3", "ATT3.1", "String Matrix")
+
+// ファイル全体をダンプできます
+h5dump(a)
+
+// ...または3番目のデータセットのみ
+h5dump(a, "/DS3")
+
+// リソースを全て解放
+h5close(a)
+
+// ファイルを明示的にオープンせずにダンプできます
+h5dump(TMPDIR + "/test.h5");
+
+// ... または3番目のデータセットのみ
+h5dump(TMPDIR + "/test.h5", "/DS3");
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5open">h5open</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

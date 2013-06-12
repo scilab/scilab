@@ -16,25 +16,25 @@
 //   open that log file to append messages.
 //
 function this = optimbase_logstartup ( this )
-  if ( this.logstartup ) then
-    error ( gettext ( "%s: Logging already started." , "optimbase_logstartup" ) )
-  else
-    this.logstartup = %t;
-    if ( this.logfile <> "" ) then
-      if ( this.logfilehandle <> 0 ) then
-        error ( gettext ( "%s: Log file handle non zero while starting up the logging." , "optimbase_logstartup" ) )
-      end
-      this.logfilehandle = mopen( this.logfile , "a" );
-      c = clock();
-      year = c(1);
-      month = c(2);
-      day = c(3);
-      hour = c(4);
-      minute = c(5);
-      seconds = c(6);
-      mfprintf ( this.logfilehandle , "Optimbase ready for logging at %d-%d-%d %d:%d:%d\n" , ...
-        year , month , day , hour , minute , seconds );
+    if ( this.logstartup ) then
+        error ( gettext ( "%s: Logging already started." , "optimbase_logstartup" ) )
+    else
+        this.logstartup = %t;
+        if ( this.logfile <> "" ) then
+            if ( this.logfilehandle <> 0 ) then
+                error ( gettext ( "%s: Log file handle non zero while starting up the logging." , "optimbase_logstartup" ) )
+            end
+            this.logfilehandle = mopen( this.logfile , "a" );
+            c = clock();
+            year = c(1);
+            month = c(2);
+            day = c(3);
+            hour = c(4);
+            minute = c(5);
+            seconds = c(6);
+            mfprintf ( this.logfilehandle , "Optimbase ready for logging at %d-%d-%d %d:%d:%d\n" , ...
+            year , month , day , hour , minute , seconds );
+        end
     end
-  end
 endfunction
 

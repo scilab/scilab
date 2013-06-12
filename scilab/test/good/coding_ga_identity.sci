@@ -8,13 +8,13 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [pop_out] = coding_ga_identity(pop_in,direction,param)
-// pop_in is a list().
-// pop_out must be a list().
-if (direction=='code') then
-  pop_out = pop_in;
-elseif (direction=='decode') then
-  pop_out = pop_in;
-else
-  error(sprintf(gettext("%s: wrong direction"),"coding_ga_identity"));
-end
+    // pop_in is a list().
+    // pop_out must be a list().
+    if (direction=="code") then
+        pop_out = pop_in;
+    elseif (direction=="decode") then
+        pop_out = pop_in;
+    else
+        error(sprintf(gettext("%s: wrong direction"),"coding_ga_identity"));
+    end
 endfunction

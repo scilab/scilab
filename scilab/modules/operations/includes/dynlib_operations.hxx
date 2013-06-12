@@ -14,13 +14,13 @@
 #define __DYNLIB_OPERATIONS_HXX__
 
 #ifdef _MSC_VER
-	#if OPERATIONS_EXPORTS
-		#define EXTERN_OP __declspec (dllexport)
-	#else
-		#define EXTERN_OP __declspec (dllimport)
-	#endif
+#if OPERATIONS_EXPORTS
+#define EXTERN_OP __declspec (dllexport)
 #else
-	#define EXTERN_OP
+#define EXTERN_OP __declspec (dllimport)
+#endif
+#else
+#define EXTERN_OP
 #endif
 
 #endif /* __DYNLIB_OPERATIONS_HXX__ */

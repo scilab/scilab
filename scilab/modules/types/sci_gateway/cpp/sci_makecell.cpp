@@ -23,7 +23,7 @@ int prodDims(Double* _pVar);
 Function::ReturnValue sci_makecell(typed_list &in, int _piRetCount, typed_list &out)
 {
 
-    if(in.size() < 2)
+    if (in.size() < 2)
     {
         return Function::Error;
     }
@@ -31,7 +31,7 @@ Function::ReturnValue sci_makecell(typed_list &in, int _piRetCount, typed_list &
     //manage dims
 
     //check data type
-    if(in[0]->isDouble() == false)
+    if (in[0]->isDouble() == false)
     {
         //FIXME: call overload function %_makecell to manage ohter input types
     }
@@ -39,28 +39,30 @@ Function::ReturnValue sci_makecell(typed_list &in, int _piRetCount, typed_list &
     Double* pD = in[0]->getAs<Double>();
 
     //check vector format
-    if(pD->getRows() != 1 && pD->getCols() != 1 || pD->getSize() == 1)
+    if (pD->getRows() != 1 && pD->getCols() != 1 || pD->getSize() == 1)
     {
         return Function::Error;
     }
 
     //check input parameters count
-    if(prodDims(pD) != (in.size() - 1))
+    if (prodDims(pD) != (in.size() - 1))
     {
         return Function::Error;
     }
 
     Cell *pC  = NULL;
-    if(pD->getRows() > 2 || pD->getCols() > 2)
-    {//arrayOf<Cell>
+    if (pD->getRows() > 2 || pD->getCols() > 2)
+    {
+        //arrayOf<Cell>
     }
     else
-    {//2 dims
+    {
+        //2 dims
         pC  = new Cell(static_cast<int>(pD->getReal()[0]), static_cast<int>(pD->getReal()[1]));
 
-        for(int i = 1 ; i < in.size() ; i++)
+        for (int i = 1 ; i < in.size() ; i++)
         {
-            pC->set(i-1, in[i]);
+            pC->set(i - 1, in[i]);
         }
     }
 
@@ -71,7 +73,7 @@ Function::ReturnValue sci_makecell(typed_list &in, int _piRetCount, typed_list &
 int prodDims(Double* _pVar)
 {
     int iProd = 1;
-    for(int i = 0 ; i < _pVar->getSize() ; i++)
+    for (int i = 0 ; i < _pVar->getSize() ; i++)
     {
         iProd *= static_cast<int>(_pVar->getReal()[i]);
     }

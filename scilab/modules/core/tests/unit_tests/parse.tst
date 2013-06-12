@@ -19,7 +19,6 @@ ans(1)
 sin(3)
 ans
 ans==1
-:
 [
 ]
 
@@ -42,9 +41,9 @@ clear c;c(5)=9
 [m,k]=max(1:3)
 [d1f d2f d3f d4f] = (1,2,3,4)
 
-if 10<>3 then x=disp('abcd'),end
+//if 10<>3 then x=disp('abcd'),end
 if 10<>3 then disp('abcd'),end
-if 10<>3  x=disp('abcd'),end//matlab syntax
+//if 10<>3  x=disp('abcd'),end//matlab syntax
 if 10<>3  disp('abcd'),end//matlab syntax
 
 

@@ -22,10 +22,10 @@ extern "C"
 class HistoryManagerModule
 {
 private :
-   HistoryManagerModule(){};
-   ~HistoryManagerModule(){};
+    HistoryManagerModule() {};
+    ~HistoryManagerModule() {};
 public :
-   HISTORY_MANAGER_GW_IMPEXP static int Load();
+    HISTORY_MANAGER_GW_IMPEXP static int Load();
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_loadhistory);

@@ -19,11 +19,11 @@
 class GuiModule
 {
 private :
-	GuiModule(){};
-	~GuiModule(){};
+    GuiModule() {};
+    ~GuiModule() {};
 public :
     GUI_GW_IMPEXP static void LoadDeps(void);
-	GUI_GW_IMPEXP static int Load();
+    GUI_GW_IMPEXP static int Load();
 
     static bool loadedDep;
 };

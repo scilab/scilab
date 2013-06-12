@@ -11,15 +11,15 @@
 //
 
 function [current, all]=threadInspector()
-  disp("== Current Thread is ==");
-  current = getCurrentThreadId();
-  disp(current)
+    disp("== Current Thread is ==");
+    current = getCurrentThreadId();
+    disp(current)
 
-  disp("== All threads ==");
-  all = getThreads();
-  allSize = size(all, "*")
-  for (i = 1:allSize)
-    disp("== Thread "+string(i)+" ==")
-    disp(all{i})
-  end
+    disp("== All threads ==");
+    all = getThreads();
+    allSize = size(all, "*")
+    for (i = 1:allSize)
+        disp("== Thread "+string(i)+" ==")
+        disp(all{i})
+    end
 endfunction

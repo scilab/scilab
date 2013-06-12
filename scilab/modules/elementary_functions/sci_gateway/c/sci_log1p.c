@@ -21,86 +21,86 @@
 /*--------------------------------------------------------------------------*/
 int sci_log1p(char *fname, void* pvApiCtx)
 {
-	SciErr sciErr;
-	int i;
-	int iRows						= 0;
-	int iCols						= 0;
-	int iType						= 0;
-	int* piAddr					= NULL;
+    SciErr sciErr;
+    int i;
+    int iRows						= 0;
+    int iCols						= 0;
+    int iType						= 0;
+    int* piAddr					= NULL;
 
-	double *pdblReal		= NULL;
-	double *pdblImg			= NULL;
-	double* pdblRealRet	= NULL;
-	double* pdblImgRet	= NULL;
+    double *pdblReal		= NULL;
+    double *pdblImg			= NULL;
+    double* pdblRealRet	= NULL;
+    double* pdblImgRet	= NULL;
 
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
 
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	sciErr = getVarType(pvApiCtx, piAddr, &iType);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-		return 0;
-	}
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-	if(iType != sci_matrix)
-	{
-		OverLoad(1);
-		return 0;
-	}
+    if (iType != sci_matrix)
+    {
+        OverLoad(1);
+        return 0;
+    }
 
-	if(isVarComplex(pvApiCtx, piAddr))
-	{
-		SciError(43);
-		return 0;
-	}
-	else
-	{
-		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+    if (isVarComplex(pvApiCtx, piAddr))
+    {
+        SciError(43);
+        return 0;
+    }
+    else
+    {
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-		for(i = 0; i < iRows * iCols ; i++)
-		{
-			if(pdblReal[i] <= -1)
-			{
-				if(C2F(errgst).ieee == 0)
-				{
-					SciError(32);
-					return 0;
-				}
-				else if(C2F(errgst).ieee == 1)
-				{
-					Msgs(64,0);
-				}
-			}
-		}
+        for (i = 0; i < iRows * iCols ; i++)
+        {
+            if (pdblReal[i] <= -1)
+            {
+                if (C2F(errgst).ieee == 0)
+                {
+                    SciError(32);
+                    return 0;
+                }
+                else if (C2F(errgst).ieee == 1)
+                {
+                    Msgs(64, 0);
+                }
+            }
+        }
 
-		sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
+        sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, &pdblRealRet);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-		for(i = 0; i < iRows * iCols ; i++)
-		{
-			pdblRealRet[i] = dlog1ps(pdblReal[i]);
-		}
-	}
+        for (i = 0; i < iRows * iCols ; i++)
+        {
+            pdblRealRet[i] = dlog1ps(pdblReal[i]);
+        }
+    }
 
-	LhsVar(1) = Rhs + 1;
-	PutLhsVar();
-	return 0;
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

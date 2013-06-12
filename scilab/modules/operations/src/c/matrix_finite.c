@@ -16,13 +16,13 @@
 /*return 1 if all is OK else 0*/
 int matrix_finite(double *_pdbl, int _iSize)
 {
-	int i = 0;
-	for(i = 0 ; i < _iSize ; i++)
-	{
-		if(finite(_pdbl[i]) == 0)
-		{
-			return 1;
-		}
-	}
-	return 0;
+    int i = 0;
+    for (i = 0 ; i < _iSize ; i++)
+    {
+        if (finite(_pdbl[i]) == 0)
+        {
+            return 1;
+        }
+    }
+    return 0;
 }

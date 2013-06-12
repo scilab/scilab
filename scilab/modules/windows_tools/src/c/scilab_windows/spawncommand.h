@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -29,7 +29,7 @@ typedef struct pipeinfo
 #ifndef SCILAB_WINDOWS_EXPORTS
 pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnOut;
 pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnErr;
-#endif 
+#endif
 /*--------------------------------------------------------------------------*/
 /**
 * spawn a command
@@ -59,7 +59,7 @@ SCILAB_WINDOWS_IMPEXP BOOL DetectDetachProcessInCommandLine(char *command);
 * @param[in] DetachProcess
 * @return output
 */
-SCILAB_WINDOWS_IMPEXP char **CreateOuput(pipeinfo *pipe,BOOL DetachProcess);
+SCILAB_WINDOWS_IMPEXP char **CreateOuput(pipeinfo *pipe, BOOL DetachProcess);
 
 /**
 * Close pipe

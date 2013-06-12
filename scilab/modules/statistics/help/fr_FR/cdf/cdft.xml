@@ -47,7 +47,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>DF:  </term>
+                <term>Df</term>
                 <listitem>
                     <para>
                         Degrés de libertés de la distribution. En entrée : (0 , +infini). En recherche : [1e-300, 1E10]

@@ -24,28 +24,28 @@ function XcosMenuBackgroundColor()
     Cmenu = [] ;
 
     if curwin==%win then
-      scf(%win);
+        scf(%win);
     else
-      messagebox("Only current window can be edited.","modal")
+        messagebox("Only current window can be edited.","modal")
     end
 
-    [edited,options] = do_options(scs_m.props.options,"Background"); 
+    [edited,options] = do_options(scs_m.props.options,"Background");
 
     scs_m.props.options = options ;
 
     if edited then
-      scs_m.props.options = options ; 
-      set_background() ; 
-      //** Acquire the current clicked window 
-      gh_curwin = scf(%win) ;
-      gh_axes = gca(); 
-      //** Clear the graphic window WITHOUT changing his parameters ! :)
-      drawlater() ;
-      delete(gh_axes.children) ;   //** wipe out all the graphics object in the axe 
-      drawobjs(scs_m, gh_curwin) ; //** re-create all the graphics object
-      //** drawnow(); //** re-draw the graphic object and show on screen (now included in drawobjs)
+        scs_m.props.options = options ;
+        set_background() ;
+        //** Acquire the current clicked window
+        gh_curwin = scf(%win) ;
+        gh_axes = gca();
+        //** Clear the graphic window WITHOUT changing his parameters ! :)
+        drawlater() ;
+        delete(gh_axes.children) ;   //** wipe out all the graphics object in the axe
+        drawobjs(scs_m, gh_curwin) ; //** re-create all the graphics object
+        //** drawnow(); //** re-draw the graphic object and show on screen (now included in drawobjs)
 
-      Cmenu = [] ; %pt = [];
+        Cmenu = [] ; %pt = [];
     end
 
 endfunction

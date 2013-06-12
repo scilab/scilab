@@ -59,53 +59,53 @@ TRANSLATION TO C
 
 void vDsearchC(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo)
 {
-	int iLoop = 0;
+    int iLoop = 0;
 
-	if(_pdblOcc != NULL)
-	{
-		memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
-	}
+    if (_pdblOcc != NULL)
+    {
+        memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
+    }
 
-	if(_pdblInfo != NULL)
-	{
-		*_pdblInfo	= 0;
-	}
+    if (_pdblInfo != NULL)
+    {
+        *_pdblInfo	= 0;
+    }
 
-	for(iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
-	{
-		if(_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal])
-		{
-			int iIndex = 0;
-			int iIndex1 = 0;
-			int iIndex2 = _iNbElemVal+1;
-			while(iIndex2 - iIndex1 > 1)
-			{
-				iIndex = (iIndex1 + iIndex2) / 2;
-				if( _pdblX[iLoop] <= _pdblVal[iIndex])
-				{
-					iIndex2 = iIndex;
-				}
-				else
-				{
-					iIndex1 = iIndex;
-				}
-			}
+    for (iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
+    {
+        if (_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal])
+        {
+            int iIndex = 0;
+            int iIndex1 = 0;
+            int iIndex2 = _iNbElemVal + 1;
+            while (iIndex2 - iIndex1 > 1)
+            {
+                iIndex = (iIndex1 + iIndex2) / 2;
+                if ( _pdblX[iLoop] <= _pdblVal[iIndex])
+                {
+                    iIndex2 = iIndex;
+                }
+                else
+                {
+                    iIndex1 = iIndex;
+                }
+            }
 
-			_pdblInd[iLoop]	= iIndex2;
-			if(_pdblOcc != NULL)
-			{
-				_pdblOcc[iIndex2 - 1]++;
-			}
-		}
-		else
-		{
-			if(_pdblInfo != NULL)
-			{
-				(*_pdblInfo)++;
-			}
-			_pdblInd[iLoop] = 0;
-		}
-	}
+            _pdblInd[iLoop]	= iIndex2;
+            if (_pdblOcc != NULL)
+            {
+                _pdblOcc[iIndex2 - 1]++;
+            }
+        }
+        else
+        {
+            if (_pdblInfo != NULL)
+            {
+                (*_pdblInfo)++;
+            }
+            _pdblInd[iLoop] = 0;
+        }
+    }
 }
 
 /*
@@ -153,69 +153,69 @@ TRANSLATION TO C
 
 void vDsearchD(double *_pdblX, int _iNbElemX, double *_pdblVal, int _iNbElemVal, double* _pdblInd, double *_pdblOcc, double *_pdblInfo)
 {
-	int iLoop = 0;
+    int iLoop = 0;
 
-	if(_pdblOcc != NULL)
-	{
-		memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
-	}
+    if (_pdblOcc != NULL)
+    {
+        memset(_pdblOcc, 0x00, _iNbElemVal * sizeof(double));
+    }
 
-	if(_pdblInfo != NULL)
-	{
-		*_pdblInfo	= 0;
-	}
+    if (_pdblInfo != NULL)
+    {
+        *_pdblInfo	= 0;
+    }
 
-	for(iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
-	{
-		if(_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal-1])
-		{
-			int iIndex = 0;
-			int iIndex1 = 0;
-			int iIndex2 = _iNbElemVal-1;
-			while(iIndex2 - iIndex1 > 1)
-			{
-				iIndex = (iIndex1 + iIndex2) / 2;
-				if( _pdblX[iLoop] < _pdblVal[iIndex])
-				{
-					iIndex2 = iIndex;
-				}
-				else
-				{
-					iIndex1 = iIndex;
-				}
-			}
-			if(_pdblX[iLoop] == _pdblVal[iIndex1])
-			{
-				if(_pdblOcc != NULL)
-				{
-					_pdblOcc[iIndex1]++;
-				}
-				_pdblInd[iLoop]	= iIndex1 + 1;
-			}
-			else if(_pdblX[iLoop] == _pdblVal[iIndex2])
-			{
-				if(_pdblOcc != NULL)
-				{
-					_pdblOcc[iIndex2]++;
-				}
-				_pdblInd[iLoop]	= iIndex2 + 1;
-			}
-			else
-			{
-				if(_pdblInfo != NULL)
-				{
-					(*_pdblInfo)++;
-				}
-				_pdblInd[iLoop] = 0;
-			}
-		}
-		else
-		{
-			if(_pdblInfo != NULL)
-			{
-				(*_pdblInfo)++;
-			}
-			_pdblInd[iLoop] = 0;
-		}
-	}
+    for (iLoop = 0 ; iLoop < _iNbElemX ; iLoop++)
+    {
+        if (_pdblVal[0] <= _pdblX[iLoop] && _pdblX[iLoop] <= _pdblVal[_iNbElemVal - 1])
+        {
+            int iIndex = 0;
+            int iIndex1 = 0;
+            int iIndex2 = _iNbElemVal - 1;
+            while (iIndex2 - iIndex1 > 1)
+            {
+                iIndex = (iIndex1 + iIndex2) / 2;
+                if ( _pdblX[iLoop] < _pdblVal[iIndex])
+                {
+                    iIndex2 = iIndex;
+                }
+                else
+                {
+                    iIndex1 = iIndex;
+                }
+            }
+            if (_pdblX[iLoop] == _pdblVal[iIndex1])
+            {
+                if (_pdblOcc != NULL)
+                {
+                    _pdblOcc[iIndex1]++;
+                }
+                _pdblInd[iLoop]	= iIndex1 + 1;
+            }
+            else if (_pdblX[iLoop] == _pdblVal[iIndex2])
+            {
+                if (_pdblOcc != NULL)
+                {
+                    _pdblOcc[iIndex2]++;
+                }
+                _pdblInd[iLoop]	= iIndex2 + 1;
+            }
+            else
+            {
+                if (_pdblInfo != NULL)
+                {
+                    (*_pdblInfo)++;
+                }
+                _pdblInd[iLoop] = 0;
+            }
+        }
+        else
+        {
+            if (_pdblInfo != NULL)
+            {
+                (*_pdblInfo)++;
+            }
+            _pdblInd[iLoop] = 0;
+        }
+    }
 }

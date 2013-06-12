@@ -57,16 +57,16 @@ void vKronR(double* _pdblDataIn1, int _iIncIn1, int _iRowsIn1, int _iColsIn1,
     int l = 0;
     int idx = 0;
 
-    for(i = 0 ; i < iSize1 ; i += _iRowsIn1)
+    for (i = 0 ; i < iSize1 ; i += _iRowsIn1)
     {
         int i2 = i + _iRowsIn1;
-        for(j = 0 ; j < iSize2 ; j += _iRowsIn2)
+        for (j = 0 ; j < iSize2 ; j += _iRowsIn2)
         {
             int j2 = j + _iRowsIn2;
-            for(k = i ; k < i2 ; k++)
+            for (k = i ; k < i2 ; k++)
             {
                 //double c = _pdblDataIn1[k];
-                for(l = j ; l < j2 ; l++)
+                for (l = j ; l < j2 ; l++)
                 {
                     _pdblDataOut[idx] = _pdblDataIn1[k] * _pdblDataIn2[l];
                     idx++;
@@ -119,16 +119,16 @@ void vKronC(double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRowsI
     int l = 0;
     int idx = 0;
 
-    for(i = 0 ; i < iSize1 ; i += _iRowsIn1)
+    for (i = 0 ; i < iSize1 ; i += _iRowsIn1)
     {
         int i2 = i + _iRowsIn1;
-        for(j = 0 ; j < iSize2 ; j += _iRowsIn2)
+        for (j = 0 ; j < iSize2 ; j += _iRowsIn2)
         {
             int j2 = j + _iRowsIn2;
-            for(k = i ; k < i2 ; k++)
+            for (k = i ; k < i2 ; k++)
             {
                 //double c = _pdblDataIn1[k];
-                for(l = j ; l < j2 ; l++)
+                for (l = j ; l < j2 ; l++)
                 {
                     _pdblRealOut[idx] = _pdblRealIn1[k] * _pdblRealIn2[l] - _pdblImgIn1[k] * _pdblImgIn2[l];
                     _pdblImgOut[idx] = _pdblRealIn1[k] * _pdblImgIn2[l] + _pdblImgIn1[k] * _pdblRealIn2[l];
@@ -143,9 +143,9 @@ void vKronC(double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRowsI
 int conv_real_input(double* _pdblData, int _iSize)
 {
     int i;
-    for(i = 0 ; i < _iSize ; i++)
+    for (i = 0 ; i < _iSize ; i++)
     {
-        if(_pdblData[i] != 0)
+        if (_pdblData[i] != 0)
         {
             _pdblData[i] = 1.0 / _pdblData[i];
         }
@@ -160,13 +160,13 @@ int conv_real_input(double* _pdblData, int _iSize)
 int conv_img_input(double* _pdblReal, double* _pdblImg, int _iSize)
 {
     int i;
-    for(i = 0 ; i < _iSize ; i++)
+    for (i = 0 ; i < _iSize ; i++)
     {
         double dblR = _pdblReal[i];
         double dblI = _pdblImg[i];
 
         double dblTemp	= dblR * dblR + dblI * dblI;
-        if(dblTemp != 0)
+        if (dblTemp != 0)
         {
             _pdblReal[i] = _pdblReal[i]	/ dblTemp;
             _pdblImg[i] = - _pdblImg[i] / dblTemp;

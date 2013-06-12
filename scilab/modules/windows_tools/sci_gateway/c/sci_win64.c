@@ -17,24 +17,24 @@
 /*--------------------------------------------------------------------------*/
 int sci_win64(char *fname, void* pvApiCtx)
 {
-	BOOL Status = FALSE;
+    BOOL Status = FALSE;
 
-	CheckRhs(0,0);
-	CheckLhs(0,1);
+    CheckRhs(0, 0);
+    CheckLhs(0, 1);
 
 #ifdef _WIN64
-	Status = TRUE;
+    Status = TRUE;
 #endif
 
-    if(createScalarBoolean(pvApiCtx, Rhs + 1, Status) != 0)
+    if (createScalarBoolean(pvApiCtx, Rhs + 1, Status) != 0)
     {
         return 1;
     }
 
-	LhsVar(1) = Rhs + 1;
+    LhsVar(1) = Rhs + 1;
 
     PutLhsVar();
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 

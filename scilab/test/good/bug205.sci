@@ -8,13 +8,13 @@ clear;
 
 N=30;
 A=rand(N,N);
-s=poly(0,'s');
+s=poly(0,"s");
 P=determ( eye(N,N)*%s - A );
 
 if degree(P)==30  then
-	affich_result(%T,205);
+    affich_result(%T,205);
 else
-	affich_result(%F,205);
+    affich_result(%F,205);
 end
 
 clear

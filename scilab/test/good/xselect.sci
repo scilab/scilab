@@ -4,17 +4,17 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function xselect()
 
-  warnobsolete('show_window', '5.4');
+    warnobsolete("show_window", "5.4");
 
-// old name of function show_window
-// macro created for compatibility.
-// This function is obsolete.
+    // old name of function show_window
+    // macro created for compatibility.
+    // This function is obsolete.
 
-  show_window() ;
+    show_window() ;
 
 endfunction

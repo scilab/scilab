@@ -25,7 +25,7 @@ int sci_realtimeinit(char *fname, void* pvApiCtx);
 int sci_realtime(char *fname, void* pvApiCtx);
 int sci_getdate(char *fname, void* pvApiCtx);
 int sci_calendar(char *fname, void* pvApiCtx);
-int sci_timer(char *fname,void* pvApiCtx);
+int sci_timer(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_TIME_H__ */
 /*--------------------------------------------------------------------------*/

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5exists" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5exists</refname>
+        
+        <refpurpose>指定した名前のオブジェクトが存在するかどうかを確認</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            b = h5exists(obj, locations)  
+            
+            b = h5exists(obj, location, attrNames)  
+            
+            b = h5exists(filename, locations)  
+            
+            b = h5exists(filename, location, attrNames)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>H5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>locations</term>
+                
+                <listitem>
+                    
+                    <para>確認するパスを有する文字列の行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>location</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        属性名を確認する位置を指定する文字列
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>attrNames</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        確認する属性名を有する文字列の行列
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>ファイル名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>b</term>
+                
+                <listitem>
+                    
+                    <para>論理値の行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>指定した名前のオブジェクトまたは属性の存在を確認します.</para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+x = 123;
+y = 321;
+save(TMPDIR + "/xy.sod", "x", "y");
+
+// ファイルをオープン
+a = h5open(TMPDIR + "/xy.sod", "r");
+
+// データセット "x", "y" および "z"の存在を確認
+// "z" は存在しない...
+h5exists(a, ["x" "y" "z"])
+
+// Scilab 属性の存在を確認
+h5exists(a, "/", ["SCILAB_sod_version", "SCILAB_scilab_version"])
+
+// リソースを全て解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5open">h5open</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="h5get">h5get</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

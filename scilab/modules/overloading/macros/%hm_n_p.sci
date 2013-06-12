@@ -8,10 +8,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function M=%hm_n_p(M,s)
-//M<>s
-  if size(s,'*')<> 1 then
-    M=%t;
-  else
-    M.entries=M.entries<>s;
-  end
+    //M<>s
+    if size(s,"*")<> 1 then
+        M=%t;
+    else
+        M.entries=M.entries<>s;
+    end
 endfunction

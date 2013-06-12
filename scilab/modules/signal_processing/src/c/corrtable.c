@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -31,8 +31,8 @@ SIGNAL_PROCESSING_IMPEXP void C2F(setdgetx)(char *name, int *rep);
 
 FTAB FTab_dgetx[] =
 {
-	{"corexx", (voidf)  C2F(corexx)},
-	{(char *) 0, (voidf) 0}
+    {"corexx", (voidf)  C2F(corexx)},
+    {(char *) 0, (voidf) 0}
 };
 
 /**************** dgety ***************/
@@ -42,13 +42,13 @@ SIGNAL_PROCESSING_IMPEXP void C2F(setdgety)(char *name, int *rep);
 
 FTAB FTab_dgety[] =
 {
-	{"corexy", (voidf)  C2F(corexy)},
-	{(char *) 0, (voidf) 0}
+    {"corexy", (voidf)  C2F(corexy)},
+    {(char *) 0, (voidf) 0}
 };
 
 /***********************************
 * Search Table for corr
-*   corr uses two externals : dgetx and dgety 
+*   corr uses two externals : dgetx and dgety
 ***********************************/
 
 /** the current function fixed by setdgetx **/
@@ -60,14 +60,14 @@ static dgetxf dgetxfonc ;
 
 void C2F(dgetx)(double *x, int *incr, int *istart)
 {
-	(*dgetxfonc)(x, incr, istart);
+    (*dgetxfonc)(x, incr, istart);
 }
 
 /** fixes the function associated to name **/
 
 void C2F(setdgetx)(char *name, int *rep)
 {
-	dgetxfonc = (dgetxf) GetFunctionByName(name,rep,FTab_dgetx);
+    dgetxfonc = (dgetxf) GetFunctionByName(name, rep, FTab_dgetx);
 }
 
 
@@ -77,7 +77,7 @@ static dgetyf dgetyfonc ;
 
 void C2F(dgety)(double *y, int *incr, int *istart)
 {
-	(*dgetyfonc)(y, incr, istart);
+    (*dgetyfonc)(y, incr, istart);
 }
 
 
@@ -85,6 +85,6 @@ void C2F(dgety)(double *y, int *incr, int *istart)
 
 void C2F(setdgety)(char *name, int *rep)
 {
-	dgetyfonc = (dgetyf) GetFunctionByName(name,rep,FTab_dgety);
+    dgetyfonc = (dgetyf) GetFunctionByName(name, rep, FTab_dgety);
 }
 

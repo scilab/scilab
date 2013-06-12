@@ -41,23 +41,23 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
     BOOL bFortran           = TRUE;
     int iIDSharedLib        = -1;
 
-    if(in.size() > 3)
+    if (in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "c_link", 0, 3);
         return types::Function::Error;
     }
 
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         std::vector<std::wstring> FunctionsList = ConfigVariable::getEntryPointNameList();
-        if(FunctionsList.size() == 0)
+        if (FunctionsList.size() == 0)
         {
             out.push_back(types::Double::Empty());
             return types::Function::OK;
         }
 
         types::String* pSFunctionNames = new types::String(1, (int)FunctionsList.size());
-        for(int i = 0 ; i < FunctionsList.size() ; i++)
+        for (int i = 0 ; i < FunctionsList.size() ; i++)
         {
             pSFunctionNames->set(i, FunctionsList[i].c_str());
         }
@@ -66,19 +66,20 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         return types::Function::OK;
     }
 
-    if(in.size() == 3)
-    {//flag
-        if(in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
+    if (in.size() == 3)
+    {
+        //flag
+        if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
         {
-            Scierror(999 ,_("%s : Wrong type for input argument #%d: A string expected.\n"), "link", 3);
+            Scierror(999 , _("%s : Wrong type for input argument #%d: A string expected.\n"), "link", 3);
             return types::Function::Error;
         }
 
         types::String* pSFlag = in[2]->getAs<types::String>();
         wchar_t* pwstFlag = pSFlag->get(0);
-        if(wcscmp(pwstFlag, L"f") == 0 || wcscmp(pwstFlag, L"c") == 0)
+        if (wcscmp(pwstFlag, L"f") == 0 || wcscmp(pwstFlag, L"c") == 0)
         {
-            if(wcscmp(pwstFlag, L"c") == 0)
+            if (wcscmp(pwstFlag, L"c") == 0)
             {
                 bFortran = FALSE;
             }
@@ -91,9 +92,10 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
     }
 
-    if(in.size() >= 2)
-    {//sub names
-        if(in[1]->isString() == false || ( in[1]->getAs<types::String>()->isVector() == false && in[1]->getAs<types::String>()->isScalar() == false))
+    if (in.size() >= 2)
+    {
+        //sub names
+        if (in[1]->isString() == false || ( in[1]->getAs<types::String>()->isVector() == false && in[1]->getAs<types::String>()->isScalar() == false))
         {
             Scierror(999, _("%s Wrong type for input argument #%d: A string or a string vector expected.\n"), "link", 2);
             return types::Function::Error;
@@ -104,12 +106,12 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         pwstSubNames = pSSubNames->get();
     }
 
-    if(in.size() >= 1)
+    if (in.size() >= 1)
     {
-        if(in[0]->isDouble())
+        if (in[0]->isDouble())
         {
             types::Double* pD = in[0]->getAs<types::Double>();
-            if(pD->isScalar() == false)
+            if (pD->isScalar() == false)
             {
                 Scierror(999, _("%s : Wrong value for argument #%d: %s\n"), "link", 1, _("Unique id of a shared library expected."));
                 return types::Function::Error;
@@ -117,17 +119,18 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
 
             iIDSharedLib = (int)pD->get(0);
         }
-        else if(in[0]->isString())
+        else if (in[0]->isString())
         {
             types::String* pS = in[0]->getAs<types::String>();
-            if(pS->isScalar() == false)
+            if (pS->isScalar() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "link", 1);
                 return types::Function::Error;
             }
-            
-            if(wcscmp(pS->get(0), L"show") == 0)
-            {//show option
+
+            if (wcscmp(pS->get(0), L"show") == 0)
+            {
+                //show option
                 displayDynLibInfo();
                 out.push_back(getLibraryIDs());
                 return types::Function::OK;
@@ -146,12 +149,12 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
     int iErr    = 0;
     int iRetID  = scilabLink(iIDSharedLib, pwstLibName, pwstSubNames, iSizeSubNames, bFortran, &iErr);
 
-    if(iErr)
+    if (iErr)
     {
         dl_genErrorMessage(L"link", iErr, pwstLibName);
 
         /* release lib if it is a new link */
-        if(iIDSharedLib == -1)
+        if (iIDSharedLib == -1)
         {
             ConfigVariable::removeDynamicLibrary(iRetID);
         }
@@ -167,22 +170,22 @@ void displayDynLibInfo(void)
     std::list<ConfigVariable::EntryPointStr*>* pEPList = ConfigVariable::getEntryPointList();
     std::vector<ConfigVariable::DynamicLibraryStr*>* pDLList = ConfigVariable::getDynamicLibraryList();
 
-    if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
+    if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
     {
         sciprint(_("Number of entry points %d.\nShared libraries :\n"), pEPList->size());
     }
 
-    if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
+    if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
     {
         sciprint("[ ");
     }
 
     int iLibCount = 0;
-    for(int i = 0 ; i < pDLList->size() ; i++)
+    for (int i = 0 ; i < pDLList->size() ; i++)
     {
-        if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) 
+        if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
-            if((*pDLList)[i] != NULL)
+            if ((*pDLList)[i] != NULL)
             {
                 sciprint("%d ", i);
                 iLibCount++;
@@ -190,9 +193,9 @@ void displayDynLibInfo(void)
         }
     }
 
-    if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) 
+    if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
     {
-        if(iLibCount < 2)
+        if (iLibCount < 2)
         {
             sciprint(_("] : %d library.\n"), iLibCount);
         }
@@ -203,9 +206,9 @@ void displayDynLibInfo(void)
     }
 
     std::list<ConfigVariable::EntryPointStr*>::const_reverse_iterator it;
-    for(it = pEPList->rbegin() ; it != pEPList->rend() ; it++)
+    for (it = pEPList->rbegin() ; it != pEPList->rend() ; it++)
     {
-        if(getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
+        if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
             sciprint(_("Entry point %ls in shared library %d.\n"), (*it)->pwstEntryPointName, (*it)->iLibIndex);
         }
@@ -217,24 +220,24 @@ types::Double* getLibraryIDs(void)
     std::vector<ConfigVariable::DynamicLibraryStr*>* pDLList = ConfigVariable::getDynamicLibraryList();
 
     int iLibCount = 0;
-    for(int i = 0 ; i < pDLList->size() ; i++)
+    for (int i = 0 ; i < pDLList->size() ; i++)
     {
-        if((*pDLList)[i] != NULL)
+        if ((*pDLList)[i] != NULL)
         {
             iLibCount++;
         }
     }
 
-    if(iLibCount == 0)
+    if (iLibCount == 0)
     {
         return types::Double::Empty();
     }
 
     types::Double* pOut = new types::Double(1, iLibCount);
     iLibCount = 0;
-    for(int i = 0 ; i < pDLList->size() ; i++)
+    for (int i = 0 ; i < pDLList->size() ; i++)
     {
-        if((*pDLList)[i] != NULL)
+        if ((*pDLList)[i] != NULL)
         {
             pOut->set(iLibCount++, (double)i);
         }

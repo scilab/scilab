@@ -34,7 +34,7 @@ public final class Helpers {
         String reason = e.getMessage();
         if (reason == null) {
             return e.getClass().getName();
-		}
+        }
 
         return reason;
     }
@@ -53,37 +53,37 @@ public final class Helpers {
             char c = chars[i];
 
             switch (c) {
-            case '\'':
-                out.write("&apos;");
-                break;
-            case '\"':
-                out.write("&quot;");
-                break;
-            case '<':
-                out.write("&lt;");
-                break;
-            case '>':
-                out.write("&gt;");
-                break;
-            case '&':
-                out.write("&amp;");
-                break;
-            default:
-                out.write(c);
-                break;
+                case '\'':
+                    out.write("&apos;");
+                    break;
+                case '\"':
+                    out.write("&quot;");
+                    break;
+                case '<':
+                    out.write("&lt;");
+                    break;
+                case '>':
+                    out.write("&gt;");
+                    break;
+                case '&':
+                    out.write("&amp;");
+                    break;
+                default:
+                    out.write(c);
+                    break;
             }
         }
     }
 
     // -----------------------------------------------------------------------
 
-	public static String getBaseName(String language) {
-		 return "scilab_" + language + "_help";
-	}
+    public static String getBaseName(String language) {
+        return "scilab_" + language + "_help";
+    }
 
-	public static String getTemporaryNameFo(String baseDirectory) {
-		return baseDirectory + "/__doc.fo";
-	}
+    public static String getTemporaryNameFo(String baseDirectory) {
+        return baseDirectory + "/__doc.fo";
+    }
 
     public static String getFileExtension(File file) {
         return getFileExtension(file.getPath());
@@ -95,7 +95,7 @@ public final class Helpers {
             return null;
         } else {
             return path.substring(dot + 1);
-		}
+        }
     }
 
     private static int indexOfDot(String path) {
@@ -104,7 +104,7 @@ public final class Helpers {
             baseNameStart = 0;
         } else {
             ++baseNameStart;
-		}
+        }
 
         int dot = -1;
 
@@ -124,7 +124,7 @@ public final class Helpers {
     public static String setFileExtension(String path, String extension) {
         if (path.endsWith(File.separator)) {
             return path;
-		}
+        }
 
         int dot = indexOfDot(path);
         if (dot < 0) {
@@ -132,20 +132,20 @@ public final class Helpers {
                 return path;
             } else {
                 return path + "." + extension;
-			}
+            }
         } else {
             if (extension == null) {
                 return path.substring(0, dot);
             } else {
                 return path.substring(0, dot + 1) + extension;
-			}
+            }
         }
     }
 
     // -----------------------------------------------------------------------
 
-    public static void copyFile(File srcFile, File dstFile) 
-        throws IOException {
+    public static void copyFile(File srcFile, File dstFile)
+    throws IOException {
         FileInputStream src = new FileInputStream(srcFile);
         try {
             copyFile(src, dstFile);
@@ -155,7 +155,7 @@ public final class Helpers {
     }
 
     public static void copyFile(InputStream src, File dstFile)
-        throws IOException {
+    throws IOException {
         FileOutputStream dst = new FileOutputStream(dstFile);
         byte[] bytes = new byte[65536];
         int count;
@@ -163,7 +163,7 @@ public final class Helpers {
         try {
             while ((count = src.read(bytes)) != -1) {
                 dst.write(bytes, 0, count);
-			}
+            }
 
             dst.flush();
 
@@ -178,16 +178,16 @@ public final class Helpers {
      * Delete a directory and all his content
      *
      * @param dir The path to the directory
-	 */
+     */
     public static void deleteDirectory(String dir) {
-		deleteDirectory(new File(dir));
-	}
+        deleteDirectory(new File(dir));
+    }
 
     /**
      * Delete a directory and all his content
      *
      * @param dir The file object of the path to the directory
-	 */
+     */
     public static void deleteDirectory(File dir) {
 
         String[] files = dir.list();
@@ -216,7 +216,7 @@ public final class Helpers {
         while ((sep = string.indexOf(separatorChar, sep)) >= 0) {
             ++elementCount;
             ++sep;
-        } 
+        }
         ++elementCount;
 
         // Build element array ---
@@ -227,10 +227,10 @@ public final class Helpers {
         sep = 0;
         int nextSep;
         while ((nextSep = string.indexOf(separatorChar, sep)) >= 0) {
-             elements[elementCount++] = 
-                 (sep == nextSep) ? "" : string.substring(sep, nextSep);
-             sep = nextSep + 1;
-        } 
+            elements[elementCount++] =
+                (sep == nextSep) ? "" : string.substring(sep, nextSep);
+            sep = nextSep + 1;
+        }
         elements[elementCount++] = string.substring(sep);
 
         return elements;
@@ -242,43 +242,43 @@ public final class Helpers {
         String pathEnvVar = System.getenv("PATH");
         if (pathEnvVar == null) {
             return null;
-		}
+        }
 
         String[] split = Helpers.split(pathEnvVar, File.pathSeparatorChar);
         for (int i = 0; i < split.length; ++i) {
             String path = split[i].trim();
             if (path.length() == 0) {
                 continue;
-			}
+            }
 
             if (!path.endsWith(File.separator)) {
                 path += File.separator;
-			}
+            }
 
             File file = new File(path + appName);
             if (file.isFile()) {
                 return file;
-			}
-            
+            }
+
             if (IS_WINDOWS && appName.lastIndexOf('.') < 0) {
                 String[] suffixes = {".COM", ".EXE", ".BAT", ".CMD" };
 
                 String pathExtEnvVar = System.getenv("PATHEXT");
                 if (pathExtEnvVar != null) {
-                    suffixes = Helpers.split(pathExtEnvVar, 
+                    suffixes = Helpers.split(pathExtEnvVar,
                                              File.pathSeparatorChar);
-				}
+                }
 
                 for (int j = 0; j < suffixes.length; ++j) {
                     String suffix = suffixes[j].trim();
                     if (!suffix.startsWith(".")) {
                         continue;
-					}
-                    
+                    }
+
                     file = new File(path + appName + suffix);
                     if (file.isFile()) {
                         return file;
-					}
+                    }
                 }
             }
         }
@@ -287,27 +287,27 @@ public final class Helpers {
     }
 
     public static Process shellStart(String command, String[] envp, File dir)
-        throws IOException { 
+    throws IOException {
         Process process;
 
         if (IS_WINDOWS) {
             process = Runtime.getRuntime().exec(
-                new String[] {"cmd.exe", "/s", "/c", "\"" + command + "\"" }, 
-                envp, dir);
+                          new String[] {"cmd.exe", "/s", "/c", "\"" + command + "\"" },
+                          envp, dir);
         } else {
             process = Runtime.getRuntime().exec(
-                new String[] {"/bin/sh", "-c", command }, envp, dir);
-		}
+                          new String[] {"/bin/sh", "-c", command }, envp, dir);
+        }
 
         return process;
     }
 
     public static int shellExec(String command, String[] envp, File dir,
-                                boolean verbose) 
-        throws IOException, InterruptedException {
+                                boolean verbose)
+    throws IOException, InterruptedException {
         if (verbose) {
             System.out.println(command);
-		}
+        }
 
         Process process = shellStart(command, envp, dir);
 
@@ -359,7 +359,7 @@ public final class Helpers {
                 }
                 if (count < 0) {
                     break;
-				}
+                }
 
                 if (count > 0 && out != null) {
                     try {
@@ -376,8 +376,8 @@ public final class Helpers {
 
     // -----------------------------------------------------------------------
 
-    public static String loadString(File file, String charsetName) 
-        throws IOException {
+    public static String loadString(File file, String charsetName)
+    throws IOException {
         InputStream in = new FileInputStream(file);
 
         String loaded = null;
@@ -390,14 +390,14 @@ public final class Helpers {
         return loaded;
     }
 
-    public static String loadString(InputStream stream, String charsetName) 
-        throws IOException {
+    public static String loadString(InputStream stream, String charsetName)
+    throws IOException {
         InputStreamReader in;
         if (charsetName == null) {
             in = new InputStreamReader(stream);
         } else {
             in = new InputStreamReader(stream, charsetName);
-		}
+        }
 
         char[] chars = new char[8192];
         StringBuffer buffer = new StringBuffer(chars.length);
@@ -406,15 +406,15 @@ public final class Helpers {
         while ((count = in.read(chars, 0, chars.length)) != -1) {
             if (count > 0) {
                 buffer.append(chars, 0, count);
-			}
+            }
         }
 
         return buffer.toString();
     }
 
-    public static void saveString(String string, File file, 
-                                  String charsetName) 
-        throws IOException {
+    public static void saveString(String string, File file,
+                                  String charsetName)
+    throws IOException {
         OutputStream out = new FileOutputStream(file);
 
         try {
@@ -424,15 +424,15 @@ public final class Helpers {
         }
     }
 
-    private static void saveString(String string, OutputStream stream, 
-                                   String charsetName) 
-        throws IOException {
+    private static void saveString(String string, OutputStream stream,
+                                   String charsetName)
+    throws IOException {
         OutputStreamWriter out;
         if (charsetName == null) {
             out = new OutputStreamWriter(stream);
         } else {
             out = new OutputStreamWriter(stream, charsetName);
-		}
+        }
 
         out.write(string, 0, string.length());
         out.flush();

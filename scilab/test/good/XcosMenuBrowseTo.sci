@@ -20,16 +20,16 @@
 //
 
 function XcosMenuBrowseTo()
-global %scicos_navig
-global %diagram_path_objective
-Cmenu=[]
-//-- pa=TCL_GetVar('blkox');
-global blkox
-pa = blkox
-clearglobal blkox
-pa=part(pa,6:length(pa));
-execstr('pa=['+pa+']');
-%scicos_navig=1
-%diagram_path_objective=pa
+    global %scicos_navig
+    global %diagram_path_objective
+    Cmenu=[]
+    //-- pa=TCL_GetVar('blkox');
+    global blkox
+    pa = blkox
+    clearglobal blkox
+    pa=part(pa,6:length(pa));
+    execstr("pa=["+pa+"]");
+    %scicos_navig=1
+    %diagram_path_objective=pa
 
 endfunction

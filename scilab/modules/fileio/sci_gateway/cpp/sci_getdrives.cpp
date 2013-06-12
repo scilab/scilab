@@ -28,19 +28,19 @@ extern "C"
 
 types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	wchar_t **wcsDrives = NULL;
-	int iNbDrives       = 0;
-    int dimsArray[2]    = {1,1};
+    wchar_t **wcsDrives = NULL;
+    int iNbDrives       = 0;
+    int dimsArray[2]    = {1, 1};
     types::String* pOut = NULL;
-    
-    if(in.size() > 0)
+
+    if (in.size() > 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getdrives", 0);
         return types::Function::Error;
     }
 
     wcsDrives = getdrivesW(&iNbDrives);
-    if(wcsDrives)
+    if (wcsDrives)
     {
         dimsArray[1] = iNbDrives;
         pOut = new types::String(2, dimsArray);
@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
         pOut = new types::String(2, dimsArray);
         pOut->set(0, L"");
     }
-    
+
     out.push_back(pOut);
     return types::Function::OK;
 }

@@ -31,11 +31,11 @@ extern "C"
 #include "sci_mode.h"
 #include "mputl.h"
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static BOOL forceSTDERRredirect = TRUE;
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 
 Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -51,98 +51,98 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     wchar_t** wcsStringToWrite      = NULL;
     ArgumentPosition* pArgs         = NULL;
 
-    if(in.size() < 2)
+    if (in.size() < 2)
     {
-       Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "mfprintf", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "mfprintf", 2);
         return types::Function::Error;
     }
 
-    if(in[0]->isDouble() == false)
+    if (in[0]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mfprintf", 1);
         return types::Function::Error;
     }
 
     types::Double* pFileId = in[0]->getAs<types::Double>();
-    if(pFileId->isScalar() == false || pFileId->isComplex())
+    if (pFileId->isScalar() == false || pFileId->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Real expected.\n"), "mfprintf", 1);
         return types::Function::Error;
     }
 
-    if(in[1]->isString() == false)
+    if (in[1]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mfprintf", 2);
         return types::Function::Error;
     }
 
     types::String* pFileStr = in[1]->getAs<types::String>();
-    if(pFileStr->isScalar() == false)
+    if (pFileStr->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "mfprintf", 2);
         return types::Function::Error;
     }
 
-    for(unsigned int i = 2 ; i < in.size() ; i++)
+    for (unsigned int i = 2 ; i < in.size() ; i++)
     {
-        if(in[i]->isDouble() == false && in[i]->isString() == false)
+        if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
             std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_mfprintf";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
         }
     }
 
-// checking ID of file
+    // checking ID of file
     iFile = static_cast<int>(pFileId->get(0));
 
-	if(FileManager::getFile(iFile) == NULL)
-	{           
+    if (FileManager::getFile(iFile) == NULL)
+    {
         Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfprintf", iFile);
         return types::Function::Error;
-	}
+    }
 
     switch (iFile)
     {
-    case 0:
-        #ifdef _MSC_VER
-        if((getScilabMode()  == SCILAB_STD) && (forceSTDERRredirect == TRUE))
-        {
-        //  Console redirect stderr --> CONOUT$
-        freopen("CONOUT$", "wb", stderr); 
-        forceSTDERRredirect = FALSE;
-        }
-        #endif
-        isSTDErr = TRUE;
-    case 6:
-        isSTD = TRUE;
-        break;
-    case 5:
-        Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfprintf", iFile);
-        return types::Function::Error;
-    default:
-        isSTD = FALSE;
-        dfileMode = FileManager::getFile(iFile)->getFileModeAsDouble();
-        break;
+        case 0:
+#ifdef _MSC_VER
+            if ((getScilabMode()  == SCILAB_STD) && (forceSTDERRredirect == TRUE))
+            {
+                //  Console redirect stderr --> CONOUT$
+                freopen("CONOUT$", "wb", stderr);
+                forceSTDERRredirect = FALSE;
+            }
+#endif
+            isSTDErr = TRUE;
+        case 6:
+            isSTD = TRUE;
+            break;
+        case 5:
+            Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mfprintf", iFile);
+            return types::Function::Error;
+        default:
+            isSTD = FALSE;
+            dfileMode = FileManager::getFile(iFile)->getFileModeAsDouble();
+            break;
     }
-    
+
     /* checks file mode */
     /* bug 3898 */
     /* read only attrib 1xx*/
-    if((dfileMode >= 100) && (dfileMode < 200) && !isSTD)
+    if ((dfileMode >= 100) && (dfileMode < 200) && !isSTD)
     {
         Scierror(999, _("%s: Wrong file mode: READ only.\n"), "mfprintf");
         return types::Function::Error;
     }
 
-// Checking input string to write in file
+    // Checking input string to write in file
     wcsInput = pFileStr->get(0);
 
-    for(int i = 0; i < (int)wcslen(wcsInput); i++)
+    for (int i = 0; i < (int)wcslen(wcsInput); i++)
     {
-        if (wcsInput[i] == '%') 
+        if (wcsInput[i] == '%')
         {
             iNumberPercent++;
-            if (wcsInput[i+1] == '%') 
+            if (wcsInput[i + 1] == '%')
             {
                 iNumberPercent--;
                 i++;
@@ -151,7 +151,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
     //Input values must be less or equal than excepted
-    if((in.size() - 2) > iNumberPercent)
+    if ((in.size() - 2) > iNumberPercent)
     {
         Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), "mprintf", iNumberPercent);
         return types::Function::Error;
@@ -159,13 +159,13 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
 
     //determine if imput values are ... multiple values
 
-    if( in.size() > 2 )
+    if ( in.size() > 2 )
     {
         int iRefRows = in[2]->getAs<GenericType>()->getRows();
-        for(unsigned int i = 2 ; i < in.size() ; i++)
+        for (unsigned int i = 2 ; i < in.size() ; i++)
         {
             //all arguments must have the same numbers of rows !
-            if(iRefRows != in[i]->getAs<GenericType>()->getRows())
+            if (iRefRows != in[i]->getAs<GenericType>()->getRows())
             {
                 Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "mprintf");
                 return types::Function::Error;
@@ -175,18 +175,18 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
         }
     }
 
-    if(iNumberCols != iNumberPercent)
+    if (iNumberCols != iNumberPercent)
     {
         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "mprintf");
         return types::Function::Error;
-    }  
+    }
 
     //fill ArgumentPosition structure
     pArgs = new ArgumentPosition[iNumberPercent];
     int idx = 0;
-    for(unsigned int i = 2 ; i < in.size() ; i++)
+    for (unsigned int i = 2 ; i < in.size() ; i++)
     {
-        for(int j = 0 ; j < in[i]->getAs<GenericType>()->getCols() ; j++)
+        for (int j = 0 ; j < in[i]->getAs<GenericType>()->getCols() ; j++)
         {
             pArgs[idx].iArg = i;
             pArgs[idx].iPos = j;
@@ -195,13 +195,14 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
         }
     }
 
-    wcsStringToWrite = scilab_sprintf(L"mfprintf", wcsInput, in, pArgs, true, iNumberPercent, &nbrOfLines);
+    int iNewLine = 0;
+    wcsStringToWrite = scilab_sprintf(L"mfprintf", wcsInput, in, pArgs, iNumberPercent, &nbrOfLines, &iNewLine);
 
-    if(isSTD)
+    if (isSTD)
     {
-        for(int i=0; i<nbrOfLines; i++)
+        for (int i = 0; i < nbrOfLines; i++)
         {
-            if(isSTDErr)
+            if (isSTDErr)
             {
                 std::wcerr << wcsStringToWrite[i];
             }
@@ -215,10 +216,10 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
     else
     {
-        iRet = mputl(iFile, wcsStringToWrite, nbrOfLines, FALSE); // FALSE = don't add the "\n" at the end.
+        iRet = mputl(iFile, wcsStringToWrite, nbrOfLines, (BOOL)iNewLine); // FALSE = don't add the "\n" at the end.
     }
 
-    for(int i=0; i<nbrOfLines; i++)
+    for (int i = 0; i < nbrOfLines; i++)
     {
         FREE(wcsStringToWrite[i]);
     }

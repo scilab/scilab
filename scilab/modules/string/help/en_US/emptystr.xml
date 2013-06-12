@@ -28,7 +28,9 @@
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>a matrix of size <literal>m x n</literal>.</para>
+                    <para>
+                        a matrix of size <literal>mx n</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

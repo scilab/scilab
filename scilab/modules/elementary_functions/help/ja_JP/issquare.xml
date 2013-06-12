@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="issquare" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>issquare</refname>
+        
+        <refpurpose>変数が正方行列かどうかを確認</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>t=issquare(x)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>x</term>
+                
+                <listitem>
+                    
+                    <para>スカラー,ベクトル, 行列, ハイパー行列, リスト, 構造体の配列またはセル</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>t</term>
+                
+                <listitem>
+                    
+                    <para>論理値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            <literal>
+                issquare(<varname>x</varname>)
+            </literal>
+            は
+            
+            <varname>x</varname>が正方行列
+            
+            (<varname>x</varname>の全ての次元が同じ, 
+            
+            <varname>x</varname> がハイパー行列の場合は要素数が1)
+            
+            の場合にtrueを返します.. 
+            
+            <literal>issquare([])</literal>はfalseを返すことに注意してください.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+issquare(ones(10,10))
+issquare(1)
+issquare(["s" "t"; "t" "s"])
+issquare(rand(2,1,2))
+issquare(rand(2,2,3))
+s = struct();
+issquare(s) // 空の構造体
+clear s
+s.a = %z;
+s.b = 2;
+issquare(s); // スカラー構造体
+clear s
+s(1,2).a = 3;
+s(1,3).b = %z;
+issquare(s) // 構造体の行配列
+clear s
+s(2,1).a = "w"; 
+s(3,1).b = %t;  
+issquare(s) // 構造体の列配列
+clear s
+s(1,2).a = -2;
+s(3,1).b = %pi;
+issquare(s) // 構造体の2次元非正方配列
+clear s
+s(2,2,2).a = %f; 
+s(1,2,1).b = list(%e, %s);
+issquare(s) // 構造体の3次元 (立法) 配列
+clear s
+s(2,1,2).a = 3;
+s(1,1,2).b = "test";
+issquare(s) // 構造体の3次元配列 (要素数が1の次元を有する)
+ ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="isscalar">isscalar</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="isrow">isrow</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="iscolumn">iscolumn</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="ismatrix">ismatrix</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="isempty">isempty</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>関数issquareが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

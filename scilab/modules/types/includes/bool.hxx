@@ -27,48 +27,57 @@
 
 namespace types
 {
-    class TYPES_IMPEXP Bool : public ArrayOf<int>
+class TYPES_IMPEXP Bool : public ArrayOf<int>
+{
+public :
+    Bool(int _bReal);
+    Bool(int _iRows, int _iCols);
+    Bool(int _iDims, int* _piDims);
+    Bool(int _iRows, int _iCols, int **_piData);
+    ~Bool();
+
+    InternalType*           clone();
+
+
+    /*zero or one set filler*/
+    bool                    setFalse();
+    bool                    setTrue();
+
+    /*Config management*/
+    void                    whoAmI();
+
+    bool                    isBool()
     {
-    public :
-                                Bool(int _bReal);
-                                Bool(int _iRows, int _iCols);
-                                Bool(int _iDims, int* _piDims);
-                                Bool(int _iRows, int _iCols, int **_piData);
-                                ~Bool();
+        return true;
+    }
 
-        InternalType*           clone();
+    bool                    operator==(const InternalType& it);
+    bool                    operator!=(const InternalType& it);
 
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring     getTypeStr()
+    {
+        return L"boolean";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring     getShortTypeStr()
+    {
+        return L"b";
+    }
 
-        /*zero or one set filler*/
-        bool                    setFalse();
-        bool                    setTrue();
+protected :
+    RealType				getType(void);
 
-        /*Config management*/
-        void                    whoAmI();
+private :
+    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
-        bool                    isBool() { return true; }
-
-        bool                    operator==(const InternalType& it);
-        bool                    operator!=(const InternalType& it);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring     getTypeStr() {return L"boolean";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring     getShortTypeStr() {return L"b";}
-
-    protected :
-        RealType				getType(void);
-
-    private :
-        virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-
-        virtual int             getNullValue();
-        virtual Bool*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-        virtual int             copyValue(int _iData);
-        virtual void            deleteAll();
-        virtual void            deleteImg();
-        virtual int*            allocData(int _iSize);
-    };
+    virtual int             getNullValue();
+    virtual Bool*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual int             copyValue(int _iData);
+    virtual void            deleteAll();
+    virtual void            deleteImg();
+    virtual int*            allocData(int _iSize);
+};
 }
 
 #ifdef _MSC_VER

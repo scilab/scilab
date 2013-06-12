@@ -14,22 +14,23 @@ static double fun2(double x)
     return( sin(x + 1));
 }
 
-int intfun1(char *fname, int* _piKey) 
+int intfun1(char *fname, int* _piKey)
 {
     SciErr sciErr;
     int* piAddr = NULL;
     double dblIn = 0;
     double dblOut = 0;
-    CheckRhs(1,1);
-    CheckLhs(1,1);
+    CheckRhs(1, 1);
+    CheckLhs(1, 1);
 
     sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
-    if(sciErr.iErr != 0)
-    {//error
+    if (sciErr.iErr != 0)
+    {
+        //error
         return 1;
     }
 
-    getScalarDouble(_piKey, piAddr, &dblIn); 
+    getScalarDouble(_piKey, piAddr, &dblIn);
     fun1(&dblIn, &dblOut);
 
     createScalarDouble(_piKey, Rhs + 1, dblOut);

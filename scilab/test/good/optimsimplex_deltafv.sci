@@ -16,6 +16,6 @@
 //   <no arg>
 //
 function df = optimsimplex_deltafv ( this )
-  df = this.fv(2:this.nbve) - this.fv(1)*ones(this.nbve-1,1)
+    df = this.fv(2:this.nbve) - this.fv(1)*ones(this.nbve-1,1)
 endfunction
 

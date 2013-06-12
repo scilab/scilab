@@ -62,7 +62,9 @@
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>a character (<literal>"r"</literal> for regular expression).</para>
+                    <para>
+                        a character (<literal>"r"</literal> for regular expression).
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

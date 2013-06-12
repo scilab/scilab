@@ -24,60 +24,69 @@ extern "C"
 
 namespace types
 {
-    class TYPES_IMPEXP SinglePoly : public GenericType
+class TYPES_IMPEXP SinglePoly : public GenericType
+{
+public :
+    SinglePoly();
+    SinglePoly(double** _pdblCoefR, int _iRank);
+    SinglePoly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
+    SinglePoly(Double** _poCoefR, int _iRank);
+    virtual                 ~SinglePoly();
+
+    // FIXME : Should not return NULL;
+    SinglePoly*             clone();
+
+    bool                    isSinglePoly()
     {
-    public :
-                                SinglePoly();
-                                SinglePoly(double** _pdblCoefR, int _iRank);
-                                SinglePoly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
-                                SinglePoly(Double** _poCoefR, int _iRank);
-        virtual                 ~SinglePoly();
+        return true;
+    }
+    /*Config management*/
+    void                    whoAmI();
+    bool                    isComplex();
+    void                    setComplex(bool _bComplex);
 
-        // FIXME : Should not return NULL;
-        SinglePoly*             clone();
+    int                     getRank();
+    bool                    setRank(int _iRank, bool bSave = false);
+    Double*                 getCoef();
+    double*                 getCoefReal();
+    double*                 getCoefImg();
+    bool                    setCoef(Double *_poPow);
+    bool                    setCoef(double *_pdblCoefR, double *_pdblCoefI);
+    bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
+    void                    updateRank(void);
 
-        bool                    isSinglePoly() { return true; }
-        /*Config management*/
-        void                    whoAmI();
-        bool                    isComplex();
-        void                    setComplex(bool _bComplex);
+    GenericType*            getColumnValues(int _iPos);
+    void                    createPoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
+    void                    toStringReal(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    void                    toStringImg(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
-        int                     getRank();
-        bool                    setRank(int _iRank, bool bSave = false);
-        Double*                 getCoef();
-        double*                 getCoefReal();
-        double*                 getCoefImg();
-        bool                    setCoef(Double *_poPow);
-        bool                    setCoef(double *_pdblCoefR, double *_pdblCoefI);
-        bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
-        void                    updateRank(void);
+    bool                    toString(std::wostringstream& ostr);
 
-        GenericType*            getColumnValues(int _iPos);
-        void                    createPoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
-        void                    toStringReal(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
-        void                    toStringImg(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    bool                    operator==(const InternalType& it);
+    bool                    operator!=(const InternalType& it);
 
-        bool                    toString(std::wostringstream& ostr);
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring    getTypeStr()
+    {
+        return L"poly";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring    getShortTypeStr()
+    {
+        return L"p";
+    }
+protected :
+    RealType                getType(void);
 
-        bool                    operator==(const InternalType& it);
-        bool                    operator!=(const InternalType& it);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring    getTypeStr() {return L"poly";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring    getShortTypeStr() {return L"p";}
-    protected :
-        RealType                getType(void);
-
-    private :
-        void                    toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+private :
+    void                    toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
 
-    private :
-        bool                    m_bComplex;
-        Double*                 m_pdblCoef;
-        int                     m_iRank;
-    };
+private :
+    bool                    m_bComplex;
+    Double*                 m_pdblCoef;
+    int                     m_iRank;
+};
 }
 
 #endif /* !__POLY_HH__ */

@@ -18,14 +18,14 @@ DATA_STRUCTURES_IMPEXP int C2F(strpos)(const int *ptr, const int *ns, const int 
 {
     int  i = 0;
 
-    for (i = 1; i <= *ns; ++i) 
+    for (i = 1; i <= *ns; ++i)
     {
         int k = ptr[i - 1];
         int l = ptr[i];
 
-        if ((l - k) == *n) 
+        if ((l - k) == *n)
         {
-            if (memcmp(str, &chars[k - 1], sizeof(int) * (*n)) == 0) 
+            if (memcmp(str, &chars[k - 1], sizeof(int) * (*n)) == 0)
             {
                 return i;
             }

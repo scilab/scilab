@@ -33,39 +33,39 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
     types::Double* pDouble      = NULL;
     types::String* pOutString   = NULL;
 
-    if(in.size() != 2)
+    if (in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strncpy", 2);
         return types::Function::Error;
     }
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strncpy", 1);
         return types::Function::Error;
     }
-	if(in[0]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "strncpy", 1);
-		return types::Function::Error;
-	}
-
-	if(in[1]->isDouble() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), "strncpy", 2);
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "strncpy", 1);
         return types::Function::Error;
-	}
+    }
+
+    if (in[1]->isDouble() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), "strncpy", 2);
+        return types::Function::Error;
+    }
 
     pString = in[0]->getAs<types::String>();
     pDouble = in[1]->getAs<types::Double>();
 
-    if(pDouble->getSize() == 0)
+    if (pDouble->getSize() == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"), "strncpy",2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"), "strncpy", 2);
         return types::Function::Error;
     }
 
     //same dimension or 2nd arg scalar
-    if(pString->getSize() != pDouble->getSize() && pDouble->isScalar() == false)
+    if (pString->getSize() != pDouble->getSize() && pDouble->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "strncpy", 2);
         return types::Function::Error;
@@ -74,20 +74,20 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
     pOutString  = new types::String(pString->getDims(), pString->getDimsArray());
 
     int j = 0; /* Input parameter two is dimension one */
-    for(int i=0 ; i < pString->getSize() ; i++)
+    for (int i = 0 ; i < pString->getSize() ; i++)
     {
         wchar_t *wcOutput   = NULL;
-		int sizeOfCopy      = 0;
+        int sizeOfCopy      = 0;
 
-        if(pDouble->isScalar() == false)
+        if (pDouble->isScalar() == false)
         {
             j = i; /* Input parameter One & two have same dimension */
         }
 
-        if(pDouble->get(j) < wcslen(pString->get(i)))
+        if (pDouble->get(j) < wcslen(pString->get(i)))
         {
             int iLen = (int)pDouble->get(j);
-            if(iLen < 0)
+            if (iLen < 0)
             {
                 iLen = 0;
             }
@@ -102,21 +102,21 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
             sizeOfCopy = iLen;
         }
 
-		if(wcOutput)
-		{
-			wcsncpy(wcOutput, pString->get(i), sizeOfCopy);
-			wcOutput[sizeOfCopy] = L'\0';
+        if (wcOutput)
+        {
+            wcsncpy(wcOutput, pString->get(i), sizeOfCopy);
+            wcOutput[sizeOfCopy] = L'\0';
 
-			pOutString->set(i, wcOutput);
-			FREE(wcOutput);
-			wcOutput = NULL;
-		}
-		else
-		{
+            pOutString->set(i, wcOutput);
+            FREE(wcOutput);
+            wcOutput = NULL;
+        }
+        else
+        {
             delete pOutString;
-			Scierror(999, _("%s: No more memory.\n"), "strncpy");
-			return types::Function::Error;
-		}
+            Scierror(999, _("%s: No more memory.\n"), "strncpy");
+            return types::Function::Error;
+        }
     }
 
     out.push_back(pOutString);

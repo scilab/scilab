@@ -27,12 +27,18 @@ int getNumberPredefVariablesProtected(void)
 void setNumberPredefVariablesProtected(int nb)
 {
     int new_value = Max( C2F(vstk).bot , Min( (C2F(vstk).isiz - nb), C2F(vstk).bot0 ) );
-    if ( C2F(vstk).bbot != new_value ) C2F(vstk).bbot = new_value;
+    if ( C2F(vstk).bbot != new_value )
+    {
+        C2F(vstk).bbot = new_value;
+    }
 }
 /*--------------------------------------------------------------------------*/
 void clearPredef(void)
 {
-    if ( C2F(vstk).bbot != C2F(vstk).bot0 ) C2F(vstk).bbot = C2F(vstk).bot0;
+    if ( C2F(vstk).bbot != C2F(vstk).bot0 )
+    {
+        C2F(vstk).bbot = C2F(vstk).bot0;
+    }
 }
 /*--------------------------------------------------------------------------*/
 void predefAll(void)
@@ -76,7 +82,7 @@ BOOL isPredefinedVariable(const char *variablename)
 
             C2F(getvariablesinfo)(&Ltotal, &Lused);
 
-            for(i = 0; i < nbPredefined; i++)
+            for (i = 0; i < nbPredefined; i++)
             {
                 char *varname = getLocalNamefromId(Lused - i - 1);
                 if (varname)
@@ -116,7 +122,7 @@ char **getPredefinedVariablesName(int *iReturnedSize)
         {
             int i = 0;
 
-            for(i = 0; i < nbPredefined; i++)
+            for (i = 0; i < nbPredefined; i++)
             {
                 variablesName[i] = getLocalNamefromId(Lused - i - 1);
             }

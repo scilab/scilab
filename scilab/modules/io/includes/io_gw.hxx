@@ -23,10 +23,10 @@ extern "C"
 class IoModule
 {
 private :
-	IoModule(){};
-	~IoModule(){};
+    IoModule() {};
+    ~IoModule() {};
 public :
-	IO_GW_IMPEXP static int Load();
+    IO_GW_IMPEXP static int Load();
 };
 
 #endif /* __IO_GW_HXX__ */

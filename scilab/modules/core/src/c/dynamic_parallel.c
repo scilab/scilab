@@ -42,9 +42,12 @@ int dynParallelConcurrency(void)
     {
         if (ptr_parallel_concurrency == NULL)
         {
-            ptr_parallel_concurrency = (PROC_PARALLEL_CONCURRENCY) GetDynLibFuncPtr(hParallelLib, 
-                PARALLEL_CONCURRENCY_NAME);
-            if (ptr_parallel_concurrency == NULL) return 0;
+            ptr_parallel_concurrency = (PROC_PARALLEL_CONCURRENCY) GetDynLibFuncPtr(hParallelLib,
+                                       PARALLEL_CONCURRENCY_NAME);
+            if (ptr_parallel_concurrency == NULL)
+            {
+                return 0;
+            }
         }
         return (ptr_parallel_concurrency)();
     }
@@ -61,9 +64,12 @@ int dynParallelForbidden(char const* fname)
     {
         if (ptr_parallel_forbidden == NULL)
         {
-            ptr_parallel_forbidden = (PROC_PARALLEL_FORBIDDEN) GetDynLibFuncPtr(hParallelLib, 
-                PARALLEL_FORBIDDEN_NAME);
-            if (ptr_parallel_forbidden == NULL) return 0;
+            ptr_parallel_forbidden = (PROC_PARALLEL_FORBIDDEN) GetDynLibFuncPtr(hParallelLib,
+                                     PARALLEL_FORBIDDEN_NAME);
+            if (ptr_parallel_forbidden == NULL)
+            {
+                return 0;
+            }
         }
         return (ptr_parallel_forbidden)(fname);
     }
@@ -72,8 +78,14 @@ int dynParallelForbidden(char const* fname)
 /*--------------------------------------------------------------------------*/
 BOOL dynTerminateParallel(void)
 {
-    if (ptr_parallel_concurrency) ptr_parallel_concurrency = NULL;
-    if (ptr_parallel_forbidden) ptr_parallel_forbidden = NULL;
+    if (ptr_parallel_concurrency)
+    {
+        ptr_parallel_concurrency = NULL;
+    }
+    if (ptr_parallel_forbidden)
+    {
+        ptr_parallel_forbidden = NULL;
+    }
     //return freeDynamicGateway(&dynlibname_parallel,
     //    &gatewayname_parallel,
     //    &hParallelLib,

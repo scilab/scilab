@@ -18,32 +18,32 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void matz_diag(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void matz_diag(scicos_block *block, int flag)
 {
-	int mu = GetInPortRows(block,1);
+    int mu = GetInPortRows(block, 1);
 
-	double *u1r = GetRealInPortPtrs(block,1);
-	double *u1i = GetImagInPortPtrs(block,1);
-	double *yr = GetRealOutPortPtrs(block,1);
-	double *yi = GetImagOutPortPtrs(block,1);
+    double *u1r = GetRealInPortPtrs(block, 1);
+    double *u1i = GetImagInPortPtrs(block, 1);
+    double *yr = GetRealOutPortPtrs(block, 1);
+    double *yi = GetImagOutPortPtrs(block, 1);
 
-	int i = 0;
+    int i = 0;
 
-	for (i=0;i<mu*mu;i++) 
-	{
-		*(yr+i)=0;
-		*(yi+i)=0;
-	}
+    for (i = 0; i < mu * mu; i++)
+    {
+        *(yr + i) = 0;
+        *(yi + i) = 0;
+    }
 
-	for (i=0;i<mu;i++)     
-	{
-		int ii=i+i*mu;
-		*(yr+ii)=*(u1r+i);
-		*(yi+ii)=*(u1i+i);
-	}
+    for (i = 0; i < mu; i++)
+    {
+        int ii = i + i * mu;
+        *(yr + ii) = *(u1r + i);
+        *(yi + ii) = *(u1i + i);
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

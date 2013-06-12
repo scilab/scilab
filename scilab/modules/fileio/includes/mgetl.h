@@ -16,7 +16,8 @@
 #include "dynlib_fileio.h"
 #include "charEncoding.h"
 
-typedef enum {
+typedef enum
+{
     MGETL_NO_ERROR = 0,
     MGETL_EOF = 1,
     MGETL_MEMORY_ALLOCATION_ERROR = 2,

@@ -21,7 +21,7 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 
 /**
  * Customize the default component
- * 
+ *
  * @see java.awt.Component
  */
 public class PaletteComponent extends ScilabComponent {
@@ -30,7 +30,7 @@ public class PaletteComponent extends ScilabComponent {
 
     /**
      * Construct the component with the associated graph
-     * 
+     *
      * @param graph
      *            The associated graph
      */

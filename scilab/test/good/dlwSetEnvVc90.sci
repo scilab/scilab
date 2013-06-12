@@ -9,27 +9,27 @@
 
 //=============================================================================
 function bOK = dlwSetEnvVc90(msCompiler, bWin64)
-  bOK = %F;
-  MSVSDir = '';
-  select msCompiler
-    case 'msvc90pro'
-      MSVSDir = dlwGetVc90ProPath();
-    case 'msvc90std'
-      MSVSDir = dlwGetVc90StdPath();
-    case 'msvc90express'
-      MSVSDir = dlwGetVc90ExpressPath();
-  else
-    return
-  end
-
-  IsExpress = (msCompiler == 'msvc100express');
-
-  if ~setenv('VS90COMNTOOLS', MSVSDir + '\Common7\Tools\') then
     bOK = %F;
-    return
-  end
+    MSVSDir = "";
+    select msCompiler
+    case "msvc90pro"
+        MSVSDir = dlwGetVc90ProPath();
+    case "msvc90std"
+        MSVSDir = dlwGetVc90StdPath();
+    case "msvc90express"
+        MSVSDir = dlwGetVc90ExpressPath();
+    else
+        return
+    end
 
-  bOK = dlwSetEnvCommonVc9Vc10(MSVSDir, IsExpress, bWin64);
+    IsExpress = (msCompiler == "msvc100express");
+
+    if ~setenv("VS90COMNTOOLS", MSVSDir + "\Common7\Tools\") then
+        bOK = %F;
+        return
+    end
+
+    bOK = dlwSetEnvCommonVc9Vc10(MSVSDir, IsExpress, bWin64);
 
 endfunction
 //=============================================================================

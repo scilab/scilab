@@ -17,20 +17,20 @@
 namespace org_modules_completion
 {
 
-    std::map<const std::string, FieldsGetter *> FieldsManager::typeToFieldsGetter = std::map<const std::string, FieldsGetter *>();
+std::map<const std::string, FieldsGetter *> FieldsManager::typeToFieldsGetter = std::map<const std::string, FieldsGetter *>();
 
-    void FieldsManager::addFieldsGetter(const std::string & typeName, FieldsGetter * getter)
-    {
-        typeToFieldsGetter[typeName] = getter;
-    }
+void FieldsManager::addFieldsGetter(const std::string & typeName, FieldsGetter * getter)
+{
+    typeToFieldsGetter[typeName] = getter;
+}
 
-    const char ** FieldsManager::getFieldsForType(const std::string & typeName, int * mlist)
+const char ** FieldsManager::getFieldsForType(const std::string & typeName, int * mlist)
+{
+    std::map<const std::string, FieldsGetter *>::const_iterator it = typeToFieldsGetter.find(typeName);
+    if (it == typeToFieldsGetter.end())
     {
-        std::map<const std::string, FieldsGetter *>::const_iterator it = typeToFieldsGetter.find(typeName);
-        if (it == typeToFieldsGetter.end())
-        {
-            return 0;
-        }
-        return it->second->getFieldsName(typeName, mlist);
+        return 0;
     }
+    return it->second->getFieldsName(typeName, mlist);
+}
 }

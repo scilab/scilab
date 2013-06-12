@@ -9,8 +9,8 @@ clear
 A =1@1
 B=lasterror()
 
-if B=='Missing operator, comma, or semicolon' then
-	affich_result(%T,1183);
+if B=="Missing operator, comma, or semicolon" then
+    affich_result(%T,1183);
 else
-	affich_result(%F,1183);
+    affich_result(%F,1183);
 end

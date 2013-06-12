@@ -14,7 +14,7 @@
 // Arguments
 //
 function this = nmplot_display ( this )
-  warnobsolete("disp", "nmplot_display")
-  disp(this)
+    warnobsolete("disp", "nmplot_display")
+    disp(this)
 endfunction
 

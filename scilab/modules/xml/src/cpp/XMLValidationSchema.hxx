@@ -20,32 +20,32 @@
 namespace org_modules_xml
 {
 
-    class XMLValidation;
-    class XMLDocument;
+class XMLValidation;
+class XMLDocument;
 
-    /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Class to handle Schema validation.
-     */
-    class XMLValidationSchema:public XMLValidation
-    {
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Class to handle Schema validation.
+ */
+class XMLValidationSchema: public XMLValidation
+{
 
 public:
-        /**
-         * @param path the path of the validation file
-         * @param error a string which will contain error messages
-         */
-        XMLValidationSchema(const char *path, std::string * error);
+    /**
+     * @param path the path of the validation file
+     * @param error a string which will contain error messages
+     */
+    XMLValidationSchema(const char *path, std::string * error);
 
-         ~XMLValidationSchema();
+    ~XMLValidationSchema();
 
-        bool validate(const XMLDocument & doc, std::string * error) const;
-        bool validate(xmlTextReader * reader, std::string * error) const;
+    bool validate(const XMLDocument & doc, std::string * error) const;
+    bool validate(xmlTextReader * reader, std::string * error) const;
 
-        const std::string toString() const;
-    };
+    const std::string toString() const;
+};
 }
 
 #endif

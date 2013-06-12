@@ -99,8 +99,8 @@ static BOOL initialJavaHooks = FALSE;
  **********************************************************************/
 static void getCommandLine(void)
 {
-  tmpPrompt = GetTemporaryPrompt();
-  GetCurrentPrompt(Sci_Prompt);
+    tmpPrompt = GetTemporaryPrompt();
+    GetCurrentPrompt(Sci_Prompt);
 
     if (__CommandLine)
     {
@@ -108,22 +108,22 @@ static void getCommandLine(void)
         __CommandLine = NULL;
     }
 
-  if (getScilabMode() == SCILAB_STD)
+    if (getScilabMode() == SCILAB_STD)
     {
-      /* Send new prompt to Java Console, do not display it */
-      if (tmpPrompt != NULL)
+        /* Send new prompt to Java Console, do not display it */
+        if (tmpPrompt != NULL)
         {
-          SetConsolePrompt(tmpPrompt);
+            SetConsolePrompt(tmpPrompt);
         }
-      else
+        else
         {
-          SetConsolePrompt(Sci_Prompt);
+            SetConsolePrompt(Sci_Prompt);
         }
-      setSearchedTokenInScilabHistory(NULL);
-      /* Call Java Console to get a string */
-      __CommandLine = os_strdup(ConsoleRead());
+        setSearchedTokenInScilabHistory(NULL);
+        /* Call Java Console to get a string */
+        __CommandLine = os_strdup(ConsoleRead());
     }
-  else
+    else
     {
 #ifndef _MSC_VER
         if (!isatty(fileno(stdin)))
@@ -147,8 +147,8 @@ static void getCommandLine(void)
 */
 char *getConsoleInputLine(void)
 {
-  getCommandLine();
-  return os_strdup(__CommandLine);
+    getCommandLine();
+    return os_strdup(__CommandLine);
 }
 
 /***********************************************************************/
@@ -188,7 +188,7 @@ static void *watchStoreCommand(void *in)
     __Signal(&TimeToWork);
     __UnLockSignal(pReadyForLaunch);
 
-  return NULL;
+    return NULL;
 }
 
 /***********************************************************************/

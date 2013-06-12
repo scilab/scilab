@@ -9,19 +9,19 @@
 
 function GLoad(name)
 
-	name1=name;
-	k=strindex(name,'.');
-	if k<>[] then 
-		name1=part(name1,k($)+1:length(name1));
-	else
-		break;
-	end
-	select name1
-		case "sci" then exec(name),
-		case "sce" then exec(name),
-		case "scg" then xload(name),
-		case "bin" then load(name),
-		else error(msprintf(gettext("%s: Wrong value for input argument #%d: Unknown file extension, ""%s"", ""%s"", ""%s"" or ""%s"" expected"),"GLoad",1,".sci",".sce",".scg",".bin"));
-	end
-	
+    name1=name;
+    k=strindex(name,".");
+    if k<>[] then
+        name1=part(name1,k($)+1:length(name1));
+    else
+        break;
+    end
+    select name1
+    case "sci" then exec(name),
+    case "sce" then exec(name),
+    case "scg" then xload(name),
+    case "bin" then load(name),
+    else error(msprintf(gettext("%s: Wrong value for input argument #%d: Unknown file extension, ""%s"", ""%s"", ""%s"" or ""%s"" expected"),"GLoad",1,".sci",".sce",".scg",".bin"));
+    end
+
 endfunction

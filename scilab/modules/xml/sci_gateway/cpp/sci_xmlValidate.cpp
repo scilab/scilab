@@ -148,7 +148,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
 
         if (clines.size())
         {
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char *const *>(&(clines[0])));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char * const *>(&(clines[0])));
         }
         else
         {

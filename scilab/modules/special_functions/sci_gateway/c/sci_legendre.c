@@ -141,7 +141,7 @@ int sci_legendre(char *fname, void* pvApiCtx)
 
     if (isVarComplex(pvApiCtx, piAddr3))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: No complex input argument expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Real matrix expected.\n"), fname, 3);
         return 1;
     }
 

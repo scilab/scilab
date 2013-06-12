@@ -39,12 +39,12 @@ function atomsRepositorySetOfl(url)
 
     // Overwrite "repositories" file
     // =========================================================================
-	ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
+    ATOMSALLUSERSWRITEACCESS = atomsAUWriteAccess();
     if(ATOMSALLUSERSWRITEACCESS) then
         mputl(url,pathconvert(SCI+"/modules/atoms/etc/repositories",%F));
     else
-		mkdir(pathconvert(SCIHOME+"/atoms",%F));
-        mputl(url,pathconvert(SCIHOME+"/atoms/repositories",%F));        
+        mkdir(pathconvert(SCIHOME+"/atoms",%F));
+        mputl(url,pathconvert(SCIHOME+"/atoms/repositories",%F));
     end
 
     // Update the toolbox list

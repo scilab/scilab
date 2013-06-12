@@ -5,7 +5,7 @@
 mode(-1);
 clear;
 
-MFILECONTENTS=["structure.field = 2;" 
+MFILECONTENTS=["structure.field = 2;"
 ""
 "data = round(structure.field);"]
 
@@ -32,7 +32,7 @@ SCIFILECONTENTSREF=["";
 
 correct=%T
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then
-  correct=%F
+    correct=%F
 end
 affich_result(correct,1082);
 

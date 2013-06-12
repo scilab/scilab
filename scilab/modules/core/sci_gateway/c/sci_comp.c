@@ -11,11 +11,11 @@
  */
 #include "gw_core.h"
 /*--------------------------------------------------------------------------*/
- extern int C2F(intcomp)(void); /* fortran */
+extern int C2F(intcomp)(void); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_comp)(char *fname,unsigned long fname_len)
+int C2F(sci_comp)(char *fname, unsigned long fname_len)
 {
-	//C2F(intcomp)();
-	return 0;
+    //C2F(intcomp)();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

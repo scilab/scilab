@@ -22,14 +22,14 @@ public interface GraphicView extends EventListener {
      * @param id
      */
     void updateObject(String id, int property);
-    
+
     /**
      * Notify an object with ID : id
      * has been created.
      * @param id
      */
     void createObject(String id);
-    
+
     /**
      * Notify an object with ID : id
      * has been deleted.

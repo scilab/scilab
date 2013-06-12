@@ -42,9 +42,9 @@ public final class Output {
 
     /**
      * Gets the value of the name property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getName() {
         return name;
@@ -52,10 +52,10 @@ public final class Output {
 
     /**
      * Sets the value of the name property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setName(String value) {
         name = value;
@@ -63,9 +63,9 @@ public final class Output {
 
     /**
      * Gets the value of the order property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getOrder() {
         return order;
@@ -73,10 +73,10 @@ public final class Output {
 
     /**
      * Sets the value of the order property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setOrder(BigInteger value) {
         order = value;
@@ -84,9 +84,9 @@ public final class Output {
 
     /**
      * Gets the value of the dependencies property.
-     * 
+     *
      * @return possible object is {@link Output.Dependencies }
-     * 
+     *
      */
     public Output.Dependencies getDependencies() {
         return dependencies;
@@ -94,10 +94,10 @@ public final class Output {
 
     /**
      * Sets the value of the dependencies property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Output.Dependencies }
-     * 
+     *
      */
     public void setDependencies(Output.Dependencies value) {
         dependencies = value;
@@ -120,9 +120,9 @@ public final class Output {
 
         /**
          * Gets the value of the variable property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getVariable() {
             return variable;
@@ -130,10 +130,10 @@ public final class Output {
 
         /**
          * Sets the value of the variable property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setVariable(String value) {
             variable = value;

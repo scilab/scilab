@@ -11,39 +11,39 @@
 
 function result = atomsQuit()
 
-  result = %T;
+    result = %T;
 
-  // Load Atoms Internals lib if it's not already loaded
-  // =========================================================================
-  if ~ exists("atomsinternalslib") then
-    load("SCI/modules/atoms/macros/atoms_internals/lib");
-  end
-
-  // If the autoload system is disabled, no need to continue
-  // =========================================================================
-  if atomsGetConfig("autoload") == "False" then
-    return;
-  end
-
-  atomsModulesLoaded = atomsGetLoaded();
-  sizeLoaded = size(atomsModulesLoaded);
-  for i = 1:sizeLoaded(1)
-
-    this_package_name = atomsModulesLoaded(i, 1);
-    this_package_path = atomsModulesLoaded(i, 4);
-    this_package_version = atomsModulesLoaded(i, 2);
-
-    if ~isempty(this_package_path) then
-      if isdir(this_package_path) then
-        moduleLoadedFullFilename = fullfile(this_package_path, "unloader.sce");
-        if isfile(moduleLoadedFullFilename) then
-          if exec(moduleLoadedFullFilename, "errcatch") <> 0 then
-            txt = msprintf(gettext("%s: An error occurred while unloading ''%s-%s'':\n"), "atomsQuit", this_package_name, this_package_version);
-            warning(txt);
-            result = %F;
-          end
-        end
-      end
+    // Load Atoms Internals lib if it's not already loaded
+    // =========================================================================
+    if ~ exists("atomsinternalslib") then
+        load("SCI/modules/atoms/macros/atoms_internals/lib");
     end
-  end
+
+    // If the autoload system is disabled, no need to continue
+    // =========================================================================
+    if atomsGetConfig("autoload") == "False" then
+        return;
+    end
+
+    atomsModulesLoaded = atomsGetLoaded();
+    sizeLoaded = size(atomsModulesLoaded);
+    for i = 1:sizeLoaded(1)
+
+        this_package_name = atomsModulesLoaded(i, 1);
+        this_package_path = atomsModulesLoaded(i, 4);
+        this_package_version = atomsModulesLoaded(i, 2);
+
+        if ~isempty(this_package_path) then
+            if isdir(this_package_path) then
+                moduleLoadedFullFilename = fullfile(this_package_path, "unloader.sce");
+                if isfile(moduleLoadedFullFilename) then
+                    if exec(moduleLoadedFullFilename, "errcatch") <> 0 then
+                        txt = msprintf(gettext("%s: An error occurred while unloading ''%s-%s'':\n"), "atomsQuit", this_package_name, this_package_version);
+                        warning(txt);
+                        result = %F;
+                    end
+                end
+            end
+        end
+    end
 endfunction

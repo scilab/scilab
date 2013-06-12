@@ -14,14 +14,16 @@
 /*Substract two vectors*/
 void vDless(int _iNbElem, double* _pdblIn1, double* _pdblIn2, int _iIncIn1, int _iIncIn2, double* _pdblOut)
 {
-	int iIndex1			= 0;
-	double *pdblTemp	= NULL;
+    int iIndex1			= 0;
+    double *pdblTemp	= NULL;
 
-	pdblTemp = (double*)malloc(sizeof(double) * _iNbElem);
-	for(iIndex1 = 0 ; iIndex1 < _iNbElem ; iIndex1++)
-		pdblTemp[iIndex1] = -_pdblIn2[iIndex1 * _iIncIn2];
+    pdblTemp = (double*)malloc(sizeof(double) * _iNbElem);
+    for (iIndex1 = 0 ; iIndex1 < _iNbElem ; iIndex1++)
+    {
+        pdblTemp[iIndex1] = -_pdblIn2[iIndex1 * _iIncIn2];
+    }
 
-	vDadd(_iNbElem, _pdblIn1, pdblTemp, _iIncIn1, 1, _pdblOut);
-	free(pdblTemp);
+    vDadd(_iNbElem, _pdblIn1, pdblTemp, _iIncIn1, 1, _pdblOut);
+    free(pdblTemp);
 }
 

@@ -87,8 +87,8 @@
         </itemizedlist>
     </refsection>
     <refsection>
-      <title>Examples</title>
-      <programlisting role="example"><![CDATA[
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
 
 pop_in = list();
 pop_in(1) = 2;

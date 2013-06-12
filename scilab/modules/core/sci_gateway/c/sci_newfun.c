@@ -41,11 +41,11 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
 
     int ifptr = 0;
 
-    CheckRhs(2,2);
-    CheckLhs(1,1);
+    CheckRhs(2, 2);
+    CheckLhs(1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -53,7 +53,7 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
@@ -61,7 +61,7 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
     }
 
     sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -69,7 +69,7 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
     }
 
     sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-    if(sciErr.iErr)
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
@@ -78,18 +78,18 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
 
     if ( iType1 != sci_strings )
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
     if ( iType2 != sci_matrix )
     {
-        Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), fname, 2);
         return 0;
     }
 
-    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
-    if(sciErr.iErr)
+    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -98,12 +98,12 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
 
     if ( (m1 != 1) || (n1 != 1) )
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
         return 0;
     }
 
-    sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo,&m2,&n2,&pdVarTwo);
-    if(sciErr.iErr)
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddressVarTwo, &m2, &n2, &pdVarTwo);
+    if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
@@ -112,22 +112,22 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
 
     if ( (m2 != 1) || (n2 != 1) )
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 1);
         return 0;
     }
 
-    ifptr = (int) *pdVarTwo;
+    ifptr = (int) * pdVarTwo;
     if (*pdVarTwo != (double)ifptr)
     {
-        Scierror(999,_("%s: Wrong value for input argument #%d: An integer expected.\n"),fname,2);
+        Scierror(999, _("%s: Wrong value for input argument #%d: An integer expected.\n"), fname, 2);
         return 0;
     }
 
-    pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
+    pStVarOne = (char*)MALLOC(sizeof(char) * (lenStVarOne + 1));
     if (pStVarOne)
     {
-        sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-        if(sciErr.iErr)
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+        if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
@@ -136,7 +136,7 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
     }
     else
     {
-        Scierror(999,_("%s: Memory allocation error.\n"),fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
 
@@ -163,14 +163,18 @@ int C2F(sci_newfun) (char *fname, void* pvApiCtx)
         }
         else
         {
-            if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;};
-            Scierror(999,_("%s: function-name is incorrect.\n"),fname);
+            if (pStVarOne)
+            {
+                FREE(pStVarOne);
+                pStVarOne = NULL;
+            };
+            Scierror(999, _("%s: function-name is incorrect.\n"), fname);
             return 0;
         }
     }
     else
     {
-        Scierror(999,_("%s: Wrong value for input argument #%d: Must be %s.\n"),fname,2, "> 0");
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be %s.\n"), fname, 2, "> 0");
         return 0;
     }
 

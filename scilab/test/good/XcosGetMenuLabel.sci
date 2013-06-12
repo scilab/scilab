@@ -19,13 +19,13 @@
 // See the file ../license.txt
 //
 function label=XcosGetMenuLabel(Id,%scicos_menu)
-//returns an Xcos menu labels given their ID's
-  label=[]
-  for menu=%scicos_menu
-    k=find(menu(:,1)==Id)
-    if k<>[] then
-      label=menu(k,2)
-      break
+    //returns an Xcos menu labels given their ID's
+    label=[]
+    for menu=%scicos_menu
+        k=find(menu(:,1)==Id)
+        if k<>[] then
+            label=menu(k,2)
+            break
+        end
     end
-  end
 endfunction

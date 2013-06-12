@@ -80,7 +80,7 @@ e.closed = 'off' // ポリラインはオープンされます
             e.closed = 'off'
             
         </scilab:image>
-         
+        
     </refsection>
     <refsection role="see also">
         <title>参照</title>

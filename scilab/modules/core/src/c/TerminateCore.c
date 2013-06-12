@@ -28,18 +28,24 @@
 BOOL TerminateCorePart1(void)
 {
 
-// Call scilab.quit before exit.
+    // Call scilab.quit before exit.
 #if 0
     if ( Get_no_startup_flag() == 0)
     {
         char *quit_script = NULL;
 
         /* bug 3672 */
-        if (getScilabMode() == SCILAB_STD) quit_script = get_sci_data_strings(QUIT_ERRCATCH_ID);
-        else quit_script = get_sci_data_strings(QUIT_ID);
+        if (getScilabMode() == SCILAB_STD)
+        {
+            quit_script = get_sci_data_strings(QUIT_ERRCATCH_ID);
+        }
+        else
+        {
+            quit_script = get_sci_data_strings(QUIT_ID);
+        }
 
         /* launch scilab.quit script */
-        C2F(scirun)(quit_script,(long int)strlen(quit_script));
+        C2F(scirun)(quit_script, (long int)strlen(quit_script));
     }
 #endif
     return TRUE;
@@ -47,16 +53,13 @@ BOOL TerminateCorePart1(void)
 /*--------------------------------------------------------------------------*/
 BOOL TerminateCorePart2(void)
 {
-	/* memory freed by OS for all platforms and all targets */
-	/* freemem can crash randomly at exit with VS 2010 (32 bits) */
-	/* same behavior on all platforms */
+    // Free stack and global stack
+    C2F(freestacklastmemory)();
+    C2F(freeglobalstacklastmemory)();
 
-//#ifdef _MSC_VER /* Bug under Linux on freeing memory */
-//#ifndef _WIN64
-//    C2F(freegmem)();
-//    C2F(freemem)();
-//#endif
-//#endif
+    freeStackCurrentMemory();
+    freeGlobalStackCurrentMemory();
+
 
     DisposeModulesInfo();
 
@@ -70,8 +73,8 @@ BOOL TerminateCorePart2(void)
     */
     xmlCleanupParser();
 
-	/** clean tmpfiles **/
-	clearTMPDIR();
+    /** clean tmpfiles **/
+    clearTMPDIR();
 
     /* free dynamic gateways and dynamic libraries */
     freeAllDynamicGateways();

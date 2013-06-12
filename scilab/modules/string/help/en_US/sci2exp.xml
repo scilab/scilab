@@ -102,11 +102,21 @@
     </refsection>
     <refsection>
         <title>Remarks</title>
-        <para>
-            If <varname>a</varname> is a handle, <function>sci2exp</function> gives a result which has no hierarchical links,
-            that is, with empty fields for parent and children.
-        </para>
-    </refsection>  
+        <itemizedlist>
+            <listitem>
+                <para>
+                    If <varname>a</varname> is a handle, <function>sci2exp</function> gives a result which has no hierarchical links,
+                    that is, with empty fields for parent and children.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <varname>t</varname> can be impacted by <link linkend="format">format</link>. 
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -116,6 +126,11 @@ sci2exp(a,'aa',10)
 sci2exp(ssrand(2,2,2))
 sci2exp(poly([1 0 3 4],'s'),'fi')
 sci2exp(figure("figure_name","figure1"))
+b=0.123456789;
+format(5);
+c=sci2exp(b)
+format(10);
+d=sci2exp(b)
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -123,6 +138,9 @@ sci2exp(figure("figure_name","figure1"))
         <simplelist type="inline">
             <member>
                 <link linkend="prettyprint">prettyprint</link>
+            </member>
+            <member>
+                <link linkend="format">format</link>
             </member>
         </simplelist>
     </refsection>

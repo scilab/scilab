@@ -154,7 +154,7 @@ int sci_h5read(char *fname, int* pvApiCtx)
                 err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, dptrs[0]);
                 if (row != 1 && col != 1)
                 {
-                    Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: Real row or column vector expected.\n"), fname, 2);
                     return 0;
                 }
 
@@ -164,7 +164,7 @@ int sci_h5read(char *fname, int* pvApiCtx)
                 }
                 else if (size != (row > col ? row : col))
                 {
-                    Scierror(999, _("%s: Bad dimensions for input argument #%d: the same size are expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: Same size expected.\n"), fname, 2);
                     return 0;
                 }
 
@@ -172,7 +172,7 @@ int sci_h5read(char *fname, int* pvApiCtx)
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A row of doubles expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, 2);
                 return 0;
             }
         }
@@ -192,7 +192,7 @@ int sci_h5read(char *fname, int* pvApiCtx)
             err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, dptrs[i - 3 + inc]);
             if (row != 1 && col != 1)
             {
-                Scierror(999, _("%s: Bad dimensions for input argument #%d: a row or a column expected.\n"), fname, i);
+                Scierror(999, _("%s: Wrong size for input argument #%d: Real row or column vector expected.\n"), fname, i);
                 return 0;
             }
 
@@ -202,13 +202,13 @@ int sci_h5read(char *fname, int* pvApiCtx)
             }
             else if (size != (row > col ? row : col))
             {
-                Scierror(999, _("%s: Bad dimensions for input argument #%d: the same size are expected.\n"), fname, i);
+                Scierror(999, _("%s: Wrong size for input argument #%d: Same size expected.\n"), fname, i);
                 return 0;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A row of doubles expected.\n"), fname, i);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector expected.\n"), fname, i);
             return 0;
         }
     }

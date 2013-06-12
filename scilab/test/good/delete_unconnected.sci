@@ -21,88 +21,88 @@
 
 function scs_m=delete_unconnected(scs_m);
 
-	n = lstsize(scs_m.objs);
+    n = lstsize(scs_m.objs);
 
-	if n==0 then
-		return
-	end ; //** exit point
-	
-	DEL=[];
-	DELL=[]
-	finish=%f
+    if n==0 then
+        return
+    end ; //** exit point
 
-	while ~finish
-		finish = %t
-		for k=1:n  //loop on scs_m objects
-			x = getfield(1,scs_m.objs(k))
-			if x(1)=='Block' then
-				if scs_m.objs(k).gui<>'SUM_f'&scs_m.objs(k).gui<>'SOM_f' then
-					if find(scs_m.objs(k).gui==['IFTHEL_f','ESELECT_f']) then
-						kk=[find(scs_m.objs(k).graphics.pein==0),find(scs_m.objs(k).graphics.pin==0)]
-						if kk<> [] 	// a synchro block is not active, remove it
-							[scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
-							DEL=[DEL DEL1]
-							DELL=[DELL DELL1]
-							finish=%f
-						end
-					else
-						kk=[find(scs_m.objs(k).graphics.pin==0)]
-						if kk<>[] then // at least one  input port is not connected delete the block
-							if or(getfield(1,scs_m.objs(k).graphics)=="in_implicit") then
-								if or(scs_m.objs(k).graphics.in_implicit(kk)<>"I") then 
-									[scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
-									DEL=[DEL DEL1]
-									DELL=[DELL DELL1]
-									finish=%f
-								end
-							else
-								[scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
-								DEL=[DEL DEL1]
-								DELL=[DELL DELL1]
-								finish=%f
-							end
-						end
-					end
-				end
-			end
-		end
-	end
+    DEL=[];
+    DELL=[]
+    finish=%f
 
-	//suppress rigth-most deleted elements
-	while getfield(1,scs_m.objs($))=='Deleted' then
-		scs_m.objs($)=null();
-		if lstsize(scs_m.objs)==0 then 
-			break
-		end
-	end
-	// Notify by hiliting and message edition
-	if DEL<>[] then
-		//** save the current scs_m structure
-		scs_save = scs_m;
-		scs_m = scs_m_s;
-		if flgcdgen <> -1 then //no idea !
-			path=[numk path];
-			scs_m=all_scs_m;
-		end
-		
-		// Blouno : Remove that check for errors to show up.
-		//if path<>[] then //** super block case
-			//** entity in the current figure
-			k=DEL
-			//** find any indices of k which are not in DELL
-			ind_k=find(k<>DELL)
-			if ind_k<>[] then
-				k=k(ind_k)
-				msg = ['Hilited block(s) or link(s) are ignored because of'
-					'undefined input(s)'];
-			else
-				msg = '';
-			end
-			
-			//errorDiagramPath(path, [path_out, path_in], msg, "", %t);
-			errorDiagramPath(path, k, msg, "", %f, %t);
-		//end
-		//** restore original scs_m structure
-		scs_m = scs_save;
-	end
+    while ~finish
+        finish = %t
+        for k=1:n  //loop on scs_m objects
+            x = getfield(1,scs_m.objs(k))
+            if x(1)=="Block" then
+                if scs_m.objs(k).gui<>"SUM_f"&scs_m.objs(k).gui<>"SOM_f" then
+                    if find(scs_m.objs(k).gui==["IFTHEL_f","ESELECT_f"]) then
+                        kk=[find(scs_m.objs(k).graphics.pein==0),find(scs_m.objs(k).graphics.pin==0)]
+                        if kk<> [] 	// a synchro block is not active, remove it
+                            [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
+                            DEL=[DEL DEL1]
+                            DELL=[DELL DELL1]
+                            finish=%f
+                        end
+                    else
+                        kk=[find(scs_m.objs(k).graphics.pin==0)]
+                        if kk<>[] then // at least one  input port is not connected delete the block
+                            if or(getfield(1,scs_m.objs(k).graphics)=="in_implicit") then
+                                if or(scs_m.objs(k).graphics.in_implicit(kk)<>"I") then
+                                    [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
+                                    DEL=[DEL DEL1]
+                                    DELL=[DELL DELL1]
+                                    finish=%f
+                                end
+                            else
+                                [scs_m,DEL1,DELL1]=do_delete1(scs_m,k,%f)
+                                DEL=[DEL DEL1]
+                                DELL=[DELL DELL1]
+                                finish=%f
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    //suppress rigth-most deleted elements
+    while getfield(1,scs_m.objs($))=="Deleted" then
+        scs_m.objs($)=null();
+        if lstsize(scs_m.objs)==0 then
+            break
+        end
+    end
+    // Notify by hiliting and message edition
+    if DEL<>[] then
+        //** save the current scs_m structure
+        scs_save = scs_m;
+        scs_m = scs_m_s;
+        if flgcdgen <> -1 then //no idea !
+            path=[numk path];
+            scs_m=all_scs_m;
+        end
+
+        // Blouno : Remove that check for errors to show up.
+        //if path<>[] then //** super block case
+        //** entity in the current figure
+        k=DEL
+        //** find any indices of k which are not in DELL
+        ind_k=find(k<>DELL)
+        if ind_k<>[] then
+            k=k(ind_k)
+            msg = ["Hilited block(s) or link(s) are ignored because of"
+            "undefined input(s)"];
+        else
+            msg = "";
+        end
+
+        //errorDiagramPath(path, [path_out, path_in], msg, "", %t);
+        errorDiagramPath(path, k, msg, "", %f, %t);
+        //end
+        //** restore original scs_m structure
+        scs_m = scs_save;
+    end
 endfunction

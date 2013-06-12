@@ -19,7 +19,6 @@ extern "C"
 #include "sci_mode.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_mode.h"
 #include "os_strdup.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -28,10 +27,10 @@ using namespace types;
 
 Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-	int n1 = 0, m1 = 0;
-	char *output = NULL ;
+    int n1 = 0, m1 = 0;
+    char *output = NULL ;
 
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "getscilabmode", 0);
         return Function::Error;

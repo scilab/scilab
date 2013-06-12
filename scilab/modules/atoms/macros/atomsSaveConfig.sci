@@ -14,36 +14,36 @@ function atomsSaveConfig(force)
     rhs = argn(2);
 
     if rhs > 1 then
-      error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsSaveConfig",0,1));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsSaveConfig",0,1));
     end
 
     load("SCI/modules/atoms/macros/atoms_internals/lib");
 
     if rhs == 0 then
-      force = %F;
+        force = %F;
     end
 
     pathsystemuser = atomsPath("system", "user");
-    
+
     if isfile(pathsystemuser + "config.bak") then
-      if ~force then
-        error(msprintf("The file config.bak already exists, aborting.\n"));
-      elseif isfile(pathsystemuser + "config") then
-          copyfile(pathsystemuser + "config", pathsystemuser + "config.bak");
-          msprintf(gettext("config file saved to %s"), pathsystemuser + "config.bak");
-      else
-        error(msprintf("No config available, aborting.\n"));
-      end
+        if ~force then
+            error(msprintf("The file config.bak already exists, aborting.\n"));
+        elseif isfile(pathsystemuser + "config") then
+            copyfile(pathsystemuser + "config", pathsystemuser + "config.bak");
+            msprintf(gettext("config file saved to %s"), pathsystemuser + "config.bak");
+        else
+            error(msprintf("No config available, aborting.\n"));
+        end
     elseif isfile(pathsystemuser + "config") then
-      copyfile(pathsystemuser + "config", pathsystemuser + "config.bak");
-      msprintf(gettext("config file saved to %s"), pathsystemuser + "config.bak");
+        copyfile(pathsystemuser + "config", pathsystemuser + "config.bak");
+        msprintf(gettext("config file saved to %s"), pathsystemuser + "config.bak");
     elseif ~isdir(pathsystemuser) then
-      mkdir(pathsystemuser)
-      mputl("", pathsystemuser + 'config');
-      mputl("", pathsystemuser + 'config.bak');
+        mkdir(pathsystemuser)
+        mputl("", pathsystemuser + "config");
+        mputl("", pathsystemuser + "config.bak");
     else
-      mputl("", pathsystemuser + 'config');
-      mputl("", pathsystemuser + 'config.bak');
+        mputl("", pathsystemuser + "config");
+        mputl("", pathsystemuser + "config.bak");
     end
 
 endfunction

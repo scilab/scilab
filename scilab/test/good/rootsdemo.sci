@@ -6,9 +6,9 @@
 //
 
 function result = rootsdemo(p)
-//   A root-finder algorithm based on the eigenvalues of the 
-//   companion matrix of the polynomial p
-  A=companion(p);
-  result = spec(A)
+    //   A root-finder algorithm based on the eigenvalues of the
+    //   companion matrix of the polynomial p
+    A=companion(p);
+    result = spec(A)
 endfunction
 

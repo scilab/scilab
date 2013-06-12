@@ -21,11 +21,11 @@
 
 function XcosMenuScicosDoc()
 
-  if execstr('help(''scicos'');' , 'errcatch') <>0 then
-     messagebox("No help available.",'modal');
-  end
+    if execstr("help(''scicos'');" , "errcatch") <>0 then
+        messagebox("No help available.","modal");
+    end
 
-  //** Clear state machine variables
-  Cmenu = [];
+    //** Clear state machine variables
+    Cmenu = [];
 
 endfunction

@@ -116,7 +116,7 @@ int sci_h5exists(char *fname, int* pvApiCtx)
     if (nbIn == 3 && (rowl != 1 || coll != 1))
     {
         freeAllocatedMatrixOfString(rowl, coll, locations);
-        Scierror(999, _("%s: Invalid dimension for argument #%d: a single String expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }
 

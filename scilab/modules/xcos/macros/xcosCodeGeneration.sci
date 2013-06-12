@@ -17,11 +17,11 @@ function blk = xcosCodeGeneration(blk)
     %scicos_debug_gr = %f
     needcompile = 4;
 
-    ierr = execstr("[ok, XX] = do_compile_superblock42(blk, [], [], %f); ", 'errcatch');
+    ierr = execstr("[ok, XX] = do_compile_superblock42(blk, [], [], %f); ", "errcatch");
     if ierr <> 0 then
         [msg, err] = lasterror();
         disp(msg);
-        
+
         // push blk error
         blk = [];
         blk = resume(blk)
@@ -32,7 +32,7 @@ function blk = xcosCodeGeneration(blk)
         blk = [];
         blk = resume(blk)
     end
-    
+
     blk = XX;
     // push the results (and interface function) on the upper scope
     execstr("[blk, " + XX.gui + "]=resume(blk, "+ XX.gui +")");

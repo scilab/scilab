@@ -20,7 +20,7 @@ types::Function::ReturnValue sci_quit(types::typed_list &in, int _iRetCount, typ
     //Terminates Scilab or decreases the pause level
 
     types::ThreadId* pThreadId = ConfigVariable::getLastPausedThread();
-    if(pThreadId)
+    if (pThreadId)
     {
         __threadId id = pThreadId->getId();
         pThreadId->abort();

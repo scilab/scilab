@@ -32,43 +32,43 @@ types::Function::ReturnValue sci_strspn(types::typed_list &in, int _iRetCount, t
     types::String* pString      = NULL;
     types::String* pStrSample   = NULL;
     int j                       = 0;
-    if(in.size() != 2)
+    if (in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strspn", 2);
         return types::Function::Error;
     }
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "strspn", 1);
         return types::Function::Error;
     }
-	if(in[0]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strspn", 1);
-		return types::Function::Error;
-	}
-	if(in[1]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strspn", 2);
-		return types::Function::Error;
-	}
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strspn", 1);
+        return types::Function::Error;
+    }
+    if (in[1]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strspn", 2);
+        return types::Function::Error;
+    }
 
     pString     = in[0]->getAs<types::String>();
     pStrSample  = in[1]->getAs<types::String>();
 
 
-    if(pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
+    if (pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "strspn", 2);
         return types::Function::Error;
     }
 
     pOutDouble  = new types::Double(pString->getDims(), pString->getDimsArray());
-    for(int i=0 ; i<pString->getSize() ; i++)
+    for (int i = 0 ; i < pString->getSize() ; i++)
     {
-        if(pStrSample->isScalar() == false)
+        if (pStrSample->isScalar() == false)
         {
-            j=i;
+            j = i;
         }
 
         pOutDouble->set(i, (double)wcsspn( pString->get(i), pStrSample->get(j)));

@@ -15,20 +15,30 @@
 /*sign*/
 double dsigns(double _dblRef, double _dblVal)
 {
-	if( _dblVal >= 0)
-		return _dblRef;
-	else
-		return -_dblRef;
+    if ( _dblVal >= 0)
+    {
+        return _dblRef;
+    }
+    else
+    {
+        return -_dblRef;
+    }
 }
 
 double dsignsEx(double _dblVal)
 {
-	if(_dblVal == 0)
-		return 0;
-	if(_dblVal > 0)
-		return 1;
-	if(_dblVal < 0)
-		return -1;
-	return _dblVal;
+    if (_dblVal == 0)
+    {
+        return 0;
+    }
+    if (_dblVal > 0)
+    {
+        return 1;
+    }
+    if (_dblVal < 0)
+    {
+        return -1;
+    }
+    return _dblVal;
 
 }

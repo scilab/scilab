@@ -396,6 +396,10 @@ void visitprivate(const AssignExp  &e)
                 {
                     pOut = pIT->getAs<SparseBool>()->remove(pArgs);
                 }
+                else if (pIT->isHandle())
+                {
+                    pOut = pIT->getAs<GraphicHandle>()->remove(pArgs);
+                }
                 else if (pIT->isStruct())
                 {
                     // a("b") = [] is not a deletion !!

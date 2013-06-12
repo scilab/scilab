@@ -11,9 +11,9 @@ a = mtlb_axis([ 1 500 -22.3 1.4])
 test1 =  ( a == [1 500 -22.3 1.4]  )
 
 if ( test1 ) then
-	affich_result(%T,1725);
+    affich_result(%T,1725);
 else
-	affich_result(%F,1725);
+    affich_result(%F,1725);
 end
 
 clear

@@ -26,14 +26,14 @@
 #include "gw_scicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intree2)(char *fname,unsigned long fname_len); /* fortran subroutine */
+extern int C2F(intree2)(char *fname, unsigned long fname_len); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int sci_ftree2(char *fname,unsigned long fname_len)
+int sci_ftree2(char *fname, unsigned long fname_len)
 {
-	CheckLhs(2,2);
-	CheckRhs(4,4);
-	C2F(intree2)(fname,fname_len);
-	PutLhsVar();
-	return 0;
+    CheckLhs(2, 2);
+    CheckRhs(4, 4);
+    C2F(intree2)(fname, fname_len);
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

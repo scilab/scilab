@@ -16,14 +16,14 @@
 
 extern "C"
 {
-EXTERN_SYSTEM_ENV void setFormatSize(int _iFormatSize);
-EXTERN_SYSTEM_ENV int getFormatSize(void);
-EXTERN_SYSTEM_ENV void setFormatMode(int _iFormatMode);
-EXTERN_SYSTEM_ENV int getFormatMode(void);
-EXTERN_SYSTEM_ENV void setConsoleWidth(int _iConsoleWidth);
-EXTERN_SYSTEM_ENV int getConsoleWidth(void);
-EXTERN_SYSTEM_ENV void setConsoleLines(int _iConsoleLines);
-EXTERN_SYSTEM_ENV int getConsoleLines(void);
+    EXTERN_SYSTEM_ENV void setFormatSize(int _iFormatSize);
+    EXTERN_SYSTEM_ENV int getFormatSize(void);
+    EXTERN_SYSTEM_ENV void setFormatMode(int _iFormatMode);
+    EXTERN_SYSTEM_ENV int getFormatMode(void);
+    EXTERN_SYSTEM_ENV void setConsoleWidth(int _iConsoleWidth);
+    EXTERN_SYSTEM_ENV int getConsoleWidth(void);
+    EXTERN_SYSTEM_ENV void setConsoleLines(int _iConsoleLines);
+    EXTERN_SYSTEM_ENV int getConsoleLines(void);
 
 }
 

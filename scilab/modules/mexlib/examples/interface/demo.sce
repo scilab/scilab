@@ -9,14 +9,14 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 currentdir=pwd();
-cd SCI+'/modules/mexlib/examples/interface/lib'
+cd SCI+"/modules/mexlib/examples/interface/lib"
 
-exec('builder.sce');
+exec("builder.sce");
 
-cd SCI+'/modules/mexlib/examples/interface'
-exec('builder.sce');
+cd SCI+"/modules/mexlib/examples/interface"
+exec("builder.sce");
 
-exec(SCI+'/modules/mexlib/examples/interface/loader.sce');
+exec(SCI+"/modules/mexlib/examples/interface/loader.sce");
 
 
 if f1(89)<>89+2 then pause,end

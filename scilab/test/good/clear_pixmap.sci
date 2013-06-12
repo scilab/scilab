@@ -1,3 +1,3 @@
 function clear_pixmap()
-  xset('wwpc')
+    xset("wwpc")
 endfunction

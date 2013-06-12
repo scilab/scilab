@@ -18,8 +18,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-        txt = strcat(strings [,string_added])
-        txt = strcat(strings [,string_added, ["flag"]])
+            txt = strcat(strings [,string_added])
+            txt = strcat(strings [,string_added, ["flag"]])
         </synopsis>
     </refsynopsisdiv>
     <refsection>

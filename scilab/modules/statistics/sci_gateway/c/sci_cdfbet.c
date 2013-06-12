@@ -13,20 +13,22 @@
 #include "gw_statistics.h"
 #include "CdfBase.h"
 
-extern int C2F(cdfbet)(int *,double *,double *,double *,double *,double *,double *, int *,double *);
+extern int C2F(cdfbet)(int *, double *, double *, double *, double *, double *, double *, int *, double *);
 
 /**
  * Interface to dcdflib's cdfbet
  * SUBROUTINE CDFBET( WHICH, P, Q, X, Y, A, B, STATUS, BOUND )
  * Cumulative Distribution Function, BETa Distribution
  */
-int sci_cdfbet(char* fname, void* pvApiCtx) 
+int sci_cdfbet(char* fname, void* pvApiCtx)
 {
-  struct cdf_item items[] =
-    {{"PQ", 4, 2, 2},
-     {"XY", 4, 2, 4},
-     {"A" , 5, 1, 5},
-     {"B" , 5, 1, 0}};
-  struct cdf_descriptor cdf = mkcdf(cdfbet, 5, 6, 1, 2, items);
-  return cdf_generic(fname, pvApiCtx, &cdf);
-} 
+    struct cdf_item items[] =
+    {
+        {"PQ", 4, 2, 2},
+        {"XY", 4, 2, 4},
+        {"A" , 5, 1, 5},
+        {"B" , 5, 1, 0}
+    };
+    struct cdf_descriptor cdf = mkcdf(cdfbet, 5, 6, 1, 2, items);
+    return cdf_generic(fname, pvApiCtx, &cdf);
+}

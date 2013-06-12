@@ -13,7 +13,7 @@
 #include "gw_statistics.h"
 #include "CdfBase.h"
 
-extern int C2F(cdff)(int *,double *,double *,double*,double *,double *, int *,double *);
+extern int C2F(cdff)(int *, double *, double *, double*, double *, double *, int *, double *);
 
 /**
  * Interface to dcdflib's cdff
@@ -22,11 +22,13 @@ extern int C2F(cdff)(int *,double *,double *,double*,double *,double *, int *,do
  */
 int sci_cdff(char* fname, void* pvApiCtx)
 {
-  struct cdf_item items[] =
-    {{"PQ",  3, 2, 2},
-     {"F",   4, 1, 3},
-     {"Dfn", 4, 1, 4},
-     {"Dfd", 4, 1, 0}};
-  struct cdf_descriptor cdf = mkcdf(cdff, 4, 5, 1, 2, items);
-  return cdf_generic(fname, pvApiCtx, &cdf); 
-} 
+    struct cdf_item items[] =
+    {
+        {"PQ",  3, 2, 2},
+        {"F",   4, 1, 3},
+        {"Dfn", 4, 1, 4},
+        {"Dfd", 4, 1, 0}
+    };
+    struct cdf_descriptor cdf = mkcdf(cdff, 4, 5, 1, 2, items);
+    return cdf_generic(fname, pvApiCtx, &cdf);
+}

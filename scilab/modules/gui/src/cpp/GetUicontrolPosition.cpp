@@ -16,21 +16,21 @@
 
 void* GetUicontrolPosition(void* _pvCtx, char *sciObjUID)
 {
-  double* position = NULL;
-  void* status = NULL;
+    double* position = NULL;
+    void* status = NULL;
 
-  getGraphicObjectProperty(sciObjUID, __GO_POSITION__, jni_double_vector, (void**) &position);
+    getGraphicObjectProperty(sciObjUID, __GO_POSITION__, jni_double_vector, (void**) &position);
 
-  if (position == NULL)
-  {
-      Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
-      return NULL;
-  }
-  else
-  {
-      status = sciReturnRowVector(position, 4);
-      delete[] position;
-      return status;
-  }
+    if (position == NULL)
+    {
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
+        return NULL;
+    }
+    else
+    {
+        status = sciReturnRowVector(position, 4);
+        delete[] position;
+        return status;
+    }
 }
 

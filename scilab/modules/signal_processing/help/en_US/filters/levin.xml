@@ -64,7 +64,7 @@
             (normal equations)
         </para>
         <para>
-           <latex>
+            <latex>
                 \begin{eqnarray}
                 \begin{pmatrix}
                 I&amp;-A_1&amp;\cdots&amp;-A_n

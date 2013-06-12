@@ -27,103 +27,103 @@ using symbol::Heap;
 
 int heap_test()
 {
-	int *piVal		= NULL;
-	int *piJaune	= NULL;
-	double *pReal	= NULL;
-	double *pImg	= NULL;
-	bool *pb1			= NULL;
-	float *pfReal	= NULL;
-	float *pfImg	= NULL;
-	
-	Int IntVal(2,2, &piVal);
-	Double dblI(2,2, &pReal, &pImg);
-  Int IntJaune(2,2, &piJaune);
-  Bool Bool1(2,2, &pb1);
-  Float Float1(2,2, &pfReal, &pfImg);
-  
-	piVal[0]		= 2008;
-	piVal[1]		= 1492;
-	piVal[2]		= 1515;
-	piVal[3]		= 1789;
-	
-	pb1[0]			= true;
-	pb1[1]			= false;
-	pb1[2]			= false;
-	pb1[3]			= true;
+    int *piVal		= NULL;
+    int *piJaune	= NULL;
+    double *pReal	= NULL;
+    double *pImg	= NULL;
+    bool *pb1			= NULL;
+    float *pfReal	= NULL;
+    float *pfImg	= NULL;
 
-	pReal[0]		= +1e-05;
-	pImg[0]			= +1e20;
-	pReal[1]		= +1e-05;
-	pImg[1]			= -1e20;
-	pReal[2]		= -1e-05;
-	pImg[2]			= +1e20;
-	pReal[3]		= -1e-05;
-	pImg[3]			= -1e20;
+    Int IntVal(2, 2, &piVal);
+    Double dblI(2, 2, &pReal, &pImg);
+    Int IntJaune(2, 2, &piJaune);
+    Bool Bool1(2, 2, &pb1);
+    Float Float1(2, 2, &pfReal, &pfImg);
 
-	piJaune[0]	= 51;
-	piJaune[1]	= 1664;
-	piJaune[2]	= 1664;
-	piJaune[3]	= 51;
+    piVal[0]		= 2008;
+    piVal[1]		= 1492;
+    piVal[2]		= 1515;
+    piVal[3]		= 1789;
 
-	pfReal[0]		= 0.1f;
-	pfReal[1]		= -0.2f;
-	pfReal[2]		= 0.3f;
-	pfReal[3]		= -0.4f;
+    pb1[0]			= true;
+    pb1[1]			= false;
+    pb1[2]			= false;
+    pb1[3]			= true;
 
-	pfImg[0]		= -0.9f;
-	pfImg[1]		= 0.8f;
-	pfImg[2]		= -0.7f;
-	pfImg[3]		= 0.6f;
+    pReal[0]		= +1e-05;
+    pImg[0]			= +1e20;
+    pReal[1]		= +1e-05;
+    pImg[1]			= -1e20;
+    pReal[2]		= -1e-05;
+    pImg[2]			= +1e20;
+    pReal[3]		= -1e-05;
+    pImg[3]			= -1e20;
 
-	String szvalue("value");
+    piJaune[0]	= 51;
+    piJaune[1]	= 1664;
+    piJaune[2]	= 1664;
+    piJaune[3]	= 51;
 
-  String szjaune(2,2);
-	szjaune.string_set(0,0, "jaune");
-	szjaune.string_set(0,1, "bleu");
-	szjaune.string_set(1,0, "rouge");
-	szjaune.string_set(1,1, "vert");
+    pfReal[0]		= 0.1f;
+    pfReal[1]		= -0.2f;
+    pfReal[2]		= 0.3f;
+    pfReal[3]		= -0.4f;
 
-  Heap tas;
-  Symbol foo("foo");
-  Symbol pourcentI("%i");
-  Symbol booltest("boobool");
-  Symbol floattest("floattest");
-  Symbol bar("bar");
-  Symbol scicos("scicos");
+    pfImg[0]		= -0.9f;
+    pfImg[1]		= 0.8f;
+    pfImg[2]		= -0.7f;
+    pfImg[3]		= 0.6f;
 
-  // foo = 1664
-  tas.put(foo, IntVal);
-  // bar2 = "value"
-  tas.put(bar, szvalue);
-  // %i = "%i"
-  tas.put(pourcentI, dblI);
-  // floattest = "[x.x]"
-  tas.put(floattest, Float1);
+    String szvalue("value");
 
-  // scicos::scicos = 51
-  tas.put("scicos", scicos, IntJaune);
-  // scicos::foo = 51
-  tas.put("scicos", foo, szjaune);
-  // scicos::boobool = "t,f,f,t"
-  tas.put("scicos", booltest, Bool1);
+    String szjaune(2, 2);
+    szjaune.string_set(0, 0, "jaune");
+    szjaune.string_set(0, 1, "bleu");
+    szjaune.string_set(1, 0, "rouge");
+    szjaune.string_set(1, 1, "vert");
 
-  std::cout << "-----------------" << std::endl;
-  std::cout << " Heap Overview :" << std::endl;
-  std::cout << "-----------------" << std::endl;
-  std::cout << tas;
-  std::cout << "-----------------" << std::endl;
+    Heap tas;
+    Symbol foo("foo");
+    Symbol pourcentI("%i");
+    Symbol booltest("boobool");
+    Symbol floattest("floattest");
+    Symbol bar("bar");
+    Symbol scicos("scicos");
 
-  assert(tas.get(foo) == &IntVal);
-  assert(tas.get(bar) == &szvalue);
-  assert(tas.get("scicos", scicos) == &IntJaune);
-  assert(tas.get("scicos", foo) == &szjaune);
-  assert(tas.get("scicos", bar) == NULL);
+    // foo = 1664
+    tas.put(foo, IntVal);
+    // bar2 = "value"
+    tas.put(bar, szvalue);
+    // %i = "%i"
+    tas.put(pourcentI, dblI);
+    // floattest = "[x.x]"
+    tas.put(floattest, Float1);
 
-  return 0;
+    // scicos::scicos = 51
+    tas.put("scicos", scicos, IntJaune);
+    // scicos::foo = 51
+    tas.put("scicos", foo, szjaune);
+    // scicos::boobool = "t,f,f,t"
+    tas.put("scicos", booltest, Bool1);
+
+    std::cout << "-----------------" << std::endl;
+    std::cout << " Heap Overview :" << std::endl;
+    std::cout << "-----------------" << std::endl;
+    std::cout << tas;
+    std::cout << "-----------------" << std::endl;
+
+    assert(tas.get(foo) == &IntVal);
+    assert(tas.get(bar) == &szvalue);
+    assert(tas.get("scicos", scicos) == &IntJaune);
+    assert(tas.get("scicos", foo) == &szjaune);
+    assert(tas.get("scicos", bar) == NULL);
+
+    return 0;
 }
 
-int main(void) 
+int main(void)
 {
-  heap_test();
-  return 0;
+    heap_test();
+    return 0;
 }

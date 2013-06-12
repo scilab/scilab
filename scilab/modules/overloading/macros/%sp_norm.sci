@@ -1,11 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) Scilab Enterprises - Adeline CARNIS
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function res=%sp_norm(S,flag)
@@ -39,7 +39,7 @@ function res=%sp_norm(S,flag)
         x = x/res;res0 = 0;
         while abs(res-res0) > tol*res
             res0 = res;   Sx = S1*x;
-            
+
             // Bug #10178: norm failed for some sparse matrix
             // If Sx = 0, we had "division by zero" with x/norm(x)
             // So, use to sum(abs(S).^2).^(1/2)
@@ -48,7 +48,7 @@ function res=%sp_norm(S,flag)
                 return
             end
             // End Bug #10178
-            
+
             res = norm(Sx);
             x = S1'*Sx;
             x = x/norm(x);
@@ -56,9 +56,9 @@ function res=%sp_norm(S,flag)
         if m<>n then res=sqrt(res),end
     case %inf then
         res=max(abs(S)*ones(n,1))
-    case 'inf' then
+    case "inf" then
         res=max(abs(S)*ones(n,1))
-    case 'fro' then
+    case "fro" then
         [ij,v]=spget(S);
         res=sqrt(sum(abs(v.*v)))
     else

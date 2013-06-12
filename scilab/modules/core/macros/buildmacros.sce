@@ -7,4 +7,4 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-genlib('corelib','SCI/modules/core/macros',%f,%t); 
+genlib("corelib","SCI/modules/core/macros",%f,%t);

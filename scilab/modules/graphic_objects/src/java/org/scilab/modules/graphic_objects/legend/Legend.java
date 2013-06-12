@@ -99,16 +99,16 @@ public class Legend extends ClippableTextObject {
      */
     public Object getPropertyFromName(int propertyName) {
         switch (propertyName) {
-        case __GO_LINKS__ :
-            return LegendProperty.LINKS;
-        case __GO_LINKS_COUNT__ :
-            return LegendProperty.LINKSCOUNT;
-        case __GO_LEGEND_LOCATION__ :
-            return LegendProperty.LEGENDLOCATION;
-        case __GO_POSITION__ :
-            return LegendProperty.POSITION;
-        default :
-            return super.getPropertyFromName(propertyName);
+            case __GO_LINKS__ :
+                return LegendProperty.LINKS;
+            case __GO_LINKS_COUNT__ :
+                return LegendProperty.LINKSCOUNT;
+            case __GO_LEGEND_LOCATION__ :
+                return LegendProperty.LEGENDLOCATION;
+            case __GO_POSITION__ :
+                return LegendProperty.POSITION;
+            default :
+                return super.getPropertyFromName(propertyName);
         }
     }
 

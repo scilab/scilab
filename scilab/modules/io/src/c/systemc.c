@@ -15,10 +15,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #ifdef _MSC_VER
-    #include "spawncommand.h"
+#include "spawncommand.h"
 #else
-    #include <sys/wait.h>
-    #include "MALLOC.h"
+#include <sys/wait.h>
+#include "MALLOC.h"
 #endif
 #include "charEncoding.h"
 #include "systemc.h"

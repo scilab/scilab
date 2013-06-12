@@ -38,60 +38,60 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     wchar_t* seps               = NULL;
     int sizeSeps                = 0;
 
-    if(in.size() > 2 || in.size() == 0)
+    if (in.size() > 2 || in.size() == 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "tokens", 1, 2);
         return types::Function::Error;
     }
-    if(_iRetCount != 1)
+    if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "tokens", 1);
         return types::Function::Error;
     }
 
-// first arg
-	if(in[0]->isString() == false)
-	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "tokens", 1);
-		return types::Function::Error;
-	}
+    // first arg
+    if (in[0]->isString() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "tokens", 1);
+        return types::Function::Error;
+    }
     pString = in[0]->getAs<types::String>();
-    if(pString->isScalar() == false)
+    if (pString->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "tokens", 1);
         return types::Function::Error;
     }
-    if(wcslen(pString->get(0)) == 0)
+    if (wcslen(pString->get(0)) == 0)
     {
         types::Double* pOutDouble = types::Double::Empty();
         out.push_back(pOutDouble);
         return types::Function::OK;
     }
 
-// second arg
-    if(in.size() == 2)
+    // second arg
+    if (in.size() == 2)
     {
-    	if(in[1]->isString() == false)
-	    {
-		    Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "tokens", 2);
-		    return types::Function::Error;
-	    }
+        if (in[1]->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "tokens", 2);
+            return types::Function::Error;
+        }
         pCharSample = in[1]->getAs<types::String>();
 
-        if(pCharSample->getSize() == 0)
+        if (pCharSample->getSize() == 0)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "tokens", 2);
             return types::Function::Error;
         }
         sizeSeps = pCharSample->getSize();
-        seps = (wchar_t*)MALLOC((sizeSeps+1)*sizeof(wchar_t));
-	    for (int i = 0; i < sizeSeps ; i++)
-	    {
+        seps = (wchar_t*)MALLOC((sizeSeps + 1) * sizeof(wchar_t));
+        for (int i = 0; i < sizeSeps ; i++)
+        {
             int iLen = (int)wcslen(pCharSample->get(i));
-            if(iLen > 1 || iLen < 0)
+            if (iLen > 1 || iLen < 0)
             {
-        		Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "tokens", 2);
-        		delete pOutString;
+                Scierror(999, _("%s: Wrong type for input argument #%d: Char(s) expected.\n"), "tokens", 2);
+                delete pOutString;
                 return types::Function::Error;
             }
             seps[i] = pCharSample->get(i)[0];
@@ -100,29 +100,30 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     else // default delimiters are ' ' and Tabulation
     {
         sizeSeps = 2;
-        seps = (wchar_t*)MALLOC((sizeSeps+1)*sizeof(wchar_t));
+        seps = (wchar_t*)MALLOC((sizeSeps + 1) * sizeof(wchar_t));
         seps[0] = L' ';
         seps[1] = L'\t';
     }
     seps[sizeSeps] = L'\0';
 
     // perfom operation
-    int dimsArray[2] = {0,1};
+    int dimsArray[2] = {0, 1};
     int dims = 2;
 
     wchar_t** Output_Strings = stringTokens(pString->get(0), seps, &dimsArray[0]);
 
-    if(Output_Strings == NULL)
-    {//return empty matrix
+    if (Output_Strings == NULL)
+    {
+        //return empty matrix
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
     else
     {
-        pOutString  = new types::String(dims,dimsArray);
+        pOutString  = new types::String(dims, dimsArray);
         pOutString->set(Output_Strings);
 
-        for(int i = 0 ; i < dimsArray[0] ; i++)
+        for (int i = 0 ; i < dimsArray[0] ; i++)
         {
             FREE(Output_Strings[i]);
         }

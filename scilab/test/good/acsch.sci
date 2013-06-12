@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = acsch(x)
-//Inverse hyperbolic cosecant
-//acsch(x)=  arcsinh(1 ./ x)
-  y = asinh(ones(x)./x);
+    //Inverse hyperbolic cosecant
+    //acsch(x)=  arcsinh(1 ./ x)
+    y = asinh(ones(x)./x);
 endfunction

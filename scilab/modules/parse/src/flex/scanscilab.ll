@@ -15,7 +15,7 @@
 #include "parser_private.hxx"
 
 #include "context.hxx"
-
+ 
 extern "C"
 {
 #include "charEncoding.h"
@@ -92,7 +92,7 @@ id              (([a-zA-Z_%#?$]|{utf})([a-zA-Z_0-9#?$]|{utf})*)
 
 newline			("\r"|"\n"|"\r\n")
 blankline		{spaces}+{newline}
-emptyline       {newline}({spaces}|[,;])+{newline}
+emptyline               {newline}({spaces}|[,;])+{newline}
 next			(".."|"...")
 
 boolnot			("@"|"~")
@@ -125,7 +125,7 @@ endblockcomment		"*/"
 dquote			"\""
 quote			"'"
 
-dot             "."
+dot                     "."
 dotquote		".'"
 dottimes		".*"
 dotrdivide		"./"
@@ -359,8 +359,9 @@ assign			"="
             scan_error("can not convert string to UTF-8");
         }
         yylval.str = new std::wstring(pwText);
-        if (symbol::Context::getInstance()->get(*new symbol::Symbol(*yylval.str)) != NULL
-            && symbol::Context::getInstance()->get(*new symbol::Symbol(*yylval.str))->isCallable())
+	FREE(pwText);
+        if (symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str)) != NULL
+            && symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str))->isCallable())
         {
             scan_throw(ID);
             BEGIN(SHELLMODE);
@@ -593,6 +594,7 @@ assign			"="
         scan_error("can not convert string to UTF-8");
     }
     yylval.str = new std::wstring(pwText);
+    FREE(pwText);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -911,6 +913,7 @@ assign			"="
         scan_error("can not convert string to UTF-8");
     }
     yylval.str = new std::wstring(pwText);
+    FREE(pwText);
 #ifdef TOKENDEV
     std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
 #endif
@@ -1057,7 +1060,9 @@ assign			"="
   }
 
   .						{
-      *yylval.comment += std::wstring(to_wide_string(yytext));
+      wchar_t *pwText = to_wide_string(yytext);
+      *yylval.comment += std::wstring(pwText);
+      FREE(pwText);
   }
 
  <<EOF>>					{
@@ -1236,7 +1241,9 @@ assign			"="
     {assign} {
         if (last_token == STR)
         {
-            yylval.str = new std::wstring(to_wide_string(yytext));
+	    wchar_t *pwText = to_wide_string(yytext);
+            yylval.str = new std::wstring(pwText);
+	    FREE(pwText);
             return scan_throw(STR);
         }
         else
@@ -1249,7 +1256,9 @@ assign			"="
     {lparen} {
         if (last_token == STR)
         {
-            yylval.str = new std::wstring(to_wide_string(yytext));
+	    wchar_t *pwText = to_wide_string(yytext);
+            yylval.str = new std::wstring(pwText);
+	    FREE(pwText);
             return scan_throw(STR);
         }
         else
@@ -1262,7 +1271,9 @@ assign			"="
     {lowerthan} {
         if (last_token == STR)
         {
-            yylval.str = new std::wstring(to_wide_string(yytext));
+	    wchar_t *pwText = to_wide_string(yytext);
+            yylval.str = new std::wstring(pwText);
+	    FREE(pwText);
             return scan_throw(STR);
         }
         else
@@ -1275,7 +1286,9 @@ assign			"="
     {greaterthan} {
         if (last_token == STR)
         {
-            yylval.str = new std::wstring(to_wide_string(yytext));
+	    wchar_t *pwText = to_wide_string(yytext);
+            yylval.str = new std::wstring(pwText);
+	    FREE(pwText);
             return scan_throw(STR);
         }
         else
@@ -1288,7 +1301,9 @@ assign			"="
     {boolnot} {
         if (last_token == STR)
         {
-            yylval.str = new std::wstring(to_wide_string(yytext));
+	    wchar_t *pwText = to_wide_string(yytext);
+            yylval.str = new std::wstring(pwText);
+	    FREE(pwText);
             return scan_throw(STR);
         }
         else
@@ -1300,7 +1315,9 @@ assign			"="
 
 
     [^ \t\v\f\r\n,;'"]+               {
-        yylval.str = new std::wstring(to_wide_string(yytext));
+	wchar_t *pwText = to_wide_string(yytext);
+        yylval.str = new std::wstring(pwText);
+	FREE(pwText);
         return scan_throw(STR);
     }
 
@@ -1318,6 +1335,10 @@ int scan_throw(int token) {
   std::cout << "--> [DEBUG] TOKEN : " << token << std::endl;
 #endif
   return token;
+}
+
+int get_last_token() {
+    return last_token;
 }
 
 void scan_step() {

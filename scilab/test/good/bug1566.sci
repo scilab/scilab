@@ -7,12 +7,12 @@
 mode(-1);
 clear;
 
-err = execstr('TCL_SetVar(''A'',1+%i)','errcatch');
+err = execstr("TCL_SetVar(''A'',1+%i)","errcatch");
 
 if (err== 999) then
-	affich_result(%T,1566);
+    affich_result(%T,1566);
 else
-	affich_result(%F,1566);
+    affich_result(%F,1566);
 end
 
 lasterror();

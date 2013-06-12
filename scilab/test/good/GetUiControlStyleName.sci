@@ -3,27 +3,27 @@
 // INRIA 2005
 // -----------------------------------------------------------
 function SName=GetUiControlStyleName(StyleName)
-  TableStyle = ["pushbutton" ..
-                "radiobutton" ..
-                "checkbox" ..
-                "edit" ..
-                "text" ..
-                "slider" ..
-                "frame" ..
-                "listbox" ..
-               "popupmenu"];
-                        
-  //conversion to lower format
-  str = convstr(StyleName);
-  k=find(part(TableStyle,1:length(str))==str);
+    TableStyle = ["pushbutton" ..
+    "radiobutton" ..
+    "checkbox" ..
+    "edit" ..
+    "text" ..
+    "slider" ..
+    "frame" ..
+    "listbox" ..
+    "popupmenu"];
 
-  if (k == []) then
-    disp("Error in Property specification : bad argument specified");
-    SName='';
-    return;
-  end
+    //conversion to lower format
+    str = convstr(StyleName);
+    k=find(part(TableStyle,1:length(str))==str);
 
-  SName=TableStyle(k);
-                        
+    if (k == []) then
+        disp("Error in Property specification : bad argument specified");
+        SName="";
+        return;
+    end
+
+    SName=TableStyle(k);
+
 endfunction
 // -----------------------------------------------------------

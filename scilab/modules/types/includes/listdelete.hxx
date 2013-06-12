@@ -19,27 +19,36 @@
 
 namespace types
 {
-    class TYPES_IMPEXP ListDelete : public ListOperation
+class TYPES_IMPEXP ListDelete : public ListOperation
+{
+public :
+    ListDelete(): ListOperation() {};
+    virtual                 ~ListDelete();
+
+    // FIXME : Should not return NULL;
+    InternalType*           clone();
+
+    RealType                getType(void);
+    bool                    isListDelete()
     {
-    public :
-                                ListDelete(): ListOperation(){};
-        virtual                 ~ListDelete();
+        return true;
+    }
 
-        // FIXME : Should not return NULL;
-        InternalType*           clone();
+    void                    whoAmI();
 
-        RealType                getType(void);
-        bool                    isListDelete() { return true; }
+    bool                    toString(std::wostringstream& ostr);
 
-        void                    whoAmI();
-
-        bool                    toString(std::wostringstream& ostr);
-
-        /* return type as string ( double, int, cell, list, ... )*/
-        virtual std::wstring    getTypeStr() {return L"listdelete";}
-        /* return type as short string ( s, i, ce, l, ... )*/
-        virtual std::wstring    getShortTypeStr() {return L"";}
-    };
+    /* return type as string ( double, int, cell, list, ... )*/
+    virtual std::wstring    getTypeStr()
+    {
+        return L"listdelete";
+    }
+    /* return type as short string ( s, i, ce, l, ... )*/
+    virtual std::wstring    getShortTypeStr()
+    {
+        return L"";
+    }
+};
 }
 
 

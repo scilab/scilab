@@ -27,20 +27,20 @@ extern "C"
 
 types::Function::ReturnValue sci_abort(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() != 0)
+    if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "abort", 0);
         return types::Function::Error;
     }
 
-    if(_iRetCount > 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "abort", 0, 1);
         return types::Function::Error;
     }
 
     ThreadId* pThreadId = NULL;
-    while((pThreadId = ConfigVariable::getLastPausedThread()) != NULL)
+    while ((pThreadId = ConfigVariable::getLastPausedThread()) != NULL)
     {
         __threadId id = pThreadId->getId();
         pThreadId->abort();

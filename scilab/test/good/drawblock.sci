@@ -20,6 +20,6 @@
 //
 
 function drawblock(o)
-//execstr(o(5)+'(''plot'',o)')
-execstr(o.gui+'(''plot'',o)')
+    //execstr(o(5)+'(''plot'',o)')
+    execstr(o.gui+"(''plot'',o)")
 endfunction

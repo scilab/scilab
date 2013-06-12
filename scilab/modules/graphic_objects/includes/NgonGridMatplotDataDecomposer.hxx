@@ -51,7 +51,7 @@ protected :
      * @param[in] the grid's number of vertices along the y-axis.
      */
     virtual void fillGridVertices(float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask,
-        double* x, double* y, double* z, int numX, int numY);
+                                  double* x, double* y, double* z, int numX, int numY);
 
     /**
      * Determines whether a facet is valid.

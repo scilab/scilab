@@ -40,15 +40,15 @@ function a=sprand(m,n,density,typ)
     //---- generate a sequence of increments----------------------------
     mdist = 1/density //the mean distance between to consecutive index
     nel1  = (2.2-density)*nel; //generate more increments than requested nnz elements
-    ij    = round(1+grand(nel1,1,'exp',(mdist-1)))
+    ij    = round(1+grand(nel1,1,"exp",(mdist-1)))
 
     //---- sum the increments to get the index--------------------------
     ij=cumsum(ij);
 
     //---- eliminate the index with exceed the maximum matrix index
     ij(find(ij>m*n))=[];
-    nel1=size(ij,'*');
-    if nel1==0 then 
+    nel1=size(ij,"*");
+    if nel1==0 then
         a=sparse([],[],[m,n]);
         return
     end

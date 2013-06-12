@@ -9,9 +9,9 @@ clear;
 
 x=int32(253);
 if ((x&int32(1))<>int32(0)) then
-	affich_result(%T,753);
+    affich_result(%T,753);
 else
-	affich_result(%F,753);
+    affich_result(%F,753);
 end
 
 clear

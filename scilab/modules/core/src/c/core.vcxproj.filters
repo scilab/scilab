@@ -233,9 +233,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_macr2tree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_mode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_mtlb_mode.c">
       <Filter>Source Files</Filter>
     </ClCompile>

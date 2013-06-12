@@ -28,9 +28,9 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intcurblk)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int sci_curblock(char *fname,unsigned long fname_len)
+int sci_curblock(char *fname, unsigned long fname_len)
 {
-	C2F(intcurblk)();
-	return 0;
+    C2F(intcurblk)();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

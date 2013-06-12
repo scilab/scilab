@@ -30,7 +30,7 @@ types::Function::ReturnValue sci_historymanager(types::typed_list &in, int _iRet
 {
     types::String* pStr = NULL;
 
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         if (HistoryManager::historyIsEnabled())
         {
@@ -41,23 +41,23 @@ types::Function::ReturnValue sci_historymanager(types::typed_list &in, int _iRet
             out.push_back(new types::String(L"off"));
         }
     }
-    else if(in.size() == 1)
+    else if (in.size() == 1)
     {
-        if((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
+        if ((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "historymanager", 1);
             return types::Function::Error;
         }
 
         pStr = in[0]->getAs<types::String>();
-        if(wcscmp(pStr->get(0),L"on") == 0)
+        if (wcscmp(pStr->get(0), L"on") == 0)
         {
             char* pstCommentBeginSession = getCommentDateSession(FALSE);
             HistoryManager::getInstance()->appendLine(pstCommentBeginSession);
             out.push_back(new types::String(L"on"));
             FREE(pstCommentBeginSession);
         }
-        else if(wcscmp(pStr->get(0),L"off") == 0)
+        else if (wcscmp(pStr->get(0), L"off") == 0)
         {
             HistoryManager::killInstance();
             out.push_back(new types::String(L"off"));

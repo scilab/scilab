@@ -13,7 +13,7 @@
 #ifndef __GET_UICONTROL_LISTBOXTOP_HXX__
 #define __GET_UICONTROL_LISTBOXTOP_HXX__
 
-extern "C"{
+extern "C" {
 #include "localization.h"
 #include "GetUicontrolListboxTop.h"
 #include "Scierror.h"

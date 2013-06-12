@@ -62,7 +62,11 @@ wchar_t* computeHOMEW(void)
 {
     char* pstTemp = computeHOME();
     wchar_t* pstReturn = to_wide_string(pstTemp);
-    FREE(pstTemp);
+    if (pstTemp)
+    {
+        delete[] pstTemp;
+    }
+
     return pstReturn;
 }
 /*--------------------------------------------------------------------------*/
@@ -75,7 +79,7 @@ char* computeHOME(void)
         int lbuf = PATH_MAX;
         char *pstUserProfile = new char[PATH_MAX];
         getenvc(&ierr, "USERPROFILE", pstUserProfile, &lbuf, &iflag);
-        if(ierr != 1)
+        if (ierr != 1)
         {
             return pstUserProfile;
         }
@@ -83,7 +87,7 @@ char* computeHOME(void)
         {
             /* if USERPROFILE is not defined , we use default profile */
             getenvc(&ierr, "ALLUSERSPROFILE", pstUserProfile, &lbuf, &iflag);
-            if(ierr != 1)
+            if (ierr != 1)
             {
                 return pstUserProfile;
             }
@@ -102,11 +106,11 @@ char* getenvHOME(void)
     int lbuf = PATH_MAX;
     char *Home = new char[PATH_MAX];
 
-    if(Home)
+    if (Home)
     {
         getenvc(&ierr, "HOME", Home, &lbuf, &iflag);
 
-        if(ierr == 1)
+        if (ierr == 1)
         {
             return NULL;
         }
@@ -142,15 +146,15 @@ void putenvHOME(const char* _home)
         /* c:/progra~1/scilab-5.0 */
         bool bConvertOK = false;
         ShortPath = getshortpathname(_home, &bConvertOK);
-        AntislashToSlash(ShortPath,CopyOfDefaultPath);
+        AntislashToSlash(ShortPath, CopyOfDefaultPath);
         setenvc("HOME", ShortPath);
-        if(CopyOfDefaultPath)
+        if (CopyOfDefaultPath)
         {
             delete[] CopyOfDefaultPath;
             CopyOfDefaultPath = NULL;
         }
 
-        if(ShortPath)
+        if (ShortPath)
         {
             delete[] ShortPath;
             ShortPath = NULL;

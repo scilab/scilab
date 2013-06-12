@@ -4,12 +4,12 @@ mode (-1)
 clear all
 //getf ('../fonct_qualif.sci')
 
-files = ['']
-files=listfiles([SCI+'/macros/scicos/*.cosf'])
+files = [""]
+files=listfiles([SCI+"/macros/scicos/*.cosf"])
 
-affich_result(files <> [''], 6)
+affich_result(files <> [""], 6)
 
-//disp("Error n° "+string(ierr))
+//disp("Error nÂ° "+string(ierr))
 //disp(lasterror());
 
 clear all

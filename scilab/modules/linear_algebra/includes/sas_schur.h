@@ -22,11 +22,11 @@ typedef int (*dgees_select_t)(double const* wReal, double const* wImg);
 
 typedef union schur_function_ptr
 {
-  void (*none)(void);
-  zgges_select_t zgges_select;
-  dgges_select_t dgges_select;
-  zgees_select_t zgees_select;
-  dgees_select_t dgees_select;
+    void (*none)(void);
+    zgges_select_t zgges_select;
+    dgges_select_t dgges_select;
+    zgees_select_t zgees_select;
+    dgees_select_t dgees_select;
 } schur_select_type;
 
 

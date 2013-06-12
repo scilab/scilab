@@ -61,8 +61,8 @@
 		<File RelativePath=".\ordmmd.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ordmmd.f"/>
 		<File RelativePath="spreshape.f"/>
-		<File RelativePath="spt.f"/>
+		<File RelativePath="spt.f"/>      
 		<File RelativePath="sz2ptr.f"/></Filter>
 		<File RelativePath="..\..\Makefile.am"/>
-		<File RelativePath="..\..\sci_gateway\sparse_gateway.xml"/></Files>
+    </Files>
 	<Globals/></VisualStudioProject>

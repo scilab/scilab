@@ -29,7 +29,8 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
     GenericType::RealType TypeR = _pRightOperand->getType();
 
     /*
-    ** DOUBLE .* DOUBLE
+    ** DOUBLE ^ DOUBLE
+    ** DOUBLE ** DOUBLE
     */
     if (_pLeftOperand->isDouble() && _pRightOperand->isDouble())
     {
@@ -44,10 +45,15 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
 
         return pResult;
     }
-    else if (_pLeftOperand->isPoly() && _pRightOperand->isDouble())
+
+    /*
+    ** POLY ^ DOUBLE
+    ** POLY ** DOUBLE
+    */
+    if (_pLeftOperand->isPoly() && _pRightOperand->isDouble())
     {
         Polynom *pL   = _pLeftOperand->getAs<Polynom>();
-        Double *pR   = _pRightOperand->getAs<Double>();
+        Double *pR    = _pRightOperand->getAs<Double>();
 
         int iResult = PowerPolyByDouble(pL, pR, &pResult);
         switch (iResult)
@@ -78,7 +84,8 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
     GenericType::RealType TypeR = _pRightOperand->getType();
 
     /*
-    ** DOUBLE .* DOUBLE
+    ** DOUBLE .^ DOUBLE
+    ** DOUBLE .** DOUBLE
     */
     if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
     {
@@ -93,7 +100,12 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
 
         return pResult;
     }
-    else if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+
+    /*
+    ** POLY .^ DOUBLE
+    ** POLY .** DOUBLE
+    */
+    if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
     {
         Polynom *pL   = _pLeftOperand->getAs<Polynom>();
         Double *pR   = _pRightOperand->getAs<Double>();
@@ -256,7 +268,7 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
     if (bScalar2 && ( _pDouble1->getRows() == _pDouble1->getCols()))
     {
         //power of a square matrix by a scalar exponent.
-
+        int iRet = 0;
         if (bComplex2)
         {
             //mange by overloading
@@ -266,17 +278,25 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
         *_pDoubleOut = new Double(_pDouble1->getRows(), _pDouble1->getCols() , true);
         if (bComplex1 == false)
         {
-            iPowerRealSquareMatrixByRealScalar(
-                _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->get(0),
-                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
+            iRet = iPowerRealSquareMatrixByRealScalar(
+                       _pDouble1->get(), _pDouble1->getRows(), _pDouble1->getCols(),
+                       _pDouble2->get(0),
+                       (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg(), &iComplex);
         }
         else if (bComplex1 == true)
         {
-            iPowerComplexSquareMatrixByRealScalar(
-                _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
-                _pDouble2->get(0),
-                (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+            iRet = iPowerComplexSquareMatrixByRealScalar(
+                       _pDouble1->get(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
+                       _pDouble2->get(0),
+                       (*_pDoubleOut)->get(), (*_pDoubleOut)->getImg());
+        }
+
+        // call overload
+        if (iRet == -1)
+        {
+            delete *_pDoubleOut;
+            *_pDoubleOut = NULL;
+            return 0;
         }
 
         if (iComplex == 0)

@@ -18,13 +18,13 @@
 #endif
 
 #ifdef _MSC_VER
-	#if SYMBOL_EXPORTS
-		#define EXTERN_SYMBOL __declspec (dllexport)
-	#else
-		#define EXTERN_SYMBOL __declspec (dllimport)
-	#endif
+#if SYMBOL_EXPORTS
+#define EXTERN_SYMBOL __declspec (dllexport)
 #else
-	#define EXTERN_SYMBOL 
+#define EXTERN_SYMBOL __declspec (dllimport)
+#endif
+#else
+#define EXTERN_SYMBOL
 #endif
 
 #endif /* __EXPORT_SYMBOL_H__ */

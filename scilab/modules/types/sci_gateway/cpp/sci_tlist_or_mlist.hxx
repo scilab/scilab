@@ -33,13 +33,13 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     TorMList* pRetVal = NULL;
 
     //check input parameters
-    if(in.size() < 1)
+    if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), _pstrFunName ,1);
+        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), _pstrFunName , 1);
         return Function::Error;
     }
 
-    if(in[0]->isString() == false)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), _pstrFunName, 1);
         return Function::Error;
@@ -50,12 +50,12 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
 
     //first string is the tlist type
     list<wstring> fieldNames;
-    for(int i = 1 ; i < pS->getSize() ; i++)
+    for (int i = 1 ; i < pS->getSize() ; i++)
     {
         list<wstring>::iterator it;
-        for(it = fieldNames.begin() ; it != fieldNames.end() ; it++)
+        for (it = fieldNames.begin() ; it != fieldNames.end() ; it++)
         {
-            if(*it == wstring(pS->get(i)))
+            if (*it == wstring(pS->get(i)))
             {
                 char* pstFunName = wide_string_to_UTF8(_pstrFunName);
                 Scierror(999, _("%s : Fields names must be unique"), pstFunName);
@@ -67,13 +67,13 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     }
 
     pRetVal = new TorMList();
-    for(unsigned int i = 0 ; i < in.size() ; i++)
+    for (unsigned int i = 0 ; i < in.size() ; i++)
     {
         pRetVal->append(in[i]);
     }
 
     //fill empty field with []
-    while(pRetVal->getSize() < pS->getSize())
+    while (pRetVal->getSize() < pS->getSize())
     {
         pRetVal->append(Double::Empty());
     }

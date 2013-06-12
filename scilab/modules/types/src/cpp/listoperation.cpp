@@ -18,28 +18,28 @@
 
 namespace types
 {
-	ListOperation::~ListOperation()
-	{
-	}
+ListOperation::~ListOperation()
+{
+}
 
-	void ListOperation::whoAmI()
-	{
-		std::cout << "types::ListDelete";
-	}
+void ListOperation::whoAmI()
+{
+    std::cout << "types::ListDelete";
+}
 
-	InternalType* ListOperation::clone(void)
-	{
-		return new ListOperation();
-	}
+InternalType* ListOperation::clone(void)
+{
+    return new ListOperation();
+}
 
-	InternalType::RealType ListOperation::getType(void)
-	{
-		return RealListOperation;
-	}
+InternalType::RealType ListOperation::getType(void)
+{
+    return RealListOperation;
+}
 
-    bool ListOperation::toString(std::wostringstream& ostr)
-    {
-        ostr << L"FIXME : Implement ListOperation::toString" << std::endl;
-        return true;
-    }
+bool ListOperation::toString(std::wostringstream& ostr)
+{
+    ostr << L"FIXME : Implement ListOperation::toString" << std::endl;
+    return true;
+}
 }

@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+
 /*
 **  -*- C -*-
 **
@@ -43,41 +43,44 @@ int isSymmetric(double* _pdblReal, double* _pdblImg, int _iIsComplex, int _iRows
     int iCol    = 0;
 
     // If the matrix is not Square, it can not be symmetric
-    if(_iRows != _iCols)
+    if (_iRows != _iCols)
     {
         return NOT_SYMMETRIC;
     }
 
-    if(_iIsComplex)
-    {// complex case
+    if (_iIsComplex)
+    {
+        // complex case
 
         //matrix must be an Hermitian matrix
 
         //Diag must be real
-        for(iDiag = 0 ; iDiag < _iRows ; iDiag++)
+        for (iDiag = 0 ; iDiag < _iRows ; iDiag++)
         {
             int iPos = iDiag + iDiag * _iRows;
-            if(_pdblImg[iPos] != 0)
+            if (_pdblImg[iPos] != 0)
             {
                 return NOT_SYMMETRIC;
             }
         }
 
         //real part == real part and img part == -(img part)
-        for(iRow = 0 ; iRow < _iRows; iRow++)
+        for (iRow = 0 ; iRow < _iRows; iRow++)
         {
-            for(iCol = 0 ; iCol < iRow ; iCol++)
+            for (iCol = 0 ; iCol < iRow ; iCol++)
             {
                 int iRef    = iRow + iCol * _iRows;
                 int iCheck  = iCol + iRow * _iRows;
 
-                if(_pdblReal[iRef] != _pdblReal[iCheck])
-                {//real part
+                if (_pdblReal[iRef] != _pdblReal[iCheck])
+                {
+                    //real part
                     return NOT_SYMMETRIC;
                 }
 
-                if(_pdblImg[iRef] != -(_pdblImg[iCheck]))
-                {//real part
+                if (_pdblImg[iRef] != -(_pdblImg[iCheck]))
+                {
+                    //real part
                     return NOT_SYMMETRIC;
                 }
 
@@ -85,16 +88,18 @@ int isSymmetric(double* _pdblReal, double* _pdblImg, int _iIsComplex, int _iRows
         }
     }
     else
-    {//real case
-        for(iRow = 0 ; iRow < _iRows; iRow++)
+    {
+        //real case
+        for (iRow = 0 ; iRow < _iRows; iRow++)
         {
-            for(iCol = 0 ; iCol < iRow ; iCol++)
+            for (iCol = 0 ; iCol < iRow ; iCol++)
             {
                 int iRef    = iRow + iCol * _iRows;
                 int iCheck  = iCol + iRow * _iRows;
 
-                if(_pdblReal[iRef] != _pdblReal[iCheck])
-                {//real part
+                if (_pdblReal[iRef] != _pdblReal[iCheck])
+                {
+                    //real part
                     return NOT_SYMMETRIC;
                 }
             }

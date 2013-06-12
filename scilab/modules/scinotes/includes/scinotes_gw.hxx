@@ -20,7 +20,7 @@
 //private :
 //   ScinotesModule() {};
 //   ~ScinotesModule() {};
-//   
+//
 //   static bool loadedDep;
 //   static void LoadDeps(void);
 //

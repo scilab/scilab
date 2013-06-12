@@ -4,6 +4,6 @@ g=9.8;
 t0=0;
 t=0:.1:1.5;
 z0=[%pi/2;%pi/2;0;0];
-getf('dpend.sci');
+getf("dpend.sci");
 z=ode(z0,t0,t,dpend);
 pp(z);

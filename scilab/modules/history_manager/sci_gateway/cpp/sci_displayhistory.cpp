@@ -25,7 +25,7 @@ extern "C"
 
 types::Function::ReturnValue sci_displayhistory(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if(in.size() == 0)
+    if (in.size() == 0)
     {
         HistoryManager::getInstance()->displayHistory();
     }

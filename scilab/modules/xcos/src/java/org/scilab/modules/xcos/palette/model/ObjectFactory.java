@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRegistry;
  * can consist of schema derived interfaces and classes representing the binding
  * of schema type definitions, element declarations and model groups. Factory
  * methods for each of these are provided in this class.
- * 
+ *
  */
 @XmlRegistry
 public class ObjectFactory {
@@ -32,14 +32,14 @@ public class ObjectFactory {
     /**
      * Create a new ObjectFactory that can be used to create new instances of
      * schema derived classes for package: org.scilab.modules.xcos.palette.model
-     * 
+     *
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link PaletteBlock }
-     * 
+     *
      * @return a new instance
      */
     public PaletteBlock createPaletteBlock() {
@@ -48,7 +48,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Category }
-     * 
+     *
      * @return a new instance
      */
     public Category createCategory() {
@@ -57,7 +57,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Custom }
-     * 
+     *
      * @return a new instance
      */
     public Custom createCustom() {
@@ -66,7 +66,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PreLoaded }
-     * 
+     *
      * @return a new instance
      */
     public PreLoaded createPreLoaded() {
@@ -75,7 +75,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link VariablePath }
-     * 
+     *
      * @return a new instance
      */
     public VariablePath createVariablePath() {

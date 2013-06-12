@@ -50,9 +50,6 @@
     <ClCompile Include="hess.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="invert_matrix.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lsq.c">
       <Filter>Source Files</Filter>
     </ClCompile>

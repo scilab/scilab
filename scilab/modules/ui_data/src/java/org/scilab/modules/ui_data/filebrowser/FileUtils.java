@@ -108,8 +108,9 @@ public final class FileUtils {
                 reader.close();
                 int i = 0;
                 if (len != -1) {
-                    for (; i < len && buffer[i] != '\0'; i++)
+                    for (; i < len && buffer[i] != '\0'; i++) {
                         ;
+                    }
                 }
 
                 return len != -1 && i != len;

@@ -78,7 +78,7 @@ msgstr "%s: Неверный размер входного параметра �
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorisation.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: несовместим с разложением "

@@ -19,106 +19,120 @@
 #include "os_wcsdup.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	#include <Windows.h> /* GetShortPathNameW */
-	#ifndef MAX_PATH_SHORT
-		#define MAX_PATH_SHORT 260
-	#endif
+#include <Windows.h> /* GetShortPathNameW */
+#ifndef MAX_PATH_SHORT
+#define MAX_PATH_SHORT 260
+#endif
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(getshortpathname)(char *pathname,int *len)
+int C2F(getshortpathname)(char *pathname, int *len)
 {
-	if (pathname)
-	{
-		BOOL bConvert = FALSE;
-		char *result = NULL;
-		pathname[*len] = 0;
-		result = getshortpathname(pathname,&bConvert);
-		if (result)
-		{
-			strcpy(pathname, result);
-			*len = (int)strlen(result);
-			FREE(result);
-			result = NULL;
-			return 1;
-		}
-	}
-	return 0;
+    if (pathname)
+    {
+        BOOL bConvert = FALSE;
+        char *result = NULL;
+        pathname[*len] = 0;
+        result = getshortpathname(pathname, &bConvert);
+        if (result)
+        {
+            strcpy(pathname, result);
+            *len = (int)strlen(result);
+            FREE(result);
+            result = NULL;
+            return 1;
+        }
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-char *getshortpathname(char *longpathname,BOOL *convertok)
+char *getshortpathname(char *longpathname, BOOL *convertok)
 {
-	char *ShortName = NULL;
+    char *ShortName = NULL;
 
-	if (longpathname)
-	{
-		#ifdef _MSC_VER
-		/* first we try to call to know path length */
-		wchar_t *ptwlongpathname = to_wide_string(longpathname);
-		wchar_t *ptwShortName = NULL;
-		int length = GetShortPathNameW(ptwlongpathname, NULL, 0);
+    if (longpathname)
+    {
+#ifdef _MSC_VER
+        /* first we try to call to know path length */
+        wchar_t *ptwlongpathname = to_wide_string(longpathname);
+        wchar_t *ptwShortName = NULL;
+        int length = GetShortPathNameW(ptwlongpathname, NULL, 0);
 
-		if (length <= 0 ) length = MAX_PATH_SHORT;
+        if (length <= 0 )
+        {
+            length = MAX_PATH_SHORT;
+        }
 
-		ptwShortName = (wchar_t*)MALLOC((length + 1)*sizeof(wchar_t));
+        ptwShortName = (wchar_t*)MALLOC((length + 1) * sizeof(wchar_t));
 
-		if (ptwShortName)
-		{
-			/* second converts path */
-			if ( GetShortPathNameW(ptwlongpathname, ptwShortName, length) )
-			{
-				ShortName = wide_string_to_UTF8(ptwShortName);
-				*convertok = TRUE;
-			}
-			else
-			{
-				/* FAILED */
-				ShortName = os_strdup(longpathname);
-				*convertok = FALSE;
-			}
-			if (ptwShortName) {FREE(ptwShortName);ptwShortName = NULL;}
-		}
-		else
-		{
-			/* FAILED */
-			ShortName = os_strdup(longpathname);
-			*convertok = FALSE;
-		}
-		if (ptwlongpathname) { FREE(ptwlongpathname); ptwlongpathname = NULL;}
-		#else
-		/* Linux */
-		int length = (int)strlen(longpathname) + 1;
-		ShortName = (char*)MALLOC((length) * sizeof(char));
-		if (ShortName) strcpy(ShortName, longpathname);
-		*convertok = FALSE;
-		#endif
-	}
-	else
-	{
-		/* FAILED */
-		*convertok = FALSE;
-	}
-	return ShortName;
+        if (ptwShortName)
+        {
+            /* second converts path */
+            if ( GetShortPathNameW(ptwlongpathname, ptwShortName, length) )
+            {
+                ShortName = wide_string_to_UTF8(ptwShortName);
+                *convertok = TRUE;
+            }
+            else
+            {
+                /* FAILED */
+                ShortName = os_strdup(longpathname);
+                *convertok = FALSE;
+            }
+            if (ptwShortName)
+            {
+                FREE(ptwShortName);
+                ptwShortName = NULL;
+            }
+        }
+        else
+        {
+            /* FAILED */
+            ShortName = os_strdup(longpathname);
+            *convertok = FALSE;
+        }
+        if (ptwlongpathname)
+        {
+            FREE(ptwlongpathname);
+            ptwlongpathname = NULL;
+        }
+#else
+        /* Linux */
+        int length = (int)strlen(longpathname) + 1;
+        ShortName = (char*)MALLOC((length) * sizeof(char));
+        if (ShortName)
+        {
+            strcpy(ShortName, longpathname);
+        }
+        *convertok = FALSE;
+#endif
+    }
+    else
+    {
+        /* FAILED */
+        *convertok = FALSE;
+    }
+    return ShortName;
 }
 /*--------------------------------------------------------------------------*/
 wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK)
 {
     wchar_t* pwstOutput = NULL;
-    if(_pwstLongPathName)
+    if (_pwstLongPathName)
     {
 #ifdef _MSC_VER
         int iLen = GetShortPathNameW(_pwstLongPathName, NULL, 0);
 
-        if(iLen <= 0)
+        if (iLen <= 0)
         {
             iLen = MAX_PATH_SHORT;
         }
 
         pwstOutput = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
 
-        if(pwstOutput)
+        if (pwstOutput)
         {
             /* second converts path */
-            if(GetShortPathNameW(_pwstLongPathName, pwstOutput, iLen))
+            if (GetShortPathNameW(_pwstLongPathName, pwstOutput, iLen))
             {
                 *_pbOK = TRUE;
             }
@@ -136,9 +150,9 @@ wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK)
             *_pbOK = FALSE;
         }
 #else
-		/* Linux and MacOS*/
+        /* Linux and MacOS*/
         pwstOutput = os_wcsdup(_pwstLongPathName);
-		*_pbOK = FALSE;
+        *_pbOK = FALSE;
 #endif
     }
     else

@@ -3,17 +3,17 @@
 // Auteur : Jacques Richalet
 // 2007
 //----------------------------------------------------------------------------
-clear('all') ;
+clear("all") ;
 close() ;
 xdel(winsid());
 mode(-1);
 //----------------------------------------------------------------------------
 //load 'qdescira2.dat'
-load('qdescira.dat');
+load("qdescira.dat");
 tf=length(w);
 tech=1;
 w=1:1:tf;
-u=ones(1,tf); 
+u=ones(1,tf);
 qdes=v1;
 tdes=v2;
 tsur=v3;
@@ -21,10 +21,10 @@ tsur=v3;
 // Representation
 scf(1);
 a=gca(1);
-a.auto_clear='on';
-plot(w, qdes, 'b');
+a.auto_clear="on";
+plot(w, qdes, "b");
 xgrid();
-xtitle ( 'Avant filtrage qdes b/ tdes  r');
+xtitle ( "Avant filtrage qdes b/ tdes  r");
 //disp(tf);
 qdespb=qdes;
 tdespb=tdes;//filtres
@@ -33,7 +33,7 @@ tdesph1=tdes;
 qdesph2=qdes*0;
 tdesph2=tdes*0;
 
-//FILTRAGE parallèle 
+//FILTRAGE parallÃ¨le
 //passe bas
 //taub=input('taub (20) ');//%constante de temps du filtre  ( omegcoupure=1/tau  , ne pas oublier..!)
 taub=20;
@@ -45,36 +45,36 @@ tauh=1000;
 afh=exp(-tech/tauh);
 bfh=1-afh;//% passage en discre
 for ii=2:1:tf
-  //  filtre passe bas
-  qdespb(ii)=qdespb(ii-1)*afb+bfb*qdes(ii);
-  tdespb(ii)=tdespb(ii-1)*afb+bfb*tdes(ii);
-  
-  //filtre passe-haut
-  qdesph1(ii)=qdesph1(ii-1)*afh+bfh*qdespb(ii);
-  tdesph1(ii)=tdesph1(ii-1)*afh+bfh*tdespb(ii);
+    //  filtre passe bas
+    qdespb(ii)=qdespb(ii-1)*afb+bfb*qdes(ii);
+    tdespb(ii)=tdespb(ii-1)*afb+bfb*tdes(ii);
 
-  qdesph2(ii)=qdespb(ii)-qdesph1(ii);
-  tdesph2(ii)=tdespb(ii)-tdesph1(ii);
+    //filtre passe-haut
+    qdesph1(ii)=qdesph1(ii-1)*afh+bfh*qdespb(ii);
+    tdesph1(ii)=tdesph1(ii-1)*afh+bfh*tdespb(ii);
+
+    qdesph2(ii)=qdespb(ii)-qdesph1(ii);
+    tdesph2(ii)=tdespb(ii)-tdesph1(ii);
 end
 
 qdes=qdesph2;
 tdes=tdesph2;
 T=tsur*0-tdes;
 Tm=T;
- 
+
 // Representation
 scf(2);
 a=gca();
-a.auto_clear='on';
-plot(w, qdes, 'b',w,T,'r');
+a.auto_clear="on";
+plot(w, qdes, "b",w,T,"r");
 xgrid();
-xtitle( 'Après filtrage parallèle :Qdes b/ Tsur-Tdes  r');
+xtitle( "AprÃ¨s filtrage parallÃ¨le :Qdes b/ Tsur-Tdes  r");
 
 //%-----identification rapide
 CC=10e10;
 taumin=20;
 taumax=39;
-tinit=410; //% début identification;
+tinit=410; //% dÃ©but identification;
 tfin=tf;
 N=60;
 e= qdes;
@@ -84,10 +84,10 @@ VPP=0;
 niv=0;
 ecart=1.1;
 for ii=2:1:tf
-  if ( ii > tinit ) & ( ii < tfin ) then
-    VPP=VPP+sp(ii)*sp(ii);
-  end
-  niv=niv+ecart*ecart;
+    if ( ii > tinit ) & ( ii < tfin ) then
+        VPP=VPP+sp(ii)*sp(ii);
+    end
+    niv=niv+ecart*ecart;
 end
 
 niv=niv/(tf-tinit);
@@ -99,44 +99,44 @@ niv
 timer();
 //-----------------------------------------------------------------------------
 for j=1:1:N
-  taum=taumin+(j-1)*(taumax-taumin)/(N-1);
-  am=exp(-tech/taum);
-  bm=1-am;     
-  smm=sp;
-  t(j)=taum;
-  VMM=0;
-  VMP=0;
-  for ii=2:1:tf
-    if ( ii < tinit ) then
-      smm(ii)=sp(ii)*0;
-    else
-      smm(ii)=smm(ii-1)*am+bm*e(ii-1);
+    taum=taumin+(j-1)*(taumax-taumin)/(N-1);
+    am=exp(-tech/taum);
+    bm=1-am;
+    smm=sp;
+    t(j)=taum;
+    VMM=0;
+    VMP=0;
+    for ii=2:1:tf
+        if ( ii < tinit ) then
+            smm(ii)=sp(ii)*0;
+        else
+            smm(ii)=smm(ii-1)*am+bm*e(ii-1);
+        end
+        if ( ii > tinit ) & ( ii < tfin )
+            VMM=VMM+smm(ii)*smm(ii);
+            VMP=VMP+smm(ii)*sp(ii);
+        end
     end
-    if ( ii > tinit ) & ( ii < tfin ) 
-      VMM=VMM+smm(ii)*smm(ii);
-      VMP=VMP+smm(ii)*sp(ii);
+    Vmm(j)=VMM;
+    Vmp(j)=VMP;
+    K(j)=VMP/VMM;
+    C=K(j)*K(j)*VMM-2*K(j)*VMP+VPP;
+    if ( C < Cmin ) then
+        Cmin=C;
+        Kopt=K(j);
+        tauopt=t(j);
+        Copt=C;
+        jopt=j;
     end
-  end
-  Vmm(j)=VMM;
-  Vmp(j)=VMP;
-  K(j)=VMP/VMM;
-  C=K(j)*K(j)*VMM-2*K(j)*VMP+VPP;
-  if ( C < Cmin ) then 
-    Cmin=C;
-    Kopt=K(j);
-    tauopt=t(j);
-    Copt=C;
-    jopt=j;
-  end
 end
 
 for j=1:1:N
-  deter = Vmp(j)*Vmp(j)-Vmm(j)*(VPP-Copt*niv);
-  if (deter > 0 ) then 
-    k1(j)=(Vmp(j)-sqrt(deter))/Vmm(j);k2(j)=(Vmp(j)+sqrt(deter))/Vmm(j);
-  else
-    k1(j)=Vmp(j)/Vmm(j);k2(j)=k1(j);
-  end           
+    deter = Vmp(j)*Vmp(j)-Vmm(j)*(VPP-Copt*niv);
+    if (deter > 0 ) then
+        k1(j)=(Vmp(j)-sqrt(deter))/Vmm(j);k2(j)=(Vmp(j)+sqrt(deter))/Vmm(j);
+    else
+        k1(j)=Vmp(j)/Vmm(j);k2(j)=k1(j);
+    end
 end
 
 //break
@@ -146,18 +146,18 @@ disp(Kopt)
 //disp(['Kopt     = ' num2str(Kopt)])
 //disp(['tauopt   = ' num2str(tauopt)])
 //%disp(['retard   = ' num2str(rm)])
-//%tracé model:process
+//%tracÃ© model:process
 
 am=exp(-tech/tauopt);
 bm=1-am;
 smm=sp*0;
 
-for ii=2:1:tf;//%-----------------simulation modèle
-  if ( ii < tinit ) then 
-   smm(ii)=sp(ii)*0;
-  else
-   smm(ii)=smm(ii-1)*am+bm*e(ii-1)*Kopt;
-  end
+for ii=2:1:tf;//%-----------------simulation modÃ¨le
+    if ( ii < tinit ) then
+        smm(ii)=sp(ii)*0;
+    else
+        smm(ii)=smm(ii-1)*am+bm*e(ii-1)*Kopt;
+    end
 end
 disp(timer())
 CRIT=mean(abs(smm (tinit:tfin)-sp(tinit:tfin)));
@@ -166,16 +166,16 @@ disp(CRIT);
 // Representation
 scf(3);
 a=gca();
-a.auto_clear='on';
-plot(w, e, 'b',w,smm,'k',w,sp,'r');
+a.auto_clear="on";
+plot(w, e, "b",w,smm,"k",w,sp,"r");
 xgrid();
-xtitle(' IDENTIFICATION  Tdes Sollac :qdes b/ tsur-tdes r/ smm k') ;
+xtitle(" IDENTIFICATION  Tdes Sollac :qdes b/ tsur-tdes r/ smm k") ;
 
 scf(4);
 a=gca();
-%a.auto_clear='on';
+%a.auto_clear="on";
 //set(gca),("data bounds" (20 45;0 5)) ???--------------------------------------------axis?
-plot(t,k1,'r',t,k2,'r',t,K,'b',tauopt,Kopt,'r*'); 
+plot(t,k1,"r",t,k2,"r",t,K,"b",tauopt,Kopt,"r*");
 xgrid ();
 
 T=floor(tauopt*100)/100;
@@ -184,10 +184,10 @@ kmin=min(k2);
 K=floor(Kopt*100)/100;
 tabsc=taumax-0.05*(taumax-taumin);
 
-xstring(tabsc, kmin+0.01*(kmax-kmin),'tau');
-xstring(1.01*taumin, kmax,'K');
+xstring(tabsc, kmin+0.01*(kmax-kmin),"tau");
+xstring(1.01*taumin, kmax,"K");
 //xstring(tauopt,Kopt*1.005,['tau=', num2str(T)],'FontSize',12);------------------num2string
 //xstring(tauopt,Kopt/1.005,['K=', num2str(K)],'FontSize',12);
-xtitle(' ISO-DISTANCE   tau / K ');
+xtitle(" ISO-DISTANCE   tau / K ");
 //----------------------------------------------------------------------------
 

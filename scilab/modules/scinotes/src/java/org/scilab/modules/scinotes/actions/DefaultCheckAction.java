@@ -51,14 +51,14 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
         editorBackup = editor;
 
         setCallback(new CommonCallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
-                public void callBack() {
-                    doAction();
-                }
+            public void callBack() {
+                doAction();
+            }
 
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        });
     }
 
     /**
@@ -73,14 +73,14 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
         setState(true);
         editorBackup = editor;
         setCallback(new CommonCallBack(SciNotesMessages.DEFAULT + SciNotesMessages.DOTS) {
-                public void callBack() {
-                    doAction();
-                }
+            public void callBack() {
+                doAction();
+            }
 
-                public void actionPerformed(ActionEvent e) {
-                    callBack();
-                }
-            });
+            public void actionPerformed(ActionEvent e) {
+                callBack();
+            }
+        });
     }
 
     /**

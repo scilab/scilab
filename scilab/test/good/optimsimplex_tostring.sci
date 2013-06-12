@@ -16,6 +16,6 @@
 //   <no arg>
 //
 function str = optimsimplex_tostring ( this )
-  warnobsolete("string", "optimsimplex_tostring")
-  str = string(this)
+    warnobsolete("string", "optimsimplex_tostring")
+    str = string(this)
 endfunction

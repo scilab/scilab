@@ -109,7 +109,7 @@ function [insList,depTree] = atomsInstallList(packages,section)
                 module_full_name = this_package_name+" - "+this_package_version;
             end
             atomsError("error", ..
-                msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstallList",module_full_name));
+            msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstallList",module_full_name));
         end
 
         // Fill the version if it doesn't contain the packaging version
@@ -121,7 +121,7 @@ function [insList,depTree] = atomsInstallList(packages,section)
 
         if (type(tree) == 4) & (~ tree) then
             atomsError("error", ..
-                msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList",1));
+            msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList",1));
         end
 
         // Update the  package_versions(i) with the version returned by
@@ -246,11 +246,11 @@ function result = atomsPackagingVersion(packages)
         if isempty(version) then
             result(i) = "";
 
-        // 2nd case : the packaging version is already mentioned
+            // 2nd case : the packaging version is already mentioned
         elseif ~ isempty(strindex(version,"-")) then
             result(i) = version;
 
-        // 3rd case : the packaging version is not mentioned
+            // 3rd case : the packaging version is not mentioned
         else
 
             // Loop on this packages versions

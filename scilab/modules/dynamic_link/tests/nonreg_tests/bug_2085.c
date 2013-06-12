@@ -27,10 +27,16 @@ int intex2c(char *fname)
 static void f99(double *ar, double *ac, int *ita, int *ma, int *na)
 {
     int i = 0;
-    for ( i = 0 ; i < (*ma) * (*na) ; i++) ar[i] = 2 * ar[i] ;
+    for ( i = 0 ; i < (*ma) * (*na) ; i++)
+    {
+        ar[i] = 2 * ar[i] ;
+    }
     if ( *ita == 1)
     {
-        for ( i = 0 ; i < (*ma) * (*na) ; i++) ac[i] = 3 * ac[i] ;
+        for ( i = 0 ; i < (*ma) * (*na) ; i++)
+        {
+            ac[i] = 3 * ac[i] ;
+        }
     }
 }
 /* ============================================== */

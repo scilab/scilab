@@ -18,28 +18,28 @@ import javax.swing.RowFilter;
 
 import org.scilab.modules.ui_data.BrowseVar;
 
-public class VariableBrowserRowDataFilter extends RowFilter<Object, Object>{
+public class VariableBrowserRowDataFilter extends RowFilter<Object, Object> {
 
-//	private HashSet<Boolean> filteredValues = new HashSet<Boolean>();
+    //	private HashSet<Boolean> filteredValues = new HashSet<Boolean>();
     private Boolean filteredValues;
 
-	public VariableBrowserRowDataFilter() {
-		super();
-	}
+    public VariableBrowserRowDataFilter() {
+        super();
+    }
 
-	public VariableBrowserRowDataFilter(Boolean filteredValues) {
-		this.filteredValues = filteredValues;
-	}
+    public VariableBrowserRowDataFilter(Boolean filteredValues) {
+        this.filteredValues = filteredValues;
+    }
 
 
-	@Override
-	public boolean include(Entry< ? extends Object, ? extends Object> entry) {
-		boolean currentRowVariableclassNumber = ((Boolean) entry.getValue(BrowseVar.FROM_SCILAB_COLUMN_INDEX)).booleanValue();
-        if (filteredValues != currentRowVariableclassNumber && currentRowVariableclassNumber!=true) {
-                return false;
-            }else{
-                return true;
-            }
+    @Override
+    public boolean include(Entry < ? extends Object, ? extends Object > entry) {
+        boolean currentRowVariableclassNumber = ((Boolean) entry.getValue(BrowseVar.FROM_SCILAB_COLUMN_INDEX)).booleanValue();
+        if (filteredValues != currentRowVariableclassNumber && currentRowVariableclassNumber != true) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

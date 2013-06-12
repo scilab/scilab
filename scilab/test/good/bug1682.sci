@@ -36,9 +36,9 @@ ha1.rotation_angles = newAngles ;
 
 // check if both axes are turned
 if ( (ha1.rotation_angles == newAngles) & (ha2.rotation_angles == newAngles) ) then
-  affich_result(%T,1682);
+    affich_result(%T,1682);
 else
-  affich_result(%F,1682);
+    affich_result(%F,1682);
 end
 
 clear;

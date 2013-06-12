@@ -19,22 +19,37 @@
 
 namespace types
 {
-    class TYPES_IMPEXP MList : public TList
+class TYPES_IMPEXP MList : public TList
+{
+public :
+    MList() : TList() {}
+    //Destructor uses ~TList()
+
+    virtual InternalType*           clone()
     {
-    public :
-                                        MList() : TList() {}
-                                        //Destructor uses ~TList()
-
-        virtual InternalType*           clone() {return new MList(this);}
-        void                            whoAmI(void) { std::cout << "types::MList"; };
-
-        RealType                        getType(void) { return RealMList; }
-        bool                            isMList() { return true; }
-        bool                            isTList() { return false; }
-
-    protected :
-                                        MList(MList *_oMListCopyMe) : TList(_oMListCopyMe) {}
+        return new MList(this);
+    }
+    void                            whoAmI(void)
+    {
+        std::cout << "types::MList";
     };
+
+    RealType                        getType(void)
+    {
+        return RealMList;
+    }
+    bool                            isMList()
+    {
+        return true;
+    }
+    bool                            isTList()
+    {
+        return false;
+    }
+
+protected :
+    MList(MList *_oMListCopyMe) : TList(_oMListCopyMe) {}
+};
 }
 
 #endif /* __MLIST_HH__ */

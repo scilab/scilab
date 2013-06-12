@@ -20,8 +20,8 @@
 //
 
 function AboutScicos_()
-  Cmenu=[] ; %pt=[];
+    Cmenu=[] ; %pt=[];
     messagebox([strsubst(get_scicos_version(),"scicos","Scicos -")+"-";...
-             "For more information visit:";...
-	     "     www.scicos.org      "],"modal");
+    "For more information visit:";...
+    "     www.scicos.org      "],"modal");
 endfunction

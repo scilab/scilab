@@ -124,7 +124,7 @@ private:
         const char * bt = backtrace_print(0, 1);
 
         os << m << std::endl
-           << "DEBUG Informations:" << std::endl
+           << "DEBUG Information:" << std::endl
            << gettext("Exception thrown in file") << " " << file << " " << gettext("at line") << " " << line << std::endl
            << bt << std::flush;
 

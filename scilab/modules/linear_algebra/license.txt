@@ -41,9 +41,10 @@ Lapack:
 
 Files:
 src/fortran/DGELSY1.f
+src/fortran/ZGELSY1.f
 
 Copyright:
-Univ. of Tennessee, Univ. of California Berkeley, NAG Ltd.,
+Univ. of Tennessee, Univ. of California Berkeley, Univ. of Colorado Denver, NAG Ltd.,
 Courant Institute, Argonne National Lab, and Rice University
 June 30, 1999
 

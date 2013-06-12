@@ -39,7 +39,8 @@
         <para>
             The following equalities hold: <code>acot(z) =
                 %pi-acot(-z)=%pi/2-atan(z)=%i*acoth(%i*z)+%pi/2*(1-csgn(z+%i))
-            </code>.
+            </code>
+            .
         </para>
     </refsection>
     <refsection>

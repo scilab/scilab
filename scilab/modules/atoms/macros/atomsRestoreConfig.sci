@@ -16,19 +16,19 @@ function atomsRestoreConfig(quiet)
     if rhs > 1 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "atomsSaveConfig", 0, 1));
     end
-    
+
     load("SCI/modules/atoms/macros/atoms_internals/lib");
-    
+
     if rhs == 0 then
         quiet = %F;
     end
 
     pathsystemuser = atomsPath("system", "user");
-    
+
     if isfile(pathsystemuser + "config.bak") then
         movefile(pathsystemuser + "config.bak", pathsystemuser + "config");
     elseif ~quiet then
-	    error(msprintf(gettext("File %s does not exist: could not restore previous configuration."), pathsystemuser + "config.bak"));
+        error(msprintf(gettext("File %s does not exist: could not restore previous configuration."), pathsystemuser + "config.bak"));
     end
 
 endfunction

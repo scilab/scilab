@@ -30,7 +30,7 @@ if lasterror()<>'test' then pause,end
 
 
 deff('r=test()',['r=%f'
-'try,'
+'try'
 '    for j=1:3, error(''test'',1001); end,'
 'catch'
 '    r=%t'

@@ -57,13 +57,15 @@ public:
     }
 
 public:
-    enum ParserStatus {
+    enum ParserStatus
+    {
         Succeded ,
         Failed
     };
 
 public:
-    enum ControlStatus {
+    enum ControlStatus
+    {
         AllControlClosed,
         WithinFor,
         WithinWhile,
@@ -92,30 +94,75 @@ public:
     void parse(wchar_t *command);
 
     /** \brief enable Bison trace mode */
-    void setParseTrace(bool parseTrace) { _parse_trace = parseTrace; }
-    bool getParseTrace(void) { return _parse_trace; }
+    void setParseTrace(bool parseTrace)
+    {
+        _parse_trace = parseTrace;
+    }
+    bool getParseTrace(void)
+    {
+        return _parse_trace;
+    }
 
     /** Setters / Getters
         \{ */
 
-    ast::Exp* getTree(void) { return _the_program; }
-    void setTree(ast::Exp* theProgram) { _the_program = theProgram; }
+    ast::Exp* getTree(void)
+    {
+        return _the_program;
+    }
+    void setTree(ast::Exp* theProgram)
+    {
+        _the_program = theProgram;
+    }
 
-    ParserStatus getExitStatus(void) { return _exit_status; }
-    void setExitStatus(ParserStatus exit_status) { _exit_status = exit_status; }
+    ParserStatus getExitStatus(void)
+    {
+        return _exit_status;
+    }
+    void setExitStatus(ParserStatus exit_status)
+    {
+        _exit_status = exit_status;
+    }
 
-    ControlStatus getControlStatus(void) { return _control_status; }
-    void setControlStatus(ControlStatus controlStatus) { _control_status = controlStatus; }
+    ControlStatus getControlStatus(void)
+    {
+        return _control_status;
+    }
+    void setControlStatus(ControlStatus controlStatus)
+    {
+        _control_status = controlStatus;
+    }
 
-    wchar_t *getErrorMessage(void) { return const_cast<wchar_t *>(_error_message->c_str()); }
-    void setErrorMessage(wstring *errorMessage) { _error_message = errorMessage; }
+    wchar_t *getErrorMessage(void)
+    {
+        return const_cast<wchar_t *>(_error_message->c_str());
+    }
+    void setErrorMessage(wstring *errorMessage)
+    {
+        _error_message = errorMessage;
+    }
 
-    void enableStrictMode(void) { _strict_mode = true; }
-    void disableStrictMode(void) { _strict_mode = false; }
+    void enableStrictMode(void)
+    {
+        _strict_mode = true;
+    }
+    void disableStrictMode(void)
+    {
+        _strict_mode = false;
+    }
 
-    bool stopOnFirstError(void) { return _stop_on_first_error; }
-    void enableStopOnFirstError(void) { _stop_on_first_error = true; }
-    void disableStopOnFirstError(void) { _stop_on_first_error = false; }
+    bool stopOnFirstError(void)
+    {
+        return _stop_on_first_error;
+    }
+    void enableStopOnFirstError(void)
+    {
+        _stop_on_first_error = true;
+    }
+    void disableStopOnFirstError(void)
+    {
+        _stop_on_first_error = false;
+    }
     /** \} */
 
 private :

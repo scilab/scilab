@@ -21,55 +21,55 @@
 //
 // -----------------------------------------------------------------------------
 function ok = Link_modelica_C(Cfile)
-  mlibs = pathconvert(modelica_libs, %t, %t);
-  Cfile = pathconvert(Cfile, %f, %t)
-  name = basename(Cfile);
-  path = fileparts(Cfile, 'path');
+    mlibs = pathconvert(modelica_libs, %t, %t);
+    Cfile = pathconvert(Cfile, %f, %t)
+    name = basename(Cfile);
+    path = fileparts(Cfile, "path");
 
-  //  build the list of external functions libraries
-  // remove repreated directories from mlibs
-  rep = [];
-  for k = 1:size(mlibs, '*')
-    for j = k + 1:size(mlibs, '*')
-      if stripblanks(mlibs(k)) == stripblanks(mlibs(j)) then
-        rep = [rep, j];
-      end
+    //  build the list of external functions libraries
+    // remove repreated directories from mlibs
+    rep = [];
+    for k = 1:size(mlibs, "*")
+        for j = k + 1:size(mlibs, "*")
+            if stripblanks(mlibs(k)) == stripblanks(mlibs(j)) then
+                rep = [rep, j];
+            end
+        end
     end
-  end
-  mlibs(rep) = [];
- 
-  // add dynamic librairies in same directory that .mo
-  // compatibility feature with 4.x.x
-  libs = [];
-  ext = getdynlibext();
-  for k = 1:size(mlibs, '*')
-    fileSearched = findfiles(mlibs(k), '*' + ext);
-    for j = 1:size(fileSearched, '*')
-      [pathx, fnamex, extensionx] = fileparts(fileSearched(j));
-      libsname = fullfile(pathx, fnamex);
-      if getos() == 'Windows' then
-        libsname = strsubst(libsname, '\', '/');
-      end
-      libs = [libs; libsname];
-    end
-  end
-  
-  // add modelica_libs to the list of directories to be searched for *.h
-  IncludePaths = '';
-  extToSearch = '.h';
+    mlibs(rep) = [];
 
-  for k = 1:size(mlibs, '*')
-    pathSearch = mlibs(k);
-    pathSearch = strsubst(pathSearch, '\', '/');
-    filesFounded = findfiles(pathSearch, '*' + ext);
-    if filesFounded <> [] then
-      IncludePaths = IncludePaths + '  -I""' + pathSearch + '""';
+    // add dynamic librairies in same directory that .mo
+    // compatibility feature with 4.x.x
+    libs = [];
+    ext = getdynlibext();
+    for k = 1:size(mlibs, "*")
+        fileSearched = findfiles(mlibs(k), "*" + ext);
+        for j = 1:size(fileSearched, "*")
+            [pathx, fnamex, extensionx] = fileparts(fileSearched(j));
+            libsname = fullfile(pathx, fnamex);
+            if getos() == "Windows" then
+                libsname = strsubst(libsname, "\", "/");
+            end
+            libs = [libs; libsname];
+        end
     end
-  end
 
-  //** build shared library with the C code
-  files = name;
-  ok = buildnewblock(name, files, '', '', libs, TMPDIR, '', IncludePaths);
+    // add modelica_libs to the list of directories to be searched for *.h
+    IncludePaths = "";
+    extToSearch = ".h";
+
+    for k = 1:size(mlibs, "*")
+        pathSearch = mlibs(k);
+        pathSearch = strsubst(pathSearch, "\", "/");
+        filesFounded = findfiles(pathSearch, "*" + ext);
+        if filesFounded <> [] then
+            IncludePaths = IncludePaths + "  -I""" + pathSearch + """";
+        end
+    end
+
+    //** build shared library with the C code
+    files = name;
+    ok = buildnewblock(name, files, "", "", libs, TMPDIR, "", IncludePaths);
 
 endfunction
 // -----------------------------------------------------------------------------

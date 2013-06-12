@@ -20,7 +20,7 @@ extern int C2F(spfit)(double* xd, double* yd, double* wd, int* sizeOfXd, double*
 
 //splin2d
 extern int C2F(bicubicsubspline)(double* x, double* y, double* z, int* sizeOfX, int* sizeOfY, double* out, double* p, double* q, double* r, int* type);
-extern int C2F(bicubicspline)(double *x, double* y, double* u, int* sizeOfX, int* sizeOfY, double * out, double* p, double* q, double* r, double* A_d, double* A_sd, double* d, double* ll,double* qdu, double* u_temp, int* type);
+extern int C2F(bicubicspline)(double *x, double* y, double* u, int* sizeOfX, int* sizeOfY, double * out, double* p, double* q, double* r, double* A_d, double* A_sd, double* d, double* ll, double* qdu, double* u_temp, int* type);
 
 //splin3d
 extern int C2F(db3ink)(double* x, int* nx, double* y, int* ny, double* z, int* nz, double* v, int* mv, int* nv, int* order1, int* order2, int* order3, double* outX, double* outY, double* outZ, double* coef, double* work, int* flag);

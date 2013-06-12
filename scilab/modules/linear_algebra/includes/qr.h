@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY 
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,8 +17,8 @@
   Performs memory allocations and computes QR decomposition (calling iQr)
  * in :
  * @param pData double* pointer to memory (either in 'd' or 'z' format) of argument matrix
- * @param iRows int number of rows 
- * @param iCols int number of columns 
+ * @param iRows int number of rows
+ * @param iCols int number of columns
  * @param complexArg int (really bool) tells if data is in real (in 'd' format) or complex (in 'z' format)
  * @param iRowsToCompute int nb of rows to compute, iRows , or min(iRows, icols) for "economy" mode
  * @param dblTol double tolerance used for rank if -1, R(1,1)*%eps*max(iRows, iCols)
@@ -29,7 +29,7 @@
  * (either in 'd' or 'z' format) where E result will be stored
  * @param pdblRank double*  NULL if rank does not need to be computed, otherwise pointer to memory where rank will be stored
  * @return if the operation successed (true) or not (false)
- */  
+ */
 LINEAR_ALGEBRA_IMPEXP int iQrM(double* pData, int iRows, int iCols, int /*bool*/ complexArg, int iRowsToCompute, double dblTol
-	 , double* pdblQ, double* pdblR, double* pdblE, double* pdblRank);
+                               , double* pdblQ, double* pdblR, double* pdblE, double* pdblRank);
 #endif

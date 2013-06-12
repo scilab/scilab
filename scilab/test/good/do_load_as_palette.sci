@@ -20,115 +20,115 @@
 //
 
 function [palettes,windows] = do_load_as_palette(palettes, windows,scs_m)
-//** 
-//**    
-//**   
-  if argn(2) < 3 then
-    [ok,scs_m,cpr,edited] = do_load([],'palette') ;
-    if ~ok then return,end //** if fail --> Exit 
-  end
+    //**
+    //**
+    //**
+    if argn(2) < 3 then
+        [ok,scs_m,cpr,edited] = do_load([],"palette") ;
+        if ~ok then return,end //** if fail --> Exit
+    end
 
 
-  maxpal = -min([-200;windows(:,1)]) ; //** look for the last valid palette 
-   
-  kpal = maxpal+1  ; //** add one 
+    maxpal = -min([-200;windows(:,1)]) ; //** look for the last valid palette
 
-  lastwin = curwin ;  //** save the current active win_id 
+    kpal = maxpal+1  ; //** add one
 
-  curwin = get_new_window(windows) //** get a new win_id 
-  
-  if or(curwin==winsid()) then //** protection: if the new win_id is already in the list              
-    clf(curwin)  ;  //** delete it !
-  end
-  
-  windows = [windows;[-kpal curwin]] ; //** add the new window ad the "windows" list as palette
-                                       //** with (NEGATIVE id) "-kpal"
-  
-  palettes(kpal) = scs_m ; //** save the diagram in the datastructure 
-  
-  gh_curwin = scf(curwin) ; //** open the new palette windows with proper id 
-  gh_axes = gca(); 
+    lastwin = curwin ;  //** save the current active win_id
 
-  //** Remove the default Scilab graphics window menus 
-  //** but leave the "File" menu active for export 
-  delmenu(curwin,_("&Edit"))
-  delmenu(curwin,_("&Tools"))
-  delmenu(curwin,_("&?"))
+    curwin = get_new_window(windows) //** get a new win_id
 
-  toolbar(curwin, "off"); //** by Vincent C.
-  
-  rect = dig_bound(scs_m);
+    if or(curwin==winsid()) then //** protection: if the new win_id is already in the list
+        clf(curwin)  ;  //** delete it !
+    end
 
-  if rect==[] then rect=[0 0 400,600],end
-  %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
-  // window size is limited to 400 x 300 ajust dimensions
-  // to remain isometric.
-  
-  if %wsiz(1)<400 then //** if the "X" is smaller than ... then 
-    rect(1)=rect(1)-(400-%wsiz(1))/2
-    rect(3)=rect(3)+(400-%wsiz(1))/2
-    %wsiz(1)=400 
-  end
-  
-  if %wsiz(2)<300 then //** if the "Y" is smaller than ... then 
-    rect(2)=rect(2)-(300-%wsiz(2))/2
-    rect(4)=rect(4)+(300-%wsiz(2))/2
-    %wsiz(2)=300 
-  end
+    windows = [windows;[-kpal curwin]] ; //** add the new window ad the "windows" list as palette
+    //** with (NEGATIVE id) "-kpal"
 
-  %zoom = 1.2 ; //** default zoom value 
-  h = %zoom * %wsiz(2) ;
-  w = %zoom * %wsiz(1) ;
+    palettes(kpal) = scs_m ; //** save the diagram in the datastructure
 
-  if getos() <> 'Windows' then 
-    h1 = h + 50 ;
-  else
-    h1 = h
-  end //** correction for Unix machines 
-  
-  //** xset('wresize',1); //** If flag=1 then the graphic is automatically resized to fill the graphics
-  
-  gh_curwin.auto_resize = "on" ; //** for the palette window(s) the auto resize is active 
-  
-  //** xset('wpdim',w,h1) ; //** Sets the width and the height of the current physical graphic window
-                            //** (which can be different from the actual size in mode wresize 1). 
-  gh_curwin.axes_size = [w h1] ; 
- 
-  //** xset('wdim',w,h)           //** Set the width and the height of the current graphics window.
-  gh_curwin.figure_size = [w h] ; 
-  
-  //** axes settings 
-  //** gh_axes = gh_curwin.children ; //** axes handle
-  gh_axes.tight_limits = "on"  ; //** set the limit "gh_axes.data_bounds" in "hard mode"
-  
+    gh_curwin = scf(curwin) ; //** open the new palette windows with proper id
+    gh_axes = gca();
 
-  //** xsetech(wrect=[0 0 1 1],frect=rect,arect=[1 1 1 1]/32)
-  
-  //** The default margin are [ 0.125 0.125 0.125 0.125 ]
-  arect = [1.0 1.0 1.0 1.0 ] / 32.0  //** margins (default normalized values)
-  gh_axes.margins = arect ;          //**
-  
-  wrect = [0.0 0.0 1.0 1.0]   ; //** uses the full window space 
-  gh_axes.axes_bounds = wrect ; //** default : axes_bounds = [0,0 , 1,1] = [xmin ymin xmax ymax] 
-  
-  //** map the diagram size on the window size
-  mrect = [rect(1) rect(2) ; rect(3) rect(4)] ; //** vector to matrix conversion   
-  gh_axes.data_bounds = mrect ; //** default : data_bounds = [0,0 ; 1,1] = [xmin ymin ; xmax ymax ]
-  
-  if ~set_cmap(palettes(kpal).props.options('Cmap')) then 
-    palettes(kpal).props.options('3D')(1)=%f //disable 3D block shape 
-  end
-  
-  options = palettes(kpal).props.options
-  
-  set_background(gh_curwin); 
-  
-  drawobjs(palettes(kpal),gh_curwin)
-  
-  xinfo("The Palette can be used to copy blocks or regions"); 
-  
-  drawnow();
+    //** Remove the default Scilab graphics window menus
+    //** but leave the "File" menu active for export
+    delmenu(curwin,_("&Edit"))
+    delmenu(curwin,_("&Tools"))
+    delmenu(curwin,_("&?"))
 
-  scf(lastwin) ;
-  
+    toolbar(curwin, "off"); //** by Vincent C.
+
+    rect = dig_bound(scs_m);
+
+    if rect==[] then rect=[0 0 400,600],end
+    %wsiz=[rect(3)-rect(1),rect(4)-rect(2)];
+    // window size is limited to 400 x 300 ajust dimensions
+    // to remain isometric.
+
+    if %wsiz(1)<400 then //** if the "X" is smaller than ... then
+        rect(1)=rect(1)-(400-%wsiz(1))/2
+        rect(3)=rect(3)+(400-%wsiz(1))/2
+        %wsiz(1)=400
+    end
+
+    if %wsiz(2)<300 then //** if the "Y" is smaller than ... then
+        rect(2)=rect(2)-(300-%wsiz(2))/2
+        rect(4)=rect(4)+(300-%wsiz(2))/2
+        %wsiz(2)=300
+    end
+
+    %zoom = 1.2 ; //** default zoom value
+    h = %zoom * %wsiz(2) ;
+    w = %zoom * %wsiz(1) ;
+
+    if getos() <> "Windows" then
+        h1 = h + 50 ;
+    else
+        h1 = h
+    end //** correction for Unix machines
+
+    //** xset('wresize',1); //** If flag=1 then the graphic is automatically resized to fill the graphics
+
+    gh_curwin.auto_resize = "on" ; //** for the palette window(s) the auto resize is active
+
+    //** xset('wpdim',w,h1) ; //** Sets the width and the height of the current physical graphic window
+    //** (which can be different from the actual size in mode wresize 1).
+    gh_curwin.axes_size = [w h1] ;
+
+    //** xset('wdim',w,h)           //** Set the width and the height of the current graphics window.
+    gh_curwin.figure_size = [w h] ;
+
+    //** axes settings
+    //** gh_axes = gh_curwin.children ; //** axes handle
+    gh_axes.tight_limits = "on"  ; //** set the limit "gh_axes.data_bounds" in "hard mode"
+
+
+    //** xsetech(wrect=[0 0 1 1],frect=rect,arect=[1 1 1 1]/32)
+
+    //** The default margin are [ 0.125 0.125 0.125 0.125 ]
+    arect = [1.0 1.0 1.0 1.0 ] / 32.0  //** margins (default normalized values)
+    gh_axes.margins = arect ;          //**
+
+    wrect = [0.0 0.0 1.0 1.0]   ; //** uses the full window space
+    gh_axes.axes_bounds = wrect ; //** default : axes_bounds = [0,0 , 1,1] = [xmin ymin xmax ymax]
+
+    //** map the diagram size on the window size
+    mrect = [rect(1) rect(2) ; rect(3) rect(4)] ; //** vector to matrix conversion
+    gh_axes.data_bounds = mrect ; //** default : data_bounds = [0,0 ; 1,1] = [xmin ymin ; xmax ymax ]
+
+    if ~set_cmap(palettes(kpal).props.options("Cmap")) then
+        palettes(kpal).props.options("3D")(1)=%f //disable 3D block shape
+    end
+
+    options = palettes(kpal).props.options
+
+    set_background(gh_curwin);
+
+    drawobjs(palettes(kpal),gh_curwin)
+
+    xinfo("The Palette can be used to copy blocks or regions");
+
+    drawnow();
+
+    scf(lastwin) ;
+
 endfunction

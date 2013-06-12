@@ -2,8 +2,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="jvm">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -20,8 +20,8 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-
-<!--
+    
+    <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * 
@@ -32,12 +32,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="52" primitiveId="1" primitiveName="with_embedded_jre" />
-<PRIMITIVE gatewayId="52" primitiveId="2" primitiveName="system_setproperty" />  
-<PRIMITIVE gatewayId="52" primitiveId="3" primitiveName="system_getproperty" />
-<PRIMITIVE gatewayId="52" primitiveId="4" primitiveName="javaclasspath" />
-<PRIMITIVE gatewayId="52" primitiveId="5" primitiveName="javalibrarypath" />
+    
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="52" primitiveId="1" primitiveName="with_embedded_jre" />
+    <PRIMITIVE gatewayId="52" primitiveId="2" primitiveName="system_setproperty" />
+    
+    <PRIMITIVE gatewayId="52" primitiveId="3" primitiveName="system_getproperty" />
+    <PRIMITIVE gatewayId="52" primitiveId="4" primitiveName="javaclasspath" />
+    <PRIMITIVE gatewayId="52" primitiveId="5" primitiveName="javalibrarypath" />
 </GATEWAY>

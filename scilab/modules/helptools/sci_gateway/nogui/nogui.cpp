@@ -22,13 +22,13 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 int gw_helptools()
 {
-	Scierror(999,_("Scilab '%s' module not installed.\n"), "helptools");
-	return 0;
+    Scierror(999, _("Scilab '%s' module not installed.\n"), "helptools");
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int sci_buildDoc(char *fname, unsigned long l)
 {
-	return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 

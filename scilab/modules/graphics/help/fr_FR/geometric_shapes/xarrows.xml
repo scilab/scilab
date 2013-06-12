@@ -21,7 +21,8 @@
             <varlistentry>
                 <term>arsize  </term>
                 <listitem>
-                    <para>réel, taille des têtes des flèches. La valeur par défaut peut être obtenue  en prenant <varname>arsize</varname> = -1.
+                    <para>
+                        réel, taille des têtes des flèches. La valeur par défaut peut être obtenue  en prenant <varname>arsize</varname> = -1.
                     </para>
                 </listitem>
             </varlistentry>
@@ -66,7 +67,7 @@ xset("clipgrf")
 xarrows(x1, y1, -1, [1:7,9]) //8-th color is white
 xset("clipoff")
  ]]></programlisting>
-
+        
         <scilab:image>
             x = 2*%pi*(0:7)/8
             x1 = [sin(x); 9*sin(x)];

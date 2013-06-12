@@ -13,18 +13,18 @@
 
 int sci_bug_9708(char *fname)
 {
-  SciErr sciErr;
-  const char varname[] = "iputhereavariabletoolongforscilabandthereisnoerror";
-  
-  sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &varname);
-  if(sciErr.iErr)
-  {
-    printError(&sciErr, 0);
-    Scierror(999, _("%s: Invalid variable name.\n"), fname);
-    return 0;
-  }
+    SciErr sciErr;
+    const char varname[] = "iputhereavariabletoolongforscilabandthereisnoerror";
 
-  LhsVar(1) = 1;
-  return 0;
+    sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &varname);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Invalid variable name.\n"), fname);
+        return 0;
+    }
+
+    LhsVar(1) = 1;
+    return 0;
 }
 // =============================================================================

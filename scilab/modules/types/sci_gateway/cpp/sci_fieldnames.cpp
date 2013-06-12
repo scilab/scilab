@@ -47,7 +47,7 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
     if (in[0]->isStruct() == true)
     {
         String* pFields = in[0]->getAs<Struct>()->getFieldNames();
-        if(pFields)
+        if (pFields)
         {
             out.push_back(pFields);
             //delete pFields;
@@ -75,11 +75,11 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
     String *pAllFields = pIT->getAs<String>();
     wchar_t **pwcsAllStrings =  pAllFields->get();
     // shift to forget first value corresponding to type.
-//    ++pwcsAllStrings;
+    //    ++pwcsAllStrings;
 
 
 
-    String *pNewString = new String(pAllFields->getSize() - 1, 1, pwcsAllStrings+1);
+    String *pNewString = new String(pAllFields->getSize() - 1, 1, pwcsAllStrings + 1);
 
     out.push_back(pNewString);
 

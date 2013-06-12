@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -14,7 +14,7 @@
 #include "machine.h"
 #include "dynlib_optimization.h"
 /***********************************
-* Search Table for fsolve 
+* Search Table for fsolve
 ***********************************/
 
 #define ARGS_fsolvf int*,double *,double*,int*
@@ -29,22 +29,26 @@ extern void C2F(fsol1)(ARGS_fsolvf);
 OPTIMIZATION_IMPEXP void C2F(fsolvf)(ARGS_fsolvf);
 OPTIMIZATION_IMPEXP void C2F(setfsolvf)(char *name, int *rep);
 
-FTAB FTab_fsolvf[] ={
-{"fsol1", (voidf)  C2F(fsol1)},
-{(char *) 0, (voidf) 0}};
+FTAB FTab_fsolvf[] =
+{
+    {"fsol1", (voidf)  C2F(fsol1)},
+    {(char *) 0, (voidf) 0}
+};
 /**************** fsolvj ***************/
 extern void C2F(fsolj1)(ARGS_fsolvj);
 OPTIMIZATION_IMPEXP void C2F(fsolvj)(ARGS_fsolvj);
 OPTIMIZATION_IMPEXP void C2F(setfsolj)(char *name, int *rep);
 OPTIMIZATION_IMPEXP void C2F(setfsolvj)(char *name, int *rep);
 
-FTAB FTab_fsolvj[] ={
-{"fsolj1", (voidf)  C2F(fsolj1)},
-{(char *) 0, (voidf) 0}};
+FTAB FTab_fsolvj[] =
+{
+    {"fsolj1", (voidf)  C2F(fsolj1)},
+    {(char *) 0, (voidf) 0}
+};
 
 /***********************************
-* Search Table for fsolve 
-*    uses : fsolvf and fsolvj 
+* Search Table for fsolve
+*    uses : fsolvf and fsolvj
 ***********************************/
 
 /** the current function fixed by setsolvf **/
@@ -55,14 +59,14 @@ static fsolvff fsolvffonc ;
 
 void C2F(fsolvf)(int *n, double *x, double *fvec, int *iflag)
 {
-	(*fsolvffonc)(n,x,fvec,iflag);
+    (*fsolvffonc)(n, x, fvec, iflag);
 }
 
 /** fixes the function associated to name **/
 
 void C2F(setfsolvf)(char *name, int *rep)
 {
-	fsolvffonc = (fsolvff) GetFunctionByName(name,rep,FTab_fsolvf);
+    fsolvffonc = (fsolvff) GetFunctionByName(name, rep, FTab_fsolvf);
 }
 
 /** the current function fixed by setfsolvj **/
@@ -73,12 +77,12 @@ static fsolvjf fsolvjfonc ;
 
 void C2F(fsolvj)(int *n, double *x, double *fjac, int *iflag)
 {
-	(*fsolvjfonc)(n,x,fjac,iflag);
+    (*fsolvjfonc)(n, x, fjac, iflag);
 }
 
 /** fixes the function associated to name **/
 
 void C2F(setfsolvj)(char *name, int *rep)
 {
-	fsolvjfonc = (fsolvjf) GetFunctionByName(name,rep,FTab_fsolvj);
+    fsolvjfonc = (fsolvjf) GetFunctionByName(name, rep, FTab_fsolvj);
 }

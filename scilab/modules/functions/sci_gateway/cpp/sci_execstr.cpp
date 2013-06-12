@@ -339,7 +339,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         catch (ScilabError se)
         {
             ConfigVariable::setSilentError(iOldSilentError);
-            if (ConfigVariable::getLastErrorMessage() == L"")
+            // check on error number because error message can be empty.
+            if (ConfigVariable::getLastErrorNumber() == 0)
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
                 ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
@@ -357,7 +358,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 scilabErrorW(se.GetErrorMessage().c_str());
 
                 //write positino
-                Scierror(999, _("in  execstr instruction    called by :\n"));
+                sciprint(_("in  execstr instruction    called by :\n"));
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
                 //throw ScilabMessage(szError, 1, (*j)->location_get());

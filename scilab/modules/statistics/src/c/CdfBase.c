@@ -39,7 +39,7 @@ int cdf_generic(char *fname, void* pvApiCtx, struct cdf_descriptor *cdf)
     option = create_string(pvApiCtx, 1);
     for (it = cdf->items; it != cdf->end_item; ++it)
     {
-        if(strcmp(option, it->option) == 0)
+        if (strcmp(option, it->option) == 0)
         {
             /* "which" argument (5th) inferred from position in item list */
             iErr = CdfBase(fname, pvApiCtx, it->inarg, it->oarg, it->shift, it - cdf->items + 1, cdf->fun);
@@ -48,8 +48,9 @@ int cdf_generic(char *fname, void* pvApiCtx, struct cdf_descriptor *cdf)
     }
 
     destroy_string(option);
-    if(it == cdf->end_item)
-    { /* no target found */
+    if (it == cdf->end_item)
+    {
+        /* no target found */
         char *optlist;
         optlist = cdf_options(cdf);
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, 1, optlist);
@@ -93,15 +94,16 @@ char* cdf_options(struct cdf_descriptor const * const cdf)
     char const * const spc = ", ";
     struct cdf_item const * it;
 
-    for(it = cdf->items ; it != cdf->end_item ; ++it)
+    for (it = cdf->items ; it != cdf->end_item ; ++it)
     {
         len += strlen(spc) + strlen(it->option);
     }
     ret = (char*)MALLOC(len * sizeof(char));
     ret[0] = '\0';
-    for (it = cdf->items ; it != cdf->end_item ; ++it) {
+    for (it = cdf->items ; it != cdf->end_item ; ++it)
+    {
         strcat(ret, it->option);
-        if(it + 1 != cdf->end_item)
+        if (it + 1 != cdf->end_item)
         {
             strcat(ret, spc);
         }
@@ -117,48 +119,48 @@ void cdf_error(char const * const fname, int status, double bound)
 {
     switch (status)
     {
-    case 1:
-        Scierror(999, _("%s: Answer appears to be lower than lowest search bound %f\n"), fname, (bound > ZERO_FOR_CDF ? bound : 0));
-        break;
-    case 2:
-        if(bound >= INFINITY_FOR_CDF)
-        {
-            Scierror(999, _("%s: Answer appears to be higher than greatest search bound %s\n"), fname, "%inf");
-        }
-        else
-        {
-            Scierror(999, _("%s: Answer appears to be higher than greatest search bound %f\n"), fname, bound);
-        }
-        break;
-    case 3:
-        Scierror(999, "%s: P + Q ≠ 1\n", fname);
-        break;
-    case 4:
-        if(strcmp(fname, "cdfbet") == 0)
-        {
-            Scierror(999, "%s: X + Y ≠ 1", fname);
-        }
-        else if(strcmp(fname, "cdfbin") == 0 || strcmp(fname, "cdfnbn") == 0)
-        {
-            Scierror(999, "%s: Pr + Ompr ≠ 1\n", fname);
-        }
-        else if(strcmp(fname, "cdfnor") == 0)
-        {
-            Scierror(999, _("%s: Std must not be zero\n"), fname);
-        }
-        break;
-    case 10:
-        if(strcmp(fname, "cdfchi") == 0)
-        {
-            Scierror(999, _("%s: cumgam returned an error\n"), fname);
-        }
-        else if(strcmp(fname, "cdfchi") == 0)
-        {
-            Scierror(999, _("%s: gamma or inverse gamma routine failed\n"), fname);
-        }
-        break;
-    default:
-        Scierror(999, _("%s: Argument #%d out of range. Bound exceeded: %f.\n"), fname, - status, bound);
+        case 1:
+            Scierror(999, _("%s: Answer appears to be lower than lowest search bound %f\n"), fname, (bound > ZERO_FOR_CDF ? bound : 0));
+            break;
+        case 2:
+            if (bound >= INFINITY_FOR_CDF)
+            {
+                Scierror(999, _("%s: Answer appears to be higher than greatest search bound %s\n"), fname, "%inf");
+            }
+            else
+            {
+                Scierror(999, _("%s: Answer appears to be higher than greatest search bound %f\n"), fname, bound);
+            }
+            break;
+        case 3:
+            Scierror(999, "%s: P + Q ≠ 1\n", fname);
+            break;
+        case 4:
+            if (strcmp(fname, "cdfbet") == 0)
+            {
+                Scierror(999, "%s: X + Y ≠ 1", fname);
+            }
+            else if (strcmp(fname, "cdfbin") == 0 || strcmp(fname, "cdfnbn") == 0)
+            {
+                Scierror(999, "%s: Pr + Ompr ≠ 1\n", fname);
+            }
+            else if (strcmp(fname, "cdfnor") == 0)
+            {
+                Scierror(999, _("%s: Std must not be zero\n"), fname);
+            }
+            break;
+        case 10:
+            if (strcmp(fname, "cdfchi") == 0)
+            {
+                Scierror(999, _("%s: cumgam returned an error\n"), fname);
+            }
+            else if (strcmp(fname, "cdfchi") == 0)
+            {
+                Scierror(999, _("%s: gamma or inverse gamma routine failed\n"), fname);
+            }
+            break;
+        default:
+            Scierror(999, _("%s: Argument #%d out of range. Bound exceeded: %f.\n"), fname, - status, bound);
     }
 }
 
@@ -184,7 +186,7 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
     int i;
     int *p;
 
-    if( Rhs != inarg + 1 ) 
+    if ( Rhs != inarg + 1 )
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, inarg + 1);
         return 1;
@@ -197,34 +199,34 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
     }
     for (i = 1; i < inarg ; ++i)
     {
-        if(rows[i] != rows[i-1] || cols[i] != cols[i-1])
+        if (rows[i] != rows[i - 1] || cols[i] != cols[i - 1])
         {
             Scierror(999, _("%s: Incompatible input arguments #%d and #%d': Same sizes expected.\n"), fname, i + 1, i + 2);
             return 1;
         }
     }
-        
+
     for (i = 0; i < oarg; ++i)
     {
-            allocMatrixOfDouble(pvApiCtx, Rhs + i + 1, rows[0], cols[0], &data[i + inarg]);
+        allocMatrixOfDouble(pvApiCtx, Rhs + i + 1, rows[0], cols[0], &data[i + inarg]);
     }
 #define callpos(i) rotate(i, shift, inarg + oarg)
     for (i = 0; i < rows[0] * cols[0]; ++i)
     {
-        switch (inarg + oarg) 
+        switch (inarg + oarg)
         {
-        case 4: /* cdfchi, cdfpoi, cdft */
-            (*fun)(&which, &(data[callpos(0)][i]), &(data[callpos(1)][i]), &(data[callpos(2)][i]), &(data[callpos(3)][i]), &errlevel, &bound);
-            break;
-        case 5: /* cdfchn, cdff, cdfgam, cdfnor */
-            (*fun)(&which, &(data[callpos(0)][i]), &(data[callpos(1)][i]), &(data[callpos(2)][i]), &(data[callpos(3)][i]), &(data[callpos(4)][i]), &errlevel, &bound);
-            break;
-        case 6: /* cdfbet, cdfbin, cdffnc, cdfnbn, */
-            (*fun)(&which, &(data[callpos(0)][i]), &(data[callpos(1)][i]), &(data[callpos(2)][i]), &(data[callpos(3)][i]), &(data[callpos(4)][i]), &(data[callpos(5)][i]), &errlevel, &bound);
-            break;
+            case 4: /* cdfchi, cdfpoi, cdft */
+                (*fun)(&which, &(data[callpos(0)][i]), &(data[callpos(1)][i]), &(data[callpos(2)][i]), &(data[callpos(3)][i]), &errlevel, &bound);
+                break;
+            case 5: /* cdfchn, cdff, cdfgam, cdfnor */
+                (*fun)(&which, &(data[callpos(0)][i]), &(data[callpos(1)][i]), &(data[callpos(2)][i]), &(data[callpos(3)][i]), &(data[callpos(4)][i]), &errlevel, &bound);
+                break;
+            case 6: /* cdfbet, cdfbin, cdffnc, cdfnbn, */
+                (*fun)(&which, &(data[callpos(0)][i]), &(data[callpos(1)][i]), &(data[callpos(2)][i]), &(data[callpos(3)][i]), &(data[callpos(4)][i]), &(data[callpos(5)][i]), &errlevel, &bound);
+                break;
         }
 
-        if(errlevel != 0) 
+        if (errlevel != 0)
         {
             cdf_error(fname, errlevel, bound);
             return 1;

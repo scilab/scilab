@@ -91,20 +91,20 @@ char* computeSCIHOME(void)
     getenvc(&ierr, "APPDATA", USERHOMESYSTEM, &buflen, &iflag);
 
     /* if APPDATA not found we try with USERPROFILE */
-    if(ierr)
+    if (ierr)
     {
         getenvc(&ierr, "USERPROFILE", USERHOMESYSTEM, &buflen, &iflag);
     }
 
     /* convert long path to short path format : remove some special characters */
     SHORTUSERHOMESYSTEM = getshortpathname(USERHOMESYSTEM, &bConverted);
-    if(SHORTUSERHOMESYSTEM)
+    if (SHORTUSERHOMESYSTEM)
     {
-        if(!isdir(SHORTUSERHOMESYSTEM))
+        if (!isdir(SHORTUSERHOMESYSTEM))
         {
             /* last chance, we try to get default all users profile */
             getenvc(&ierr, "ALLUSERSPROFILE", USERHOMESYSTEM, &buflen, &iflag);
-            if(ierr)
+            if (ierr)
             {
                 delete []SHORTUSERHOMESYSTEM;
                 return NULL;
@@ -113,9 +113,9 @@ char* computeSCIHOME(void)
             /* convert long path to short path format : remove some special characters */
             SHORTUSERHOMESYSTEM = getshortpathname(USERHOMESYSTEM, &bConverted);
 
-            if((!SHORTUSERHOMESYSTEM) || !isdir(SHORTUSERHOMESYSTEM))
+            if ((!SHORTUSERHOMESYSTEM) || !isdir(SHORTUSERHOMESYSTEM))
             {
-                if(SHORTUSERHOMESYSTEM)
+                if (SHORTUSERHOMESYSTEM)
                 {
                     delete []SHORTUSERHOMESYSTEM;
                 }
@@ -125,7 +125,7 @@ char* computeSCIHOME(void)
     }
     else
     {
-        if(SHORTUSERHOMESYSTEM)
+        if (SHORTUSERHOMESYSTEM)
         {
             delete []SHORTUSERHOMESYSTEM;
         }
@@ -134,7 +134,7 @@ char* computeSCIHOME(void)
 
     /* checks that directory exists */
     strcpy(USERHOMESYSTEM, SHORTUSERHOMESYSTEM);
-    if(SHORTUSERHOMESYSTEM)
+    if (SHORTUSERHOMESYSTEM)
     {
         delete []SHORTUSERHOMESYSTEM;
     }
@@ -144,14 +144,14 @@ char* computeSCIHOME(void)
     sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
 
     /* creates directory if it does not exists */
-    if(!isdir(SCIHOMEPATH))
+    if (!isdir(SCIHOMEPATH))
     {
-        if(!isdir(USERPATHSCILAB))
+        if (!isdir(USERPATHSCILAB))
         {
             createdirectory(USERPATHSCILAB);
         }
 
-        if(createdirectory(SCIHOMEPATH))
+        if (createdirectory(SCIHOMEPATH))
         {
 
             return os_strdup(SCIHOMEPATH);
@@ -177,7 +177,7 @@ char* computeSCIHOME(void)
     char HOME[] = "HOME";
 
     getenvc(&ierr, HOME, USERHOMESYSTEM, &buflen, &iflag);
-    if(ierr)
+    if (ierr)
     {
         return NULL;
     }
@@ -187,14 +187,14 @@ char* computeSCIHOME(void)
     sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
 
     /* creates directory if it does not exists */
-    if(!isdir(SCIHOMEPATH))
+    if (!isdir(SCIHOMEPATH))
     {
-        if(!isdir(USERPATHSCILAB))
+        if (!isdir(USERPATHSCILAB))
         {
             createdirectory(USERPATHSCILAB);
         }
 
-        if(createdirectory(SCIHOMEPATH))
+        if (createdirectory(SCIHOMEPATH))
         {
             return os_strdup(SCIHOMEPATH);
         }
@@ -215,11 +215,11 @@ char* getenvSCIHOME(void)
     int lbuf = PATH_MAX;
     char *SciHome = new char[PATH_MAX];
 
-    if(SciHome)
+    if (SciHome)
     {
         getenvc(&ierr, "SCIHOME", SciHome, &lbuf, &iflag);
 
-        if(ierr == 1)
+        if (ierr == 1)
         {
             return NULL;
         }
@@ -255,15 +255,15 @@ void putenvSCIHOME(const char* _sci_home)
         /* c:/progra~1/scilab-5.0 */
         bool bConvertOK = false;
         ShortPath = getshortpathname(_sci_home, &bConvertOK);
-        AntislashToSlash(ShortPath,CopyOfDefaultPath);
+        AntislashToSlash(ShortPath, CopyOfDefaultPath);
         setenvc("SCIHOME", ShortPath);
-        if(CopyOfDefaultPath)
+        if (CopyOfDefaultPath)
         {
             delete[] CopyOfDefaultPath;
             CopyOfDefaultPath = NULL;
         }
 
-        if(ShortPath)
+        if (ShortPath)
         {
             delete[] ShortPath;
             ShortPath = NULL;

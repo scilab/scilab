@@ -9,10 +9,10 @@
 
 
 function datatipToggle(fig)
-//Toggles activation of the datatip edition mode for the given or current
-//figure
-  if type(fig)<>9|or(fig.type<>"Figure") then
-    error(msprintf(_("%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"),"datatipCreate",1,"Figure"))
-  end
-  datatipManagerMode(fig)
+    //Toggles activation of the datatip edition mode for the given or current
+    //figure
+    if type(fig)<>9|or(fig.type<>"Figure") then
+        error(msprintf(_("%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"),"datatipCreate",1,"Figure"))
+    end
+    datatipManagerMode(fig)
 endfunction
