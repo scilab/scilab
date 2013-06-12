@@ -82,11 +82,11 @@ c     Otherwise, the result may contain an imaginary part.
             if (int(stk(l2+i*inc2)).ne.stk(l2+i*inc2)
      & .or.stk(l1+i*inc1).lt.0) then
                complexRes = 1
-               exit
+               goto 10
             endif
 5        continue
       endif
-      if (complexRes.eq.1) then
+10    if (complexRes.eq.1) then
 c        Calculation not done in place (result can have an imaginary part)
 c        First, call an error if memory is going to be insufficient
          err=lw+mn*2-lstk(bot)
