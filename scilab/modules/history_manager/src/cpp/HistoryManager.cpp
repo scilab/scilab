@@ -116,8 +116,7 @@ BOOL appendLineToScilabHistory(char *line)
 
     if (line)
     {
-        size_t i = 0;
-        size_t len = 0;
+        int i = 0;
         char *cleanedline = NULL;
 
         if (ScilabHistory && ScilabHistory->getNumberOfLines() == 0)
@@ -129,23 +128,20 @@ BOOL appendLineToScilabHistory(char *line)
         }
 
         /* remove space & carriage return at the end of line */
-        len = strlen(line);
-        cleanedline = (char*) MALLOC(len + 1);
-        memcpy(cleanedline, line, len + 1);
+        cleanedline = strdup(line);
 
         /* remove carriage return at the end of line */
-        for (i = len; i > 0; i--)
+        for (i = (int)strlen(cleanedline); i > 0; i--)
         {
             if (cleanedline[i] == '\n')
             {
                 cleanedline[i] = '\0';
-                len = i - 1;
                 break;
             }
         }
 
         /* remove spaces at the end of line */
-        i = len;
+        i = (int)strlen(cleanedline) - 1;
         while (i >= 0)
         {
             if (cleanedline[i] == ' ')

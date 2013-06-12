@@ -60,7 +60,6 @@ int sci_is_hdf5_file(char *fname, unsigned long fname_len)
     }
 
     FREE(pstFileName);
-    FREE(pstFile);
     AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;
     ReturnArguments(pvApiCtx);
     return 0;

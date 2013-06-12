@@ -174,10 +174,13 @@ BOOL SetFileNameOpenedInScilab(int Id, char *name)
 
     /* A exception for Id 5 and 6 */
     /* no filename */
-    if ( name[0] == '\0' )
+    if ( strcmp(name, "") == 0 )
     {
-        ptrName = "";
-        bOK = TRUE;
+        ptrName = strdup(name);
+        if (ptrName)
+        {
+            bOK = TRUE;
+        }
     }
     else
     {
@@ -205,7 +208,7 @@ BOOL SetFileNameOpenedInScilab(int Id, char *name)
 BOOL FreeFileNameOpenedInScilab(int Id)
 {
     char *ptr = ScilabFileList[Id].ftname;
-    if (ptr && ptr[0])
+    if (ptr)
     {
         FREE(ptr);
         ptr = NULL;
