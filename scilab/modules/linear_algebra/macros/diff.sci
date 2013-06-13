@@ -9,6 +9,9 @@
 
 function x=diff(x,N,DIM)
     rhs=argn(2)
+    if rhs<1 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"diff",1,3));
+    end
     dims=size(x),nd=prod(size(dims))
     if rhs<3 then DIM="*",end
     if rhs<2 then N=1,end
