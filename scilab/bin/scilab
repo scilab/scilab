@@ -612,7 +612,7 @@ if test $IS_SCILAB_BINARY -eq 1; then
 
     TCL_LIBRARY="$SCIBINARYBASE/thirdparty/tcl8.5"
     Tk_LIBRARY="$SCIBINARYBASE/thirdparty/tk8.5"
-    LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+    LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
     DOCBOOK_ROOT="$SCI/../../thirdparty/docbook"
     PATH="$PATH:$SCI/modules/scicos/"
 
@@ -750,7 +750,7 @@ check_macosx_version()
 }
 
 # . is used by the dynamic link. The build lib are copied into the PWD
-SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
+SCILIB=$SCI/lib/thirdparty:$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
 case $OS in
