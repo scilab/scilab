@@ -27,19 +27,27 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    types::String* pStr = NULL;
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "with_module", 1);
         return types::Function::Error;
     }
 
-    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "with_module", 1);
         return types::Function::Error;
     }
 
-    wchar_t* pwstModuleName = in[0]->getAs<types::String>()->get(0);
+    pStr = in[0]->getAs<types::String>();
+    if (pStr->isScalar() == false)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "with_module", 1);
+        return types::Function::Error;
+    }
+
+    wchar_t* pwstModuleName = pStr->get(0);
 
     types::Bool* pOut = new types::Bool(0);
     list<wstring> sModuleList = ConfigVariable::getModuleList();
