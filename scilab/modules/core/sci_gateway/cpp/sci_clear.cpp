@@ -33,9 +33,14 @@ Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::ty
     // First check if all arguments are Single Strings.
     for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
     {
-        if (!(*inIterator)->isString() || (*inIterator)->getAs<types::String>()->getSize() != 1)
+        if (!(*inIterator)->isString())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "clear", iWrongType);
+            return Function::Error;
+        }
+        if ((*inIterator)->getAs<types::String>()->getSize() != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: Single string expected.\n"), "clear", iWrongType);
             return Function::Error;
         }
         iWrongType++;
