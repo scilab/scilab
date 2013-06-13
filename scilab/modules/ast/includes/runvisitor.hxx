@@ -396,7 +396,9 @@ public :
         else
         {
             wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("Undefined variable: %ls\n"), e.name_get().name_get().c_str());
+            char* strErr =  wide_string_to_UTF8(e.name_get().name_get().c_str());
+            os_swprintf(szError, bsiz, _W("Undefined variable: %s\n"), strErr);
+            FREE(strErr);
             throw ScilabError(szError, 999, e.location_get());
             //Err, SimpleVar doesn't exist in Scilab scopes.
         }
