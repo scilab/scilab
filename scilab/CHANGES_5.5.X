@@ -381,4 +381,8 @@ Bug fixes
 
 * Bug #12678 fixed - nthroot() now accepts vector/matrix as second argument.
 
-* Bug #12686 fixed - Fixed error returned by 'diff()'.
+* Bug #12679 fixed - Argument type check added in gcd and lcm.
+
+* Bug #12686 fixed - Error returned by diff() fixed.
+
+

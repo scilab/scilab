@@ -8,7 +8,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[pp,fact]=lcm(p)</synopsis>
+        <synopsis>[pp, fact] = lcm(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -16,7 +16,7 @@
             <varlistentry>
                 <term>p  </term>
                 <listitem>
-                    <para>vecteur de polynômes ou d'entiers (type égal à 8)
+                    <para>vecteur de polynômes (type égal à 2) ou d'entiers (type égal à 8)
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,14 +39,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>pp=lcm(p)</literal> calcule le PPCM <literal>pp</literal>  du vecteur
+            <literal>pp = lcm(p)</literal> calcule le PPCM <literal>pp</literal>  du vecteur
             <literal>p</literal> au sens des polynômes ou des entiers.
         </para>
         <para>
-            <literal>[pp,fact]=lcm(p)</literal> calcule de plus le vecteur <literal>fact</literal> tel que :
+            <literal>[pp, fact] = lcm(p)</literal> calcule de plus le vecteur <literal>fact</literal> tel que :
         </para>
         <para>
-            <literal>p.*fact=pp*ones(p)</literal>
+            <literal>p.*fact = pp*ones(p)</literal>
         </para>
     </refsection>
     <refsection>
