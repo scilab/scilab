@@ -75,7 +75,7 @@ host_triplet = @host@
 @JAVASCI_TRUE@am__append_2 = javasci
 
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
-@GUI_TRUE@am__append_3 = $(GUI_LIBS) $(top_builddir)/modules/jvm/libscijvm.la
+@GUI_TRUE@am__append_3 = $(top_builddir)/modules/jvm/libscijvm.la $(GUI_LIBS)
 @GUI_FALSE@am__append_4 = $(NO_GUI_LIBS)
 
 # This should never be used in production. It forces the explicit link
