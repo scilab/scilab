@@ -125,7 +125,7 @@
         <para>
             Les graphes suivants illustrent ce phénomène.
         </para>
-        <scilab:image>
+        <scilab:image localized="true">
             x = 0:.1:22;
             y = zeros(1,221); y(1) = 3; y(96) = 1;
             plot(x, y);
@@ -136,7 +136,7 @@
             <literal>intg</literal> considère la fonction comme plate.
             Dans l'image suivante, le pic est suffisamment large pour être détecté.
         </para>
-        <scilab:image>
+        <scilab:image localized="true">
             x = 0:21;
             y = zeros(1,22); y(1) = 3; y(10) = 1;
             plot(x, y);

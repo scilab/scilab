@@ -135,7 +135,7 @@
         <para>
             The following graphs illustrate that phenomenon.
         </para>
-        <scilab:image>
+        <scilab:image localized="true">
             x = 0:.1:22;
             y = zeros(1,221); y(1) = 3; y(96) = 1;
             plot(x, y);
@@ -147,7 +147,7 @@
             <literal>intg</literal> considers the function flat.
             In the next image, the spike is large enough to be covered by the integration points.
         </para>
-        <scilab:image>
+        <scilab:image localized="true">
             x = 0:21;
             y = zeros(1,22); y(1) = 3; y(10) = 1;
             plot(x, y);
