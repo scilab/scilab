@@ -130,7 +130,7 @@ function [ok,tt,cancel]=CFORTR2(funam,tt)
     typ  = "Cfunc",...
     head = ["Function definition in C";
     "Here is a skeleton of the functions which";
-    " you shoud edit."]);
+    " you should edit."]);
 
     while 1==1
 

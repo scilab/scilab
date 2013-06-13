@@ -22,4 +22,4 @@ scinotes(f,2);
 
 // ctrl+E
 // Look at the console
-// you shoud see a="abcd // efgh"
+// you should see a="abcd // efgh"

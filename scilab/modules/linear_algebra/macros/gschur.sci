@@ -19,7 +19,7 @@ function [As,Es,Z,dim]= gschur(A,E,extern)
         end
     elseif type(extern)==10 then
         if convstr(extern)=="c"|convstr(extern)=="d" then
-            warning(msprintf(gettext("%s: Obsolete function. Please, replaces ''%s'' by ''%s''."),"gschur","gschur","schur"));
+            warning(msprintf(gettext("%s: Obsolete function. Please replace ''%s'' by ''%s''."),"gschur","gschur","schur"));
             if argn(1)==4 then
                 [As,Es,Z,dim]= schur(A,E,extern)
             elseif argn(1)==2 then
@@ -35,7 +35,7 @@ function [As,Es,Z,dim]= gschur(A,E,extern)
         //flag=extern(x)
         //x(1) ==1 ==> x(2:3)=[al,be]
         //x(1) ==2 ==> x(2:3)=[s,p]
-        warning(msprintf(gettext("%s: Obsolete function. Please, replaces ''%s'' by ''%s''."),"gschur","gschur","schur"));
+        warning(msprintf(gettext("%s: Obsolete function. Please replace ''%s'' by ''%s''."),"gschur","gschur","schur"));
         deff("t=%_rule(Alpha,Beta)",["if imag(Alpha)==0 then"
         "  t=extern([1,real(Alpha),Beta])==1"
         "else		    "

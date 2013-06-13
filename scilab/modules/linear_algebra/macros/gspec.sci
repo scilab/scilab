@@ -10,6 +10,6 @@
 
 function [al,be,Z]=gspec(A,B)
     //For backward compatibility
-    warning(msprintf(gettext("%s: Obsolete function. Please, replaces ''%s'' by ''%s''."),"gspec","gspec","spec"));
+    warning(msprintf(gettext("%s: Obsolete function. Please replace ''%s'' by ''%s''."),"gspec","gspec","spec"));
     [al,be,Z]=spec(A,B)
 endfunction

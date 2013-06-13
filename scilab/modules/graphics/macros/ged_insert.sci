@@ -188,7 +188,7 @@ function axes = get_insertion_axes(job,f,default_axes,xc,yc)
         axes=f.children(1)
         if axes.user_data=="annotation" then return,end
         //  create a new specialized axes at left bottom of the window
-        //it shoud be better if the annotation axes be directly attached to
+        //it should be better if the annotation axes be directly attached to
         //the figure (to be done)
         axes=newaxes();
         axes.user_data="annotation"

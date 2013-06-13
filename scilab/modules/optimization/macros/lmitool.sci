@@ -157,7 +157,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
 
     if RHS==0|RHS==1 then
         [txt4]=x_dialog([gettext("Function definitions");
-        gettext("Here is a skeleton of the functions which you shoud edit");
+        gettext("Here is a skeleton of the functions which you should edit");
         gettext("You can do the editing in this window or click on ''ok'', save");
         gettext("the skeleton and edit later using your favorite editor")],[txt4]);
     end

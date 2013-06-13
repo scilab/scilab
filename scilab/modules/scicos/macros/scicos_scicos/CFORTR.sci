@@ -65,7 +65,7 @@ function [ok,tt]=CFORTR(funam,tt,inp,out)
 
     while 1==1
         [txt]=x_dialog(["Function definition in C";
-        "Here is a skeleton of the functions which you shoud edit"],..
+        "Here is a skeleton of the functions which you should edit"],..
         textmp);
 
         if txt<>[] then

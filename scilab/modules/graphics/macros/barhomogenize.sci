@@ -67,7 +67,7 @@ function  barhomogenize(varargin)
             STYLE=varlist(1)
             WIDTH=varlist(2)
         else
-            error(msprintf(gettext("%s:Wrong type for input arguments #%d and #%d: If argument #%d is a handle or a string, argument #%d must be a string or a scalar.\n"),"barhomogenize", 1, 2, 1, 2));
+            error(msprintf(gettext("%s: Wrong type for input arguments #%d and #%d: If argument #%d is a handle or a string, argument #%d must be a string or a scalar.\n"),"barhomogenize", 1, 2, 1, 2));
         end
     elseif size(varlist) == 3
         if type(varlist(1))==9  then

@@ -34,7 +34,7 @@ function r=validvar(s)
     t=macr2tree(foo) //syntax tree
     instr=t.statements(2) //ignore leading and trailing EOL
 
-    //lhs shoud be "ans"
+    //lhs should be "ans"
     if size(instr.lhs)<>1 then return,end
     if instr.lhs(1).name<>"ans" then return,end
 

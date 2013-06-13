@@ -270,7 +270,7 @@ sin..
 ),
 endfunction
 //continuation lines are replaced by a sequence of empty lines followed by the logical line
-//foo shoud be equal to foo1
+//foo should be equal to foo1
 function a=foo1(),a=sin(1),
 endfunction
 

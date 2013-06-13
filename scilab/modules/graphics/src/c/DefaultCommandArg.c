@@ -93,7 +93,7 @@ void setDefStrf(const char newDef[4])
     def_strf[0] = newDef[0];
     def_strf[1] = newDef[1];
     def_strf[2] = newDef[2];
-    /* last element shoud be /0 */
+    /* last element should be /0 */
 }
 /*------------------------------------------------------------------------*/
 void setDefZminMax(const double newDef[2])
@@ -132,7 +132,7 @@ void setDefLogFlags(const char newDef[4])
     def_logflags[0] = newDef[0];
     def_logflags[1] = newDef[1];
     def_logflags[2] = newDef[2];
-    /* last element shoud be /0 */
+    /* last element should be /0 */
 }
 /*------------------------------------------------------------------------*/
 
