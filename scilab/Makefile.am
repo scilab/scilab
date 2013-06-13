@@ -82,18 +82,26 @@ scilab_bin_SOURCES		+=  $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 endif
 
 scilab_bin_LDADD 		= $(COMMON_LIBS)
+
 if GUI
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
 scilab_bin_LDADD += $(top_builddir)/modules/jvm/libscijvm.la
 endif
-scilab_bin_LDADD += $(top_builddir)/modules/libscilab.la $(FLIBS)
+
+# BLAS_LIBS & LAPACK_LIBS are explicitly linked at the end. Unlike Scilab 5 in which the binary
+# is in C, Scilab 6 main is in C++. For some reasons (ie, I don't know why), libtool places blas and
+# lapack at the beginning of the order of the link. This caused some issues with the overload of the
+# xerbla function
+scilab_bin_LDADD += $(top_builddir)/modules/libscilab.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
 							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
 
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
-scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
+
+# See the comment about scilab_bin_LDADD (relative to BLAS_LIBS & LAPACK_LIBS)
+scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
 
 
 if NEED_JAVA
