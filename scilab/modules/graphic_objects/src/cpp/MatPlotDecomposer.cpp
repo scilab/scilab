@@ -70,7 +70,7 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
         case MATPLOT_Char :
         {
             char * index = (char *)data;
-            for (unsigned int i = 0 ; i < w * h; i++)
+            for (int i = 0 ; i < w * h; i++)
             {
                 ColorComputer::getDirectByteColor(index[i] - 1, colormap, colormapSize, &buffer[4 * i], false);
             }
@@ -81,7 +81,7 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
         case MATPLOT_UChar :
         {
             unsigned char * index = (unsigned char *)data;
-            for (unsigned int i = 0 ; i < w * h; i++)
+            for (int i = 0 ; i < w * h; i++)
             {
                 ColorComputer::getDirectByteColor(index[i] - 1, colormap, colormapSize, &buffer[4 * i], false);
             }
@@ -91,7 +91,7 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
         case MATPLOT_Int :
         {
             int * index = (int *)data;
-            for (unsigned int i = 0 ; i < w * h; i++)
+            for (int i = 0 ; i < w * h; i++)
             {
                 ColorComputer::getDirectByteColor(index[i] - 1, colormap, colormapSize, &buffer[4 * i], false);
             }
@@ -101,7 +101,7 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
         case MATPLOT_UInt :
         {
             unsigned int * index = (unsigned int *)data;
-            for (unsigned int i = 0 ; i < w * h; i++)
+            for (int i = 0 ; i < w * h; i++)
             {
                 ColorComputer::getDirectByteColor(index[i] - 1, colormap, colormapSize, &buffer[4 * i], false);
             }
@@ -111,7 +111,7 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
         case MATPLOT_Short :
         {
             short * index = (short *)data;
-            for (unsigned int i = 0 ; i < w * h; i++)
+            for (int i = 0 ; i < w * h; i++)
             {
                 ColorComputer::getDirectByteColor(index[i] - 1, colormap, colormapSize, &buffer[4 * i], false);
             }
@@ -121,7 +121,7 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
         case MATPLOT_UShort :
         {
             unsigned short * index = (unsigned short *)data;
-            for (unsigned int i = 0 ; i < w * h; i++)
+            for (int i = 0 ; i < w * h; i++)
             {
                 ColorComputer::getDirectByteColor(index[i] - 1, colormap, colormapSize, &buffer[4 * i], false);
             }
@@ -132,7 +132,7 @@ int MatPlotDecomposer::fillTextureData(char* id, unsigned char* buffer, int buff
         case MATPLOT_Double :
         {
             double * index = (double *)data;
-            for (unsigned int i = 0 ; i < w * h ; i++)
+            for (int i = 0 ; i < w * h ; i++)
             {
                 ColorComputer::getDirectByteColor(index[i] - 1, colormap, colormapSize, &buffer[4 * i], false);
             }

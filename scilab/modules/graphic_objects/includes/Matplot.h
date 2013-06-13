@@ -13,6 +13,8 @@
 #ifndef MATPLOT_H
 #define MATPLOT_H
 
+#include "dynlib_graphic_objects.h"
+
 typedef enum
 {
     MATPLOT_HM1_Char = 0,
@@ -92,6 +94,6 @@ typedef enum
  * @param[in] imagetype the image type
  * @return an int
  */
-int buildMatplotType(DataType datatype, DataOrder dataorder, ImageType imagetype);
+GRAPHIC_OBJECTS_IMPEXP int buildMatplotType(DataType datatype, DataOrder dataorder, ImageType imagetype);
 
 #endif // MATPLOT_H

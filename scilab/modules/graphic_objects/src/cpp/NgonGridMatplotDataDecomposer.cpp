@@ -473,9 +473,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned int * ui = (unsigned int *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         const unsigned int c = ui[nbRow - 1 + i * nbRow - j];
                         colors[0] = ((c >> 24) & 0xFF) / 255.0f;
@@ -493,9 +493,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 float * f = (float *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         writeFacetColorToBuffer(buffer, k, &f[3 * (nbRow - 1 + i * nbRow - j)], elementsSize, false);
                         k += 4 * elementsSize;
@@ -508,9 +508,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned char * uc = (unsigned char *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         const unsigned int ind = 3 * (nbRow - 1 + i * nbRow - j);
                         colors[0] = uc[ind] / 255.0f;
@@ -527,9 +527,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned char * uc = (unsigned char *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         const unsigned int ind = 4 * (nbRow - 1 + i * nbRow - j);
                         colors[0] = uc[ind] / 255.0f;
@@ -547,9 +547,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 float * f = (float *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         writeFacetColorToBuffer(buffer, k, &f[4 * (nbRow - 1 + i * nbRow - j)], elementsSize, true);
                         k += 4 * elementsSize;
@@ -562,9 +562,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned char * uc = (unsigned char *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = uc[nbRow - 1 + i * nbRow - j] / 255.0f;
                         colors[1] = colors[0];
@@ -580,9 +580,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned char * uc = (unsigned char *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = uc[nbRow - 1 + i * nbRow - j] / 255.0f;
                         colors[1] = 0;
@@ -598,9 +598,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned char * uc = (unsigned char *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = 0;
                         colors[1] = uc[nbRow - 1 + i * nbRow - j] / 255.0f;
@@ -616,9 +616,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned char * uc = (unsigned char *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = 0;
                         colors[1] = 0;
@@ -634,9 +634,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 float * f = (float *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = f[nbRow - 1 + i * nbRow - j];
                         colors[1] = colors[0];
@@ -652,9 +652,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 float * f = (float *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = f[nbRow - 1 + i * nbRow - j];
                         colors[1] = 0;
@@ -670,9 +670,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 float * f = (float *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = 0;
                         colors[1] = f[nbRow - 1 + i * nbRow - j];
@@ -688,9 +688,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 float * f = (float *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = 0;
                         colors[1] = 0;
@@ -706,9 +706,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned short * us = (unsigned short *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         const unsigned short c = us[nbRow - 1 + i * nbRow - j];
                         colors[0] = ((c >> 12) & 0xFF) / 15.0f;
@@ -726,9 +726,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned short * us = (unsigned short *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         const unsigned short c = us[nbRow - 1 + i * nbRow - j];
                         colors[0] = ((c >> 11) & 0xFF) / 31.0f;
@@ -746,9 +746,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned char * uc = (unsigned char *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         const unsigned char c = uc[nbRow - 1 + i * nbRow - j];
                         colors[0] = ((c >> 5) & 0x7) / 7.0f;
@@ -765,9 +765,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned short * us = (unsigned short *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = us[nbRow - 1 + i * nbRow - j] / 65535.0f;
                         colors[1] = colors[0];
@@ -783,9 +783,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned short * us = (unsigned short *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = us[nbRow - 1 + i * nbRow - j] / 65535.0f;
                         colors[1] = 0;
@@ -801,9 +801,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned short * us = (unsigned short *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = 0;
                         colors[1] = us[nbRow - 1 + i * nbRow - j] / 65535.0f;
@@ -819,9 +819,9 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 unsigned int k = 0;
                 unsigned short * us = (unsigned short *)data;
 
-                for (unsigned int j = 0; j < nbRow; j++)
+                for (int j = 0; j < nbRow; j++)
                 {
-                    for (unsigned int i = 0; i < nbCol; i++)
+                    for (int i = 0; i < nbCol; i++)
                     {
                         colors[0] = 0;
                         colors[1] = 0;

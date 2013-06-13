@@ -149,9 +149,9 @@ public :
         T index;
         int bufferOffset = 0;
 
-        for (unsigned int j = 0; j < nbRow; j++)
+        for (int j = 0; j < nbRow; j++)
         {
-            for (unsigned int i = 0; i < nbCol; i++)
+            for (int i = 0; i < nbCol; i++)
             {
                 index = indices[nbRow - 1 + i * nbRow - j];
                 ColorComputer::getDirectColor(index - 1, colormap, colormapSize, facetColor);

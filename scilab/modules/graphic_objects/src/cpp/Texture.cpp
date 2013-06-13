@@ -173,7 +173,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * B = G + numElements;
                     unsigned int * uidata = (unsigned int *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         uidata[i] = (R[i] << 24) | (G[i] << 16) | (B[i] << 8) | 0xFF;
                     }
@@ -189,7 +189,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     float * fdata = (float *) * dest;
                     unsigned int k = 0;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[k] = (float)R[i];
                         fdata[k + 1] = (float)G[i];
@@ -212,7 +212,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned int * uidata = (unsigned int *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         uidata[i] = (ui[i] << 8) | 0xFF;
                     }
@@ -225,7 +225,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned int * uidata = (unsigned int *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         uidata[i] = ui[i] | 0xFF;
                     }
@@ -251,7 +251,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     unsigned int * uidata = (unsigned int *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         uidata[i] = (((unsigned int)d[i]) << 8) | 0xFF;
                     }
@@ -273,7 +273,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * B = G + numElements;
                     unsigned int * uidata = (unsigned int *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         uidata[i] = (R[i] << 24) | (G[i] << 16) | (B[i] << 8) | 0xFF;
                     }
@@ -289,7 +289,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * A = B + numElements;
                     unsigned int * uidata = (unsigned int *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         uidata[i] = (R[i] << 24) | (G[i] << 16) | (B[i] << 8) | A[i];
                     }
@@ -304,7 +304,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     float * fdata = (float *) * dest;
                     unsigned int k = 0;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[k] = (float)R[i];
                         fdata[k + 1] = (float)G[i];
@@ -324,7 +324,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     float * fdata = (float *) * dest;
                     unsigned int k = 0;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[k] = (float)R[i];
                         fdata[k + 1] = (float)G[i];
@@ -347,7 +347,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned int * uidata = (unsigned int *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         uidata[i] = (ui[i] << 8) | 0xFF;
                     }
@@ -378,7 +378,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     unsigned int * uidata = (unsigned int *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         uidata[i] = (unsigned int)d[i];
                     }
@@ -402,7 +402,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * B = G + numElements;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) (GrayR[R[i]] + GrayG[G[i]] + GrayB[B[i]]);
                     }
@@ -417,7 +417,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * B = G + numElements;
                     float * fdata = (float *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[i] = (float) (0.299 * R[i] + 0.587 * G[i] + 0.114 * B[i]);
                     }
@@ -445,7 +445,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) (GrayR[(ui[i] >> 24) & 0xFF] + GrayG[(ui[i] >> 16) & 0xFF] + GrayB[(ui[i] >> 8) & 0xFF]);
                     }
@@ -457,7 +457,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) (GrayR[(ui[i] >> 16) & 0xFF] + GrayG[(ui[i] >> 8) & 0xFF] + GrayB[ui[i] & 0xFF]);
                     }
@@ -470,7 +470,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     float * fdata = (float *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[i] = (float)d[i];
                     }
@@ -507,7 +507,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     float * fdata = (float *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[i] = (float)d[i];
                     }
@@ -535,7 +535,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) ((ui[i] >> 16) & 0xFF);
                     }
@@ -547,7 +547,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) ((ui[i] >> 24) & 0xFF);
                     }
@@ -576,7 +576,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data + numElements;
                     float * fdata = (float *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[i] = (float)d[i];
                     }
@@ -604,7 +604,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) ((ui[i] >> 8) & 0xFF);
                     }
@@ -616,7 +616,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) ((ui[i] >> 16) & 0xFF);
                     }
@@ -629,7 +629,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     float * fdata = (float *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[i] = (float)d[i];
                     }
@@ -658,7 +658,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data + 2 * numElements;
                     float * fdata = (float *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[i] = (float)d[i];
                     }
@@ -686,7 +686,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) (ui[i] & 0xFF);
                     }
@@ -698,7 +698,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char) ((ui[i] >> 8) & 0xFF);
                     }
@@ -711,7 +711,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     float * fdata = (float *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         fdata[i] = (float)d[i];
                     }
@@ -734,7 +734,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * G = R + numElements;
                     const unsigned char * B = G + numElements;
                     unsigned char * ucdata = (unsigned char *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char)(RGB8R[R[i]] | RGB8G[G[i]] | RGB8B[B[i]]);
                     }
@@ -748,7 +748,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * G = R + numElements;
                     const double * B = G + numElements;
                     unsigned char * ucdata = (unsigned char *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char)(RGB8R[_DOUBLE_TO_UCHAR_(R[i])] | RGB8G[_DOUBLE_TO_UCHAR_(G[i])] | RGB8B[_DOUBLE_TO_UCHAR_(B[i])]);
                     }
@@ -769,7 +769,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char)(RGB8R[(ui[i] & 0xFF0000) >> 16] | RGB8G[(ui[i] & 0xFF00) >> 8] | RGB8B[ui[i] & 0xFF]);
                     }
@@ -781,7 +781,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char)(RGB8R[(ui[i] & 0xFF000000) >> 24] | RGB8G[(ui[i] & 0xFF0000) >> 16] | RGB8B[(ui[i] & 0xFF00) >> 8]);
                     }
@@ -793,7 +793,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned short * us = (const unsigned short *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char)(((us[i] & 0xE00) >> 4) | ((us[i] & 0xE0) >> 3) | ((us[i] & 0xC) >> 2));
                     }
@@ -805,7 +805,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned short * us = (const unsigned short *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         ucdata[i] = (unsigned char)(((us[i] & 0xE000) >> 8) | ((us[i] & 0xE00) >> 7) | ((us[i] & 0xC0) >> 6));
                     }
@@ -818,7 +818,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     unsigned char * ucdata = (unsigned char *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         const unsigned int ui = (unsigned int)d[i];
                         ucdata[i] = (unsigned char)(RGB8R[(ui & 0xFF000000) >> 24] | RGB8G[(ui & 0xFF0000) >> 16] | RGB8B[(ui & 0xFF00) >> 8]);
@@ -842,7 +842,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * G = R + numElements;
                     const unsigned char * B = G + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[R[i]] << 12) | (R12[G[i]] << 8) | (R12[B[i]] << 4) | 0xF);
                     }
@@ -856,7 +856,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * G = R + numElements;
                     const double * B = G + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[_DOUBLE_TO_UCHAR_(R[i])] << 12) | (R12[_DOUBLE_TO_UCHAR_(G[i])] << 8) | (R12[_DOUBLE_TO_UCHAR_(B[i])] << 4) | 0xF);
                     }
@@ -877,7 +877,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[(ui[i] & 0xFF0000) >> 16] << 12) | (R12[(ui[i] & 0xFF00) >> 8] << 8) | (R12[ui[i] & 0xFF] << 4) | 0xF);
                     }
@@ -889,7 +889,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[(ui[i] & 0xFF000000) >> 24] << 12) | (R12[(ui[i] & 0xFF0000) >> 16] << 8) | (R12[(ui[i] & 0xFF00) >> 8] << 4) | (R12[ui[i] & 0xFF]));
                     }
@@ -901,7 +901,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 {
                     const unsigned short * us = (const unsigned short *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (us[i] << 4) | 0xF;
                     }
@@ -914,7 +914,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         const unsigned int ui = (unsigned int)d[i];
                         usdata[i] = (unsigned short)((R12[(ui & 0xFF0000) >> 16] << 12) | (R12[(ui & 0xFF00) >> 8] << 8) | (R12[ui & 0xFF] << 4) | 0xF);
@@ -938,7 +938,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * G = R + numElements;
                     const unsigned char * B = G + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((R[i] & 0xF8) << 8) | ((G[i] & 0xF8) << 3) | ((B[i] & 0xF8) >> 2) | 0x1);
                     }
@@ -952,7 +952,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * G = R + numElements;
                     const double * B = G + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((_DOUBLE_TO_UCHAR_(R[i]) & 0xF8) << 8) | ((_DOUBLE_TO_UCHAR_(G[i]) & 0xF8) << 3) | ((_DOUBLE_TO_UCHAR_(B[i]) & 0xF8) >> 2) | 0x1);
                     }
@@ -972,7 +972,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 {
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((ui[i] & 0xF80000) >> 8) | ((ui[i] & 0xF800) >> 5) | ((ui[i] & 0xF8) >> 2) | 0x1);
                     }
@@ -983,7 +983,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 {
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((ui[i] & 0xF8000000) >> 16) | ((ui[i] & 0xF80000) >> 13) | ((ui[i] & 0xF800) >> 10) | 0x1);
                     }
@@ -995,7 +995,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 {
                     const unsigned short * ui = (const unsigned short *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (ui[i] << 1) | 0x1;
                     }
@@ -1008,7 +1008,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         const unsigned int ui = (unsigned int)d[i];
                         usdata[i] = (unsigned short)(((ui & 0xF80000) >> 13) | ((ui & 0xF800) >> 5) | ((ui & 0xF8) >> 2) | 0x1);
@@ -1030,7 +1030,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * G = R + numElements;
                     const unsigned char * B = G + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[R[i]] << 12) | (R12[G[i]] << 8) | (R12[B[i]] << 4) | 0xF);
                     }
@@ -1045,7 +1045,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * B = G + numElements;
                     const unsigned char * A = B + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[R[i]] << 12) | (R12[G[i]] << 8) | (R12[B[i]] << 4) | R12[A[i]]);
                     }
@@ -1058,7 +1058,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * G = R + numElements;
                     const double * B = G + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[_DOUBLE_TO_UCHAR_(R[i])] << 12) | (R12[_DOUBLE_TO_UCHAR_(G[i])] << 8) | (R12[_DOUBLE_TO_UCHAR_(B[i])] << 4) | 0xF);
                     }
@@ -1072,7 +1072,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * B = G + numElements;
                     const double * A = B + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[_DOUBLE_TO_UCHAR_(R[i])] << 12) | (R12[_DOUBLE_TO_UCHAR_(G[i])] << 8) | (R12[_DOUBLE_TO_UCHAR_(B[i])] << 4) | R12[_DOUBLE_TO_UCHAR_(A[i])]);
                     }
@@ -1092,7 +1092,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 {
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[(ui[i] & 0xFF0000) >> 16] << 12) | (R12[(ui[i] & 0xFF00) >> 8] << 8) | (R12[ui[i] & 0xFF] << 4) | 0xF);
                     }
@@ -1104,7 +1104,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)((R12[(ui[i] & 0xFF000000) >> 24] << 12) | (R12[(ui[i] & 0xFF0000) >> 16] << 8) | (R12[(ui[i] & 0xFF00) >> 8] << 4) | R12[ui[i] & 0xFF]);
                     }
@@ -1124,7 +1124,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         const unsigned int ui = (unsigned int)d[i];
                         usdata[i] = (unsigned short)((R12[(ui & 0xFF000000) >> 24] << 12) | (R12[(ui & 0xFF0000) >> 16] << 8) | (R12[(ui & 0xFF) >> 8] << 4) | R12[ui & 0xFF]);
@@ -1146,7 +1146,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * G = R + numElements;
                     const unsigned char * B = G + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((R[i] & 0xF8) << 8) | ((G[i] & 0xF8) << 3) | ((B[i] & 0xF8) >> 2) | 0x1);
                     }
@@ -1161,7 +1161,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned char * B = G + numElements;
                     const unsigned char * A = B + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((R[i] & 0xF8) << 8) | ((G[i] & 0xF8) << 3) | ((B[i] & 0xF8) >> 2) | ((A[i] & 0x1)));
                     }
@@ -1174,7 +1174,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * G = R + numElements;
                     const double * B = G + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((_DOUBLE_TO_UCHAR_(R[i]) & 0xF8) << 8) | ((_DOUBLE_TO_UCHAR_(G[i]) & 0xF8) << 3) | ((_DOUBLE_TO_UCHAR_(B[i]) & 0xF8) >> 2) | 0x1);
                     }
@@ -1188,7 +1188,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * B = G + numElements;
                     const double * A = B + numElements;
                     unsigned short * usdata = (unsigned short *) * dest;
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((_DOUBLE_TO_UCHAR_(R[i]) & 0xF8) << 8) | ((_DOUBLE_TO_UCHAR_(G[i]) & 0xF8) << 3) | ((_DOUBLE_TO_UCHAR_(B[i]) & 0xF8) >> 2) | (_DOUBLE_TO_UCHAR_(A[i]) & 0x1));
                     }
@@ -1209,7 +1209,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((ui[i] & 0xF80000) >> 13) | ((ui[i] & 0xF800) >> 5) | ((ui[i] & 0xF8) >> 2) | 0x1);
                     }
@@ -1221,7 +1221,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const unsigned int * ui = (const unsigned int *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         usdata[i] = (unsigned short)(((ui[i] & 0xF8000000) >> 21) | ((ui[i] & 0xF80000) >> 13) | ((ui[i] & 0xF800) >> 10) | ((ui[i] & 0xFF) >> 7));
                     }
@@ -1241,7 +1241,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                     const double * d = (const double *)data;
                     unsigned short * usdata = (unsigned short *) * dest;
 
-                    for (unsigned int i = 0; i < numElements; i++)
+                    for (int i = 0; i < numElements; i++)
                     {
                         const unsigned int ui = (unsigned int)d[i];
                         usdata[i] = (unsigned short)(((ui & 0xF8000000) >> 21) | ((ui & 0xF80000) >> 13) | ((ui & 0xF800) >> 10) | ((ui & 0xFF) >> 7));
@@ -1260,7 +1260,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
 
 bool Texture::initGrayTables()
 {
-    for (unsigned int c = 0; c < 256; c++)
+    for (int c = 0; c < 256; c++)
     {
         GrayR[c] = 0.299f * (float)c;
         GrayG[c] = 0.587f * (float)c;
@@ -1272,7 +1272,7 @@ bool Texture::initGrayTables()
 
 bool Texture::initRGB8Tables()
 {
-    for (unsigned int c = 0; c < 256; c++)
+    for (int c = 0; c < 256; c++)
     {
         RGB8R[c] = (c / 36) << 5;
         RGB8G[c] = (c / 36) << 2;
@@ -1284,7 +1284,7 @@ bool Texture::initRGB8Tables()
 
 bool Texture::initR12Table()
 {
-    for (unsigned int c = 0; c < 256; c++)
+    for (int c = 0; c < 256; c++)
     {
         R12[c] = c / 17;
     }

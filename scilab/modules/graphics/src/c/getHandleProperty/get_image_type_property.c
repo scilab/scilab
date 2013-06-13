@@ -23,7 +23,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
-#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 #include "Matplot.h"
@@ -33,6 +33,7 @@ int get_image_type_property(void* _pvCtx, char* pobjUID)
 {
     int imagetype = 0;
     int * piImagetype = &imagetype;
+    ImageType itype = (ImageType)imagetype;
 
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__, jni_int, (void **)&piImagetype);
     if (piImagetype == NULL)
@@ -41,7 +42,6 @@ int get_image_type_property(void* _pvCtx, char* pobjUID)
         return -1;
     }
 
-    ImageType itype = (ImageType)imagetype;
     switch (itype)
     {
         case MATPLOT_RGB :

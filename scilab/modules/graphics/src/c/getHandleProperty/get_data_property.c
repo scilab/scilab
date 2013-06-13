@@ -34,7 +34,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "Matplot.h"
-
+#include "returnProperty.h"
 /*--------------------------------------------------------------------------*/
 /* the matplot data can have several type */
 int getmatplotdata(void * _pvCtx, char *pobjUID)
