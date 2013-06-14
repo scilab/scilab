@@ -18,6 +18,7 @@
 #include "CdfBase.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(cdfpoi)(int *, double *, double *, double *, double *, int *, double *);
 /*--------------------------------------------------------------------------*/
@@ -39,6 +40,7 @@ int cdfpoiI(char* fname, unsigned long l)
     GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
     if ( strcmp(cstk(l1), "PQ") == 0)
     {
+        static int callpos[4] = {2, 3, 0, 1};
         GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &mS, &nS, &lS);
         S = stk(lS);
         for (i = 0; i < mS * nS; ++i)
@@ -48,7 +50,6 @@ int cdfpoiI(char* fname, unsigned long l)
                     Scierror(999, _("%s: Wrong value for input argument #%d: A matrix of integer value expected.\n"), fname, 2);
                     return 0;
                 }
-        static int callpos[4] = {2, 3, 0, 1};
         CdfBase(fname, 2, 2, callpos, "PQ", _("S and Xlam"), 1, C2F(cdfpoi),
                 cdfpoiErr);
     }
@@ -60,6 +61,7 @@ int cdfpoiI(char* fname, unsigned long l)
     }
     else if ( strcmp(cstk(l1), "Xlam") == 0)
     {
+        static int callpos[4] = {0, 1, 2, 3};
         GetRhsVar(4, MATRIX_OF_DOUBLE_DATATYPE, &mS, &nS, &lS);
         S = stk(lS);
         for (i = 0; i < mS * nS; ++i)
@@ -69,7 +71,6 @@ int cdfpoiI(char* fname, unsigned long l)
                     Scierror(999, _("%s: Wrong value for input argument #%d: A matrix of integer value expected.\n"), fname, 4);
                     return 0;
                 }
-        static int callpos[4] = {0, 1, 2, 3};
         CdfBase(fname, 3, 1, callpos, "Xlam", _("P,Q and S"), 3, C2F(cdfpoi),
                 cdfpoiErr);
     }

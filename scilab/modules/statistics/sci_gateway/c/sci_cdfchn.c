@@ -17,6 +17,7 @@
 #include "CdfBase.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(cdfchn)(int *, double *, double *, double*, double *, double *, int *, double *);
 /*--------------------------------------------------------------------------*/
@@ -37,6 +38,7 @@ int cdfchnI(char* fname, unsigned long l)
     GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
     if ( strcmp(cstk(l1), "PQ") == 0)
     {
+        static int callpos[5] = {3, 4, 0, 1, 2};
         GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &mDf, &nDf, &lDf);
         Df = stk(lDf);
         for (i = 0; i < mDf * nDf; ++i)
@@ -44,12 +46,12 @@ int cdfchnI(char* fname, unsigned long l)
             {
                 sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, 3);
             }
-        static int callpos[5] = {3, 4, 0, 1, 2};
         CdfBase(fname, 3, 2, callpos, "PQ", _("X,Df and Pnonc"), 1, C2F(cdfchn),
                 cdfchnErr);
     }
     else if ( strcmp(cstk(l1), "X") == 0)
     {
+        static int callpos[5] = {2, 3, 4, 0, 1};
         GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &mDf, &nDf, &lDf);
         Df = stk(lDf);
         for (i = 0; i < mDf * nDf; ++i)
@@ -57,7 +59,6 @@ int cdfchnI(char* fname, unsigned long l)
             {
                 sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, 2);
             }
-        static int callpos[5] = {2, 3, 4, 0, 1};
         CdfBase(fname, 4, 1, callpos, "X", _("Df,Pnonc,P and Q"), 2, C2F(cdfchn),
                 cdfchnErr);
     }
@@ -69,6 +70,7 @@ int cdfchnI(char* fname, unsigned long l)
     }
     else if ( strcmp(cstk(l1), "Pnonc") == 0)
     {
+        static int callpos[5] = {0, 1, 2, 3, 4};
         GetRhsVar(5, MATRIX_OF_DOUBLE_DATATYPE, &mDf, &nDf, &lDf);
         Df = stk(lDf);
         for (i = 0; i < mDf * nDf; ++i)
@@ -76,7 +78,6 @@ int cdfchnI(char* fname, unsigned long l)
             {
                 sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, 5);
             }
-        static int callpos[5] = {0, 1, 2, 3, 4};
         CdfBase(fname, 4, 1, callpos, "Pnonc", _("P,Q,X and Df"), 4, C2F(cdfchn),
                 cdfchnErr);
     }

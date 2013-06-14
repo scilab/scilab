@@ -17,6 +17,7 @@
 #include "CdfBase.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(cdfchi)(int *, double *, double *, double *, double *, int *, double *);
 /*--------------------------------------------------------------------------*/
@@ -41,6 +42,7 @@ int cdfchiI(char* fname, unsigned long l)
     GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
     if ( strcmp(cstk(l1), "PQ") == 0)
     {
+        static int callpos[4] = {2, 3, 0, 1};
         GetRhsVar(3, MATRIX_OF_DOUBLE_DATATYPE, &mDf, &nDf, &lDf);
         Df = stk(lDf);
         for (i = 0; i < mDf * nDf; ++i)
@@ -48,12 +50,12 @@ int cdfchiI(char* fname, unsigned long l)
             {
                 sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, 3);
             }
-        static int callpos[4] = {2, 3, 0, 1};
         CdfBase(fname, 2, 2, callpos, "PQ", _("X and Df"), 1, C2F(cdfchi),
                 cdfchiErr);
     }
     else if ( strcmp(cstk(l1), "X") == 0)
     {
+        static int callpos[4] = {1, 2, 3, 0};
         GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &mDf, &nDf, &lDf);
         Df = stk(lDf);
         for (i = 0; i < mDf * nDf; ++i)
@@ -61,7 +63,6 @@ int cdfchiI(char* fname, unsigned long l)
             {
                 sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, 2);
             }
-        static int callpos[4] = {1, 2, 3, 0};
         CdfBase(fname, 3, 1, callpos, "X", _("Df, P and Q"), 2, C2F(cdfchi),
                 cdfchiErr);
     }
