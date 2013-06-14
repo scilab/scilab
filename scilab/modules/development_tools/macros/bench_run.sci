@@ -109,7 +109,7 @@ function bench_run(varargin)
             end
         end
     else
-        error(gettext("Number of parameters incorrect."));
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "bench_run", 0, 3));
     end
 
     // =======================================================

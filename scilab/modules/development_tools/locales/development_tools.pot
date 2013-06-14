@@ -305,7 +305,7 @@ msgstr ""
 
 #
 # File: macros/bench_run.sci, line: 112
-msgid "Number of parameters incorrect."
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
