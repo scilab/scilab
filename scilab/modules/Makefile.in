@@ -578,7 +578,6 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/matio/libscimatio.la \
 	$(top_builddir)/modules/operations/libscioperations.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
