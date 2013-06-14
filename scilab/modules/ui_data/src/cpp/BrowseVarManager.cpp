@@ -24,7 +24,7 @@ using std::string;
 extern "C"
 {
 #include <string.h>
-#include "UpdateBrowseVar.h"
+#include "BrowseVarManager.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "BOOL.h"
@@ -44,8 +44,21 @@ static std::set < string > createScilabDefaultVariablesSet();
 static char * getListName(char * variableName);
 static std::string formatMatrix(int nbRows, int nbCols, BOOL isComplex, double *pdblReal, double *pdblImg);
 static char * valueToDisplay(char * variableName, int variableType, int nbRows, int nbCols);
-/*--------------------------------------------------------------------------*/
-void UpdateBrowseVar(BOOL update)
+void OpenBrowseVar()
+{
+    BrowseVar::openVariableBrowser(getScilabJavaVM());
+    SetBrowseVarData();
+}
+
+void UpdateBrowseVar()
+{
+    if (BrowseVar::isVariableBrowserOpened(getScilabJavaVM()))
+    {
+        SetBrowseVarData();
+    }
+}
+
+void SetBrowseVarData()
 {
     SciErr err;
     int iGlobalVariablesUsed = 0;
@@ -53,11 +66,6 @@ void UpdateBrowseVar(BOOL update)
     int iLocalVariablesUsed = 0;
     int iLocalVariablesTotal = 0;
     int i = 0;
-
-    if (update && !BrowseVar::isVariableBrowserOpened(getScilabJavaVM()))
-    {
-        return;
-    }
 
     // First get how many global / local variable we have.
     C2F(getvariablesinfo) (&iLocalVariablesTotal, &iLocalVariablesUsed);
@@ -209,18 +217,17 @@ void UpdateBrowseVar(BOOL update)
     }
 
     // Launch Java Variable Browser through JNI
-    BrowseVar::openVariableBrowser(getScilabJavaVM(),
-                                   BOOLtobool(update),
-                                   pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableNbRows, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableNbCols, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
+    BrowseVar::setVariableBrowserData(getScilabJavaVM(),
+                                      pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      piAllVariableNbRows, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      piAllVariableNbCols, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
+                                      piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
 
     freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
     freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);

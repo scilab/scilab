@@ -315,6 +315,8 @@ Bug fixes
 * Bug #12463 fixed - Bad specification for rect=[x,y,w,h] argument in french help
                      page of xstringb.
 
+* Bug #12470 fixed - Variable browser is not refreshed after loading an environment.
+
 * Bug #12473 fixed - Problems with "é" in french help page of mkdir.
 
 * Bug #12475 fixed - csvRead() does not support double quoted fields.

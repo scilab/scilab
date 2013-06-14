@@ -13,7 +13,7 @@
 #include "noui_data.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "UpdateBrowseVar.h"
+#include "BrowseVarManager.h"
 #include "FileBrowserChDir.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
