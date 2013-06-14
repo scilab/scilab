@@ -7,6 +7,7 @@
  *
  */
 #include <stdio.h> /* stderr */
+#include <stdlib.h> /* getenv */
 
 #include "call_scilab.h" /* Provide functions to call Scilab engine */
 

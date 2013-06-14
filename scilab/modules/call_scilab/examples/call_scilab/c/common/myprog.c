@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <string.h>
 
+#include "api_scilab.h"
 #include "call_scilab.h" /* Provide functions to call Scilab engine */
 
 /**
@@ -31,6 +32,7 @@
 /*------------------------------------------------------------*/
 static int first_example(void)
 {
+    void* pvApiCtx = NULL;
     static double A[] = {1, 2, 3, 4};
     int mA = 2, nA = 2;
     static double b[] = {4, 5};
@@ -39,8 +41,8 @@ static int first_example(void)
     printf("Some simple computations\n");
 
     /* Create Scilab matrices A and b */
-    WriteMatrix("A", &mA, &nA, A);
-    WriteMatrix("b", &mb, &nb, b);
+    createNamedMatrixOfDouble(pvApiCtx, "A", mA, mA, A);
+    createNamedMatrixOfDouble(pvApiCtx, "b", mb, nb, b);
 
     SendScilabJob("disp('A=');");
     SendScilabJob("disp(A);");
@@ -58,11 +60,11 @@ static int first_example(void)
         int m, n, lp, i;
 
         /* Get m and n */
-        GetMatrixptr("x", &m, &n, &lp);
+        getNamedVarDimension(pvApiCtx, "x", &m, &n);
 
         cxtmp = (double*)malloc((m * n) * sizeof(double));
 
-        ReadMatrix("x", &m, &n, cxtmp);
+        readNamedMatrixOfDouble(pvApiCtx, "x", &m, &n, cxtmp);
 
         for (i = 0; i < m * n; i++)
         {
