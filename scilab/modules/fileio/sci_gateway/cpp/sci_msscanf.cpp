@@ -23,7 +23,6 @@ extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
-#include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
 }

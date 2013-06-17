@@ -11,8 +11,6 @@ src/c/men_Sutils.c \
 src/c/tokens.c \
 src/c/strsplit.c \
 src/c/partfunction.c \
-src/c/InitializeString.c \
-src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
 src/c/getfastcode.c \
 src/c/pcre_private.c \

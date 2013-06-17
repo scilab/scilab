@@ -42,38 +42,38 @@
 */
 int sci_curblockc(char *fname, unsigned long fname_len)
 {
-    /***********************
-    * variables declaration
-    ***********************/
+    ///***********************
+    //* variables declaration
+    //***********************/
 
-    extern CURBLK_struct C2F(curblk);
+    //extern CURBLK_struct C2F(curblk);
 
-    /* address of the data of the output parameter */
-    int l1 = 0;
-    /* local counter variable */
-    int j = 1, k = 1;
-    /* definition of min/max output argument */
-    static int minlhs = 1, maxlhs = 1;
+    ///* address of the data of the output parameter */
+    //int l1 = 0;
+    ///* local counter variable */
+    //int j = 1, k = 1;
+    ///* definition of min/max output argument */
+    //static int minlhs = 1, maxlhs = 1;
 
-    /**************************
-    * Check number of  outputs
-    **************************/
-    CheckLhs(minlhs, maxlhs);
+    ///**************************
+    //* Check number of  outputs
+    //**************************/
+    //CheckLhs(minlhs, maxlhs);
 
-    /************************
-    * Create double variable
-    ************************/
-    /* Create int32 variable at the top addr. of the stack */
-    CreateVar(1, MATRIX_OF_DOUBLE_DATATYPE, &j, &k, &l1);
+    ///************************
+    //* Create double variable
+    //************************/
+    ///* Create int32 variable at the top addr. of the stack */
+    //CreateVar(1, MATRIX_OF_DOUBLE_DATATYPE, &j, &k, &l1);
 
-    /* Store value of C2F(curblk).kfun at the l1 address in istk */
-    *stk(l1) = (double)C2F(curblk).kfun;
+    ///* Store value of C2F(curblk).kfun at the l1 address in istk */
+    //*stk(l1) = (double)C2F(curblk).kfun;
 
-    /* return the value stored at Top address to lhs variable */
-    LhsVar(1) = 1;
-    PutLhsVar();
+    ///* return the value stored at Top address to lhs variable */
+    //LhsVar(1) = 1;
+    //PutLhsVar();
 
-    /* return 0 as default value */
+    ///* return 0 as default value */
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -245,7 +245,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="..\cpp\diary_manager.cpp" />
     <ClCompile Include="..\cpp\DiaryList.cpp" />
     <ClCompile Include="DllmainOutput_Stream.c" />
-    <ClCompile Include="do_xxprintf.c" />
     <ClCompile Include="errmds.c" />
     <ClCompile Include="erro.c" />
     <ClCompile Include="error.c" />
@@ -259,7 +258,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="Scierror.c" />
     <ClCompile Include="sciprint.c" />
     <ClCompile Include="sciprint_full.c" />
-    <ClCompile Include="set_xxprintf.c" />
     <ClCompile Include="..\cpp\scilabWrite.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -291,7 +289,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\cerro.h" />
     <ClInclude Include="..\..\includes\diary.h" />
     <ClInclude Include="..\..\includes\do_error_number.h" />
-    <ClInclude Include="..\..\includes\do_xxprintf.h" />
     <ClInclude Include="..\..\includes\dynlib_output_stream.h" />
     <ClInclude Include="..\..\includes\errmds.h" />
     <ClInclude Include="..\..\includes\erro.h" />
@@ -313,7 +310,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="msgout.h" />
     <ClInclude Include="msgstore.h" />
     <ClInclude Include="msgstxt.h" />
-    <ClInclude Include="set_xxprintf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

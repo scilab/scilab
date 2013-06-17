@@ -1,9 +1,0 @@
-LIBRARY   dynamic_link_f.dll
-
-
-EXPORTS
-; --------------------------------------- 
-; dynamic_link_f
-; --------------------------------------- 
-; force link (f2c)
-intfort_

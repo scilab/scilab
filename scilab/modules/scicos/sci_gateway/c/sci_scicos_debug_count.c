@@ -30,8 +30,8 @@ extern int C2F(scicosdebugcount) (char *fname, unsigned long fname_len); /* fort
 /*--------------------------------------------------------------------------*/
 int sci_scicos_debug_count(char *fname, unsigned long fname_len)
 {
-    C2F(scicosdebugcount)(fname, fname_len);
-    PutLhsVar();
+    //C2F(scicosdebugcount)(fname, fname_len);
+    //PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

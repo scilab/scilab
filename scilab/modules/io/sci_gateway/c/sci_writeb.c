@@ -16,7 +16,7 @@ extern int C2F(intwritb)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
 int sci_writb(char *fname, unsigned long fname_len)
 {
-    C2F(intwritb)();
+    //C2F(intwritb)();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

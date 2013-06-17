@@ -32,7 +32,6 @@
 #include "InitializeLocalization.h"
 #include "localization.h"
 #include "sci_path.h"
-#include "inisci-c.h"
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
 #include "isdir.h"

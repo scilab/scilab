@@ -16,6 +16,16 @@
 #include <stdio.h>
 #include "dynlib_fileio.h"
 
+#define VPTR void *
+#define DO_XXPRINTF_RET_END -2
+#define DO_XXPRINTF_RET_BUG -1
+#define DO_XXPRINTF_FAIL 0
+#define DO_XXPRINTF_OK 1
+#define DO_XXPRINTF_MEM_LACK -3
+#define DO_XXPRINTF_MISMATCH -4
+#define DO_XXPRINTF_NOT_ENOUGH_ARGS -5
+
+
 /*if maxscan is increased don't forget to change the (*xxscanf)(......)
 in do_xxscanf procedure */
 #define MAXSCAN 100

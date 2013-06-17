@@ -11,7 +11,6 @@ putlhsvar_
 getrhsvar_
 intersci_
 createvarfromptr_
-IsAScalar
 checklhs_
 checkrhs_
 check_scalar

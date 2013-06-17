@@ -11,14 +11,8 @@ com_
 fortran_mex_gateway
 intersci_
 errorinfo_
-createvar_
 stack_
-getrhsvar_
-checklhs_
-checkrhs_
 GetData
-iIsComplex
-gettype_
 vstk_
 MyHeapAlloc
 MyHeapFree

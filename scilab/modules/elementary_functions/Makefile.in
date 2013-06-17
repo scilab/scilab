@@ -252,14 +252,7 @@ am__objects_7 = libscielementary_functions_la-sci_sqrt.lo \
 	libscielementary_functions_la-sci_isequalbitwise.lo \
 	libscielementary_functions_la-sci_base2dec.lo \
 	libscielementary_functions_la-sci_dec2base.lo
-am__objects_8 = sci_f_testmatrix.lo sci_f_matrix.lo sci_f_size.lo \
-	sci_f_ceil.lo sci_f_clean.lo sci_f_eye.lo sci_f_tan.lo \
-	sci_f_atan.lo sci_f_cos.lo sci_f_rand.lo sci_f_acos.lo \
-	sci_f_sin.lo sci_f_sqrt.lo sci_f_asin.lo sci_f_sign.lo \
-	sci_f_zeros.lo sci_f_ones.lo sci_f_diag.lo \
-	sci_f_number_properties.lo sci_f_spones.lo sci_f_nearfloat.lo \
-	sci_f_round.lo sci_f_conj.lo
-am__objects_9 = libscielementary_functions_la-sci_isequal.lo \
+am__objects_8 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-elem_func_gw.lo \
 	libscielementary_functions_la-sci_size.lo \
 	libscielementary_functions_la-sci_eye.lo \
@@ -302,7 +295,7 @@ am__objects_9 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_tril.lo \
 	libscielementary_functions_la-sci_real.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
-	$(am__objects_8) $(am__objects_9)
+	$(am__objects_8)
 libscielementary_functions_la_OBJECTS =  \
 	$(am_libscielementary_functions_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscielementary_functions_la_rpath =
@@ -912,31 +905,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_base2dec.c \
     sci_gateway/c/sci_dec2base.c
 
-GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/sci_f_testmatrix.f \
-    sci_gateway/fortran/sci_f_matrix.f \
-    sci_gateway/fortran/sci_f_size.f \
-    sci_gateway/fortran/sci_f_ceil.f \
-    sci_gateway/fortran/sci_f_clean.f \
-    sci_gateway/fortran/sci_f_eye.f \
-    sci_gateway/fortran/sci_f_tan.f \
-    sci_gateway/fortran/sci_f_atan.f \
-    sci_gateway/fortran/sci_f_cos.f \
-    sci_gateway/fortran/sci_f_rand.f \
-    sci_gateway/fortran/sci_f_acos.f \
-    sci_gateway/fortran/sci_f_sin.f \
-    sci_gateway/fortran/sci_f_sqrt.f \
-    sci_gateway/fortran/sci_f_asin.f \
-    sci_gateway/fortran/sci_f_sign.f \
-    sci_gateway/fortran/sci_f_zeros.f \
-    sci_gateway/fortran/sci_f_ones.f \
-    sci_gateway/fortran/sci_f_diag.f \
-    sci_gateway/fortran/sci_f_number_properties.f \
-    sci_gateway/fortran/sci_f_spones.f \
-    sci_gateway/fortran/sci_f_nearfloat.f \
-    sci_gateway/fortran/sci_f_round.f \
-    sci_gateway/fortran/sci_f_conj.f
-
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_isequal.cpp \
     sci_gateway/cpp/elem_func_gw.cpp \
@@ -1020,7 +988,7 @@ libscielementary_functions_la_CPPFLAGS = \
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscielementary_functions.la
 libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CXX_SOURCES)
-libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CXX_SOURCES)
+libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscielementary_functions_algo_la_CPPFLAGS = $(libscielementary_functions_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -2764,75 +2732,6 @@ old_pythag.lo: src/fortran/old_pythag.f
 
 danints.lo: src/fortran/danints.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o danints.lo `test -f 'src/fortran/danints.f' || echo '$(srcdir)/'`src/fortran/danints.f
-
-sci_f_testmatrix.lo: sci_gateway/fortran/sci_f_testmatrix.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_testmatrix.lo `test -f 'sci_gateway/fortran/sci_f_testmatrix.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_testmatrix.f
-
-sci_f_matrix.lo: sci_gateway/fortran/sci_f_matrix.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_matrix.lo `test -f 'sci_gateway/fortran/sci_f_matrix.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_matrix.f
-
-sci_f_size.lo: sci_gateway/fortran/sci_f_size.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_size.lo `test -f 'sci_gateway/fortran/sci_f_size.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_size.f
-
-sci_f_ceil.lo: sci_gateway/fortran/sci_f_ceil.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_ceil.lo `test -f 'sci_gateway/fortran/sci_f_ceil.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ceil.f
-
-sci_f_clean.lo: sci_gateway/fortran/sci_f_clean.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_clean.lo `test -f 'sci_gateway/fortran/sci_f_clean.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_clean.f
-
-sci_f_eye.lo: sci_gateway/fortran/sci_f_eye.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_eye.lo `test -f 'sci_gateway/fortran/sci_f_eye.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_eye.f
-
-sci_f_tan.lo: sci_gateway/fortran/sci_f_tan.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_tan.lo `test -f 'sci_gateway/fortran/sci_f_tan.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_tan.f
-
-sci_f_atan.lo: sci_gateway/fortran/sci_f_atan.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_atan.lo `test -f 'sci_gateway/fortran/sci_f_atan.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_atan.f
-
-sci_f_cos.lo: sci_gateway/fortran/sci_f_cos.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_cos.lo `test -f 'sci_gateway/fortran/sci_f_cos.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_cos.f
-
-sci_f_rand.lo: sci_gateway/fortran/sci_f_rand.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_rand.lo `test -f 'sci_gateway/fortran/sci_f_rand.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rand.f
-
-sci_f_acos.lo: sci_gateway/fortran/sci_f_acos.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_acos.lo `test -f 'sci_gateway/fortran/sci_f_acos.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_acos.f
-
-sci_f_sin.lo: sci_gateway/fortran/sci_f_sin.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_sin.lo `test -f 'sci_gateway/fortran/sci_f_sin.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sin.f
-
-sci_f_sqrt.lo: sci_gateway/fortran/sci_f_sqrt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_sqrt.lo `test -f 'sci_gateway/fortran/sci_f_sqrt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sqrt.f
-
-sci_f_asin.lo: sci_gateway/fortran/sci_f_asin.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_asin.lo `test -f 'sci_gateway/fortran/sci_f_asin.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_asin.f
-
-sci_f_sign.lo: sci_gateway/fortran/sci_f_sign.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_sign.lo `test -f 'sci_gateway/fortran/sci_f_sign.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sign.f
-
-sci_f_zeros.lo: sci_gateway/fortran/sci_f_zeros.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_zeros.lo `test -f 'sci_gateway/fortran/sci_f_zeros.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_zeros.f
-
-sci_f_ones.lo: sci_gateway/fortran/sci_f_ones.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_ones.lo `test -f 'sci_gateway/fortran/sci_f_ones.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_ones.f
-
-sci_f_diag.lo: sci_gateway/fortran/sci_f_diag.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_diag.lo `test -f 'sci_gateway/fortran/sci_f_diag.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_diag.f
-
-sci_f_number_properties.lo: sci_gateway/fortran/sci_f_number_properties.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_number_properties.lo `test -f 'sci_gateway/fortran/sci_f_number_properties.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_number_properties.f
-
-sci_f_spones.lo: sci_gateway/fortran/sci_f_spones.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_spones.lo `test -f 'sci_gateway/fortran/sci_f_spones.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_spones.f
-
-sci_f_nearfloat.lo: sci_gateway/fortran/sci_f_nearfloat.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_nearfloat.lo `test -f 'sci_gateway/fortran/sci_f_nearfloat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_nearfloat.f
-
-sci_f_round.lo: sci_gateway/fortran/sci_f_round.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_round.lo `test -f 'sci_gateway/fortran/sci_f_round.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_round.f
-
-sci_f_conj.lo: sci_gateway/fortran/sci_f_conj.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_conj.lo `test -f 'sci_gateway/fortran/sci_f_conj.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_conj.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

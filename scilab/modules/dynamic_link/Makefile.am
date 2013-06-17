@@ -27,8 +27,6 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_getdynlibext.cpp \
     sci_gateway/cpp/sci_addinter.cpp
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f
-
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
@@ -59,7 +57,7 @@ libscidynamic_link_la_include_HEADERS = includes/dynamiclibrary_others.h \
 includes/dynamiclibrary.h
 
 libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(DYNAMIC_LINK_CPP_SOURCES)
-libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)
 
 

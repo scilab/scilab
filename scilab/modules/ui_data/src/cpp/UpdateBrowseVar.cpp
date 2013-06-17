@@ -45,222 +45,222 @@ static char * valueToDisplay(char * variableName, int variableType, int nbRows, 
 /*--------------------------------------------------------------------------*/
 void UpdateBrowseVar(BOOL update)
 {
-    SciErr err;
-    int iGlobalVariablesUsed = 0;
-    int iGlobalVariablesTotal = 0;
-    int iLocalVariablesUsed = 0;
-    int iLocalVariablesTotal = 0;
-    int i = 0;
-
-    if (update && !BrowseVar::isVariableBrowserOpened(getScilabJavaVM()))
-    {
-        return;
-    }
-
-    // First get how many global / local variable we have.
-    C2F(getvariablesinfo) (&iLocalVariablesTotal, &iLocalVariablesUsed);
-    C2F(getgvariablesinfo) (&iGlobalVariablesTotal, &iGlobalVariablesUsed);
-
-    char **pstAllVariableNames = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    char **pstAllVariableVisibility = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    char **pstAllVariableListTypes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
-    int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    int *piAllVariableIntegerTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    bool *piAllVariableFromUser = (bool *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(bool));
-    /* Necessary for the plots in the var browser */
-    int *piAllVariableNbRows = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-    int *piAllVariableNbCols = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
-
-    int nbRows, nbCols;
-    char *sizeStr = NULL;
-
-    std::set < string > scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
-
-    // for each local variable get information
-    for (; i < iLocalVariablesUsed; ++i)
-    {
-        // name
-        pstAllVariableNames[i] = getLocalNamefromId(i + 1);
-        // type
-        err = getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
-        if (!err.iErr)
-        {
-            piAllVariableBytes[i] = getLocalSizefromId(i);
-            err = getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
-        }
-
-        if (err.iErr || nbRows * nbCols == 0)
-        {
-#define N_A "N/A"
-            pstAllVariableSizes[i] = (char *)MALLOC((sizeof(N_A) + 1) * sizeof(char));
-            strcpy(pstAllVariableSizes[i], N_A);
-        }
-        else
-        {
-            pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
-            piAllVariableNbRows[i] = nbRows;
-            piAllVariableNbCols[i] = nbCols;
-        }
-
-
-        if (piAllVariableTypes[i] == sci_ints)
-        {
-            // Integer case
-            int iPrec       = 0;
-            err = getNamedMatrixOfIntegerPrecision(NULL, pstAllVariableNames[i], &iPrec);
-            switch (iPrec)
-            {
-                case SCI_INT8:
-                    piAllVariableIntegerTypes[i] = 8;
-                    break;
-                case SCI_INT16:
-                    piAllVariableIntegerTypes[i] = 16;
-                    break;
-                case SCI_INT32:
-                    piAllVariableIntegerTypes[i] = 32;
-                    break;
-#ifdef __SCILAB_INT64__
-                case SCI_INT64:
-                    piAllVariableIntegerTypes[i] = 64;
-                    break;
-#endif
-                default:
-                    piAllVariableIntegerTypes[i] = 0; // Should never occurs
-                    break;
-            }
-        }
-        else
-        {
-            piAllVariableIntegerTypes[i] = -1;
-        }
-
-        if (piAllVariableTypes[i] == sci_tlist || piAllVariableTypes[i] == sci_mlist)
-        {
-            pstAllVariableListTypes[i] = getListName(pstAllVariableNames[i]);
-        }
-        else
-        {
-            pstAllVariableListTypes[i] = os_strdup("");
-        }
-
-
-        // global / local ??
-        pstAllVariableVisibility[i] = os_strdup("local");
-
-        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() && piAllVariableTypes[i] != sci_lib)
-        {
-            piAllVariableFromUser[i] = TRUE;
-        }
-        else
-        {
-            piAllVariableFromUser[i] = FALSE;
-        }
-    }
-
-    // for each global variable get information
-    for (int j = 0; j < iGlobalVariablesUsed; ++j, ++i)
-    {
-        // name
-        pstAllVariableNames[i] = getGlobalNamefromId(j);
-        // Bytes used - 8 is the number of bytes in a word
-        piAllVariableBytes[i] = getGlobalSizefromId(j) * 8;
-        // type
-        // Calling "API Scilab": not yet implemented for global variable
-        //getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
-        // Using old stack operations...
-        //int pos = C2F(vstk).isiz + 2 + j;
-
-        //piAllVariableTypes[i] = C2F(gettype) (&pos);
-        getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
-
-        // Sizes of the variable
-        getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
-        pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
-        piAllVariableNbRows[i] = nbRows;
-        piAllVariableNbCols[i] = nbCols;
-
-
-        // global / local ??
-        pstAllVariableVisibility[i] = os_strdup("global");
-
-
-        if (piAllVariableTypes[i] == sci_tlist || piAllVariableTypes[i] == sci_mlist)
-        {
-            pstAllVariableListTypes[i] = getListName(pstAllVariableNames[i]);
-        }
-        else
-        {
-            pstAllVariableListTypes[i] = os_strdup("");
-        }
-
-
-        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end()
-                && piAllVariableTypes[i] != sci_c_function && piAllVariableTypes[i] != sci_lib)
-        {
-            piAllVariableFromUser[i] = TRUE;
-        }
-        else
-        {
-            piAllVariableFromUser[i] = FALSE;
-        }
-    }
-
-    // Launch Java Variable Browser through JNI
-    BrowseVar::openVariableBrowser(getScilabJavaVM(),
-                                   BOOLtobool(update),
-                                   pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableNbRows, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableNbCols, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
-                                   piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
-
-    freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
-    freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
-    freeArrayOfString(pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed);
-    freeArrayOfString(pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed);
-
-    if (piAllVariableFromUser)
-    {
-        FREE(piAllVariableFromUser);
-        piAllVariableFromUser = NULL;
-    }
-
-    if (piAllVariableBytes)
-    {
-        FREE(piAllVariableBytes);
-        piAllVariableBytes = NULL;
-    }
-
-    if (piAllVariableTypes)
-    {
-        FREE(piAllVariableTypes);
-        piAllVariableTypes = NULL;
-    }
-
-    if (piAllVariableIntegerTypes)
-    {
-        FREE(piAllVariableIntegerTypes);
-        piAllVariableIntegerTypes = NULL;
-    }
-
-    if (piAllVariableNbRows)
-    {
-        FREE(piAllVariableNbRows);
-        piAllVariableNbRows = NULL;
-    }
-
-    if (piAllVariableNbCols)
-    {
-        FREE(piAllVariableNbCols);
-        piAllVariableNbCols = NULL;
-    }
+    //    SciErr err;
+    //    int iGlobalVariablesUsed = 0;
+    //    int iGlobalVariablesTotal = 0;
+    //    int iLocalVariablesUsed = 0;
+    //    int iLocalVariablesTotal = 0;
+    //    int i = 0;
+    //
+    //    if (update && !BrowseVar::isVariableBrowserOpened(getScilabJavaVM()))
+    //    {
+    //        return;
+    //    }
+    //
+    //    // First get how many global / local variable we have.
+    //    C2F(getvariablesinfo) (&iLocalVariablesTotal, &iLocalVariablesUsed);
+    //    C2F(getgvariablesinfo) (&iGlobalVariablesTotal, &iGlobalVariablesUsed);
+    //
+    //    char **pstAllVariableNames = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    //    char **pstAllVariableVisibility = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    //    char **pstAllVariableListTypes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    //    int *piAllVariableBytes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    //    char **pstAllVariableSizes = (char **)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(char *));
+    //    int *piAllVariableTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    //    int *piAllVariableIntegerTypes = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    //    bool *piAllVariableFromUser = (bool *) MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(bool));
+    //    /* Necessary for the plots in the var browser */
+    //    int *piAllVariableNbRows = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    //    int *piAllVariableNbCols = (int *)MALLOC((iLocalVariablesUsed + iGlobalVariablesUsed) * sizeof(int));
+    //
+    //    int nbRows, nbCols;
+    //    char *sizeStr = NULL;
+    //
+    //    std::set < string > scilabDefaultVariablesSet = createScilabDefaultVariablesSet();
+    //
+    //    // for each local variable get information
+    //    for (; i < iLocalVariablesUsed; ++i)
+    //    {
+    //        // name
+    //        pstAllVariableNames[i] = getLocalNamefromId(i + 1);
+    //        // type
+    //        err = getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
+    //        if (!err.iErr)
+    //        {
+    //            piAllVariableBytes[i] = getLocalSizefromId(i);
+    //            err = getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
+    //        }
+    //
+    //        if (err.iErr || nbRows * nbCols == 0)
+    //        {
+    //#define N_A "N/A"
+    //            pstAllVariableSizes[i] = (char *)MALLOC((sizeof(N_A) + 1) * sizeof(char));
+    //            strcpy(pstAllVariableSizes[i], N_A);
+    //        }
+    //        else
+    //        {
+    //            pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
+    //            piAllVariableNbRows[i] = nbRows;
+    //            piAllVariableNbCols[i] = nbCols;
+    //        }
+    //
+    //
+    //        if (piAllVariableTypes[i] == sci_ints)
+    //        {
+    //            // Integer case
+    //            int iPrec       = 0;
+    //            err = getNamedMatrixOfIntegerPrecision(NULL, pstAllVariableNames[i], &iPrec);
+    //            switch (iPrec)
+    //            {
+    //                case SCI_INT8:
+    //                    piAllVariableIntegerTypes[i] = 8;
+    //                    break;
+    //                case SCI_INT16:
+    //                    piAllVariableIntegerTypes[i] = 16;
+    //                    break;
+    //                case SCI_INT32:
+    //                    piAllVariableIntegerTypes[i] = 32;
+    //                    break;
+    //#ifdef __SCILAB_INT64__
+    //                case SCI_INT64:
+    //                    piAllVariableIntegerTypes[i] = 64;
+    //                    break;
+    //#endif
+    //                default:
+    //                    piAllVariableIntegerTypes[i] = 0; // Should never occurs
+    //                    break;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            piAllVariableIntegerTypes[i] = -1;
+    //        }
+    //
+    //        if (piAllVariableTypes[i] == sci_tlist || piAllVariableTypes[i] == sci_mlist)
+    //        {
+    //            pstAllVariableListTypes[i] = getListName(pstAllVariableNames[i]);
+    //        }
+    //        else
+    //        {
+    //            pstAllVariableListTypes[i] = os_strdup("");
+    //        }
+    //
+    //
+    //        // global / local ??
+    //        pstAllVariableVisibility[i] = os_strdup("local");
+    //
+    //        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end() && piAllVariableTypes[i] != sci_lib)
+    //        {
+    //            piAllVariableFromUser[i] = TRUE;
+    //        }
+    //        else
+    //        {
+    //            piAllVariableFromUser[i] = FALSE;
+    //        }
+    //    }
+    //
+    //    // for each global variable get information
+    //    for (int j = 0; j < iGlobalVariablesUsed; ++j, ++i)
+    //    {
+    //        // name
+    //        pstAllVariableNames[i] = getGlobalNamefromId(j);
+    //        // Bytes used - 8 is the number of bytes in a word
+    //        piAllVariableBytes[i] = getGlobalSizefromId(j) * 8;
+    //        // type
+    //        // Calling "API Scilab": not yet implemented for global variable
+    //        //getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
+    //        // Using old stack operations...
+    //        //int pos = C2F(vstk).isiz + 2 + j;
+    //
+    //        //piAllVariableTypes[i] = C2F(gettype) (&pos);
+    //        getNamedVarType(NULL, pstAllVariableNames[i], &piAllVariableTypes[i]);
+    //
+    //        // Sizes of the variable
+    //        getNamedVarDimension(NULL, pstAllVariableNames[i], &nbRows, &nbCols);
+    //        pstAllVariableSizes[i] = valueToDisplay(pstAllVariableNames[i], piAllVariableTypes[i], nbRows, nbCols);
+    //        piAllVariableNbRows[i] = nbRows;
+    //        piAllVariableNbCols[i] = nbCols;
+    //
+    //
+    //        // global / local ??
+    //        pstAllVariableVisibility[i] = os_strdup("global");
+    //
+    //
+    //        if (piAllVariableTypes[i] == sci_tlist || piAllVariableTypes[i] == sci_mlist)
+    //        {
+    //            pstAllVariableListTypes[i] = getListName(pstAllVariableNames[i]);
+    //        }
+    //        else
+    //        {
+    //            pstAllVariableListTypes[i] = os_strdup("");
+    //        }
+    //
+    //
+    //        if (scilabDefaultVariablesSet.find(string(pstAllVariableNames[i])) == scilabDefaultVariablesSet.end()
+    //                && piAllVariableTypes[i] != sci_c_function && piAllVariableTypes[i] != sci_lib)
+    //        {
+    //            piAllVariableFromUser[i] = TRUE;
+    //        }
+    //        else
+    //        {
+    //            piAllVariableFromUser[i] = FALSE;
+    //        }
+    //    }
+    //
+    //    // Launch Java Variable Browser through JNI
+    //    BrowseVar::openVariableBrowser(getScilabJavaVM(),
+    //                                   BOOLtobool(update),
+    //                                   pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   piAllVariableBytes, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   piAllVariableTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   piAllVariableIntegerTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   piAllVariableNbRows, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   piAllVariableNbCols, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed,
+    //                                   piAllVariableFromUser, iLocalVariablesUsed + iGlobalVariablesUsed);
+    //
+    //    freeArrayOfString(pstAllVariableNames, iLocalVariablesUsed + iGlobalVariablesUsed);
+    //    freeArrayOfString(pstAllVariableVisibility, iLocalVariablesUsed + iGlobalVariablesUsed);
+    //    freeArrayOfString(pstAllVariableSizes, iLocalVariablesUsed + iGlobalVariablesUsed);
+    //    freeArrayOfString(pstAllVariableListTypes, iLocalVariablesUsed + iGlobalVariablesUsed);
+    //
+    //    if (piAllVariableFromUser)
+    //    {
+    //        FREE(piAllVariableFromUser);
+    //        piAllVariableFromUser = NULL;
+    //    }
+    //
+    //    if (piAllVariableBytes)
+    //    {
+    //        FREE(piAllVariableBytes);
+    //        piAllVariableBytes = NULL;
+    //    }
+    //
+    //    if (piAllVariableTypes)
+    //    {
+    //        FREE(piAllVariableTypes);
+    //        piAllVariableTypes = NULL;
+    //    }
+    //
+    //    if (piAllVariableIntegerTypes)
+    //    {
+    //        FREE(piAllVariableIntegerTypes);
+    //        piAllVariableIntegerTypes = NULL;
+    //    }
+    //
+    //    if (piAllVariableNbRows)
+    //    {
+    //        FREE(piAllVariableNbRows);
+    //        piAllVariableNbRows = NULL;
+    //    }
+    //
+    //    if (piAllVariableNbCols)
+    //    {
+    //        FREE(piAllVariableNbCols);
+    //        piAllVariableNbCols = NULL;
+    //    }
 }
 
 /*--------------------------------------------------------------------------*/

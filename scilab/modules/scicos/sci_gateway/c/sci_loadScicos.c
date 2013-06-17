@@ -18,9 +18,9 @@
  */
 int sci_loadScicos(char *fname, unsigned long fname_len)
 {
-    CheckRhs(0, 1);
-    LhsVar(1) = 0;
-    PutLhsVar();
+    //CheckRhs(0, 1);
+    //LhsVar(1) = 0;
+    //PutLhsVar();
     return 0;
 }
 

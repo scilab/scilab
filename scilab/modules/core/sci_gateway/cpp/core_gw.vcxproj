@@ -170,8 +170,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\cpp\banner.cpp" />
-    <ClCompile Include="..\..\src\cpp\runner.cpp" />
+    <ClCompile Include="..\c\sci_typename.c" />
     <ClCompile Include="sci_format.cpp" />
     <ClCompile Include="sci_funcprot.cpp" />
     <ClCompile Include="sci_ieee.cpp" />

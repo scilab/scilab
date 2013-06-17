@@ -81,9 +81,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="dynamic_link_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="Io_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>

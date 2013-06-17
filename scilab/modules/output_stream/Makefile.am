@@ -38,9 +38,7 @@ OUTPUT_STREAM_C_SOURCES = \
 	src/c/sciprint.c \
 	src/c/sciprint_full.c \
 	src/c/errmds.c \
-	src/c/error.c \
-	src/c/do_xxprintf.c \
-	src/c/set_xxprintf.c
+	src/c/error.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/wspdsp.f \

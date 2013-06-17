@@ -37,17 +37,17 @@ extern COSHLT_struct  C2F(coshlt);
 int sci_haltscicos(char *fname, unsigned long fname_len)
 {
 
-    CheckLhs(0, 1);
-    CheckRhs(0, 0);
+    //CheckLhs(0, 1);
+    //CheckRhs(0, 0);
 
-    // MAGIC VALUE: 0 is used to continue the simulation
-    // MAGIC VALUE: 1 is used to halt the simulator
-    // MAGIC VALUE: 2 is used to switch to the final time
-    //                        then halt the simulator
-    C2F(coshlt).halt = 2;
+    //// MAGIC VALUE: 0 is used to continue the simulation
+    //// MAGIC VALUE: 1 is used to halt the simulator
+    //// MAGIC VALUE: 2 is used to switch to the final time
+    ////                        then halt the simulator
+    //C2F(coshlt).halt = 2;
 
-    LhsVar(1) = 0;
-    PutLhsVar();
+    //LhsVar(1) = 0;
+    //PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

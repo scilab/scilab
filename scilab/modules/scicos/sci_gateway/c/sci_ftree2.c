@@ -30,10 +30,10 @@ extern int C2F(intree2)(char *fname, unsigned long fname_len); /* fortran subrou
 /*--------------------------------------------------------------------------*/
 int sci_ftree2(char *fname, unsigned long fname_len)
 {
-    CheckLhs(2, 2);
-    CheckRhs(4, 4);
-    C2F(intree2)(fname, fname_len);
-    PutLhsVar();
+    //CheckLhs(2, 2);
+    //CheckRhs(4, 4);
+    //C2F(intree2)(fname, fname_len);
+    //PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

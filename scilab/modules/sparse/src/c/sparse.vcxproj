@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -84,11 +84,10 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;core.lib;sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -112,11 +111,10 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;core.lib;sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -140,11 +138,10 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;core.lib;sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -173,11 +170,10 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;core.lib;sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -193,30 +189,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="DllmainSparse.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_sparse.c" />
     <ClCompile Include="lu.c" />
-    <ClCompile Include="mspelm.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_bfinit.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_blkfc1i.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_blkslvi.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_fadj2sp.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_full.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_inpnvi.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ludel.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_lufact.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_luget.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_lusolve.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_mfull.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_msparse.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_mspget.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_nnz.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ordmmd.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sfinit.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sparse.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_spchol.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_spclean.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_spcompa.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_spget.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_spmatrix.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_symfcti.c" />
     <ClCompile Include="spAllocate.c" />
     <ClCompile Include="spBuild.c" />
     <ClCompile Include="spFactor.c" />
@@ -243,7 +215,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <None Include="..\..\locales\sparse.pot" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="core_import.def" />
-    <None Include="sparse_f_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sparse.iss" />
   </ItemGroup>

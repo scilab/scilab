@@ -18,12 +18,6 @@
     <ClCompile Include="core_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\cpp\banner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cpp\runner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_format.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,6 +103,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_mode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\sci_typename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

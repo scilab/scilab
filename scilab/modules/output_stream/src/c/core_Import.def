@@ -4,8 +4,6 @@
 EXPORTS
 iop_
 stack_
-getrhsvar_
-getwsmat_
 vstk_
 com_
 errgst_
@@ -23,8 +21,6 @@ putlhsvar_
 getmatdims_
 overload_
 vartype_
-checklhs_
-checkrhs_
 intersci_
 MyHeapAlloc
 MyHeapFree

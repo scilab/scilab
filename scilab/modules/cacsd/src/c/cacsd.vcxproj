@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -216,9 +216,7 @@ lib /DEF:"$(ProjectDir)mexlib_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="..\..\sci_gateway\c\gw_cacsd3.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_arl2.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_contr.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ereduc.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_freq.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_fstair.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_gschur.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_gspec.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ldiv.c" />

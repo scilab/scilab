@@ -9,38 +9,28 @@
 
 
 CORE_C_SOURCES = \
-src/c/inffic.c \
+src/c/csignal.c \
 src/c/cs2st.c \
-src/c/intmacr2tree.c \
-src/c/InitScilab.c \
 src/c/getval.c \
 src/c/md5.c \
-src/c/IsAScalar.c \
 src/c/texmacs.c \
 src/c/sciquit.c \
-src/c/stack1.c \
-src/c/stack3.c \
 src/c/str2sci.c \
 src/c/getmodules.c \
 src/c/getmemory.c \
 src/c/Funtab.c \
-src/c/csignal.c \
-src/c/callinterf.c \
 src/c/scimem.c \
 src/c/isanan.c \
-src/c/stack2.c \
 src/c/xscion.c \
 src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
 src/c/loadversion.c \
 src/c/version.c \
-src/c/stackinfo.c \
 src/c/InitializeCore.c \
 src/c/TerminateCore.c \
 src/c/coretable.c \
 src/c/GetXmlFileEncoding.c \
 src/c/islittleendian.c \
-src/c/terme.c \
 src/c/ifexpr.c \
 src/c/getcommandlineargs.c \
 src/c/callFunctionFromGateway.c \
@@ -57,11 +47,9 @@ src/c/setPrecisionFPU.c \
 src/c/LaunchScilabSignal.c \
 src/c/getos.c \
 src/c/mode_exec.c \
-src/c/predef.c \
 src/c/transposeMatrix.c \
 src/c/recursionFunction.c \
 src/c/typename.c \
-src/c/inittypenames.c \
 src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
@@ -88,7 +76,10 @@ src/cpp/backtrace_print.cpp \
 src/cpp/storeCommand.cpp \
 src/cpp/banner.cpp \
 src/cpp/with_module.cpp \
-src/cpp/runner.cpp
+src/cpp/runner.cpp \
+src/cpp/tasks.cpp \
+src/cpp/InitScilab.cpp
+
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -98,63 +89,38 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
 src/fortran/isany.f \
-src/fortran/hmcreate.f \
-src/fortran/nextj.f \
 src/fortran/setgetmode.f \
 src/fortran/showstack.f \
 src/fortran/setippty.f \
-src/fortran/compil.f \
-src/fortran/funnam.f \
-src/fortran/cmdstr.f \
 src/fortran/cmplxt.f \
-src/fortran/skpins.f \
 src/fortran/folhp.f \
 src/fortran/cvname.f \
-src/fortran/typ2cod.f \
 src/fortran/prompt.f \
 src/fortran/intstr.f \
 src/fortran/createref.f \
 src/fortran/btof.f \
-src/fortran/getnum.f \
 src/fortran/btofm.f \
-src/fortran/getsym.f \
-src/fortran/findequal.f \
-src/fortran/stackg.f \
 src/fortran/find.f \
-src/fortran/setlnb.f \
-src/fortran/mrknmd.f \
 src/fortran/ref2val.f \
-src/fortran/stack.f \
 src/fortran/isbrk.f \
 src/fortran/xerbla.f \
 src/fortran/dtosci.f \
 src/fortran/bexec.f \
-src/fortran/varfunptr.f \
-src/fortran/getfun.f \
 src/fortran/savlod.f \
 src/fortran/error.f \
 src/fortran/cvdm.f \
-src/fortran/tradsl.f \
 src/fortran/mkindx.f \
 src/fortran/whatln.f \
 src/fortran/errmgr.f \
-src/fortran/defmat.f \
 src/fortran/mklist.f \
-src/fortran/sigbas.f \
 src/fortran/indxg.f \
 src/fortran/istrue.f \
-src/fortran/getfunction.f \
 src/fortran/extlarg.f \
-src/fortran/getstr.f \
-src/fortran/cvwm.f \
-src/fortran/storeglobal.f \
 src/fortran/lst2vars.f \
 src/fortran/basnms.f \
 src/fortran/ptrback.f \
 src/fortran/getch.f \
 src/fortran/ftob.f \
-src/fortran/seteol.f \
-src/fortran/compcl.f \
 src/fortran/expsum.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \
@@ -169,47 +135,16 @@ CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
 endif
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/sci_mtlb_mode.c \
-	sci_gateway/c/sci_where.c \
-	sci_gateway/c/sci_errcatch.c \
-	sci_gateway/c/sci_getmemory.c \
-	sci_gateway/c/sci_havewindow.c \
-	sci_gateway/c/sci_delbpt.c \
-	sci_gateway/c/sci_macr2lst.c \
-	sci_gateway/c/sci_errclear.c \
-	sci_gateway/c/sci_newfun.c \
-	sci_gateway/c/sci_dispbpt.c \
-	sci_gateway/c/sci_intppty.c \
-	sci_gateway/c/sci_gstacksize.c \
-	sci_gateway/c/sci_funptr.c \
-	sci_gateway/c/sci_return.c \
-	sci_gateway/c/sci_clearfun.c \
-	sci_gateway/c/sci_setbpt.c \
-	sci_gateway/c/sci_what.c \
-	sci_gateway/c/sci_predef.c \
-	sci_gateway/c/sci_type.c \
-	sci_gateway/c/sci_typename.c \
-	sci_gateway/c/sci_macr2tree.c \
-	sci_gateway/c/sci_iserror.c \
-	sci_gateway/c/sci_getdebuginfo.c \
-	sci_gateway/c/sci_debug.c \
 	sci_gateway/c/gw_core.c \
 	sci_gateway/c/gw_user.c \
 	sci_gateway/c/gw_user2.c \
-	sci_gateway/c/sci_getvariablesonstack.c \
-	sci_gateway/c/sci_readgateway.c \
-	sci_gateway/c/sci_comp.c
+	sci_gateway/c/sci_type.c \
+	sci_gateway/c/sci_getdebuginfo.c \
+	sci_gateway/c/sci_typename.c \
+	sci_gateway/c/sci_readgateway.c
 
 GATEWAY_FORTRAN_SOURCES =  \
-sci_gateway/fortran/sci_f_mtlb_mode.f \
-sci_gateway/fortran/sci_f_dispbpt.f \
-sci_gateway/fortran/sci_f_intppty.f \
-sci_gateway/fortran/sci_f_macrovar.f \
-sci_gateway/fortran/sci_f_errcatch.f \
-sci_gateway/fortran/sci_f_setbpt.f \
-sci_gateway/fortran/sci_f_delbpt.f \
-sci_gateway/fortran/where.f \
-sci_gateway/fortran/sci_f_iserror.f
+sci_gateway/fortran/where.f
 
 GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/core_gw.cpp \
@@ -272,6 +207,10 @@ libscicore_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/preferences/includes/ \
 -I$(top_srcdir)/modules/external_objects/includes/ \
 -I$(top_srcdir)/modules/functions/includes/ \
+-I$(top_srcdir)/modules/jvm/includes/ \
+-I$(top_srcdir)/modules/gui/includes/ \
+-I$(top_srcdir)/modules/graphics/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/ \
 $(EIGEN_CPPFLAGS) \
 $(XML_FLAGS) \
 $(AM_CPPFLAGS)

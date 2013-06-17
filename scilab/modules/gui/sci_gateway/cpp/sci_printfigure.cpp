@@ -19,7 +19,6 @@ extern "C"
 #include "Scierror.h"
 #include "sci_mode.h"
 #include "localization.h"
-#include "IsAScalar.h"
 #include "gw_gui.h"
 #include "getScilabJavaVM.h"
 #include "FigureList.h"
@@ -61,7 +60,7 @@ int sci_printfigure(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (!IsAScalar(1))
+            if (!isScalar(pvApiCtx, piAddr1))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
                 return 1;

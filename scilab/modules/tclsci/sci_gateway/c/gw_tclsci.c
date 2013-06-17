@@ -19,7 +19,6 @@
 #include "gw_tclsci.h"
 #include "api_scilab.h"
 #include "MALLOC.h"
-#include "inisci-c.h"
 #include "sci_mode.h"
 #include "callFunctionFromGateway.h"
 #include "InitTclTk.h" /* isTkStarted */

@@ -4,11 +4,6 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-DATA_STRUCTURES_C_SOURCES = \
-src/c/stcreate.c \
-src/c/hmops.c \
-src/c/strpos.c
-
 DATA_STRUCTURES_FORTRAN_SOURCES = \
 src/fortran/extractfields.f \
 src/fortran/forcerhs.f \
@@ -61,12 +56,12 @@ noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
 endif
 
 
-libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_C_SOURCES) $(DATA_STRUCTURES_FORTRAN_SOURCES)
+libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_FORTRAN_SOURCES)
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(DATA_STRUCTURES_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+CHECK_SRC= $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscidata_structures_la_CFLAGS)
 
 libscidata_structures_la_LIBADD = libscidata_structures-algo.la

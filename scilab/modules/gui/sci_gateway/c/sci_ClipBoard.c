@@ -22,7 +22,6 @@
 #include "sciprint.h"
 #include "sci_mode.h"
 #include "localization.h"
-#include "IsAScalar.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
 #include "os_strdup.h"
@@ -342,7 +341,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
 
                 num_win = pil1[0];
 
-                if (m1*n1 != 1)
+                if (m1 * n1 != 1)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
                     return FALSE;

@@ -32,9 +32,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_data_structures2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hmops.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_definedfields.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,12 +48,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_rlist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stcreate.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="strpos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\data_structures_gw.cpp">

@@ -13,16 +13,6 @@ cha1_
 intersci_
 mtlbc_
 errgst_
-getrhsvar_
-createvar_
-putlhsvar_
-checkrhs_
-checklhs_
-getvectrow_
-getscalar_
-checkval_
-cremat_
-copyobj_
 ;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
 ;

@@ -15,7 +15,6 @@
 #include "TerminateCore.h"
 /*--------------------------------------------------------------------------*/
 #include "realmain.h" /* Get_no_startup_flag */
-#include "inffic.h" /* get_sci_data_strings */
 #include "scirun.h" /* scirun */
 #include "getmodules.h"
 #include "scimem.h" /* freegmem */

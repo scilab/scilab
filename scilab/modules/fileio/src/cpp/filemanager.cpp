@@ -255,3 +255,12 @@ void FileManager::initialize()
     m_fileList.push_back(pOut);
 }
 
+void FileManager::destroy()
+{
+    for (int i = 0 ; i < (int)m_fileList.size() ; i++)
+    {
+        delete m_fileList[i];
+    }
+
+    m_fileList.clear();
+}

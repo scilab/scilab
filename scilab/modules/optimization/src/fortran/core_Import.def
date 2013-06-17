@@ -13,23 +13,7 @@ recu_
 cha1_
 parse_
 isrecursioncalltofunction_
-callinterf_
 eqid_
-getscalar_
-checkrhs_
-checklhs_
-getrmat_
-getexternal_
-gettype_
-cremat_
-getsmat_
-checkval_
-getvect_
-cretlist_
-listcresmat_
-listcremat_
-listcrestring_ 
-;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
 ;
 adre_

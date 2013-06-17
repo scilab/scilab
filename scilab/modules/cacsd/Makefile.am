@@ -155,11 +155,9 @@ src/fortran/front.f
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_arl2.c \
 sci_gateway/c/sci_rtitr.c \
-sci_gateway/c/sci_ereduc.c \
 sci_gateway/c/sci_ppol.c \
 sci_gateway/c/sci_tzer.c \
 sci_gateway/c/sci_contr.c \
-sci_gateway/c/sci_fstair.c \
 sci_gateway/c/sci_residu.c \
 sci_gateway/c/gw_cacsd0.c \
 sci_gateway/c/sci_freq.c \
@@ -185,15 +183,10 @@ sci_gateway/fortran/sci_f_sylv.f \
 sci_gateway/fortran/sci_f_ppol.f \
 sci_gateway/fortran/sci_f_freq.f \
 sci_gateway/fortran/sci_f_ldiv.f \
-sci_gateway/fortran/sci_f_sident.f \
 sci_gateway/fortran/sci_f_lyap.f \
 sci_gateway/fortran/sci_f_rtitr.f \
-sci_gateway/fortran/sci_f_sorder.f \
 sci_gateway/fortran/sci_f_ltitr.f \
-sci_gateway/fortran/sci_f_arl2.f \
-sci_gateway/fortran/sci_f_ereduc.f \
-sci_gateway/fortran/sci_f_findbd.f \
-sci_gateway/fortran/sci_f_fstair.f
+sci_gateway/fortran/sci_f_arl2.f
 
 libscicacsd_la_CPPFLAGS= 	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \

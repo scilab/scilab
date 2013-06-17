@@ -18,3 +18,6 @@ com_
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree
+StartScilabEngine
+ExecExternalCommand
+StopScilabEngine

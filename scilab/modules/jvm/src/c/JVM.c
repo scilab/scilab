@@ -244,7 +244,7 @@ BOOL startJVM(char *SCI_PATH)
                         fprintf(stderr, _("Options:\n"));
                         for (j = 0; j < vm_args.nOptions; j++)
                         {
-                            fprintf(stderr, "%d: %s\n", j, vm_args.options[j]);
+                            fprintf(stderr, "%d: %s\n", j, vm_args.options[j].optionString);
                         }
                     }
                     return FALSE;

@@ -227,7 +227,7 @@ void execScilabQuitTask(void)
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
-        scilabWriteW(L"Failed to parse scilab.start");
+        scilabWriteW(L"Failed to parse scilab.quit");
         return;
     }
 

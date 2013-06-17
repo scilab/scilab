@@ -42,8 +42,10 @@ public :
     static int*                 getIDs();
 
     static void                 initialize();
+    static void                 destroy();
 private :
-    static std::vector<File*>   m_fileList;
+    typedef std::vector<File*>  vectFile;
+    static vectFile             m_fileList;
     static int                  m_iCurrentFile;     //memorize current using file
 
 };

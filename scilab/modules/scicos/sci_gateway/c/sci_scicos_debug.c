@@ -31,8 +31,8 @@ extern int C2F(scicosdebug) (char *fname, unsigned long fname_len); /* fortran *
 /*--------------------------------------------------------------------------*/
 int sci_scicos_debug(char *fname, unsigned long fname_len)
 {
-    C2F(scicosdebug)(fname, fname_len);
-    PutLhsVar();
+    //C2F(scicosdebug)(fname, fname_len);
+    //PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

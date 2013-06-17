@@ -33,37 +33,37 @@ static void comp_size(double *v, int *nw, int n);
 /*--------------------------------------------------------------------------*/
 int sci_duplicate(char *fname, unsigned long fname_len)
 {
-    int m1 = 0, m2 = 0, m3 = 0, n1 = 0, n2 = 0, n3 = 0, l1 = 0, l2 = 0, l3 = 0, n = 0;
+    //int m1 = 0, m2 = 0, m3 = 0, n1 = 0, n2 = 0, n3 = 0, l1 = 0, l2 = 0, l3 = 0, n = 0;
 
-    CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    //CheckRhs(2, 2);
+    //CheckLhs(1, 1);
 
-    GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-    GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+    //GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+    //GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
 
-    n = m1 * n1;
-    if (n == 0)
-    {
-        m3 = 0;
-        CreateVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m3, &m3, &l3);
-        LhsVar(1) = 3;
-        PutLhsVar();
-        return 0;
-    }
+    //n = m1 * n1;
+    //if (n == 0)
+    //{
+    //    m3 = 0;
+    //    CreateVar(3, MATRIX_OF_DOUBLE_DATATYPE, &m3, &m3, &l3);
+    //    LhsVar(1) = 3;
+    //    PutLhsVar();
+    //    return 0;
+    //}
 
-    if (n != m2 * n2)
-    {
-        Scierror(999, _("%s: 1st and 2nd argument must have equal size\n"), fname);
-        return 0;
-    }
+    //if (n != m2 * n2)
+    //{
+    //    Scierror(999, _("%s: 1st and 2nd argument must have equal size\n"), fname);
+    //    return 0;
+    //}
 
-    comp_size(stk(l2), &n3, n);
-    m3 = 1;
-    CreateVar(3, MATRIX_OF_DOUBLE_DATATYPE, &n3, &m3, &l3);
-    duplicata(&n, stk(l1), stk(l2), stk(l3), &n3);
+    //comp_size(stk(l2), &n3, n);
+    //m3 = 1;
+    //CreateVar(3, MATRIX_OF_DOUBLE_DATATYPE, &n3, &m3, &l3);
+    //duplicata(&n, stk(l1), stk(l2), stk(l3), &n3);
 
-    LhsVar(1) = 3;
-    PutLhsVar();
+    //LhsVar(1) = 3;
+    //PutLhsVar();
 
     return 0;
 }

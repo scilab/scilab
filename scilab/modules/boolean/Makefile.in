@@ -136,7 +136,7 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciboolean_algo_la_LIBADD =
 am__objects_1 = libsciboolean_algo_la-vect_or.lo \
 	libsciboolean_algo_la-vect_and.lo
-am__objects_2 = logic.lo find.lo
+am__objects_2 = logic.lo
 am__objects_3 = libsciboolean_algo_la-boolean_gw.lo
 am__objects_4 = libsciboolean_algo_la-sci_bool2s.lo \
 	libsciboolean_algo_la-sci_find.lo
@@ -466,9 +466,7 @@ BOOLEAN_C_SOURCES = \
     src/c/vect_or.c \
     src/c/vect_and.c
 
-BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f \
-src/fortran/find.f
-
+BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_bool2s.cpp \
     sci_gateway/cpp/sci_find.cpp
@@ -791,9 +789,6 @@ libsciboolean_algo_la-sci_find.lo: sci_gateway/cpp/sci_find.cpp
 
 logic.lo: src/fortran/logic.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o logic.lo `test -f 'src/fortran/logic.f' || echo '$(srcdir)/'`src/fortran/logic.f
-
-find.lo: src/fortran/find.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o find.lo `test -f 'src/fortran/find.f' || echo '$(srcdir)/'`src/fortran/find.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

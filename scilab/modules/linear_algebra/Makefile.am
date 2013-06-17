@@ -21,58 +21,16 @@ src/c/det.c \
 src/c/lsq.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
-    src/fortran/intdggbal.f \
-    src/fortran/intzgeqpf4.f \
-    src/fortran/intzgehrd.f \
-    src/fortran/intzgesvd1.f \
-    src/fortran/intzgesvd2.f \
-    src/fortran/intdgesv3.f \
-    src/fortran/intdgesv4.f \
+    src/fortran/complexify.f \
     src/fortran/DGELSY1.f \
     src/fortran/ZGELSY1.f \
-    src/fortran/intdpotrf.f \
-    src/fortran/intdoldsvd.f \
-    src/fortran/intdgecon.f \
-    src/fortran/zoldqr.f \
-    src/fortran/intzgetrf.f \
-    src/fortran/complexify.f \
-    src/fortran/intzgebal.f \
-    src/fortran/intzgetri.f \
-    src/fortran/intzggbal.f \
-    src/fortran/intddet.f \
-    src/fortran/intzgesv3.f \
-    src/fortran/intzgesv4.f \
-    src/fortran/intzpotrf.f \
-    src/fortran/intzgecon.f \
-    src/fortran/intzoldsvd.f \
-    src/fortran/intdgelsy.f \
-    src/fortran/intdgeqpf3.f \
-    src/fortran/intdgeqpf4.f \
-    src/fortran/intdgesvd1.f \
-    src/fortran/intdgehrd.f \
-    src/fortran/intdgesvd2.f \
-    src/fortran/intzdet.f \
-    src/fortran/doldqr.f \
-    src/fortran/intdgetrf.f \
-    src/fortran/intzgelsy.f \
-    src/fortran/intdgetri.f \
-    src/fortran/intdgebal.f \
-    src/fortran/intzgeqpf3.f \
-    src/fortran/writebuf.f \
-    src/fortran/intzschur.f
+    src/fortran/voiddummy.f \
+    src/fortran/writebuf.f 
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_backslash.c \
-    sci_gateway/c/sci_slash.c \
     sci_gateway/c/gw_linear_algebra2.c \
     sci_gateway/c/gw_linear_algebra.c \
-    sci_gateway/c/assembleEigenvectors.c \
-    sci_gateway/c/sci_dgeev.c \
-    sci_gateway/c/sci_dggev.c \
-    sci_gateway/c/sci_dsyev.c \
-    sci_gateway/c/sci_zgeev.c \
-    sci_gateway/c/sci_zggev.c \
-    sci_gateway/c/sci_zheev.c
+    sci_gateway/c/assembleEigenvectors.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/linear_algebra_gw.cpp \

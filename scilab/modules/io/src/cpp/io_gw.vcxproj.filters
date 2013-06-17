@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{20da1cc5-0872-48a2-9f88-1648b061eb4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{b5610a59-b3fe-417d-aad4-549d9b62662a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="io_gw.cpp">
@@ -86,10 +80,5 @@
     <Library Include="..\..\..\..\bin\lapack.lib" />
     <Library Include="..\..\..\..\bin\libintl.lib" />
     <Library Include="..\..\..\..\bin\libxml2.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="io_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
   </ItemGroup>
 </Project>

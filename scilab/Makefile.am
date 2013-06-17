@@ -74,8 +74,7 @@ $(AM_CPPFLAGS)
 COMMON_LIBS = $(LTLIBINTL)
 
 scilab_bin_SOURCES = \
-    $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-    $(top_srcdir)/modules/core/src/cpp/tasks.cpp
+    $(top_srcdir)/modules/core/src/cpp/scilab.cpp
 
 if IS_MACOSX
 scilab_bin_SOURCES		+=  $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
@@ -95,8 +94,7 @@ endif
 scilab_bin_LDADD += $(top_builddir)/modules/libscilab.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
-scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-							$(top_srcdir)/modules/core/src/cpp/tasks.cpp
+scilab_cli_bin_SOURCES	=	$(top_srcdir)/modules/core/src/cpp/scilab.cpp
 
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 

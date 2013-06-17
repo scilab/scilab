@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -256,7 +256,6 @@ lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="cvstr.c" />
     <ClCompile Include="DllMainString.c" />
     <ClCompile Include="getfastcode.c" />
-    <ClCompile Include="InitializeString.c" />
     <ClCompile Include="isalphanum.c" />
     <ClCompile Include="isascii.c" />
     <ClCompile Include="isdigit.c" />
@@ -267,7 +266,6 @@ lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="pcre_error.c" />
     <ClCompile Include="pcre_private.c" />
     <ClCompile Include="scistrtostr.c" />
-    <ClCompile Include="setScilabCharactersCodes.c" />
     <ClCompile Include="StringConvert.c" />
     <ClCompile Include="stringsCompare.c" />
     <ClCompile Include="stringsstrrev.c" />
@@ -324,7 +322,6 @@ lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="..\..\includes\dynlib_string.h" />
     <ClInclude Include="..\..\includes\dynlib_string_gw.h" />
     <ClInclude Include="..\..\includes\getfastcode.h" />
-    <ClInclude Include="..\..\includes\InitializeString.h" />
     <ClInclude Include="..\..\includes\men_Sutils.h" />
     <ClInclude Include="..\..\includes\os_strdup.h" />
     <ClInclude Include="..\..\includes\os_stricmp.h" />
@@ -353,7 +350,6 @@ lib /DEF:"$(ProjectDir)system_env_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="partfunction.h" />
     <ClInclude Include="pcre_error.h" />
     <ClInclude Include="pcre_internal.h" />
-    <ClInclude Include="setScilabCharactersCodes.h" />
     <ClInclude Include="stringsCompare.h" />
     <ClInclude Include="stringsstrrev.h" />
     <ClInclude Include="strsplit.h" />

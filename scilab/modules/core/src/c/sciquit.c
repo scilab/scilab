@@ -76,8 +76,6 @@ void sciquit(void)
     createMutexClosingScilab();
 #endif
 
-    ExitScilab();
-
 #ifdef sun
 #ifndef SYSV
     char **out;

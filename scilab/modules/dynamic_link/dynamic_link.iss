@@ -21,8 +21,6 @@
 Source: bin\{#DYNAMIC_LINK}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#DYNAMIC_LINK}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#DYNAMIC_LINK}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#DYNAMIC_LINK}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#DYNAMIC_LINK}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 
 ;
 Source: modules\{#DYNAMIC_LINK}\license.txt; DestDir: {app}\modules\{#DYNAMIC_LINK}; Components: {#COMPN_SCILAB}

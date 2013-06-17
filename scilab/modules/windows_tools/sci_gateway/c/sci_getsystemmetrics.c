@@ -19,37 +19,37 @@ static int getnIndexFromString(char *nIndex_char);
 /*--------------------------------------------------------------------------*/
 int sci_getsystemmetrics(char *fname, unsigned long l)
 {
-    char *param = NULL;
-    int nIndex = -1;
-    int m1 = 0;
-    int n1 = 0;
-    int l1 = 0;
+    //char *param = NULL;
+    //int nIndex = -1;
+    //int m1 = 0;
+    //int n1 = 0;
+    //int l1 = 0;
 
-    CheckRhs(1, 1);
+    //CheckRhs(1, 1);
 
-    if (GetType(1) != sci_strings)
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
-        return 0;
-    }
+    //if (GetType(1) != sci_strings)
+    //{
+    //    Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+    //    return 0;
+    //}
 
-    GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-    param = cstk(l1);
+    //GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+    //param = cstk(l1);
 
-    nIndex = getnIndexFromString(param);
-    if ( nIndex > -1 )
-    {
-        int one = 1;
-        CreateVar(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &one, &one, &l1);
-        *istk(l1) = GetSystemMetrics(nIndex);
-        LhsVar(1) = Rhs + 1;
+    //nIndex = getnIndexFromString(param);
+    //if ( nIndex > -1 )
+    //{
+    //    int one = 1;
+    //    CreateVar(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &one, &one, &l1);
+    //    *istk(l1) = GetSystemMetrics(nIndex);
+    //    LhsVar(1) = Rhs + 1;
 
-        PutLhsVar();
-    }
-    else
-    {
-        Scierror(999, _("%s: Wrong value for input argument: %s.\n"), fname, _("see help"));
-    }
+    //    PutLhsVar();
+    //}
+    //else
+    //{
+    //    Scierror(999, _("%s: Wrong value for input argument: %s.\n"), fname, _("see help"));
+    //}
     return 0;
 }
 /*--------------------------------------------------------------------------*/

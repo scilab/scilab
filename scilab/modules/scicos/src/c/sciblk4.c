@@ -41,591 +41,591 @@ static int sci2var(void *x, void *y, int typ_var);
 /*--------------------------------------------------------------------------*/
 void sciblk4(scicos_block *Blocks, int flag)
 {
-    /*counter and address variable declaration*/
-    int i = 0, j = 0, k = 0, topsave = 0;
-    int ierr = 0;
-    int kfun = 0;
-
-    int *header = NULL, ne1 = 0;
-    double *le111 = NULL;
-
-    int *il_xd = NULL, *il_res = NULL, *il_out = NULL, *il_outptr = NULL;
-    int *il_xprop = NULL;
-
-    int *il_z = NULL, *il_oz = NULL, *il_ozptr = NULL, *il_x = NULL;
-    int *il_mode = NULL, *il_evout = NULL, *il_g = NULL;
-    double *l_mode = NULL;
-    double *l_xprop = NULL;
-
-    /* variable for output typed port */
-    int nout = 0;
-
-    int nv = 0, mv = 0;
-    int *ptr = NULL, *funtyp = NULL;
-
-    /* set number of left and right hand side parameters */
-    int mlhs = 1, mrhs = 2;
-
-    /* Save Top counter */
-    topsave = Top;
-
-    /* Retrieve block number */
-    kfun = get_block_number();
-
-    /* Retrieve funtyp by import structure */
-    strcpy(C2F(cha1).buf, "funtyp");
-    ierr = getscicosvarsfromimport(C2F(cha1).buf, (void**)&ptr, &nv, &mv);
-    if (ierr == 0)
-    {
-        goto err;
-    }
-    funtyp = (int *) ptr;
-
-    /****************************
-     * create scilab tlist Blocks
-     ****************************/
-    if ((createblklist(&Blocks[0], &ierr, (i = -1), funtyp[kfun - 1])) == 0)
-    {
-        goto err;
-    }
-
-    /* * flag * */
-    C2F(itosci)(&flag, (i = 1, &i), (j = 1, &j));
-    if (C2F(scierr)() != 0)
-    {
-        goto err;
-    }
-
-    /**********************
-     * Call scilab function
-     **********************/
-    C2F(scifunc)(&mlhs, &mrhs);
-    if (C2F(scierr)() != 0)
-    {
-        goto err;
-    }
-
-    /***************************
-     * Update C block structure
-     **************************/
-    /* get header of output variable Blocks of sciblk4 */
-    header = (int *) stk(*Lstk(Top));
-
-    /* switch to appropriate flag */
-    switch (flag)
-    {
-
-            /**************************
-             * update continuous state
-             **************************/
-        case 0 :
-        {
-            if (Blocks[0].nx != 0)
-            {
-                /* 14 - xd */
-                il_xd = (int *) listentry(header, 14);
-                ierr = sci2var(il_xd, Blocks[0].xd, SCSREAL_N); /* double */
-                if (ierr != 0)
-                {
-                    goto err;
-                }
-
-                if ((funtyp[kfun - 1] == 10004) || (funtyp[kfun - 1] == 10005))
-                {
-                    /* 15 - res */
-                    il_res = (int *) listentry(header, 15);
-                    ierr = sci2var(il_res, Blocks[0].res, SCSREAL_N); /* double */
-                    if (ierr != 0)
-                    {
-                        goto err;
-                    }
-                }
-            }
-        }
-        break;
-
-        /**********************
-         * update output state
-         **********************/
-        case 1 :
-        {
-            /* 21 - outptr */
-            if (Blocks[0].nout != 0)
-            {
-                il_out = (int*) listentry(header, 21);
-                nout = il_out[1];
-
-                for (j = 0; j < nout; j++)
-                {
-                    il_outptr = (int *) listentry(il_out, j + 1);
-                    ierr = sci2var(il_outptr, Blocks[0].outptr[j], Blocks[0].outsz[2 * nout + j]);
-                    if (ierr != 0)
-                    {
-                        goto err;
-                    }
-                }
-            }
-        }
-        break;
-
-        /***********************
-         * update discrete state
-         ***********************/
-        case 2 :
-        {
-            /* 7 - z */
-            if (Blocks[0].nz != 0)
-            {
-                il_z = (int *) listentry(header, 7);
-                if (Blocks[0].scsptr > 0)
-                {
-                    le111 = (double *) listentry(header, 7);
-                    ne1 = header[7 + 2] - header[7 + 1];
-                    C2F(unsfdcopy)(&ne1, le111, (i = -1, &i), Blocks[0].z, (j = -1, &j));
-                }
-                else
-                {
-                    ierr = sci2var(il_z, Blocks[0].z, SCSREAL_N); /* double */
-                    if (ierr != 0)
-                    {
-                        goto err;
-                    }
-                }
-            }
-
-            /* 11 - oz */
-            if (Blocks[0].noz != 0)
-            {
-                il_oz = (int *) listentry(header, 11);
-                /* C blocks : extract */
-                if ((funtyp[kfun - 1] == 4) || (funtyp[kfun - 1] == 10004))
-                {
-                    for (j = 0; j < Blocks[0].noz; j++)
-                    {
-                        il_ozptr = (int *) listentry(il_oz, j + 1);
-                        if (Blocks[0].oztyp[j] == SCSUNKNOW_N)
-                        {
-                            ne1 = Blocks[0].ozsz[j];
-                            C2F(unsfdcopy)(&ne1, (double *)il_ozptr, \
-                                           (i = 1, &i), (double *)Blocks[0].ozptr[j], (k = 1, &k));
-                        }
-                        else
-                        {
-                            ierr = sci2var(il_ozptr, Blocks[0].ozptr[j], Blocks[0].oztyp[j]);
-                            if (ierr != 0)
-                            {
-                                goto err;
-                            }
-                        }
-                    }
-                }
-                /* sci blocks : don't extract */
-                else if ((funtyp[kfun - 1] == 5) || (funtyp[kfun - 1] == 10005))
-                {
-                    ne1 = Blocks[0].ozsz[0];
-                    C2F(unsfdcopy)(&ne1, (double *)il_oz, \
-                                   (i = 1, &i), (double *)Blocks[0].ozptr[0], (j = 1, &j));
-                }
-            }
-
-            if (Blocks[0].nx != 0)
-            {
-                /* 13 - x */
-                il_x = (int *) listentry(header, 13);
-                ierr = sci2var(il_x, Blocks[0].x, SCSREAL_N); /* double */
-                if (ierr != 0)
-                {
-                    goto err;
-                }
-
-                /* 14 - xd */
-                il_xd = (int *) listentry(header, 14);
-                ierr = sci2var(il_xd, Blocks[0].xd, SCSREAL_N); /* double */
-                if (ierr != 0)
-                {
-                    goto err;
-                }
-            }
-        }
-        break;
-
-        /***************************
-         * update event output state
-         ***************************/
-        case 3 :
-        {
-            /* 23 - evout */
-            il_evout = (int *) listentry(header, 23);
-            ierr = sci2var(il_evout, Blocks[0].evout, SCSREAL_N); /* double */
-            if (ierr != 0)
-            {
-                goto err;
-            }
-        }
-        break;
-
-        /**********************
-         * state initialisation
-         **********************/
-        case 4 :
-        {
-            /* 7 - z */
-            if (Blocks[0].nz != 0)
-            {
-                il_z = (int *) listentry(header, 7);
-                if (Blocks[0].scsptr > 0)
-                {
-                    le111 = (double *) listentry(header, 7);
-                    ne1 = header[7 + 2] - header[7 + 1];
-                    C2F(unsfdcopy)(&ne1, le111, (i = -1, &i), Blocks[0].z, (j = -1, &j));
-                }
-                else
-                {
-                    ierr = sci2var(il_z, Blocks[0].z, SCSREAL_N); /* double */
-                    if (ierr != 0)
-                    {
-                        goto err;
-                    }
-                }
-            }
-
-            /* 11 - oz */
-            if (Blocks[0].noz != 0)
-            {
-                il_oz = (int *) listentry(header, 11);
-                /* C blocks : extract */
-                if ((funtyp[kfun - 1] == 4) || (funtyp[kfun - 1] == 10004))
-                {
-                    for (j = 0; j < Blocks[0].noz; j++)
-                    {
-                        il_ozptr = (int *) listentry(il_oz, j + 1);
-                        if (Blocks[0].oztyp[j] == SCSUNKNOW_N)
-                        {
-                            ne1 = Blocks[0].ozsz[j];
-                            C2F(unsfdcopy)(&ne1, (double *)il_ozptr, \
-                                           (i = 1, &i), (double *)Blocks[0].ozptr[j], (k = 1, &k));
-                        }
-                        else
-                        {
-                            ierr = sci2var(il_ozptr, Blocks[0].ozptr[j], Blocks[0].oztyp[j]);
-                            if (ierr != 0)
-                            {
-                                goto err;
-                            }
-                        }
-                    }
-                }
-                /* sci blocks : don't extract */
-                else if ((funtyp[kfun - 1] == 5) || (funtyp[kfun - 1] == 10005))
-                {
-                    ne1 = Blocks[0].ozsz[0];
-                    C2F(unsfdcopy)(&ne1, (double *)il_oz, \
-                                   (i = 1, &i), (double *)Blocks[0].ozptr[0], (j = 1, &j));
-                }
-            }
-
-            if (Blocks[0].nx != 0)
-            {
-                /* 13 - x */
-                il_x = (int *) listentry(header, 13);
-                ierr = sci2var(il_x, Blocks[0].x, SCSREAL_N); /* double */
-                if (ierr != 0)
-                {
-                    goto err;
-                }
-
-                /* 14 - xd */
-                il_xd = (int *) listentry(header, 14);
-                ierr = sci2var(il_xd, Blocks[0].xd, SCSREAL_N); /* double */
-                if (ierr != 0)
-                {
-                    goto err;
-                }
-            }
-        }
-        break;
-
-        /*********
-         * finish
-         *********/
-        case 5 :
-        {
-            /* 7 - z */
-            if (Blocks[0].nz != 0)
-            {
-                il_z = (int *) listentry(header, 7);
-                if (Blocks[0].scsptr > 0)
-                {
-                    le111 = (double *) listentry(header, 7);
-                    ne1 = header[7 + 2] - header[7 + 1];
-                    C2F(unsfdcopy)(&ne1, le111, (i = -1, &i), Blocks[0].z, (j = -1, &j));
-                }
-                else
-                {
-                    ierr = sci2var(il_z, Blocks[0].z, SCSREAL_N); /* double */
-                    if (ierr != 0)
-                    {
-                        goto err;
-                    }
-                }
-            }
-
-            /* 11 - oz */
-            if (Blocks[0].noz != 0)
-            {
-                il_oz = (int *) listentry(header, 11);
-                /* C blocks : extract */
-                if ((funtyp[kfun - 1] == 4) || (funtyp[kfun - 1] == 10004))
-                {
-                    for (j = 0; j < Blocks[0].noz; j++)
-                    {
-                        il_ozptr = (int *) listentry(il_oz, j + 1);
-                        if (Blocks[0].oztyp[j] == SCSUNKNOW_N)
-                        {
-                            ne1 = Blocks[0].ozsz[j];
-                            C2F(unsfdcopy)(&ne1, (double *)il_ozptr, \
-                                           (i = 1, &i), (double *)Blocks[0].ozptr[j], (k = 1, &k));
-                        }
-                        else
-                        {
-                            ierr = sci2var(il_ozptr, Blocks[0].ozptr[j], Blocks[0].oztyp[j]);
-                            if (ierr != 0)
-                            {
-                                goto err;
-                            }
-                        }
-                    }
-                }
-                /* sci blocks : don't extract */
-                else if ((funtyp[kfun - 1] == 5) || (funtyp[kfun - 1] == 10005))
-                {
-                    ne1 = Blocks[0].ozsz[0];
-                    C2F(unsfdcopy)(&ne1, (double *)il_oz, \
-                                   (i = 1, &i), (double *)Blocks[0].ozptr[0], (j = 1, &j));
-                }
-            }
-        }
-        break;
-
-        /*****************************
-         * output state initialisation
-         *****************************/
-        case 6 :
-        {
-            /* 7 - z */
-            if (Blocks[0].nz != 0)
-            {
-                il_z = (int *) listentry(header, 7);
-                if (Blocks[0].scsptr > 0)
-                {
-                    le111 = (double *) listentry(header, 7);
-                    ne1 = header[7 + 2] - header[7 + 1];
-                    C2F(unsfdcopy)(&ne1, le111, (i = -1, &i), Blocks[0].z, (j = -1, &j));
-                }
-                else
-                {
-                    ierr = sci2var(il_z, Blocks[0].z, SCSREAL_N); /* double */
-                    if (ierr != 0)
-                    {
-                        goto err;
-                    }
-                }
-            }
-
-            /* 11 - oz */
-            if (Blocks[0].noz != 0)
-            {
-                il_oz = (int *) listentry(header, 11);
-                /* C blocks : extract */
-                if ((funtyp[kfun - 1] == 4) || (funtyp[kfun - 1] == 10004))
-                {
-                    for (j = 0; j < Blocks[0].noz; j++)
-                    {
-                        il_ozptr = (int *) listentry(il_oz, j + 1);
-                        if (Blocks[0].oztyp[j] == SCSUNKNOW_N)
-                        {
-                            ne1 = Blocks[0].ozsz[j];
-                            C2F(unsfdcopy)(&ne1, (double *)il_ozptr, \
-                                           (i = 1, &i), (double *)Blocks[0].ozptr[j], (k = 1, &k));
-                        }
-                        else
-                        {
-                            ierr = sci2var(il_ozptr, Blocks[0].ozptr[j], Blocks[0].oztyp[j]);
-                            if (ierr != 0)
-                            {
-                                goto err;
-                            }
-                        }
-                    }
-                }
-                /* sci blocks : don't extract */
-                else if ((funtyp[kfun - 1] == 5) || (funtyp[kfun - 1] == 10005))
-                {
-                    ne1 = Blocks[0].ozsz[0];
-                    C2F(unsfdcopy)(&ne1, (double *)il_oz, \
-                                   (i = 1, &i), (double *)Blocks[0].ozptr[0], (j = 1, &j));
-                }
-            }
-
-            if (Blocks[0].nx != 0)
-            {
-                /* 13 - x */
-                il_x = (int *) listentry(header, 13);
-                ierr = sci2var(il_x, Blocks[0].x, SCSREAL_N); /* double */
-                if (ierr != 0)
-                {
-                    goto err;
-                }
-
-                /* 14 - xd */
-                il_xd = (int *) listentry(header, 14);
-                ierr = sci2var(il_xd, Blocks[0].xd, SCSREAL_N); /* double */
-                if (ierr != 0)
-                {
-                    goto err;
-                }
-            }
-
-            /* 21 - outptr */
-            if (Blocks[0].nout != 0)
-            {
-                il_out = (int *) listentry(header, 21);
-                nout = il_out[1];
-                for (j = 0; j < nout; j++)
-                {
-                    il_outptr = (int *) listentry(il_out, j + 1);
-                    ierr = sci2var(il_outptr, Blocks[0].outptr[j], Blocks[0].outsz[2 * nout + j]);
-                    if (ierr != 0)
-                    {
-                        goto err;
-                    }
-                }
-            }
-        }
-        break;
-
-        /*******************************************
-         * define property of continuous time states
-         * (algebraic or differential states)
-         *******************************************/
-        case 7 :
-        {
-            if (Blocks[0].nx != 0)
-            {
-                /* 40 - x */
-                il_xprop = (int *) listentry(header, 40);
-                l_xprop = (double *)(il_xprop + 4);
-                for (nv = 0; nv < Blocks[0].nx; nv++)
-                {
-                    Blocks[0].xprop[nv] = (int) l_xprop[nv];
-                }
-            }
-        }
-        break;
-
-        /****************************
-         * zero crossing computation
-         ****************************/
-        case 9 :
-        {
-            /* 33 - g */
-            il_g = (int *) listentry(header, 33);
-            ierr = sci2var(il_g, Blocks[0].g, SCSREAL_N); /* double */
-            if (ierr != 0)
-            {
-                goto err;
-            }
-
-            if (get_phase_simulation() == 1)
-            {
-                /* 39 - mode */
-                il_mode = (int *) listentry(header, 39);
-                // Alan, 16/10/07 : fix : mode is an int array
-                l_mode = (double *)(il_mode + 4);
-                for (nv = 0; nv < (il_mode[1]*il_mode[2]); nv++)
-                {
-                    Blocks[0].mode[nv] = (int) l_mode[nv];
-                }
-                //ierr=sci2var(il_mode,Blocks[0].mode,SCSINT_N); /* int */
-                //if (ierr!=0) goto err;
-            }
-        }
-        break;
-
-        /**********************
-         * Jacobian computation
-         **********************/
-        case 10 :
-        {
-            if ((funtyp[kfun - 1] == 10004) || (funtyp[kfun - 1] == 10005))
-            {
-                /* 15 - res */
-                il_res = (int *) listentry(header, 15);
-                ierr = sci2var(il_res, Blocks[0].res, SCSREAL_N); /* double */
-                if (ierr != 0)
-                {
-                    goto err;
-                }
-            }
-        }
-        break;
-    }
-
-    /* Restore initial position Top */
-    Top = topsave;
-    return;
-
-    /* if error then restore initial position Top
-     * and set_block_error with flag -1 */
-err:
-    Top = topsave;
-    if (ierr != 0) /*var2sci or sci2var error*/
-    {
-        /* Please update me !*/
-        if (ierr < 1000) /*var2sci error*/
-        {
-            switch (ierr)
-            {
-                case 1  :
-                    Scierror(888, _("%s: error %d. Stack is full.\n"), "var2sci", ierr);
-                    break;
-
-                case 2  :
-                    Scierror(888, _("%s: error %d. No more space on the stack for new data.\n"), "var2sci", ierr);
-                    break;
-
-                default :
-                    Scierror(888, _("%s: error %d. Undefined error.\n"), "var2sci", ierr);
-                    break;
-            }
-        }
-        else /*sci2var error*/
-        {
-            switch (ierr)
-            {
-                case 1001  :
-                    Scierror(888, _("%s: error %d. Only int or double object are accepted.\n"), "sci2var", ierr);
-                    break;
-
-                case 1002  :
-                    Scierror(888, _("%s: error %d. Bad double object sub_type.\n"), "sci2var", ierr);
-                    break;
-
-                case 1003  :
-                    Scierror(888, _("%s: error %d. Bad int object sub_type.\n"), "sci2var", ierr);
-                    break;
-
-                case 1004  :
-                    Scierror(888, _("%s: error %d. A type of a scilab object has changed.\n"), "sci2var", ierr);
-                    break;
-
-                default    :
-                    Scierror(888, _("%s: error %d. Undefined error.\n"), "sci2var", ierr);
-                    break;
-            }
-        }
-    }
-    set_block_error(-1);
+    //    /*counter and address variable declaration*/
+    //    int i = 0, j = 0, k = 0, topsave = 0;
+    //    int ierr = 0;
+    //    int kfun = 0;
+    //
+    //    int *header = NULL, ne1 = 0;
+    //    double *le111 = NULL;
+    //
+    //    int *il_xd = NULL, *il_res = NULL, *il_out = NULL, *il_outptr = NULL;
+    //    int *il_xprop = NULL;
+    //
+    //    int *il_z = NULL, *il_oz = NULL, *il_ozptr = NULL, *il_x = NULL;
+    //    int *il_mode = NULL, *il_evout = NULL, *il_g = NULL;
+    //    double *l_mode = NULL;
+    //    double *l_xprop = NULL;
+    //
+    //    /* variable for output typed port */
+    //    int nout = 0;
+    //
+    //    int nv = 0, mv = 0;
+    //    int *ptr = NULL, *funtyp = NULL;
+    //
+    //    /* set number of left and right hand side parameters */
+    //    int mlhs = 1, mrhs = 2;
+    //
+    //    /* Save Top counter */
+    //    topsave = Top;
+    //
+    //    /* Retrieve block number */
+    //    kfun = get_block_number();
+    //
+    //    /* Retrieve funtyp by import structure */
+    //    strcpy(C2F(cha1).buf, "funtyp");
+    //    ierr = getscicosvarsfromimport(C2F(cha1).buf, (void**)&ptr, &nv, &mv);
+    //    if (ierr == 0)
+    //    {
+    //        goto err;
+    //    }
+    //    funtyp = (int *) ptr;
+    //
+    //    /****************************
+    //     * create scilab tlist Blocks
+    //     ****************************/
+    //    if ((createblklist(&Blocks[0], &ierr, (i = -1), funtyp[kfun - 1])) == 0)
+    //    {
+    //        goto err;
+    //    }
+    //
+    //    /* * flag * */
+    //    C2F(itosci)(&flag, (i = 1, &i), (j = 1, &j));
+    //    if (C2F(scierr)() != 0)
+    //    {
+    //        goto err;
+    //    }
+    //
+    //    /**********************
+    //     * Call scilab function
+    //     **********************/
+    //    C2F(scifunc)(&mlhs, &mrhs);
+    //    if (C2F(scierr)() != 0)
+    //    {
+    //        goto err;
+    //    }
+    //
+    //    /***************************
+    //     * Update C block structure
+    //     **************************/
+    //    /* get header of output variable Blocks of sciblk4 */
+    //    header = (int *) stk(*Lstk(Top));
+    //
+    //    /* switch to appropriate flag */
+    //    switch (flag)
+    //    {
+    //
+    //            /**************************
+    //             * update continuous state
+    //             **************************/
+    //        case 0 :
+    //        {
+    //            if (Blocks[0].nx != 0)
+    //            {
+    //                /* 14 - xd */
+    //                il_xd = (int *) listentry(header, 14);
+    //                ierr = sci2var(il_xd, Blocks[0].xd, SCSREAL_N); /* double */
+    //                if (ierr != 0)
+    //                {
+    //                    goto err;
+    //                }
+    //
+    //                if ((funtyp[kfun - 1] == 10004) || (funtyp[kfun - 1] == 10005))
+    //                {
+    //                    /* 15 - res */
+    //                    il_res = (int *) listentry(header, 15);
+    //                    ierr = sci2var(il_res, Blocks[0].res, SCSREAL_N); /* double */
+    //                    if (ierr != 0)
+    //                    {
+    //                        goto err;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        break;
+    //
+    //        /**********************
+    //         * update output state
+    //         **********************/
+    //        case 1 :
+    //        {
+    //            /* 21 - outptr */
+    //            if (Blocks[0].nout != 0)
+    //            {
+    //                il_out = (int*) listentry(header, 21);
+    //                nout = il_out[1];
+    //
+    //                for (j = 0; j < nout; j++)
+    //                {
+    //                    il_outptr = (int *) listentry(il_out, j + 1);
+    //                    ierr = sci2var(il_outptr, Blocks[0].outptr[j], Blocks[0].outsz[2 * nout + j]);
+    //                    if (ierr != 0)
+    //                    {
+    //                        goto err;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        break;
+    //
+    //        /***********************
+    //         * update discrete state
+    //         ***********************/
+    //        case 2 :
+    //        {
+    //            /* 7 - z */
+    //            if (Blocks[0].nz != 0)
+    //            {
+    //                il_z = (int *) listentry(header, 7);
+    //                if (Blocks[0].scsptr > 0)
+    //                {
+    //                    le111 = (double *) listentry(header, 7);
+    //                    ne1 = header[7 + 2] - header[7 + 1];
+    //                    C2F(unsfdcopy)(&ne1, le111, (i = -1, &i), Blocks[0].z, (j = -1, &j));
+    //                }
+    //                else
+    //                {
+    //                    ierr = sci2var(il_z, Blocks[0].z, SCSREAL_N); /* double */
+    //                    if (ierr != 0)
+    //                    {
+    //                        goto err;
+    //                    }
+    //                }
+    //            }
+    //
+    //            /* 11 - oz */
+    //            if (Blocks[0].noz != 0)
+    //            {
+    //                il_oz = (int *) listentry(header, 11);
+    //                /* C blocks : extract */
+    //                if ((funtyp[kfun - 1] == 4) || (funtyp[kfun - 1] == 10004))
+    //                {
+    //                    for (j = 0; j < Blocks[0].noz; j++)
+    //                    {
+    //                        il_ozptr = (int *) listentry(il_oz, j + 1);
+    //                        if (Blocks[0].oztyp[j] == SCSUNKNOW_N)
+    //                        {
+    //                            ne1 = Blocks[0].ozsz[j];
+    //                            C2F(unsfdcopy)(&ne1, (double *)il_ozptr, \
+    //                                           (i = 1, &i), (double *)Blocks[0].ozptr[j], (k = 1, &k));
+    //                        }
+    //                        else
+    //                        {
+    //                            ierr = sci2var(il_ozptr, Blocks[0].ozptr[j], Blocks[0].oztyp[j]);
+    //                            if (ierr != 0)
+    //                            {
+    //                                goto err;
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //                /* sci blocks : don't extract */
+    //                else if ((funtyp[kfun - 1] == 5) || (funtyp[kfun - 1] == 10005))
+    //                {
+    //                    ne1 = Blocks[0].ozsz[0];
+    //                    C2F(unsfdcopy)(&ne1, (double *)il_oz, \
+    //                                   (i = 1, &i), (double *)Blocks[0].ozptr[0], (j = 1, &j));
+    //                }
+    //            }
+    //
+    //            if (Blocks[0].nx != 0)
+    //            {
+    //                /* 13 - x */
+    //                il_x = (int *) listentry(header, 13);
+    //                ierr = sci2var(il_x, Blocks[0].x, SCSREAL_N); /* double */
+    //                if (ierr != 0)
+    //                {
+    //                    goto err;
+    //                }
+    //
+    //                /* 14 - xd */
+    //                il_xd = (int *) listentry(header, 14);
+    //                ierr = sci2var(il_xd, Blocks[0].xd, SCSREAL_N); /* double */
+    //                if (ierr != 0)
+    //                {
+    //                    goto err;
+    //                }
+    //            }
+    //        }
+    //        break;
+    //
+    //        /***************************
+    //         * update event output state
+    //         ***************************/
+    //        case 3 :
+    //        {
+    //            /* 23 - evout */
+    //            il_evout = (int *) listentry(header, 23);
+    //            ierr = sci2var(il_evout, Blocks[0].evout, SCSREAL_N); /* double */
+    //            if (ierr != 0)
+    //            {
+    //                goto err;
+    //            }
+    //        }
+    //        break;
+    //
+    //        /**********************
+    //         * state initialisation
+    //         **********************/
+    //        case 4 :
+    //        {
+    //            /* 7 - z */
+    //            if (Blocks[0].nz != 0)
+    //            {
+    //                il_z = (int *) listentry(header, 7);
+    //                if (Blocks[0].scsptr > 0)
+    //                {
+    //                    le111 = (double *) listentry(header, 7);
+    //                    ne1 = header[7 + 2] - header[7 + 1];
+    //                    C2F(unsfdcopy)(&ne1, le111, (i = -1, &i), Blocks[0].z, (j = -1, &j));
+    //                }
+    //                else
+    //                {
+    //                    ierr = sci2var(il_z, Blocks[0].z, SCSREAL_N); /* double */
+    //                    if (ierr != 0)
+    //                    {
+    //                        goto err;
+    //                    }
+    //                }
+    //            }
+    //
+    //            /* 11 - oz */
+    //            if (Blocks[0].noz != 0)
+    //            {
+    //                il_oz = (int *) listentry(header, 11);
+    //                /* C blocks : extract */
+    //                if ((funtyp[kfun - 1] == 4) || (funtyp[kfun - 1] == 10004))
+    //                {
+    //                    for (j = 0; j < Blocks[0].noz; j++)
+    //                    {
+    //                        il_ozptr = (int *) listentry(il_oz, j + 1);
+    //                        if (Blocks[0].oztyp[j] == SCSUNKNOW_N)
+    //                        {
+    //                            ne1 = Blocks[0].ozsz[j];
+    //                            C2F(unsfdcopy)(&ne1, (double *)il_ozptr, \
+    //                                           (i = 1, &i), (double *)Blocks[0].ozptr[j], (k = 1, &k));
+    //                        }
+    //                        else
+    //                        {
+    //                            ierr = sci2var(il_ozptr, Blocks[0].ozptr[j], Blocks[0].oztyp[j]);
+    //                            if (ierr != 0)
+    //                            {
+    //                                goto err;
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //                /* sci blocks : don't extract */
+    //                else if ((funtyp[kfun - 1] == 5) || (funtyp[kfun - 1] == 10005))
+    //                {
+    //                    ne1 = Blocks[0].ozsz[0];
+    //                    C2F(unsfdcopy)(&ne1, (double *)il_oz, \
+    //                                   (i = 1, &i), (double *)Blocks[0].ozptr[0], (j = 1, &j));
+    //                }
+    //            }
+    //
+    //            if (Blocks[0].nx != 0)
+    //            {
+    //                /* 13 - x */
+    //                il_x = (int *) listentry(header, 13);
+    //                ierr = sci2var(il_x, Blocks[0].x, SCSREAL_N); /* double */
+    //                if (ierr != 0)
+    //                {
+    //                    goto err;
+    //                }
+    //
+    //                /* 14 - xd */
+    //                il_xd = (int *) listentry(header, 14);
+    //                ierr = sci2var(il_xd, Blocks[0].xd, SCSREAL_N); /* double */
+    //                if (ierr != 0)
+    //                {
+    //                    goto err;
+    //                }
+    //            }
+    //        }
+    //        break;
+    //
+    //        /*********
+    //         * finish
+    //         *********/
+    //        case 5 :
+    //        {
+    //            /* 7 - z */
+    //            if (Blocks[0].nz != 0)
+    //            {
+    //                il_z = (int *) listentry(header, 7);
+    //                if (Blocks[0].scsptr > 0)
+    //                {
+    //                    le111 = (double *) listentry(header, 7);
+    //                    ne1 = header[7 + 2] - header[7 + 1];
+    //                    C2F(unsfdcopy)(&ne1, le111, (i = -1, &i), Blocks[0].z, (j = -1, &j));
+    //                }
+    //                else
+    //                {
+    //                    ierr = sci2var(il_z, Blocks[0].z, SCSREAL_N); /* double */
+    //                    if (ierr != 0)
+    //                    {
+    //                        goto err;
+    //                    }
+    //                }
+    //            }
+    //
+    //            /* 11 - oz */
+    //            if (Blocks[0].noz != 0)
+    //            {
+    //                il_oz = (int *) listentry(header, 11);
+    //                /* C blocks : extract */
+    //                if ((funtyp[kfun - 1] == 4) || (funtyp[kfun - 1] == 10004))
+    //                {
+    //                    for (j = 0; j < Blocks[0].noz; j++)
+    //                    {
+    //                        il_ozptr = (int *) listentry(il_oz, j + 1);
+    //                        if (Blocks[0].oztyp[j] == SCSUNKNOW_N)
+    //                        {
+    //                            ne1 = Blocks[0].ozsz[j];
+    //                            C2F(unsfdcopy)(&ne1, (double *)il_ozptr, \
+    //                                           (i = 1, &i), (double *)Blocks[0].ozptr[j], (k = 1, &k));
+    //                        }
+    //                        else
+    //                        {
+    //                            ierr = sci2var(il_ozptr, Blocks[0].ozptr[j], Blocks[0].oztyp[j]);
+    //                            if (ierr != 0)
+    //                            {
+    //                                goto err;
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //                /* sci blocks : don't extract */
+    //                else if ((funtyp[kfun - 1] == 5) || (funtyp[kfun - 1] == 10005))
+    //                {
+    //                    ne1 = Blocks[0].ozsz[0];
+    //                    C2F(unsfdcopy)(&ne1, (double *)il_oz, \
+    //                                   (i = 1, &i), (double *)Blocks[0].ozptr[0], (j = 1, &j));
+    //                }
+    //            }
+    //        }
+    //        break;
+    //
+    //        /*****************************
+    //         * output state initialisation
+    //         *****************************/
+    //        case 6 :
+    //        {
+    //            /* 7 - z */
+    //            if (Blocks[0].nz != 0)
+    //            {
+    //                il_z = (int *) listentry(header, 7);
+    //                if (Blocks[0].scsptr > 0)
+    //                {
+    //                    le111 = (double *) listentry(header, 7);
+    //                    ne1 = header[7 + 2] - header[7 + 1];
+    //                    C2F(unsfdcopy)(&ne1, le111, (i = -1, &i), Blocks[0].z, (j = -1, &j));
+    //                }
+    //                else
+    //                {
+    //                    ierr = sci2var(il_z, Blocks[0].z, SCSREAL_N); /* double */
+    //                    if (ierr != 0)
+    //                    {
+    //                        goto err;
+    //                    }
+    //                }
+    //            }
+    //
+    //            /* 11 - oz */
+    //            if (Blocks[0].noz != 0)
+    //            {
+    //                il_oz = (int *) listentry(header, 11);
+    //                /* C blocks : extract */
+    //                if ((funtyp[kfun - 1] == 4) || (funtyp[kfun - 1] == 10004))
+    //                {
+    //                    for (j = 0; j < Blocks[0].noz; j++)
+    //                    {
+    //                        il_ozptr = (int *) listentry(il_oz, j + 1);
+    //                        if (Blocks[0].oztyp[j] == SCSUNKNOW_N)
+    //                        {
+    //                            ne1 = Blocks[0].ozsz[j];
+    //                            C2F(unsfdcopy)(&ne1, (double *)il_ozptr, \
+    //                                           (i = 1, &i), (double *)Blocks[0].ozptr[j], (k = 1, &k));
+    //                        }
+    //                        else
+    //                        {
+    //                            ierr = sci2var(il_ozptr, Blocks[0].ozptr[j], Blocks[0].oztyp[j]);
+    //                            if (ierr != 0)
+    //                            {
+    //                                goto err;
+    //                            }
+    //                        }
+    //                    }
+    //                }
+    //                /* sci blocks : don't extract */
+    //                else if ((funtyp[kfun - 1] == 5) || (funtyp[kfun - 1] == 10005))
+    //                {
+    //                    ne1 = Blocks[0].ozsz[0];
+    //                    C2F(unsfdcopy)(&ne1, (double *)il_oz, \
+    //                                   (i = 1, &i), (double *)Blocks[0].ozptr[0], (j = 1, &j));
+    //                }
+    //            }
+    //
+    //            if (Blocks[0].nx != 0)
+    //            {
+    //                /* 13 - x */
+    //                il_x = (int *) listentry(header, 13);
+    //                ierr = sci2var(il_x, Blocks[0].x, SCSREAL_N); /* double */
+    //                if (ierr != 0)
+    //                {
+    //                    goto err;
+    //                }
+    //
+    //                /* 14 - xd */
+    //                il_xd = (int *) listentry(header, 14);
+    //                ierr = sci2var(il_xd, Blocks[0].xd, SCSREAL_N); /* double */
+    //                if (ierr != 0)
+    //                {
+    //                    goto err;
+    //                }
+    //            }
+    //
+    //            /* 21 - outptr */
+    //            if (Blocks[0].nout != 0)
+    //            {
+    //                il_out = (int *) listentry(header, 21);
+    //                nout = il_out[1];
+    //                for (j = 0; j < nout; j++)
+    //                {
+    //                    il_outptr = (int *) listentry(il_out, j + 1);
+    //                    ierr = sci2var(il_outptr, Blocks[0].outptr[j], Blocks[0].outsz[2 * nout + j]);
+    //                    if (ierr != 0)
+    //                    {
+    //                        goto err;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        break;
+    //
+    //        /*******************************************
+    //         * define property of continuous time states
+    //         * (algebraic or differential states)
+    //         *******************************************/
+    //        case 7 :
+    //        {
+    //            if (Blocks[0].nx != 0)
+    //            {
+    //                /* 40 - x */
+    //                il_xprop = (int *) listentry(header, 40);
+    //                l_xprop = (double *)(il_xprop + 4);
+    //                for (nv = 0; nv < Blocks[0].nx; nv++)
+    //                {
+    //                    Blocks[0].xprop[nv] = (int) l_xprop[nv];
+    //                }
+    //            }
+    //        }
+    //        break;
+    //
+    //        /****************************
+    //         * zero crossing computation
+    //         ****************************/
+    //        case 9 :
+    //        {
+    //            /* 33 - g */
+    //            il_g = (int *) listentry(header, 33);
+    //            ierr = sci2var(il_g, Blocks[0].g, SCSREAL_N); /* double */
+    //            if (ierr != 0)
+    //            {
+    //                goto err;
+    //            }
+    //
+    //            if (get_phase_simulation() == 1)
+    //            {
+    //                /* 39 - mode */
+    //                il_mode = (int *) listentry(header, 39);
+    //                // Alan, 16/10/07 : fix : mode is an int array
+    //                l_mode = (double *)(il_mode + 4);
+    //                for (nv = 0; nv < (il_mode[1]*il_mode[2]); nv++)
+    //                {
+    //                    Blocks[0].mode[nv] = (int) l_mode[nv];
+    //                }
+    //                //ierr=sci2var(il_mode,Blocks[0].mode,SCSINT_N); /* int */
+    //                //if (ierr!=0) goto err;
+    //            }
+    //        }
+    //        break;
+    //
+    //        /**********************
+    //         * Jacobian computation
+    //         **********************/
+    //        case 10 :
+    //        {
+    //            if ((funtyp[kfun - 1] == 10004) || (funtyp[kfun - 1] == 10005))
+    //            {
+    //                /* 15 - res */
+    //                il_res = (int *) listentry(header, 15);
+    //                ierr = sci2var(il_res, Blocks[0].res, SCSREAL_N); /* double */
+    //                if (ierr != 0)
+    //                {
+    //                    goto err;
+    //                }
+    //            }
+    //        }
+    //        break;
+    //    }
+    //
+    //    /* Restore initial position Top */
+    //    Top = topsave;
+    //    return;
+    //
+    //    /* if error then restore initial position Top
+    //     * and set_block_error with flag -1 */
+    //err:
+    //    Top = topsave;
+    //    if (ierr != 0) /*var2sci or sci2var error*/
+    //    {
+    //        /* Please update me !*/
+    //        if (ierr < 1000) /*var2sci error*/
+    //        {
+    //            switch (ierr)
+    //            {
+    //                case 1  :
+    //                    Scierror(888, _("%s: error %d. Stack is full.\n"), "var2sci", ierr);
+    //                    break;
+    //
+    //                case 2  :
+    //                    Scierror(888, _("%s: error %d. No more space on the stack for new data.\n"), "var2sci", ierr);
+    //                    break;
+    //
+    //                default :
+    //                    Scierror(888, _("%s: error %d. Undefined error.\n"), "var2sci", ierr);
+    //                    break;
+    //            }
+    //        }
+    //        else /*sci2var error*/
+    //        {
+    //            switch (ierr)
+    //            {
+    //                case 1001  :
+    //                    Scierror(888, _("%s: error %d. Only int or double object are accepted.\n"), "sci2var", ierr);
+    //                    break;
+    //
+    //                case 1002  :
+    //                    Scierror(888, _("%s: error %d. Bad double object sub_type.\n"), "sci2var", ierr);
+    //                    break;
+    //
+    //                case 1003  :
+    //                    Scierror(888, _("%s: error %d. Bad int object sub_type.\n"), "sci2var", ierr);
+    //                    break;
+    //
+    //                case 1004  :
+    //                    Scierror(888, _("%s: error %d. A type of a scilab object has changed.\n"), "sci2var", ierr);
+    //                    break;
+    //
+    //                default    :
+    //                    Scierror(888, _("%s: error %d. Undefined error.\n"), "sci2var", ierr);
+    //                    break;
+    //            }
+    //        }
+    //    }
+    //    set_block_error(-1);
 }
 /*--------------------------------------------------------------------------*/
 /* sci2var function to convert scilab object

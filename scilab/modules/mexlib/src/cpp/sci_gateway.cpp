@@ -13,7 +13,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include <string.h>
 #include "BOOL.h"
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "sci_gateway.h"
 /*-----------------------------------------------------------------------------------*/
 static int callExternalFunction(char *fname, GatefuncS F, BOOL withPutLhsVar);
@@ -34,7 +34,7 @@ static int callExternalFunction(char *fname, GatefuncS F, BOOL withPutLhsVar)
     (*F)(fname, (int)strlen(fname));
     if (withPutLhsVar)
     {
-        PutLhsVar();
+        returnArguments(NULL);
     }
     return 0;
 }

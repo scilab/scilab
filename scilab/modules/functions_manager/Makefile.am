@@ -12,7 +12,8 @@
 
 FUNCTION_MANAGER_CPP_SOURCES = \
     src/cpp/funcmanager.cpp \
-    src/cpp/dynamic_modules.cpp
+    src/cpp/dynamic_modules.cpp \
+    src/cpp/functions_manager.cpp
 
 pkglib_LTLIBRARIES 	= libscifunctions_manager.la
 

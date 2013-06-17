@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -122,6 +122,9 @@
     <ProjectReference Include="..\..\..\core\core_yasp.vcxproj">
       <Project>{14373d41-991a-412e-8ea7-a832d98047b8}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\functions_manager\functions_manager.vcxproj">
+      <Project>{8eac9381-c059-43ea-b5d7-fd5d6997b0bd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\windows_tools\src\c\CScilex\CScilex.vcxproj">
       <Project>{9ba6f7e4-ae64-4fd9-a5a7-0996a8b73b77}</Project>

@@ -65,30 +65,6 @@
     <ClCompile Include="schurtable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_backslash.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_dgeev.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_dggev.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_dsyev.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_slash.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_zgeev.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_zggev.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_zheev.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="svd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -123,9 +99,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="linear_algebra_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\linear_algebra.iss" />
     <None Include="..\..\sci_gateway\linear_algebra_gateway.xml" />
     <None Include="..\..\Makefile.am" />
@@ -135,8 +108,14 @@
     <None Include="..\..\locales\linear_algebra.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="core_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
     <None Include="slicot_f_Import.def">
-      <Filter>Source Files</Filter>
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

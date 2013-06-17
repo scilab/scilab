@@ -11,9 +11,6 @@ src/c/getenvc.c \
 src/c/GetenvB.c \
 src/c/v2cuniterror.c
 
-IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
-src/fortran/v2cunit.f
-
 IO_CPP_SOURCES = src/cpp/io_gw.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_read4b.c \
@@ -29,13 +26,6 @@ sci_gateway/c/sci_getpid.c \
 sci_gateway/c/sci_write4b.c \
 sci_gateway/c/sci_save.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
-sci_gateway/fortran/intwritb.f \
-sci_gateway/fortran/intwrite.f \
-sci_gateway/fortran/intread4b.f \
-sci_gateway/fortran/intreadb.f \
-sci_gateway/fortran/intfile.f
-
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_genlib.cpp \
 	sci_gateway/cpp/sci_load.cpp \
@@ -44,27 +34,27 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_unix.cpp
 
 libsciio_la_CPPFLAGS = \
-            -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/core/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/functions_manager/includes/ \
-			-I$(top_srcdir)/modules/symbol/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/ \
-			-I$(top_srcdir)/modules/elementary_functions/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/parse/includes/ \
-			-I$(top_builddir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/system_env/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/threads/includes/ \
-            -I$(top_srcdir)/modules/dynamic_link/includes \
-			$(XML_FLAGS) \
-			$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/types/includes/ \
+    -I$(top_srcdir)/modules/functions_manager/includes/ \
+    -I$(top_srcdir)/modules/symbol/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    -I$(top_srcdir)/modules/operations/includes/ \
+    -I$(top_srcdir)/modules/operations/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/parse/includes/ \
+    -I$(top_builddir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/system_env/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(XML_FLAGS) \
+    $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciio.la
@@ -75,8 +65,8 @@ endif
 
 
 
-libsciio_algo_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(IO_CPP_SOURCES)
-libsciio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciio_algo_la_SOURCES = $(IO_C_SOURCES) $(IO_CPP_SOURCES)
+libsciio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciio_algo_la_CPPFLAGS = $(libsciio_la_CPPFLAGS)
 
 # For the code check (splint)

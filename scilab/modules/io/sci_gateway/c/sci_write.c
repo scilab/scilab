@@ -16,7 +16,7 @@ extern int C2F(intwrite)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
 int sci_write(char *fname, unsigned long fname_len)
 {
-    C2F(intwrite)();
+    //C2F(intwrite)();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

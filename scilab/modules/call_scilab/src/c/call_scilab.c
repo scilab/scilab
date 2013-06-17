@@ -10,6 +10,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,7 +25,6 @@
 #include "sci_path.h"
 #include "scilabDefaults.h"
 #include "sci_tmpdir.h"
-#include "inisci-c.h"
 #include "scirun.h"
 #include "sciquit.h"
 #include "storeCommand.h"
@@ -34,39 +34,28 @@
 #include "call_scilab_engine_state.h"
 #include "os_strdup.h"
 #include "charEncoding.h"
+#include "InitScilab.h"
+#include "scilabRead.h"
+#include "scilabWrite.hxx"
 
 #ifdef _MSC_VER
 #include "SetScilabEnvironmentVariables.h"
 #include "getScilabDirectory.h"
 #include <Windows.h>
 #endif
+
+extern char *getCmdLine(void);
+
+static void TermPrintf(char *text)
+{
+    //std::cout << text;
+    printf("%s", text);
+}
+
+
+
 /*--------------------------------------------------------------------------*/
 static CALL_SCILAB_ENGINE_STATE csEngineState = CALL_SCILAB_ENGINE_STOP;
-
-/*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-static void SetSciEnv(void)
-{
-    char *ScilabDirectory = NULL;
-
-    ScilabDirectory = getScilabDirectory(TRUE);
-
-    if (ScilabDirectory == NULL)
-    {
-        // This message must never occur, but ...
-        MessageBox (NULL, "ERROR" , "Cannot determine the Scilab directory (SCI).", MB_ICONSTOP | MB_OK);
-        exit(1);
-    }
-    SetScilabEnvironmentVariables(ScilabDirectory);
-
-    if (ScilabDirectory)
-    {
-        FREE(ScilabDirectory);
-        ScilabDirectory = NULL;
-    }
-
-}
-#endif
 /*--------------------------------------------------------------------------*/
 void DisableInteractiveMode(void)
 {
@@ -94,15 +83,14 @@ BOOL StartScilab(char *SCIpath, char *ScilabStartup, int Stacksize)
 * 10001: Stacksize failed (not enought memory ?).
 * Any other positive integer: A Scilab internal error
 */
+
+#define FORMAT_SCRIPT_STARTUP "_errorCall_ScilabOpen = exec(\"%s\", \"errcatch\", -1); exit(_errorCall_ScilabOpen);"
+
 int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int Stacksize)
 {
-#define FORMAT_SCRIPT_STARTUP "_errorCall_ScilabOpen = exec(\"%s\", \"errcatch\", -1); exit(_errorCall_ScilabOpen);"
-    char *ScilabStartupUsed = NULL;
     char *InitStringToScilab = NULL;
-    int StacksizeUsed = 0;
-    int lengthStringToScilab = 0;
-
     static int iflag = -1, ierr = 0;
+    int iNoStart = 0;
 
     setScilabMode(SCILAB_API);
     if (advancedMode == FALSE)
@@ -117,13 +105,9 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 
     SetFromCToON();
 
-    InitializeLaunchScilabSignal();
-
     if (SCIpath == NULL)        /* No SCIpath provided... */
     {
-#ifdef _MSC_VER
-        SetSciEnv();            /* Windows has a way to detect it */
-#else
+#ifndef _MSC_VER
         /* Other doesn't */
         fprintf(stderr, "StartScilab: Could not find SCI\n");
         return -2;
@@ -137,59 +121,23 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
             fprintf(stderr, "StartScilab: Could not find the directory %s\n", SCIpath);
             return -3;
         }
-        else
-        {
-            defineSCI();
-        }
     }
 
-    if (ScilabStartup == NULL)
+    if (ScilabStartup)
     {
-        ScilabStartupUsed = os_strdup(DEFAULTSCILABSTARTUP);
-    }
-    else
-    {
-        ScilabStartupUsed = os_strdup(ScilabStartup);
-    }
-
-    if (Stacksize == 0 || Stacksize == -1)
-    {
-        StacksizeUsed = DEFAULTSTACKSIZE;
-    }
-    else
-    {
-        StacksizeUsed = Stacksize;
+        int lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartup) + 1);
+        InitStringToScilab = (char *)MALLOC(lengthStringToScilab * sizeof(char));
+        sprintf(InitStringToScilab, FORMAT_SCRIPT_STARTUP, ScilabStartup);
+        iNoStart = 1;
     }
 
-    /* creates TMPDIR */
-    defineTMPDIR();
+    setScilabInputMethod(&getCmdLine);
+    setScilabOutputMethod(&TermPrintf);
 
     /* Scilab Initialization */
-    //C2F(inisci) (&iflag, &StacksizeUsed, &ierr);
+    ierr = StartScilabEngine(InitStringToScilab, NULL, NULL, iNoStart, 1, 1);
 
-    if (ierr > 0)
-    {
-        if (ScilabStartupUsed)
-        {
-            FREE(ScilabStartupUsed);
-            ScilabStartupUsed = NULL;
-        }
-        return ierr;
-    }
 
-    lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartupUsed + 1));
-    InitStringToScilab = (char *)MALLOC(lengthStringToScilab * sizeof(char));
-    sprintf(InitStringToScilab, FORMAT_SCRIPT_STARTUP, ScilabStartupUsed);
-
-#if 0
-    ierr = C2F(scirun) (InitStringToScilab, (long int)strlen(InitStringToScilab));
-#endif
-
-    if (ScilabStartupUsed)
-    {
-        FREE(ScilabStartupUsed);
-        ScilabStartupUsed = NULL;
-    }
     if (InitStringToScilab)
     {
         FREE(InitStringToScilab);
@@ -211,18 +159,7 @@ BOOL TerminateScilab(char *ScilabQuit)
 {
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
     {
-        if (getScilabMode() != SCILAB_NWNI)
-        {
-            ExitScilab();
-        }
-        else
-        {
-            TerminateCorePart2();
-        }
-
-        /* Make sure that the error management is reset. See bug #8830 */
-        // /!\ Must call ConfigVariable::clearLastError()
-        //clearInternalLastError();
+        StopScilabEngine(ScilabQuit, 0, 1);
 
         ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
@@ -283,13 +220,13 @@ sci_types getVariableType(char *varName)
 
     if (sciErr.iErr == API_ERROR_NAMED_UNDEFINED_VAR)
     {
-        return -2;
+        return (sci_types) - 2;
     }
 
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return -1;
+        return (sci_types) - 1;
     }
     return (sci_types) iSciType;
 }

@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;..\parse\includes;..\ast\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;../console/includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;../shell/includes;$(SolutionDir)libs\intl;../history_manager/includes;../fileio/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../core/src/c;../dynamic_link/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../parse/includes;../ast/includes;../symbol/includes;../types/includes;../functions_manager/includes;../console/includes;../system_env/includes;../elementary_functions/includes;../operations/includes;../localization/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../shell/includes;../../libs/intl;../history_manager/includes;../fileio/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../core/src/c;../dynamic_link/includes;../tclsci/includes;../jvm/includes;../gui/includes;../graphics/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;__CORE_YASP__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -106,7 +106,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;..\parse\includes;..\ast\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;../console/includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;../shell/includes;$(SolutionDir)libs\intl;../history_manager/includes;../fileio/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../core/src/c;../dynamic_link/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../parse/includes;../ast/includes;../symbol/includes;../types/includes;../functions_manager/includes;../console/includes;../system_env/includes;../elementary_functions/includes;../operations/includes;../localization/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../shell/includes;../../libs/intl;../history_manager/includes;../fileio/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../core/src/c;../dynamic_link/includes;../tclsci/includes;../jvm/includes;../gui/includes;../graphics/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;__CORE_YASP__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -129,7 +129,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>includes;..\parse\includes;..\ast\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;../console/includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;../shell/includes;$(SolutionDir)libs\intl;../history_manager/includes;../fileio/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../core/src/c;../dynamic_link/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../parse/includes;../ast/includes;../symbol/includes;../types/includes;../functions_manager/includes;../console/includes;../system_env/includes;../elementary_functions/includes;../operations/includes;../localization/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../shell/includes;../../libs/intl;../history_manager/includes;../fileio/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../core/src/c;../dynamic_link/includes;../tclsci/includes;../jvm/includes;../gui/includes;../graphics/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;__CORE_YASP__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -155,7 +155,7 @@
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>includes;..\parse\includes;..\ast\includes;..\symbol\includes;..\types\includes;..\functions_manager\includes;../console/includes;..\system_env\includes;..\elementary_functions\includes;../operations/includes;../localization/includes;..\windows_tools\includes;../shell/includes;$(SolutionDir)libs\intl;../history_manager/includes;../fileio/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../core/src/c;../dynamic_link/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../parse/includes;../ast/includes;../symbol/includes;../types/includes;../functions_manager/includes;../console/includes;../system_env/includes;../elementary_functions/includes;../operations/includes;../localization/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../shell/includes;../../libs/intl;../history_manager/includes;../fileio/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../../libs/Eigen/includes;../core/src/c;../dynamic_link/includes;../tclsci/includes;../jvm/includes;../gui/includes;../graphics/includes</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;__CORE_YASP__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -179,7 +179,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\scilab.cpp" />
-    <ClCompile Include="src\cpp\tasks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
@@ -191,105 +190,14 @@
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\ast\ast-tools\ast-tools.vcxproj">
-      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\ast\ast.vcxproj">
-      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
-      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\console\src\c\console.vcxproj">
       <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\fileio\fileio.vcxproj">
-      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\functions\sci_gateway\cpp\functions_gw.vcxproj">
-      <Project>{67ff36d3-ec5a-4f0d-bf3b-a84a66d77294}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\functions_manager\functions_manager.vcxproj">
-      <Project>{8eac9381-c059-43ea-b5d7-fd5d6997b0bd}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\graphics\graphics.vcxproj">
-      <Project>{8ccdd3c2-b025-4a12-a986-1aa28d7c0c33}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\gui\src\c\gui.vcxproj">
-      <Project>{45ca5b12-7601-4968-ae16-16069fd1a152}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\history_browser\src\c\history_browser.vcxproj">
-      <Project>{ab1eeb8f-86f7-45b7-8cec-b18c8e97eeff}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\history_manager\src\c\history_manager.vcxproj">
-      <Project>{1b98dc87-44f5-48ae-b5d0-29dd8ad86f5e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\jvm\libjvm.vcxproj">
-      <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\localization\src\localization.vcxproj">
-      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\operations\operations.vcxproj">
-      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\parse\parse.vcxproj">
-      <Project>{74d43792-dbfc-47f0-adbc-4d7a20cdada2}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\string\src\c\string.vcxproj">
-      <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\system_env\system_env.vcxproj">
       <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\tclsci\tclsci.vcxproj">
-      <Project>{c456d5b8-8a32-496a-a2ee-164b0d734126}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\threads\threads.vcxproj">
-      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\types\typesmacro\typesmacro.vcxproj">
-      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
-      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\windows_tools\src\c\windows_tools.vcxproj">
-      <Project>{9594ac02-20ee-4fbf-95b4-bfa5865ed7ca}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="sci_gateway\cpp\core_gw.vcxproj">
-      <Project>{3e933eb6-d427-4828-9b30-b6b9987491f6}</Project>
     </ProjectReference>
     <ProjectReference Include="src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>

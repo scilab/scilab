@@ -42,7 +42,7 @@ int requestScilabExec(char *command)
 int interruptScilab(void)
 {
     int scilabSignal = SIGINT;
-    C2F(sigbas)(&scilabSignal);
+    //C2F(sigbas)(&scilabSignal);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

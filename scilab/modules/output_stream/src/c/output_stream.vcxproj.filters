@@ -44,9 +44,6 @@
     <ClCompile Include="DllmainOutput_Stream.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="do_xxprintf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="errmds.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sciprint_full.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="set_xxprintf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\scilabWrite.cpp">
@@ -140,9 +134,6 @@
     <ClInclude Include="..\..\includes\do_error_number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\do_xxprintf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_output_stream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -188,9 +179,6 @@
     <ClInclude Include="msgstxt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="set_xxprintf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\Diary.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -230,9 +218,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="output_stream_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Scilab_Windows_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="String_Import.def">

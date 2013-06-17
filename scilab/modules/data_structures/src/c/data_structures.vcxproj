@@ -200,18 +200,12 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="DllmainData_structures.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_data_structures1.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_data_structures2.c" />
-    <ClCompile Include="hmops.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Disabled</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Disabled</Optimization>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_definedfields.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_glist.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_lsslist.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_lstcat.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_lstsize.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_rlist.c" />
-    <ClCompile Include="strpos.c" />
-    <ClCompile Include="stcreate.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\data_structures_gw.hxx" />

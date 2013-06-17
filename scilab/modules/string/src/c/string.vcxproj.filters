@@ -35,9 +35,6 @@
     <ClCompile Include="getfastcode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InitializeString.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="isalphanum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,9 +57,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scistrtostr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setScilabCharactersCodes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StringConvert.c">
@@ -96,6 +90,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="isascii.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="isnum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stringToComplex.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="complex_array.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -135,9 +138,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getfastcode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\InitializeString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\men_Sutils.h">
@@ -209,9 +209,6 @@
     <ClInclude Include="pcre_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="setScilabCharactersCodes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stringsCompare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -234,6 +231,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="isascii.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\stringToComplex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\complex_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="isnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

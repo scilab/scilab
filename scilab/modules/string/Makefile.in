@@ -139,8 +139,6 @@ am__objects_1 = libscistring_algo_la-convstr.lo \
 	libscistring_algo_la-tokens.lo \
 	libscistring_algo_la-strsplit.lo \
 	libscistring_algo_la-partfunction.lo \
-	libscistring_algo_la-InitializeString.lo \
-	libscistring_algo_la-setScilabCharactersCodes.lo \
 	libscistring_algo_la-cvstr.lo \
 	libscistring_algo_la-getfastcode.lo \
 	libscistring_algo_la-pcre_private.lo \
@@ -496,8 +494,6 @@ src/c/men_Sutils.c \
 src/c/tokens.c \
 src/c/strsplit.c \
 src/c/partfunction.c \
-src/c/InitializeString.c \
-src/c/setScilabCharactersCodes.c \
 src/c/cvstr.c \
 src/c/getfastcode.c \
 src/c/pcre_private.c \
@@ -770,7 +766,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-InitializeString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-StringConvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-complex_array.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-convstr.Plo@am__quote@
@@ -788,7 +783,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-pcre_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-pcre_private.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-scistrtostr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-setScilabCharactersCodes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stringToComplex.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stringToDouble.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-stringsCompare.Plo@am__quote@
@@ -883,20 +877,6 @@ libscistring_algo_la-partfunction.lo: src/c/partfunction.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/partfunction.c' object='libscistring_algo_la-partfunction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o libscistring_algo_la-partfunction.lo `test -f 'src/c/partfunction.c' || echo '$(srcdir)/'`src/c/partfunction.c
-
-libscistring_algo_la-InitializeString.lo: src/c/InitializeString.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT libscistring_algo_la-InitializeString.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-InitializeString.Tpo -c -o libscistring_algo_la-InitializeString.lo `test -f 'src/c/InitializeString.c' || echo '$(srcdir)/'`src/c/InitializeString.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_algo_la-InitializeString.Tpo $(DEPDIR)/libscistring_algo_la-InitializeString.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeString.c' object='libscistring_algo_la-InitializeString.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o libscistring_algo_la-InitializeString.lo `test -f 'src/c/InitializeString.c' || echo '$(srcdir)/'`src/c/InitializeString.c
-
-libscistring_algo_la-setScilabCharactersCodes.lo: src/c/setScilabCharactersCodes.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT libscistring_algo_la-setScilabCharactersCodes.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-setScilabCharactersCodes.Tpo -c -o libscistring_algo_la-setScilabCharactersCodes.lo `test -f 'src/c/setScilabCharactersCodes.c' || echo '$(srcdir)/'`src/c/setScilabCharactersCodes.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_algo_la-setScilabCharactersCodes.Tpo $(DEPDIR)/libscistring_algo_la-setScilabCharactersCodes.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/setScilabCharactersCodes.c' object='libscistring_algo_la-setScilabCharactersCodes.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o libscistring_algo_la-setScilabCharactersCodes.lo `test -f 'src/c/setScilabCharactersCodes.c' || echo '$(srcdir)/'`src/c/setScilabCharactersCodes.c
 
 libscistring_algo_la-cvstr.lo: src/c/cvstr.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT libscistring_algo_la-cvstr.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-cvstr.Tpo -c -o libscistring_algo_la-cvstr.lo `test -f 'src/c/cvstr.c' || echo '$(srcdir)/'`src/c/cvstr.c

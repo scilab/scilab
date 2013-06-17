@@ -26,7 +26,6 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "mgetl.h"
-#include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
 }

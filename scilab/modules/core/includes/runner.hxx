@@ -20,12 +20,12 @@
 extern "C"
 {
 #include "Thread_Wrapper.h"
-#include "dynlib_core_gw.h"
+#include "dynlib_core.h"
 }
 
 #include "threadId.hxx"
 
-class CORE_GW_IMPEXP Runner
+class CORE_IMPEXP Runner
 {
 private :
     Runner(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)

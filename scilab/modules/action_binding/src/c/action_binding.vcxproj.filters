@@ -69,9 +69,6 @@
     <None Include="..\..\locales\action_binding.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="action_binding.rc">

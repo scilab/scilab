@@ -13,10 +13,10 @@
 #ifndef __BANNER_HXX__
 #define __BANNER_HXX__
 
-#include "dynlib_core_gw.h"
+#include "dynlib_core.h"
 /*
 ** This function will display Scilab banner.
 */
-CORE_GW_IMPEXP void banner(void);
+CORE_IMPEXP void banner(void);
 
 #endif /* !__BANNER_HXX__ */

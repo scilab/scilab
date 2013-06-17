@@ -147,7 +147,7 @@ am__objects_3 = libscisparse_la-sparse_gw.lo \
 	libscisparse_la-sci_sparse.lo libscisparse_la-sci_spcompack.lo \
 	libscisparse_la-sci_spget.lo libscisparse_la-sci_spzeros.lo \
 	libscisparse_la-sci_spones.lo libscisparse_la-sci_ordmmd.lo
-am_libscisparse_la_OBJECTS = $(am__objects_1) $(am__objects_3)
+am_libscisparse_la_OBJECTS = $(am__objects_3)
 libscisparse_la_OBJECTS = $(am_libscisparse_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscisparse_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscisparse_la_rpath = -rpath $(pkglibdir)
@@ -451,36 +451,36 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 SPARSE_C_SOURCES = 
 SPARSE_FORTRAN_SOURCES = \
-src/fortran/isort1.f \
-src/fortran/spt.f \
-src/fortran/sz2ptr.f \
-src/fortran/spreshape.f \
-src/fortran/ordmmd.f
+    src/fortran/isort1.f \
+    src/fortran/spt.f \
+    src/fortran/sz2ptr.f \
+    src/fortran/spreshape.f \
+    src/fortran/ordmmd.f
 
-GATEWAY_C_SOURCES = 
 GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/sparse_gw.cpp \
-sci_gateway/cpp/sci_adj2sp.cpp \
-sci_gateway/cpp/sci_full.cpp \
-sci_gateway/cpp/sci_nnz.cpp \
-sci_gateway/cpp/sci_sp2adj.cpp \
-sci_gateway/cpp/sci_sparse.cpp \
-sci_gateway/cpp/sci_spcompack.cpp \
-sci_gateway/cpp/sci_spget.cpp \
-sci_gateway/cpp/sci_spzeros.cpp \
-sci_gateway/cpp/sci_spones.cpp \
-sci_gateway/cpp/sci_ordmmd.cpp
+    sci_gateway/cpp/sparse_gw.cpp \
+    sci_gateway/cpp/sci_adj2sp.cpp \
+    sci_gateway/cpp/sci_full.cpp \
+    sci_gateway/cpp/sci_nnz.cpp \
+    sci_gateway/cpp/sci_sp2adj.cpp \
+    sci_gateway/cpp/sci_sparse.cpp \
+    sci_gateway/cpp/sci_spcompack.cpp \
+    sci_gateway/cpp/sci_spget.cpp \
+    sci_gateway/cpp/sci_spzeros.cpp \
+    sci_gateway/cpp/sci_spones.cpp \
+    sci_gateway/cpp/sci_ordmmd.cpp
 
-libscisparse_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/ \
-				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/symbol/includes/ \
-				-I$(top_srcdir)/modules/dynamic_link/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/ \
-				$(EIGEN_CPPFLAGS) \
-				$(AM_CPPFLAGS)
+libscisparse_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ \
+    -I$(top_srcdir)/modules/types/includes/ \
+    -I$(top_srcdir)/modules/symbol/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 
 #-Isrc/c/
@@ -488,11 +488,11 @@ libscisparse_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscisparse-algo.la libscisparse.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscisparse-algo.la
 libscisparse_algo_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES)
-libscisparse_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscisparse_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 libscisparse_algo_la_CPPFLAGS = $(libscisparse_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC = $(SPARSE_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC = $(SPARSE_C_SOURCES) 
 INCLUDE_FLAGS = $(libscisparse_la_CPPFLAGS)
 libscisparse_la_LIBADD = libscisparse-algo.la
 

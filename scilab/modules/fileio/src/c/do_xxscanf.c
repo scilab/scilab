@@ -23,7 +23,6 @@
 #include "do_xxscanf.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "do_xxprintf.h"
 #include "core_math.h"
 /*--------------------------------------------------------------------------*/
 typedef int (*XXSCANF) (FILE *, wchar_t *, ...);

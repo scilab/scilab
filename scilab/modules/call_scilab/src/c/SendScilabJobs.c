@@ -14,12 +14,13 @@
 #include <string.h>
 #include "call_scilab.h"
 #include "MALLOC.h"
-#include "scirun.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
+#include "InitScilab.h"
+
 /*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line, char CharToRemove);
 static BOOL RemoveComments(char *line);
@@ -53,9 +54,7 @@ int SendScilabJob(char *job)
         int m = 0, n = 0;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-#if 0
-        C2F(scirun) (COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
-#endif
+        ExecExternalCommand(COMMAND_CLEAR);
 
         SetLastJob(command);
 
@@ -80,9 +79,8 @@ int SendScilabJob(char *job)
 
 
         /* Run the command within an execstr */
-#if 0
-        C2F(scirun) (COMMAND_EXECSTR, (long int)strlen(COMMAND_EXECSTR));
-#endif
+        ExecExternalCommand(COMMAND_EXECSTR);
+
         sciErr = getNamedVarDimension(NULL, "Err_Job", &m, &n);
         if (sciErr.iErr)
         {
@@ -138,9 +136,7 @@ int SendScilabJob(char *job)
         retCode = (int)Err_Job;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-#if 0
-        C2F(scirun) (COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
-#endif
+        ExecExternalCommand(COMMAND_CLEAR);
     }
     else
     {

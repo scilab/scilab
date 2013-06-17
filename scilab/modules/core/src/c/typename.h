@@ -13,22 +13,8 @@
 #ifndef __TYPENAME_H__
 #define __TYPENAME_H__
 
-#include "machine.h" /* C2F */
-
-/* see FORTRAN COMMON in typ2code.f */
-
 #define MAX_SCILAB_DEFINED_TYPE  50
 #define MAX_LENGTH_NAME_DEFINED_TYPE  200
-
-typedef struct
-{
-    int tp[MAX_SCILAB_DEFINED_TYPE];
-    int ptr[MAX_SCILAB_DEFINED_TYPE];
-    int ln[MAX_SCILAB_DEFINED_TYPE];
-    int namrec[MAX_LENGTH_NAME_DEFINED_TYPE];
-    int  ptmax;
-} TYPE_struct;
-
 
 /**
 * get all names of types

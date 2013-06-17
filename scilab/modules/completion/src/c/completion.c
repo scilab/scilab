@@ -116,22 +116,22 @@ char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
 char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
-    char **dictionary = NULL;
-    int sizedictionary = 0;
+    //char **dictionary = NULL;
+    //int sizedictionary = 0;
 
-    dictionary = getcommandkeywords(&sizedictionary);
+    //dictionary = getcommandkeywords(&sizedictionary);
 
-    if (dictionary)
-    {
-        dictionary = SortDictionary(dictionary, sizedictionary);
-        dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
-        ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
-        freePointerDictionary(dictionary, sizedictionary);
-    }
-    else
-    {
-        *sizeArrayReturned = 0;
-    }
+    //if (dictionary)
+    //{
+    //    dictionary = SortDictionary(dictionary, sizedictionary);
+    //    dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
+    //    ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
+    //    freePointerDictionary(dictionary, sizedictionary);
+    //}
+    //else
+    //{
+    //    *sizeArrayReturned = 0;
+    //}
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/

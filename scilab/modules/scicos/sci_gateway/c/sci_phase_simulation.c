@@ -31,23 +31,23 @@ extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
 int sci_phase_simulation(char *fname, unsigned long fname_len)
 {
-    int isrun = C2F(cosim).isrun;
+    //int isrun = C2F(cosim).isrun;
 
-    if (!isrun)
-    {
-        Scierror(999, _("%s: scicosim is not running.\n"), fname);
-    }
-    else
-    {
-        int one = 1, l1 = 0;
+    //if (!isrun)
+    //{
+    //    Scierror(999, _("%s: scicosim is not running.\n"), fname);
+    //}
+    //else
+    //{
+    //    int one = 1, l1 = 0;
 
-        CheckRhs(-1, 0);
-        CheckLhs(1, 1);
-        CreateVar(1, MATRIX_OF_INTEGER_DATATYPE, &one, &one, &l1);
-        *istk(l1) = get_phase_simulation();
-        LhsVar(1) = 1;
-        PutLhsVar();
-    }
+    //    CheckRhs(-1, 0);
+    //    CheckLhs(1, 1);
+    //    CreateVar(1, MATRIX_OF_INTEGER_DATATYPE, &one, &one, &l1);
+    //    *istk(l1) = get_phase_simulation();
+    //    LhsVar(1) = 1;
+    //    PutLhsVar();
+    //}
 
     return 0;
 }

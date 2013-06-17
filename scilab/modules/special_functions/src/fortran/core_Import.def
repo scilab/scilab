@@ -6,14 +6,9 @@ EXPORTS
 ;core
 ;
 com_
-checkrhs_
-checklhs_
 vstk_
 iop_
 stack_
-cremat_
-getmat_
-getscalar_
 recu_
 errgst_
 cha1_

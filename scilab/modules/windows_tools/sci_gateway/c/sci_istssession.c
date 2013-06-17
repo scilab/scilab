@@ -20,36 +20,36 @@
 /*--------------------------------------------------------------------------*/
 int sci_istssession(char *fname, unsigned long l)
 {
-    int n1 = 0, m1 = 0;
-    int *Status = NULL;
+    //int n1 = 0, m1 = 0;
+    //int *Status = NULL;
 
-    CheckRhs(0, 0);
-    CheckLhs(0, 1);
+    //CheckRhs(0, 0);
+    //CheckLhs(0, 1);
 
-    Status = (int*)MALLOC(sizeof(int));
+    //Status = (int*)MALLOC(sizeof(int));
 
-    /* http://msdn2.microsoft.com/en-us/library/ms724385.aspx */
-    if ( GetSystemMetrics(SM_REMOTESESSION) )
-    {
-        *Status = TRUE;
-    }
-    else
-    {
-        *Status = FALSE;
-    }
+    ///* http://msdn2.microsoft.com/en-us/library/ms724385.aspx */
+    //if ( GetSystemMetrics(SM_REMOTESESSION) )
+    //{
+    //    *Status = TRUE;
+    //}
+    //else
+    //{
+    //    *Status = FALSE;
+    //}
 
-    m1 = 1;
-    n1 = 1;
-    CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &Status);
+    //m1 = 1;
+    //n1 = 1;
+    //CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &Status);
 
-    if (Status)
-    {
-        FREE(Status);
-        Status = NULL;
-    }
+    //if (Status)
+    //{
+    //    FREE(Status);
+    //    Status = NULL;
+    //}
 
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    //LhsVar(1) = Rhs + 1;
+    //PutLhsVar();
 
     return 0;
 }

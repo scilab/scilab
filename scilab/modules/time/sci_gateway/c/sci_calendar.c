@@ -16,7 +16,6 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 #include "Scierror.h"
-#include "IsAScalar.h"
 #include "transposeMatrix.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -35,7 +34,7 @@ int sci_calendar(char *fname, void* pvApiCtx)
     SciErr sciErr;
     int n1 = 0, m1 = 0;
     int * p1_in_address = NULL;
-    double * pDblReal = NULL;
+    double dblReal = 0;
 
     int month = 0;
     int year = 0;
@@ -50,32 +49,34 @@ int sci_calendar(char *fname, void* pvApiCtx)
     CheckRhs(2, 2);
     CheckLhs(1, 1);
 
-    if ( IsAScalar(Rhs - 1) && IsAScalar(Rhs) )
-    {
-        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
-        sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
-        year = (int) * pDblReal;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
 
-        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &p1_in_address);
-        sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
-
-        month = (int) * pDblReal;
-
-        if ( (year < 1800) || (year > 3000) )
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 2, 1800, 3000);
-            return 0;
-        }
-
-        if ( (month < 1) || (month > 12) )
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 1, 1, 12);
-            return 0;
-        }
-    }
-    else
+    if (getScalarDouble(pvApiCtx, p1_in_address, &dblReal))
     {
         Scierror(999, _("%s: Wrong type for input arguments: Scalar values expected.\n"), fname);
+        return 0;
+    }
+
+    year = (int)dblReal;
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &p1_in_address);
+    if (getScalarDouble(pvApiCtx, p1_in_address, &dblReal))
+    {
+        Scierror(999, _("%s: Wrong type for input arguments: Scalar values expected.\n"), fname);
+        return 0;
+    }
+
+    month = (int)dblReal;
+
+    if ( (year < 1800) || (year > 3000) )
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 2, 1800, 3000);
+        return 0;
+    }
+
+    if ( (month < 1) || (month > 12) )
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), fname, 1, 1, 12);
         return 0;
     }
 

@@ -20,7 +20,7 @@
 void controlC_handler(int sig)
 {
     int j = SIGINT;
-    C2F(sigbas)(&j);
+    //C2F(sigbas)(&j);
 }
 
 int csignal(void)

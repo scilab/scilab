@@ -200,9 +200,6 @@
     <ClCompile Include="..\cpp\prod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_chinesehat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_tools.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -110,9 +110,9 @@ DifferentialEquationFunctions::DifferentialEquationFunctions(std::wstring caller
     {
         m_staticFunctionMap[L"arnol"]   = (void*) C2F(arnol);
         m_staticFunctionMap[L"fex"]     = (void*) C2F(fex);
-        m_staticFunctionMap[L"fex2"]    = (void*) C2F(fex2);
-        m_staticFunctionMap[L"fex3"]    = (void*) C2F(fex3);
-        m_staticFunctionMap[L"fexab"]   = (void*) C2F(fexab);
+        //m_staticFunctionMap[L"fex2"]    = (void*) C2F(fex2);
+        //m_staticFunctionMap[L"fex3"]    = (void*) C2F(fex3);
+        //m_staticFunctionMap[L"fexab"]   = (void*) C2F(fexab);
         m_staticFunctionMap[L"loren"]   = (void*) C2F(loren);
         m_staticFunctionMap[L"bcomp"]   = (void*) C2F(bcomp);
         m_staticFunctionMap[L"lcomp"]   = (void*) C2F(lcomp);

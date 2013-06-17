@@ -152,9 +152,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_integer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="i_nextj.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tpconv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -300,9 +297,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="integer_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Polynomials_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

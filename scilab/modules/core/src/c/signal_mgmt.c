@@ -41,7 +41,7 @@
 #include "suspendProcess.h"
 #include "sci_mode.h"
 #include "backtrace_print.h"
-extern jmp_buf jmp_env;
+jmp_buf jmp_env;
 
 /*----------------------------------------------------------------------------
  * Handle a fatal signal (such as SIGFPE or SIGSEGV)
@@ -431,7 +431,7 @@ void base_error_init(void)
     sigemptyset(&ToContinue.sa_mask);
     sigaction(SIGCONT, &ToContinue, NULL);
     /* Signal handlers */
-    csignal();
+    //csignal();
     memset(&act, 0, sizeof(act));
     act.sa_sigaction = sig_fatal;
     act.sa_flags = SA_SIGINFO;

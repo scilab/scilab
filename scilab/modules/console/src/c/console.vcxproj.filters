@@ -141,9 +141,6 @@
     <None Include="..\..\locales\console.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\ConsolePrintf.h">

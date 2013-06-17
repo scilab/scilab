@@ -74,36 +74,36 @@ char **getVariablesName(int *sizearray, BOOL sorted)
 char **getLocalVariablesName(int *sizearray, BOOL sorted)
 {
     char **variablesLocal = NULL;
-    int Ltotal = 0;
-    int Lused = 0;
-    int j = 0;
+    //int Ltotal = 0;
+    //int Lused = 0;
+    //int j = 0;
 
-    C2F(getvariablesinfo)(&Ltotal, &Lused);
+    //C2F(getvariablesinfo)(&Ltotal, &Lused);
 
-    if (Lused > 0)
-    {
-        variablesLocal = (char **)MALLOC(sizeof(char*) * (Lused + 1));
-        if (variablesLocal)
-        {
-            for (j = 1; j < Lused + 1; ++j)
-            {
-                variablesLocal[j - 1] = getLocalNamefromId(j);
-            }
-            *sizearray = Lused;
-            if (sorted)
-            {
-                SortStrings(variablesLocal, *sizearray);
-            }
-        }
-        else
-        {
-            *sizearray = 0;
-        }
-    }
-    else
-    {
-        *sizearray = 0;
-    }
+    //if (Lused > 0)
+    //{
+    //    variablesLocal = (char **)MALLOC(sizeof(char*) * (Lused + 1));
+    //    if (variablesLocal)
+    //    {
+    //        for (j = 1; j < Lused + 1; ++j)
+    //        {
+    //            variablesLocal[j - 1] = getLocalNamefromId(j);
+    //        }
+    //        *sizearray = Lused;
+    //        if (sorted)
+    //        {
+    //            SortStrings(variablesLocal, *sizearray);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        *sizearray = 0;
+    //    }
+    //}
+    //else
+    //{
+    //    *sizearray = 0;
+    //}
 
     return variablesLocal;
 }
@@ -111,36 +111,36 @@ char **getLocalVariablesName(int *sizearray, BOOL sorted)
 char **getGlobalVariablesName(int *sizearray, BOOL sorted)
 {
     char **variablesGlobal = NULL;
-    int Gtotal = 0;
-    int Gused = 0;
-    int j = 0;
+    //int Gtotal = 0;
+    //int Gused = 0;
+    //int j = 0;
 
-    C2F(getgvariablesinfo)(&Gtotal, &Gused);
+    //C2F(getgvariablesinfo)(&Gtotal, &Gused);
 
-    if (Gused > 0)
-    {
-        variablesGlobal = (char **)MALLOC(sizeof(char*) * (Gused + 1));
-        if (variablesGlobal)
-        {
-            for (j = 0; j < Gused; ++j)
-            {
-                variablesGlobal[j] = getGlobalNamefromId(j);
-            }
-            *sizearray = Gused;
-            if (sorted)
-            {
-                SortStrings(variablesGlobal, *sizearray);
-            }
-        }
-        else
-        {
-            *sizearray = 0;
-        }
-    }
-    else
-    {
-        *sizearray = 0;
-    }
+    //if (Gused > 0)
+    //{
+    //    variablesGlobal = (char **)MALLOC(sizeof(char*) * (Gused + 1));
+    //    if (variablesGlobal)
+    //    {
+    //        for (j = 0; j < Gused; ++j)
+    //        {
+    //            variablesGlobal[j] = getGlobalNamefromId(j);
+    //        }
+    //        *sizearray = Gused;
+    //        if (sorted)
+    //        {
+    //            SortStrings(variablesGlobal, *sizearray);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        *sizearray = 0;
+    //    }
+    //}
+    //else
+    //{
+    //    *sizearray = 0;
+    //}
 
     return variablesGlobal;
 }

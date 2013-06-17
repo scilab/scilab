@@ -113,7 +113,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifunctions_manager_la_LIBADD =
 am__objects_1 = libscifunctions_manager_la-funcmanager.lo \
-	libscifunctions_manager_la-dynamic_modules.lo
+	libscifunctions_manager_la-dynamic_modules.lo \
+	libscifunctions_manager_la-functions_manager.lo
 am_libscifunctions_manager_la_OBJECTS = $(am__objects_1)
 libscifunctions_manager_la_OBJECTS =  \
 	$(am_libscifunctions_manager_la_OBJECTS)
@@ -424,7 +425,8 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 FUNCTION_MANAGER_CPP_SOURCES = \
     src/cpp/funcmanager.cpp \
-    src/cpp/dynamic_modules.cpp
+    src/cpp/dynamic_modules.cpp \
+    src/cpp/functions_manager.cpp
 
 pkglib_LTLIBRARIES = libscifunctions_manager.la
 libscifunctions_manager_la_SOURCES = \
@@ -560,6 +562,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-dynamic_modules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-funcmanager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifunctions_manager_la-functions_manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-cosinus.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-foo.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testFunctionManager-test-function.Po@am__quote@
@@ -598,6 +601,13 @@ libscifunctions_manager_la-dynamic_modules.lo: src/cpp/dynamic_modules.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/dynamic_modules.cpp' object='libscifunctions_manager_la-dynamic_modules.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-dynamic_modules.lo `test -f 'src/cpp/dynamic_modules.cpp' || echo '$(srcdir)/'`src/cpp/dynamic_modules.cpp
+
+libscifunctions_manager_la-functions_manager.lo: src/cpp/functions_manager.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscifunctions_manager_la-functions_manager.lo -MD -MP -MF $(DEPDIR)/libscifunctions_manager_la-functions_manager.Tpo -c -o libscifunctions_manager_la-functions_manager.lo `test -f 'src/cpp/functions_manager.cpp' || echo '$(srcdir)/'`src/cpp/functions_manager.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscifunctions_manager_la-functions_manager.Tpo $(DEPDIR)/libscifunctions_manager_la-functions_manager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/functions_manager.cpp' object='libscifunctions_manager_la-functions_manager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifunctions_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscifunctions_manager_la-functions_manager.lo `test -f 'src/cpp/functions_manager.cpp' || echo '$(srcdir)/'`src/cpp/functions_manager.cpp
 
 testFunctionManager-test-function.o: src/cpp/test-function.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testFunctionManager_CXXFLAGS) $(CXXFLAGS) -MT testFunctionManager-test-function.o -MD -MP -MF $(DEPDIR)/testFunctionManager-test-function.Tpo -c -o testFunctionManager-test-function.o `test -f 'src/cpp/test-function.cpp' || echo '$(srcdir)/'`src/cpp/test-function.cpp

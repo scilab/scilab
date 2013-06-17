@@ -16,10 +16,8 @@
 #include "ConsolePrintf.hxx"
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
-#include "stack-def.h"
 extern "C" {
 #include "getScilabJavaVM.h"
-#include "stack-def.h"
 }
 
 using namespace  org_scilab_modules_gui_bridge;

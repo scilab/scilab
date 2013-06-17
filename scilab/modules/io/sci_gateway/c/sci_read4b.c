@@ -16,7 +16,7 @@ extern int C2F(intread4b)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
 int sci_read4b(char *fname, unsigned long fname_len)
 {
-    C2F(intread4b)();
+    //C2F(intread4b)();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

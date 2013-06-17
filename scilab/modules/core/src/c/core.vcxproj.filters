@@ -20,9 +20,6 @@
     <ClCompile Include="callFunctionFromGateway.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="callinterf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="commandwords.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,9 +30,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cs2st.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="csignal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dynamic_gateways.c">
@@ -119,28 +113,10 @@
     <ClCompile Include="ifexpr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="inffic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="inisci-c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InitializeCore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InitScilab.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="inittypenames.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="intmacr2tree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="isanan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="IsAScalar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="islittleendian.c">
@@ -164,9 +140,6 @@
     <ClCompile Include="..\cpp\namstr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="predef.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="readGateway.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -174,99 +147,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="returnanan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_clearfun.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_comp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_debug.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_delbpt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_dispbpt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_errcatch.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_errclear.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_funptr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getmd5.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getmemory.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getvariablesonstack.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_gstacksize.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_havewindow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ieee.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_intppty.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_iserror.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_isglobal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_macr2lst.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_macr2tree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_mtlb_mode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_newfun.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_predef.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_readgateway.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_resume.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_return.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_setbpt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_stacksize.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_typename.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_what.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_where.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_who.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scimem.c">
@@ -278,22 +158,7 @@
     <ClCompile Include="..\cpp\search_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stack1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stack2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stack3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stackinfo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="str2sci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="terme.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TerminateCore.c">
@@ -303,9 +168,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="transposeMatrix.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="typename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="version.c">
@@ -327,18 +189,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="setieee.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_arg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_clearglobal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getdebuginfo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_type.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\mexlib\src\cpp\mexlib.cpp">
@@ -371,9 +221,6 @@
     <ClCompile Include="initMacOSXEnv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_mem_alloc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="setPrecisionFPU.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -389,6 +236,21 @@
     <ClCompile Include="hashtable\hashtable_utility.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\InitScilab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\tasks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\runner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\banner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="typename.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />
@@ -396,6 +258,12 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\core.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="core_export.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="functions_manager_Import.def">
+      <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -486,9 +354,6 @@
     <ClInclude Include="..\..\includes\inffic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\inisci-c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\InitializeCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -502,9 +367,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\isanan.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\IsAScalar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\islittleendian.h">
@@ -585,9 +447,6 @@
     <ClInclude Include="..\..\includes\stack3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\stack-c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\stack-def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -631,9 +490,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cs2st.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="csignal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dynamic_gateways.h">
@@ -684,9 +540,6 @@
     <ClInclude Include="ifexpr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InitScilab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="inittypenames.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -718,9 +571,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TerminateCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="typename.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\partition.hxx">
@@ -760,6 +610,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\hashtable_utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="typename.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\InitScilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

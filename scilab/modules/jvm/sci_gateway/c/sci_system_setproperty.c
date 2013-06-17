@@ -21,51 +21,51 @@
 /*--------------------------------------------------------------------------*/
 int sci_system_setproperty(char *fname, unsigned long fname_len)
 {
-    Rhs = Max(Rhs, 0);
-    CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    //Rhs = Max(Rhs, 0);
+    //CheckRhs(2, 2);
+    //CheckLhs(1, 1);
 
-    if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
-    {
-        static int m1, n1 = 0, l1 = 0;
-        static int m2, n2 = 0, l2 = 0;
-        char *propertyName = NULL;
-        char *propertyValue = NULL;
-        char *previousValue = NULL;
+    //if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
+    //{
+    //    static int m1, n1 = 0, l1 = 0;
+    //    static int m2, n2 = 0, l2 = 0;
+    //    char *propertyName = NULL;
+    //    char *propertyValue = NULL;
+    //    char *previousValue = NULL;
 
-        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-        propertyName = cstk(l1);
+    //    GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+    //    propertyName = cstk(l1);
 
-        GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
-        propertyValue = cstk(l2);
+    //    GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
+    //    propertyValue = cstk(l2);
 
-        previousValue = system_setproperty(propertyName, propertyValue);
+    //    previousValue = system_setproperty(propertyName, propertyValue);
 
-        if (previousValue)
-        {
-            n1 = 1;
-            m1 = (int)strlen(propertyValue);
-            CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &previousValue);
-        }
-        else
-        {
-            n1 = 0;
-            m1 = 0;
-            l1 = 0;
-            CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &n1, &m1, &l1);
-        }
-        LhsVar(1) = Rhs + 1;
-        if (previousValue)
-        {
-            FREE(previousValue);
-            previousValue = NULL;
-        }
-        PutLhsVar();
-    }
-    else
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d or #%d: String expected.\n"), fname, 1, 2);
-    }
+    //    if (previousValue)
+    //    {
+    //        n1 = 1;
+    //        m1 = (int)strlen(propertyValue);
+    //        CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, &m1, &n1, &previousValue);
+    //    }
+    //    else
+    //    {
+    //        n1 = 0;
+    //        m1 = 0;
+    //        l1 = 0;
+    //        CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &n1, &m1, &l1);
+    //    }
+    //    LhsVar(1) = Rhs + 1;
+    //    if (previousValue)
+    //    {
+    //        FREE(previousValue);
+    //        previousValue = NULL;
+    //    }
+    //    PutLhsVar();
+    //}
+    //else
+    //{
+    //    Scierror(999, _("%s: Wrong type for input argument #%d or #%d: String expected.\n"), fname, 1, 2);
+    //}
     return 0;
 }
 /*--------------------------------------------------------------------------*/

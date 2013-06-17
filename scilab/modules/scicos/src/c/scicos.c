@@ -1652,7 +1652,7 @@ static void cossim(double *told)
             int ierr2 = 0;
             SeqSync = GetCommand(CommandToUnstack); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
-            syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
         }
         if (C2F(coshlt).halt != 0)
         {
@@ -2776,7 +2776,7 @@ static void cossimdaskr(double *told)
             int ierr2 = 0;
             SeqSync = GetCommand(CommandToUnstack); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
-            syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
         }
         if (C2F(coshlt).halt != 0)
         {
@@ -2965,7 +2965,7 @@ L30:
                             int ierr2 = 0;
                             SeqSync = GetCommand(CommandToUnstack); //** get to the action
                             CommandLength = (int)strlen(CommandToUnstack);
-                            syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
                         }
                         if (C2F(coshlt).halt != 0)
                         {
@@ -3333,7 +3333,7 @@ L30:
                     int ierr2 = 0;
                     SeqSync = GetCommand(CommandToUnstack); //** get to the action
                     CommandLength = (int)strlen(CommandToUnstack);
-                    syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                    //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
                 }
 
                 if (C2F(coshlt).halt != 0)
@@ -6821,7 +6821,7 @@ static int CallKinsol(double *told)
                 int ierr2 = 0;
                 SeqSync = GetCommand(CommandToUnstack); //** get at the action
                 CommandLength = (int)strlen(CommandToUnstack);
-                syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
             }
 
             if (C2F(coshlt).halt != 0)

@@ -31,63 +31,63 @@ static int DoOneLhs(void);
 */
 int sci_maxfiles(char *fname, unsigned long fname_len)
 {
-    static int l1, n1, m1;
+    //static int l1, n1, m1;
 
-    Rhs = Max(0, Rhs);
-    CheckRhs(0, 1);
-    CheckLhs(0, 1);
+    //Rhs = Max(0, Rhs);
+    //CheckRhs(0, 1);
+    //CheckLhs(0, 1);
 
-    if (Rhs == 0)
-    {
-        DoOneLhs();
-    }
-    else
-    {
-        if ( GetType(1) == sci_matrix )
-        {
-            GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-            if ( (m1 == 1) && (n1 == 1) )
-            {
-                int NewMaxFiles = 0;
-                NewMaxFiles = (unsigned long) * stk(l1);
-                if (NewMaxFiles > GetMaximumFileOpenedInScilab() )
-                {
-                    if (NewMaxFiles > MAX_FILES)
-                    {
-                        sciprint(_("%s: Warning: Specified maximum number of files (%d) > Absolute maximum number of files allowed (%d).\n"), fname, NewMaxFiles, MAX_FILES);
-                        DoOneLhs();
-                    }
-                    else
-                    {
-                        if ( ExtendScilabFilesList(NewMaxFiles) )
-                        {
-                            DoOneLhs();
-                        }
-                        else
-                        {
-                            Scierror(999, _("%s: Could not extend the number of files simultaneously open in Scilab.\n"), fname, NewMaxFiles);
-                            return 0;
-                        }
-                    }
-                }
-                else
-                {
-                    sciprint(_("%s: Warning : only extend the limit for the number of scilab's files opened simultaneously.\n"), fname);
-                    DoOneLhs();
-                }
-            }
-            else
-            {
-                Scierror(999, _("%s: Wrong size for input argument: Scalar expected.\n"), fname);
-                return 0;
-            }
-        }
-        else
-        {
-            Scierror(999, _("%s: Wrong type for input argument: Matrix expected.\n"), fname);
-            return 0;
-        }
-    }
+    //if (Rhs == 0)
+    //{
+    //    DoOneLhs();
+    //}
+    //else
+    //{
+    //    if ( GetType(1) == sci_matrix )
+    //    {
+    //        GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+    //        if ( (m1 == 1) && (n1 == 1) )
+    //        {
+    //            int NewMaxFiles = 0;
+    //            NewMaxFiles = (unsigned long) * stk(l1);
+    //            if (NewMaxFiles > GetMaximumFileOpenedInScilab() )
+    //            {
+    //                if (NewMaxFiles > MAX_FILES)
+    //                {
+    //                    sciprint(_("%s: Warning: Specified maximum number of files (%d) > Absolute maximum number of files allowed (%d).\n"), fname, NewMaxFiles, MAX_FILES);
+    //                    DoOneLhs();
+    //                }
+    //                else
+    //                {
+    //                    if ( ExtendScilabFilesList(NewMaxFiles) )
+    //                    {
+    //                        DoOneLhs();
+    //                    }
+    //                    else
+    //                    {
+    //                        Scierror(999, _("%s: Could not extend the number of files simultaneously open in Scilab.\n"), fname, NewMaxFiles);
+    //                        return 0;
+    //                    }
+    //                }
+    //            }
+    //            else
+    //            {
+    //                sciprint(_("%s: Warning : only extend the limit for the number of scilab's files opened simultaneously.\n"), fname);
+    //                DoOneLhs();
+    //            }
+    //        }
+    //        else
+    //        {
+    //            Scierror(999, _("%s: Wrong size for input argument: Scalar expected.\n"), fname);
+    //            return 0;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Scierror(999, _("%s: Wrong type for input argument: Matrix expected.\n"), fname);
+    //        return 0;
+    //    }
+    //}
     return 0;
 }
 /*--------------------------------------------------------------------------*/

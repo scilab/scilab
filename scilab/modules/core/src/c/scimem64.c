@@ -35,7 +35,6 @@ static int ssize = 0, gssize = 0, nextsize = 0;
 /*--------------------------------------------------------------------------*/
 extern void C2F(relocstack)(void *p, void *pi, void *ps, void *pc, void *pz,
                             int *n, int *ni, int *ns, int *nc, int *nz);
-extern void C2F(adjustgstacksize)(int *mem, int *offset, int *l);
 /*--------------------------------------------------------------------------*/
 static void setref(double *p1, int allocsz)
 {
@@ -60,7 +59,7 @@ static void movegstack()
          */
         gptr = ssize + 2 + SKIPSIZE;
         l = C2F(vstk).lstk[C2F(vstk).gtop] - C2F(vstk).lstk[C2F(vstk).isiz + 1];
-        C2F(adjustgstacksize)(&gssize, &gptr, &l);
+        //C2F(adjustgstacksize)(&gssize, &gptr, &l);
     }
 }
 

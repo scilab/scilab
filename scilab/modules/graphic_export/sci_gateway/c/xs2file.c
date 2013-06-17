@@ -20,7 +20,6 @@
 #include "xs2file.h"
 #include "api_scilab.h"
 #include "GetProperty.h"
-#include "IsAScalar.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "Scierror.h"

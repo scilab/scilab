@@ -13,7 +13,6 @@
 #include <windows.h>
 #include "machine.h"
 #include "stack-def.h"
-#include "typename.h"
 #include "funcprot.h"
 /*-----------------------------------------------------------------------------------*/
 #pragma comment(lib, "../../../../bin/libxml2.lib")
@@ -64,7 +63,6 @@ RECU_struct C2F(recu);
 STACK_struct C2F(stack);
 VSTK_struct C2F(vstk);
 DBG_struct C2F(dbg);
-TYPE_struct C2F(typnams);
 MPROT_struct C2F(mprot);
 
 struct

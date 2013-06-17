@@ -15,21 +15,21 @@
 /*--------------------------------------------------------------------------*/
 int sci_opentk(char *fname, unsigned long l)
 {
-    Tcl_Interp *TCLinterpLocal = NULL;
+    /*    Tcl_Interp *TCLinterpLocal = NULL;
 
-    CheckRhs(0, 0);
-    CheckLhs(1, 1);
+        CheckRhs(0, 0);
+        CheckLhs(1, 1);
 
-    TCLinterpLocal = Tcl_CreateInterp();
-    Tcl_Init(TCLinterpLocal);
-    Tk_Init(TCLinterpLocal);
-    TKmainWindow = Tk_MainWindow(TCLinterpLocal);
-    Tk_GeometryRequest(TKmainWindow, 200, 200);
-    Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow)));
+        TCLinterpLocal = Tcl_CreateInterp();
+        Tcl_Init(TCLinterpLocal);
+        Tk_Init(TCLinterpLocal);
+        TKmainWindow = Tk_MainWindow(TCLinterpLocal);
+        Tk_GeometryRequest(TKmainWindow, 200, 200);
+        Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow)));
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
+        LhsVar(1) = 0;
+        PutLhsVar();
+    */
     return 0;
 }
 /*--------------------------------------------------------------------------*/

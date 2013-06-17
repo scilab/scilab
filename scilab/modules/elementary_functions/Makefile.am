@@ -295,31 +295,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_base2dec.c \
     sci_gateway/c/sci_dec2base.c
 
-GATEWAY_FORTRAN_SOURCES =  \
-    sci_gateway/fortran/sci_f_testmatrix.f \
-    sci_gateway/fortran/sci_f_matrix.f \
-    sci_gateway/fortran/sci_f_size.f \
-    sci_gateway/fortran/sci_f_ceil.f \
-    sci_gateway/fortran/sci_f_clean.f \
-    sci_gateway/fortran/sci_f_eye.f \
-    sci_gateway/fortran/sci_f_tan.f \
-    sci_gateway/fortran/sci_f_atan.f \
-    sci_gateway/fortran/sci_f_cos.f \
-    sci_gateway/fortran/sci_f_rand.f \
-    sci_gateway/fortran/sci_f_acos.f \
-    sci_gateway/fortran/sci_f_sin.f \
-    sci_gateway/fortran/sci_f_sqrt.f \
-    sci_gateway/fortran/sci_f_asin.f \
-    sci_gateway/fortran/sci_f_sign.f \
-    sci_gateway/fortran/sci_f_zeros.f \
-    sci_gateway/fortran/sci_f_ones.f \
-    sci_gateway/fortran/sci_f_diag.f \
-    sci_gateway/fortran/sci_f_number_properties.f \
-    sci_gateway/fortran/sci_f_spones.f \
-    sci_gateway/fortran/sci_f_nearfloat.f \
-    sci_gateway/fortran/sci_f_round.f \
-    sci_gateway/fortran/sci_f_conj.f
-
 GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_isequal.cpp \
     sci_gateway/cpp/elem_func_gw.cpp \
@@ -409,7 +384,7 @@ endif
 
 
 libscielementary_functions_algo_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CXX_SOURCES)
-libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CXX_SOURCES)
+libscielementary_functions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscielementary_functions_algo_la_CPPFLAGS = $(libscielementary_functions_la_CPPFLAGS)
 
 # For the code check (splint)

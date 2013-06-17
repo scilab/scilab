@@ -22,7 +22,7 @@
 void ControlC_Command(void)
 {
     int j = 2;
-    C2F (sigbas) (&j);
+    //C2F (sigbas) (&j);
 }
 /*--------------------------------------------------------------------------*/
 void ControlX_Command(void)

@@ -7,7 +7,6 @@ INTEGER_C_SOURCES = \
 src/c/genconcatcol.c \
 src/c/genprod.c \
 src/c/genrdiv.c \
-src/c/i_nextj.c \
 src/c/genextrac1.c \
 src/c/genextrac2.c \
 src/c/gencopy.c \
@@ -38,36 +37,6 @@ src/c/gencuprod.c \
 src/c/genbitops.c \
 src/c/genimpl.c
 
-INTEGER_FORTRAN_SOURCES = \
-src/fortran/unarybit.f \
-src/fortran/i_mput.f \
-src/fortran/i_logic.f \
-src/fortran/i_a_i.f \
-src/fortran/i_b_i.f \
-src/fortran/i_c_i.f \
-src/fortran/i_d_i.f \
-src/fortran/intinttype.f \
-src/fortran/i_f_i.f \
-src/fortran/i_i_i.f \
-src/fortran/i_l_i.f \
-src/fortran/i_m_i.f \
-src/fortran/i_prod.f \
-src/fortran/i_q_i.f \
-src/fortran/i_r_i.f \
-src/fortran/i_tril.f \
-src/fortran/i_s_i.f \
-src/fortran/i_x_i.f \
-src/fortran/uppertype.f \
-src/fortran/i_triu.f \
-src/fortran/i_e.f \
-src/fortran/memused.f \
-src/fortran/bitops.f \
-src/fortran/i_mget.f \
-src/fortran/i_p.f \
-src/fortran/i_t.f \
-src/fortran/i_sum.f \
-src/fortran/stack_convert.f
-
 GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
 
 GATEWAY_CPP_SOURCES = \
@@ -76,22 +45,6 @@ GATEWAY_CPP_SOURCES = \
 				sci_gateway/cpp/sci_double.cpp \
 				sci_gateway/cpp/sci_int.cpp \
 				sci_gateway/cpp/sci_iconvert.cpp
-
-GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_i_mput.f \
-sci_gateway/fortran/sci_int32.f \
-sci_gateway/fortran/sci_int16.f \
-sci_gateway/fortran/sci_mgeti.f \
-sci_gateway/fortran/sci_i_p.f \
-sci_gateway/fortran/sci_uint8.f \
-sci_gateway/fortran/sci_i_sum.f \
-sci_gateway/fortran/sci_i_prod.f \
-sci_gateway/fortran/sci_i_tril.f \
-sci_gateway/fortran/sci_int8.f \
-sci_gateway/fortran/sci_uint32.f \
-sci_gateway/fortran/sci_uint16.f \
-sci_gateway/fortran/sci_i_triu.f \
-sci_gateway/fortran/sci_inttype.f
 
 libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -117,8 +70,8 @@ noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
 endif
 
 
-libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES)
-libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES)
+libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciinteger_algo_la_CPPFLAGS = $(libsciinteger_la_CPPFLAGS)
 
 # For the code check (splint)
