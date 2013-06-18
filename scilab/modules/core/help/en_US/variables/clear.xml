@@ -8,7 +8,8 @@
         <title>Calling Sequence</title>
         <synopsis>
             clear a b c
-            clear('a','b','c')
+            clear('a', 'b', 'c')
+            clear(['a' 'b' 'c'])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -50,14 +51,20 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-a=2;
-b=3;
-c=4;
+a = 2;
+b = 3;
+c = 4;
 clear a
 isdef("a") // F
 isdef("b") // T
 clear("b");
 isdef("b") // F
+
+a = 2;
+b = 3;
+c = 4;
+clear(['a' 'b' 'c'])
+isdef("a") | isdef("b") | isdef("c") // F
         ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -70,5 +77,14 @@ isdef("b") // F
                 <link linkend="who">who</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>Argument can now be a matrix of strings</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -94,3 +94,4 @@ SEP #095: New functions: ismatrix, isrow,iscolumn and issquare.
 SEP #096: cross function.
 SEP #097: New argument added at strtod function (decimalseparator)
 SEP #098: New output argument for qp_solve function
+SEP #099: Matrices of strings as input argument for clear

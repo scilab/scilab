@@ -227,6 +227,8 @@ Bug fixes
 
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.
 
+* Bug #8373 fixed - clear() can now take a matrix of strings argument.
+
 * Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
                     generator was changed.
 
