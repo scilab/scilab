@@ -38,10 +38,7 @@ assert_checkequal(issquare([%t %f]'), %f);
 assert_checkequal(issquare([%t %f; %f %t]), %t);
 assert_checkequal(issquare(%t), %t);
 assert_checkequal(issquare(hypermat([2,1,2],[%t;%t;%t;%t])), %t);
-assert_checkequal(issquare(hypermat([2,2,3],[%t;%t;%t;%t;%t;%t;%t;%t;%t;%t;%t;%t])), %f)
- ans  =
- 
-  T  
+assert_checkequal(issquare(hypermat([2,2,3],[%t;%t;%t;%t;%t;%t;%t;%t;%t;%t;%t;%t])), %f);
 // Sparses
 assert_checkequal(issquare(sparse([1 0 2])), %f);
 assert_checkequal(issquare(sparse([1 0 2])'), %f);
@@ -106,20 +103,7 @@ a(2,2,2).entries =1:3;
 assert_checkequal(issquare(a), %t); // Cubic case
 a = cell(2,1,2);
 a(1,1,1).entries=1:3;
-a(2,1,1).entries=1:3
- a  =
- 
- 
-(:,:,1)
- 
-![1,2,3]  !
-!         !
-![1,2,3]  !
-(:,:,2)
- 
-!{}  !
-!    !
-!{}  !
+a(2,1,1).entries=1:3;
 a(1,1,2).entries=1:3;
 a(2,1,2).entries=1:3;
 assert_checkequal(issquare(a), %t); // Hypermatrix with singleton (square)
