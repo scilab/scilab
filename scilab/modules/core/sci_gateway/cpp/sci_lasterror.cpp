@@ -68,6 +68,12 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
             vectLines.push_back(line);
         }
 
+        // do not create an empty line if the end of the error message is '\n'
+        if (vectLines.back() == L"")
+        {
+            vectLines.pop_back();
+        }
+
         types::String* StrLastError = new types::String((int)vectLines.size(), 1);
         // put lines in output
         for (int i = 0; i < (int)vectLines.size(); i++)

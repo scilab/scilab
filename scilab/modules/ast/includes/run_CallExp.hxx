@@ -32,6 +32,14 @@ void visitprivate(const CallExp &e)
 
         int iRetCount = expected_getSize();
 
+        // manage case [a,b]=foo() where foo is defined as a=foo()
+        if (pCall->getNbOutputArgument() != -1 && pCall->getNbOutputArgument() < iRetCount)
+        {
+            std::wostringstream os;
+            os << _W("Wrong number of output arguments.\n") << std::endl;
+            throw ScilabError(os.str(), 999, e.location_get());
+        }
+
         //get function arguments
         for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
         {
