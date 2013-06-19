@@ -136,6 +136,9 @@ Bug fixes
 
 * paramfplot2d: When input argument theta was column vector, an error occurred.
 
+* Bug #4042 fixed - squeeze returned an hypermatrix instead of a matrix when at least one 
+                    dimension was equal to 1.
+
 * Bug #4481 fixed - Help page of iir updated: frq can be a scalar.
 
 * Bug #4731 fixed - lqr() failed when time domain of input was a number.
