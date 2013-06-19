@@ -140,6 +140,8 @@ libscitypes_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/console/includes \
 	-I src/cpp \
     $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)

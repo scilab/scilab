@@ -36,7 +36,7 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
 
     std::list<symbol::Symbol> FuncName = pC->getFunctionList(L"");
 
-    String* pOut = new String(FuncName.size(), 4);
+    String* pOut = new String((int)FuncName.size(), 4);
 
     std::list<symbol::Symbol>::iterator it = FuncName.begin();
     for (int i = 0; it != FuncName.end() ; it++, i++)

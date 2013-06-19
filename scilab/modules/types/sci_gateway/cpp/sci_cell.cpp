@@ -14,70 +14,81 @@
 #include "double.hxx"
 #include "cell.hxx"
 #include "function.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
-using namespace types;
-
-Function::ReturnValue sci_cell(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    Cell* pRetVal = NULL;
+    types::Cell* pRetVal = NULL;
     if (in.size() == 0)
     {
         //cell or cell()
-        pRetVal = new Cell();
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
 
     for (int i = 0 ; i < in.size() ; i++)
     {
         if (in[i]->isDouble() == false)
         {
-            //FIXME: call overload function %_cell to manage ohter input types
-            return Function::Error;
+            std::wstring wstFuncName = L"%_cell";
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
         }
     }
 
     if (in.size() == 1)
     {
         //cell([x])
-        Double *pD = in[0]->getAs<Double>();
+        types::Double *pD = in[0]->getAs<types::Double>();
         if (pD->getSize() == 1)
         {
             //one value
-            pRetVal = new Cell(pD->getReal()[0], pD->getReal()[0]);
+            pRetVal = new types::Cell(pD->getReal()[0], pD->getReal()[0]);
         }
         else if (pD->getSize() == 2)
         {
-            pRetVal = new Cell(pD->getReal()[0], pD->getReal()[1]);
+            pRetVal = new types::Cell(pD->getReal()[0], pD->getReal()[1]);
         }
         else if (pD->getSize() == 0)
         {
             //[]
-            pRetVal = new Cell(0, 0);
+            pRetVal = new types::Cell(0, 0);
         }
         else
         {
-            // > 2
-            //FIXME : arrayOf<Cell>
+            int* piDimsArray = new int[pD->getSize()];
+            for (int i = 0; i < pD->getSize(); i++)
+            {
+                piDimsArray[i] = (int)pD->get(i);
+            }
+            pRetVal = new types::Cell(pD->getSize(), piDimsArray);
+            delete piDimsArray;
         }
     }
     else if (in.size() == 2)
     {
         //cell(x,y)
-        Double* pD1 = in[0]->getAs<Double>();
-        Double* pD2 = in[1]->getAs<Double>();
+        types::Double* pD1 = in[0]->getAs<types::Double>();
+        types::Double* pD2 = in[1]->getAs<types::Double>();
 
-        pRetVal = new Cell(pD1->getReal()[0], pD2->getReal()[0]);
+        pRetVal = new types::Cell(pD1->getReal()[0], pD2->getReal()[0]);
     }
     else
     {
-        //cell(x,y, ... )
-        //FIXME : arrayOf<Cell>
+        int* piDimsArray = new int[in.size()];
+        for (int i = 0; i < in.size(); i++)
+        {
+            piDimsArray[i] = (int)in[i]->getAs<types::Double>()->get(0);
+        }
+        pRetVal = new types::Cell(in.size(), piDimsArray);
+        delete piDimsArray;
     }
 
     if (pRetVal == NULL)
     {
-        return Function::Error;
+        return types::Function::Error;
     }
 
     out.push_back(pRetVal);
-    return Function::OK;
+    return types::Function::OK;
 }
