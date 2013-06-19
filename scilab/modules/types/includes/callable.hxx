@@ -77,6 +77,16 @@ public :
         return true;
     }
 
+    virtual int        getNbInputArgument(void)
+    {
+        return -1;
+    }
+
+    virtual int        getNbOutputArgument(void)
+    {
+        return -1;
+    }
+
 protected :
     std::wstring           m_wstName;
     std::wstring           m_wstModule;

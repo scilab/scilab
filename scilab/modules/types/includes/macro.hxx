@@ -60,6 +60,9 @@ public :
     list<symbol::Symbol>*       inputs_get();
     list<symbol::Symbol>*       outputs_get();
 
+    virtual int getNbInputArgument(void);
+    virtual int getNbOutputArgument(void);
+
 private :
     std::list<symbol::Symbol>*  m_inputArgs;
     std::list<symbol::Symbol>*  m_outputArgs;

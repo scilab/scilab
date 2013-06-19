@@ -26,6 +26,7 @@
 extern "C"
 {
 #include "Scierror.h"
+#include "sciprint.h"
 #include "MALLOC.h"
 #include "os_swprintf.h"
 }
@@ -132,9 +133,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     else if (in.size() > m_inputArgs->size())
     {
         wostringstream ostr;
-        ostr << _W("Wrong number of input arguments.") << std::endl << std::endl;
         ostr << _W("Excepted: ") << m_inputArgs->size() << std::endl;
-
         if (m_inputArgs->size() > 0)
         {
             ostr << _W("Arguments are:") << std::endl << std::endl;
@@ -147,7 +146,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         }
 
         char* pst = wide_string_to_UTF8(ostr.str().c_str());
-        Scierror(58, "%s", pst);
+        Scierror(58, _("Wrong number of input arguments."));
+        sciprint("%s", pst);
         pContext->scope_end();
         return Callable::Error;
     }
@@ -300,5 +300,15 @@ std::list<symbol::Symbol>* Macro::inputs_get()
 std::list<symbol::Symbol>* Macro::outputs_get()
 {
     return m_outputArgs;
+}
+
+int Macro::getNbInputArgument(void)
+{
+    return (int)m_inputArgs->size();
+}
+
+int Macro::getNbOutputArgument(void)
+{
+    return (int)m_outputArgs->size();
 }
 }

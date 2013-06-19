@@ -138,4 +138,15 @@ bool MacroFile::parse(void)
     }
     return true;
 }
+
+int MacroFile::getNbInputArgument(void)
+{
+    return getMacro()->getNbInputArgument();
+}
+
+int MacroFile::getNbOutputArgument(void)
+{
+    return getMacro()->getNbOutputArgument();
+}
+
 }

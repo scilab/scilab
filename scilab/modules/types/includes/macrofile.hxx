@@ -59,6 +59,9 @@ public :
         return L"function";
     }
 
+    virtual int getNbInputArgument(void);
+    virtual int getNbOutputArgument(void);
+
 private :
     Macro*                  m_pMacro;
     wstring                 m_stPath;
