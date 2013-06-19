@@ -255,6 +255,8 @@ Bug fixes
 * Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
                     generator was changed.
 
+* Bug #8561 fixed - ddassl(), ddasrt(), ddaskr(): abs and rel tolerances sizes are now checked.
+
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
 
 * Bug #8607 fixed - Some error messages in modules/overloading/macros were not standard and not localized.

@@ -70,7 +70,7 @@
                 <term>atol, rtol</term>
                 <listitem>
                     <para>réels scalaires ou vecteurs colonnes de même taille que
-                        <literal>y</literal>. <literal>atol</literal> et <literal>rtol</literal> représentent
+                        <literal>y</literal> ou tous deux de taille <literal>1</literal>. <literal>atol</literal> et <literal>rtol</literal> représentent
                         les tolérances d'erreur absolue et relative de la solution.
                         Si ce sont des vecteurs, alors les tolérances sont spécifiées pour chaque composante de
                         <literal>y</literal>.
