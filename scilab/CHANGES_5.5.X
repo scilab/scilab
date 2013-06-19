@@ -8,6 +8,8 @@ Scilab Bug Fixes
 
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
+* Bug #12700 fixed - edit_curv (used by CURV_f) was broken.
+
 * Bug #13291 fixed - xmltojar([],[],'ja_JP') might lead to a crash when the
                      locale was not available system-wide.
 

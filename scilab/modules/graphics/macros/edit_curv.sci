@@ -99,7 +99,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 
     // Set menus and callbacks
     menu_d = ["Read","Save","Clear"]
-    menu_e = ["Undo","Size","Ok","Abort"]
+    menu_e = ["Undo","Size","Replot","Ok","Abort"]
     menus  = list(["Edit","Data"],menu_e,menu_d)
     w="menus(2)(";rpar=")"
     Edit=w(ones(menu_e))+string(1:size(menu_e,"*"))+rpar(ones(menu_e))
@@ -157,13 +157,13 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
         case "Ok" then    //    -- ok menu
             rect = matrix(a.data_bounds',1,4);
             gc   = list(rect,axisdata);
-            xdel(curwin);
+            delete(f)
             return;
 
         case "Abort" then //    -- abort menu
             x = xsav
             y = ysav
-            xdel(curwin)
+            delete(f)
             ok = %f;
             return
 
@@ -174,9 +174,8 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
             return
 
         case "Undo" then
-            if hdl<>[] then hdl.visible = "on";end //erase
             x=xs;y=ys
-            if x<>[] then hdl.data=[x y];hdl.visible = "on";end
+            if x<>[] then hdl.data=[x y]; end
 
         case "Size" then
             while %t
@@ -197,15 +196,6 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
                 if dy==0 then dy=max(ymx/2,1),ymn=ymn-dy/5;ymx=ymx+dy/10;end
                 rect=[xmn,ymn,xmx,ymx];
                 a.data_bounds=[rect(1),rect(2);rect(3),rect(4)]
-            end
-
-        case "Grids" then //no more used
-            rep=x_mdialog("entrez les nouveaux nombres d''intervalles",..
-            ["axe des x";"axe des y"],..
-            string([axisdata(2);axisdata(4)]))
-            if rep<>[] then
-                rep=evstr(rep)
-                axisdata(2)=rep(1);axisdata(4)=rep(2);
             end
 
         case "Clear" then
@@ -239,6 +229,9 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 
         case "Save" then
             savexy(x,y)
+
+        case "Replot" then
+            // for compatibility only, perform nothing on purpose
 
         case "edit" then
             npt=prod(size(x))
@@ -333,7 +326,7 @@ function [x,y] = addpt(c1,x,y)
                 pp=pp(:,i)
                 x=x([1:k k:npt]);x(k+1)=pp(1);
                 y=y([1:k k:npt]);y(k+1)=pp(2);
-                hdl;drawlater();hdl.data=[x y];hdl.visible = "on"; drawnow();
+                hdl.data=[x y];
                 return
             end
         end
@@ -349,7 +342,7 @@ function [x,y] = addpt(c1,x,y)
         x(npt+1)=c1(1)
         y(npt+1)=c1(2)
     end
-    hdl;drawlater();hdl.data=[x y];hdl.visible = "on"; drawnow();
+    hdl.data=[x y];
 endfunction
 
 function [x,y]=movept(x,y)
