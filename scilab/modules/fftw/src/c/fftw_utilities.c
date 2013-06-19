@@ -1334,7 +1334,16 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
 
 int withMKL(void)
 {
-    return (call_fftw_export_wisdom_to_string() == NULL);
+    char *wisdom_string = call_fftw_export_wisdom_to_string();
+    if (wisdom_string == NULL)
+    {
+        return 1;
+    }
+    else
+    {
+        fftw_free(wisdom_string);
+        return 0;
+    }
 }
 /*--------------------------------------------------------------------------*/
 
