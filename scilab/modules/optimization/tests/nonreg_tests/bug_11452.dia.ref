@@ -4,8 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
-//
 // <-- CLI SHELL MODE -->
 //
 // <-- Non-regression test for bug 11452 -->
@@ -27,6 +25,4 @@ endfunction
 stp=[1.d-10,1.d-10,1.d-5,100,0,100];
 Diag=[1;1];
 [xsol,v]=lsqrsolve([100;100],f1,4,stp,Diag);
-lsqrsolve: the cosine of the angle between fvec and any column of the jacobian is at most gtol in absolute value.
-
 assert_checkalmostequal(xsol,a\b);
