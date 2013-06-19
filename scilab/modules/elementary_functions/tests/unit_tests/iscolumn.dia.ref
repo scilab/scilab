@@ -70,58 +70,45 @@ assert_checkequal(iscolumn(s), %f); // 3D structure array with singleton (square
 // Cells
 assert_checkequal(iscolumn(cell()), %f); // Empty cell
 a = cell(1);
-a(1).entries = 1;
+a{1} = 1;
 assert_checkequal(iscolumn(a), %t); // Scalar case
 clear a;
 a = cell(1,3);
-a(1).entries = 1:3;
-a(2).entries = 1:3;
-a(3).entries = 1:3;
+a{1} = 1:3;
+a{2} = 1:3;
+a{3} = 1:3;
 assert_checkequal(iscolumn(a), %f); // Row case
 clear a;
 a = cell(3,1);
-a(1).entries = 1:3;
-a(2).entries = 1:3;
-a(3).entries = 1:3;
+a{1} = 1:3;
+a{2} = 1:3;
+a{3} = 1:3;
 assert_checkequal(iscolumn(a), %t); // Column case
 clear a;
 a = cell(3,2);
-a(1,1).entries = 1:3;
-a(1,2).entries = 1:3;
-a(2,1).entries = 1:3;
-a(2,2).entries = 1:3;
-a(3,2).entries = 1:3;
-a(3,1).entries = 1:3;
+a{1,1} = 1:3;
+a{1,2} = 1:3;
+a{2,1} = 1:3;
+a{2,2} = 1:3;
+a{3,2} = 1:3;
+a{3,1} = 1:3;
 assert_checkequal(iscolumn(a), %f); // Matrix case
 clear a;
 a = cell(2,2,2);
-a(1,1,1).entries =1:3;
-a(1,2,1).entries =1:3;
-a(2,1,1).entries =1:3;
-a(2,2,1).entries =1:3;
-a(1,1,2).entries =1:3;
-a(1,2,2).entries =1:3;
-a(2,1,2).entries =1:3;
-a(2,2,2).entries =1:3;
+a{1,1,1} =1:3;
+a{1,2,1} =1:3;
+a{2,1,1} =1:3;
+a{2,2,1} =1:3;
+a{1,1,2} =1:3;
+a{1,2,2} =1:3;
+a{2,1,2} =1:3;
+a{2,2,2} =1:3;
 assert_checkequal(iscolumn(a), %f); // Cubic case
 a = cell(2,1,2);
-a(1,1,1).entries=1:3;
-a(2,1,1).entries=1:3
- a  =
- 
- 
-(:,:,1)
- 
-![1,2,3]  !
-!         !
-![1,2,3]  !
-(:,:,2)
- 
-!{}  !
-!    !
-!{}  !
-a(1,1,2).entries=1:3;
-a(2,1,2).entries=1:3;
+a{1,1,1}=1:3;
+a{2,1,1}=1:3;
+a{1,1,2}=1:3;
+a{2,1,2}=1:3;
 assert_checkequal(iscolumn(a), %f); // Hypermatrix with singleton (square)
 // Lists
 assert_checkequal(iscolumn(list()), %f); // Empty list
