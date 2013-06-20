@@ -10,7 +10,7 @@ function deff(varargin)
 
     //try to build execstr string
     str = "function " + varargin(1);
-    str = [str ; varargin(2); "endfunction"];
+    str = [str ; varargin(2)(:); "endfunction"];
 
     execstr(str);
     funcs = funclist();
