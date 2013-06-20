@@ -16,7 +16,7 @@
 // Wrong error message was displayed when no input argument provided
 //
 // =============================================================================
-macros_error_type_1 = ["IsAScalar"; ..
+macros_error_type_1 = ["isscalar"; ..
 "acosd"; ..
 "acot"; ..
 "acotd"; ..

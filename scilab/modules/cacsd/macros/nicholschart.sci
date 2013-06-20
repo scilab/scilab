@@ -8,6 +8,8 @@
 
 function nicholschart(modules,args,colors)
 
+    [lhs,rhs]=argn(0);
+
     l10=log(10);
     ratio=%pi/180;
 
@@ -39,7 +41,7 @@ function nicholschart(modules,args,colors)
     defaultModules=[mod_min:20:-35 -30 -25 -20 -15 -12 -9 -6  -3 -2 -1 -0.5 -0.25 -0.1 0 0.1 0.25 0.5  1  2.3 4  6  12];
 
 
-    if exists("modules","local")==0 then
+    if exists("modules","local") == 0 | modules == [] then
         modules=defaultModules
     else
         if type(modules)<>1|~isreal(modules) then
@@ -47,7 +49,7 @@ function nicholschart(modules,args,colors)
         end
         modules=matrix(modules,1,-1)
     end
-    if exists("args","local")==0 then
+    if exists("args","local")==0 | args == [] then
         args=defaultArgs
     else
         if type(args)<>1|~isreal(args) then
@@ -56,7 +58,7 @@ function nicholschart(modules,args,colors)
         args=matrix(args,1,-1)
     end
     //
-    if exists("colors","local")==0 then
+    if exists("colors","local")==0 | colors == [] then
         colors=[4 12];
     else
         if type(colors)<>1|~isreal(colors) then
@@ -195,5 +197,5 @@ function str=formatNicholsPhaseTip(curve,pt,index)
     //This function is called by the datatip mechanism to format the tip
     //string for the Nichols chart iso phase curves.
     ud=datatipGetStruct(curve);
-    str=msprintf("%.2gÂ°",ud.phase)
+    str=msprintf("%.2g°",ud.phase)
 endfunction

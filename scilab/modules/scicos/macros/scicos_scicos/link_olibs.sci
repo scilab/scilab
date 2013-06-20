@@ -61,7 +61,7 @@ function [ok, libs, for_link] = link_olibs(libs,rpat)
             for_link = [for_link; dynlibname];
             ierr = execstr("link(for_link($))","errcatch");
             if ierr <> 0 then
-                messagebox(_("Can not loaded dynamic library: ") + for_link($) ,"modal","error");
+                messagebox(_("Cannot load dynamic library: ") + for_link($) ,"modal","error");
                 libs = [];
                 for_link = [];
                 ok = %f;

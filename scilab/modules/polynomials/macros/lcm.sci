@@ -8,24 +8,32 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function [p,fact]=lcm(p)
+function [p, fact] = lcm(p)
     //p=lcm(p) computes the lcm of polynomial vector p
     //[pp,fact]=lcm(p) computes besides the vector fact of factors
     //such that  p.*fact=pp*ones(p)
     //!
-    if type(p)==8 then
-        if argn(1)==2 then [p,fact]=%i_lcm(p),else p=%i_lcm(p),end
-        return,
+
+    if (type(p)<>2 & type(p)<>8) then
+        error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "lcm", 1));
     end
 
-    [m,n]=size(p),
-    p=matrix(p,m*n,1),
-    p0=p(1);fact=1;
-    for l=2:m*n,
-        [u,v]=simp(p0,p(l)),
-        p0=p0*v,
-        fact=[v*fact,u],
+    if type(p)==8 then
+        if argn(1)==2 then [p, fact] = %i_lcm(p), else p = %i_lcm(p), end
+        return
+    elseif ~isreal(p) then
+        error(msprintf(_("%s: Wrong type for argument #%d: Real Polynomial expected.\n"), "lcm", 1));
+    end
+
+    [m, n] = size(p),
+    p = matrix(p, m*n, 1),
+    p0 = p(1); fact = 1;
+    for l = 2:m*n,
+        [u, v] = simp(p0, p(l)),
+        p0 = p0*v,
+        fact = [v*fact, u],
     end,
-    fact=matrix(fact,m,n),
-    p=p0;
+    fact = matrix(fact, m, n),
+    p = p0;
+
 endfunction

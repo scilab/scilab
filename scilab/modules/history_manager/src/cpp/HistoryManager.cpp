@@ -267,23 +267,27 @@ BOOL HistoryManager::appendLine(char* _pstLine)
     if (_pstLine)
     {
         int i                   = 0;
+        int len                 = 0;
         char* pstCleanedLine    = NULL;
 
         /* remove space & carriage return at the end of line */
-        pstCleanedLine = os_strdup(_pstLine);
+        len = (int)strlen(_pstLine);
+        pstCleanedLine = (char*) MALLOC(len + 1);
+        memcpy(pstCleanedLine, _pstLine, len);
 
         /* remove carriage return at the end of line */
-        for (i = (int) strlen(pstCleanedLine) - 1 ; i >= 0 ; i--)
+        for (i = len ; i > 0 ; i--)
         {
             if (pstCleanedLine[i] == '\n')
             {
                 pstCleanedLine[i] = '\0';
+                len = i - 1;
                 break;
             }
         }
 
         /* remove spaces at the end of line */
-        i = (int)strlen(pstCleanedLine) - 1;
+        i = len;
         while (i >= 0)
         {
             if (pstCleanedLine[i] == ' ')

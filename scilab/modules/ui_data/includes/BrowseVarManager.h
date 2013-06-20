@@ -10,16 +10,14 @@
  *
  */
 
-#ifndef __UPDATEBROWSEVAR_H__
-#define __UPDATEBROWSEVAR_H__
+#ifndef __BROWSE_VAR_MANAGER_H__
+#define __BROWSE_VAR_MANAGER_H__
 /*--------------------------------------------------------------------------*/#
 #include "dynlib_ui_data.h"
-#include "BOOL.h"
-/**
-* UpdateBrowseVar function
-* @param update is true to update browsevar and false to open it.
-*/
-UI_DATA_IMPEXP void UpdateBrowseVar(BOOL update);
+
+UI_DATA_IMPEXP void OpenBrowseVar();
+UI_DATA_IMPEXP void UpdateBrowseVar();
+UI_DATA_IMPEXP void SetBrowseVarData();
 
 /*--------------------------------------------------------------------------*/
-#endif /* __UPDATEBROWSEVAR_H__ */
+#endif /* __BROWSE_VAR_MANAGER_H__ */

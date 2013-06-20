@@ -750,7 +750,10 @@ check_macosx_version()
 }
 
 # . is used by the dynamic link. The build lib are copied into the PWD
-SCILIB=$SCI/lib/thirdparty:$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
+SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
+if test -d $SCI/lib/thirdparty; then
+    SCILIB=$SCI/lib/thirdparty:$SCILIB;
+fi
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
 case $OS in

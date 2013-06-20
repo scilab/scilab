@@ -159,11 +159,6 @@ DIFFERENTIAL_EQUATIONS_IMPEXP struct
     int iero;
 } C2F(ierdcu);
 
-DIFFERENTIAL_EQUATIONS_IMPEXP struct
-{
-    int jupbnd;
-} C2F(dqa001);
-
 
 DIFFERENTIAL_EQUATIONS_IMPEXP struct
 {

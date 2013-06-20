@@ -68,5 +68,8 @@
         <para>
             Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
         </para>
+        <para>
+            Il arrive dans certains cas que les degrés de liberté ne soient pas des entiers. Scilab affiche alors un avertissement.
+        </para>
     </refsection>
 </refentry>

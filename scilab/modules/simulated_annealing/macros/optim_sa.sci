@@ -91,7 +91,7 @@ function [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history ,
         for j=1:ItInt
             x_neigh = neigh_func(x_current,T,param);
             f_neigh = _sa_f(x_neigh);
-            if ((f_neigh<=f_current)|(accept_func(f_current,f_neigh,T)>rand(1,1))) then
+            if ((f_neigh<=f_current)|(accept_func(f_current,f_neigh,T)>grand(1,1,"def"))) then
                 x_current = x_neigh;
                 f_current = f_neigh;
             end

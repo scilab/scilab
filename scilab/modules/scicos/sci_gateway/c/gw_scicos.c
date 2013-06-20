@@ -24,9 +24,6 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_scicos.h"
-#include "api_scilab.h"
-#include "MALLOC.h"
-#include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 int gw_scicos(void)
 {

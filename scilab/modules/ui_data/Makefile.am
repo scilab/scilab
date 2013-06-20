@@ -35,7 +35,7 @@ UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 UI_DATA_C_SOURCES = src/jni/ui_data_wrap.c \
                     src/c/PutScilabVariable.c
 
-UI_DATA_CXX_SOURCES = src/cpp/UpdateBrowseVar.cpp \
+UI_DATA_CXX_SOURCES = src/cpp/BrowseVarManager.cpp \
 		      src/cpp/FileBrowserChDir.cpp
 
 GIWS_WRAPPERS = \

@@ -55,7 +55,7 @@ BOOL IsLoadedFFTW(void)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-BOOL LoadFFTWLibrary(char *libraryname)
+BOOL LoadFFTWLibrary(const char* libraryname)
 {
 
     if (libraryname == NULL)

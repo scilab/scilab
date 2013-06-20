@@ -60,6 +60,7 @@ int sci_loadfftwlibrary(char *fname, void* pvApiCtx)
     {
         iErr = createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 0); // false
     }
+    freeAllocatedSingleString(l1char);
 
     if (iErr)
     {

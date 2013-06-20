@@ -16,6 +16,6 @@ function x_neigh = neigh_func_csa(x_current, T, param)
     [Min,err]   = get_param(param,"min_bound",-%inf*ones(size(x_current,1),size(x_current,2)));
     [Max,err]   = get_param(param,"max_bound",%inf*ones(size(x_current,1),size(x_current,2)));
 
-    x_neigh = x_current + Sigma.*sqrt(2)*T*rand(1,1,"norm");
+    x_neigh = x_current + Sigma.*sqrt(2)*T*grand(1,1,"nor",0,1);
     x_neigh = max(min(x_neigh, Max),Min);
 endfunction

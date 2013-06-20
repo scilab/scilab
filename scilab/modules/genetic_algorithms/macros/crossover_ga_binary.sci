@@ -18,7 +18,7 @@ function [Crossed_Indiv1, Crossed_Indiv2] = crossover_ga_binary(Indiv1,Indiv2,pa
     [MultiCrossNb,err] = get_param(param,"multi_cross_nb",2);
 
     if ~MultiCross then
-        mix = ceil((length(Indiv1)-1)*rand(1,1))+1;
+        mix = ceil((length(Indiv1)-1)*grand(1,1,"def"))+1;
 
         part1_1 = part(Indiv1,1:mix);
         part1_2 = part(Indiv1,mix+1:length(Indiv1));
@@ -28,7 +28,7 @@ function [Crossed_Indiv1, Crossed_Indiv2] = crossover_ga_binary(Indiv1,Indiv2,pa
         Crossed_Indiv1 = strcat([part1_1 part2_2]);
         Crossed_Indiv2 = strcat([part1_2 part2_1]);
     else
-        mix = ceil((length(Indiv1)-1)*rand(MultiCrossNb,1))+1;
+        mix = ceil((length(Indiv1)-1)*grand(MultiCrossNb,1,"def"))+1;
         mix = -unique(gsort(-mix));
         Crossed_Indiv1 = Indiv1;
         Crossed_Indiv2 = Indiv2;

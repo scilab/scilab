@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package name="org.scilab.modules.ui_data">
     <object name="BrowseVar">
-        <method name="openVariableBrowser" returnType="void" modifier="static">
-            <parameter type="boolean" name="update"/>
+        <method name="openVariableBrowser" returnType="void" modifier="static"/>
+        <method name="setVariableBrowserData" returnType="void" modifier="static">
             <parameter type="String[]" name="variableNames"/>
             <parameter type="int[]" name="variableBytes"/>
             <parameter type="int[]" name="variableTypes"/>
@@ -14,6 +14,7 @@
             <parameter type="String[]" name="variableVisibility"/>
             <parameter type="boolean[]" name="variableFromUser"/>
         </method>
+        <methode name="updateVariableBrowserData" returnType="void" modifier="static"/>
         <method name="isVariableBrowserOpened" returnType="boolean" modifier="static"/>
         <method name="closeVariableBrowser" returnType="void" modifier="static"/>
     </object>

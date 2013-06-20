@@ -15,6 +15,7 @@
 //#include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
 #include "dynamic_parallel.h"
+#include "sci_mode.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* special_functions module */
@@ -79,6 +80,7 @@ int gw_dynamic_sound(void)
 /*--------------------------------------------------------------------------*/
 /* scicos module */
 #define SCICOS_MODULE_NAME "scicos"
+#define SCICOS_CLI_MODULE_NAME "scicos-cli"
 static DynLibHandle hScicosLib = NULL;
 static void* ptr_gw_scicos = NULL;
 static char* dynlibname_scicos = NULL;

@@ -28,6 +28,9 @@ Source: bin\{#SCICOS}_sundials.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS
 Source: bin\{#SCICOS}.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
+Source: bin\{#SCICOS}-cli.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\{#SCICOS}-cli.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+;
 Source: modules\{#SCICOS}\license.txt; DestDir: {app}\modules\{#SCICOS}; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS}\sci_gateway\{#SCICOS}_gateway.xml; DestDir: {app}\modules\{#SCICOS}\sci_gateway; Components: {#COMPN_XCOS}

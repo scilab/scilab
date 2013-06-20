@@ -138,6 +138,7 @@ void getPrefs()
         path = (char *)MALLOC(strlen(SCIHOME) + strlen(XCONF));
 
         sprintf(path, XCONF, SCIHOME);
+        FREE(SCIHOME);
 
         if (FileExist(path))
         {

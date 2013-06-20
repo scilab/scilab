@@ -32,7 +32,7 @@ function [Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_ga_rand
     Efficiency = (1 - pressure) * (FObj_Pop_Max - Total_FObj)/max([FObj_Pop_Max - FObj_Pop_Min, %eps]) + pressure;
 
     // We select at random pop_size individuals
-    Index_selected = ceil((length(Total_FObj)-1)*rand(pop_size,1) + 1);
+    Index_selected = ceil((length(Total_FObj)-1)*grand(pop_size,1,"def") + 1);
 
     // Extraction and selection of the phenotype
     FObj_Pop_out = Total_FObj(Index_selected);

@@ -395,11 +395,17 @@ public :
         }
         else
         {
-            wchar_t szError[bsiz];
+            char pstError[bsiz];
+            wchar_t* pwstError;
+
             char* strErr =  wide_string_to_UTF8(e.name_get().name_get().c_str());
-            os_swprintf(szError, bsiz, _W("Undefined variable: %s\n"), strErr);
+
+            sprintf(pstError, _("Undefined variable: %s\n"), strErr);
+            pwstError = to_wide_string(pstError);
             FREE(strErr);
-            throw ScilabError(szError, 999, e.location_get());
+            std::wstring wstError(pwstError);
+            FREE(pwstError);
+            throw ScilabError(wstError, 999, e.location_get());
             //Err, SimpleVar doesn't exist in Scilab scopes.
         }
     }

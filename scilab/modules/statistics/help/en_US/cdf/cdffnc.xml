@@ -95,6 +95,9 @@
             values.
         </para>
         <para>
+            In certain cases, the degrees of freedom are not integers. Scilab then issues a warning.
+        </para>
+        <para>
             From DCDFLIB: Library of Fortran Routines for Cumulative Distribution
             Functions, Inverses, and Other Parameters (February, 1994)
             Barry W. Brown, James Lovato and Kathy Russell. The University of

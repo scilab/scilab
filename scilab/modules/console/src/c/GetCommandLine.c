@@ -35,7 +35,7 @@
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #include "os_strdup.h"
-#include "UpdateBrowseVar.h"
+#include "BrowseVarManager.h"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"
 #include "InitializeJVM.h"
@@ -285,7 +285,7 @@ void C2F(eventloopprompt) (char *buffer, int *buf_size, int *len_line, int *eof)
 
                 int err = 0;
 
-                UpdateBrowseVar(TRUE);
+                UpdateBrowseVar();
                 cwd = scigetcwd(&err);
                 if (cwd)
                 {

@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="getrelativefilename">
     <refnamediv>
         <refname>getrelativefilename</refname>
-        <refpurpose>given an absolute directory and an absolute filename, returns a relative file name</refpurpose>
+        <refpurpose>given absolute directories and absolute filenames, returns relative file names</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -25,19 +25,19 @@
             <varlistentry>
                 <term>abs_dir</term>
                 <listitem>
-                    <para>a character string: an absolute directory.</para>
+                    <para>a character string or matrix of character strings: absolute directories.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>abs_file</term>
                 <listitem>
-                    <para>a character string: an absolute filename.</para>
+                    <para>a character string or matrix of character strings: absolute filenames.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rel_file</term>
                 <listitem>
-                    <para>a character string: relative filename.</para>
+                    <para>a character string or a matrix of character strings: relative filenames.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,8 +45,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given an absolute directory <varname>abs_dir</varname> and an absolute filename <varname>abs_file</varname>,  <function>getrelativefilename</function> returns a
-            relative file name <varname>rel_file</varname>.
+            Given absolute directories <varname>abs_dir</varname> and absolute filenames <varname>abs_file</varname>,  <function>getrelativefilename</function> returns relative file names <varname>rel_file</varname>. That is, if the input arguments are some string matrices (m x n), for indexes (i, j), <function>getrelativefilename</function> returns <literal>rel_file(i,j)</literal> associated with <literal>abs_dir(i,j)</literal> and <literal>abs_file(i,j)</literal>.
+This implies that <varname>abs_dir</varname> and <varname>abs_file</varname> must have the same dimensions.
         </para>
         <para>
             For example, if the current directory is
@@ -62,9 +62,10 @@
 getrelativefilename(pwd(), SCI+'/COPYING')
 getrelativefilename(TMPDIR, SCI+'/COPYING')
 getrelativefilename(SCI+'/bin', SCI+'/COPYING')
-getrelativefilename(pwd(), SCI+'/ACKNOLEDGMENTS')
-getrelativefilename(TMPDIR, SCI+'/ACKNOLEDGMENTS')
-getrelativefilename(SCI+'/bin', SCI+'/ACKNOLEDGMENTS')
+getrelativefilename(pwd(), SCI+'/ACKNOWLEDGMENTS')
+getrelativefilename(TMPDIR, SCI+'/ACKNOWLEDGMENTS')
+getrelativefilename(SCI+'/bin', SCI+'/ACKNOWLEDGMENTS')
+getrelativefilename([SCI+'/bin',SCI+'/bin'], [SCI+'/ACKNOWLEDGMENTS',SCI+'/ACKNOWLEDGMENTS'])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

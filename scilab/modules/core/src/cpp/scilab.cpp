@@ -18,6 +18,9 @@
 
 extern "C"
 {
+#ifdef __APPLE__
+#include "initMacOSXEnv.h"
+#endif
 #include "InitScilab.h"
 #include "sci_mode.h"
 #include "scilabRead.h"

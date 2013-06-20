@@ -26,6 +26,4 @@
 
 int initMacOSXEnv(int argc, char *argv[], int iFileIndex);
 
-int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex);
-
 #endif /* !__INITMACOSXENV_H__ */

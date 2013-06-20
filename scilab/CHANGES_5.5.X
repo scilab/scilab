@@ -22,6 +22,7 @@ BDF methods with direct and preconditioned Krylov linear solvers, from ODEPACK.
  - isrow - Check if a variable is a row vector. See bug #10456 fixed.
  - iscolumn - Check if a variable is a column vector. See bug #10456 fixed.
  - issquare - Check if a variable is a square matrix. See bug #10456 fixed.
+ - cross - Vector cross product. See bug #9941 fixed.
 
 * Add a complete set of functions to read and write any HDF5 file from Scilab.
 
@@ -48,8 +49,18 @@ Syntax changes
 Improvements
 =============
 
-* graypolarplot has been improved in term of performance and rendering.
-  See bug #12641
+* New calling sequence allowed for nicholschart: nicholschart(gains, phases, colors).
+  See bug #7828.
+
+* qp_solve can now take up to 5 output arguments. The last one is an error flag,
+  if it is present, then the function will issue a warning instead of an error.
+  See bug #10269.
+
+* graypolarplot has been improved in term of performances and rendering.
+  See bug #12641.
+
+* nthroot() is now vectorizable.
+  See bug #12678.
 
 
 Obsolete
@@ -70,6 +81,12 @@ Obsolete
 
 * chart() tagged as obsolete. Will be removed for Scilab 5.5.1.
   Use nicholschart() instead.
+
+
+Differential_equations
+======================
+
+* Netlib's Quadpack, used for definite integration, has been updated to match the upstream.
 
 
 Xcos
@@ -120,6 +137,9 @@ Bug fixes
 
 * paramfplot2d: When input argument theta was column vector, an error occurred.
 
+* Bug #4042 fixed - squeeze returned an hypermatrix instead of a matrix when at least one 
+                    dimension was equal to 1.
+
 * Bug #4481 fixed - Help page of iir updated: frq can be a scalar.
 
 * Bug #4731 fixed - lqr() failed when time domain of input was a number.
@@ -149,14 +169,16 @@ Bug fixes
 
 * Bug #7080 fixed - Some graphics macros did not use standard error messages.
 
-* Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function 
+* Bug #7206 fixed - If the second input argument of meanf function was an hypermat, this function
                     returned an error.
+
+* Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
 
 * Bug #7486 fixed - DGELSY and ZGELSY closer to the upstream, to propose our modifications to LAPACK.
 
-* Bug #7655 fixed - An example added in help page of type, for type(X)=11 and type(X)=13.
+* Bug #7648 fixed - CDF functions now issue a warning for non integer "degrees of freedom" argument.
 
-* Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
+* Bug #7655 fixed - An example added in help page of type, for type(X)=11 and type(X)=13.
 
 * Bug #7684 fixed - Introduction demo splitted in subsections.
 
@@ -175,6 +197,9 @@ Bug fixes
 * Bug #8264 fixed - Documentation for Matlab's atan2() equivalent fixed.
 
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of a hypermatrix.
+
+* Bug #8511 fixed - sprand used rand and grand functions, and internal state of the random
+                    generator was changed.
 
 * Bug #8597 fixed - Uncontrolled message of grand/clcg4 should be displayed as warning.
 
@@ -219,6 +244,8 @@ Bug fixes
 
 * Bug #9780 fixed - gmres solver did not run with complex systems.
 
+* Bug #9821 fixed - getrelativefilename did not manage matrix of strings.
+
 * Bug #9851 fixed - Error message occurred because of a cut-off frequency of 0.25Hz with irr.
 
 * Bug #10213 fixed - sci2exp can be impacted by format which has been mentionned in its help page.
@@ -227,6 +254,9 @@ Bug fixes
                      histories are folded.
 
 * Bug #10254 fixed - Slight improvements in help page of ones.
+
+* Bug #10269 fixed - qp_solve can now take up to 5 output arguments. The last one is an error flag,
+                     if it is present, then the function will issue a warning instead of an error.
 
 * Bug #10287 fixed - An error message added for complex expression as input argument of integrate function.
 
@@ -252,9 +282,15 @@ Bug fixes
 
 * Bug #11648 fixed - Copy graphic to clipboard did not work.
 
+* Bug #11766 fixed - nthroot has been added to the m2sci documentation.
+
 * Bug #11869 fixed - "Environment" was not localized in preferences.
 
+* Bug #11885 fixed - Each rand has been changed to grand in genetic algorithms and simulated annealing functions.
+
 * Bug #11891 fixed - Fisher ratio could be inaccurate for one-way ANOVA.
+
+* Bug #12034 fixed - max function did not manage empty matrices.
 
 * Bug #12045 fixed - repmat returned wrong result if numbers of input matrix were not double.
 
@@ -284,6 +320,8 @@ Bug fixes
 
 * Bug #12463 fixed - Bad specification for rect=[x,y,w,h] argument in french help
                      page of xstringb.
+
+* Bug #12470 fixed - Variable browser is not refreshed after loading an environment.
 
 * Bug #12473 fixed - Problems with "é" in french help page of mkdir.
 
@@ -345,4 +383,16 @@ Bug fixes
 * Bug #12639 fixed - justify([], position) returned an error instead of [].
 
 * Bug #12641 fixed - graypolarplot() was slow and has been fully vectorized.
+
+* Bug #12657 fixed - Computation of v1.^v2 is now done in place,
+                     when v1 and v2 are real arrays, v1 >= 0 and v2 integer.
+
+* Bug #12666 fixed - There was a memory leak in fft function.
+
+* Bug #12678 fixed - nthroot() now accepts vector/matrix as second argument.
+
+* Bug #12679 fixed - Argument type check added in gcd and lcm.
+
+* Bug #12686 fixed - Error returned by diff() fixed.
+
 

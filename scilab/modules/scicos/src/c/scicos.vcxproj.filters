@@ -170,12 +170,6 @@
     <ClCompile Include="scicos_malloc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scicosclip.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="slider.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tree.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
+        <synopsis>[v,err [,ierr]]=intg(a,b,f [,ea [,er])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -47,6 +47,12 @@
                 <term>err</term>
                 <listitem>
                     <para>estimation de l'erreur absolue sur le résultat.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ierr</term>
+                <listitem>
+                    <para>numéro d'erreur (= 0 si absence d'erreur).</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -95,6 +101,51 @@
                 *x)
             </literal>
             .
+        </para>
+    </refsection>
+    <refsection>
+        <title>Limitation connue</title>
+        <para>
+            Comme tous les intégrateurs, <literal>intg</literal> est susceptible de manquer des pics.
+        </para>
+        <para>
+            Une fonction plate contenant un pic sera considérée totalement plate si le pic est suffisamment raide.
+        </para>
+        <para>
+            Cela ne peut pas être évité, on comprend facilement pourquoi dès que l'on comprend comment l'intégrateur opère.
+            En effet, <literal>intg</literal> utilise la méthode des 21 points de Gauss-Kronrod,
+            donc s'il y a un pic entre deux points d'intégration consécutifs,
+            il ne sera pas détecté, la fonction sera considérée lisse.
+        </para>
+        <para>
+            Cependant, un warning s'affichera si la fonction est considérée très lisse,
+            qui suggèrera à l'utilisateur de réduire l'intervalle d'intégration,
+            s'il pense que des pics ont été manqués.
+        </para>
+        <para>
+            Les graphes suivants illustrent ce phénomène.
+        </para>
+        <scilab:image localized="true">
+            x = 0:.1:22;
+            y = zeros(1,221); y(1) = 3; y(96) = 1;
+            plot(x, y);
+            xtitle("Pic manqué");
+        </scilab:image>
+        <para>
+            Se situant entre les 9è and 10è points d'intégration, le pic n'est pas détecté et
+            <literal>intg</literal> considère la fonction comme plate.
+            Dans l'image suivante, le pic est suffisamment large pour être détecté.
+        </para>
+        <scilab:image localized="true">
+            x = 0:21;
+            y = zeros(1,22); y(1) = 3; y(10) = 1;
+            plot(x, y);
+            xtitle("Pic détecté");
+        </scilab:image>
+        <para>
+            Si l'utilisateur veut afficher la solution même si le solveur a rencontré une erreur,
+            il doit ajouter le troisième argument de sortie <literal>ierr</literal>, ce qui transformera
+            les erreurs en warnings. Ceci est surtout utilisé dans les cas d'erreurs d'arrondi.
         </para>
     </refsection>
     <refsection>
@@ -177,7 +228,7 @@ abs(exact-I)
     </refsection>
     <refsection>
         <title>Fonctions Utilisées</title>
-        <para>Les programmes correspondants (dqag0.f et dqags.f de quadpack) se
+        <para>Les programmes correspondants (dqags.f et dqagse.f de quadpack) se
             trouvent dans le répertoire SCI/modules/differential_equations/src/fortran/.
         </para>
     </refsection>

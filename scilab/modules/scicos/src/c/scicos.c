@@ -68,7 +68,6 @@
 #include "storeCommand.h"
 #include "syncexec.h"
 #include "realtime.h"
-#include "math_graphics.h"
 #include "MALLOC.h"
 #include "cvstr.h"
 #include "ezxml.h"

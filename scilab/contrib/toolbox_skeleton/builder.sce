@@ -21,7 +21,7 @@ function main_builder()
         error(gettext("Scilab 5.3 or more is required."));
     end
 
-    if v(2) < 3 then
+    if v(1) < 5 & v(2) < 3 then
         // new API in scilab 5.3
         error(gettext("Scilab 5.3 or more is required."));
     end

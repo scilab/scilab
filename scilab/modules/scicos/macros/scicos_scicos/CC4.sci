@@ -87,7 +87,7 @@ function [ok,tt,cancel]=CC4(funam,tt)
     typ  = "Cfunc",...
     head = ["Function definition in C";
     "Here is a skeleton of the functions which";
-    " you shoud edit."]);
+    " you should edit."]);
 
     while 1==1
 
