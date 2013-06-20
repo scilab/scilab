@@ -144,13 +144,6 @@ c                     subdivision process
 c
 c***references  (none)
 c***routines called  d1mach,dqelg,dqk21,dqpsrt
-c***Scilab Enterprises input
-c        2013 - Paul Bignier
-c        internal parameter nbisect is the number of bisections carried out.
-c        if this parameter exceeds two, then a warning is issued to
-c        suggest the user to reduce the integration interval if he thinks
-c        edges have been missed.
-c***end prologue  dqagse
 c
       double precision a,abseps,abserr,alist,area,area1,area12,area2,a1,
      *  a2,b,blist,b1,b2,correc,dabs,defabs,defab1,defab2,d1mach,dmax1,
@@ -159,9 +152,6 @@ c
      *  res3la,rlist,rlist2,small,uflow
       integer id,ier,ierro,iord,iroff1,iroff2,iroff3,jupbnd,k,ksgn,
      *  ktmin,last,limit,maxerr,neval,nres,nrmax,numrl2
-c     /* Scilab Enterprises input
-      integer nbisect
-c     */
       logical extrap,noext
 c
       dimension alist(limit),blist(limit),elist(limit),iord(limit),
@@ -246,9 +236,6 @@ c
       uflow = d1mach(1)
       oflow = d1mach(2)
       ierro = 0
-c     /* Scilab Enterprises input
-      nbisect = 0
-c     */
       call dqk21(f,a,b,result,abserr,defabs,resabs)
 c
 c           test on accuracy.
@@ -293,9 +280,6 @@ c
 c           bisect the subinterval with the nrmax-th largest error
 c           estimate.
 c
-c       /* Scilab Enterprises input
-        nbisect = nbisect + 1
-c       */
         a1 = alist(maxerr)
         b1 = 0.5d+00*(alist(maxerr)+blist(maxerr))
         a2 = b1
@@ -455,13 +439,5 @@ c
       abserr = errsum
   130 if(ier.gt.2) ier = ier-1
   140 neval = 42*last-21
-c     /* Scilab Enterprises input
-      if (nbisect.le.1) then
-         call msgstxt('Warning: argument function is detected to be '//
-     &      'very smooth.')
-         call msgstxt('Reduce integration interval if you think '//
-     &      'edges have been missed.')
-      endif
-c     */
   999 return
       end

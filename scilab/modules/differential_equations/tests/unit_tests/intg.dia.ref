@@ -76,8 +76,6 @@ function y = f(x), y = cos(x); endfunction
 Warning : redefining function: f                       . Use funcprot(0) to avoid this message
 
 [i, err, ierr] = intg(0, %pi, f);
-Warning: argument function is detected to be very smooth.
-Reduce integration interval if you think edges have been missed.
 Warning: Round-off error detected, the requested tolerance (or default) cannot be achieved. Try using bigger tolerances.
 if abs(ierr) <> 2 then bugmes();quit;end
 // IEEE compatibility
