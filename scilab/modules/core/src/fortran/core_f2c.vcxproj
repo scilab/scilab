@@ -91,7 +91,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
@@ -124,7 +123,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -148,7 +147,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
@@ -184,7 +182,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -208,7 +206,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
@@ -242,7 +239,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -268,7 +265,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
 lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
@@ -305,7 +301,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer_f.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -320,91 +316,29 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dispbpt.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_errcatch.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ieee.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_intppty.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_iserror.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isglobal.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_macrovar.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c" />
     <ClCompile Include="..\c\withf2c.c" />
     <ClCompile Include="allowptr.c" />
     <ClCompile Include="basnms.c" />
-    <ClCompile Include="bexec.c" />
-    <ClCompile Include="btof.c" />
-    <ClCompile Include="btofm.c" />
     <ClCompile Include="clunit.c" />
-    <ClCompile Include="cmdstr.c" />
     <ClCompile Include="cmplxt.c" />
-    <ClCompile Include="compcl.c" />
-    <ClCompile Include="compil.c" />
-    <ClCompile Include="copyvar.c" />
-    <ClCompile Include="createref.c" />
     <ClCompile Include="cvdm.c" />
     <ClCompile Include="cvname.c" />
-    <ClCompile Include="cvwm.c" />
-    <ClCompile Include="defmat.c" />
-    <ClCompile Include="dtosci.c" />
-    <ClCompile Include="errmgr.c" />
-    <ClCompile Include="error.c" />
     <ClCompile Include="expsum.c" />
-    <ClCompile Include="extlarg.c" />
     <ClCompile Include="find.c" />
-    <ClCompile Include="findequal.c" />
     <ClCompile Include="folhp.c" />
-    <ClCompile Include="ftob.c" />
-    <ClCompile Include="funnam.c" />
     <ClCompile Include="getch.c" />
-    <ClCompile Include="getfun.c" />
-    <ClCompile Include="getfunction.c" />
-    <ClCompile Include="getlin.c" />
-    <ClCompile Include="getnum.c" />
-    <ClCompile Include="getstr.c" />
-    <ClCompile Include="getsym.c" />
-    <ClCompile Include="hmcreate.c" />
-    <ClCompile Include="hndlops.c" />
     <ClCompile Include="indxg.c" />
-    <ClCompile Include="inisci.c" />
     <ClCompile Include="intstr.c" />
-    <ClCompile Include="isany.c" />
     <ClCompile Include="isbrk.c" />
     <ClCompile Include="isinstring.c" />
-    <ClCompile Include="istrue.c" />
-    <ClCompile Include="itosci.c" />
-    <ClCompile Include="lst2vars.c" />
     <ClCompile Include="mkindx.c" />
-    <ClCompile Include="mklist.c" />
-    <ClCompile Include="mrknmd.c" />
-    <ClCompile Include="nextj.c" />
     <ClCompile Include="prompt.c" />
     <ClCompile Include="ptrback.c" />
     <ClCompile Include="putid.c" />
-    <ClCompile Include="ref2val.c" />
-    <ClCompile Include="savlod.c" />
-    <ClCompile Include="seteol.c" />
     <ClCompile Include="setgetmode.c" />
     <ClCompile Include="setippty.c" />
-    <ClCompile Include="setlnb.c" />
     <ClCompile Include="showstack.c" />
-    <ClCompile Include="sigbas.c" />
-    <ClCompile Include="skpins.c" />
-    <ClCompile Include="stack.c" />
-    <ClCompile Include="stackc2i.c" />
-    <ClCompile Include="stackg.c" />
-    <ClCompile Include="stackgl.c" />
-    <ClCompile Include="stacki2d.c" />
-    <ClCompile Include="stackr2d.c" />
-    <ClCompile Include="storeglobal.c" />
-    <ClCompile Include="tradsl.c" />
-    <ClCompile Include="typ2cod.c" />
-    <ClCompile Include="varfunptr.c" />
     <ClCompile Include="whatln.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\where.c" />
     <ClCompile Include="xerbla.c" />
   </ItemGroup>
   <ItemGroup>
@@ -412,90 +346,28 @@ cd ..
     <ClInclude Include="..\..\includes\stack.h" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dispbpt.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_errcatch.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ieee.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_intppty.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_iserror.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isglobal.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_macrovar.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setbpt.f" />
     <f2c_rule Include="allowptr.f" />
     <f2c_rule Include="basnms.f" />
-    <f2c_rule Include="bexec.f" />
-    <f2c_rule Include="btof.f" />
-    <f2c_rule Include="btofm.f" />
     <f2c_rule Include="clunit.f" />
-    <f2c_rule Include="cmdstr.f" />
     <f2c_rule Include="cmplxt.f" />
-    <f2c_rule Include="compcl.f" />
-    <f2c_rule Include="compil.f" />
-    <f2c_rule Include="copyvar.f" />
-    <f2c_rule Include="createref.f" />
     <f2c_rule Include="cvdm.f" />
     <f2c_rule Include="cvname.f" />
-    <f2c_rule Include="cvwm.f" />
-    <f2c_rule Include="defmat.f" />
-    <f2c_rule Include="dtosci.f" />
-    <f2c_rule Include="errmgr.f" />
-    <f2c_rule Include="error.f" />
     <f2c_rule Include="expsum.f" />
-    <f2c_rule Include="extlarg.f" />
     <f2c_rule Include="find.f" />
-    <f2c_rule Include="findequal.f" />
     <f2c_rule Include="folhp.f" />
-    <f2c_rule Include="ftob.f" />
-    <f2c_rule Include="funnam.f" />
     <f2c_rule Include="getch.f" />
-    <f2c_rule Include="getfun.f" />
-    <f2c_rule Include="getfunction.f" />
-    <f2c_rule Include="getlin.f" />
-    <f2c_rule Include="getnum.f" />
-    <f2c_rule Include="getstr.f" />
-    <f2c_rule Include="getsym.f" />
-    <f2c_rule Include="hmcreate.f" />
-    <f2c_rule Include="hndlops.f" />
     <f2c_rule Include="indxg.f" />
-    <f2c_rule Include="inisci.f" />
     <f2c_rule Include="intstr.f" />
-    <f2c_rule Include="isany.f" />
     <f2c_rule Include="isbrk.f" />
     <f2c_rule Include="isinstring.f" />
-    <f2c_rule Include="istrue.f" />
-    <f2c_rule Include="itosci.f" />
-    <f2c_rule Include="lst2vars.f" />
     <f2c_rule Include="mkindx.f" />
-    <f2c_rule Include="mklist.f" />
-    <f2c_rule Include="mrknmd.f" />
-    <f2c_rule Include="nextj.f" />
     <f2c_rule Include="prompt.f" />
     <f2c_rule Include="ptrback.f" />
     <f2c_rule Include="putid.f" />
-    <f2c_rule Include="ref2val.f" />
-    <f2c_rule Include="savlod.f" />
-    <f2c_rule Include="seteol.f" />
     <f2c_rule Include="setgetmode.f" />
     <f2c_rule Include="setippty.f" />
-    <f2c_rule Include="setlnb.f" />
     <f2c_rule Include="showstack.f" />
-    <f2c_rule Include="sigbas.f" />
-    <f2c_rule Include="skpins.f" />
-    <f2c_rule Include="stack.f" />
-    <f2c_rule Include="stackc2i.f" />
-    <f2c_rule Include="stackg.f" />
-    <f2c_rule Include="stackgl.f" />
-    <f2c_rule Include="stacki2d.f" />
-    <f2c_rule Include="stackr2d.f" />
-    <f2c_rule Include="storeglobal.f" />
-    <f2c_rule Include="tradsl.f" />
-    <f2c_rule Include="typ2cod.f" />
-    <f2c_rule Include="varfunptr.f" />
     <f2c_rule Include="whatln.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\where.f" />
     <f2c_rule Include="xerbla.f" />
   </ItemGroup>
   <ItemGroup>
@@ -510,7 +382,6 @@ cd ..
     <None Include="elementary_functions_Import.def" />
     <None Include="fftw_Import.def" />
     <None Include="fileio_Import.def" />
-    <None Include="integer_f_Import.def" />
     <None Include="integer_Import.def" />
     <None Include="io_f_Import.def" />
     <None Include="core_import.def" />

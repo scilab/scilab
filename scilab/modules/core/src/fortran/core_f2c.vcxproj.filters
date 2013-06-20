@@ -27,34 +27,10 @@
     <ClCompile Include="basnms.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="bexec.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="btof.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="btofm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clunit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cmdstr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cmplxt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compcl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="compil.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="copyvar.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="createref.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cvdm.c">
@@ -63,79 +39,19 @@
     <ClCompile Include="cvname.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cvwm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="defmat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dtosci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="errmgr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="error.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="expsum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="extlarg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="find.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="findequal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="folhp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ftob.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="funnam.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getch.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getfun.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="getfunction.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="getlin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="getnum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="getstr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="getsym.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hmcreate.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hndlops.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="indxg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="inisci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="intstr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="isany.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="isbrk.c">
@@ -144,25 +60,7 @@
     <ClCompile Include="isinstring.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="istrue.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="itosci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lst2vars.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mkindx.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mklist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mrknmd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="nextj.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="prompt.c">
@@ -174,109 +72,25 @@
     <ClCompile Include="putid.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ref2val.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="savlod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="seteol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="setgetmode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="setippty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="setlnb.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="showstack.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sigbas.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="skpins.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stack.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stackc2i.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stackg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stackgl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stacki2d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stackr2d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="storeglobal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tradsl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="typ2cod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="varfunptr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="whatln.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\where.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="xerbla.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_argn.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clearglobal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delbpt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dispbpt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_errcatch.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ieee.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_intppty.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_iserror.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isglobal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_macrovar.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setbpt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\withf2c.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="showstack.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="indxg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -295,34 +109,10 @@
     <f2c_rule Include="basnms.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="bexec.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="btof.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="btofm.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="clunit.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="cmdstr.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="cmplxt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="compcl.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="compil.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="copyvar.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="createref.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="cvdm.f">
@@ -331,79 +121,19 @@
     <f2c_rule Include="cvname.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="cvwm.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="defmat.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dtosci.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="errmgr.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="error.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="expsum.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="extlarg.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="find.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="findequal.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="folhp.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ftob.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="funnam.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="getch.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="getfun.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="getfunction.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="getlin.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="getnum.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="getstr.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="getsym.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="hmcreate.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="hndlops.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="indxg.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="inisci.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="intstr.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="isany.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="isbrk.f">
@@ -412,25 +142,7 @@
     <f2c_rule Include="isinstring.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="istrue.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="itosci.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="lst2vars.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="mkindx.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="mklist.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="mrknmd.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="nextj.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="prompt.f">
@@ -442,106 +154,22 @@
     <f2c_rule Include="putid.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="ref2val.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="savlod.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="seteol.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="setgetmode.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="setippty.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="setlnb.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="showstack.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="sigbas.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="skpins.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="stack.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="stackc2i.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="stackg.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="stackgl.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="stacki2d.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="stackr2d.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="storeglobal.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="tradsl.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="typ2cod.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="varfunptr.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="whatln.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\where.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="xerbla.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_argn.f">
+    <f2c_rule Include="showstack.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clearglobal.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delbpt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dispbpt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_errcatch.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ieee.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_intppty.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_iserror.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isglobal.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_macrovar.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mtlb_mode.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setbpt.f">
+    <f2c_rule Include="indxg.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
   </ItemGroup>
@@ -573,9 +201,6 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="fileio_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="integer_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="integer_Import.def">

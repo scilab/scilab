@@ -273,14 +273,8 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ainvg.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\badd.c" />
     <ClCompile Include="bcomp.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bint2d.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bint3d.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bintg.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bj2.c" />
     <ClCompile Include="bnorm.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bresid.c" />
     <ClCompile Include="cfode.c" />
     <ClCompile Include="colnew.c" />
     <ClCompile Include="..\c\commons_f2c.c" />
@@ -346,14 +340,8 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="ainvg.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\badd.f" />
     <f2c_rule Include="bcomp.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bint2d.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bint3d.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bintg.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bj2.f" />
     <f2c_rule Include="bnorm.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bresid.f" />
     <f2c_rule Include="cfode.f" />
     <f2c_rule Include="colnew.f" />
     <f2c_rule Include="dcutet.f" />

@@ -24,28 +24,10 @@
     <ClCompile Include="ainvg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\badd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bcomp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\bint2d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\bint3d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\bintg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\bj2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bnorm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\bresid.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cfode.c">
@@ -239,28 +221,10 @@
     <f2c_rule Include="ainvg.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\badd.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="bcomp.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bint2d.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bint3d.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bintg.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bj2.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="bnorm.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\bresid.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="cfode.f">

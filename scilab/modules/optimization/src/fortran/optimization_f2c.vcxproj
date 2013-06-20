@@ -270,11 +270,6 @@ cd ..
   <ItemGroup>
     <ClCompile Include="ajour.c" />
     <ClCompile Include="bfgsd.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bjlsqrsolv.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bjsolv.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\blsqrsolv.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\boptim.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\bsolv.c" />
     <ClCompile Include="calbx.c" />
     <ClCompile Include="calmaj.c" />
     <ClCompile Include="ctcab.c" />
@@ -318,8 +313,6 @@ cd ..
     <ClCompile Include="icse2.c" />
     <ClCompile Include="icsec2.c" />
     <ClCompile Include="icsei.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\intlsqrsolve.c" />
-    <ClCompile Include="intreadmps.c" />
     <ClCompile Include="minpack\lmder.c" />
     <ClCompile Include="minpack\lmdif.c" />
     <ClCompile Include="minpack\lmpar.c" />
@@ -356,9 +349,6 @@ cd ..
     <ClCompile Include="relvar.c" />
     <ClCompile Include="rlbd.c" />
     <ClCompile Include="satur.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fsolve.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_optim.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_semidef.c" />
     <ClCompile Include="shanph.c" />
     <ClCompile Include="strang.c" />
     <ClCompile Include="writebuf.c" />
@@ -368,11 +358,6 @@ cd ..
   <ItemGroup>
     <f2c_rule Include="ajour.f" />
     <f2c_rule Include="bfgsd.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bjlsqrsolv.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bjsolv.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\blsqrsolv.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\boptim.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\bsolv.f" />
     <f2c_rule Include="calbx.f" />
     <f2c_rule Include="calmaj.f" />
     <f2c_rule Include="ctcab.f" />
@@ -416,7 +401,6 @@ cd ..
     <f2c_rule Include="icse2.f" />
     <f2c_rule Include="icsec2.f" />
     <f2c_rule Include="icsei.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\intlsqrsolve.f" />
     <f2c_rule Include="minpack\lmder.f" />
     <f2c_rule Include="minpack\lmdif.f" />
     <f2c_rule Include="minpack\lmpar.f" />
@@ -453,15 +437,11 @@ cd ..
     <f2c_rule Include="relvar.f" />
     <f2c_rule Include="rlbd.f" />
     <f2c_rule Include="satur.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fsolve.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_optim.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_semidef.f" />
     <f2c_rule Include="shanph.f" />
     <f2c_rule Include="strang.f" />
     <f2c_rule Include="writebuf.f" />
     <f2c_rule Include="zgcbd.f" />
     <f2c_rule Include="zqnbd.f" />
-    <f2c_rule Include="intreadmps.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile.am" />

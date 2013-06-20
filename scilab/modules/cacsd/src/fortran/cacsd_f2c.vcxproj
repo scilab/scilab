@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -319,10 +319,7 @@ cd ..
     <ClCompile Include="rootgp.c" />
     <ClCompile Include="rtitr.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_arl2.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ereduc.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_findbd.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_freq.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fstair.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_gschur.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_gspec.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ldiv.c" />
@@ -331,8 +328,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ppol.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_residu.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rtitr.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sident.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sorder.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sylv.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tzer.c" />
     <ClCompile Include="scapol.c" />
@@ -377,10 +372,7 @@ cd ..
     <f2c_rule Include="rtitr.f" />
     <f2c_rule Include="scapol.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_arl2.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ereduc.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_findbd.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_freq.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fstair.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_gschur.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_gspec.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ldiv.f" />
@@ -389,8 +381,6 @@ cd ..
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ppol.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_residu.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rtitr.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sident.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sorder.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sylv.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tzer.f" />
     <f2c_rule Include="shrslv.f" />

@@ -252,11 +252,9 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="find.c" />
     <ClCompile Include="logic.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="find.f" />
     <f2c_rule Include="logic.f" />
   </ItemGroup>
   <ItemGroup>
