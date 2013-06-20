@@ -17,6 +17,7 @@
 #include "polynom.hxx"
 #include "list.hxx"
 #include "cell.hxx"
+#include "struct.hxx"
 #include "sparse.hxx"
 #include "int.hxx"
 #include "graphichandle.hxx"
@@ -396,6 +397,48 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         return pB;
     }
 
+    /*
+    ** STRUCT == STRUCT
+    */
+    if (TypeL == GenericType::RealStruct && TypeR == GenericType::RealStruct)
+    {
+        Struct* pStL = pIL->getAs<Struct>();
+        Struct* pStR = pIR->getAs<Struct>();
+
+        /* check dimension*/
+        if (pStL->getDims() != pStR->getDims())
+        {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
+            return new Bool(false);
+        }
+
+        int* piDimsL = pStL->getDimsArray();
+        int* piDimsR = pStR->getDimsArray();
+
+        for (int i = 0 ; i < pStL->getDims() ; i++)
+        {
+            if (piDimsL[i] != piDimsR[i])
+            {
+                clearAlloc(bAllocL, pIL, bAllocR, pIR);
+                return new Bool(false);
+            }
+        }
+
+        if (pStL->getSize() == 0)
+        {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
+            return new Bool(true);
+        }
+
+        Bool *pB = new Bool(pStL->getDims(), piDimsL);
+        for (int i = 0 ; i < pStL->getSize() ; i++)
+        {
+            pB->set(i, *pStL->get(i) == *pStR->get(i));
+        }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
+        return pB;
+    }
 
     /*
     ** DOUBLE == STRING
