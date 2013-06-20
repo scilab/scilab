@@ -48,4 +48,25 @@
    obj:*
    obj:*
 }
+{
+   Last getCmdLine free issue
+   Memcheck:Leak
+   fun:malloc
+   fun:getCmdLine
+   fun:getCommandLine
+   fun:watchGetCommandLine
+   fun:start_thread
+   fun:clone
+}
+{
+   Fixeable but crash-ed using javasci
+   Memcheck:Leak
+   fun:malloc
+   fun:wide_string_to_UTF8
+   fun:getCmdLine
+   fun:getCommandLine
+   fun:watchGetCommandLine
+   fun:start_thread
+   fun:clone
+}
 

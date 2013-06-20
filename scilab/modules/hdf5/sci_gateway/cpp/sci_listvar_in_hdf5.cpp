@@ -39,7 +39,11 @@ typedef struct __VAR_INFO__
     int iDims;
     int piDims[2];
 
-    __VAR_INFO__() : iType(0), iSize(0), iDims(0) {}
+    __VAR_INFO__() : iType(0), iSize(0), iDims(0)
+    {
+        memset(pstInfo, 0, sizeof(pstInfo) / sizeof(pstInfo[0]));
+        memset(varName, 0, sizeof(varName) / sizeof(varName[0]));
+    }
 } VarInfo;
 
 static bool read_data(int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo* _pInfo);
@@ -152,6 +156,8 @@ int sci_listvar_in_hdf5(char *fname, unsigned long fname_len)
                 sciprint("%s\n", pInfo[i].pstInfo);
             }
         }
+
+        FREE(pstVarNameList);
     }
     else
     {

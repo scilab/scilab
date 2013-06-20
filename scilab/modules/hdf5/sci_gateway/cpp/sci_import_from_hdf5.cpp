@@ -349,12 +349,14 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
 
             if (iRet)
             {
+                FREE(piDims);
                 return false;
             }
         }
         else if (iDims > 2)
         {
             //hypermatrix
+            FREE(piDims);
             return false;
         }
     }
@@ -402,6 +404,7 @@ static bool import_double(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         return false;
     }
 
+    FREE(piDims);
     if (pdblReal)
     {
         FREE(pdblReal);
@@ -444,6 +447,7 @@ static bool import_string(int _iDatasetId, int _iItemPos, int *_piAddress, char 
     iRet = readStringMatrix(_iDatasetId, pstData);
     if (iRet)
     {
+        FREE(piDims);
         return false;
     }
 
@@ -462,6 +466,7 @@ static bool import_string(int _iDatasetId, int _iItemPos, int *_piAddress, char 
         return false;
     }
 
+    FREE(piDims);
     FREE(pstData);
 
     return true;
@@ -708,6 +713,8 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int *_piAddress, char
         iRet = readBooleanMatrix(_iDatasetId, piData);
         if (iRet)
         {
+            FREE(piData);
+            FREE(piDims);
             return false;
         }
     }
@@ -724,9 +731,15 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int *_piAddress, char
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        FREE(piDims);
+        if (piData)
+        {
+            FREE(piData);
+        }
         return false;
     }
 
+    FREE(piDims);
     if (piData)
     {
         FREE(piData);
