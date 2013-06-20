@@ -33,8 +33,8 @@ assert_checkequal(conj(1+s+%i), 1+s-%i);
 assert_checkequal(conj(M),hypermat([1,2,2],[-%i;2;3;4]));
 
 // Error messages
-errmsg1=msprintf(_("Incorrect number of input arguments.\n"));
-assert_checkerror("conj()", errmsg1, 39);
-assert_checkerror("conj(A,2)", errmsg1, 39);
-errmsg2=msprintf(_("Incompatible output argument.\n"));
-assert_checkerror("[res1, res2]=conj(A)", errmsg2, 41);
+errmsg1=msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "conj", 1);
+assert_checkerror("conj()", errmsg1, 77);
+assert_checkerror("conj(A,2)", errmsg1, 77);
+errmsg2=msprintf(_("%s: Wrong number of output argument(s): %d expected.\n"), "conj", 1);
+assert_checkerror("[res1, res2]=conj(A)", errmsg2, 78);

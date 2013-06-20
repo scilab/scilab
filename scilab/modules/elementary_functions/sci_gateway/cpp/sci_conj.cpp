@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "conj", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "conj", 1);
         return types::Function::Error;
     }
 
