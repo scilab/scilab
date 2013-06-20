@@ -97,15 +97,19 @@ bool descendent (std::pair<std::pair<int, int>, T> left, std::pair<std::pair<int
 
 // compare two vector.
 template <typename T>
-bool increasing (std::pair<int, std::pair<T, T> > left, std::pair<int, std::pair<T, T> > right)
+bool increasing (std::pair<int, std::pair<T*, T*> > left, std::pair<int, std::pair<T*, T*> > right)
 {
-    return std::lexicographical_compare(left.second.first, left.second.second, right.second.first, right.second.second);
+    bool (*pMyComp)(T left, T right);
+    pMyComp = &increasing;
+    return std::lexicographical_compare(left.second.first, left.second.second, right.second.first, right.second.second, *pMyComp);
 }
 
 template <typename T>
-bool descendent (std::pair<int, std::pair<T, T> > left, std::pair<int, std::pair<T, T> > right)
+bool descendent (std::pair<int, std::pair<T*, T*> > left, std::pair<int, std::pair<T*, T*> > right)
 {
-    return std::lexicographical_compare(right.second.first, right.second.second, left.second.first, left.second.second);
+    bool (*pMyComp)(T left, T right);
+    pMyComp = &descendent;
+    return std::lexicographical_compare(left.second.first, left.second.second, right.second.first, right.second.second, *pMyComp);
 }
 
 // string case
