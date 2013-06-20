@@ -670,42 +670,42 @@ int	iLeftDivisionOfRealMatrix(
 
 
 /*Complex matrixes left division*/
-int	iLeftDivisionOfComplexMatrix(
-    double *_pdblReal1,		double *_pdblImg1,		int _iRows1,	int _iCols1,
-    double *_pdblReal2,		double *_pdblImg2,		int _iRows2,	int _iCols2,
-    double *_pdblRealOut,	double *_pdblImgOut,	int _iRowsOut,	int _iColsOut, double *_pdblRcond)
+int iLeftDivisionOfComplexMatrix(
+    double *_pdblReal1,     double *_pdblImg1,      int _iRows1,    int _iCols1,
+    double *_pdblReal2,     double *_pdblImg2,      int _iRows2,    int _iCols2,
+    double *_pdblRealOut,   double *_pdblImgOut,    int _iRowsOut,  int _iColsOut,  double *_pdblRcond)
 {
     int iReturn = 0;
-    int iIndex	= 0;
-    char cNorm	= 0;
-    int iExit	= 0;
+    int iIndex  = 0;
+    char cNorm  = 0;
+    int iExit   = 0;
 
     /*temporary variables*/
-    int iWorkMin	= 0;
-    int iInfo		= 0;
-    int iMax		= 0;
-    double dblRcond	= 0;
+    int iWorkMin    = 0;
+    int iInfo       = 0;
+    int iMax        = 0;
+    double dblRcond = 0;
 
-    double dblEps	= 0;
-    double dblAnorm	= 0;
+    double dblEps   = 0;
+    double dblAnorm = 0;
 
-    doublecomplex *pAf		= NULL;
-    doublecomplex *pXb		= NULL;
-    doublecomplex *pDwork	= NULL;
-    doublecomplex *poVar1	= NULL;
-    doublecomplex *poVar2	= NULL;
-    doublecomplex *poOut	= NULL;
+    doublecomplex *pAf      = NULL;
+    doublecomplex *pXb      = NULL;
+    doublecomplex *pDwork   = NULL;
+    doublecomplex *poVar1   = NULL;
+    doublecomplex *poVar2   = NULL;
+    doublecomplex *poOut    = NULL;
 
-    double *pRwork			= NULL;
+    double *pRwork  = NULL;
 
-    int iRank				= 0;
-    int *pIpiv				= NULL;
-    int *pJpvt				= NULL;
+    int iRank       = 0;
+    int *pIpiv      = NULL;
+    int *pJpvt      = NULL;
 
-    iWorkMin	= Max(2 * _iCols1, Min(_iRows1, _iCols1) + Max(2 * Min(_iRows1, _iCols1), Max(_iCols1, Min(_iRows1, _iCols1) + _iCols2)));
+    iWorkMin    = Max(2 * _iCols1, Min(_iRows1, _iCols1) + Max(2 * Min(_iRows1, _iCols1), Max(_iCols1, Min(_iRows1, _iCols1) + _iCols2)));
 
     /* Array allocations*/
-    poVar1	    = oGetDoubleComplexFromPointer(_pdblReal1, _pdblImg1, _iRows1 * _iCols1);
+    poVar1      = oGetDoubleComplexFromPointer(_pdblReal1, _pdblImg1, _iRows1 * _iCols1);
     poVar2      = oGetDoubleComplexFromPointer(_pdblReal2, _pdblImg2, _iRows2 * _iCols2);
 
     pIpiv       = (int*)malloc(sizeof(int) * _iCols1);
@@ -761,7 +761,18 @@ int	iLeftDivisionOfComplexMatrix(
                 *_pdblRcond = (double)iRank;
             }
 
-            vGetPointerFromDoubleComplex(pXb, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
+            // In the case where "pXb" has more rows that the output,
+            // the output values are the first lines of pXb
+            // and not the size of output first elements of pXb.
+            double* tmpRealPart = (double*)malloc(iMax * _iColsOut * sizeof(double));
+            double* tmpImagPart = (double*)malloc(iMax * _iColsOut * sizeof(double));
+            vGetPointerFromDoubleComplex(pXb, iMax * _iColsOut, tmpRealPart, tmpImagPart);
+
+            C2F(dlacpy)(&cNorm, &_iRowsOut, &_iColsOut, tmpRealPart, &iMax, _pdblRealOut, &_iRowsOut);
+            C2F(dlacpy)(&cNorm, &_iRowsOut, &_iColsOut, tmpImagPart, &iMax, _pdblImgOut, &_iRowsOut);
+
+            free(tmpRealPart);
+            free(tmpImagPart);
         }
         free(pXb);
     }
