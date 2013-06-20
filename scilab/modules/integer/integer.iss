@@ -18,7 +18,6 @@
 ;
 #define INTEGER "integer"
 ;
-Source: bin\{#INTEGER}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#INTEGER}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#INTEGER}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
