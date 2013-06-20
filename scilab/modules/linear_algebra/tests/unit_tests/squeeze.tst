@@ -28,7 +28,7 @@ end
 //scalar case
 a=33;
 if or(size(squeeze(a))<>[1 1]) then pause,end
-c={1:3}
+c={1:3};
 if or(size(squeeze(c))<>[1 1]) then pause,end
 //empty matrix
 if or(size(squeeze([]))<>[0 0]) then pause,end
