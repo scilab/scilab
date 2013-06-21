@@ -14,18 +14,32 @@
 #ifndef __INITSCILAB_H__
 #define __INITSCILAB_H__
 
+typedef struct
+{
+    int iParseTrace;
+    int iPrintAst;
+    int iExecAst;
+    int iDumpAst;
+    int iDumpStack;
+    int iTimed;
+    int iAstTimed;
+    int iExecVerbose;
+    int iConsoleMode;
+    int iNoJvm;
+    int iNoStart;
+    char* pstParseFile;
+    char* pstFile;
+    char* pstExec;
+    char* pstLang;
+} ScilabEngineInfo;
 
-int StartScilabEngine(
-    char* _pstExec/* = NULL*/,
-    char* _pstFile/* = NULL*/,
-    char* _pstLang/* = NULL*/,
-    int _iNoStart/* = 0*/,
-    int _iJvm/* = 1*/,
-    int _iConsole/* = 1*/);
+int StartScilabEngine(ScilabEngineInfo* _pSEI);
 
-int RunScilabEngine(char* _pstFile/* = NULL*/);
-int ExecExternalCommand(char* _pstExec);
 
-void StopScilabEngine(char* _pstFile/* = NULL*/, int _iNoStart/* = 0*/, int _iConsole/* = 1*/);
+ScilabEngineInfo* InitScilabEngineInfo();
+int RunScilabEngine(ScilabEngineInfo* _pSEI);
+int ExecExternalCommand(ScilabEngineInfo* _pSEI);
+
+void StopScilabEngine(ScilabEngineInfo* _pSEI);
 
 #endif /* !__INITSCILAB_H__ */

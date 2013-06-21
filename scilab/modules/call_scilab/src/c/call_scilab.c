@@ -90,7 +90,7 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 {
     char *InitStringToScilab = NULL;
     static int iflag = -1, ierr = 0;
-    int iNoStart = 0;
+    ScilabEngineInfo* pSEI = NULL;
 
     setScilabMode(SCILAB_API);
     if (advancedMode == FALSE)
@@ -123,20 +123,24 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
         }
     }
 
+    pSEI = InitScilabEngineInfo();
     if (ScilabStartup)
     {
         int lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartup) + 1);
         InitStringToScilab = (char *)MALLOC(lengthStringToScilab * sizeof(char));
         sprintf(InitStringToScilab, FORMAT_SCRIPT_STARTUP, ScilabStartup);
-        iNoStart = 1;
+        pSEI->iNoStart = 1;
     }
 
     setScilabInputMethod(&getCmdLine);
     setScilabOutputMethod(&TermPrintf);
 
     /* Scilab Initialization */
-    ierr = StartScilabEngine(InitStringToScilab, NULL, NULL, iNoStart, 1, 1);
-
+    pSEI->pstFile = InitStringToScilab;
+    pSEI->iNoJvm = 1;
+    pSEI->iConsoleMode = 1;
+    ierr = StartScilabEngine(pSEI);
+    FREE(pSEI);
 
     if (InitStringToScilab)
     {
@@ -159,7 +163,9 @@ BOOL TerminateScilab(char *ScilabQuit)
 {
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
     {
-        StopScilabEngine(ScilabQuit, 0, 1);
+        ScilabEngineInfo* pSEI = InitScilabEngineInfo();
+        pSEI->pstFile = ScilabQuit;
+        StopScilabEngine(pSEI);
 
         ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);

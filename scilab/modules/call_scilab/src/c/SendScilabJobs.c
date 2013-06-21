@@ -52,9 +52,11 @@ int SendScilabJob(char *job)
     {
         double Err_Job = 0.;
         int m = 0, n = 0;
+        ScilabEngineInfo* pSEI = InitScilabEngineInfo();
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        ExecExternalCommand(COMMAND_CLEAR);
+        pSEI->pstExec = COMMAND_CLEAR;
+        ExecExternalCommand(pSEI);
 
         SetLastJob(command);
 
@@ -73,13 +75,15 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
+            FREE(pSEI);
             return retCode;
         }
 
 
 
         /* Run the command within an execstr */
-        ExecExternalCommand(COMMAND_EXECSTR);
+        pSEI->pstExec = COMMAND_EXECSTR;
+        ExecExternalCommand(pSEI);
 
         sciErr = getNamedVarDimension(NULL, "Err_Job", &m, &n);
         if (sciErr.iErr)
@@ -94,6 +98,7 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
+            FREE(pSEI);
             return retCode;
         }
 
@@ -108,6 +113,7 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
+            FREE(pSEI);
             return retCode;
         }
 
@@ -124,6 +130,7 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
+            FREE(pSEI);
             return retCode;
         }
 
@@ -136,7 +143,9 @@ int SendScilabJob(char *job)
         retCode = (int)Err_Job;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        ExecExternalCommand(COMMAND_CLEAR);
+        pSEI->pstExec = COMMAND_CLEAR;
+        ExecExternalCommand(pSEI);
+        FREE(pSEI);
     }
     else
     {

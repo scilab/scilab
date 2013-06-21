@@ -87,25 +87,35 @@ static void Add_Boolean_Constant(std::wstring _szName, bool _bBool);
 static void Add_String_Constant(std::wstring _szName, const char *_pstString);
 static void checkForLinkerErrors(void);
 
-static int batchMain(char *pstFileName,
-                     bool _bParseTrace = false,
-                     bool _bTimed = false,
-                     bool _bDumpAst = false,
-                     bool _bPrintAst = false);
+static int batchMain(ScilabEngineInfo* _pSEI);
 static int InitializeEnvironnement(void);
-static int interactiveMain(void);
-static Parser::ControlStatus processCommand(char *_pstCommand,
-        bool _bParseTrace = false,
-        bool _bTimed = false,
-        bool _bDumpAst = false,
-        bool _bPrintAst = false,
-        bool _bExecAst = true,
-        bool _bDumpStack = false,
-        bool _bASTTimed = false,
-        bool _bExecVerbose = false);
+static int interactiveMain(ScilabEngineInfo* _pSEI);
+static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI);
 static void stateShow(Parser::ControlStatus status);
 
-int StartScilabEngine(char* _pstExec, char* _pstFile, char* _pstLang, int _iNoStart, int _iJvm, int _iConsole)
+ScilabEngineInfo* InitScilabEngineInfo()
+{
+    ScilabEngineInfo* pSEI = (ScilabEngineInfo*)MALLOC(sizeof(ScilabEngineInfo));
+    pSEI->iParseTrace   = 0;
+    pSEI->iPrintAst     = 0;
+    pSEI->iExecAst      = 1;
+    pSEI->iDumpAst      = 0;
+    pSEI->iDumpStack    = 0;
+    pSEI->iTimed        = 0;
+    pSEI->iAstTimed     = 0;
+    pSEI->iExecVerbose  = 0;
+    pSEI->iConsoleMode  = 0;
+    pSEI->iNoJvm        = 0;
+    pSEI->iNoStart      = 0;
+
+    pSEI->pstParseFile  = NULL;
+    pSEI->pstFile       = NULL;
+    pSEI->pstExec       = NULL;
+    pSEI->pstLang       = NULL;
+    return pSEI;
+}
+
+int StartScilabEngine(ScilabEngineInfo* _pSEI)
 {
     int iMainRet = 0;
 
@@ -138,9 +148,9 @@ int StartScilabEngine(char* _pstExec, char* _pstFile, char* _pstLang, int _iNoSt
     /* Scilab Startup */
     InitializeEnvironnement();
 
-    if (_pstLang)
+    if (_pSEI->pstLang)
     {
-        wchar_t *pwstLang = to_wide_string(_pstLang);
+        wchar_t *pwstLang = to_wide_string(_pSEI->pstLang);
         setlanguage(pwstLang);
         FREE(pwstLang);
     }
@@ -149,7 +159,7 @@ int StartScilabEngine(char* _pstExec, char* _pstFile, char* _pstLang, int _iNoSt
     InitializeWindows_tools();
 #endif
 
-    if (_iJvm)
+    if (_pSEI->iNoJvm == 0) // With JVM
     {
         /* bug 3702 */
         /* tclsci creates a TK window on Windows */
@@ -167,7 +177,7 @@ int StartScilabEngine(char* _pstExec, char* _pstFile, char* _pstLang, int _iNoSt
     }
 
     /* Standard mode -> init Java Console */
-    if (!_iConsole)
+    if (_pSEI->iConsoleMode == 0)
     {
         /* Initialize console: lines... */
         InitializeConsole();
@@ -179,10 +189,10 @@ int StartScilabEngine(char* _pstExec, char* _pstFile, char* _pstLang, int _iNoSt
 #endif
     }
 
-    LoadModules(_iNoStart);
+    LoadModules(_pSEI->iNoStart);
 
     //execute scilab.start
-    if (_iNoStart == 0)
+    if (_pSEI->iNoStart == 0)
     {
         execScilabStartTask();
     }
@@ -195,20 +205,21 @@ int StartScilabEngine(char* _pstExec, char* _pstFile, char* _pstLang, int _iNoSt
     ConfigVariable::setPromptMode(0);
     try
     {
-        if (_pstExec)
+        if (_pSEI->pstExec)
         {
             //-e option
 
-            processCommand(_pstExec);
+            processCommand(_pSEI);
             iMainRet = ConfigVariable::getExitStatus();
         }
-        else if (_pstFile)
+        else if (_pSEI->pstFile)
         {
             //-f option execute exec('%s',-1)
-            char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pstFile) + 1));
+            char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
+            sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 
-            sprintf(pstCommand, "exec(\"%s\",-1)", _pstFile);
-            processCommand(pstCommand);
+            _pSEI->pstExec = pstCommand;
+            processCommand(_pSEI);
             FREE(pstCommand);
             iMainRet = ConfigVariable::getExitStatus();
         }
@@ -223,46 +234,47 @@ int StartScilabEngine(char* _pstExec, char* _pstFile, char* _pstLang, int _iNoSt
     return iMainRet;
 }
 
-int RunScilabEngine(char* _pstFile)
+int RunScilabEngine(ScilabEngineInfo* _pSEI)
 {
-    if (_pstFile)
+    if (_pSEI->pstParseFile)
     {
         // Only for parsing test, won't execute anything.
-        return batchMain(_pstFile);
+        return batchMain(_pSEI);
     }
     else
     {
         //always run as interactiveMain even after -e or -f option
-        return interactiveMain();
+        return interactiveMain(_pSEI);
     }
 }
 
-int ExecExternalCommand(char* _pstExec)
+int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 {
-    if (_pstExec)
+    if (_pSEI->pstExec)
     {
-        processCommand(_pstExec);
+        processCommand(_pSEI);
         return ConfigVariable::getExitStatus();
     }
 
     return -1;
 }
 
-void StopScilabEngine(char* _pstFile, int _iNoStart, int _iConsole)
+void StopScilabEngine(ScilabEngineInfo* _pSEI)
 {
     clearScilabPreferences();
 
     //execute scilab.quit
-    if (_pstFile)
+    if (_pSEI->pstFile)
     {
         //-f option execute exec('%s',-1)
-        char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pstFile) + 1));
+        char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
+        sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 
-        sprintf(pstCommand, "exec(\"%s\",-1)", _pstFile);
-        processCommand(pstCommand);
+        _pSEI->pstExec = pstCommand;
+        processCommand(_pSEI);
         FREE(pstCommand);
     }
-    else if (_iNoStart == 0)
+    else if (_pSEI->iNoStart == 0)
     {
         execScilabQuitTask();
     }
@@ -272,7 +284,7 @@ void StopScilabEngine(char* _pstFile, int _iNoStart, int _iConsole)
     symbol::Context::getInstance()->scope_end();
 
 
-    if (getScilabMode() != SCILAB_NWNI)
+    if (_pSEI->iNoJvm == 0)
     {
         //dynamic_TerminateTclTk();
         TerminateGraphics();
@@ -297,7 +309,7 @@ void StopScilabEngine(char* _pstFile, int _iNoStart, int _iConsole)
 #endif
 
     /* Reset terminal configuration */
-    if (_iConsole)
+    if (_pSEI->iConsoleMode)
     {
 #ifndef _MSC_VER
         initConsoleMode(ATTR_RESET);
@@ -307,34 +319,26 @@ void StopScilabEngine(char* _pstFile, int _iNoStart, int _iConsole)
 
 }
 
-static Parser::ControlStatus processCommand(char *_pstCommand,
-        bool _bParseTrace,
-        bool _bTimed,
-        bool _bDumpAst,
-        bool _bPrintAst,
-        bool _bExecAst,
-        bool _bDumpStack,
-        bool _bASTTimed,
-        bool _bExecVerbose)
+static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI)
 {
     Parser *parser = new Parser();
 
-    parser->setParseTrace(_bParseTrace);
-    if (strcmp(_pstCommand, "") != 0)
+    parser->setParseTrace(_pSEI->iParseTrace != 0);
+    if (strcmp(_pSEI->pstExec, "") != 0)
     {
-        wchar_t *pwstCommand = to_wide_string(_pstCommand);
+        wchar_t *pwstCommand = to_wide_string(_pSEI->pstExec);
 
         /*
          ** -*- PARSING -*-
          */
-        parseCommandTask(parser, _bTimed, pwstCommand);
+        parseCommandTask(parser, _pSEI->iTimed != 0, pwstCommand);
 
         /*
          ** -*- DUMPING TREE -*-
          */
-        if (_bDumpAst == true)
+        if (_pSEI->iDumpAst)
         {
-            dumpAstTask(parser->getTree(), _bTimed);
+            dumpAstTask(parser->getTree(), _pSEI->iTimed != 0);
         }
 
         if (parser->getExitStatus() == Parser::Succeded)
@@ -342,32 +346,32 @@ static Parser::ControlStatus processCommand(char *_pstCommand,
             /*
              ** -*- PRETTY PRINT TREE -*-
              */
-            if (_bPrintAst == true)
+            if (_pSEI->iPrintAst)
             {
-                printAstTask(parser->getTree(), _bTimed);
+                printAstTask(parser->getTree(), _pSEI->iTimed != 0);
             }
 
             /*
              ** -*- EXECUTING TREE -*-
              */
-            if (_bExecAst == true)
+            if (_pSEI->iExecAst)
             {
                 //before calling YaspReader, try to call %onprompt function
                 callOnPrompt();
-                execAstTask(parser->getTree(), _bTimed, _bASTTimed, _bExecVerbose);
+                execAstTask(parser->getTree(), _pSEI->iTimed != 0, _pSEI->iAstTimed != 0, _pSEI->iExecVerbose != 0);
             }
 
             /*
              ** -*- DUMPING STACK AFTER EXECUTION -*-
              */
-            if (_bDumpStack == true)
+            if (_pSEI->iDumpStack)
             {
-                dumpStackTask(_bTimed);
+                dumpStackTask(_pSEI->iTimed != 0);
             }
         }
         else if (parser->getExitStatus() == Parser::Failed && parser->getControlStatus() == Parser::AllControlClosed)
         {
-            if (_bExecAst == true)
+            if (_pSEI->iExecAst)
             {
                 //before calling YaspReader, try to call %onprompt function
                 callOnPrompt();
@@ -380,7 +384,7 @@ static Parser::ControlStatus processCommand(char *_pstCommand,
     }
     else
     {
-        if (_bExecAst == true)
+        if (_pSEI->iExecAst)
         {
             //before calling YaspReader, try to call %onprompt function
             callOnPrompt();
@@ -392,7 +396,7 @@ static Parser::ControlStatus processCommand(char *_pstCommand,
 /*
 ** -*- Interactive Main -*-
 */
-static int interactiveMain(void)
+static int interactiveMain(ScilabEngineInfo* _pSEI)
 {
     int pause = 0;
     char *command = NULL;
@@ -453,7 +457,9 @@ static int interactiveMain(void)
             command = pstNewCommand;
         }
 
-        controlStatus = processCommand(command);
+        _pSEI->pstExec = command;
+        controlStatus = processCommand(_pSEI);
+        _pSEI->pstExec = NULL;
     }
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
@@ -464,32 +470,28 @@ static int interactiveMain(void)
 /*
 ** -*- Batch Main -*-
 */
-static int batchMain(char *pstFileName,
-                     bool _bParseTrace,
-                     bool _bTimed,
-                     bool _bDumpAst,
-                     bool _bPrintAst)
+static int batchMain(ScilabEngineInfo* _pSEI)
 {
     /*
      ** -*- PARSING -*-
      */
     Parser *parser = new Parser();
 
-    parser->setParseTrace(_bParseTrace);
+    parser->setParseTrace(_pSEI->iParseTrace != 0);
 
-    wchar_t *pwstFileName = to_wide_string(pstFileName);
+    wchar_t *pwstFileName = to_wide_string(_pSEI->pstFile);
 
     /*
      ** -*- PARSING -*-
      */
-    parseFileTask(parser, _bTimed, pwstFileName, L"YaSp");
+    parseFileTask(parser, _pSEI->iTimed != 0, pwstFileName, L"YaSp");
 
     /*
      ** -*- DUMPING TREE -*-
      */
-    if (_bDumpAst == true)
+    if (_pSEI->iDumpAst)
     {
-        dumpAstTask(parser->getTree(), _bTimed);
+        dumpAstTask(parser->getTree(), _pSEI->iTimed != 0);
     }
 
     if (parser->getExitStatus() == Parser::Succeded)
@@ -497,9 +499,9 @@ static int batchMain(char *pstFileName,
         /*
          ** -*- PRETTY PRINT TREE -*-
          */
-        if (_bPrintAst == true)
+        if (_pSEI->iPrintAst)
         {
-            printAstTask(parser->getTree(), _bTimed);
+            printAstTask(parser->getTree(), _pSEI->iTimed != 0);
         }
 
     }

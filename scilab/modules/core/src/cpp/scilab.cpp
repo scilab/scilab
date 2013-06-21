@@ -35,22 +35,6 @@ extern "C"
 
 #define INTERACTIVE     -1
 
-static bool parseTrace = false;
-static bool printAst = false;
-static bool execAst = true;
-static bool dumpAst = false;
-static bool dumpStack = false;
-static bool timed = false;
-static bool ASTtimed = false;
-static bool execVerbose = false;
-static bool consoleMode = false;
-static bool noJvm = false;
-static bool noStart = false;
-static bool noBanner = false;
-static bool execCommand = false;
-static bool execFile = false;
-static bool parseFile = false;
-
 /*
 ** Usage
 **
@@ -84,7 +68,7 @@ static void usage(void)
 ** Get Options
 **
 */
-static int get_option(const int argc, char *argv[], int *_piFileIndex, int *_piParseFileIndex, int *_piExecIndex, int *_piLangIndex)
+static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
 {
     int i = 0;
 
@@ -96,11 +80,11 @@ static int get_option(const int argc, char *argv[], int *_piFileIndex, int *_piP
     {
         if (!strcmp("--parse-trace", argv[i]))
         {
-            parseTrace = true;
+            _pSEI->iParseTrace = 1;
         }
         else if (!strcmp("--pretty-print", argv[i]))
         {
-            printAst = true;
+            _pSEI->iPrintAst = 1;
         }
         else if (!strcmp("--help", argv[i]))
         {
@@ -109,70 +93,73 @@ static int get_option(const int argc, char *argv[], int *_piFileIndex, int *_piP
         }
         else if (!strcmp("--AST-trace", argv[i]))
         {
-            dumpAst = true;
+            _pSEI->iDumpAst = 1;
         }
         else if (!strcmp("--no-exec", argv[i]))
         {
-            execAst = false;
+            _pSEI->iExecAst = 0;
         }
         else if (!strcmp("--context-dump", argv[i]))
         {
-            dumpStack = true;
+            _pSEI->iDumpStack = 1;
         }
         else if (!strcmp("--timed", argv[i]))
         {
-            timed = true;
+            _pSEI->iTimed = 1;
         }
         else if (!strcmp("--AST-timed", argv[i]))
         {
             std::cout << "Timed execution" << std::endl;
-            ASTtimed = true;
+            _pSEI->iAstTimed = 1;
         }
         else if (!strcmp("--parse-file", argv[i]))
         {
             i++;
-            parseFile = true;
-            *_piParseFileIndex = i;
+            if (argc >= i)
+            {
+                _pSEI->pstParseFile = argv[i];
+            }
         }
         else if (!strcmp("-f", argv[i]))
         {
             i++;
-            execFile = true;
-            *_piFileIndex = i;
+            if (argc >= i)
+            {
+                _pSEI->pstFile = argv[i];
+            }
         }
         else if (!strcmp("-e", argv[i]))
         {
             i++;
-            execCommand = true;
-            *_piExecIndex = i;
+            if (argc >= i)
+            {
+                _pSEI->pstExec = argv[i];
+            }
         }
         else if (!strcmp("-l", argv[i]))
         {
             i++;
-            *_piLangIndex = i;
+            if (argc >= i)
+            {
+                _pSEI->pstLang = argv[i];
+            }
         }
         else if (!strcmp("-nw", argv[i]))
         {
-            consoleMode = true;
-            setScilabMode(SCILAB_NW);
+            _pSEI->iConsoleMode = 1;
         }
         else if (!strcmp("-nwni", argv[i]))
         {
-            consoleMode = true;
-            noJvm = true;
-            setScilabMode(SCILAB_NWNI);
+            _pSEI->iConsoleMode = 1;
+            _pSEI->iNoJvm = 1;
         }
         else if (!strcmp("-ns", argv[i]))
         {
-            noStart = true;
-        }
-        else if (!strcmp("-nb", argv[i]))
-        {
-            noBanner = true;
+            _pSEI->iNoStart = 1;
         }
         else if (!strcmp("--exec-verbose", argv[i]))
         {
-            execVerbose = true;
+            _pSEI->iExecVerbose = 1;
         }
     }
 
@@ -207,54 +194,17 @@ static void TermPrintf(char *text)
 int main(int argc, char *argv[])
 {
     int iRet = 0;
-    int iFileIndex = 0;
-    int iParseFileIndex = 0;
-    int iExecIndex = 0;
-    int iLangIndex = 0;
-
+    ScilabEngineInfo* pSEI = InitScilabEngineInfo();
 #ifdef WITHOUT_GUI
     /* Building Scilab-cli-bin. We won't ever had the gui nor the jvm */
-    consoleMode = true;
-    noJvm = true;
+    pSEI->iConsoleMode = 1;
+    pSEI->iNoJvm = 1;
     setScilabMode(SCILAB_NWNI);
 #else
     setScilabMode(SCILAB_STD);
 #endif
 
-    get_option(argc, argv, &iFileIndex, &iParseFileIndex, &iExecIndex, &iLangIndex);
-
-    if (iFileIndex >= argc || iParseFileIndex >= argc
-            || iExecIndex >= argc || iLangIndex >= argc)
-    {
-        // we used -l, -e or -f without another argument
-        usage();
-        return -1;
-    }
-
-    char* pstLang = NULL;
-    char* pstFile = NULL;
-    char* pstParseFile = NULL;
-    char* pstExec = NULL;
-
-    if (iLangIndex)
-    {
-        pstLang = argv[iLangIndex];
-    }
-
-    if (iFileIndex)
-    {
-        pstFile = argv[iFileIndex];
-    }
-
-    if (iParseFileIndex)
-    {
-        pstParseFile = argv[iParseFileIndex];
-    }
-
-    if (iExecIndex)
-    {
-        pstExec = argv[iExecIndex];
-    }
+    get_option(argc, argv, pSEI);
 
     // if WITHOUT_GUI is defined
     // force Terminal IO -> Terminal IO + StartScilabEngine
@@ -264,12 +214,13 @@ int main(int argc, char *argv[])
     //                      | [-nwni]       -> Terminal IO + StartScilabEngine
     //                      | [-nw]         -> Terminal IO + InitMacOSXEnv
 #ifndef WITHOUT_GUI
-    if (consoleMode)
+    if (pSEI->iConsoleMode)
     {
+        setScilabMode(SCILAB_NW);
         setScilabInputMethod(&getCmdLine);
         setScilabOutputMethod(&TermPrintf);
 #if defined(__APPLE__)
-        if (!noJvm)
+        if (!pSEI->iNoJvm)
         {
             return initMacOSXEnv(argc, argv, iFileIndex);
         }
@@ -277,6 +228,7 @@ int main(int argc, char *argv[])
     }
     else
     {
+        setScilabMode(SCILAB_STD);
         setScilabInputMethod(&ConsoleRead);
         setScilabOutputMethod(&ConsolePrintf);
 #if defined(__APPLE__)
@@ -284,12 +236,13 @@ int main(int argc, char *argv[])
 #endif // !defined(__APPLE__)
     }
 #else
+    setScilabMode(SCILAB_NWNI);
     setScilabInputMethod(&getCmdLine);
     setScilabOutputMethod(&TermPrintf);
 #endif // defined(WITHOUT_GUI)
 
-    StartScilabEngine(pstExec, pstFile, pstLang, noStart ? 1 : 0, noJvm ? 0 : 1, consoleMode ? 1 : 0);
-    iRet = RunScilabEngine(pstParseFile);
-    StopScilabEngine(NULL, noStart, consoleMode);
+    StartScilabEngine(pSEI);
+    iRet = RunScilabEngine(pSEI);
+    StopScilabEngine(pSEI);
     return iRet;
 }

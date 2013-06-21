@@ -21,3 +21,4 @@ MyHeapFree
 StartScilabEngine
 ExecExternalCommand
 StopScilabEngine
+InitScilabEngineInfo
