@@ -33,10 +33,9 @@ typedef struct
     char* pstLang;
 } ScilabEngineInfo;
 
-int StartScilabEngine(ScilabEngineInfo* _pSEI);
-
-
 ScilabEngineInfo* InitScilabEngineInfo();
+
+int StartScilabEngine(ScilabEngineInfo* _pSEI);
 int RunScilabEngine(ScilabEngineInfo* _pSEI);
 int ExecExternalCommand(ScilabEngineInfo* _pSEI);
 

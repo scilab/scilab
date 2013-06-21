@@ -14,6 +14,7 @@
 #ifndef __INITMACOSXENV_H__
 #define __INITMACOSXENV_H__
 
+#include "InitScilab.h"
 /*
  * Specific wrapper for mac os X which is going to call realmin in a specific
  * thread.
@@ -24,6 +25,6 @@
  * @return 1 if OK or 0 if KO
  */
 
-int initMacOSXEnv(int argc, char *argv[], int iFileIndex);
+int initMacOSXEnv(ScilabEngineInfo*);
 
 #endif /* !__INITMACOSXENV_H__ */

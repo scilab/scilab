@@ -220,9 +220,9 @@ int main(int argc, char *argv[])
         setScilabInputMethod(&getCmdLine);
         setScilabOutputMethod(&TermPrintf);
 #if defined(__APPLE__)
-        if (!pSEI->iNoJvm)
+        if (pSEI->iNoJvm == 0)
         {
-            return initMacOSXEnv(argc, argv, iFileIndex);
+            return initMacOSXEnv(pSEI);
         }
 #endif // !defined(__APPLE__)
     }
@@ -232,7 +232,7 @@ int main(int argc, char *argv[])
         setScilabInputMethod(&ConsoleRead);
         setScilabOutputMethod(&ConsolePrintf);
 #if defined(__APPLE__)
-        return initMacOSXEnv(argc, argv, iFileIndex);
+        return initMacOSXEnv(pSEI);
 #endif // !defined(__APPLE__)
     }
 #else
