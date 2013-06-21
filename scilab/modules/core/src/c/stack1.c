@@ -19,6 +19,7 @@
 #include "stack-c.h"
 #include "stack1.h"
 #include "stack2.h"
+#include "stackinfo.h"
 #include "sciprint.h"
 #include "cvstr.h"
 #include "localization.h"
