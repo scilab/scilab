@@ -25,7 +25,7 @@ public :
 
     void put(const Symbol& _key, types::InternalType& _iT);
     void remove(const Symbol& _key);
-    void print(std::wostream& ostr);
+    void print(std::wostream& ostr) const;
     void addVar(const symbol::Symbol& _key);
     void removeVar(const symbol::Symbol& _key);
 
@@ -83,16 +83,7 @@ public :
 
     /*tools*/
     std::list<symbol::Symbol>& getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd);
-    void print(std::wostream& ostr) const
-    {
-        ScopesList::const_iterator it = m_scopes.begin();
-
-        for (; it != m_scopes.end() ; it++)
-        {
-            (*it)->print(ostr);
-            ostr << std::endl << std::endl;
-        }
-    }
+    void print(std::wostream& ostr) const;
 };
 
 inline std::wostream& operator<< (std::wostream& ostr, const Scopes& _scopes)

@@ -92,9 +92,6 @@ public :
     /*set variable visible/hidden in current global scope*/
     void setGlobalVisible(const symbol::Symbol& key, bool bVisible = true);
 
-    /*print all tables*/
-    void print();
-
     /*add symbol and value in the stack*/
     bool put(const symbol::Symbol& key, types::InternalType& type);
     /*add symbol and value in the previous scope*/
@@ -106,12 +103,7 @@ public :
     bool addFunction(types::Function *_info);
     bool AddMacro(types::Macro *_info);
     bool AddMacroFile(types::MacroFile *_info);
-    void print(std::wostream& ostr) const
-    {
-        ostr << L"  Environment Variables:" << std::endl;
-        ostr << L"==========================" << std::endl;
-        ostr << *m_scopes;
-    };
+    void print(std::wostream& ostr) const;
 private :
 
     Scopes* m_scopes;

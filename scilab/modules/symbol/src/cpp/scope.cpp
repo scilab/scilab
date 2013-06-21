@@ -37,11 +37,11 @@ void Scope::remove(const Symbol& _key)
     m_vars->remove(_key);
 }
 
-void Scope::print(std::wostream& ostr)
+void Scope::print(std::wostream& ostr) const
 {
     ostr << L"scope " << m_iLevel << L" : " << std::endl;
 
-    SymbolMap::iterator it = m_symbol.begin();
+    SymbolMap::const_iterator it = m_symbol.begin();
     for (; it != m_symbol.end() ; it++)
     {
         ostr.width(25);
@@ -188,4 +188,16 @@ std::list<symbol::Symbol>& Scopes::getFunctionList(const std::wstring& _stModule
 {
     return m_vars.getFunctionList(_stModuleName, _bFromEnd);
 }
+
+void Scopes::print(std::wostream& ostr) const
+{
+    ScopesList::const_iterator it = m_scopes.begin();
+
+    for (; it != m_scopes.end() ; it++)
+    {
+        (*it)->print(ostr);
+        ostr << std::endl << std::endl;
+    }
+}
+
 }

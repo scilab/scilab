@@ -158,4 +158,12 @@ void Context::removeGlobalAll()
 {
     m_scopes->removeGlobalAll();
 }
+
+void Context::print(std::wostream& ostr) const
+{
+    ostr << L"  Environment Variables:" << std::endl;
+    ostr << L"==========================" << std::endl;
+    ostr << *m_scopes;
+}
+
 }
