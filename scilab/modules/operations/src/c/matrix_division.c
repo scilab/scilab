@@ -754,19 +754,19 @@ int iLeftDivisionOfComplexMatrix(
 
         if (iInfo == 0)
         {
-            if ( _iRows1 != _iCols1 && iRank < Min(_iRows1, _iCols1))
-            {
-                //how to extract that ? Oo
-                iReturn = -2;
-                *_pdblRcond = (double)iRank;
-            }
-
             // In the case where "pXb" has more rows that the output,
             // the output values are the first lines of pXb
             // and not the size of output first elements of pXb.
             double* tmpRealPart = (double*)malloc(iMax * _iColsOut * sizeof(double));
             double* tmpImagPart = (double*)malloc(iMax * _iColsOut * sizeof(double));
             vGetPointerFromDoubleComplex(pXb, iMax * _iColsOut, tmpRealPart, tmpImagPart);
+
+            if ( _iRows1 != _iCols1 && iRank < Min(_iRows1, _iCols1))
+            {
+                //how to extract that ? Oo
+                iReturn = -2;
+                *_pdblRcond = (double)iRank;
+            }
 
             C2F(dlacpy)(&cNorm, &_iRowsOut, &_iColsOut, tmpRealPart, &iMax, _pdblRealOut, &_iRowsOut);
             C2F(dlacpy)(&cNorm, &_iRowsOut, &_iColsOut, tmpImagPart, &iMax, _pdblImgOut, &_iRowsOut);
