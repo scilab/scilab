@@ -273,7 +273,7 @@ BOOL HistoryManager::appendLine(char* _pstLine)
         /* remove space & carriage return at the end of line */
         len = (int)strlen(_pstLine);
         pstCleanedLine = (char*) MALLOC(len + 1);
-        memcpy(pstCleanedLine, _pstLine, len);
+        memcpy(pstCleanedLine, _pstLine, len + 1);
 
         /* remove carriage return at the end of line */
         for (i = len ; i > 0 ; i--)
