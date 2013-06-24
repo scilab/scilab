@@ -42,13 +42,13 @@ function y = nthroot(x,n)
         y(find(x==%eps & n==0)) = 0;
     end
 
-    // If n = %nan and x is positive then y = %nan
-    if (isnan(n) & or(x >= 0)) then
-        y(find(x>=0)) = %nan;
-    elseif (x==[]) then
+    if (x==[]) then
         y = [];
     elseif (n==[]) then
         y = x;
+        // If n = %nan and x is positive then y = %nan
+    elseif (isnan(n) & or(x >= 0)) then
+        y(find(x>=0)) = %nan;
     elseif (or (or(x(:)<0) & (or(n~=fix(n)) | reste==0 | reste==%f))) then
         error(msprintf(gettext("%s: If x is negative, then n must be odd integers\n"),"nthroot"));
         // If n ~=0 and n ~= %nan
