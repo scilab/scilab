@@ -1121,6 +1121,8 @@ Scilab Bug Fixes
 * Bug #12593 fixed - A wrong error message was returned when running genlib with an
                     error in the sci file.
 
+* Bug #12594 fixed - Invalid SciNotes configuration file avoided SciNotes startup.
+
 * Bug #12600 fixed - mput did not manage unsigned integer.
 
 * Bug #12606 fixed - Overloads for grand were not standard.

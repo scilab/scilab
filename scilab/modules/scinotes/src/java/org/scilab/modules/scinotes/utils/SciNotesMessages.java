@@ -29,6 +29,7 @@ public class SciNotesMessages {
 
     public static final String SCILAB_EDITOR = Messages.gettext("SciNotes");
     public static final String ERROR_WITH_STRING = Messages.gettext("Error while reading the String");
+    public static final String CORRUPTED_CONF_FILE = Messages.gettext("The configuration file has been corrupted and reset to default one.");
 
     public static final String INVALID_FILE = Messages.gettext("File not found: %s");
     public static final String IO_EXCEPTION = Messages.gettext("I/O error: %s");

@@ -50,6 +50,8 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -1014,6 +1016,13 @@ public final class ConfigSciNotesManager {
         }
 
         ScilabDocumentBuilderFactory.restoreDocumentBuilderFactoryImpl(factoryName);
+
+        if (document == null && fileConfig.exists()) {
+            ScilabModalDialog.show(null, SciNotesMessages.CORRUPTED_CONF_FILE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            fileConfig.delete();
+            createUserCopy();
+            readDocument(pathConfSci);
+        }
     }
 
     /**
