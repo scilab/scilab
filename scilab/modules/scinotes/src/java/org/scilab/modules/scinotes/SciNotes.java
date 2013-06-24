@@ -2149,6 +2149,9 @@ public class SciNotes extends SwingScilabTab {
      * @see org.scilab.modules.gui.tab.Tab#getParentWindow()
      */
     public SwingScilabWindow getParentWindow() {
+        if (parentWindow == null) {
+            return super.getParentWindow();
+        }
         return parentWindow;
     }
 
