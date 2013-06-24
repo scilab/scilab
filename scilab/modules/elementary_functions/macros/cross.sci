@@ -23,15 +23,12 @@ function c=cross(a,b)
     if size(a,1) <> size(b,1) | size(a,2)<>size(b,2) then
         error(msprintf(_("%s: Wrong size for input arguments: Same sizes expected.\n"), "cross"));
     end
-    if size(a,1)<>3 & (size(a,1)<>1 & size(a,2)<>3) then
+    if (size(a,1)<>1 | size(a,2)<>3) & size(a,1)<>3 then
         error(msprintf(_("%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN expected.\n"), "cross", 1));
-    end
-    if size(b,1)<>3 & size(b,1)<>1 & size(b,2)<>3 then
-        error(msprintf(_("%s: Wrong size for input argument #%d: A matrix of size 1x3 or 3xN expected.\n"), "cross", 2));
     end
 
     if size(a,2)==3 & size(a,1)==1 then
-        c=a(:,[2 3 1]).*b(:,[3 1 2]) - a(:,[3 1 2]).*b([2 3 1]);
+        c=a(:,[2 3 1]).*b(:,[3 1 2]) - a(:,[3 1 2]).*b(:,[2 3 1]);
     else
         c=a([2 3 1],:).*b([3 1 2],:) - a([3 1 2],:).*b([2 3 1],:);
     end
