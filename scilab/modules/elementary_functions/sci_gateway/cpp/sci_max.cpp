@@ -81,20 +81,38 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
     }
 
     types::GenericType* pGT = NULL;
+    int iNbEmptyMatrix = 0;
+    int iPosFirstEmpty = 0;
+    bool bFindFirstMatrix = false;
+
     // get the size of the first input non scalar
     for (int i = 0; i < inputs.size(); i++)
     {
         pGT = inputs[i]->getAs<types::GenericType>();
-        if (pGT->isScalar() == false)
+        if (pGT->getSize() == 0)
         {
-            break;
+            if (iNbEmptyMatrix == 0)
+            {
+                iPosFirstEmpty = i + 1;
+            }
+            iNbEmptyMatrix++;
+        }
+        else if (bFindFirstMatrix == false && pGT->isScalar() == false)
+        {
+            bFindFirstMatrix = true;
+            iDims       = pGT->getDims();
+            piDimsArray = pGT->getDimsArray();
         }
     }
 
-    iDims       = pGT->getDims();
-    piDimsArray = pGT->getDimsArray();
+    // all inputs are scalar
+    if (iDims == 0)
+    {
+        iDims       = pGT->getDims();
+        piDimsArray = pGT->getDimsArray();
+    }
 
-    if (pGT->getSize() == 0)
+    if (iNbEmptyMatrix == inputs.size())
     {
         out.push_back(types::Double::Empty());
         if (_iRetCount == 2)
@@ -102,6 +120,11 @@ types::Function::ReturnValue sci_max(types::typed_list &in, int _iRetCount, type
             out.push_back(types::Double::Empty());
         }
         return types::Function::OK;
+    }
+    else if (iPosFirstEmpty)
+    {
+        Scierror(45, _("%s: null matrix (argument # %d).\n"), "max", iPosFirstEmpty);
+        return types::Function::Error;
     }
 
     if (in.size() == 2)
