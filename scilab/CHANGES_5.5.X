@@ -375,6 +375,8 @@ Bug fixes
 * Bug #12624 fixed - In case of errors in Scilab macros, make sure that
                      "make check-TESTS" fails correctly.
 
+* Bug #12627 fixed - At restoration a window could be out of the screen.
+
 * Bug #12629 fixed - Last example of csim help page defined a function called
                      input() (overwriting the Scilab one).
 
