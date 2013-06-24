@@ -125,6 +125,8 @@ Xcos
 * Bug #12651 fixed - The 'nw' scicos_simulate option did not work while
                      passing a previous Info simulation status.
 
+* Bug #12664 fixed - Inverted pendulum french translation was wrong in the Xcos demo.
+
 
 Toolbox skeleton
 =================
