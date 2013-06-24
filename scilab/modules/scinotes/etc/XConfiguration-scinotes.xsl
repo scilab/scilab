@@ -445,19 +445,25 @@
                     <Label gridx="6" gridy="1" weightx="0" text="_(Style: )" enable="{@highlight-brackets}"/>
                     
                     <Select gridx="7" gridy="1" listener="ActionListener" enable="{@highlight-brackets}">
-                        
+                        <xsl:variable name="bh" select="@brackets-highlightment"/>
                         <actionPerformed choose="brackets-highlightment">
-                            
                             <xsl:call-template name="context"/>
-                            
                         </actionPerformed>
-                        
-                        <option value="_(Filled)" key="Filled"/>
-                        
-                        <option value="_(Framed)" key="Framed"/>
-                        
-                        <option value="_(Underlined)" key="Underlined"/>
-                        
+                        <option value="_(Filled)" key="Filled">
+                            <xsl:if test="'Filled'=$bh">
+                                <xsl:attribute name="selected">selected</xsl:attribute>
+                            </xsl:if>
+                        </option>
+                        <option value="_(Framed)" key="Framed">
+                            <xsl:if test="'Framed'=$bh">
+                                <xsl:attribute name="selected">selected</xsl:attribute>
+                            </xsl:if>
+                        </option>
+                        <option value="_(Underlined)" key="Underlined">
+                            <xsl:if test="'Underlined'=$bh">
+                                <xsl:attribute name="selected">selected</xsl:attribute>
+                            </xsl:if>
+                        </option>
                     </Select>
                     
                 </Grid>
@@ -503,17 +509,20 @@
                     <Label gridx="6" gridy="1" weightx="0" text="_(Style: )" enable="{@highlight-keywords}"/>
                     
                     <Select gridx="7" gridy="1" listener="ActionListener" enable="{@highlight-keywords}">
-                        
+                        <xsl:variable name="kh" select="@keywords-highlightment"/>
                         <actionPerformed choose="keywords-highlightment">
-                            
                             <xsl:call-template name="context"/>
-                            
                         </actionPerformed>
-                        
-                        <option value="_(Filled)" key="Filled"/>
-                        
-                        <option value="_(Framed)" key="Framed"/>
-                        
+                        <option value="_(Filled)" key="Filled">
+                            <xsl:if test="'Filled'=$kh">
+                                <xsl:attribute name="selected">selected</xsl:attribute>
+                            </xsl:if>
+                        </option>
+                        <option value="_(Framed)" key="Framed">
+                            <xsl:if test="'Framed'=$kh">
+                                <xsl:attribute name="selected">selected</xsl:attribute>
+                            </xsl:if>
+                        </option>
                     </Select>
                     
                 </Grid>

@@ -399,4 +399,4 @@ Bug fixes
 
 * Bug #12686 fixed - Error returned by diff() fixed.
 
-
+* Bug #12708 fixed - Incorrect display in SciNotes preferences fixed (onmouseover styles).
