@@ -53,7 +53,6 @@ Source: bin\symbol.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\types.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\system_env.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\parse.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\YaSp.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 
 Source: bin\zlib1.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -71,8 +70,8 @@ Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-;Source: bin\YaSpScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;

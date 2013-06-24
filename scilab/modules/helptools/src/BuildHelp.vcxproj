@@ -56,20 +56,20 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -77,11 +77,11 @@ exit /B 0
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l en -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l pt_BR -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -93,20 +93,20 @@ exit /B 0
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -114,11 +114,11 @@ exit /B 0
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l en -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l pt_BR -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
@@ -130,20 +130,20 @@ exit /B 0
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -151,11 +151,11 @@ exit /B 0
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l en -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l pt_BR -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
@@ -167,20 +167,20 @@ exit /B 0
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
 exit /B 0
 </NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l en -e xmltojar([],[],'en_US');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l fr -e xmltojar([],[],'fr_FR');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l pt_BR -e xmltojar([],[],'pt_BR');exit(0)
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ja_JP -e xmltojar([],[],'ja_JP');exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -nouserstartup -nw -noatomsautoload -l ru_RU -e xmltojar([],[],'ru_RU');exit(0);
 exit /B 0
 
 </NMakeReBuildCommandLine>
@@ -188,11 +188,11 @@ exit /B 0
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
-"$(SolutionDir)bin\Yasp.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l en -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l fr -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l pt_BR -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l ja_JP -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
+"$(SolutionDir)bin\WScilex.exe" -nb -l ru_RU -nouserstartup -nw -noatomsautoload -e clean_help();exit(0);
 exit /B 0
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />

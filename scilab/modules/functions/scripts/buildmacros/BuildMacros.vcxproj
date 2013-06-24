@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -60,9 +60,9 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SolutionDir)bin\YaSp" -ns -nb -nwni -f buildmacros.sce</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SolutionDir)bin\Scilex" -ns -nb -nwni -f buildmacros.sce</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">call cleanmacros.bat
-"$(SolutionDir)bin\YaSp" -ns -nwni -f "$(ProjectDir)buildmacros.sce"
+"$(SolutionDir)bin\Scilex" -ns -nwni -f "$(ProjectDir)buildmacros.sce"
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">cleanmacros.bat</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
@@ -73,9 +73,9 @@
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)bin\YaSp" -ns -nb -nwni -f buildmacros.sce</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SolutionDir)bin\Scilex" -ns -nb -nwni -f buildmacros.sce</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">call cleanmacros.bat
-"$(SolutionDir)bin\YaSp" -ns -nwni -f "$(ProjectDir)buildmacros.sce"
+"$(SolutionDir)bin\Scilex" -ns -nwni -f "$(ProjectDir)buildmacros.sce"
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">cleanmacros.bat</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
@@ -86,9 +86,9 @@
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)bin\YaSp" -ns -nb -nwni -f buildmacros.sce</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SolutionDir)bin\Scilex" -ns -nb -nwni -f buildmacros.sce</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">call cleanmacros.bat
-"$(SolutionDir)bin\YaSp" -ns -nwni -f "$(ProjectDir)buildmacros.sce"
+"$(SolutionDir)bin\Scilex" -ns -nwni -f "$(ProjectDir)buildmacros.sce"
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">cleanmacros.bat</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
@@ -99,9 +99,9 @@
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)bin\YaSp" -ns -nb -nwni -f buildmacros.sce</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SolutionDir)bin\Scilex" -ns -nb -nwni -f buildmacros.sce</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">call cleanmacros.bat
-"$(SolutionDir)bin\YaSp" -ns -nwni -f "$(ProjectDir)buildmacros.sce"
+"$(SolutionDir)bin\Scilex" -ns -nwni -f "$(ProjectDir)buildmacros.sce"
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">cleanmacros.bat</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
@@ -119,10 +119,6 @@
     <None Include="loadgenlib.sce" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\core\core_yasp.vcxproj">
-      <Project>{14373d41-991a-412e-8ea7-a832d98047b8}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\functions_manager\functions_manager.vcxproj">
       <Project>{8eac9381-c059-43ea-b5d7-fd5d6997b0bd}</Project>
     </ProjectReference>

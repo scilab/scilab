@@ -16,7 +16,6 @@
 #ifndef SCILAB_X64
 Filename: {app}\bin\SetupAtlas.exe; Description:{cm:DescriptionConfigureAtlas}; Flags: nowait; Components: {#COMPN_ATLAS_CPU_LIBRARY}
 #endif
-Filename: {code:getExecNameForDesktop}; Description: {cm:DescriptionLaunchScilab}; WorkingDir: "{userdocs}"; Flags: nowait postinstall skipifsilent;Components: {#COMPN_JVM_MODULE}
-Filename: {code:getExecNameForDesktop};Parameters: "-nwni"; Description: {cm:DescriptionLaunchScilab}; WorkingDir: "{userdocs}"; Flags: nowait postinstall skipifsilent;Components: not {#COMPN_JVM_MODULE}
+Filename: {code:getExecNameForDesktop}; Description: {cm:DescriptionLaunchScilab}; WorkingDir: "{userdocs}"; Flags: nowait postinstall skipifsilent;
 ;-------------------------------------------------------------------------------
 ;

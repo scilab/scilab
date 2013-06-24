@@ -37,11 +37,11 @@ function getExecNameForDesktop(Param: String): String;
     begin
         if (isCLIType() = true) then
             begin
-                Result := ExpandConstant('{app}') + '\bin\YaSp.exe';
+                Result := ExpandConstant('{app}') + '\bin\Scilex.exe';
             end
         else
             begin
-                Result := ExpandConstant('{app}') + '\bin\YaSp.exe';
+                Result := ExpandConstant('{app}') + '\bin\WScilex.exe';
             end;
     end;
 //------------------------------------------------------------------------------

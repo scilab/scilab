@@ -13,14 +13,13 @@
 ;
 ;-------------------------------------------------------------------------------
 
-Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};Parameters: "-nwni";WorkingDir: "{userdocs}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon;Components: not {#COMPN_JVM_MODULE};
-Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{userdocs}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon;Components: {#COMPN_JVM_MODULE};
+Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{userdocs}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon;
 ;
 ;shorcut -nwni for minimal install ( without JVM )
 Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};Parameters: "-nwni";WorkingDir: "{userdocs}";Components: not {#COMPN_JVM_MODULE};
 ;shortcut GUI + nwni for full install
 Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{userdocs}";Components: {#COMPN_JVM_MODULE};
-Name: {group}\{cm:ConsoleIconName}; Filename: {code:getExecNameForDesktop};Parameters: "-nwni";WorkingDir: "{userdocs}";Components: {#COMPN_JVM_MODULE};
+Name: {group}\{cm:ConsoleIconName}; Filename: {code:getExecNameForDesktop};Parameters: "-nw";WorkingDir: "{userdocs}";Components: {#COMPN_JVM_MODULE};
 ;
 Name: {group}\{cm:DescriptionHelpScilabCHM}; Filename:"{app}\{cm:ScilabCHM}"; Components: {#COMPN_CHM};
 ;

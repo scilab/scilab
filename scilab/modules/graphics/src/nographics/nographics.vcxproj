@@ -190,6 +190,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_graphics.h" />
     <ClInclude Include="..\..\includes\dynlib_graphics_gw.h" />
     <ClInclude Include="..\..\includes\graphics_gw.hxx" />
   </ItemGroup>

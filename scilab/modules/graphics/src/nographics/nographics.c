@@ -20,7 +20,9 @@
 #include "SetProperty.h"
 #include "BuildObjects.h"
 #include "MALLOC.h"
-
+#include "getDictionaryGetProperties.h"
+#include "getDictionarySetProperties.h"
+#include "graphicModuleLoad.h"
 /*--------------------------------------------------------------------------*/
 
 /*
