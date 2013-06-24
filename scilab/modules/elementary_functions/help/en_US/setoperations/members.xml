@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - Université du Maine - Samuel Gougeon
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="members" xml:lang="fr">
+    <refnamediv>
+        <refname>members</refname>
+        <refpurpose>returns vectors of indexes corresponding to the common values of two matrices
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[nb [,loc]] = members(A, S [,last])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>matrix or hypermatrix of booleans, integers, reals, complexes, polynomials or strings</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>S</term>
+                <listitem>
+                    <para>
+                        matrix or hypermatrix of same datatype as <literal>A</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>last</term>
+                <listitem>
+                    <para>scalar boolean</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb</term>
+                <listitem>
+                    <para>
+                        matrix of reals, same size as <literal>A</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>loc</term>
+                <listitem>
+                    <para>
+                        matrix of reals, same size as <literal>A</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>nb = members(A, S)</literal> returns the number of occurrences of <literal>A</literal> in <literal>S</literal>.
+            After <literal>[nb, loc] = members(A, S, last)</literal>,
+            <literal>loc(i, j)</literal>contains the linear index in <literal>S</literal> of the first occurrence of <literal>A(i, j)</literal>.
+            If <literal>last==%t</literal>, the index of the last occurrence is returned instead.
+            <literal>loc(i, j)</literal> returns zero if <literal>A(i, j)</literal> is not found.
+            <literal>%inf</literal> and <literal>-%inf</literal> values are supported either in <literal>A</literal> as well as in <literal>S</literal>.
+            <literal>%nan</literal> are only supported in <literal>A</literal>.
+        </para>
+        <para>
+            When <literal>A</literal> is a vector of doubles or integers and <literal>S</literal> is a vector of doubles or integers in strictly increasing order,
+            <literal>dsearch(A, S, "d")</literal> is preferred over <literal>members(A, S)</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A = [1 8 4 5 2 1];
+S = [9 7 4 2 1 4];
+
+[nb, loc] = members(A, S, %t)
+// Returns nb  = [1 0 2 0 1 1] because, for instance, the third element of A (which is 4) appears twice in S.
+// And     loc = [5 0 6 0 4 5] because the last occurrence in S of the third element of A (which is 4) is in sixth position
+
+[nb, loc] = members(A, S, %f)
+// Returns loc = [5 0 3 0 4 5] because the first occurrence in S of the third element of A (which is 4) is in third position
+
+// With hypermatrices. From previous A and S:
+A = matrix(A, [3 1 2]);
+S = matrix(S, [3 1 2]);
+[nb, loc] = members(A, S, %T)
+
+// With integers:
+A = int8(grand(3, 2, "uin", -5, 5));
+S = int8(grand(4, 4, "uin", -5, 5));
+[nb, loc] = members(A, S)
+
+// With polynomials (complex coefficients are accepted):
+z = %z;
+A = [z (1-z)^2 ; -4 %i*z ];
+S = [2  %i*z -z  3-z  z  z^3 z];
+[nb, loc] = members(A, S)
+
+// With text:
+A = [ "Hi" "Hu" "Allo"];
+S = [ "Hello" "Bonjour" "Allo"
+      "Holà"  "Allo"  "Hallo"
+      "Hi"    "Hé"    "Salud" ];
+[nb, loc] = members(A, S, %t)
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dsearch">dsearch</link>
+            </member>
+            <member>
+                <link linkend="intersect">intersect</link>
+            </member>
+            <member>
+                <link linkend="unique">unique</link>
+            </member>
+            <member>
+                <link linkend="gsort">gsort</link>
+            </member>
+            <member>
+                <link linkend="union">union</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Function members introduced.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
