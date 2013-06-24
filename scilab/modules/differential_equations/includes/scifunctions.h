@@ -33,7 +33,7 @@ DIFFERENTIAL_EQUATIONS_IMPEXP int ode_g(int *n, double *t, double *y, int *ng, d
 // intg
 typedef double(*intg_f_t)(double*);
 
-extern double C2F(dqags)(intg_f_t, double*, double*, double*, double*, double*, double*, double*, double*, int*, int*, int*, double*, double*, int*);
+extern double C2F(dqags)(intg_f_t f, double* a, double* b, double* epsabs, double* epsrel, double* result, double* abserr, int* neval, int* ier, int* limit, int* lenw, int* last, int* iwork, double* dwork);
 
 DIFFERENTIAL_EQUATIONS_IMPEXP double intg_f(double*);
 

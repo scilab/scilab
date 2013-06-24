@@ -248,6 +248,9 @@
     <ProjectReference Include="..\..\core\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\elementary_functions\src\c\elementary_functions.vcxproj">
+      <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
