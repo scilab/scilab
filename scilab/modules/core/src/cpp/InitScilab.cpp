@@ -222,6 +222,8 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
             processCommand(_pSEI);
             FREE(pstCommand);
             iMainRet = ConfigVariable::getExitStatus();
+            _pSEI->pstExec = NULL;
+            _pSEI->pstFile = NULL;
         }
     }
     catch (ScilabException se)
