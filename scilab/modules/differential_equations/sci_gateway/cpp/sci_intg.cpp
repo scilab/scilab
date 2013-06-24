@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2013 - Scilab Enterprises - Cedric DELAMARRE
+* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -27,15 +27,7 @@ extern "C"
 #include "scifunctions.h"
 #include "warningmode.h"
 #include "sciprint.h"
-#include "matrix_division.h"
-#include "vfinite.h"
 }
-
-/* ISNAN overloading for Mac OS X */
-#ifdef __APPLE__
-#undef ISNAN
-#define ISNAN std::isnan
-#endif
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -48,8 +40,6 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     double result = 0;
     double abserr = 0;
 
-    int iOne = 1;
-
     // *** check the minimal number of input args. ***
     if (in.size() < 3 || in.size() > 5)
     {
@@ -58,9 +48,9 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     }
 
     // *** check number of output args ***
-    if (_iRetCount > 3)
+    if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "intg", 3);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "intg", 2);
         return types::Function::Error;
     }
 
@@ -82,12 +72,6 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
     pdA = pDblA->get(0);
 
-    if (ISNAN(pdA) || C2F(vfinite)(&iOne , &pdA) == false)
-    {
-        Scierror(264, _("%s: Wrong type for input argument #%d : Must not contain NaN or Inf.\n"), "intg", 1);
-        return types::Function::Error;
-    }
-
     // B
     if (in[1]->isDouble() == false)
     {
@@ -104,12 +88,6 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     }
 
     pdB = pDblB->get(0);
-
-    if (ISNAN(pdB) || C2F(vfinite)(&iOne , &pdB) == false)
-    {
-        Scierror(264, _("%s: Wrong type for input argument #%d : Must not contain NaN or Inf.\n"), "intg", 1);
-        return types::Function::Error;
-    }
 
     // function
     DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"intg");
@@ -220,12 +198,14 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     }
 
     // *** Create working table. ***
-    int limit   = 750;
-    int neval   = 0;
-    int last    = 0;
-    int lenw    = 4 * limit;
+    int limit = 750;
 
-    double* dwork   = (double*)malloc(lenw * sizeof(double));
+    // rwork
+    double* alist   = (double*)malloc(limit * sizeof(double));
+    double* blist   = (double*)malloc(limit * sizeof(double));
+    double* elist   = (double*)malloc(limit * sizeof(double));
+    double* rlist   = (double*)malloc(limit * sizeof(double));
+
     int* iwork      = (int*)malloc(limit * sizeof(int));
 
     double epsabs   = fabs(pdEpsA);
@@ -233,64 +213,50 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
     // *** Perform operation. ***
     int ier = 0;
-    C2F(dqags)(intg_f, &pdA, &pdB, &epsabs, &epsrel,
-               &result, &abserr, &neval, &ier,
-               &limit, &lenw, &last, iwork, dwork);
+    C2F(dqags)(intg_f, &pdA, &pdB, &epsabs, &epsrel, alist, blist, elist, rlist, &limit, iwork, &limit, &result, &abserr, &ier);
 
-    free(dwork);
+    free(alist);
+    free(blist);
+    free(elist);
+    free(rlist);
     free(iwork);
     DifferentialEquation::removeDifferentialEquationFunctions();
 
     if (ier)
     {
-        char* msg = NULL;
         switch (ier)
         {
             case 1 :
             {
-                msg = _("%s: Maximum number of subdivisions achieved. Splitting the interval might help.\n");
-                break;
+                Scierror(999, _("%s: Maximum number of subdivisions allowed has been achieved.\n"), "intg");
+                return types::Function::Error;
             }
             case 2 :
             {
-                msg = _("%s: Round-off error detected, the requested tolerance (or default) cannot be achieved. Try using bigger tolerances.\n");
+                if (getWarningMode())
+                {
+                    sciprint(_("%ls: Warning : The occurrence of roundoff error is detected, which prevents the requested tolerance from being achieved. The error may be under-estimated.\n"), L"intg");
+                }
                 break;
             }
             case 3 :
             {
-                msg = _("%s: Bad integrand behavior occurs at some points of the integration interval.\n");
-                break;
+                Scierror(999, _("%s: Extremely bad integrand behaviour occurs at some points of the integration interval.\n"), "intg");
+                return types::Function::Error;
             }
             case 4 :
             {
-                msg = _("%s: Convergence problem, round-off error detected. Try using bigger tolerances.\n");
+                if (getWarningMode())
+                {
+                    sciprint(_("%ls: Warning : The algorithm does not converge. Roundoff error is detected in the extrapolation table. It is presumed that the requested tolerance cannot be achieved, and that the returned result is the best which can be obtained.\n"), L"intg");
+                }
                 break;
             }
             case 5 :
             {
-                msg = _("%s: The integral is probably divergent, or slowly convergent.\n");
-                break;
+                Scierror(999, _("%s: The integral is probably divergent, or slowly convergent.\n"), "intg");
+                return types::Function::Error;
             }
-            case 6 :
-            {
-                msg = _("%s: Invalid input, absolute tolerance <= 0 and relative tolerance < 2.e-14.\n");
-                break;
-            }
-            default :
-                msg = _("%s: Convergence problem...\n");
-        }
-
-        if (_iRetCount == 3)
-        {
-            if (getWarningMode())
-            {
-                sciprint(msg, "intg: Warning");
-            }
-        }
-        else
-        {
-            Scierror(999, msg, "intg : Error");
-            return types::Function::Error;
         }
     }
 
@@ -298,14 +264,10 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     types::Double* pDblOut = new types::Double(result);
     out.push_back(pDblOut);
 
-    if (_iRetCount > 1)
+    if (_iRetCount == 2)
     {
-        out.push_back(new types::Double(abserr));
-    }
-
-    if (_iRetCount == 3)
-    {
-        out.push_back(new types::Double((double)ier));
+        types::Double* pDblErrOut = new types::Double(abserr);
+        out.push_back(pDblErrOut);
     }
 
     return types::Function::OK;
