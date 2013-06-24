@@ -264,7 +264,7 @@ Bug fixes
 * Bug #10269 fixed - qp_solve can now take up to 5 output arguments. The last one is an error flag,
                      if it is present, then the function will issue a warning instead of an error.
 
-* Bug #10287 fixed - An error message added for complex expression as input argument of integrate function.
+* Bug #10287 fixed - Added an error message for complex expression as input argument of integrate function.
 
 * Bug #10596 fixed - exit(xxx) from Scilab was failing.
 
