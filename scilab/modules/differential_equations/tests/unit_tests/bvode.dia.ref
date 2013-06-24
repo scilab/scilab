@@ -7,6 +7,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // to check that bvode works
+funcprot(0);
 function df=dfsub(x,z)
     df=[0,0,-6/x**2,-6/x]
 endfunction
@@ -57,8 +58,8 @@ exec(SCI+'/modules/differential_equations/tests/unit_tests/bvode_tst.sci');
 [z,zf]=col1();
 if max(abs(z-zf))>1.e-5 then bugmes();quit;end
 [z,zf]=col2(0);
-// Fortran Coded version 
+// Fortran Coded version
 if max(abs(z-zf))>1.e-2 then bugmes();quit;end
 [z,zf]=col2(1);
-// Scilab coded version 
+// Scilab coded version
 if max(abs(z-zf))>1.e-2 then bugmes();quit;end

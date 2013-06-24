@@ -8,6 +8,8 @@
 
 // <-- CLI SHELL MODE -->
 // to check that bvode works
+funcprot(0);
+
 function df=dfsub(x,z)
     df=[0,0,-6/x**2,-6/x]
 endfunction
@@ -56,7 +58,7 @@ tol=[1.e-11,1.e-11];
 res=aleft:0.1:aright;
 
 z=bvode(res,ncomp,m,aleft,aright,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess);
-z1=[];for x=res,z1=[z1,trusol(x)]; end;  
+z1=[];for x=res,z1=[z1,trusol(x)]; end;
 if norm(z-z1) > 1D8*%eps then pause,end;
 
 clear gsub
@@ -68,10 +70,10 @@ exec(SCI+'/modules/differential_equations/tests/unit_tests/bvode_tst.sci');
 if max(abs(z-zf))>1.e-5 then pause,end
 
 [z,zf]=col2(0);
-// Fortran Coded version 
+// Fortran Coded version
 if max(abs(z-zf))>1.e-2 then pause,end
 
 [z,zf]=col2(1);
-// Scilab coded version 
+// Scilab coded version
 if max(abs(z-zf))>1.e-2 then pause,end
 
