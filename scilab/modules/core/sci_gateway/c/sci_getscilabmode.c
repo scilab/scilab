@@ -21,10 +21,8 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len)
 {
-    int n1 = 0, m1 = 0;
     char *output = NULL ;
     int iRet = 0;
-    SciErr sciErr;
 
     CheckInputArgument(pvApiCtx, 0, 0) ;
     CheckOutputArgument(pvApiCtx, 1, 1) ;
