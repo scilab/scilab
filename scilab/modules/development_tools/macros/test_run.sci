@@ -767,9 +767,9 @@ function status = test_single(_module, _testPath, _testName)
     // Build final command
     if getos() == "Windows" then
         if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
-            test_cmd = "( """ + SCI_BIN + "\bin\YaSp.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\WScilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         else // standard module
-            test_cmd = "( """ + SCI_BIN + "\bin\YaSp.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\WScilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
