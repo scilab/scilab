@@ -20,15 +20,8 @@ ilib_verbose(0);
 t=1:10;t0=0;y0=[1;0];y0d=[-10;0];
 info=list([],0,[],[],[],0,0);
 //    Calling Scilab functions
-function [r,ires]=dres1(t,y,ydot)
-    r=[ydot(1)+10*y(1);
-    y(2)+y(1)-1];
-    ires=0
-endfunction
-
-function pd=djac1(t,y,ydot,cj)
-    pd=[cj+10,0;1,1]
-endfunction
+deff('[r,ires]=dres1(t,y,ydot)','r=[ydot(1)+10*y(1);y(2)+y(1)-1];ires=0')
+deff('pd=djac1(t,y,ydot,cj)','pd=[cj+10,0;1,1]')
 //   scilab function, without jacobian
 yy0=dae([y0,y0d],t0,t,dres1);
 //   scilab functions, with jacobian
@@ -64,11 +57,7 @@ pp=Si*E;
 [q,m]=fullrf(pp);
 x0=q(:,1);
 x0d=pinv(E)*A*x0;
-function [r,ires]=g(t,x,xdot)
-    r=E*xdot-A*x;
-    ires=0
-endfunction
-
+deff('[r,ires]=g(t,x,xdot)','r=E*xdot-A*x;ires=0');
 t=[1,2,3];t0=0;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
 x=dae([x0,x0d],t0,t,g);
@@ -81,16 +70,10 @@ t=1.5409711;
 ww=dae([x0,x0d],t0,t,g);
 ww=[t;ww];
 if abs(ww(5)-1)>0.001 then pause,end
-function [rt]=surface(t,y,yd)
-    rt=y(4)-1
-endfunction
-
+deff('[rt]=surface(t,y,yd)','rt=y(4)-1');
 nbsurf=1;
 [yyy,nnn]=dae("root",[x0,x0d],t0,t,g,nbsurf,surface);
-function pd=j(t,y,ydot,cj)
-    pd=cj*E-A
-endfunction
-
+deff('pd=j(t,y,ydot,cj)','pd=cj*E-A');
 x=dae([x0,x0d],t0,t,g,j);
 x=[t;x];
 x2=x(2:nx+1,1);
@@ -135,15 +118,8 @@ if abs(nn(1)-2.5)>0.001 then pause,end
 y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
 [yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res1',ng,'gr1');
 if abs(nn(1)-2.53)>0.001 then pause,end
-function [delta,ires]=res1(t,y,ydot)
-    ires=0;
-    delta=ydot-((2*log(y)+8)/t-5)*y
-endfunction
-function [rts]=gr1(t,y,yd)
-    rts=[((2*log(y)+8)/t-5)*y;
-    log(y)-2.2491]
-endfunction
-
+deff('[delta,ires]=res1(t,y,ydot)','ires=0;delta=ydot-((2*log(y)+8)/t-5)*y')
+deff('[rts]=gr1(t,y,yd)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 y0=1;t=2:6;t0=1;y0d=3;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
 atol=1.d-6;rtol=0;ng=2;
@@ -171,32 +147,17 @@ t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 %DAEOPTIONS=list([],0,[],[],[],0,0);
 [yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,'res2','jac2',ng,'gr2');
 if abs(nn(1)-81.163512)>0.001 then pause,end
-function [delta,ires]=res2(t,y,ydot)
-    ires=0;
-    y1=y(1)
-    y2=y(2)
-    delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]
-endfunction
-
+deff('[delta,ires]=res2(t,y,ydot)',...
+'ires=0;y1=y(1),y2=y(2),delta=[ydot-[y2;100*(1-y1*y1)*y2-y1]]')
 [yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,'jac2',ng,'gr2');
-function J=jac2(t,y,ydot,c)
-    y1=y(1);
-    y2=y(2);
-    J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]
-endfunction
-
+deff('J=jac2(t,y,ydot,c)','y1=y(1);y2=y(2);J=[c,-1;200*y1*y2+1,c-100*(1-y1*y1)]')
 [yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,'gr2');
-function s=gr2(t,y,yd)
-    s=y(1)
-endfunction
+deff('s=gr2(t,y,yd)','s=y(1)')
 [yy,nn]=dae("root",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,gr2);
 //           Hot Restart
 [yy,nn,hotd]=dae("root",[y0,y0d],t0,t,rtol,atol,'res2','jac2',ng,'gr2');
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(1:2,qq);y0d1=yy(2:3,qq);
 %DAEOPTIONS=list([],0,[],[],[],0,0);
-function s=gr2(t,y,yd)
-    s=y(1)
-endfunction
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,rtol,atol,'res2','jac2',ng,'gr2',hotd);
 if abs(nn(1)-162.57763)>0.004 then pause,end
 
