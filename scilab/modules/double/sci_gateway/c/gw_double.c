@@ -30,7 +30,7 @@ static int ChooseOtherOperation(int op);
 int C2F(matops)(void);
 /*--------------------------------------------------------------------------*/
 extern int C2F(matchsgn)();
-extern int C2F(matsubst)();
+extern int C2F(matsubt)();
 extern int C2F(matcc)();
 extern int C2F( matrc)();
 extern int C2F(mattr)();
@@ -130,7 +130,7 @@ int C2F(matops)(void)
         }
         case 3:
         {
-            /* substraction */
+            /* subtraction */
             if (Rhs == 1)
             {
                 /* .  unary minus */
@@ -138,7 +138,7 @@ int C2F(matops)(void)
             }
             else
             {
-                C2F(matsubst)();
+                C2F(matsubt)();
             }
             return 0;
         }

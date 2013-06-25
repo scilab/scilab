@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_substraction">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_subtraction">
     <refnamediv>
         <refname>- (Matlab operator)</refname>
         <refpurpose>Minus</refpurpose>
@@ -44,10 +44,10 @@
         <title>Particular cases</title>
         <variablelist>
             <varlistentry>
-                <term>Empty matrix and substraction</term>
+                <term>Empty matrix and subtraction</term>
                 <listitem>
                     <para>
-                        In Matlab, substraction can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be substracted to another empty matrix or a scalar. Note that when you substract an empty matrix to a scalar and inversely, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
+                        In Matlab, subtraction can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be subtracted to another empty matrix or a scalar. Note that when you subtract an empty matrix to a scalar and inversely, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
                     </para>
                 </listitem>
             </varlistentry>

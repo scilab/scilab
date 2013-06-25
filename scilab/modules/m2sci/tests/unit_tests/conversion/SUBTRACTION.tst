@@ -9,8 +9,8 @@
 // <-- ENGLISH IMPOSED -->
 // <-- LONG TIME EXECUTION -->
 
-// Unitary test for conversion of Matlab function: SUBSTRACTION
+// Unitary test for conversion of Matlab function: SUBTRACTION
 
 exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversion.sci", -1);
 
-if ~m2sciTestConversion("SUBSTRACTION") then pause;end
+if ~m2sciTestConversion("SUBTRACTION") then pause;end

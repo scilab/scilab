@@ -113,12 +113,12 @@ GRAPHICS_IMPEXP void normalize2d(double vect[2]);
 GRAPHICS_IMPEXP void iNormalize2d(int vect[2]);
 
 /**
- * Perform the substraction of vect1 and vect2 and store it in res
+ * Perform the subtraction of vect1 and vect2 and store it in res
  */
 GRAPHICS_IMPEXP void vectSubstract2D(const double vect1[2], const double vect2[], double res[2]);
 
 /**
- * substraction of two vector
+ * subtraction of two vector
  * @param res result of v1 + v2
  */
 GRAPHICS_IMPEXP void vectAdd2D(const double v1[2], const double v2[2], double res[2]);
@@ -182,13 +182,13 @@ GRAPHICS_IMPEXP void crossProduct(const double v1[3], const double v2[3], double
 #define NORM_3D(v) (sqrt(SQUARE_NORM_3D(v)))
 
 /**
- * substraction of two vector
+ * subtraction of two vector
  * @param res result of v1 - v2
  */
 GRAPHICS_IMPEXP void vectSubstract3D(const double v1[3], const double v2[3], double res[3]);
 
 /**
- * substraction of two vector
+ * subtraction of two vector
  * @param res result of v1 + v2
  */
 GRAPHICS_IMPEXP void vectAdd3D(const double v1[3], const double v2[3], double res[3]);

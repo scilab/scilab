@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function s=%s_s_sp(a,b)
-    // %s_s_sp - substract a sparse matrix b to a scalar matrix a
+    // %s_s_sp - subtract a sparse matrix b to a scalar matrix a
     //!
 
     if size(a)==[-1,-1] then

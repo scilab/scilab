@@ -7,11 +7,11 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // <-- LONG TIME EXECUTION -->
-// Unitary test for conversion of Matlab function: SUBSTRACTION
+// Unitary test for conversion of Matlab function: SUBTRACTION
 exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
-if ~m2sciTestExecution("SUBSTRACTION") then bugmes();quit;end
+if ~m2sciTestExecution("SUBTRACTION") then bugmes();quit;end
   ****** Beginning of mfile2sci() session ******
-  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/SUBSTRACTION.m
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/SUBTRACTION.m
   Result file path: TMPDIR/
   Recursive mode: OFF
   Only double values used in M-file: NO
