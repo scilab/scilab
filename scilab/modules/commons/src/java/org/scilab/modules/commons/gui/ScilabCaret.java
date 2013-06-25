@@ -37,6 +37,7 @@ public class ScilabCaret extends DefaultCaret {
     private JTextComponent editor;
 
     private boolean overwriteMode;
+    private boolean mustAdjustVisibility = true;
 
     /**
      * Constructor
@@ -46,6 +47,19 @@ public class ScilabCaret extends DefaultCaret {
         super();
         this.editor = editor;
         setSelectionColor(editor.getSelectionColor(), UIManager.getColor("TextComponent.selectionBackgroundInactive"));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected void adjustVisibility(Rectangle nloc) {
+        if (mustAdjustVisibility) {
+            super.adjustVisibility(nloc);
+        }
+    }
+
+    public void setMustAdjustVisibility(boolean mustAdjustVisibility) {
+        this.mustAdjustVisibility = mustAdjustVisibility;
     }
 
     /**
