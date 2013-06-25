@@ -89,6 +89,12 @@ Differential_equations
 * Netlib's Quadpack, used for definite integration, has been updated to match the upstream.
 
 
+SciNotes
+========
+
+* Autosave feature can now use %date to append the current date to the backup filename (See bug #12712).
+
+
 Xcos
 ====
 
@@ -417,3 +423,6 @@ Bug fixes
 * Bug #12706 fixed - A wrong size matrix as input argument of cross function was not detected.
 
 * Bug #12708 fixed - Incorrect display in SciNotes preferences fixed (onmouseover styles).
+
+* Bug #12712 fixed - In SciNotes, autosaving can now use %date to append the current date to the
+                     backup filename.
