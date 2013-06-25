@@ -119,7 +119,7 @@
                 <term>13</term>
                 <listitem>
                     <para>
-                        <link linkend="function">fonction</link> compilée (Scilab code).
+                        <link linkend="function">fonction</link> compilée (code Scilab).
                     </para>
                 </listitem>
             </varlistentry>

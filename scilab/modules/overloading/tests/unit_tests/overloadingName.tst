@@ -106,7 +106,7 @@ M .\. M
 M ^ M
 M ** M
 M .^ M
-// M .** M <-- This do not exists in scilab ... Wired ...
+// M .** M <-- This does not exists in Scilab ... Wired ...
 
 M:M
 

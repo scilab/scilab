@@ -436,7 +436,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
                                int nmax, int *ind_max)
 {
     /*
-     *   converti une "structure" scilab d'indicage en un vecteur d'indices
+     *   convertit une "structure" scilab d'indicage en un vecteur d'indices
      *
      *      pos     : position de la variable initiale
      *      pos_ind : position de la variable resultante (le vecteur d'indice)
