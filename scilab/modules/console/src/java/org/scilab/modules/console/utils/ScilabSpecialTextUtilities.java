@@ -175,6 +175,7 @@ public final class ScilabSpecialTextUtilities {
          * @return the Icon
          */
         static Icon compile(String str, int fontSize) {
+            TeXFormula.setDefaultDPI();
             Icon icon = null;
             try {
                 TeXFormula formula = new TeXFormula(str);

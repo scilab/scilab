@@ -328,6 +328,8 @@ Bug fixes
 
 * Bug #12349 fixed - In SciNotes, when the view was splitted, removing a char made the other view jump.
 
+* Bug #12326 fixed - There was no way to set LaTeX font size in preview.
+
 * Bug #12376 fixed - Exec & edit buttons in examples in help were sometimes misplaced.
 
 * Bug #12413 fixed - ATOMS packages could not be removed if ATOMS had never been on-line.

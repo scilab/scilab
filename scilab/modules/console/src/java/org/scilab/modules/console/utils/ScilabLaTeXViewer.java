@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
+import org.scilab.modules.console.ConsoleOptions;
+
 /**
  * Class to have a preview of a LaTeX string
  * @author Calixte DENIZET
@@ -43,6 +45,13 @@ public final class ScilabLaTeXViewer extends JPanel {
     private ScilabLaTeXViewer() {
         // I disable the double-buffering, it's useless here
         super(false);
+        setDefaultSize(ConsoleOptions.getLaTeXFont().size);
+    }
+
+    public static void configurationChanged(org.scilab.modules.console.ConsoleConfiguration.Conf conf) {
+        if (conf.latex) {
+            setDefaultSize(ConsoleOptions.getLaTeXFont().size);
+        }
     }
 
     /**
