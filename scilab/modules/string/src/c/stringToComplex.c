@@ -108,7 +108,7 @@ doublecomplex stringToComplex(const char *pSTR, const char *decimal, BOOL bConve
     {
         double real = 0.;
         double imag = 0.;
-        char *pStrTemp = strsub(pSTR, " ", "");
+        char *pStrTemp = strsub((char*)pSTR, " ", "");
 
         if (pStrTemp)
         {
@@ -260,7 +260,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
     }
     else if (ierrDouble != STRINGTODOUBLE_NO_ERROR)
     {
-        modifiedTxt = strsub(tx, ComplexScilab, ComplexI);
+        modifiedTxt = strsub((char*)tx, ComplexScilab, ComplexI);
         lnum = ParseNumber(modifiedTxt);
         if (lnum <= 1)
         {
@@ -427,7 +427,7 @@ static char *leftstring(const char *tx, size_t pos)
     {
         int lenTx = (int) strlen(tx);
         returnString = strdup(tx);
-        if ((pos > lenTx) || (pos < 0))
+        if ((pos > lenTx))
         {
             return returnString;
         }
@@ -441,7 +441,7 @@ static char *leftstring(const char *tx, size_t pos)
 /* ========================================================================== */
 static BOOL is_unit_imaginary (const char *src, double *im)
 {
-    char *modifiedSrc = strsub(src, ComplexScilab, ComplexI);
+    char *modifiedSrc = strsub((char*)src, ComplexScilab, ComplexI);
     char *nextChar = NULL;
     BOOL isUnitImag = FALSE;
 
