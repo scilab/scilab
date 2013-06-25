@@ -268,11 +268,10 @@ public abstract class SciConsole extends JPanel {
     private void setKeyStrokeAction() {
         Map<KeyStroke, String> map = getActionKeys();
         ClassLoader loader = ClassLoader.getSystemClassLoader();
-        Iterator<KeyStroke> iter = map.keySet().iterator();
 
-        while (iter.hasNext()) {
-            KeyStroke key = iter.next();
-            String actionName = map.get(key);
+        for (Map.Entry<KeyStroke, String> entry : map.entrySet()) {
+            KeyStroke key = entry.getKey();
+            String actionName = entry.getValue();
             if (actionName.equals("console-search-field") && searchField != null) {
                 try {
                     Method sks = searchField.getClass().getMethod("setKeyStroke", KeyStroke.class);

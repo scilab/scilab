@@ -58,6 +58,7 @@ import javax.swing.undo.UndoManager;
 import org.w3c.dom.Document;
 
 import org.flexdock.docking.event.DockingEvent;
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
@@ -2463,12 +2464,11 @@ public class SciNotes extends SwingScilabTab {
         }
 
         Map<String, KeyStroke> map = getActionKeys();
-
         ClassLoader loader = ClassLoader.getSystemClassLoader();
-        Iterator<String> iter = map.keySet().iterator();
-        while (iter.hasNext()) {
-            String actionName = iter.next();
-            KeyStroke key = map.get(actionName);
+
+        for (Map.Entry<String, KeyStroke> entry : map.entrySet()) {
+            String actionName = entry.getKey();
+            KeyStroke key = entry.getValue();
             String action = actionToName.get(actionName);
             if (key != null) {
                 if (!action.equals("SciNotesCompletionAction")) {
@@ -2500,6 +2500,14 @@ public class SciNotes extends SwingScilabTab {
                 }
             }
         }
+
+        // Add default common shortcuts
+        sep.getInputMap().put(KeyStroke.getKeyStroke("shift DELETE"), sep.getInputMap().get(map.get("scinotes-cut")));
+        sep.getInputMap().put(KeyStroke.getKeyStroke("CUT"), sep.getInputMap().get(map.get("scinotes-cut")));
+        sep.getInputMap().put(ScilabKeyStroke.getKeyStroke("OSSCKEY INSERT"), sep.getInputMap().get(map.get("scinotes-copy")));
+        sep.getInputMap().put(KeyStroke.getKeyStroke("COPY"), sep.getInputMap().get(map.get("scinotes-copy")));
+        sep.getInputMap().put(KeyStroke.getKeyStroke("shift INSERT"), sep.getInputMap().get(map.get("scinotes-paste")));
+        sep.getInputMap().put(KeyStroke.getKeyStroke("PASTE"), sep.getInputMap().get(map.get("scinotes-paste")));
     }
 
     /**
