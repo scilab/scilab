@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-01-26 04:08+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-17 21:24+0000\n"
+"Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -101,6 +101,19 @@ msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána matice reálných čísel.\n"
 
+msgid "This usage of the third argument of gsort is obsolete."
+msgstr "Použití třetího argumentu gsort je zastaralé."
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "VAROVÁNÍ: %s\n"
+
+msgid "It will be more strict in Scilab 6."
+msgstr "Bude přísnější ve Scilab 6."
+
+msgid "Please use 'd' or 'i' instead."
+msgstr "Prosím namísto používejte 'd' nebo 'i'."
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
@@ -108,6 +121,12 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s', '%s', '%s' "
 "nebo '%s'.\n"
+
+msgid "This usage of the second argument of gsort is obsolete."
+msgstr "Použití druhého argumentu gsort je zastaralé."
+
+msgid "Please use 'r', 'c', 'g', 'lr' or 'lc' instead."
+msgstr "Prosím namísto používejte 'r', 'c', 'g', 'lr' nebo 'lc'."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -515,6 +534,10 @@ msgid ""
 msgstr ""
 "%s: Špatný počet požadovaných výstupních rozměrů matice: Pro řídké matice "
 "očekáváno %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

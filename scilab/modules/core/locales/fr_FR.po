@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2013-01-24 17:04+0100\n"
-"PO-Revision-Date: 2013-03-25 12:27+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-17 20:20+0000\n"
+"Last-Translator: jojolebestof <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16546)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: \n"
 
 #, c-format
@@ -152,9 +152,9 @@ msgid "%s: Wrong type for inputs arguments.\n"
 msgstr "%s : Type erroné des arguments d'entrée.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
+msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : 1,2 ou 3 attendu.\n"
+"%s : Valeur erroné de l'argument d'entrée n°%d : 0, 1 ou 2 attendu.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -584,19 +584,15 @@ msgstr "Pas assez de mémoire disponible pour allouer le coeur de Scilab.\n"
 msgid ""
 "Oups. A fatal error has been detected by Scilab.\n"
 "Your instance will probably crash soon.\n"
+"If a graphic feature has been used, this might be caused by the system "
+"graphic drivers.\n"
+"Please try to update them and try again.\n"
 "Please report a bug on %s with:\n"
 "* a sample code which reproduces the issue\n"
 "* the result of [a, b] = getdebuginfo()\n"
 "* the following information:\n"
 "%s %s\n"
 msgstr ""
-"Oups. Une erreur fatale a été détectée par Scilab.\n"
-"Votre session va probablement se fermer.\n"
-"Veuillez signaler un bug sur %s avec :\n"
-"* Un exemple de code qui reproduit le problème\n"
-"* Le résultat de [a, b] = getdebuginfo()\n"
-"* Les informations suivantes :\n"
-"%s %s\n"
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
@@ -851,7 +847,7 @@ msgid "Optional argument list is empty.\n"
 msgstr "La liste d'arguments optionnels est vide.\n"
 
 msgid "Optional arguments list: \n"
-msgstr "Liste d'arguments optionnelle : \n"
+msgstr "Liste d'arguments optionnels : \n"
 
 #
 # File: src/c/link_std.c, line: 381
@@ -1154,6 +1150,10 @@ msgstr "Initialisation :"
 msgid "  loading initial environment"
 msgstr "  Chargement de l'environnement de travail"
 
+#, c-format
+msgid "Failed to exec %s:"
+msgstr ""
+
 msgid "&File"
 msgstr "&Fichier"
 
@@ -1175,11 +1175,29 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "Modules"
 
-msgid "Introduction"
-msgstr "Introduction"
+msgid "Introduction: Getting started with Scilab"
+msgstr "Introduction : Débuter avec Scilab"
 
-msgid "Getting started with Scilab"
-msgstr "Débuter avec Scilab"
+msgid "Scilab objects"
+msgstr "Objets Scilab"
+
+msgid "Operations and numerical primitives"
+msgstr "Opérations et primitives numériques"
+
+msgid "Online definition of function"
+msgstr "Définition d'une fonction en ligne"
+
+msgid "Optimization and simulation"
+msgstr "Optimisation et simulation"
+
+msgid "Systems: definition and analysis"
+msgstr "Systèmes : définitions et analyse"
+
+msgid "Linear algebra"
+msgstr "Algèbre linéaire"
+
+msgid "Call an external routine"
+msgstr "Appeler une routine externe"
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
@@ -1247,6 +1265,24 @@ msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une variable définie "
 "attendue.\n"
+
+msgid "Scilab Version: "
+msgstr "Version de Scilab : "
+
+msgid "Operating System: "
+msgstr "Système d'exploitation : "
+
+msgid "Java version :"
+msgstr "Version de Java :"
+
+msgid "Java runtime information :"
+msgstr ""
+
+msgid "Java vm information :"
+msgstr ""
+
+msgid "Vendor specification: "
+msgstr ""
 
 #, c-format
 msgid "%s called at line %s of %s"
