@@ -7,7 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-
+funcprot(0);
 ilib_verbose(0);
 
 //DASSL
@@ -345,7 +345,7 @@ ccode=['#include <math.h>'
        '  res[46]=1.0;'
        '  res[47]=8.0;'
        '  res[48]=-10.0+*cj;'
-       '  res[49]=0.0;'                                              
+       '  res[49]=0.0;'
        '}'];
 mputl(ccode,'band.c'); //create the C file of myjac
 ilib_for_link(['myres','myjac'],'band.c','','c');//compile
