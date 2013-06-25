@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-12 11:16+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -122,9 +122,9 @@ msgstr ""
 # File: src/c/sci_tools.c, line: 133
 # File: src/c/sci_tools.c, line: 165
 # File: src/c/sci_tools.c, line: 202
-# File: src/c/stack1.c, line: 2546
-# File: src/c/stack1.c, line: 2642
-# File: src/c/stack1.c, line: 2675
+# File: src/c/stack1.c, line: 2572
+# File: src/c/stack1.c, line: 2668
+# File: src/c/stack1.c, line: 2701
 # File: src/c/stack2.c, line: 2325
 # File: src/c/stack2.c, line: 2667
 # File: src/c/storeCommand.c, line: 102
@@ -819,23 +819,6 @@ msgstr ""
 
 #
 # File: src/c/intmacr2tree.c, line: 219
-# File: src/c/stack1.c, line: 316
-# File: src/c/stack1.c, line: 602
-# File: src/c/stack1.c, line: 817
-# File: src/c/stack1.c, line: 1025
-# File: src/c/stack1.c, line: 1598
-# File: src/c/stack1.c, line: 1655
-# File: src/c/stack1.c, line: 1723
-# File: src/c/stack1.c, line: 1824
-# File: src/c/stack1.c, line: 1970
-# File: src/c/stack1.c, line: 2056
-# File: src/c/stack1.c, line: 2398
-# File: src/c/stack1.c, line: 2481
-# File: src/c/stack1.c, line: 2608
-# File: src/c/stack1.c, line: 2931
-# File: src/c/stack1.c, line: 3072
-# File: src/c/stack1.c, line: 3453
-# File: src/c/stack1.c, line: 3481
 #, c-format
 msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
 msgstr ""
@@ -999,100 +982,126 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 93
+# File: src/c/stack1.c, line: 76
+msgid "stack size exceeded!\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 77
+msgid "Use stacksize function to increase it.\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 79
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 82
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 85
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr ""
+
+#
+# File: src/c/stack1.c, line: 121
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 132
-# File: src/c/stack1.c, line: 153
-# File: src/c/stack1.c, line: 902
+# File: src/c/stack1.c, line: 160
+# File: src/c/stack1.c, line: 181
+# File: src/c/stack1.c, line: 930
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 175
-# File: src/c/stack1.c, line: 680
+# File: src/c/stack1.c, line: 203
+# File: src/c/stack1.c, line: 708
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 199
+# File: src/c/stack1.c, line: 227
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d (List element: %d): Real or complex matrix "
+"%s: Wrong type for argument #%d (List element: %d): Real or Complex matrix "
 "expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 204
-# File: src/c/stack1.c, line: 515
+# File: src/c/stack1.c, line: 232
+# File: src/c/stack1.c, line: 543
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 272
-# File: src/c/stack1.c, line: 576
-# File: src/c/stack1.c, line: 770
-# File: src/c/stack1.c, line: 793
-# File: src/c/stack1.c, line: 999
-# File: src/c/stack1.c, line: 1458
-# File: src/c/stack1.c, line: 1491
-# File: src/c/stack1.c, line: 1519
-# File: src/c/stack1.c, line: 1555
-# File: src/c/stack1.c, line: 1584
-# File: src/c/stack1.c, line: 1771
-# File: src/c/stack1.c, line: 1862
-# File: src/c/stack1.c, line: 2031
-# File: src/c/stack1.c, line: 2192
-# File: src/c/stack1.c, line: 2369
-# File: src/c/stack1.c, line: 2444
-# File: src/c/stack1.c, line: 2474
-# File: src/c/stack1.c, line: 2584
-# File: src/c/stack1.c, line: 2916
-# File: src/c/stack1.c, line: 3066
-# File: src/c/stack1.c, line: 3446
-# File: src/c/stack1.c, line: 3546
-# File: src/c/stack2.c, line: 2416
-# File: src/c/stack2.c, line: 2728
+# File: src/c/stack1.c, line: 300
+# File: src/c/stack1.c, line: 604
+# File: src/c/stack1.c, line: 798
+# File: src/c/stack1.c, line: 821
+# File: src/c/stack1.c, line: 1027
+# File: src/c/stack1.c, line: 1485
+# File: src/c/stack1.c, line: 1518
+# File: src/c/stack1.c, line: 1546
+# File: src/c/stack1.c, line: 1582
+# File: src/c/stack1.c, line: 1611
+# File: src/c/stack1.c, line: 1798
+# File: src/c/stack1.c, line: 1889
+# File: src/c/stack1.c, line: 2058
+# File: src/c/stack1.c, line: 2219
+# File: src/c/stack1.c, line: 2395
+# File: src/c/stack1.c, line: 2470
+# File: src/c/stack1.c, line: 2500
+# File: src/c/stack1.c, line: 2610
+# File: src/c/stack1.c, line: 2942
+# File: src/c/stack1.c, line: 3092
+# File: src/c/stack1.c, line: 3472
+# File: src/c/stack1.c, line: 3572
 #, c-format
-msgid "%s: Too many names.\n"
+msgid "%s: Too many variables!\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 471
+# File: src/c/stack1.c, line: 499
 #, c-format
 msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 512
+# File: src/c/stack1.c, line: 540
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): Int matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 641
-# File: src/c/stack1.c, line: 863
-# File: src/c/stack1.c, line: 1167
-# File: src/c/stack1.c, line: 1245
-# File: src/c/stack1.c, line: 1309
-# File: src/c/stack1.c, line: 2699
-# File: src/c/stack1.c, line: 2765
-# File: src/c/stack1.c, line: 2827
-# File: src/c/stack1.c, line: 2866
-# File: src/c/stack1.c, line: 3582
+# File: src/c/stack1.c, line: 669
+# File: src/c/stack1.c, line: 891
+# File: src/c/stack1.c, line: 1195
+# File: src/c/stack1.c, line: 1272
+# File: src/c/stack1.c, line: 1336
+# File: src/c/stack1.c, line: 2725
+# File: src/c/stack1.c, line: 2791
+# File: src/c/stack1.c, line: 2853
+# File: src/c/stack1.c, line: 2892
+# File: src/c/stack1.c, line: 3608
 #, c-format
 msgid "%s: Wrong size for argument #%d: At least %d expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 703
+# File: src/c/stack1.c, line: 731
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): Boolean matrix "
@@ -1100,62 +1109,62 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 707
+# File: src/c/stack1.c, line: 735
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 926
+# File: src/c/stack1.c, line: 954
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): Sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 930
+# File: src/c/stack1.c, line: 958
 #, c-format
 msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1070
+# File: src/c/stack1.c, line: 1098
 #, c-format
 msgid "%s: Wrong type for argument #%d (List element: %d): Vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1098
+# File: src/c/stack1.c, line: 1126
 #, c-format
 msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1117
+# File: src/c/stack1.c, line: 1145
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1140
+# File: src/c/stack1.c, line: 1168
 #, c-format
 msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1178
+# File: src/c/stack1.c, line: 1206
 #, c-format
 msgid "%s: Wrong type for argument #%d (List element: %d): Scalar expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1206
+# File: src/c/stack1.c, line: 1234
 #, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1345
+# File: src/c/stack1.c, line: 1372
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): Matrix of strings "
@@ -1163,102 +1172,97 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1350
+# File: src/c/stack1.c, line: 1377
+# File: src/c/stack1.c, line: 1410
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1378
+# File: src/c/stack1.c, line: 1405
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): String matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 1383
-#, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/stack1.c, line: 2248
+# File: src/c/stack1.c, line: 2275
 # File: src/c/stack2.c, line: 1836
 #, c-format
 msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2296
+# File: src/c/stack1.c, line: 2323
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2341
+# File: src/c/stack1.c, line: 2368
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2514
+# File: src/c/stack1.c, line: 2540
 #, c-format
 msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2709
+# File: src/c/stack1.c, line: 2735
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2743
+# File: src/c/stack1.c, line: 2769
 #, c-format
 msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2775
+# File: src/c/stack1.c, line: 2801
 #, c-format
 msgid "%s: argument %d >(%d) should be a column vector.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2809
+# File: src/c/stack1.c, line: 2835
 #, c-format
 msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2890
+# File: src/c/stack1.c, line: 2916
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): Boxed pointer expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 2894
+# File: src/c/stack1.c, line: 2920
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boxed pointer expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 3258
+# File: src/c/stack1.c, line: 3284
 # File: src/c/stack2.c, line: 1464
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 3355
+# File: src/c/stack1.c, line: 3381
 #, c-format
-msgid "%s: entry point %s not found in predefined tables or link table.\n"
+msgid "%s: %s: subroutine not found.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 3361
+# File: src/c/stack1.c, line: 3387
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Function or string (external function) "
@@ -1266,25 +1270,25 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 3376
+# File: src/c/stack1.c, line: 3402
 #, c-format
 msgid "%s: Incompatible sizes.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 3399
+# File: src/c/stack1.c, line: 3425
 #, c-format
 msgid "%s: Optional argument %d not given and default value %s not found.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 3427
+# File: src/c/stack1.c, line: 3453
 #, c-format
 msgid "%f: No more space to store string arguments.\n"
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 3621
+# File: src/c/stack1.c, line: 3647
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d (List element: %d): Matrix of handle "
@@ -1292,7 +1296,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/stack1.c, line: 3625
+# File: src/c/stack1.c, line: 3651
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
 msgstr ""
@@ -1446,6 +1450,13 @@ msgstr ""
 # File: src/c/stack2.c, line: 2747
 #, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
+msgstr ""
+
+#
+# File: src/c/stack2.c, line: 2416
+# File: src/c/stack2.c, line: 2728
+#, c-format
+msgid "%s: Too many names.\n"
 msgstr ""
 
 #

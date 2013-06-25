@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-06-12 11:17+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
 # File: sci_gateway/c/sci_basename.c, line: 49
 # File: sci_gateway/c/sci_basename.c, line: 57
@@ -63,6 +63,8 @@ msgstr ""
 # File: sci_gateway/c/sci_fscanfMat.c, line: 216
 # File: sci_gateway/c/sci_fscanfMat.c, line: 250
 # File: sci_gateway/c/sci_fullpath.c, line: 47
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 51
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 71
 # File: sci_gateway/c/sci_isdir.c, line: 49
 # File: sci_gateway/c/sci_isdir.c, line: 57
 # File: sci_gateway/c/sci_isdir.c, line: 71
@@ -155,6 +157,7 @@ msgstr ""
 # File: sci_gateway/c/sci_fscanfMat.c, line: 416
 # File: sci_gateway/c/sci_fscanfMat.c, line: 429
 # File: sci_gateway/c/sci_fullpath.c, line: 105
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 130
 # File: sci_gateway/c/sci_isdir.c, line: 78
 # File: sci_gateway/c/sci_isdir.c, line: 91
 # File: sci_gateway/c/sci_isdir.c, line: 110
@@ -217,8 +220,6 @@ msgstr ""
 # File: sci_gateway/c/sci_fscanfMat.c, line: 140
 # File: sci_gateway/c/sci_fscanfMat.c, line: 232
 # File: sci_gateway/c/sci_get_absolute_file_path.c, line: 128
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 89
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 93
 # File: sci_gateway/c/sci_isdir.c, line: 63
 # File: sci_gateway/c/sci_isfile.c, line: 58
 # File: sci_gateway/c/sci_mget.c, line: 71
@@ -247,8 +248,6 @@ msgstr ""
 # File: sci_gateway/c/sci_fscanfMat.c, line: 85
 # File: sci_gateway/c/sci_fscanfMat.c, line: 164
 # File: sci_gateway/c/sci_fscanfMat.c, line: 266
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 46
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 55
 # File: sci_gateway/c/sci_mclose.c, line: 104
 # File: sci_gateway/c/sci_movefile.c, line: 68
 # File: sci_gateway/c/sci_movefile.c, line: 99
@@ -323,6 +322,8 @@ msgstr ""
 # File: sci_gateway/c/sci_fileext.c, line: 74
 # File: sci_gateway/c/sci_fullpath.c, line: 68
 # File: sci_gateway/c/sci_fullpath.c, line: 77
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 99
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 111
 # File: sci_gateway/c/sci_mfscanf.c, line: 126
 # File: sci_gateway/c/sci_mfscanf.c, line: 142
 # File: sci_gateway/c/sci_mgetl.c, line: 167
@@ -471,8 +472,28 @@ msgid "%s: The file %s is not opened in scilab.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 63
-# File: sci_gateway/c/sci_getrelativefilename.c, line: 68
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 57
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 62
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 82
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 77
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings exepected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 90
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 117
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 121
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
