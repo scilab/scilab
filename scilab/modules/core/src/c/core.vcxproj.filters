@@ -248,9 +248,6 @@
     <ClCompile Include="..\cpp\banner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="typename.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />

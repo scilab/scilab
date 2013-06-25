@@ -54,5 +54,6 @@ CPP_GATEWAY_PROTOTYPE(sci_format);
 CPP_GATEWAY_PROTOTYPE(sci_ieee);
 CPP_GATEWAY_PROTOTYPE(sci_funcprot);
 CPP_GATEWAY_PROTOTYPE(sci_mode);
+CPP_GATEWAY_PROTOTYPE(sci_typename);
 
 #endif /* __CORE_GW_HXX__ */

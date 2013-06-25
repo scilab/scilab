@@ -49,7 +49,6 @@ src/c/getos.c \
 src/c/mode_exec.c \
 src/c/transposeMatrix.c \
 src/c/recursionFunction.c \
-src/c/typename.c \
 src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
@@ -140,7 +139,6 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c \
-	sci_gateway/c/sci_typename.c \
 	sci_gateway/c/sci_readgateway.c
 
 GATEWAY_FORTRAN_SOURCES =  \
@@ -174,7 +172,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \
 	sci_gateway/cpp/sci_funcprot.cpp \
-	sci_gateway/cpp/sci_mode.cpp
+	sci_gateway/cpp/sci_mode.cpp \
+	sci_gateway/cpp/sci_typename.cpp
 
 
 libscicore_la_CPPFLAGS = \

@@ -170,7 +170,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\c\sci_typename.c" />
     <ClCompile Include="sci_format.cpp" />
     <ClCompile Include="sci_funcprot.cpp" />
     <ClCompile Include="sci_ieee.cpp" />
@@ -198,6 +197,7 @@
     <ClCompile Include="sci_pause.cpp" />
     <ClCompile Include="sci_quit.cpp" />
     <ClCompile Include="sci_stacksize.cpp" />
+    <ClCompile Include="sci_typename.cpp" />
     <ClCompile Include="sci_warning.cpp" />
     <ClCompile Include="sci_who.cpp" />
     <ClCompile Include="sci_with_module.cpp" />

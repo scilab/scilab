@@ -311,7 +311,6 @@ cd ..
     <ClCompile Include="TerminateCore.c" />
     <ClCompile Include="texmacs.c" />
     <ClCompile Include="transposeMatrix.c" />
-    <ClCompile Include="typename.c" />
     <ClCompile Include="version.c" />
     <ClCompile Include="win_mem_alloc.c" />
     <ClCompile Include="withf2c.c" />

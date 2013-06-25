@@ -58,7 +58,7 @@ int C2F(sci_getvariablesonstack)(char *fname, unsigned long fname_len);
 int C2F(sci_readgateway)(char *fname, unsigned long fname_len);
 int C2F(sci_comp)(char *fname, unsigned long fname_len);
 
-C_GATEWAY_PROTOTYPE(sci_typename);
+//C_GATEWAY_PROTOTYPE(sci_typename); -> c++
 int C2F(sci_funcprot)(char *fname, void* pvApiCtx);
 int C2F(sci_newfun)(char *fname, void* pvApiCtx);
 
