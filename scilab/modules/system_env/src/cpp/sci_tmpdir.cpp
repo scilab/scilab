@@ -206,7 +206,7 @@ char* computeTMPDIR()
     char* env_dir = (char*)MALLOC(sizeof(char) * (PATH_MAX + 16));
     /* If the env variable TMPDIR is set, honor this preference */
     tmpdir = getenv("TMPDIR");
-    if (tmpdir != NULL && strlen(tmpdir) < (PATH_MAX))
+    if (tmpdir != NULL && strlen(tmpdir) < (PATH_MAX) && strstr(tmpdir, "SCI_TMP_") == NULL)
     {
         strcpy(env_dir, tmpdir);
     }
