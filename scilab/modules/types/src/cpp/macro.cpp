@@ -309,6 +309,11 @@ int Macro::getNbInputArgument(void)
 
 int Macro::getNbOutputArgument(void)
 {
+    if (m_outputArgs->size() == 1 && m_outputArgs->back().name_get() == L"varargout")
+    {
+        return -1;
+    }
+
     return (int)m_outputArgs->size();
 }
 }
