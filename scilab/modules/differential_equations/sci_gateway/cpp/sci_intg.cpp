@@ -10,6 +10,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <cmath>
 
 #include "differential_equations_gw.hxx"
 #include "function.hxx"
