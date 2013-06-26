@@ -161,9 +161,9 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/parameters/libsciparameters.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
-	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
@@ -180,22 +180,19 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
+	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/statistics/libscistatistics.la \
+	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/modules/ast/libsciast.la \
 	$(top_builddir)/modules/symbol/libscisymbol.la \
 	$(top_builddir)/modules/parse/libsciparse.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
-	$(top_builddir)/modules/functions/libscifunctions.la \
-	$(top_builddir)/modules/parallel/libsciparallel.la \
-	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/operations/libscioperations.la \
-	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-	$(top_builddir)/modules/statistics/libscistatistics.la \
-	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/types/libscitypes.la \
+	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
 	$(top_builddir)/modules/preferences/libscipreferences-cli.la
 
