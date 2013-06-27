@@ -361,6 +361,11 @@ c     denominateur (3ieme elt )
          typer=.true.
       endif 
       call ptrback(topk)
+
+c     num and dem are hypermatrix -> call print of hypermatrix      
+      if(typer.and.ivtd.eq.17.and.ivtn.eq.17) goto 41
+      
+c     warning itnum and itden can not be initialized !
       if(itnum.ne.0.or.itden.ne.0) goto 41
 
 C     --wrong type argument or not same size 
