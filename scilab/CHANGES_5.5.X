@@ -293,6 +293,8 @@ Bug fixes
 
 * Bug #10862 fixed - Add a without internet connection installation
                      global configuration on the installer
+                     
+* Bug #10866 fixed - det() was not equivalent to detr() for rational matrices.
 
 * Bug #10906 fixed - Typo in help page of cls2dls.
 
