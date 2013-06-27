@@ -147,9 +147,11 @@ Bug fixes
 
 * paramfplot2d: When input argument theta was column vector, an error occurred.
 
+* Bug #3928 fixed - An error was returned when a matrix was flipped along the third dimension.
+
 * Bug #4042 fixed - squeeze returned an hypermatrix instead of a matrix when at least one 
                     dimension was equal to 1.
-                    
+
 * Bug #4085 fixed - help page of num2cell added.
 
 * Bug #4383 fixed - csim with "step" and "impuls" now works with direct feedthrough.
