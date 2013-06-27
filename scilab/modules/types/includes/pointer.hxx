@@ -56,6 +56,12 @@ public :
     {
         m_pvData = _pvData;
     }
+
+    virtual bool            isAssignable(void)
+    {
+        return true;
+    }
+
 protected :
 
     void*                  m_pvData;
