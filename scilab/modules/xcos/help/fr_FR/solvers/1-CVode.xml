@@ -9,17 +9,17 @@
  * The terms are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="CVode">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="CVode">
     <refnamediv>
         <refname>CVode</refname>
         <refpurpose>
-            <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Ordinary Differential Equations (ODEs) Initial Value Problems. It uses either <emphasis>BDF</emphasis> or <emphasis>Adams</emphasis> as implicit integration method, and <emphasis>Newton</emphasis> or <emphasis>Functional</emphasis> iterations.
+            <emphasis>CVode</emphasis> (abréviation de "C-language Variable-coefficients ODE solver") est un solveur numérique fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Ordinarires (EDOs). Il utilise <emphasis>BDF</emphasis> ou <emphasis>Adams</emphasis> comme méthode d'intégration, et des itérations <emphasis>fonctionnelles</emphasis> ou de <emphasis>Newton</emphasis>.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            Called by <link linkend="xcos">xcos</link>, <emphasis>CVode</emphasis> (short for C-language Variable-coefficients ODE solver) is a numerical solver providing an efficient and stable method to solve Initial Value Problems of the form:
+            Appelé par <link linkend="xcos">xcos</link>, <emphasis>CVode</emphasis>  (abréviation de "C-language Variable-coefficients ODE solver") est un solveur numérique fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale de la forme :
         </para>
         <para>
             <latex>
@@ -29,15 +29,15 @@
             </latex>
         </para>
         <para>
-            Starting with 
+            Partant de 
             <emphasis>
                 y<subscript>0</subscript>
             </emphasis>
-            , <emphasis>CVode</emphasis> approximates 
+            , <emphasis>CVode</emphasis> approxime 
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
-            with the formula:
+            grâce à la formule :
         </para>
         <para>
             <latex>
@@ -46,15 +46,15 @@
                 \end{eqnarray}
             </latex>
             <para>
-                &#160; with 
+                &#160; avec 
                 <emphasis>
                     y<subscript>n</subscript>
                 </emphasis>
-                the approximation of 
+                l'approximation de 
                 <emphasis>
                     y(t<subscript>n</subscript>)
                 </emphasis>
-                , and 
+                , et 
                 <emphasis>
                     h<subscript>n</subscript>
                 </emphasis>
@@ -62,123 +62,123 @@
                 <emphasis>
                     t<subscript>n</subscript> - t<subscript>n-1</subscript>
                 </emphasis>
-                the step size.
+                la taille du pas de temps.
             </para>
         </para>
         <para>
-            These implicit methods are characterized by their respective order <emphasis>q</emphasis>, which indicates the number of intermediate points required to compute 
+            Ces méthodes implicites sont caractérisées par leur order <emphasis>q</emphasis>, qui indique le nombre de points intermédiaires requis pour le calcul de 
             <emphasis>
                 y<subscript>n+1</subscript>
             </emphasis>
             .
         </para>
         <para>
-            This is where the difference between <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> intervenes (<emphasis>Backward Differentiation Formula</emphasis> and <emphasis>Adams-Moulton formula</emphasis>):
+            C'est ici qu'intervient la différence entre <emphasis>BDF</emphasis> et <emphasis>Adams</emphasis> ("<emphasis>Backward Differentiation Formula</emphasis>" et "<emphasis>Adams-Moulton formula</emphasis>"):
         </para>
         <para>
             <caution>
-                If the problem is stiff, the user should select <emphasis>BDF</emphasis>:
+                Si le problème est raide, il est préférable d'utiliser <emphasis>BDF</emphasis> :
             </caution>
         </para>
         <itemizedlist>
             <listitem>
-                <emphasis>q</emphasis>, the order of the method, is set between 1 and 5 (automated),
+                <emphasis>q</emphasis>, l'ordre de la méthode, est initialisé entre 1 et 5 (automatique),
             </listitem>
             <listitem>
-                <emphasis>K1 = q</emphasis> and <emphasis>K2 = 0</emphasis>.
+                <emphasis>K1 = q</emphasis> et <emphasis>K2 = 0</emphasis>.
             </listitem>
         </itemizedlist>
         <para>
-            In the case of nonstiffness, <emphasis>Adams</emphasis> is preferred:
+            Dans le cas non-raide, on préferera <emphasis>Adams</emphasis> :
         </para>
         <itemizedlist>
             <listitem>
-                <emphasis>q</emphasis> is set between 1 and 12 (automated),
+                <emphasis>q</emphasis> est initialisé entre 1 et 12 (automatique),
             </listitem>
             <listitem>
-                <emphasis>K1 = 1</emphasis> and <emphasis>K2 = q</emphasis>.
+                <emphasis>K1 = 1</emphasis> et <emphasis>K2 = q</emphasis>.
             </listitem>
         </itemizedlist>
         <para>
-            The coefficients are fixed, uniquely determined by the method type, its order, the history of the step sizes, and the normalization 
+            Les coefficients sont fixes, déterminés uniformément par le type de méthode, son ordre, les pas de temps et la normalisation 
             <emphasis>
                 &#x3B1;<subscript>n, 0</subscript> = -1
             </emphasis>
             .
         </para>
         <para>
-            For either choice and at each step, injecting this integration in <emphasis>(1)</emphasis> yields the nonlinear system:
+            Quelque soit le choix et à chaque pas, injecter cette intégration dans <emphasis>(1)</emphasis> donne le système non-linéaire:
         </para>
         <para>
             <latex>
-                G(y_n)\equiv y_n-h_n\beta_{n,0}f(t_n,y_n)-a_n=0, \hspace{2 mm} where \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
+                G(y_n)\equiv y_n-h_n\beta_{n,0}f(t_n,y_n)-a_n=0, \hspace{2 mm} où \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
             </latex>
         </para>
         <para>
-            This system can be solved by either <emphasis>Functional</emphasis> or <emphasis>Newton</emphasis> iterations, described hereafter.
+            Ce système peut être résolu par des itérations <emphasis>fonctionnelles</emphasis> ou de <emphasis>Newton</emphasis>, décrites ci-après.
         </para>
         <para>
-            In both following cases, the initial "predicted" 
+            Dans les deux cas suivants, le 
             <emphasis>
                 y<subscript>n(0)</subscript>
             </emphasis>
-            is explicitly computed from the history data, by adding derivatives.
+            initial "prédit" est calculé explicitement grâce aux valeurs passées, en ajoutant des dérivées.
         </para>
         <itemizedlist>
             <para>  </para>
             <listitem>
-                <emphasis role="bold">Functional:</emphasis> this method only involves evaluations of <emphasis>f</emphasis>, it simply computes 
+                <emphasis role="bold">Fonctionnelles :</emphasis> cette méthode n'implique que des évaluations de <emphasis>f</emphasis>, elle calcule 
                 <emphasis>
                     y<subscript>n(0)</subscript>
                 </emphasis>
-                by iterating the formula:
+                simplement en itérant la formule :
                 <para>
                     <latex>
                         y_{n(m+1)} = h_n &#x3B2;_{n,0} f(t_n,y_{n(m)}) + a_n
                     </latex>
                     <latex>
-                        where \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
+                        où \hspace{2 mm} a_n\equiv \sum_{i>0} (\alpha_{n,i} y_{n-i} + h_n\beta_{n,i}\dot{y}_{n-i})
                     </latex>
                 </para>
             </listitem>
             <para>  </para>
             <listitem>
-                <emphasis role="bold">Newton:</emphasis> here, we use an implemented direct dense solver on the linear system:
+                <emphasis role="bold">Newton :</emphasis> ici, nous utilisons un solveur direct dense sur le système linéaire :
                 <para>
                     <latex>
-                        M[y_{n(m+1)}-y_{n(m)}]=-G(y_{n(m)}), \hspace{4 mm} M \approx I-\gamma J, \hspace{2 mm} J=\frac{\partial f}{\partial y}, \hspace{2 mm} and \hspace{2 mm} \gamma = h_n\beta_{n,0}
+                        M[y_{n(m+1)}-y_{n(m)}]=-G(y_{n(m)}), \hspace{4 mm} M \approx I-\gamma J, \hspace{2 mm} J=\frac{\partial f}{\partial y}, \hspace{2 mm} et \hspace{2 mm} \gamma = h_n\beta_{n,0}
                     </latex>
                 </para>
             </listitem>
         </itemizedlist>
         <para>
-            In both situations, <emphasis>CVode</emphasis> uses the history array to control the local error 
+            Dans les deux cas, <emphasis>CVode</emphasis> se sert des valeurs passées pour contrôler l'erreur locale 
             <emphasis>
                 y<subscript>n(m)</subscript> - y<subscript>n(0)</subscript>
             </emphasis>
-            and recomputes 
+            et recalcule 
             <emphasis>
                 h<subscript>n</subscript>
             </emphasis>
-            if that error is not satisfying.
+            si l'erreur n'est pas satisfaisante.
         </para>
         <para>
             <emphasis role="bold">
-                The recommended choices are <emphasis>BDF / Newton</emphasis> for stiff problems and <emphasis>Adams / Functional</emphasis> for the nonstiff ones.
+                Les choix recommandés sont <emphasis>BDF / Newton</emphasis> pour les problèmes raides et <emphasis>Adams / Functional</emphasis> pour les non-raides.
             </emphasis>
         </para>
         <para>
-            The function is called in between activations, because a discrete activation may change the system.
+            La fonction est appelée entre les activations, parce-qu'une activation est susceptible de modifier le système.
         </para>
         <para>
-            Following the criticality of the event (its effect on the continuous problem), we either relaunch the solver with different start and final times as if nothing happened, or, if the system has been modified, we need to "cold-restart" the problem by reinitializing it anew and relaunching the solver.
+            Suivant la criticalité de l'événement (son effet sur le problème continu), soit le solveur poursuit avec temps initial et final différents comme si rien ne s'était passé, soit, si le système a été modifié, il faut "réinitialiser à froid" le solveur et le relancer.
         </para>
         <para>
-            Averagely, <emphasis>CVode</emphasis> accepts tolerances up to 10<superscript>-16</superscript>. Beyond that, it returns a <emphasis>Too much accuracy</emphasis> requested error.
+            En moyenne, <emphasis>CVode</emphasis> accepte des tolérances jusqu'à 10<superscript>-16</superscript>. Au-delà, il retourne l'erreur <emphasis>Trop de précision demandée</emphasis>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <para>
             <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
                 <inlinemediaobject>
@@ -196,61 +196,61 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
         <para>
-            The integral block returns its continuous state, we can evaluate it with <emphasis>BDF / Newton</emphasis> by running the example:
+            Le bloc intégrale retourne son état continu, on peut l'évaluer avec <emphasis>BDF / Newton</emphasis> en lançant l'exemple :
         </para>
         <para>
             <programlisting language="example"><![CDATA[
-      // Import the diagram and set the ending time
+      // Import du diagramme et réglage du temps final
       loadScicos();
       loadXcosLibs();
       importXcosDiagram("SCI/modules/xcos/examples/solvers/ODE_Example.zcos");
       scs_m.props.tf = 5000;
 
-      // Select the solver BDF / Newton
+      // Sélection de BDF / Newton
       scs_m.props.tol(6) = 1;
 
-      // Start the timer, launch the simulation and display time
+      // Lancement du chrono, de la simulation et affichage du temps
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for BDF / Newton:");
+      disp(t, "Temps pour BDF / Newton :");
       ]]></programlisting>
         </para>
         <para>
-            The Scilab console displays:
+            La console Scilab affiche :
             <screen><![CDATA[
-Time for BDF / Newton:
+Temps pour BDF / Newton:
  13.438
             ]]></screen>
         </para>
         <para>
-            Now, in the following script, we compare the time difference between the methods by running the example with the four solvers in turn:
+            Maintenant, dans le script suivant, on compare la différence de temps entre les méthodes en lançant l'exemple avec les quatre solveurs tour à tour :
             <link type="scilab" linkend ="scilab.scinotes/xcos/examples/solvers/integCVode.sce">
-                Open the script
+                Ouveture du script
             </link>
         </para>
         <para>
-            Results:
+            Résultats :
             <screen language="example"><![CDATA[
-Time for BDF / Newton:
+Temps pour BDF / Newton :
  18.894
 
-Time for BDF / Functional:
+Temps pour BDF / Functional :
  18.382
 
-Time for Adams / Newton:
+Temps pour Adams / Newton :
  10.368
 
-Time for Adams / Functional:
+Temps pour Adams / Functional :
  9.815
             ]]></screen>
         </para>
         <para>
-            The results show that for a simple nonstiff continuous problem, <emphasis>Adams / Functional</emphasis> is fastest.
+            Les résultats montrent que pour un problème continu non-raide simple, <emphasis>Adams / Functional</emphasis> est le plus rapide.
         </para>
     </refsection>
     <refsection>
-        <title>See Also</title>
+        <title>Voir Aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="LSodar">LSodar</link>
@@ -262,7 +262,7 @@ Time for Adams / Functional:
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
             </member>
             <member>
-                <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+                <link linkend="RKImp">Runge-Kutta Implicit 4(5)</link>
             </member>
             <member>
                 <link linkend="IDA">IDA</link>
@@ -271,7 +271,7 @@ Time for Adams / Functional:
                 <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
-                <link linkend="Comparisons">Comparisons</link>
+                <link linkend="Comparaisons">Comparaisons</link>
             </member>
             <member>
                 <link linkend="ode">ode</link>
@@ -291,9 +291,9 @@ Time for Adams / Functional:
         </simplelist>
     </refsection>
     <refsection>
-        <title>Bibliography</title>
+        <title>Bibliographie</title>
         <para>
-            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Sundials Documentation</ulink>
+            <ulink url="https://computation.llnl.gov/casc/sundials/documentation/documentation.html">Documentation Sundials</ulink>
         </para>
     </refsection>
 </refentry>

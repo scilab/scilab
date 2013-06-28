@@ -35,7 +35,7 @@
                     It uses variable-size steps,
                 </listitem>
                 <listitem>
-                    It can potentially use <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> integration, methods,
+                    It can potentially use <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> integration methods,
                 </listitem>
                 <listitem>
                     <emphasis>BDF</emphasis> and <emphasis>Adams</emphasis> being implicit stable methods, <emphasis>LSodar</emphasis> is suitable for stiff and nonstiff problems,
@@ -172,6 +172,9 @@ Time for Adams / Functional:
             </member>
             <member>
                 <link linkend="ImpRK">Implicit Runge-Kutta 4(5)</link>
+            </member>
+            <member>
+                <link linkend="DDaskr">DDaskr</link>
             </member>
             <member>
                 <link linkend="Comparisons">Comparisons</link>
