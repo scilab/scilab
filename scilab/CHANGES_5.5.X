@@ -440,3 +440,5 @@ Bug fixes
 
 * Bug #12712 fixed - In SciNotes, autosaving can now use %date to append the current date to the
                      backup filename.
+
+* Bug #12715 fixed - Variable cross in pspect and cspect has been renamed because of conflicts with cross function.
