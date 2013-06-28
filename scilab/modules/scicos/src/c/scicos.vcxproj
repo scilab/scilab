@@ -262,6 +262,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="import.c" />
     <ClCompile Include="MlistGetFieldNumber.c" />
     <ClCompile Include="lsodar.c" />
+    <ClCompile Include="ddaskr.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_buildouttb.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_callblk.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_coserror.c" />
@@ -313,6 +314,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\..\includes\import.h" />
     <ClInclude Include="MlistGetFieldNumber.h" />
     <ClInclude Include="lsodar.h" />
+    <ClInclude Include="ddaskr.h" />
     <ClInclude Include="..\..\includes\scicos-def.h" />
     <ClInclude Include="..\..\includes\scicos.h" />
     <ClInclude Include="..\..\includes\scicos_free.h" />

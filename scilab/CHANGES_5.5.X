@@ -100,6 +100,8 @@ Xcos
 
 * Update Sundials to lastest "2.5.0", keeping our modifications
 
+* Added a new DAE solver : DDaskr (BDF / Newton), which includes rootfinding.
+
 * Bug #7350 fixed - The superblock I/O ports numbering was not updated
                     when a new port was dropped.
 

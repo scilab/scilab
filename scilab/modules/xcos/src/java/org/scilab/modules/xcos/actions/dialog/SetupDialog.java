@@ -175,11 +175,12 @@ public class SetupDialog extends JDialog {
 
         JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
         final String[] solvers = new String[] { "LSodar", "Sundials/CVODE - BDF - NEWTON", "Sundials/CVODE - BDF - FUNCTIONAL",
-                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Dormand-Prince 4(5)", "RK45 - Runge-Kutta 4(5)", "Implicit RK45 - Runge-Kutta 4(5)", "Sundials/IDA"
+                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Dormand-Prince 4(5)",
+                                                "RK45 - Runge-Kutta 4(5)", "Implicit RK45 - Runge-Kutta 4(5)", "Sundials/IDA", "DDaskr"
                                               };
         final String[] solversTooltips = new String[] { "Method: dynamic, Nonlinear solver= dynamic", "Method: BDF, Nonlinear solver= NEWTON",
                 "Method: BDF, Nonlinear solver= FUNCTIONAL", "Method: ADAMS, Nonlinear solver= NEWTON", "Method: ADAMS, Nonlinear solver= FUNCTIONAL",
-                "Method: Fixed step", "Method: Fixed step", "Method: Fixed step, Nonlinear solver= FIXED-POINT", "Sundials/IDA"
+                "Method: Fixed step", "Method: Fixed step", "Method: Fixed step, Nonlinear solver= FIXED-POINT", "Method: BDF, Nonlinear solver= NEWTON", "Method: BDF, Nonlinear solver= NEWTON"
                                                       };
 
         solver = new JComboBox(solvers);
@@ -187,7 +188,8 @@ public class SetupDialog extends JDialog {
         if (solverValue >= 0.0 && solverValue <= solvers.length - 2) {
             solver.setSelectedIndex((int) solverValue);
         } else {
-            solver.setSelectedIndex(solvers.length - 1);
+            // IDA = 8+92 = 100, DDaskr = 9+92 = 101. Here, we turn IDA and DDaskr solver numbers back into indexes (8 and 9)
+            solver.setSelectedIndex((int) solverValue - 92);
         }
 
         final class ComboboxToolTipRenderer extends DefaultListCellRenderer {
@@ -351,10 +353,10 @@ public class SetupDialog extends JDialog {
                          * handler
                          */
                         int solverSelectedIndex = solver.getSelectedIndex();
-                        if (solverSelectedIndex >= 0.0 && solverSelectedIndex <= solver.getModel().getSize() - 2) {
+                        if (solverSelectedIndex >= 0.0 && solverSelectedIndex <= solver.getModel().getSize() - 3) {
                             parameters.setSolver(solverSelectedIndex);
                         } else {
-                            parameters.setSolver(100.0);
+                            parameters.setSolver(solverSelectedIndex + 92); // IDA = 8+92 = 100, DDaskr = 9+92 = 101
                         }
 
                         parameters.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
