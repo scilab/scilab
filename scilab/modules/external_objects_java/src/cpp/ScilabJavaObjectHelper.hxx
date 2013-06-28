@@ -13,7 +13,6 @@
 #include <jni.h>
 #include "GiwsException.hxx"
 #include "NoMoreScilabMemoryException.hxx"
-#include "api_scilab.h"
 #include "ScilabObjects.hxx"
 #include "OptionsHelper.hxx"
 

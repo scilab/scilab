@@ -34,4 +34,6 @@ int sci_jallowClassReloading(char * fname, unsigned long fname_len)
         Scierror(999, "%s: An error occured: %s", fname, e.what());
         return 0;
     }
+
+    return 0;
 }

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}</ProjectGuid>
+    <ProjectGuid>{C51BA525-D7C8-4385-862D-F8E67187B827}</ProjectGuid>
     <RootNamespace>external_objects</RootNamespace>
     <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
@@ -76,18 +76,20 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../output_stream/includes;../core/includes;../api_scilab/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -103,18 +105,20 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../output_stream/includes;../core/includes;../api_scilab/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -128,8 +132,8 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../output_stream/includes;../core/includes;../api_scilab/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -137,12 +141,14 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -161,8 +167,8 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../../libs/MALLOC/includes;../../libs/intl;../localization/includes;../output_stream/includes;../core/includes;../api_scilab/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;../../java/jdk/include;../../java/jdk/include/win32;../../libs/intl;../windows_tools/includes;../commons/src/jni;../external_objects/includes;../api_scilab/includes;../core/includes;../localization/includes;../output_stream/includes;../jvm/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;EXTERNAL_OBJECTS_JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -170,12 +176,14 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
-      <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+      <Message>
+      </Message>
+      <Command>
+      </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -191,128 +199,85 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\dynlib_external_objects_java_scilab.h" />
     <ClInclude Include="includes\ExternalObjects.h" />
     <ClInclude Include="includes\ExternalObjectsFunction.h" />
-    <ClInclude Include="includes\gw_external_objects.h" />
-    <ClInclude Include="includes\OptionsHelper.hxx" />
-    <ClInclude Include="includes\ScilabAbstractEnvironment.hxx" />
-    <ClInclude Include="includes\ScilabAbstractEnvironmentException.hxx" />
-    <ClInclude Include="includes\ScilabAbstractEnvironmentWrapper.hxx" />
+    <ClInclude Include="includes\gw_external_objects_java.h" />
     <ClInclude Include="includes\ScilabAbstractInvoker.hxx" />
     <ClInclude Include="includes\ScilabAbstractMemoryAllocator.hxx" />
     <ClInclude Include="includes\ScilabAbstractOptionsSetter.hxx" />
-    <ClInclude Include="includes\ScilabAutoCleaner.hxx" />
     <ClInclude Include="includes\ScilabEnvironments.hxx" />
     <ClInclude Include="includes\ScilabGateway.hxx" />
     <ClInclude Include="includes\ScilabGatewayOptions.hxx" />
     <ClInclude Include="includes\ScilabObjects.hxx" />
     <ClInclude Include="includes\ScilabOptionsSetter.hxx" />
     <ClInclude Include="includes\ScilabStream.hxx" />
+    <ClInclude Include="src\cpp\JavaOptionsHelper.hxx" />
+    <ClInclude Include="src\cpp\JavaOptionsSetter.hxx" />
+    <ClInclude Include="src\cpp\JIMSwrapunwrap.h" />
+    <ClInclude Include="src\cpp\noMoreMemory.h" />
+    <ClInclude Include="src\cpp\NoMoreScilabMemoryException.hxx" />
+    <ClInclude Include="src\cpp\ScilabJavaEnvironment.hxx" />
+    <ClInclude Include="src\cpp\ScilabJavaEnvironmentWrapper.hxx" />
+    <ClInclude Include="src\cpp\ScilabJavaException.hxx" />
+    <ClInclude Include="src\cpp\ScilabJavaObjectHelper.hxx" />
+    <ClInclude Include="src\jni\ScilabClassLoader.hxx" />
+    <ClInclude Include="src\jni\ScilabJavaArray.hxx" />
+    <ClInclude Include="src\jni\ScilabJavaClass.hxx" />
+    <ClInclude Include="src\jni\ScilabJavaCompiler.hxx" />
+    <ClInclude Include="src\jni\ScilabJavaObject.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sci_gateway\cpp\sci_doubleExclam_invoke_.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_invoke_lu.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EClass_e.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_0.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_1_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_2_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_3_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_4_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_5.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_a_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_disp.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_d_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_e.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_g_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_h_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_j_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_k_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_l_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_m_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_n_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_o_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_p.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_p_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_q_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_r_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_s_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_t.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_x_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_y_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_z_foo.cpp" />
-    <ClCompile Include="sci_gateway\cpp\sci_percent_foo_i_EObj.cpp" />
-    <ClCompile Include="sci_gateway\c\gw_external_objects.c" />
-    <ClCompile Include="src\cpp\addNamedVariable.cpp" />
-    <ClCompile Include="src\cpp\addToClasspath.cpp" />
-    <ClCompile Include="src\cpp\array.cpp" />
-    <ClCompile Include="src\cpp\cast.cpp" />
-    <ClCompile Include="src\cpp\classExtract.cpp" />
-    <ClCompile Include="src\cpp\compile.cpp" />
-    <ClCompile Include="src\cpp\convMatrixMethod.cpp" />
-    <ClCompile Include="src\cpp\deff.cpp" />
-    <ClCompile Include="src\cpp\display.cpp" />
-    <ClCompile Include="src\cpp\doubleExclam_invoke.cpp" />
-    <ClCompile Include="src\cpp\evalString.cpp" />
-    <ClCompile Include="src\cpp\exists.cpp" />
-    <ClCompile Include="src\cpp\ExternalObjectsFunction.cpp" />
-    <ClCompile Include="src\cpp\getClassName.cpp" />
-    <ClCompile Include="src\cpp\getClasspath.cpp" />
-    <ClCompile Include="src\cpp\getEnvId.cpp" />
-    <ClCompile Include="src\cpp\getEnvironmentInfos.cpp" />
-    <ClCompile Include="src\cpp\getEnvironmentName.cpp" />
-    <ClCompile Include="src\cpp\getField.cpp" />
-    <ClCompile Include="src\cpp\getFields.cpp" />
-    <ClCompile Include="src\cpp\getMethods.cpp" />
-    <ClCompile Include="src\cpp\getNamedVariable.cpp" />
-    <ClCompile Include="src\cpp\getRepresentation.cpp" />
-    <ClCompile Include="src\cpp\getsetOptions.cpp" />
-    <ClCompile Include="src\cpp\import.cpp" />
-    <ClCompile Include="src\cpp\invoke.cpp" />
-    <ClCompile Include="src\cpp\invoker.cpp" />
-    <ClCompile Include="src\cpp\invoke_lu.cpp" />
-    <ClCompile Include="src\cpp\newInstance.cpp" />
-    <ClCompile Include="src\cpp\objectExtract.cpp" />
-    <ClCompile Include="src\cpp\objectInsert.cpp" />
-    <ClCompile Include="src\cpp\objectPrint.cpp" />
-    <ClCompile Include="src\cpp\operation.cpp" />
-    <ClCompile Include="src\cpp\OptionsHelper.cpp" />
-    <ClCompile Include="src\cpp\remove.cpp" />
-    <ClCompile Include="src\cpp\ScilabAutoCleaner.cpp" />
-    <ClCompile Include="src\cpp\ScilabEnvironments.cpp" />
-    <ClCompile Include="src\cpp\ScilabObjects.cpp" />
-    <ClCompile Include="src\cpp\ScilabOptionsSetter.cpp" />
-    <ClCompile Include="src\cpp\setField.cpp" />
-    <ClCompile Include="src\cpp\trace.cpp" />
-    <ClCompile Include="src\cpp\unwrap.cpp" />
-    <ClCompile Include="src\cpp\unwrapremove.cpp" />
-    <ClCompile Include="src\cpp\wrap.cpp" />
-    <ClCompile Include="src\cpp\wrapAsRef.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jallowClassReloading.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jarray.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jcast.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jcompile.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jdeff.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jdisableTrace.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jenableTrace.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jexists.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jgetclassname.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jgetfield.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jgetfields.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jgetmethods.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jimport.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jnewInstance.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jremove.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_junwrap.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_junwraprem.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jvoid.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_jwrap.cpp" />
+    <ClCompile Include="sci_gateway\c\gw_external_objects_java.c" />
+    <ClCompile Include="src\cpp\dllMain.cpp" />
+    <ClCompile Include="src\cpp\JavaOptionsSetter.cpp" />
+    <ClCompile Include="src\cpp\NoMoreScilabMemoryException.cpp" />
+    <ClCompile Include="src\cpp\ScilabJavaEnvironment.cpp" />
+    <ClCompile Include="src\cpp\ScilabJavaEnvironmentWrapper.cpp" />
+    <ClCompile Include="src\jni\ScilabClassLoader.cpp" />
+    <ClCompile Include="src\jni\ScilabJavaArray.cpp" />
+    <ClCompile Include="src\jni\ScilabJavaClass.cpp" />
+    <ClCompile Include="src\jni\ScilabJavaCompiler.cpp" />
+    <ClCompile Include="src\jni\ScilabJavaObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\fileio\fileio.vcxproj">
-      <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
+    <ProjectReference Include="..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\localization\src\localization.vcxproj">
-      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    <ProjectReference Include="..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\external_objects\external_objects.vcxproj">
+      <Project>{3142e52c-309a-41d9-bd12-7b7e9e3bdd44}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\jvm\libjvm.vcxproj">
+      <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
     </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\libintl.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="core_f_Import.def" />
-    <None Include="core_Import.def" />
-    <None Include="external_objects.iss" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="external_objects.rc" />
+    <ProjectReference Include="..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
+      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

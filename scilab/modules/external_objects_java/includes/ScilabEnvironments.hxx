@@ -13,6 +13,8 @@
 #ifndef __SCILABENVIRONMENTS_HXX__
 #define __SCILABENVIRONMENTS_HXX__
 
+#pragma warning(disable: 4251)
+
 #include <vector>
 
 #include "ScilabAbstractEnvironmentException.hxx"

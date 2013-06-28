@@ -12,6 +12,10 @@
  *
  */
 
+#ifdef _MSC_VER
+#include "windows.h"
+#endif
+
 #include "ScilabJavaEnvironmentWrapper.hxx"
 #include "ScilabJavaObject.hxx"
 
@@ -46,33 +50,38 @@ int ScilabJavaEnvironmentWrapper::wrap(double * x, const bool isRef) const
 int ScilabJavaEnvironmentWrapper::wrap(double * x, int xSize, const bool isRef) const
 {
     //  return wrapData<double>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<double>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * re, double * im, const bool isRef) const
 {
-    /*    if (helper.getWrapSingleWithNumpy())
-        {
-            return wrapData(re, im, 1, isRef);
-        }
-        else
-        {
-            return wrapData(re, im, isRef);
-            }*/
+    //if (helper.getWrapSingleWithNumpy())
+    //{
+    //    return wrapData(re, im, 1, isRef);
+    //}
+    //else
+    //{
+    //    return wrapData(re, im, isRef);
+    //}
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * re, double * im, int xSize, const bool isRef) const
 {
     //    return wrapData(re, im, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * re, double * im, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData(re, im, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, const bool isRef) const
@@ -84,26 +93,31 @@ int ScilabJavaEnvironmentWrapper::wrap(char * x, const bool isRef) const
 int ScilabJavaEnvironmentWrapper::wrap(char * x, int xSize, const bool isRef) const
 {
     //    return wrapData<char>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<char>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, const bool isRef) const
 {
     //    return wrapData<unsigned char>(x, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, int xSize, const bool isRef) const
 {
     //  return wrapData<unsigned char>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<unsigned char>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(short * x, const bool isRef) const
@@ -115,11 +129,13 @@ int ScilabJavaEnvironmentWrapper::wrap(short * x, const bool isRef) const
 int ScilabJavaEnvironmentWrapper::wrap(short * x, int xSize, const bool isRef) const
 {
     //    return wrapData<short>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(short * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<short>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, const bool isRef) const
@@ -131,11 +147,13 @@ int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, const bool isRef) con
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, int xSize, const bool isRef) const
 {
     //    return wrapData<unsigned short>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<unsigned short>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(int * x, const bool isRef) const
@@ -147,11 +165,13 @@ int ScilabJavaEnvironmentWrapper::wrap(int * x, const bool isRef) const
 int ScilabJavaEnvironmentWrapper::wrap(int * x, int xSize, const bool isRef) const
 {
     //    return wrapData<int>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(int * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<int>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, const bool isRef) const
@@ -163,11 +183,13 @@ int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, const bool isRef) const
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, int xSize, const bool isRef) const
 {
     //    return wrapData<unsigned int>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<unsigned int>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 #ifdef __SCILAB_INT64__
@@ -181,16 +203,19 @@ int ScilabJavaEnvironmentWrapper::wrap(long long * x, const bool isRef) const
 int ScilabJavaEnvironmentWrapper::wrap(long long * x, int xSize, const bool isRef) const
 {
     //    return wrapData<long>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(long long * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<long>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, const bool isRef) const
 {
     //    return wrapData<unsigned long>(x, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, int xSize, const bool isRef) const
@@ -201,6 +226,7 @@ int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, int xSize, const 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<unsigned long>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 #endif
@@ -214,27 +240,31 @@ int ScilabJavaEnvironmentWrapper::wrap(char ** x, const bool isRef) const
 int ScilabJavaEnvironmentWrapper::wrap(char ** x, int xSize, const bool isRef) const
 {
     //    return wrapData(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char ** x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, const bool isRef) const
 {
     JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapBoolean(vm, *x);
+    return ScilabJavaObject::wrapBoolean(vm, *x != 0);
 }
 
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, int xSize, const bool isRef) const
 {
     //    return wrapData<int, bool, npy_bool>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<int, bool, npy_bool>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(float * x, const bool isRef) const
@@ -246,11 +276,13 @@ int ScilabJavaEnvironmentWrapper::wrap(float * x, const bool isRef) const
 int ScilabJavaEnvironmentWrapper::wrap(float * x, int xSize, const bool isRef) const
 {
     //    return wrapData<float>(x, xSize, isRef);
+    return 0;
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(float * x, int xSize, int xSizeCol, const bool isRef) const
 {
     //    return wrapData<float>(x, xSize, xSizeCol, isRef);
+    return 0;
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapdouble(int id, const ScilabDoubleStackAllocator & allocator) const

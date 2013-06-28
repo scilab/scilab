@@ -65,12 +65,12 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "external_objects module"
+            VALUE "FileDescription", "external_objects_java module"
             VALUE "FileVersion", "5, 5, 0, 0"
-            VALUE "InternalName", "external_objects module"
+            VALUE "InternalName", "external_objects_java module"
             VALUE "LegalCopyright", "Copyright (C) 2013"
-            VALUE "OriginalFilename", "external_objects.dll"
-            VALUE "ProductName", " external_objects"
+            VALUE "OriginalFilename", "external_objects_java.dll"
+            VALUE "ProductName", " external_objects_java"
             VALUE "ProductVersion", "5, 5, 0, 0"
         END
     END

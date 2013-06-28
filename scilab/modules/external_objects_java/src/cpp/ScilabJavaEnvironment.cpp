@@ -10,6 +10,10 @@
  *
  */
 
+#ifdef _MSC_VER
+#include "windows.h"
+#endif
+
 #include <jni.h>
 
 #include "ScilabJavaEnvironment.hxx"
@@ -24,6 +28,7 @@
 //#include "ScilabJavaObjectHelper.hxx"
 extern "C" {
 #include "getScilabJavaVM.h"
+#include "tmpdir.h"
 }
 
 namespace org_scilab_modules_external_objects_java
@@ -77,7 +82,7 @@ int ScilabJavaEnvironment::start()
                 ScilabJavaOStream::setStdErrStream(&instance->scilabStream);*/
         instance->helper.setUseLastName(true);
         instance->helper.setNewAllowed(true);
-        instance->enabletrace("/tmp/eo_java.log");
+        instance->enabletrace((std::string(getTMPDIR()) + std::string("/eo_java.log")).c_str());
     }
 
     return envId;
@@ -475,7 +480,7 @@ bool ScilabJavaEnvironment::isvalidobject(int id)
 {
 
     JavaVM *vm = getScilabJavaVM();
-    int ret = ScilabJavaObject::isValidJavaObject(vm, id);
+    bool ret = ScilabJavaObject::isValidJavaObject(vm, id);
     writeLog("isvalidobject", "Test the validity of object %d which is%s valid.", id, ret ? "" : " not");
     return ret;
 }

@@ -16,10 +16,6 @@
 #include "ScilabAbstractEnvironmentWrapper.hxx"
 #include "ScilabAbstractEnvironmentException.hxx"
 
-extern "C" {
-#include "api_scilab.h"
-}
-
 namespace org_modules_external_objects
 {
 

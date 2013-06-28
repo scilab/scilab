@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <jni.h>
 #include "GiwsException.hxx"
+#include "ScilabJavaObjectHelper.hxx"
 /*--------------------------------------------------------------------------*/
 #define SCILABJAVAOBJECT "org/scilab/forge/jims/ScilabJavaObject"
 /*--------------------------------------------------------------------------*/

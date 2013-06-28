@@ -15,10 +15,6 @@
 #ifndef __SCILABGATEWAYOPTIONS_HXX__
 #define __SCILABGATEWAYOPTIONS_HXX__
 
-extern "C" {
-#include "api_scilab.h"
-}
-
 namespace org_modules_external_objects
 {
 

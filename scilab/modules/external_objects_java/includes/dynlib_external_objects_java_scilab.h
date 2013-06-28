@@ -11,11 +11,11 @@
 */
 
 /*--------------------------------------------------------------------------*/
-#ifndef __DYNLIB_JIMS_SRC_H__
-#define __DYNLIB_JIMS_SRC_H__
+#ifndef __DYNLIB_EXTERNAL_OBJECTS_JAVA_H__
+#define __DYNLIB_EXTERNAL_OBJECTS_JAVA_H__
 
 #ifdef _MSC_VER
-#ifdef JIMS_EXPORTS
+#ifdef EXTERNAL_OBJECTS_JAVA_EXPORTS
 #define EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP __declspec(dllexport)
 #else
 #define EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP __declspec(dllimport)
@@ -24,5 +24,5 @@
 #define EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP
 #endif
 
-#endif /* __DYNLIB_JIMS_SRC_H__ */
+#endif /* __DYNLIB_EXTERNAL_OBJECTS_JAVA_H__ */
 /*--------------------------------------------------------------------------*/

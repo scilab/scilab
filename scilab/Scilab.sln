@@ -501,6 +501,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nographic_objects", "module
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "external_objects", "modules\external_objects\external_objects.vcxproj", "{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "external_objects_java", "modules\external_objects_java\external_objects_java.vcxproj", "{C51BA525-D7C8-4385-862D-F8E67187B827}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1561,6 +1563,14 @@ Global
 		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|Win32.Build.0 = Release|Win32
 		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|x64.ActiveCfg = Release|x64
 		{3142E52C-309A-41D9-BD12-7B7E9E3BDD44}.Release|x64.Build.0 = Release|x64
+		{C51BA525-D7C8-4385-862D-F8E67187B827}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C51BA525-D7C8-4385-862D-F8E67187B827}.Debug|Win32.Build.0 = Debug|Win32
+		{C51BA525-D7C8-4385-862D-F8E67187B827}.Debug|x64.ActiveCfg = Debug|x64
+		{C51BA525-D7C8-4385-862D-F8E67187B827}.Debug|x64.Build.0 = Debug|x64
+		{C51BA525-D7C8-4385-862D-F8E67187B827}.Release|Win32.ActiveCfg = Release|Win32
+		{C51BA525-D7C8-4385-862D-F8E67187B827}.Release|Win32.Build.0 = Release|Win32
+		{C51BA525-D7C8-4385-862D-F8E67187B827}.Release|x64.ActiveCfg = Release|x64
+		{C51BA525-D7C8-4385-862D-F8E67187B827}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

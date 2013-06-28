@@ -40,6 +40,10 @@
 #include <map>
 #include <string>
 
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 // #if defined(PIMS_EXPORTS)
 // #pragma message("defined(PIMS_EXPORTS)")
 // #else
@@ -393,6 +397,8 @@ private:
             case Geq :
                 return "ge";
         }
+
+        return "";
     }
 };
 

@@ -1,9 +1,0 @@
-	LIBRARY    core_f.dll
-
-
-EXPORTS
-;
-;core_f
-;
-varfunptr_
-funs_
