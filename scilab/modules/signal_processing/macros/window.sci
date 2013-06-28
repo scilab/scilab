@@ -82,7 +82,7 @@ function [win_l,cwp]=window(wtype,n,par)
         win_l=.5*un+.5*cos(2*%pi*xt/(n-1));
     case "kr" then           //Kaiser window with parameter beta (n,beta)
         //http://en.wikipedia.org/wiki/Kaiser_window
-        win_l = besseli(0,Beta*sqrt(1-(2*(0:n-1)/(n-1)-1)^2))/besseli(0,Beta);
+        win_l = besseli(0,Beta*sqrt(1-(2*(0:n-1)/(n-1)-1).^2))/besseli(0,Beta);
     case "ch" then           //Chebyshev window
         m=(n-1)/2;
         select unknown
