@@ -23,6 +23,8 @@ extern "C"
 #include "core_math.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "os_wcsdup.h"
+#include "locale.h"
 }
 
 
@@ -34,13 +36,14 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
     wchar_t pwstKey[] = L"1234567890";
     wchar_t pwstSymbol[] = L"-+.";
+    wchar_t wstDecimalSep = L'.';
 
     unsigned long long ullNan = 0x7ff8000000000000;
     double dblNan = *( double* )&ullNan;
 
-    if (in.size() != 1)
+    if (in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "strtod", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "strtod", 1, 2);
         return types::Function::Error;
     }
     if (_iRetCount > 2)
@@ -51,7 +54,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
-        out.push_back(new types::Double(dblNan));
+        out.push_back(types::Double::Empty());
         if (_iRetCount == 2)
         {
             out.push_back(new types::String(L""));
@@ -63,6 +66,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), "strtod", 1);
+        return types::Function::Error;
     }
 
     pString = in[0]->getAs<types::String>();
@@ -71,6 +75,36 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     if (_iRetCount == 2)
     {
         pOutString = new types::String(pString->getDims(), pString->getDimsArray());
+    }
+
+    if (in.size() == 2)
+    {
+        if (in[1]->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "strtod", 2);
+            return types::Function::Error;
+        }
+
+        types::String* pString2 = in[1]->getAs<types::String>();
+        std::wstring pwstr(pString2->get(0));
+
+        if (pwstr != L"." && pwstr != L",")
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: '.' or ',' expected.\n"), "strtod", 2);
+            return types::Function::Error;
+        }
+
+        wstDecimalSep = *(pwstr.c_str());
+        pwstSymbol[2] = wstDecimalSep;
+
+        if (wstDecimalSep == L',')
+        {
+#ifdef _MSC_VER
+            setlocale(LC_NUMERIC, "French_France.1252");
+#else
+            setlocale(LC_NUMERIC, "fr_FR.UTF-8");
+#endif
+        }
     }
 
     for (int i = 0 ; i < pString->getSize() ; i++)
@@ -91,9 +125,8 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         }
 
         //special case for "-.3"
-        if (iSign == iKey - 2 && pstStr[iSign + 1] == L'.')
+        if (iSign == iKey - 2 && pstStr[iSign + 1] == wstDecimalSep)
         {
-
             //let strtod do with symbol
             iKey -= 2;
         }
@@ -147,6 +180,11 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
                 pOutString->set(i, L"");
             }
         }
+    }
+
+    if (wstDecimalSep == L',')
+    {
+        setlocale(LC_NUMERIC, "C");
     }
 
     out.push_back(pOutDouble);
