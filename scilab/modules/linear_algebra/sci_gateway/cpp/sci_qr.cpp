@@ -112,6 +112,13 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
             types::String* pStr = in[1]->getAs<types::String>();
             if((wcslen(pStr->get(0)) == 1) && (pStr->get(0)[0] == L'e'))
             */
+
+            if (_iRetCount == 4)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "qr", 2);
+                return types::Function::Error;
+            }
+
             iRowsToCompute = Min(pDbl->getRows(), pDbl->getCols());
         }
         else if (in[1]->isDouble() == true)
