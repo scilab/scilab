@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
     if (pDblA->getCols() != pDblA->getRows())
     {
-        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "spec", 1);
+        Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "spec", 1);
         return types::Function::Error;
     }
 
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         int totalSize = pDblA->getSize();
         if ((pDblA->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataA) : C2F(vfinite)(&totalSize, pDataA)) == false)
         {
-            Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "spec", 1);
+            Scierror(264, _("%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"), "spec", 1);
             return types::Function::Error;
         }
 
@@ -304,13 +304,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if ((pDblA->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataA) : C2F(vfinite)(&totalSize, pDataA)) == false)
         {
-            Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "spec", 1);
+            Scierror(264, _("%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"), "spec", 1);
             return types::Function::Error;
         }
 
         if ((pDblB->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataB) : C2F(vfinite)(&totalSize, pDataB)) == false)
         {
-            Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "spec", 2);
+            Scierror(264, _("%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"), "spec", 2);
             return types::Function::Error;
         }
 
