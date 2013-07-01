@@ -7,13 +7,9 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-
-// Execute with exec("SCI/modules/scicos/tests/unit_tests/DoPri.tst");
-//  or test_run('scicos', 'DoPri', ['no_check_error_output']);
+// <-- XCOS TEST -->
 
 // Import diagram
-loadScicos();
-loadXcosLibs();
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/DoPri_test.zcos"));
 
 for i=2:4  // 'max step size' = 5*10^-i, precision
