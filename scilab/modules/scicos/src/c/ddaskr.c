@@ -751,6 +751,8 @@ int DDaskrSolve (void * ddaskr_mem, realtype tOut, realtype * tOld, N_Vector yOu
     {
         case 5:
             return (IDA_ROOT_RETURN);
+        case 6:
+            return (IDA_ZERO_DETACH_RETURN);
         case -1:
             DDASProcessError(ddas_mem, IDA_TOO_MUCH_WORK, "DDASKR", "DDaskrSolve", MSG_MAX_STEPS, tStart);
             return (IDA_TOO_MUCH_WORK);
