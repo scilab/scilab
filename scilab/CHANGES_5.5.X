@@ -211,6 +211,8 @@ Bug fixes
 
 * Bug #7781 fixed - The second parameter of iqr function had not effect.
 
+* Bug #7824 fixed - The properties of title function did not support an indexed color.
+
 * Bug #7826 fixed - chart tagged as obsolete.
 
 * Bug #7828 fixed - Slight improvements in nicholschart.
