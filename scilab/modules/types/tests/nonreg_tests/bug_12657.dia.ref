@@ -23,7 +23,6 @@ assert_checkequal([%inf %nan; %inf %nan].^%inf, [%inf %nan; %inf %nan]);
 assert_checkequal([%inf].^[%inf %nan; %nan %inf], [%inf %nan; %nan %inf]);
 assert_checkequal([%inf %nan; %nan %inf].^[%inf %nan; %inf %nan], [%inf %nan; %nan %nan]);
 // Now, checking that computation is done in place
-stacksize(2.5e6);
 v = rand(1, 1e6);
 v.^2;
 // Checking the 1e5 first values of the result
