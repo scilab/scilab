@@ -38,7 +38,11 @@ function h=generic_i_h(i,v,h)
             if (k+1)==size(i) then
                 index=i($)
             else
-                index=list(i(k+1:$))
+                if i(2)=="locations" & size(v,"*") <> size(property(3),"*") | i(2)=="labels" & size(v,"*") <> size(property(2),"*") then
+                    error(msprintf(_("%s: Incompatible size for properties ''%s'' and ''%s'': Same sizes expected.\n"), "generic_i_h", i(1)+".locations", i(1)+".labels"));
+                else
+                    index=list(i(k+1:$))
+                end
             end
             break
         end
