@@ -212,6 +212,8 @@ Bug fixes
 
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
+* Bug #8098 fixed - cumsum could not be applied to rational matrices.
+
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
 
 * Bug #8234 fixed - strtod did not return an empty matrix when input argument was an empty matrix.
