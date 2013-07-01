@@ -16,11 +16,9 @@
 M = [1 0; 0 10^(-8)];
 inv(M);
 Warning :
-matrix is close to singular or badly scaled. rcond =    1.0000D-08
-
+matrix is close to singular or badly scaled. rcond = 1.0000E-08
 A=diag([1:10]);
 A(1,1) = 10^-8;
 inv(A);
 Warning :
-matrix is close to singular or badly scaled. rcond =    1.0000D-09
-
+matrix is close to singular or badly scaled. rcond = 1.0000E-09

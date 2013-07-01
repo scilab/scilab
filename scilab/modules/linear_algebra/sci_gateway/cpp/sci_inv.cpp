@@ -91,7 +91,6 @@ types::Function::ReturnValue sci_inv(types::typed_list &in, int _iRetCount, type
             {
                 sciprint(_("Warning :\n"));
                 sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
-                sciprint(_("computing least squares solution. (see lsq).\n"));
             }
         }
     }
