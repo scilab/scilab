@@ -176,6 +176,9 @@
     <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\ddaskr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\copyvarfromlistentry.h">
@@ -236,6 +239,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\sciblk4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ddaskr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

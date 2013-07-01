@@ -253,6 +253,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c" />
     <ClCompile Include="..\copyvarfromlistentry.c" />
     <ClCompile Include="..\createblklist.c" />
+    <ClCompile Include="..\ddaskr.c" />
     <ClCompile Include="..\DllmainScicos.c" />
     <ClCompile Include="..\extractblklist.c" />
     <ClCompile Include="..\ezxml.c" />
@@ -305,6 +306,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClInclude Include="..\copyvarfromlistentry.h" />
     <ClInclude Include="..\createblklist.h" />
     <ClInclude Include="..\..\..\includes\dynlib_scicos.h" />
+    <ClInclude Include="..\ddaskr.h" />
     <ClInclude Include="..\extractblklist.h" />
     <ClInclude Include="..\ezxml.h" />
     <ClInclude Include="..\..\..\includes\gw_scicos.h" />
