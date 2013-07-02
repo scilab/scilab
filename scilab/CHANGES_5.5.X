@@ -265,6 +265,8 @@ Bug fixes
 
 * Bug #7296 fixed - Enabled %nan, %inf and -%inf for the cdf* functions.
 
+* Bug #7411 fixed - clf() forgot to turn off the datatip mode.
+
 * Bug #7486 fixed - DGELSY and ZGELSY closer to the upstream, to propose our modifications to LAPACK.
 
 * Bug #7596 fixed - Same error happening in different places now yields the same error message.
