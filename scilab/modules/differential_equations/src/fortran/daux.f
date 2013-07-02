@@ -126,7 +126,8 @@ C
       CALL msgstxt(MSG)
       IF (NI .EQ. 1) THEN
          WRITE (MSG, '(I10)') I1
-         CALL msgstxt('In above message,  I1 ='//MSG)
+         MSG = 'In above message,  I1 ='//MSG
+         CALL msgstxt(MSG)
       ENDIF
       IF (NI .EQ. 2) THEN
          WRITE (MSG, 30) I1, I2
@@ -135,7 +136,8 @@ C
       ENDIF
       IF (NR .EQ. 1) THEN
          WRITE (MSG, '(D21.13)') R1
-         CALL msgstxt('In above message,  I1 ='//MSG)
+         MSG = 'In above message,  I1 ='//MSG
+         CALL msgstxt(MSG)
       ENDIF
       IF (NR .EQ. 2) THEN
          WRITE (MSG, 50) R1, R2
