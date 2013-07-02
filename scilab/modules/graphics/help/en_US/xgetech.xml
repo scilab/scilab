@@ -17,13 +17,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[wrect,frect,logflag,arect]=xgetech()</synopsis>
+        <synopsis>[wrect, frect, logflag, arect] = xgetech()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>wrect,frect</term>
+                <term>wrect, frect</term>
                 <listitem>
                     <para>real vectors.</para>
                 </listitem>
@@ -31,7 +31,9 @@
             <varlistentry>
                 <term>logflag</term>
                 <listitem>
-                    <para>string of size 2 "xy".</para>
+                    <para>
+                        string of size 2 <literal>"xy"</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,34 +41,43 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xgetech</literal> returns the current graphics scale (of the current window). 
-            The rectangle [xmin,ymin,xmax,ymax] given by
-            <literal>frect</literal> is the size of the whole graphics window. 
-            The plotting will be made in the region of the current graphics window specified by <literal>wrect</literal>.
+            <function>xgetech</function> returns the current graphics scale (of
+            the current window). The rectangle <literal>[xmin, ymin, xmax,
+                ymax]
+            </literal>
+            given by <varname>frect</varname> is the size of the
+            whole graphics window. The plotting will be made in the region of
+            the current graphics window specified by <varname>wrect</varname>.
         </para>
         <para>
-            <literal>wrect=[x,y,w,h]</literal> (upper-left point, width, height) describes a region 
-            inside the graphics window. The values in <literal>wrect</literal> are specified using proportion
-            of the width and height of the graphics window:
+            <literal>wrect=[x, y, w, h]</literal> (upper-left point, width,
+            height) describes a region inside the graphics window. The values in
+            <varname>wrect</varname> are specified using proportion of the width
+            and height of the graphics window:
         </para>
         <para>
-            <literal>wrect=[0 0 1 1]</literal> means that the whole graphics window is used.
+            <literal>wrect=[0, 0, 1, 1]</literal> means that the whole graphics
+            window is used.
         </para>
         <para>
-            <literal>wrect=[0.5 0 0.5 1]</literal> means that the graphics region is the right 
-            half of the graphics window.
+            <literal>wrect=[0.5, 0, 0.5, 1]</literal> means that the graphics
+            region is the right half of the graphics window.
         </para>
         <para>
-            <literal>logflag</literal> is a string of size 2 "xy", where x and y can be "n" or "l". 
-            "n" stands for normal (linear) scale and "l" stands for logscale. x stands for the x-axis and y stands
-            for the y-axis.
+            <literal>logflag</literal> is a string of size 2
+            <literal>"xy"</literal>, where <literal>x</literal> and
+            <literal>y</literal> can be <literal>"n"</literal> or
+            <literal>"l"</literal>. <literal>"n"</literal> stands for normal (linear) scale and <literal>"l"</literal> stands for logscale.
+            <literal>x</literal> stands for the x-axis and <literal>y</literal>
+            stands for the y-axis.
         </para>
         <para>
-            <literal>arect=[x_left, x_right,y_up,y_down]</literal> gives the frame size
-            inside the subwindow. The graphic frame is specified (like <literal>wrect</literal>) 
-            using proportion of the width or height of the current graphic subwindow. 
-            Default value is <literal>1/8*[1,1,1,1]</literal>. If <literal>arect</literal> is not given, 
-            current value remains unchanged.
+            <literal>arect = [x_left, x_right, y_up, y_down]</literal> gives the
+            frame size inside the subwindow. The graphic frame is specified
+            (like <varname>wrect</varname>) using proportion of the width or
+            height of the current graphic subwindow. Default value is
+            <literal>1/8*[1,1,1,1]</literal>. If <varname>arect</varname> is not
+            given, current value remains unchanged.
         </para>
     </refsection>
     <refsection>

@@ -98,7 +98,9 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>champ1();</scilab:image>
+        <scilab:image>
+            champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>

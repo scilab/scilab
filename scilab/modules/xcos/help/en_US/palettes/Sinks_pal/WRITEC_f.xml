@@ -293,16 +293,20 @@
             events, we use a TIME_f block and a multiplexer to form the input vector of the WRITEC_f block which record the data in
             the file <emphasis>"TMPDIR/writec_f.data"</emphasis>. Then you can read these data with the block
             <link linkend="READC_f">READC_f</link>.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.zcos">
                 Open this example in Xcos
             </link>
             .
         </para>
+        <para/>
         <para>
-            <mediaobject><imageobject>
-                    <imagedata fileref="../../../examples/sinks_pal/en_US/writec_f_diagram_en_US.png" align="center" />
-                </imageobject>
-            </mediaobject>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/sinks_pal/en_US/writec_f_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
     </refsection>
     

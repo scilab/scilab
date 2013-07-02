@@ -26,12 +26,12 @@ static int *il_sim_save = NULL;
 /*--------------------------------------------------------------------------*/
 int *get_il_sim(void)
 {
-	return il_sim_save;
+    return il_sim_save;
 }
 /*--------------------------------------------------------------------------*/
 int *set_il_sim(int *_sim)
 {
-	il_sim_save = _sim;
-	return il_sim_save;
+    il_sim_save = _sim;
+    return il_sim_save;
 }
 /*--------------------------------------------------------------------------*/

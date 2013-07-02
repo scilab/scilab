@@ -208,7 +208,9 @@ void WriteAddInter(char *file)
         fprintf(fout, "//Scilab functions\n");
         fprintf(fout, "%s_funs=[...\n", file);
         for (i = 0; i < nFun - 1; i++)
+        {
             fprintf(fout, "  '%s';\n", funNames[i]);
+        }
         fprintf(fout, "  '%s']\n", funNames[nFun - 1]);
         fprintf(fout, "// interface file to link: ifile='%s.o'\n", file);
         fprintf(fout, "// user's files to link: ufiles=['file1.o','file2.o',....]\n");
@@ -216,7 +218,9 @@ void WriteAddInter(char *file)
         fclose(fout);
     }
     else
+    {
         fprintf(stderr, "Can't open file %s\n", file);
+    }
 }
 
 void Copyright()
@@ -266,9 +270,13 @@ void WriteFunctionCode(FILE * f)
     /* rhs argument number checking */
 
     if (basfun->NewMaxOpt > 0)
+    {
         Fprintf(f, indent, "CheckRhs(%d,%d+nopt);\n", basfun->nin - basfun->maxOpt, basfun->nin - basfun->maxOpt);
+    }
     else
+    {
         Fprintf(f, indent, "CheckRhs(%d,%d);\n", basfun->nin - basfun->maxOpt, basfun->nin);
+    }
 
     /* lhs argument number checking */
     ivar = basfun->out;
@@ -359,9 +367,13 @@ void WriteInfoCode(FILE * f)
                 var = variables[ivar - 1];
                 printf("%s", var->name);
                 if (i != vout->length - 1)
+                {
                     printf(",");
+                }
                 else
+                {
                     printf(")");
+                }
             }
             break;
         case SEQUENCE:
@@ -373,9 +385,13 @@ void WriteInfoCode(FILE * f)
                 var = variables[ivar - 1];
                 printf("%s", var->name);
                 if (i != vout->length - 1)
+                {
                     printf(",");
+                }
                 else
+                {
                     printf("]");
+                }
             }
             break;
         case EMPTY:
@@ -388,7 +404,9 @@ void WriteInfoCode(FILE * f)
     {
         printf("%s(%s)", variables[i]->name, SGetSciType(variables[i]->type));
         if (i != basfun->nin - 1)
+        {
             printf(",");
+        }
     }
     printf(")\n");
 
@@ -464,13 +482,19 @@ void WriteCrossCheck(FILE * f)
                     int dim = 2;
 
                     if (var->for_name[j][0] == 'm')
+                    {
                         dim = 1;
+                    }
                     if (var->for_name[j][1] != 'e') /* do not check external variables */
                     {
                         if (strncmp(var->for_name[0], "istk", 4) == 0)
+                        {
                             Fprintf(f, indent, "CheckOneDim(%d,%d,%s,*%s);\n", var->for_name_orig[j], dim, var->for_name[j], var->for_name[0]);
+                        }
                         else
+                        {
                             Fprintf(f, indent, "CheckOneDim(%d,%d,%s,%s);\n", var->for_name_orig[j], dim, var->for_name[j], var->for_name[0]);
+                        }
                     }
                 }
             }
@@ -529,7 +553,9 @@ void CheckCreateOrder()
     int i, count = 0;
 
     if (forsub->narg == 0)
+    {
         return;
+    }
     for (i = 0; i < forsub->narg; i++)
     {
         ivar = forsub->arg[i];
@@ -545,7 +571,9 @@ void CheckCreateOrder()
                 exit(1);
             }
             if (variables[ivar - 1]->stack_position != 0)
+            {
                 min = variables[ivar - 1]->stack_position;
+            }
         }
     }
 }
@@ -616,17 +644,25 @@ void WriteFortranCall(FILE * f)
                 strcat(call, variables[ivar - 1]->C_name[0]);
             }
             else
+            {
                 strcat(call, variables[ivar - 1]->for_name[0]);
+            }
             strcat(call, ",");
         }
     }
     if (forsub->narg == 0)
+    {
         strcat(call, ")");
+    }
     else
+    {
         call[strlen(call) - 1] = ')';
+    }
 
     if (target == 'C')
+    {
         strcat(call, ";\n");
+    }
     Fprintf(f, indent, call);
 
     for (i = 0; i < nVariable; i++)
@@ -758,9 +794,13 @@ void WriteVariable(FILE * f, VARPTR var, IVAR ivar, int insidelist, int nel)
 
                 if (var->for_type == CSTRINGV)
                     /* variable is recreated fro output */
+                {
                     Fprintf(f, indent, "LhsVar(%d)= %d;\n", var->out_position, icre);
+                }
                 else
+                {
                     Fprintf(f, indent, "LhsVar(%d)= %d;\n", var->out_position, var->stack_position);
+                }
             }
         }
         if (var->equal != 0)
@@ -883,7 +923,9 @@ char *Forname2Int(VARPTR var, int i)
         return (unknown);
     }
     if (var->C_name[i] != (char *)0)
+    {
         return var->C_name[i];
+    }
     if (strncmp(var->for_name[i], "stk", 3) == 0)
     {
         l = (int)strlen(var->for_name[i]);
@@ -892,7 +934,9 @@ char *Forname2Int(VARPTR var, int i)
         return p;
     }
     else
+    {
         return var->for_name[i];
+    }
 }
 
 void GenFundef(char *file, int interf)
@@ -911,7 +955,9 @@ void GenFundef(char *file, int interf)
         {
             fprintf(fout, "{\"%s\",", funNames[i]);
             for (j = 0; j < 25 - (int)strlen(funNames[i]); j++)
+            {
                 fprintf(fout, " ");
+            }
             fprintf(fout, "\t\tIN_%s,\t%d,\t3},\n", file, i + 1);
         }
         printf("\nfile \"%s\" has been created\n", filout);
@@ -951,7 +997,9 @@ static void GenBuilder(char *file, char *files, char *libs)
             files++;
         }
         while (*files == ' ')
+        {
             files++;
+        }
         if (*files == 0)
         {
             fprintf(fout, "'];\n");
@@ -982,7 +1030,9 @@ static void GenBuilder(char *file, char *files, char *libs)
             libs++;
         }
         while (*libs == ' ')
+        {
             libs++;
+        }
         if (*libs == 0)
         {
             fprintf(fout, "'];\n");
@@ -997,7 +1047,9 @@ static void GenBuilder(char *file, char *files, char *libs)
     fprintf(fout, "\ntable =[");
     i = 0;
     if (nFun == 1)
+    {
         fprintf(fout, "\"%s\",\"ints%s\"];\n", funNames[i], funNames[i]);
+    }
     else
     {
         fprintf(fout, "\"%s\",\"ints%s\";\n", funNames[i], funNames[i]);
@@ -1047,7 +1099,9 @@ void Fprintf(FILE * f, int indent2, char *format, ...)
             count = indent2;
         }
         if (sbuf[i] == '\n')
+        {
             count = -1;
+        }
         fprintf(f, "%c", sbuf[i]);
         count++;
     }
@@ -1059,7 +1113,9 @@ void white(FILE * f, int ind)
     int i;
 
     for (i = 0; i < ind; i++)
+    {
         fprintf(f, " ");
+    }
 }
 
 void FCprintf(FILE * f, char *format, ...)

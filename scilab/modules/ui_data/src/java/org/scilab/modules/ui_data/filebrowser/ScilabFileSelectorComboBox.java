@@ -382,11 +382,15 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
                 if (isWindows) {
                     char c = Character.toLowerCase(strs[0][i]);
                     j = 1;
-                    for (; j < strs.length && Character.toLowerCase(strs[j][i]) == c; j++);
+                    for (; j < strs.length && Character.toLowerCase(strs[j][i]) == c; j++) {
+                        ;
+                    }
                 } else {
                     char c = strs[0][i];
                     j = 1;
-                    for (; j < strs.length && strs[j][i] == c; j++);
+                    for (; j < strs.length && strs[j][i] == c; j++) {
+                        ;
+                    }
                 }
             }
 
@@ -394,7 +398,9 @@ public class ScilabFileSelectorComboBox extends JComboBox implements DocumentLis
             if (isWindows) {
                 int k = i - 1;
                 for (j = 1; j < strs.length && k == i - 1; j++) {
-                    for (k = 0; k < i - 1 && strs[j][k] == strs[0][k]; k++);
+                    for (k = 0; k < i - 1 && strs[j][k] == strs[0][k]; k++) {
+                        ;
+                    }
                 }
 
                 if (j != strs.length) {

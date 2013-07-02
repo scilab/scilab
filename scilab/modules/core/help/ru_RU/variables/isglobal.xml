@@ -2,11 +2,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="isglobal">
     <refnamediv>
         <refname>isglobal</refname>
-        <refpurpose>проверка, является ли переменная глобальной</refpurpose>
+        <refpurpose>
+            проверка, является ли переменная глобальной
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Последовательность вызова</title>
-        <synopsis>t=isglobal(x)</synopsis>
+        <synopsis>t = isglobal(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -14,13 +16,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>любая переменная</para>
+                    <para>любая переменная.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>логическое значение</para>
+                    <para>логическое значение.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -28,7 +30,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>isglobal(x)</literal> возвращает <emphasis>истину</emphasis>, если <literal>x</literal>
+            <code>isglobal(x)</code> возвращает <emphasis>истину</emphasis>, если <varname>x</varname>
             была объявлена глобальной переменной, и <emphasis>ложь</emphasis> в противном случае.
         </para>
     </refsection>

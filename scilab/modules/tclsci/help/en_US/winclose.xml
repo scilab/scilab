@@ -14,7 +14,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="winclose">
     <refnamediv>
         <refname>winclose</refname>
-        <refpurpose>close windows created by sciGUI</refpurpose>
+        <refpurpose>
+            close windows created by sciGUI. <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -35,6 +37,8 @@
         <title>Description</title>
         <para>
             <literal>winclose(winIds)</literal> close windows created by sciGUI.
+            <warning>This function is obsolete.</warning>
+            It is better to use <link linkend="close">close</link> instead of <literal>winclose</literal>.
         </para>
     </refsection>
     <refsection>
@@ -45,5 +49,16 @@ win1=waitbar('This is an example');
 win2=waitbar('HELLO!');
 winclose([win1,win2]);
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.0. Please use <link linkend="close">close</link> instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

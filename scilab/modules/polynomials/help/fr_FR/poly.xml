@@ -21,17 +21,20 @@
                 <term>vname </term>
                 <listitem>
                     <para>chaîne de caractères, nom de l'indéterminée du
-                        polynôme.Si la chaîne comprend plus de 4 caractères, seuls les 4
-                        premiers sont pris en compte.
+                        polynôme. La châine ne doit pas dépasser les 4 caractères.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"flag"  </term>
+                <term>"flag"</term>
                 <listitem>
-                    <para>chaîne de caractères ("roots", "coeff"), la
+                    <para>chaîne de caractères ("roots" ou "r", "coeff" ou "c"), la
                         valeur par défaut est "roots".
                     </para>
+                    <para>
+                        Des raccourcis peuvent être aussi utilisés: <literal>"r"</literal> pour <literal>"roots"</literal> et <literal>"c"</literal> pour <literal>"coeff"</literal>.
+                    </para>
+                    
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -46,7 +49,7 @@
                         <literal>p</literal> est le polynôme
                         caractéristique de a, c'est à dire
                         <literal>déterminant(x*eye()-a)</literal>, <literal>x</literal> étant
-                        l'indéterminée. 
+                        l'indéterminée.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,8 +63,11 @@
                                 dont les racines sont égales aux termes de <literal>v</literal> et
                                 <literal>"x"</literal> l'indéterminée. Dans ce cas
                                 <literal>roots</literal> et <literal>poly</literal> sont des fonctions inverses
-                                l'une de l'autre. Notez qye les racines infinies produisent des
-                                coefficients de haut degré egaux a zéro.
+                                l'une de l'autre.
+                                <note>
+                                    Notez qye les racines infinies produisent des
+                                    coefficients de haut degré egaux a zéro.
+                                </note>
                             </para>
                         </listitem>
                         <listitem>
@@ -84,11 +90,13 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 s=poly(0,"s");
-p=1+s+2*s^2;
+p=1+s+2*s^2
 A=rand(2,2);
 poly(A,"x")
+//fractions rationnelles
+h=(1+2*%s)/poly(1:4,'s','coeff')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -104,5 +112,14 @@ poly(A,"x")
                 <link linkend="rational">rational</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Les seules valeurs autorisées pour le troisième argument sont "roots", "coeff", "c" et "r".</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

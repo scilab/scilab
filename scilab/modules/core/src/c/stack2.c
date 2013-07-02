@@ -213,6 +213,7 @@ int C2F(findopt) (char *str, rhs_opts opts[])
         if (opts[i].iPos > 0)
         {
             return opts[i].iPos;
+
         }
 
     return 0;
@@ -393,6 +394,10 @@ int get_optionals(char *fname, rhs_opts opts[])
             {
                 rhs_opts *ro = &opts[isopt];
                 ro->iPos = k;
+                if (ro->iType != '?')
+                {
+                    GetRhsVar(ro->iPos, ro->iType, &ro->iRows, &ro->iCols, &ro->piAddr);
+                }
             }
             else
             {
@@ -1403,7 +1408,7 @@ int C2F(creatework) (int *number, int *m, int *lr)
 * This can be used with creatework to
 * set the size of object which was intialy sized to the whole
 * remaining space with creatework
-* Moreover informations the objet is recorded
+* Moreover information the objet is recorded
 *---------------------------------------------------------------------*/
 
 int C2F(setworksize) (int *number, int *size)
@@ -1456,7 +1461,7 @@ int C2F(getmatdims) (int *number, int *m, int *n)
     typ = *istk(il);
     if (typ > sci_strings)
     {
-        Scierror(199, _("%s: Wrong type for argument %d: Matrix expected.\n"), fname, *number);
+        Scierror(199, _("%s: Wrong type for argument #%d: Matrix expected.\n"), fname, *number);
         return FALSE;
     }
     *m = *istk(il + 1);
@@ -1828,7 +1833,7 @@ int C2F(elementtype) (int *lnumber, int *number)
     if (itype < sci_list || itype > sci_mlist)
     {
         /* check if it is really a list */
-        Scierror(210, _("%s: Wrong type for argument %d: List expected.\n"), fname, *lnumber);
+        Scierror(210, _("%s: Wrong type for argument #%d: List expected.\n"), fname, *lnumber);
         return FALSE;
     }
     n = *istk(il + 1);          /* number of elements in the list */
@@ -2552,7 +2557,7 @@ L9999:
 int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned long thestring_len)
 {
     int ret = FALSE;
-    int ifin = 0, ifun = 0, tops = 0, moutputs = 0;
+    int ifin = 0, ifun = 0, tops = 0;
     int id[nsiz];
     int lf = 0, op = 0, ils = 0, nnn = thestring_len;
 
@@ -2580,7 +2585,6 @@ int C2F(scistring) (int *ifirst, char *thestring, int *mlhs, int *mrhs, unsigned
         {
             lf = *Lstk(Fin);
             ils = iadr(lf) + 1;
-            moutputs = *istk(ils);
             ret = C2F(scifunction) (ifirst, &lf, mlhs, mrhs);
         }
         else
@@ -2653,7 +2657,7 @@ int C2F(getopcode) (char *string, unsigned long string_len)
 int C2F(scibuiltin) (int *number, int *ifun, int *ifin, int *mlhs, int *mrhs)
 {
     int srhs = 0, slhs = 0;
-    int ix = 0, k = 0, intop = 0, lw = 0;
+    int ix = 0, k = 0, intop = 0, lw = 0, pt0 = C2F(recu).pt;
     int imode = 0, ireftop = 0;
 
     intop = Top;
@@ -2747,6 +2751,12 @@ L91:
     if (k == 0)
     {
         goto L60;
+        if (C2F(recu).pt > pt0)
+        {
+            goto L60;
+        }
+        // goto L60;
+        goto L200;
     }
 L95:
     if (!C2F(allowptr) (&k))

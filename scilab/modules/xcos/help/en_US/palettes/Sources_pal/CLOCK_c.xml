@@ -197,17 +197,25 @@
         <title>Example</title>
         <para>
             A simple example of CLOCK_c block event output.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/clock_c_en_US.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
                 Open this example in Xcos
             </link>
             .
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/sources_pal/en_US/clock_c_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/clock_c_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_CLOCK_c">
         <title>Interfacing function</title>

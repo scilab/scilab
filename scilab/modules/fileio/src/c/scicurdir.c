@@ -17,9 +17,9 @@
 #include <direct.h>
 #include <errno.h>
 #else
-	#include <errno.h>
-	#include <unistd.h>
-	#define GETCWD(x,y) getcwd(x,y)
+#include <errno.h>
+#include <unistd.h>
+#define GETCWD(x,y) getcwd(x,y)
 #endif
 #include "sciprint.h"
 #include "scicurdir.h"
@@ -44,14 +44,25 @@ int scichdirW(wchar_t *wcpath)
         return 1;
     }
 
-	if (chdir(path) == -1)
-	{
-		if ( getWarningMode() ) sciprint(_("Can't go to directory %s: %s\n"), path, strerror(errno));
-		if (path) {FREE(path); path = NULL;}
-		return 1;
-	}
+    if (chdir(path) == -1)
+    {
+        if ( getWarningMode() )
+        {
+            sciprint(_("Can't go to directory %s: %s\n"), path, strerror(errno));
+        }
+        if (path)
+        {
+            FREE(path);
+            path = NULL;
+        }
+        return 1;
+    }
 
-    if (path) {FREE(path); path = NULL;}
+    if (path)
+    {
+        FREE(path);
+        path = NULL;
+    }
 
 #else
     if (wcpath == NULL)
@@ -63,9 +74,9 @@ int scichdirW(wchar_t *wcpath)
     {
         switch (errno)
         {
-        case ENOENT:
+            case ENOENT:
             {
-                if ( getWarningMode() ) 
+                if ( getWarningMode() )
                 {
                     char *path = wide_string_to_UTF8(wcpath);
                     if (path)
@@ -77,14 +88,20 @@ int scichdirW(wchar_t *wcpath)
                 }
             }
             break;
-        case EINVAL:
+            case EINVAL:
             {
-                if ( getWarningMode() ) sciprint(_("Invalid buffer.\n"));
+                if ( getWarningMode() )
+                {
+                    sciprint(_("Invalid buffer.\n"));
+                }
             }
             break;
-        default:
+            default:
             {
-                if ( getWarningMode() ) sciprint(_("Unknown error.\n"));
+                if ( getWarningMode() )
+                {
+                    sciprint(_("Unknown error.\n"));
+                }
             }
         }
         return 1;
@@ -97,9 +114,15 @@ int scichdir(char *path)
 {
     int ierr = 1;
     wchar_t *wcpath = NULL;
-    if (path == NULL) return ierr;
+    if (path == NULL)
+    {
+        return ierr;
+    }
     wcpath = to_wide_string(path);
-    if (wcpath == NULL) return ierr;
+    if (wcpath == NULL)
+    {
+        return ierr;
+    }
     ierr = scichdirW(wcpath);
     FREE(wcpath);
     wcpath = NULL;
@@ -114,7 +137,10 @@ wchar_t * scigetcwdW(int *err)
     char currentDir[PATH_MAX + 1];
     if (GETCWD(currentDir, PATH_MAX) == NULL)
     {
-        if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
+        if ( getWarningMode() )
+        {
+            sciprint(_("Can't get current directory.\n"));
+        }
         *err = 1;
     }
     else
@@ -126,7 +152,10 @@ wchar_t * scigetcwdW(int *err)
     wchar_t wcdir[PATH_MAX + 1];
     if ( _wgetcwd(wcdir, PATH_MAX) == NULL )
     {
-        if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
+        if ( getWarningMode() )
+        {
+            sciprint(_("Can't get current directory.\n"));
+        }
         *err = 1;
     }
     else

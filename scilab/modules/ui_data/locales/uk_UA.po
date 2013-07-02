@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-09-28 15:43+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-17 15:30+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -83,8 +83,8 @@ msgstr "П&ро Scilab..."
 msgid "Name"
 msgstr "Назва"
 
-msgid "Dimension"
-msgstr "Розмірність"
+msgid "Value"
+msgstr "Значення"
 
 msgid "Type"
 msgstr "Тип"
@@ -109,6 +109,12 @@ msgstr "Файл"
 
 msgid "Close"
 msgstr "Закрити"
+
+msgid "Delete"
+msgstr "Вилучити"
+
+msgid "Modify"
+msgstr "Змінити"
 
 msgid "Filter"
 msgstr "Фільтр"
@@ -266,6 +272,12 @@ msgstr "Створити змінну"
 msgid "Duplicate the variable"
 msgstr "Дублювати змінну"
 
+msgid "Export to CSV"
+msgstr "Експорт до  CSV"
+
+msgid "Export the selection to CSV"
+msgstr "Експортувати позначені дані у форматі CSV"
+
 msgid "Rows number"
 msgstr "Кількість рядків"
 
@@ -349,6 +361,9 @@ msgstr "Тип Scilab:"
 
 msgid "Bytes:"
 msgstr "Байтів:"
+
+msgid "Type not supported for this operation"
+msgstr "Для цієї дії такий тип не підтримується"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

@@ -86,9 +86,9 @@
             The rate parameter is linked to the scale parameter with the equation rate=1/scale.
         </para>
         <para>
-            Computation of parameters such as X, Shape or Rate involve a seach for a value that
+            Computation of parameters such as X, Shape or Rate involve a search for a value that
             produces  the desired  value  of P.   The search relies on the
-            monotinicity of P with the other parameter.
+            monotonicity of P with the other parameter.
         </para>
     </refsection>
     <refsection>

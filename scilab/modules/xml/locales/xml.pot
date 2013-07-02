@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-11-14 11:00+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
 # File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 53
 # File: sci_gateway/cpp/sci_percent_XMLAttr_e.cpp, line: 87
@@ -47,6 +47,8 @@ msgstr ""
 # File: sci_gateway/cpp/sci_print.cpp, line: 46
 # File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 48
 # File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 71
+# File: sci_gateway/cpp/sci_xmlAppend.cpp, line: 44
+# File: sci_gateway/cpp/sci_xmlAppend.cpp, line: 65
 # File: sci_gateway/cpp/sci_xmlAsNumber.cpp, line: 44
 # File: sci_gateway/cpp/sci_xmlAsText.cpp, line: 43
 # File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 51
@@ -81,6 +83,13 @@ msgstr ""
 # File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 95
 # File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 118
 # File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 134
+# File: src/cpp/XMLList_insertion.hxx, line: 57
+# File: src/cpp/XMLList_insertion.hxx, line: 73
+# File: src/cpp/XMLList_insertion.hxx, line: 81
+# File: src/cpp/extraction.hxx, line: 269
+# File: src/cpp/insertion.hxx, line: 182
+# File: src/cpp/insertion.hxx, line: 196
+# File: src/cpp/insertion.hxx, line: 204
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
@@ -137,6 +146,8 @@ msgstr ""
 # File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 104
 # File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 107
 # File: sci_gateway/cpp/sci_xmlXPath.cpp, line: 147
+# File: src/cpp/extraction.hxx, line: 275
+# File: src/cpp/insertion.hxx, line: 210
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -151,6 +162,9 @@ msgstr ""
 # File: sci_gateway/cpp/sci_print.cpp, line: 54
 # File: sci_gateway/cpp/sci_xmlDump.cpp, line: 70
 # File: sci_gateway/cpp/sci_xmlRemove.cpp, line: 57
+# File: src/cpp/XMLList_insertion.hxx, line: 89
+# File: src/cpp/extraction.hxx, line: 284
+# File: src/cpp/insertion.hxx, line: 219
 #, c-format
 msgid "%s: XML object does not exist.\n"
 msgstr ""
@@ -167,6 +181,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_xmlIsValidObject.cpp, line: 96
 # File: sci_gateway/cpp/sci_xmlName.cpp, line: 108
 # File: sci_gateway/cpp/sci_xmlValidate.cpp, line: 166
+# File: src/cpp/extraction.hxx, line: 193
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -176,6 +191,8 @@ msgstr ""
 # File: sci_gateway/cpp/sci_percent_XMLAttr_size.cpp, line: 52
 # File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 54
 # File: sci_gateway/cpp/sci_xmlAddNs.cpp, line: 77
+# File: sci_gateway/cpp/sci_xmlAppend.cpp, line: 50
+# File: sci_gateway/cpp/sci_xmlAppend.cpp, line: 71
 # File: sci_gateway/cpp/sci_xmlDump.cpp, line: 62
 # File: sci_gateway/cpp/sci_xmlDump.cpp, line: 86
 # File: sci_gateway/cpp/sci_xmlElement.cpp, line: 51
@@ -219,6 +236,11 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_percent_XMLList_e.cpp, line: 152
+# File: src/cpp/extraction.hxx, line: 121
+# File: src/cpp/extraction.hxx, line: 201
+# File: src/cpp/extraction.hxx, line: 227
+# File: src/cpp/insertion.hxx, line: 78
+# File: src/cpp/insertion.hxx, line: 149
 #, c-format
 msgid "%s: Unknown field: %s\n"
 msgstr ""
@@ -308,6 +330,15 @@ msgid "%s: XML Namespace does not exist.\n"
 msgstr ""
 
 #
+# File: sci_gateway/cpp/sci_xmlAppend.cpp, line: 57
+# File: sci_gateway/cpp/sci_xmlAppend.cpp, line: 78
+# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 58
+# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 67
+#, c-format
+msgid "%s: XML Document does not exist.\n"
+msgstr ""
+
+#
 # File: sci_gateway/cpp/sci_xmlAsNumber.cpp, line: 50
 # File: sci_gateway/cpp/sci_xmlAsText.cpp, line: 49
 #, c-format
@@ -347,13 +378,6 @@ msgstr ""
 # File: sci_gateway/cpp/sci_xmlDelete.cpp, line: 111
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_xmlElement.cpp, line: 58
-# File: sci_gateway/cpp/sci_xmlWrite.cpp, line: 67
-#, c-format
-msgid "%s: XML Document does not exist.\n"
 msgstr ""
 
 #
@@ -544,8 +568,21 @@ msgstr ""
 
 #
 # File: src/cpp/XMLDocument.cpp, line: 140
-# File: src/cpp/XMLDocument.cpp, line: 369
+# File: src/cpp/XMLDocument.cpp, line: 370
 msgid "Cannot create a parser context"
+msgstr ""
+
+#
+# File: src/cpp/XMLList_insertion.hxx, line: 63
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A double expected.\n"
+msgstr ""
+
+#
+# File: src/cpp/XMLList_insertion.hxx, line: 96
+# File: src/cpp/insertion.hxx, line: 227
+#, c-format
+msgid "%s: Error in getting rhs argument.\n"
 msgstr ""
 
 #
@@ -608,6 +645,40 @@ msgstr ""
 #
 # File: src/cpp/XMLValidationSchema.cpp, line: 142
 msgid "Cannot read the stream"
+msgstr ""
+
+#
+# File: src/cpp/extraction.hxx, line: 110
+#, c-format
+msgid "%s: No root element.\n"
+msgstr ""
+
+#
+# File: src/cpp/extraction.hxx, line: 261
+# File: src/cpp/insertion.hxx, line: 188
+#, c-format
+msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgstr ""
+
+#
+# File: src/cpp/insertion.hxx, line: 33
+# File: src/cpp/insertion.hxx, line: 53
+# File: src/cpp/insertion.hxx, line: 131
+#, c-format
+msgid "%s: Wrong type to set %s field.\n"
+msgstr ""
+
+#
+# File: src/cpp/insertion.hxx, line: 66
+#, c-format
+msgid "%s: Not valid xml for root.\n"
+msgstr ""
+
+#
+# File: src/cpp/insertion.hxx, line: 114
+# File: src/cpp/insertion.hxx, line: 119
+#, c-format
+msgid "%s: Field %s is not modifiable: %s\n"
 msgstr ""
 
 # File: demos/xml.dem.gateway.sce, line: 10

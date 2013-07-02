@@ -19,7 +19,7 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
   1 + "string"
   status = [status 'post_called'];
 endfunction
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.zcos"));
 xcos_simulate(scs_m, 4);
  
  Error occurred in pre_xcos_simulate: Cancelling simulation.   

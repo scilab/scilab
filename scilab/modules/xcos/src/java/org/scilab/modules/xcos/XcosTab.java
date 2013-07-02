@@ -14,6 +14,7 @@ package org.scilab.modules.xcos;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -60,6 +61,7 @@ import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.ExportAction;
+import org.scilab.modules.xcos.actions.ExportAllAction;
 import org.scilab.modules.xcos.actions.ExternalAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
 import org.scilab.modules.xcos.actions.InitModelicaAction;
@@ -156,26 +158,41 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
     private PushButton xcosDocumentationAction;
 
     private static class ClosingOperation implements org.scilab.modules.gui.utils.ClosingOperationsManager.ClosingOperation {
-        private final XcosDiagram graph;
+        private final WeakReference<XcosDiagram> graph;
 
         public ClosingOperation(XcosDiagram graph) {
-            this.graph = graph;
+            this.graph = new WeakReference<XcosDiagram>(graph);
         }
 
         @Override
         public int canClose() {
-            return Xcos.getInstance().canClose(graph) ? 1 : 0;
+            final XcosDiagram diag = graph.get();
+            if (diag == null) {
+                return 1;
+            }
+
+            return Xcos.getInstance().canClose(diag) ? 1 : 0;
         }
 
         @Override
         public void destroy() {
-            Xcos.getInstance().destroy(graph);
-            graph.setOpened(false);
+            final XcosDiagram diag = graph.get();
+            if (diag == null) {
+                return;
+            }
+
+            Xcos.getInstance().destroy(diag);
+            diag.setOpened(false);
         }
 
         @Override
         public String askForClosing(final List<SwingScilabTab> list) {
-            return Xcos.getInstance().askForClosing(graph, list);
+            final XcosDiagram diag = graph.get();
+            if (diag == null) {
+                return null;
+            }
+
+            return Xcos.getInstance().askForClosing(diag, list);
         }
 
         @Override
@@ -209,17 +226,22 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
     }
 
     private static class EndedRestoration implements WindowsConfigurationManager.EndedRestoration {
-        private final XcosDiagram graph;
+        private final WeakReference<XcosDiagram> graph;
 
         public EndedRestoration(XcosDiagram graph) {
-            this.graph = graph;
+            this.graph = new WeakReference<XcosDiagram>(graph);
         }
 
         @Override
         public void finish() {
-            graph.updateTabTitle();
+            final XcosDiagram diag = graph.get();
+            if (diag == null) {
+                return;
+            }
 
-            ConfigurationManager.getInstance().removeFromRecentTabs(graph.getGraphTab());
+            diag.updateTabTitle();
+
+            ConfigurationManager.getInstance().removeFromRecentTabs(diag.getGraphTab());
         }
     }
 
@@ -352,18 +374,20 @@ public class XcosTab extends SwingScilabTab implements SimpleTab {
         fileMenu.add(NewDiagramAction.createMenu(diagram));
         fileMenu.add(OpenAction.createMenu(diagram));
         fileMenu.add(OpenInSciAction.createMenu(diagram));
+        recentsMenu = createRecentMenu();
+        fileMenu.add(recentsMenu);
         fileMenu.addSeparator();
+
+        fileMenu.add(CloseAction.createMenu(diagram));
         fileMenu.add(SaveAction.createMenu(diagram));
         fileMenu.add(SaveAsAction.createMenu(diagram));
+        fileMenu.addSeparator();
+
         fileMenu.add(ExportAction.createMenu(diagram));
-
-        recentsMenu = createRecentMenu();
-
-        fileMenu.add(recentsMenu);
+        fileMenu.add(ExportAllAction.createMenu(diagram));
+        fileMenu.addSeparator();
 
         fileMenu.add(PrintAction.createMenu(diagram));
-        fileMenu.addSeparator();
-        fileMenu.add(CloseAction.createMenu(diagram));
         fileMenu.addSeparator();
         fileMenu.add(QuitAction.createMenu(diagram));
 

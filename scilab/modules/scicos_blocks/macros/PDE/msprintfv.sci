@@ -20,9 +20,9 @@
 //
 
 function x=msprintfv(x)
-  if (x == []) then
-    x=[];
-  else
-    x=msprintf('%.16g\n',x);
-  end
+    if (x == []) then
+        x=[];
+    else
+        x=msprintf("%.16g\n",x);
+    end
 endfunction

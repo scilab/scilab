@@ -10,70 +10,18 @@
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(ProjectDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)string.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)data_structures_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)data_structures_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)string_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)string_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)fftw_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)fftw.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)sparse_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)double_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)double.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)console_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)console.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)boolean_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)boolean_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)data_structures_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)data_structures.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(ProjectDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)core.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)data_structures_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)data_structures_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)string_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)string_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)fftw_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)fftw.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)sparse_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)double_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)double.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)console_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)console.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)boolean_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)boolean_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)data_structures_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)data_structures.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="core_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib  core.lib string.lib output_stream.lib output_stream_f.lib elementary_functions.lib elementary_functions_f.lib linpack_f.lib fileio.lib data_structures_f.lib data_structures.lib polynomials_f.lib string_f.lib fftw.lib integer_f.lib integer.lib sparse_f.lib double.lib console.lib boolean_f.lib io_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(ProjectDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)string.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)data_structures_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)data_structures_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)string_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)string_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)fftw_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)fftw.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)sparse_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)double_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)double.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)console_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)console.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)boolean_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)boolean_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)data_structures_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)data_structures.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(ProjectDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)core.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)data_structures_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)data_structures_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)string_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)string_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)fftw_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)fftw.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)sparse_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)double_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)double.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)console_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)console.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)boolean_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)boolean_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)data_structures_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)data_structures.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(ProjectDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
@@ -82,70 +30,18 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X8
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(ProjectDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)string.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)data_structures_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)data_structures_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)string_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)string_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)fftw_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)fftw.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)sparse_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)double_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)double.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)console_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)console.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)boolean_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)boolean_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)data_structures_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)data_structures.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(ProjectDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)core.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)data_structures_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)data_structures_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)string_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)string_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)fftw_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)fftw.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)sparse_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)double_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)double.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)console_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)console.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)boolean_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)boolean_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)data_structures_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)data_structures.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
 				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="core_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib  core.lib string.lib output_stream.lib output_stream_f.lib elementary_functions.lib elementary_functions_f.lib linpack_f.lib fileio.lib data_structures_f.lib data_structures.lib polynomials_f.lib string_f.lib fftw.lib integer_f.lib integer.lib sparse_f.lib double.lib console.lib boolean_f.lib io_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(ProjectDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)string.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)data_structures_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)data_structures_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)string_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)string_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)fftw_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)fftw.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)sparse_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)double_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)double.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)console_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)console.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)boolean_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)boolean_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)data_structures_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)data_structures.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(ProjectDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)core.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)String_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)string.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)linpack_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)linpack_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)data_structures_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)data_structures_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)string_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)string_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)fftw_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)fftw.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)integer_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)integer_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)integer_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)integer.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)sparse_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)sparse_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)double_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)double.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)console_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)console.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)boolean_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)boolean_f.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)data_structures_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)data_structures.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(ProjectDir)io_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
@@ -222,9 +118,7 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="intstr.f"/>
 		<File RelativePath="isany.f"/>
 		<File RelativePath="isbrk.f"/>
-		<File RelativePath="iseye.f"/>
 		<File RelativePath=".\isinstring.f"/>
-		<File RelativePath="isnum.f"/>
 		<File RelativePath="istrue.f"/>
 		<File RelativePath="itosci.f"/>
 		<File RelativePath="lst2vars.f"/>
@@ -242,7 +136,6 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="ref2val.f"/>
 		<File RelativePath="savlod.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_argn.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_clear.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_clearglobal.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_comp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_delbpt.f"/>
@@ -273,7 +166,6 @@ lib /DEF:&quot;$(ProjectDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="stackp.f"/>
 		<File RelativePath=".\stackr2d.f"/>
 		<File RelativePath="storeglobal.f"/>
-		<File RelativePath="termf.f"/>
 		<File RelativePath="tradsl.f"/>
 		<File RelativePath="typ2cod.f"/>
 		<File RelativePath="varfunptr.f"/>

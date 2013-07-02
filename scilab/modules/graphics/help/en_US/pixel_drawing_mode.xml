@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Pierre Lando <pierre.lando@scilab.org>
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -17,15 +17,17 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>      
+        <para>
             Here, the color encoding is RGB.
-            The pixel drawing mode is a <link linkend="figure_properties">figure property</link> that
-            specifies a bitwise operation applied on any figure pixel between the incoming color and the already existing color on the figure.
-            The result of this operation will be the new pixel color.
+            The <literal>pixel_drawing_mode</literal> is a <link
+            linkend="figure_properties">figure property</link> that
+            specifies a bitwise operation applied on any figure pixel
+            between the incoming color and the already existing color
+            on the figure. The result of this operation will be the new pixel color.
             
             
             <literal>src</literal> is the incoming color of the pixel.
-            <literal>prv</literal> is the previus color of the pixel (which is already drawn).
+            <literal>prv</literal> is the previous color of the pixel (which is already drawn).
             <literal>res</literal> is the resulting color of the pixel (which will be drawn).
             
             Possible values for <literal>pixel_drawing_mode</literal> are:

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-07-20 14:26+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-01-24 10:48+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 #, c-format
@@ -619,7 +619,7 @@ msgstr "****** Fin de la session mfile2sci() ******"
 msgid ""
 "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
-"Au moins une opérande de %s est une matrice vide, l'équivalent Scilab est []."
+"Au moins un opérande de %s est une matrice vide, l'équivalent Scilab est []."
 
 #, c-format
 msgid "recursive extraction from a variable %s of type %s."
@@ -649,14 +649,14 @@ msgstr "La variable de destination n'est pas une cell : %s est de type %s."
 #, c-format
 msgid "One operand is an empty matrix in : %s, result set to []."
 msgstr ""
-"Une opérande est une matrice vide dans : %s, le résultat est réglé sur []."
+"Un opérande est une matrice vide dans : %s, le résultat est réglé sur []."
 
 #, c-format
 msgid ""
 "At least one operand is an empty matrix for operator: %s, result set to []."
 msgstr ""
-"Au moins une opérande est une matrice vide pour l'opérateur : %s, le "
-"résultat est réglé sur []."
+"Au moins un opérande est une matrice vide pour l'opérateur : %s, le résultat "
+"est réglé sur []."
 
 #, c-format
 msgid ""

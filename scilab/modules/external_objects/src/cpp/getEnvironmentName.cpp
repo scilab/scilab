@@ -18,8 +18,6 @@ namespace org_modules_external_objects
 int ScilabGateway::getEnvironmentName(char * fname, const int envId, void * pvApiCtx)
 {
     SciErr err;
-    int row = 0;
-    int col = 0;
     int * addr = 0;
     int eId = 0;
     std::string envName;
@@ -42,7 +40,7 @@ int ScilabGateway::getEnvironmentName(char * fname, const int envId, void * pvAp
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(eId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
 

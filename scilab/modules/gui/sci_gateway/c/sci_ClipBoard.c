@@ -25,6 +25,7 @@
 #include "IsAScalar.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
+#include "FigureList.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -97,6 +98,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
                 else
                 {
                     freeAllocatedSingleString(param1);
+
                     Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 1, "paste", "pastespecial");
                     return FALSE;
                 }
@@ -259,6 +261,8 @@ int sci_ClipBoard(char *fname, unsigned long l)
                             {
                                 freeAllocatedMatrixOfString(m2, n2, Str);
                                 Scierror(999, _("%s: No more memory.\n"), fname);
+                                freeArrayOfString(buffer, m2 * n2);
+
                                 return FALSE;
                             }
 
@@ -282,7 +286,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
 
                             FREE(buffer);
                             buffer = NULL;
-
+                            freeArrayOfString(buffer, m2 * n2);
                             FREE(TextToSendInClipboard);
                             TextToSendInClipboard = NULL;
                         }
@@ -369,12 +373,12 @@ int sci_ClipBoard(char *fname, unsigned long l)
                             if ( strcmp(param2, "EMF") == 0)
                             {
                                 /* @TODO create EMF */
-                                copyFigureToClipBoard(num_win);
+                                copyFigureToClipBoard(getFigureFromIndex(num_win));
                             }
                             else
                             {
                                 /* @TODO create DIB */
-                                copyFigureToClipBoard(num_win);
+                                copyFigureToClipBoard(getFigureFromIndex(num_win));
                             }
 
                             m1 = 0;

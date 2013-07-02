@@ -14,19 +14,19 @@
 
 function atomsSystemUpdate()
 
-  // Load Atoms Internals lib if it's not already loaded
-  // =========================================================================
-  if ~ exists("atomsinternalslib") then
-    load("SCI/modules/atoms/macros/atoms_internals/lib");
-  end
+    // Load Atoms Internals lib if it's not already loaded
+    // =========================================================================
+    if ~ exists("atomsinternalslib") then
+        load("SCI/modules/atoms/macros/atoms_internals/lib");
+    end
 
-  if (atomsGetConfig("offLine") == "True" | atomsGetConfig("offline") == "True") then
-    warning(msprintf(gettext("Option offline of ATOMS configuration is set to True. atomsSystemUpdate did not check the latest modules availables.")));
-    return
-  end
+    if (atomsGetConfig("offLine") == "True" | atomsGetConfig("offline") == "True") then
+        warning(msprintf(gettext("Option offline of ATOMS configuration is set to True. atomsSystemUpdate did not check the latest modules availables.")));
+        return
+    end
 
-  // Check write access on allusers zone
-  // =========================================================================
-  atomsDESCRIPTIONget(%T);
+    // Check write access on allusers zone
+    // =========================================================================
+    atomsDESCRIPTIONget(%T);
 
 endfunction

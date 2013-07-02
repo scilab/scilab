@@ -40,6 +40,20 @@ public final class ScilabCommonsUtils {
         }
     }
 
+    public static int[] getScilabVersions() {
+        return new int[] {ScilabCommons.getScilabVersionMajor(), ScilabCommons.getScilabVersionMinor(), ScilabCommons.getScilabVersionMaintenance(), ScilabCommons.getScilabVersionTimestamp()};
+    }
+
+    public static String getScilabVersion() {
+        return ScilabCommons.getScilabVersionMajor() + "." + ScilabCommons.getScilabVersionMinor() + "." + ScilabCommons.getScilabVersionMaintenance();
+    }
+
+    public static String getScilabVersionAsString() {
+        return ScilabCommons.getScilabVersionAsString().replaceFirst("scilab-", "");
+    }
+
+
+
     /**
      * Get a MD5 string of the input string
      * @param str the string to convert
@@ -50,8 +64,12 @@ public final class ScilabCommonsUtils {
             return null;
         }
 
-        byte[] bytes = MD5.digest(str.getBytes());
-        return new BigInteger(1, bytes).toString(16);
+        try {
+            byte[] bytes = MD5.digest(str.getBytes("UTF-8"));
+            return new BigInteger(1, bytes).toString(16);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

@@ -12,7 +12,7 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="helptools">
-<!--
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -28,6 +28,6 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-
-<PRIMITIVE gatewayId="60" primitiveId="1" primitiveName="buildDocv2" />
+    
+    <PRIMITIVE gatewayId="60" primitiveId="1" primitiveName="buildDocv2" />
 </GATEWAY>

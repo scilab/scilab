@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) Jean-Philippe Chancelier and Bruno Pincon
  * Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -27,7 +27,7 @@
             Y = grand(m, n, "exp", Av)
             Y = grand(m, n, "f", Dfn, Dfd)
             Y = grand(m, n, "nf", Dfn, Dfd, Xnon)
-            Y = grand(m, n, "gam", shape, scale)
+            Y = grand(m, n, "gam", shape, rate)
             Y = grand(m, n, "nor", Av, Sd)
             Y = grand(m, n, "geom", p)
             Y = grand(m, n, "poi", mu)
@@ -117,7 +117,7 @@
                 Y = grand(m, n, "exp", Av)
                 Y = grand(m, n, "f", Dfn, Dfd)
                 Y = grand(m, n, "nf", Dfn, Dfd, Xnon)
-                Y = grand(m, n, "gam", shape, scale)
+                Y = grand(m, n, "gam", shape, rate)
                 Y = grand(m, n, "nor", Av, Sd)
                 Y = grand(m, n, "geom", p)
                 Y = grand(m, n, "poi", mu)
@@ -142,7 +142,7 @@
         <para>
             где <varname>X</varname> - матрица размером <varname>m</varname> на
             <varname>n</varname>, производит тот же эффект. В данном случае используются
-            только размеры матрицы <varname>X</varname>.    
+            только размеры матрицы <varname>X</varname>.
         </para>
         <para>
             Последовательности вызова:
@@ -165,17 +165,17 @@
         <programlisting role="no-scilab-exec"><![CDATA[
             S = grand("getgen")
             grand("setgen", gen)
-            
+
             S = grand("getsd")
             grand("setsd", S)
-            
+
             grand("setcgn", G)
             S = grand("getcgn")
-            
+
             grand("initgn", I)
-            
+
             grand("setall", s1, s2, s3, s4)
-            
+
             grand("advnst", K)
         ]]></programlisting>
         <para>
@@ -183,7 +183,7 @@
         </para>
     </refsection>
     <refsection>
-        <title>Получение случайных числе по заданному закону распределения</title>
+        <title>Получение случайных чисел по заданному закону распределения</title>
         <variablelist>
             <varlistentry>
                 <term>бета-распределение</term>
@@ -199,7 +199,7 @@
                         </latex>
                     </para>
                     <para>
-                        <varname>A</varname> и <varname>B</varname>  вещественными числами <latex><![CDATA[>10^{-37}]]></latex>. С этой функцией связана
+                        <varname>A</varname> и <varname>B</varname> должны быть вещественными числами <latex><![CDATA[>10^{-37}]]></latex>. С этой функцией связана
                         функция <link linkend="cdfbet">cdfbet</link>.
                     </para>
                 </listitem>
@@ -244,7 +244,7 @@
                 <listitem>
                     <para>
                         <code>Y = grand(m, n, "nch", Df, Xnonc)</code>  формирует случайные реализации по нецентральному хи-квадрат распределению с
-                        <varname>Df</varname>  степенями свободы (вещественное значение <latex>\geqslant 1</latex>) и параметром нецентральности
+                        <varname>Df</varname>  степенями свободы (вещественное значение &gt;= <literal>1.0</literal>) и параметром нецентральности
                         <varname>Xnonc</varname> (вещественное число, больше либо равно
                         нулю). С этой функцией связана функция: <link linkend="cdfchn">cdfchn</link>.
                     </para>
@@ -286,13 +286,17 @@
                 <term>гамма-распределение</term>
                 <listitem>
                     <para>
-                        <code>Y = grand(m, n, "gam", shape, scale)</code> формирует случайные реализации по гамма-распределению с параметрами
-                        <varname>shape</varname> (вещественное значение, строго больше нуля) и <varname>scale</varname> (вещественное значение, строго
-                        больше нуля) (<literal>real</literal> &gt; <literal>0</literal>). Плотность гамма-распределения равна:
+                        <code>Y = grand(m, n, "gam", shape, rate)</code> формирует
+                        случайные реализации по гамма-распределению с параметрами
+                        <varname>shape</varname> (вещественное значение, строго
+                        больше нуля) и <varname>rate</varname> (вещественное
+                        значение, строго больше нуля) (<literal>real</literal>
+                        &gt; <literal>0</literal>). Плотность гамма-распределения
+                        равна:
                     </para>
                     <para>
                         <latex>
-                            \dfrac{ \textrm{scale}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{scale} x}}{\gamma(\textrm{shape}) }
+                            \dfrac{ \textrm{rate}^{\textrm{shape}} x^{\textrm{shape}-1} e^{-\textrm{rate} x}}{\gamma(\textrm{shape}) }
                         </latex>
                     </para>
                     <para>
@@ -487,12 +491,12 @@
                 <term>clcg4</term>
                 <listitem>
                     <para>
-                       Комбинация четырёх линейных конгруэнтных генераторов П. Л'Экюйера
-                       (P. L'Ecuyer)  с периодом около <literal>2^121</literal>, состояние
-                       задаётся четырьмя целыми числами. Этот генератор разделён на разные
-                       виртуальные (неперекрывающиеся) генераторы (<literal>101</literal>
-                       генератор), которые могут быть полезными для разных задач (см.
-                       "Опции, специфичные для "clcg4"" и "Тестовый пример для "clcg4"").
+                        Комбинация четырёх линейных конгруэнтных генераторов П. Л'Экюйера
+                        (P. L'Ecuyer)  с периодом около <literal>2^121</literal>, состояние
+                        задаётся четырьмя целыми числами. Этот генератор разделён на разные
+                        виртуальные (неперекрывающиеся) генераторы (<literal>101</literal>
+                        генератор), которые могут быть полезными для разных задач (см.
+                        "Опции, специфичные для "clcg4"" и "Тестовый пример для "clcg4"").
                     </para>
                 </listitem>
             </varlistentry>
@@ -500,7 +504,7 @@
                 <term>fsultra</term>
                 <listitem>
                     <para>
-                        Генератор вычитания с заёмом (Subtract-with-Borrow), смешанный с
+                        Генератор вычитания с займом (Subtract-with-Borrow), смешанный с
                         конгруэнтным генератором Арифа Замана (Arif Zaman) и Джорджа
                         Марсальи (George Marsaglia), с периодом свыше
                         <literal>10^356</literal>, состояние задаётся массивом из
@@ -628,8 +632,8 @@
                                         Предостережение: с clcg4 вы устанавливаете семена текущего виртуального генератора, но вы можете
                                         потерять синхронизацию между ним и другими виртуальными генераторами (т.е. не гарантируется,
                                         что генерируемая последовательность не перекрывается с генерируемой последовательностью
-                                        другого  виртуального генератора) =&gt; вместо этого используйте опцию "setall".                    
-				    </caution>
+                                        другого  виртуального генератора) =&gt; вместо этого используйте опцию "setall".
+                                    </caution>
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -661,11 +665,11 @@
                 <term>действие = "phr2sd"</term>
                 <listitem>
                     <para>
-                         для заданной фразы <varname>phrase</varname> (символьной строки)
-                         <code>Sd = grand("phr2sd", phrase)</code> генерирует вектор
-                         <varname>Sd</varname> размером 1 на 2, который может
-                         использоваться в качестве семени для изменения состояния
-                         основного генератора (изначально подходил для clcg2).
+                        для заданной фразы <varname>phrase</varname> (символьной строки)
+                        <code>Sd = grand("phr2sd", phrase)</code> генерирует вектор
+                        <varname>Sd</varname> размером 1 на 2, который может
+                        использоваться в качестве семени для изменения состояния
+                        основного генератора (изначально подходил для clcg2).
                     </para>
                 </listitem>
             </varlistentry>
@@ -742,8 +746,8 @@
                             <term>I = 1</term>
                             <listitem>
                                 <para>
-                                     устанавливает состояние на <literal>W</literal> значений нового семени от его последнего семени (т.е.
-                                     в начало следующего сегмента) и сбрасывает параметры текущего сегмента.
+                                    устанавливает состояние на <literal>W</literal> значений нового семени от его последнего семени (т.е.
+                                    в начало следующего сегмента) и сбрасывает параметры текущего сегмента.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -783,21 +787,21 @@
             В следующем примере мы генерируем случайные числа по различным законам
             распределения и строим соответствующие гистограммы.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Возвращает матрицу размером 400 на 800 случайных чисел
 // по нормальному распределению, с матожиданием 0 и дисперсией 1.
 R = grand(400,800,"nor",0,1);
 scf();
 histplot(10,R);
-xtitle("Случайные числа по нормальному закону распределения из функции grand","X","Частота"); 
+xtitle("Случайные числа по нормальному закону распределения из функции grand","X","Частота");
 ]]></programlisting>
         <scilab:image localized="true">
             R = grand(400,800,"nor",0,1);
             histplot(10,R);
-            xtitle("Случайные числа по нормальному закону распределения из функции grand","X","Frequency");
+            xtitle("Случайные числа по нормальному закону распределения из функции grand","X","Частота");
         </scilab:image>
         
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Возвращает матрицу размером 400 на 800 случайных чисел
 // с равномерным распределением в [0,1).
 R = grand(400,800,"def");
@@ -811,7 +815,7 @@ xtitle("Случайные числа с равномерным распреде
             xtitle("Случайные числа с равномерным распределением из функции grand","X","Частота");
         </scilab:image>
         
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Возвращает матрицу размером 400 на 800 случайных чисел
 // по распределению Пуассона и матожиданием, равным 5.
 R = grand(400,800,"poi",5);
@@ -828,7 +832,7 @@ xtitle("Случайные числа по закону распределени
         <para>
             В следующем примере мы генерируем случайные числа по экспоненциальному распределению, а затем сравниваем эмпирическое распределение с теоретическим.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 lambda=1.6;
 N=100000;
 X = grand(1,N,"exp",lambda);
@@ -857,11 +861,11 @@ xtitle("Случайные числа по экспоненциальному з
             В следующем примере мы генерируем случайные числа по закону гамма-
             распределения, а затем сравниваем эмпирическое распределение с теоретическим.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 N=10000;
 A=10;
 B=4;
-R=grand(1,N,"gam",A,B); 
+R=grand(1,N,"gam",A,B);
 XS=gsort(R,"g","i")';
 PS=(1:N)'/N;
 P=cdfgam("PQ",XS,A*ones(XS),B*ones(XS));
@@ -869,27 +873,27 @@ scf();
 plot(XS,PS,"b-"); // Эмпирическое распределение
 plot(XS,P,"r-"); // Теоретическое распределение
 legend(["Эксперимент" "Теория"]);
-xtitle("Интегральная функция распределения случайных чисел по закону гамма-распределения","X","F"); 
+xtitle("Интегральная функция распределения случайных чисел по закону гамма-распределения","X","F");
 ]]></programlisting>
         <scilab:image localized="true">
             N=10000;
             A=10;
             B=4;
-            R=grand(1,N,"gam",A,B); 
+            R=grand(1,N,"gam",A,B);
             XS=gsort(R,"g","i")';
             PS=(1:N)'/N;
             P=cdfgam("PQ",XS,A*ones(XS),B*ones(XS));
             scf();
             plot(XS,PS,"b-"); // Эмпирическое распределение
-	    plot(XS,P,"r-"); // Теоретическое распределение
-	    legend(["Эксперимент" "Теория"]);
-	    xtitle("Интегральная функция распределения случайных чисел по закону гамма-распределения","X","F"); 
+            plot(XS,P,"r-"); // Теоретическое распределение
+            legend(["Эксперимент" "Теория"]);
+            xtitle("Интегральная функция распределения случайных чисел по закону гамма-распределения","X","F");
         </scilab:image>
         <para>
             В следующем примере мы генерируем 10 случайных целых чисел в интервале
             <literal>[1,365]</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 grand(10,1,"uin",1,365)
  ]]></programlisting>
         <para>
@@ -897,7 +901,7 @@ grand(10,1,"uin",1,365)
             чисел <literal>[1, 2, ..., 7]</literal>. Эти <literal>12</literal>
             перестановок сохраняются столбец за столбцом.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 grand(12,"prm",(1:7)')
  ]]></programlisting>
     </refsection>
@@ -912,10 +916,10 @@ grand(12,"prm",(1:7)')
             <function>grand</function>, всегда одни и те же.
         </para>
         <para>
-             В некоторых ситуациях мы можем захотеть инициализировать семя генератора для
-             того, чтобы получить менее предсказуемые числа. В этом случае мы можем
-             инициализировать семя с помощью выходного значения функции
-             <function>getdate</function>:
+            В некоторых ситуациях мы можем захотеть инициализировать семя генератора для
+            того, чтобы получить менее предсказуемые числа. В этом случае мы можем
+            инициализировать семя с помощью выходного значения функции
+            <function>getdate</function>:
         </para>
         <programlisting role="example"><![CDATA[
 n=getdate("s");
@@ -926,9 +930,9 @@ grand("setsd",n)
         <title>Тестовый пример для clcg4</title>
         <para>
             Пример необходимости возможности разделения clcg4 следующий. Сравниваются два
-            статистических метода по данным разного размера. Первый является бутстреп-
-            методом и считается точным при использовании меньшего количества данных, чем
-            второй метод, который использует только грубую силу. Для первого метода будет
+            статистических метода по данным разного размера. Первый является
+            бутстреп-методом и считается точным при использовании меньшего количества данных,
+            чем второй метод, который использует только грубую силу. Для первого метода будет
             генерироваться набор данных размером равномерно распределённым между
             <literal>25</literal> и <literal>50</literal>. Затем будет генерироваться и
             анализироваться набор данных определённого размера. Второй метод будет
@@ -944,10 +948,10 @@ grand("setsd",n)
             начальному текущего блока и делаем то же самое для второго метода. Это
             гарантирует, что исходные данные для второго метода те же, что использовались
             в первом методе. Когда они оба закончатся, передвигаем вперёд блок для обоих
-            генераторов. 
+            генераторов.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>

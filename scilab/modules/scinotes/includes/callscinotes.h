@@ -24,6 +24,6 @@
 */
 SCINOTES_IMPEXP int callSciNotesW(wchar_t **_wcfilenames, int _nbfiles);
 SCINOTES_IMPEXP int callSciNotesWWithLineNumberAndFunction(wchar_t **_wcfilenames, double* pdblLineNumber, char *functionName, int _nbfiles);
-SCINOTES_IMPEXP int callSciNotesWWithOption(wchar_t **_wcfilenames, wchar_t** option, int _nbfiles);
+SCINOTES_IMPEXP int callSciNotesWWithOption(wchar_t **_wcfilenames, wchar_t** option, int _nboptions, int _nbfiles);
 /*--------------------------------------------------------------------------*/
 #endif /* __CALLSCINOTES_H__ */

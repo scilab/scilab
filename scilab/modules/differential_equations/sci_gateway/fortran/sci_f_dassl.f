@@ -400,9 +400,9 @@ C     stepping past TOUT. Y,ydot are obtained by interpolation.
             
          elseif(idid.eq.-1) then
 C     A large amount of work has been expended (About 500 steps)
-            call msgstxt('to many steps necessary to reached next '//
+            call msgstxt('Too many steps necessary to reach next '//
      &           'required time discretization point')
-            call msgstxt('Change discretisation of time vector t '//
+            call msgstxt('Change discretization of time vector t '//
      &           'or decrease accuracy')
             stk(lyri)=t0
             goto 125

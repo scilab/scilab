@@ -386,7 +386,7 @@ int putPolynomial(char * variableName, char * polyVarName, double ** data, int n
 int putComplexPolynomial(char * variableName, char * polyVarName, double ** data, int nbRow, int nbCol, int * nbCoef, double ** imag, int nbRowI, int nbColI, int * nbCoefI);
 
 /**
- * Chek if a variable exists in Context
+ * Check if a variable exists in Context
  *
  * @param variableName The name of the variable
  * @return TRUE if the given variable exists, FALSE otherwise
@@ -394,7 +394,7 @@ int putComplexPolynomial(char * variableName, char * polyVarName, double ** data
 BOOL isExistingVariable(char* variableName);
 
 /**
- * Chek if a variable is complex.
+ * Check if a variable is complex.
  *
  * @param variableName The name of the variable
  * @return TRUE if the given variable is complex, FALSE otherwise

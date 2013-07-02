@@ -33,7 +33,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xname</literal> changes the name of the current graphics window.
+            <function>xname</function> changes the name of the current graphics window.
         </para>
     </refsection>
     <refsection>

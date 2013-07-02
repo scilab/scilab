@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="uiCreateNode">
     <refnamediv>
         <refname>uiCreateNode</refname>
-        <refpurpose>Creation of node (for Scilab Tree) </refpurpose>
+        <refpurpose>Creation of node (for Scilab uitree) </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -38,14 +38,14 @@
             <varlistentry>
                 <term>myNode</term>
                 <listitem>
-                    <para>a node of type Tree</para>
+                    <para>a node of type uitree</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Creates a node(a node or a leaf) of type Tree.</para>
+        <para>Creates a node(a node or a leaf) of type uitree.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

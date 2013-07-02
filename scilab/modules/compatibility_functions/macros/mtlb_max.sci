@@ -1,11 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
+// Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [r,k]=mtlb_max(a,b,c)
@@ -22,12 +22,12 @@ function [r,k]=mtlb_max(a,b,c)
     if rhs==1 then //max(A)
         // One output arg
         if lhs==1 then
-            if ~isreal(a,0) then 
+            if ~isreal(a,0) then
                 if size(a,1)==1|size(a,2)==1 then
                     [r,k]=max(abs(a))
                     r=a(k)
                 else
-                    [r,k]=max(abs(a),'r')
+                    [r,k]=max(abs(a),"r")
                     r=[]
                     for l=1:size(a,2)
                         r=[r,a(k(l),l)]
@@ -37,16 +37,16 @@ function [r,k]=mtlb_max(a,b,c)
                 if size(a,1)==1|size(a,2)==1 then
                     r=max(a)
                 else
-                    r=max(a,'r')
+                    r=max(a,"r")
                 end
             end
         else
-            if ~isreal(a,0) then 
+            if ~isreal(a,0) then
                 if size(a,1)==1|size(a,2)==1 then
                     [r,k]=max(abs(a))
                     r=a(k)
                 else
-                    [r,k]=max(abs(a),'r')
+                    [r,k]=max(abs(a),"r")
                     r=[]
                     for l=1:size(a,2)
                         r=[r,a(k(l),l)]
@@ -56,12 +56,12 @@ function [r,k]=mtlb_max(a,b,c)
                 if size(a,1)==1|size(a,2)==1 then
                     [r,k]=max(a)
                 else
-                    [r,k]=max(a,'r')
+                    [r,k]=max(a,"r")
                 end
             end
         end
         // max(A,B) A and B have the same size
-    elseif rhs==2 then 
+    elseif rhs==2 then
         // Only one output arg is possible...
         if lhs > 1 then
             error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"),"mtlb_max", 1));
@@ -73,7 +73,7 @@ function [r,k]=mtlb_max(a,b,c)
             return
         end
 
-        if ~isreal(a)|~isreal(b) then 
+        if ~isreal(a)|~isreal(b) then
             if ~isreal(a,0) & isreal(b,0) then
                 [r,k]=max(abs(a),b)
                 for m=1:size(a,1)
@@ -83,7 +83,7 @@ function [r,k]=mtlb_max(a,b,c)
                         end
                     end
                 end
-            elseif isreal(a,0)&~isreal(b,0) then  
+            elseif isreal(a,0)&~isreal(b,0) then
                 [r,k]=max(a,abs(b))
                 for m=1:size(a,1)
                     for n=1:size(a,2)
@@ -108,7 +108,7 @@ function [r,k]=mtlb_max(a,b,c)
             r = max(a,b)
         end
         // max(a,[],num) with num>2 or num is a variable name
-    elseif rhs==3 then 
+    elseif rhs==3 then
         //If num>number of dims of a
         if c>size(size(a),2) then
             r=a
@@ -151,4 +151,5 @@ function [r,k]=mtlb_max(a,b,c)
         end
     end
 endfunction
-
+
+

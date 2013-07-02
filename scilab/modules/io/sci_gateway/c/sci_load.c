@@ -23,7 +23,7 @@ int sci_load(char *fname, unsigned long fname_len)
     SciErr sciErr;
     int* piAddr = NULL;
 
-  //check first input argument type ( double can be file descriptor )
+    //check first input argument type ( double can be file descriptor )
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
     {

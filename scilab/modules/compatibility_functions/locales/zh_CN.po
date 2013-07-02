@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-03-04 07:56+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -30,23 +30,13 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s：第%d个输入参数的值错误：必须在集合{%s}中。\n"
 
 #, c-format
-msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr "%s：输入参数 #%d 出错：大小不一致。\n"
-
-#, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
-"expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为一个实数的、整数的或字符串的矩阵。\n"
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr "%s：输入参数的类型出错：Cell 元素必须为字符数组。\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
 msgstr "%s：该特点尚未实现。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
-msgstr "%s：输入参数的类型出错：Cell 元素必须为字符数组。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"

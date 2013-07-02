@@ -51,6 +51,6 @@ public final class CodeNavigatorAction extends DefaultAction {
      * Action !!
      */
     public void doAction() {
-	getEditor().addNavigator();
+        getEditor().addNavigator();
     }
 }

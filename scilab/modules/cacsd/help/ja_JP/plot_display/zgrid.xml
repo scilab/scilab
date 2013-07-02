@@ -105,7 +105,7 @@
 
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 z=poly(0,'z')
                 H=syslin(0.01,(0.54-1.8*z+2.9*z^2-2.6*z^3+z^4)/(0.8+0.78*z-0.1*z^2+0.9*z^3+z^4))
                 clf();evans(H,1000);zgrid(0:0.1:0.5)

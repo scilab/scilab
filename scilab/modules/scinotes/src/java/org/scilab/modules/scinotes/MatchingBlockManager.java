@@ -211,7 +211,7 @@ public class MatchingBlockManager {
     /**
      * Remove the highlights if they exist.
      */
-    private synchronized void update() {
+    public synchronized void update() {
         if (first != null) {
             highlighter.removeHighlight(first);
             first = null;
@@ -241,10 +241,12 @@ public class MatchingBlockManager {
                         highlighter.removeHighlight(second);
                     }
                 }
-                if (mpos != null && ScilabLexerConstants.isOpenClose(tok) && ocPainter != null && (!isMouse || isOCMouseover)) {
-                    createHighlights(mpos, insideOc, ocIncluded, ocPainter);
-                } else if (mpos != null && kwPainter != null && (!isMouse || isKWMouseover)) {
-                    createHighlights(mpos, insideKw, kwIncluded, kwPainter);
+                if (mpos != null) {
+                    if (ScilabLexerConstants.isOpenClose(tok) && ocPainter != null && (!isMouse || isOCMouseover)) {
+                        createHighlights(mpos, insideOc, ocIncluded, ocPainter);
+                    } else if (kwPainter != null && (!isMouse || isKWMouseover)) {
+                        createHighlights(mpos, insideKw, kwIncluded, kwPainter);
+                    }
                 }
             } catch (NullPointerException e) { }
         }

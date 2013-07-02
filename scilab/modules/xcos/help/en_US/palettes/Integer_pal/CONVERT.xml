@@ -312,16 +312,24 @@
         <title>Example</title>
         <para>
             This example shows the sign bit's propagation during a conversion from int8 to int16.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/CONVERT_en_US.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/CONVERT_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>
         <para/>
-        <inlinemediaobject>
-            <imageobject>
-                <imagedata align="center" fileref="../../../examples/integer_pal/en_US/convert_diagram_en_US.png"/>
-            </imageobject>
-        </inlinemediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/CONVERT_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/CONVERT_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/CONVERT_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_CONVERT">
         <title>Interfacing function</title>

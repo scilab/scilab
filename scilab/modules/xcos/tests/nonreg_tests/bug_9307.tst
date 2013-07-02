@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // AFFICH_m block only printed the first column for an input matrix.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_9307.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_9307.zcos");
 // Simulate
 // Check that the AFFICH_m block value is :
 //      1.000     2.000     3.000

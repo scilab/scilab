@@ -24,7 +24,7 @@
 #include "pcre_private.h"
 #include "sciprint.h"
 #include "splitLine.h"
-#include "csv_strsubst.h"
+#include "strsubst.h"
 #if _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -235,7 +235,6 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
         const char *blankMode = getCsvDefaultCsvIgnoreBlankLine();
         if (strcmp(blankMode, "on") == 0)
         {
-            int nbLinesBackup = nbLines;
             char **tmpLines = removeAllBlankLines(lines, &nbLines);
             if (tmpLines)
             {
@@ -357,7 +356,7 @@ static int getNumbersOfColumnsInLines(const char **lines, int sizelines,
                 {
                     if (getWarningMode())
                     {
-                        sciprint(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), "csvRead", i + 1, NbColumns, previousNbColumns);
+                        sciprint(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), _("Warning"), i + 1, NbColumns, previousNbColumns);
                     }
 
                     return 0;
@@ -374,7 +373,7 @@ static int getNumbersOfColumnsInLine(const char *line, const char *separator)
     {
         int i = 0;
         int nbTokens = 0;
-        char **splittedStr = splitLineCSV(line, separator, &nbTokens, 0);
+        char **splittedStr = splitLineCSV(line, separator, &nbTokens);
         if (splittedStr)
         {
             freeArrayOfString(splittedStr, nbTokens);
@@ -420,7 +419,7 @@ static char **getStringsFromLines(const char **lines, int sizelines,
         for (i = 0; i < sizelines; i++)
         {
             int nbTokens = 0;
-            char **lineStrings = splitLineCSV(lines[i], separator, &nbTokens, 0);
+            char **lineStrings = splitLineCSV(lines[i], separator, &nbTokens);
             int j = 0;
 
             if (lineStrings == NULL)
@@ -440,13 +439,15 @@ static char **getStringsFromLines(const char **lines, int sizelines,
             for (j = 0; j < m; j++)
             {
 
-                if (decimal)
+                if (!decimal)
                 {
                     results[i + n * j] = strdup(lineStrings[j]);
                 }
                 else
                 {
-                    results[i + n * j] = csv_strsubst(lineStrings[j], decimal, getCsvDefaultDecimal());
+                    /* Proceed to the remplacement of the provided decimal to the default on
+                     * usually, it converts "," => "." */
+                    results[i + n * j] = strsub(lineStrings[j], decimal, getCsvDefaultDecimal());
                 }
 
                 if (lineStrings[j])
@@ -455,6 +456,7 @@ static char **getStringsFromLines(const char **lines, int sizelines,
                     lineStrings[j] = NULL;
                 }
             }
+            FREE(lineStrings);
         }
     }
     return results;
@@ -559,16 +561,17 @@ static char *stripCharacters(const char *line)
     char *returnedLine = NULL;
     if (line)
     {
-        char *tmpLineWithoutTab = csv_strsubst((char*)line, "\t", "");
+        char *tmpLineWithoutTab = strsub((char*)line, "\t", "");
         if (tmpLineWithoutTab)
         {
-            char *tmpLineWithoutLF = csv_strsubst(tmpLineWithoutTab, "\r", "");
+            char *tmpLineWithoutLF = strsub(tmpLineWithoutTab, "\r", "");
             if (tmpLineWithoutLF)
             {
-                char *tmpLineWithoutCR = csv_strsubst(tmpLineWithoutTab, "\n", "");
+                char *tmpLineWithoutCR = strsub(tmpLineWithoutTab, "\n", "");
                 if (tmpLineWithoutCR)
                 {
-                    returnedLine = csv_strsubst(tmpLineWithoutCR, " ", "");
+                    returnedLine = strsub(tmpLineWithoutCR, " ", "");
+                    FREE(tmpLineWithoutCR);
                 }
                 else
                 {
@@ -618,7 +621,7 @@ static char **replaceStrings(const char **lines, int nbLines, const char **torep
             {
                 for (j = 0; j < nbLines; j++)
                 {
-                    replacedStrings[j] = csv_strsubst(replacedStrings[j], toreplace[i], toreplace[nr + i]);
+                    replacedStrings[j] = strsub(replacedStrings[j], toreplace[i], toreplace[nr + i]);
                 }
             }
         }

@@ -8,15 +8,15 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function count=profile(fun)
-if type(fun)==13 then
-  lst=macr2lst(fun)
-else
-  lst=fun
-end
-if lst(5)(1)<>'25' then
-  error(msprintf(gettext("%s: The function has not been built for profiling"),"profile"))
-end
-count=get_profile(lst,4)
-count=count(1:$-1,:)
-count(:,2)=count(:,2)/1000000	
+    if type(fun)==13 then
+        lst=macr2lst(fun)
+    else
+        lst=fun
+    end
+    if lst(5)(1)<>"25" then
+        error(msprintf(gettext("%s: The function has not been built for profiling"),"profile"))
+    end
+    count=get_profile(lst,4)
+    count=count(1:$-1,:)
+    count(:,2)=count(:,2)/1000000
 endfunction

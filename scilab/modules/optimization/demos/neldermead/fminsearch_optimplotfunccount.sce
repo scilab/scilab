@@ -11,21 +11,21 @@
 
 function demo_funccount()
 
-  mprintf(_("Running optimization ...\n"));
+    mprintf(_("Running optimization ...\n"));
 
-  function y = banana (x)
-    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
-  endfunction
-  
-  opt = optimset ( "PlotFcns" , optimplotfunccount );
-  [x fval] = fminsearch ( banana , [-1.2 1] , opt );
-  demo_viewCode("fminsearch_optimplotfunccount.sce");
-  
-  //
-  // Display results
-  //
-  mprintf("x = %s\n", strcat(string(x)," "));
-  mprintf("fval = %e\n", fval);
+    function y = banana (x)
+        y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    endfunction
+
+    opt = optimset ( "PlotFcns" , optimplotfunccount );
+    [x fval] = fminsearch ( banana , [-1.2 1] , opt );
+    demo_viewCode("fminsearch_optimplotfunccount.sce");
+
+    //
+    // Display results
+    //
+    mprintf("x = %s\n", strcat(string(x)," "));
+    mprintf("fval = %e\n", fval);
 
 endfunction
 
@@ -35,4 +35,5 @@ clear demo_funccount;
 
 
 
-
+
+

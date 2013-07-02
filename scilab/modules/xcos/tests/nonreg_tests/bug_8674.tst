@@ -17,7 +17,7 @@
 // Check that an erroneous "From workspace" block does not produce an error.
 // 
 
-result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8674.xcos");
+result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_8674.zcos");
 if (result <> %T) then pause,end
 
 // overwrtie dialogs

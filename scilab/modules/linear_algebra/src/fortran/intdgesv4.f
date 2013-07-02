@@ -1,5 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
+c Copyright (C) 2013 - Michael Baudin
 c$
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,7 @@ c     a/b
       logical checklhs,checkrhs
       character fname*(*)
       double precision ANORM, EPS, RCOND
+      double precision RCONDthresh
       double precision dlamch, dlange
       integer vfinite
       external dlamch, dlange, vfinite
@@ -74,6 +76,7 @@ c     Check if A and B matrices contains Inf or NaN's
       endif
       if(.not.createvar(11,'d',1,LWORK,lDWORK)) return
       EPS = dlamch('eps')
+      RCOND_thresh=EPS*10
       ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
 c     
 c     Transpose A and B
@@ -107,7 +110,7 @@ c     SUBROUTINE DGETRF( N, N, A, LDA, IPIV, INFO )
      $           istk(lIWORK), INFO )
 c     SUBROUTINE DGECON( NORM, N, A, LDA, ANORM, RCOND, WORK,
 c     $                        IWORK, INFO )
-            if(RCOND.gt.sqrt(EPS)) then
+            if(RCOND.gt.RCOND_thresh) then
                call DGETRS( 'N', N, K, stk(lAF), N, istk(lIPIV),
      $              stk(lBT), N, INFO ) 
 c     SUBROUTINE DGETRS( TRANS, N, NRHS, A, LDA, IPIV,
@@ -132,10 +135,11 @@ c
 c     
 c     M.ne.N or A singular
 c     
-      RCOND = sqrt(eps)
+      RCOND = RCOND_thresh
       do 70 i = 1, M
          istk(lJPVT+i-1) = 0
  70   continue
+      info = 1
       call DGELSY1( N, M, K, stk(lAT), N, stk(lBT), max(M,N),
      $     istk(lJPVT), RCOND, istk(lRANK), stk(lDWORK),
      $     LWORK, INFO )

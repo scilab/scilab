@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-07-12 21:52+0000\n"
 "Last-Translator: Pablo Diego Moço <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -295,6 +295,10 @@ msgstr "%s: Erro ao copiar o arquivo '%s' para o diretório '%s'.\n"
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
 msgstr "%s: Erro ao criar o diretório '%s'.\n"
+
+#, c-format
+msgid "%s: Previously existing file with the same name in '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -841,40 +845,40 @@ msgid "Download in progress... Please be patient."
 msgstr ""
 
 #, c-format
-msgid "%s: Error: Invalid URL.\n"
-msgstr "%s: Erro: URL inválido.\n"
+msgid "%s: Error: the response status from the URL %s is invalid.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Error: Internet Open.\n"
-msgstr "%s: Erro: Internet aberta.\n"
+msgid "%s: Error while opening an Internet connection.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Error: URL Open.\n"
-msgstr "%s: Erro: URL aberta.\n"
+msgid "%s: Error while opening the URL %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Error: Createfile.\n"
-msgstr "%s: erro: Criar arquivo.\n"
+msgid "%s: Error while creating the file %s on disk.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Error: Invalid File size.\n"
-msgstr "%s: Erro: Tamanho do arquivo é inválido.\n"
+msgid "%s: Error while retrieving the size of file at URL %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Error: Internet Read file.\n"
-msgstr "%s: Erro: Ler arquivo da Internet.\n"
+msgid "%s: Error while reading the file from the URL %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Error: Write file.\n"
-msgstr "%s: Erro: Escrever arquivo.\n"
+msgid "%s: Error while writing the file %s on disk.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Error: Failure.\n"
-msgstr "%s: Erro: Falha.\n"
+msgid "%s: Error while downloading the file from the URL %s.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Error: Out Of Memory.\n"
-msgstr "%s: Erro: Memória esgotada.\n"
+msgid "%s: Error: out of memory.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"

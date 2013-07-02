@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="LineSpec">
+    <refnamediv>
+        <refname>ВидЛинии</refname>
+        <refpurpose>
+            для быстрой настройки вида линий на графике
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>ВидЛинии</literal> - это необязательный аргумент,
+            который может быть использован внутри команды построения
+            графика <function>plot</function> для настройки вида каждой
+            новой линии. Он должен быть указан в виде соединённых строк,
+            содержащих информацию о цвете, стиле линий или маркеров.
+            Он очень полезен для быстрого определения этих основных свойств линий.
+        </para>
+        <para>
+            Чтобы определить красную штрихпунктирную линию с ромбовидными
+            маркерами, строка должна быть в виде <literal>'r-.diam'</literal>.
+            Как вы можете видеть, полное написание значения каждого свойства не
+            обязательно, однако строка, которая является связкой 
+            (в любом порядке) этих трёх типов свойств, должна оставаться
+            однозначной. Кроме того, определение строки не чувствительно
+            к регистру.
+        </para>
+        <para>
+            Вот полный список типов <literal>ВидЛинии</literal>, которые
+            вы можете определить (используя <link linkend="plot">plot</link>).
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>Стиль линии: </term>
+                <listitem>
+                    <para>
+                        строка, определяющая стиль линии. Это свойство связано
+                        со свойством объекта <literal>line_style</literal> ("стиль линии") 
+                        (см. <link linkend="polyline_properties">свойства ломанной линии</link>).
+                    </para>
+                    <para/>
+                    <informaltable border="1">
+                        <tr>
+                            <td>
+                                <literal>Определитель</literal>
+                            </td>
+                            <td>
+                                <literal>Стиль линии</literal>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>-</literal>
+                            </td>
+                            <td>Сплошная линия (по умолчанию)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>--</literal>
+                            </td>
+                            <td>Штриховая линия</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>:</literal>
+                            </td>
+                            <td>Пунктирная линия</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>-.</literal>
+                            </td>
+                            <td>Штрихпунктирная линия</td>
+                        </tr>
+                    </informaltable>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Цвет: </term>
+                <listitem>
+                    <para>
+                        строка, определяющая цвет линии. Это свойство связано со
+                        свойством объекта <literal>foreground</literal> ("передний
+                        фон")(см.
+                        <link linkend="polyline_properties">свойства ломаной линии</link>).
+                    </para>
+                    <para/>
+                    <informaltable border="1">
+                        <tr>
+                            <td>
+                                <literal>Определитель</literal>
+                            </td>
+                            <td>
+                                <literal>Цвет</literal>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>r</literal>
+                            </td>
+                            <td>Красный</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>g</literal>
+                            </td>
+                            <td>Зелёный</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>b</literal>
+                            </td>
+                            <td>Синий</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>c</literal>
+                            </td>
+                            <td>Голубой</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>m</literal>
+                            </td>
+                            <td>Пурпурный</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>y</literal>
+                            </td>
+                            <td>Жёлтый</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>k</literal>
+                            </td>
+                            <td>Чёрный</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>w</literal>
+                            </td>
+                            <td>Белый</td>
+                        </tr>
+                    </informaltable>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term/>
+                <listitem>
+                    <para>
+                        Если вы не укажете цвет (ни с помощью <literal>ВидЛинии</literal>,
+                        ни с помощью <link linkend="GlobalProperty">ГлобальноеСвойство</link>),
+                        то будет использоваться таблица цветов, устанавливаемых по умолчанию.
+                        Во время рисования множества линий, команда <function>plot</function>
+                        автоматически перебирает в цикле эту таблицу. Вот используемые цвета:
+                    </para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term/>
+                <listitem>
+                    <informaltable border="1">
+                        <tr>
+                            <td>
+                                <literal>R</literal>
+                            </td>
+                            <td>
+                                <literal>G</literal>
+                            </td>
+                            <td>
+                                <literal>B</literal>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0.</td>
+                            <td>0.</td>
+                            <td>1.</td>
+                        </tr>
+                        <tr>
+                            <td>0.</td>
+                            <td>0.5</td>
+                            <td>0.</td>
+                        </tr>
+                        <tr>
+                            <td>1.</td>
+                            <td>0.</td>
+                            <td>0.</td>
+                        </tr>
+                        <tr>
+                            <td>0.</td>
+                            <td>0.75</td>
+                            <td>0.75</td>
+                        </tr>
+                        <tr>
+                            <td>0.75</td>
+                            <td>0.</td>
+                            <td>0.75</td>
+                        </tr>
+                        <tr>
+                            <td>0.75</td>
+                            <td>0.75</td>
+                            <td>0.</td>
+                        </tr>
+                        <tr>
+                            <td>0.25</td>
+                            <td>0.25</td>
+                            <td>0.25</td>
+                        </tr>
+                    </informaltable>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Тип маркера: </term>
+                <listitem>
+                    <para>
+                        Строка, определяющая тип маркера. Заметьте, что, если вы укажете
+                        маркер без стиля линии, то будут нарисованы только маркеры.
+                        Это свойство связано со свойствами объекта <literal>mark_style</literal>
+                        ("стиль маркера") и <literal>mark_mode</literal> ("режим маркера")
+                        (см. <link linkend="polyline_properties">свойства ломаной линии</link>).
+                    </para>
+                    <para/>
+                    <informaltable border="1">
+                        <tr>
+                            <td>
+                                <literal>Определитель</literal>
+                            </td>
+                            <td>
+                                <literal>Тип маркера</literal>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>+</literal>
+                            </td>
+                            <td>Знак "плюс"</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>o</literal>
+                            </td>
+                            <td>Кружок</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>*</literal>
+                            </td>
+                            <td>Звёздочка</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>.</literal>
+                            </td>
+                            <td>Точка</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>x</literal>
+                            </td>
+                            <td>Крестик</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>'square'</literal> или
+                                <literal>'s'</literal>
+                            </td>
+                            <td>Квадрат</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>'diamond'</literal> или
+                                <literal>'d'</literal>
+                            </td>
+                            <td>Ромб</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>^</literal>
+                            </td>
+                            <td>Треугольник, указывающий вверх</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>v</literal>
+                            </td>
+                            <td>Треугольник, указывающий вниз</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>&gt;</literal>
+                            </td>
+                            <td>Треугольник, указывающий вправо</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>&lt;</literal>
+                            </td>
+                            <td>Треугольник, указывающий влево</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <literal>'pentagram' или 'p'</literal>
+                            </td>
+                            <td>Пятиконечная звезда (пентаграмма)</td>
+                        </tr>
+                        <tr>
+                            <td>                                
+                            </td>
+                            <td>Нет маркера (по умолчанию)</td>
+                        </tr>
+                    </informaltable>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+clf();
+x=1:0.1:10; // Инициализация.
+plot(x,sin(x),'r-.>') // строит штрихпунктирную линию с треугольниками, указывающими вправо, центрованными на каждой точке
+ ]]></programlisting>
+        <scilab:image>x=1:0.1:10; // Init.
+            plot(x,sin(x),'r.-&gt;')
+            t=0:%pi/20:2*%pi;
+            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+clf();
+x=1:0.1:10;
+// Если вы укажете маркер без стиля линии, то только маркеры будут нарисованы
+plot(x,sin(x),'d') 
+ ]]></programlisting>
+        <scilab:image>
+            x=1:0.1:10;
+            plot(x,sin(x),'d')
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+clf();
+x = 1:0.5:10; // Init.
+// Порядок информации о цвете, стили линии или маркерах не имеет значения
+// ОДНАКО информация должна быть однозначной
+subplot(311);plot(x,sin(x),'.b-');
+subplot(312);plot(x,sin(x),'b.-');
+subplot(313);plot(x,sin(x),'b-.');// Точка принадлежит информации о стиле линии (не маркера!)
+ ]]></programlisting>
+        <scilab:image>
+            x = 1:0.5:10;
+            subplot(311);plot(x,sin(x),'.b-');
+            subplot(312);plot(x,sin(x),'b.-');
+            subplot(313);plot(x,sin(x),'b-.');
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+//множество графиков с различными видами линии
+clf();
+t=0:%pi/20:2*%pi;
+plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+ ]]></programlisting>
+        <scilab:image>
+            t=0:%pi/20:2*%pi;
+            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="color">color</link>
+            </member>
+            <member>
+                <link linkend="GlobalProperty">ГлобальноеСвойство</link>
+            </member>
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="clf">clf</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

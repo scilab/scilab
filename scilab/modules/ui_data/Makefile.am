@@ -35,7 +35,7 @@ UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 UI_DATA_C_SOURCES = src/jni/ui_data_wrap.c \
                     src/c/PutScilabVariable.c
 
-UI_DATA_CXX_SOURCES = src/cpp/UpdateBrowseVar.cpp \
+UI_DATA_CXX_SOURCES = src/cpp/BrowseVarManager.cpp \
 		      src/cpp/FileBrowserChDir.cpp
 
 GIWS_WRAPPERS = \
@@ -61,7 +61,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
 		      sci_gateway/cpp/sci_browsevar.cpp \
 		      sci_gateway/cpp/sci_filebrowser.cpp \
-			sci_gateway/cpp/sci_updatebrowsevar.cpp
+			sci_gateway/cpp/sci_updatebrowsevar.cpp \
+			sci_gateway/cpp/sci_closeEditvar.cpp
 
 
 libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -69,7 +70,6 @@ libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni \

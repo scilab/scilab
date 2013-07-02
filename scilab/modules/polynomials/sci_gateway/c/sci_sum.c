@@ -17,10 +17,10 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intpsum)(int *id);
 /*--------------------------------------------------------------------------*/
-int sci_psum(char *fname,unsigned long fname_len)
+int sci_psum(char *fname, unsigned long fname_len)
 {
-	static int id[6];
-	C2F(intpsum)(id);
-	return 0;
+    static int id[6];
+    C2F(intpsum)(id);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

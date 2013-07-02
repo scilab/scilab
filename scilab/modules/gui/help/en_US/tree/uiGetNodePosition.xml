@@ -14,7 +14,7 @@
             <varlistentry>
                 <term>tree</term>
                 <listitem>
-                    <para>Tree in which we look for position(s) of a node</para>
+                    <para>uitree in which we look for position(s) of a node</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

@@ -17,7 +17,7 @@ function xcos_skeletonlib = startModule()
     // and xcos features required
     error(gettext('Scilab 5.3.2 or more is required.'));
   end
-// =============================================================================  
+// =============================================================================
 // force to load some libraries (dependancies)
   loadScicos();
 // =============================================================================
@@ -36,12 +36,12 @@ function xcos_skeletonlib = startModule()
   mprintf("\tLoad palette\n");
   pal = xcosPal("Xcos toolbox blocks");
 
-  blocks = ["TBX_SUM_c" "TBX_MUT_STYLE"];
+  blocks = ["TBX_SUM_c" "TBX_MUT_STYLE" "TBX_SUM_sci"];
   for i=1:size(blocks, "*")
     h5  = ls(root_tlbx + "/images/h5/"  + blocks(i) + "." + ["sod" "h5"]);
     gif = ls(root_tlbx + "/images/gif/" + blocks(i) + "." + ["png" "jpg" "gif"]);
     svg = ls(root_tlbx + "/images/svg/" + blocks(i) + "." + ["png" "jpg" "gif" "svg"]);
-    
+
     pal = xcosPalAddBlock(pal, h5(1), gif(1), svg(1));
   end
 

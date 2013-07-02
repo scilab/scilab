@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="resume">
+    <refnamediv>
+        <refname>resume</refname>
+        <refpurpose>return or resume execution and copy some local variables</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>resume
+            [x1,..,xn]=resume(a1,..,an)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x1,..,xn</term>
+                <listitem>
+                    <para>variables in calling environment</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1,..,an</term>
+                <listitem>
+                    <para>local variables</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            In a function <literal>resume</literal> stops the execution of the function,
+            <literal>[x1,..,xn]=resume(a1,..,an)</literal> stops the execution of the function and put the
+            local variables <literal>ai</literal> in calling environment under names
+            <literal>xi</literal>.
+        </para>
+        <para>
+            In <literal>pause</literal> mode, it allows to return to lower level
+            <literal>[x1,..,xn]=resume(a1,..,an)</literal> returns to lower level and put the local variables
+            <literal>ai</literal> in calling environment under names <literal>xi</literal>.
+        </para>
+        <para>
+            In an <literal>execstr</literal> called by a function <literal>[..]=resume(..)</literal> stops
+            the execution of the function and put the local variables 
+            <literal>ai</literal> in calling environment under names <literal>xi</literal>.
+        </para>
+        <para>
+            <literal>resume</literal> is equivalent to <literal>return</literal>.
+        </para>
+        <para>
+            <note>
+                Note: the usage of this feature can complexify the code. Instead, the syntax <code>function b = foo()</code> is recommended.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+function foo(a)
+         a=a+1
+         b=resume(a)
+         c=52
+endfunction
+
+foo(42);
+assert_checkequal(b,43);
+// c does not exist
+
+]]></programlisting>
+        <programlisting role="example"><![CDATA[
+
+// with several function calls
+function foo1()
+  a=1;
+  b=2;
+  c=3;
+  [x,y,z]=resume(a, b, c)
+endfunction
+
+function foo2()
+  foo1()
+  x, y, z // Declared
+endfunction
+
+foo2()
+// x y z does not exist here
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abort">abort</link>
+            </member>
+            <member>
+                <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+            <member>
+                <link linkend="quit">quit</link>
+            </member>
+            <member>
+                <link linkend="return">return</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

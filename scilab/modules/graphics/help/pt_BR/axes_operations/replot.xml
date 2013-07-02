@@ -63,8 +63,6 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-backupstyle='?'
-
 // primeiro exemplo
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x)) 
@@ -81,9 +79,6 @@ replot([-3,-2,8,4],f.children(2))
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xbasr">xbasr</link>
-            </member>
             <member>
                 <link linkend="clf">clf</link>
             </member>

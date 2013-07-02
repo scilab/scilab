@@ -1,0 +1,90 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: SUBTRACTION
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversion.sci", -1);
+if ~m2sciTestConversion("SUBTRACTION") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/SUBTRACTION.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  L.5: At least one operand of []-[] is an empty matrix, Scilab equivalent is [].
+  L.7: At least one operand of mtlb_double(m2sciUnknownType([]))-mtlb_double(m2sciUnknownType([])) is an empty matrix, Scilab equivalent is [].
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  L.113: At least one operand of []-1 is an empty matrix, Scilab equivalent is [].
+  L.115: At least one operand of mtlb_double(m2sciUnknownType([]))-1 is an empty matrix, Scilab equivalent is [].
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  L.221: At least one operand of []-asciimat("a") is an empty matrix, Scilab equivalent is [].
+  L.223: At least one operand of mtlb_double(m2sciUnknownType([]))-asciimat("a") is an empty matrix, Scilab equivalent is [].
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  L.329: At least one operand of []-[] is an empty matrix, Scilab equivalent is [].
+  L.331: At least one operand of %%inf-[] is an empty matrix, Scilab equivalent is [].
+  L.333: At least one operand of %%nan-[] is an empty matrix, Scilab equivalent is [].
+  L.335: At least one operand of 1-[] is an empty matrix, Scilab equivalent is [].
+  L.337: At least one operand of []-%%inf is an empty matrix, Scilab equivalent is [].
+  L.345: At least one operand of []-%%nan is an empty matrix, Scilab equivalent is [].
+  L.353: At least one operand of []-1 is an empty matrix, Scilab equivalent is [].
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******

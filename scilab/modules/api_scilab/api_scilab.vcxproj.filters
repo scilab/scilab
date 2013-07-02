@@ -69,6 +69,9 @@
     <ClCompile Include="src\cpp\api_optional.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\api_hypermat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\api_boolean.h">
@@ -146,6 +149,9 @@
     <ClInclude Include="includes\api_optional.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\api_hypermat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\api_scilab.rc">
@@ -177,6 +183,12 @@
       <Filter>localization</Filter>
     </None>
     <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="linpack_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>

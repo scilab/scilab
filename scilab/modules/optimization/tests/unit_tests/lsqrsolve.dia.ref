@@ -4,20 +4,17 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 a=[1,7;
    2,8
    4 3];
 b=[10;11;-1];
 function y=f1(x,m),y=a*x+b;endfunction
 [xsol,v]=lsqrsolve([100;100],f1,3);
-lsqrsolve: the cosine of the angle between fvec and any column of the jacobian is at most gtol in absolute value.
-
 if size(xsol) <> [2 1] then bugmes();quit;end
 if size(v) <> [3 1] then bugmes();quit;end
 function y=fj1(x,m),y=a;endfunction
 [xsol,v]=lsqrsolve([100;100],f1,3,fj1);
-lsqrsolve: the cosine of the angle between fvec and any column of the jacobian is at most gtol in absolute value.
-
 // Data fitting problem
 // 1 build the data
 a=34;b=12;c=14;
@@ -29,7 +26,5 @@ function e=f2(abc,m)
   e=Y-(a*(X-b)+c*X.*X);
 endfunction
 [abc,v]=lsqrsolve([10;10;10],f2,size(X,1));
-lsqrsolve: relative error between two consecutive iterates is at most xtol.
-
 if size(abc,'*') <> 3 then bugmes();quit;end
 if norm(v) < %eps then bugmes();quit;end

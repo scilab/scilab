@@ -12,12 +12,12 @@
  -->
 
 <project name="graphic_objects" default="jar">
-
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.graphic_objects.name}" />
-
-  <description>
-			Build the Scilab graphic_objects module
-  </description>
-
+    
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.graphic_objects.name}" />
+    
+    <description>
+        Build the Scilab graphic_objects module
+    </description>
+    
 </project>

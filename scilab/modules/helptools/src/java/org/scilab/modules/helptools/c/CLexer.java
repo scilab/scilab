@@ -92,8 +92,9 @@ public final class CLexer {
         while (i < l) {
             int count = packed.charAt(i++);
             int value = packed.charAt(i++);
-            do result[j++] = value;
-            while (--count > 0);
+            do {
+                result[j++] = value;
+            } while (--count > 0);
         }
         return j;
     }
@@ -248,8 +249,9 @@ public final class CLexer {
         while (i < 156) {
             int  count = packed.charAt(i++);
             char value = packed.charAt(i++);
-            do map[j++] = value;
-            while (--count > 0);
+            do {
+                map[j++] = value;
+            } while (--count > 0);
         }
         return map;
     }
@@ -316,8 +318,9 @@ public final class CLexer {
         zzAtEOF = true;            /* indicate end of file */
         zzEndRead = zzStartRead;  /* invalidate buffer    */
 
-        if (zzReader != null)
+        if (zzReader != null) {
             zzReader.close();
+        }
     }
 
 
@@ -428,8 +431,9 @@ public final class CLexer {
      *                This number must not be greater than yylength()!
      */
     public void yypushback(int number)  {
-        if ( number > yylength() )
+        if ( number > yylength() ) {
             zzScanError(ZZ_PUSHBACK_2BIG);
+        }
 
         zzMarkedPos -= number;
     }
@@ -469,9 +473,9 @@ public final class CLexer {
             zzForAction: {
                 while (true) {
 
-                    if (zzCurrentPosL < zzEndReadL)
+                    if (zzCurrentPosL < zzEndReadL) {
                         zzInput = zzBufferL[zzCurrentPosL++];
-                    else if (zzAtEOF) {
+                    } else if (zzAtEOF) {
                         zzInput = YYEOF;
                         break zzForAction;
                     } else {
@@ -7766,7 +7770,9 @@ public final class CLexer {
                     if ( zzIsFinal ) {
                         zzAction = zzState;
                         zzMarkedPosL = zzCurrentPosL;
-                        if ( zzNoLookAhead ) break zzForAction;
+                        if ( zzNoLookAhead ) {
+                            break zzForAction;
+                        }
                     }
 
                 }
@@ -7776,7 +7782,8 @@ public final class CLexer {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 21 : {
+                case 21 :
+                {
                     handler.handleComment("*");
                     handler.handleNothing("\n");
                     saveLexState = COMMENT;

@@ -12,29 +12,29 @@
 //
 
 function %_Matplot1()
-   clf
-   f = gcf()
-   nc = 200    // Number of colors
-   np = 2      // Number of periods
-   nx = 350
-   ny = 300
-   f.color_map = hsvcolormap(nc);
-   [X,Y] = meshgrid(-nx/2:nx/2, -ny/2:ny/2);
-   R = sqrt(X.^2+Y.^2);
-   R = (R-min(R))/(max(R)-min(R))*nc*np;
-   R = 1+pmodulo(R,nc);
-   xmin = -15, xmax = 40, ymin = -0.03, ymax = 0.01
-   
-   Matplot1(R,[xmin ymin xmax ymax])
-   
-   a = gca()
-   a.data_bounds=[xmin ymin ; xmax ymax];
-   a.tight_limits = "on"
-   a.axes_visible=["on" "on" "off"];
-   a.title.font_size = 2
-   a.x_label.font_size = 2
-   Tlab = _("Matplot1(M, [ %g  %g  %g  %g ])  with  size(M)=>(%d,%d)\npixel(i,j) is drawn with color number int(M(i,j))");   
-   Xlab = _("Axes are scaled with [xmin  ymin  xmax  ymax] specified")
-   xtitle(msprintf(Tlab,xmin,ymin,xmax,ymax,nx,ny),Xlab)
+    clf
+    f = gcf()
+    nc = 200    // Number of colors
+    np = 2      // Number of periods
+    nx = 350
+    ny = 300
+    f.color_map = hsvcolormap(nc);
+    [X,Y] = meshgrid(-nx/2:nx/2, -ny/2:ny/2);
+    R = sqrt(X.^2+Y.^2);
+    R = (R-min(R))/(max(R)-min(R))*nc*np;
+    R = 1+pmodulo(R,nc);
+    xmin = -15, xmax = 40, ymin = -0.03, ymax = 0.01
+
+    Matplot1(R,[xmin ymin xmax ymax])
+
+    a = gca()
+    a.data_bounds=[xmin ymin ; xmax ymax];
+    a.tight_limits = "on"
+    a.axes_visible=["on" "on" "off"];
+    a.title.font_size = 2
+    a.x_label.font_size = 2
+    Tlab = _("Matplot1(M, [ %g  %g  %g  %g ])  with  size(M)=>(%d,%d)\npixel(i,j) is drawn with color number int(M(i,j))");
+    Xlab = _("Axes are scaled with [xmin  ymin  xmax  ymax] specified")
+    xtitle(msprintf(Tlab,xmin,ymin,xmax,ymax,nx,ny),Xlab)
 endfunction
 

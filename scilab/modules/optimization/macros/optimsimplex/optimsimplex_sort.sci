@@ -11,13 +11,13 @@
 
 //
 // optimsimplex_sort --
-//   Sorts the simplex with increasing function value order so that 
+//   Sorts the simplex with increasing function value order so that
 //   the smallest function value is at vertex #1.
 // Arguments
 //   <no arg>
 //
 function this = optimsimplex_sort ( this )
-  [this.fv,is] = gsort(this.fv,"r","i");
-  this.x = this.x ( is , : );
+    [this.fv,is] = gsort(this.fv,"r","i");
+    this.x = this.x ( is , : );
 endfunction
 

@@ -32,11 +32,10 @@
     <PRIMITIVE gatewayId="56" primitiveId="1" primitiveName="xls_open" />
     <PRIMITIVE gatewayId="56" primitiveId="2" primitiveName="xls_read" />
     <PRIMITIVE gatewayId="56" primitiveId="3" primitiveName="csvDefault" />
-    <PRIMITIVE gatewayId="56" primitiveId="4" primitiveName="csvIsnum" />
-    <PRIMITIVE gatewayId="56" primitiveId="5" primitiveName="csvRead" />
-    <PRIMITIVE gatewayId="56" primitiveId="6" primitiveName="csvStringToDouble" />
-    <PRIMITIVE gatewayId="56" primitiveId="7" primitiveName="csvTextScan" />
-    <PRIMITIVE gatewayId="56" primitiveId="8" primitiveName="csvWrite" />
-    <PRIMITIVE gatewayId="56" primitiveId="9" primitiveName="write_csv" />
-    <PRIMITIVE gatewayId="56" primitiveId="10" primitiveName="read_csv" />
+    <PRIMITIVE gatewayId="56" primitiveId="4" primitiveName="csvRead" />
+    <PRIMITIVE gatewayId="56" primitiveId="5" primitiveName="csvStringToDouble" />
+    <PRIMITIVE gatewayId="56" primitiveId="6" primitiveName="csvTextScan" />
+    <PRIMITIVE gatewayId="56" primitiveId="7" primitiveName="csvWrite" />
+    <PRIMITIVE gatewayId="56" primitiveId="8" primitiveName="write_csv" />
+    <PRIMITIVE gatewayId="56" primitiveId="9" primitiveName="read_csv" />
 </GATEWAY>

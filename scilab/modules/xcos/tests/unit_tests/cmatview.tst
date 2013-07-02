@@ -11,7 +11,7 @@
 // test scope values
 
 
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cmatview.xcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/cmatview.zcos"));
 xcos_simulate(scs_m, 4);
 
 function assert_cmatview()

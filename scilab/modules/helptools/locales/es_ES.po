@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-09-05 21:35+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitoschido@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: es\n"
 
 #, c-format
@@ -158,9 +158,71 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
-#, c-format
-msgid "%02d-%02d-%04d"
-msgstr "%02d-%02d-%04d"
+msgid " * Add some comments about XML file"
+msgstr ""
+
+msgid "Add short description here."
+msgstr ""
+
+msgid "Calling Sequence"
+msgstr ""
+
+msgid "Arguments"
+msgstr ""
+
+msgid "            Add here the input/output argument description."
+msgstr ""
+
+msgid "          Add here a paragraph of the function description."
+msgstr ""
+
+msgid "          Other paragraph can be added"
+msgstr ""
+
+msgid "More information"
+msgstr ""
+
+msgid "Examples"
+msgstr ""
+
+msgid "        Add here scilab instructions and comments"
+msgstr ""
+
+msgid "        Add here scilab instructions to generate a graphic"
+msgstr ""
+
+msgid "See Also"
+msgstr ""
+
+msgid "add a reference"
+msgstr ""
+
+msgid "add a reference name"
+msgstr ""
+
+msgid "Authors"
+msgstr ""
+
+msgid "add the author name and author reference"
+msgstr ""
+
+msgid "add another author name and his/her reference"
+msgstr ""
+
+msgid "Bibliography"
+msgstr ""
+
+msgid "         Add here the function bibliography"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Used Functions"
+msgstr ""
+
+msgid "         Add here the Scilab, C,... used code references"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -216,14 +278,6 @@ msgid "Building the scilab manual file ["
 msgstr "Construyendo el archivo de manual de scilab ["
 
 #, c-format
-msgid "%s: %s has not been generated."
-msgstr "%s: %s no fue generado."
-
-#, c-format
-msgid "%s: %s file hasn't been moved in the %s directory."
-msgstr "%s: El archivo %s no fue movido al directorio %s."
-
-#, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s.\n"
@@ -238,6 +292,14 @@ msgid ""
 msgstr ""
 "\n"
 "Creando el archivo de manual [%s].\n"
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s no fue generado."
+
+#, c-format
+msgid "%s: %s file hasn't been moved in the %s directory."
+msgstr "%s: El archivo %s no fue movido al directorio %s."
 
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"

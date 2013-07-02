@@ -308,17 +308,19 @@
         <para>
             Il utilise sa sortie d'activation comme entrée de CSCOPE. Dans le fichier, le premier champ de l'enregistrement est le temps, les deux autres sont des données régulières.
             Le bouclage de la sortie d'activation sur l'entrée d'activation assure la lecture séquentielle du fichier.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/fr_FR/rfile_f_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/fr_FR/rfile_f_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
             .
         </para>
         <para>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/sources_pal/fr_FR/rfile_f_diagram_fr_FR.png" align="center"/>
-                </imageobject>
-            </mediaobject>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/fr_FR/rfile_f_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sources_pal/fr_FR/rfile_f_fr_FR.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_RFILE_f">

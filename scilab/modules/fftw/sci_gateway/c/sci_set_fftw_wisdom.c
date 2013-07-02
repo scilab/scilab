@@ -103,8 +103,14 @@ int sci_set_fftw_wisdom(char *fname, unsigned long fname_len)
     {
         len += (int)strlen(Str1[j]) + 1;
 
-        if (Str) Str = (char *)REALLOC(Str, sizeof(char) * (len));
-        else Str = (char *)MALLOC(sizeof(char) * (len));
+        if (Str)
+        {
+            Str = (char *)REALLOC(Str, sizeof(char) * (len));
+        }
+        else
+        {
+            Str = (char *)MALLOC(sizeof(char) * (len));
+        }
 
         if (Str == NULL)
         {

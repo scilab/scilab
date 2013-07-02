@@ -68,10 +68,18 @@ public final class XConfigManager extends XCommonManager {
     private static final String SCILAB_CONFIG_XSL = System.getenv("SCI") + "/modules/preferences/src/xslt/XConfiguration.xsl";
 
     /** User configuration file.*/
-    private static final String USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
+    private static String USER_CONFIG_FILE;
+    private static boolean mustSave = true;
 
     static {
         //ScilabPreferences.addToolboxInfos("MyToolbox", System.getenv("SCI") + "/contrib/toolbox_skeleton/", System.getenv("SCI") + "/contrib/toolbox_skeleton/etc/toolbox_skeleton_preferences.xml");
+
+        if (ScilabConstants.SCIHOME != null && ScilabConstants.SCIHOME.canRead() && ScilabConstants.SCIHOME.canWrite()) {
+            USER_CONFIG_FILE = ScilabConstants.SCIHOME.toString() + "/XConfiguration.xml";
+        } else {
+            USER_CONFIG_FILE = SCILAB_CONFIG_FILE;
+            mustSave = false;
+        }
     }
 
     /**
@@ -108,24 +116,24 @@ public final class XConfigManager extends XCommonManager {
         // Plug in resize
         //dialog.setResizable(false);
         dialog.addComponentListener(new ComponentAdapter() {
-                public void componentResized(ComponentEvent e) {
-                    Element element = document.getDocumentElement();
-                    Dimension dimension = dialog.getSize();
-                    int height = XConfigManager.getInt(element, "height", 0);
-                    int width = XConfigManager.getInt(element, "width",  0);
-                    if (Math.abs(((double) height) - dimension.getHeight()) > 0.1 || Math.abs(((double) width) - dimension.getWidth()) > 0.1 ) {
-                        element.setAttribute("height", Integer.toString((int) dimension.getHeight()));
-                        element.setAttribute("width", Integer.toString((int) dimension.getWidth()));
-                    }
+            public void componentResized(ComponentEvent e) {
+                Element element = document.getDocumentElement();
+                Dimension dimension = dialog.getSize();
+                int height = XConfigManager.getInt(element, "height", 0);
+                int width = XConfigManager.getInt(element, "width",  0);
+                if (Math.abs(((double) height) - dimension.getHeight()) > 0.1 || Math.abs(((double) width) - dimension.getWidth()) > 0.1 ) {
+                    element.setAttribute("height", Integer.toString((int) dimension.getHeight()));
+                    element.setAttribute("width", Integer.toString((int) dimension.getWidth()));
                 }
-            });
+            }
+        });
 
         dialog.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    cancel();
-                }
-            });
+            @Override
+            public void windowClosing(WindowEvent e) {
+                cancel();
+            }
+        });
         ScilabSwingUtilities.closeOnEscape(dialog);
 
         // Set up correspondence
@@ -360,5 +368,14 @@ public final class XConfigManager extends XCommonManager {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Save the modifications
+     */
+    protected static void writeDocument(String filename, Node written) {
+        if (!SCILAB_CONFIG_FILE.equals(filename)) {
+            XCommonManager.writeDocument(filename, written);
+        }
     }
 }

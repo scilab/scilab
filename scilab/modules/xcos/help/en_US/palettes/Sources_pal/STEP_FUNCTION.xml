@@ -74,12 +74,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Example_1_STEP_FUNCTION">Example 1</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_2_STEP_FUNCTION">Example 2</xref>
+                            <xref linkend="Examples_STEP_FUNCTION">Examples</xref>
                         </para>
                     </listitem>
                     <listitem>
@@ -353,38 +348,49 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_1_STEP_FUNCTION">
-        <title>Example 1</title>
-        <para>
-            This diagram shows the use of the STEP_FUNCTION block to obtain the response to a step signal of
-            a first order's system defined by a transfer function.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.xcos">
-                Open this example in Xcos
-            </link>
-            .
-        </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/sources_pal/en_US/step_function_diagram_1_en_US.png" align="center"/>
-            </imageobject>
-        </mediaobject>
-    </refsection>
-    <refsection id="Example_2_STEP_FUNCTION">
-        <title>Example 2</title>
-        <para>
-            This diagram shows the use of STEP_FUNCTION to obtain four step signals
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_2_en_US.xcos">
-                Open this example in Xcos
-            </link>
-            .
-        </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/sources_pal/en_US/step_function_diagram_2_en_US.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+    <refsection id="Examples_STEP_FUNCTION">
+        <title>Examples</title>
+        <refsection id="Example_1_STEP_FUNCTION">
+            <title>Example 1</title>
+            <para>
+                This diagram shows the use of the STEP_FUNCTION block to obtain the response to a step signal of
+                a first order's system defined by a transfer function.
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos">
+                    Open this example in Xcos
+                </link>
+                .
+            </para>
+            <para/>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_1_en_US.zcos" align="center" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
+        <refsection id="Example_2_STEP_FUNCTION">
+            <title>Example 2</title>
+            <para>
+                This diagram shows the use of STEP_FUNCTION to obtain four step signals
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/step_function_2_en_US.zcos">
+                    Open this example in Xcos
+                </link>
+                .
+            </para>
+            <para/>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_2_en_US.zcos" align="center"/>
+                </imageobject>
+            </mediaobject>
+        </refsection>
     </refsection>
     <refsection id="Interfacingfunction_STEP_FUNCTION">
         <title>Interfacing function</title>

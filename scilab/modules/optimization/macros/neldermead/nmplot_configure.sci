@@ -13,19 +13,19 @@
 //   Configure nmplot and returns the modified object.
 //
 function this = nmplot_configure (this,key,value)
-  select key
-  case "-simplexfn" then
-    this.simplexfn = value;
-  case "-fbarfn" then
-    this.fbarfn = value;
-  case "-foptfn" then
-    this.foptfn = value;
-  case "-sigmafn" then
-    this.sigmafn = value;
-  case "-outputcommand" then
-    errmsg = msprintf(gettext("%s: Unknown key %s"), "nmplot_configure", key)
-    error(errmsg)
-  else
-    this.nmbase = neldermead_configure ( this.nmbase , key , value )
-  end
+    select key
+    case "-simplexfn" then
+        this.simplexfn = value;
+    case "-fbarfn" then
+        this.fbarfn = value;
+    case "-foptfn" then
+        this.foptfn = value;
+    case "-sigmafn" then
+        this.sigmafn = value;
+    case "-outputcommand" then
+        errmsg = msprintf(gettext("%s: Unknown key %s"), "nmplot_configure", key)
+        error(errmsg)
+    else
+        this.nmbase = neldermead_configure ( this.nmbase , key , value )
+    end
 endfunction

@@ -7,3 +7,5 @@ iop_
 com_
 stack_
 freeArrayOfString
+MyHeapAlloc
+MyHeapFree

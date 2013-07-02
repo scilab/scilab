@@ -180,7 +180,7 @@
                     <para>
                         <note>
                             Заметьте, что, если нуль-переменная назначается имени, то оно удаляется.
-                            <code>x=disp(1)</code> удаляет <literal>x</literal>.
+                            <code>x=disp(1)</code> удаляет <varname>x</varname>.
                         </note>
                     </para>
                 </listitem>
@@ -193,6 +193,38 @@
                 <emphasis role="italic">рациональными</emphasis> значениями, матрицы с элементами <emphasis role="italic">пространства состояний</emphasis>, <emphasis role="italic">гиперматрицы</emphasis> и <emphasis role="italic">структуры</emphasis>. Пожалуйста, используйте  вместо этого <link linkend="typeof">typeof</link>.
             </note>
         </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+a=42;
+type(a)
+
+b=%t;
+type(b)
+
+c="foo"
+type(c)
+
+d=sparse([1,2;4,5;3,10],[1,2,3]);
+type(d)
+
+e = tlist(["listtype","field1","field2"], [], []);
+type(e)
+
+f=poly(0,"s");
+type(f)
+
+g=int8([1 -120 127 312]);
+type(g)
+
+h=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+type(h)
+
+l = list(1,["a" "b"]);
+type(l)
+
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

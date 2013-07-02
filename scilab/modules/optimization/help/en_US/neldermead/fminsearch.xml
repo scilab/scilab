@@ -795,24 +795,6 @@ fopt = 0
             Baudin, 2010
         </para>
     </refsection>
-    <refsection>
-        <title>TODO</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    add a demo with an interactive output function, which draws the
-                    plot during the optimization.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>Acknowledgements</title>
-        <para>
-            Michael Baudin would like to thank Lixing Han, who kindly sent his
-            PhD thesis.
-        </para>
-    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

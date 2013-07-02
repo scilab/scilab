@@ -25,8 +25,6 @@ int ScilabGateway::doubleExclam_invoke(char * fname, const int envId, void * pvA
     int * addr = 0;
     int * tmpvar = 0;
     int * args = 0;
-    int typ = 0;
-    int * child = 0;
     int eId = OptionsHelper::getEnvId();
     int ret = 0;
     int * sret = 0;
@@ -39,7 +37,7 @@ int ScilabGateway::doubleExclam_invoke(char * fname, const int envId, void * pvA
     OptionsHelper & helper = env.getOptionsHelper();
     ScilabObjects::initialization(env, pvApiCtx);
 
-    if (!OptionsHelper::getCopyOccured()) // if the function is called outside a method context, then return null
+    if (!OptionsHelper::getCopyOccurred()) // if the function is called outside a method context, then return null
     {
         //TODO: get null for environment
         ScilabObjects::unwrap(0, Rhs + 1, eId, pvApiCtx);
@@ -50,7 +48,7 @@ int ScilabGateway::doubleExclam_invoke(char * fname, const int envId, void * pvA
         return 0;
     }
 
-    OptionsHelper::setCopyOccured(false);
+    OptionsHelper::setCopyOccurred(false);
 
     if (!options.getMethodName())
     {

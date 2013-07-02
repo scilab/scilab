@@ -11,17 +11,17 @@
 //
 
 function block=BARXY_sim(block,flag)
-//disp("Calling BARXY_sim with flag = "+string(flag))
+    //disp("Calling BARXY_sim with flag = "+string(flag))
     if flag == 4 | flag == 6
-// Initialisation || Re-Init
-// if already exists (stopped) then reuse
+        // Initialisation || Re-Init
+        // if already exists (stopped) then reuse
         f = findobj("Tag", block.label);
         if f == [] then
             f = figure("Tag", block.label, "Figure_name", "BARXY");
         else
             scf(f);
         end
-// Create an empty figure without Menu's nor toolbar
+        // Create an empty figure without Menu's nor toolbar
         clf();
         f.background = -2;
         a=gca();
@@ -37,7 +37,7 @@ function block=BARXY_sim(block,flag)
     end
 
     if flag ==  1
-// Output update
+        // Output update
         u1=block.inptr(1);
         u2=block.inptr(2);
 

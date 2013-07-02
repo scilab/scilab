@@ -46,7 +46,7 @@ int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fnam
     }
 
     sciErr = getMatrixOfBoolean(_pvCtx, argumentPointer,
-            &rowsArgument, &colsArgument, NULL);
+                                &rowsArgument, &colsArgument, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -61,7 +61,7 @@ int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fnam
     }
 
     sciErr = getMatrixOfBoolean(_pvCtx, argumentPointer,
-            &rowsArgument, &colsArgument, &value);
+                                &rowsArgument, &colsArgument, &value);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -102,7 +102,7 @@ int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fnam
     }
 
     sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
-            &colsArgument, NULL, NULL);
+                               &colsArgument, NULL, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -117,7 +117,7 @@ int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fnam
     }
 
     sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
-            &colsArgument, &lenArgument, NULL);
+                               &colsArgument, &lenArgument, NULL);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -128,7 +128,7 @@ int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fnam
     value = (char*) MALLOC(sizeof(char) * (lenArgument + 1)); //+ 1 for null termination
     value[lenArgument] = '\0';
     sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
-            &colsArgument, &lenArgument, &value);
+                               &colsArgument, &lenArgument, &value);
     if (sciErr.iErr)
     {
         FREE(value);
@@ -156,11 +156,7 @@ int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLeng
     int* argumentPointer = NULL;
     int rowsArgument = 0;
     int colsArgument = 0;
-    int* lenArgument = 0;
-    char** value = NULL;
 
-    *out = NULL;
-    *vectorLength = 0;
     SciErr sciErr;
 
     sciErr = getVarAddressFromPosition(_pvCtx, rhsPosition, &argumentPointer);
@@ -171,57 +167,12 @@ int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLeng
         return -1;
     }
 
-    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
-            &colsArgument, NULL, NULL);
-    if (sciErr.iErr)
+    if (getAllocatedMatrixOfString(_pvCtx, argumentPointer, &rowsArgument, &colsArgument, out))
     {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
         return -1;
     }
-
-    if (rowsArgument != 1 && colsArgument != 1)
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string vector expected.\n"), fname, rhsPosition);
-        return -1;
-    }
-
-    lenArgument = (int*) MALLOC(sizeof(int) * rowsArgument * colsArgument);
-    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
-            &colsArgument, lenArgument, NULL);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
-        return -1;
-    }
-
-    value = (char**) MALLOC(sizeof(char*) * rowsArgument * colsArgument);
-    for (int i = 0; i < rowsArgument * colsArgument; ++i)
-    {
-        value[i] = (char*) MALLOC(sizeof(char) * (lenArgument[i] + 1)); // +1 for null termination
-        value[i][lenArgument[i]] = '\0';
-    }
-
-    sciErr = getMatrixOfString(_pvCtx, argumentPointer, &rowsArgument,
-            &colsArgument, lenArgument, value);
-    if (sciErr.iErr)
-    {
-        FREE(lenArgument);
-        for (int i = 0; i < rowsArgument * colsArgument; ++i)
-        {
-            FREE(value[i]);
-        }
-        FREE(value);
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, rhsPosition);
-        return -1;
-    }
-
-    *out = value;
     *vectorLength = rowsArgument * colsArgument;
-    
-    FREE(lenArgument);
+
     return 0;
 }
 

@@ -20,8 +20,8 @@ xcos();
 // check that the diagram title is "Untitled - Xcos"
 // check that the palette browser title is "Palette browser - Xcos"
 
-xcos("SCI/modules/xcos/demos/Electrical/Boost_Converter.xcos");
-// check that the title is "Boost_Converter (SCI/modules/xcos/demos/Electrical/Boost_Converter.xcos) - Xcos"
+xcos("SCI/modules/xcos/demos/Electrical/Boost_Converter.zcos");
+// check that the title is "Boost_Converter (SCI/modules/xcos/demos/Electrical/Boost_Converter.zcos) - Xcos"
 
 xcos("SCI/modules/scicos/demos/Bouncing_ball.cosf");
 // check that the title is "*Bouncing_ball - Xcos"

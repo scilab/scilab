@@ -18,33 +18,37 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "core_math.h"
 #include "scicos_block4.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void extdiagz(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void extdiagz(scicos_block *block, int flag)
 {
-  double *ur = NULL;
-  double *ui = NULL;
-  double *yr = NULL;
-  double *yi = NULL;
+    double *ur = NULL;
+    double *ui = NULL;
+    double *yr = NULL;
+    double *yi = NULL;
 
-  int mu = 0,nu = 0,i = 0,ii = 0;
+    int mu = 0, nu = 0, i = 0, ii = 0;
 
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
-  ur=GetRealInPortPtrs(block,1);
-  ui=GetImagInPortPtrs(block,1);
-  yr=GetRealOutPortPtrs(block,1);
-  yi=GetImagOutPortPtrs(block,1);
-  for (i=0;i<mu*nu;i++) 
-	{*(yr+i)=0;
-	 *(yi+i)=0;}
-  for (i=0;i<Min(mu,nu);i++)     
-	{ii=i+i*mu;
- 	 *(yr+ii)=*(ur+ii);
-	 *(yi+ii)=*(ui+ii);}
+    mu = GetInPortRows(block, 1);
+    nu = GetInPortCols(block, 1);
+    ur = GetRealInPortPtrs(block, 1);
+    ui = GetImagInPortPtrs(block, 1);
+    yr = GetRealOutPortPtrs(block, 1);
+    yi = GetImagOutPortPtrs(block, 1);
+    for (i = 0; i < mu * nu; i++)
+    {
+        *(yr + i) = 0;
+        *(yi + i) = 0;
+    }
+    for (i = 0; i < Min(mu, nu); i++)
+    {
+        ii = i + i * mu;
+        *(yr + ii) = *(ur + ii);
+        *(yi + ii) = *(ui + ii);
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

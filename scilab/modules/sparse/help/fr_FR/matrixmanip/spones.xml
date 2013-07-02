@@ -4,6 +4,10 @@
         <refname>spones</refname>
         <refpurpose>matrice creuse dont les termes valent 1</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>sp = spones(A)</synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>

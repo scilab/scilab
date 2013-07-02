@@ -213,17 +213,36 @@
         <title>Example</title>
         <para>
             In the following example the Super block encloses two discontinuities. The OUT_f block is the non linear output signal.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/OUT_f_en_US.xcos">
+        </para>
+        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/OUT_f_en_US.zcos">
                 Open this example in Xcos
             </link>
-            .
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/en_US/out_f_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUT_f_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUT_f_internal_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+        <para>
+            The following figure shows the output of the bloc :
+        </para>
+        <scilab:image><![CDATA[
+// overload messagebox to avoid the "modelica compiler" message
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+	btn=1;
+endfunction
+
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/OUT_f_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_OUT_f">
         <title>Interfacing function</title>

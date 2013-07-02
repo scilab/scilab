@@ -79,10 +79,11 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 subdir = modules/spreadsheet
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -135,17 +136,11 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscispreadsheet_algo_la_LIBADD =
 am__objects_1 = libscispreadsheet_algo_la-xls.lo \
 	libscispreadsheet_algo_la-checkCsvWriteFormat.lo \
-	libscispreadsheet_algo_la-csv_complex.lo \
 	libscispreadsheet_algo_la-csvDefault.lo \
-	libscispreadsheet_algo_la-csvIsnum.lo \
 	libscispreadsheet_algo_la-csvRead.lo \
-	libscispreadsheet_algo_la-csv_strsubst.lo \
 	libscispreadsheet_algo_la-csvWrite.lo \
 	libscispreadsheet_algo_la-getRange.lo \
-	libscispreadsheet_algo_la-latintoutf.lo \
 	libscispreadsheet_algo_la-splitLine.lo \
-	libscispreadsheet_algo_la-stringsToDoubles.lo \
-	libscispreadsheet_algo_la-stringToComplex.lo \
 	libscispreadsheet_algo_la-utftolatin.lo
 am__objects_2 = libscispreadsheet_algo_la-olestream-unwrap.lo \
 	libscispreadsheet_algo_la-pldstr.lo \
@@ -164,7 +159,6 @@ am__objects_3 = libscispreadsheet_la-gw_spreadsheet.lo \
 	libscispreadsheet_la-sci_xls_open.lo \
 	libscispreadsheet_la-gw_csv_helpers.lo \
 	libscispreadsheet_la-sci_csvDefault.lo \
-	libscispreadsheet_la-sci_csvIsnum.lo \
 	libscispreadsheet_la-sci_csvRead.lo \
 	libscispreadsheet_la-sci_csvStringToDouble.lo \
 	libscispreadsheet_la-sci_csvTextScan.lo \
@@ -226,6 +220,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -360,6 +358,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -455,17 +454,11 @@ top_srcdir = @top_srcdir@
 SPREADSHEET_C_SOURCES = \
 src/c/xls.c \
 src/c/checkCsvWriteFormat.c \
-src/c/csv_complex.c \
 src/c/csvDefault.c \
-src/c/csvIsnum.c \
 src/c/csvRead.c \
-src/c/csv_strsubst.c \
 src/c/csvWrite.c \
 src/c/getRange.c \
-src/c/latintoutf.c \
 src/c/splitLine.c \
-src/c/stringsToDoubles.c \
-src/c/stringToComplex.c \
 src/c/utftolatin.c
 
 RIPOLE_SOURCES = \
@@ -483,7 +476,6 @@ sci_gateway/c/sci_xls_read.c \
 sci_gateway/c/sci_xls_open.c \
 sci_gateway/c/gw_csv_helpers.c \
 sci_gateway/c/sci_csvDefault.c \
-sci_gateway/c/sci_csvIsnum.c \
 sci_gateway/c/sci_csvRead.c \
 sci_gateway/c/sci_csvStringToDouble.c \
 sci_gateway/c/sci_csvTextScan.c \
@@ -493,7 +485,6 @@ libscispreadsheet_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/c/ripole \
--I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/io/includes/ \
@@ -512,14 +503,14 @@ libscispreadsheet_algo_la_CPPFLAGS = $(libscispreadsheet_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
 INCLUDE_FLAGS = $(libscispreadsheet_la_CPPFLAGS)
-libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la 
+libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la
 
 #### Target ######
 modulename = spreadsheet
 
 #### spreadsheet : Conf files ####
 libscispreadsheet_la_rootdir = $(mydatadir)
-libscispreadsheet_la_root_DATA = license.txt 
+libscispreadsheet_la_root_DATA = license.txt
 
 ####�spreadsheet : init scripts ####
 libscispreadsheet_la_etcdir = $(mydatadir)/etc
@@ -692,27 +683,20 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-bytedecoders.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-checkCsvWriteFormat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-csvDefault.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-csvIsnum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-csvRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-csvWrite.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-csv_complex.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-csv_strsubst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-getRange.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-latintoutf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-logger.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-ole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-olestream-unwrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-pldstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-ripole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-splitLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-stringToComplex.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-stringsToDoubles.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-utftolatin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_algo_la-xls.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-gw_csv_helpers.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-sci_csvDefault.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-sci_csvIsnum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-sci_csvRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-sci_csvStringToDouble.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscispreadsheet_la-sci_csvTextScan.Plo@am__quote@
@@ -755,13 +739,6 @@ libscispreadsheet_algo_la-checkCsvWriteFormat.lo: src/c/checkCsvWriteFormat.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-checkCsvWriteFormat.lo `test -f 'src/c/checkCsvWriteFormat.c' || echo '$(srcdir)/'`src/c/checkCsvWriteFormat.c
 
-libscispreadsheet_algo_la-csv_complex.lo: src/c/csv_complex.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-csv_complex.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-csv_complex.Tpo -c -o libscispreadsheet_algo_la-csv_complex.lo `test -f 'src/c/csv_complex.c' || echo '$(srcdir)/'`src/c/csv_complex.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-csv_complex.Tpo $(DEPDIR)/libscispreadsheet_algo_la-csv_complex.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/csv_complex.c' object='libscispreadsheet_algo_la-csv_complex.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-csv_complex.lo `test -f 'src/c/csv_complex.c' || echo '$(srcdir)/'`src/c/csv_complex.c
-
 libscispreadsheet_algo_la-csvDefault.lo: src/c/csvDefault.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-csvDefault.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-csvDefault.Tpo -c -o libscispreadsheet_algo_la-csvDefault.lo `test -f 'src/c/csvDefault.c' || echo '$(srcdir)/'`src/c/csvDefault.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-csvDefault.Tpo $(DEPDIR)/libscispreadsheet_algo_la-csvDefault.Plo
@@ -769,26 +746,12 @@ libscispreadsheet_algo_la-csvDefault.lo: src/c/csvDefault.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-csvDefault.lo `test -f 'src/c/csvDefault.c' || echo '$(srcdir)/'`src/c/csvDefault.c
 
-libscispreadsheet_algo_la-csvIsnum.lo: src/c/csvIsnum.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-csvIsnum.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-csvIsnum.Tpo -c -o libscispreadsheet_algo_la-csvIsnum.lo `test -f 'src/c/csvIsnum.c' || echo '$(srcdir)/'`src/c/csvIsnum.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-csvIsnum.Tpo $(DEPDIR)/libscispreadsheet_algo_la-csvIsnum.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/csvIsnum.c' object='libscispreadsheet_algo_la-csvIsnum.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-csvIsnum.lo `test -f 'src/c/csvIsnum.c' || echo '$(srcdir)/'`src/c/csvIsnum.c
-
 libscispreadsheet_algo_la-csvRead.lo: src/c/csvRead.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-csvRead.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-csvRead.Tpo -c -o libscispreadsheet_algo_la-csvRead.lo `test -f 'src/c/csvRead.c' || echo '$(srcdir)/'`src/c/csvRead.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-csvRead.Tpo $(DEPDIR)/libscispreadsheet_algo_la-csvRead.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/csvRead.c' object='libscispreadsheet_algo_la-csvRead.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-csvRead.lo `test -f 'src/c/csvRead.c' || echo '$(srcdir)/'`src/c/csvRead.c
-
-libscispreadsheet_algo_la-csv_strsubst.lo: src/c/csv_strsubst.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-csv_strsubst.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-csv_strsubst.Tpo -c -o libscispreadsheet_algo_la-csv_strsubst.lo `test -f 'src/c/csv_strsubst.c' || echo '$(srcdir)/'`src/c/csv_strsubst.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-csv_strsubst.Tpo $(DEPDIR)/libscispreadsheet_algo_la-csv_strsubst.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/csv_strsubst.c' object='libscispreadsheet_algo_la-csv_strsubst.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-csv_strsubst.lo `test -f 'src/c/csv_strsubst.c' || echo '$(srcdir)/'`src/c/csv_strsubst.c
 
 libscispreadsheet_algo_la-csvWrite.lo: src/c/csvWrite.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-csvWrite.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-csvWrite.Tpo -c -o libscispreadsheet_algo_la-csvWrite.lo `test -f 'src/c/csvWrite.c' || echo '$(srcdir)/'`src/c/csvWrite.c
@@ -804,33 +767,12 @@ libscispreadsheet_algo_la-getRange.lo: src/c/getRange.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-getRange.lo `test -f 'src/c/getRange.c' || echo '$(srcdir)/'`src/c/getRange.c
 
-libscispreadsheet_algo_la-latintoutf.lo: src/c/latintoutf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-latintoutf.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-latintoutf.Tpo -c -o libscispreadsheet_algo_la-latintoutf.lo `test -f 'src/c/latintoutf.c' || echo '$(srcdir)/'`src/c/latintoutf.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-latintoutf.Tpo $(DEPDIR)/libscispreadsheet_algo_la-latintoutf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/latintoutf.c' object='libscispreadsheet_algo_la-latintoutf.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-latintoutf.lo `test -f 'src/c/latintoutf.c' || echo '$(srcdir)/'`src/c/latintoutf.c
-
 libscispreadsheet_algo_la-splitLine.lo: src/c/splitLine.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-splitLine.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-splitLine.Tpo -c -o libscispreadsheet_algo_la-splitLine.lo `test -f 'src/c/splitLine.c' || echo '$(srcdir)/'`src/c/splitLine.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-splitLine.Tpo $(DEPDIR)/libscispreadsheet_algo_la-splitLine.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/splitLine.c' object='libscispreadsheet_algo_la-splitLine.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-splitLine.lo `test -f 'src/c/splitLine.c' || echo '$(srcdir)/'`src/c/splitLine.c
-
-libscispreadsheet_algo_la-stringsToDoubles.lo: src/c/stringsToDoubles.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-stringsToDoubles.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-stringsToDoubles.Tpo -c -o libscispreadsheet_algo_la-stringsToDoubles.lo `test -f 'src/c/stringsToDoubles.c' || echo '$(srcdir)/'`src/c/stringsToDoubles.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-stringsToDoubles.Tpo $(DEPDIR)/libscispreadsheet_algo_la-stringsToDoubles.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/stringsToDoubles.c' object='libscispreadsheet_algo_la-stringsToDoubles.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-stringsToDoubles.lo `test -f 'src/c/stringsToDoubles.c' || echo '$(srcdir)/'`src/c/stringsToDoubles.c
-
-libscispreadsheet_algo_la-stringToComplex.lo: src/c/stringToComplex.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-stringToComplex.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-stringToComplex.Tpo -c -o libscispreadsheet_algo_la-stringToComplex.lo `test -f 'src/c/stringToComplex.c' || echo '$(srcdir)/'`src/c/stringToComplex.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_algo_la-stringToComplex.Tpo $(DEPDIR)/libscispreadsheet_algo_la-stringToComplex.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/stringToComplex.c' object='libscispreadsheet_algo_la-stringToComplex.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_algo_la-stringToComplex.lo `test -f 'src/c/stringToComplex.c' || echo '$(srcdir)/'`src/c/stringToComplex.c
 
 libscispreadsheet_algo_la-utftolatin.lo: src/c/utftolatin.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_algo_la-utftolatin.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_algo_la-utftolatin.Tpo -c -o libscispreadsheet_algo_la-utftolatin.lo `test -f 'src/c/utftolatin.c' || echo '$(srcdir)/'`src/c/utftolatin.c
@@ -922,13 +864,6 @@ libscispreadsheet_la-sci_csvDefault.lo: sci_gateway/c/sci_csvDefault.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_csvDefault.c' object='libscispreadsheet_la-sci_csvDefault.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-sci_csvDefault.lo `test -f 'sci_gateway/c/sci_csvDefault.c' || echo '$(srcdir)/'`sci_gateway/c/sci_csvDefault.c
-
-libscispreadsheet_la-sci_csvIsnum.lo: sci_gateway/c/sci_csvIsnum.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_la-sci_csvIsnum.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-sci_csvIsnum.Tpo -c -o libscispreadsheet_la-sci_csvIsnum.lo `test -f 'sci_gateway/c/sci_csvIsnum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_csvIsnum.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscispreadsheet_la-sci_csvIsnum.Tpo $(DEPDIR)/libscispreadsheet_la-sci_csvIsnum.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_csvIsnum.c' object='libscispreadsheet_la-sci_csvIsnum.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscispreadsheet_la-sci_csvIsnum.lo `test -f 'sci_gateway/c/sci_csvIsnum.c' || echo '$(srcdir)/'`sci_gateway/c/sci_csvIsnum.c
 
 libscispreadsheet_la-sci_csvRead.lo: sci_gateway/c/sci_csvRead.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscispreadsheet_la-sci_csvRead.lo -MD -MP -MF $(DEPDIR)/libscispreadsheet_la-sci_csvRead.Tpo -c -o libscispreadsheet_la-sci_csvRead.lo `test -f 'sci_gateway/c/sci_csvRead.c' || echo '$(srcdir)/'`sci_gateway/c/sci_csvRead.c

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-19 20:40+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-15 20:50+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -386,6 +386,12 @@ msgstr "Normální"
 msgid "Wrap lines"
 msgstr "Zalamovat řádky"
 
+msgid "Background color: "
+msgstr "Barva pozadí: "
+
+msgid "Cursor color: "
+msgstr "Barva kurzoru: "
+
 msgid "Keywords"
 msgstr "Klíčová slova"
 
@@ -502,6 +508,18 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Chyba při čtení Řetězce"
+
+#, c-format
+msgid "File not found: %s"
+msgstr "Soubor nenalezen: %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "Chyba I/O: %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr "Soubor %s byl změněn jiným programem. Chcete ho znovu načíst ?"
 
 msgid "Source of '"
 msgstr "Zdroj '"
@@ -713,12 +731,8 @@ msgid "String %s not found"
 msgstr "Řetězec %s nenalezen"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
-msgstr ""
-"Soubor %s neexistuje\n"
-"Chcete ho vytvořit?"
+msgid "The file %s does not exist. Do you want to create it?"
+msgstr "Soubor %s neexistuje. Chcete ho vytvořit?"
 
 msgid "close this tab"
 msgstr "zavřít tuto kartu"
@@ -726,20 +740,13 @@ msgstr "zavřít tuto kartu"
 msgid "This file"
 msgstr "Tento soubor"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
-msgstr ""
-" bylo od posledního uložení změněno\n"
-"uložit?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
+msgstr "%s byl od posledního uložení změněn. Chcete ho uložit?"
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
-msgstr ""
-"Soubor %s byl změněn jiným programem !\n"
-" Přepsat ho ?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
+msgstr "Soubor %s byl změněn jiným programem. Chcete ho přepsat ?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Varování: soubor byl změněn jiným programem !"
@@ -1071,3 +1078,21 @@ msgstr "Zvolte základní adresář hledání"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr "poslední chyba se neudála uvnitř knihovní funkce."
+
+msgid " on line "
+msgstr " online "
+
+msgid "opening file "
+msgstr "otevírání souboru "
+
+msgid " of the source file of the function "
+msgstr " ze zdrojového souboru funkce "
+
+msgid "the source file of the function "
+msgstr "zdrojový soubor funkce "
+
+msgid " was not found in any library path"
+msgstr " nebylo nalezeno v žádné cestě knihovny"

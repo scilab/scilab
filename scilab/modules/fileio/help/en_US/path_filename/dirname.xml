@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -26,19 +26,32 @@
             <varlistentry>
                 <term>files</term>
                 <listitem>
-                    <para>a string matrix giving a set of file names</para>
+                    <para>a string matrix containing file paths</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag, flagexpand</term>
+                <term>flag</term>
                 <listitem>
                     <para>
-                        boolean optional parameters (default value <constant>%t</constant>)
+                        optional boolean, used to convert the given
+                        path(s) for the current operating system.
+                        Default value is true (<constant>%t</constant>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>files, dirs</term>
+                <term>flagexpand</term>
+                <listitem>
+                    <para>
+                        optional boolean, used to expand leading
+                        variables in paths. Only used with
+                        <varname>flag</varname> argument. Default value
+                        is true (<constant>%t</constant>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dirs</term>
                 <listitem>
                     <para>string matrices</para>
                 </listitem>
@@ -48,27 +61,43 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>dirname</function> returns the directory names of the file entries given in <varname>files</varname>.
+            <function>dirname</function> returns the directory paths of the file entries
+            given in <varname>files</varname>.
         </para>
         <para>
-            If <varname>flag</varname> is true the files are first converted to the target 
-            type given by the <code>getos() == 'Windows'</code> variable. 
-            Moreover, if <varname>flagexpand</varname> is true leading strings like
-            <literal>SCIHOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
-            variables.
+            If <varname>flag</varname> is true the paths are first
+            converted for the current operating system (for example,
+            <code>C:/Tmp/folder'</code> will be converted on Windows to
+            <code>'C:\Tmp\folder'</code>).
         </para>
         <para>
-            Note that <code>dirname(files,%f)</code> can give erroneous results if 
-            pathnames given in <varname>files</varname> do not follow the convention 
-            given by the <code>getos() == 'Windows'</code> variable.
+            If <varname>flagexpand</varname> is true, leading path
+            variables (<literal>home</literal>,
+            <constant>SCI</constant>, <constant>SCIHOME</constant>,
+            ...) are expanded for the current operating system (for
+            example, <code>'home\tmp'</code> will be converted on
+            GNU/Linux to <literal>'home/&lt;user&gt;/tmp'</literal>,
+            where <literal>&lt;user&gt;</literal> is the current user
+            logged on).
+        </para>
+        <para>
+            See more details on <varname>flag</varname> and
+            <varname>flagexpand</varname>
+            in <link linkend="pathconvert">pathconvert</link> section.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-dirs=dirname('SCI/modules/fileio/macros/poo.sci')
-dirs=dirname('SCI/modules\fileio/macros/poo.sci')
-dirs=dirname('SCI/modules\fileio/macros/poo.sci.k')
+        <programlisting role="example"><![CDATA[
+dirs=dirname('/tmp/folder/poo')
+dirs=dirname('/tmp/folder/')
+dirs=dirname('/')
+
+dirs=dirname('C:\tmp\folder\poo')
+dirs=dirname('C:\tmp\folder\')
+dirs=dirname('C:\')
+
+dirs=dirname(['SCI/etc/scilab.start', 'SCI/etc/scilab.quit'])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -147,7 +147,10 @@ int sci_besselk(char *fname, unsigned long fname_len)
             }
         }
 
-        if (ispos == 0) itr = 1;
+        if (ispos == 0)
+        {
+            itr = 1;
+        }
     }
 
     if (itr == 1 && pdblXI == NULL)
@@ -229,6 +232,10 @@ int sci_besselk(char *fname, unsigned long fname_len)
         if (m1 * n1 != m2 * n2)
         {
             Scierror(999, _("%s: arguments #%d and #%d have incompatible dimensions.\n"), fname, 1, 2);
+            if (itr == 1 && isVarComplex(pvApiCtx, piAddrX) == 0)
+            {
+                FREE(pdblXI);
+            }
             return 1;
         }
 

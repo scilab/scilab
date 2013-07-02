@@ -132,7 +132,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">zero crossing </emphasis>
+                    <emphasis role="bold">Zero crossing </emphasis>
                 </para>
                 <para> Select to enable zero crossing detection.</para>
                 <para> Properties : Type 'vec' of size 1</para>

@@ -116,6 +116,7 @@
                 <td align="left">
                     <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
                 </td>
+                <td align="left"/>
             </tr>
             <tr>
                 <td align="left">
@@ -297,15 +298,29 @@
         <para>
             La figure suivante montre un cas simple d'utilisation du bloc DLATCH avec
             son chronogramme.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/DLATCH_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/DLATCH_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/integer_pal/fr_FR/dlatch_diagram_fr_FR.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/DLATCH_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/fr_FR/DLATCH_fr_FR.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image localized="true"><![CDATA[
+// overload messagebox to avoid the "no continuous states" messages
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+	btn=1;
+endfunction
+
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/DLATCH_fr_FR.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_DLATCH">
         <title>Fonction d'interfaçage</title>

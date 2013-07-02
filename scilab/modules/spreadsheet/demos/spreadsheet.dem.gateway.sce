@@ -5,13 +5,13 @@
 
 function subdemolist = demo_gateway()
 
-  demopath = get_absolute_file_path("spreadsheet.dem.gateway.sce");
-  add_demo(_("Spreadsheet"), demopath + "spreadsheet.dem.gateway.sce");
+    demopath = get_absolute_file_path("spreadsheet.dem.gateway.sce");
+    add_demo(_("Spreadsheet"), demopath + "spreadsheet.dem.gateway.sce");
 
-  subdemolist = [_("Read a xls file")  ,"spreadsheet.dem.sce"];
+    subdemolist = [_("Read a xls file")  ,"spreadsheet.dem.sce"];
 
-  subdemolist(:,2) = demopath + subdemolist(:,2);
-  
+    subdemolist(:,2) = demopath + subdemolist(:,2);
+
 endfunction
 
 subdemolist = demo_gateway();

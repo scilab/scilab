@@ -34,7 +34,7 @@ int Fac3DDecomposer::getDataSize(char* id)
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &piNumVerticesPerGon);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &piNumGons);
 
-    return numVerticesPerGon*numGons;
+    return numVerticesPerGon * numGons;
 }
 
 void Fac3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
@@ -60,26 +60,41 @@ void Fac3DDecomposer::fillVertices(char* id, float* buffer, int bufferLength, in
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_int, (void**) &z);
 
 
-    for (i = 0; i < numVerticesPerGon*numGons; i++)
+    for (i = 0; i < numVerticesPerGon * numGons; i++)
     {
         if (coordinateMask & 0x1)
         {
-            buffer[bufferOffset] = (float)(x[i] * scale[0] + translation[0]);
+            double xi = x[i];
+            if (logMask & 0x1)
+            {
+                xi = DecompositionUtils::getLog10Value(x[i]);
+            }
+            buffer[bufferOffset] = (float)(xi * scale[0] + translation[0]);
         }
 
         if (coordinateMask & 0x2)
         {
-            buffer[bufferOffset +1] = (float)(y[i] * scale[1] + translation[1]);
+            double yi = y[i];
+            if (logMask & 0x2)
+            {
+                yi = DecompositionUtils::getLog10Value(y[i]);
+            }
+            buffer[bufferOffset + 1] = (float)(yi * scale[1] + translation[1]);
         }
 
         if (coordinateMask & 0x4)
         {
-            buffer[bufferOffset +2] = (float)(z[i] * scale[2] + translation[2]);
+            double zi = z[i];
+            if (logMask & 0x4)
+            {
+                zi = DecompositionUtils::getLog10Value(z[i]);
+            }
+            buffer[bufferOffset + 2] = (float)(zi * scale[2] + translation[2]);
         }
 
         if (elementsSize == 4 && (coordinateMask & 0x8))
         {
-            buffer[bufferOffset +3] = 1.0;
+            buffer[bufferOffset + 3] = 1.0;
         }
 
         bufferOffset += 4;
@@ -138,11 +153,7 @@ void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int buffer
         return;
     }
 
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
-
     getGraphicObjectProperty(id, __GO_COLOR_FLAG__, jni_int, (void**) &piColorFlag);
-
     getGraphicObjectProperty(id, __GO_DATA_MAPPING__, jni_int, (void**) &piDataMapping);
 
     /* Do not fill */
@@ -151,7 +162,10 @@ void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int buffer
         return;
     }
 
-    if (numColors == numGons*numVerticesPerGon)
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
+    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
+
+    if (numColors == numGons * numVerticesPerGon)
     {
         perVertex = 1;
     }
@@ -182,18 +196,19 @@ void Fac3DDecomposer::fillTextureCoordinates(char* id, float* buffer, int buffer
         color = DecompositionUtils::getAbsoluteValue(color);
 
         fillConstantColorsTextureCoordinates(buffer, bufferLength, colormap, colormapSize,
-            color, numGons, numVerticesPerGon);
+                                             color, numGons, numVerticesPerGon);
     }
     else
     {
         fillDataColorsTextureCoordinates(buffer, bufferLength, colormap, colormapSize,
-            colors, colorFlag, perVertex, dataMapping, numGons, numVerticesPerGon);
+                                         colors, colorFlag, perVertex, dataMapping, numGons, numVerticesPerGon);
     }
 
+    releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
 }
 
 void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
-    double* z, int numGons, int numVerticesPerGon)
+        double* z, int numGons, int numVerticesPerGon)
 {
     double zavg = 0.;
     double zMin = 0.;
@@ -206,7 +221,7 @@ void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int
     int j = 0;
     int bufferOffset = 0;
 
-    computeMinMaxValues(z, numGons*numVerticesPerGon, numGons, numVerticesPerGon, ALL_VALUES, &zMin, &zMax);
+    computeMinMaxValues(z, numGons * numVerticesPerGon, numGons, numVerticesPerGon, ALL_VALUES, &zMin, &zMax);
 
     minDoubleValue = DecompositionUtils::getMinDoubleValue();
 
@@ -223,7 +238,7 @@ void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int
     for (i = 0; i < numGons; i++)
     {
         /* Per-face average */
-        zavg = computeAverageValue(&z[i*numVerticesPerGon], numVerticesPerGon);
+        zavg = computeAverageValue(&z[i * numVerticesPerGon], numVerticesPerGon);
         index = (float)((ColorComputer::getIndex(zavg, zMin, zRange, Z_COLOR_OFFSET, 0, colormapSize - 1) + 2.0 + COLOR_TEXTURE_OFFSET) / (float) (colormapSize + 2));
 
         for (j = 0; j < numVerticesPerGon; j++)
@@ -238,13 +253,13 @@ void Fac3DDecomposer::fillNormalizedZColorsTextureCoordinates(float* buffer, int
 }
 
 void Fac3DDecomposer::fillConstantColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
-    double colorValue, int numGons, int numVerticesPerGon)
+        double colorValue, int numGons, int numVerticesPerGon)
 {
     int bufferOffset = 0;
 
     double index = (ColorComputer::getClampedDirectIndex(colorValue - 1.0, colormapSize) + 2.0 + COLOR_TEXTURE_OFFSET) / (float) (colormapSize + 2);
 
-    for (int i = 0; i < numGons*numVerticesPerGon; i++)
+    for (int i = 0; i < numGons * numVerticesPerGon; i++)
     {
         buffer[bufferOffset++] = (float)index;
         buffer[bufferOffset++] = 0;
@@ -255,7 +270,7 @@ void Fac3DDecomposer::fillConstantColorsTextureCoordinates(float* buffer, int bu
 }
 
 void Fac3DDecomposer::fillDataColorsTextureCoordinates(float* buffer, int bufferLength, double* colormap, int colormapSize,
-    double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon)
+        double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon)
 {
     double colMin = 0.;
     double colRange = 0.;
@@ -271,7 +286,7 @@ void Fac3DDecomposer::fillDataColorsTextureCoordinates(float* buffer, int buffer
 
     if (perVertex)
     {
-        numColors = numGons*numVerticesPerGon;
+        numColors = numGons * numVerticesPerGon;
     }
     else
     {
@@ -306,7 +321,7 @@ void Fac3DDecomposer::fillDataColorsTextureCoordinates(float* buffer, int buffer
             }
             else if (dataMapping == 0)
             {
-                index = ColorComputer::getIndex(color, colMin, colRange, COLOR_OFFSET, 0, colormapSize-1);
+                index = ColorComputer::getIndex(color, colMin, colRange, COLOR_OFFSET, 0, colormapSize - 1);
             }
 
             /* The offset corresponding to the black and white colors must added to the index and the colormap size. */
@@ -333,7 +348,7 @@ double Fac3DDecomposer::computeAverageValue(double* values, int numVertices)
 }
 
 void Fac3DDecomposer::computeMinMaxValues(double* values, int numValues, int numGons, int numVerticesPerGon, int minMaxComputation,
-    double* valueMin, double* valueMax)
+        double* valueMin, double* valueMax)
 {
     double maxDouble = DecompositionUtils::getMaxDoubleValue();
     double tmpValueMin = maxDouble;
@@ -341,7 +356,7 @@ void Fac3DDecomposer::computeMinMaxValues(double* values, int numValues, int num
     double value = 0.;
 
     int numIterations = 0;
-    
+
     if (minMaxComputation != ALL_VALUES)
     {
         numIterations = numGons;
@@ -355,11 +370,11 @@ void Fac3DDecomposer::computeMinMaxValues(double* values, int numValues, int num
     {
         if (minMaxComputation == FIRST_VERTEX_VALUE)
         {
-            value = values[i*numVerticesPerGon];
+            value = values[i * numVerticesPerGon];
         }
         else if (minMaxComputation == FACE_AVERAGE)
         {
-            value = computeAverageValue(&values[i*numVerticesPerGon], numVerticesPerGon);
+            value = computeAverageValue(&values[i * numVerticesPerGon], numVerticesPerGon);
         }
         else
         {
@@ -399,7 +414,7 @@ int Fac3DDecomposer::getIndicesSize(char* id)
         return 0;
     }
 
-    return 3*(numVerticesPerGon-2)*numGons;
+    return 3 * (numVerticesPerGon - 2) * numGons;
 }
 
 /*
@@ -465,9 +480,9 @@ int Fac3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int lo
 
         for (int j = 0; j < numVerticesPerGon; j++)
         {
-            xc = x[vertexOffset+j];
-            yc = y[vertexOffset+j];
-            zc = z[vertexOffset+j];
+            xc = x[vertexOffset + j];
+            yc = y[vertexOffset + j];
+            zc = z[vertexOffset + j];
 
             if (!DecompositionUtils::isValid(xc, yc, zc) || !DecompositionUtils::isLogValid(xc, yc, zc, logMask))
             {
@@ -483,11 +498,11 @@ int Fac3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int lo
         }
 
         /* Performs a fan decomposition, vertices are ordered counter-clockwise. */
-        for (int j = 0; j < numVerticesPerGon-2; j++)
+        for (int j = 0; j < numVerticesPerGon - 2; j++)
         {
             buffer[bufferOffset] = vertexOffset;
-            buffer[bufferOffset +1] = vertexOffset + j+2;
-            buffer[bufferOffset +2] = vertexOffset + j+1;
+            buffer[bufferOffset + 1] = vertexOffset + j + 2;
+            buffer[bufferOffset + 2] = vertexOffset + j + 1;
 
             bufferOffset += 3;
         }
@@ -508,7 +523,7 @@ int Fac3DDecomposer::getWireIndicesSize(char* id)
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &piNumVerticesPerGon);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &piNumGons);
 
-    return 2*numVerticesPerGon*numGons;
+    return 2 * numVerticesPerGon * numGons;
 }
 
 int Fac3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
@@ -548,9 +563,9 @@ int Fac3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, in
 
         for (int j = 0; j < numVerticesPerGon; j++)
         {
-            xc = x[vertexOffset+j];
-            yc = y[vertexOffset+j];
-            zc = z[vertexOffset+j];
+            xc = x[vertexOffset + j];
+            yc = y[vertexOffset + j];
+            zc = z[vertexOffset + j];
 
             if (!DecompositionUtils::isValid(xc, yc, zc) || !DecompositionUtils::isLogValid(xc, yc, zc, logMask))
             {
@@ -568,7 +583,7 @@ int Fac3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, in
         for (int j = 0; j < numVerticesPerGon; j++)
         {
             buffer[bufferOffset] = vertexOffset + j;
-            buffer[bufferOffset+1] = vertexOffset + (j+1) % numVerticesPerGon;
+            buffer[bufferOffset + 1] = vertexOffset + (j + 1) % numVerticesPerGon;
 
             bufferOffset += 2;
         }

@@ -268,7 +268,9 @@ BOOL startJVM(char *SCI_PATH)
         return FALSE;
     }
     else
+    {
         return TRUE;
+    }
 }
 /*--------------------------------------------------------------------------*/
 BOOL finishJVM(void)

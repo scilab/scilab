@@ -69,7 +69,7 @@ int intlinear_interpn(char *fname, unsigned long fname_len)
 
         if (isVarComplex(pvApiCtx, piAddressVar))
         {
-            Scierror(202, _("%s: Wrong type for argument %d: Real matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), fname, 1);
             return 0;
         }
     }
@@ -97,7 +97,7 @@ int intlinear_interpn(char *fname, unsigned long fname_len)
 
         if (isVarComplex(pvApiCtx, piAddressVar))
         {
-            Scierror(202, _("%s: Wrong type for argument %d: Real matrix expected.\n"), fname, i);
+            Scierror(202, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), fname, i);
             return 0;
         }
 
@@ -176,12 +176,17 @@ int intlinear_interpn(char *fname, unsigned long fname_len)
         };
     }
     else
+    {
         outmode = C0;
+    }
 
     CreateVar(Rhs + 4, MATRIX_OF_DOUBLE_DATATYPE, &n, &one, &l);
     u = stk(l);
     m = 1;
-    for ( i = 1 ; i <= n ; i++) m = 2 * m;
+    for ( i = 1 ; i <= n ; i++)
+    {
+        m = 2 * m;
+    }
     CreateVar(Rhs + 5, MATRIX_OF_DOUBLE_DATATYPE, &m, &one, &l);
     v = stk(l);
     l = 4;

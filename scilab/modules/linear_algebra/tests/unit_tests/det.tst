@@ -4,35 +4,95 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-function r=Err(x),r=norm(x,1),endfunction
-rand('normal')
 
 //==========================================================================
 //==============================   det        ============================== 
 //==========================================================================
-if execstr('det([1 2;3 4;5 6])','errcatch')==0 then pause,end
+
 //Small dimension 
 //Real
 A=[1 1; 1 2];
-if Err(det(A)-1)>10*%eps then pause,end
+assert_checkalmostequal(det(A), 1);
 [e,m]=det(A);
-if e<>0 |Err(m-1)>10*%eps then pause,end
+assert_checkalmostequal(e, 0);
+assert_checkalmostequal(m, 1);
 //Complex
 A=A+%i;
-if Err(det(A)-1-%i)>10*%eps then pause,end
+assert_checkalmostequal(real(det(A)), 1);
+assert_checkalmostequal(imag(det(A)), 1);
 [e,m]=det(A);
-if e<>0 |Err(m-1-%i)>10*%eps then pause,end
+assert_checkalmostequal(e, 0);
+assert_checkalmostequal(real(m), 1);
+assert_checkalmostequal(imag(m), 1);
+//Sparse
+A=[1 1; 1 2];
+A=sparse(A);
+assert_checkalmostequal(det(A), 1);
+[e,m]=det(A)
+assert_checkalmostequal(e, 0);
+assert_checkalmostequal(m, 1);
+//Polynomials
+A=[1+%s 1; 1 2+%s];
+assert_checkequal(det(A), 1+3*%s+%s*%s);
+//Rationals
+A=[1+%s 1/%s; 1 2+%s];
+assert_checkequal(numer(det(A)), -1+2*%s+3*%s^2+%s^3);
+assert_checkequal(denom(det(A)), %s);
+//Sparse complex
+A=[1 1; 1 2];
+A=A+%i;
+A=sparse(A);
+assert_checkalmostequal(real(det(A)), 1);
+assert_checkalmostequal(imag(det(A)), 1);
+[e,m]=det(A);
+assert_checkalmostequal(e, 0);
+assert_checkalmostequal(real(m), 1);
+assert_checkalmostequal(imag(m), 1);
+
 //Large dimension
 //Real
 v=rand(1,21);
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
-if Err(det(A)-prod(v))>400000*%eps then pause,end
+assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
 [e,m]=det(A);
-if Err(m*(10^e)-prod(v))>400000*%eps then pause,end
+assert_checktrue(abs(m*(10^e) - prod(v)) < 1D-7);
 //Complex
 v=(v+rand(v)*%i)/2;
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
-if Err(det(A)-prod(v))>10000*%eps then pause,end
+assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
 [e,m]=det(A);
-if Err(m*(10^e)-prod(v))>10000*%eps then pause,end
+assert_checktrue(abs(m*(10^e) - prod(v)) < 1D-7);
+//Sparse
+v=rand(1,21);
+v=sparse(v);
+A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
+assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
+[e,m]=det(A);
+assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
+//Polynomials
+v=rand(1,21)
+v=v+%s;
+A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
+assert_checktrue(abs(coeff(det(A)-prod(v))) < 1D-7);
+//Rationals
+v=rand(1,21);
+v=v/%s;
+A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
+assert_checktrue(abs(coeff(numer(det(A))-numer(prod(v)))) < 1D-7);
+//Sparse complex
+v=rand(1,21);
+v=(v+rand(v)*%i)/2;
+v=sparse(v);
+A=rand(21,21);
+A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
+A=sparse(A);
+assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
+[e,m]=det(A);
+assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
 
+//Error messages
+A=[1 1; 1 2];
+errmsg1 = msprintf(_("Wrong type for first argument: Square matrix expected.\n"));
+assert_checkerror("det([1,2;3,4;5,6])", errmsg1, 20);
+errmsg2 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
+assert_checkerror("det(A,1)", errmsg2, 77);

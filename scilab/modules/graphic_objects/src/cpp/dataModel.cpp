@@ -51,17 +51,18 @@ void DataModel::getGraphicObjectProperty(char const* _pstID, int _iName, void **
 
     dataObject = (*m_dataMap)[std::string(_pstID)];
 
+    if (dataObject == NULL)
+    {
+        *_pvData = NULL;
+        return;
+    }
+
     property = dataObject->getPropertyFromName(_iName);
-
-    dataObject->getDataProperty(property, _pvData);
-}
-
-void DataModel::getGraphicObjectIntProperty(char const* _pstID, int _iName, void **_pvData)
-{
-    Data3D* dataObject = NULL;
-    int property = 0;
-
-    property = (*m_dataMap)[std::string(_pstID)]->getPropertyFromName(_iName);
+    if (property == UNKNOWN_DATA_PROPERTY)
+    {
+        *_pvData = NULL;
+        return;
+    }
 
     dataObject->getDataProperty(property, _pvData);
 }
@@ -75,27 +76,28 @@ char const* DataModel::createDataObject(char const* _pstID, int _iType)
      * (getTypeFromName) in order to avoid strcmp calls.
      */
 
-    switch (_iType) {
-    case __GO_GRAYPLOT__ :
-        newObject = new NgonGridData();
-        break;
-    case __GO_MATPLOT__ :
-        newObject = new NgonGridMatplotData();
-        break;
-    case __GO_FAC3D__ :
-        newObject = new NgonGeneralData();
-        break;
-    case __GO_PLOT3D__ :
-        newObject = new NgonGridData();
-        break;
-    case __GO_POLYLINE__ :
-        newObject = new NgonPolylineData();
-        break;
-    case __GO_FEC__ :
-        newObject = new TriangleMeshFecData();
-        break;
-    default :
-        return NULL;
+    switch (_iType)
+    {
+        case __GO_GRAYPLOT__ :
+            newObject = new NgonGridData();
+            break;
+        case __GO_MATPLOT__ :
+            newObject = new NgonGridMatplotData();
+            break;
+        case __GO_FAC3D__ :
+            newObject = new NgonGeneralData();
+            break;
+        case __GO_PLOT3D__ :
+            newObject = new NgonGridData();
+            break;
+        case __GO_POLYLINE__ :
+            newObject = new NgonPolylineData();
+            break;
+        case __GO_FEC__ :
+            newObject = new TriangleMeshFecData();
+            break;
+        default :
+            return NULL;
     }
 
     (*m_dataMap)[std::string(_pstID)] = newObject;
@@ -105,12 +107,19 @@ char const* DataModel::createDataObject(char const* _pstID, int _iType)
 
 void DataModel::deleteDataObject(char const* _pstID)
 {
-    Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
-    if (newObject != NULL)
+    std::map<std::string, Data3D*>::iterator it = m_dataMap->find(std::string(_pstID));
+    if (it != m_dataMap->end() && it->second != NULL)
     {
-        delete newObject;
+        delete it->second;
+        m_dataMap->erase(it);
     }
 
-    m_dataMap->erase(std::string(_pstID));
+    /*Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
+      if (newObject != NULL)
+      {
+      delete newObject;
+      }
+
+      m_dataMap->erase(std::string(_pstID));*/
 }
 

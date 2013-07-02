@@ -1,0 +1,312 @@
+    <project name="scirenderer" default="jar">
+    
+    
+    
+    <property file="scirenderer-version.properties"/>
+    
+    <!-- Scirenderer is built from Scilab itself -->
+    <condition property="dependencies.prop" value="../../scilab-lib.properties">
+        <isset property="fromScilab" />
+    </condition>
+    
+    <!-- Scirenderer is built as a thirdparty application -->
+    <condition property="dependencies.prop" value="scirenderer-libs.properties">
+        <not>
+            <isset property="fromScilab"/>
+        </not>
+    </condition>
+    
+    <property file="${dependencies.prop}"/>
+    
+    <!-- Scirenderer is built from Scilab itself -->
+    <property name="library.noversion.name" value="scirenderer.jar" />
+    
+    <!-- Scirenderer is built as a thirdparty application -->
+    <condition property="library.name" value="scirenderer-${version}.jar">
+        <not>
+            <isset property="fromScilab"/>
+        </not>
+    </condition>
+    
+    <echo message="Using:" />
+    <echo message="${thirdparty.dir}"/>
+    <echo message="${jogl2.jar}"/>
+    <echo message="${gluegen2.jar}"/>
+    <echo message="${jlatexmath.jar}"/>
+    
+    <description>
+        Build scirenderer
+    </description>
+    
+    <!-- Where the module should be created (modules/xxx/jar) -->
+    <property name="build.jar.dir"  value="jar/" />
+    
+    <property name="library.jar" value="${build.jar.dir}/${library.name}" />
+    <property name="library.noversion.jar" value="${build.jar.dir}/${library.noversion.name}" />
+    
+    <!-- The building directory -->
+    <property name="build.dir" location="build/"/>
+    
+    <!-- The building example directory -->
+    <property name="build.example.dir" location="build-example/"/>
+    
+    <!-- The building document directory -->
+    <property name="doc.dir" location="docs/"/>
+    
+    
+    <!-- The building test directory -->
+    <property name="build.test.dir" location="build/test"/>
+    
+    <!-- Where built classes will be generated -->
+    <property name="classes.dir" location="${build.dir}/classes" />
+    
+    <!-- Where built test classes will be generated -->
+    <property name="classes.test.dir" location="${build.test.dir}/" />
+    
+    <!-- Where we store cache files -->
+    <property name="cache.dir" location="${build.dir}/cachefile" />
+    
+    <!-- Where we can find the sources -->
+    <property name="src.dir"  location="src/" />
+    
+    <!-- Where we can find the sources -->
+    <property name="src.examples.dir"  location="examples/" />
+    
+    <path id="compile.classpath">
+        <pathelement location="${jogl2.jar}"/>
+        <pathelement location="${gluegen2.jar}"/>
+        <pathelement location="${jlatexmath.jar}"/>
+    </path>
+    
+    <target name="init">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${classes.test.dir}"/>
+        <mkdir dir="${build.jar.dir}"/>
+        <!-- Create the time stamp -->
+        <tstamp/>
+    </target>
+    
+    <!-- Clean sources -->
+    <target name="clean" description="Clean built files" depends="clean-test">
+        <delete dir="${build.dir}"/>
+        <delete dir="${build.example.dir}"/>
+        <delete dir="${build.jar.dir}"/>
+        <delete dir="${doc.dir}"/>
+        <delete file="${library.jar}"/>
+    </target>
+    
+    <!-- Clean test -->
+    <target name="clean-test" description="Clean test files">
+        <delete dir="${build.test.dir}"/>
+    </target>
+    
+    <!-- Compile sources -->
+    <target name="compile" description="Build sources" depends="init">
+        <javac
+       srcdir="${src.dir}"
+       destdir="${classes.dir}"
+       classpathref="compile.classpath"
+       deprecation="on"
+       debug="off"
+       verbose="off"
+       listfiles="on"
+       includeAntRuntime="no"
+       source="6"
+       target="6"
+       >
+            <compilerarg value="-Xlint"/>
+        </javac>
+    </target>
+    
+    <!-- Compile examples -->
+    <target name="compile-examples" description="Build the examples" depends="compile">
+        <javac
+       srcdir="${src.examples.dir}"
+       destdir="${classes.dir}"
+       classpathref="compile.classpath"
+       deprecation="on"
+       debug="off"
+       verbose="off"
+       listfiles="on"
+       includeAntRuntime="no"
+       source="6"
+       target="6"
+       >
+            <compilerarg value="-Xlint"/>
+        </javac>
+    </target>
+    
+    <target name="existing-tests">
+        <available property="test-present"
+               file="${src.examples.dir}"
+               />
+    </target>
+    
+    <!-- Compile test sources -->
+    <target name="compile-test" description="Build tests" depends="existing-tests, jar" if="test-present">
+        <mkdir dir="${build.test.dir}"/>
+        
+        <!-- clean the test to make sure it will build properly -->
+        <javac
+       srcdir="${src.examples.dir}"
+       destdir="${classes.test.dir}"
+       deprecation="on"
+       debug="off"
+       verbose="off"
+       listfiles="on"
+       includeAntRuntime="no"
+       source="5"
+       >
+            <classpath>
+                <path refid="compile.classpath" />
+                <path location="${library.jar}" />
+            </classpath>
+        </javac>
+    </target>
+    
+    <!-- Create the jar -->
+    <target name="jar" description="Build the jar file" depends="compile">
+        
+        <jar destfile="${library.jar}" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Class-Path" value="jogl2.jar gluegen2.jar"/>
+            </manifest>
+        </jar>
+    </target>
+    
+    <!-- Create the jar without the extension -->
+    <target name="noversion" description="Build the jar file without version" depends="compile">
+        
+        <antcall target="jar">
+            <param name="library.jar" value="${library.noversion.jar}"/>
+        </antcall>
+    </target>
+    
+    <target name="doc">
+        <javadoc
+           destdir="${doc.dir}"
+           author="true"
+           version="true"
+           use="true"
+           windowtitle="SciRenderer API">
+            <packageset dir="src" defaultexcludes="yes">
+                <include name="org/**"/>
+            </packageset>
+        </javadoc>
+    </target>
+    
+    <target name="all" depends="jar, doc" />
+    
+    <target name="list-example" description="List all examples available">
+        <echo message="Examples available :"/>
+        <echo message=""/>
+        <echo message="    plot2d"/>
+        <echo message="    lightenedrotatingcube"/>
+        <echo message="    linerendering"/>
+        <echo message="    milkdrop"/>
+        <echo message="    simplerotatingcube"/>
+        <echo message="    clipping"/>
+        <echo message="    JLatexMath"/>
+    </target>
+    
+    <target name="all-examples" description="Launch all examples" depends="
+    example-lightened-cube,
+    example-plot2d,
+    example-chicken-pox-cube,
+    example-clipped-tetrahedron,
+    example-jLatex-math,
+    example-line-rendering,
+    example-milk-drop,
+    example-sprite,
+    example-rotatable-sprite,
+    example-ruler,
+    example-texture
+    "/>
+    
+    <target name="example-plot2d" description="Scilab Like Plot2d Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.ScilabLikePlot2D"/>
+        </antcall>
+    </target>
+    
+    <target name="example-lightened-cube" description="Lightened Rotating Cube Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.LightenedCube" />
+        </antcall>
+    </target>
+    
+    <target name="example-line-rendering" description="Line Rendering Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.LineRendering" />
+        </antcall>
+    </target>
+    
+    <target name="example-milk-drop" description="Milk Drop Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.MilkDrop" />
+        </antcall>
+    </target>
+    
+    <target name="example-chicken-pox-cube" description="Cube With Chicken Pox Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.ChickenPoxCube" />
+        </antcall>
+    </target>
+    
+    <target name="example-clipped-tetrahedron" description="Clipping Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.ClippedTetrahedron" />
+        </antcall>
+    </target>
+    
+    <target name="example-sprite" description="Sprite Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.Sprites" />
+        </antcall>
+    </target>
+    
+    <target name="example-rotatable-sprite" description="Rotatable Sprite Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.RotatableSprite" />
+        </antcall>
+    </target>
+    
+    <target name="example-jLatex-math" description="JLatexMath editor Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.JLatexMath" />
+        </antcall>
+    </target>
+    
+    <target name="example-ruler" description="Ruler Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.SimpleRuler" />
+        </antcall>
+    </target>
+    
+    <target name="example-texture" description="Texture Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.TextureExample" />
+        </antcall>
+    </target>
+    
+    <target name="example-JScrollPane" description="JScrollPane Example">
+        <antcall target="check">
+            <param name="ClassName" value="org.scilab.forge.scirenderer.examples.JScrollPaneExample" />
+        </antcall>
+    </target>
+    
+    <target name="check" description="Launch some Examples" depends="jar, compile-test">
+        <fail unless="ClassName" message="check should not be called directly. Please use all-examples"/>
+        <java ClassName="${ClassName}" fork="yes">
+            <classpath>
+                <pathelement path="${jogl2.jar}"/>
+                <pathelement path="${gluegen2.jar}"/>
+                <pathelement path="${jlatexmath.jar}"/>
+                <pathelement path="${library.jar}"/>
+                <pathelement path="${build.test.dir}"/>
+            </classpath>
+            <jvmarg value="-Djava.library.path=${jni.path}"/>
+        </java>
+    </target>
+    
+</project>

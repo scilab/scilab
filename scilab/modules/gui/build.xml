@@ -12,12 +12,12 @@
  *
  -->
 <project name="gui" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.gui.name}"/>
-  <property name="library.title" value="Graphical interface"/>
-  <!-- List only the mandatory packages -->
-  <property name="manifest.class-path" value="flexdock.jar jrosetta-engine.jar jrosetta-API.jar "/>
-  <description>
-			Build the Scilab GUI module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.gui.name}"/>
+    <property name="library.title" value="Graphical interface"/>
+    <!-- List only the mandatory packages -->
+    <property name="manifest.class-path" value="flexdock.jar jrosetta-engine.jar jrosetta-API.jar "/>
+    <description>
+        Build the Scilab GUI module
+    </description>
 </project>

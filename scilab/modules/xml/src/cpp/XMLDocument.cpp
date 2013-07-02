@@ -300,7 +300,7 @@ xmlDoc *XMLDocument::readDocument(const char *filename, bool validate, std::stri
 {
     xmlParserCtxt *ctxt = initContext(error, validate);
     xmlDoc *doc = 0;
-    int options = XML_PARSE_NSCLEAN;
+    int options = XML_PARSE_NSCLEAN | XML_PARSE_NOBLANKS;
 
     if (validate)
     {
@@ -329,7 +329,7 @@ xmlDoc *XMLDocument::readDocument(const std::string & xmlCode, bool validate, st
 {
     xmlParserCtxt *ctxt = initContext(error, validate);
     xmlDoc *doc = 0;
-    int options = XML_PARSE_NSCLEAN;
+    int options = XML_PARSE_NSCLEAN | XML_PARSE_NOBLANKS;
 
     if (validate)
     {

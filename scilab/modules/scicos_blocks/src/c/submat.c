@@ -18,27 +18,27 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void submat(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void submat(scicos_block *block, int flag)
 {
-	int mu = GetInPortRows(block,1);
-	int *r = GetIparPtrs(block);
-	double *u = GetRealInPortPtrs(block,1);
-	double *y = GetRealOutPortPtrs(block,1);
-	int k = 0;
-	int j = 0;
-	for (j=r[2]-1;j<r[3];j++)
-	{
-		int i = 0;
-		for (i=r[0]-1;i<r[1];i++)
-		{
-			int ij = i + j*mu;
-			*(y+k)=*(u+ij);
-			k++;
-		}
-	}
+    int mu = GetInPortRows(block, 1);
+    int *r = GetIparPtrs(block);
+    double *u = GetRealInPortPtrs(block, 1);
+    double *y = GetRealOutPortPtrs(block, 1);
+    int k = 0;
+    int j = 0;
+    for (j = r[2] - 1; j < r[3]; j++)
+    {
+        int i = 0;
+        for (i = r[0] - 1; i < r[1]; i++)
+        {
+            int ij = i + j * mu;
+            *(y + k) = *(u + ij);
+            k++;
+        }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

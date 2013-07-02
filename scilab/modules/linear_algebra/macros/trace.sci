@@ -9,48 +9,48 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function t=trace(a)
-// trace - computes the trace of a matrix
-  select type(a)
-  case 1 then
-    [m,n]=size(a)
-    if m<>n then 
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),'trace',1));
-    end
-    t=sum(diag(a))
-  case 2 then
-    [m,n]=size(a)
-    if m<>n then 
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),'trace',1));
-    end
-    t=sum(diag(a))
-    //-compat next case retained for list /tlist compatibility
-  case 15 then
-    if a(1)=='r' then
-      [m,n]=size(a)
-      if m<>n then 
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),'trace',1));
-      end
-      t=sum(diag(a))
+    // trace - computes the trace of a matrix
+    select type(a)
+    case 1 then
+        [m,n]=size(a)
+        if m<>n then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
+        end
+        t=sum(diag(a))
+    case 2 then
+        [m,n]=size(a)
+        if m<>n then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
+        end
+        t=sum(diag(a))
+        //-compat next case retained for list /tlist compatibility
+    case 15 then
+        if a(1)=="r" then
+            [m,n]=size(a)
+            if m<>n then
+                error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
+            end
+            t=sum(diag(a))
+        else
+            error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"trace",1));
+        end
+    case 16 then
+        if a(1)=="r" then
+            [m,n]=size(a)
+            if m<>n then
+                error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
+            end
+            t=sum(diag(a))
+        else
+            error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"trace",1));
+        end
+    case 5 then
+        [m,n]=size(a)
+        if m<>n then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"trace",1));
+        end
+        t=sum(diag(a))
     else
-      error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),'trace',1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"trace",1));
     end
-  case 16 then
-    if a(1)=='r' then
-      [m,n]=size(a)
-      if m<>n then 
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),'trace',1));
-      end
-      t=sum(diag(a))
-    else
-      error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),'trace',1));
-    end   
-  case 5 then
-    [m,n]=size(a)
-    if m<>n then 
-      error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),'trace',1));
-    end
-    t=sum(diag(a))
-  else
-    error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),'trace',1));
-  end
 endfunction

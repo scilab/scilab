@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:53+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-23 15:22+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: fr\n"
 
 #, c-format
@@ -58,11 +58,8 @@ msgstr ""
 "valide vers une factorisation de Cholesky"
 
 #, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr ""
-"%s : Plus de mémoire disponible : Augmentez stacksize %d mots "
-"supplémentaires sont requis.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
 msgid ""
@@ -78,7 +75,15 @@ msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"%s: Wrong type for input argument #%d: not compatible with the Cholesky "
+"factorisation.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Incompatible avec la "
+"factorisation de Cholesky.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorisation.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Pas compatible avec la "

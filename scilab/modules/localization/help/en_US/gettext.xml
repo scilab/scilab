@@ -51,8 +51,8 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-gettext('Startup execution:')
-_('Startup execution:')
+gettext("Startup execution:")
+_("Startup execution:")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

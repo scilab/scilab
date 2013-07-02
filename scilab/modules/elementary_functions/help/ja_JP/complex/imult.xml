@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>y=imult(x)</synopsis>
+        <synopsis>y = imult(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -28,10 +28,10 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>imult(x)</literal> は,
-            x が %inf や %nanのような "特殊な"浮動小数点数からなる時に
+            <code>imult(x)</code> は,
+            <varname>x</varname> が <constant>%inf</constant> や <constant>%nan</constant>のような "特殊な"浮動小数点数からなる時に
             発生する問題を生じることなく,
-            y = %i*x よりも効率的に x x i を実行します.
+            <code>y = %i*x</code> よりも効率的に <literal>x x i</literal> を実行します.
         </para>
     </refsection>
     <refsection>

@@ -621,7 +621,7 @@ public final class Xcos {
             diagrams.remove(f);
         }
 
-        if (openedDiagrams().size() <= 1) {
+        if (openedDiagrams().size() <= 0) {
             /* halt scicos (stop the simulation) */
             InterpreterManagement.requestScilabExec("if isdef('haltscicos'), haltscicos(), end;");
         }

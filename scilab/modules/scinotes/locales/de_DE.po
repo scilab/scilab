@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-01 14:27+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-16 18:40+0000\n"
 "Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: de\n"
 
 #, c-format
@@ -386,6 +386,12 @@ msgstr ""
 msgid "Wrap lines"
 msgstr ""
 
+msgid "Background color: "
+msgstr ""
+
+msgid "Cursor color: "
+msgstr ""
+
 msgid "Keywords"
 msgstr ""
 
@@ -501,6 +507,18 @@ msgid "SciNotes"
 msgstr ""
 
 msgid "Error while reading the String"
+msgstr ""
+
+#, c-format
+msgid "File not found: %s"
+msgstr ""
+
+#, c-format
+msgid "I/O error: %s"
+msgstr ""
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
 msgstr ""
 
 msgid "Source of '"
@@ -713,9 +731,7 @@ msgid "String %s not found"
 msgstr "Zeichenkette %s nicht gefunden"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
+msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
 
 msgid "close this tab"
@@ -724,20 +740,13 @@ msgstr "diese Registerkarte schließen"
 msgid "This file"
 msgstr "Diese Datei"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
 msgstr ""
-" wurde seit dem letzten Speichern geändert\n"
-"Speichern?"
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
-"Die Datei %s wurde durch ein anderes Programm geändert!\n"
-" Überschreiben?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr ""
@@ -1062,7 +1071,7 @@ msgid "Line by line"
 msgstr ""
 
 msgid "Regular expression (Word)"
-msgstr ""
+msgstr "Regulärer Ausdruck (Wort)"
 
 msgid "Choose the search base directory"
 msgstr ""
@@ -1070,3 +1079,21 @@ msgstr ""
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' Modul nicht installiert.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr ""
+
+msgid " on line "
+msgstr ""
+
+msgid "opening file "
+msgstr ""
+
+msgid " of the source file of the function "
+msgstr ""
+
+msgid "the source file of the function "
+msgstr ""
+
+msgid " was not found in any library path"
+msgstr ""

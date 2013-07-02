@@ -3,7 +3,6 @@
 /* Only For Windows */
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib, "../../../../../../bin/libScilab.lib")
-#pragma comment(lib, "../../../../../../bin/MALLOC.lib")
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <stdio.h>
@@ -138,7 +137,10 @@ static int example3(void)
 int main(void)
 /* int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow) */
 {
-    if ( StartScilab(NULL, NULL, NULL) == FALSE ) printf("Error : StartScilab\n");
+    if ( StartScilab(NULL, NULL, NULL) == FALSE )
+    {
+        printf("Error : StartScilab\n");
+    }
     printf("\nexample 1\n");
     example1();
     printf("\npress return\n");
@@ -155,7 +157,10 @@ int main(void)
     getchar();
 
 
-    if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab\n");
+    if ( TerminateScilab(NULL) == FALSE )
+    {
+        printf("Error : TerminateScilab\n");
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/

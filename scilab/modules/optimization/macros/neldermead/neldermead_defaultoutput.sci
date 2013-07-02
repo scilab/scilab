@@ -13,12 +13,12 @@
 //   The default output function.
 //
 function stop = neldermead_defaultoutput(state, data)
-  if ( state == "init" ) then
-    mprintf ( "Initialization\n");
-  elseif ( state == "done" ) then
-    mprintf ( "End of Optimization\n");
-  end
-  mprintf ( "Iter. #%s, Feval #%s, Fval = %s -- %s\n", ..
+    if ( state == "init" ) then
+        mprintf ( "Initialization\n");
+    elseif ( state == "done" ) then
+        mprintf ( "End of Optimization\n");
+    end
+    mprintf ( "Iter. #%s, Feval #%s, Fval = %s -- %s\n", ..
     string(data.iteration), string(data.funccount), string(data.fval), data.step);
-  stop = %f
+    stop = %f
 endfunction

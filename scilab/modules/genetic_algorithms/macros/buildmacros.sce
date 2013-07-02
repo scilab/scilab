@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 if (isdef("genlib") == %f) then
-  exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
 genlib("genetic_algorithmslib","SCI/modules/genetic_algorithms/macros",%f,%t);

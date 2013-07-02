@@ -42,6 +42,18 @@
             returns the matrix of highest degrees of <literal>M</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+v=[-2-5*%s+%s^2;-6+11*%s-6*%s^2+%s^3];
+degree(v) // should return 2 and 3
+
+s=poly(0,"s");
+p=1+s+2*s^42;
+degree(p) // should return 42
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

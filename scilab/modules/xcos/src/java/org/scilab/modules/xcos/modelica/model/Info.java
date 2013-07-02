@@ -25,11 +25,12 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Info", propOrder = { "numberOfIntegerParameters",
-        "numberOfRealParameters", "numberOfStringParameters",
-        "numberOfDiscreteVariables", "numberOfContinuousVariables",
-        "numberOfContinuousUnknowns", "numberOfContinuousStates",
-        "numberOfInputs", "numberOfOutputs", "numberOfModes",
-        "numberOfZeroCrossings" })
+                                      "numberOfRealParameters", "numberOfStringParameters",
+                                      "numberOfDiscreteVariables", "numberOfContinuousVariables",
+                                      "numberOfContinuousUnknowns", "numberOfContinuousStates",
+                                      "numberOfInputs", "numberOfOutputs", "numberOfModes",
+                                      "numberOfZeroCrossings"
+                                    })
 public final class Info {
 
     @XmlElement(name = "number_of_integer_parameters")
@@ -74,9 +75,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfIntegerParameters property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfIntegerParameters() {
         return numberOfIntegerParameters;
@@ -84,10 +85,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfIntegerParameters property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfIntegerParameters(BigInteger value) {
         numberOfIntegerParameters = value;
@@ -95,9 +96,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfRealParameters property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfRealParameters() {
         return numberOfRealParameters;
@@ -105,10 +106,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfRealParameters property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfRealParameters(BigInteger value) {
         numberOfRealParameters = value;
@@ -116,9 +117,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfStringParameters property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfStringParameters() {
         return numberOfStringParameters;
@@ -126,10 +127,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfStringParameters property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfStringParameters(BigInteger value) {
         numberOfStringParameters = value;
@@ -137,9 +138,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfDiscreteVariables property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfDiscreteVariables() {
         return numberOfDiscreteVariables;
@@ -147,10 +148,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfDiscreteVariables property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfDiscreteVariables(BigInteger value) {
         numberOfDiscreteVariables = value;
@@ -158,9 +159,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfContinuousVariables property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfContinuousVariables() {
         return numberOfContinuousVariables;
@@ -168,10 +169,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfContinuousVariables property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfContinuousVariables(BigInteger value) {
         numberOfContinuousVariables = value;
@@ -179,9 +180,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfContinuousUnknowns property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfContinuousUnknowns() {
         return numberOfContinuousUnknowns;
@@ -189,10 +190,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfContinuousUnknowns property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfContinuousUnknowns(BigInteger value) {
         numberOfContinuousUnknowns = value;
@@ -200,9 +201,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfContinuousStates property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfContinuousStates() {
         return numberOfContinuousStates;
@@ -210,10 +211,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfContinuousStates property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfContinuousStates(BigInteger value) {
         numberOfContinuousStates = value;
@@ -221,9 +222,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfInputs property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfInputs() {
         return numberOfInputs;
@@ -231,10 +232,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfInputs property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfInputs(BigInteger value) {
         numberOfInputs = value;
@@ -242,9 +243,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfOutputs property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfOutputs() {
         return numberOfOutputs;
@@ -252,10 +253,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfOutputs property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfOutputs(BigInteger value) {
         numberOfOutputs = value;
@@ -263,9 +264,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfModes property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfModes() {
         return numberOfModes;
@@ -273,10 +274,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfModes property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfModes(BigInteger value) {
         numberOfModes = value;
@@ -284,9 +285,9 @@ public final class Info {
 
     /**
      * Gets the value of the numberOfZeroCrossings property.
-     * 
+     *
      * @return possible object is {@link BigInteger }
-     * 
+     *
      */
     public BigInteger getNumberOfZeroCrossings() {
         return numberOfZeroCrossings;
@@ -294,10 +295,10 @@ public final class Info {
 
     /**
      * Sets the value of the numberOfZeroCrossings property.
-     * 
+     *
      * @param value
      *            allowed object is {@link BigInteger }
-     * 
+     *
      */
     public void setNumberOfZeroCrossings(BigInteger value) {
         numberOfZeroCrossings = value;

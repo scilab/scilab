@@ -14,7 +14,7 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="symbolic">
-<!--
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -30,10 +30,10 @@
 
  Don't touch if you do not know what you are doing
 -->
-
-<PRIMITIVE gatewayId="22" primitiveId="1" primitiveName="addf" />
-<PRIMITIVE gatewayId="22" primitiveId="2" primitiveName="subf" />
-<PRIMITIVE gatewayId="22" primitiveId="3" primitiveName="mulf" />
-<PRIMITIVE gatewayId="22" primitiveId="4" primitiveName="ldivf" />
-<PRIMITIVE gatewayId="22" primitiveId="5" primitiveName="rdivf" />
+    
+    <PRIMITIVE gatewayId="22" primitiveId="1" primitiveName="addf" />
+    <PRIMITIVE gatewayId="22" primitiveId="2" primitiveName="subf" />
+    <PRIMITIVE gatewayId="22" primitiveId="3" primitiveName="mulf" />
+    <PRIMITIVE gatewayId="22" primitiveId="4" primitiveName="ldivf" />
+    <PRIMITIVE gatewayId="22" primitiveId="5" primitiveName="rdivf" />
 </GATEWAY>

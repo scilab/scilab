@@ -523,19 +523,19 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis role="bold">dep_u</emphasis>
+                            <emphasis role="bold">dep_t</emphasis>
                         </para>
                         <para>
                             true if block is always active.
                         </para>
-                        <para>                   (output depends continuously of the time)
-                            
-                            
+                        <para>
+                            Output depends continuously of the time.
+                            For instance, the GENSIN_f block computes <code>y=sin(t)</code> so <code>dep_ut=[%f %t]</code>.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis role="bold">dep_t</emphasis>
+                            <emphasis role="bold">dep_u</emphasis>
                         </para>
                         <para>
                             true if block has direct feed-through,
@@ -545,6 +545,7 @@
                             In other words, when the computational
                             function is called with flag 1, the value 
                             of an input is used to compute the output.
+                            For instance, the SUM_f block computes <code>y=u1+u2</code> so <code>dep_ut=[%t %f]</code>.
                         </para>
                         <para>
                         </para>

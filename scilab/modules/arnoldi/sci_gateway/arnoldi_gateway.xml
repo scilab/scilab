@@ -14,8 +14,8 @@
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="arnoldi">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -31,13 +31,13 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="35" primitiveId="1" primitiveName="dsaupd" />
-<PRIMITIVE gatewayId="35" primitiveId="2" primitiveName="dnaupd" />
-<PRIMITIVE gatewayId="35" primitiveId="3" primitiveName="znaupd" />
-<PRIMITIVE gatewayId="35" primitiveId="4" primitiveName="dseupd" />
-<PRIMITIVE gatewayId="35" primitiveId="5" primitiveName="dneupd" />
-<PRIMITIVE gatewayId="35" primitiveId="6" primitiveName="zneupd" />
-<PRIMITIVE gatewayId="35" primitiveId="7" primitiveName="%_eigs" />
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="35" primitiveId="1" primitiveName="dsaupd" />
+    <PRIMITIVE gatewayId="35" primitiveId="2" primitiveName="dnaupd" />
+    <PRIMITIVE gatewayId="35" primitiveId="3" primitiveName="znaupd" />
+    <PRIMITIVE gatewayId="35" primitiveId="4" primitiveName="dseupd" />
+    <PRIMITIVE gatewayId="35" primitiveId="5" primitiveName="dneupd" />
+    <PRIMITIVE gatewayId="35" primitiveId="6" primitiveName="zneupd" />
+    <PRIMITIVE gatewayId="35" primitiveId="7" primitiveName="%_eigs" />
 </GATEWAY>

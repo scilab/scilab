@@ -231,7 +231,7 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
             <varlistentry>
                 <term>line_mode</term>
                 <listitem>
-                    <para>This field specifies if a rectangle is drawn around the legeng
+                    <para>This field specifies if a rectangle is drawn around the legend
                         or not. It should be <literal>"on"</literal> or
                         <literal>"off"</literal>. If <literal>"on"</literal> the rectangle
                         is drawn using the following properties.
@@ -259,7 +259,7 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
             <varlistentry>
                 <term>fill_mode</term>
                 <listitem>
-                    <para>This field specifies if the legeng background is painted or
+                    <para>This field specifies if the legend background is painted or
                         not. It should be <literal>"on"</literal> or
                         <literal>"off"</literal>. If <literal>"on"</literal> the background
                         is painted using the color index set in the

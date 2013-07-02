@@ -78,7 +78,6 @@ c     x
             return
          elseif (stk(l2+i).gt.1.0d0) then
             itr=1
-            goto 10
          endif
       enddo
  10   lw=lstk(top+1)

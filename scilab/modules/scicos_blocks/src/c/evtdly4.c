@@ -18,53 +18,65 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "MALLOC.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /*    Copyright INRIA
  *    Scicos block simulator
  *    event delay with discrete counter
  */
-SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block, int flag)
 {
-  double t = 0.;
-  long long int *i = NULL;
+    double t = 0.;
+    long long int *i = NULL;
 
-  switch(flag)
-  {
-   /* init */
-   case 4  : {/* the workspace is used to store discrete counter value */
-              if ((*block->work=scicos_malloc(sizeof(long long int)))==NULL) {
+    switch (flag)
+    {
+            /* init */
+        case 4  :  /* the workspace is used to store discrete counter value */
+        {
+            if ((*block->work = scicos_malloc(sizeof(long long int))) == NULL)
+            {
                 set_block_error(-16);
                 return;
-              }
-              i=*block->work;
-              (*i)=0;
-              break;
-             }
+            }
+            i = *block->work;
+            (*i) = 0;
+            break;
+        }
 
-   /* event date computation */
-   case 3  : {
-              i=*block->work;
-              t=get_scicos_time();
-              (*i)++; /*increase counter*/
-              block->evout[0]=block->rpar[1]+ \
-                              (*i)*block->rpar[0]-t;
-              break;
-             }
+        /* event date computation */
+        case 3  :
+        {
+            double dt;
 
-   /* finish */
-   case 5  : {
-              scicos_free(*block->work); /*free the workspace*/
-              break;
-             }
+            i = *block->work;
+            t = get_scicos_time();
+            (*i)++; /*increase counter*/
+            dt = block->rpar[1] + (*i) * block->rpar[0] - t;
+            /* on event enabled, use the default delay if not scheduled */
+            if (block->rpar[1] >= 0 && dt < 0)
+            {
+                dt = block->rpar[0];
+            }
+            block->evout[0] = dt;
+            break;
+        }
 
-   default : break;
-  }
+        /* finish */
+        case 5  :
+        {
+            scicos_free(*block->work); /*free the workspace*/
+            break;
+        }
+
+        default :
+            break;
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

@@ -44,12 +44,12 @@ function demo_ode_vanderpol()
     yr = ymin:1:ymax;
 
     fchamp(f,1,xr,yr);
-    xlabel('y(1)','fontsize',3)
-    ylabel('y(2)','fontsize',3)
+    xlabel("y(1)","fontsize",3)
+    ylabel("y(2)","fontsize",3)
     a=gca();a.margins(3)=0.2
     title([_("Van der Pol vector field")
     "dy1/dt=y2"
-    "dy2/dt=5*(1-y1^2*y2-y1"],'fontsize',3)
+    "dy2/dt=5*(1-y1^2*y2-y1"],"fontsize",3)
 
     t0=0; dt=0.05; tmax=15;
     t=t0:dt:tmax;
@@ -65,7 +65,7 @@ function demo_ode_vanderpol()
             xpoly(sol(1,:)',sol(2,:)');
             p=gce();p.thickness=2;p.foreground=5;
             drawnow();
-            rep=[x0,y0,-1];  
+            rep=[x0,y0,-1];
             while rep(3)==-1 then
                 rep=xgetmouse();
                 x0=rep(1); y0=rep(2);

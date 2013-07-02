@@ -39,13 +39,11 @@ int set_figure_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int va
 
     if (stricmp((char*)_pvData, "old") == 0)
     {
-        FREE(_pvData);
         Scierror(999, _("Old graphic mode is no longer available. Please refer to the set help page.\n"));
         return SET_PROPERTY_ERROR;
     }
     else if (stricmp((char*)_pvData, "new") == 0)
     {
-        FREE(_pvData);
         /* graphic mode must be new */
         /* nothing to do */
         return SET_PROPERTY_UNCHANGED;

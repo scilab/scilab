@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-07-16 15:57+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: pl\n"
 
 #, c-format
@@ -387,6 +387,12 @@ msgstr ""
 msgid "Wrap lines"
 msgstr ""
 
+msgid "Background color: "
+msgstr ""
+
+msgid "Cursor color: "
+msgstr ""
+
 msgid "Keywords"
 msgstr ""
 
@@ -503,6 +509,18 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Błąd przy odczytywaniu łańcucha"
+
+#, c-format
+msgid "File not found: %s"
+msgstr ""
+
+#, c-format
+msgid "I/O error: %s"
+msgstr ""
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr ""
 
 msgid "Source of '"
 msgstr "Źródło '"
@@ -716,12 +734,8 @@ msgid "String %s not found"
 msgstr "Nie znaleziono ciągu %s"
 
 #, c-format
-msgid ""
-"The file %s does not exist\n"
-"Do you want to create it?"
+msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
-"Plik %s nie istnieje\n"
-"Czy chcesz go utworzyć?"
 
 msgid "close this tab"
 msgstr "zamknij kartę"
@@ -729,20 +743,13 @@ msgstr "zamknij kartę"
 msgid "This file"
 msgstr "Ten plik"
 
-msgid ""
-" has been modified since last save\n"
-"save it?"
+#, c-format
+msgid "%s has been modified since last save. Save it?"
 msgstr ""
-" został zmieniony.\n"
-"Czy chcesz go zapisać?"
 
 #, c-format
-msgid ""
-"The file %s has been modified by another program !\n"
-" Overwrite it ?"
+msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
-"Plik %s został zmodyfikowany przez inny program !\n"
-" Zastąpić istniejący plik ?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Ostrzeżenie: plik został zmieniony przez inny program !"
@@ -1073,3 +1080,21 @@ msgstr "Wybierz katalog bazowy do wyszukiwania"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Moduł %s Scilab nie jest zainstalowany.\n"
+
+msgid "the last error did not occur inside a library function."
+msgstr ""
+
+msgid " on line "
+msgstr ""
+
+msgid "opening file "
+msgstr ""
+
+msgid " of the source file of the function "
+msgstr ""
+
+msgid "the source file of the function "
+msgstr ""
+
+msgid " was not found in any library path"
+msgstr ""

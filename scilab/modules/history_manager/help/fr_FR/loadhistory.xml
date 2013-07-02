@@ -35,12 +35,12 @@
     <refsection>
         <title>Description</title>
         <para>charge un fichier contenant l'historique</para>
-        <para>Par défaut, le nom du fichier contenant l'historique est SCIHOME+'/.history.scilab'</para>
+        <para>Par défaut, le nom du fichier contenant l'historique est SCIHOME/history</para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-loadhistory(SCI+'/session.scilab') 
+        <programlisting role="example"><![CDATA[
+loadhistory(SCI+'/session.scilab')
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -56,5 +56,16 @@ loadhistory(SCI+'/session.scilab')
                 <link linkend="gethistory">gethistory</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Le fichier par défaut pour stocker l'historique est SCIHOME/history (au lieu de SCIHOME/.history.scilab).
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

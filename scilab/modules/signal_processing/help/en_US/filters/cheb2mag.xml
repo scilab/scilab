@@ -57,9 +57,13 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 //Chebyshev; ripple in the stopband
-n=10;omegar=6;A=1/0.2;sample=0.0001:0.05:10;
-h2=cheb2mag(n,omegar,A,sample);
-plot(sample,log(h2)/log(10),'frequencies','magnitude in dB')
+n=10;
+omegar=6;
+A=1/0.2;
+Samples=0.0001:0.05:10;
+h2=cheb2mag(n,omegar,A,Samples);
+plot(Samples,log(h2)/log(10))
+xtitle("", "frequencies", "magnitude in dB");
 
 //Plotting of frequency edges
 minval=(-max(-log(h2)))/log(10);
@@ -67,8 +71,20 @@ plot2d([omegar;omegar],[minval;0],[2],"000");
 
 //Computation of the attenuation in dB at the stopband edge
 attenuation=-log(A*A)/log(10);
-plot2d(sample',attenuation*ones(sample)',[5],"000")
+plot2d(Samples',attenuation*ones(Samples)',[5],"000")
  ]]></programlisting>
+        <scilab:image><![CDATA[
+n=10;omegar=6;A=1/0.2;Samples=0.0001:0.05:10;
+h2=cheb2mag(n,omegar,A,Samples);
+plot(Samples,log(h2)/log(10))
+xtitle("", "frequencies", "magnitude in dB");
+
+minval=(-max(-log(h2)))/log(10);
+plot2d([omegar;omegar],[minval;0],[2],"000");
+
+attenuation=-log(A*A)/log(10);
+plot2d(Samples',attenuation*ones(Samples)',[5],"000")
+]]>     </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -5,14 +5,14 @@
 
 function demo_mandelbrot()
 
-  my_handle             = scf(100001);
-  clf(my_handle,"reset");
+    my_handle             = scf(100001);
+    clf(my_handle,"reset");
 
-  // DEMO START
+    // DEMO START
 
-  my_plot_desc          = "mandelbrot";
-  my_handle.figure_name = my_plot_desc;
-  function M = getMandelbrotPart(xmin, xmax, ymin, ymax, nbPix, nColors, maxIters)
+    my_plot_desc          = "mandelbrot";
+    my_handle.figure_name = my_plot_desc;
+    function M = getMandelbrotPart(xmin, xmax, ymin, ymax, nbPix, nColors, maxIters)
         // M : matrix of integers imaging the targetted local Mandelbrot area
         // M(i,j) gives the number of iterations for which the iterated z(i,j)
         //     suite crosses |z|>=2 (making this point out of the Mandelbrot set)

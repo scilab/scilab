@@ -33,9 +33,9 @@
     <refsection>
         <title>Описание</title>
         <para>
-          Функция <function>addf</function> выполняет символьное суммирование.
-          <code>c = addf("a", "b")</code> возвращает символьную строку <varname>c</varname>,
-          которая равна <literal>"a + b"</literal>. Выполняются простейшие упрощения, такие как <code>addf("0", "a")</code> или <code>addf("1", "2")</code>.
+            Функция <function>addf</function> выполняет символьное суммирование.
+            <code>c = addf("a", "b")</code> возвращает символьную строку <varname>c</varname>,
+            которая равна <literal>"a + b"</literal>. Выполняются простейшие упрощения, такие как <code>addf("0", "a")</code> или <code>addf("1", "2")</code>.
         </para>
     </refsection>
     <refsection>

@@ -210,10 +210,10 @@
                     <latex><![CDATA[1]]></latex>
                 </td>
                 <td align="left">
-                    <latex><![CDATA[I]]></latex>
+                    <latex scilab:localized="true"><![CDATA[I]]></latex>
                 </td>
                 <td align="left">
-                    <latex><![CDATA[I]]></latex>
+                    <latex scilab:localized="true"><![CDATA[I]]></latex>
                 </td>
                 <td align="left">Etat interdit</td>
             </tr>
@@ -364,15 +364,24 @@
         <para>
             L'exemple suivant présente une application typique d'anti-rebond de la bascule SR. Le graphe de
             sortie montre l'effet mémoire de la bascule.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/SRFLIPFLOP_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/SRFLIPFLOP_fr_FR.zcos">
                 Ouvrir cet exemple dans Xcos
             </link>
         </para>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/integer_pal/fr_FR/srflipflop_diagram_fr_FR.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+        <para/>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/SRFLIPFLOP_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/fr_FR/SRFLIPFLOP_fr_FR.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image localized="true"><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/SRFLIPFLOP_fr_FR.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_SRFLIPFLOP">
         <title>Fonction d'interfaçage</title>

@@ -12,8 +12,8 @@
 
 package org.scilab.modules.helptools.image;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,6 +21,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.Map;
 
 import org.scilab.modules.commons.ScilabCommons;
@@ -31,13 +33,14 @@ import org.scilab.modules.helptools.HTMLDocbookTagConverter;
  */
 public class ScilabImageConverter implements ExternalImageConverter {
 
+    private static final byte[] BOM = { (byte) 0xEF, (byte) 0xBB, (byte) 0xBF };
     private static ScilabImageConverter instance;
     private final StringBuilder buffer;
-    private final HTMLDocbookTagConverter.GenerationType type;
+    private final HTMLDocbookTagConverter conv;
 
-    private ScilabImageConverter(HTMLDocbookTagConverter.GenerationType type) {
+    private ScilabImageConverter(HTMLDocbookTagConverter conv) {
         buffer = new StringBuilder(8192);
-        this.type = type;
+        this.conv = conv;
     }
 
     public String getMimeType() {
@@ -55,11 +58,14 @@ public class ScilabImageConverter implements ExternalImageConverter {
         if (instance.buffer.length() != 0) {
             try {
                 File f = File.createTempFile("help-", ".sce", new File(ScilabCommons.getTMPDIR()));
-                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(f));
-                byte[] arr = instance.buffer.toString().getBytes();
-                out.write(arr, 0, arr.length);
+                FileOutputStream fos = new FileOutputStream(f);
+                Writer out = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"));
+                fos.write(BOM);
+                out.write(instance.buffer.toString());
                 out.flush();
+
                 out.close();
+                fos.close();
 
                 return f.getAbsolutePath();
             } catch (Exception e) {
@@ -78,9 +84,9 @@ public class ScilabImageConverter implements ExternalImageConverter {
      * Since this a singleton class...
      * @return this
      */
-    public static ScilabImageConverter getInstance(HTMLDocbookTagConverter.GenerationType type) {
+    public static ScilabImageConverter getInstance(HTMLDocbookTagConverter conv) {
         if (instance == null) {
-            instance = new ScilabImageConverter(type);
+            instance = new ScilabImageConverter(conv);
         }
 
         return instance;
@@ -123,9 +129,10 @@ public class ScilabImageConverter implements ExternalImageConverter {
     private final String convertToPNG(String currentFile, String code, File imageFile, String imageName) {
         buffer.append("function _generate_image_from_doc\n");
         buffer.append("__olddrv__=driver();\n");
-        buffer.append("disp(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\");\n");
+        buffer.append("disp(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\");");
         buffer.append("driver(\"png\");\n");
         buffer.append("xinit(\"").append(imageFile.getAbsolutePath()).append("\");\n");
+        buffer.append("clf();\n");
         buffer.append(code).append("\n");
         buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
         buffer.append("xend();\n");
@@ -134,11 +141,11 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("_generate_image_from_doc();\n");
         buffer.append("clear _generate_image_from_doc;\n");
 
-        return getHTMLCodeToReturn(code, "<img src=\'" + imageName + "\'/>");
+        return getHTMLCodeToReturn(code, "<img src=\'" + conv.getBaseImagePath() + imageName + "\'/>");
     }
 
     public String getHTMLCodeToReturn(String code, String imageTag) {
-        if (type == HTMLDocbookTagConverter.GenerationType.WEB) {
+        if (conv.getGenerationType() == HTMLDocbookTagConverter.GenerationType.WEB) {
             /* Prepare the code for the html inclusion */
             code = convertCode(code);
             /* Provide a tooltip */

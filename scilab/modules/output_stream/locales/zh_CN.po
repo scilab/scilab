@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-04-22 11:27+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-05-19 15:02+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: \n"
 
 #, c-format
@@ -76,7 +76,7 @@ msgstr "%s：输入参数#%d的类型错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s：输入参数#%d的值错误。\n"
+msgstr "%s：第%d个输入参数的值错误。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
@@ -227,7 +227,7 @@ msgid "Wrong type for first argument: Square matrix expected.\n"
 msgstr "第一个参数的类型错误：应该为方阵。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgid "Wrong type for argument #%d: Square matrix expected.\n"
 msgstr "第%d个参数类型错误：应该为方阵。\n"
 
 msgid "Invalid index.\n"
@@ -281,8 +281,8 @@ msgid "Wrong first argument.\n"
 msgstr "第一个参数错误。\n"
 
 #, c-format
-msgid "Wrong input argument %d.\n"
-msgstr "第%d个输入参数错误。\n"
+msgid "Wrong input argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "Incorrect function at line %d.\n"
@@ -310,8 +310,8 @@ msgid "Not implemented in scilab...\n"
 msgstr "在Scilab中尚未实现...\n"
 
 #, c-format
-msgid "Wrong argument %d.\n"
-msgstr "第%d个参数错误。\n"
+msgid "Wrong argument #%d.\n"
+msgstr ""
 
 #, c-format
 msgid "null matrix (argument # %d).\n"
@@ -335,23 +335,23 @@ msgid "subroutine not found: %s\n"
 msgstr "没有发现子程序：%s\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgid "Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "第%d个参数的类型错误：应该为实矩阵。\n"
 
 #, c-format
-msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
-msgstr "第%d个输入参数的类型错误：应该为实数或复数矩阵。\n"
+msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
+msgstr ""
 
 #, c-format
-msgid "Wrong type for input argument %d: Polynomial expected.\n"
-msgstr "第%d个输入参数的类型错误：应该为多项式。\n"
+msgid "Wrong type for input argument #%d: Polynomial expected.\n"
+msgstr ""
 
 #, c-format
-msgid "Wrong type for argument %d: String expected.\n"
+msgid "Wrong type for argument #%d: String expected.\n"
 msgstr "第%d个参数的类型错误：应该字符串。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: List expected.\n"
+msgid "Wrong type for argument #%d: List expected.\n"
 msgstr "第%d个参数的类型错误：应该列表。\n"
 
 msgid "Problem with comparison symbol...\n"
@@ -450,19 +450,19 @@ msgid "Incorrect function (argument n: %d).\n"
 msgstr "不正确的函数（参数n：%d）\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为实数或者复数矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该是实数矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为实数向量。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
 msgstr "%s：参数%d的类型错误：应该为标量。\n"
 
 msgid "Host does not answer...\n"
@@ -479,40 +479,40 @@ msgid "%s: singular or asymmetric problem.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong size for argument %d.\n"
+msgid "Wrong size for argument #%d.\n"
 msgstr "第%d个参数的大小错误。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
 msgstr "第%d个参数的类型错误：应该为转换矩阵。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In state space form expected.\n"
+msgid "Wrong type for argument #%d: In state space form expected.\n"
 msgstr "第%d个参数的类型错误：应该为状态空间方式。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational matrix expected.\n"
 msgstr "第%d个参数的类型错误：应该为有理数矩阵。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgid "Wrong type for argument #%d: In continuous time expected.\n"
 msgstr "第%d个参数的类型错误：应该在连续时间内。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgid "Wrong type for argument #%d: In discrete time expected.\n"
 msgstr "第%d个参数的类型错误：应该在离散时间内。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: SISO expected.\n"
+msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr "第%d个参数的类型错误：应该为SISO。\n"
 
 #, c-format
-msgid "time domain of argument %d is not defined.\n"
-msgstr "第%d个参数的时间域未定义。\n"
+msgid "time domain of argument #%d is not defined.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: A system in state space or transfer matrix form "
+"Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
 msgstr "第%d个参数的类型错误：应该为一个在状态空间内的系统或转换矩阵形式。\n"
 
@@ -598,7 +598,7 @@ msgstr ""
 "请报告该bug：\n"
 
 #, c-format
-msgid "Wrong value for argument %d.\n"
+msgid "Wrong value for argument #%d.\n"
 msgstr "第%d个参数的值错误。\n"
 
 #, c-format
@@ -607,7 +607,7 @@ msgstr "列表（list）元素数目%d未定义。\n"
 
 #, c-format
 msgid ""
-"Wrong type for argument %d: Named variable not an expression expected.\n"
+"Wrong type for argument #%d: Named variable not an expression expected.\n"
 msgstr "第%d个参数的类型错误：应该为一个已被命名的变量，不能是一个表达式。\n"
 
 msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
@@ -697,45 +697,45 @@ msgid "check or define function %s for overloading.\n"
 msgstr "请检查或定义函数%s来解决重载问题。\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s：参数%d的大小错误：应该为(%d,%d)。\n"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s：参数%d的大小错误：应该为%d。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr "%s：参数%d的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为bool矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
+msgid "%s: Wrong type for argument #%d: List expected.\n"
 msgstr "%s：参数%d的类型错误：应该为列表(list)。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for argument %d: Function or string (external function) "
+"%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
 msgstr "%s：参数%d的类型错误：应该为函数或者字符串（外部函数）。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
 msgstr "%s：参数%d的类型错误：应该为多项式。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
 msgstr "%s：参数%d的类型错误：应该为工作整数矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgid "%s: Wrong type for argument #%d: Vector expected.\n"
 msgstr "%s：参数%d的类型错误：应该为向量。\n"
 
 #, c-format
@@ -746,20 +746,20 @@ msgid "Argument type must be boolean.\n"
 msgstr "参数的类型必须为布尔型。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
 msgstr "参数%d的类型错误：应该为布尔类型或标量。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
 msgstr "参数%d的类型错误：应该为稀疏矩阵。\n"
 
 #, c-format
-msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgid "Wrong type for argument #%d: Handle to sparse lu factors expected.\n"
 msgstr "参数%d的类型错误：应该为稀疏lu因子的句柄。\n"
 
 #, c-format
-msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
-msgstr "参数%d的类型错误：应该为稀疏或稠密矩阵。\n"
+msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
+msgstr ""
 
 msgid "Null variable cannot be used here.\n"
 msgstr "此处不可使用空变量（null）。\n"
@@ -859,15 +859,15 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr "给定参数类型的函数未定义。\n"
 
 #, c-format
-msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr "参数%d的值错误：句柄lu不再正确。\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgid "Wrong value for argument #%d: Valid variable name expected.\n"
 msgstr "参数%d的值错误：应该为正确的变量名。\n"
 
 #, c-format
-msgid "Wrong value for argument %d: Empty string expected.\n"
+msgid "Wrong value for argument #%d: Empty string expected.\n"
 msgstr "参数%d的值错误：应该为空字符串。\n"
 
 msgid "Recursive extraction is not valid in this context.\n"
@@ -920,7 +920,7 @@ msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr "参数%d的值错误：不能包含NaN和Inf。\n"
 
 #, c-format
@@ -941,12 +941,12 @@ msgstr "在参数%d处输入的函数的返回值错误。\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+"Wrong value for argument #%d: eigenvalues must have negative real parts.\n"
 msgstr "参数%d的值错误：特征值必须具有负实数部分。\n"
 
 #, c-format
 msgid ""
-"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+"Wrong value for argument #%d: eigenvalues modulus must be less than one.\n"
 msgstr "参数%d的值错误：特征值modulus必须少于一个。\n"
 
 #, c-format
@@ -1325,22 +1325,31 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
-msgstr "%s：调用%s的次数已经达到或超出%s。\n"
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr ""
 
-#, c-format
-msgid ""
-"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgid "Warning"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s: %s is too small. %s is orthogonal to the columns of the jacobian to "
 "machine precision.\n"
 msgstr ""
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly：变量名长度必须至少为5个字符。\n"
+
+msgid ""
+"Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
+"Scilab 6.0.\n"
+"  Use \"vector .^ scalar\" instead.\n"
+msgstr ""
 
 #, c-format
 msgid "  (cont'd) %s\n"

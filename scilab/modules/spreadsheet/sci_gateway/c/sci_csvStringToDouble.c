@@ -25,7 +25,7 @@
 #include "stringToComplex.h"
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
-#include "csv_complex.h"
+#include "complex_array.h"
 
 // =============================================================================
 int sci_csvStringToDouble(char *fname, unsigned long fname_len)
@@ -37,7 +37,7 @@ int sci_csvStringToDouble(char *fname, unsigned long fname_len)
 
     BOOL bConvertToNan = TRUE;
 
-    csv_complexArray *ptrCsvComplexArray = NULL;
+    complexArray *ptrComplexArray = NULL;
     stringToComplexError ierr = STRINGTOCOMPLEX_ERROR;
 
     CheckRhs(1, 2);
@@ -62,12 +62,12 @@ int sci_csvStringToDouble(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    ptrCsvComplexArray = stringsToCsvComplexArray((const char**)pStringValues, m1 * n1, getCsvDefaultDecimal(), bConvertToNan, &ierr);
+    ptrComplexArray = stringsToComplexArray((const char**)pStringValues, m1 * n1, getCsvDefaultDecimal(), bConvertToNan, &ierr);
 
     freeArrayOfString(pStringValues, m1 * n1);
     pStringValues = NULL;
 
-    if (ptrCsvComplexArray == NULL)
+    if (ptrComplexArray == NULL)
     {
         switch (ierr)
         {
@@ -87,16 +87,16 @@ int sci_csvStringToDouble(char *fname, unsigned long fname_len)
         case STRINGTOCOMPLEX_NOT_A_NUMBER:
         case STRINGTOCOMPLEX_NO_ERROR:
         {
-            if (ptrCsvComplexArray->isComplex)
+            if (ptrComplexArray->isComplex)
             {
-                sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, ptrCsvComplexArray->realPart, ptrCsvComplexArray->imagPart);
+                sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, ptrComplexArray->realPart, ptrComplexArray->imagPart);
             }
             else
             {
-                sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, ptrCsvComplexArray->realPart);
+                sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, m1, n1, ptrComplexArray->realPart);
             }
-            freeCsvComplexArray(ptrCsvComplexArray);
-            ptrCsvComplexArray = NULL;
+            freeComplexArray(ptrComplexArray);
+            ptrComplexArray = NULL;
         }
         break;
 

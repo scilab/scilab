@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-//
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 8726 -->
 //
 // <-- Bugzilla URL -->

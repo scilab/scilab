@@ -105,7 +105,7 @@
         clf();evans(H,100);sgrid()
         ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
                 clf();evans(H,100);sgrid()
             </scilab:image>

@@ -56,6 +56,12 @@
     <ClCompile Include="MlistGetFieldNumber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lsodar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ddaskr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_buildouttb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -164,12 +170,6 @@
     <ClCompile Include="scicos_malloc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scicosclip.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="slider.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -209,6 +209,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MlistGetFieldNumber.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lsodar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ddaskr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scicos-def.h">
@@ -277,6 +283,9 @@
       <Filter>localization</Filter>
     </None>
     <None Include="Core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="differential_equations_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>

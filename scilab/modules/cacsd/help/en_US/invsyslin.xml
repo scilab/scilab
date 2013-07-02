@@ -43,6 +43,17 @@
             <literal>inv(S)</literal> when <literal>S</literal> is a <literal>syslin</literal> list.
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a=0.5;
+b=1;
+c=2;
+sl=syslin('c',a,b,c);
+slInversed=invsyslin(sl)
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

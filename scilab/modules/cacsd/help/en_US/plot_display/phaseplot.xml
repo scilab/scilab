@@ -150,25 +150,17 @@
                     given either by it's complex representation
                     <literal>repf</literal> or by it's magnitude phase
                     representation <literal>db</literal>,
-                    <literal>phi</literal>
+                    <literal>phi</literal>.
                 </para>
-                .
-                
                 <para>
                     <literal>frq</literal> and <literal>repf</literal> must
                     be row vectors or n x m arrays (each row represent an
-                    input/output couple)
+                    input/output couple).
                 </para>
-                .
             </listitem>
         </itemizedlist>
         <para>
-            The 
-            <member>
-                <link linkend="datatips">datatips</link>
-            </member>
-            tool may be used
-            to display data along the phase curves.
+            The <link linkend="datatips">datatips</link> tool may be used to display data along the phase curves.
         </para>
     </refsection>
     <refsection>
@@ -184,7 +176,7 @@
 
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s')
                 h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
                 h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))

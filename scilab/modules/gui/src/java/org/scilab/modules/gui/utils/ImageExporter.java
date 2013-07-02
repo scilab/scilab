@@ -14,6 +14,10 @@ package org.scilab.modules.gui.utils;
 
 import java.awt.Image;
 
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+
 
 /**
  * Class specialized in exporting graphic rendering into an image.
@@ -22,7 +26,7 @@ import java.awt.Image;
 public final class ImageExporter {
 
     /**
-     * Default consturctor
+     * Default constructor
      */
     protected ImageExporter() {
 
@@ -34,20 +38,14 @@ public final class ImageExporter {
      * @param figureIndex index of the figure to export
      * @return copy of the OpenGL canvas of the figure or null if an error occurred
      */
-    public static Image imageExport(int figureIndex) {
-        /*
-        DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
-
-        if (exportedFig == null) {
-        	// figure no longer exists
-        	return null;
+    public static Image imageExport(String uid) {
+        DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
+        Canvas canvas = visitor.getCanvas();
+        if (canvas instanceof JoGLCanvas) {
+            JoGLCanvas joglCanvas = (JoGLCanvas) canvas;
+            return joglCanvas.getImage();
         }
 
-        ImageExportRenderer exporter = new ImageExportRenderer();
-
-        // export canvas
-        return exporter.exportToImage(exportedFig.getRenderingTarget());
-        */
         return null;
     }
 

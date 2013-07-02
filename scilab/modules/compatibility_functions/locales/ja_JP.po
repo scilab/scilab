@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-01 15:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -32,23 +32,13 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr "%s: 入力引数 #%d が間違っています: 大きさに一貫性がありません.\n"
-
-#, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
-"expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数,整数または文字列の行列を指定してください.\n"
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr "%s: 入力引数の型が間違っています: セル要素は文字列配列としてください.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
 msgstr "%s: この機能は実装されていません.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
-msgstr "%s: 入力引数の型が間違っています: セル要素は文字列配列としてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"

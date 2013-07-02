@@ -1,21 +1,21 @@
 /*
 * -----------------------------------------------------------------
-* Allan CORNET - 2009 
+* Allan CORNET - 2009
 * For details, see sundials/shared/LICENSE.
 * -----------------------------------------------------------------
 */
 
-#include "sundials_extension.h"
+#include "sundials/sundials_extension.h"
 
 BOOL bsundialsExtended = FALSE;
 
 BOOL is_sundials_with_extension(void)
 {
-	return bsundialsExtended;
+    return bsundialsExtended;
 }
 
 BOOL set_sundials_with_extension(BOOL _mode)
 {
-	bsundialsExtended = _mode;
-	return bsundialsExtended;
+    bsundialsExtended = _mode;
+    return bsundialsExtended;
 }

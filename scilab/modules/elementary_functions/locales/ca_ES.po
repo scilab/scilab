@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2011-09-01 09:53+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-01-26 04:12+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: ca\n"
 
 #, c-format
@@ -93,10 +93,29 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "real.\n"
 
+msgid "This usage of the third argument of gsort is obsolete."
+msgstr ""
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+
+msgid "It will be more strict in Scilab 6."
+msgstr ""
+
+msgid "Please use 'd' or 'i' instead."
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
+msgstr ""
+
+msgid "This usage of the second argument of gsort is obsolete."
+msgstr ""
+
+msgid "Please use 'r', 'c', 'g', 'lr' or 'lc' instead."
 msgstr ""
 
 #, c-format
@@ -247,42 +266,6 @@ msgstr ""
 "de cadenes de text.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
-"real.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
-"enter.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
-"real.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
-"enter.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un nombre "
-"enter major o igual que %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada són d'un tipus incorrecte: Ha de ser del mateix "
@@ -311,6 +294,12 @@ msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és incorrecte: Ha de ser un nombre enter sense "
 "signe.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -367,7 +356,7 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -399,6 +388,18 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un "
 "escalar/matriu/hipermatriu de nombres enters positius.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
+"enter.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"enter.\n"
 
 #, c-format
 msgid ""
@@ -476,6 +477,12 @@ msgstr ""
 "el mateix nombre.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
@@ -522,6 +529,12 @@ msgstr ""
 "la de l'argument #%d.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
+"real.\n"
+
+#, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
@@ -547,6 +560,10 @@ msgstr ""
 msgid ""
 "%s: Wrong number of output matrix dimensions required: %d expected for "
 "sparse matrices.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
 msgstr ""
 
 #, c-format

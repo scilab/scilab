@@ -47,9 +47,9 @@ BOOL InitializeJVM(void)
     if (!startJVM(sciPath))
     {
 #ifdef _MSC_VER
-        MessageBox(NULL, gettext("\nScilab cannot open JVM library.\n"), gettext("Error"), MB_ICONEXCLAMATION|MB_OK);
+        MessageBox(NULL, gettext("\nScilab cannot open JVM library.\n"), gettext("Error"), MB_ICONEXCLAMATION | MB_OK);
 #else
-        fprintf(stderr,_("\nScilab cannot open JVM library.\n"));
+        fprintf(stderr, _("\nScilab cannot open JVM library.\n"));
 #endif
     }
     else
@@ -64,7 +64,7 @@ BOOL InitializeJVM(void)
             if (IsFromJava())
             {
                 char *errorMsg2 = gettext("If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is not adding extra dependencies which could not be found at runtime.\n");
-                char *tempMsg = (char*)MALLOC(sizeof(char)*(strlen(errorMsg) + strlen(errorMsg2) + 1));
+                char *tempMsg = (char*)MALLOC(sizeof(char) * (strlen(errorMsg) + strlen(errorMsg2) + 1));
                 if (tempMsg)
                 {
                     strcpy(tempMsg, errorMsg);
@@ -74,7 +74,7 @@ BOOL InitializeJVM(void)
                 }
             }
 #ifdef _MSC_VER
-            MessageBox(NULL, errorMsg, gettext("Error"), MB_ICONEXCLAMATION|MB_OK);
+            MessageBox(NULL, errorMsg, gettext("Error"), MB_ICONEXCLAMATION | MB_OK);
 #else
             fprintf(stderr, "%s", errorMsg);
 #endif
@@ -96,25 +96,36 @@ BOOL InitializeJVM(void)
         sciPath = NULL;
     }
 
-    if (!bOK) exit(1);
+    if (!bOK)
+    {
+        exit(1);
+    }
 
     return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 static void DoLoadClasspathInEtc(char *sciPath)
 {
-    char *classpathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLCLASSPATH)+1));
-    sprintf(classpathfile,XMLCLASSPATH,sciPath);
+    char *classpathfile = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(XMLCLASSPATH) + 1));
+    sprintf(classpathfile, XMLCLASSPATH, sciPath);
     LoadClasspath(classpathfile);
-    if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
+    if (classpathfile)
+    {
+        FREE(classpathfile);
+        classpathfile = NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/
 static void DoLoadLibrarypathInEtc(char *sciPath)
 {
-    char *librarypathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLLIBRARYPATH)+1));
-    sprintf(librarypathfile,XMLLIBRARYPATH,sciPath);
+    char *librarypathfile = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(XMLLIBRARYPATH) + 1));
+    sprintf(librarypathfile, XMLLIBRARYPATH, sciPath);
     LoadLibrarypath(librarypathfile);
-    if (librarypathfile) {FREE(librarypathfile); librarypathfile = NULL;}
+    if (librarypathfile)
+    {
+        FREE(librarypathfile);
+        librarypathfile = NULL;
+    }
 }
 /*--------------------------------------------------------------------------*/
 BOOL ExecuteInitialHooks(void)

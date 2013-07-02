@@ -80,7 +80,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <xref linkend="Example_PID">Examples</xref>
+                            <xref linkend="Examples_PID">Examples</xref>
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -279,74 +279,91 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../images/PID_img3_eng.gif" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_internal.zcos" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
     </refsection>
-    <refsection id="Example_PID">
-        <title>Example 1</title>
-        <para>This example illustrates the usage of PID regulator. It enables you
-            to fit the output signal Upr(t) to the required signal Ur(t)
-            easily.
-        </para>
-        <para>In this example the control system is a second-order unity-gain
-            low-pass filter with damping ratio ξ=0.5 and cutoff frequency fc= 100 Hz.
-            Its transfer function H(s) is:
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/pid_filter.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>To model this filter we use Continuous transfer function block (CLR)
-            from Continuous time systems Palette.
-        </para>
-        <para>The PID parameters Kp, Ki and Kd are set to 100, 0.1 and 0.</para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/pid_filter_parameters.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>The scope displays the waveforms of system error Ue (black),
-            reference signal Ur (blue) and process signal Upr(red). It shows how
-            initially the process signal Upr(t) does not follow the reference signal
-            Ur(t).
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/pid_example.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
-    <refsection id="Example_PID">
-        <title>Example 2</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_Example.xcos">
+    <refsection id="Examples_PID">
+        <title>Examples</title>
+        <refsection id="Example_1_PID">
+            <title>Example 1</title>
+            <para>This example illustrates the usage of PID regulator. It enables you
+                to fit the output signal Upr(t) to the required signal Ur(t)
+                easily.
+            </para>
+            <para>In this example the control system is a second-order unity-gain
+                low-pass filter with damping ratio ξ=0.5 and cutoff frequency fc= 100 Hz.
+                Its transfer function H(s) is:
+            </para>
+            <para>
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../examples/pid_filter.gif" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </link>
-        </para>
-    </refsection>
-    <refsection id="Example_2_PID">
-        <title>Example 3</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID2_Example.xcos">
+            </para>
+            <para>To model this filter we use Continuous transfer function block (CLR)
+                from Continuous time systems Palette.
+            </para>
+            <para>The PID parameters Kp, Ki and Kd are set to 100, 0.1 and 0.</para>
+            <para>
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/PID2_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../examples/pid_filter_parameters.png" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
-            </link>
-        </para>
+            </para>
+            <para>The scope displays the waveforms of system error Ue (black),
+                reference signal Ur (blue) and process signal Upr(red). It shows how
+                initially the process signal Upr(t) does not follow the reference signal
+                Ur(t).
+            </para>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_1_Example.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_1_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
+        <refsection id="Example_2_PID">
+            <title>Example 2</title>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_2_Example.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_2_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
+        <refsection id="Example_3_PID">
+            <title>Example 3</title>
+            <para>
+                <link type="scilab" linkend="scilab.zcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/PID_3_Example.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_3_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
     </refsection>
 </refentry>

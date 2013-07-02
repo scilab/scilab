@@ -20,9 +20,9 @@
 //
 
 //------------------------------------
-if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-genlib('Eventslib','SCI/modules/scicos_blocks/macros/Events',%f,%t);
+genlib("Eventslib","SCI/modules/scicos_blocks/macros/Events",%f,%t);
 //------------------------------------

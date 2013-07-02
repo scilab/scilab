@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
-        <synopsis/>
+        
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -92,7 +92,7 @@
     cj=c(10+j); // -45° 曲線のハンドル
     cj.children(1).thickness=3;//線幅を太くする
      ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             clf();hallchart()
             ax=gca();
             c=ax.children($).children;
@@ -103,7 +103,6 @@
             j=3;
             cj=c(10+j);
             cj.children(1).thickness=3;
-            
         </scilab:image>
     </refsection>
     <refsection>
@@ -113,7 +112,7 @@
     clf();hallchart()
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 hallchart()
             </scilab:image>
         </para>
@@ -132,7 +131,7 @@
     Leg.legend_location="in_lower_right";
     ]]></programlisting>
         <para>
-            <scilab:image>
+            <scilab:image localized="true">
                 s=poly(0,'s');
                 Plant=syslin('c',16000/((s+1)*(s+10)*(s+100)));
                 tau=0.2;xsi=1.2;

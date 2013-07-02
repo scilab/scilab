@@ -264,13 +264,14 @@ public enum XcosFileType {
 
         int index = 0;
         for (FileFilter fileFilter : filters) {
-            if (fileFilter == filter) {
+            if (fileFilter.getDescription() == filter.getDescription()) {
                 break;
             }
 
             index++;
         }
 
+        // the first filter is the "All supported file type", start from -1
         if (index > 0) {
             return XcosFileType.values()[index - 1];
         } else {

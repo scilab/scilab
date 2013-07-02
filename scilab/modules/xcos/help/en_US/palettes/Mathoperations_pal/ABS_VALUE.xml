@@ -115,7 +115,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">use zero_crossing</emphasis>
+                    <emphasis role="bold">Use zero_crossing</emphasis>
                 </para>
                 <para> Select to enable zero crossing detection.</para>
                 <para> Properties : Type 'vec' of size 1.</para>
@@ -196,13 +196,19 @@
     </refsection>
     <refsection id="Example_ABS_VALUE">
         <title>Example</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.xcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/mathoperations_pal/ABS_VALUE_Example.xcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/mathoperations_pal/ABS_VALUE_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/mathoperations_pal/ABS_VALUE_Example.zcos"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/mathoperations_pal/ABS_VALUE_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_ABS_VALUE">
         <title>Interfacing function</title>

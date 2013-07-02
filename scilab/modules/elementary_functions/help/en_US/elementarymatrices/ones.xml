@@ -79,11 +79,25 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>
-            Note that <literal>ones(3)</literal> is <literal>ones(a)</literal>
-            with <literal>a=3</literal> i.e it is NOT a 3x3 matrix!
-        </para>
-        <para>ones() is equivalent to ones(1,1).</para>
+    </refsection>
+    <refsection>
+        <title>Remarks</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Note that <literal>ones(3)</literal> is <literal>ones(a)</literal>
+                    with <literal>a=3</literal> i.e it is NOT a 3x3 matrix!
+                </para>
+            </listitem>
+            <listitem>
+                <para>ones() is equivalent to ones(1,1).</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <literal>ones(3,-3)</literal> and <literal>ones(-3,-3)</literal> both return an empty matrix.
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection>
         <title>Examples</title>

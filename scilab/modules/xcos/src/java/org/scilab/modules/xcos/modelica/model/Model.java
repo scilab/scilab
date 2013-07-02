@@ -26,8 +26,9 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Model", propOrder = { "name", "modelInfo", "identifiers",
-        "implicitRelations", "explicitRelations", "outputs", "elements",
-        "equations", "whenClauses" })
+                                       "implicitRelations", "explicitRelations", "outputs", "elements",
+                                       "equations", "whenClauses"
+                                     })
 @XmlRootElement(name = "model")
 public final class Model {
 
@@ -53,9 +54,9 @@ public final class Model {
 
     /**
      * Gets the value of the name property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getName() {
         return name;
@@ -63,10 +64,10 @@ public final class Model {
 
     /**
      * Sets the value of the name property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setName(String value) {
         name = value;
@@ -74,9 +75,9 @@ public final class Model {
 
     /**
      * Gets the value of the modelInfo property.
-     * 
+     *
      * @return possible object is {@link Info }
-     * 
+     *
      */
     public Info getModelInfo() {
         return modelInfo;
@@ -84,10 +85,10 @@ public final class Model {
 
     /**
      * Sets the value of the modelInfo property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Info }
-     * 
+     *
      */
     public void setModelInfo(Info value) {
         modelInfo = value;
@@ -95,9 +96,9 @@ public final class Model {
 
     /**
      * Gets the value of the identifiers property.
-     * 
+     *
      * @return possible object is {@link Model.Identifiers }
-     * 
+     *
      */
     public Model.Identifiers getIdentifiers() {
         return identifiers;
@@ -105,10 +106,10 @@ public final class Model {
 
     /**
      * Sets the value of the identifiers property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Model.Identifiers }
-     * 
+     *
      */
     public void setIdentifiers(Model.Identifiers value) {
         identifiers = value;
@@ -116,9 +117,9 @@ public final class Model {
 
     /**
      * Gets the value of the implicitRelations property.
-     * 
+     *
      * @return possible object is {@link Model.ImplicitRelations }
-     * 
+     *
      */
     public Model.ImplicitRelations getImplicitRelations() {
         return implicitRelations;
@@ -126,10 +127,10 @@ public final class Model {
 
     /**
      * Sets the value of the implicitRelations property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Model.ImplicitRelations }
-     * 
+     *
      */
     public void setImplicitRelations(Model.ImplicitRelations value) {
         implicitRelations = value;
@@ -137,9 +138,9 @@ public final class Model {
 
     /**
      * Gets the value of the explicitRelations property.
-     * 
+     *
      * @return possible object is {@link Model.ExplicitRelations }
-     * 
+     *
      */
     public Model.ExplicitRelations getExplicitRelations() {
         return explicitRelations;
@@ -147,10 +148,10 @@ public final class Model {
 
     /**
      * Sets the value of the explicitRelations property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Model.ExplicitRelations }
-     * 
+     *
      */
     public void setExplicitRelations(Model.ExplicitRelations value) {
         explicitRelations = value;
@@ -158,9 +159,9 @@ public final class Model {
 
     /**
      * Gets the value of the outputs property.
-     * 
+     *
      * @return possible object is {@link Model.Outputs }
-     * 
+     *
      */
     public Model.Outputs getOutputs() {
         return outputs;
@@ -168,10 +169,10 @@ public final class Model {
 
     /**
      * Sets the value of the outputs property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Model.Outputs }
-     * 
+     *
      */
     public void setOutputs(Model.Outputs value) {
         outputs = value;
@@ -179,9 +180,9 @@ public final class Model {
 
     /**
      * Gets the value of the elements property.
-     * 
+     *
      * @return possible object is {@link Model.Elements }
-     * 
+     *
      */
     public Model.Elements getElements() {
         return elements;
@@ -189,10 +190,10 @@ public final class Model {
 
     /**
      * Sets the value of the elements property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Model.Elements }
-     * 
+     *
      */
     public void setElements(Model.Elements value) {
         elements = value;
@@ -200,9 +201,9 @@ public final class Model {
 
     /**
      * Gets the value of the equations property.
-     * 
+     *
      * @return possible object is {@link Model.Equations }
-     * 
+     *
      */
     public Model.Equations getEquations() {
         return equations;
@@ -210,10 +211,10 @@ public final class Model {
 
     /**
      * Sets the value of the equations property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Model.Equations }
-     * 
+     *
      */
     public void setEquations(Model.Equations value) {
         equations = value;
@@ -221,9 +222,9 @@ public final class Model {
 
     /**
      * Gets the value of the whenClauses property.
-     * 
+     *
      * @return possible object is {@link Model.WhenClauses }
-     * 
+     *
      */
     public Model.WhenClauses getWhenClauses() {
         return whenClauses;
@@ -231,10 +232,10 @@ public final class Model {
 
     /**
      * Sets the value of the whenClauses property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Model.WhenClauses }
-     * 
+     *
      */
     public void setWhenClauses(Model.WhenClauses value) {
         whenClauses = value;
@@ -257,25 +258,25 @@ public final class Model {
 
         /**
          * Gets the value of the struct property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the struct property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getStruct().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link Struct }
-         * 
+         *
          * @return the value of the struct property.
          */
         public List<Struct> getStruct() {
@@ -304,25 +305,25 @@ public final class Model {
 
         /**
          * Gets the value of the equation property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the equation property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getEquation().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link ModelicaValue }
-         * 
+         *
          * @return the value of the equation property.
          */
         public List<ModelicaValue> getEquation() {
@@ -352,25 +353,25 @@ public final class Model {
 
         /**
          * Gets the value of the explicitRelation property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the explicitRelation property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getExplicitRelation().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link Model.ExplicitRelations.ExplicitRelation }
-         * 
+         *
          * @return the value of the explicitRelation property.
          */
         public List<Model.ExplicitRelations.ExplicitRelation> getExplicitRelation() {
@@ -398,25 +399,25 @@ public final class Model {
 
             /**
              * Gets the value of the explicitVariable property.
-             * 
+             *
              * <p>
              * This accessor method returns a reference to the live list, not a
              * snapshot. Therefore any modification you make to the returned
              * list will be present inside the JAXB object. This is why there is
              * not a <CODE>set</CODE> method for the explicitVariable property.
-             * 
+             *
              * <p>
              * For example, to add a new item, do as follows:
-             * 
+             *
              * <pre>
              * getExplicitVariable().add(newItem);
              * </pre>
-             * 
-             * 
+             *
+             *
              * <p>
              * Objects of the following type(s) are allowed in the list
              * {@link String }
-             * 
+             *
              * @return the value of the explicitVariable property.
              */
             public List<String> getExplicitVariable() {
@@ -435,7 +436,8 @@ public final class Model {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "parameter", "explicitVariable",
-            "implicitVariable" })
+                                      "implicitVariable"
+                                    })
     public static class Identifiers {
 
         private List<String> parameter;
@@ -452,25 +454,25 @@ public final class Model {
 
         /**
          * Gets the value of the parameter property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the parameter property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getParameter().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link String }
-         * 
+         *
          * @return the value of the parameter property.
          */
         public List<String> getParameter() {
@@ -482,25 +484,25 @@ public final class Model {
 
         /**
          * Gets the value of the explicitVariable property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the explicitVariable property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getExplicitVariable().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link String }
-         * 
+         *
          * @return the value of the explicitVariable property.
          */
         public List<String> getExplicitVariable() {
@@ -512,25 +514,25 @@ public final class Model {
 
         /**
          * Gets the value of the implicitVariable property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the implicitVariable property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getImplicitVariable().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link String }
-         * 
+         *
          * @return the value of the implicitVariable property.
          */
         public List<String> getImplicitVariable() {
@@ -560,25 +562,25 @@ public final class Model {
 
         /**
          * Gets the value of the implicitRelation property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the implicitRelation property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getImplicitRelation().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link Model.ImplicitRelations.ImplicitRelation }
-         * 
+         *
          * @return the value of the implicitRelation property.
          */
         public List<Model.ImplicitRelations.ImplicitRelation> getImplicitRelation() {
@@ -606,25 +608,25 @@ public final class Model {
 
             /**
              * Gets the value of the implicitVariable property.
-             * 
+             *
              * <p>
              * This accessor method returns a reference to the live list, not a
              * snapshot. Therefore any modification you make to the returned
              * list will be present inside the JAXB object. This is why there is
              * not a <CODE>set</CODE> method for the implicitVariable property.
-             * 
+             *
              * <p>
              * For example, to add a new item, do as follows:
-             * 
+             *
              * <pre>
              * getImplicitVariable().add(newItem);
              * </pre>
-             * 
-             * 
+             *
+             *
              * <p>
              * Objects of the following type(s) are allowed in the list
              * {@link String }
-             * 
+             *
              * @return the value of the implicitVariable property.
              */
             public List<String> getImplicitVariable() {
@@ -640,7 +642,7 @@ public final class Model {
 
     /**
      * Wrapper around the {@link Output} list.
-     * 
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -656,25 +658,25 @@ public final class Model {
 
         /**
          * Gets the value of the output property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the output property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getOutput().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link Output }
-         * 
+         *
          * @return the value of the output property.
          */
         public List<Output> getOutput() {
@@ -687,8 +689,8 @@ public final class Model {
 
     /**
      * Wrapper around the when clauses.
-     * 
-     * This class is only partially defined as we need more informations on the
+     *
+     * This class is only partially defined as we need more information on the
      * internals.
      */
     @XmlAccessorType(XmlAccessType.FIELD)
@@ -705,25 +707,25 @@ public final class Model {
 
         /**
          * Gets the value of the whenClause property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a
          * snapshot. Therefore any modification you make to the returned list
          * will be present inside the JAXB object. This is why there is not a
          * <CODE>set</CODE> method for the output property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getWhenClause().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link String }
-         * 
+         *
          * @return the value of the whenClause property.
          */
         public List<String> getWhenClause() {

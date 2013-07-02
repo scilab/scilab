@@ -9,11 +9,13 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
+// Run with test_run('statistics','cdfgam',['no_check_error_output']);
+
 //
 // Assessing the quality of the Normal distribution function
 // References
 //   Yalta, A. T. 2008. The accuracy of statistical distributions in Microsoft®Excel 2007. Comput. Stat. Data Anal. 52, 10 (Jun. 2008), 4579-4586. DOI= http://dx.doi.org/10.1016/j.csda.2008.03.005 
-//   Computation of Statistical Distributions (ELV), Leo Knüsel 
+//   Computation of Statistical Distributions (ELV), Leo Knüsel
 // Table 5
 // Check Gamma distribution with parameters (x, alpha, beta = 1, Sigma = 1)
 //
@@ -22,16 +24,16 @@
 // Table of inputs from Yalta, 2008
 // [x shape scale P ]
 table = [
- 0.1 , 0.1 , 1 , 0.827552 
- 0.2 , 0.1 , 1 , 0.879420 
- 0.2 , 0.2 , 1 , 0.764435 
- 0.3 , 0.2 , 1 , 0.816527 
- 0.3 , 0.3 , 1 , 0.726957 
- 0.4 , 0.3 , 1 , 0.776381 
- 0.4 , 0.4 , 1 , 0.701441 
- 0.5 , 0.4 , 1 , 0.748019 
- 0.5 , 0.5 , 1 , 0.682689 
- 0.6 , 0.5 , 1 , 0.726678 
+ 0.1 , 0.1 , 1 , 0.827552
+ 0.2 , 0.1 , 1 , 0.879420
+ 0.2 , 0.2 , 1 , 0.764435
+ 0.3 , 0.2 , 1 , 0.816527
+ 0.3 , 0.3 , 1 , 0.726957
+ 0.4 , 0.3 , 1 , 0.776381
+ 0.4 , 0.4 , 1 , 0.701441
+ 0.5 , 0.4 , 1 , 0.748019
+ 0.5 , 0.5 , 1 , 0.682689
+ 0.6 , 0.5 , 1 , 0.726678
 ];
 
 precision = 1.e-5;
@@ -127,3 +129,17 @@ for i = 1 : ntests
   end
 end
 
+// IEEE support
+// See http://bugzilla.scilab.org/show_bug.cgi?id=7296
+Shape = 0;
+Rate = 1;
+
+X = %inf; // Inf
+[P, Q] = cdfgam("PQ", X, Shape, Rate);
+assert_checkequal(P, 1);
+assert_checkequal(Q, 0);
+
+X = %nan; // NaN
+[P, Q] = cdfgam("PQ", X, Shape, Rate);
+assert_checkequal(P, %nan);
+assert_checkequal(Q, %nan);

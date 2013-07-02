@@ -27,7 +27,7 @@
             <varlistentry>
                 <term>X  </term>
                 <listitem>
-                    <para>matrice réelle, complexe, polynomiale, rationnelle
+                    <para>matrice carrée réelle ou complexe (creuse ou pleine), polynomiale ou rationnelle
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,7 +50,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>det(X)</literal> ( <literal>m*10^e</literal> est le déterminant de la matrice carrée <literal>X</literal>.
+            <literal>det(X)</literal> ( <literal>m*10^e</literal> ) est le déterminant de la matrice carrée <literal>X</literal>.
         </para>
         <para>
             Pour les matrices polynomiales <literal>det(X)</literal> est équivalent à <literal>determ(X)</literal>.
@@ -85,6 +85,10 @@ det(A), prod(spec(A))
         <para>
             Le calcul du determinant est basé sur les routines Lapack :
             DGETRF pour les matrices réelles et  ZGETRF pour le cas complexe.
+        </para>
+        <para>
+            Concernant le cas des matrices creuses, le calcul du déterminant est effectué
+            à partir de la décomposition LU de la librairie umfpack.
         </para>
     </refsection>
 </refentry>

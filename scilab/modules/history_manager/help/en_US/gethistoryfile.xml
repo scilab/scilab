@@ -36,8 +36,19 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 gethistoryfile()
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    Default history file is SCIHOME/history (instead of SCIHOME/.history.scilab).
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

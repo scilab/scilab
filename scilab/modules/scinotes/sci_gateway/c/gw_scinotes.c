@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+static gw_generic_table Tab[] =
 {
     {sci_scinotes, "editor"},
     {sci_closeSciNotesFromScilab, "closeEditor"}
@@ -34,22 +34,22 @@ int gw_scinotes(void)
 
     if ( getScilabMode() == SCILAB_NWNI)
     {
-        Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "scinotes");
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "scinotes");
         return 0;
     }
 
-    if (!loadedDep) 
+    if (!loadedDep)
     {
         loadOnUseClassPath("SciNotes");
         loadedDep = TRUE;
     }
 
-    if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
     callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
     return 0;
 }

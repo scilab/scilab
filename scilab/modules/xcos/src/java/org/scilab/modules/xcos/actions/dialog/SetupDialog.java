@@ -41,6 +41,7 @@ import javax.swing.SpinnerNumberModel;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -66,25 +67,25 @@ public class SetupDialog extends JDialog {
      */
     private static final InputVerifier VALIDATE_POSITIVE_DOUBLE = new InputVerifier() {
 
-            @Override
-            public boolean verify(javax.swing.JComponent arg0) {
-                boolean ret = false;
-                JFormattedTextField textField = (JFormattedTextField) arg0;
-                try {
-                    BigDecimal value = new BigDecimal(textField.getText());
-                    if (value.compareTo(BigDecimal.ZERO) >= 0 && value.compareTo(MAX_DOUBLE) <= 0) {
-                        ret = true;
-                    }
-
-                    // bug #7143 workaround
-                    textField.setValue(value);
-                } catch (NumberFormatException e) {
-                    return ret;
+        @Override
+        public boolean verify(javax.swing.JComponent arg0) {
+            boolean ret = false;
+            JFormattedTextField textField = (JFormattedTextField) arg0;
+            try {
+                BigDecimal value = new BigDecimal(textField.getText());
+                if (value.compareTo(BigDecimal.ZERO) >= 0 && value.compareTo(MAX_DOUBLE) <= 0) {
+                    ret = true;
                 }
-                return ret;
 
-            };
+                // bug #7143 workaround
+                textField.setValue(value);
+            } catch (NumberFormatException e) {
+                return ret;
+            }
+            return ret;
+
         };
+    };
 
     /**
      * Initialize static final fields
@@ -97,6 +98,7 @@ public class SetupDialog extends JDialog {
     }
 
     private final ScicosParameters parameters;
+    private final XcosDiagram rootGraph;
 
     private JFormattedTextField integration;
     private JFormattedTextField rts;
@@ -105,7 +107,7 @@ public class SetupDialog extends JDialog {
     private JFormattedTextField toleranceOnTime;
     private JFormattedTextField maxIntegrationTime;
     private JComboBox solver;
-    private JSpinner maxStepSize;
+    private JFormattedTextField maxStepSize;
 
     /**
      * Instanciate a new dialog.
@@ -115,7 +117,7 @@ public class SetupDialog extends JDialog {
      * @param parameters
      *            the current parameters
      */
-    public SetupDialog(Component parent, ScicosParameters parameters) {
+    public SetupDialog(Component parent, XcosDiagram graph, ScicosParameters parameters) {
         super();
 
         this.parameters = parameters;
@@ -127,6 +129,7 @@ public class SetupDialog extends JDialog {
         setTitle(XcosMessages.SETUP_TITLE);
         setModal(false);
         setLocationRelativeTo(parent);
+        rootGraph = graph;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ScilabSwingUtilities.closeOnEscape(this);
 
@@ -171,20 +174,22 @@ public class SetupDialog extends JDialog {
         maxIntegrationTime.setValue(new BigDecimal(parameters.getMaxIntegrationTimeInterval()));
 
         JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
-        final String[] solvers = new String[] { "lsodar - BDF - NEWTON ", "Sundials/CVODE - BDF - NEWTON", "Sundials/CVODE - BDF - FUNCTIONAL",
-                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Runge-Kutta 4(5)", "Sundials/IDA"
-        };
-        final String[] solversTooltips = new String[] { "Not available yet", "Method: BDF, Nonlinear solver= NEWTON",
-                                                        "Method: BDF, Nonlinear solver= FUNCTIONAL", "Method: ADAMS, Nonlinear solver= NEWTON", "Method: ADAMS, Nonlinear solver= FUNCTIONAL",
-                                                        "Not available yet", "Sundials/IDA"
-        };
+        final String[] solvers = new String[] { "LSodar", "Sundials/CVODE - BDF - NEWTON", "Sundials/CVODE - BDF - FUNCTIONAL",
+                                                "Sundials/CVODE - ADAMS - NEWTON", "Sundials/CVODE - ADAMS - FUNCTIONAL", "DOPRI5 - Dormand-Prince 4(5)",
+                                                "RK45 - Runge-Kutta 4(5)", "Implicit RK45 - Runge-Kutta 4(5)", "Sundials/IDA", "DDaskr"
+                                              };
+        final String[] solversTooltips = new String[] { "Method: dynamic, Nonlinear solver= dynamic", "Method: BDF, Nonlinear solver= NEWTON",
+                "Method: BDF, Nonlinear solver= FUNCTIONAL", "Method: ADAMS, Nonlinear solver= NEWTON", "Method: ADAMS, Nonlinear solver= FUNCTIONAL",
+                "Method: Fixed step", "Method: Fixed step", "Method: Fixed step, Nonlinear solver= FIXED-POINT", "Method: BDF, Nonlinear solver= NEWTON", "Method: BDF, Nonlinear solver= NEWTON"
+                                                      };
 
         solver = new JComboBox(solvers);
         double solverValue = parameters.getSolver();
         if (solverValue >= 0.0 && solverValue <= solvers.length - 2) {
             solver.setSelectedIndex((int) solverValue);
         } else {
-            solver.setSelectedIndex(solvers.length - 1);
+            // IDA = 8+92 = 100, DDaskr = 9+92 = 101. Here, we turn IDA and DDaskr solver numbers back into indexes (8 and 9)
+            solver.setSelectedIndex((int) solverValue - 92);
         }
 
         final class ComboboxToolTipRenderer extends DefaultListCellRenderer {
@@ -201,10 +206,9 @@ public class SetupDialog extends JDialog {
         solver.setRenderer(new ComboboxToolTipRenderer());
 
         JLabel maxStepSizeLabel = new JLabel(XcosMessages.MAXIMUN_STEP_SIZE);
-        SpinnerNumberModel spinnerModel = new SpinnerNumberModel((int) parameters.getMaximumStepSize(), 0, null, 1);
-        maxStepSize = new JSpinner();
-        maxStepSize.setModel(spinnerModel);
-        maxStepSize.setEditor(new JSpinner.NumberEditor(maxStepSize, "0"));
+        maxStepSize = new JFormattedTextField(CURRENT_FORMAT);
+        maxStepSize.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
+        maxStepSize.setValue(new BigDecimal(parameters.getMaximumStepSize()));
 
         JButton cancelButton = new JButton(XcosMessages.CANCEL);
         JButton okButton = new JButton(XcosMessages.OK);
@@ -319,68 +323,68 @@ public class SetupDialog extends JDialog {
      */
     private void installActionListeners(JButton cancelButton, JButton okButton, JButton defaultButton, JButton setContextButton) {
         cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
         defaultButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    integration.setValue(new BigDecimal(ScicosParameters.FINAL_INTEGRATION_TIME));
-                    rts.setValue(new BigDecimal(ScicosParameters.REAL_TIME_SCALING));
-                    integrator.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE));
-                    integratorRel.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE));
-                    toleranceOnTime.setValue(new BigDecimal(ScicosParameters.TOLERANCE_ON_TIME));
-                    maxIntegrationTime.setValue(new BigDecimal(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL));
-                    solver.setSelectedIndex((int) ScicosParameters.SOLVER);
-                    maxStepSize.setValue((int) ScicosParameters.MAXIMUM_STEP_SIZE);
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                integration.setValue(new BigDecimal(ScicosParameters.FINAL_INTEGRATION_TIME));
+                rts.setValue(new BigDecimal(ScicosParameters.REAL_TIME_SCALING));
+                integrator.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE));
+                integratorRel.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE));
+                toleranceOnTime.setValue(new BigDecimal(ScicosParameters.TOLERANCE_ON_TIME));
+                maxIntegrationTime.setValue(new BigDecimal(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL));
+                solver.setSelectedIndex((int) ScicosParameters.SOLVER);
+                maxStepSize.setValue(new BigDecimal(ScicosParameters.MAXIMUM_STEP_SIZE));
+            }
+        });
 
         okButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (((JButton) e.getSource()).hasFocus()) {
-                        try {
-                            /*
-                             * FIXME This logic must be deported to a vetoable
-                             * handler
-                             */
-                            int solverSelectedIndex = solver.getSelectedIndex();
-                            if (solverSelectedIndex >= 0.0 && solverSelectedIndex <= solver.getModel().getSize() - 2) {
-                                parameters.setSolver(solverSelectedIndex);
-                            } else {
-                                parameters.setSolver(100.0);
-                            }
-
-                            parameters.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
-                            parameters.setRealTimeScaling(((BigDecimal) rts.getValue()).doubleValue());
-                            parameters.setIntegratorAbsoluteTolerance(((BigDecimal) integrator.getValue()).doubleValue());
-                            parameters.setIntegratorRelativeTolerance(((BigDecimal) integratorRel.getValue()).doubleValue());
-                            parameters.setToleranceOnTime(((BigDecimal) toleranceOnTime.getValue()).doubleValue());
-                            parameters.setMaxIntegrationTimeInterval(((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
-                            parameters.setMaximumStepSize(((Integer) maxStepSize.getValue()).doubleValue());
-
-                            dispose();
-
-                        } catch (PropertyVetoException ex) {
-                            Logger.getLogger(SetupAction.class.getName()).severe(ex.toString());
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (((JButton) e.getSource()).hasFocus()) {
+                    try {
+                        /*
+                         * FIXME This logic must be deported to a vetoable
+                         * handler
+                         */
+                        int solverSelectedIndex = solver.getSelectedIndex();
+                        if (solverSelectedIndex >= 0.0 && solverSelectedIndex <= solver.getModel().getSize() - 3) {
+                            parameters.setSolver(solverSelectedIndex);
+                        } else {
+                            parameters.setSolver(solverSelectedIndex + 92); // IDA = 8+92 = 100, DDaskr = 9+92 = 101
                         }
+
+                        parameters.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
+                        parameters.setRealTimeScaling(((BigDecimal) rts.getValue()).doubleValue());
+                        parameters.setIntegratorAbsoluteTolerance(((BigDecimal) integrator.getValue()).doubleValue());
+                        parameters.setIntegratorRelativeTolerance(((BigDecimal) integratorRel.getValue()).doubleValue());
+                        parameters.setToleranceOnTime(((BigDecimal) toleranceOnTime.getValue()).doubleValue());
+                        parameters.setMaxIntegrationTimeInterval(((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
+                        parameters.setMaximumStepSize(((BigDecimal) maxStepSize.getValue()).doubleValue());
+
+                        dispose();
+
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(SetupAction.class.getName()).severe(ex.toString());
                     }
                 }
-            });
+            }
+        });
 
         setContextButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, parameters);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                final SetContextDialog dialog = new SetContextDialog(SetupDialog.this, rootGraph, parameters);
 
-                    dialog.pack();
-                    dialog.setVisible(true);
-                }
-            });
+                dialog.pack();
+                dialog.setVisible(true);
+            }
+        });
     }
 }
 // CSON: ClassDataAbstractionCoupling

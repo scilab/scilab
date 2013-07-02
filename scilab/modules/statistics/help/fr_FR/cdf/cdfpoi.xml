@@ -42,7 +42,7 @@
             <varlistentry>
                 <term>S  </term>
                 <listitem>
-                    <para>Borne supérieure de la somme. En entrée : [0, +infini). En recherche : [0,1E300]
+                    <para>Matrice d'entiers. Borne supérieure de la somme. En entrée : [0, +infini). En recherche : [0,1E300]
                     </para>
                 </listitem>
             </varlistentry>

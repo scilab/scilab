@@ -80,6 +80,8 @@ void NgonGridGrayplotDataDecomposer::fillColors(char* id, float* buffer, int buf
     {
         decomposer->fillDirectGridColors(buffer, bufferLength, elementsSize, colormap, colormapSize, z, numX, numY);
     }
+
+    releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
 }
 
 int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
@@ -133,7 +135,7 @@ int NgonGridGrayplotDataDecomposer::fillIndices(char* id, int* buffer, int buffe
 
 int NgonGridGrayplotDataDecomposer::isFacetValid(double* z, double* values, int perNodeValues, int numX, int numY, int i, int j, int logUsed, int currentEdgeValid, int* nextEdgeValid)
 {
-    *nextEdgeValid = isFacetEdgeValid(z, values, perNodeValues, numX, numY, i+1, j, logUsed);
+    *nextEdgeValid = isFacetEdgeValid(z, values, perNodeValues, numX, numY, i + 1, j, logUsed);
 
     if (!perNodeValues)
     {
@@ -183,7 +185,7 @@ int NgonGridGrayplotDataDecomposer::isFacetEdgeValid(double* z, double* values, 
 
     /* First, z-coordinate values are tested */
     zij = getZCoordinate(z, numX, numY, i, j, logUsed);
-    zijp1 = getZCoordinate(z, numX, numY, i, j+1, logUsed);
+    zijp1 = getZCoordinate(z, numX, numY, i, j + 1, logUsed);
 
     lowerZValid = DecompositionUtils::isValid(zij);
     upperZValid = DecompositionUtils::isValid(zijp1);
@@ -201,7 +203,7 @@ int NgonGridGrayplotDataDecomposer::isFacetEdgeValid(double* z, double* values, 
     if (perNodeValues)
     {
         zij = getValue(values, numX, numY, i, j);
-        zijp1 = getValue(values, numX, numY, i, j+1);
+        zijp1 = getValue(values, numX, numY, i, j + 1);
 
         lowerZValid &= DecompositionUtils::isValid(zij);
         upperZValid &= DecompositionUtils::isValid(zijp1);

@@ -101,6 +101,9 @@
         <para>
             <function>fscanfMat</function> поддерживает файлы с кодировкой ANSI/ASCII и UTF-8.
         </para>
+        <para>
+            Для чтения CSV-файлов, рекомендуется функция <link linkend="csvRead">csvRead</link>.
+        </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -174,6 +177,9 @@
             </member>
             <member>
                 <link linkend="mdelete">mdelete</link>
+            </member>
+            <member>
+                <link linkend="csvRead">csvRead</link>
             </member>
         </simplelist>
     </refsection>

@@ -34,7 +34,7 @@
                 <term>t</term>
                 <listitem>
                     <para>
-                      вещественный вектор/матрица с теми же размерами, что и <varname>x</varname>.
+                        вещественный вектор/матрица с теми же размерами, что и <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>

@@ -5,11 +5,12 @@
 #define OLEUW_OK 0
 #define OLEUW_STREAM_NOT_DECODED 100
 
-struct OLEUNWRAP_object {
-	int (*filename_report_fn)(char *);
-	int debug;
-	int verbose;
-	int save_unknown_streams;
+struct OLEUNWRAP_object
+{
+    int (*filename_report_fn)(char *);
+    int debug;
+    int verbose;
+    int save_unknown_streams;
 };
 
 

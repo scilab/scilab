@@ -16,8 +16,7 @@ GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_parallel_run.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c \
 sci_gateway/c/sci_parallel_concurrency.c
 
-libsciparallel_la_CPPFLAGS= $(OPENMP_CPPFLAGS) \
--I$(top_srcdir)/libs/MALLOC/includes/ \
+libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes/ \
 -I$(srcdir)/src/cpp/ \
@@ -32,7 +31,7 @@ $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciparallel.la
 
-
+libsciparallel_la_LIBADD = $(OPENMP_LIBS)
 
 if OPENMP
 libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)

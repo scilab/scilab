@@ -140,7 +140,6 @@ void ScilabView::getFiguresId(int ids[])
 int ScilabView::getNbFigure(void)
 {
     return (int)m_figureList.size();
-
 }
 
 void ScilabView::createObject(char const* pstId)
@@ -167,15 +166,10 @@ void ScilabView::deleteObject(char const* pstId)
     int *piType = &iType;
     char *pstParentUID = NULL;
 
-    getGraphicObjectProperty(pstId, __GO_TYPE__, jni_int, (void **)&piType);
-
     /*
     ** If deleting a figure, remove from figure list.
     */
-    if (iType != -1 && iType == __GO_FIGURE__)
-    {
-        m_figureList.erase(pstId);
-    }
+    m_figureList.erase(pstId);
 
     /*
     ** If deleting current figure find another current one,
@@ -208,8 +202,12 @@ void ScilabView::deleteObject(char const* pstId)
     }
 
     // Remove the corresponding handle.
-    m_uidList.erase(m_handleList.find(pstId)->second);
-    m_handleList.erase(pstId);
+    __handleList_iterator it = m_handleList.find(pstId);
+    if (it != m_handleList.end())
+    {
+        m_uidList.erase(it->second);
+        m_handleList.erase(it);
+    }
 
     deleteDataObject(pstId);
 }
@@ -219,8 +217,8 @@ void ScilabView::updateObject(char const* pstId, int iProperty)
     //std::cerr << "[ScilabView] == updateObject UID=" << pstId << " PROPERTY=" << pstProperty << std::endl;
 
     /*
-     ** Take care of update if the value update is ID and object type is a Figure I manage.
-     */
+    ** Take care of update if the value update is ID and object type is a Figure I manage.
+    */
     if (iProperty == __GO_ID__ && m_figureList.find(pstId) != m_figureList.end())
     {
         int iNewId = 0;

@@ -33,5 +33,4 @@ N = 30;
 A = rand(N,N);
 s = poly(0,'s');
 P = determ( eye(N,N)*%s - A );
-Computing determinant: Be patient...
 if degree(P)<>30 then bugmes();quit;end

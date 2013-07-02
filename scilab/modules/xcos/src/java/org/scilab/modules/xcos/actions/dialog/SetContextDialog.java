@@ -39,6 +39,8 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
+import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -58,6 +60,7 @@ public class SetContextDialog extends JDialog {
     private static final String SHARED_NEW_LINE = "\n";
 
     private final ScicosParameters parameters;
+    private final XcosDiagram rootGraph;
 
     private JTextArea contextArea;
 
@@ -69,7 +72,7 @@ public class SetContextDialog extends JDialog {
      * @param parameters
      *            the Scicos parameters
      */
-    public SetContextDialog(Component parent, ScicosParameters parameters) {
+    public SetContextDialog(Component parent, XcosDiagram graph, ScicosParameters parameters) {
         this.parameters = parameters;
 
         ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
@@ -79,6 +82,7 @@ public class SetContextDialog extends JDialog {
         setTitle(XcosMessages.SET_CONTEXT);
         setModal(true);
         setLocationRelativeTo(parent);
+        rootGraph = graph;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ScilabSwingUtilities.closeOnEscape(this);
 
@@ -100,7 +104,7 @@ public class SetContextDialog extends JDialog {
         }
 
         JScrollPane contextAreaScroll = new JScrollPane(contextArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                                                        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         JButton cancelButton = new JButton(XcosMessages.CANCEL);
         JButton okButton = new JButton(XcosMessages.OK);
@@ -159,11 +163,11 @@ public class SetContextDialog extends JDialog {
          * The cancel button just exit without doing anything
          */
         cancelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    dispose();
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
         /*
          * The ok button parse the contextArea, reconstruct the real context and
@@ -171,32 +175,40 @@ public class SetContextDialog extends JDialog {
          */
         okButton.addActionListener(new ActionListener() {
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        final String[] context = contextArea.getText().split(SHARED_NEW_LINE);
-                        parameters.setContext(context);
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    final String[] context = contextArea.getText().split(SHARED_NEW_LINE);
+                    parameters.setContext(context);
 
-                        /*
-                         * Validate the context
-                         */
-                        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-                        if (handler == null) {
-                            return;
-                        }
-                        try {
-                            handler.writeContext(context);
-                            ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
-                        } finally {
-                            handler.release();
-                        }
-
-                        dispose();
-                    } catch (PropertyVetoException e2) {
-                        Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
+                    /*
+                     * Validate the context
+                     */
+                    final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+                    if (handler == null) {
+                        return;
                     }
+                    try {
+                        handler.writeContext(context);
+                        ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
+                    } finally {
+                        handler.release();
+                    }
+
+                    dispose();
+                } catch (PropertyVetoException e2) {
+                    Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
                 }
-            });
+
+                /*
+                 * if superblock is concerned, then regenerate child diagram.
+                 */
+                if (rootGraph instanceof SuperBlockDiagram) {
+                    SuperBlockDiagram superBlockDiagram = (SuperBlockDiagram) rootGraph;
+                    superBlockDiagram.getContainer().invalidateRpar();
+                }
+            }
+        });
     }
 }
 // CSON: ClassDataAbstractionCoupling

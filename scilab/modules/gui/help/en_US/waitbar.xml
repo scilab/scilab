@@ -75,7 +75,15 @@ for j=0:0.1:1,
   realtime(3*j);
   waitbar(j,winH);
 end
-winclose(winH);
+close(winH);
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="progressionbar">progressionbar</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

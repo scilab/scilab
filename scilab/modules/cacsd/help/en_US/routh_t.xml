@@ -19,6 +19,7 @@
         <title>Calling Sequence</title>
         <synopsis>r=routh_t(p)
             r=routh_t(h [,k])
+            r=routh_t(h [,k] [,normalized])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -43,6 +44,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>normalized</term>
+                <listitem>
+                    <para>a boolean (%t (default value) or %f)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>r</term>
                 <listitem>
                     <para>a matrix</para>
@@ -63,9 +70,14 @@
             <literal>k</literal>.
         </para>
         <para>
-            If <literal>k=poly(0,'k')</literal> we will have a polynomial matrix
-            with dummy variable <literal>k</literal>, formal expression of the Routh
-            table.
+            If <literal>k=poly(0,'k')</literal> we will have a polynomial or
+            a rational matrix with dummy variable <literal>k</literal>, 
+            formal expression of the Routh table.
+        </para>
+        <para>
+            If <literal>normalized=%f</literal> we will have a polynomial matrix
+            with non normalized elements. In the other case, we will have a rational
+            and normalized matrix.
         </para>
     </refsection>
     <refsection>
@@ -75,9 +87,12 @@ s=%s;
 P=5*s^3-10*s^2+7*s+20;
 routh_t(P)
 
-//transfer function with formal feedback
+// Transfer function with formal feedback, normalized case
 routh_t((1+s)/P,poly(0,'k'))
     
+// Transfer function with formal feedback, non normalized case
+routh_t((1+s)/P,poly(0,'k'),%f)
+
 // One of the coefficients in the polynomial equals zero
 P1=2*s^3-24*s+32; 
 routh_t(P1)
@@ -85,6 +100,8 @@ routh_t(P1)
 // A row full of zeros
 P2=s^4-6*s^3+10*s^2-6*s+9;
 routh_t(P2)
+
+//
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -109,5 +126,14 @@ routh_t(P2)
         <para>Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic
             Control, IEEE T.A.C Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark> A new parameter added: normalized (SEP 89).</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

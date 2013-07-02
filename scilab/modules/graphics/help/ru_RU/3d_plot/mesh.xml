@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Farid Belahcene
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ru" xml:id="mesh">
+    <refnamediv>
+        <refname>mesh</refname>
+        <refpurpose>график трёхмерной сетки</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>mesh(Z)
+            mesh(X,Y,Z)
+            mesh(...,&lt;ГлобальноеСвойство&gt;)
+            mesh(...,&lt;color&gt;,&lt;ГлобальноеСвойство&gt;)
+            mesh(&lt;axes_handle&gt;,...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>
+                        вещественная матрица, определяющая высоту поверхности.
+                        Её нельзя не указать. Данные <varname>Z</varname>
+                        представляются в виде матрицы <literal>m</literal>
+                        на <literal>n</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>X, Y</term>
+                <listitem>
+                    <para>
+                        две вещественные матрицы: всегда устанавливаются вместе. Эти данные определяют новую стандартную сетку. Компоненты сетки <varname>X</varname> и <varname>Y</varname> должны соответствовать размерам <varname>Z</varname> (смотри описание ниже).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>
+                        необязательная вещественная матрица, определяющая значение цвета для каждой точки <literal>(X(j),Y(i))</literal> сетки (смотри описание ниже).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;ГлобальноеСвойство&gt;</term>
+                <listitem>
+                    <para>
+                        этот необязательный аргумент представляет последовательность пары инструкций <literal>{ИмяСвойства, ЗначениеСвойства}</literal>, которая определяет глобальные свойства объекта, применяемые ко всем кривым, созданным этим графиком. Полный обзор всех доступных свойств приведён в <link linkend="GlobalProperty">ГлобальноеСвойство</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>&lt;axes_handle&gt;</term>
+                <listitem>
+                    <para>
+                        этот необязательный аргумент заставляет график появиться внутри выбранных осей, указанных с помощью <varname>axes_handle</varname>, а не в текущих осях (см. <link linkend="gca">gca</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <function>mesh</function> строит параметрическую поверхность, используя прямоугольную сетку, определяемую через координаты <varname>X</varname> и <varname>Y</varname> (если <literal>{X,Y}</literal> не определены, то эта сетка определяется с помощью размеров матрицы <varname>Z</varname>); в каждой точке этой сетки координата z указывается с помощью матрицы <varname>Z</varname>. <function>mesh</function> основана на команде <function>surf</function> с опцией по умолчанию <literal>color_mode</literal> равной индексу белого цвета (внутри текущей цветовой карты) и <literal>color_flag</literal> = 0.
+        </para>
+        <para>Спецификация ввода данных:</para>
+        <para>
+            В этом параграфе для большей ясности мы не упоминаем необязательные аргументы <varname>ГлобальноеСвойство</varname>, поскольку на них не влияют входные данные (за исключением свойств <literal>"Xdata"</literal>, <literal>"Ydata"</literal> и <literal>"Zdata"</literal>, см. <link linkend="GlobalProperty">ГлобальноеСвойство</link>). Предполагается, что все эти необязательные аргументы так же могут присутствовать.
+        </para>
+        <para>
+            Если определена лишь матрица <varname>Z</varname>, то <code>mesh(Z)</code> строит матрицу <varname>Z</varname> в сетке, определённой как <code>1:size(Z,2)</code> по оси x и <code>1:size(Z,1)</code> по оси y.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примечания</title>
+        <para>
+            Чтобы включить режим прозрачности, вы должны установить опцию <literal>color_mode</literal> в 0.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+[X,Y]=meshgrid(-1:.1:1,-1:.1:1);
+Z=X.^2-Y.^2;
+xtitle('$\huge z=x^2-y^2$');
+mesh(X,Y,Z);
+ ]]></programlisting>
+        <scilab:image>
+            [X,Y]=meshgrid(-1:.1:1,-1:.1:1);
+            Z=X.^2-Y.^2;
+            xtitle('$\huge z=x^2-y^2$');
+            mesh(X,Y,Z);
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="surf">surf</link>
+            </member>
+            <member>
+                <link linkend="meshgrid">meshgrid</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="LineSpec">ВидЛинии</link>
+            </member>
+            <member>
+                <link linkend="GlobalProperty">ГлобальноеСвойство</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

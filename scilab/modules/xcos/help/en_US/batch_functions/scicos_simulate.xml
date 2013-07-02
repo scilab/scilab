@@ -81,7 +81,7 @@
             structure
         </link>
         which can be obtained by loading in Scilab the
-        <literal>.xcos</literal> file (see <link linkend="importXcosDiagram">
+        <literal>.zcos</literal> file (see <link linkend="importXcosDiagram">
             importXcosDiagram
         </link>
         ).
@@ -120,15 +120,15 @@
     <refsection id="Examples_scicos_simulate">
         <title>Examples</title>
         <para>
-            The xcos diagram in <link type="scilab" linkend="scilab.xcos/xcos/demos/batch_simulation.xcos">SCI/modules/xcos/demos/batch_simulation.xcos</link>.
+            The xcos diagram in <link type="scilab" linkend="scilab.zcos/xcos/demos/batch_simulation.zcos">SCI/modules/xcos/demos/batch_simulation.zcos</link>.
             <mediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../demos/batch_simulation.xcos"/>
+                    <imagedata align="center" fileref="../../../demos/batch_simulation.zcos"/>
                 </imageobject>
             </mediaobject>
         </para>
         <programlisting role="example"><![CDATA[ 
-importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
+importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
 
 typeof(scs_m) //The diagram data structure
 
@@ -168,10 +168,10 @@ counter
                 <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
             </member>
             <member>
-                <link linkend="steadycos">steadycos: Finds an equilibrium state of an xcos diagram</link>
+                <link linkend="steadycos">steadycos: Finds an equilibrium state of a Xcos diagram</link>
             </member>
             <member>
-                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from an xcos diagram</link>
+                <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from a Xcos diagram</link>
             </member>
         </simplelist>
     </refsection>

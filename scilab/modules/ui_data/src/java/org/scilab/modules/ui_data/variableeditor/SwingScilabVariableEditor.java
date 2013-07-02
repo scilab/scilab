@@ -52,6 +52,8 @@ import org.scilab.modules.ui_data.variableeditor.actions.CreateNewVariableAction
 import org.scilab.modules.ui_data.variableeditor.actions.CreateVariableFromSelectionAction;
 import org.scilab.modules.ui_data.variableeditor.actions.CutAction;
 import org.scilab.modules.ui_data.variableeditor.actions.DuplicateVariableAction;
+import org.scilab.modules.ui_data.variableeditor.actions.ExportToCsvAction;
+import org.scilab.modules.ui_data.variableeditor.actions.ExportToCsvFromSelectionAction;
 import org.scilab.modules.ui_data.variableeditor.actions.PasteAction;
 import org.scilab.modules.ui_data.variableeditor.actions.PlotAction;
 import org.scilab.modules.ui_data.variableeditor.actions.RedoAction;
@@ -97,7 +99,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleV
      */
     public SwingScilabVariableEditor(String name, String type, Object[][] data) {
         super(UiDataMessages.VARIABLE_EDITOR);
-	setAssociatedXMLIDForHelp("editvar");
+        setAssociatedXMLIDForHelp("editvar");
         setWindowIcon("rrze_table");
         refreshButton = RefreshAction.createButton(this, UiDataMessages.REFRESH);
         undoButton = UndoAction.createButton(this, UiDataMessages.UNDO);
@@ -133,8 +135,8 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleV
         setData(name, type, data);
         WindowsConfigurationManager.restorationFinished(this);
 
-	addToolBar(createToolBar());
-	addMenuBar(createMenuBar());
+        addToolBar(createToolBar());
+        addMenuBar(createMenuBar());
     }
 
     /**
@@ -234,11 +236,13 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleV
         popup.addSeparator();
         popup.add(CopySelectionAsScilabCommandAction.createJMenuItem(this, UiDataMessages.COPYASSCILABCOM));
         popup.add(CopySelectionAsScilabMatrixAction.createJMenuItem(this, UiDataMessages.COPYASSCILABMAT));
-	popup.add(CopySelectionAsScilabMatrixWithCRAction.createJMenuItem(this, UiDataMessages.COPYASSCILABMATWITHCR));
+        popup.add(CopySelectionAsScilabMatrixWithCRAction.createJMenuItem(this, UiDataMessages.COPYASSCILABMATWITHCR));
+        popup.add(ExportToCsvFromSelectionAction.createJMenuItem(this, UiDataMessages.EXPORTSELECTIONCSV));
         popup.addSeparator();
         popup.add(CreateVariableFromSelectionAction.createJMenuItem(this, UiDataMessages.CREATE));
         popup.add(CreateNewVariableAction.createJMenuItem(this, UiDataMessages.CREATENEWVAR));
         popup.add(DuplicateVariableAction.createJMenuItem(this, UiDataMessages.DUPLICATE));
+        popup.add(ExportToCsvAction.createJMenuItem(this, UiDataMessages.EXPORTCSV));
 
         popup.addSeparator();
 
@@ -284,6 +288,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleV
         file.add(CreateVariableFromSelectionAction.createMenuItem(this, UiDataMessages.CREATE));
         file.add(CreateNewVariableAction.createMenuItem(this, UiDataMessages.CREATENEWVAR));
         file.add(DuplicateVariableAction.createMenuItem(this, UiDataMessages.DUPLICATE));
+        file.add(ExportToCsvAction.createMenuItem(this, UiDataMessages.EXPORTCSV));
         file.addSeparator();
         file.add(CloseAction.createMenuItem(this, UiDataMessages.CLOSE));
 
@@ -299,7 +304,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements SimpleV
         edition.addSeparator();
         edition.add(CopySelectionAsScilabCommandAction.createMenuItem(this, UiDataMessages.COPYASSCILABCOM));
         edition.add(CopySelectionAsScilabMatrixAction.createMenuItem(this, UiDataMessages.COPYASSCILABMAT));
-	edition.add(CopySelectionAsScilabMatrixWithCRAction.createMenuItem(this, UiDataMessages.COPYASSCILABMATWITHCR));
+        edition.add(CopySelectionAsScilabMatrixWithCRAction.createMenuItem(this, UiDataMessages.COPYASSCILABMATWITHCR));
         edition.addSeparator();
         edition.add(SizeColumnsToFitAction.createMenuItem(this, UiDataMessages.FIT));
         bar.add(edition);

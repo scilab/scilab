@@ -24,12 +24,33 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function as well as the <link linkend="xset">xset</link> one
-            was strongly linked with the old graphic mode which is no more available.
+            <warning>
+                This function is obsolete. This function as well as the <link
+                linkend="xset">xset</link> one was strongly linked with the old
+                graphic mode which is no more available.
+            </warning>
             The current graphic is much more flexible with respect to parameter
-            setting (see the <link linkend="set">set</link> and <link linkend="get">get</link> functions as well as the <link linkend="graphics_entities">graphics_entities</link> help page). It is
-            possible to start a more convenient property editor using <link linkend="ged">ged</link>.
+            setting (see the <link linkend="set">set</link> and <link
+            linkend="get">get</link> functions as well as the <link
+            linkend="graphics_entities">graphics entities</link> help page). It
+            is possible to start a more convenient property editor using <link
+            linkend="ged">ged</link>.
         </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revdescription>Function tagged obsolete. Will be removed in 5.5.0.
+                    See the <link linkend="set">set</link> and <link
+            linkend="get">get</link> functions as well as the <link
+            linkend="graphics_entities">graphics entities</link> help page). It
+                    is possible to start a more convenient property editor using <link
+            linkend="ged">ged</link>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -44,7 +65,7 @@
                 <link linkend="set">set</link>
             </member>
             <member>
-                <link linkend="graphics_entities">graphics_entities</link>
+                <link linkend="graphics_entities">graphics entities</link>
             </member>
         </simplelist>
     </refsection>

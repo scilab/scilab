@@ -10,45 +10,45 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [result,err] = get_param(list_name,param_name,param_default)
-[nargout,nargin] = argn();
-if ~isdef('param_default','local') then
-  param_default = [];
-end
+    [nargout,nargin] = argn();
+    if ~isdef("param_default","local") then
+        param_default = [];
+    end
 
-if ( type(param_default) == 13 ) then
-  prot=funcprot()
-  funcprot(0);
-end
-result = param_default;
-if ( type(param_default) == 13 ) then
-  funcprot(prot);
-end
+    if ( type(param_default) == 13 ) then
+        prot=funcprot()
+        funcprot(0);
+    end
+    result = param_default;
+    if ( type(param_default) == 13 ) then
+        funcprot(prot);
+    end
 
-if typeof(list_name)=='plist' then
-  if is_param(list_name,param_name) then
-    if ( type(param_default) == 13 ) then
-      prot=funcprot()
-      funcprot(0);
-    end
-    result = list_name(param_name);
-    if ( type(param_default) == 13 ) then
-      funcprot(prot);
-    end
-    if nargout==2 then
-      err = %F; 
-    end
-  else
-    if nargout==2 then 
-      err = %T; 
+    if typeof(list_name)=="plist" then
+        if is_param(list_name,param_name) then
+            if ( type(param_default) == 13 ) then
+                prot=funcprot()
+                funcprot(0);
+            end
+            result = list_name(param_name);
+            if ( type(param_default) == 13 ) then
+                funcprot(prot);
+            end
+            if nargout==2 then
+                err = %F;
+            end
+        else
+            if nargout==2 then
+                err = %T;
+            else
+                warning(sprintf(gettext("%s: parameter %s not defined"),"get_param",param_name));
+            end
+        end
     else
-      warning(sprintf(gettext("%s: parameter %s not defined"),"get_param",param_name));
+        if nargout==2 then
+            err = %T;
+        else
+            error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "get_param", 1, "plist"));
+        end
     end
-  end
-else
-  if nargout==2 then 
-    err = %T; 
-  else
-    error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "get_param", 1, "plist"));
-  end
-end
 endfunction

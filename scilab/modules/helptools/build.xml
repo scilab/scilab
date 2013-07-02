@@ -11,11 +11,11 @@
  *
  -->
 <project name="helptools" default="jar">
-  <import file="../../build.incl.xml"/>
-  <property name="library.name" value="${library.helptools.name}"/>
-  <property name="library.title" value="Help components"/>
-  <property name="isDocBuilding" value="True"/>
-  <description>
-			Build the Scilab Help Tools module
-  </description>
+    <import file="../../build.incl.xml"/>
+    <property name="library.name" value="${library.helptools.name}"/>
+    <property name="library.title" value="Help components"/>
+    <property name="isDocBuilding" value="True"/>
+    <description>
+        Build the Scilab Help Tools module
+    </description>
 </project>

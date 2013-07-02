@@ -9,26 +9,26 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef __GW_STATISTICS__
 #define __GW_STATISTICS__
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "dynlib_statistics.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 STATISTICS_IMPEXP int gw_statistics(void);
-/*--------------------------------------------------------------------------*/ 
-STATISTICS_IMPEXP int cdfbetI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdfbinI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdfchiI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdfchnI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdffI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdffncI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdfgamI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdfnbnI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdfnorI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdfpoiI(char* fname,unsigned long l);
-STATISTICS_IMPEXP int cdftI(char* fname,unsigned long l);
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
+STATISTICS_IMPEXP int cdfbetI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdfbinI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdfchiI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdfchnI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdffI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdffncI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdfgamI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdfnbnI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdfnorI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdfpoiI(char* fname, unsigned long l);
+STATISTICS_IMPEXP int cdftI(char* fname, unsigned long l);
+/*--------------------------------------------------------------------------*/
 #endif /*  __GW_STATISTICS__ */
 /*--------------------------------------------------------------------------*/
 

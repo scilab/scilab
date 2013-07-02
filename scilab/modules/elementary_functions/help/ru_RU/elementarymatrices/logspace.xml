@@ -43,7 +43,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Возвращает вектор-строку из <literal>n</literal> точек равномерно распределённых в логарифмическом масштабе между <latex>10^{d1}</latex> и <latex>10^{d2}</latex>. Если <literal>d2=%pi</literal>, то точки располагаются между <latex>10^{d1}</latex> и <latex>\pi</latex>.
+            Возвращает вектор-строку из <literal>n</literal> точек равномерно распределённых в логарифмическом масштабе между <latex>10^{d1}</latex> и <latex>10^{d2}</latex>. Если <latex>d2=\pi</latex>, то точки располагаются между <latex>10^{d1}</latex> и <latex>\pi</latex>.
         </para>
     </refsection>
     <refsection>

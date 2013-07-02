@@ -112,10 +112,11 @@ check_PROGRAMS = call_scilab_c_simple$(EXEEXT) call_scilab_c$(EXEEXT) \
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/fftw.m4 \
-	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
-	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -389,6 +390,10 @@ COMMONS_IO = @COMMONS_IO@
 COMMONS_LOGGING = @COMMONS_LOGGING@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_CONFIG = @CURL_CONFIG@
+CURL_LIBS = @CURL_LIBS@
+CURL_VERSION = @CURL_VERSION@
 CXX = @CXX@
 CXXCPP = @CXXCPP@
 CXXDEPMODE = @CXXDEPMODE@
@@ -523,6 +528,7 @@ SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
 SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
 SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SCIRENDERER = @SCIRENDERER@
+SCIRENDERER_CP = @SCIRENDERER_CP@
 SCI_CFLAGS = @SCI_CFLAGS@
 SCI_CXXFLAGS = @SCI_CXXFLAGS@
 SCI_FFLAGS = @SCI_FFLAGS@
@@ -616,8 +622,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = 1.11 dist-zip dist-bzip2
-SUBDIRS = libs \
-	modules \
+SUBDIRS = modules \
 	contrib \
 	desktop
 
@@ -631,7 +636,7 @@ AM_FFLAGS = $(SCI_FFLAGS)
 AM_LDFLAGS = $(SCI_LDFLAGS)
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CHANGES_5.5.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
-	$(am__append_1)
+	bin/scinotes bin/xcos $(am__append_1)
 scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2)
 scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS)
 scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
@@ -658,7 +663,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $
 LANG_DOMAIN = scilab
 TARGETS_ALL = macros $(am__append_4) $(am__append_5)
 
-# check is performed with scilab
+# check is performed with scilab
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
 TESTS = $(top_srcdir)/modules/development_tools/tests/unit_tests/test_run_level_1.tst
 rootdir = $(pkgdatadir)/etc/
@@ -680,6 +685,7 @@ $(top_srcdir)/CHANGES_5.1.X \
 $(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/CHANGES_5.3.X \
 $(top_srcdir)/CHANGES_5.4.X \
+$(top_srcdir)/CHANGES_5.5.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
@@ -691,6 +697,7 @@ $(top_srcdir)/RELEASE_NOTES_5.2.X \
 $(top_srcdir)/RELEASE_NOTES_5.3.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt \
+$(top_builddir)/license.txt \
 $(top_builddir)/Version.incl
 
 valgrinddir = $(pkgdatadir)/tools/profiling
@@ -703,11 +710,16 @@ valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
 # How help files look like.
 DOCMASK = scilab_*_help.jar
+DOCIMAGES = scilab_images.jar
 
-# Path to builded files
+# Path to built files
 PATHTOHELPFILES = modules/helptools/jar/
 
-# Path javasci to builded files
+# Path to scirenderer jar
+PATHTOSCIRENDERER = modules/scirenderer/jar/
+SCIRENDERERJAR = scirenderer.jar
+
+# Path javasci to built files
 PATHTOJAVASCIDOC = modules/javasci/javadoc/
 JAVASCI_DIRS = . resources \
 	org/scilab/modules/javasci/ \
@@ -1849,6 +1861,12 @@ doc-ru_RU:
 doc-ja_JP:
 	@$(MAKE) $(AM_MAKEFLAGS) doc ALL_LINGUAS_DOC=ja_JP
 
+# Regenerate all images
+doc-images:
+	rm -rf $(top_srcdir)/modules/helptools/images/
+	mkdir $(top_srcdir)/modules/helptools/images/
+	$(MAKE) doc
+
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
@@ -1902,11 +1920,13 @@ code-coverage:
 @CODE_COVERAGE_TRUE@	@if test ! -d $(top_builddir)/coverage/; then \
 @CODE_COVERAGE_TRUE@		mkdir $(top_builddir)/coverage/; \
 @CODE_COVERAGE_TRUE@	fi; \
-@CODE_COVERAGE_TRUE@	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h; \
+@CODE_COVERAGE_TRUE@	touch $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h; \
 @CODE_COVERAGE_TRUE@	$(LCOV) --directory $(top_builddir) --capture --ignore-errors source --output-file $(top_builddir)/coverage/scilab-code-coverage.info; \
-@CODE_COVERAGE_TRUE@	$(GENHTML) -o $(top_builddir)/coverage/results/ --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+@CODE_COVERAGE_TRUE@	echo -e "genhtml_hi_limit = 85\ngenhtml_med_limit = 70" > $(top_builddir)/coverage/lcovrc; \
+@CODE_COVERAGE_TRUE@	$(GENHTML) -o $(top_builddir)/coverage/results/ --config-file $(top_builddir)/coverage/lcovrc --show-details --highlight --legend $(top_builddir)/coverage/scilab-code-coverage.info; \
+@CODE_COVERAGE_TRUE@	rm -f $(top_builddir)/coverage/lcovrc; \
 @CODE_COVERAGE_TRUE@	echo "To open the result: firefox  $(top_builddir)/coverage/results/index.html"; \
-@CODE_COVERAGE_TRUE@	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h
+@CODE_COVERAGE_TRUE@	rm -f $(top_srcdir)/modules/differential_equations/callinter.h $(top_srcdir)/modules/linear_algebra/callinter.h $(top_srcdir)/modules/scicos/callinter.h $(top_srcdir)/modules/scicos_blocks/callinter.h $(top_srcdir)/modules/optimization/callinter.h $(top_srcdir)/modules/signal_processing/callinter.h
 #--frames is disable because of : http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=607206
 @CODE_COVERAGE_FALSE@	@echo "Cannot start the code coverage. Add --enable-code-coverage to the ./configure and 'make clean all'."
 
@@ -2053,7 +2073,7 @@ codecoverage-java: clean-reports
 @BUILD_HELP_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 @BUILD_HELP_TRUE@	echo $(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES); \
 @BUILD_HELP_TRUE@	if ls -lLd $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) >/dev/null 2>&1; then \
-@BUILD_HELP_TRUE@		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK); do \
+@BUILD_HELP_TRUE@		for file in $(top_builddir)/$(PATHTOHELPFILES)/$(DOCMASK) $(top_builddir)/$(PATHTOHELPFILES)/$(DOCIMAGES); do \
 @BUILD_HELP_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES)" ; \
 @BUILD_HELP_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdatadir)/$(PATHTOHELPFILES) ; \
 @BUILD_HELP_TRUE@		done; \
@@ -2070,6 +2090,9 @@ codecoverage-java: clean-reports
 @BUILD_HELP_TRUE@			done; \
 @BUILD_HELP_TRUE@	done; \
 @BUILD_HELP_TRUE@	fi
+# Also install scirenderer.jar
+@EXTERNAL_SCIRENDERER_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
+@EXTERNAL_SCIRENDERER_FALSE@	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
 
 .PHONY: macros localization doc
 

@@ -95,7 +95,7 @@
             armax1 is used to identify the coefficients of a 1-dimensional 
             ARX process:
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
 e(t) is a 1-dimensional white noise with variance 1.
 A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
@@ -106,14 +106,14 @@ D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
             for the method, see Eykhoff in trends and progress in system
             identification) page 96.  with
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 z(t)=[y(t-1),..,y(t-r),u(t),...,
       u(t-s),e(t-1),...,e(t-q)] 
  ]]></programlisting>
         <para>
             and
         </para>
-        <programlisting role=""><![CDATA[ 
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
 y(t)= coef'* z(t) + sig*e(t).
  ]]></programlisting>
@@ -123,6 +123,31 @@ y(t)= coef'* z(t) + sig*e(t).
             a sequential version of armax
         </para>
     </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+
+a = [1, -2.851, 2.717, -0.865];
+b = [0, 1, 1, 1];
+d = [1, 0.7, 0.2];
+ar = armac(a, b, d, 1, 1, 1);
+disp(_("Simulation of an ARMAX process:"));
+disp(ar);
+
+n = 300;
+u = -prbs_a(n, 1, int([2.5,5,10,17.5,20,22,27,35]*100/12));
+zd = narsimul(ar, u);
+
+// using now armax1 : coloured noise identification
+// you can test the same example with
+[arc1, resid] = armax1(3,3,2,zd(1:n),u,1);
+disp(arc1);
+
+ ]]></programlisting>
+    </refsection>
+    
+    
     <refsection>
         <title>Important notice</title>
         <para>In Scilab versions up to 4.1.2 the returned value in

@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the scilab package.
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
-# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-24 14:24+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-13 13:43+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
 
 #, c-format
@@ -30,10 +30,21 @@ msgid "%s: Non convergence in QR steps.\n"
 msgstr "%s: розбіжність під час виконання кроків QR.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
+"число.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "#%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю "
 "дійсних значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial expected."
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати поліном."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: must not contain %s or %s.\n"
@@ -45,6 +56,26 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати квадратну "
+"матрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або скалярний тип.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: must be %d, %d, %s, '%s' or '%s'.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати %d, %d, "
+"%s, «%s» або «%s».\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -72,6 +103,14 @@ msgstr ""
 "стовпчик.\n"
 
 #, c-format
+msgid "%s: Obsolete function. Please, replaces '%s' by '%s'."
+msgstr "%s: застаріла функція. Будь ласка, замініть «%s» на «%s»."
+
+#, c-format
+msgid "%s: Obsolete function. Old external cannot be used."
+msgstr "%s: застаріла функція. Не можна використовувати застарілі external."
+
+#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
@@ -85,6 +124,16 @@ msgstr "%s: SVD і QR не реалізовано для розріджених 
 msgid "%s: This feature has not been implemented.\n"
 msgstr "%s: цю можливість ще не реалізовано.\n"
 
+msgid "Conflicting linear constraints!"
+msgstr "Конфлікт лінійних обмежень!"
+
+msgid "Recomputing initial guess"
+msgstr "Переобчислюємо початкове припущення"
+
+#, c-format
+msgid "Possible Conflicting linear constraints, error in the order of %s"
+msgstr "Можливий конфлікт лінійних обмежень, помилка у порядку %s"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -95,6 +144,15 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "з набору {%s}.\n"
+
+#, c-format
+msgid "%s: Singular pencil."
+msgstr "%s: вироджений жмуток матриць."
+
+#, c-format
+msgid "%s: Type not defined for %s. Check argument or define function %s."
+msgstr ""
+"%s: не визначено тип для %s. Скоригуйте параметр або визначте функцію %s."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -114,11 +172,25 @@ msgstr ""
 "квадратну матрицю.\n"
 
 #, c-format
+msgid "%s: Type not defined '%s'.Check argument or define function %s."
+msgstr ""
+"%s: не визначено тип «%s». Скоригуйте параметр або визначте функцію %s."
+
+#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
 msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід використовувати "
 "невід’ємні скалярні дані.\n"
+
+#, c-format
+msgid "%s: Singular pencil!"
+msgstr "%s: вироджений жмуток матриць!"
+
+#, c-format
+msgid "%s: Type not defined %s.Check argument or define function %s."
+msgstr ""
+"%s: не визначено тип %s. Скоригуйте параметр або визначте функцію %s."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Symmetric expected"

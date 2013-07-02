@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
- *  
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,102 +27,102 @@ import org.scilab.modules.gui.utils.UIElementMapper;
  */
 public class ScilabToolBar extends ScilabUIElement implements ToolBar {
 
-	private SimpleToolBar component;
-	
-	/**
-	 * Constructor
-	 */
-	protected ScilabToolBar() {
-		component = ScilabBridge.createToolBar();
-		component.setElementId(UIElementMapper.add(this));
-		
-		//setMenuBarId(UIElementMapper.getDefaultId());
-	}
+    private SimpleToolBar component;
 
-	/**
-	 * Creates a Scilab MenuBar object
-	 * @return the created MenuBar
-	 */
-	public static ToolBar createToolBar() {
-		return new ScilabToolBar();
-	}
+    /**
+     * Constructor
+     */
+    protected ScilabToolBar() {
+        component = ScilabBridge.createToolBar();
+        component.setElementId(UIElementMapper.add(this));
 
-	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
-	 */
-	public SimpleToolBar getAsSimpleToolBar() {
-		return component;
-	}
-	
-	/**
-	 * Add a PushButton to the ToolBar.
-	 * @param pushButton the PushButton to add .
-	 */
-	public void add(PushButton pushButton) {
-		ScilabBridge.add(this, pushButton);
-	}
+        //setMenuBarId(UIElementMapper.getDefaultId());
+    }
 
-	/**
-	 * Add a separator in the toolbar
-	 * @see org.scilab.modules.gui.toolbar.ToolBar#addSeparator()
-	 */
-	public void addSeparator() {
-		ScilabBridge.addSeparator(this);
-	}
-	
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 */
-	public void draw() {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Creates a Scilab MenuBar object
+     * @return the created MenuBar
+     */
+    public static ToolBar createToolBar() {
+        return new ScilabToolBar();
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @return nothing
-	 */
-	public Size getDims() {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Gets this Bridge component object
+     * @return this Bridge component object
+     */
+    public SimpleToolBar getAsSimpleToolBar() {
+        return component;
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @return nothing
-	 */
-	public Position getPosition() {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Add a PushButton to the ToolBar.
+     * @param pushButton the PushButton to add .
+     */
+    public void add(PushButton pushButton) {
+        ScilabBridge.add(this, pushButton);
+    }
 
-	/**
-	 * Get the visibility of the TooBar
-	 * @return true if the ToolBar is Visible
-	 */
-	public boolean isVisible() {
-		return ScilabBridge.isVisible(this);
-	}
+    /**
+     * Add a separator in the toolbar
+     * @see org.scilab.modules.gui.toolbar.ToolBar#addSeparator()
+     */
+    public void addSeparator() {
+        ScilabBridge.addSeparator(this);
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newSize is not used
-	 */
-	public void setDims(Size newSize) {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     */
+    public void draw() {
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
-	 * @param newPosition is not used
-	 */
-	public void setPosition(Position newPosition) {
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @return nothing
+     */
+    public Size getDims() {
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * Set the visibility of the Toolbar
-	 * @param newVisibleState true to set the toolbar visible
-	 */
-	public void setVisible(boolean newVisibleState) {
-		ScilabBridge.setVisible(this, newVisibleState);
-	}
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @return nothing
+     */
+    public Position getPosition() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Get the visibility of the TooBar
+     * @return true if the ToolBar is Visible
+     */
+    public boolean isVisible() {
+        return ScilabBridge.isVisible(this);
+    }
+
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @param newSize is not used
+     */
+    public void setDims(Size newSize) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Should not be used, just here to implemeent org.scilab.modules.gui.UIElement#draw()
+     * @param newPosition is not used
+     */
+    public void setPosition(Position newPosition) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Set the visibility of the Toolbar
+     * @param newVisibleState true to set the toolbar visible
+     */
+    public void setVisible(boolean newVisibleState) {
+        ScilabBridge.setVisible(this, newVisibleState);
+    }
 }

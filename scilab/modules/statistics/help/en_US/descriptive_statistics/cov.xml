@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * Copyright (C) 2012-2013 - Michael Baudin
+ * Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+ * Copyright (C) 1993 - 1995 - Anders Holtsberg
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="cov" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>cov</refname>
+        <refpurpose>Covariance matrix</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            C = cov(x)
+            C = cov(x, 0)
+            C = cov(x, 1)
+            C = cov(x, y)
+            C = cov(x, y, 0)
+            C = cov(x, y, 1)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para> a nobs-by-1 or nobs-by-nvar matrix of doubles</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para> a nobs-by-1 or nobs-by-nvar matrix of doubles</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para> a square matrix of doubles, the empirical covariance</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If x is a nobs-by-1 matrix,
+            then <literal>cov(x)</literal> returns the variance of x,
+            normalized by nobs-1.
+        </para>
+        <para>
+            If x is a nobs-by-nvar matrix,
+            then <literal>cov(x)</literal> returns the nvar-by-nvar covariance matrix of the
+            columns of x, normalized by nobs-1.
+            Here, each column of x is a variable and
+            each row of x is an observation.
+        </para>
+        <para>
+            If x and y are two nobs-by-1 matrices,
+            then <literal>cov(x, y)</literal> returns the 2-by-2 covariance matrix of x and
+            y, normalized by nobs-1, where nobs is the number of observations.
+        </para>
+        <para>
+            <literal>cov(x, 0)</literal> is the same as <literal>cov(x)</literal> and
+            <literal>cov(x, y, 0)</literal> is the same as <literal>cov(x, y)</literal>.
+            In this case, if the population is from a normal distribution,
+            then C is the best unbiased estimate of the covariance matrix.
+        </para>
+        <para>
+            <literal>cov(x, 1)</literal> and <literal>cov(x, y, 1)</literal> normalize by nobs.
+            In this case, C is the second moment matrix of the
+            observations about their mean.
+        </para>
+        <para>
+            The covariance of X and Y is defined by:
+        </para>
+        <para>
+            <latex>
+                Cov(X, Y) = E( (X-E(X)) (Y-E(Y))^T )
+            </latex>
+        </para>
+        <para>
+            where E is the expectation.
+        </para>
+        <para>
+            This function is compatible with Matlab.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = [1; 2];
+y = [3; 4];
+C = cov(x, y)
+expected = [0.5, 0.5; 0.5, 0.5];
+C = cov([x, y])
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+x = [230; 181; 165; 150; 97; 192; 181; 189; 172; 170];
+y = [125; 99; 97; 115; 120; 100; 80; 90; 95; 125];
+expected = [
+1152.4556, -88.911111
+-88.911111, 244.26667
+];
+C = cov(x, y)
+C = cov([x, y])
+   ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Source [3]
+A = [
+4.0 2.0 0.60
+4.2 2.1 0.59
+3.9 2.0 0.58
+4.3 2.1 0.62
+4.1 2.2 0.63
+];
+S = [
+0.025 0.0075 0.00175
+0.0075 0.007 0.00135
+0.00175 0.00135 0.00043
+];
+C = cov(A)
+   ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            <ulink url="http://en.wikipedia.org/wiki/Covariance_matrix">Wikipedia: Covariance matrix</ulink>
+        </para>
+        <para>
+            [3] <ulink url="http://www.itl.nist.gov/div898/handbook/pmc/section5/pmc541.htm">NIST/SEMATECH e-Handbook of Statistical Methods, 6.5.4.1. Mean Vector and Covariance Matrix</ulink>
+        </para>
+        <para>
+            "Introduction to probability and statistics for engineers and scientists", Sheldon Ross
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>cov function added, to improve mvvacov (deprecated)</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

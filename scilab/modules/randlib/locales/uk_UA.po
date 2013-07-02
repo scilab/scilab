@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-12-27 16:41+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-12 19:58+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: uk\n"
 
 #, c-format
@@ -42,27 +42,10 @@ msgstr ""
 "параметром «%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: помилковий тип другого вхідного параметра: слід використовувати дійсне "
-"число.\n"
-
-#, c-format
-msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr ""
-"%s: помилковий тип третього вхідного параметра: слід використовувати дійсне "
-"число.\n"
-
-#, c-format
-msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
-msgstr ""
-"%s: помилковий тип четвертого вхідного параметра: слід використовувати "
-"число.\n"
-
-#, c-format
-msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
-msgstr ""
-"%s: помилковий тип п’ятого вхідного параметра: слід використовувати число.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
 
 #, c-format
 msgid ""
@@ -81,8 +64,8 @@ msgstr ""
 "або %d значень для %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
-msgstr "%s: помилкова розмірність другого вхідного параметра: %dx%d.\n"
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %dx%d.\n"
 
 #, c-format
 msgid ""
@@ -119,47 +102,51 @@ msgid "%s: The %s option affects only the %s generator\n"
 msgstr "%s: параметр %s стосується лише генератора %s\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
-"%s: помилкове значення другого вхідного параметра: слід використовувати %d, "
-"%d або %d.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
 msgstr "Параметр %s стосується лише генератора %s\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
-"%s: помилкове значення другого вхідного параметра: слід використовувати "
-"значення між %d та %d.\n"
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"між %d та %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: помилкове значення другого вхідного параметра: слід використовувати "
-"значення > %d.\n"
+"%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
 
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Ці дані стосуються лише генератора clcg4\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
-"'%s' expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
 msgstr ""
-"%s: помилкове значення другого вхідного параметра: слід використовувати "
-"«%s», «%s», «%s», «%s», «%s» або «%s».\n"
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
-msgid "%s Wrong value for first input argument %s.\n"
-msgstr "%s помилкове значення першого вхідного параметра %s.\n"
+msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr "%s: помилкове значення вхідного параметра ;%d: «%s» не є відомим.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: помилковий тип першого вхідного параметра: слід використовувати число.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано додатне "
+"скалярне значення.\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Не вказано A і B для закону бета розподілу\n"
@@ -182,11 +169,11 @@ msgstr "Кількість степенів свободи не є додатн�
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
 msgstr ""
-"%s: помилкове значення першого вхідного параметра: слід вказати кількість "
-"невдалих випробувань.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути значення "
+"випадкового відхилення.\n"
 
 msgid "Missing N and P for MULtinomial law\n"
 msgstr "Не вказано N і P для поліноміального закону розподілу\n"
@@ -214,8 +201,8 @@ msgstr "P(%d) > 1\n"
 msgid "Sum of P(i) > 1\n"
 msgstr "Сума P(i) > 1\n"
 
-msgid "Missing shape and scale for Gamma law\n"
-msgstr "Не вказано параметри shape і scale для закону гамма-розподілу\n"
+msgid "Missing shape and rate for Gamma law\n"
+msgstr "Не вказано параметри гамма-розподілу\n"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 або R <= 0.0\n"
@@ -276,11 +263,11 @@ msgstr "Не вказано N і P для біноміального закон�
 
 #, c-format
 msgid ""
-"%s: Wrong value for first input argument: Must be the number of random "
+"%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
 msgstr ""
-"%s: помилкове значення першого вхідного параметра: слід вказати кількість "
-"випробувань.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути значення випадкової "
+"імітації.\n"
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr ""
@@ -312,9 +299,10 @@ msgstr "%s: не вказано матриці P і X0 для ланцюжка �
 
 #, c-format
 msgid ""
-"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+"%s: Wrong type for input argument #%d: Square matrix or row vector "
+"expected.\n"
 msgstr ""
-"%s: помилковий другий вхідний параметр: слід використовувати квадратну "
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано квадратну "
 "матрицю або вектор-рядок.\n"
 
 msgid "X0 is empty\n"
@@ -415,17 +403,19 @@ msgstr ""
 "2147483322]"
 
 #, c-format
+msgid "WARNING: %s\n"
+msgstr "ПОПЕРЕДЖЕННЯ: %s\n"
+
+#, c-format
 msgid ""
-"\n"
-"=> be aware that you have may lost synchronization\n"
+"be aware that you have may lost synchronization\n"
 "    between the virtual gen %d and the others !\n"
 "    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
 msgstr ""
-"\n"
-"=> зауважте, що синхронізацію з віртуальним генератором %d та іншими\n"
-"    генераторами може бути втрачено!\n"
-"    скористайтеся командою grand(\"setall\", s1, s2, s3, s4), якщо бажаєте "
-"її відновити."
+"зважайте на те, що може бути втрачено синхронізацію\n"
+"    між віртуальним %d та іншими!\n"
+"    Скористайтеся grand(\"setall\", s1, s2, s3, s4), якщо хочете її "
+"відновити."
 
 msgid ""
 "\n"
@@ -496,6 +486,30 @@ msgstr "Теорія"
 msgid "Simulation of a discrete random variable"
 msgstr "Моделювання дискретної випадкової величини"
 
+msgid "Simulation of a discrete uniform random variable"
+msgstr "Імітація дискретної випадкової величини з рівномірним розподілом"
+
+msgid "Simulation of a Erlang random variable"
+msgstr "Імінтація випадкової величини з розподілом Ерланга"
+
+msgid "macro histplot : Histogram plot"
+msgstr "макрос histplot: побудова гістограми"
+
+msgid "Classes"
+msgstr "Класи"
+
+msgid "p must be < 1"
+msgstr "p має бути < 1"
+
+msgid "Simulation of a geometric random variable"
+msgstr "Імітація випадкової величини з геометричним розподілом"
+
+msgid "Simulation of a hyper geometric random variable"
+msgstr "Імітація випадкової величини з гіпергеометричним розподілом"
+
+msgid "Simulation of a poisson random variable"
+msgstr "Імітація випадкової величини з розподілом Пуассона"
+
 msgid "Random"
 msgstr "Випадкові величини"
 
@@ -525,3 +539,6 @@ msgstr "Випадкова величина з гіпергеометрични�
 
 msgid "Erlang random variable"
 msgstr "Випадкова величина з розподілом Ерланга"
+
+msgid "Simulation of a Weibull random variable"
+msgstr "Імітація випадкової величини з розподілом Вейбулла"

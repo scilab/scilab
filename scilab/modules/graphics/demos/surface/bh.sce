@@ -13,7 +13,7 @@
 function bh(nn)
 
     exec("SCI/modules/graphics/demos/surface/Macros.sci",-1);
-    
+
     // a black hole
 
     x         = linspace(0,2*%pi,nn);

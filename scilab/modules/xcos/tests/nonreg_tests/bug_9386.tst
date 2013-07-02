@@ -16,6 +16,6 @@
 // <-- Short Description -->
 // Diagram root cell might be invalid on hierarchical diagrams.
 
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_9386.xcos");
+xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_9386.zcos");
 // Open the superblock
 

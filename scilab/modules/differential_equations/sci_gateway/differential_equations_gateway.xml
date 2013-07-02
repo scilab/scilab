@@ -14,8 +14,8 @@
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="differential_equations">
-<!-- =================== -->
-<!--
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
@@ -31,20 +31,21 @@
  ===================
  Don't touch if you do not know what you are doing
 -->
-<!-- =================== -->
-
-<PRIMITIVE gatewayId="12" primitiveId="1" primitiveName="ode" />
-<!-- =================== -->  
-<PRIMITIVE gatewayId="26" primitiveId="1" primitiveName="impl" />
-<PRIMITIVE gatewayId="26" primitiveId="2" primitiveName="dassl" />
-<PRIMITIVE gatewayId="26" primitiveId="3" primitiveName="dasrt" />
-<!-- =================== -->  
-<PRIMITIVE gatewayId="29" primitiveId="1" primitiveName="odedc" />
-<!-- =================== -->
-<PRIMITIVE gatewayId="30" primitiveId="1" primitiveName="intg" />
-<PRIMITIVE gatewayId="30" primitiveId="2" primitiveName="int2d" />
-<PRIMITIVE gatewayId="30" primitiveId="3" primitiveName="int3d" />
-<PRIMITIVE gatewayId="30" primitiveId="4" primitiveName="feval" />
-<!-- =================== -->
-<PRIMITIVE gatewayId="32" primitiveId="1" primitiveName="bvode" />
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="12" primitiveId="1" primitiveName="ode" />
+    <!-- =================== -->  
+    <PRIMITIVE gatewayId="26" primitiveId="1" primitiveName="impl" />
+    <PRIMITIVE gatewayId="26" primitiveId="2" primitiveName="dassl" />
+    <PRIMITIVE gatewayId="26" primitiveId="3" primitiveName="dasrt" />
+    <PRIMITIVE gatewayId="26" primitiveId="4" primitiveName="daskr" />
+    <!-- =================== -->  
+    <PRIMITIVE gatewayId="29" primitiveId="1" primitiveName="odedc" />
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="30" primitiveId="1" primitiveName="intg" />
+    <PRIMITIVE gatewayId="30" primitiveId="2" primitiveName="int2d" />
+    <PRIMITIVE gatewayId="30" primitiveId="3" primitiveName="int3d" />
+    <PRIMITIVE gatewayId="30" primitiveId="4" primitiveName="feval" />
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="32" primitiveId="1" primitiveName="bvode" />
 </GATEWAY>

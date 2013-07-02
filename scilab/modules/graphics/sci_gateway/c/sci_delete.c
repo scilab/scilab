@@ -110,7 +110,7 @@ int sci_delete(char *fname, unsigned long fname_len)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+                    Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
                     return 1;
                 }
 
@@ -177,6 +177,11 @@ int sci_delete(char *fname, unsigned long fname_len)
                             deleteGraphicObject(childrenUID[i]);
                         }
                     }
+                    /*
+                     * Clone a new Axes object using the Axes model which is then
+                     * attached to the 'cleaned' Figure.
+                     */
+                    cloneAxesModel(pFigureUID);
 
                     AssignOutputVariable(pvApiCtx, 1) = 0;
                     ReturnArguments(pvApiCtx);

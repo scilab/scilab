@@ -17,30 +17,30 @@ using namespace org_scilab_modules_gui_events;
 
 void CallJxgetmouse()
 {
-  Jxgetmouse::xgetmouse(getScilabJavaVM());
+    Jxgetmouse::xgetmouse(getScilabJavaVM());
 }
 
 void CallJxgetmouseWithOptions(int withMotion, int withRelease)
 {
-  Jxgetmouse::xgetmouse(getScilabJavaVM(), BOOLtobool((BOOL)withMotion), BOOLtobool((BOOL)withRelease));
+    Jxgetmouse::xgetmouse(getScilabJavaVM(), BOOLtobool((BOOL)withMotion), BOOLtobool((BOOL)withRelease));
 }
 
 int getJxgetmouseMouseButtonNumber()
 {
-  return Jxgetmouse::getMouseButtonNumber(getScilabJavaVM());
+    return Jxgetmouse::getMouseButtonNumber(getScilabJavaVM());
 }
 
 char * getJxgetmouseWindowsID()
 {
-  return Jxgetmouse::getWindowsID(getScilabJavaVM());
+    return Jxgetmouse::getWindowsID(getScilabJavaVM());
 }
 
 double getJxgetmouseXCoordinate()
 {
-  return Jxgetmouse::getXCoordinate(getScilabJavaVM());
+    return Jxgetmouse::getXCoordinate(getScilabJavaVM());
 }
 
 double getJxgetmouseYCoordinate()
 {
-  return Jxgetmouse::getYCoordinate(getScilabJavaVM());
+    return Jxgetmouse::getYCoordinate(getScilabJavaVM());
 }

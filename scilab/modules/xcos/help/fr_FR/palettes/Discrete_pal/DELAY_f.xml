@@ -211,39 +211,32 @@
     <refsection id="Example_DELAY_f">
         <title>Exemple</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/fr_FR/DELAY_f_fr_FR.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/discrete_pal/fr_FR/DELAY_f_1_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../examples/discrete_pal/fr_FR/DELAY_f_diagram_fr_FR.png" align="center"/>
+                        <imagedata align="center" fileref="../../../../examples/discrete_pal/fr_FR/DELAY_f_1_fr_FR.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
-        </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/discrete_pal/fr_FR/DELAY_f_scope_fr_FR.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
+            <scilab:image localized="true"><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/fr_FR/DELAY_f_1_fr_FR.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/delay_commons.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../examples/discrete_pal/delay_commons_diagram.png" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/discrete_pal/delay_commons_scope.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
     </refsection>
     <refsection id="Interfacingfunction_DELAY_f">
         <title>Fonction d'interfaçage</title>

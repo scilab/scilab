@@ -118,7 +118,7 @@ public class DefaultAction extends CommonCallBack {
      * Default action
      */
     @Override
-	public void callBack() {
+    public void callBack() {
         doAction();
     }
 

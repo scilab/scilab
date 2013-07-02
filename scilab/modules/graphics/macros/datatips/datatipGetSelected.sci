@@ -8,15 +8,15 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [curve,ind]=datatipGetSelected(curve_handles)
-//datatip utility function
-//get the selected datatip(s)
-  ind=[]
-  for kc=1:size(curve_handles,'*')
-    curve=curve_handles(kc);
-    ud=datatipGetStruct(curve);
-    sel=ud.selected
-    if sel>0 then ind=sel,break,end
-  end
-  if ind==[] then curve=[],end
+    //datatip utility function
+    //get the selected datatip(s)
+    ind=[]
+    for kc=1:size(curve_handles,"*")
+        curve=curve_handles(kc);
+        ud=datatipGetStruct(curve);
+        sel=ud.selected
+        if sel>0 then ind=sel,break,end
+    end
+    if ind==[] then curve=[],end
 endfunction
 

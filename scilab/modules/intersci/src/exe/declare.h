@@ -16,7 +16,7 @@
  * @param declaration
  * @return int
  */
-int CheckDeclare(int type,char *declaration);
+int CheckDeclare(int type, char *declaration);
 
 /**
  * TODO : comment

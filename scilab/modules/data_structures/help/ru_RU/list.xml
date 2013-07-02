@@ -112,8 +112,13 @@
         <title>Примечания</title>
         <para>
             Scilab предлагает также другие виды списков, тип <link linkend="tlist">tlist</link> (типизированный список)
-            и тип <link linkend="mlist">mlist</link> (матричноориентированный список), которые полезны для определения нового типа данных с механизмом 
-            <link linkend="overloading">перегрузки</link> операторов (<link linkend="hypermatrices">гиперматрицы</link>, которые являются многомерными массивами, в Scilab'е на самом деле имеют тип <emphasis>mlist</emphasis>).
+            и тип <link linkend="mlist">mlist</link>
+            (матричноориентированный список), которые полезны для
+            определения нового типа данных с механизмом
+            <link linkend="overloading">перегрузки</link> операторов
+            (<link linkend="hypermatrices">гиперматрицы</link>, которые
+            являются многомерными массивами, в Scilab'е на самом деле
+            имеют тип <emphasis>mlist</emphasis>).
         </para>
         <para>
             Также доступны структуры <emphasis>struct</emphasis> Matlab'а.
@@ -122,15 +127,28 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-l = list(1,["a" "b"])
-l(0) = "foo"
-l($+1) = "hello"
-l(2) = "toto"
-l(3) = rand(1,2)
-l(3) = null()
-lbis = list("gewurtz", "caipirina" ,"debug")
-lter = lstcat(l,lbis)
+l = list(1,["a" "b"]) // объявление основного списка с элементом типа
+                      // double и вектором двух строковых значений
+size(l) // размер равен 2
+// l(0) - Не существует!
+l(1) // доступ к значению типа double
+l(2) // доступ к вектору строковых значений
+size(l(2)) // размер равен 1,2
+
+l(0) = "foo" // вставка в начало списка
+// l(0) - по-прежнему не существует
+l(1) // равно "foo"
+
+l($+1) = "hello" // вставка в конец списка
+l(2) = "toto" // перезапись моего значения типа double
+l(3) = rand(1,2) // перезапись моего вектора строковых значений
+
+l(3) = null() // удаление третьего элемента
+
+lbis = list("gewurtz", "caipirina" ,"debug") // объявление нового списка
+lter = lstcat(l,lbis) // слияние двух списков
 size(lter) - size(lbis) - size(l)  // должен быть ноль
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

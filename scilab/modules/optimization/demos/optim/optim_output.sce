@@ -41,7 +41,7 @@ function demo_optim_output()
     //
     m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
     if(m == 1)
-        filename = 'optim_output.sce';
+        filename = "optim_output.sce";
         dname = get_absolute_file_path(filename);
         editor ( dname + filename );
     end
@@ -55,4 +55,5 @@ clear demo_optim_output;
 
 
 
-
+
+

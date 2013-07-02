@@ -1,10 +1,10 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre LEDRU
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
@@ -19,10 +19,12 @@ sci_gateway/fortran/sci_f_mulf.f \
 sci_gateway/fortran/sci_f_ldivf.f \
 sci_gateway/fortran/sci_f_rdivf.f
 
-FORTRAN_SOURCES = src/fortran/atome.f
+FORTRAN_SOURCES = src/fortran/atome.f \
+src/fortran/iseye.f \
+src/fortran/isnum.f \
+src/fortran/termf.f
 
 libscisymbolic_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/localization/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \

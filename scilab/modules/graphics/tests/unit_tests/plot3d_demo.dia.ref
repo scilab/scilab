@@ -17,327 +17,327 @@ e = a.children(1);
 //assert_checkequal(f.axes_size, [610,460])
 assert_checkequal(f.auto_resize, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.viewport, [0,0])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.figure_name, gettext("Graphic window number %d"))
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.figure_id, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.pixmap, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.pixel_drawing_mode, "copy")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.anti_aliasing, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.immediate_drawing, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.background, -2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.visible, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.rotation_style, "unary")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.event_handler, "")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.event_handler_enable, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.user_data, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(f.tag, "")
  ans  =
-
-  T
+ 
+  T  
 // Check Axes
 assert_checkequal(a.visible, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.axes_visible, ["on" "on" "on"])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.axes_reverse, ["off" "off" "off"])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.grid, [-1 -1, -1])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.grid_position, "background")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.x_location, "bottom")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.y_location, "left")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.auto_ticks, ["on" "on" "on"])
  ans  =
-
-  T
+ 
+  T  
 //assert_checkequal(a.x_ticks.locations, [0:0.1:1]')
 //assert_checkequal(a.y_ticks.locations, [0:0.1:1]')
 //assert_checkequal(a.z_ticks.locations, [])
 assert_checkequal(a.box, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.filled, "on")
  ans  =
-
-  T
-assert_checkequal(a.sub_ticks, [1, 1, 1])
+ 
+  T  
+assert_checkequal(a.sub_ticks, [1, 1, 0])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.font_style, 6)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.font_size, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.font_color, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.fractional_font, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.isoview, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.cube_scaling, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.view, "3d")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.rotation_angles, [70, 70])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.log_flags, "nnn")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.tight_limits, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.data_bounds, [-%pi, -%pi, -1; %pi, %pi, 1])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.zoom_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.margins, [0.125, 0.125, 0.125, 0.125])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.axes_bounds, [0, 0, 1, 1])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.auto_clear, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.auto_scale, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.hidden_axis_color, 4)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.hiddencolor, 4)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.line_mode, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.line_style, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.thickness, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.mark_mode, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.mark_style, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.mark_size_unit, "tabulated")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.mark_size, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.mark_foreground, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.mark_background, -2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.foreground, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.background, -2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.arc_drawing_method, "lines")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.clip_state, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.clip_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(a.user_data, [])
  ans  =
-
-  T
+ 
+  T  
 // Check Plot3d Object
 assert_checkequal(e.parent.type, "Axes")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.children, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.visible, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.surface_mode, "on")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.foreground, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.thickness, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.mark_mode, "off")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.mark_style, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.mark_size_unit, "tabulated")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.mark_size, 0)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.mark_foreground, -1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.mark_background, -2)
  ans  =
-
-  T
+ 
+  T  
 demoData = %pi * [-1:0.05:1]';
 assert_checkequal(e.data.x, demoData)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.data.y, demoData)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.data.z, sin(demoData)*cos(demoData)')
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.color_mode, 2)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.color_flag, 1)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.hiddencolor, 4)
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.clip_state, "clipgrf")
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.clip_box, [])
  ans  =
-
-  T
+ 
+  T  
 assert_checkequal(e.user_data, [])
  ans  =
-
-  T
+ 
+  T  

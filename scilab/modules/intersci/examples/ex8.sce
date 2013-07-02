@@ -13,10 +13,10 @@
 // Making object files
 //  Interface file '/tmp/ex8fi.o'
 //  User's files '/tmp/ex8c.o';
-files=G_make(['/tmp/ex8fi.o','/tmp/ex8c.o'],'ex8.dll');
+files=G_make(["/tmp/ex8fi.o","/tmp/ex8c.o"],"ex8.dll");
 //2-Link object files .o with addinter
 //addinter(files,'ex8fi',matusr_funs);
-exec('ex8fi.sce');
+exec("ex8fi.sce");
 //Test Scilab functions:
 
 //calc8: matrix of integer type created by C function (malloc and free).

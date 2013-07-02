@@ -114,7 +114,7 @@ int sci_notify(char *fname, unsigned long fname_len)
     {
         Signal::notify(getScilabJavaVM(), pStVarOne[0]);
     }
-    catch(const GiwsException::JniException & e)
+    catch (const GiwsException::JniException & e)
     {
         Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
         return 0;

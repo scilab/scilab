@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,155 +20,158 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_setenv(char *fname,unsigned long fname_len)
+int sci_setenv(char *fname, unsigned long fname_len)
 {
-	SciErr sciErr;
-	int m1 = 0, n1 = 0;
-	int *piAddressVarOne = NULL;
-	int iType1 = 0;
-	char *pStVarOne = NULL;
-	int lenStVarOne = 0;
+    SciErr sciErr;
+    int m1 = 0, n1 = 0;
+    int *piAddressVarOne = NULL;
+    int iType1 = 0;
+    char *pStVarOne = NULL;
+    int lenStVarOne = 0;
 
-	int m2 = 0, n2 = 0;
-	int *piAddressVarTwo = NULL;
-	int iType2 = 0;
-	char *pStVarTwo = NULL;
-	int lenStVarTwo = 0;
+    int m2 = 0, n2 = 0;
+    int *piAddressVarTwo = NULL;
+    int iType2 = 0;
+    char *pStVarTwo = NULL;
+    int lenStVarTwo = 0;
 
-	int m_out1 = 0, n_out1 = 0;
+    int m_out1 = 0, n_out1 = 0;
 
-	int result = 0;
+    int result = 0;
 
-	Rhs = Max(0,Rhs);
-	CheckRhs(2,2);
-	CheckLhs(0,1);
+    Rhs = Max(0, Rhs);
+    CheckRhs(2, 2);
+    CheckLhs(0, 1);
 
-	sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-		return 0;
-	}
+        return 0;
+    }
 
-	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-		return 0;
-	}
+        return 0;
+    }
 
-	sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
+    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-		return 0;
-	}
+        return 0;
+    }
 
-	if (iType1  != sci_strings )
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
-		return 0;
-	}
+    if (iType1  != sci_strings )
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        return 0;
+    }
 
-	sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
+    sciErr = getVarType(pvApiCtx, piAddressVarTwo, &iType2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-		return 0;
-	}
+        return 0;
+    }
 
-	if (iType2  != sci_strings )
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
-		return 0;
-	}
+    if (iType2  != sci_strings )
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        return 0;
+    }
 
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
+    sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-		return 0;
-	}
+        return 0;
+    }
 
-	if ( (m1 != n1) && (n1 != 1) ) 
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
-		return 0;
-	}
+    if ( (m1 != n1) && (n1 != 1) )
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        return 0;
+    }
 
-	sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo, NULL);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
+    sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, NULL);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-		return 0;
-	}
+        return 0;
+    }
 
-	if ( (m2 != n2) && (n2 != 1) ) 
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
-		return 0;
-	}
+    if ( (m2 != n2) && (n2 != 1) )
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+        return 0;
+    }
 
-	pStVarOne = (char*)MALLOC(sizeof(char)*(lenStVarOne + 1));
-	if (pStVarOne)
-	{
-		sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
+    pStVarOne = (char*)MALLOC(sizeof(char) * (lenStVarOne + 1));
+    if (pStVarOne)
+    {
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-			return 0;
-		}
+            return 0;
+        }
 
-	}
-	else
-	{
-		Scierror(999,_("%s: Memory allocation error.\n"),fname);
-		return 0;
-	}
+    }
+    else
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
 
-	pStVarTwo = (char*)MALLOC(sizeof(char)*(lenStVarTwo + 1));
-	if (pStVarTwo)
-	{
-		sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
-		if(sciErr.iErr)
-		{
-			printError(&sciErr, 0);
+    pStVarTwo = (char*)MALLOC(sizeof(char) * (lenStVarTwo + 1));
+    if (pStVarTwo)
+    {
+        sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m2, &n2, &lenStVarTwo, &pStVarTwo);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-			return 0;
-		}
+            return 0;
+        }
 
-	}
-	else
-	{
-		FREE(pStVarOne);
-		Scierror(999,_("%s: Memory allocation error.\n"),fname);
-		return 0;
-	}
+    }
+    else
+    {
+        FREE(pStVarOne);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
 
-	result = setenvc(pStVarOne, pStVarTwo);
+    result = setenvc(pStVarOne, pStVarTwo);
 
-	FREE(pStVarOne); pStVarOne = NULL;
-	FREE(pStVarTwo); pStVarTwo = NULL;
+    FREE(pStVarOne);
+    pStVarOne = NULL;
+    FREE(pStVarTwo);
+    pStVarTwo = NULL;
 
-	m_out1 = 1; n_out1 = 1;
-	sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m_out1, n_out1, &result);
-	if(sciErr.iErr)
-	{
-		printError(&sciErr, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
-		return 0;
-	}
+    m_out1 = 1;
+    n_out1 = 1;
+    sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m_out1, n_out1, &result);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
 
-	LhsVar(1) = Rhs + 1; 
+    LhsVar(1) = Rhs + 1;
 
-	PutLhsVar();
-	return 0;
+    PutLhsVar();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

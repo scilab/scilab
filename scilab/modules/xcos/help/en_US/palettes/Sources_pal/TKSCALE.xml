@@ -201,16 +201,20 @@
     <refsection id="Example_TKSCALE">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/TKSCALE_en_US.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/TKSCALE_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/sources_pal/en_US/TKSCALE_diagram_en_US.png" align="center"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/TKSCALE_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/TKSCALE_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_TKSCALE">
         <title>Interfacing function</title>

@@ -90,11 +90,10 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
         this.textPane = textPane;
         this.doc = (ScilabDocument) textPane.getDocument();
         setOpaque(true);
-        setFont(textPane.getFont());
+        updateFont(textPane.getFont());
         setBorderGap(PANELGAPSIZE);
         setCurrentLineForeground(Color.RED);
         setAlternColors(ConfigSciNotesManager.getAlternColors());
-        updateFont(ConfigSciNotesManager.getFont());
         textPane.addCaretListener(this);
         addMouseMotionListener(this);
     }
@@ -358,13 +357,21 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             lineLevel = new byte[nlines + 1];
             lineNumber[0] = 1;
             int current = 1;
+            boolean prevBroken = false;
             ScilabDocument.ScilabLeafElement elem;
             for (int i = 0; i < nlines; i++) {
                 elem = (ScilabDocument.ScilabLeafElement) root.getElement(i);
                 int type = elem.getType();
                 switch (type) {
                     case ScilabDocument.ScilabLeafElement.NOTHING :
-                        lineNumber[i] = current++;
+                        if (prevBroken) {
+                            lineNumber[i] = -1;
+                            if (!elem.isBroken()) {
+                                prevBroken = false;
+                            }
+                        } else {
+                            lineNumber[i] = current++;
+                        }
                         lineLevel[i] = (byte) stk.size();
                         break;
                     case ScilabDocument.ScilabLeafElement.FUN :
@@ -372,6 +379,9 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
                         lineLevel[i] = (byte) stk.size();
                         current = 2;
                         lineNumber[i] = 1;
+                        if (elem.isBroken()) {
+                            prevBroken = true;
+                        }
                         break;
                     case ScilabDocument.ScilabLeafElement.ENDFUN :
                         lineNumber[i] = current++;
@@ -441,7 +451,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             if (chg == null) {
                 // change occurred only in one line
                 ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(e.getOffset()));
-                if (line.isFunction()) {
+                if (line.needLineNumberRepaint()) {
                     updateLineNumber();
                     repaint();
                 }

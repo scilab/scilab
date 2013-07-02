@@ -9,13 +9,13 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function y = acsch(x)
-//Inverse hyperbolic cosecant
-//acsch(x)=  arcsinh(1 ./ x)
+    //Inverse hyperbolic cosecant
+    //acsch(x)=  arcsinh(1 ./ x)
 
-  rhs = argn(2);
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"acsch", 1));
-  end
+    rhs = argn(2);
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"acsch", 1));
+    end
 
-  y = asinh(ones(x)./x);
+    y = asinh(ones(x)./x);
 endfunction

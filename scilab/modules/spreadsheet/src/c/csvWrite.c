@@ -27,7 +27,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
-#include "csv_strsubst.h"
+#include "strsubst.h"
 #include "csvDefault.h"
 #include "utftolatin.h"
 // =============================================================================
@@ -38,9 +38,12 @@
 #define ComplexStr "i"
 #define EMPTY_STRING ""
 #if _MSC_VER
-#define MODEWFD "wt"
+#define MODEWFD "wb"
 #else
 #define MODEWFD "w"
+#endif
+#if _MSC_VER
+#define snprintf _snprintf
 #endif
 // =============================================================================
 #ifndef signbit
@@ -167,7 +170,7 @@ csvWriteError csvWrite_double(const char *filename,
                 char buffer[65535];
                 char *result = NULL;
                 sprintf(buffer, precisionFormat, pdValues[i + m * j]);
-                result = csv_strsubst(buffer, getCsvDefaultDecimal(), decimal);
+                result = strsub(buffer, getCsvDefaultDecimal(), decimal);
                 if (result)
                 {
                     fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, result);
@@ -296,88 +299,123 @@ csvWriteError csvWrite_complex(const char *filename,
         for (j = 0; j < n; j++)
         {
             char StringValue[65535];
-            if (ISNAN(pdValuesReal[i + m * j]))
+
+            double realValue = pdValuesReal[i + m * j];
+            double imagValue = pdValuesImag[i + m * j];
+            int hasReal = 0;
+
+            if (ISNAN(realValue))
             {
                 strcpy(StringValue, NanString);
+                hasReal = 1;
             }
-            else if (finite(pdValuesReal[i + m * j]))
+            else if (finite(realValue))
             {
-                char buffer[65535];
-                char *result = NULL;
-                sprintf(buffer, precisionFormat, pdValuesReal[i + m * j]);
-                result = csv_strsubst(buffer, getCsvDefaultDecimal(), decimal);
-                if (result)
+                if ((realValue != 0) || (finite(imagValue) && (imagValue == 0)))
                 {
-                    strcpy(StringValue, result);
-                    FREE(result);
-                    result = NULL;
-                }
-                else
-                {
-                    sprintf(StringValue, DEFAULT_CSV_WRITE_DOUBLE_FORMAT, pdValuesReal[i + m * j]);
+                    char buffer[65535];
+                    char *result = NULL;
+
+                    sprintf(buffer, precisionFormat, pdValuesReal[i + m * j]);
+                    result = strsub(buffer, getCsvDefaultDecimal(), decimal);
+                    if (result)
+                    {
+                        strcpy(StringValue, result);
+                        FREE(result);
+                    }
+                    else
+                    {
+                        sprintf(StringValue, DEFAULT_CSV_WRITE_DOUBLE_FORMAT, pdValuesReal[i + m * j]);
+                    }
+                    hasReal = 1;
                 }
             }
             else
             {
-                if ( signbit(pdValuesReal[i + m * j]) )
+                if (signbit(realValue))
                 {
-                    // NegInfString
                     strcpy(StringValue, NegInfString);
                 }
                 else
                 {
-                    // InfString
                     strcpy(StringValue, InfString);
                 }
+                hasReal = 1;
             }
 
-            if (ISNAN(pdValuesImag[i + m * j]))
+            if (ISNAN(imagValue))
             {
-                strcat(StringValue, PlusStr);
-                strcat(StringValue, NanString);
-                strcat(StringValue, ComplexStr);
-            }
-            else if (finite(pdValuesImag[i + m * j]))
-            {
-                char buffer[65535];
-                char *result = NULL;
-
-                if (pdValuesImag[i + m * j] >= 0)
+                if (hasReal)
                 {
                     strcat(StringValue, PlusStr);
+                    strcat(StringValue, NanString);
                 }
                 else
                 {
-                    strcat(StringValue, LessStr);
-                }
-
-                sprintf(buffer, precisionFormat, fabs(pdValuesImag[i + m * j]));
-                result = csv_strsubst(buffer, getCsvDefaultDecimal(), decimal);
-
-                if (result)
-                {
-                    strcat(StringValue, result);
-                    FREE(result);
-                    result = NULL;
-                }
-                else
-                {
-                    sprintf(buffer, DEFAULT_CSV_WRITE_DOUBLE_FORMAT, fabs(pdValuesImag[i + m * j]));
-                    strcat(StringValue, buffer);
+                    strcpy(StringValue, NanString);
                 }
                 strcat(StringValue, ComplexStr);
+            }
+            else if (finite(imagValue))
+            {
+                if (imagValue != 0)
+                {
+                    char buffer[65535];
+                    char *result = NULL;
+
+                    if (hasReal && (imagValue > 0))
+                    {
+                        strcat(StringValue, PlusStr);
+                    }
+                    else if (imagValue < 0)
+                    {
+                        if (hasReal)
+                        {
+                            strcat(StringValue, LessStr);
+                        }
+                        else
+                        {
+                            strcpy(StringValue, LessStr);
+                        }
+                    }
+
+                    sprintf(buffer, precisionFormat, fabs(imagValue));
+                    result = strsub(buffer, getCsvDefaultDecimal(), decimal);
+                    if (result)
+                    {
+                        if ((hasReal) || (imagValue < 0))
+                        {
+                            strcat(StringValue, result);
+                        }
+                        else
+                        {
+                            strcpy(StringValue, result);
+                        }
+                        FREE(result);
+                    }
+                    else
+                    {
+                        sprintf(StringValue, DEFAULT_CSV_WRITE_DOUBLE_FORMAT, imagValue);
+                    }
+                    strcat(StringValue, ComplexStr);
+                }
             }
             else
             {
-                if ( signbit(pdValuesImag[i + m * j]) )
+                if (hasReal && (signbit(imagValue) == 0))
                 {
-                    // NegInfString
-                    strcat(StringValue, LessStr);
-                }
-                else
-                {
-                    // InfString
                     strcat(StringValue, PlusStr);
+                }
+                else if (signbit(realValue) > 0)
+                {
+                    if (hasReal)
+                    {
+                        strcat(StringValue, LessStr);
+                    }
+                    else
+                    {
+                        strcpy(StringValue, LessStr);
+                    }
                 }
                 strcat(StringValue, InfString);
                 strcat(StringValue, ComplexStr);
@@ -497,7 +535,7 @@ csvWriteError csvWrite_string(const char *filename,
             else
             {
                 char *result = NULL;
-                result = csv_strsubst((char*)(pStrValues[i + m * j]), getCsvDefaultDecimal(), decimal);
+                result = strsub((char*)(pStrValues[i + m * j]), getCsvDefaultDecimal(), decimal);
                 if (result)
                 {
                     if (isIsoLatin)

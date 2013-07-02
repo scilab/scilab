@@ -39,14 +39,14 @@ int C2F(sci_format) (char *fname, unsigned long fname_len)
 
     switch (Rhs)
     {
-    case 2:
-        return sci_format_tworhs(fname);
-    case 1:
-        return sci_format_onerhs(fname);
-        break;
-    case 0:
-    default:
-        return sci_format_norhs(fname);
+        case 2:
+            return sci_format_tworhs(fname);
+        case 1:
+            return sci_format_onerhs(fname);
+            break;
+        case 0:
+        default:
+            return sci_format_norhs(fname);
     }
 }
 
@@ -62,7 +62,7 @@ static int sci_format_norhs(char *fname)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
     }
     LhsVar(1) = Rhs + 1;
@@ -187,7 +187,7 @@ static int sci_format_onerhs(char *fname)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 0;
                 }
 

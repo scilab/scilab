@@ -68,26 +68,27 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example">string(rand(2, 2))
+        <programlisting role="example"><![CDATA[ 
+string(rand(2, 2))
             
-            deff("y = mymacro(x)", "y = x + 1")
-            [out, in, text] = string(mymacro)
-            x = 123.356; 
-            disp("Result is " + string(x));
-            
-            disp("/" + string(~%t) + "/");
-            disp("/" + string(%i+1) + "/");
-            disp("/" + string(int16(-123)) + "/");
-            disp("/" + string(1 + %s + %s^3) + "/");
-            
-            string(corelib)
-            
-            v = format();
-            disp(string(%pi))
-            format(24);
-            disp(string(%pi))
-            format(v(2)) 
-        </programlisting>
+deff("y = mymacro(x)", "y = x + 1")
+[out, in, text] = string(mymacro)
+x = 123.356; 
+disp("Result is " + string(x));
+
+disp("/" + string(~%t) + "/");
+disp("/" + string(%i+1) + "/");
+disp("/" + string(int16(-123)) + "/");
+disp("/" + string(1 + %s + %s^3) + "/");
+
+string(corelib)
+
+v = format();
+disp(string(%pi))
+format(24);
+disp(string(%pi))
+format(v(2))
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

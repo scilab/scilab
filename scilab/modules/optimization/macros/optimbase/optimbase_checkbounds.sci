@@ -11,32 +11,32 @@
 //
 // optimbase_checkbounds --
 //   Check if the bounds are consistent and puts an error message if not.
-//   One could generate an error, but errors are not testable 
+//   One could generate an error, but errors are not testable
 //   with the current system.
 //
 function this = optimbase_checkbounds ( this )
     maxl = length ( this.boundsmax )
     minl = length ( this.boundsmin )
     if ( maxl > 0 | minl > 0 ) then
-      if ( this.numberofvariables <> maxl ) then
-        errmsg = sprintf(gettext("%s: The number of variables %d does not match the number of max bounds: %d.\n") , ...
-          "optimbase_checkbounds",this.numberofvariables , maxl )
-        error(errmsg)
-      end
-      if ( this.numberofvariables <> minl ) then
-        errmsg = sprintf(gettext("%s: The number of variables %d does not match the number of min bounds: %d.\n") , ...
-          "optimbase_checkbounds",this.numberofvariables , minl )
-        error(errmsg)
-      end
-      for ix = 1 : this.numberofvariables
-          xmin = this.boundsmin ( ix )
-          xmax = this.boundsmax ( ix )
-          if ( xmax < xmin ) then
-            errmsg = sprintf(gettext("%s: The max bound %s for variable #%d is lower than the min bound %s.\n"), ...
-              "optimbase_checkbounds",string(xmax) , ix , string(xmin) )
+        if ( this.numberofvariables <> maxl ) then
+            errmsg = sprintf(gettext("%s: The number of variables %d does not match the number of max bounds: %d.\n") , ...
+            "optimbase_checkbounds",this.numberofvariables , maxl )
             error(errmsg)
-          end
-      end
+        end
+        if ( this.numberofvariables <> minl ) then
+            errmsg = sprintf(gettext("%s: The number of variables %d does not match the number of min bounds: %d.\n") , ...
+            "optimbase_checkbounds",this.numberofvariables , minl )
+            error(errmsg)
+        end
+        for ix = 1 : this.numberofvariables
+            xmin = this.boundsmin ( ix )
+            xmax = this.boundsmax ( ix )
+            if ( xmax < xmin ) then
+                errmsg = sprintf(gettext("%s: The max bound %s for variable #%d is lower than the min bound %s.\n"), ...
+                "optimbase_checkbounds",string(xmax) , ix , string(xmin) )
+                error(errmsg)
+            end
+        end
     end
 endfunction
 

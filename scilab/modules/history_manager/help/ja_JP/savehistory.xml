@@ -62,7 +62,7 @@
         
         <para>履歴をファイルに保存します.</para>
         
-        <para>デフォルトの履歴ファイルは SCIHOME+'/.history.scilab' です.</para>
+        <para>デフォルトの履歴ファイルは SCIHOME/history です.</para>
         
     </refsection>
     
@@ -70,8 +70,8 @@
         
         <title>例</title>
         
-        <programlisting role="example"><![CDATA[ 
-savehistory(SCI+'/session.scilab') 
+        <programlisting role="example"><![CDATA[
+savehistory(SCI+'/session.scilab')
  ]]></programlisting>
         
     </refsection>

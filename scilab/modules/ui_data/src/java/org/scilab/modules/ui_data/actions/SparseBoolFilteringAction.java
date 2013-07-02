@@ -20,27 +20,27 @@ import org.scilab.modules.ui_data.utils.UiDataMessages;
  * @author Allan SIMON
  */
 public class SparseBoolFilteringAction extends FilteringAction {
-	
-	/** Name of the action */
-	public static final String NAME = UiDataMessages.SPARSE_BOOLEAN;
 
-	private static final long serialVersionUID = 438747338817314109L;
+    /** Name of the action */
+    public static final String NAME = UiDataMessages.SPARSE_BOOLEAN;
 
-	/**
-	 * Constructor
-	 * 
-	 */
-	public SparseBoolFilteringAction() {
-		super();
-	}
-	
-	/**
-	 * Create checkbox menu for the graph menu bar
-	 * @return the menu
-	 */
-	public static CheckBoxMenuItem createCheckBoxMenu() {
-		CheckBoxMenuItem menu = createCheckBoxMenu(new SparseBoolFilteringAction());
-		return menu;
-	}
+    private static final long serialVersionUID = 438747338817314109L;
+
+    /**
+     * Constructor
+     *
+     */
+    public SparseBoolFilteringAction() {
+        super();
+    }
+
+    /**
+     * Create checkbox menu for the graph menu bar
+     * @return the menu
+     */
+    public static CheckBoxMenuItem createCheckBoxMenu() {
+        CheckBoxMenuItem menu = createCheckBoxMenu(new SparseBoolFilteringAction());
+        return menu;
+    }
 
 }

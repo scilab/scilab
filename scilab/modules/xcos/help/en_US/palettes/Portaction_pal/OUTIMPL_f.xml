@@ -200,26 +200,36 @@
         <title>Example</title>
         <para>
             In the following example the Super block is a basic transistor switch. 
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.xcos">
+        </para>
+        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos">
                 Open this example in Xcos
             </link>
-            .
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_superbloc_en_US.png"/>
-            </imageobject>
-        </mediaobject>
         <para>
-            The following figure shows the use of the Super block and the resulting output when its input is toggled between the potentials GND and Vcc. You can also see on the output the effect of the saturation voltage (minimal output = 0.4 Volt).
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/OUTIMPL_f_internal_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
         </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            The following figure shows the output of the bloc :
+        </para>
+        <scilab:image><![CDATA[
+// overload messagebox to avoid the "modelica compiler" message
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+	btn=1;
+endfunction
+
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_OUTIMPL_f">
         <title>Interfacing function</title>

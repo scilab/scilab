@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2012-10-23 19:01+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-03-21 13:44+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -86,14 +86,6 @@ msgstr ""
 "'%s', '%s', '%s', '%s' nebo '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Není více paměti.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávány čtyři položky.\n"
@@ -129,6 +121,10 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr "%s: oddělovač a desetinné číslo musí mít různé hodnoty.\n"
 
 #, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr "%s: Levé indexy rozsahu řádku a/nebo sloupce mimo rozsah.\n"
+
+#, c-format
 msgid "%s: can not convert data.\n"
 msgstr "%s: nelze převést data.\n"
 
@@ -149,8 +145,9 @@ msgid "%s: can not read file %s.\n"
 msgstr "%s: nelze přečíst soubor %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec vektoru.\n"
 
 #, c-format
 msgid "%s: can not read text: Error in the column structure\n"
@@ -221,6 +218,10 @@ msgid "%s: The file has no Workbook directory.\n"
 msgstr "%s Soubor nemá žádný adresář Workbook.\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Není více paměti.\n"
+
+#, c-format
 msgid "%s: Incorrect or corrupted file.\n"
 msgstr "%s: Neplatný, nebo poškozený soubor.\n"
 
@@ -248,6 +249,9 @@ msgid ""
 msgstr ""
 "%s: Ve sloupcích nalezena nesrovnalost. Na řádku %d nalezeno %d sloupců, "
 "zatímco předchozí obsahoval %d.\n"
+
+msgid "Warning"
+msgstr "Varování"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"

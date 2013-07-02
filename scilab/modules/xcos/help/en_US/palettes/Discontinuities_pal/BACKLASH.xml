@@ -125,21 +125,21 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">initial output</emphasis>
+                    <emphasis role="bold">Initial output</emphasis>
                 </para>
                 <para> The initial output value.</para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">gap</emphasis>
+                    <emphasis role="bold">Gap</emphasis>
                 </para>
                 <para> The width of the dead-band.</para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">use zero-crossing </emphasis>
+                    <emphasis role="bold">Use zero-crossing </emphasis>
                 </para>
                 <para> Select to enable use of zero crossing detection to detect engagement with lower and upper thresholds.</para>
                 <para> Properties : Type 'vec' of size 1 </para>
@@ -237,10 +237,10 @@
     <refsection id="Example_BACKLASH">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/BACKLASH_Example.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/discontinuities_pal/BACKLASH_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/BACKLASH_Example.xcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/BACKLASH_Example.zcos" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

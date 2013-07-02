@@ -8,66 +8,309 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2012-11-14 10:59+0100\n"
+"Revision-Date: 2013-06-25 16:31+0100\n"
 
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 97
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 101
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 129
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 131
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 133
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 135
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 146
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 148
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 171
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 168
 #, c-format
-msgid "%s: Variable '%s' already exists in file '%s'."
+msgid "%s: Unable to delete existing variable \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 202
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 175
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable\n"
+"."
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 193
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 209
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 200
 #, c-format
 msgid "%s: Unable to update HDF5 format version in \"%s\"."
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 924
+# File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 917
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 94
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 117
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 80
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 117
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 154
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 197
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 108
+# File: sci_gateway/cpp/sci_h5delete.cpp, line: 73
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 67
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 119
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 80
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 106
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 139
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 82
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 81
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 107
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 111
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 79
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 113
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 84
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 110
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 151
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 75
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 102
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 127
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 79
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 80
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 123
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 160
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 203
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 57
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 83
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 114
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 93
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 72
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 106
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 137
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 105
+# File: sci_gateway/cpp/sci_h5umount.cpp, line: 72
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 129
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 53
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 88
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 111
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 136
+# File: sci_gateway/cpp/sci_h5close.cpp, line: 56
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 63
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 100
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 137
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 191
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 67
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 102
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 125
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 139
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 155
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 184
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 199
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 221
+# File: sci_gateway/cpp/sci_h5delete.cpp, line: 45
+# File: sci_gateway/cpp/sci_h5delete.cpp, line: 67
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 61
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 85
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 63
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 100
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 132
+# File: sci_gateway/cpp/sci_h5flush.cpp, line: 50
+# File: sci_gateway/cpp/sci_h5flush.cpp, line: 75
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 53
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 76
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 101
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 56
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 75
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 101
+# File: sci_gateway/cpp/sci_h5isfoo.cpp, line: 44
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 60
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 79
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 105
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 128
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 143
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 166
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 51
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 73
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 96
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 133
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 67
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 104
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 134
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 178
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 225
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 58
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 96
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 121
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 50
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 73
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 96
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 63
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 100
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 143
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 197
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 51
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 77
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 108
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 139
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 181
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 70
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 121
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 187
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 55
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 100
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 131
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 56
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 99
+# File: sci_gateway/cpp/sci_h5umount.cpp, line: 43
+# File: sci_gateway/cpp/sci_h5umount.cpp, line: 66
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 88
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 123
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 148
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 180
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 117
+# File: sci_gateway/cpp/sci_percent_H5Object_fieldnames.cpp, line: 42
+# File: sci_gateway/cpp/sci_percent_H5Object_p.cpp, line: 42
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 62
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 72
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 109
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 146
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 76
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 94
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 72
+# File: sci_gateway/cpp/sci_h5flush.cpp, line: 59
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 62
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 65
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 69
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 59
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 105
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 72
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 109
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 152
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 64
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 65
+# File: sci_gateway/cpp/sci_h5umount.cpp, line: 52
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 97
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 130
+# File: sci_gateway/cpp/sci_percent_H5Object_fieldnames.cpp, line: 49
+#, c-format
+msgid "%s: Invalid H5Object.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 70
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 84
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 85
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 73
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 105
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 76
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 100
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 123
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 148
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 86
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 123
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 160
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 203
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 90
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 114
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 169
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 233
+# File: sci_gateway/cpp/sci_h5delete.cpp, line: 79
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 73
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 125
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 86
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 112
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 146
+# File: sci_gateway/cpp/sci_h5flush.cpp, line: 87
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 88
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 113
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 87
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 113
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 91
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 117
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 180
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 85
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 119
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 147
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 157
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 90
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 116
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 157
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 192
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 202
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 239
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 249
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 81
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 108
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 133
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 85
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 86
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 129
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 166
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 209
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 63
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 89
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 120
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 153
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 169
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 193
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 99
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 129
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 78
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 112
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 143
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 79
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 111
+# File: sci_gateway/cpp/sci_h5umount.cpp, line: 78
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 111
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 135
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 162
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 77
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 102
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 142
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 156
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 69
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 123
-# File: sci_gateway/cpp/sci_is_hdf5_file.cpp, line: 47
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 80
+# File: sci_gateway/cpp/sci_is_hdf5_file.cpp, line: 48
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 85
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 77
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 110
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 78
@@ -76,8 +319,259 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
+# File: sci_gateway/cpp/sci_h5attr.cpp, line: 169
+# File: sci_gateway/cpp/sci_h5cp.cpp, line: 239
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 289
+# File: sci_gateway/cpp/sci_h5delete.cpp, line: 89
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 106
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 146
+# File: sci_gateway/cpp/sci_h5dump.cpp, line: 161
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 177
+# File: sci_gateway/cpp/sci_h5flush.cpp, line: 100
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 126
+# File: sci_gateway/cpp/sci_h5group.cpp, line: 132
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 209
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 191
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 299
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 169
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 121
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 248
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 220
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 230
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 235
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 165
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 137
+# File: sci_gateway/cpp/sci_h5umount.cpp, line: 91
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 256
+# File: sci_gateway/cpp/sci_percent_H5Object_fieldnames.cpp, line: 65
+#, c-format
+msgid "%s: %s\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5close.cpp, line: 77
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 68
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 66
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 65
+# File: sci_gateway/cpp/sci_h5mount.cpp, line: 111
+# File: sci_gateway/cpp/sci_h5umount.cpp, line: 58
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 140
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5close.cpp, line: 83
+#, c-format
+msgid "%s: Cannot remove H5Object.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 131
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 191
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 145
+#, c-format
+msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 163
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 227
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 205
+#, c-format
+msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5dataset.cpp, line: 211
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5delete.cpp, line: 54
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 60
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 76
+# File: sci_gateway/cpp/sci_h5ls.cpp, line: 67
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 79
+# File: sci_gateway/cpp/sci_percent_H5Object_p.cpp, line: 64
+#, c-format
+msgid "%s: Can not print H5Object: invalid object.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5delete.cpp, line: 60
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 119
+#, c-format
+msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5exists.cpp, line: 194
+# File: sci_gateway/cpp/sci_h5isfoo.cpp, line: 74
+#, c-format
+msgid "%s: Can not create output argument.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5flush.cpp, line: 65
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A HDF5 object expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5flush.cpp, line: 81
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 147
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5get.cpp, line: 107
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 139
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 184
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 231
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 135
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 175
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 211
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 211
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 149
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 157
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 195
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 188
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 173
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5label.cpp, line: 188
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row or column vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 105
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 143
+#, c-format
+msgid "%s: Can not use H5Object: invalid object.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5link.cpp, line: 166
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 215
+# File: sci_gateway/cpp/sci_h5ln.cpp, line: 259
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5mv.cpp, line: 117
+#, c-format
+msgid "%s: Invalid number of arguments: more than %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 95
+#, c-format
+msgid "%s: Invalid access mode: %s.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 130
+#, c-format
+msgid "%s: Invalid number of input arguments.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 163
+# File: sci_gateway/cpp/sci_h5open.cpp, line: 187
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 87
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 146
+#, c-format
+msgid "%s: Invalid number of input argument.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 110
+#, c-format
+msgid "%s: Invalid path: cannot be empty.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 140
+#, c-format
+msgid "%s: Second argument must be a dataset name.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 167
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 205
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 200
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5read.cpp, line: 218
+# File: sci_gateway/cpp/sci_h5write.cpp, line: 218
+#, c-format
+msgid "%s: Argument 'count' is missing.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5readattr.cpp, line: 89
+#, c-format
+msgid "%s: Invalid number of argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_h5rm.cpp, line: 88
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 78
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 88
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 93
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 88
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 88
 #, c-format
@@ -86,16 +580,943 @@ msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 94
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 105
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 110
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
 msgstr ""
 
 #
 # File: sci_gateway/cpp/sci_import_from_hdf5.cpp, line: 260
-# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 305
+# File: sci_gateway/cpp/sci_listvar_in_hdf5.cpp, line: 311
 # File: src/cpp/import_from_hdf5_v1.cpp, line: 247
 # File: src/cpp/listvar_in_hdf5_v1.cpp, line: 281
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 45
+#, c-format
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 64
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 72
+#, c-format
+msgid "%s: Only one field can be requested.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_H5Object_e.cpp, line: 178
+#, c-format
+msgid ""
+"%s: Error in retrieving field content:\n"
+"%s\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_H5Object_fieldnames.cpp, line: 55
+#, c-format
+msgid "%s: Not an H5 Compound object.\n"
+msgstr ""
+
+#
+# File: sci_gateway/cpp/sci_percent_H5Object_p.cpp, line: 53
+#, c-format
+msgid "%s: Can not print H5Object.\n"
+msgstr ""
+
+#
+# File: src/cpp/H5ArrayData.cpp, line: 65
+# File: src/cpp/H5CompoundData.cpp, line: 98
+# File: src/cpp/H5ReferenceData.cpp, line: 77
+# File: src/cpp/H5VlenData.cpp, line: 54
+msgid "Invalid index."
+msgstr ""
+
+#
+# File: src/cpp/H5ArrayData.cpp, line: 77
+# File: src/cpp/H5CompoundData.cpp, line: 125
+# File: src/cpp/H5Dataspace.cpp, line: 251
+# File: src/cpp/H5ReferenceData.cpp, line: 149
+# File: src/cpp/H5VlenData.cpp, line: 70
+msgid "Dimensions"
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 23
+# File: src/cpp/H5Attribute.cpp, line: 29
+#, c-format
+msgid "Cannot open attribute: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 56
+msgid "Cannot get the attribute type"
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 67
+msgid "Cannot get the attribute dataspace"
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 131
+# File: src/cpp/H5Dataset.cpp, line: 237
+msgid "Error in retrieving data."
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 182
+#, c-format
+msgid "Attribute %s already exists."
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 188
+msgid "Cannot create a new attribute."
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 195
+msgid "Cannot write data in the attribute."
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 213
+# File: src/cpp/H5Attribute.cpp, line: 222
+msgid "Cannot copy the attribute"
+msgstr ""
+
+#
+# File: src/cpp/H5Attribute.cpp, line: 243
+msgid "Cannot read attribute data."
+msgstr ""
+
+#
+# File: src/cpp/H5AttributesList.cpp, line: 38
+msgid "Cannot get the size of attribute list."
+msgstr ""
+
+#
+# File: src/cpp/H5AttributesList.cpp, line: 72
+# File: src/cpp/H5GroupsList.cpp, line: 71
+# File: src/cpp/H5LinksList.cpp, line: 51
+#, c-format
+msgid "Invalid index %d: must be between 0 and %d."
+msgstr ""
+
+#
+# File: src/cpp/H5AttributesList.cpp, line: 84
+#, c-format
+msgid "Cannot open attribute at position %d."
+msgstr ""
+
+#
+# File: src/cpp/H5AttributesList.cpp, line: 120
+# File: src/cpp/H5ExternalLink.cpp, line: 141
+# File: src/cpp/H5HardLink.cpp, line: 99
+# File: src/cpp/H5NamedObjectsList.hxx, line: 230
+# File: src/cpp/H5SoftLink.cpp, line: 113
+msgid "Filename"
+msgstr ""
+
+#
+# File: src/cpp/H5AttributesList.cpp, line: 121
+msgid "Number of elements"
+msgstr ""
+
+#
+# File: src/cpp/H5BasicData.hxx, line: 135
+msgid "Cannot copy data to an empty pointer"
+msgstr ""
+
+#
+# File: src/cpp/H5BasicData.hxx, line: 199
+# File: src/cpp/H5Dataset.cpp, line: 387
+msgid "Wrong dimensions."
+msgstr ""
+
+#
+# File: src/cpp/H5CompoundData.cpp, line: 82
+#, c-format
+msgid "Invalid field name: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5CompoundData.cpp, line: 144
+msgid "Fields Names"
+msgstr ""
+
+#
+# File: src/cpp/H5Data.hxx, line: 89
+# File: src/cpp/H5Data.hxx, line: 95
+# File: src/cpp/H5Data.hxx, line: 103
+# File: src/cpp/H5Data.hxx, line: 112
+# File: src/cpp/H5DataConverter.cpp, line: 26
+# File: src/cpp/H5DataConverter.cpp, line: 32
+# File: src/cpp/H5DataConverter.cpp, line: 40
+# File: src/cpp/H5DataConverter.cpp, line: 49
+msgid "Cannot create an hypermatrix on the stack"
+msgstr ""
+
+#
+# File: src/cpp/H5DataFactory.cpp, line: 30
+msgid "Cannot get the data type"
+msgstr ""
+
+#
+# File: src/cpp/H5DataFactory.cpp, line: 114
+msgid "Unknown integer datatype."
+msgstr ""
+
+#
+# File: src/cpp/H5DataFactory.cpp, line: 128
+msgid "Unknown floating-point datatype."
+msgstr ""
+
+#
+# File: src/cpp/H5DataFactory.cpp, line: 154
+msgid "Bitfield is too big"
+msgstr ""
+
+#
+# File: src/cpp/H5DataFactory.cpp, line: 183
+# File: src/cpp/H5DataFactory.cpp, line: 186
+msgid "Cannot get data from an unknown data type."
+msgstr ""
+
+#
+# File: src/cpp/H5DataFactory.cpp, line: 256
+msgid "Memory to allocate is too big"
+msgstr ""
+
+#
+# File: src/cpp/H5DataFactory.cpp, line: 281
+# File: src/cpp/H5DataFactory.cpp, line: 293
+msgid "Cannot allocate memory to get the data"
+msgstr ""
+
+#
+# File: src/cpp/H5DataFactory.cpp, line: 325
+msgid "Cannot retrieve the data from the attribute"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 26
+#, c-format
+msgid "Cannot open the given dataset %s."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 63
+# File: src/cpp/H5Dataset.cpp, line: 74
+# File: src/cpp/H5Dataset.cpp, line: 175
+# File: src/cpp/H5Dataset.cpp, line: 355
+#, c-format
+msgid "Cannot get the dataspace associated with dataset named %s."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 99
+msgid "Invalid layout"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 186
+#, c-format
+msgid "Only %d dimensions."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 299
+msgid "Cannot list dataset attributes."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 347
+#, c-format
+msgid "Cannot open the dataset: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 369
+msgid "Invalid source space"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 374
+# File: src/cpp/H5Dataset.cpp, line: 433
+msgid "Invalid target space"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 395
+msgid "Cannot modify maximum dimensions."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 402
+#, c-format
+msgid "Cannot modify dimension %d."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 447
+#, c-format
+msgid "Cannot set the chunk dimensions: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 460
+#, c-format
+msgid "Cannot create the dataset: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataset.cpp, line: 467
+msgid "Cannot write data in the dataset."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.cpp, line: 50
+# File: src/cpp/H5Dataspace.cpp, line: 234
+msgid "unknown dataspace"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.cpp, line: 86
+msgid "Unknown dataspace: cannot get its dimensions"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.cpp, line: 97
+msgid "Cannot select all."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.cpp, line: 113
+# File: src/cpp/H5Dataspace.cpp, line: 124
+# File: src/cpp/H5File.cpp, line: 384
+msgid "Cannot create an array of integer on the stack."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.cpp, line: 136
+# File: src/cpp/H5ExternalLink.cpp, line: 76
+# File: src/cpp/H5ExternalLink.cpp, line: 92
+# File: src/cpp/H5File.cpp, line: 361
+# File: src/cpp/H5HardLink.cpp, line: 65
+# File: src/cpp/H5Object.cpp, line: 121
+# File: src/cpp/H5Object.cpp, line: 132
+# File: src/cpp/H5SoftLink.cpp, line: 61
+# File: src/cpp/H5SoftLink.cpp, line: 72
+# File: src/cpp/H5Type.cpp, line: 801
+# File: src/cpp/H5Type.cpp, line: 813
+# File: src/cpp/H5Type.cpp, line: 836
+msgid "Cannot create a string on the stack."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.cpp, line: 194
+msgid "Unknown dataspace"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.cpp, line: 252
+msgid "Extents"
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.hxx, line: 65
+msgid "Invalid selection rank."
+msgstr ""
+
+#
+# File: src/cpp/H5Dataspace.hxx, line: 92
+# File: src/cpp/H5Dataspace.hxx, line: 99
+# File: src/cpp/H5Dataspace.hxx, line: 116
+# File: src/cpp/H5Dataspace.hxx, line: 122
+msgid "Invalid selection."
+msgstr ""
+
+#
+# File: src/cpp/H5Exception.hxx, line: 81
+msgid "Cannot get the current errors stack"
+msgstr ""
+
+#
+# File: src/cpp/H5Exception.hxx, line: 111
+msgid "HDF5 description"
+msgstr ""
+
+#
+# File: src/cpp/H5Exception.hxx, line: 128
+msgid "Exception thrown in file"
+msgstr ""
+
+#
+# File: src/cpp/H5Exception.hxx, line: 128
+msgid "at line"
+msgstr ""
+
+#
+# File: src/cpp/H5ExternalLink.cpp, line: 30
+# File: src/cpp/H5HardLink.cpp, line: 28
+# File: src/cpp/H5Link.cpp, line: 49
+# File: src/cpp/H5SoftLink.cpp, line: 28
+msgid "Cannot get the link info"
+msgstr ""
+
+#
+# File: src/cpp/H5ExternalLink.cpp, line: 38
+# File: src/cpp/H5ExternalLink.cpp, line: 47
+# File: src/cpp/H5SoftLink.cpp, line: 35
+msgid "Cannot get the link target"
+msgstr ""
+
+#
+# File: src/cpp/H5ExternalLink.cpp, line: 142
+# File: src/cpp/H5HardLink.cpp, line: 100
+# File: src/cpp/H5SoftLink.cpp, line: 114
+msgid "Link type"
+msgstr ""
+
+#
+# File: src/cpp/H5ExternalLink.cpp, line: 143
+# File: src/cpp/H5HardLink.cpp, line: 101
+# File: src/cpp/H5SoftLink.cpp, line: 115
+msgid "Link name"
+msgstr ""
+
+#
+# File: src/cpp/H5ExternalLink.cpp, line: 144
+# File: src/cpp/H5HardLink.cpp, line: 102
+# File: src/cpp/H5SoftLink.cpp, line: 116
+msgid "Link path"
+msgstr ""
+
+#
+# File: src/cpp/H5ExternalLink.cpp, line: 145
+msgid "Link target file"
+msgstr ""
+
+#
+# File: src/cpp/H5ExternalLink.cpp, line: 146
+msgid "Link target path"
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 35
+msgid "Invalid hdf5 file: empty filename."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 43
+# File: src/cpp/H5File.cpp, line: 57
+#, c-format
+msgid "Invalid hdf5 file: %s."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 49
+# File: src/cpp/H5File.cpp, line: 63
+# File: src/cpp/H5File.cpp, line: 91
+#, c-format
+msgid "Cannot open the given hdf5 file: %s."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 72
+# File: src/cpp/H5File.cpp, line: 80
+# File: src/cpp/H5File.cpp, line: 113
+#, c-format
+msgid "Cannot create the given hdf5 file: %s."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 102
+#, c-format
+msgid ""
+"Cannot open the file: %s, an empty file with the same name already exists."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 105
+#, c-format
+msgid "Cannot append the file (not HDF5): %s."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 118
+msgid "Invalid flag."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 124
+# File: src/cpp/H5File.cpp, line: 270
+#, c-format
+msgid "Invalid path: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 181
+msgid "Cannot set 'core' as driver."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 204
+#, c-format
+msgid "Invalid filename: must contain a '%d'."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 217
+msgid "Cannot set 'family' as driver."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 261
+msgid "Error in flushing the file."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 297
+# File: src/cpp/H5File.cpp, line: 439
+#, c-format
+msgid "Cannot retrieve file size: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 308
+#, c-format
+msgid "Cannot retrieve file version: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 372
+# File: src/cpp/H5Type.cpp, line: 824
+# File: src/cpp/H5Type.cpp, line: 847
+msgid "Cannot create an integer on the stack."
+msgstr ""
+
+#
+# File: src/cpp/H5File.cpp, line: 396
+#, c-format
+msgid "Invalid field %s."
+msgstr ""
+
+#
+# File: src/cpp/H5Group.cpp, line: 30
+#, c-format
+msgid "Cannot open the group %s."
+msgstr ""
+
+#
+# File: src/cpp/H5Group.cpp, line: 100
+msgid "Cannot get the links number"
+msgstr ""
+
+#
+# File: src/cpp/H5Group.cpp, line: 213
+msgid "Cannot create a column of strings on the stack."
+msgstr ""
+
+#
+# File: src/cpp/H5Group.cpp, line: 241
+msgid "Cannot list group links."
+msgstr ""
+
+#
+# File: src/cpp/H5Group.cpp, line: 248
+msgid "Cannot list group attributes."
+msgstr ""
+
+#
+# File: src/cpp/H5Group.cpp, line: 320
+# File: src/cpp/H5Object.cpp, line: 492
+msgid "Cannot list group contents"
+msgstr ""
+
+#
+# File: src/cpp/H5Group.cpp, line: 465
+#, c-format
+msgid "The group already exists: %s."
+msgstr ""
+
+#
+# File: src/cpp/H5Group.cpp, line: 471
+#, c-format
+msgid "Cannot create the group: %s."
+msgstr ""
+
+#
+# File: src/cpp/H5GroupsList.cpp, line: 31
+# File: src/cpp/H5GroupsList.cpp, line: 78
+msgid "Cannot get the number of groups."
+msgstr ""
+
+#
+# File: src/cpp/H5HardLink.cpp, line: 34
+msgid "Cannot get linked object"
+msgstr ""
+
+#
+# File: src/cpp/H5HardLink.cpp, line: 103
+msgid "Link target name"
+msgstr ""
+
+#
+# File: src/cpp/H5Link.cpp, line: 26
+#, c-format
+msgid "The link %s does not exist."
+msgstr ""
+
+#
+# File: src/cpp/H5Link.cpp, line: 65
+#, c-format
+msgid "Invalid link type: %s."
+msgstr ""
+
+#
+# File: src/cpp/H5LinksList.cpp, line: 28
+msgid "Cannot get the number of links."
+msgstr ""
+
+#
+# File: src/cpp/H5ListObject.hxx, line: 48
+# File: src/cpp/H5Object.hxx, line: 229
+# File: src/cpp/H5Object.hxx, line: 234
+# File: src/cpp/H5Object.hxx, line: 239
+msgid "Invalid operation"
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 58
+#, c-format
+msgid "Invalid index at position %d"
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 188
+msgid "Cannot get the number of objects."
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 231
+msgid "Parent group name"
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 232
+msgid "Parent group path"
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 233
+msgid "Elements type"
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 234
+msgid "Size"
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 261
+#, c-format
+msgid "Invalid index: %d."
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 289
+#, c-format
+msgid "Cannot get object at position %d."
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 301
+# File: src/cpp/H5NamedObjectsList.hxx, line: 307
+# File: src/cpp/H5Object.cpp, line: 277
+# File: src/cpp/H5Object.cpp, line: 287
+# File: src/cpp/H5Object.cpp, line: 320
+# File: src/cpp/H5Object.cpp, line: 333
+# File: src/cpp/H5Object.cpp, line: 340
+# File: src/cpp/H5Object.cpp, line: 346
+#, c-format
+msgid "Invalid name: %s."
+msgstr ""
+
+#
+# File: src/cpp/H5NamedObjectsList.hxx, line: 315
+# File: src/cpp/H5Object.cpp, line: 302
+# File: src/cpp/H5Object.cpp, line: 361
+msgid "Invalid HDF5 object"
+msgstr ""
+
+#
+# File: src/cpp/H5Object.cpp, line: 138
+#, c-format
+msgid "Invalid field: %s"
+msgstr ""
+
+#
+# File: src/cpp/H5Object.cpp, line: 157
+# File: src/cpp/H5Object.cpp, line: 163
+# File: src/cpp/H5Object.cpp, line: 169
+# File: src/cpp/H5Object.cpp, line: 184
+# File: src/cpp/H5Object.cpp, line: 190
+# File: src/cpp/H5Object.cpp, line: 196
+msgid "Cannot create a mlist on the stack."
+msgstr ""
+
+#
+# File: src/cpp/H5Object.cpp, line: 222
+msgid "Cannot list names."
+msgstr ""
+
+#
+# File: src/cpp/H5Object.cpp, line: 237
+msgid "Cannot retrieve information about the object"
+msgstr ""
+
+#
+# File: src/cpp/H5Object.cpp, line: 256
+# File: src/cpp/H5ReferenceData.cpp, line: 111
+# File: src/cpp/H5ReferenceData.cpp, line: 219
+msgid "Unknown HDF5 object"
+msgstr ""
+
+#
+# File: src/cpp/H5Object.hxx, line: 156
+msgid "Cannot retrieve numeric index."
+msgstr ""
+
+#
+# File: src/cpp/H5ReferenceData.cpp, line: 87
+msgid "Cannot open object at the given position."
+msgstr ""
+
+#
+# File: src/cpp/H5SoftLink.cpp, line: 117
+msgid "Link target"
+msgstr ""
+
+#
+# File: src/cpp/H5StringData.cpp, line: 64
+msgid "Cannot free the memory associated with String data"
+msgstr ""
+
+#
+# File: src/cpp/H5Type.cpp, line: 25
+#, c-format
+msgid "Invalid H5Type name: %s."
+msgstr ""
+
+#
+# File: src/cpp/H5Type.cpp, line: 727
+# File: src/cpp/H5Type.cpp, line: 1686
+msgid "Unknown datatype"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 44
+msgid "Cannot get H5Object id"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 225
+msgid "Invalid object: not a dataset."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 300
+msgid "Cannot remove a file."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 311
+msgid "Cannot remove root element."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 318
+#, c-format
+msgid "The name doesn't exist: %s."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 324
+#, c-format
+msgid "Cannot remove the attribute: %s."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 333
+#, c-format
+msgid "Cannot remove the link: %s."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 367
+# File: src/cpp/HDF5Scilab.cpp, line: 413
+#, c-format
+msgid "The link already exists: %s."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 383
+#, c-format
+msgid "Cannot create the hard link: %s."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 387
+#, c-format
+msgid "Cannot create the soft link: %s."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 402
+#, c-format
+msgid "Cannot create a hard link to an external object: %s."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 419
+#, c-format
+msgid "Cannot create the external link: %s."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 516
+msgid "Cannot copy object."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 646
+msgid "Invalid filter"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 776
+msgid "Can only label a dataset"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 866
+msgid "Target object is not a file"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 871
+# File: src/cpp/HDF5Scilab.cpp, line: 891
+msgid "Invalid location"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 876
+#, c-format
+msgid "Invalid location: %s"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 882
+#, c-format
+msgid "Cannot mount the file: %s"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 897
+#, c-format
+msgid "Cannot unmount the file at location: %s"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 915
+#, c-format
+msgid "Can not read input argument #%d."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 921
+#, c-format
+msgid "Can not get the type of input argument #%d."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 932
+msgid "Complex datatype not handled for now."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 939
+# File: src/cpp/HDF5Scilab.cpp, line: 958
+# File: src/cpp/HDF5Scilab.cpp, line: 967
+# File: src/cpp/HDF5Scilab.cpp, line: 975
+# File: src/cpp/HDF5Scilab.cpp, line: 983
+# File: src/cpp/HDF5Scilab.cpp, line: 991
+# File: src/cpp/HDF5Scilab.cpp, line: 999
+# File: src/cpp/HDF5Scilab.cpp, line: 1007
+# File: src/cpp/HDF5Scilab.cpp, line: 1017
+# File: src/cpp/HDF5Scilab.cpp, line: 1025
+# File: src/cpp/HDF5Scilab.cpp, line: 1044
+# File: src/cpp/HDF5Scilab.cpp, line: 1063
+#, c-format
+msgid "%s: Can not read input argument #%d."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.cpp, line: 1075
+#, c-format
+msgid "%s: Datatype not handled for now."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.hxx, line: 154
+#, c-format
+msgid "Invalid rank, must be in the interval [0, %d]."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.hxx, line: 169
+msgid "No converter found for the specified target datatype."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.hxx, line: 176
+# File: src/cpp/HDF5Scilab.hxx, line: 223
+msgid "Cannot create a new dataspace."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.hxx, line: 201
+msgid "Invalid target dataspace."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.hxx, line: 323
+msgid "Cannot create the target type."
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.hxx, line: 354
+msgid "Incompatible dimensions"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.hxx, line: 375
+msgid "References must be given as strings"
+msgstr ""
+
+#
+# File: src/cpp/HDF5Scilab.hxx, line: 388
+#, c-format
+msgid "Invalid path: %s."
 msgstr ""

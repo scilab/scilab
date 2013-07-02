@@ -101,6 +101,16 @@ subplot(2,1,2)
 plot2d(y(2,:)) // second channel
 y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //the first five samples
  ]]></programlisting>
+        <scilab:image>
+            wavread("SCI/modules/sound/demos/chimes.wav","size")
+            [y,Fs,bits]=wavread("SCI/modules/sound/demos/chimes.wav");
+            subplot(2,1,1)
+            plot2d(y(1,:))
+            subplot(2,1,2)
+            plot2d(y(2,:))
+            y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5])
+        </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

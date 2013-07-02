@@ -18,63 +18,63 @@
 // @return[opt] msg Contains the error message in case of %F status or an empty
 //                  string when no error as occurred.
 function [status, msg] = xcosPalExport(pal, path)
-// Export a palette instance to a path.
-//
-// Calling Sequence
-//   xcosPalExport(pal, path);
-//   status = xcosPalExport(pal, path);
-//   [status, message] = xcosPalExport(pal, path);
-//
-// Parameters
-//   pal: palette tlist; the palette to export
-//   path: string path; where to export the palette (HDF5 formatted file)
-//   status: boolean; status of the export
-//   msg: string; error message
-//
-// Description
-// Export Scilab palette instance to a file.
-// 
-// Examples
-//   loadXcosLibs();
-//   pal = xcosPal();
-//   
-//   sumPath = TMPDIR + "/sum.sod";
-//   bigSomPath = TMPDIR + "/sum.sod";
-//   
-//   scs_m = SUM_f("define");
-//   export_to_hdf5(sumPath, "scs_m");
-//   scs_m = BIGSOM("define");
-//   export_to_hdf5(bigSomPath, "scs_m");
-//   
-//   pal = xcosPalAddBlock(pal, sumPath);
-//   pal = xcosPalAddBlock(pal, bigSomPath);
-//   
-//   xcosPalExport(pal, TMPDIR + "/palette.sod");
-//
-// See also
-//   xcosPal
-//   xcosPalAdd
-//
-// Authors
-//   Clément DAVID
+    // Export a palette instance to a path.
+    //
+    // Calling Sequence
+    //   xcosPalExport(pal, path);
+    //   status = xcosPalExport(pal, path);
+    //   [status, message] = xcosPalExport(pal, path);
+    //
+    // Parameters
+    //   pal: palette tlist; the palette to export
+    //   path: string path; where to export the palette (HDF5 formatted file)
+    //   status: boolean; status of the export
+    //   msg: string; error message
+    //
+    // Description
+    // Export Scilab palette instance to a file.
+    //
+    // Examples
+    //   loadXcosLibs();
+    //   pal = xcosPal();
+    //
+    //   sumPath = TMPDIR + "/sum.sod";
+    //   bigSomPath = TMPDIR + "/sum.sod";
+    //
+    //   scs_m = SUM_f("define");
+    //   export_to_hdf5(sumPath, "scs_m");
+    //   scs_m = BIGSOM("define");
+    //   export_to_hdf5(bigSomPath, "scs_m");
+    //
+    //   pal = xcosPalAddBlock(pal, sumPath);
+    //   pal = xcosPalAddBlock(pal, bigSomPath);
+    //
+    //   xcosPalExport(pal, TMPDIR + "/palette.sod");
+    //
+    // See also
+    //   xcosPal
+    //   xcosPalAdd
+    //
+    // Authors
+    //   Clément DAVID
 
     status = %F;
     msg = "";
-    
+
     // Checking arguments
     [lhs,rhs] = argn(0)
     if rhs <> 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "xcosPalExport", 2));
     end
-    
+
     if lhs > 2 then
         error(msprintf(gettext("%s: Wrong number of output arguments: %d to %d expected.\n"), "xcosPalExport", 1, 2));
     end
-    
+
     if typeof(pal) <> "palette" then
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": palette type expected.\n"), "xcosPalExport", "pal"));
     end
-    
+
     if typeof(path) <> "string" then
         error(msprintf(gettext("%s: Wrong type for input argument ""%s"": full path string expected.\n"), "xcosPalExport", "path"));
     end
@@ -84,13 +84,13 @@ function [status, msg] = xcosPalExport(pal, path)
         mclose(fd);
         error(msg);
     end
-    
+
     path = fullpath(path);
     mclose(fd);
-    
+
     // workaround bug 7242
     pal = pal;
-    
+
     // export the data to the temp file
     status = export_to_hdf5(path, "pal");
     if ~status then

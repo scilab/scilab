@@ -37,25 +37,25 @@ public class CommandHistoryTab {
 
         ClosingOperationsManager.registerClosingOperation(cmdh, new ClosingOperationsManager.ClosingOperation() {
 
-                @Override
-                public int canClose() {
-                    return 1;
-                }
+            @Override
+            public int canClose() {
+                return 1;
+            }
 
-                @Override
-                public void destroy() {
-                    CommandHistory.closeHistory();
-                }
+            @Override
+            public void destroy() {
+                CommandHistory.closeHistory();
+            }
 
-                @Override
-                public String askForClosing(final List<SwingScilabTab> list) {
-                    return null;
-                }
+            @Override
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return null;
+            }
 
-                @Override
-                public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
-                }
-            });
+            @Override
+            public void updateDependencies(List<SwingScilabTab> list, ListIterator<SwingScilabTab> it) {
+            }
+        });
 
         ClosingOperationsManager.addDependencyWithRoot(cmdh);
 

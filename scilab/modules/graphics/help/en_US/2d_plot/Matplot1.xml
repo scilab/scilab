@@ -13,13 +13,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="Matplot1">
     <refnamediv>
         <refname>Matplot1</refname>
-        <refpurpose>2D plot of a matrix using
-            colors
+        <refpurpose>
+            2D plot of a matrix using colors
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>Matplot1(a,rect)</synopsis>
+        <synopsis>Matplot1(a, rect)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -27,14 +27,16 @@
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>real matrix of size (n1,n2).</para>
+                    <para>
+                        a real matrix of size <literal>(n1,n2)</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rect</term>
                 <listitem>
                     <para>
-                        <literal>[xmin,ymin,xmax,ymax]</literal>
+                        <literal>[xmin, ymin, xmax, ymax]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,27 +45,31 @@
     <refsection>
         <title>Description</title>
         <para>
-            The entries of matrix <literal>int(a)</literal> are used as colormap entries
-            in the current colormap.  <literal>rect</literal> specify a rectangle in the
+            The entries of matrix <code>int(a)</code> are used as colormap entries
+            in the current colormap.  <varname>rect</varname> specifies a rectangle in the
             current scale and the matrix is drawn inside this rectangle. Each matrix
             entry will be rendered as a small rectangle filled with its associated
-            color. If a matrix entry is outside the colormap, the corresponding rectangle is not displayed.
+            color. If a matrix entry is outside the colormap, the corresponding rectangle
+            is not displayed.
+        </para>
+        <para>
+            Enter the command <code>Matplot1()</code> to see a demo.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 clf();
-ax=gca();//get current axes handle
-ax.data_bounds=[0,0;10,10];//set the data_bounds
-ax.box='on'; //draw a box
-a=5*ones(11,11);
-a(2:10,2:10)=4;
-a(5:7,5:7)=2;
+ax = gca();//get current axes handle
+ax.data_bounds = [0, 0; 10, 10]; //set the data_bounds
+ax.box = 'on'; //draw a box
+a = 5*ones(11,11);
+a(2:10, 2:10) = 4;
+a(5:7, 5:7) = 2;
 // first matrix in rectangle [1,1,3,3]
-Matplot1(a,[1,1,3,3])
-a=ones(10,10);
-a= 3*tril(a)+ 2*a;
+Matplot1(a, [1,1,3,3])
+a = ones(10,10);
+a = 3*tril(a)+ 2*a;
 // second matrix in rectangle [5,6,7,8]
 Matplot1(a,[5,6,7,8])
  ]]></programlisting>
@@ -84,7 +90,7 @@ n=100;
 
 clf();
 f=gcf();//get current figure handle
-f.pixmap='on';//double buffer mode
+f.pixmap='on';//double buffer modea
 ax=gca();//get current axes handle
 ax.data_bounds=[0,0;10,10];//set the data_bounds
 ax.box='on'; //draw a box
@@ -95,7 +101,7 @@ for k=-n:n,
   k1= 3*(k+100)/200;
   if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
-  sleep(8); // Slow down the simulation
+  sleep(20); // Slow down the simulation
 end
 f.pixmap='off';
  ]]></programlisting>

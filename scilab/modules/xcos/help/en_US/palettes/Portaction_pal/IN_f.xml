@@ -213,24 +213,38 @@
         <title>Example</title>
         <para>
             In the following example the Super block is an amplitude modulator. The IN_f block is used as a modulation signal input. Its data type is defined by the input type of the gain block that is a scalar double data type.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.xcos">
+        </para>
+        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos">
                 Open this example in Xcos
             </link>
-            .
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/en_US/in_f_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/IN_f_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/IN_f_internal_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+        <para>
+            The following figure shows the output of the bloc :
+        </para>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/IN_f_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_IN_f">
         <title>Interfacing function</title>
         <itemizedlist>
             <listitem>
                 <para>
-                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/IN_f.sci">SCI/modules/scicos_blocks/macros/Sources/IN_f.sci</link>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/IN_f.sci">SCI/modules/scicos_blocks/macros/Sinks/IN_f.sci</link>
                 </para>
             </listitem>
         </itemizedlist>

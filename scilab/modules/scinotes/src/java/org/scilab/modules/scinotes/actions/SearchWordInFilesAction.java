@@ -248,6 +248,13 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         JLabel wordPatternLabel = new JLabel(SciNotesMessages.WORDPATTERN + ":");
         comboWordPattern = new JComboBox();
         comboWordPattern.setEditable(true);
+        comboWordPattern.getEditor().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                updateCombos();
+                startSearch();
+            }
+        });
         ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setColumns(32);
         NORMALCOLOR = ((JTextField) comboWordPattern.getEditor().getEditorComponent()).getForeground();
 

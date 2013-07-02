@@ -8,24 +8,24 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function t=acosm(x)
-// Matrix wise Arccosine Cosine-inverse
+    // Matrix wise Arccosine Cosine-inverse
 
-  rhs = argn(2);
+    rhs = argn(2);
 
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"acosm",1));
-  end
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"acosm",1));
+    end
 
-  if type(x)<>1 then
-   error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"acosm",1));
-  end
+    if type(x)<>1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"acosm",1));
+    end
 
-  [m,n]=size(x);
+    [m,n]=size(x);
 
-  if m<>n then
-   error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"acosm",1));
-  end
+    if m<>n then
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: A square matrix expected.\n"),"acosm",1));
+    end
 
-  t=-%i*logm(x+%i*sqrtm(eye()-x*x));
+    t=-%i*logm(x+%i*sqrtm(eye()-x*x));
 
 endfunction

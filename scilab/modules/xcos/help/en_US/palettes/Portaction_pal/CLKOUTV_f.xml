@@ -201,17 +201,31 @@
                 <literal>t= 3 s</literal>
             </emphasis>
             .
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKOUTV_f_en_US.xcos">
+        </para>
+        <para><link type="scilab" linkend="scilab.zcos/xcos/examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos">
                 Open this example in Xcos
             </link>
-            :
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../examples/portaction_pal/en_US/clkoutv_f_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKOUTV_f_internal_en_US.zcos"/>
+                </imageobject>
+            </mediaobject>
+        </para>
+        <para>
+            The following figure shows the output of the bloc :
+        </para>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_CLKOUTV_f">
         <title>Interfacing function</title>

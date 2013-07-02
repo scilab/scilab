@@ -14,6 +14,7 @@ package org.scilab.modules.gui.bridge.helpbrowser;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.DefaultFocusTraversalPolicy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -124,7 +125,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      */
     public void hyperlinkUpdate(HyperlinkEvent event) {
         if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-            if (event.getDescription().startsWith("http://") || event.getDescription().startsWith("https://")) {
+            if (event.getDescription().startsWith("http://") || event.getDescription().startsWith("https://") || event.getDescription().startsWith("ftp://")) {
                 WebBrowser.openUrl(event.getURL(), event.getDescription());
             } else if (event.getDescription().startsWith(SCILAB_PROTO)) {
                 if (helpSets == null) {
@@ -429,22 +430,21 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
 
         try {
             this.accessibleHtml = (javax.swing.JEditorPane) privateField.get(this);
-            accessibleHtml.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-                public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            accessibleHtml.setMinimumSize(new Dimension(0, 0));
+            accessibleHtml.setPreferredSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
+            accessibleHtml.addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
                     // Crappy workaround to avoid bad html display (the icons play and edit can be misplaced)
                     // To improve... (it doesn't always work)
-                    if (evt.getPropertyName().equals("document")) {
-                        accessibleHtml.setVisible(false);
-                        accessibleHtml.validate();
-                    }
-                    if (evt.getPropertyName().equals("page")) {
-                        if (!accessibleHtml.isVisible()) {
-                            modifyFont(0);
-                            SwingUtilities.invokeLater(new Runnable() {
-                                public void run() {
-                                    accessibleHtml.setVisible(true);
-                                }
-                            });
+                    if (SwingUtilities.isEventDispatchThread()) {
+                        if (evt.getPropertyName().equals("document")) {
+                            accessibleHtml.setVisible(false);
+                        }
+                        if (evt.getPropertyName().equals("page")) {
+                            modifyFontInEDT(0);
+                            if (!accessibleHtml.isVisible()) {
+                                accessibleHtml.setVisible(true);
+                            }
                         }
                     }
                 }
@@ -647,8 +647,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         if ((isMac && e.isMetaDown()) || e.isControlDown()) {
             int n = e.getWheelRotation();
             if (currentFontSize != Math.min(Math.max(0, currentFontSize + n), 6)) {
-                modifyFont(n);
-                ConfigManager.setHelpFontSize(currentFontSize);
+                modifyFontInEDT(n);
             }
             e.consume();
         }
@@ -659,21 +658,38 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * @param s the size to add to the current size
      */
     public void modifyFont(final int s) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
-                    StyleContext.NamedStyle style = (StyleContext.NamedStyle) doc.getStyleSheet().getStyle("body");
-                    MutableAttributeSet attr = (MutableAttributeSet) style.getResolveParent();
-                    currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
-                    ConfigManager.setHelpFontSize(currentFontSize);
-                    StyleConstants.setFontSize(attr, fontSizes[currentFontSize]);
-                    style.setResolveParent(attr);
-                } catch (NullPointerException e) {
-                    // Can occur if the user is changing quickly the document
-                }
+        try {
+            currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
+            HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
+            StyleContext.NamedStyle style = (StyleContext.NamedStyle) doc.getStyleSheet().getStyle("body");
+            MutableAttributeSet attr = (MutableAttributeSet) style.getResolveParent();
+            if (StyleConstants.getFontSize(attr) != fontSizes[currentFontSize]) {
+                ConfigManager.setHelpFontSize(currentFontSize);
+                StyleConstants.setFontSize(attr, fontSizes[currentFontSize]);
+                accessibleHtml.setVisible(false);
+                style.setResolveParent(attr);
+                accessibleHtml.setVisible(true);
             }
-        });
+        } catch (NullPointerException e) {
+            // Can occur if the user is changing quickly the document
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    modifyFont(s);
+                }
+            });
+        }
+    }
+
+    public void modifyFontInEDT(final int s) {
+        if (SwingUtilities.isEventDispatchThread()) {
+            modifyFont(s);
+        } else {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    modifyFont(s);
+                }
+            });
+        }
     }
 
     /**
@@ -681,7 +697,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      */
     public void increaseFont() {
         if (currentFontSize != Math.min(Math.max(0, currentFontSize + 1), 6)) {
-            modifyFont(1);
+            modifyFontInEDT(1);
         }
     }
 
@@ -690,7 +706,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      */
     public void decreaseFont() {
         if (currentFontSize != Math.min(Math.max(0, currentFontSize - 1), 6)) {
-            modifyFont(-1);
+            modifyFontInEDT(-1);
         }
     }
 }

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-10-25 20:57+0000\n"
-"Last-Translator: Grzegorz Szostek <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-01-26 04:11+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #, c-format
 msgid "%s: Invalid argument address"
@@ -149,7 +149,7 @@ msgid "%s: Unable to get argument data"
 msgstr "%s: Nie można pobrać danych argumentu"
 
 #, c-format
-msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Niewłaściwy rozmiar parametru %d: oczekiwano (%d,%d).\n"
 
 #, c-format
@@ -165,7 +165,7 @@ msgstr ""
 "'%s' .\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu nr %d: Oczekiwana jest macierz liczb "
 "rzeczywistych.\n"
@@ -188,10 +188,6 @@ msgstr "%s: Nie można pobrać rozmiaru zmiennej \"%s\""
 
 msgid "double matrix"
 msgstr "macierz typu double"
-
-#, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s: Nieprawidłowe wywołanie pobrania macierzy nie-zespolonej"
 
 #, c-format
 msgid "stack size exceeded!\n"
@@ -219,6 +215,9 @@ msgstr "Błąd API:\n"
 #, c-format
 msgid "\tin %s\n"
 msgstr "\tw %s\n"
+
+msgid "handle matrix"
+msgstr ""
 
 msgid "int matrix"
 msgstr "macierz int"
@@ -257,11 +256,33 @@ msgstr "%s: Elementy muszą być wstawione w kolejności"
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
 
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr ""
+
+msgid "Optional argument list is empty.\n"
+msgstr ""
+
+msgid "Optional arguments list: \n"
+msgstr ""
+
+#, c-format
+msgid "and %s.\n"
+msgstr ""
+
 msgid "pointer"
 msgstr "wskaźnik"
 
 msgid "polynomial matrix"
 msgstr "macierz wielomianów"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s: Nieprawidłowe wywołanie pobrania macierzy nie-zespolonej"
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
@@ -310,3 +331,7 @@ msgstr "%s: Brak pamięci.\n"
 #, c-format
 msgid "%s: Invalid variable name.\n"
 msgstr "%s: Nieprawidłowa nazwa zmiennej.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgstr ""

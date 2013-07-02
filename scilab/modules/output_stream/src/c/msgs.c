@@ -1419,25 +1419,25 @@ static int msg_110(int *n, int *ierr)
 /*--------------------------------------------------------------------------*/
 static int msg_111(int *n, int *ierr)
 {
-    sciprint(_("%s: Number of calls to %s has reached or exceeded %s.\n"), "lsqrsolve", "fct", "maxfev");
+    sciprint(_("%s: %s: Number of calls to %s has reached or exceeded %s.\n"), _("Warning"), "lsqrsolve", "fct", "maxfev");
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int msg_112(int *n, int *ierr)
 {
-    sciprint(_("%s: %s is too small. No further reduction in the criterion is possible.\n"), "lsqrsolve", "ftol");
+    sciprint(_("%s: %s: %s is too small. No further reduction in the criterion is possible.\n"), _("Warning"), "lsqrsolve", "ftol");
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int msg_113(int *n, int *ierr)
 {
-    sciprint(_("%s: %s is too small. No further reduction in the criterion is possible.\n"), "lsqrsolve", "xtol");
+    sciprint(_("%s: %s: %s is too small. No further reduction in the criterion is possible.\n"), _("Warning"), "lsqrsolve", "xtol");
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int msg_114(int *n, int *ierr)
 {
-    sciprint(_("%s: %s is too small. %s is orthogonal to the columns of the jacobian to machine precision.\n"), "lsqrsolve", "gtol", "fvec");
+    sciprint(_("%s: %s: %s is too small. %s is orthogonal to the columns of the jacobian to machine precision.\n"), _("Warning"), "lsqrsolve", "gtol", "fvec");
     return 0;
 }
 /*--------------------------------------------------------------------------*/

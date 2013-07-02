@@ -75,7 +75,7 @@ int sci_unzoom(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
             return 1;
         }
 
@@ -92,7 +92,7 @@ int sci_unzoom(char *fname, unsigned long fname_len)
         for (i = 0; i < nbObjects; i++)
         {
             objectUID = (char*)getObjectFromHandle((long int)stackPointer[i]);
-            getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_string, (void **) &piType);
+            getGraphicObjectProperty(objectUID, __GO_TYPE__, jni_int, (void **) &piType);
             if (iType != __GO_FIGURE__ && iType != __GO_AXES__)
             {
                 FREE(objectsId);

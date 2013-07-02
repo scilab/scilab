@@ -82,7 +82,7 @@ function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
                     <literal>fun1</literal> avec une syntaxe comme
                     <literal>y=fun1(x1=33,y='foo')</literal>. Dans ce cas la
                     variable <literal>y</literal> sera définie dans le contexte
-                    local de la fonction. Noter qu'alors il n'esp pas possible
+                    local de la fonction. Noter qu'alors il n'est pas possible
                     de passer plus d'arguments d'entrée que le nombre
                     d'arguments formel declarés dans la définition de la syntaxe
                     d'appel de la fonction.
@@ -117,6 +117,9 @@ fun a toto 'une chaîne'
             <literal>%</literal> (exemple : <literal>%foo</literal>) sont
             utilisées pour la surcharge des opérateurs (voir <link linkend="overloading">overloading</link>) ou des fonctions pour
             des nouveaux types de données.
+        </para>
+        <para>
+            Certaines règles ont été établies quant à la syntaxe des noms de fonctions dans Scilab (voir <link linkend="names">names</link>).
         </para>
     </refsection>
     <refsection>
@@ -169,6 +172,9 @@ exec SCI/modules/elementary_functions/macros/asinh.sci;
             </member>
             <member>
                 <link linkend="varargout">varargout</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
             </member>
         </simplelist>
     </refsection>

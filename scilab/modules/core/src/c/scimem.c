@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -100,25 +100,52 @@ int C2F(scigmem) (int *n, int *ptr)
 }
 
 /*--------------------------------------------------------------------------*/
-void C2F(freegmem) (void)
+void C2F(freeglobalstacklastmemory) (void)
+{
+#ifndef USE_DYNAMIC_STACK
+    if (the_gps != NULL)
+    {
+        SCISTACKFREE(the_gps);
+    }
+    the_gps = NULL;
+#endif
+}
+
+/*--------------------------------------------------------------------------*/
+void C2F(freestacklastmemory) (void)
+{
+#ifndef USE_DYNAMIC_STACK
+    if (the_ps != NULL)
+    {
+        SCISTACKFREE(the_ps);
+    }
+    the_ps = NULL;
+#endif
+}
+
+/*--------------------------------------------------------------------------*/
+void freeGlobalStackCurrentMemory()
 {
 #ifdef USE_DYNAMIC_STACK
     freemem64(TRUE);
 #else
-    if (the_gps != NULL)
-        SCISTACKFREE(the_gps);
+    if (the_gp != NULL)
+    {
+        SCISTACKFREE(the_gp);
+    }
+    the_gp = NULL;
 #endif
 }
 
-/*--------------------------------------------------------------------------*/
-void C2F(freemem) (void)
+void freeStackCurrentMemory()
 {
 #ifdef USE_DYNAMIC_STACK
     freemem64(FALSE);
 #else
-    if (the_ps != NULL)
-        SCISTACKFREE(the_ps);
+    if (the_p != NULL)
+    {
+        SCISTACKFREE(the_p);
+    }
+    the_p = NULL;
 #endif
 }
-
-/*--------------------------------------------------------------------------*/

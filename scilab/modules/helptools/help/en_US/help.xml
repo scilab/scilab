@@ -44,10 +44,20 @@
             automatically launches a search with the <literal>key</literal> word as search arguments.
         </para>
         <para>
-            See  <link linkend="man">man</link> for more explanation on how to write new help
+            See <link linkend="man">man</link> for more explanation on how to write new help
             pages .
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+help();
+help plot3d
+help("plot")
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

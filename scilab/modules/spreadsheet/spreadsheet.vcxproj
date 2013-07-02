@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/intl;../api_scilab/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -103,7 +103,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/intl;../api_scilab/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -128,7 +128,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/intl;../api_scilab/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -161,7 +161,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../api_scilab/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/intl;../api_scilab/includes;../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -198,10 +198,6 @@
     <None Include="sci_gateway\spreadsheet_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">
-      <Project>{6a84ad8c-ba18-4a3f-9c72-ec3df0939e9e}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
@@ -234,13 +230,9 @@
     <ClInclude Include="sci_gateway\c\gw_csv_helpers.h" />
     <ClInclude Include="src\c\checkCsvWriteFormat.h" />
     <ClInclude Include="src\c\csvDefault.h" />
-    <ClInclude Include="src\c\csvIsnum.h" />
     <ClInclude Include="src\c\csvRead.h" />
     <ClInclude Include="src\c\csvWrite.h" />
-    <ClInclude Include="src\c\csv_complex.h" />
-    <ClInclude Include="src\c\csv_strsubst.h" />
     <ClInclude Include="src\c\getRange.h" />
-    <ClInclude Include="src\c\latintoutf.h" />
     <ClInclude Include="src\c\ripole\bt-int.h" />
     <ClInclude Include="src\c\ripole\bytedecoders.h" />
     <ClInclude Include="src\c\ripole\logger.h" />
@@ -249,8 +241,6 @@
     <ClInclude Include="src\c\ripole\pldstr.h" />
     <ClInclude Include="src\c\ripole\ripole.h" />
     <ClInclude Include="src\c\splitLine.h" />
-    <ClInclude Include="src\c\stringsToDoubles.h" />
-    <ClInclude Include="src\c\stringToComplex.h" />
     <ClInclude Include="src\c\utftolatin.h" />
     <ClInclude Include="src\c\xls.h" />
   </ItemGroup>
@@ -258,7 +248,6 @@
     <ClCompile Include="sci_gateway\c\gw_csv_helpers.c" />
     <ClCompile Include="sci_gateway\c\gw_spreadsheet.c" />
     <ClCompile Include="sci_gateway\c\sci_csvDefault.c" />
-    <ClCompile Include="sci_gateway\c\sci_csvIsnum.c" />
     <ClCompile Include="sci_gateway\c\sci_csvRead.c" />
     <ClCompile Include="sci_gateway\c\sci_csvStringToDouble.c" />
     <ClCompile Include="sci_gateway\c\sci_csvTextScan.c" />
@@ -267,14 +256,10 @@
     <ClCompile Include="sci_gateway\c\sci_xls_read.c" />
     <ClCompile Include="src\c\checkCsvWriteFormat.c" />
     <ClCompile Include="src\c\csvDefault.c" />
-    <ClCompile Include="src\c\csvIsnum.c" />
     <ClCompile Include="src\c\csvRead.c" />
     <ClCompile Include="src\c\csvWrite.c" />
-    <ClCompile Include="src\c\csv_complex.c" />
-    <ClCompile Include="src\c\csv_strsubst.c" />
     <ClCompile Include="src\c\DllmainSpreadsheet.c" />
     <ClCompile Include="src\c\getRange.c" />
-    <ClCompile Include="src\c\latintoutf.c" />
     <ClCompile Include="src\c\ripole\bt-int.c" />
     <ClCompile Include="src\c\ripole\bytedecoders.c" />
     <ClCompile Include="src\c\ripole\logger.c" />
@@ -283,8 +268,6 @@
     <ClCompile Include="src\c\ripole\pldstr.c" />
     <ClCompile Include="src\c\ripole\ripole.c" />
     <ClCompile Include="src\c\splitLine.c" />
-    <ClCompile Include="src\c\stringsToDoubles.c" />
-    <ClCompile Include="src\c\stringToComplex.c" />
     <ClCompile Include="src\c\utftolatin.c" />
     <ClCompile Include="src\c\xls.c" />
   </ItemGroup>

@@ -131,44 +131,28 @@
             この関数は plot2d の leg 引数よりも柔軟に凡例を配置することができます.
         </para>
     </refsection>
-    <refsection>
-        <title>例</title>
-        <scilab:image>
-            subplot(221)
-            t=0:0.1:2*%pi;
-            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
-            legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
-            
-            subplot(222)
-            xset("line style",2);plot2d(t,cos(t),style=5);
-            xset("line style",4);plot2d(t,sin(t),style=3);
-            legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
-            
-            subplot(223)
-            xset("line style",2);plot2d(t,cos(t),style=5);
-            xset("line style",4);plot2d(t,sin(t),style=3);
-            legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
-            
-            subplot(224)
-            t=0:0.1:2*%pi;
-            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
-            legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
-        </scilab:image>
-    </refsection>
+    
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-// 例 1
+// Example 1
 t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],opt="lr")
-
-scf() ;
+ ]]></programlisting>
+        <scilab:image>
+            t=0:0.1:2*%pi;
+            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+            legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],opt="lr")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+t=0:0.1:2*%pi;
 xset("line style",2);plot2d(t,cos(t),style=5);
 xset("line style",4);plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
-
-// 例 2
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
+// Example 2
 scf() ;
 subplot(221)
 t=0:0.1:2*%pi;
@@ -190,6 +174,27 @@ t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
  ]]></programlisting>
+        <scilab:image>
+            subplot(221)
+            t=0:0.1:2*%pi;
+            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+            legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
+            
+            subplot(222)
+            xset("line style",2);plot2d(t,cos(t),style=5);
+            xset("line style",4);plot2d(t,sin(t),style=3);
+            legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
+            
+            subplot(223)
+            xset("line style",2);plot2d(t,cos(t),style=5);
+            xset("line style",4);plot2d(t,sin(t),style=3);
+            legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
+            
+            subplot(224)
+            t=0:0.1:2*%pi;
+            plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+            legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

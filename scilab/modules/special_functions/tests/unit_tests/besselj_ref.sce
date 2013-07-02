@@ -1,7 +1,7 @@
-//The besselj_ref data have been computed using Maple V Release 4 with 
+//The besselj_ref data have been computed using Maple V Release 4 with
 //the code:
 
-//The besselJ_ref data have been computed using Maple V Release 4 with 
+//The besselJ_ref data have been computed using Maple V Release 4 with
 //the code:
 
 // a:=array(1..100):for i from 1 to 100 do  a[i]:=-10+i*0.2: od:

@@ -1,24 +1,24 @@
 /*-----------------------------------------------------------------------------------*/
 /*
- * winDumpExts.c --
- * Author:   Gordon Chaffee, Scott Stanton
- *
- * History:  The real functionality of this file was written by
- *           Matt Pietrek in 1993 in his pedump utility.  I've
- *           modified it to dump the externals in a bunch of object
- *           files to create a .def file.
- *
- * 10/12/95  Modified by Scott Stanton to support Relocatable Object Module
- *	     Format files for Borland C++ 4.5.
- *
- * Notes:    Visual C++ puts an underscore before each exported symbol.
- *           This file removes them.  I don't know if this is a problem
- *           this other compilers.  If _MSC_VER is defined,
- *           the underscore is removed.  If not, it isn't.  To get a
- *           full dump of an object file, use the -f option.  This can
- *           help determine the something that may be different with a
- *           compiler other than Visual C++.
- */
+* winDumpExts.c --
+* Author:   Gordon Chaffee, Scott Stanton
+*
+* History:  The real functionality of this file was written by
+*           Matt Pietrek in 1993 in his pedump utility.  I've
+*           modified it to dump the externals in a bunch of object
+*           files to create a .def file.
+*
+* 10/12/95  Modified by Scott Stanton to support Relocatable Object Module
+*	     Format files for Borland C++ 4.5.
+*
+* Notes:    Visual C++ puts an underscore before each exported symbol.
+*           This file removes them.  I don't know if this is a problem
+*           this other compilers.  If _MSC_VER is defined,
+*           the underscore is removed.  If not, it isn't.  To get a
+*           full dump of an object file, use the -f option.  This can
+*           help determine the something that may be different with a
+*           compiler other than Visual C++.
+*/
 /*-----------------------------------------------------------------------------------*/
 /* Updated 2007 Win64 support (A.C) */
 /* it will be interesting to use PEDUMP http://www.wheaty.net */
@@ -70,10 +70,10 @@ char * SzStorageClass2[] =
 };
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * GetArgcArgv --
- *
- *	Break up a line into argc argv
- *----------------------------------------------------------------------
+* GetArgcArgv --
+*
+*	Break up a line into argc argv
+*----------------------------------------------------------------------
 */
 int GetArgcArgv(char *s, char **argv)
 {
@@ -126,11 +126,11 @@ int GetArgcArgv(char *s, char **argv)
 }
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * GetSZStorageClass --
- *
- *	Given a symbol storage class value, return a descriptive
- *	ASCII string
- *----------------------------------------------------------------------
+* GetSZStorageClass --
+*
+*	Given a symbol storage class value, return a descriptive
+*	ASCII string
+*----------------------------------------------------------------------
 */
 PSTR GetSZStorageClass(BYTE storageClass)
 {
@@ -150,14 +150,14 @@ PSTR GetSZStorageClass(BYTE storageClass)
 }
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * GetSectionName --
- *
- *	Used by DumpSymbolTable, it gives meaningful names to
- *	the non-normal section number.
- *
- * Results:
- *	A name is returned in buffer
- *----------------------------------------------------------------------
+* GetSectionName --
+*
+*	Used by DumpSymbolTable, it gives meaningful names to
+*	the non-normal section number.
+*
+* Results:
+*	A name is returned in buffer
+*----------------------------------------------------------------------
 */
 void GetSectionName(WORD section, PSTR buffer, unsigned cbBuffer)
 {
@@ -182,11 +182,11 @@ void GetSectionName(WORD section, PSTR buffer, unsigned cbBuffer)
 }
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * DumpSymbolTable --
- *
- *	Dumps a COFF symbol table from an EXE or OBJ.  We only use
- *	it to dump tables from OBJs.
- *----------------------------------------------------------------------
+* DumpSymbolTable --
+*
+*	Dumps a COFF symbol table from an EXE or OBJ.  We only use
+*	it to dump tables from OBJs.
+*----------------------------------------------------------------------
 */
 void DumpSymbolTable(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 {
@@ -201,10 +201,9 @@ void DumpSymbolTable(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
             "---- -------------------- -------- ---------- ----- ------- --------\n");
 
     /*
-     * The string table apparently starts right after the symbol table
-     */
+    * The string table apparently starts right after the symbol table
+    */
     stringTable = (PSTR)&pSymbolTable[cSymbols];
-
     for ( i = 0; i < cSymbols; i++ )
     {
         fprintf(fout, "%04X ", i);
@@ -234,11 +233,11 @@ void DumpSymbolTable(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 }
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * DumpExternals --
- *
- *	Dumps a COFF symbol table from an EXE or OBJ.  We only use
- *	it to dump tables from OBJs.
- *----------------------------------------------------------------------
+* DumpExternals --
+*
+*	Dumps a COFF symbol table from an EXE or OBJ.  We only use
+*	it to dump tables from OBJs.
+*----------------------------------------------------------------------
 */
 void DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 {
@@ -248,8 +247,8 @@ void DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
     char symbol[4096];
 
     /*
-     * The string table apparently starts right after the symbol table
-     */
+    * The string table apparently starts right after the symbol table
+    */
     stringTable = (PSTR)&pSymbolTable[cSymbols];
 
     for ( i = 0; i < cSymbols; i++ )
@@ -300,11 +299,11 @@ void DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
 }
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * DumpObjFile --
- *
- *	Dump an object file--either a full listing or just the exported
- *	symbols.
- *----------------------------------------------------------------------
+* DumpObjFile --
+*
+*	Dump an object file--either a full listing or just the exported
+*	symbols.
+*----------------------------------------------------------------------
 */
 void DumpObjFile(PIMAGE_FILE_HEADER pImageFileHeader, FILE *fout, int full)
 {
@@ -327,11 +326,11 @@ void DumpObjFile(PIMAGE_FILE_HEADER pImageFileHeader, FILE *fout, int full)
 }
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * SkipToNextRecord --
- *
- *	Skip over the current ROMF record and return the type of the
- *	next record.
- *----------------------------------------------------------------------
+* SkipToNextRecord --
+*
+*	Skip over the current ROMF record and return the type of the
+*	next record.
+*----------------------------------------------------------------------
 */
 BYTE SkipToNextRecord(BYTE **ppBuffer)
 {
@@ -343,11 +342,11 @@ BYTE SkipToNextRecord(BYTE **ppBuffer)
 }
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * DumpROMFObjFile --
- *
- *	Dump a Relocatable Object Module Format file, displaying only
- *	the exported symbols.
- *----------------------------------------------------------------------
+* DumpROMFObjFile --
+*
+*	Dump a Relocatable Object Module Format file, displaying only
+*	the exported symbols.
+*----------------------------------------------------------------------
 */
 void DumpROMFObjFile(LPVOID pBuffer, FILE *fout)
 {
@@ -391,11 +390,11 @@ void DumpROMFObjFile(LPVOID pBuffer, FILE *fout)
 }
 /*-----------------------------------------------------------------------------------*/
 /*----------------------------------------------------------------------
- * DumpFile --
- *
- *	Open up a file, memory map it, and call the appropriate
- *	dumping routine
- *----------------------------------------------------------------------
+* DumpFile --
+*
+*	Open up a file, memory map it, and call the appropriate
+*	dumping routine
+*----------------------------------------------------------------------
 */
 void DumpFile(LPSTR filename, FILE *fout, int full)
 {

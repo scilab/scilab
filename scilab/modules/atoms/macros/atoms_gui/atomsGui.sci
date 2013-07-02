@@ -12,119 +12,119 @@
 
 function atomsGui()
 
-  // =============================================================================
-  // getHomeListboxElements() - not public
-  //
-  // Returns a struct that contains the followings fields:
-  //  - elements("items_str")
-  //  - elements("items_mat")
-  //
-  // =============================================================================
+    // =============================================================================
+    // getHomeListboxElements() - not public
+    //
+    // Returns a struct that contains the followings fields:
+    //  - elements("items_str")
+    //  - elements("items_mat")
+    //
+    // =============================================================================
 
-  function elements = getHomeListboxElements()
-    items_str  = [];
-    items_mat  = [];
+    function elements = getHomeListboxElements()
+        items_str  = [];
+        items_mat  = [];
 
-    installed  = atomsGetInstalled();
-    atomsfig   = findobj("tag","atomsFigure");
-    allModules = atomsfig("UserData");
+        installed  = atomsGetInstalled();
+        atomsfig   = findobj("tag","atomsFigure");
+        allModules = atomsfig("UserData");
 
 
-    for i=1:size(installed(:,1), "*")
-      MRVersionAvailable = atomsGetMRVersion(installed(i,1));
-      MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(installed(i,1)),"DESC");
-      MRVersionInstalled = MRVersionInstalled(1);
-      if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
-        // Not up-to-date
-        icon = "software-update-notinstalled.png";
-      else
-        // The Most Recent Version is already installed
-        icon = "software-update-installed.png";
-      end
+        for i=1:size(installed(:,1), "*")
+            MRVersionAvailable = atomsGetMRVersion(installed(i,1));
+            MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(installed(i,1)),"DESC");
+            MRVersionInstalled = MRVersionInstalled(1);
+            if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
+                // Not up-to-date
+                icon = "software-update-notinstalled.png";
+            else
+                // The Most Recent Version is already installed
+                icon = "software-update-installed.png";
+            end
 
-      if modulo(i,2) == 0 then
-        background = "#eeeeee";
-      else
-        background = "#ffffff";
-      end
+            if modulo(i,2) == 0 then
+                background = "#eeeeee";
+            else
+                background = "#ffffff";
+            end
 
-      thisItem =      "<html>";
+            thisItem =      "<html>";
 
-      thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-      thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/status/"+icon+""" /></td>";
-      thisItem = thisItem + "<td>";
-      thisItem = thisItem + "  <div style=""width:383px;text-align:left;"">";
-      thisItem = thisItem + "  <span style=""font-weight:bold;"">"+allModules(installed(i,1))(installed(i,2)).Title+" "+installed(i,2)+"</span><br />";
-      thisItem = thisItem + "  <span>"+allModules(installed(i,1))(installed(i,2)).Summary+"</span><br />";
-      thisItem = thisItem + "  <span style=""font-style:italic;"">"+installed(i,4)+"</span>";
-      thisItem = thisItem + "  </div>";
-      thisItem = thisItem + "</td>";
-      thisItem = thisItem + "</tr></table>";
-      thisItem = thisItem + "</html>";
+            thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
+            thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/status/"+icon+""" /></td>";
+            thisItem = thisItem + "<td>";
+            thisItem = thisItem + "  <div style=""width:383px;text-align:left;"">";
+            thisItem = thisItem + "  <span style=""font-weight:bold;"">"+allModules(installed(i,1))(installed(i,2)).Title+" "+installed(i,2)+"</span><br />";
+            thisItem = thisItem + "  <span>"+allModules(installed(i,1))(installed(i,2)).Summary+"</span><br />";
+            thisItem = thisItem + "  <span style=""font-style:italic;"">"+installed(i,4)+"</span>";
+            thisItem = thisItem + "  </div>";
+            thisItem = thisItem + "</td>";
+            thisItem = thisItem + "</tr></table>";
+            thisItem = thisItem + "</html>";
 
-      items_str = [items_str ; thisItem];
-      items_mat = [items_mat ; "module" installed(i,1)];
+            items_str = [items_str ; thisItem];
+            items_mat = [items_mat ; "module" installed(i,1)];
+        end
+
+        if items_str==[] then
+            elements("items_str") = "";
+        else
+            elements("items_str") = items_str;
+        end
+
+        elements("items_mat") = items_mat;
+
+    endfunction
+
+
+    if ~ exists("atomsinternalslib") then
+        load("SCI/modules/atoms/macros/atoms_internals/lib");
     end
 
-    if items_str==[] then
-      elements("items_str") = "";
-    else
-      elements("items_str") = items_str;
+    // Test connection
+    allModules = [];
+    errStatus  = execstr("allModules = atomsDESCRIPTIONget();", "errcatch");
+
+    if errStatus<>0 | size(allModules, "*") == 0 then
+        if size(atomsRepositoryList(),"*") > 0 then
+            messagebox(gettext("No ATOMS module is available. Please, check your Internet connection or make sure that your OS is compatible with ATOMS."), gettext("ATOMS error"), "error");
+        else
+            messagebox(gettext("No ATOMS module is available: your repository list is empty."), gettext("ATOMS error"), "error");
+        end
+        return
     end
 
-    elements("items_mat") = items_mat;
+    // Parameters
+    // =========================================================================
 
-  endfunction
+    // Figure width & height
+    figwidth     = 800;
+    figheight    = 500;
 
+    // Margin
+    margin       = 10;
+    widgetHeight   = 25;
 
-  if ~ exists("atomsinternalslib") then
-    load("SCI/modules/atoms/macros/atoms_internals/lib");
-  end
+    // Message Frame
+    msgWidth     = figwidth -2*margin;
+    msgHeight    = 30;
 
-  // Test connection
-  allModules = [];
-  errStatus  = execstr("allModules = atomsDESCRIPTIONget();", "errcatch");
+    // Button
+    buttonHeight   = 20;
 
-  if errStatus<>0 | size(allModules, "*") == 0 then
-    if size(atomsRepositoryList(),"*") > 0 then
-      messagebox(gettext("No ATOMS module is available. Please, check your Internet connection or make sure that your OS is compatible with ATOMS."), gettext("ATOMS error"), "error");
-    else
-      messagebox(gettext("No ATOMS module is available: your repository list is empty."), gettext("ATOMS error"), "error");
+    // Font Size
+    defaultFontSize  = 12;
+
+    // Close the window if it already exists
+    oldFig = findobj("tag", "atomsFigure");
+    if ~isempty(oldFig) then
+        delete(oldFig);
     end
-    return
-  end
 
-  // Parameters
-  // =========================================================================
+    // Create the main window
+    // =========================================================================
 
-  // Figure width & height
-  figwidth     = 800;
-  figheight    = 500;
-
-  // Margin
-  margin       = 10;
-  widgetHeight   = 25;
-
-  // Message Frame
-  msgWidth     = figwidth -2*margin;
-  msgHeight    = 30;
-
-  // Button
-  buttonHeight   = 20;
-
-  // Font Size
-  defaultFontSize  = 12;
-
-  // Close the window if it already exists
-  oldFig = findobj("tag", "atomsFigure");
-  if ~isempty(oldFig) then
-    delete(oldFig);
-  end
-
-  // Create the main window
-  // =========================================================================
-
-  atomsfig = figure( ..
+    atomsfig = figure( ..
     "figure_name", gettext("ATOMS"), ..
     "position"   , [0 0 figwidth figheight],..
     "background" , -2,..
@@ -132,84 +132,84 @@ function atomsGui()
     "ResizeFcn", "atomsGuiResizeFcn", ..
     "tag"    , "atomsFigure");
 
-  // Remove Scilab graphics menus & toolbar
-  // =========================================================================
+    // Remove Scilab graphics menus & toolbar
+    // =========================================================================
 
-  delmenu(atomsfig.figure_id, gettext("&File"));
-  delmenu(atomsfig.figure_id, gettext("&Tools"));
-  delmenu(atomsfig.figure_id, gettext("&Edit"));
-  delmenu(atomsfig.figure_id, gettext("&?"));
-  toolbar(atomsfig.figure_id, "off");
+    delmenu(atomsfig.figure_id, gettext("&File"));
+    delmenu(atomsfig.figure_id, gettext("&Tools"));
+    delmenu(atomsfig.figure_id, gettext("&Edit"));
+    delmenu(atomsfig.figure_id, gettext("&?"));
+    toolbar(atomsfig.figure_id, "off");
 
-  // Add ATOMS Menu
-  // =========================================================================
+    // Add ATOMS Menu
+    // =========================================================================
 
-  // Menu File
-  h = uimenu( ..
+    // Menu File
+    h = uimenu( ..
     "parent"   , atomsfig, ..
     "label"  , gettext("File"));
 
-  // Menu File:Installed Modules
-  uimenu( ..
+    // Menu File:Installed Modules
+    uimenu( ..
     "parent"   , h, ..
     "label"  , gettext("Installed modules"), ..
     "callback" , "cbAtomsGui", ..
     "tag"    , "homeMenu");
 
-  // Menu File:Update List of Packages
-  uimenu( ..
+    // Menu File:Update List of Packages
+    uimenu( ..
     "parent"   , h, ..
     "label"  , gettext("Update List of Packages"), ..
     "callback" , "xinfo(gettext(''Updating the list of packages. Please wait... until Done.''));" + ..
-           "atomsSystemUpdate();" + ..
-           "xinfo(gettext(''Update done.''));" , ..
+    "atomsSystemUpdate();" + ..
+    "xinfo(gettext(''Update done.''));" , ..
     "tag"    , "updatePackages");
 
-  // Menu File:Close
-  uimenu( ..
+    // Menu File:Close
+    uimenu( ..
     "parent"   , h, ..
     "label"  , gettext("Close"), ..
     "callback" , "cbAtomsGui", ..
     "tag"    , "closeMenu");
 
-  // Menu ?
-  h = uimenu( ..
+    // Menu ?
+    h = uimenu( ..
     "parent"   , atomsfig, ..
     "label"  , gettext("?"));
 
-  // Menu ?:Atoms Help...
-  uimenu( ..
+    // Menu ?:Atoms Help...
+    uimenu( ..
     "parent"   , h, ..
     "label"  , gettext("Atoms Help..."), ..
     "callback" , "cbAtomsGui", ..
     "tag"    , "helpMenu");
 
-  // Build the module list (listbox on the left)
-  // =========================================================================
-  LeftElements = atomsGetLeftListboxElts("filter:main");
+    // Build the module list (listbox on the left)
+    // =========================================================================
+    LeftElements = atomsGetLeftListboxElts("filter:main");
 
-  // Build the installed module list
-  // =========================================================================
-  HomeElements = getHomeListboxElements();
+    // Build the installed module list
+    // =========================================================================
+    HomeElements = getHomeListboxElements();
 
-  // Set the figure size ... after all delmenu(s)
-  // =========================================================================
-  atomsfig.axes_size = [figwidth figheight];
+    // Set the figure size ... after all delmenu(s)
+    // =========================================================================
+    atomsfig.axes_size = [figwidth figheight];
 
-  // List of modules
-  // =========================================================================
+    // List of modules
+    // =========================================================================
 
-  listboxWidth        = 200;
-  listboxFrameWidth     = listboxWidth + 2*margin;
+    listboxWidth        = 200;
+    listboxFrameWidth     = listboxWidth + 2*margin;
 
-  listboxFrameHeight    = figheight- 3*margin - msgHeight;
-  listboxHeight       = listboxFrameHeight - 2*margin;
+    listboxFrameHeight    = figheight- 3*margin - msgHeight;
+    listboxHeight       = listboxFrameHeight - 2*margin;
 
-  // Figure name
-  atomsfig("figure_name")   = LeftElements("title")+" - ATOMS";
+    // Figure name
+    atomsfig("figure_name")   = LeftElements("title")+" - ATOMS";
 
-  // Frame
-  LeftFrame         = uicontrol( ..
+    // Frame
+    LeftFrame         = uicontrol( ..
     "Parent"        , atomsfig,..
     "Style"         , "frame",..
     "Relief"        , "solid",..
@@ -218,8 +218,8 @@ function atomsGui()
     "UserData"      , "filter:main",..
     "Tag"         , "LeftFrame");
 
-  // Listbox
-  LeftListbox         = uicontrol( ..
+    // Listbox
+    LeftListbox         = uicontrol( ..
     "Parent"        , LeftFrame,..
     "Style"         , "listbox",..
     "Position"      , [ margin margin listboxWidth listboxHeight],..
@@ -232,17 +232,17 @@ function atomsGui()
     "Max"         , 1, ..
     "Tag"         , "LeftListbox")
 
-  // Description of a module
-  // =========================================================================
+    // Description of a module
+    // =========================================================================
 
-  descFrameWidth       = figwidth - listboxFrameWidth - 3*margin;
-  descFrameHeight      = listboxFrameHeight;
+    descFrameWidth       = figwidth - listboxFrameWidth - 3*margin;
+    descFrameHeight      = listboxFrameHeight;
 
-  descWidth        = descFrameWidth  - 2*margin;
-  descHeight         = descFrameHeight - 4*margin - buttonHeight;
+    descWidth        = descFrameWidth  - 2*margin;
+    descHeight         = descFrameHeight - 4*margin - buttonHeight;
 
-  // Frame
-  DescFrame        = uicontrol( ..
+    // Frame
+    DescFrame        = uicontrol( ..
     "Parent"       , atomsfig,..
     "Style"        , "frame",..
     "Relief"       , "solid",..
@@ -251,8 +251,8 @@ function atomsGui()
     "Tag"        , "DescFrame", ..
     "Visible"      , "off");
 
-  // Frame title
-  DescTitle        = uicontrol( ..
+    // Frame title
+    DescTitle        = uicontrol( ..
     "Parent"       , DescFrame,..
     "Style"        , "text",..
     "Position"       , [2*margin descFrameHeight-1.5*margin 200 widgetHeight],..
@@ -264,8 +264,8 @@ function atomsGui()
     "Background"     , [1 1 1],..
     "Tag"        , "DescTitle");
 
-  // Details of a module
-  Desc           = uicontrol( ..
+    // Details of a module
+    Desc           = uicontrol( ..
     "Parent"       , DescFrame,..
     "VerticalAlignment"  , "top",..
     "Style"        , "text",..
@@ -275,13 +275,13 @@ function atomsGui()
     "String"       , "",..
     "Tag"        , "Desc");
 
-  // Buttons
-  // -------------------------------------------------------------------------
+    // Buttons
+    // -------------------------------------------------------------------------
 
-  buttonWidth = (descFrameWidth - 4*margin) / 3;
+    buttonWidth = (descFrameWidth - 4*margin) / 3;
 
-  // "Remove" Button
-  removeButton       = uicontrol( ..
+    // "Remove" Button
+    removeButton       = uicontrol( ..
     "Parent"       , DescFrame,..
     "Style"        , "pushbutton",..
     "Position"       , [margin margin buttonWidth widgetHeight],..
@@ -290,8 +290,8 @@ function atomsGui()
     "Enable"       , "off",..
     "Tag"        , "removeButton");
 
-  // "Install" Button
-  installButton      = uicontrol( ..
+    // "Install" Button
+    installButton      = uicontrol( ..
     "Parent"       , DescFrame,..
     "Style"        , "pushbutton",..
     "Position"       , [buttonWidth+2*margin margin buttonWidth widgetHeight],..
@@ -300,8 +300,8 @@ function atomsGui()
     "Enable"       , "off", ..
     "Tag"        , "installButton");
 
-  // "Update" Button
-  updateButton       = uicontrol( ..
+    // "Update" Button
+    updateButton       = uicontrol( ..
     "Parent"       , DescFrame,..
     "Style"        , "pushbutton",..
     "Position"       , [2*buttonWidth+3*margin margin buttonWidth widgetHeight],..
@@ -310,14 +310,14 @@ function atomsGui()
     "Enable"       , "off", ..
     "Tag"        , "updateButton");
 
-  // Installed Modules: List of installed modules
-  // =========================================================================
+    // Installed Modules: List of installed modules
+    // =========================================================================
 
-  descWidth        = descFrameWidth  - 2*margin;
-  descHeight         = descFrameHeight - 3*margin;
+    descWidth        = descFrameWidth  - 2*margin;
+    descHeight         = descFrameHeight - 3*margin;
 
-  // Frame
-  HomeFrame        = uicontrol( ..
+    // Frame
+    HomeFrame        = uicontrol( ..
     "Parent"       , atomsfig,..
     "Style"        , "frame",..
     "Relief"       , "solid",..
@@ -325,8 +325,8 @@ function atomsGui()
     "Position"       , [listboxFrameWidth+2*margin widgetHeight+2*margin descFrameWidth descFrameHeight],..
     "Tag"        , "HomeFrame");
 
-  // Frame title
-  HomeTitle        = uicontrol( ..
+    // Frame title
+    HomeTitle        = uicontrol( ..
     "Parent"       , HomeFrame,..
     "Style"        , "text",..
     "Position"       , [2*margin descFrameHeight-1.5*margin 200 widgetHeight],..
@@ -338,8 +338,8 @@ function atomsGui()
     "Background"     , [1 1 1],..
     "Tag"        , "HomeTitle");
 
-  // Home
-  HomeListbox         = uicontrol( ..
+    // Home
+    HomeListbox         = uicontrol( ..
     "Parent"        , HomeFrame,..
     "Style"         , "listbox",..
     "Position"      , [ margin margin descWidth descHeight],..
@@ -352,11 +352,11 @@ function atomsGui()
     "Max"         , 1, ..
     "Tag"         , "HomeListbox");
 
-  // Message Frame
-  // =========================================================================
+    // Message Frame
+    // =========================================================================
 
-  // Frame
-  msgFrame         = uicontrol( ..
+    // Frame
+    msgFrame         = uicontrol( ..
     "Parent"       , atomsfig,..
     "Style"        , "frame",..
     "Relief"       , "solid",..
@@ -364,8 +364,8 @@ function atomsGui()
     "Position"       , [margin margin msgWidth msgHeight],..
     "Tag"        , "msgFrame");
 
-  // Text
-  msgText          = uicontrol( ..
+    // Text
+    msgText          = uicontrol( ..
     "Parent"       , msgFrame,...
     "Style"        , "text",..
     "HorizontalAlignment", "left",..

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-09-01 15:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: es\n"
 
 #, c-format
@@ -34,27 +34,15 @@ msgstr ""
 "{%s}.\n"
 
 #, c-format
-msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
-msgstr "%s: Argumento de entrada incorrecto #%d: Tamaño inconsistente.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
-"expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
-"reales, enteros o strings.\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s: Esta función aun no ha sido implementada.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument: Cell elements must be character arrays.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada: Los elementos de la celda "
 "deben ser arreglos de caracteres.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Esta función aun no ha sido implementada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"

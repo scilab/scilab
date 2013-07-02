@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-10-20 14:00+0000\n"
-"Last-Translator: Grzegorz Szostek <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-03 02:43+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: pl\n"
 
 #, c-format
@@ -112,15 +112,6 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wartości "
 "logicznej.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wektora "
-"łańcuchów.\n"
-
-msgid "a graphical environment is needed."
-msgstr ""
 
 #, c-format
 msgid ""
@@ -344,6 +335,9 @@ msgstr "Zapisz jako"
 msgid "Export"
 msgstr "Eksportuj"
 
+msgid "Export all diagrams"
+msgstr ""
+
 msgid "Save as interface function"
 msgstr "Zpisz jako interfejs funkcji"
 
@@ -356,8 +350,8 @@ msgstr "Zamknij"
 msgid "Quit Xcos"
 msgstr "Zamknij Xcos"
 
-msgid "Recent Files"
-msgstr "Ostatnio używane pliki"
+msgid "Recent files"
+msgstr ""
 
 msgid "Edit"
 msgstr "Edycja"
@@ -407,8 +401,8 @@ msgstr "Widok w Scicos"
 msgid "View"
 msgstr "Widok"
 
-msgid "Fit diagram to view"
-msgstr "Dopasuj wykres aby wyświetlić"
+msgid "Fit diagram or blocks to view"
+msgstr ""
 
 msgid "Normal 100%"
 msgstr "Normalny 100%"
@@ -1057,7 +1051,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: Zamiast bloku znaleziono '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: Nieprawidłowy typ argumentu %d: oczekiwano struktury schematu"
 
 #, c-format
@@ -1077,7 +1071,7 @@ msgstr ""
 "do tego katalogu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu %d: oczekiwano łańcucha lub schematu "
 "struktury."
@@ -1204,7 +1198,19 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Nie udało się eksportować palety do hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: No block found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 
 msgid "Interface function does not exist or can not be called."
@@ -1256,8 +1262,26 @@ msgstr ""
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
+msgid "Initialisation problem"
+msgstr ""
+
+msgid "End problem"
+msgstr ""
+
 msgid "Simulation problem"
 msgstr "Problem symulacji"
 
 msgid "Error in post_xcos_simulate: ending simulation."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
 msgstr ""

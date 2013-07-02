@@ -9,6 +9,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [e,a]=pen2ea(f)
-  e=coeff(f,1);
-  a=-coeff(f,0);
+    e=coeff(f,1);
+    a=-coeff(f,0);
 endfunction

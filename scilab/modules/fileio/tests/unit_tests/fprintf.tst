@@ -7,6 +7,8 @@
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK ERROR OUTPUT -->
 // =============================================================================
+wMode = warning("query");
+warning("off");
 fprintf(0,'My error which is going to be displayed on the stderr');
 fprintf(6,'My error which is going to be displayed on the stdout');
 // =============================================================================
@@ -85,3 +87,4 @@ FMTS=["%s","%s"];
 ierr = execstr('fprintf(6,FMTS,5)','errcatch');
 if ierr <> 999 then pause,end
 // =============================================================================
+warning(wMode);

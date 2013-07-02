@@ -156,7 +156,7 @@ public final class LabelElement extends AbstractElement<TextBlock> {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
 
-        // the third field must contains all the informations needed to compile
+        // the third field must contains all the information needed to compile
         // the block
         field++;
         if (!(data.get(field) instanceof ScilabMList)) {

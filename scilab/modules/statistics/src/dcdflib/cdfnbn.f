@@ -94,9 +94,9 @@ C     Mathematical Functions (1966) is used  to  reduce calculation of
 C     the cumulative distribution  function to that of  an  incomplete
 C     beta.
 C
-C     Computation of other parameters involve a seach for a value that
+C     Computation of other parameters involve a search for a value that
 C     produces  the desired  value  of P.   The search relies  on  the
-C     monotinicity of P with the other parameter.
+C     monotonicity of P with the other parameter.
 C
 C
 C**********************************************************************
@@ -119,6 +119,7 @@ C     .. Local Scalars ..
       LOGICAL qhi,qleft,qporq
 C     ..
 C     .. External Functions ..
+      INTEGER vfinite
       DOUBLE PRECISION spmpar
       EXTERNAL spmpar
 C     ..
@@ -142,6 +143,13 @@ C
 C
 C     P
 C
+      IF (ISANAN(p).EQ.1) THEN
+         CALL RETURNANANFORTRAN(s)
+         CALL RETURNANANFORTRAN(xn)
+         CALL RETURNANANFORTRAN(pr)
+         CALL RETURNANANFORTRAN(ompr)
+         RETURN
+      ENDIF
       IF (.NOT. ((p.LT.0.0D0).OR. (p.GT.1.0D0))) GO TO 60
       IF (.NOT. (p.LT.0.0D0)) GO TO 40
       bound = 0.0D0
@@ -156,6 +164,13 @@ C
 C
 C     Q
 C
+      IF (ISANAN(q).EQ.1) THEN
+         CALL RETURNANANFORTRAN(s)
+         CALL RETURNANANFORTRAN(xn)
+         CALL RETURNANANFORTRAN(pr)
+         CALL RETURNANANFORTRAN(ompr)
+         RETURN
+      ENDIF
       IF (.NOT. ((q.LE.0.0D0).OR. (q.GT.1.0D0))) GO TO 100
       IF (.NOT. (q.LE.0.0D0)) GO TO 80
       bound = 0.0D0
@@ -170,6 +185,25 @@ C
 C
 C     S
 C
+      IF (ISANAN(s).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(xn)
+         CALL RETURNANANFORTRAN(pr)
+         CALL RETURNANANFORTRAN(ompr)
+         RETURN
+      ENDIF
+      IF (vfinite(1,s).EQ.0) then
+         IF (which.EQ.1) then
+            IF (s.GT.0) then
+               p = 1
+               q = 0
+               RETURN
+            ENDIF
+         ELSE
+            s = SIGN(1D300,s)
+         ENDIF
+      ENDIF
       IF (.NOT. (s.LT.0.0D0)) GO TO 120
       bound = 0.0D0
       status = -4
@@ -180,6 +214,15 @@ C
 C
 C     XN
 C
+      IF (ISANAN(xn).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(s)
+         CALL RETURNANANFORTRAN(pr)
+         CALL RETURNANANFORTRAN(ompr)
+         RETURN
+      ENDIF
+      IF (vfinite(1,xn).EQ.0) xn = SIGN(inf,xn)
       IF (.NOT. (xn.LT.0.0D0)) GO TO 140
       bound = 0.0D0
       status = -5
@@ -190,6 +233,13 @@ C
 C
 C     PR
 C
+      IF (ISANAN(pr).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(s)
+         CALL RETURNANANFORTRAN(xn)
+         RETURN
+      ENDIF
       IF (.NOT. ((pr.LT.0.0D0).OR. (pr.GT.1.0D0))) GO TO 180
       IF (.NOT. (pr.LT.0.0D0)) GO TO 160
       bound = 0.0D0
@@ -204,6 +254,13 @@ C
 C
 C     OMPR
 C
+      IF (ISANAN(ompr).EQ.1) THEN
+         CALL RETURNANANFORTRAN(p)
+         CALL RETURNANANFORTRAN(q)
+         CALL RETURNANANFORTRAN(s)
+         CALL RETURNANANFORTRAN(xn)
+         RETURN
+      ENDIF
       IF (.NOT. ((ompr.LT.0.0D0).OR. (ompr.GT.1.0D0))) GO TO 220
       IF (.NOT. (ompr.LT.0.0D0)) GO TO 200
       bound = 0.0D0

@@ -13,25 +13,25 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mtlb_s">
     <refnamediv>
         <refname>mtlb_s</refname>
-        <refpurpose>Matlab substraction emulation function</refpurpose>
+        <refpurpose>Matlab subtraction emulation function</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>Matlab and Scilab substraction behave differently in some particular cases:</para>
+        <para>Matlab and Scilab subtraction behave differently in some particular cases:</para>
         <itemizedlist>
             <listitem>
                 <para>
                     With character string operands: The <literal>-</literal> 
                     operator can not be used into Scilab with character strings, while
-                    Matlab realizes the substraction of the operands ASCII codes.
+                    Matlab realizes the subtraction of the operands ASCII codes.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     With empty matrix: In Scilab, if one of the
-                    operands is an empty matrix the result of the substraction is the
+                    operands is an empty matrix the result of the subtraction is the
                     other operand. In Matlab if one of the operand is an empty
-                    matrix the result of the substraction should be an error or an empty
+                    matrix the result of the subtraction should be an error or an empty
                     matrix.
                 </para>
             </listitem>

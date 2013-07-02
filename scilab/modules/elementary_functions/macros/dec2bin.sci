@@ -27,17 +27,17 @@
 // =============================================================================
 
 function y = dec2bin(x, n)
-  rhs = argn(2);
+    rhs = argn(2);
 
-  // check the number of input arguments
-  if (rhs < 1 | rhs > 2) then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "dec2bin", 1, 2));
-  end
+    // check the number of input arguments
+    if (rhs < 1 | rhs > 2) then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "dec2bin", 1, 2));
+    end
 
-  if rhs == 2 then
-    y = dec2base(double(x), 2, n);
-  else
-    y = dec2base(double(x), 2);
-  end
+    if rhs == 2 then
+        y = dec2base(double(x), 2, n);
+    else
+        y = dec2base(double(x), 2);
+    end
 endfunction
 

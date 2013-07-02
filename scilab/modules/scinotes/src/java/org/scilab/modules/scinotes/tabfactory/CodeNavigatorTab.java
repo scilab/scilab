@@ -24,7 +24,7 @@ import org.scilab.modules.scinotes.utils.NavigatorWindow;
 
 /**
  * Class to create SciNotes instances
- * 
+ *
  * @author Calixte DENIZET
  */
 public class CodeNavigatorTab {
@@ -35,7 +35,7 @@ public class CodeNavigatorTab {
      * @return a new SciNotes instance
      */
     public static NavigatorWindow getCodeNavigatorInstance(
-            final SciNotes editor, String uuid) {
+        final SciNotes editor, String uuid) {
         final NavigatorWindow nav;
         if (uuid != null) {
             nav = new NavigatorWindow(editor, uuid);
@@ -45,41 +45,41 @@ public class CodeNavigatorTab {
         }
 
         ClosingOperationsManager.registerClosingOperation((SwingScilabTab) nav,
-                new ClosingOperationsManager.ClosingOperation() {
+        new ClosingOperationsManager.ClosingOperation() {
 
-                    @Override
-                    public int canClose() {
-                        return 1;
-                    }
+            @Override
+            public int canClose() {
+                return 1;
+            }
 
-                    @Override
-                    public void destroy() {
-                        nav.closeNavigator();
-                    }
+            @Override
+            public void destroy() {
+                nav.closeNavigator();
+            }
 
-                    @Override
-                    public String askForClosing(final List<SwingScilabTab> list) {
-                        return null;
-                    }
+            @Override
+            public String askForClosing(final List<SwingScilabTab> list) {
+                return null;
+            }
 
-                    @Override
-                    public void updateDependencies(List<SwingScilabTab> list,
-                            ListIterator<SwingScilabTab> it) {
-                    }
-                });
+            @Override
+            public void updateDependencies(List<SwingScilabTab> list,
+            ListIterator<SwingScilabTab> it) {
+            }
+        });
 
         WindowsConfigurationManager.registerEndedRestoration(
-                (SwingScilabTab) nav,
-                new WindowsConfigurationManager.EndedRestoration() {
+            (SwingScilabTab) nav,
+        new WindowsConfigurationManager.EndedRestoration() {
 
-                    @Override
-                    public void finish() {
-                        nav.changeToolBar();
-                    }
-                });
+            @Override
+            public void finish() {
+                nav.changeToolBar();
+            }
+        });
 
         ClosingOperationsManager.addDependency((SwingScilabTab) editor,
-                (SwingScilabTab) nav);
+                                               (SwingScilabTab) nav);
 
         return nav;
     }

@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="importXcosDiagram">
     <refnamediv>
         <refname>importXcosDiagram</refname>
-        <refpurpose>Import an Xcos diagram on Scilab</refpurpose>
+        <refpurpose>Import a Xcos diagram on Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -31,8 +31,12 @@
     </refsection>
     <refsection id="Description_importXcosDiagram">
         <title>Description</title>
-        <para>Import an Xcos file into Scilab.</para>
-        <programlisting role="example"> 
+        <para>Import a Xcos file into Scilab.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            filename=SCI+"/modules/xcos/demos/demo_Datatype.zcos";
             [result]=importXcosDiagram(filename)
         </programlisting>
     </refsection>
@@ -41,13 +45,13 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">result :</emphasis> The status of the
+                    <emphasis role="bold">result:</emphasis> The status of the
                     operation.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">filename :</emphasis> The Xcos file to
+                    <emphasis role="bold">filename:</emphasis> The Xcos file to
                     load.
                 </para>
             </listitem>

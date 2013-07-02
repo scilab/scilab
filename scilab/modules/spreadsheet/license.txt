@@ -66,10 +66,8 @@ sci_gateway/cpp/sci_csvRead.cpp
 sci_gateway/cpp/sci_csvDefault.cpp
 sci_gateway/cpp/sci_csvIsnum.cpp
 src/cpp/stringToComplex.h
-src/cpp/stringsToDoubles.h
 src/cpp/stringToComplex.c
 src/cpp/stringToDouble.c
-src/cpp/stringsToDoubles.c
 src/cpp/stringToDouble.h
 
 

@@ -13,6 +13,7 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=3076
 //
-A = [ "/usr/local/scilab/bin" ; "/home/user/Desktop" ];
+A = [ "/usr/local/scilab/bin"];
 B = [ "/usr/local/scilab/share/scilab/modules/core/etc/core.start" ;"/home/user/Desktop/pictures/test.png" ];
-if execstr("getrelativefilename(A,B);","errcatch") == 0 then bugmes();quit;end
+errmsg = msprintf(_("%s: Incompatible input arguments #%d and #%d: Same size expected.\n"), "getrelativefilename", 1, 2);
+assert_checkerror("getrelativefilename(A,B)", errmsg);

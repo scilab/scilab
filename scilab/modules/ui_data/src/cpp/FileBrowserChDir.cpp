@@ -24,6 +24,6 @@ void FileBrowserChDir(char * baseDir)
 {
     if (getScilabJavaVM())
     {
-	FileBrowser::setBaseDir(getScilabJavaVM(), baseDir);
+        FileBrowser::setBaseDir(getScilabJavaVM(), baseDir);
     }
 }

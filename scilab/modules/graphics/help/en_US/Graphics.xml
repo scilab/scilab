@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="Graphics">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" scilab:needs-examples="no" xml:id="Graphics">
     <refnamediv>
         <refname>Graphics: Getting started</refname>
         <refpurpose>graphics library overview</refpurpose>
@@ -218,7 +218,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>xgrid();</scilab:image>
+                        <scilab:image>x=[0:0.1:2*%pi]'; plot2d(sin(x));xgrid(5)</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -674,7 +674,12 @@
                     <link linkend="plotframe">plotframe</link>
                 </term>
                 <listitem>
-                    <para>Plot a frame with scaling and grids</para>
+                    <para>
+                        Plot a frame with scaling and grids
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -687,7 +692,13 @@
                     <link linkend="isoview">isoview</link>
                 </term>
                 <listitem>
-                    <para>Set scales for isometric plot (do not change the size of the window)</para>
+                    <para>
+                        Set scales for isometric plot (do not change the size
+                        of the window)
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -801,7 +812,12 @@
                     <link linkend="xset">xset</link>
                 </term>
                 <listitem>
-                    <para>Set values of the graphics context</para>
+                    <para>
+                        Set values of the graphics context
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -809,7 +825,12 @@
                     <link linkend="xget">xget</link>
                 </term>
                 <listitem>
-                    <para>Get current values of the graphics context</para>
+                    <para>
+                        Get current values of the graphics context
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -825,7 +846,12 @@
                     <link linkend="getsymbol">getsymbol</link>
                 </term>
                 <listitem>
-                    <para>Dialog to select a symbol and its size</para>
+                    <para>
+                        Dialog to select a symbol and its size
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -862,7 +888,12 @@
                     <link linkend="xs2emf">xs2emf</link>
                 </term>
                 <listitem>
-                    <para>Export graphics using the EMF format</para>
+                    <para>
+                        Export graphics using the EMF format
+                        <warning>
+                            Only under Windows.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -939,7 +970,9 @@
                     <link linkend="clf">clf</link>
                 </term>
                 <listitem>
-                    <para>Clear a graphics window and erase the associated recorded graphics</para>
+                    <para>
+                        Clear or reset the current graphic figure (window) to default values
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -947,7 +980,12 @@
                     <link linkend="xclear">xclear</link>
                 </term>
                 <listitem>
-                    <para>Clear a graphics window</para>
+                    <para>
+                        Clear a graphics window
+                        <warning>
+                            Function <function>xclear</function> is obsolete.
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -972,14 +1010,6 @@
                 </term>
                 <listitem>
                     <para>Close a graphics session</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xbasr">xbasr</link>
-                </term>
-                <listitem>
-                    <para>Redraw a graphics window</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -1040,7 +1070,9 @@
                     <link linkend="xclick">xclick</link>
                 </term>
                 <listitem>
-                    <para>Wait for a mouse click</para>
+                    <para>
+                        Wait for a mouse click or an event in a graphic window
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -1056,7 +1088,7 @@
                     <link linkend="xgetmouse">xgetmouse</link>
                 </term>
                 <listitem>
-                    <para>Get the current position of the mouse</para>
+                    <para>Get the mouse events and current position</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -1140,7 +1172,12 @@
                     <link linkend="m_circle">m_circle</link>
                 </term>
                 <listitem>
-                    <para>M-circle plot</para>
+                    <para>
+                        Plot the complex plane iso-gain contours of y/(1+y)
+                        <warning>
+                            This function is obsolete.
+                        </warning>
+                    </para>
                     <para>
                         <emphasis role="bold">Example:</emphasis>
                     </para>
@@ -1151,7 +1188,23 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="chart">chart</link>
+                    <link linkend="hallchart">hallchart</link>
+                </term>
+                <listitem>
+                    <para>
+                        Hall chart
+                    </para>
+                    <para>
+                        <emphasis role="bold">Example:</emphasis>
+                    </para>
+                    <para>
+                        <scilab:image localized="true">hallchart();</scilab:image>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="nicholschart">nicholschart</link>
                 </term>
                 <listitem>
                     <para>Nichols chart</para>
@@ -1159,7 +1212,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>chart();</scilab:image>
+                        <scilab:image localized="true">nicholschart();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -1173,7 +1226,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>s=poly(0,'s');
+                        <scilab:image localized="true">s=poly(0,'s');
                             sl=syslin('c',5*(1+s)/(.1*s^4+s^3+15*s^2+3*s+1))
                             clf();black(sl,0.01,10);
                         </scilab:image>
@@ -1190,7 +1243,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>evans();</scilab:image>
+                        <scilab:image localized="true">evans();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -1204,7 +1257,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>sgrid();</scilab:image>
+                        <scilab:image localized="true">sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>
@@ -1218,10 +1271,10 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>s=poly(0,'s');
+                        <scilab:image localized="true">s=poly(0,'s');
                             n=[1+s   2+3*s+4*s^2        5; 0        1-s             s];
                             d=[1+3*s   5-s^3           s+1;1+s     1+s+s^2      3*s-1];
-                            h=syslin('c',n./d); 
+                            h=syslin('c',n./d);
                             plzr(h);
                         </scilab:image>
                     </para>
@@ -1237,7 +1290,7 @@
                         <emphasis role="bold">Example:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>zgrid();</scilab:image>
+                        <scilab:image localized="true">zgrid();</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>

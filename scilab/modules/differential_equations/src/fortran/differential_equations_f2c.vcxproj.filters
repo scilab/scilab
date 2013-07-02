@@ -60,6 +60,12 @@
     <ClCompile Include="..\..\sci_gateway\fortran\bresd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bpsold.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bpjacd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\bresid.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,6 +93,9 @@
     <ClCompile Include="dcutet.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ddaskr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="ddasrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -96,13 +105,13 @@
     <ClCompile Include="dgbsl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dqag0.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dqags.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="epsalg.c">
+    <ClCompile Include="dqagse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dqelg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ewset.c">
@@ -186,7 +195,7 @@
     <ClCompile Include="odeint.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="order.c">
+    <ClCompile Include="dqpsrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="prepj.c">
@@ -198,7 +207,7 @@
     <ClCompile Include="prja.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="quarul.c">
+    <ClCompile Include="dqk21.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rchek.c">
@@ -276,6 +285,9 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_bvode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_daskr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dasrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -292,6 +304,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_odedc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="daux.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -335,6 +350,12 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\bresd.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bpsold.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bpjacd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\bresid.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -368,13 +389,13 @@
     <f2c_rule Include="dgbsl.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="dqag0.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="dqags.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="epsalg.f">
+    <f2c_rule Include="dqagse.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dqelg.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ewset.f">
@@ -458,7 +479,7 @@
     <f2c_rule Include="odeint.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="order.f">
+    <f2c_rule Include="dqpsrt.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="prepj.f">
@@ -470,7 +491,7 @@
     <f2c_rule Include="prja.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="quarul.f">
+    <f2c_rule Include="dqk21.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="rchek.f">
@@ -564,6 +585,15 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_odedc.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="ddaskr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_daskr.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="daux.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

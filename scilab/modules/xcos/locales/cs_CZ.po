@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-03 18:44+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-12 20:59+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -105,13 +105,6 @@ msgstr "Výchozí nastavení sledování"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor řetězce.\n"
-
-msgid "a graphical environment is needed."
-msgstr "je vyžadováno grafické prostředí."
 
 #, c-format
 msgid ""
@@ -334,6 +327,9 @@ msgstr "Uložit jako"
 msgid "Export"
 msgstr "Export"
 
+msgid "Export all diagrams"
+msgstr "Exportovat všechny grafy"
+
 msgid "Save as interface function"
 msgstr "Uložit jako funkci rozhraní"
 
@@ -346,7 +342,7 @@ msgstr "Zavřít"
 msgid "Quit Xcos"
 msgstr "Ukončit Xcos"
 
-msgid "Recent Files"
+msgid "Recent files"
 msgstr "Nedávné soubory"
 
 msgid "Edit"
@@ -397,8 +393,8 @@ msgstr "Zobrazit v Scicos"
 msgid "View"
 msgstr "Zobrazení"
 
-msgid "Fit diagram to view"
-msgstr "Přizpůsobit diagram pro zobrazení"
+msgid "Fit diagram or blocks to view"
+msgstr "Přizpůsobit graf nebo bloky zobrazení"
 
 msgid "Normal 100%"
 msgstr "Normální 100%"
@@ -1045,7 +1041,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: Nalezeno '%s' místo bloku.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: Špatný typ argumentu %d: očekávána struktura grafu"
 
 #, c-format
@@ -1065,7 +1061,7 @@ msgstr ""
 "složky přístup k zápisu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr "%s: Špatný typ argumentu %d: Očekáván řetězec nebo struktura grafu"
 
 #, c-format
@@ -1179,7 +1175,19 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Nelze exportovat paletu do hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu %d: Očekávána matice řetězců.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: No block found.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Nenalezen žádný blok.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr "%s: Špatný typ argumentu %d: Očekáván řetězec."
 
 msgid "Interface function does not exist or can not be called."
@@ -1232,8 +1240,26 @@ msgstr "%s: Chyba při vyhodnocování parametrů bloku.\n"
 msgid "%s: Error during block parameters update.\n"
 msgstr "%s: Chyba při aktualizaci parametrů bloku.\n"
 
+msgid "Initialisation problem"
+msgstr "Problém zavedení"
+
+msgid "End problem"
+msgstr "Problém ukončení"
+
 msgid "Simulation problem"
 msgstr "Problém simulace"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "V post_xcos_simulate se objevila chyba: Ukončuji simulaci."
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr "%s: Nelze otevřít soubor '%s' pro čtení.\n"
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr "%s: Chyba při pokusu o čtení obsahu souboru z '%s'.\n"
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
+msgstr "%s: Syntaktická chyba při pokusu o nastavení kontextu z"

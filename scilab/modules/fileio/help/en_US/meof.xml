@@ -49,6 +49,31 @@
             flag to zero.
         </para>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+
+// Write a temporary file with some text in it
+this_file = pathconvert(TMPDIR+"/mputstr.txt", %F);
+
+fd = mopen(this_file, "wt");
+mputstr("Scilab is a numerical computing software.", fd);
+mclose(fd);
+
+fd = mopen(this_file,'rt');
+i = 0;
+while ~meof(fd) do
+   mfscanf(1, fd, "%c");
+   i = i + 1;
+end
+
+mclose(fd);
+
+disp("Scilab has found " + string(i) + " chars in the file");
+
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

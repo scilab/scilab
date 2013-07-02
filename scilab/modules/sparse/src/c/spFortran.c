@@ -23,7 +23,7 @@
  *  experience with FORTRAN.  The routines have had minimal testing.
  *  Any interface between two languages is going to have portability
  *  problems, this one is no exception.
- *  
+ *
  *
  *  >>> User accessible functions contained in this file:
  *  sfCreate()
@@ -78,12 +78,12 @@
  *  long        INTEGER*4
  *  float       REAL
  *  double      DOUBLE PRECISION (used by default in preference to float)
- *  
+ *
  *  The complex number format used by Sparse is compatible with that
  *  used by FORTRAN.  C pointers are passed to FORTRAN as longs, they should
  *  not be used in any way in FORTRAN.
  */
-  
+
 
 
 /*
@@ -181,14 +181,14 @@ c
 
 long sfCreate(int  *Size, int  *Complex, int  *Error )
 {
-/* Begin `sfCreate'. */
+    /* Begin `sfCreate'. */
     return (long)spCreate(*Size, *Complex, Error );
 }
 
 
 void sfDestroy( long *Matrix )
 {
-/* Begin `sfDestroy'. */
+    /* Begin `sfDestroy'. */
     spDestroy((char *)*Matrix);
     return;
 }
@@ -201,7 +201,7 @@ void sfDestroy( long *Matrix )
 #ifdef STRIP
 void sfStripFills( long *Matrix )
 {
-/* Begin `sfStripFills'. */
+    /* Begin `sfStripFills'. */
     spStripFills((char *)*Matrix);
     return;
 }
@@ -225,7 +225,7 @@ void sfStripFills( long *Matrix )
 
 void sfClear( long *Matrix )
 {
-/* Begin `sfClear'. */
+    /* Begin `sfClear'. */
     spClear((char *)*Matrix);
     return;
 }
@@ -269,8 +269,8 @@ void sfClear( long *Matrix )
 long
 sfGetElement( long *Matrix, int *Row, int *Col )
 {
-/* Begin `sfGetElement'. */
-    return (long)spGetElement((char *)*Matrix, *Row, *Col);
+    /* Begin `sfGetElement'. */
+    return (long)spGetElement((char *) * Matrix, *Row, *Col);
 }
 
 
@@ -317,11 +317,11 @@ sfGetElement( long *Matrix, int *Row, int *Col )
 int
 sfGetAdmittance( long *Matrix, int *Node1, int *Node2, long Template[4] )
 {
-/* Begin `spGetAdmittance'. */
+    /* Begin `spGetAdmittance'. */
     return
-    (   spGetAdmittance((char *)*Matrix, *Node1, *Node2,
-                        (struct spTemplate *)Template )
-    );
+        (   spGetAdmittance((char *) * Matrix, *Node1, *Node2,
+                            (struct spTemplate *)Template )
+        );
 }
 #endif /* QUAD_ELEMENT */
 
@@ -384,11 +384,11 @@ sfGetAdmittance( long *Matrix, int *Node1, int *Node2, long Template[4] )
 int
 sfGetQuad( long  *Matrix, int  *Row1, int  *Row2, int  *Col1, int  *Col2, long Template[4] )
 {
-/* Begin `spGetQuad'. */
+    /* Begin `spGetQuad'. */
     return
-    (   spGetQuad( (char *)*Matrix, *Row1, *Row2, *Col1, *Col2,
-                   (struct spTemplate *)Template )
-    );
+        (   spGetQuad( (char *) * Matrix, *Row1, *Row2, *Col1, *Col2,
+                       (struct spTemplate *)Template )
+        );
 }
 #endif /* QUAD_ELEMENT */
 
@@ -444,11 +444,11 @@ sfGetQuad( long  *Matrix, int  *Row1, int  *Row2, int  *Col1, int  *Col2, long T
 int
 sfGetOnes(long *Matrix, int *Pos, int *Neg, int *Eqn, long Template[4])
 {
-/* Begin `sfGetOnes'. */
+    /* Begin `sfGetOnes'. */
     return
-    (   spGetOnes( (char *)*Matrix, *Pos, *Neg, *Eqn,
-                   (struct spTemplate *)Template )
-    );
+        (   spGetOnes( (char *) * Matrix, *Pos, *Neg, *Eqn,
+                       (struct spTemplate *)Template )
+        );
 }
 #endif /* QUAD_ELEMENT */
 
@@ -480,7 +480,7 @@ sfGetOnes(long *Matrix, int *Pos, int *Neg, int *Eqn, long Template[4])
 void
 sfAdd1Real( long *Element, RealNumber *Real )
 {
-/* Begin `sfAdd1Real'. */
+    /* Begin `sfAdd1Real'. */
     *((RealNumber *)*Element) += *Real;
 }
 
@@ -490,17 +490,17 @@ sfAdd1Real( long *Element, RealNumber *Real )
 void
 sfAdd1Imag( long *Element, RealNumber *Imag )
 {
-/* Begin `sfAdd1Imag'. */
-    *(((RealNumber *)*Element)+1) += *Imag;
+    /* Begin `sfAdd1Imag'. */
+    *(((RealNumber *)*Element) + 1) += *Imag;
 }
 
 
 void
 sfAdd1Complex( long *Element, RealNumber *Real, RealNumber *Imag )
 {
-/* Begin `sfAdd1Complex'. */
+    /* Begin `sfAdd1Complex'. */
     *((RealNumber *)*Element) += *Real;
-    *(((RealNumber *)*Element)+1) += *Imag;
+    *(((RealNumber *)*Element) + 1) += *Imag;
 }
 #endif /* spCOMPLEX */
 
@@ -510,7 +510,7 @@ sfAdd1Complex( long *Element, RealNumber *Real, RealNumber *Imag )
 void
 sfAdd4Real( long Template[4], RealNumber *Real )
 {
-/* Begin `sfAdd4Real'. */
+    /* Begin `sfAdd4Real'. */
     *((RealNumber *)Template[0]) += *Real;
     *((RealNumber *)Template[1]) += *Real;
     *((RealNumber *)Template[2]) -= *Real;
@@ -523,26 +523,26 @@ sfAdd4Real( long Template[4], RealNumber *Real )
 void
 sfAdd4Imag( long Template[4], RealNumber *Imag )
 {
-/* Begin `sfAdd4Imag'. */
-    *(((RealNumber *)Template[0])+1) += *Imag;
-    *(((RealNumber *)Template[1])+1) += *Imag;
-    *(((RealNumber *)Template[2])+1) -= *Imag;
-    *(((RealNumber *)Template[3])+1) -= *Imag;
+    /* Begin `sfAdd4Imag'. */
+    *(((RealNumber *)Template[0]) + 1) += *Imag;
+    *(((RealNumber *)Template[1]) + 1) += *Imag;
+    *(((RealNumber *)Template[2]) + 1) -= *Imag;
+    *(((RealNumber *)Template[3]) + 1) -= *Imag;
 }
 
 
 void
 sfAdd4Complex( long Template[4], RealNumber *Real, RealNumber *Imag )
 {
-/* Begin `sfAdd4Complex'. */
+    /* Begin `sfAdd4Complex'. */
     *((RealNumber *)Template[0]) += *Real;
     *((RealNumber *)Template[1]) += *Real;
     *((RealNumber *)Template[2]) -= *Real;
     *((RealNumber *)Template[3]) -= *Real;
-    *(((RealNumber *)Template[0])+1) += *Imag;
-    *(((RealNumber *)Template[1])+1) += *Imag;
-    *(((RealNumber *)Template[2])+1) -= *Imag;
-    *(((RealNumber *)Template[3])+1) -= *Imag;
+    *(((RealNumber *)Template[0]) + 1) += *Imag;
+    *(((RealNumber *)Template[1]) + 1) += *Imag;
+    *(((RealNumber *)Template[2]) + 1) -= *Imag;
+    *(((RealNumber *)Template[3]) + 1) -= *Imag;
 }
 #endif /* spCOMPLEX */
 #endif /* QUAD_ELEMENT */
@@ -643,9 +643,9 @@ sfAdd4Complex( long Template[4], RealNumber *Real, RealNumber *Imag )
 int
 sfOrderAndFactor( long *Matrix, RealNumber RHS[], RealNumber *RelThreshold, RealNumber* AbsThreshold, long *DiagPivoting )
 {
-/* Begin `sfOrderAndFactor'. */
-    return spOrderAndFactor( (char *)*Matrix, RHS, *RelThreshold,
-                             *AbsThreshold, (SPBOOLEAN)*DiagPivoting );
+    /* Begin `sfOrderAndFactor'. */
+    return spOrderAndFactor( (char *) * Matrix, RHS, *RelThreshold,
+                             *AbsThreshold, (SPBOOLEAN) * DiagPivoting );
 }
 
 
@@ -688,8 +688,8 @@ sfOrderAndFactor( long *Matrix, RealNumber RHS[], RealNumber *RelThreshold, Real
 int
 sfFactor( long *Matrix )
 {
-/* Begin `sfFactor'. */
-    return spFactor((char *)*Matrix);
+    /* Begin `sfFactor'. */
+    return spFactor((char *) * Matrix);
 }
 
 
@@ -737,7 +737,7 @@ sfFactor( long *Matrix )
 void
 sfPartition( long *Matrix, int *Mode )
 {
-/* Begin `sfPartition'. */
+    /* Begin `sfPartition'. */
     spPartition((char *)*Matrix, *Mode);
 }
 
@@ -790,7 +790,7 @@ sfPartition( long *Matrix, int *Mode )
 void
 sfSolve( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
-/* Begin `sfSolve'. */
+    /* Begin `sfSolve'. */
     spSolve( (char *)*Matrix, RHS, Solution IMAG_VECTORS );
 }
 
@@ -843,7 +843,7 @@ sfSolve( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 void
 sfSolveTransposed( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
-/* Begin `sfSolveTransposed'. */
+    /* Begin `sfSolveTransposed'. */
     spSolveTransposed( (char *)*Matrix, RHS, Solution IMAG_VECTORS );
 }
 #endif /* TRANSPOSE */
@@ -884,7 +884,7 @@ sfSolveTransposed( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTOR
 void
 sfPrint( long *Matrix, long *Data, long *PrintReordered, long *Header )
 {
-/* Begin `sfPrint'. */
+    /* Begin `sfPrint'. */
     spPrint( (char *)*Matrix, (int)*PrintReordered, (int)*Data, (int)*Header );
 }
 #endif /* DOCUMENTATION */
@@ -928,9 +928,9 @@ sfPrint( long *Matrix, long *Data, long *PrintReordered, long *Header )
 long
 sfFileMatrix( long *Matrix, long *Reordered, long *Data, long *Header )
 {
-/* Begin `sfFileMatrix'. */
-    return spFileMatrix( (char *)*Matrix, MATRIX_FILE_NAME, "",
-                         (int)*Reordered, (int)*Data, (int)*Header );
+    /* Begin `sfFileMatrix'. */
+    return spFileMatrix( (char *) * Matrix, MATRIX_FILE_NAME, "",
+                         (int) * Reordered, (int) * Data, (int) * Header );
 }
 #endif /* DOCUMENTATION */
 
@@ -963,8 +963,8 @@ sfFileMatrix( long *Matrix, long *Reordered, long *Data, long *Header )
 int
 sfFileVector( long *Matrix, RealVector RHS IMAG_RHS )
 {
-/* Begin `sfFileVector'. */
-    return spFileVector( (char *)*Matrix, MATRIX_FILE_NAME, RHS IMAG_RHS );
+    /* Begin `sfFileVector'. */
+    return spFileVector( (char *) * Matrix, MATRIX_FILE_NAME, RHS IMAG_RHS );
 }
 #endif /* DOCUMENTATION */
 
@@ -980,7 +980,7 @@ sfFileVector( long *Matrix, RealVector RHS IMAG_RHS )
  *
  *  Writes useful information concerning the matrix to a file.  Should be
  *  executed after the matrix is factored.
- * 
+ *
  *  >>> Returns: [LOGICAL]
  *  One is returned if routine was successful, otherwise zero is returned.
  *  The calling function can query errno (the system global error variable)
@@ -994,8 +994,8 @@ sfFileVector( long *Matrix, RealVector RHS IMAG_RHS )
 int
 sfFileStats( long *Matrix )
 {
-/* Begin `sfFileStats'. */
-    return spFileStats( (char *)*Matrix, STATS_FILE_NAME, "" );
+    /* Begin `sfFileStats'. */
+    return spFileStats( (char *) * Matrix, STATS_FILE_NAME, "" );
 }
 #endif /* DOCUMENTATION */
 
@@ -1077,7 +1077,7 @@ sfFileStats( long *Matrix )
 void
 sfMNA_Preorder( long *Matrix )
 {
-/* Begin `sfMNA_Preorder'. */
+    /* Begin `sfMNA_Preorder'. */
     spMNA_Preorder( (char *)*Matrix );
 }
 #endif /* MODIFIED_NODAL */
@@ -1136,7 +1136,7 @@ sfMNA_Preorder( long *Matrix )
 void
 sfScale( long *Matrix, RealVector RHS_ScaleFactors, RealVector SolutionScaleFactors )
 {
-/* Begin `sfScale'. */
+    /* Begin `sfScale'. */
     spScale( (char *)*Matrix, RHS_ScaleFactors, SolutionScaleFactors );
 }
 #endif /* SCALING */
@@ -1181,7 +1181,7 @@ sfScale( long *Matrix, RealVector RHS_ScaleFactors, RealVector SolutionScaleFact
 void
 sfMultiply( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
-/* Begin `sfMultiply'. */
+    /* Begin `sfMultiply'. */
     spMultiply( (char *)*Matrix, RHS, Solution IMAG_VECTORS );
 }
 #endif /* MULTIPLICATION */
@@ -1226,11 +1226,11 @@ sfMultiply( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 void
 sfMultTransposed( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS )
 {
-/* Begin `sfMultTransposed'. */
+    /* Begin `sfMultTransposed'. */
     spMultTransposed( (char *)*Matrix, RHS, Solution IMAG_VECTORS );
 }
 #endif
- /* MULTIPLICATION AND TRANSPOSE */
+/* MULTIPLICATION AND TRANSPOSE */
 
 
 
@@ -1274,7 +1274,7 @@ sfMultTransposed( long *Matrix, RealVector RHS, RealVector Solution IMAG_VECTORS
 void
 sfDeterminant( long *Matrix, int  *pExponent, RealNumber *pDeterminant, RealNumber *piDeterminant )
 {
-/* Begin `sfDeterminant'. */
+    /* Begin `sfDeterminant'. */
     spDeterminant( (char *)*Matrix, pExponent, pDeterminant, piDeterminant );
 }
 
@@ -1283,7 +1283,7 @@ sfDeterminant( long *Matrix, int  *pExponent, RealNumber *pDeterminant, RealNumb
 void
 sfDeterminant( long *Matrix, int  *pExponent, RealNumber *pDeterminant )
 {
-/* Begin `sfDeterminant'. */
+    /* Begin `sfDeterminant'. */
     spDeterminant( (char *)*Matrix, pExponent, pDeterminant );
 }
 #endif /* spCOMPLEX */
@@ -1310,8 +1310,8 @@ sfDeterminant( long *Matrix, int  *pExponent, RealNumber *pDeterminant )
 int
 sfError( long *Matrix )
 {
-/* Begin `sfError'. */
-    return spError( (char *)*Matrix );
+    /* Begin `sfError'. */
+    return spError( (char *) * Matrix );
 }
 
 
@@ -1337,7 +1337,7 @@ sfError( long *Matrix )
 void
 sfWhereSingular( long *Matrix, int *Row, int *Col )
 {
-/* Begin `sfWhereSingular'. */
+    /* Begin `sfWhereSingular'. */
     spWhereSingular( (char *)*Matrix, Row, Col );
 }
 
@@ -1364,8 +1364,8 @@ sfWhereSingular( long *Matrix, int *Row, int *Col )
 int
 sfGetSize( long *Matrix, long *External )
 {
-/* Begin `sfGetSize'. */
-    return spGetSize( (char *)*Matrix, (SPBOOLEAN)*External );
+    /* Begin `sfGetSize'. */
+    return spGetSize( (char *) * Matrix, (SPBOOLEAN) * External );
 }
 
 
@@ -1388,7 +1388,7 @@ sfGetSize( long *Matrix, long *External )
 void
 sfSetReal( long *Matrix )
 {
-/* Begin `sfSetReal'. */
+    /* Begin `sfSetReal'. */
     spSetReal( (char *)*Matrix );
 }
 
@@ -1396,7 +1396,7 @@ sfSetReal( long *Matrix )
 void
 sfSetComplex( long *Matrix )
 {
-/* Begin `sfSetComplex'. */
+    /* Begin `sfSetComplex'. */
     spSetComplex( (char *)*Matrix );
 }
 
@@ -1422,16 +1422,16 @@ sfSetComplex( long *Matrix )
 int
 sfFillinCount( long *Matrix )
 {
-/* Begin `sfFillinCount'. */
-    return spFillinCount( (char *)*Matrix );
+    /* Begin `sfFillinCount'. */
+    return spFillinCount( (char *) * Matrix );
 }
 
 
 int
 sfElementCount( long *Matrix )
 {
-/* Begin `sfElementCount'. */
-    return spElementCount( (char *)*Matrix );
+    /* Begin `sfElementCount'. */
+    return spElementCount( (char *) * Matrix );
 }
 
 
@@ -1461,7 +1461,7 @@ sfElementCount( long *Matrix )
 void
 sfDeleteRowAndCol( long *Matrix, int *Row, int *Col )
 {
-/* Begin `sfDeleteRowAndCol'. */
+    /* Begin `sfDeleteRowAndCol'. */
     spDeleteRowAndCol( (char *)*Matrix, *Row, *Col );
 }
 #endif
@@ -1498,7 +1498,7 @@ sfDeleteRowAndCol( long *Matrix, int *Row, int *Col )
 
 RealNumber sfPseudoCondition( long *Matrix )
 {
-/* Begin `sfPseudoCondition'. */
+    /* Begin `sfPseudoCondition'. */
     return spPseudoCondition( (char *)Matrix );
 }
 #endif
@@ -1534,14 +1534,14 @@ RealNumber sfPseudoCondition( long *Matrix )
  *  A.K. Cline, C.B. Moler, G.W. Stewart, J.H. Wilkinson.  An estimate
  *  for the condition number of a matrix.  SIAM Journal on Numerical
  *  Analysis.  Vol. 16, No. 2, pages 368-375, April 1979.
- *  
+ *
  *  J.J. Dongarra, C.B. Moler, J.R. Bunch, G.W. Stewart.  LINPACK
  *  User's Guide.  SIAM, 1979.
- *  
+ *
  *  Roger G. Grimes, John G. Lewis.  Condition number estimation for
  *  sparse matrices.  SIAM Journal on Scientific and Statistical
  *  Computing.  Vol. 2, No. 4, pages 384-388, December 1981.
- *  
+ *
  *  Dianne Prost O'Leary.  Estimating matrix condition numbers.  SIAM
  *  Journal on Scientific and Statistical Computing.  Vol. 1, No. 2,
  *  pages 205-209, June 1980.
@@ -1566,14 +1566,14 @@ RealNumber sfPseudoCondition( long *Matrix )
 
 RealNumber sfCondition( long * Matrix, RealNumber *NormOfMatrix, int *pError )
 {
-/* Begin `sfCondition'. */
-    return spCondition( (char *)*Matrix, *NormOfMatrix, pError );
+    /* Begin `sfCondition'. */
+    return spCondition( (char *) * Matrix, *NormOfMatrix, pError );
 }
 
 
 
 /*
- *  L-INFINITY MATRIX NORM 
+ *  L-INFINITY MATRIX NORM
  *
  *  Computes the L-infinity norm of an unfactored matrix.  It is a fatal
  *  error to pass this routine a factored matrix.
@@ -1590,8 +1590,8 @@ RealNumber sfCondition( long * Matrix, RealNumber *NormOfMatrix, int *pError )
 
 RealNumber sfNorm( long *Matrix )
 {
-/* Begin `sfNorm'. */
-    return spNorm( (char *)*Matrix );
+    /* Begin `sfNorm'. */
+    return spNorm( (char *) * Matrix );
 }
 #endif /* CONDITION */
 
@@ -1670,7 +1670,7 @@ RealNumber sfNorm( long *Matrix )
 RealNumber
 sfLargestElement( long *Matrix )
 {
-/* Begin `sfLargestElement'. */
+    /* Begin `sfLargestElement'. */
     return spLargestElement( (char *)Matrix );
 }
 
@@ -1696,8 +1696,8 @@ sfLargestElement( long *Matrix )
 RealNumber
 sfRoundoff( long *Matrix, RealNumber *Rho )
 {
-/* Begin `sfRoundoff'. */
-    return spRoundoff( (char *)*Matrix, *Rho );
+    /* Begin `sfRoundoff'. */
+    return spRoundoff( (char *) * Matrix, *Rho );
 }
 #endif
 

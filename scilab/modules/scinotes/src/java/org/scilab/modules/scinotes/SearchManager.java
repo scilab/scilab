@@ -32,6 +32,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.w3c.dom.Element;
@@ -139,7 +140,7 @@ public class SearchManager {
             if (!useRegexp) {
                 word = word.replace("\\E", "\\E\\\\E\\Q");
                 word = "\\Q" + word + "\\E";
-                if (wholeWord) {
+                if (wholeWord && exp.matches("\\b.*\\b")) {
                     word = "\\b" + word + "\\b";
                 }
             }
@@ -572,7 +573,7 @@ public class SearchManager {
          */
         public void toXML(BufferedWriter buffer, int level) throws IOException {
             indent(buffer, level);
-            buffer.append("<Position file=\"" + file + "\" isRoot=\"" + isRoot + "\" occurences=\"" + occurences + "\"");
+            buffer.append("<Position file=\"" + ScilabXMLUtilities.getXMLString(file) + "\" isRoot=\"" + isRoot + "\" occurences=\"" + occurences + "\"");
             if (children != null && !children.isEmpty()) {
                 buffer.append(">\n");
                 for (int i = 0; i < children.size(); i++) {
@@ -692,7 +693,7 @@ public class SearchManager {
          */
         public void toXML(BufferedWriter buffer, int level) throws IOException {
             indent(buffer, level);
-            buffer.append("<Line content=\"" + content.replaceAll("\"", "&quot;") + "\" number=\"" + number + "\"/>\n");
+            buffer.append("<Line content=\"" + ScilabXMLUtilities.getXMLString(content) + "\" number=\"" + number + "\"/>\n");
         }
 
         /**

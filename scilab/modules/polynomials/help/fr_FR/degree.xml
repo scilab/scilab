@@ -33,6 +33,18 @@
             renvoie la matrice des plus hauts degrés de <literal>M</literal>.
         </para>
     </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+v=[-2-5*%s+%s^2;-6+11*%s-6*%s^2+%s^3];
+degree(v) // Devrait retourner 2 et 3
+
+s=poly(0,"s");
+p=1+s+2*s^42;
+degree(p) // Devrait retourner 42
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">

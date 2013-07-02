@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="neigh_func_fsa" xml:lang="en">
     <refnamediv>
         <refname>neigh_func_fsa</refname>
-        <refpurpose>The Fast Simulated Annealing neghborhood
+        <refpurpose>The Fast Simulated Annealing neighborhood
             relationship
         </refpurpose>
     </refnamediv>
@@ -66,6 +66,15 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x_current = 1;
+
+x_neigh = neigh_func_fsa(x_current,10,[])
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

@@ -20,13 +20,24 @@
         <synopsis>xpause(microsecs)</synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>microsecs</term>
+                <listitem>
+                    <para>an integer, the number of microseconds.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
         <para>
-            <literal>xpause</literal> suspends the current process for the number of microseconds
-            specified by the argument. The actual suspension time may
-            be longer because of other activities in
-            the system, or because of the time spent in processing the
-            call.
+            <function>xpause</function> suspends the current process for the
+            number of microseconds specified by the argument
+            <varname>microsecs</varname>. The actual suspension time may
+            be longer because of other activities in the system, or because of
+            the time spent in processing the call.
         </para>
     </refsection>
     <refsection>
@@ -35,11 +46,11 @@
 t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t'); 
 plot3d1(t,t,z) 
-f=gcf();f.pixmap='on';
+f=gcf();
 for h=0:0.1:1
   hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
   f.color_map=hsv2rgb(hsv);
-  show_pixmap()
+  drawnow()
   xpause(100000)
 end
  ]]></programlisting>

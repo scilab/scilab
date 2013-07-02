@@ -1,4 +1,4 @@
-<!--
+    <!--
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Allan CORNET
@@ -12,28 +12,28 @@
  */
 -->
 <package name="org.scilab.modules.gui.utils">
-  <object name="LookAndFeelManager">
-  
-	<method name="isSupportedLookAndFeel" returnType="boolean">
-		<parameter type="String" name="lookandfeel" />
-	</method>
-	
-	<method name="getCurrentLookAndFeel" returnType="String">
-	</method>
-
-	<method name="setLookAndFeel" returnType="boolean">
-		<parameter type="String" name="lookandfeel" />
-	</method>
-	
-	<method name="setSystemLookAndFeel" returnType="boolean">
-	</method>
-
-	<method name="getInstalledLookAndFeels" returnType="String[]">
-	</method>
-	
-	<method name="numbersOfInstalledLookAndFeels" returnType="int">
-	</method>
-	
-
-	</object>
+    <object name="LookAndFeelManager">
+        
+        <method name="isSupportedLookAndFeel" returnType="boolean">
+            <parameter type="String" name="lookandfeel" />
+        </method>
+        
+        <method name="getCurrentLookAndFeel" returnType="String">
+        </method>
+        
+        <method name="setLookAndFeel" returnType="boolean">
+            <parameter type="String" name="lookandfeel" />
+        </method>
+        
+        <method name="setSystemLookAndFeel" returnType="boolean">
+        </method>
+        
+        <method name="getInstalledLookAndFeels" returnType="String[]">
+        </method>
+        
+        <method name="numbersOfInstalledLookAndFeels" returnType="int">
+        </method>
+        
+        
+    </object>
 </package>

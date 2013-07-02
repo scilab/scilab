@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlValue;
 
 /**
  * Modelica String assignation.
- * 
+ *
  * The data is on the value property and the content doesn't contains any data.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -38,7 +38,7 @@ public final class ModelicaValue {
 
     /**
      * @return always empty String.
-     * 
+     *
      */
     @XmlValue
     @Deprecated
@@ -48,10 +48,10 @@ public final class ModelicaValue {
 
     /**
      * Empty implementation as the content is always null.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     @Deprecated
     public void setContent(String value) {
@@ -59,9 +59,9 @@ public final class ModelicaValue {
 
     /**
      * Gets the value of the value property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getValue() {
         return value;
@@ -69,10 +69,10 @@ public final class ModelicaValue {
 
     /**
      * Sets the value of the value property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setValue(String value) {
         this.value = value;

@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -34,21 +34,41 @@
             </qandaentry>
             <qandaentry>
                 <question>
-                    <para>The native library javasci2 does not exist or cannot be found.</para>
+                    <para>On Linux/Unix/MacOSX, the native library javasci2 does not exist or cannot be found.</para>
                 </question>
                 <answer>
-                    <para>java.library.path has not been set or cannot be found.
+                    <para>Probably the java.library.path value has not been set. See
                         <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
                     </para>
                 </answer>
             </qandaentry>
             <qandaentry>
                 <question>
-                    <para>The native library javasci2 does not exist or cannot be found even if java.library.path being set</para>
+                    <para>On Windows, the native library javasci.dll does not exist or cannot be found.</para>
+                </question>
+                <answer>
+                    <para>The PATH environment variable may have not been set. See
+                        <link linkend="compile_and_run_javasci_v2">Compile and run with javasci</link>
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>On Linux/Unix/MacOSX, the native library javasci2 does not exist or cannot be found even if the java.library.path is being set.</para>
                 </question>
                 <answer>
                     <para>
                         If the error is something like: <emphasis role="italic">java.lang.UnsatisfiedLinkError: /path/to/scilab/lib/scilab/libscilab.so.0.0.0: libsciparameters.so.5: cannot open shared object file: No such file or directory</emphasis>, try to set LD_LIBRARY_PATH to the path where Scilab native libraries are.
+                    </para>
+                </answer>
+            </qandaentry>
+            <qandaentry>
+                <question>
+                    <para>On Windows, the native library javasci.dll does not exist or cannot be found even if the PATH is being set.</para>
+                </question>
+                <answer>
+                    <para>
+                        If the error is something like: <emphasis role="italic">java.lang.UnsatisfiedLinkError: C:\Program Files\scilab-XXXX\bin\javasci.dll: The specified procedure could not be found</emphasis>, your PATH environment variable may introduce a conflict between the Scilab libraries with other libraries on your system. Try to move (in the PATH variable) the Scilab path to the front of paths.
                     </para>
                 </answer>
             </qandaentry>

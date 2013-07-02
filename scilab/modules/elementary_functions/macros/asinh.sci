@@ -9,28 +9,28 @@
 
 function [t] = asinh(x)
 
-  //
-  //  PURPOSE
-  //     element wise hyperbolic arcsinus
-  //
-  //  METHOD
-  //     based on the formula  asinh(z) = -i asin(i z)
-  //
+    //
+    //  PURPOSE
+    //     element wise hyperbolic arcsinus
+    //
+    //  METHOD
+    //     based on the formula  asinh(z) = -i asin(i z)
+    //
 
-  rhs = argn(2);
+    rhs = argn(2);
 
-  if rhs <> 1 then
-    error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asinh",1));
-  end
+    if rhs <> 1 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"asinh",1));
+    end
 
-  if type(x)<>1 then
-   error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"asinh",1));
-  end
+    if type(x)<>1 then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"),"asinh",1));
+    end
 
-  if isreal(x) then
-    t = imag(asin(imult(x)))
-  else
-    t = -imult(asin(imult(x)))
-  end
+    if isreal(x) then
+        t = imag(asin(imult(x)))
+    else
+        t = -imult(asin(imult(x)))
+    end
 
 endfunction

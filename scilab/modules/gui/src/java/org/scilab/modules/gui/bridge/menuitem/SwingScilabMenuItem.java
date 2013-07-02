@@ -56,7 +56,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
     private boolean checkedState;
     private boolean autoCheckedMode = true;
     private String text = "";
-    
+
     private String uid;
 
     /**
@@ -74,14 +74,14 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
         super();
         this.setFocusable(true);
         addActionListener(new ActionListener() {
-                /**
-                 * Action performed ? What do I have to do ?
-                 * @param arg0 the action
-                 */
-                public void actionPerformed(ActionEvent arg0) {
-                    StringBlockingResult.getInstance().setResult(((SwingScilabMenuItem) arg0.getSource()).getText());
-                }
-            });
+            /**
+             * Action performed ? What do I have to do ?
+             * @param arg0 the action
+             */
+            public void actionPerformed(ActionEvent arg0) {
+                StringBlockingResult.getInstance().setResult(((SwingScilabMenuItem) arg0.getSource()).getText());
+            }
+        });
         this.autoCheckedMode = autoCheckedMode;
     }
 
@@ -261,7 +261,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
             meAsAMenu.add(childMenuItem);
         }
     }
-    
+
     /**
      * Add a MenuItem to this MenuItem
      * @param childMenuItem the MenuItem we want to add

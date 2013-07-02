@@ -70,7 +70,7 @@ g(i,j) = (df_i)/(dx_j)
         </para>
         <para>
             Without parameters, the function <varname>fun</varname> calling sequence is
-              <code>y=fun(x)</code>, and <function>numdiff</function> can be called as
+            <code>y=fun(x)</code>, and <function>numdiff</function> can be called as
             <code>g=numdiff(fun,x)</code>. Else the function <varname>fun</varname> calling
             sequence must be <literal>y = fun(x, param_1, pararm_2, ..., param_q)</literal>.
             If parameters <literal>param_1, param_2, ..., param_q</literal> exist then

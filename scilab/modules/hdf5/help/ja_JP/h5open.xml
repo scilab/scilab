@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="h5open" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>h5open</refname>
+        
+        <refpurpose>HDF5ファイルをオープン</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            obj = h5open(filename [, access])
+            
+            obj = h5open(filename, access, driver [, driver_options...])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>filename</term>
+                
+                <listitem>
+                    
+                    <para>ファイル名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>access</term>
+                
+                <listitem>
+                    
+                    <para>使用するアクセスモードを指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>driver</term>
+                
+                <listitem>
+                    
+                    <para>ドライバ名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>driver_options</term>
+                
+                <listitem>
+                    
+                    <para>ドライバ値に依存する論理値またはdouble</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>obj</term>
+                
+                <listitem>
+                    
+                    <para>オープンするファイルに対応するH5Object</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>アクセスモード(デフォルト:"a")を指定してHDF5ファイルをオープンします.</para>
+        
+        <para>アクセスモードは5つの値の一つです:</para>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                "r": 読み込みのみ, ファイルが存在している必要があります.
+                
+            </member>
+            
+            <member>
+                
+                "r+": 読み込み/書き込み, ファイルが存在している必要があります.
+                
+            </member>
+            
+            <member>
+                
+                "w": ファイルを作成, 既に存在している場合は切り捨てられます.
+                
+            </member>
+            
+            <member>
+                
+                "w-": ファイルを作成, 既に存在している場合は失敗します.
+                
+            </member>
+            
+            <member>
+                
+                "a": 読み込み/書き込み, 既に存在している場合は追記, それ以外は作成 (デフォルト).
+                
+            </member>
+            
+        </simplelist>
+        
+        <para>複数のドライバを使用できます:</para>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                "sec2": バッファリングなし, 標準POSIX関数を使用.
+                
+            </member>
+            
+            <member>
+                
+                "stdio": I/O処理に標準 C stdio.h の関数を使用.
+                
+            </member>
+            
+            <member>
+                
+                "core": (読み書き性能改善のため)メモリ上にファイルを配置して使用. このドライバには2つのオプションがあります:
+                
+                <simplelist type="inline">
+                    
+                    <member>
+                        
+                        backingStore: 論理値, %T (デフォルト) の場合, 変更は実際のファイルに保存されます. 
+                        
+                    </member>
+                    
+                    <member>
+                        
+                        blockSize: double: 増加幅(単位：バイト)で,バッファの大きさを増加する際に使用されます (デフォルト: 64K).
+                        
+                    </member>
+                    
+                </simplelist>
+                
+            </member>
+            
+            <member>
+                
+                "family": 大きさがオプションmemberSize (double, デフォルト: 2^31 -1) よりも大きい場合に,ファイルを分割できます.
+                
+                一連のファイル名を生成するためにファイル名に %d を含める必要があります.
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+x = 1:10;
+save(TMPDIR + "/x.sod", "x"); // SODファイルはHDF5ファイルです
+
+// 作成されたファイルをオープン
+a = h5open(TMPDIR + "/x.sod");
+
+// ファイルの内容をダンプ
+h5dump(a);
+
+// ルート要素の内容の一覧を取得
+h5ls(a)
+
+// SODバージョンを取得
+a.root.SCILAB_sod_version.data
+
+// または名前に文字 'invalid'を含む場合
+a.root("SCILAB_sod_version").data
+
+// データセットxの内容を取得
+a.root.x.data
+
+// パスを指定して直接データセットをオープンできます
+// サブグループまたはデータセットは '/' で分割されます
+a("/x")
+
+// リソースを解放
+h5close(a);
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="h5close">h5close</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>HDF5モジュールが導入されました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

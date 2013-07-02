@@ -17,38 +17,38 @@
 #include "localization.h"
 #include "GlobalTclInterp.h"
 /*--------------------------------------------------------------------------*/
-int sci_TCL_ExistInterp(char *fname,unsigned long l)
+int sci_TCL_ExistInterp(char *fname, unsigned long l)
 {
-  static int l1 = 0, n1 = 0, m1 = 0;
+    static int l1 = 0, n1 = 0, m1 = 0;
 
-  char *InterpName = NULL;
+    char *InterpName = NULL;
 
-  CheckRhs(1,2);
-  CheckLhs(1,1);
+    CheckRhs(1, 2);
+    CheckLhs(1, 1);
 
-  if (GetType(1) == sci_strings)
+    if (GetType(1) == sci_strings)
     {
-      GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
 
-      if (!existsGlobalInterp())
-	{
-	  Scierror(999,_("%s: Error main TCL interpreter not initialized.\n"),fname);
-	  return 0;
-	}
+        if (!existsGlobalInterp())
+        {
+            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            return 0;
+        }
 
-      n1 = 1;
-      InterpName=cstk(l1);
-      CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-      *istk(l1) = (int) existsSlaveInterp(InterpName);
+        n1 = 1;
+        InterpName = cstk(l1);
+        CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &l1);
+        *istk(l1) = (int) existsSlaveInterp(InterpName);
 
-      LhsVar(1)=Rhs+1;
-      PutLhsVar();
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
     }
-  else
+    else
     {
-      Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
     }
 
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

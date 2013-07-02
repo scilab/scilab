@@ -42,6 +42,7 @@
             aux positions <literal>x(i),y(i)</literal> dans l'échelle courante.
             Si <literal>box</literal> vaut 1, une boîte est dessinée autour des nombres. 
             Si <literal>angle</literal> est donné, il donne la direction pour le dessin de la chaîne de caractères.
+            Notez qu'un maximum de 4 chiffres significatifs des éléments de <varname>nums</varname> sera affiché.
         </para>
     </refsection>
     <refsection>

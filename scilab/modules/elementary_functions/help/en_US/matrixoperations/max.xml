@@ -76,6 +76,14 @@
         </para>
     </refsection>
     <refsection>
+        <title>Remark</title>
+        <para>
+            <note>
+                This function ignores terms of <varname>A</varname> which are NANs.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 [m,n]=max([1,3,1])

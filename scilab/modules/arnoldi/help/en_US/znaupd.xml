@@ -660,7 +660,7 @@
     <refsection>
         <title>Example</title>
         <programlisting role="example">
-            <![CDATA[ 
+            <![CDATA[
 // The following sets dimensions for this problem.
 
 nx    = 10;
@@ -677,9 +677,9 @@ ipntr   = zeros(14, 1);
 _select = zeros(ncv, 1);
 d       = zeros(nev + 1, 1) + 0 * %i;
 z       = zeros(nx, nev) + 0* %i;
-resid   = zeros(nx, 1) + 0 * %i; 
+resid   = zeros(nx, 1) + 0 * %i;
 v       = zeros(nx, ncv) + 0 * %i;
-workd   = zeros(3 * nx, 1) + 0 * %i; 
+workd   = zeros(3 * nx, 1) + 0 * %i;
 workev  = zeros(2 * ncv, 1) + 0 * %i;
 rwork   = zeros(ncv, 1);
 workl   = zeros(3 * ncv * ncv + 5 *ncv, 1) + 0 * %i;
@@ -700,26 +700,26 @@ iparam(1) = ishfts;
 iparam(3) = maxitr;
 iparam(7) = mode1;
 
-sigma = complex(0); 
+sigma = complex(0);
 info_znaupd = 0;
 // M A I N   L O O P (Reverse communication)
 while(ido <> 99)
   // Repeatedly call the routine ZNAUPD and take actions indicated by parameter IDO until
   // either convergence is indicated or maxitr has been exceeded.
 
-  [ido, resid, v, iparam, ipntr, workd, workl, info_znaupd] = znaupd(ido, bmat, nx, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, rwork, info_znaupd);
-  
+  [ido, resid, v, iparam, ipntr, workd, workl, rwork, info_znaupd] = znaupd(ido, bmat, nx, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, rwork, info_znaupd);
+
   if(info_znaupd < 0)
     printf('\nError with znaupd, info = %d\n', info_znaupd);
     printf('Check the documentation of znaupd\n\n');
   end
-  
+
   if(ido == -1 | ido == 1)
-    // Perform matrix vector multiplication 
+    // Perform matrix vector multiplication
     workd(ipntr(2):ipntr(2) + nx - 1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
   end
 end
-  
+
 // Post-Process using ZNEUPD.
 
 rvec    = 1;
@@ -745,7 +745,7 @@ printf('What portion of the spectrum: %s\n', which);
 printf('The number of Implicit Arnoldi update iterations taken is %d\n', iparam(3));
 printf('The number of OP*x is %d\n', iparam(9));
 printf('The convergence criterion is %d\n', tol);
- 
+
 ]]>
         </programlisting>
     </refsection>

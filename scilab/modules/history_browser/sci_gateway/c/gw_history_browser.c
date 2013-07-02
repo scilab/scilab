@@ -24,20 +24,20 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{sci_browsehistory,"browsehistory"}
+    {sci_browsehistory, "browsehistory"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_history_browser(void)
 {
-	Rhs = Max(0, Rhs);
+    Rhs = Max(0, Rhs);
 
-    if(pvApiCtx == NULL)
-	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-	}
+    if (pvApiCtx == NULL)
+    {
+        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
+    }
 
-	pvApiCtx->pstName = (char*)Tab[Fin-1].name;
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
+    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

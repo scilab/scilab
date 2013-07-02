@@ -216,10 +216,10 @@ public class SearchFile extends SwingScilabTab {
                 buffer.append(" base=\"" + mySearch.base + "\"");
                 buffer.append(" recursive=\"" + mySearch.recursive + "\"");
                 buffer.append(" ignoreCR=\"" + mySearch.ignoreCR + "\"");
-                buffer.append(" filePattern=\"" + mySearch.filePattern.replaceAll("\"", "&quot;") + "\"");
+                buffer.append(" filePattern=\"" + ScilabXMLUtilities.getXMLString(mySearch.filePattern) + "\"");
                 buffer.append(" fileCaseSensitive=\"" + mySearch.fileCaseSensitive + "\"");
                 if (mySearch.wordPattern != null && !mySearch.wordPattern.isEmpty()) {
-                    buffer.append(" wordPattern=\"" + mySearch.wordPattern.replaceAll("\"", "&quot;") + "\"");
+                    buffer.append(" wordPattern=\"" + ScilabXMLUtilities.getXMLString(mySearch.wordPattern) + "\"");
                 }
                 buffer.append(" wordCaseSensitive=\"" + mySearch.wordCaseSensitive + "\"");
                 buffer.append(" wholeWord=\"" + mySearch.wholeWord + "\"");

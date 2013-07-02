@@ -13,7 +13,7 @@
 //   Destroy a Nelder-Mead object.
 //
 function this = neldermead_destroy (this)
-  this.optbase = optimbase_destroy ( this.optbase );
-  this.simplex0 = optimsimplex_destroy ( this.simplex0 );
+    this.optbase = optimbase_destroy ( this.optbase );
+    this.simplex0 = optimsimplex_destroy ( this.simplex0 );
 endfunction
 

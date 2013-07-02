@@ -15,20 +15,20 @@
 
 int GetUicontrolSliderStep(void* _pvCtx, char *sciObjUID)
 {
-  double *sliderStep = NULL;
-  int status = FALSE;
+    double *sliderStep = NULL;
+    int status = FALSE;
 
-  getGraphicObjectProperty(sciObjUID, __GO_UI_SLIDERSTEP__, jni_double_vector, (void**) &sliderStep);
+    getGraphicObjectProperty(sciObjUID, __GO_UI_SLIDERSTEP__, jni_double_vector, (void**) &sliderStep);
 
-  if (sliderStep != NULL)
-  {
-      status = sciReturnRowVector(_pvCtx, sliderStep, 2);
-      delete[] sliderStep;
-      return status;
-  }
-  else
-  {
-      Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "SliderStep");
-      return FALSE;
-  }
+    if (sliderStep != NULL)
+    {
+        status = sciReturnRowVector(_pvCtx, sliderStep, 2);
+        delete[] sliderStep;
+        return status;
+    }
+    else
+    {
+        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "SliderStep");
+        return FALSE;
+    }
 }

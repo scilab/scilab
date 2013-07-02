@@ -370,23 +370,31 @@
         <para>
             To better see the output change, set the parameter <emphasis>Real Time Scale</emphasis> to 0.5
             in the <emphasis>Settings menu</emphasis> item of the <emphasis>Simulation menu</emphasis>.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/SHIFT_en_US.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos">
                 Open this example in Xcos
             </link>
         </para>
         <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata align="center" fileref="../../../examples/integer_pal/en_US/shift_diagram_en_US.png"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/SHIFT_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+        </para>
         <para>
             Below the details of the binary counter.
         </para>
         <para/>
         <mediaobject>
             <imageobject>
-                <imagedata align="center" fileref="../../../examples/integer_pal/en_US/shift_diagram_superbloc_en_US.png"/>
+                <imagedata align="center" fileref="../../../../examples/integer_pal/en_US/SHIFT_internal_en_US.zcos"/>
             </imageobject>
         </mediaobject>
     </refsection>

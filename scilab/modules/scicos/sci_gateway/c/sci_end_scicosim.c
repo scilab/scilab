@@ -32,21 +32,21 @@
 /*--------------------------------------------------------------------------*/
 extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
-int sci_end_scicosim(char *fname,unsigned long fname_len)
+int sci_end_scicosim(char *fname, unsigned long fname_len)
 {
-	/* termine la simulation */
-	int isrun = C2F(cosim).isrun;
+    /* termine la simulation */
+    int isrun = C2F(cosim).isrun;
 
-	CheckRhs(-1,0);
-	if (!isrun) 
-	{
-		Scierror(999,_("%s: scicosim is not running.\n"),fname);
-	}
-	else 
-	{
-		end_scicos_sim();
-		PutLhsVar();
-	}
-	return 0;
+    CheckRhs(-1, 0);
+    if (!isrun)
+    {
+        Scierror(999, _("%s: scicosim is not running.\n"), fname);
+    }
+    else
+    {
+        end_scicos_sim();
+        PutLhsVar();
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

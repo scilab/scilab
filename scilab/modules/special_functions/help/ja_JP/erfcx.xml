@@ -39,16 +39,20 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>erfcx</literal> はスケーリング付き相互関数を計算します:
+            <literal>erfcx</literal> はスケーリング付き相互関数を計算します:<latex>e^{x^2} \operatorname{erfc}(x)</latex>
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/erfcx_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
     </refsection>
+    
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+x = [1+2*%i,-1+2*%i,1e-6+2e-6*%i,0+2*%i];
+erfcx(x)
+// ==
+exp (x.^2) .* erfc(x)
+ ]]></programlisting>
+    </refsection>
+    
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">

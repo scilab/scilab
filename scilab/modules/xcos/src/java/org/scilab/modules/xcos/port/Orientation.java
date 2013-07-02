@@ -5,7 +5,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -39,7 +39,7 @@ public enum Orientation {
 
     /**
      * Get the orientation angle linked to its parent block.
-     * 
+     *
      * @param blockAngle
      *            The value of the block angle
      * @param klass
@@ -51,7 +51,7 @@ public enum Orientation {
      * @return The value of the angle.
      */
     public int getRelativeAngle(int blockAngle,
-            Class<? extends BasicPort> klass, boolean flipped, boolean mirrored) {
+    Class <? extends BasicPort > klass, boolean flipped, boolean mirrored) {
         final int orientation = getOrientationAngle();
         final int base = getBaseAngle(klass, orientation);
 
@@ -67,8 +67,8 @@ public enum Orientation {
      *            the mirror status
      * @return the real angle
      */
-    public int getAbsoluteAngle(Class<? extends BasicPort> klass,
-            boolean flipped, boolean mirrored) {
+    public int getAbsoluteAngle(Class <? extends BasicPort > klass,
+    boolean flipped, boolean mirrored) {
         final int orientation = getOrientationAngle();
         final int base = getBaseAngle(klass, orientation);
 
@@ -77,7 +77,7 @@ public enum Orientation {
 
     /**
      * Update the base angle according to the flipped and mirrored flag.
-     * 
+     *
      * @param base
      *            the previous angle
      * @param flipped
@@ -87,26 +87,26 @@ public enum Orientation {
      * @return the updated angle.
      */
     private int getFlippedAndMirroredAngle(int base, boolean flipped,
-            boolean mirrored) {
+    boolean mirrored) {
         int angle = base;
 
         switch (this) {
-        case NORTH:
-        case SOUTH:
-            if (flipped) {
-                angle = angle + (MAX_ROTATION / 2);
-            }
-            break;
+            case NORTH:
+            case SOUTH:
+                if (flipped) {
+                    angle = angle + (MAX_ROTATION / 2);
+                }
+                break;
 
-        case WEST:
-        case EAST:
-            if (mirrored) {
-                angle = angle + (MAX_ROTATION / 2);
-            }
-            break;
+            case WEST:
+            case EAST:
+                if (mirrored) {
+                    angle = angle + (MAX_ROTATION / 2);
+                }
+                break;
 
-        default:
-            throw new NoSuchElementException();
+            default:
+                throw new NoSuchElementException();
         }
 
         /* Calculate angle */
@@ -123,17 +123,17 @@ public enum Orientation {
     /**
      * As the orientation angle is calculated as an input (default jgraphx
      * triangle direction), we have to update it for output blocks.
-     * 
+     *
      * @param klass
      *            kind of block
      * @param orientationAngle
      *            calculated orientation angle
      * @return updated angle
      */
-    private int getBaseAngle(Class<? extends BasicPort> klass,
-            int orientationAngle) {
+    private int getBaseAngle(Class <? extends BasicPort > klass,
+                             int orientationAngle) {
         final boolean isOutput = OutputPort.class.isAssignableFrom(klass)
-                || CommandPort.class.isAssignableFrom(klass);
+                                 || CommandPort.class.isAssignableFrom(klass);
 
         if (isOutput) {
             return orientationAngle + (MAX_ROTATION / 2);
@@ -150,15 +150,15 @@ public enum Orientation {
         final String ret;
 
         switch (this) {
-        case EAST:
-            ret = mxConstants.ALIGN_RIGHT;
-            break;
-        case WEST:
-            ret = mxConstants.ALIGN_LEFT;
-            break;
-        default:
-            ret = mxConstants.ALIGN_CENTER;
-            break;
+            case EAST:
+                ret = mxConstants.ALIGN_RIGHT;
+                break;
+            case WEST:
+                ret = mxConstants.ALIGN_LEFT;
+                break;
+            default:
+                ret = mxConstants.ALIGN_CENTER;
+                break;
         }
 
         return ret;
@@ -172,15 +172,15 @@ public enum Orientation {
         final String ret;
 
         switch (this) {
-        case NORTH:
-            ret = mxConstants.ALIGN_TOP;
-            break;
-        case SOUTH:
-            ret = mxConstants.ALIGN_BOTTOM;
-            break;
-        default:
-            ret = mxConstants.ALIGN_MIDDLE;
-            break;
+            case NORTH:
+                ret = mxConstants.ALIGN_TOP;
+                break;
+            case SOUTH:
+                ret = mxConstants.ALIGN_BOTTOM;
+                break;
+            default:
+                ret = mxConstants.ALIGN_MIDDLE;
+                break;
         }
 
         return ret;
@@ -197,19 +197,19 @@ public enum Orientation {
         final String ret;
 
         switch (this) {
-        case NORTH:
-            ret = mxConstants.STYLE_SPACING_TOP;
-            break;
-        case SOUTH:
-            ret = mxConstants.STYLE_SPACING_BOTTOM;
-            break;
-        case EAST:
-            ret = mxConstants.STYLE_SPACING_RIGHT;
-            break;
-        case WEST:
-        default:
-            ret = mxConstants.STYLE_SPACING_LEFT;
-            break;
+            case NORTH:
+                ret = mxConstants.STYLE_SPACING_TOP;
+                break;
+            case SOUTH:
+                ret = mxConstants.STYLE_SPACING_BOTTOM;
+                break;
+            case EAST:
+                ret = mxConstants.STYLE_SPACING_RIGHT;
+                break;
+            case WEST:
+            default:
+                ret = mxConstants.STYLE_SPACING_LEFT;
+                break;
         }
 
         return ret;

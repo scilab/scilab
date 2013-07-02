@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-03 10:33+0100\n"
-"PO-Revision-Date: 2012-09-19 14:28+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-03-19 15:18+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 
 msgid "Exception thrown in file"
 msgstr "Выдан сигнал исключения в файле"
@@ -23,11 +23,19 @@ msgid "at line"
 msgstr "на строке"
 
 #, c-format
+msgid "%s: An error occurred: %s"
+msgstr "%s: Произошла ошибка: %s"
+
+#, c-format
 msgid "Invalid environment: identifier %d is invalid"
 msgstr "Недопустимое окружение: идентификатор %d недопустим"
 
 msgid "Invalid environment"
 msgstr "Недопустимое окружение"
+
+#, c-format
+msgid "Invalid variable name: %s"
+msgstr "Некорректное имя переменной: %s"
 
 msgid "Cannot allocate memory"
 msgstr "Невозможно выделить память"
@@ -145,7 +153,7 @@ msgid "Wrong number of arguments : more than 2 arguments expected"
 msgstr "Неверное количество аргументов: ожидалось больше двух аргументов"
 
 msgid "Cannot invoke on null object"
-msgstr ""
+msgstr "Невозможно вызвать нулевой объект"
 
 #, c-format
 msgid "Wrong type for input argument #%d: A List expected."
@@ -156,7 +164,7 @@ msgid "Wrong type for input argument #%d: An Integer32 expected."
 msgstr "Неверный тип входного аргумента №%d: ожидался Int32."
 
 msgid "Cannot invoke on null object."
-msgstr ""
+msgstr "Невозможно вызвать нулевой объект."
 
 msgid "Wrong number of arguments : more than 1 argument expected"
 msgstr "Неверное количество аргументов: ожидалось более одного аргумента"

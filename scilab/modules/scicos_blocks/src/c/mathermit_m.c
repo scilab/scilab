@@ -18,28 +18,31 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
 #include "machine.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 extern int C2F(mtran)();
-/*--------------------------------------------------------------------------*/ 
-SCICOS_BLOCKS_IMPEXP void mathermit_m(scicos_block *block,int flag)
+/*--------------------------------------------------------------------------*/
+SCICOS_BLOCKS_IMPEXP void mathermit_m(scicos_block *block, int flag)
 {
-  int i = 0;
+    int i = 0;
 
-  int nu = GetInPortRows(block,1);
-  int mu = GetInPortCols(block,1);
+    int nu = GetInPortRows(block, 1);
+    int mu = GetInPortCols(block, 1);
 
-  double *ur = GetRealInPortPtrs(block,1);
-  double *ui = GetImagInPortPtrs(block,1);
-  double *yr = GetRealOutPortPtrs(block,1);
-  double *yi = GetImagOutPortPtrs(block,1);
+    double *ur = GetRealInPortPtrs(block, 1);
+    double *ui = GetImagInPortPtrs(block, 1);
+    double *yr = GetRealOutPortPtrs(block, 1);
+    double *yi = GetImagOutPortPtrs(block, 1);
 
-  C2F(mtran)(ur,&nu,yr,&mu,&nu,&mu);
-  C2F(mtran)(ui,&nu,yi,&mu,&nu,&mu);
-  for(i=0;i<mu*nu;i++) *(yi+i)=-(*(yi+i));
+    C2F(mtran)(ur, &nu, yr, &mu, &nu, &mu);
+    C2F(mtran)(ui, &nu, yi, &mu, &nu, &mu);
+    for (i = 0; i < mu * nu; i++)
+    {
+        *(yi + i) = -(*(yi + i));
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 

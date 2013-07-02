@@ -24,3 +24,6 @@ GetCommand
 ismenu
 StorePrioritaryCommandWithFlag
 freeArrayOfString
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

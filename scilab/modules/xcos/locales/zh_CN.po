@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2011-09-01 09:38+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-03 02:51+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: \n"
 
 #, c-format
@@ -105,13 +105,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr ""
-
-msgid "a graphical environment is needed."
 msgstr ""
 
 #, c-format
@@ -327,6 +320,9 @@ msgstr "另存为"
 msgid "Export"
 msgstr "导出"
 
+msgid "Export all diagrams"
+msgstr ""
+
 msgid "Save as interface function"
 msgstr "保存为接口函数"
 
@@ -339,7 +335,7 @@ msgstr "关闭"
 msgid "Quit Xcos"
 msgstr ""
 
-msgid "Recent Files"
+msgid "Recent files"
 msgstr ""
 
 msgid "Edit"
@@ -390,8 +386,8 @@ msgstr "在Scicos中查看"
 msgid "View"
 msgstr "查看"
 
-msgid "Fit diagram to view"
-msgstr "适合视图"
+msgid "Fit diagram or blocks to view"
+msgstr ""
 
 msgid "Normal 100%"
 msgstr "普通 100%"
@@ -1017,7 +1013,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr ""
 
 #, c-format
@@ -1035,7 +1031,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 
 #, c-format
@@ -1142,7 +1138,19 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: No block found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 
 msgid "Interface function does not exist or can not be called."
@@ -1194,8 +1202,26 @@ msgstr ""
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
+msgid "Initialisation problem"
+msgstr ""
+
+msgid "End problem"
+msgstr ""
+
 msgid "Simulation problem"
 msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
 msgstr ""

@@ -32,12 +32,12 @@ static int sci_emptystr_no_rhs(void);
 static int sci_emptystr_one_rhs(char *fname);
 static int sci_emptystr_two_rhs(char *fname);
 /*--------------------------------------------------------------------------*/
-int sci_emptystr(char *fname,unsigned long fname_len)
+int sci_emptystr(char *fname, unsigned long fname_len)
 {
     Rhs = Max(0, Rhs);
 
-    CheckRhs(0,2);
-    CheckLhs(1,1);
+    CheckRhs(0, 2);
+    CheckLhs(1, 1);
 
     if (Rhs < 1)
     {
@@ -65,7 +65,7 @@ static int sci_emptystr_no_rhs(void)
 /*--------------------------------------------------------------------------*/
 static int sci_emptystr_one_rhs(char *fname)
 {
-    int m1 = 0,n1 = 0; /* m1 is the number of row ; n1 is the number of col*/
+    int m1 = 0, n1 = 0; /* m1 is the number of row ; n1 is the number of col*/
 
     /*With a matrix for input argument returns a zero length character strings matrix of the same size */
     int Type = VarType(1);
@@ -102,7 +102,10 @@ static int sci_emptystr_one_rhs(char *fname)
             l1 = *Lstk(lw);
             il = iadr(l1);
 
-            if (*istk(il ) < 0) il = iadr(*istk(il + 1));
+            if (*istk(il ) < 0)
+            {
+                il = iadr(*istk(il + 1));
+            }
 
             /* get dimensions */
             m1 = getNumberOfLines(il); /* row */
@@ -145,7 +148,7 @@ static int sci_emptystr_two_rhs(char *fname)
         {
             int m = (int)value_param_pos_1;
             int n = (int)value_param_pos_2;
-            CreateVarFromPtr(Rhs + 1,MATRIX_OF_STRING_DATATYPE, &m, &n, NULL);
+            CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m, &n, NULL);
         }
         else
         {
@@ -153,7 +156,7 @@ static int sci_emptystr_two_rhs(char *fname)
             int l = 0;
             int m = 0;
             int n = 0;
-            CreateVar(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE,&m, &n,&l);
+            CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
         }
         LhsVar(1) = Rhs + 1;
 
@@ -163,11 +166,11 @@ static int sci_emptystr_two_rhs(char *fname)
     {
         if (Type_One != sci_matrix)
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname, 1);
         }
         else /* Type_Two */
         {
-            Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"),fname,2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of integers expected.\n"), fname, 2);
         }
     }
     return 0;

@@ -11,43 +11,43 @@ package org.scilab.modules.completion;
 
 /* It is generated code. Disable checkstyle */
 //CHECKSTYLE:OFF
- /** 
-   * @author Allan CORNET
-   * @copyright INRIA 2007
-   */
+/**
+  * @author Allan CORNET
+  * @copyright INRIA 2007
+  */
 public class CompletionJNI {
 
-  /**
-    * Constructor
-    */
-  protected CompletionJNI() {
-    throw new UnsupportedOperationException();
-  }
-
-  static {
-    try {
-        System.loadLibrary("scicompletion");
-    } catch (SecurityException e) {
-        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
-        System.err.println(e.getLocalizedMessage());
-        e.printStackTrace(System.err);
-    } catch (UnsatisfiedLinkError e)    {
-        System.err.println("The native library scicompletion does not exist or cannot be found.");
-        System.err.println(e.getLocalizedMessage());
-        e.printStackTrace(System.err);
+    /**
+      * Constructor
+      */
+    protected CompletionJNI() {
+        throw new UnsupportedOperationException();
     }
-  }
 
-  public final static native String[] searchAllDictionaries(String jarg1);
-  public final static native String[] searchFunctionsDictionary(String jarg1);
-  public final static native String[] searchCommandsDictionary(String jarg1);
-  public final static native String[] searchMacrosDictionary(String jarg1);
-  public final static native String[] searchVariablesDictionary(String jarg1);
-  public final static native String[] searchFilesDictionary(String jarg1);
-  public final static native String[] searchFieldsDictionary(String jarg1, String jarg2);
-  public final static native String[] searchHandleGraphicsPropertiesDictionary(String jarg1);
-  public final static native String getPartLevel(String jarg1);
-  public final static native String getFilePartLevel(String jarg1);
-  public final static native String getCommonPart(String[] jarg1, int jarg2);
-  public final static native String completelineforjava(String jarg1, String jarg2, boolean jarg3, String jarg4);
+    static {
+        try {
+            System.loadLibrary("scicompletion");
+        } catch (SecurityException e) {
+            System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+            System.err.println(e.getLocalizedMessage());
+            e.printStackTrace(System.err);
+        } catch (UnsatisfiedLinkError e)    {
+            System.err.println("The native library scicompletion does not exist or cannot be found.");
+            System.err.println(e.getLocalizedMessage());
+            e.printStackTrace(System.err);
+        }
+    }
+
+    public final static native String[] searchAllDictionaries(String jarg1);
+    public final static native String[] searchFunctionsDictionary(String jarg1);
+    public final static native String[] searchCommandsDictionary(String jarg1);
+    public final static native String[] searchMacrosDictionary(String jarg1);
+    public final static native String[] searchVariablesDictionary(String jarg1);
+    public final static native String[] searchFilesDictionary(String jarg1);
+    public final static native String[] searchFieldsDictionary(String jarg1, String jarg2);
+    public final static native String[] searchHandleGraphicsPropertiesDictionary(String jarg1);
+    public final static native String getPartLevel(String jarg1);
+    public final static native String getFilePartLevel(String jarg1);
+    public final static native String getCommonPart(String[] jarg1, int jarg2);
+    public final static native String completelineforjava(String jarg1, String jarg2, boolean jarg3, String jarg4);
 }

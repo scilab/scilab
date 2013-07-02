@@ -324,17 +324,20 @@
         <para>
             It use its activation output as event input of CSCOPE. In the file, the first field of the record is the time, the two others are regular data. The feedback of the
             activation output on event input ensures the file sequential read.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.xcos">
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
                 Open this example in Xcos
             </link>
             .
         </para>
+        <para/>
         <para>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../examples/sources_pal/en_US/rfile_f_diagram_en_US.png" align="center"/>
-                </imageobject>
-            </mediaobject>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/rfile_f_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
     </refsection>
     <refsection id="Interfacingfunction_RFILE_f">

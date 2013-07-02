@@ -16,11 +16,11 @@
 //
 
 function [] = %_plot3d()
-  x = %pi * [-1:0.05:1]';
-  z = sin(x)*cos(x)';
-  f = gcf();
-  f.color_map = jetcolormap(32);
-  plot3d(x, x, z, 70, 70);
-  e=gce();
-  e.color_flag = 1;
+    x = %pi * [-1:0.05:1]';
+    z = sin(x)*cos(x)';
+    f = gcf();
+    f.color_map = jetcolormap(32);
+    plot3d(x, x, z, 70, 70);
+    e=gce();
+    e.color_flag = 1;
 endfunction

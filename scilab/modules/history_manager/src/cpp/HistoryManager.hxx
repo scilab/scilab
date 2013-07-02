@@ -55,7 +55,7 @@ public:
     * @param size of the array of string
     * @return TRUE or FALSE
     */
-    BOOL appendLines(char **lines,int nbrlines);
+    BOOL appendLines(char **lines, int nbrlines);
 
     /**
     * Display history
@@ -84,7 +84,6 @@ public:
     /**
     * save history in a file
     * @param a filename if NULL saves in default filename
-    * default filename --> SCIHOME/history.scilab
     * @return TRUE or FALSE
     */
     BOOL writeToFile(char *filename);
@@ -92,7 +91,6 @@ public:
     /**
     * load history from a file
     * @param a filename if NULL load from default filename
-    * default filename --> SCIHOME/<scilab version>history.scilab
     * @return TRUE or FALSE
     */
     BOOL loadFromFile(char *filename);
@@ -226,10 +224,16 @@ private:
     int numberoflinesbeforehistoryissaved;
 
     /**
-    * search if line is a beginning of a session
+    * indicates if command line is a beginning of a session
     * @return TRUE or FALSE
     */
-    BOOL isBeginningSessionLine(char *line);
+    BOOL isBeginningSessionLine(CommandLine& line);
+
+    /**
+    * indicates if a string has the pattern "beginning of a session"
+    * @return TRUE or FALSE
+    */
+    BOOL isBeginningSessionLine(const char *line);
 
     /**
     * add as first line  beginning session info

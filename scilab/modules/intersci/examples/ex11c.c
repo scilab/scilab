@@ -23,18 +23,22 @@
  *******************************************/
 
 int F2C(ext11c)(double *ar, double *ai, int *itra,
-		double *br, double *bi,int *itrb, int *m, int *n)
+                double *br, double *bi, int *itrb, int *m, int *n)
 {
-  int k;
-  for (k = 0; k < *n*(*m); ++k)
-      {
-	if ( *itra == 1)
-	  br[k] = ai[k];
-	else
-	  br[k] = 0.0;
-	bi[k] = ar[k];
-      }
-  *itrb=1;
-  return(0);
+    int k;
+    for (k = 0; k < *n * (*m); ++k)
+    {
+        if ( *itra == 1)
+        {
+            br[k] = ai[k];
+        }
+        else
+        {
+            br[k] = 0.0;
+        }
+        bi[k] = ar[k];
+    }
+    *itrb = 1;
+    return(0);
 }
 

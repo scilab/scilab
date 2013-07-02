@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="editor" xml:lang="en">
     <refnamediv>
         <refname>editor</refname>
-        <refpurpose>Call a the text editor as defined in the preferences</refpurpose>
+        <refpurpose>Call the text editor as defined in the preferences</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -24,8 +24,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            An external text editor can be used with Scilab.
+            An external text editor can be used with Scilab. This has to be configured in the <link linkend="preferences">preferences</link> menu.
         </para>
+        <para>By default, Scinotes is the preferred editor.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// editor without parameters
+editor();
+
+// editor with a file name
+editor('SCI/modules/time/macros/datenum.sci');
+     ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

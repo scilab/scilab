@@ -20,9 +20,11 @@
 
 int F2C(ext13c)( double *ar, int *m, int *n)
 {
-  int k;
-  for (k = 0; k < *n*(*m); ++k)
-      ar[k]= 2*ar[k];
-  return(0);
+    int k;
+    for (k = 0; k < *n * (*m); ++k)
+    {
+        ar[k] = 2 * ar[k];
+    }
+    return(0);
 }
 

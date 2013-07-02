@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>square sparse matrix</para>
+                    <para>square sparse real matrix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

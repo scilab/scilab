@@ -1,22 +1,22 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) DIGITEO - 2010 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "localization.h"
 #include "v2cuniterror.h"
 #include "Scierror.h"
 #include "FileExist.h"
 #include "isdir.h"
-/*--------------------------------------------------------------------------*/ 
-int C2F(v2cuniterror)(int *_errorcode, char *_filename, 
+/*--------------------------------------------------------------------------*/
+int C2F(v2cuniterror)(int *_errorcode, char *_filename,
                       unsigned long _length_filename)
 {
     switch (*_errorcode)
@@ -55,11 +55,11 @@ int C2F(v2cuniterror)(int *_errorcode, char *_filename,
 
         default:
         {
-            Scierror(*_errorcode, 
-                _("unmanaged error by v2cunit.\n"));
+            Scierror(*_errorcode,
+                     _("unmanaged error by v2cunit.\n"));
         }
         break;
     }
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

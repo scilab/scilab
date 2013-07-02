@@ -61,7 +61,7 @@ public class ContouredObjectDrawer {
      * @param contouredObject the ContouredObject to draw.
      * @param use2dView a boolean specifying whether the 2D view mode is used or not.
      * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
-     * @throws ObjectRemovedException 
+     * @throws ObjectRemovedException
      */
     public void draw(ContouredObject contouredObject, boolean use2dView) throws SciRendererException, ObjectRemovedException, OutOfMemoryException {
         DrawingTools drawingTools = visitor.getDrawingTools();
@@ -101,9 +101,9 @@ public class ContouredObjectDrawer {
         drawingTools.draw(geometry, appearance);
 
         if (contouredObject.getMarkMode()) {
-                Texture texture = markManager.getMarkSprite(contouredObject, colorMap);
-                ElementsBuffer positions = dataManager.getVertexBuffer(contouredObject.getIdentifier());
-                drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+            Texture texture = markManager.getMarkSprite(contouredObject, colorMap, appearance);
+            ElementsBuffer positions = dataManager.getVertexBuffer(contouredObject.getIdentifier());
+            drawingTools.draw(texture, AnchorPosition.CENTER, positions);
         }
     }
 }

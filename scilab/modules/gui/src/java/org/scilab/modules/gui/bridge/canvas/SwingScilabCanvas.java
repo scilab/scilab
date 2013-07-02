@@ -102,6 +102,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
         setBackground(Color.white);
         setFocusable(true);
+        setEnabled(true);
     }
 
     public void addNotify() {
@@ -325,7 +326,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to add.
      */
     public void addEventHandlerKeyListener(KeyListener listener) {
-        drawableComponent.addKeyListener(listener);
+        addKeyListener(listener);
     }
 
     /**
@@ -333,7 +334,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to remove.
      */
     public void removeEventHandlerKeyListener(KeyListener listener) {
-        drawableComponent.removeKeyListener(listener);
+        removeKeyListener(listener);
     }
 
     /**

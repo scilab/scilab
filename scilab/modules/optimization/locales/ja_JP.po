@@ -7,17 +7,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-08-24 14:22+0000\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-06-15 03:42+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:  実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 正方行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_qld.c, line: 62
@@ -25,6 +37,14 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 列 %d の数を想定します。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ割当エラー.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数のスカラーを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
@@ -178,6 +198,12 @@ msgstr "dspev でエラー, 情報 = %d.\n"
 
 msgid "Non linear data fitting"
 msgstr "非線形データフィッティング"
+
+msgid "Experimental data"
+msgstr "実験データ"
+
+msgid "Fitting function"
+msgstr "関数フィッティング"
 
 msgid "LQV"
 msgstr "LQV"
@@ -409,6 +435,9 @@ msgstr "等高線をプロット中 (お待ちください) ...\n"
 msgid "Defining McKinnon function...\n"
 msgstr "McKinnon関数を定義中...\n"
 
+msgid "Error: function expects a two dimensional input\n"
+msgstr "エラー: 関数に2次元入力を指定してください\n"
+
 #, c-format
 msgid "x0 = %s\n"
 msgstr "x0 = %s\n"
@@ -501,6 +530,10 @@ msgid "Simulated Annealing"
 msgstr "焼きなまし法"
 
 #, c-format
+msgid "%s: More than 20 equations are not allowed"
+msgstr "%s: 20個より多い方程式は使用できません"
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
 
@@ -511,6 +544,26 @@ msgstr "%s: 引数 #%d の要素は [%d %d] の範囲とする必要がありま
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr "%s: 入力引数 #%s の型が間違っています : 外部関数を指定してください.\n"
+
+#, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in G."
+msgstr "%s: ヤコビアンはリストとすることができません, パラメータはGで設定する必要があります."
+
+#, c-format
+msgid "%s: Wrong measurement matrix."
+msgstr "%s: 観測行列が間違っています."
+
+#, c-format
+msgid "%s: Initial guess must be a column vector."
+msgstr "%s: 初期推定値は列ベクトルとする必要があります."
+
+#, c-format
+msgid "%s: Weighting matrix must be square."
+msgstr "%s: 重み行列は正方行列とする必要があります."
+
+#, c-format
+msgid "%s: With hard coded function, user must give output size of G."
+msgstr "%s: ハードコーディングされた関数の場合, ユーザはGの出力の大きさを指定する必要があります."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -619,6 +672,10 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています. x0 が上界 ub よりも大きくなっています."
 
 #, c-format
+msgid "%s: The algorithm did not converge (exitflag= %d).\n"
+msgstr "%s: アルゴリズムが収束しませんでした (exitflag=%d).\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
 "constraints."
@@ -629,6 +686,14 @@ msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
 "constraints."
 msgstr "%s: 入力引数 #%d の値が間違っています. x0 が等式拘束条件を満たしていません."
+
+#, c-format
+msgid "%s: Jacobian cannot be a list, parameters must be set in fun."
+msgstr "%s: ヤコビアンはリストとすることはできません, パラメータは fun で設定する必要があります."
+
+#, c-format
+msgid "%s: With hard coded function, user must give output size of fun."
+msgstr "%s: ハードコーディングされた関数の場合, ユーザはfunの出力の大きさを指定する必要があります."
 
 #, c-format
 msgid "%s: initial guess is feasible."
@@ -730,6 +795,145 @@ msgstr "%s: 下界を有さない可能性があります"
 #, c-format
 msgid "%s: optimal solution found"
 msgstr "%s: 最適解が見つかりました"
+
+msgid "Welcome to LMITOOL"
+msgstr "ようこそLMITOOLへ"
+
+msgid "LMITOOL is a Scilab package for LMI optimization"
+msgstr "LMITOOLはLMI最適化用のScilabパッケージです"
+
+msgid "It can solve the following problem"
+msgstr "以下の問題を解くことができます"
+
+msgid "   minimize  f(X1,...,XM)  "
+msgstr "   minimize f(X1,...,XM)  "
+
+msgid "subject to the LME constraints: "
+msgstr "線形行列等式(LME)拘束条件: "
+
+msgid "   Gi(X1,...,XM)=0,  i=1,2,...,p,"
+msgstr "   Gi(X1,...,XM)=0, i=1,2,...,p,"
+
+msgid "and the LMI constraints:  "
+msgstr "線形行列不等式(LMI)拘束条件:  "
+
+msgid "   Hj(X1,...,XM)>=0,  j=1,2,...,q."
+msgstr "   Hj(X1,...,XM)>=0, j=1,2,...,q."
+
+msgid "where"
+msgstr "ただし,"
+
+msgid ""
+"X1,...,XM are unknown real matrices, referred to as the unknown matrices,"
+msgstr "X1,...,XM は未知の実数行列で, 未知の行列として参照されます,"
+
+msgid ""
+"f is the objective function, a linear scalar function of the entries of the "
+"X's,"
+msgstr "f は目的関数で, Xのエントリの線形スカラー関数です,"
+
+msgid "Gi's are affine matrix functions of the entries of the X's,"
+msgstr "Gi はXのエントリのアフィン行列関数です,"
+
+msgid "Hj's are affine symmetric matrix functions of the entries of the X's."
+msgstr "HjはXのエントリのアフィン対称行列関数です,"
+
+msgid ""
+"These functions are parameterized by the entries of known data matrices "
+"D1,...,DN."
+msgstr "これらの関数は 既知のデータ行列 D1,...,DN のエントリをパラメータとします."
+
+msgid "For a detailed description and examples consult: "
+msgstr "詳細な説明と例は以下を参照: "
+
+msgid ""
+"          'LMITOOL: a Package for LMI Optimization in Scilab, User's Guide' "
+msgstr ""
+"          'LMITOOL: a Package for LMI Optimization in Scilab, User's Guide' "
+
+msgid ""
+"LMITOOL uses Semidefinite Programming package SP developed by L. "
+"Vandenberghe and S. Boyd."
+msgstr ""
+"LMITOOLはL. Vandenberghe および S. Boyd により開発された半正定プログラミングパッケージ SP を使用しています."
+
+msgid "LMI problem name: "
+msgstr "LMI問題名: "
+
+msgid "Names of unknown matrices: "
+msgstr "未知の行列名: "
+
+msgid "Names of data matrices: "
+msgstr "データ行列の名前: "
+
+msgid "Problem definition"
+msgstr "問題定義"
+
+msgid "LMITOOL will generate for you a skeleton of the functions needed"
+msgstr "LMITOOLは必要な関数のスケルトンを生成します"
+
+msgid " (see User's Guide for details). For that, you need to specify:"
+msgstr " (詳細はユーザーズガイドを参照). このためには, 以下を指定します:"
+
+msgid "1- Name of you problem which will be given to the solver function,"
+msgstr "1- ソルバ関数に指定する問題の名前"
+
+msgid "2- Names of unknown matrices or list of unknown matrices,"
+msgstr "2- 未知の行列の名前または未知の行列のリスト"
+
+msgid "3- Names of data matrices or list of data matrices."
+msgstr "3- データ行列の名前またはデータ行列のリスト"
+
+msgid "Try again"
+msgstr "再試行"
+
+msgid "File not generated by lmitool or badly modified."
+msgstr "ファイルがlmitoolにより生成されなかったか, 修正に失敗しました."
+
+msgid "Function definitions"
+msgstr "関数定義"
+
+msgid "Here is a skeleton of the functions which you shoud edit"
+msgstr "要編集の関数スケルトン"
+
+msgid "You can do the editing in this window or click on 'ok', save"
+msgstr "このウィンドウで編集可能です, もしくは 'ok' をクリックして保存します"
+
+msgid "the skeleton and edit later using your favorite editor"
+msgstr "スケルトンおよび好きなエディタを使用して後で編集"
+
+msgid "Name of file in which you want the solver function"
+msgstr "ソルバ関数および評価関数を記述するファイル名"
+
+msgid "and the evaluation function be saved (overwrites if a"
+msgstr "(同じ名前のファイルが既に存在する場合は,"
+
+msgid "file with the same name exists already)"
+msgstr "上書きされます)"
+
+msgid "functions saved in "
+msgstr "関数は以下に保存されます "
+
+msgid "    To solve your problem, you need to "
+msgstr "    問題を解くには, 以下が必要です "
+
+msgid "1- edit file "
+msgstr "1- ファイルを編集 "
+
+msgid "2- load (and compile) your functions:"
+msgstr "2- 関数をロード(そしてコンパイル)"
+
+msgid " and call "
+msgstr " その後,コール "
+
+msgid " function:"
+msgstr " 関数:"
+
+msgid "3- Define "
+msgstr "3- 定義 "
+
+msgid "To check the result, use [LME,LMI,OBJ]="
+msgstr "結果を確認するには,  [LME,LMI,OBJ]= を使用します"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -960,6 +1164,11 @@ msgstr "%s: 初期化オプションが可能ではありません: 関数 '%s' 
 
 #, c-format
 msgid ""
+"%s: Hard coded function not allowed, create a Scilab function using call."
+msgstr "%s: ハードコーディングされた関数が使用できない場合, Scilab 関数を call　により作成します."
+
+#, c-format
+msgid ""
 "%s: The number of variables %d does not match the number of max bounds: %d.\n"
 msgstr "%s: 変数の数 %d が最大値の数と一致しません: %d.\n"
 
@@ -1107,7 +1316,7 @@ msgid ""
 msgstr "%s: 入力引数の数が間違っています: 仕様は2から4個ですが %d 個指定されています."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: %s expected.\n"
+msgid "%s: Wrong type for argument #%d: %s expected.\n"
 msgstr "%s: 引数 %d の型が間違っています: %s を指定してください.\n"
 
 #, c-format
@@ -1165,7 +1374,7 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: 除外添字ベクトルが 1行ではなく %d 行となっています."
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
 
 #, c-format

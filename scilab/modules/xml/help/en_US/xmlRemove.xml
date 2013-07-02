@@ -27,7 +27,7 @@
             <varlistentry>
                 <term>elems</term>
                 <listitem>
-                    <para>elems, an XMLElem or a XMLSet (result of XPath query) or a XMLlist (a children list)</para>
+                    <para>elems, a XMLElem or a XMLSet (result of XPath query) or a XMLlist (a children list)</para>
                 </listitem>
             </varlistentry>
         </variablelist>

@@ -138,6 +138,9 @@ public class ScilabDirectHandler implements Handler {
         }
 
         // fail safely
+        if (data == null) {
+            return null;
+        }
         if (data.isEmpty()) {
             LOG.finer("data not available");
             return null;

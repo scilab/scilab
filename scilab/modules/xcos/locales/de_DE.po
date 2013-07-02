@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
-"POT-Creation-Date: 2011-10-03 10:34+0100\n"
-"PO-Revision-Date: 2012-09-02 18:39+0000\n"
-"Last-Translator: Petersen <Unknown>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2013-04-03 02:43+0000\n"
+"Last-Translator: peter <peterslopp@googlemail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16232)\n"
+"X-Generator: Launchpad (build 16681)\n"
 "Language: de\n"
 
 #, c-format
@@ -23,7 +23,7 @@ msgstr "Scilab '%s' Modul in Modus -nogui oder -nmwi deaktiviert.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
+msgstr "%s: Eingangsargument #%d kann nicht gelesen werden.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -76,7 +76,7 @@ msgid "Grid"
 msgstr "Raster"
 
 msgid "Default simulation settings"
-msgstr ""
+msgstr "Ausgangseinstellungen der Simulation"
 
 msgid "Final integration time"
 msgstr "Finale Integrationszeit"
@@ -111,15 +111,6 @@ msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: einen booleschen Wert erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr ""
-"%s: Falscher Typ für Eingangsargument #%d: einen Zeichenkettenvektor "
-"erwartet.\n"
-
-msgid "a graphical environment is needed."
-msgstr ""
-
-#, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
 "Expecting version %s ; Getting version %s ."
@@ -139,16 +130,16 @@ msgid "parent diagram not found."
 msgstr ""
 
 msgid "Preview"
-msgstr ""
+msgstr "Vorschau"
 
 msgid "Error on export"
-msgstr ""
+msgstr "Fehler beim Exportieren"
 
 msgid "Please specify a valid file format"
 msgstr ""
 
 msgid "Incompatibility detected"
-msgstr ""
+msgstr "Inkompabilität gefunden"
 
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""
@@ -340,6 +331,9 @@ msgstr "Speichern als"
 msgid "Export"
 msgstr "Exportieren"
 
+msgid "Export all diagrams"
+msgstr ""
+
 msgid "Save as interface function"
 msgstr "Als Interface-Funktion speichern"
 
@@ -352,8 +346,8 @@ msgstr "Schließen"
 msgid "Quit Xcos"
 msgstr "Xcos verlassen"
 
-msgid "Recent Files"
-msgstr "Zuletzt geöffnete Dateien"
+msgid "Recent files"
+msgstr ""
 
 msgid "Edit"
 msgstr "Bearbeiten"
@@ -403,8 +397,8 @@ msgstr "In Scicos zeigen"
 msgid "View"
 msgstr "Ansicht"
 
-msgid "Fit diagram to view"
-msgstr "Diagramm an Anzeige anpassen"
+msgid "Fit diagram or blocks to view"
+msgstr ""
 
 msgid "Normal 100%"
 msgstr "Normal 100%"
@@ -1053,7 +1047,7 @@ msgid "%s: Found '%s' instead of a block.\n"
 msgstr "%s: '%s' gefunden anstelle eines Blocks.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgid "%s: Wrong type for argument #%d: diagram structure expected"
 msgstr "%s: Falscher Typ für Argument %d: Diagrammstruktur erwartet"
 
 #, c-format
@@ -1075,7 +1069,7 @@ msgstr ""
 "sie Schreibzugriffsrechte zu diesem Verzeichnis haben.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 "%s: Falscher Typ für Argument %d: Zeichenkette oder Diagrammstruktur erwartet"
 
@@ -1196,7 +1190,19 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Kann die Palette nicht nach hdf5 exportieren.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A String expected."
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: No block found.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A String expected."
 msgstr ""
 
 msgid "Interface function does not exist or can not be called."
@@ -1248,8 +1254,26 @@ msgstr ""
 msgid "%s: Error during block parameters update.\n"
 msgstr ""
 
+msgid "Initialisation problem"
+msgstr ""
+
+msgid "End problem"
+msgstr ""
+
 msgid "Simulation problem"
 msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file '%s' for reading.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while trying to read file contents from '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Syntax error while trying to set up context from"
 msgstr ""

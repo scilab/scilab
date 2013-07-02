@@ -22,11 +22,15 @@ c     Interface for maxi and mini
       integer gettype,itype,topk,isanan
       integer sel, mtlbsel
       integer iadr
+      integer j, flag, flag2, nbemptymatrix
       double precision x1
 c
       iadr(l)=l+l-1
 c
-
+      flag=0
+      flag2=0
+      j=0
+      nbemptymatrix=0
       topk=top
       if (.not.checklhs(fname,1,2)) return
       itype=gettype(topk)
@@ -196,9 +200,19 @@ c     check argument and compute dimension of the result.
             return
          endif
          if(.not.getrmat(fname,topk,topk-rhs+i,mi,ni,lri)) return
-
-         if(mi*ni.le.0) then
-            err=i
+         if(mi.eq.0.and.ni.eq.0) then
+            nbemptymatrix=nbemptymatrix+1 ! Count number of arguments = []
+         endif
+         if(nbemptymatrix.eq.rhs) then ! Check if all arguments are []
+            if (.not.cremat(fname,top,0,0,0,lr,lir)) return ! Return []
+            flag2=1 ! To not print error message
+         endif
+         if(mi*ni.le.0.and.flag.eq.0) then ! Case: max(1,1,[]): check which argument is [], j=3
+            j=i
+            flag=1
+         endif
+         if(i.eq.rhs.and.flag.eq.1.and.flag2.eq.0) then
+            err=j
             call error(45)
             return
          endif
@@ -326,7 +340,7 @@ c     test si n1 > 1
 c     mini
                do 211 j=0,m*n-1
                   x1=stk(lri+j)
-                  if (x1.lt.stk(lrw+j).or.isanan(lrw+j).eq.1) then
+                  if (x1.lt.stk(lrw+j).or.isanan(stk(lrw+j)).eq.1) then
                      stk(lrw+j)=x1
                      stk(lrkw+j)= i
                   endif
@@ -334,7 +348,7 @@ c     mini
             else
                do 212 j=0,m*n-1
                   x1=stk(lri+j)
-                  if (x1.gt.stk(lrw+j).or.isanan(lrw+j).eq.1) then
+                  if (x1.gt.stk(lrw+j).or.isanan(stk(lrw+j)).eq.1) then
                      stk(lrw+j)=x1
                      stk(lrkw+j)= i
                   endif

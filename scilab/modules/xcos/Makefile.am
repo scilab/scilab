@@ -76,7 +76,6 @@ libscixcos_la_CPPFLAGS = \
 			-I$(srcdir)/src/jni/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni/ \
@@ -231,7 +230,9 @@ images/palettes/CMAT3D.png \
 images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
+images/palettes/CONST_f.png \
 images/palettes/CONST_m.png \
+images/palettes/CONST.png \
 images/palettes/CONSTRAINT2_c.png \
 images/palettes/CONSTRAINT_c.png \
 images/palettes/CONVERT.png \
@@ -248,6 +249,7 @@ images/palettes/DEADBAND.png \
 images/palettes/DEBUG_SCICOS.png \
 images/palettes/DELAY_f.png \
 images/palettes/DELAYV_f.png \
+images/palettes/DEMUX_f.png \
 images/palettes/DEMUX.png \
 images/palettes/DERIV.png \
 images/palettes/DFLIPFLOP.png \
@@ -258,6 +260,8 @@ images/palettes/DLRADAPT_f.png \
 images/palettes/DLR.png \
 images/palettes/DLSS.png \
 images/palettes/DOLLAR_f.png \
+images/palettes/DOLLAR_m.png \
+images/palettes/DOLLAR.png \
 images/palettes/EDGE_TRIGGER.png \
 images/palettes/ENDBLK.png \
 images/palettes/END_c.png \
@@ -279,6 +283,8 @@ images/palettes/FROMMO.png \
 images/palettes/FROM.png \
 images/palettes/FROMWSB.png \
 images/palettes/GAINBLK_f.png \
+images/palettes/GAINBLK.png \
+images/palettes/GAIN_f.png \
 images/palettes/GENERAL_f.png \
 images/palettes/generic_block3.png \
 images/palettes/GENSIN_f.png \
@@ -336,6 +342,7 @@ images/palettes/M_freq.png \
 images/palettes/MIN_f.png \
 images/palettes/Modulo_Count.png \
 images/palettes/M_SWITCH.png \
+images/palettes/MUX_f.png \
 images/palettes/MUX.png \
 images/palettes/NEGTOPOS_f.png \
 images/palettes/NMOS.png \
@@ -384,6 +391,7 @@ images/palettes/Sigbuilder.png \
 images/palettes/SIGNUM.png \
 images/palettes/SINBLK_f.png \
 images/palettes/SineVoltage.png \
+images/palettes/SOM_f.png \
 images/palettes/SourceP.png \
 images/palettes/SQRT.png \
 images/palettes/SRFLIPFLOP.png \

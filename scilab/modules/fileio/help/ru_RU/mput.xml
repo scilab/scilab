@@ -71,7 +71,8 @@
                 <term>"l", "i", "s", "ul", "ui", "us", "d", "f", "c", "uc"</term>
                 <listitem>
                     <para>
-                        для записи соответственно типов long, int, short, unsigned long, unsigned int, unsigned short, double, float, char и unsigned char. Байты, которые записываются, автоматически переставляются, если нужно (это проверяется статусом прямого порядка байтов) для того, чтобы сделать двоичные файлы, независимые от машины. Режим перестановки байтов по умолчанию может быть подавлен добавлением флага <code>swap = 0</code> в функции <function>mopen</function>.
+                        для записи соответственно типов long long, int(long
+                        int), short, unsigned long long, unsigned int(long int), unsigned short, double, float, char и unsigned char. Байты, которые записываются, автоматически переставляются, если нужно (это проверяется статусом прямого порядка байтов) для того, чтобы сделать двоичные файлы, независимые от машины. Режим перестановки байтов по умолчанию может быть подавлен добавлением флага <code>swap = 0</code> в функции <function>mopen</function>.
                     </para>
                 </listitem>
             </varlistentry>

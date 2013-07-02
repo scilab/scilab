@@ -61,25 +61,19 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            xdel(winsid());
-            plot()
-            f=gcf();
-            replot([-1,-1,10,2],f.children(1))
-            replot([-3,-2,8,4],f.children(2)) 
-            
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
-backupstyle='?'
-
 // 最初の例
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x)) 
 replot([-1,-1,10,2]) 
-
+      ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x))
+            replot([-1,-1,10,2])
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
 // 二番目の例
 xdel(winsid());
 plot() // plot demo
@@ -87,13 +81,17 @@ f=gcf();
 replot([-1,-1,10,2],f.children(1)) // axesハンドルの値を指定
 replot([-3,-2,8,4],f.children(2)) 
  ]]></programlisting>
+        <scilab:image>
+            xdel(winsid());
+            plot()
+            f2=gcf();
+            replot([-1,-1,10,2],f2.children(1))
+            replot([-3,-2,8,4],f2.children(2))
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xbasr">xbasr</link>
-            </member>
             <member>
                 <link linkend="clf">clf</link>
             </member>

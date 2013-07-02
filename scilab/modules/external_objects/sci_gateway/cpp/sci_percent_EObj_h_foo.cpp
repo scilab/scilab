@@ -27,7 +27,7 @@ int sci_percent_EObj_h_foo(char * fname, unsigned long fname_len)
     }
     catch (std::exception & e)
     {
-        Scierror(999, "%s: An error occured: %s", fname, e.what());
+        Scierror(999, _("%s: An error occurred: %s"), fname, e.what());
         return 0;
     }
 }

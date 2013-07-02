@@ -26,62 +26,62 @@ import com.artenum.rosetta.interfaces.ui.OutputView;
  */
 public class SciCommandLineView extends JPanel implements CommandLineView {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public SciCommandLineView() {
-		setMinimumSize(OutputView.SMALL);
-	}
+    /**
+     * Constructor
+     */
+    public SciCommandLineView() {
+        setMinimumSize(OutputView.SMALL);
+    }
 
-	/**
-	 * Sets the component where the user will enter the command
-	 * @param command java commponent
-	 * @see com.artenum.rosetta.interfaces.ui.CommandLineView#setInputCommandView(javax.swing.JComponent)
-	 */
-	public void setInputCommandView(JComponent command) {
-		add(command, BorderLayout.CENTER);
-	}
+    /**
+     * Sets the component where the user will enter the command
+     * @param command java commponent
+     * @see com.artenum.rosetta.interfaces.ui.CommandLineView#setInputCommandView(javax.swing.JComponent)
+     */
+    public void setInputCommandView(JComponent command) {
+        add(command, BorderLayout.CENTER);
+    }
 
-	/**
-	 * Sets the component where th eprompt will be displayed
-	 * @param prompt java component
-	 * @see com.artenum.rosetta.interfaces.ui.CommandLineView#setPromptView(javax.swing.JComponent)
-	 */
-	public void setPromptView(JComponent prompt) {
-		add(prompt, BorderLayout.WEST);
-	}
+    /**
+     * Sets the component where th eprompt will be displayed
+     * @param prompt java component
+     * @see com.artenum.rosetta.interfaces.ui.CommandLineView#setPromptView(javax.swing.JComponent)
+     */
+    public void setPromptView(JComponent prompt) {
+        add(prompt, BorderLayout.WEST);
+    }
 
-	/**
-	 * Sets the visibility of the Command Line UI
-	 * @param visible the new state (true to set it visible, false else)
-	 * @see javax.swing.JComponent#setVisible(boolean)
-	 */
-	public void setVisible(boolean visible) {
-		if (visible) {
-			expand();
-		} else {
-			shrink();
-		}
-	}
+    /**
+     * Sets the visibility of the Command Line UI
+     * @param visible the new state (true to set it visible, false else)
+     * @see javax.swing.JComponent#setVisible(boolean)
+     */
+    public void setVisible(boolean visible) {
+        if (visible) {
+            expand();
+        } else {
+            shrink();
+        }
+    }
 
-	/**
-	 * Sets the Command View invisible
-	 */
-	private void shrink() {
-		setMaximumSize(OutputView.SMALL);
-		invalidate();
-		doLayout();
-	}
+    /**
+     * Sets the Command View invisible
+     */
+    private void shrink() {
+        setMaximumSize(OutputView.SMALL);
+        invalidate();
+        doLayout();
+    }
 
-	/**
-	 * Sets the Command View visible
-	 */
-	private void expand() {
-		setMaximumSize(OutputView.BIG);
-		invalidate();
-		doLayout();
-	}
+    /**
+     * Sets the Command View visible
+     */
+    private void expand() {
+        setMaximumSize(OutputView.BIG);
+        invalidate();
+        doLayout();
+    }
 
 }

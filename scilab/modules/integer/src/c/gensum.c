@@ -32,27 +32,31 @@ int C2F(gensum)(int *typ, int *n, void *dx, int *incx)
 
 
     dtemp = 0;
-    if (*n <= 0) return dtemp;
+    if (*n <= 0)
+    {
+        return dtemp;
+    }
 
-    switch (*typ) {
-    case 1:
-      SUM(char, int);
-      break;
-    case 2:
-      SUM(short, int);
-      break;
-    case 4:
-      SUM(int, int) ;
-      break;
-    case 11:
-      SUM(unsigned char, int);
-      break;
-    case 12:
-      SUM(unsigned short, int);
-      break;
-    case 14:
-      SUM(unsigned int, int);
-      break;
+    switch (*typ)
+    {
+        case 1:
+            SUM(char, int);
+            break;
+        case 2:
+            SUM(short, int);
+            break;
+        case 4:
+            SUM(int, int) ;
+            break;
+        case 11:
+            SUM(unsigned char, int);
+            break;
+        case 12:
+            SUM(unsigned short, int);
+            break;
+        case 14:
+            SUM(unsigned int, int);
+            break;
     }
     return dtemp;
 }
@@ -65,27 +69,31 @@ double C2F(gensumasdouble)(int *typ, int *n, void *dx, int *incx)
 
 
     dtemp = 0.0;
-    if (*n <= 0) return dtemp;
+    if (*n <= 0)
+    {
+        return dtemp;
+    }
 
-    switch (*typ) {
-    case 1:
-      SUM(char, double);
-      break;
-    case 2:
-      SUM(short, double);
-      break;
-    case 4:
-      SUM(int, double) ;
-      break;
-    case 11:
-      SUM(unsigned char, double);
-      break;
-    case 12:
-      SUM(unsigned short, double);
-      break;
-    case 14:
-      SUM(unsigned int, double);
-      break;
+    switch (*typ)
+    {
+        case 1:
+            SUM(char, double);
+            break;
+        case 2:
+            SUM(short, double);
+            break;
+        case 4:
+            SUM(int, double) ;
+            break;
+        case 11:
+            SUM(unsigned char, double);
+            break;
+        case 12:
+            SUM(unsigned short, double);
+            break;
+        case 14:
+            SUM(unsigned int, double);
+            break;
     }
     return dtemp;
 }

@@ -161,6 +161,23 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
             }
             return 0;
         }
+
+        if (decimal[0] != '.' && decimal[0] != ',')
+        {
+            if (iRange)
+            {
+                FREE(iRange);
+                iRange = NULL;
+            }
+            if (conversion)
+            {
+                FREE(conversion);
+                conversion = NULL;
+            }
+
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"), fname, 3, ",", ".");
+            return 0;
+        }
     }
     else
     {
@@ -219,7 +236,7 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
             FREE(conversion);
             conversion = NULL;
         }
-        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: String vector expected.\n"), fname, 1);
         return 0;
     }
 
@@ -308,8 +325,8 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
                 else /* to double */
                 {
                     stringToComplexError ierr = STRINGTOCOMPLEX_ERROR;
-                    csv_complexArray *ptrCsvComplexArray = stringsToCsvComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
-                    if (ptrCsvComplexArray == NULL)
+                    complexArray *ptrComplexArray = stringsToComplexArray((const char**)result->pstrValues, result->m * result->n, decimal, TRUE, &ierr);
+                    if (ptrComplexArray == NULL)
                     {
                         freeCsvResult(result);
                         if (decimal)
@@ -347,18 +364,18 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
                             {
                                 int newM = 0;
                                 int newN = 0;
-                                csv_complexArray *csvComplexRange = getRangeAsCsvComplexArray(ptrCsvComplexArray, result->m, result->n, iRange, &newM, &newN);
+                                complexArray *csvComplexRange = getRangeAsComplexArray(ptrComplexArray, result->m, result->n, iRange, &newM, &newN);
                                 if (csvComplexRange)
                                 {
                                     if (csvComplexRange->isComplex)
                                     {
-                                        sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, ptrCsvComplexArray->realPart, ptrCsvComplexArray->imagPart);
+                                        sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, ptrComplexArray->realPart, ptrComplexArray->imagPart);
                                     }
                                     else
                                     {
                                         sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, newM, newN, csvComplexRange->realPart);
                                     }
-                                    freeCsvComplexArray(csvComplexRange);
+                                    freeComplexArray(csvComplexRange);
                                     csvComplexRange = NULL;
                                 }
                                 else
@@ -368,17 +385,17 @@ int sci_csvTextScan(char *fname, unsigned long fname_len)
                             }
                             else
                             {
-                                if (ptrCsvComplexArray->isComplex)
+                                if (ptrComplexArray->isComplex)
                                 {
-                                    sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrCsvComplexArray->realPart, ptrCsvComplexArray->imagPart);
+                                    sciErr = createComplexMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrComplexArray->realPart, ptrComplexArray->imagPart);
                                 }
                                 else
                                 {
-                                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrCsvComplexArray->realPart);
+                                    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, result->m, result->n, ptrComplexArray->realPart);
                                 }
                             }
-                            freeCsvComplexArray(ptrCsvComplexArray);
-                            ptrCsvComplexArray = NULL;
+                            freeComplexArray(ptrComplexArray);
+                            ptrComplexArray = NULL;
                         }
                         break;
 

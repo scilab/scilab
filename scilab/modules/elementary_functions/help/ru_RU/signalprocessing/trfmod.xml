@@ -42,6 +42,22 @@
             Интерактивное упрощение <literal>h</literal>. <literal>trfmod</literal> открывает окно диалога.
         </para>
     </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// с передаточной функцией
+s=poly(0,'s');
+gs=syslin('c',1/(s+1));
+trfmod(gs)
+
+// с матрицей пространства состояний
+A=diag([1,2,3]);
+B=[1;1;1];
+C=[2,2,2];
+sys=syslin('c',A,B,C);
+trfmod(sys)
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
