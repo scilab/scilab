@@ -115,8 +115,8 @@ function newPATH = getNewPATHx64(PATH, msvsPath, sdkPath, bIsExpress)
   newPATH = '';
 
   if bIsExpress then
-    Vc64Path = dlwGet64BitPath();
-    newPATH = Vc64Path + '\VC\BIN\amd64' + pathsep();
+    newPATH = msvsPath + '\VC\BIN\x86_amd64' + pathsep();
+    newPATH = newPATH + msvsPath + '\VC\BIN' + pathsep();
   else
     newPATH = msvsPath + '\VC\BIN\amd64' + pathsep();
   end
@@ -129,7 +129,6 @@ function newPATH = getNewPATHx64(PATH, msvsPath, sdkPath, bIsExpress)
             sdkPath + '\bin\x64' + pathsep() + ..
             sdkPath + '\bin\win64\x64' + pathsep() + ..
             sdkPath + '\bin' + pathsep() + PATH;
-
 endfunction
 //=============================================================================
 function newPATH = getNewPATHx86(PATH, msvsPath, sdkPath, bIsExpress)

@@ -9,6 +9,12 @@
 
 //=============================================================================
 function bOK = dlwIsVc11Express()
-  bOK = (dlwGetVc11ExpressPath() <> []);
+    bOK = %f;
+    try
+        if winqueryreg('key', 'HKLM', 'Software\Microsoft\DevDiv\wdexpress\Servicing\11.0') <> [] then
+            bOK = %t;
+        end
+    catch
+    end
 endfunction
 //=============================================================================

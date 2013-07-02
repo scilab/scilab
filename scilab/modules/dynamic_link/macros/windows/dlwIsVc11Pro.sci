@@ -9,6 +9,14 @@
 
 //=============================================================================
 function bOK = dlwIsVc11Pro()
-  bOK = (dlwGetVc11ProPath() <> []);
+    bOK = %f;
+    try
+        if winqueryreg('key', 'HKLM', ...
+            'Software\Microsoft\DevDiv\vc\Servicing\11.0') <> []  & ...
+                dlwIsVc11Express() == %f then
+            bOK = %t;
+        end
+    catch
+    end
 endfunction
 //=============================================================================

@@ -53,7 +53,13 @@ function bOK = detectmsvc64tools()
                           'msvc90express'];
 
         if (find(supported_compiler == compiler) <> []) then
-            MSVCBIN64PATH = dlwGet64BitPath() + filesep() + "VC\bin\amd64";
+            MSVCBIN64PATH = dlwGet64BitPath();
+            if dlwIsVc11Express() then
+                MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin";
+            else
+                MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin\amd64";
+            end
+            
             if isdir(MSVCBIN64PATH) then
                 bOK = %T;
             else

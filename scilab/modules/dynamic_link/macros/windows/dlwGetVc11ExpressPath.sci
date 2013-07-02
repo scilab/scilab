@@ -12,8 +12,8 @@ function vcPath = dlwGetVc11ExpressPath()
   vcPath = [];
   try
     vcPath = winqueryreg('HKEY_LOCAL_MACHINE', ..
-                      'Software\Microsoft\VCExpress\11.0\Setup\VS', ..
-                      'ProductDir');
+                     'Software\Microsoft\VisualStudio\11.0\Setup\VS', ..
+                     'ProductDir');
   catch
     // remove last error on 'winqueryreg' fails
     lasterror();
