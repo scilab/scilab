@@ -223,6 +223,8 @@ Bug fixes
 
 * Bug #7927 fixed - Output "flag" in qmr function was not well documented.
 
+* Bug #7960 fixed - plzr() could not produce pole zero plot for a simple transfer function.
+
 * Bug #8098 fixed - cumsum could not be applied to rational matrices.
 
 * Bug #8162 fixed - Area of stability of plzr was wrong for continuous systems (+unit test added).
