@@ -371,6 +371,8 @@ Bug fixes
 
 * Bug #12426 fixed - By using addErrorMessage, random string error could be displayed.
 
+* Bug #12433 fixed - show_pixmap function has been removed in Scilab files.
+
 * Bug #12443 fixed - Document behavior of mopen() in text file mode
                      on Windows.
 

@@ -67,12 +67,7 @@ function k=getlinestyle()
     addmenu(win,"Ok",list(2,"menu_ok"));
     addmenu(win,"Cancel",list(2,"menu_cancel"));
 
-    f.pixmap="on";
-
     k1=[]; //default
-
-    // to be sure that it is shown before the loop
-    show_pixmap();
 
     while %t
         select done
@@ -80,10 +75,11 @@ function k=getlinestyle()
             cx = pos(1);
             cy = pos(2);
             k1 = ceil(cy/2);k1=min(k1,6);k1=max(1,k1);
+            drawlater();
             R(ksel).thickness=1;
             R(k1).thickness=3;
             ksel=k1
-            show_pixmap()
+            drawnow();
         case 1 then  // ok button clicked
             k=k1;break,
         case 2 then   // cancel button clicked
