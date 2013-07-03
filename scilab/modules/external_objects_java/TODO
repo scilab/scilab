@@ -3,8 +3,6 @@ jarray
 jautoUnwrap
 jcast
 jconvMatrixMethod
-jexists
-jimsgetpath
 jinvoke_db
 jnull
 jsetfield
