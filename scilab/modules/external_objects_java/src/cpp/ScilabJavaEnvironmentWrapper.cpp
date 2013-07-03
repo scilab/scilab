@@ -288,110 +288,127 @@ int ScilabJavaEnvironmentWrapper::wrap(float * x, int xSize, int xSizeCol, const
 void ScilabJavaEnvironmentWrapper::unwrapdouble(int id, const ScilabDoubleStackAllocator & allocator) const
 {
     JavaVM *vm = getScilabJavaVM ();
-    double data = ScilabJavaObject::unwrapDouble(vm, id);
-    allocator.allocate(1, 1, &data);
+    unwrapSingle<jdouble, double>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowdouble(int id, const ScilabDoubleStackAllocator & allocator) const
 {
-    printf("unwraprowdouble %d...", id);
-    //  pyUnwrapRow<double>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapRow<jdouble, double>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatdouble(int id, const ScilabDoubleStackAllocator & allocator) const
 {
-    printf("unwrapmatdouble %d...", id);
-    //    pyUnwrapMat<double>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapMat<jdouble, double>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapchar(int id, const ScilabCharStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<char>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapSingle<jbyte, char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowchar(int id, const ScilabCharStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<char>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapRow<jbyte, char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatchar(int id, const ScilabCharStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<char>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapMat<jbyte, char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapuchar(int id, const ScilabUCharStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<unsigned char>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapSingle<jbyte, unsigned char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowuchar(int id, const ScilabUCharStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<unsigned char>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapRow<jbyte, unsigned char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatuchar(int id, const ScilabUCharStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<unsigned char>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapMat<jbyte, unsigned char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapshort(int id, const ScilabShortStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<short>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapSingle<jshort, short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowshort(int id, const ScilabShortStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<short>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapRow<jshort, short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatshort(int id, const ScilabShortStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<short>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapMat<jshort, short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<unsigned short>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapSingle<jshort, unsigned short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<unsigned short>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapRow<jshort, unsigned short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<unsigned short>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapMat<jshort, unsigned short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapint(int id, const ScilabIntStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<int>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapSingle<jint, int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowint(int id, const ScilabIntStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<int>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapRow<jint, int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatint(int id, const ScilabIntStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<int>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapMat<jint, int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapuint(int id, const ScilabUIntStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<unsigned int>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapSingle<jint, unsigned int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowuint(int id, const ScilabUIntStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<unsigned int>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapRow<jint, unsigned int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatuint(int id, const ScilabUIntStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<unsigned int>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapMat<jint, unsigned int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraplong(int id, const ScilabLongStackAllocator & allocator) const
@@ -426,17 +443,20 @@ void ScilabJavaEnvironmentWrapper::unwrapmatulong(int id, const ScilabULongStack
 
 void ScilabJavaEnvironmentWrapper::unwrapboolean(int id, const ScilabBooleanStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<int>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapSingle<jboolean, int, bool>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowboolean(int id, const ScilabBooleanStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<int>(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapRow<jboolean, int, bool>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatboolean(int id, const ScilabBooleanStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<int >(id, allocator);
+    JavaVM *vm = getScilabJavaVM ();
+    unwrapMat<jboolean, int, bool>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapstring(int id, const ScilabStringStackAllocator & allocator) const
