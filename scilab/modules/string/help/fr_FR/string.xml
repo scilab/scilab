@@ -65,6 +65,9 @@
         <para>
             pour les types Booléen, complexe, réel, entier, polynôme matrice le texte issu de <literal>string</literal> est dependant de la fonction <link linkend="format">format</link> (voir exemples).
         </para>
+        <para>
+            Notez que string([]) renvoie [].
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
