@@ -48,7 +48,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("cumsum(r, ""toto"")", refMsg);
 
 assert_checkfalse(execstr("cumsum(r, ""*"", ""toto"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"cumsum", 2, "native", "double");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"cumsum", 3, "native", "double");
 assert_checkerror("cumsum(r, ""*"", ""toto"")", refMsg);
 
 a = cumsum([1/%z %z/(1+2*%z)]);

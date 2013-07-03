@@ -19,7 +19,7 @@ function a=%r_cumsum(a, orient, typ)
         end
     case 3
         if and(typ <> ["native", "double"]) then
-            error(msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"cumsum", 2, "native", "double"));
+            error(msprintf(_("%s: Wrong value for input argument #%d: ""%s"" or ""%s"" expected.\n"),"cumsum", 3, "native", "double"));
         end
     end
 
