@@ -329,6 +329,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"arnoldi", &ArnoldiModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"data_structures", &DataStructuresModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"call_scilab", &CallScilabModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"completion", &CompletionModule::Load));
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {

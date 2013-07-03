@@ -15,29 +15,12 @@
 #include "BOOL.h" /* BOOL */
 
 /**
-* get names of all variables (global+local) on stack
-* duplicated names (global+local) are removed
+* get names of all variables (global+local) on scilab
 * @param[out]size of array
 * @param[in] BOOL to sort output
 * @return an array of strings
 */
 char **getVariablesName(int *sizearray, BOOL sorted);
-
-/**
-* get names of all local variables on stack
-* @param[out]size of array
-* @param[in] BOOL to sort output
-* @return an array of strings
-*/
-char **getLocalVariablesName(int *sizearray, BOOL sorted);
-
-/**
-* get names of all global variables on stack
-* @param[out]size of array
-* @param[in] BOOL to sort output
-* @return an array of strings
-*/
-char **getGlobalVariablesName(int *sizearray, BOOL sorted);
 
 #endif /*__GETVARIABLESNAME_H__ */
 /*--------------------------------------------------------------------------*/

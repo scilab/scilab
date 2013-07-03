@@ -15,8 +15,8 @@
 #include "MALLOC.h"
 #include "getvariablesname.h"
 #include "commandwords.h"
-#include "getfunctionslist.h"
-#include "getmacrosdictionary.h"
+#include "getfunctionsname.h"
+#include "getmacrosname.h"
 #include "completion_generic.h"
 #include "getfilesdictionary.h"
 #include "getfieldsdictionary.h"
@@ -24,6 +24,7 @@
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
 #include "os_strdup.h"
+#include "stdio.h"
 /*--------------------------------------------------------------------------*/
 char **completionOnDictionary(char **dictionary, int sizedictionary, char *somechars, int *sizearrayreturned);
 /*--------------------------------------------------------------------------*/
@@ -98,11 +99,10 @@ char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
     char **dictionary = NULL;
     int sizedictionary = 0;
 
-    dictionary = GetFunctionsList(&sizedictionary);
+    dictionary = getFunctionsName(&sizedictionary);
 
     if (dictionary)
     {
-        dictionary = SortDictionary(dictionary, sizedictionary);
         ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
         freePointerDictionary(dictionary, sizedictionary);
     }
@@ -116,22 +116,21 @@ char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
 char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
-    //char **dictionary = NULL;
-    //int sizedictionary = 0;
+    char **dictionary = NULL;
+    int sizedictionary = 0;
 
-    //dictionary = getcommandkeywords(&sizedictionary);
+    dictionary = getcommandkeywords(&sizedictionary);
 
-    //if (dictionary)
-    //{
-    //    dictionary = SortDictionary(dictionary, sizedictionary);
-    //    dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
-    //    ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
-    //    freePointerDictionary(dictionary, sizedictionary);
-    //}
-    //else
-    //{
-    //    *sizeArrayReturned = 0;
-    //}
+    if (dictionary)
+    {
+        dictionary = SortDictionary(dictionary, sizedictionary);
+        ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
+        freePointerDictionary(dictionary, sizedictionary);
+    }
+    else
+    {
+        *sizeArrayReturned = 0;
+    }
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
@@ -141,12 +140,10 @@ char **completionOnMacros(char *somechars, int *sizeArrayReturned)
     char **dictionary = NULL;
     int sizedictionary = 0;
 
-    dictionary = getmacrosdictionary(&sizedictionary);
+    dictionary = getMacrosName(&sizedictionary);
 
     if (dictionary)
     {
-        dictionary = SortDictionary(dictionary, sizedictionary);
-        dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
         ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
         freePointerDictionary(dictionary, sizedictionary);
     }
@@ -159,12 +156,11 @@ char **completionOnMacros(char *somechars, int *sizeArrayReturned)
 /*--------------------------------------------------------------------------*/
 char **completionOnVariables(char *somechars, int *sizeArrayReturned)
 {
+    int i = 0;
     char **ListWords = NULL;
     char **dictionary = NULL;
     int sizedictionary = 0;
-
     dictionary = getVariablesName(&sizedictionary, TRUE);
-
     ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
     freePointerDictionary(dictionary, sizedictionary);
 
@@ -190,8 +186,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
         char **dictionaryMacros = NULL;
         int sizedictionaryMacros = 0;
 
-        dictionaryMacros = getmacrosdictionary(&sizedictionaryMacros);
-        dictionaryMacros = SortDictionary(dictionaryMacros, sizedictionaryMacros);
+        dictionaryMacros = getMacrosName(&sizedictionaryMacros);
 
         /* Search if we have more than one definition */
         for ( i = 0; i < sizedictionaryVariables; i++)

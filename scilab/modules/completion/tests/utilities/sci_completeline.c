@@ -10,182 +10,145 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "completeLine.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
-#include "freeArrayOfString.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int sci_completeline(char *fname, unsigned long fname_len)
+int sci_completeline(char *fname, void *pvApiCtx)
 {
-    char *postCaretLine = NULL;
-    char **InputString_Parameter6 = NULL;
+    SciErr sciErr;
+    int* piAddr1 = NULL;
+    int* piAddr2 = NULL;
+    int* piAddr3 = NULL;
+    int* piAddr4 = NULL;
+    int* piAddr5 = NULL;
+    int* piAddr6 = NULL;
 
-    CheckRhs(5, 6);
-    CheckLhs(1, 1);
+    char *currentline       = NULL;
+    char *stringToAdd       = NULL;
+    char *filePattern       = NULL;
+    char *defaultPattern    = NULL;
+    int stringToAddIsPath   = FALSE;
+    char *postCaretLine     = NULL;
+    char *result            = NULL;
 
-    if (Rhs == 6)
+    CheckInputArgument(pvApiCtx, 5, 6);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
     {
-        if (GetType(6) == sci_strings)
-        {
-            int m6 = 0;
-            int n6 = 0;
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-            GetRhsVar(6, MATRIX_OF_STRING_DATATYPE, &m6, &n6, &InputString_Parameter6);
-            if ( (m6 == 1) && (n6 == 1) )
-            {
-                postCaretLine = InputString_Parameter6[0];
-            }
-            else
-            {
-                freeArrayOfString(InputString_Parameter6, m6 * n6);
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 6);
-                return 0;
-            }
-        }
-        else
+    if (getAllocatedSingleString(pvApiCtx, piAddr1, &currentline))
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (getAllocatedSingleString(pvApiCtx, piAddr2, &stringToAdd))
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (getAllocatedSingleString(pvApiCtx, piAddr3, &filePattern))
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if (getAllocatedSingleString(pvApiCtx, piAddr4, &defaultPattern))
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+        return 1;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 5, &piAddr5);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    if(getScalarBoolean(pvApiCtx, piAddr5, &stringToAddIsPath))
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: A boolean expected.\n"), fname, 5);
+        return 1;
+    }
+
+    if (*getNbInputArgument(pvApiCtx) == 6)
+    {
+        sciErr = getVarAddressFromPosition(pvApiCtx, 6, &piAddr6);
+        if (sciErr.iErr)
         {
-            Scierror(999, _("%s: Wrong type for input arguments.\n"), fname);
-            return 0;
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, piAddr6, &postCaretLine))
+        {
+            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
+            return 1;
         }
     }
     else
     {
-        InputString_Parameter6 = (char**)MALLOC(sizeof(char*) * 1);
-        InputString_Parameter6[0] = (char*)MALLOC(sizeof(char) * ((int)strlen("") + 1));
-        strcpy(InputString_Parameter6[0], "");
-        postCaretLine = InputString_Parameter6[0];
+        postCaretLine = (char*)MALLOC(sizeof(char));
+        postCaretLine[0] = '\0';
     }
 
-    if ( (GetType(1) == sci_strings) &&
-            (GetType(2) == sci_strings) &&
-            (GetType(3) == sci_strings) &&
-            (GetType(4) == sci_strings) &&
-            (GetType(5) == sci_boolean) )
+    result = completeLine(currentline, stringToAdd, filePattern, defaultPattern, (BOOL)stringToAddIsPath, postCaretLine);
+
+    if (result == NULL)
     {
-        char *currentline = NULL;
-        char *stringToAdd = NULL;
-        char *filePattern = NULL;
-        char *defaultPattern = NULL;
-        BOOL stringToAddIsPath = FALSE;
-        int l5 = 0;
-        int m = 0, n = 0;
-
-        char **InputString_Parameter1 = NULL;
-        char **InputString_Parameter2 = NULL;
-        char **InputString_Parameter3 = NULL;
-        char **InputString_Parameter4 = NULL;
-
-        char *result = NULL;
-
-        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m, &n, &InputString_Parameter1);
-        if ( (m == 1) && (n == 1) )
-        {
-            currentline = InputString_Parameter1[0];
-        }
-        else
-        {
-            freeArrayOfString(InputString_Parameter1, m * n);
-            freeArrayOfString(InputString_Parameter6, 1);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-            return 0;
-        }
-
-        GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &m, &n, &InputString_Parameter2);
-        if ( (m == 1) && (n == 1) )
-        {
-            stringToAdd = InputString_Parameter2[0];
-        }
-        else
-        {
-            freeArrayOfString(InputString_Parameter1, 1);
-            freeArrayOfString(InputString_Parameter2, m * n);
-            freeArrayOfString(InputString_Parameter6, 1);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-            return 0;
-        }
-
-        GetRhsVar(3, MATRIX_OF_STRING_DATATYPE, &m, &n, &InputString_Parameter3);
-        if ( (m == 1) && (n == 1) )
-        {
-            filePattern = InputString_Parameter3[0];
-        }
-        else
-        {
-            freeArrayOfString(InputString_Parameter1, 1);
-            freeArrayOfString(InputString_Parameter2, 1);
-            freeArrayOfString(InputString_Parameter3, m * n);
-            freeArrayOfString(InputString_Parameter6, 1);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
-            return 0;
-        }
-
-        GetRhsVar(4, MATRIX_OF_STRING_DATATYPE, &m, &n, &InputString_Parameter4);
-        if ( (m == 1) && (n == 1) )
-        {
-            defaultPattern = InputString_Parameter4[0];
-        }
-        else
-        {
-            freeArrayOfString(InputString_Parameter1, 1);
-            freeArrayOfString(InputString_Parameter2, 1);
-            freeArrayOfString(InputString_Parameter3, 1);
-            freeArrayOfString(InputString_Parameter4, m * n);
-            freeArrayOfString(InputString_Parameter6, 1);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 4);
-            return 0;
-        }
-
-        GetRhsVar(5, MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l5);
-        if ( (m == 1) && (n == 1) )
-        {
-            stringToAddIsPath = (BOOL) * istk(l5);
-        }
-        else
-        {
-            freeArrayOfString(InputString_Parameter1, 1);
-            freeArrayOfString(InputString_Parameter2, 1);
-            freeArrayOfString(InputString_Parameter3, 1);
-            freeArrayOfString(InputString_Parameter4, 1);
-            freeArrayOfString(InputString_Parameter6, 1);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 4);
-            return 0;
-        }
-
-        result = completeLine(currentline, stringToAdd, filePattern, defaultPattern, stringToAddIsPath, postCaretLine);
-
-        if (result == NULL)
-        {
-            int l = 0;
-            m = 0, n = 0;
-            CreateVar(Rhs + 1, STRING_DATATYPE,  &m, &n, &l);
-        }
-        else
-        {
-            n = 1;
-            CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, (m = (int)strlen(result), &m), &n, &result);
-            if (result)
-            {
-                FREE(result);
-                result = NULL;
-            }
-        }
-        LhsVar(1) = Rhs + 1;
-
-        freeArrayOfString(InputString_Parameter1, 1);
-        freeArrayOfString(InputString_Parameter2, 1);
-        freeArrayOfString(InputString_Parameter3, 1);
-        freeArrayOfString(InputString_Parameter4, 1);
-        freeArrayOfString(InputString_Parameter6, 1);
-
+        createSingleString(pvApiCtx, *getNbInputArgument(pvApiCtx) + 1, "");
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input arguments.\n"), fname);
+        createSingleString(pvApiCtx, *getNbInputArgument(pvApiCtx) + 1, result);
+        FREE(result);
+        result = NULL;
     }
+
+    freeAllocatedSingleString(currentline);
+    freeAllocatedSingleString(stringToAdd);
+    freeAllocatedSingleString(filePattern);
+    freeAllocatedSingleString(defaultPattern);
+    if(postCaretLine)
+    {
+        freeAllocatedSingleString(postCaretLine);
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = *getNbInputArgument(pvApiCtx) + 1; // rhs + 1
+    returnArguments(pvApiCtx);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

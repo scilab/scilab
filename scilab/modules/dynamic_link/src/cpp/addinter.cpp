@@ -16,27 +16,9 @@
 
 extern "C"
 {
-#include <string.h>
-#include <stdio.h>
 #include <stdlib.h>
-
-#include "core_math.h"
 #include "dynamic_link.h"
-#include "men_Sutils.h"
 #include "addinter.h"
-
-#include "do_error_number.h"
-#include "stack-c.h"
-#include "MALLOC.h" /* MALLOC */
-#include "sciprint.h"
-#include "Funtab.h"
-#include "warningmode.h"
-#include "GetenvB.h"
-#include "localization.h"
-#include "Scierror.h"
-#ifdef _MSC_VER
-#include "ExceptionMessage.h"
-#endif
 }
 
 int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleName, wchar_t** _pwstEntryPointName, int _iEntryPointSize)

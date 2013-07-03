@@ -374,6 +374,7 @@
     <ClInclude Include="ScilabLinesUpdate.h" />
     <ClInclude Include="TermReadAndProcess.h" />
     <ClInclude Include="tohome.h" />
+    <ClInclude Include="windows\TermCompletion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

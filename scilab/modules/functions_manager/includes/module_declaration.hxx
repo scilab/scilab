@@ -48,4 +48,5 @@
 #include "../../interpolation/includes/interpolation_gw.hxx"
 #include "../../polynomials/includes/polynomials_gw.hxx"
 #include "../../data_structures/includes/data_structures_gw.hxx"
+#include "../../completion/includes/completion_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */

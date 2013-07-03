@@ -18,8 +18,6 @@ endif
 COMPLETION_C_SOURCES = src/c/completion.c \
 src/c/completion_generic.c \
 src/c/getfilesdictionary.c \
-src/c/getfieldsdictionary.c \
-src/c/getmacrosdictionary.c \
 src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
 src/c/getPartLine.c \
@@ -32,11 +30,11 @@ COMPLETION_CPP_SOURCES = \
 src/cpp/completionDictionary.cpp \
 src/cpp/FieldsManager.cpp \
 src/cpp/XMLFieldsGetter.cpp \
-src/cpp/getfields.cpp
+src/cpp/getfields.cpp \
+src/cpp/getfieldsdictionary.cpp
 
 # List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
-sci_gateway/c/gw_completion.c
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_completion.cpp
 
 # Includes need for the compilation
 libscicompletion_la_CPPFLAGS = \
@@ -44,7 +42,6 @@ libscicompletion_la_CPPFLAGS = \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/cpp/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/functions/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
@@ -71,11 +68,11 @@ noinst_LTLIBRARIES = libscicompletion-algo.la
 
 # All the sources needed by libscicompletion.la
 libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(COMPLETION_CPP_SOURCES)
-libscicompletion_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscicompletion_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 libscicompletion_algo_la_CPPFLAGS = $(libscicompletion_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscicompletion_la_CPPFLAGS)
 
 ## Libraries necessary
@@ -98,7 +95,7 @@ libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
 
 #### completion : include files ####
 libscicompletion_la_includedir=$(pkgincludedir)
-libscicompletion_la_include_HEADERS = includes/gw_completion.h \
+libscicompletion_la_include_HEADERS = \
 includes/completion.h \
 includes/getCommonPart.h \
 includes/getPartLine.h \

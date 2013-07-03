@@ -1,7 +1,6 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - 2010 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,23 +9,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef __SCIQUIT__
-#define __SCIQUIT__
-
-#include "machine.h"
+#ifndef __GETMACROSNAME_H__
+#define __GETMACROSNAME_H__
 
 /**
- * Clean up and end Scilab
- * from fortran
- */
-void sciquit(void);
+* get scilab macros list (sorted by name)
+* macros on scilab and in libraries
+* @param[out] size of returned array
+* @return array of strings
+*/
+char **getMacrosName(int *sizearray);
 
-/**
- *  Cleanup (terminate) all the different features/modules of scilab
- * (GUI, TCL/TK, JVM ...)
- * @return 0 is the end of function is reached
- */
-int ExitScilab(void);
-
-#endif /*__SCIQUIT__*/
+#endif /* __GETMACROSNAME_H__ */
 /*--------------------------------------------------------------------------*/

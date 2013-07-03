@@ -35,6 +35,11 @@ public :
         return true;
     }
 
+    bool                    isContainer()
+    {
+        return true;
+    }
+
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);
 

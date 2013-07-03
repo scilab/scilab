@@ -26,9 +26,6 @@
     <ClCompile Include="console.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="console_main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ConvertSlash.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -77,9 +74,6 @@
     <ClCompile Include="TextToPrint.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="windows_main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WindowShow.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -104,9 +98,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="console_main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\includes\ConvertSlash.h">
@@ -158,9 +149,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextToPrint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows_main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowShow.h">

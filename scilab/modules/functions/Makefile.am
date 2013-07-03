@@ -3,8 +3,8 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-FUNCTIONS_C_SOURCES = src/c/getmacroslist.c
-	
+FUNCTIONS_C_SOURCES =
+
 GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_functions.c
 

@@ -239,7 +239,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
   <ItemGroup>
     <ClCompile Include="buildMainWindowTitle_Windows.c" />
     <ClCompile Include="console.c" />
-    <ClCompile Include="console_main.c" />
     <ClCompile Include="ConvertSlash.c" />
     <ClCompile Include="DllmainScilab_Windows.c" />
     <ClCompile Include="FilesAssociations.c" />
@@ -258,7 +257,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="spawncommand.c" />
     <ClCompile Include="splashScreen.cpp" />
     <ClCompile Include="TextToPrint.c" />
-    <ClCompile Include="windows_main.c" />
     <ClCompile Include="WindowShow.c" />
     <ClCompile Include="wmcopydata.c" />
     <ClCompile Include="WndThread.c" />
@@ -266,7 +264,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
   <ItemGroup>
     <ClInclude Include="buildMainWindowTitle_Windows.h" />
     <ClInclude Include="console.h" />
-    <ClInclude Include="console_main.h" />
     <ClInclude Include="..\..\..\includes\ConvertSlash.h" />
     <ClInclude Include="dynlib_scilab_windows.h" />
     <ClInclude Include="FilesAssociations.h" />
@@ -287,7 +284,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="spawncommand.h" />
     <ClInclude Include="splashScreen.h" />
     <ClInclude Include="TextToPrint.h" />
-    <ClInclude Include="windows_main.h" />
     <ClInclude Include="WindowShow.h" />
     <ClInclude Include="wmcopydata.h" />
     <ClInclude Include="WndThread.h" />

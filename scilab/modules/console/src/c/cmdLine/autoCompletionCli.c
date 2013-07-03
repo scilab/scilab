@@ -33,7 +33,6 @@
 #include "ConsoleRead.h"
 #include "SetConsolePrompt.h"
 #include "TermReadAndProcess.h"
-#include "sciquit.h"
 #include "getCommonPart.h"
 
 static void doCompletion(char *wk_buf, unsigned int *cursor, unsigned int *cursor_max);

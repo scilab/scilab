@@ -10,8 +10,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
@@ -19,50 +18,45 @@
 #include "MALLOC.h"
 #include "getPartLine.h"
 /*--------------------------------------------------------------------------*/
-int sci_getpartlevel(char *fname, unsigned long fname_len)
+int sci_getpartlevel(char *fname, void *pvApiCtx)
 {
-    CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    SciErr sciErr;
+    int* piAddr     = NULL;
+    char* pcInput   = NULL;
+    char* pcOutput  = NULL;
 
-    if (GetType(1) == sci_strings)
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
     {
-        int m = 0, n = 0;
-        char **InputString = NULL;
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m, &n, &InputString);
-        if ( (m == 1) && (n == 1) )
-        {
-            char *result = NULL;
-            result = getPartLevel(InputString[0]);
+    if (getAllocatedSingleString(pvApiCtx, piAddr, &pcInput))
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: A scalar string expected.\n"), fname, 1);
+        return 1;
+    }
 
-            if (result == NULL)
-            {
-                int l = 0;
-                m = 0, n = 0;
-                CreateVar(Rhs + 1, STRING_DATATYPE,  &m, &n, &l);
-            }
-            else
-            {
-                n = 1;
-                CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, (m = (int)strlen(result), &m), &n, &result);
-                if (result)
-                {
-                    FREE(result);
-                    result = NULL;
-                }
-            }
-            LhsVar(1) = Rhs + 1;
-        }
-        else
-        {
-            freeArrayOfString(InputString, m * n);
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-        }
+    pcOutput = getPartLevel(pcInput);
+    freeAllocatedSingleString(pcInput);
+
+    if (pcOutput == NULL)
+    {
+        createSingleString(pvApiCtx, *getNbInputArgument(pvApiCtx) + 1, "");
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        createSingleString(pvApiCtx, *getNbInputArgument(pvApiCtx) + 1, pcOutput);
+        FREE(pcOutput);
+        pcOutput = NULL;
     }
+
+    AssignOutputVariable(pvApiCtx, 1) = 2; // rhs + 1
+    returnArguments(pvApiCtx);
 
     return 0;
 }

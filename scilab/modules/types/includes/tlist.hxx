@@ -16,6 +16,7 @@
 #include <list>
 #include <vector>
 #include "list.hxx"
+#include "string.hxx"
 #include "dynlib_types.h"
 
 namespace types
@@ -57,6 +58,8 @@ public :
     virtual std::wstring            getTypeStr();
     /* return type as short string ( s, i, ce, l, ... )*/
     virtual std::wstring            getShortTypeStr();
+
+    String*                         getFieldNames();
 
 private :
 };

@@ -181,6 +181,9 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                         os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"), L"genlib", pFD->name_get().name_get().c_str(), pstPath[k]);
                         scilabWriteW(pstVerbose);
                     }
+
+                    symbol::Context::getInstance()->AddMacroFile(new MacroFile(pFD->name_get().name_get(), stFullPath, pstLibName));
+
                 }
             }
 

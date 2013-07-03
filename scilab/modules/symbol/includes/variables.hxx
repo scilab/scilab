@@ -58,6 +58,9 @@ public :
     types::InternalType* getInSpecificLevel(const Symbol& _key, int _iLevel) const;
 
     std::list<symbol::Symbol>& getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd) const;
+    std::list<std::wstring>& getVarsName();
+    std::list<std::wstring>& getMacrosName();
+    std::list<std::wstring>& getFunctionsName();
 
     /*globals*/
     bool isGlobalVisible(const symbol::Symbol& _key) const;

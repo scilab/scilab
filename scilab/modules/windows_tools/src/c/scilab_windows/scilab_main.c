@@ -20,7 +20,6 @@
 #include "sci_mode.h"
 #include "realmain.h"
 #include "sciprint.h"
-#include "sciquit.h"
 #include "LaunchScilabSignal.h"
 /*--------------------------------------------------------------------------*/
 static void interrupt_setup (void);
@@ -54,46 +53,5 @@ void interrupt (int an_int)
     (void) fflush (stdout);
     sciprint ("\n");
     longjmp (env, TRUE);		/* return to prompt  */
-}
-/*--------------------------------------------------------------------------*/
-void sci_clear_and_exit(int n) /* used with handlers */
-{
-#ifdef _DEBUG
-    char Message[256];
-    switch (n)
-    {
-        case SIGINT:
-            wsprintf(Message, "SIGINT Signal detected");
-            break;
-        case SIGILL:
-            wsprintf(Message, "SIGILL Signal detected");
-            break;
-        case SIGFPE:
-            wsprintf(Message, "SIGFPE Signal detected");
-            break;
-        case SIGSEGV:
-            wsprintf(Message, "SIGSEGV Signal detected");
-            break;
-        case SIGTERM:
-            wsprintf(Message, "SIGTERM Signal detected");
-            break;
-        case SIGBREAK:
-            wsprintf(Message, "SIGBREAK Signal detected");
-            break;
-        case SIGABRT:
-            wsprintf(Message, "SIGABRT Signal detected");
-            break;
-        default:
-            wsprintf(Message, "Unknown Signal detected");
-            break;
-    }
-    MessageBox(NULL, Message, "ERROR", MB_ICONWARNING);
-#else
-    /*
-    MessageBox(NULL,"Scilab has performed a illegal operation\nand will be shutdown.\n Please save your work ...",
-    "Warning",MB_ICONWARNING);
-    */
-#endif
-    sciquit();
 }
 /*--------------------------------------------------------------------------*/

@@ -15,8 +15,8 @@
 
 #include "getvariablesname.h"
 #include "commandwords.h"
-#include "getfunctionslist.h"
-#include "getmacroslist.h"
+#include "getfunctionsname.h"
+#include "getmacrosname.h"
 #include "BOOL.h"
 #include "ScilabKeywords.h"
 #include "MALLOC.h"
@@ -97,7 +97,7 @@ char **GetFunctionsName(void)
     return FunctionsName;
 #if 0
     int returnedArraySize = 0;
-    char **FunctionsName = GetFunctionsList(&returnedArraySize);
+    char **FunctionsName = getFunctionsName(&returnedArraySize);
     if (FunctionsName)
     {
         FunctionsName = (char**)REALLOC(FunctionsName, sizeof(char*) * (returnedArraySize + 1));
@@ -122,7 +122,7 @@ char **GetMacrosName(void)
 
 #if 0
     int returnedArraySize = 0;
-    char **MacrosName = getmacroslist(&returnedArraySize);
+    char **MacrosName = getMacrosName(&returnedArraySize);
     if (MacrosName)
     {
         MacrosName = (char**)REALLOC(MacrosName, sizeof(char*) * (returnedArraySize + 1));

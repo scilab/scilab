@@ -14,27 +14,22 @@ src/c/cs2st.c \
 src/c/getval.c \
 src/c/md5.c \
 src/c/texmacs.c \
-src/c/sciquit.c \
 src/c/str2sci.c \
 src/c/getmodules.c \
 src/c/getmemory.c \
-src/c/Funtab.c \
 src/c/scimem.c \
 src/c/isanan.c \
 src/c/xscion.c \
 src/c/returnanan.c \
-src/c/LoadFunctionsTab.c \
 src/c/loadversion.c \
 src/c/version.c \
 src/c/InitializeCore.c \
-src/c/TerminateCore.c \
 src/c/coretable.c \
 src/c/GetXmlFileEncoding.c \
 src/c/islittleendian.c \
 src/c/ifexpr.c \
 src/c/getcommandlineargs.c \
 src/c/callFunctionFromGateway.c \
-src/c/getvariablesname.c \
 src/c/commandwords.c \
 src/c/freeArrayOfString.c \
 src/c/getstaticdebuginfo.c \
@@ -63,13 +58,10 @@ src/c/InitializePreferences.c \
 src/c/getmaxMALLOC.c \
 src/c/sci_mem_alloc.c \
 src/c/hashtable/hashtable.c \
-src/c/hashtable/hashtable_itr.c \
 src/c/hashtable/hashtable_utility.c
 
 CORE_CPP_SOURCES = \
-src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
-src/cpp/search_functions.cpp \
 src/cpp/demangle.cpp \
 src/cpp/backtrace_print.cpp \
 src/cpp/storeCommand.cpp \
@@ -77,6 +69,9 @@ src/cpp/banner.cpp \
 src/cpp/with_module.cpp \
 src/cpp/runner.cpp \
 src/cpp/tasks.cpp \
+src/cpp/getvariablesname.cpp \
+src/cpp/getmacrosname.cpp \
+src/cpp/getfunctionsname.cpp \
 src/cpp/InitScilab.cpp
 
 
@@ -205,7 +200,6 @@ libscicore_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/history_manager/includes/ \
 -I$(top_srcdir)/modules/preferences/includes/ \
 -I$(top_srcdir)/modules/external_objects/includes/ \
--I$(top_srcdir)/modules/functions/includes/ \
 -I$(top_srcdir)/modules/jvm/includes/ \
 -I$(top_srcdir)/modules/gui/includes/ \
 -I$(top_srcdir)/modules/graphics/includes/ \
@@ -279,7 +273,6 @@ includes/MALLOC.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
 includes/scisparse.h \
-includes/sciquit.h \
 includes/stack-c.h \
 includes/sci_types.h \
 includes/stack-def.h \
@@ -293,7 +286,6 @@ includes/version.h \
 includes/getversion.h \
 includes/backtrace_print.h \
 includes/sci_mem_alloc.h \
-includes/hashtable_itr.h \
 includes/hashtable.h \
 includes/hashtable_utility.h
 

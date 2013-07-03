@@ -189,6 +189,21 @@ std::list<symbol::Symbol>& Scopes::getFunctionList(const std::wstring& _stModule
     return m_vars.getFunctionList(_stModuleName, _bFromEnd);
 }
 
+std::list<std::wstring>& Scopes::getVarsName()
+{
+    return m_vars.getVarsName();
+}
+
+std::list<std::wstring>& Scopes::getMacrosName()
+{
+    return m_vars.getMacrosName();
+}
+
+std::list<std::wstring>& Scopes::getFunctionsName()
+{
+    return m_vars.getFunctionsName();
+}
+
 void Scopes::print(std::wostream& ostr) const
 {
     ScopesList::const_iterator it = m_scopes.begin();

@@ -80,6 +80,21 @@ std::list<symbol::Symbol>& Context::getFunctionList(const std::wstring& _stModul
     return m_scopes->getFunctionList(_stModuleName, _bFromEnd);
 }
 
+std::list<std::wstring>& Context::getVarsName()
+{
+    return m_scopes->getVarsName();
+}
+
+std::list<std::wstring>& Context::getMacrosName()
+{
+    return m_scopes->getMacrosName();
+}
+
+std::list<std::wstring>& Context::getFunctionsName()
+{
+    return m_scopes->getFunctionsName();
+}
+
 bool Context::put(const symbol::Symbol& _key, types::InternalType &type)
 {
     m_scopes->put(_key, type);

@@ -147,7 +147,7 @@ r = completion('abo');
 assert_checkequal(r, ['abort'; 'about']);
 
 r = completion('abo', 'functions');
-assert_checkequal(r, 'about');
+assert_checkequal(r, ['abort'; 'about']);
 
 r = completion('abo', 'commands');
 assert_checkequal(r, 'abort');
@@ -176,7 +176,7 @@ assert_checkequal(graphic_properties, ['horizontalalignment']);
 assert_checkequal(files, []);
 
 [functions,commands,variables,macros,graphic_properties,files] = completion('abo');
-assert_checkequal(functions, ['about']);
+assert_checkequal(functions, ['abort'; 'about']);
 assert_checkequal(commands, ['abort']);
 assert_checkequal(variables, []);
 assert_checkequal(macros, []);

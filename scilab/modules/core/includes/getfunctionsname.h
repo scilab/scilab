@@ -9,15 +9,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef __GETFUNCTIONSLIST_H__
-#define __GETFUNCTIONSLIST_H__
+#ifndef __GETFUNCTIONSNAME_H__
+#define __GETFUNCTIONSNAME_H__
 
 /**
  * Return the list of the functions
  * @param[out] sizeList the size of the function list
  * @return all the functions
  */
-char **GetFunctionsList(int *sizeList);
+char **getFunctionsName(int *sizeList);
+
 /*--------------------------------------------------------------------------*/
-#endif /* __GETFUNCTIONSLIST_H__ */
+#endif /* __GETFUNCTIONSNAME_H__ */
 /*--------------------------------------------------------------------------*/

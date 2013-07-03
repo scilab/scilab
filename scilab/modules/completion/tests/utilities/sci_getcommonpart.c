@@ -10,61 +10,67 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#define __USE_DEPRECATED_STACK_FUNCTIONS__
-#include "stack-c.h"
+#include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
-#include "freeArrayOfString.h"
 #include "MALLOC.h"
 #include "getCommonPart.h"
 /*--------------------------------------------------------------------------*/
-int sci_getcommonpart(char *fname, unsigned long fname_len)
+int sci_getcommonpart(char *fname, void *pvApiCtx)
 {
-    CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    SciErr sciErr;
+    int* piAddr         = NULL;
+    char** pstrInput    = NULL;
+    char* pcOutput      = NULL;
+    int iRows           = 0;
+    int iCols           = 0;
+    int iSize           = 0;
 
-    if (GetType(1) == sci_strings)
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
     {
-        int m = 0, n = 0;
-        char **InputString = NULL;
-        char *Output = NULL;
+        printError(&sciErr, 0);
+        return 1;
+    }
 
-        GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m, &n, &InputString);
-        if ( ( (m == 1) && (n != 1) ) || ( (m != 1) && (n == 1) ) )
+    if (getAllocatedMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, &pstrInput))
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        return 1;
+    }
+
+    iSize = iRows * iCols;
+
+    if (((iRows == 1) && (iCols != 1) ) || ((iRows != 1) && (iCols == 1)))
+    {
+        pcOutput = getCommonPart(pstrInput, iSize);
+        freeAllocatedMatrixOfString(iRows, iCols, pstrInput);
+
+        if (pcOutput == NULL)
         {
-            Output = getCommonPart(InputString, m * n);
-            freeArrayOfString(InputString, m * n);
-
-            if (Output == NULL)
-            {
-                int l = 0;
-                m = 0, n = 0;
-                CreateVar(Rhs + 1, STRING_DATATYPE,  &m, &n, &l);
-            }
-            else
-            {
-                n = 1;
-                CreateVarFromPtr(Rhs + 1, STRING_DATATYPE, (m = (int)strlen(Output), &m), &n, &Output);
-                if (Output)
-                {
-                    FREE(Output);
-                    Output = NULL;
-                }
-            }
-
-            LhsVar(1) = Rhs + 1;
+            createSingleString(pvApiCtx, *getNbInputArgument(pvApiCtx) + 1, "");
         }
         else
         {
-            freeArrayOfString(InputString, m * n);
-            Scierror(999, _("%s: Wrong size for input argument %d.\n"), fname, 1);
+            createSingleString(pvApiCtx, *getNbInputArgument(pvApiCtx) + 1, pcOutput);
+            FREE(pcOutput);
+            pcOutput = NULL;
         }
+
+        AssignOutputVariable(pvApiCtx, 1) = 2; // rhs + 1
+        returnArguments(pvApiCtx);
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input arguments.\n"), fname);
+        freeAllocatedMatrixOfString(iRows, iCols, pstrInput);
+        Scierror(999, _("%s: Wrong size for input argument %d.\n"), fname, 1);
     }
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+

@@ -75,7 +75,7 @@ bool TList::exists(const std::wstring& _sKey)
         return false;
     }
 
-    String* pS = (*m_plData)[0]->getAs<types::String>();
+    String* pS = getFieldNames();
 
     //first field is the tlist type
     for (int i = 1 ; i < pS->getSize() ; i++)
@@ -100,7 +100,7 @@ int TList::getIndexFromString(const std::wstring& _sKey)
         return -1;
     }
 
-    String* pS = (*m_plData)[0]->getAs<types::String>();
+    String* pS = getFieldNames();
     //first field is the tlist type
     for (int i = 1 ; i < pS->getSize() ; i++)
     {
@@ -139,7 +139,7 @@ std::wstring TList::getTypeStr()
         return L"";
     }
 
-    return (*m_plData)[0]->getAs<types::String>()->get(0);
+    return getFieldNames()->get(0);
 }
 
 std::wstring TList::getShortTypeStr()
@@ -175,4 +175,10 @@ bool TList::set(const int _iIndex, InternalType* _pIT)
     (*m_plData)[_iIndex] = _pIT->clone();
     return true;
 }
+
+String* TList::getFieldNames()
+{
+    return (*m_plData)[0]->getAs<types::String>();
+}
+
 }

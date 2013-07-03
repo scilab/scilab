@@ -17,15 +17,15 @@
 //    macro, its name appears twice in the completion list: as a macro and as a variable.
 
 
-[a, b, c, d] = completion("with");
+[a, b, c, d] = completion("with")
 assert_checkequal(c, []);
 
 with_tk();
-[a, b, c, d]=completion("with");
+[a, b, c, d]=completion("with")
 assert_checkequal(c, []);
 
 clear with_tk
-[a, b, c, d]=completion("with");
+[a, b, c, d]=completion("with")
 assert_checkequal(c, []);
 
 with_tk();
@@ -41,8 +41,7 @@ ref_c = [];
 ref_d = ["with_foo"; ..
          "with_javasci"; ..
          "with_macros_source"; ..
-         "with_modelica_compiler"; ..
-         "with_tk"];
+         "with_modelica_compiler";];
 
 assert_checkequal(a, ref_a);
 assert_checkequal(b, ref_b);

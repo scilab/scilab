@@ -50,19 +50,10 @@
     <ClCompile Include="getCommonPart.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getfieldsdictionary.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getfilesdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getPartLine.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_completion.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_completion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="toolsdictionary.c">
@@ -77,7 +68,10 @@
     <ClCompile Include="..\cpp\XMLFieldsGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getmacrosdictionary.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_completion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\getfieldsdictionary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -112,12 +106,6 @@
     <ClInclude Include="..\..\includes\getPartLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_completion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="toolsdictionary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\getfields.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -130,7 +118,7 @@
     <ClInclude Include="..\cpp\XMLFieldsGetter.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\getmacrosdictionary.h">
+    <ClInclude Include="..\..\includes\toolsdictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -142,11 +130,11 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\completion.iss" />
-    <None Include="..\..\sci_gateway\completion_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\completion.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="..\..\sci_gateway\completion_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="completion.rc">

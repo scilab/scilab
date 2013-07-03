@@ -226,6 +226,60 @@ bool Variables::remove(const Symbol& _key)
 
 }
 
+std::list<std::wstring>& Variables::getVarsName()
+{
+    std::list<std::wstring>* plOut = new std::list<std::wstring>();
+    types::InternalType* pIT = NULL;
+    VarMap::const_iterator it = m_vars.begin();
+
+    for (; it != m_vars.end(); it++)
+    {
+        pIT = it->second->front()->m_pIT;
+        if (pIT && pIT->isCallable() == false)
+        {
+            plOut->push_back(it->first.name_get().c_str());
+        }
+    }
+
+    return *plOut;
+}
+
+std::list<std::wstring>& Variables::getMacrosName()
+{
+    std::list<std::wstring>* plOut = new std::list<std::wstring>();
+    types::InternalType* pIT = NULL;
+    VarMap::const_iterator it = m_vars.begin();
+
+    for (; it != m_vars.end(); it++)
+    {
+        pIT = it->second->front()->m_pIT;
+        if (pIT && (pIT->isMacro() || pIT->isMacroFile()))
+        {
+            plOut->push_back(it->first.name_get().c_str());
+        }
+    }
+
+    return *plOut;
+}
+
+std::list<std::wstring>& Variables::getFunctionsName()
+{
+    std::list<std::wstring>* plOut = new std::list<std::wstring>();
+    types::InternalType* pIT = NULL;
+    VarMap::const_iterator it = m_vars.begin();
+
+    for (; it != m_vars.end(); it++)
+    {
+        pIT = it->second->front()->m_pIT;
+        if (pIT && pIT->isFunction())
+        {
+            plOut->push_back(it->first.name_get().c_str());
+        }
+    }
+
+    return *plOut;
+}
+
 std::list<symbol::Symbol>& Variables::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd) const
 {
     bool bAll = _stModuleName == L"";

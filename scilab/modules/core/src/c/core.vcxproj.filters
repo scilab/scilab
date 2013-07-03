@@ -56,9 +56,6 @@
     <ClCompile Include="freeArrayOfString.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Funtab.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getcommandlineargs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -86,9 +83,6 @@
     <ClCompile Include="getval.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getvariablesname.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getversion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -107,9 +101,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_user2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\hashtable_core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ifexpr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -123,9 +114,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LaunchScilabSignal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadFunctionsTab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="loadversion.c">
@@ -152,16 +140,7 @@
     <ClCompile Include="scimem.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sciquit.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\search_functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="str2sci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TerminateCore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="texmacs.c">
@@ -230,9 +209,6 @@
     <ClCompile Include="hashtable\hashtable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hashtable\hashtable_itr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hashtable\hashtable_utility.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -246,6 +222,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\banner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\getfunctionsname.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\getmacrosname.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\getvariablesname.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -312,16 +297,10 @@
     <ClInclude Include="..\..\includes\freeArrayOfString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\Funtab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\getcommandlineargs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\GetExceptionCode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\getfunctionslist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getmemory.h">
@@ -361,9 +340,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\initMacOSXEnv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\intmacr2tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\isanan.h">
@@ -409,9 +385,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scimem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\sciquit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scirun.h">
@@ -534,9 +507,6 @@
     <ClInclude Include="gw_dynamic_generic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hashtable_core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ifexpr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -570,9 +540,6 @@
     <ClInclude Include="terme.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TerminateCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\partition.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -603,9 +570,6 @@
     <ClInclude Include="..\..\includes\hashtable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\hashtable_itr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\hashtable_private.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -616,6 +580,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\InitScilab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getfunctionsname.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\getmacrosname.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

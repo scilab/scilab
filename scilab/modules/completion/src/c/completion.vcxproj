@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/libxml2;../../../../libs/intl;../../../string/includes;../../../ast/includes;../../../types/includes;../../../xml/includes;../../../xml/src/cpp;../../../api_scilab/includes;../../../core/includes;../../../operations/includes;../../../dynamic_link/includes;../../../localization/includes;../../../output_stream/includes;../../../fileio/includes;../../../graphics/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -108,7 +108,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/libxml2;../../../../libs/intl;../../../string/includes;../../../ast/includes;../../../types/includes;../../../xml/includes;../../../xml/src/cpp;../../../api_scilab/includes;../../../core/includes;../../../operations/includes;../../../dynamic_link/includes;../../../localization/includes;../../../output_stream/includes;../../../fileio/includes;../../../graphics/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -134,7 +134,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/libxml2;../../../../libs/intl;../../../string/includes;../../../ast/includes;../../../types/includes;../../../xml/includes;../../../xml/src/cpp;../../../api_scilab/includes;../../../core/includes;../../../operations/includes;../../../dynamic_link/includes;../../../localization/includes;../../../output_stream/includes;../../../fileio/includes;../../../graphics/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -167,7 +167,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../../../functions/includes;../../../xml/includes;../../../xml/src/cpp;../../../string/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/libxml2;../../../../libs/intl;../../../string/includes;../../../ast/includes;../../../types/includes;../../../xml/includes;../../../xml/src/cpp;../../../api_scilab/includes;../../../core/includes;../../../operations/includes;../../../dynamic_link/includes;../../../localization/includes;../../../output_stream/includes;../../../fileio/includes;../../../graphics/includes;../../../symbol/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -194,8 +194,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_completion.cpp" />
     <ClCompile Include="..\cpp\FieldsManager.cpp" />
     <ClCompile Include="..\cpp\getfields.cpp" />
+    <ClCompile Include="..\cpp\getfieldsdictionary.cpp" />
     <ClCompile Include="..\cpp\XMLFieldsGetter.cpp" />
     <ClCompile Include="completeLine.c" />
     <ClCompile Include="completeLine_wrap_java.c" />
@@ -205,17 +207,14 @@
     <ClCompile Include="completion_wrap_java.c" />
     <ClCompile Include="DllmainCompletion.c" />
     <ClCompile Include="getCommonPart.c" />
-    <ClCompile Include="getfieldsdictionary.c" />
     <ClCompile Include="getfilesdictionary.c" />
-    <ClCompile Include="getmacrosdictionary.c" />
     <ClCompile Include="getPartLine.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_completion.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_completion.c" />
     <ClCompile Include="toolsdictionary.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\completeLine.h" />
     <ClInclude Include="..\..\includes\getfields.h" />
+    <ClInclude Include="..\..\includes\toolsdictionary.h" />
     <ClInclude Include="..\cpp\FieldsGetter.hxx" />
     <ClInclude Include="..\cpp\FieldsManager.hxx" />
     <ClInclude Include="..\cpp\XMLFieldsGetter.hxx" />
@@ -227,17 +226,14 @@
     <ClInclude Include="..\..\includes\getCommonPart.h" />
     <ClInclude Include="..\..\includes\getfieldsdictionary.h" />
     <ClInclude Include="getfilesdictionary.h" />
-    <ClInclude Include="..\..\includes\getmacrosdictionary.h" />
     <ClInclude Include="..\..\includes\getPartLine.h" />
-    <ClInclude Include="..\..\includes\gw_completion.h" />
-    <ClInclude Include="toolsdictionary.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\completion.pot" />
+    <None Include="..\..\sci_gateway\completion_gateway.xml" />
     <None Include="..\jni\Completion.i" />
     <None Include="core_import.def" />
     <None Include="..\..\completion.iss" />
-    <None Include="..\..\sci_gateway\completion_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
@@ -267,12 +263,21 @@
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\operations\operations.vcxproj">
+      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\string\src\c\string.vcxproj">
       <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
+      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\types\types.vcxproj">
+      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\xml\xml.vcxproj">
       <Project>{ef5402da-29fd-4f1b-b98b-d284d4e27c15}</Project>

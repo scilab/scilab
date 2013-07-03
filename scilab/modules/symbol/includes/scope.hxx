@@ -83,6 +83,9 @@ public :
 
     /*tools*/
     std::list<symbol::Symbol>& getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd);
+    std::list<std::wstring>& getVarsName();
+    std::list<std::wstring>& getMacrosName();
+    std::list<std::wstring>& getFunctionsName();
     void print(std::wostream& ostr) const;
 };
 

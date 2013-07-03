@@ -240,6 +240,9 @@ cd ..
   <ItemGroup>
     <ClCompile Include="..\..\..\mexlib\src\cpp\mexlib.cpp" />
     <ClCompile Include="..\cpp\banner.cpp" />
+    <ClCompile Include="..\cpp\getfunctionsname.cpp" />
+    <ClCompile Include="..\cpp\getmacrosname.cpp" />
+    <ClCompile Include="..\cpp\getvariablesname.cpp" />
     <ClCompile Include="..\cpp\InitScilab.cpp" />
     <ClCompile Include="..\cpp\runner.cpp" />
     <ClCompile Include="..\cpp\storeCommand.cpp" />
@@ -261,7 +264,6 @@ cd ..
     <ClCompile Include="exitCodeValue.c" />
     <ClCompile Include="force_link.c" />
     <ClCompile Include="freeArrayOfString.c" />
-    <ClCompile Include="Funtab.c" />
     <ClCompile Include="getcommandlineargs.c" />
     <ClCompile Include="getdynamicdebuginfo.c" />
     <ClCompile Include="getdynamicDebugInfo_Windows.c" />
@@ -273,16 +275,13 @@ cd ..
     <ClCompile Include="getstaticdebuginfo.c" />
     <ClCompile Include="getstaticDebugInfo_Windows.c" />
     <ClCompile Include="getval.c" />
-    <ClCompile Include="getvariablesname.c" />
     <ClCompile Include="getversion.c" />
     <ClCompile Include="GetXmlFileEncoding.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_core.c" />
     <ClCompile Include="gw_dynamic_generic.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_user.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_user2.c" />
-    <ClCompile Include="..\cpp\hashtable_core.cpp" />
     <ClCompile Include="hashtable\hashtable.c" />
-    <ClCompile Include="hashtable\hashtable_itr.c" />
     <ClCompile Include="hashtable\hashtable_utility.c" />
     <ClCompile Include="ifexpr.c" />
     <ClCompile Include="InitializeCore.c" />
@@ -291,7 +290,6 @@ cd ..
     <ClCompile Include="isanan.c" />
     <ClCompile Include="islittleendian.c" />
     <ClCompile Include="LaunchScilabSignal.c" />
-    <ClCompile Include="LoadFunctionsTab.c" />
     <ClCompile Include="loadversion.c" />
     <ClCompile Include="md5.c" />
     <ClCompile Include="mode_exec.c" />
@@ -300,15 +298,12 @@ cd ..
     <ClCompile Include="recursionFunction.c" />
     <ClCompile Include="returnanan.c" />
     <ClCompile Include="scimem.c" />
-    <ClCompile Include="sciquit.c" />
     <ClCompile Include="scirun.c" />
-    <ClCompile Include="..\cpp\search_functions.cpp" />
     <ClCompile Include="setformat.c" />
     <ClCompile Include="setieee.c" />
     <ClCompile Include="setlines.c" />
     <ClCompile Include="setPrecisionFPU.c" />
     <ClCompile Include="str2sci.c" />
-    <ClCompile Include="TerminateCore.c" />
     <ClCompile Include="texmacs.c" />
     <ClCompile Include="transposeMatrix.c" />
     <ClCompile Include="version.c" />
@@ -347,10 +342,10 @@ cd ..
     <ClInclude Include="..\..\includes\existfunction.h" />
     <ClInclude Include="..\..\includes\exit_status.hxx" />
     <ClInclude Include="..\..\includes\freeArrayOfString.h" />
-    <ClInclude Include="..\..\includes\Funtab.h" />
     <ClInclude Include="..\..\includes\getcommandlineargs.h" />
     <ClInclude Include="..\..\includes\GetExceptionCode.h" />
-    <ClInclude Include="..\..\includes\getfunctionslist.h" />
+    <ClInclude Include="..\..\includes\getfunctionsname.h" />
+    <ClInclude Include="..\..\includes\getmacrosname.h" />
     <ClInclude Include="..\..\includes\getmaxMALLOC.h" />
     <ClInclude Include="..\..\includes\getmemory.h" />
     <ClInclude Include="..\..\includes\getmodules.h" />
@@ -362,7 +357,6 @@ cd ..
     <ClInclude Include="..\..\includes\gw_user.h" />
     <ClInclude Include="..\..\includes\gw_user2.h" />
     <ClInclude Include="..\..\includes\hashtable.h" />
-    <ClInclude Include="..\..\includes\hashtable_itr.h" />
     <ClInclude Include="..\..\includes\hashtable_private.h" />
     <ClInclude Include="..\..\includes\hashtable_utility.h" />
     <ClInclude Include="..\..\includes\inffic.h" />
@@ -370,7 +364,6 @@ cd ..
     <ClInclude Include="..\..\includes\InitializePreferences.h" />
     <ClInclude Include="..\..\includes\initMacOSXEnv.h" />
     <ClInclude Include="..\..\includes\InitScilab.h" />
-    <ClInclude Include="..\..\includes\intmacr2tree.h" />
     <ClInclude Include="..\..\includes\isanan.h" />
     <ClInclude Include="..\..\includes\islittleendian.h" />
     <ClInclude Include="..\..\includes\LaunchScilabSignal.h" />
@@ -386,7 +379,6 @@ cd ..
     <ClInclude Include="..\..\includes\runner.hxx" />
     <ClInclude Include="..\..\includes\scilabDefaults.h" />
     <ClInclude Include="..\..\includes\scimem.h" />
-    <ClInclude Include="..\..\includes\sciquit.h" />
     <ClInclude Include="..\..\includes\scirun.h" />
     <ClInclude Include="..\..\includes\scisparse.h" />
     <ClInclude Include="..\..\includes\sci_types.h" />
@@ -432,7 +424,6 @@ cd ..
     <ClInclude Include="getstaticDebugInfo_Windows.h" />
     <ClInclude Include="getval.h" />
     <ClInclude Include="gw_dynamic_generic.h" />
-    <ClInclude Include="hashtable_core.h" />
     <ClInclude Include="ifexpr.h" />
     <ClInclude Include="inittypenames.h" />
     <ClInclude Include="LoadFunctionsTab.h" />
@@ -444,7 +435,6 @@ cd ..
     <ClInclude Include="run.h" />
     <ClInclude Include="str2sci.h" />
     <ClInclude Include="terme.h" />
-    <ClInclude Include="TerminateCore.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">

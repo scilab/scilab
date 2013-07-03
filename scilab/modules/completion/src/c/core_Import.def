@@ -3,12 +3,11 @@
 
 EXPORTS
 ;core
-GetFunctionsList
 getVariablesName
-com_
 freeArrayOfString
-vstk_
-intersci_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc
+getFunctionsName
+getcommandkeywords
+getMacrosName

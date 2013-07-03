@@ -98,14 +98,18 @@ char** findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning
     wchar_t* pstFileSpec = to_wide_string(filespec);
     wListFiles = findfilesW(pstPath, pstFileSpec, sizeListReturned, warning);
 
-    ListFiles = (char**)MALLOC(sizeof(char*) * *sizeListReturned);
-
-    for (i = 0 ; i < *sizeListReturned ; i++)
+    if (*sizeListReturned)
     {
-        ListFiles[i] = wide_string_to_UTF8(wListFiles[i]);
-        FREE(wListFiles[i]);
+        ListFiles = (char**)MALLOC(sizeof(char*) * *sizeListReturned);
+
+        for (i = 0 ; i < *sizeListReturned ; i++)
+        {
+            ListFiles[i] = wide_string_to_UTF8(wListFiles[i]);
+            FREE(wListFiles[i]);
+        }
+        FREE(wListFiles);
     }
-    FREE(wListFiles);
+
     FREE(pstPath);
     FREE(pstFileSpec);
     return ListFiles;

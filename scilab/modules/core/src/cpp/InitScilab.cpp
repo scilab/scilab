@@ -79,7 +79,6 @@ static void Add_true(void);
 static void Add_false(void);
 static void Add_Nan(void);
 static void Add_Inf(void);
-static void Add_WITH_DEMOS(void);      //temporary variable
 static void Add_All_Variables(void);
 static void Add_Double_Constant(std::wstring _szName, double _dblReal, double _dblImg, bool _bComplex);
 static void Add_Poly_Constant(std::wstring _szName, std::wstring _szPolyVar, int _iRank, types::Double * _pdblReal);
@@ -648,12 +647,6 @@ static void Add_All_Variables(void)
     Add_false();
     Add_Nan();
     Add_Inf();
-    Add_WITH_DEMOS();
-}
-
-static void Add_WITH_DEMOS(void)
-{
-    Add_Boolean_Constant(L"WITH_DEMOS", false);
 }
 
 static void Add_Nan(void)
