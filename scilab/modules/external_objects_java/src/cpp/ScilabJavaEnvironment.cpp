@@ -590,44 +590,16 @@ void ScilabJavaEnvironment::setfield(int id, const char * fieldName, int idarg)
         throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid field name"));
     }
 
-    if (!helper.getShowPrivate() && *fieldName == '_')
+    try
     {
-        throw ScilabJavaException(__LINE__, __FILE__, gettext("Private field: %s"), fieldName);
+        JavaVM * vm = getScilabJavaVM();
+        ScilabJavaObject::setField(vm, id, fieldName, idarg);
+    }
+    catch (const GiwsException::JniCallMethodException & e)
+    {
+        throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot set the field: %s"), fieldName);
     }
 
-    /*
-        PyObject * obj = scope.getObject(id);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
-
-        if (!PyObject_HasAttrString(obj, fieldName))
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid field name: %s"), fieldName);
-        }
-
-        PyObject * value = scope.getObject(idarg);
-        if (!value)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
-
-        int ret = PyObject_SetAttrString(obj, fieldName, value);
-        if (ret == -1)
-        {
-            if (PyErr_Occurred())
-            {
-                PyObject * type, * value, * traceback;
-                PyErr_Fetch(&type, &value, &traceback);
-                PyErr_NormalizeException(&type, &value, &traceback);
-                PyErr_Clear();
-
-                throw ScilabJavaException(__LINE__, __FILE__, type, value, traceback, gettext("Unable to set the field: %s"), fieldName);
-            }
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Unable to set the field: %s"), fieldName);
-        }
-    */
     writeLog("setfield", "Value successfully set.");
 }
 
@@ -635,56 +607,15 @@ int ScilabJavaEnvironment::getfield(int id, const char * fieldName)
 {
     writeLog("getfield", "Get the field named %s on object with id %d.", fieldName, id);
 
-    JavaVM *vm = getScilabJavaVM();
-    int ret = ScilabJavaObject::getField(vm, id, fieldName);
-    return ret;
-    //    allocator.allocate(1, 1, &str);
-
-
-
-    /*
     if (*fieldName == '\0')
     {
         throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid field name"));
     }
 
-    if (!helper.getShowPrivate() && *fieldName == '_')
-    {
-        throw ScilabJavaException(__LINE__, __FILE__, gettext("Private field: %s"), fieldName);
-    }
+    JavaVM * vm = getScilabJavaVM();
+    int ret = ScilabJavaObject::getField(vm, id, fieldName);
 
-        PyObject * obj = scope.getObject(id);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
-
-        if (!PyObject_HasAttrString(obj, fieldName))
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid field name: %s"), fieldName);
-        }
-
-        PyObject * field = PyObject_GetAttrString(obj, fieldName);
-        if (!field)
-        {
-            if (PyErr_Occurred())
-            {
-                PyObject * type, * value, * traceback;
-                PyErr_Fetch(&type, &value, &traceback);
-                PyErr_NormalizeException(&type, &value, &traceback);
-                PyErr_Clear();
-
-                throw ScilabJavaException(__LINE__, __FILE__, type, value, traceback, gettext("Unable to get the field value: %s"), fieldName);
-            }
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Unable to get the field value: %s"), fieldName);
-        }
-
-        int ret = scope.addObject(field);
-        writeLog("getfield", "returned id %d.", ret);
-
-        return ret;
-    */
-    return 0;
+    return ret;
 }
 
 int ScilabJavaEnvironment::getfieldtype(int id, const char * fieldName)
