@@ -1,5 +1,5 @@
 jallowClassReloading
-jarray
+jarray                   - Tests are failing
 jautoUnwrap
 jcast
 jconvMatrixMethod
@@ -11,5 +11,5 @@ junwrap
 jvoid
 jwrapinchar
 jwrapinfloat
-jwrap (a faire pour les autres types)
+jwrap                    - Other types should be managed
 new

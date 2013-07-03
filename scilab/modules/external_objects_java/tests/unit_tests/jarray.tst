@@ -6,6 +6,10 @@
 // =============================================================================
 
 a = jarray("java.lang.String", 2, 2, 3);
+str = "Hi Jims again !!"
 // array insertion
 a(0, 0, 2) = "Hi Jims !";
-a(1, 0, 2) = "Hi Jims again !!"
+a(1, 0, 2) = str;
+
+assert_checkequal(length(str), length(a(1, 0, 2)));
+assert_checkequal(str, a(1, 0, 2));

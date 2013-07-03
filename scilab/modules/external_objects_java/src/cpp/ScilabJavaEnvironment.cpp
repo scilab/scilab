@@ -677,84 +677,10 @@ int ScilabJavaEnvironment::getarrayelement(int id, int * index, int length)
 
         writeLog("getarrayelement", "Get element from array with id %d and with index: %s.", id, os.str().c_str());
     }
-    /*
-        PyObject * obj = scope.getObject(id);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
 
-        if (!PyList_Check(obj) && !PyArray_Check(obj))
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Not a list or an array"));
-        }
+    JavaVM * vm = getScilabJavaVM();
 
-        if (length == 0)
-        {
-            return 0;
-        }
-
-        if (PyList_Check(obj))
-        {
-            for (int i = 0; i < length; i++)
-            {
-                if (index[i] < 0 || index[i] >= PyList_Size(obj))
-                {
-                    throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid index"));
-                }
-                obj = PyList_GetItem(obj, index[i]);
-                if (i != length - 1 && !PyList_Check(obj))
-                {
-                    throw ScilabJavaException(__LINE__, __FILE__, gettext("Not a list"));
-                }
-            }
-    	Py_INCREF(obj);
-        }
-        else if (PyArray_Check(obj))
-        {
-            PyArrayObject * arr = reinterpret_cast<PyArrayObject *>(obj);
-            npy_intp * ind = reinterpret_cast<npy_intp *>(index);
-
-            if (length != PyArray_NDIM(arr))
-            {
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid index dimension"));
-            }
-
-            npy_intp * dims = PyArray_DIMS(arr);
-
-            if (sizeof(int) != sizeof(npy_intp))
-            {
-                ind = new npy_intp[length];
-                for (int i = 0; i < length; i++)
-                {
-                    if (index[i] < 0 || index[i] >= dims[i])
-                    {
-                        delete[] ind;
-                        throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid index at position %d"), i + 1);
-                    }
-
-                    ind[i] = static_cast<npy_intp>(index[i]);
-                }
-            }
-
-            obj = PyArray_GETITEM(arr, PyArray_GetPtr(arr, ind));
-
-            if (sizeof(int) != sizeof(npy_intp))
-            {
-                delete[] ind;
-            }
-        }
-        else
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Must be a list or a Numpy array"));
-        }
-
-        int ret = scope.addObject(obj);
-        writeLog("getarrayelement", "returned id %d.", ret);
-
-        return ret;
-    */
-    return 0;
+    return ScilabJavaObject::getArrayElement(vm, id, index, length);
 }
 
 void ScilabJavaEnvironment::setarrayelement(int id, int * index, int length, int idArg)
@@ -771,82 +697,11 @@ void ScilabJavaEnvironment::setarrayelement(int id, int * index, int length, int
 
         writeLog("setarrayelement", "Set element with id %d in array with id %d and with index: %s.", idArg, id, os.str().c_str());
     }
-    /*
-        PyObject * obj = scope.getObject(id);
-        if (!obj)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
 
-        PyObject * value = scope.getObject(idArg);
-        if (!value)
-        {
-            throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid object with id %d"), id);
-        }
+    JavaVM * vm = getScilabJavaVM();
 
-        if (PyList_Check(obj))
-        {
-            if (length == 0)
-            {
-                return;
-            }
+    ScilabJavaObject::setArrayElement(vm, id, index, length, idArg);
 
-            for (int i = 0; i < length - 1; i++)
-            {
-                if (index[i] < 0 || index[i] >= PyList_Size(obj))
-                {
-                    throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid index at position %d"), i + 1);
-                }
-                obj = PyList_GetItem(obj, index[i]);
-                if (!PyList_Check(obj))
-                {
-                    throw ScilabJavaException(__LINE__, __FILE__, gettext("Not a list at position %d"), index[i]);
-                }
-            }
-
-            Py_INCREF(value);
-            PyList_SetItem(obj, index[length - 1], value);
-        }
-        else if (PyArray_Check(obj))
-        {
-            PyArrayObject * arr = reinterpret_cast<PyArrayObject *>(obj);
-            npy_intp * ind = reinterpret_cast<npy_intp *>(index);
-
-            if (length != PyArray_NDIM(arr))
-            {
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid index dimension"));
-            }
-
-            npy_intp * dims = PyArray_DIMS(arr);
-
-            if (sizeof(int) != sizeof(npy_intp))
-            {
-                ind = new npy_intp[length];
-                for (int i = 0; i < length; i++)
-                {
-                    if (index[i] < 0 || index[i] >= dims[i])
-                    {
-                        delete[] ind;
-                        throw ScilabJavaException(__LINE__, __FILE__, gettext("Invalid index at position %d"), i);
-                    }
-
-                    ind[i] = static_cast<npy_intp>(index[i]);
-                }
-            }
-
-            int ret = PyArray_SETITEM(arr, PyArray_GetPtr(arr, ind), value);
-
-            if (sizeof(int) != sizeof(npy_intp))
-            {
-                delete[] ind;
-            }
-
-            if (ret == -1)
-            {
-                throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot set the value in the array"));
-            }
-        }
-    */
     writeLog("setarrayelement", "Successfully set");
 }
 
