@@ -1,25 +1,30 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine orientandtype(orient,type)
       INCLUDE 'stack.h'
       integer orient,type,native
       parameter (native=0)
- 
+
       if(rhs.eq.3) then
 c     .  last argument must be "native" or "double" and previous must be
 c     .  an orientation flag
          call getresulttype(top,type)
          if (type.lt.0) then
+            top=top-1
+            call  getorient(top,orient)
+            if (err.gt.0.or.err1.gt.0) return
             err=3
             if (type.eq.-2) then
                call error(55)
+            elseif (type.eq.-3) then
+               call error(89)
             else
                call error(116)
             endif
@@ -30,7 +35,7 @@ c     .  an orientation flag
          if(err.gt.0) return
          top=top-1
       elseif(rhs.eq.2) then
-c     .  last argument must be an orientation flag or "native" or "double" 
+c     .  last argument must be an orientation flag or "native" or "double"
          call getresulttype(top,type)
          if (type.lt.0) then
 c     .     orientation flag
@@ -55,7 +60,7 @@ c
       integer iadr,sadr
 c
       data row/27/,col/12/,star/47/,mtlb/22/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 
@@ -107,13 +112,15 @@ c     -------------------------------
       integer type
       character*7 temp
       integer iadr
-c     
+c
       iadr(l)=l+l-1
 
       il=iadr(lstk(k))
       if (istk(il).lt.0) il=iadr(istk(il+1))
-      if (istk(il).ne.10.or.istk(il+1).ne.1.or.istk(il+2).ne.1) then
+      if (istk(il).ne.10) then
          type=-2
+      elseif (istk(il+1).ne.1.or.istk(il+2).ne.1) then
+         type=-3
       else
          n=min(7,istk(il+5)-1)
          id=il+4

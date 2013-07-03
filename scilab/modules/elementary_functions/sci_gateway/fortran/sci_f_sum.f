@@ -39,9 +39,13 @@ c
       if(istk(il0).lt.0) il0=iadr(istk(il0+1))
       ref=ilr.ne.il0
 
-
       if(istk(il0).eq.1) then
 c     standard matrix case
+c     the third argument is optional. It's not used here
+         if(rhs.eq.3) then
+            top=tops-1
+            rhs=rhs-1
+         endif
          call  orientandtype(sel,type)
          if (err.gt.0.or.err1.gt.0) return
          if (sel.gt.2) return
@@ -126,6 +130,10 @@ c     .  *call* polelm
          return
       elseif(istk(il0).eq.5) then
 c     .  sparse matrix case
+c     the third argument is optional. It is not used here
+         if(rhs.eq.3) then
+            goto 100
+         endif
          call  orientandtype(sel,type)
          if (err.gt.0.or.err1.gt.0) return
          if(sel.ne.0) goto 100
