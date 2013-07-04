@@ -118,7 +118,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     int useproxy;
 
     char *tp, *field, *value, *eqptr;
-    int eqpos, tplen;
+    int eqpos = 0 , tplen;
 
     //construct ATOMS config file path
     configPtr = (char *)MALLOC(PATH_MAX * sizeof(char));
@@ -176,7 +176,6 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     useproxy = 0;
 
     tp = field = value = eqptr = NULL;
-    eqpos = tplen = 0;
 
 
     // parse each line to extract variables

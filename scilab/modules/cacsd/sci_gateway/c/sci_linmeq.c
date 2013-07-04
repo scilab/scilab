@@ -590,7 +590,6 @@ int sci_linmeq(char *fname, unsigned long fname_len)
                 }
             }
         }
-        NM = M;
     }
     else if (TASK == 2)
     {
@@ -603,7 +602,6 @@ int sci_linmeq(char *fname, unsigned long fname_len)
                 NDWORK = Max(NDWORK, 2 * (N * N + N));
             }
         }
-        NM = N;
     }
 
     if (TASK != 3)
@@ -623,7 +621,6 @@ int sci_linmeq(char *fname, unsigned long fname_len)
 
         MXMN = Min(P, N);
         NDWORK = Max(1, 4 * N + MXMN);
-        NM = N;
     }
 
     // Allocate variable dimension local arrays.

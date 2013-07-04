@@ -1098,8 +1098,8 @@ MarkowitzProducts( MatrixPtr Matrix, int Step )
     for (I = Step; I <= Size; I++)
     {
         /* If chance of overflow, use real numbers. */
-        if ((*pMarkowitzRow > LARGEST_SHORT_INTEGER AND *pMarkowitzCol != 0) OR
-                (*pMarkowitzCol > LARGEST_SHORT_INTEGER AND *pMarkowitzRow != 0))
+        if ((*pMarkowitzRow > LARGEST_SHORT_INTEGER AND * pMarkowitzCol != 0) OR
+                (*pMarkowitzCol > LARGEST_SHORT_INTEGER AND * pMarkowitzRow != 0))
         {
             fProduct = (double)(*pMarkowitzRow++) * (double)(*pMarkowitzCol++);
             if (fProduct >= LARGEST_LONG_INTEGER)
@@ -1113,7 +1113,7 @@ MarkowitzProducts( MatrixPtr Matrix, int Step )
         }
         else
         {
-            Product = *pMarkowitzRow++ * *pMarkowitzCol++;
+            Product = *pMarkowitzRow++ **pMarkowitzCol++;
             if ((*pMarkowitzProduct++ = Product) == 0)
             {
                 Matrix->Singletons++;
@@ -2801,8 +2801,6 @@ ExchangeColElements( MatrixPtr Matrix, int Row1, register  ElementPtr Element1, 
             }
             while (pElement->Row < Row2);
 
-            ElementBelowRow2 = Element2->NextInCol;
-
             /* Move Element2 to Row1. */
             *ElementAboveRow2 = Element2->NextInCol;
             *ElementAboveRow1 = Element2;
@@ -2947,8 +2945,6 @@ ExchangeRowElements( MatrixPtr Matrix, int Col1, register ElementPtr Element1, i
                 pElement = *ElementLeftOfCol2;
             }
             while (pElement->Col < Col2);
-
-            ElementRightOfCol2 = Element2->NextInRow;
 
             /* Move Element2 to Col1. */
             *ElementLeftOfCol2 = Element2->NextInRow;
