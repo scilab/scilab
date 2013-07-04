@@ -71,7 +71,7 @@ struct OLE_directory_entry
     int element_name_byte_count;
 
     char element_type;
-    char element_colour;
+    char element_color;
 
     unsigned int left_child;
     unsigned int right_child;
