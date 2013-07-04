@@ -70,7 +70,7 @@ taucs_chdel(Cp)
 stacksize(3000000)  // the last PlotSparse need memory
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
-// compute the factorisation
+// compute the factorization
 Cptr = taucs_chfact(A);
 // retrieve the factor at scilab level
 [Ct, p] = taucs_chget(Cptr);

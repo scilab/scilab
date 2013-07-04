@@ -397,7 +397,7 @@ integer ny,ng
                             <term>info(11)</term>
                             <listitem>
                                 <para>
-                                    preconditioner computation and LU-factorisation routine for <literal>psol</literal>.
+                                    preconditioner computation and LU-factorization routine for <literal>psol</literal>.
                                     Treat as dummy argument if <literal>info(8)=0</literal>. Set
                                     <literal>info(11)=1</literal> and provide a <literal>pjac</literal> routine if the
                                     <link linkend="external">external</link> <literal>psol</literal> should use a specific routine, else set
@@ -526,7 +526,7 @@ integer neq,iwp(*),ier,ipar(*)
                     <para>
                         <link linkend="external">external</link> (function or list or string). Computes the value of
                         <literal>dg/dy + cj*dg/dydot</literal> for a given value of parameter
-                        <literal>cj</literal> and LU-factorises it in double and int arrays.
+                        <literal>cj</literal> and LU-factorizes it in double and int arrays.
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -549,7 +549,7 @@ list(pjac,x1,x2,...)
 pjac(neq,t,y,ydot,h,cj,rewt,savr,x1,x2,...)
  ]]></programlisting>
                             <para>
-                                <literal>pjac</literal> still returns factorised
+                                <literal>pjac</literal> still returns factorized
                                 <literal>dg/dy + cj*dg/dydot</literal> as a function of
                                 <literal>(neq,t,y,ydot,h,cj,rewt,savr,x1,x2,...)</literal>.
                             </para>

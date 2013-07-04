@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="umf_lufact">
     <refnamediv>
         <refname>umf_lufact</refname>
-        <refpurpose>lu factorisation of a sparse matrix</refpurpose>
+        <refpurpose>lu factorization of a sparse matrix</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -28,7 +28,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function computes a LU factorisation of the sparse matrix A 
+            This function computes a LU factorization of the sparse matrix A 
             () and return at the scilab level, 
             a pointer (LU_ptr) to a handle of the LU factors (L,U,p,q,R) 
             (the memory used for them is "outside" scilab stack). 
@@ -43,7 +43,7 @@
         </para>
         <para>
             When such a 
-            factorisation have been computed, a linear system must be solved
+            factorization have been computed, a linear system must be solved
             with umf_lusolve (in general x = umf_lusolve(LU_ptr, b) but others
             options are possible, see <link linkend="umf_lusolve">umf_lusolve</link>.
             <emphasis role="bold">
@@ -79,7 +79,7 @@ umf_ludel(Lup)
 // a real (but small)  example
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
-// compute the factorisation
+// compute the factorization
 Lup = umf_lufact(A); 
 b = rand(size(A,1),1); // a random rhs
 // use umf_lusolve for solving Ax=b
