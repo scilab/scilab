@@ -73,7 +73,8 @@ EXTERNAL_OBJECTS_CPP_SOURCES = src/cpp/ScilabEnvironments.cpp \
 			       src/cpp/getEnvId.cpp \
 			       src/cpp/ScilabOptionsSetter.cpp \
 			       src/cpp/ScilabAutoCleaner.cpp \
-			       src/cpp/ExternalObjectsFunction.cpp
+			       src/cpp/ExternalObjectsFunction.cpp \
+			       src/cpp/wrapInFloat.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_external_objects.c
 

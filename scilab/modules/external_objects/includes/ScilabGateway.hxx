@@ -114,7 +114,7 @@ public:
 
     static int wrapAsRef(char * fname, const int envId, void * pvApiCtx);
 
-    //static int wrapInFloat(char * fname, const int envId, void * pvApiCtx);
+    static int wrapInFloat(char * fname, const int envId, void * pvApiCtx);
 };
 }
 

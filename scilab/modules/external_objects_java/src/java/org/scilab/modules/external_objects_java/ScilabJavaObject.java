@@ -70,9 +70,6 @@ public class ScilabJavaObject {
         unwrappableType.put(String.class, 5);
         unwrappableType.put(String[].class, 6);
         unwrappableType.put(String[][].class, 7);
-        unwrappableType.put(int.class, 23);
-        unwrappableType.put(int[].class, 24);
-        unwrappableType.put(int[][].class, 25);
         unwrappableType.put(boolean.class, 8);
         unwrappableType.put(boolean[].class, 9);
         unwrappableType.put(boolean[][].class, 10);
@@ -85,20 +82,23 @@ public class ScilabJavaObject {
         unwrappableType.put(char.class, 20);
         unwrappableType.put(char[].class, 21);
         unwrappableType.put(char[][].class, 22);
-        unwrappableType.put(float.class, 23);
-        unwrappableType.put(float[].class, 35);
-        unwrappableType.put(float[][].class, 36);
-        unwrappableType.put(long.class, 37);
+        unwrappableType.put(int.class, 23);
+        unwrappableType.put(int[].class, 24);
+        unwrappableType.put(int[][].class, 25);
+        unwrappableType.put(long.class, 29);
         unwrappableType.put(long[].class, 30);
         unwrappableType.put(long[][].class, 31);
-        unwrappableType.put(Double.class, 29);
-        unwrappableType.put(Integer.class, 30);
-        unwrappableType.put(Long.class, 31);
-        unwrappableType.put(Byte.class, 32);
-        unwrappableType.put(Character.class, 34);
-        unwrappableType.put(Boolean.class, 35);
-        unwrappableType.put(Float.class, 36);
-        unwrappableType.put(Short.class, 37);
+        unwrappableType.put(float.class, 35);
+        unwrappableType.put(float[].class, 36);
+        unwrappableType.put(float[][].class, 37);
+        unwrappableType.put(Double.class, 2);
+        unwrappableType.put(Integer.class, 23);
+        unwrappableType.put(Long.class, 29);
+        unwrappableType.put(Byte.class, 11);
+        unwrappableType.put(Character.class, 20);
+        unwrappableType.put(Boolean.class, 8);
+        unwrappableType.put(Float.class, 35);
+        unwrappableType.put(Short.class, 17);
 
         arraySJO[0] = new ScilabJavaObject(null, null);
     }
@@ -699,7 +699,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapDouble(final double x) {
+    public static int wrap(final double x) {
         return new ScilabJavaObject(x, double.class).id;
     }
 
@@ -707,7 +707,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapDouble(final double[] x) {
+    public static int wrap(final double[] x) {
         return new ScilabJavaObject(x, double[].class).id;
     }
 
@@ -715,7 +715,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapDouble(final double[][] x) {
+    public static int wrap(final double[][] x) {
         return new ScilabJavaObject(x, double[][].class).id;
     }
 
@@ -723,7 +723,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapInt(final int x) {
+    public static int wrap(final int x) {
         return new ScilabJavaObject(x, int.class).id;
     }
 
@@ -731,7 +731,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapInt(final int[] x) {
+    public static int wrap(final int[] x) {
         return new ScilabJavaObject(x, int[].class).id;
     }
 
@@ -739,7 +739,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapInt(final int[][] x) {
+    public static int wrap(final int[][] x) {
         return new ScilabJavaObject(x, int[][].class).id;
     }
 
@@ -747,7 +747,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapUInt(final long x) {
+    public static int wrap(final long x) {
         return new ScilabJavaObject(x, long.class).id;
     }
 
@@ -755,7 +755,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapUInt(final long[] x) {
+    public static int wrap(final long[] x) {
         return new ScilabJavaObject(x, long[].class).id;
     }
 
@@ -763,7 +763,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapUInt(final long[][] x) {
+    public static int wrap(final long[][] x) {
         return new ScilabJavaObject(x, long[][].class).id;
     }
 
@@ -771,7 +771,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapByte(final byte x) {
+    public static int wrap(final byte x) {
         return new ScilabJavaObject(x, byte.class).id;
     }
 
@@ -779,7 +779,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapByte(final byte[] x) {
+    public static int wrap(final byte[] x) {
         return new ScilabJavaObject(x, byte[].class).id;
     }
 
@@ -787,7 +787,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapByte(final byte[][] x) {
+    public static int wrap(final byte[][] x) {
         return new ScilabJavaObject(x, byte[][].class).id;
     }
 
@@ -795,7 +795,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapShort(final short x) {
+    public static int wrap(final short x) {
         return new ScilabJavaObject(x, short.class).id;
     }
 
@@ -803,7 +803,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapShort(final short[] x) {
+    public static int wrap(final short[] x) {
         return new ScilabJavaObject(x, short[].class).id;
     }
 
@@ -811,7 +811,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapShort(final short[][] x) {
+    public static int wrap(final short[][] x) {
         return new ScilabJavaObject(x, short[][].class).id;
     }
 
@@ -819,55 +819,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapUShort(final int x) {
-        return new ScilabJavaObject(x, int.class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapUShort(final int[] x) {
-        return new ScilabJavaObject(x, int[].class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapUShort(final int[][] x) {
-        return new ScilabJavaObject(x, int[][].class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapUByte(final short x) {
-        return new ScilabJavaObject(x, short.class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapUByte(final short[] x) {
-        return new ScilabJavaObject(x, short[].class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapUByte(final short[][] x) {
-        return new ScilabJavaObject(x, short[][].class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapString(final String x) {
+    public static int wrap(final String x) {
         return new ScilabJavaObject(x, String.class).id;
     }
 
@@ -875,7 +827,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapString(final String[] x) {
+    public static int wrap(final String[] x) {
         return new ScilabJavaObject(x, String[].class).id;
     }
 
@@ -883,7 +835,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapString(final String[][] x) {
+    public static int wrap(final String[][] x) {
         return new ScilabJavaObject(x, String[][].class).id;
     }
 
@@ -891,7 +843,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapBoolean(final boolean x) {
+    public static int wrap(final boolean x) {
         return new ScilabJavaObject(x, boolean.class).id;
     }
 
@@ -899,7 +851,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapBoolean(final boolean[] x) {
+    public static int wrap(final boolean[] x) {
         return new ScilabJavaObject(x, boolean[].class).id;
     }
 
@@ -907,7 +859,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapBoolean(final boolean[][] x) {
+    public static int wrap(final boolean[][] x) {
         return new ScilabJavaObject(x, boolean[][].class).id;
     }
 
@@ -915,7 +867,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapChar(final char x) {
+    public static int wrap(final char x) {
         return new ScilabJavaObject(x, char.class).id;
     }
 
@@ -923,7 +875,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapChar(final char[] x) {
+    public static int wrap(final char[] x) {
         return new ScilabJavaObject(x, char[].class).id;
     }
 
@@ -931,7 +883,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapChar(final char[][] x) {
+    public static int wrap(final char[][] x) {
         return new ScilabJavaObject(x, char[][].class).id;
     }
 
@@ -939,7 +891,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapFloat(final float x) {
+    public static int wrap(final float x) {
         return new ScilabJavaObject(x, float.class).id;
     }
 
@@ -947,7 +899,7 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapFloat(final float[] x) {
+    public static int wrap(final float[] x) {
         return new ScilabJavaObject(x, float[].class).id;
     }
 
@@ -955,32 +907,8 @@ public class ScilabJavaObject {
      * @param x the variable to wrap into a Java Object
      * @return the corresponding id
      */
-    public static int wrapFloat(final float[][] x) {
+    public static int wrap(final float[][] x) {
         return new ScilabJavaObject(x, float[][].class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapLong(final long x) {
-        return new ScilabJavaObject(x, long.class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapLong(final long[] x) {
-        return new ScilabJavaObject(x, long[].class).id;
-    }
-
-    /**
-     * @param x the variable to wrap into a Java Object
-     * @return the corresponding id
-     */
-    public static int wrapLong(final long[][] x) {
-        return new ScilabJavaObject(x, long[][].class).id;
     }
 
     /**

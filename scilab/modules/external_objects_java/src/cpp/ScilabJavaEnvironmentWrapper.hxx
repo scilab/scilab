@@ -20,6 +20,8 @@
 #include "ScilabAbstractEnvironmentWrapper.hxx"
 #include "ScilabJavaException.hxx"
 
+#include "ScilabJavaObject.hxx"
+
 #include "GiwsException.hxx"
 
 extern "C" {
@@ -46,6 +48,10 @@ class ScilabJavaEnvironmentWrapper : public ScilabAbstractEnvironmentWrapper
     JavaOptionsHelper & helper;
     jclass ScilabJavaObjectClass_;
 
+    jmethodID unwrapStringID_;
+    jmethodID unwrapRowStringID_;
+    jmethodID unwrapMatStringID_;
+
     jmethodID unwrapBooleanID_;
     jmethodID unwrapRowBooleanID_;
     jmethodID unwrapMatBooleanID_;
@@ -70,6 +76,10 @@ class ScilabJavaEnvironmentWrapper : public ScilabAbstractEnvironmentWrapper
     jmethodID unwrapRowDoubleID_;
     jmethodID unwrapMatDoubleID_;
 
+    jmethodID unwrapFloatID_;
+    jmethodID unwrapRowFloatID_;
+    jmethodID unwrapMatFloatID_;
+
 public:
 
     ScilabJavaEnvironmentWrapper(JavaOptionsHelper & _helper) : helper(_helper)
@@ -79,6 +89,10 @@ public:
 
         vm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
         ScilabJavaObjectClass_ = curEnv->FindClass(SCILABJAVAOBJECT);
+
+        unwrapStringID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapString", "(I)Ljava/lang/String;");
+        unwrapRowStringID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowString", "(I)[Ljava/lang/String;");
+        unwrapMatStringID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatString", "(I)[[Ljava/lang/String;");
 
         unwrapBooleanID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapBoolean", "(I)Z");
         unwrapRowBooleanID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowBoolean", "(I)[Z");
@@ -103,6 +117,10 @@ public:
         unwrapDoubleID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapDouble", "(I)D");
         unwrapRowDoubleID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowDouble", "(I)[D");
         unwrapMatDoubleID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatDouble", "(I)[[D");
+
+        unwrapFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapFloat", "(I)F");
+        unwrapRowFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapRowFloat", "(I)[F");
+        unwrapMatFloatID_ = curEnv->GetStaticMethodID(ScilabJavaObjectClass_, "unwrapMatFloat", "(I)[[F");
     }
 
     ~ScilabJavaEnvironmentWrapper() { }
@@ -186,11 +204,11 @@ public:
     int wrap(char ** x, int xSize, int xSizeCol, const bool isRef) const;
 
 
-    int wrap(float * x, const bool isRef) const;
+    int wrapFloat(double * x, const bool isRef) const;
 
-    int wrap(float * x, int xSize, const bool isRef) const;
+    int wrapFloat(double * x, int xSize, const bool isRef) const;
 
-    int wrap(float * x, int xSize, int xSizeCol, const bool isRef) const;
+    int wrapFloat(double * x, int xSize, int xSizeCol, const bool isRef) const;
 
 
     int wrapBool(int * x, const bool isRef) const;
@@ -284,11 +302,112 @@ public:
 
 private:
 
-    inline const jmethodID getSingleMethod(const char x) const
+    template<typename T>
+    inline int wrap(JavaVM * vm, T * x) const
     {
-        return unwrapByteID_;
+        return ScilabJavaObject::wrap(vm, *x);
     }
-    inline const jmethodID getSingleMethod(const unsigned char x) const
+
+    template<typename T, typename U>
+    inline int wrap(JavaVM * vm, T * x) const
+    {
+        return ScilabJavaObject::wrap(vm, (U) * x);
+    }
+
+    template<typename T>
+    inline int wrap(JavaVM * vm, T * x, const int len) const
+    {
+        return ScilabJavaObject::wrap(vm, x, len);
+    }
+
+    template<typename T, typename U>
+    inline int wrap(JavaVM * vm, T * x, const int len) const
+    {
+        U * xx = new U[len];
+        int i;
+        for (i = 0; i < len; i++)
+        {
+            xx[i] = (U)x[i];
+        }
+
+        i = ScilabJavaObject::wrap(vm, xx, len);
+        delete[] xx;
+
+        return i;
+    }
+
+    template<typename T>
+    inline int wrap(JavaVM * vm, T * x, const int r, const int c) const
+    {
+        if (helper.getMethodOfConv())
+        {
+            T ** xx = new T*[r];
+            int i, j;
+            for (i = 0; i < r; i++)
+            {
+                xx[i] = new T[c];
+                for (j = 0; j < c; j++)
+                {
+                    xx[i][j] = x[j * r + i];
+                }
+            }
+            j = ScilabJavaObject::wrap(vm, xx, r, c);
+            for (i = 0; i < r; delete[] xx[i++]);
+            delete[] xx;
+            return j;
+        }
+        else
+        {
+            T ** xx = new T*[c];
+            int i;
+            xx[0] = x;
+            for (i = 1; i < c; xx[i] = xx[i++ - 1] + r);
+            i = ScilabJavaObject::wrap(vm, xx, c, r);
+            delete[] xx;
+            return i;
+        }
+    }
+
+    template<typename T, typename U>
+    inline int wrap(JavaVM * vm, T * x, const int r, const int c) const
+    {
+        if (helper.getMethodOfConv())
+        {
+            U ** xx = new U*[r];
+            int i, j;
+            for (i = 0; i < r; i++)
+            {
+                xx[i] = new U[c];
+                for (j = 0; j < c; j++)
+                {
+                    xx[i][j] = (U)(x[j * r + i]);
+                }
+            }
+            j = ScilabJavaObject::wrap(vm, xx, r, c);
+            for (i = 0; i < r; delete[] xx[i++]);
+            delete[] xx;
+            return j;
+        }
+        else
+        {
+            U ** xx = new U*[c];
+            int i, j;
+            for (i = 0; i < c; i++)
+            {
+                xx[i] = new U[r];
+                for (j = 0; j < r; j++)
+                {
+                    xx[i][j] = (U)(x[i * r + j]);
+                }
+            }
+            j = ScilabJavaObject::wrap(vm, xx, c, r);
+            for (i = 0; i < c; delete[] xx[i++]);
+            delete[] xx;
+            return j;
+        }
+    }
+
+    inline const jmethodID getSingleMethod(const char x) const
     {
         return unwrapByteID_;
     }
@@ -304,15 +423,7 @@ private:
     {
         return unwrapIntID_;
     }
-    inline const jmethodID getSingleMethod(const unsigned int x) const
-    {
-        return unwrapIntID_;
-    }
-    inline const jmethodID getSingleMethod(const long x) const
-    {
-        return unwrapLongID_;
-    }
-    inline const jmethodID getSingleMethod(const unsigned long x) const
+    inline const jmethodID getSingleMethod(const long long x) const
     {
         return unwrapLongID_;
     }
@@ -324,12 +435,12 @@ private:
     {
         return unwrapBooleanID_;
     }
+    inline const jmethodID getSingleMethod(const float x) const
+    {
+        return unwrapFloatID_;
+    }
 
     inline const jmethodID getRowMethod(const char x) const
-    {
-        return unwrapRowByteID_;
-    }
-    inline const jmethodID getRowMethod(const unsigned char x) const
     {
         return unwrapRowByteID_;
     }
@@ -345,15 +456,7 @@ private:
     {
         return unwrapRowIntID_;
     }
-    inline const jmethodID getRowMethod(const unsigned int x) const
-    {
-        return unwrapRowIntID_;
-    }
-    inline const jmethodID getRowMethod(const long x) const
-    {
-        return unwrapRowLongID_;
-    }
-    inline const jmethodID getRowMethod(const unsigned long x) const
+    inline const jmethodID getRowMethod(const long long x) const
     {
         return unwrapRowLongID_;
     }
@@ -365,12 +468,12 @@ private:
     {
         return unwrapRowBooleanID_;
     }
+    inline const jmethodID getRowMethod(const float x) const
+    {
+        return unwrapRowFloatID_;
+    }
 
     inline const jmethodID getMatMethod(const char x) const
-    {
-        return unwrapMatByteID_;
-    }
-    inline const jmethodID getMatMethod(const unsigned char x) const
     {
         return unwrapMatByteID_;
     }
@@ -386,15 +489,7 @@ private:
     {
         return unwrapMatIntID_;
     }
-    inline const jmethodID getMatMethod(const unsigned int x) const
-    {
-        return unwrapMatIntID_;
-    }
-    inline const jmethodID getMatMethod(const long x) const
-    {
-        return unwrapMatLongID_;
-    }
-    inline const jmethodID getMatMethod(const unsigned long x) const
+    inline const jmethodID getMatMethod(const long long x) const
     {
         return unwrapMatLongID_;
     }
@@ -406,15 +501,13 @@ private:
     {
         return unwrapMatBooleanID_;
     }
-
-    template <typename T>
-    inline T CallStatic(JNIEnv * env_, const char x, int javaID) const
+    inline const jmethodID getMatMethod(const float x) const
     {
-        return static_cast<T>(env_->CallStaticByteMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
+        return unwrapMatFloatID_;
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const unsigned char x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const char x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticByteMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
@@ -438,19 +531,7 @@ private:
     }
 
     template <typename T>
-    inline T CallStatic(JNIEnv * env_, const unsigned int x, int javaID) const
-    {
-        return static_cast<T>(env_->CallStaticIntMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
-    }
-
-    template <typename T>
-    inline T CallStatic(JNIEnv * env_, const long x, int javaID) const
-    {
-        return static_cast<T>(env_->CallStaticLongMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
-    }
-
-    template <typename T>
-    inline T CallStatic(JNIEnv * env_, const unsigned long x, int javaID) const
+    inline T CallStatic(JNIEnv * env_, const long long x, int javaID) const
     {
         return static_cast<T>(env_->CallStaticLongMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
@@ -467,6 +548,12 @@ private:
         return static_cast<T>(env_->CallStaticBooleanMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
     }
 
+    template <typename T>
+    inline T CallStatic(JNIEnv * env_, const float x, int javaID) const
+    {
+        return static_cast<T>(env_->CallStaticFloatMethod(ScilabJavaObjectClass_, getSingleMethod(x), javaID));
+    }
+
     template <typename T, typename U, class V>
     inline void unwrapSingle(JavaVM * jvm_, const int javaID, const V & allocator) const
     {
@@ -474,7 +561,7 @@ private:
     }
 
     template <typename T, typename U, typename V, class W>
-    inline void unwrapSingle(JavaVM * jvm_, const int javaID, const W & allocator) const
+    inline void unwrapSingle(JavaVM * jvm_, const int javaID, const W & allocator, const bool mustAlloc = true) const
     {
         JNIEnv * curEnv = NULL;
         U * addr = NULL;
@@ -487,8 +574,15 @@ private:
             throw GiwsException::JniCallMethodException(curEnv);
         }
 
-        addr = allocator.allocate(1, 1, 0);
-        *addr = static_cast<U>(res);
+        if (mustAlloc)
+        {
+            addr = allocator.allocate(1, 1, 0);
+            *addr = static_cast<U>(res);
+        }
+        else
+        {
+            allocator.allocate(1, 1, reinterpret_cast<U *>(&res));
+        }
     }
 
     template <typename T, typename U, class V>
@@ -498,7 +592,7 @@ private:
     }
 
     template <typename T, typename U, typename V, class W>
-    inline void unwrapRow(JavaVM * jvm_, const int javaID, const W & allocator) const
+    inline void unwrapRow(JavaVM * jvm_, const int javaID, const W & allocator, const bool mustAlloc = true) const
     {
         jint lenRow;
         jboolean isCopy = JNI_FALSE;
@@ -516,20 +610,40 @@ private:
 
         lenRow = curEnv->GetArrayLength(res);
 
-        try
+        if (mustAlloc)
         {
-            addr = allocator.allocate(1, lenRow, 0);
-        }
-        catch (const ScilabAbstractEnvironmentException & e)
-        {
-            curEnv->DeleteLocalRef(res);
-            throw;
+            try
+            {
+                addr = allocator.allocate(1, lenRow, 0);
+            }
+            catch (const ScilabAbstractEnvironmentException & e)
+            {
+                curEnv->DeleteLocalRef(res);
+                throw;
+            }
         }
 
         T * resultsArray = static_cast<T *>(curEnv->GetPrimitiveArrayCritical(res, &isCopy));
-        for (int i = 0; i < lenRow; i++)
+
+        if (mustAlloc)
         {
-            addr[i] = static_cast<U>(resultsArray[i]);
+            for (int i = 0; i < lenRow; i++)
+            {
+                addr[i] = static_cast<U>(resultsArray[i]);
+            }
+        }
+        else
+        {
+            try
+            {
+                allocator.allocate(1, lenRow, reinterpret_cast<U *>(resultsArray));
+            }
+            catch (const ScilabAbstractEnvironmentException & e)
+            {
+                curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
+                curEnv->DeleteLocalRef(res);
+                throw;
+            }
         }
 
         curEnv->ReleasePrimitiveArrayCritical(res, resultsArray, JNI_ABORT);
@@ -572,11 +686,11 @@ private:
         {
             if (helper.getMethodOfConv())
             {
-                addr = allocator.allocate(lenRow, lenCol, 0);
+                addr = (U *)allocator.allocate(lenRow, lenCol, 0);
             }
             else
             {
-                addr = allocator.allocate(lenCol, lenRow, 0);
+                addr = (U *)allocator.allocate(lenCol, lenRow, 0);
             }
         }
         catch (const ScilabAbstractEnvironmentException & e)
@@ -614,614 +728,6 @@ private:
             throw GiwsException::JniCallMethodException(curEnv);
         }
     }
-
-
-    /*
-      inline static PyObject * pyWrap(double x)
-      {
-      return PyFloat_FromDouble(x);
-      }
-      inline static PyObject * pyWrap(float x)
-      {
-      return PyFloat_FromDouble((double)x);
-      }
-      inline static PyObject * pyWrap(bool x)
-      {
-      return PyBool_FromLong((long)x);
-      }
-      inline static PyObject * pyWrap(char x)
-      {
-      return PyInt_FromLong((long)x);
-      }
-      inline static PyObject * pyWrap(unsigned char x)
-      {
-      return PyInt_FromLong((long)x);
-      }
-      inline static PyObject * pyWrap(short x)
-      {
-      return PyInt_FromLong((long)x);
-      }
-      inline static PyObject * pyWrap(unsigned short x)
-      {
-      return PyInt_FromLong((long)x);
-      }
-      inline static PyObject * pyWrap(int x)
-      {
-      return PyInt_FromLong((long)x);
-      }
-      inline static PyObject * pyWrap(unsigned int x)
-      {
-      return PyInt_FromLong((long)x);
-      }
-      inline static PyObject * pyWrap(long long x)
-      {
-      return PyInt_FromLong(x);
-      }
-      inline static PyObject * pyWrap(unsigned long long x)
-      {
-      return PyInt_FromLong((long)x);
-      }
-      inline static PyObject * pyWrap(char * x)
-      {
-      return PyString_FromString(const_cast<const char *>(x));
-      }
-      inline static PyObject * pyWrap(double r, double i)
-      {
-      return PyComplex_FromDoubles(r, i);
-      }
-
-      inline static void pyUnwrap(double & x, PyObject * obj)
-      {
-      x = PyFloat_AS_DOUBLE(obj);
-      }
-      inline static void pyUnwrap(double & re, double & im, PyObject * obj)
-      {
-      re = PyComplex_RealAsDouble(obj);
-      im = PyComplex_ImagAsDouble(obj);
-      }
-      inline static void pyUnwrap(float & x, PyObject * obj)
-      {
-      x = (float)PyFloat_AS_DOUBLE(obj);
-      }
-      inline static void pyUnWrap(bool & x, PyObject * obj)
-      {
-      x = (bool)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(char & x, PyObject * obj)
-      {
-      x = (char)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(unsigned char & x, PyObject * obj)
-      {
-      x = (unsigned char)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(short & x, PyObject * obj)
-      {
-      x = (short)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(unsigned short & x, PyObject * obj)
-      {
-      x = (unsigned short)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(int & x, PyObject * obj)
-      {
-      x = (int)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(unsigned int & x, PyObject * obj)
-      {
-      x = (unsigned int)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(long long & x, PyObject * obj)
-      {
-      x = (long long)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(unsigned long long & x, PyObject * obj)
-      {
-      x = (unsigned long long)PyInt_AS_LONG(obj);
-      }
-      inline static void pyUnwrap(char* & x, PyObject * obj)
-      {
-      x = PyString_AS_STRING(obj);
-      }
-
-      inline static PyArray_Descr * pyGetDescr(double x)
-      {
-      return PyArray_DescrFromType(PyArray_DOUBLE);
-      }
-      inline static PyArray_Descr * pyGetDescr(float x)
-      {
-      return PyArray_DescrFromType(PyArray_FLOAT);
-      }
-      inline static PyArray_Descr * pyGetDescr(char x)
-      {
-      return PyArray_DescrFromType(PyArray_BYTE);
-      }
-      inline static PyArray_Descr * pyGetDescr(unsigned char x)
-      {
-      return PyArray_DescrFromType(PyArray_UBYTE);
-      }
-      inline static PyArray_Descr * pyGetDescr(short x)
-      {
-      return PyArray_DescrFromType(PyArray_SHORT);
-      }
-      inline static PyArray_Descr * pyGetDescr(unsigned short x)
-      {
-      return PyArray_DescrFromType(PyArray_USHORT);
-      }
-      inline static PyArray_Descr * pyGetDescr(int x)
-      {
-      return PyArray_DescrFromType(PyArray_INT);
-      }
-      inline static PyArray_Descr * pyGetDescr(unsigned int x)
-      {
-      return PyArray_DescrFromType(PyArray_UINT);
-      }
-      inline static PyArray_Descr * pyGetDescr(long long x)
-      {
-      return PyArray_DescrFromType(PyArray_LONG);
-      }
-      inline static PyArray_Descr * pyGetDescr(unsigned long long x)
-      {
-      return PyArray_DescrFromType(PyArray_ULONG);
-      }
-      inline static PyArray_Descr * pyGetDescr(char * x)
-      {
-      return PyArray_DescrFromType(PyArray_STRING);
-      }
-      inline static PyArray_Descr * pyGetDescr(bool x)
-      {
-      return PyArray_DescrFromType(PyArray_BOOL);
-      }
-
-      template <typename T>
-      inline void pyUnwrapSingle(int id, const ScilabSingleTypeStackAllocator<T> & allocator) const
-      {
-      PyObject * obj = scope.getObject(id);
-      T * data = allocator.allocate(1, 1, static_cast<T *>(0));
-      pyUnwrap(*data, obj);
-      }
-
-      template <typename T>
-      inline void pyUnwrapRow(int id, const ScilabSingleTypeStackAllocator<T> & allocator) const
-      {
-      PyObject * obj = scope.getObject(id);
-      if (PyList_Check(obj))
-      {
-      // List case
-      int col = PyList_Size(obj);
-      T * data = allocator.allocate(1, col, static_cast<T *>(0));
-      for (int i = 0; i < col; i++)
-      {
-      PyObject * item = PyList_GET_ITEM(obj, i);
-      pyUnwrap(data[i], item);
-      }
-      }
-      else
-      {
-      // Numpy array case
-      PyArrayObject * arr = (PyArrayObject *)obj;
-      npy_intp * dims = PyArray_DIMS(arr);
-      npy_intp * strides = PyArray_STRIDES(arr);
-
-      if (strides[0] == sizeof(T))
-      {
-      allocator.allocate(1, static_cast<int>(dims[0]), reinterpret_cast<T*>(PyArray_DATA(arr)));
-      }
-      else
-      {
-      T * data = allocator.allocate(1, static_cast<int>(dims[0]), static_cast<T *>(0));
-      char * pyData = (char *)PyArray_DATA(arr);
-      for (int i = 0; i < dims[0]; i++)
-      {
-      data[i] = *(T*)(pyData + i * strides[0]);
-      }
-      }
-      }
-      }
-
-      template <typename T>
-      inline void pyUnwrapMat(int id, const ScilabSingleTypeStackAllocator<T> & allocator) const
-      {
-      PyObject * obj = scope.getObject(id);
-      if (PyList_Check(obj))
-      {
-      // List case
-      int row = PyList_Size(obj);
-      if (row > 0)
-      {
-      PyObject * f = PyList_GET_ITEM(obj, 0);
-      int col = PyList_Size(f);
-      T * data = allocator.allocate(row, col, static_cast<T *>(0));
-      for (int i = 0; i < row; i++)
-      {
-      PyObject * sublist = PyList_GET_ITEM(obj, i);
-      for (int j = 0; j < col; j++)
-      {
-      PyObject * item = PyList_GET_ITEM(sublist, j);
-      pyUnwrap(data[i + row * j], item);
-      }
-      }
-      }
-      }
-      else
-      {
-      // Numpy array case
-      PyArrayObject * arr = (PyArrayObject *)obj;
-      npy_intp * dims = PyArray_DIMS(arr);
-      npy_intp * strides = PyArray_STRIDES(arr);
-
-      if (PyArray_ISFORTRAN(arr) && strides[0] == sizeof(T) && strides[1] == sizeof(T) * dims[0])
-      {
-      // the allocator use a memcpy (it is faster than two loops)
-      allocator.allocate(static_cast<int>(dims[0]), static_cast<int>(dims[1]), (T*)PyArray_DATA(arr));
-      }
-      else
-      {
-      T * data = allocator.allocate(static_cast<int>(dims[0]), static_cast<int>(dims[1]), static_cast<T*>(0));
-      char * pyData = (char*)PyArray_DATA(arr);
-      for (int i = 0; i < dims[0]; i++)
-      {
-      for (int j = 0; j < dims[1]; j++)
-      {
-      data[i + dims[0] * j] = *(T*)(pyData + i * strides[0] + j * strides[1]);
-      }
-      }
-      }
-      }
-      }
-
-
-      template <typename T>
-      inline int wrapData(T * x, const bool isRef) const
-      {
-      if (helper.getWrapSingleWithNumpy())
-      {
-      return wrapData<T, T, T>(x, 1, isRef);
-      }
-      else
-      {
-      return wrapData<T, T>(x, isRef);
-      }
-      }
-
-      template <typename T>
-      inline int wrapData(T * x, int xSize, const bool isRef) const
-      {
-      return wrapData<T, T, T>(x, xSize, isRef);
-      }
-
-      template <typename T>
-      inline int wrapData(T * x, int xSize, int xSizeCol, const bool isRef) const
-      {
-      return wrapData<T, T, T>(x, xSize, xSizeCol, isRef);
-      }
-
-      template <typename T, typename U>
-      inline int wrapData(T * x, const bool isRef) const
-      {
-      PyObject * obj = pyWrap(static_cast<U>(*x));
-      return scope.addObject(obj);
-      }
-
-      template <typename T, typename U, typename V>
-      inline int wrapData(T * x, int xSize, const bool isRef) const
-      {
-      if (helper.getUseNumpy())
-      {
-      PyObject * array;
-      V * matnp = 0;
-      npy_intp dim[] = { xSize };
-      npy_intp strides[] = { 0 };
-      npy_intp * stridesAddr = strides;
-
-      if (helper.getUseCopy() && !isRef)
-      {
-      matnp = new V[xSize];
-      for (int i = 0; i < xSize; i++)
-      {
-      matnp[i] = static_cast<V>(x[i]);
-      }
-      stridesAddr = 0;
-      }
-      else
-      {
-      if (sizeof(T) < sizeof(V))
-      {
-      throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot pass the data by reference"));
-      }
-
-      matnp = (V*)x;
-      strides[0] = static_cast<npy_intp>(sizeof(T));
-      }
-
-      array = PyArray_NewFromDescr(&PyArray_Type, pyGetDescr(static_cast<U>(*x)), 1, dim, stridesAddr, reinterpret_cast<void *>(matnp), NPY_OWNDATA | NPY_FARRAY, 0);
-      if (helper.getUseCopy() && !isRef)
-      {
-      NumpyDeallocator::attach_deallocator(array, reinterpret_cast<void *>(matnp));
-      }
-
-      return scope.addObject(array);
-      }
-      else
-      {
-      PyObject * list = PyList_New(xSize);
-      for (int i = 0; i < xSize; i++)
-      {
-      PyList_SetItem(list, i, pyWrap(static_cast<U>(x[i])));
-      }
-
-      return scope.addObject(list);
-      }
-      }
-
-      template <typename T, typename U, typename V>
-      inline int wrapData(T * x, int xSize, int xSizeCol, const bool isRef) const
-      {
-      if (helper.getUseNumpy())
-      {
-      PyObject * array;
-      V * matnp = 0;
-      npy_intp dim[] = { xSize, xSizeCol };
-      npy_intp strides[] = { 0, 0 };
-      npy_intp * stridesAddr = strides;
-
-      if (helper.getUseCopy() && !isRef)
-      {
-      matnp = new V[xSize * xSizeCol];
-      for (int i = 0; i < xSize * xSizeCol; i++)
-      {
-      matnp[i] = static_cast<V>(x[i]);
-      }
-      stridesAddr = 0;
-      }
-      else
-      {
-      if (sizeof(T) < sizeof(V))
-      {
-      throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot pass the data by reference"));
-      }
-
-      matnp = (V*)x;
-      strides[0] = static_cast<npy_intp>(sizeof(T));
-      strides[1] = static_cast<npy_intp>(sizeof(T) * xSize);
-      }
-
-      array = PyArray_NewFromDescr(&PyArray_Type, pyGetDescr(static_cast<U>(*x)), 2, dim, stridesAddr, reinterpret_cast<void *>(matnp), NPY_OWNDATA | NPY_FARRAY, 0);
-      if (helper.getUseCopy() && !isRef)
-      {
-      NumpyDeallocator::attach_deallocator(array, reinterpret_cast<void *>(matnp));
-      }
-
-      return scope.addObject(array);
-      }
-      else
-      {
-      PyObject * list = PyList_New(xSize);
-      for (int i = 0; i < xSize; i++)
-      {
-      PyObject * sublist = PyList_New(xSizeCol);
-      PyList_SetItem(list, i, sublist);
-      for (int j = 0; j < xSizeCol; j++)
-      {
-      PyList_SetItem(sublist, j, pyWrap(static_cast<U>(x[i + j * xSize])));
-      }
-      }
-
-      return scope.addObject(list);
-      }
-      }
-
-      inline int wrapData(char ** x, int xSize, const bool isRef) const
-      {
-      if (helper.getUseNumpy())
-      {
-      PyObject * array;
-      npy_intp dim[] = { xSize };
-      npy_intp strides[] = { 0 };
-      char * matnp = 0;
-      int maxlen = 0;
-
-      if (helper.getUseCopy() && !isRef)
-      {
-      int * lens = new int[xSize];
-      for (int i = 0; i < xSize; i++)
-      {
-      lens[i] = strlen(x[i]);
-      if (lens[i] > maxlen)
-      {
-      maxlen = lens[i];
-      }
-      }
-      maxlen++;
-
-      matnp = new char[xSize * maxlen];
-      memset(matnp, 0, xSize * maxlen);
-      for (int i = 0; i < xSize; i++)
-      {
-      memcpy(matnp + i * maxlen, x[i], lens[i]);
-      }
-      delete[] lens;
-
-      strides[0] = static_cast<npy_intp>(maxlen);
-      }
-      else
-      {
-      throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot pass Scilab strings by reference"));
-      }
-
-      PyArray_Descr * descr = pyGetDescr(*x);
-      descr->elsize = maxlen - 1;
-      array = PyArray_NewFromDescr(&PyArray_Type, descr, 1, dim, strides, reinterpret_cast<void *>(matnp), NPY_OWNDATA | NPY_FARRAY, 0);
-      NumpyDeallocator::attach_deallocator(array, reinterpret_cast<void *>(matnp));
-
-      return scope.addObject(array);
-      }
-      else
-      {
-      PyObject * list = PyList_New(xSize);
-      for (int i = 0; i < xSize; i++)
-      {
-      PyList_SetItem(list, i, pyWrap(x[i]));
-      }
-
-      return scope.addObject(list);
-      }
-      }
-
-      inline int wrapData(char ** x, int xSize, int xSizeCol, const bool isRef) const
-      {
-      if (helper.getUseNumpy())
-      {
-      PyObject * array;
-      char * matnp = 0;
-      npy_intp dim[] = { xSize, xSizeCol };
-      npy_intp strides[] = { 0, 0 };
-      int maxlen = 0;
-
-      if (helper.getUseCopy() && !isRef)
-      {
-      int * lens = new int[xSize * xSizeCol];
-      for (int i = 0; i < xSize * xSizeCol; i++)
-      {
-      lens[i] = strlen(x[i]);
-      if (lens[i] > maxlen)
-      {
-      maxlen = lens[i];
-      }
-      }
-
-      matnp = new char[xSize * xSizeCol * maxlen];
-      memset(matnp, 0, xSize * xSizeCol * maxlen);
-      for (int i = 0; i < xSize * xSizeCol; i++)
-      {
-      memcpy(matnp + i * maxlen, x[i], lens[i]);
-      }
-      delete[] lens;
-
-      strides[0] = static_cast<npy_intp>(maxlen);
-      strides[1] = static_cast<npy_intp>(xSize * maxlen);
-      }
-      else
-      {
-      throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot pass Scilab strings by reference"));
-      }
-
-
-      PyArray_Descr * descr = pyGetDescr(*x);
-      descr->elsize = maxlen;
-
-      array = PyArray_NewFromDescr(&PyArray_Type, pyGetDescr(*x), 2, dim, strides, reinterpret_cast<void *>(matnp), NPY_OWNDATA | NPY_FARRAY, 0);
-      NumpyDeallocator::attach_deallocator(array, reinterpret_cast<void *>(matnp));
-
-      return scope.addObject(array);
-      }
-      else
-      {
-      PyObject * list = PyList_New(xSize);
-      for (int i = 0; i < xSize; i++)
-      {
-      PyObject * sublist = PyList_New(xSizeCol);
-      PyList_SetItem(list, i, sublist);
-      for (int j = 0; j < xSizeCol; j++)
-      {
-      PyList_SetItem(sublist, j, pyWrap(x[i + j * xSize]));
-      }
-      }
-
-      return scope.addObject(list);
-      }
-      }
-
-      inline int wrapData(double * re, double * im, const bool isRef) const
-      {
-      PyObject * obj = pyWrap(*re, *im);
-      return scope.addObject(obj);
-      }
-
-      inline int wrapData(double * re, double * im, int xSize, const bool isRef) const
-      {
-      if (helper.getUseNumpy())
-      {
-      PyObject * array;
-      npy_intp dim[] = { xSize };
-      double * matnp = 0;
-
-      if (helper.getUseCopy() && !isRef)
-      {
-      matnp = new double[2 * xSize];
-      for (int i = 0; i < xSize; i++)
-      {
-      matnp[2 * i] = re[i];
-      matnp[2 * i  + 1] = im[i];
-      }
-      }
-      else
-      {
-      throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot pass Scilab Complex by reference"));
-      }
-
-      array = PyArray_NewFromDescr(&PyArray_Type, PyArray_DescrFromType(PyArray_CDOUBLE), 1, dim, 0, reinterpret_cast<void *>(matnp), NPY_OWNDATA | NPY_FARRAY, 0);
-      NumpyDeallocator::attach_deallocator(array, reinterpret_cast<void *>(matnp));
-
-      return scope.addObject(array);
-      }
-      else
-      {
-      PyObject * list = PyList_New(xSize);
-      for (int i = 0; i < xSize; i++)
-      {
-      PyList_SetItem(list, i, pyWrap(re[i], im[i]));
-      }
-
-      return scope.addObject(list);
-      }
-      }
-
-      inline int wrapData(double * re, double * im, int xSize, int xSizeCol, const bool isRef) const
-      {
-      if (helper.getUseNumpy())
-      {
-      PyObject * array;
-      double * matnp = 0;
-      npy_intp dim[] = { xSize, xSizeCol };
-
-      if (helper.getUseCopy() && !isRef)
-      {
-      matnp = new double[2 * xSize * xSizeCol];
-      for (int i = 0; i < xSize * xSizeCol; i++)
-      {
-      matnp[2 * i] = re[i];
-      matnp[2 * i  + 1] = im[i];
-      }
-      }
-      else
-      {
-      throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot pass Scilab Complex by reference"));
-      }
-
-
-      array = PyArray_NewFromDescr(&PyArray_Type, PyArray_DescrFromType(PyArray_CDOUBLE), 2, dim, 0, reinterpret_cast<void *>(matnp), NPY_OWNDATA | NPY_FARRAY, 0);
-      NumpyDeallocator::attach_deallocator(array, reinterpret_cast<void *>(matnp));
-
-      return scope.addObject(array);
-      }
-      else
-      {
-      PyObject * list = PyList_New(xSize);
-      for (int i = 0; i < xSize; i++)
-      {
-      PyObject * sublist = PyList_New(xSizeCol);
-      PyList_SetItem(list, i, sublist);
-      for (int j = 0; j < xSizeCol; j++)
-      {
-      PyList_SetItem(sublist, j, pyWrap(re[i + j * xSize], im[i + j * xSize]));
-      }
-      }
-
-      return scope.addObject(list);
-      }
-      }
-    */
 };
 }
 

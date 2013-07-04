@@ -182,7 +182,8 @@ am__objects_3 =  \
 	libsciexternal_objects_java_la-sci_jvoid.lo \
 	libsciexternal_objects_java_la-sci_jarray.lo \
 	libsciexternal_objects_java_la-sci_jcast.lo \
-	libsciexternal_objects_java_la-sci_jallowClassReloading.lo
+	libsciexternal_objects_java_la-sci_jallowClassReloading.lo \
+	libsciexternal_objects_java_la-sci_jwrapinfloat.lo
 am_libsciexternal_objects_java_la_OBJECTS = $(am__objects_3) \
 	$(am__objects_1)
 libsciexternal_objects_java_la_OBJECTS =  \
@@ -607,7 +608,8 @@ sci_gateway/cpp/sci_jdeff.cpp \
 sci_gateway/cpp/sci_jvoid.cpp \
 sci_gateway/cpp/sci_jarray.cpp \
 sci_gateway/cpp/sci_jcast.cpp \
-sci_gateway/cpp/sci_jallowClassReloading.cpp
+sci_gateway/cpp/sci_jallowClassReloading.cpp \
+sci_gateway/cpp/sci_jwrapinfloat.cpp
 
 GIWS_WRAPPERS = src/jni/ScilabObjects.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
@@ -774,6 +776,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_junwraprem.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jvoid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jwrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciexternal_objects_java_la-sci_jwrapinfloat.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1019,6 +1022,13 @@ libsciexternal_objects_java_la-sci_jallowClassReloading.lo: sci_gateway/cpp/sci_
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_jallowClassReloading.cpp' object='libsciexternal_objects_java_la-sci_jallowClassReloading.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_java_la-sci_jallowClassReloading.lo `test -f 'sci_gateway/cpp/sci_jallowClassReloading.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jallowClassReloading.cpp
+
+libsciexternal_objects_java_la-sci_jwrapinfloat.lo: sci_gateway/cpp/sci_jwrapinfloat.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libsciexternal_objects_java_la-sci_jwrapinfloat.lo -MD -MP -MF $(DEPDIR)/libsciexternal_objects_java_la-sci_jwrapinfloat.Tpo -c -o libsciexternal_objects_java_la-sci_jwrapinfloat.lo `test -f 'sci_gateway/cpp/sci_jwrapinfloat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jwrapinfloat.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libsciexternal_objects_java_la-sci_jwrapinfloat.Tpo $(DEPDIR)/libsciexternal_objects_java_la-sci_jwrapinfloat.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_jwrapinfloat.cpp' object='libsciexternal_objects_java_la-sci_jwrapinfloat.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libsciexternal_objects_java_la-sci_jwrapinfloat.lo `test -f 'sci_gateway/cpp/sci_jwrapinfloat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_jwrapinfloat.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

@@ -112,6 +112,24 @@ public:
         return wrapper.wrapBool(data, row, col, isRef);
     }
 
+    inline static int wrapFloat(const int row, const int col, double * data, const ScilabAbstractEnvironmentWrapper & wrapper, const bool isRef)
+    {
+        if (row == 0 || col == 0)
+        {
+            return 0;
+        }
+        else if (row == 1 && col == 1)
+        {
+            return wrapper.wrapFloat(data, isRef);
+        }
+        else if (row == 1)
+        {
+            return wrapper.wrapFloat(data, col, isRef);
+        }
+
+        return wrapper.wrapFloat(data, row, col, isRef);
+    }
+
     inline static int wrap(const int row, const int col, double * real, double * imag, const ScilabAbstractEnvironmentWrapper & wrapper, const bool isRef)
     {
         if (row == 0 || col == 0)

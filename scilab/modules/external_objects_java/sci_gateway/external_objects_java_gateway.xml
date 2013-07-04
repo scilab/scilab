@@ -48,4 +48,5 @@
     <PRIMITIVE gatewayId="72" primitiveId="17" primitiveName="jarray" />
     <PRIMITIVE gatewayId="72" primitiveId="18" primitiveName="jcast" />
     <PRIMITIVE gatewayId="72" primitiveId="19" primitiveName="jallowClassReloading" />
+    <PRIMITIVE gatewayId="72" primitiveId="20" primitiveName="jwrapinfloat" />
 </GATEWAY>

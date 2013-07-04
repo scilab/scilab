@@ -16,6 +16,8 @@
 #include "ScilabAbstractEnvironmentWrapper.hxx"
 #include "ScilabAbstractEnvironmentException.hxx"
 
+#include <iostream>
+
 extern "C"
 {
 #include "api_scilab.h"
@@ -66,12 +68,16 @@ protected:
 
     inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, float * ptr)
     {
-        throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, "Invalid operation: cannot create a matrix of floats");
+        double * _ptr = alloc(pvApiCtx, position, rows, cols, (double *)0);
+        for (int i = 0; i < rows * cols; i++)
+        {
+            _ptr[i] = static_cast<double>(ptr[i]);
+        }
     }
 
     inline static float * alloc(void * pvApiCtx, const int position, const int rows, const int cols, float * ptr)
     {
-        throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, "Invalid operation: cannot allocate a matrix of floats");
+        return (float *)alloc(pvApiCtx, position, rows, cols, (double *)0);
     }
 
     inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, double * re, double * im)
@@ -215,8 +221,7 @@ protected:
 
     inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, long long * ptr)
     {
-        int * dataPtr = 0;
-        alloc(pvApiCtx, position, rows, cols, dataPtr);
+        int * dataPtr = alloc(pvApiCtx, position, rows, cols, (int *)0);
         for (int i = 0; i < rows * cols; i++)
         {
             dataPtr[i] = static_cast<int>(ptr[i]);
@@ -225,13 +230,12 @@ protected:
 
     inline static long long * alloc(void * pvApiCtx, const int position, const int rows, const int cols, long long * ptr)
     {
-        throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, "Invalid operation: cannot allocate a matrix of Integer64");
+        return (long long *)alloc(pvApiCtx, position, rows, cols, (int *)0);
     }
 
     inline static void create(void * pvApiCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
     {
-        unsigned int * dataPtr = 0;
-        alloc(pvApiCtx, position, rows, cols, dataPtr);
+        unsigned int * dataPtr = alloc(pvApiCtx, position, rows, cols, (unsigned int *)0);
         for (int i = 0; i < rows * cols; i++)
         {
             dataPtr[i] = static_cast<unsigned int>(ptr[i]);
@@ -240,7 +244,7 @@ protected:
 
     inline static unsigned long long * alloc(void * pvApiCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
     {
-        throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, "Invalid operation: cannot allocate a matrix of UInteger64");
+        return (unsigned long long *)alloc(pvApiCtx, position, rows, cols, (unsigned int *)0);
     }
 
 #endif
@@ -384,7 +388,7 @@ public:
     }
 
     template <typename T>
-    int * allocate(const int rows, const int cols, T * dataPtr)
+    int * allocate(const int rows, const int cols, T * dataPtr) const
     {
         if (!rows || !cols)
         {

@@ -90,147 +90,111 @@
             <param type="int" name="id" />
         </method>
         
-        <method name="wrapDouble" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="double" name="x" />
         </method>
         
-        <method name="wrapDouble" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="double[]" name="x" />
         </method>
         
-        <method name="wrapDouble" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="double[][]" name="x" />
         </method>
         
-        <method name="wrapInt" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="int" name="x" />
         </method>
         
-        <method name="wrapInt" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="int[]" name="x" />
         </method>
         
-        <method name="wrapInt" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="int[][]" name="x" />
         </method>
         
-        <method name="wrapUInt" returnType="int" modifier="static">
-            <param type="long" name="x" />
-        </method>
-        
-        <method name="wrapUInt" returnType="int" modifier="static">
-            <param type="long[]" name="x" />
-        </method>
-        
-        <method name="wrapUInt" returnType="int" modifier="static">
-            <param type="long[][]" name="x" />
-        </method>
-        
-        <method name="wrapByte" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="byte" name="x" />
         </method>
         
-        <method name="wrapByte" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="byte[]" name="x" />
         </method>
         
-        <method name="wrapByte" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="byte[][]" name="x" />
         </method>
         
-        <method name="wrapUByte" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="short" name="x" />
         </method>
         
-        <method name="wrapUByte" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="short[]" name="x" />
         </method>
         
-        <method name="wrapUByte" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="short[][]" name="x" />
         </method>
         
-        <method name="wrapShort" returnType="int" modifier="static">
-            <param type="short" name="x" />
-        </method>
-        
-        <method name="wrapShort" returnType="int" modifier="static">
-            <param type="short[]" name="x" />
-        </method>
-        
-        <method name="wrapShort" returnType="int" modifier="static">
-            <param type="short[][]" name="x" />
-        </method>
-        
-        <method name="wrapUShort" returnType="int" modifier="static">
-            <param type="int" name="x" />
-        </method>
-        
-        <method name="wrapUShort" returnType="int" modifier="static">
-            <param type="int[]" name="x" />
-        </method>
-        
-        <method name="wrapUShort" returnType="int" modifier="static">
-            <param type="int[][]" name="x" />
-        </method>
-        
-        <method name="wrapString" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="String" name="x" />
         </method>
         
-        <method name="wrapString" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="String[]" name="x" />
         </method>
         
-        <method name="wrapString" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="String[][]" name="x" />
         </method>
         
-        <method name="wrapBoolean" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="boolean" name="x" />
         </method>
         
-        <method name="wrapBoolean" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="boolean[]" name="x" />
         </method>
         
-        <method name="wrapBoolean" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="boolean[][]" name="x" />
         </method>
         
-        <method name="wrapChar" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="char" name="x" />
         </method>
         
-        <method name="wrapChar" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="char[]" name="x" />
         </method>
         
-        <method name="wrapChar" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="char[][]" name="x" />
         </method>
         
-        <method name="wrapFloat" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="float" name="x" />
         </method>
         
-        <method name="wrapFloat" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="float[]" name="x" />
         </method>
         
-        <method name="wrapFloat" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="float[][]" name="x" />
         </method>
         
-        <method name="wrapLong" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="long" name="x" />
         </method>
         
-        <method name="wrapLong" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="long[]" name="x" />
         </method>
         
-        <method name="wrapLong" returnType="int" modifier="static">
+        <method name="wrap" returnType="int" modifier="static">
             <param type="long[][]" name="x" />
         </method>
         

@@ -17,7 +17,6 @@
 #endif
 
 #include "ScilabJavaEnvironmentWrapper.hxx"
-#include "ScilabJavaObject.hxx"
 
 extern "C" {
 #include "getScilabJavaVM.h"
@@ -28,35 +27,28 @@ namespace org_scilab_modules_external_objects_java
 
 VariableType ScilabJavaEnvironmentWrapper::isunwrappable(int id) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     int type = ScilabJavaObject::isUnwrappable(vm, id);
+
     return (VariableType)type;
 }
 
-// template <class T>
-// int ScilabJavaEnvironmentWrapper::wrap(T* x, const bool isRef) const
-// {
-//     JavaVM *vm = getScilabJavaVM ();
-//     return ScilabJavaObject::wrapDouble(vm, x, isRef);
-// }
-
-
 int ScilabJavaEnvironmentWrapper::wrap(double * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapDouble(vm, *x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * x, int xSize, const bool isRef) const
 {
-    //  return wrapData<double>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<double>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(double * re, double * im, const bool isRef) const
@@ -86,563 +78,528 @@ int ScilabJavaEnvironmentWrapper::wrap(double * re, double * im, int xSize, int 
 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapChar(vm, *x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap<char>(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<char>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (byte *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<char>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (byte *)x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, const bool isRef) const
 {
-    //    return wrapData<unsigned char>(x, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (byte *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, int xSize, const bool isRef) const
 {
-    //  return wrapData<unsigned char>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (byte *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned char * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<unsigned char>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (byte *)x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(short * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapShort(vm, *x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(short * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<short>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(short * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<short>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapUShort(vm, *x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (short *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<unsigned short>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (short *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned short * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<unsigned short>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (short *)x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(int * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapInt(vm, *x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(int * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<int>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(int * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<int>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapUInt(vm, *x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (int *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<unsigned int>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (int *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned int * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<unsigned int>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (int *)x, xSize, xSizeCol);
 }
 
 #ifdef __SCILAB_INT64__
 
 int ScilabJavaEnvironmentWrapper::wrap(long long * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapLong(vm, *x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(long long * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<long>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(long long * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<long>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, const bool isRef) const
 {
-    //    return wrapData<unsigned long>(x, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (long long *)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<unsigned long>(x, xSize, isRef);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (long long *)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(unsigned long long * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<unsigned long>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (long long *)x, xSize, xSizeCol);
 }
 
 #endif
 
 int ScilabJavaEnvironmentWrapper::wrap(char ** x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapString(vm, (char const*) * x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (char const**)x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char ** x, int xSize, const bool isRef) const
 {
-    //    return wrapData(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (char const**)x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrap(char ** x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap(vm, (char const**)x, xSize, xSizeCol);
 }
 
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapBoolean(vm, *x != 0);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap<int, bool>(vm, x);
 }
 
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<int, bool, npy_bool>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap<int, bool>(vm, x, xSize);
 }
 
 int ScilabJavaEnvironmentWrapper::wrapBool(int * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<int, bool, npy_bool>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap<int, bool>(vm, x, xSize, xSizeCol);
 }
 
-int ScilabJavaEnvironmentWrapper::wrap(float * x, const bool isRef) const
+int ScilabJavaEnvironmentWrapper::wrapFloat(double * x, const bool isRef) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    return ScilabJavaObject::wrapFloat(vm, *x);
+    JavaVM * vm = getScilabJavaVM();
+    return wrap<double, float>(vm, x);
 }
 
-int ScilabJavaEnvironmentWrapper::wrap(float * x, int xSize, const bool isRef) const
+int ScilabJavaEnvironmentWrapper::wrapFloat(double * x, int xSize, const bool isRef) const
 {
-    //    return wrapData<float>(x, xSize, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap<double, float>(vm, x, xSize);
 }
 
-int ScilabJavaEnvironmentWrapper::wrap(float * x, int xSize, int xSizeCol, const bool isRef) const
+int ScilabJavaEnvironmentWrapper::wrapFloat(double * x, int xSize, int xSizeCol, const bool isRef) const
 {
-    //    return wrapData<float>(x, xSize, xSizeCol, isRef);
-    return 0;
+    JavaVM * vm = getScilabJavaVM();
+    return wrap<double, float>(vm, x, xSize, xSizeCol);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapdouble(int id, const ScilabDoubleStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapSingle<jdouble, double>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowdouble(int id, const ScilabDoubleStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapRow<jdouble, double>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatdouble(int id, const ScilabDoubleStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapMat<jdouble, double>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapchar(int id, const ScilabCharStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapSingle<jbyte, char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowchar(int id, const ScilabCharStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapRow<jbyte, char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatchar(int id, const ScilabCharStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapMat<jbyte, char>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapuchar(int id, const ScilabUCharStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapSingle<jbyte, unsigned char>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowuchar(int id, const ScilabUCharStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapRow<jbyte, unsigned char>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatuchar(int id, const ScilabUCharStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapMat<jbyte, unsigned char>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapshort(int id, const ScilabShortStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapSingle<jshort, short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowshort(int id, const ScilabShortStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapRow<jshort, short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatshort(int id, const ScilabShortStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapMat<jshort, short>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapSingle<jshort, unsigned short>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapRow<jshort, unsigned short>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatushort(int id, const ScilabUShortStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapMat<jshort, unsigned short>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapint(int id, const ScilabIntStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapSingle<jint, int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowint(int id, const ScilabIntStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapRow<jint, int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatint(int id, const ScilabIntStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapMat<jint, int>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapuint(int id, const ScilabUIntStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapSingle<jint, unsigned int>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowuint(int id, const ScilabUIntStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapRow<jint, unsigned int>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatuint(int id, const ScilabUIntStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    unwrapMat<jint, unsigned int>(vm, id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwraplong(int id, const ScilabLongStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<long long>(id, allocator);
+    JavaVM * vm = getScilabJavaVM();
+    unwrapSingle<jlong, long long, long long>(vm, id, allocator, false);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowlong(int id, const ScilabLongStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<long long>(id, allocator);
+    JavaVM * vm = getScilabJavaVM();
+    unwrapRow<jlong, long long, long long>(vm, id, allocator, false);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatlong(int id, const ScilabLongStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<long long>(id, allocator);
+    JavaVM * vm = getScilabJavaVM();
+    unwrapMat<jlong, int, long long>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapulong(int id, const ScilabULongStackAllocator & allocator) const
 {
-    //    pyUnwrapSingle<unsigned long long>(id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowulong(int id, const ScilabULongStackAllocator & allocator) const
 {
-    //    pyUnwrapRow<unsigned long long>(id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatulong(int id, const ScilabULongStackAllocator & allocator) const
 {
-    //    pyUnwrapMat<unsigned long long>(id, allocator);
+    // Not called
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapboolean(int id, const ScilabBooleanStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapSingle<jboolean, int, bool>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowboolean(int id, const ScilabBooleanStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapRow<jboolean, int, bool>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatboolean(int id, const ScilabBooleanStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
+    JavaVM * vm = getScilabJavaVM();
     unwrapMat<jboolean, int, bool>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapstring(int id, const ScilabStringStackAllocator & allocator) const
 {
-    JavaVM *vm = getScilabJavaVM ();
-    char * data = ScilabJavaObject::unwrapString(vm, id);
-    allocator.allocate(1, 1, &data);
+    JNIEnv * curEnv = NULL;
+    JavaVM * vm = getScilabJavaVM();
+    vm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+
+    jstring res = static_cast<jstring>(curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, unwrapStringID_ , id));
+    char * addr = const_cast<char *>(curEnv->GetStringUTFChars(res, 0));
+
+    allocator.allocate(1, 1, &addr);
+
+    curEnv->ReleaseStringUTFChars(res, addr);
+    curEnv->DeleteLocalRef(res);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowstring(int id, const ScilabStringStackAllocator & allocator) const
 {
-    /*    PyObject * obj = scope.getObject(id);
+    JNIEnv * curEnv = NULL;
+    JavaVM * vm = getScilabJavaVM();
+    vm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 
-        if (PyList_Check(obj))
-        {
-            // List case
-            int col = PyList_Size(obj);
-            char ** data = new char*[col];
-            for (int i = 0; i < col; i++)
-            {
-                PyObject * item = PyList_GET_ITEM(obj, i);
-                data[i] = PyString_AsString(item);
-            }
+    jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, unwrapRowStringID_ , id));
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
 
-            allocator.allocate(1, col, data);
-            delete[] data;
-        }
-        else
-        {
-            // Numpy array case
-            PyArrayObject * arr = reinterpret_cast<PyArrayObject *>(obj);
-            npy_intp * dims = PyArray_DIMS(arr);
-            npy_intp * strides = PyArray_STRIDES(arr);
-            char * pyData = reinterpret_cast<char *>(PyArray_DATA(arr));
-            char ** data = new char*[dims[0]];
+    jint lenRow = curEnv->GetArrayLength(res);
+    jboolean isCopy = JNI_FALSE;
+    char ** addr = new char*[lenRow];
+    jstring * resString = new jstring[lenRow];
 
-            for (int i = 0; i < dims[0]; i++)
-            {
-                data[i] = pyData + i * strides[0];
-            }
+    for (jsize i = 0; i < lenRow; i++)
+    {
+        resString[i] = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(res, i));
+        addr[i] = const_cast<char *>(curEnv->GetStringUTFChars(resString[i], &isCopy));
+    }
 
-            allocator.allocate(1, dims[0], data);
-            delete[] data;
-        }
-    */
+    allocator.allocate(1, lenRow, addr);
+
+    for (jsize i = 0; i < lenRow; i++)
+    {
+        curEnv->ReleaseStringUTFChars(resString[i], addr[i]);
+        curEnv->DeleteLocalRef(resString[i]);
+    }
+    delete[] addr;
+    delete[] resString;
+
+    curEnv->DeleteLocalRef(res);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatstring(int id, const ScilabStringStackAllocator & allocator) const
 {
-    /*    PyObject * obj = scope.getObject(id);
+    JNIEnv * curEnv = NULL;
+    JavaVM * vm = getScilabJavaVM();
+    vm->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 
-        if (PyList_Check(obj))
+    jobjectArray res = static_cast<jobjectArray>(curEnv->CallStaticObjectMethod(ScilabJavaObjectClass_, unwrapMatStringID_, id));
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
+    jint lenRow = curEnv->GetArrayLength(res);
+    jboolean isCopy = JNI_FALSE;
+
+    jobjectArray oneDim = reinterpret_cast<jobjectArray>(curEnv->GetObjectArrayElement(res, 0));
+    jint lenCol = curEnv->GetArrayLength(oneDim);
+    char ** addr = new char*[lenRow * lenCol];
+    jstring * resString = new jstring[lenRow * lenCol];
+
+    for (int i = 0; i < lenRow; i++)
+    {
+        oneDim = reinterpret_cast<jobjectArray>(curEnv->GetObjectArrayElement(res, i));
+        if (helper.getMethodOfConv())
         {
-            // List case
-            int row = PyList_Size(obj);
-            if (row > 0)
+            for (int j = 0; j < lenCol; j++)
             {
-                PyObject * f = PyList_GET_ITEM(obj, 0);
-                int col = PyList_Size(f);
-                char ** data = new char*[row * col];
-                for (int i = 0; i < row; i++)
-                {
-                    PyObject * sublist = PyList_GetItem(obj, i);
-                    for (int j = 0; j < col; j++)
-                    {
-                        PyObject * item = PyList_GET_ITEM(sublist, j);
-                        data[i + row * j] = PyString_AsString(item);
-                    }
-                }
-
-                allocator.allocate(row, col, data);
-                delete[] data;
+                resString[j * lenRow + i] = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(oneDim, j));
+                addr[j * lenRow + i] = const_cast<char *>(curEnv->GetStringUTFChars(resString[j * lenRow + i], &isCopy));
             }
         }
         else
         {
-            // Numpy array case
-            PyArrayObject * arr = reinterpret_cast<PyArrayObject *>(obj);
-            npy_intp * dims = PyArray_DIMS(arr);
-            npy_intp * strides = PyArray_STRIDES(arr);
-            char * pyData = reinterpret_cast<char *>(PyArray_DATA(arr));
-            char ** data = new char*[dims[0] * dims[1]];
-
-            for (int i = 0; i < dims[0]; i++)
+            for (int j = 0; j < lenCol; j++)
             {
-                for (int j = 0; j < dims[1]; j++)
-                {
-                    data[i + dims[0] * j] = pyData + i * strides[0] + j * strides[1];
-                }
+                resString[i * lenCol + j] = reinterpret_cast<jstring>(curEnv->GetObjectArrayElement(oneDim, j));
+                addr[i * lenCol + j] = const_cast<char *>(curEnv->GetStringUTFChars(resString[i * lenCol + j], &isCopy));
             }
-
-            allocator.allocate(dims[0], dims[1], data);
-            delete[] data;
         }
-    */
+        curEnv->DeleteLocalRef(oneDim);
+    }
+
+    if (helper.getMethodOfConv())
+    {
+        allocator.allocate(lenRow, lenCol, addr);
+    }
+    else
+    {
+        allocator.allocate(lenCol, lenRow, addr);
+    }
+
+    for (int i = 0; i < lenRow * lenCol; i++)
+    {
+        curEnv->ReleaseStringUTFChars(resString[i], addr[i]);
+        curEnv->DeleteLocalRef(resString[i]);
+    }
+    delete[] addr;
+    delete[] resString;
+
+    curEnv->DeleteLocalRef(res);
+    if (curEnv->ExceptionCheck())
+    {
+        throw GiwsException::JniCallMethodException(curEnv);
+    }
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapcomplex(int id, const ScilabComplexStackAllocator & allocator) const
 {
-    /*    PyObject * obj = scope.getObject(id);
-        ComplexDataPointers cdp = allocator.allocate(1, 1, static_cast<double *>(0), static_cast<double *>(0));
-        pyUnwrap(*cdp.realPtr, *cdp.imagPtr, obj);*/
+    // never called
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowcomplex(int id, const ScilabComplexStackAllocator & allocator) const
 {
-    /*    PyObject * obj = scope.getObject(id);
-
-        if (PyList_Check(obj))
-        {
-            // List case
-            int col = PyList_Size(obj);
-            ComplexDataPointers cdp = allocator.allocate(1, col, static_cast<double *>(0), static_cast<double *>(0));
-            for (int i = 0; i < col; i++)
-            {
-                PyObject * item = PyList_GET_ITEM(obj, i);
-                pyUnwrap(cdp.realPtr[i], cdp.imagPtr[i], obj);
-            }
-        }
-        else
-        {
-            // Numpy array case
-            PyArrayObject * arr = reinterpret_cast<PyArrayObject *>(obj);
-            npy_intp * dims = PyArray_DIMS(arr);
-            npy_intp * strides = PyArray_STRIDES(arr);
-
-            ComplexDataPointers cdp = allocator.allocate(1, static_cast<int>(dims[0]), static_cast<double *>(0), static_cast<double *>(0));
-            char * pyData = reinterpret_cast<char *>(PyArray_DATA(arr));
-            for (int i = 0; i < dims[0]; i++)
-            {
-                complex c = *reinterpret_cast<complex *>(pyData + i * strides[0]);
-                cdp.realPtr[i] = c.re;
-                cdp.imagPtr[i] = c.im;
-            }
-        }
-    */
+    // never called
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatcomplex(int id, const ScilabComplexStackAllocator & allocator) const
 {
-    /*    PyObject * obj = scope.getObject(id);
-        if (PyList_Check(obj))
-        {
-            // List case
-            int row = PyList_Size(obj);
-            if (row > 0)
-            {
-                PyObject * f = PyList_GET_ITEM(obj, 0);
-                int col = PyList_Size(f);
-                ComplexDataPointers cdp = allocator.allocate(row, col, static_cast<double *>(0), static_cast<double *>(0));
-                for (int i = 0; i < row; i++)
-                {
-                    PyObject * sublist = PyList_GET_ITEM(obj, i);
-                    for (int j = 0; j < col; j++)
-                    {
-                        PyObject * item = PyList_GET_ITEM(sublist, j);
-                        pyUnwrap(cdp.realPtr[i + row * j], cdp.imagPtr[i + row * j], item);
-                    }
-                }
-            }
-        }
-        else
-        {
-            // Numpy array case
-            PyArrayObject * arr = reinterpret_cast<PyArrayObject *>(obj);
-            npy_intp * dims = PyArray_DIMS(arr);
-            npy_intp * strides = PyArray_STRIDES(arr);
-
-            ComplexDataPointers cdp = allocator.allocate(static_cast<int>(dims[0]), static_cast<int>(dims[1]), static_cast<double *>(0), static_cast<double *>(0));
-            char * pyData = reinterpret_cast<char*>(PyArray_DATA(arr));
-
-            for (int i = 0; i < dims[0]; i++)
-            {
-                for (int j = 0; j < dims[1]; j++)
-                {
-                    complex c = *reinterpret_cast<complex *>(pyData + i * strides[0] + j * strides[1]);
-                    cdp.realPtr[i + dims[0] * j] = c.re;
-                    cdp.imagPtr[i + dims[0] * j] = c.im;
-                }
-            }
-            }*/
+    // never called
 }
 
-void ScilabJavaEnvironmentWrapper::unwrapfloat(int id, const ScilabFloatStackAllocator & allocator) const { }
+void ScilabJavaEnvironmentWrapper::unwrapfloat(int id, const ScilabFloatStackAllocator & allocator) const
+{
+    JavaVM * vm = getScilabJavaVM();
+    unwrapSingle<jfloat, float, float>(vm, id, allocator, false);
+}
 
-void ScilabJavaEnvironmentWrapper::unwraprowfloat(int id, const ScilabFloatStackAllocator & allocator) const { }
+void ScilabJavaEnvironmentWrapper::unwraprowfloat(int id, const ScilabFloatStackAllocator & allocator) const
+{
+    JavaVM * vm = getScilabJavaVM();
+    unwrapRow<jfloat, float, float>(vm, id, allocator, false);
+}
 
-void ScilabJavaEnvironmentWrapper::unwrapmatfloat(int id, const ScilabFloatStackAllocator & allocator) const { }
+void ScilabJavaEnvironmentWrapper::unwrapmatfloat(int id, const ScilabFloatStackAllocator & allocator) const
+{
+    JavaVM * vm = getScilabJavaVM();
+    unwrapMat<jfloat, double, float>(vm, id, allocator);
+}
 }
